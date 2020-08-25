@@ -21,11 +21,13 @@ class Import::SdtmIg < Import
   # @option params [String] :version the version
   # @option params [String] :date the date of issue
   # @option params [Array] :files
+  # @option params [URI] :ct the CDISC CT uri to be used for CT references
   # @option params [Background] :job the background job
   # @return [Void] no return value
   def import(params)
     @tags = []
     @parent_set = {}
+    @ct = ::CdiscTerm.find_minimum(params[:ct])
     params[:identifier] = ::SdtmIg.identifier
     results = read_and_process(params) if self.errors.empty?
     objects = self.errors.empty? ? process_results(results) : {parent: self, managed_children: []}
@@ -92,7 +94,28 @@ private
       filtered << child 
       child.has_previous_version = previous.nil? ? nil : previous.uri
     end
+
+    # Check for differences. If no change then use previous version.
+    filtered.each_with_index do |domain, index| 
+      domain.children.each do |variable|
+        next if variable.ct_and_format.empty?
+        notations = extract_notations(variable.ct_and_format) 
+        notations.each do |notation|
+          cl = @ct.find_notation(notation)
+puts colourize("***** Error finding CT Ref: #{notation} *****", "red") if cl.empty?
+          next if cl.empty?
+          ref = OperationalReferenceV3::TmcReference.new(context: @ct.uri, reference: cl.first[:uri], label: notation)
+          ref.uri = ref.create_uri(variable.uri)
+          variable.ct_reference << ref
+        end
+      end
+    end
     {parent: parent, managed_children: filtered, tags: []}
+  end
+
+  def extract_notations(value)
+    temp = value.scan(/\(\w+\)*/)
+    temp.map {|x| x.gsub(/[()]/, "")}
   end
 
 end

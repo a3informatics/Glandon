@@ -971,7 +971,17 @@ defaults: &defaults
             actions: []
           -
             label: "Controlled Terms, Codelist or Format"  
-            actions: []
+            actions: 
+              -
+                method: set_property
+                object: child
+                can_be_empty: true
+                property: ct_and_format
+              -
+                method: ct_other
+                object: child
+                can_be_empty: true
+                property: format
           -
             label: "Role"
             actions: []
@@ -1110,6 +1120,11 @@ defaults: &defaults
                 object: child
                 can_be_empty: true
                 property: ct_and_format
+              -
+                method: ct_other
+                object: child
+                can_be_empty: true
+                property: format
           -
             label: "Role"
             actions: []

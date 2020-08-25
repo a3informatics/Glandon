@@ -125,7 +125,7 @@ describe "Import CDISC ADaM Implementation Guide Data" do
     ]
 
     @date_to_filename_map = [
-      "adam_1-0.xlsx", "adam_1-1.xlsx", "adam_1-2.xlsx"
+      "adam_ig_1-0.xlsx", "adam_ig_1-1.xlsx", "adam_ig_1-2.xlsx"
     ]
   end
   

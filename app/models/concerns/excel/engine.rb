@@ -493,7 +493,9 @@ class Excel::Engine
   # @return [Void] no return
   def ct_reference(params)
     check_params(__method__.to_s, params, [:row, :col, :property, :object])
-    property_set_value(params[:object], params[:property], check_ct(params[:row], params[:col]))
+    ref = check_ct(params[:row], params[:col])
+    return if ref.empty?
+    property_set_value(params[:object], params[:property], ref)
   end
 
   # CT Other. Return text that is not a CT reference

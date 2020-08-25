@@ -223,7 +223,7 @@
   rdfs:range xsd:string ;
   skos:definition "Format of the variable."^^xsd:string ;
 .
-:ct
+:ctReference
   rdf:type owl:DatatypeProperty ;
   rdfs:label "ct"^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
@@ -231,7 +231,7 @@
   rdfs:domain [ a owl:Class ;
     owl:unionOf (:SdtmDomainVariable :ADaMDatasetVariable)
     ] ;
-  rdfs:range xsd:string ;
+  rdfs:range bo:TMcReference ;
   skos:definition "Controlled terminology reference for the variable."^^xsd:string ;
 .
 :ctNotes

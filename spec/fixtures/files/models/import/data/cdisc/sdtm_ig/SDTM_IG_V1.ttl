@@ -19,7 +19,7 @@
 	isoC:label "Controlled Terminology"^^xsd:string ;
 	isoT:hasState :IG_RS ;
 	isoT:hasIdentifier :IG_SI ;
-	isoT:origin "Created from files: 'sdtm_3-1-2.xlsx'"^^xsd:string ;
+	isoT:origin "Created from files: 'sdtm_ig_3-1-2.xlsx'"^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2008-11-12T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2008-11-12T00:00:00+00:00"^^xsd:dateTime ;
@@ -549,8 +549,18 @@
 	bd:name "AEPRESP"^^xsd:string ;
 	bd:description "A value of 'Y' indicates that this adverse event was pre-specified on the CRF. Values are null for spontaneously reported events (i.e., those collected as free-text verbatim terms)"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAEPRESP_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAEPRESP_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAEBODSYS>
 	rdf:type bd:SdtmDomainVariable ;
@@ -571,8 +581,18 @@
 	bd:name "AELOC"^^xsd:string ;
 	bd:description "Describes anatomical location relevant for the event (e.g., LEFT ARM for skin rash)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(LOC)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAELOC_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAELOC_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "LOC"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAESEV>
 	rdf:type bd:SdtmDomainVariable ;
@@ -582,8 +602,18 @@
 	bd:name "AESEV"^^xsd:string ;
 	bd:description "The severity or intensity of the event. Examples: MILD, MODERATE, SEVERE."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(AESEV)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAESEV_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAESEV_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "AESEV"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66769/V4#C66769> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAESER>
 	rdf:type bd:SdtmDomainVariable ;
@@ -593,8 +623,18 @@
 	bd:name "AESER"^^xsd:string ;
 	bd:description "Is this a serious event?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAESER_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAESER_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAEACN>
 	rdf:type bd:SdtmDomainVariable ;
@@ -604,8 +644,18 @@
 	bd:name "AEACN"^^xsd:string ;
 	bd:description "Describes changes to the study treatment as a result of the event. AEACN is specifically for the relationship to study treatment. AEACNOTH is for actions unrelated to dose adjustments of study treatment. Examples of AEACN values include ICH E2B values: DRUG WITHDRAWN, DOSE REDUCED, DOSE INCREASED, DOSE NOT CHANGED, UNKNOWN or NOT APPLICABLE"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ACN)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAEACN_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAEACN_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ACN"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66767/V4#C66767> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAEACNOTH>
 	rdf:type bd:SdtmDomainVariable ;
@@ -659,8 +709,18 @@
 	bd:name "AEOUT"^^xsd:string ;
 	bd:description "Description of the outcome of an event."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(OUT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAEOUT_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAEOUT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "OUT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66768/V4#C66768> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAESCAN>
 	rdf:type bd:SdtmDomainVariable ;
@@ -670,8 +730,18 @@
 	bd:name "AESCAN"^^xsd:string ;
 	bd:description "Was the serious event associated with the development of cancer?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAESCAN_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAESCAN_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAESCONG>
 	rdf:type bd:SdtmDomainVariable ;
@@ -681,8 +751,18 @@
 	bd:name "AESCONG"^^xsd:string ;
 	bd:description "Was the serious event associated with congenital anomaly or birth defect?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAESCONG_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAESCONG_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAESDISAB>
 	rdf:type bd:SdtmDomainVariable ;
@@ -692,8 +772,18 @@
 	bd:name "AESDISAB"^^xsd:string ;
 	bd:description "Did the serious event result in persistent or significant disability/incapacity?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAESDISAB_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAESDISAB_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAESDTH>
 	rdf:type bd:SdtmDomainVariable ;
@@ -703,8 +793,18 @@
 	bd:name "AESDTH"^^xsd:string ;
 	bd:description "Did the serious event result in death?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAESDTH_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAESDTH_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAESHOSP>
 	rdf:type bd:SdtmDomainVariable ;
@@ -714,8 +814,18 @@
 	bd:name "AESHOSP"^^xsd:string ;
 	bd:description "Did the serious event require or prolong hospitalization?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAESHOSP_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAESHOSP_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAESLIFE>
 	rdf:type bd:SdtmDomainVariable ;
@@ -725,8 +835,18 @@
 	bd:name "AESLIFE"^^xsd:string ;
 	bd:description "Was the serious event life threatening?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAESLIFE_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAESLIFE_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAESOD>
 	rdf:type bd:SdtmDomainVariable ;
@@ -736,8 +856,18 @@
 	bd:name "AESOD"^^xsd:string ;
 	bd:description "Did the serious event occur with an overdose?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAESOD_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAESOD_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAESMIE>
 	rdf:type bd:SdtmDomainVariable ;
@@ -747,8 +877,18 @@
 	bd:name "AESMIE"^^xsd:string ;
 	bd:description "Do additional categories for seriousness apply?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAESMIE_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAESMIE_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAECONTRT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -758,8 +898,18 @@
 	bd:name "AECONTRT"^^xsd:string ;
 	bd:description "Was another treatment given because of the occurrence of the event?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAECONTRT_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAECONTRT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAETOXGR>
 	rdf:type bd:SdtmDomainVariable ;
@@ -779,8 +929,8 @@
 	bd:ordinal "34"^^xsd:positiveInteger ;
 	bd:name "AESTDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/AE/V1#DVAEENDTC>
@@ -790,8 +940,8 @@
 	bd:ordinal "35"^^xsd:positiveInteger ;
 	bd:name "AEENDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/AE/V1#DVAESTDY>
@@ -823,8 +973,8 @@
 	bd:ordinal "38"^^xsd:positiveInteger ;
 	bd:name "AEDUR"^^xsd:string ;
 	bd:description "Collected duration and unit of an adverse event. Used only if collected on the CRF and not derived from start and end date/times. Example: P1DT2H (for 1 day, 2 hours)."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/AE/V1#DVAEENRF>
@@ -835,8 +985,18 @@
 	bd:name "AEENRF"^^xsd:string ;
 	bd:description "Describes the end of the event relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of the trial."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(STENRF)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/AE/V1#DVAEENRF_TMC1> ;
+.
+<http://www.cdisc.org/AE/V1#DVAEENRF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "STENRF"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66728/V4#C66728> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/AE/V1#DVAEENRTPT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -846,7 +1006,7 @@
 	bd:name "AEENRTPT"^^xsd:string ;
 	bd:description "Identifies the end of the event as being before or after the reference time point defined by variable AEENTPT."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ENRTPT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/AE/V1#DVAEENTPT>
@@ -1006,8 +1166,18 @@
 	bd:name "DSDECOD"^^xsd:string ;
 	bd:description "Controlled terminology for the name of disposition event or protocol milestone. Examples of protocol milestones: INFORMED CONSENT OBTAINED, RANDOMIZED"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NCOMPLT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/DS/V1#DVDSDECOD_TMC1> ;
+.
+<http://www.cdisc.org/DS/V1#DVDSDECOD_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NCOMPLT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66727/V9#C66727> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/DS/V1#DVDSCAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1017,8 +1187,18 @@
 	bd:name "DSCAT"^^xsd:string ;
 	bd:description "Used to define a category of related records. DSCAT is now an 'Expected' variable. DSCAT was permissible in SDTMIG 3.1.1 and earlier versions. The change from 'permissible' to 'expected' is based on the requirement to distinguish protocol milestones and/or other events from disposition events. DSCAT may be null if there are only 'disposition events'; however, it is recommended that DSCAT always be populated."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(DSCAT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/DS/V1#DVDSCAT_TMC1> ;
+.
+<http://www.cdisc.org/DS/V1#DVDSCAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DSCAT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74558/V8#C74558> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/DS/V1#DVDSSCAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1049,8 +1229,8 @@
 	bd:ordinal "13"^^xsd:positiveInteger ;
 	bd:name "DSDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/DS/V1#DVDSSTDTC>
@@ -1060,8 +1240,8 @@
 	bd:ordinal "14"^^xsd:positiveInteger ;
 	bd:name "DSSTDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/DS/V1#DVDSSTDY>
@@ -1274,8 +1454,18 @@
 	bd:name "MHPRESP"^^xsd:string ;
 	bd:description "A value of 'Y' indicates that this medical history event was pre-specified on the CRF. Values are null for spontaneously reported events (i.e., those collected as free-text verbatim terms)"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/MH/V1#DVMHPRESP_TMC1> ;
+.
+<http://www.cdisc.org/MH/V1#DVMHPRESP_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MH/V1#DVMHOCCUR>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1285,8 +1475,18 @@
 	bd:name "MHOCCUR"^^xsd:string ;
 	bd:description "Used when the occurrence of specific medical history conditions is solicited to indicate whether or not (Y/N) a medical condition (MHTERM) had ever occurred. Values are null for spontaneously reported events."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/MH/V1#DVMHOCCUR_TMC1> ;
+.
+<http://www.cdisc.org/MH/V1#DVMHOCCUR_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MH/V1#DVMHSTAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1296,8 +1496,18 @@
 	bd:name "MHSTAT"^^xsd:string ;
 	bd:description "The status indicates that the pre-specified question was not answered."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/MH/V1#DVMHSTAT_TMC1> ;
+.
+<http://www.cdisc.org/MH/V1#DVMHSTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MH/V1#DVMHREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1328,8 +1538,8 @@
 	bd:ordinal "18"^^xsd:positiveInteger ;
 	bd:name "MHDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/MH/V1#DVMHSTDTC>
@@ -1339,8 +1549,8 @@
 	bd:ordinal "19"^^xsd:positiveInteger ;
 	bd:name "MHSTDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/MH/V1#DVMHENDTC>
@@ -1350,8 +1560,8 @@
 	bd:ordinal "20"^^xsd:positiveInteger ;
 	bd:name "MHENDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/MH/V1#DVMHDY>
@@ -1373,8 +1583,18 @@
 	bd:name "MHENRF"^^xsd:string ;
 	bd:description "Describes the end of the event relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point (represented by RFSTDTC and RFENDTC in Demographics)"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(STENRF)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/MH/V1#DVMHENRF_TMC1> ;
+.
+<http://www.cdisc.org/MH/V1#DVMHENRF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "STENRF"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66728/V4#C66728> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MH/V1#DVMHENRTPT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1384,7 +1604,7 @@
 	bd:name "MHENRTPT"^^xsd:string ;
 	bd:description "Identifies the end of the event as being before or after the reference time point defined by variable MHENTPT."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ENRTPT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/MH/V1#DVMHENTPT>
@@ -1574,8 +1794,8 @@
 	bd:ordinal "12"^^xsd:positiveInteger ;
 	bd:name "DVSTDTC"^^xsd:string ;
 	bd:description "Start date/time of deviation represented in ISO 8601 character format."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/DV/V1#DVDVENDTC>
@@ -1585,8 +1805,8 @@
 	bd:ordinal "13"^^xsd:positiveInteger ;
 	bd:name "DVENDTC"^^xsd:string ;
 	bd:description "End date/time of deviation represented in ISO 8601 character format."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CE/V1>
@@ -1780,8 +2000,18 @@
 	bd:name "CEPRESP"^^xsd:string ;
 	bd:description "Used to indicate whether the Event in CETERM was pre-specified. Value is Y for pre-specified events, null for spontaneously reported events."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CE/V1#DVCEPRESP_TMC1> ;
+.
+<http://www.cdisc.org/CE/V1#DVCEPRESP_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CE/V1#DVCEOCCUR>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1791,8 +2021,18 @@
 	bd:name "CEOCCUR"^^xsd:string ;
 	bd:description "Used when the occurrence of specific events is solicited to indicate whether or not a clinical event occurred. Values are null for spontaneously reported events."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CE/V1#DVCEOCCUR_TMC1> ;
+.
+<http://www.cdisc.org/CE/V1#DVCEOCCUR_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CE/V1#DVCESTAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1802,8 +2042,18 @@
 	bd:name "CESTAT"^^xsd:string ;
 	bd:description "The status indicates that a question from a pre-specified list was not answered."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CE/V1#DVCESTAT_TMC1> ;
+.
+<http://www.cdisc.org/CE/V1#DVCESTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CE/V1#DVCEREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1845,8 +2095,8 @@
 	bd:ordinal "18"^^xsd:positiveInteger ;
 	bd:name "CEDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CE/V1#DVCESTDTC>
@@ -1856,8 +2106,8 @@
 	bd:ordinal "19"^^xsd:positiveInteger ;
 	bd:name "CESTDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CE/V1#DVCEENDTC>
@@ -1867,8 +2117,8 @@
 	bd:ordinal "20"^^xsd:positiveInteger ;
 	bd:name "CEENDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CE/V1#DVCEDY>
@@ -1890,8 +2140,18 @@
 	bd:name "CESTRF"^^xsd:string ;
 	bd:description "Describes the start of the clinical event relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point (represented by RFSTDTC and RFENDTC in Demographics)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(STENRF)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CE/V1#DVCESTRF_TMC1> ;
+.
+<http://www.cdisc.org/CE/V1#DVCESTRF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "STENRF"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66728/V4#C66728> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CE/V1#DVCEENRF>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1901,8 +2161,18 @@
 	bd:name "CEENRF"^^xsd:string ;
 	bd:description "Describes the end of the event relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point (represented by RFSTDTC and RFENDTC in Demographics)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(STENRF)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CE/V1#DVCEENRF_TMC1> ;
+.
+<http://www.cdisc.org/CE/V1#DVCEENRF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "STENRF"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66728/V4#C66728> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CE/V1#DVCESTRTPT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1912,7 +2182,7 @@
 	bd:name "CESTRTPT"^^xsd:string ;
 	bd:description "Identifies the start of the observation as being before or after the reference time point defined by variable CESTTPT."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(STRTPT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CE/V1#DVCESTTPT>
@@ -1934,7 +2204,7 @@
 	bd:name "CEENRTPT"^^xsd:string ;
 	bd:description "Identifies the end of the event as being before or after the reference time point defined by variable CEENTPT."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ENRTPT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CE/V1#DVCEENTPT>
@@ -2104,8 +2374,18 @@
 	bd:name "EGTESTCD"^^xsd:string ;
 	bd:description "Short name of the measurement, test, or examination described in EGTEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in EGTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g., '1TEST'). EGTESTCD cannot contain characters other than letters, numbers, or underscores. Examples :PRMEAN, QTMEAN"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(EGTESTCD)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/EG/V1#DVEGTESTCD_TMC1> ;
+.
+<http://www.cdisc.org/EG/V1#DVEGTESTCD_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "EGTESTCD"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71153/V6#C71153> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EG/V1#DVEGTEST>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2115,8 +2395,18 @@
 	bd:name "EGTEST"^^xsd:string ;
 	bd:description "Verbatim name of the test or examination used to obtain the measurement or finding. The value in EGTEST cannot be longer than 40 characters. Examples: Summary (Mean) PR Duration, Summary (Mean) QT Duration"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(EGTEST)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/EG/V1#DVEGTEST_TMC1> ;
+.
+<http://www.cdisc.org/EG/V1#DVEGTEST_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "EGTEST"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71152/V6#C71152> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EG/V1#DVEGCAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2148,8 +2438,18 @@
 	bd:name "EGPOS"^^xsd:string ;
 	bd:description "Position of the subject during a measurement or examination. Examples: SUPINE, STANDING, SITTING."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(POSITION)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/EG/V1#DVEGPOS_TMC1> ;
+.
+<http://www.cdisc.org/EG/V1#DVEGPOS_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "POSITION"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V7#C71148> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EG/V1#DVEGORRES>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2170,8 +2470,18 @@
 	bd:name "EGORRESU"^^xsd:string ;
 	bd:description "Original units in which the data were collected. The unit for EGORRES. Examples: sec or msec."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/EG/V1#DVEGORRESU_TMC1> ;
+.
+<http://www.cdisc.org/EG/V1#DVEGORRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EG/V1#DVEGSTRESC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2181,8 +2491,18 @@
 	bd:name "EGSTRESC"^^xsd:string ;
 	bd:description "Contains the result value for all findings, copied or derived from EGORRES in a standard format or standard units. EGSTRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in EGSTRESN. For example, if a test has results of 'NONE', 'NEG', and 'NEGATIVE' in EGORRES and these results effectively have the same meaning, they could be represented in standard format in EGSTRESC as 'NEGATIVE'. For other examples, see general assumptions. Additional examples of result data: SINUS BRADYCARDIA, ATRIAL FLUTTER, ATRIAL FIBRILLATION."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(EGSTRESC)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/EG/V1#DVEGSTRESC_TMC1> ;
+.
+<http://www.cdisc.org/EG/V1#DVEGSTRESC_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "EGSTRESC"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71150/V6#C71150> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EG/V1#DVEGSTRESN>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2203,8 +2523,18 @@
 	bd:name "EGSTRESU"^^xsd:string ;
 	bd:description "Standardized unit used for EGSTRESC or EGSTRESN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/EG/V1#DVEGSTRESU_TMC1> ;
+.
+<http://www.cdisc.org/EG/V1#DVEGSTRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EG/V1#DVEGSTAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2214,8 +2544,18 @@
 	bd:name "EGSTAT"^^xsd:string ;
 	bd:description "Used to indicate an ECG was not done, or an ECG measurement was not taken. Should be null if a result exists in EGORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/EG/V1#DVEGSTAT_TMC1> ;
+.
+<http://www.cdisc.org/EG/V1#DVEGSTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EG/V1#DVEGREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2258,8 +2598,18 @@
 	bd:name "EGLOC"^^xsd:string ;
 	bd:description "The lead used for the measurement, examples, V1, V6, aVR, I, II, III."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(LOC)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/EG/V1#DVEGLOC_TMC1> ;
+.
+<http://www.cdisc.org/EG/V1#DVEGLOC_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "LOC"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EG/V1#DVEGMETHOD>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2269,8 +2619,18 @@
 	bd:name "EGMETHOD"^^xsd:string ;
 	bd:description "Method of the ECG test. Examples: 12 LEAD STANDARD."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(EGMETHOD)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/EG/V1#DVEGMETHOD_TMC1> ;
+.
+<http://www.cdisc.org/EG/V1#DVEGMETHOD_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "EGMETHOD"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71151/V6#C71151> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EG/V1#DVEGBLFL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2280,8 +2640,18 @@
 	bd:name "EGBLFL"^^xsd:string ;
 	bd:description "Indicator used to identify a baseline value. The value should be 'Y' or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/EG/V1#DVEGBLFL_TMC1> ;
+.
+<http://www.cdisc.org/EG/V1#DVEGBLFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EG/V1#DVEGDRVFL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2291,8 +2661,18 @@
 	bd:name "EGDRVFL"^^xsd:string ;
 	bd:description "Used to indicate a derived record. The value should be Y or null. Records which represent the average of other records, or that do not come from the CRF, or are not as originally collected or received are examples of records that would be derived for the submission datasets. If EGDRVFL=Y, then EGORRES could be null, with EGSTRESC, and (if numeric) EGSTRESN having the derived value."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/EG/V1#DVEGDRVFL_TMC1> ;
+.
+<http://www.cdisc.org/EG/V1#DVEGDRVFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EG/V1#DVEGEVAL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2345,8 +2725,8 @@
 	bd:ordinal "30"^^xsd:positiveInteger ;
 	bd:name "EGDTC"^^xsd:string ;
 	bd:description "Date of ECG."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/EG/V1#DVEGDY>
@@ -2389,8 +2769,8 @@
 	bd:ordinal "34"^^xsd:positiveInteger ;
 	bd:name "EGELTM"^^xsd:string ;
 	bd:description "Planned elapsed time (in ISO 8601) relative to a fixed time point reference (EGTPTREF). Not a clock time or a date time variable. Represented as an ISO 8601 duration. Examples: '-PT15M' to represent the period of 15 minutes prior to the reference point indicated by EGTPTREF, or 'PT8H' to represent the period of 8 hours after the reference point indicated by EGTPTREF."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/EG/V1#DVEGTPTREF>
@@ -2411,8 +2791,8 @@
 	bd:ordinal "36"^^xsd:positiveInteger ;
 	bd:name "EGRFTDTC"^^xsd:string ;
 	bd:description "Date/time of the reference time point, EGTPTREF."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/IE/V1>
@@ -2550,8 +2930,8 @@
 	bd:ordinal "8"^^xsd:positiveInteger ;
 	bd:name "IECAT"^^xsd:string ;
 	bd:description "Used to define a category of related records across subjects."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "IECAT"^^xsd:string ;
+	bd:ctAndFormat "IECAT"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 .
 <http://www.cdisc.org/IE/V1#DVIESCAT>
@@ -2573,8 +2953,18 @@
 	bd:name "IEORRES"^^xsd:string ;
 	bd:description "Original response to Inclusion/Exclusion Criterion question. Inclusion or Exclusion criterion met?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/IE/V1#DVIEORRES_TMC1> ;
+.
+<http://www.cdisc.org/IE/V1#DVIEORRES_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/IE/V1#DVIESTRESC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2584,8 +2974,18 @@
 	bd:name "IESTRESC"^^xsd:string ;
 	bd:description "Response to Inclusion/Exclusion criterion result in standard format."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/IE/V1#DVIESTRESC_TMC1> ;
+.
+<http://www.cdisc.org/IE/V1#DVIESTRESC_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/IE/V1#DVVISITNUM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2627,8 +3027,8 @@
 	bd:ordinal "15"^^xsd:positiveInteger ;
 	bd:name "IEDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/IE/V1#DVIEDY>
@@ -2807,8 +3207,18 @@
 	bd:name "LBTESTCD"^^xsd:string ;
 	bd:description "Short name of the measurement, test, or examination described in LBTEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in LBTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g.'1TEST'). LBTESTCD cannot contain characters other than letters, numbers, or underscores. Examples: ALT, LDH."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(LBTESTCD)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/LB/V1#DVLBTESTCD_TMC1> ;
+.
+<http://www.cdisc.org/LB/V1#DVLBTESTCD_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "LBTESTCD"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C65047/V8#C65047> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/LB/V1#DVLBTEST>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2818,8 +3228,18 @@
 	bd:name "LBTEST"^^xsd:string ;
 	bd:description "Verbatim name of the test or examination used to obtain the measurement or finding. Note any test normally performed by a clinical laboratory is considered a lab test. The value in LBTEST cannot be longer than 40 characters. Examples: Alanine Aminotransferase, Lactate Dehydrogenase."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(LBTEST)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/LB/V1#DVLBTEST_TMC1> ;
+.
+<http://www.cdisc.org/LB/V1#DVLBTEST_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "LBTEST"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C67154/V8#C67154> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/LB/V1#DVLBCAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2862,8 +3282,18 @@
 	bd:name "LBORRESU"^^xsd:string ;
 	bd:description "Original units in which the data were collected. The unit for LBORRES. Example: g/L."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/LB/V1#DVLBORRESU_TMC1> ;
+.
+<http://www.cdisc.org/LB/V1#DVLBORRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/LB/V1#DVLBORNRLO>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2917,8 +3347,18 @@
 	bd:name "LBSTRESU"^^xsd:string ;
 	bd:description "Standardized unit used for LBSTRESC or LBSTRESN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/LB/V1#DVLBSTRESU_TMC1> ;
+.
+<http://www.cdisc.org/LB/V1#DVLBSTRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/LB/V1#DVLBSTNRLO>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2972,8 +3412,18 @@
 	bd:name "LBSTAT"^^xsd:string ;
 	bd:description "Used to indicate exam not done. Should be null if a result exists in LBORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/LB/V1#DVLBSTAT_TMC1> ;
+.
+<http://www.cdisc.org/LB/V1#DVLBSTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/LB/V1#DVLBREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3049,8 +3499,18 @@
 	bd:name "LBBLFL"^^xsd:string ;
 	bd:description "Indicator used to identify a baseline value. The value should be 'Y' or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/LB/V1#DVLBBLFL_TMC1> ;
+.
+<http://www.cdisc.org/LB/V1#DVLBBLFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/LB/V1#DVLBFAST>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3060,8 +3520,18 @@
 	bd:name "LBFAST"^^xsd:string ;
 	bd:description "Indicator used to identify fasting status such as Y, N, U, or null if not relevant."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/LB/V1#DVLBFAST_TMC1> ;
+.
+<http://www.cdisc.org/LB/V1#DVLBFAST_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/LB/V1#DVLBDRVFL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3071,8 +3541,18 @@
 	bd:name "LBDRVFL"^^xsd:string ;
 	bd:description "Used to indicate a derived record. The value should be Y or null. Records that represent the average of other records, or do not come from the CRF, or are not as originally received or collected are examples of records that might be derived for the submission datasets. If LBDRVFL=Y, then LBORRES may be null, with LBSTRESC, and (if numeric) LBSTRESN having the derived value."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/LB/V1#DVLBDRVFL_TMC1> ;
+.
+<http://www.cdisc.org/LB/V1#DVLBDRVFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/LB/V1#DVLBTOX>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3136,8 +3616,8 @@
 	bd:ordinal "38"^^xsd:positiveInteger ;
 	bd:name "LBDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/LB/V1#DVLBENDTC>
@@ -3147,8 +3627,8 @@
 	bd:ordinal "39"^^xsd:positiveInteger ;
 	bd:name "LBENDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/LB/V1#DVLBDY>
@@ -3191,8 +3671,8 @@
 	bd:ordinal "43"^^xsd:positiveInteger ;
 	bd:name "LBELTM"^^xsd:string ;
 	bd:description "Planned Elapsed time (in ISO 8601) relative to a planned fixed reference (LBTPTREF). This variable is useful where there are repetitive measures. Not a clock time or a date time variable. Represented as an ISO 8601 duration. Examples: '-PT15M' to represent the period of 15 minutes prior to the reference point indicated by LBTPTREF, or 'PT8H' to represent the period of 8 hours after the reference point indicated by LBTPTREF."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/LB/V1#DVLBTPTREF>
@@ -3213,8 +3693,8 @@
 	bd:ordinal "45"^^xsd:positiveInteger ;
 	bd:name "LBRFTDTC"^^xsd:string ;
 	bd:description "Date/time of the reference time point, LBTPTREF."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/PE/V1>
@@ -3428,8 +3908,18 @@
 	bd:name "PEORRESU"^^xsd:string ;
 	bd:description "Original units in which the data were collected. The unit for PEORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/PE/V1#DVPEORRESU_TMC1> ;
+.
+<http://www.cdisc.org/PE/V1#DVPEORRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/PE/V1#DVPESTRESC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3450,8 +3940,18 @@
 	bd:name "PESTAT"^^xsd:string ;
 	bd:description "Used to indicate exam not done. Should be null if a result exists in PEORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/PE/V1#DVPESTAT_TMC1> ;
+.
+<http://www.cdisc.org/PE/V1#DVPESTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/PE/V1#DVPEREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3472,8 +3972,18 @@
 	bd:name "PELOC"^^xsd:string ;
 	bd:description "Can be used to specify where a physical exam finding occurred. Example: LEFT ARM for skin rash."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(LOC)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/PE/V1#DVPELOC_TMC1> ;
+.
+<http://www.cdisc.org/PE/V1#DVPELOC_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "LOC"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/PE/V1#DVPEMETHOD>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3537,8 +4047,8 @@
 	bd:ordinal "24"^^xsd:positiveInteger ;
 	bd:name "PEDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/PE/V1#DVPEDY>
@@ -3746,8 +4256,18 @@
 	bd:name "QSORRESU"^^xsd:string ;
 	bd:description "Original units in which the data were collected. The unit for QSORRES, such as minutes or seconds or the units associated with a visual analog scale."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/QS/V1#DVQSORRESU_TMC1> ;
+.
+<http://www.cdisc.org/QS/V1#DVQSORRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/QS/V1#DVQSSTRESC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3779,8 +4299,18 @@
 	bd:name "QSSTRESU"^^xsd:string ;
 	bd:description "Standardized unit used for QSSTRESC or QSSTRESN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/QS/V1#DVQSSTRESU_TMC1> ;
+.
+<http://www.cdisc.org/QS/V1#DVQSSTRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/QS/V1#DVQSSTAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3790,8 +4320,18 @@
 	bd:name "QSSTAT"^^xsd:string ;
 	bd:description "Used to indicate a questionnaire or response to a questionnaire was not done. Should be null if a result exists in QSORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/QS/V1#DVQSSTAT_TMC1> ;
+.
+<http://www.cdisc.org/QS/V1#DVQSSTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/QS/V1#DVQSREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3812,8 +4352,18 @@
 	bd:name "QSBLFL"^^xsd:string ;
 	bd:description "Indicator used to identify a baseline value. The value should be 'Y' or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/QS/V1#DVQSBLFL_TMC1> ;
+.
+<http://www.cdisc.org/QS/V1#DVQSBLFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/QS/V1#DVQSDRVFL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3823,8 +4373,18 @@
 	bd:name "QSDRVFL"^^xsd:string ;
 	bd:description "Used to indicate a derived record. The value should be Y or null. Records that represent the average of other records or questionnaire sub-scores that do not come from the CRF are examples of records that would be derived for the submission datasets. If QSDRVFL=Y, then QSORRES may be null with QSSTRESC and (if numeric) QSSTRESN having the derived value."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/QS/V1#DVQSDRVFL_TMC1> ;
+.
+<http://www.cdisc.org/QS/V1#DVQSDRVFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/QS/V1#DVVISITNUM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3866,8 +4426,8 @@
 	bd:ordinal "23"^^xsd:positiveInteger ;
 	bd:name "QSDTC"^^xsd:string ;
 	bd:description "Date of questionnaire."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/QS/V1#DVQSDY>
@@ -3910,8 +4470,8 @@
 	bd:ordinal "27"^^xsd:positiveInteger ;
 	bd:name "QSELTM"^^xsd:string ;
 	bd:description "Planned Elapsed time (in ISO 8601) relative to a planned fixed reference (QSTPTREF). This variable is useful where there are repetitive measures. Not a clock time or a date time variable. Represented as an ISO 8601 duration. Examples: '-PT15M' to represent the period of 15 minutes prior to the reference point indicated by QSTPTREF, or 'PT8H' to represent the period of 8 hours after the reference point indicated by QSTPTREF."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/QS/V1#DVQSTPTREF>
@@ -3932,8 +4492,8 @@
 	bd:ordinal "29"^^xsd:positiveInteger ;
 	bd:name "QSRFTDTC"^^xsd:string ;
 	bd:description "Date/time of the reference time point, LBTPTREF."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/QS/V1#DVQSEVLINT>
@@ -3943,8 +4503,8 @@
 	bd:ordinal "30"^^xsd:positiveInteger ;
 	bd:name "QSEVLINT"^^xsd:string ;
 	bd:description "Evaluation Interval associated with a QSTEST question represented in ISO 8601 character format. Example: '-P2Y' to represent an interval of 2 years in the question 'Have you experienced any episodes in the past 2 years?'"^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/SC/V1>
@@ -4075,7 +4635,7 @@
 	bd:name "SCTESTCD"^^xsd:string ;
 	bd:description "Short name of the measurement, test, or examination described in SCTEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in SCTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g.'1TEST'). SCTESTCD cannot contain characters other than letters, numbers, or underscores. Example: SUBJINIT, EYECD."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(SCTEST)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 .
 <http://www.cdisc.org/SC/V1#DVSCTEST>
@@ -4130,8 +4690,18 @@
 	bd:name "SCORRESU"^^xsd:string ;
 	bd:description "Original Unit in which the data were collected. The unit for SCORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/SC/V1#DVSCORRESU_TMC1> ;
+.
+<http://www.cdisc.org/SC/V1#DVSCORRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/SC/V1#DVSCSTRESC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4163,8 +4733,18 @@
 	bd:name "SCSTRESU"^^xsd:string ;
 	bd:description "Standardized unit used for SCSTRESC or SCSTRESN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/SC/V1#DVSCSTRESU_TMC1> ;
+.
+<http://www.cdisc.org/SC/V1#DVSCSTRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/SC/V1#DVSCSTAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4174,8 +4754,18 @@
 	bd:name "SCSTAT"^^xsd:string ;
 	bd:description "Used to indicate that the measurement was not done. Should be null if a result exists in SCORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/SC/V1#DVSCSTAT_TMC1> ;
+.
+<http://www.cdisc.org/SC/V1#DVSCSTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/SC/V1#DVSCREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4195,8 +4785,8 @@
 	bd:ordinal "18"^^xsd:positiveInteger ;
 	bd:name "SCDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/SC/V1#DVSCDY>
@@ -4350,8 +4940,18 @@
 	bd:name "VSTESTCD"^^xsd:string ;
 	bd:description "Short name of the measurement, test, or examination described in VSTEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in VSTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g.'1TEST'). VSTESTCD cannot contain characters other than letters, numbers, or underscores. Examples: SYSBP, DIABP, BMI."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(VSTESTCD)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/VS/V1#DVVSTESTCD_TMC1> ;
+.
+<http://www.cdisc.org/VS/V1#DVVSTESTCD_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "VSTESTCD"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66741/V4#C66741> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/VS/V1#DVVSTEST>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4361,8 +4961,18 @@
 	bd:name "VSTEST"^^xsd:string ;
 	bd:description "Verbatim name of the test or examination used to obtain the measurement or finding. The value in VSTEST cannot be longer than 40 characters. Examples: Systolic Blood Pressure, Diastolic Blood Pressure, Body Mass Index."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(VSTEST)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/VS/V1#DVVSTEST_TMC1> ;
+.
+<http://www.cdisc.org/VS/V1#DVVSTEST_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "VSTEST"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C67153/V4#C67153> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/VS/V1#DVVSCAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4394,8 +5004,18 @@
 	bd:name "VSPOS"^^xsd:string ;
 	bd:description "Position of the subject during a measurement or examination. Examples: SUPINE, STANDING, SITTING."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(POSITION)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/VS/V1#DVVSPOS_TMC1> ;
+.
+<http://www.cdisc.org/VS/V1#DVVSPOS_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "POSITION"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V7#C71148> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/VS/V1#DVVSORRES>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4416,8 +5036,18 @@
 	bd:name "VSORRESU"^^xsd:string ;
 	bd:description "Original units in which the data were collected. The unit for VSORRES. Examples: IN, LB, BEATS/MIN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(VSRESU)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/VS/V1#DVVSORRESU_TMC1> ;
+.
+<http://www.cdisc.org/VS/V1#DVVSORRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "VSRESU"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V4#C66770> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/VS/V1#DVVSSTRESC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4449,8 +5079,18 @@
 	bd:name "VSSTRESU"^^xsd:string ;
 	bd:description "Standardized unit used for VSSTRESC and VSSTRESN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(VSRESU)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/VS/V1#DVVSSTRESU_TMC1> ;
+.
+<http://www.cdisc.org/VS/V1#DVVSSTRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "VSRESU"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V4#C66770> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/VS/V1#DVVSSTAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4460,8 +5100,18 @@
 	bd:name "VSSTAT"^^xsd:string ;
 	bd:description "Used to indicate that a vital sign measurement was not done. Should be null if a result exists in VSORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/VS/V1#DVVSSTAT_TMC1> ;
+.
+<http://www.cdisc.org/VS/V1#DVVSSTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/VS/V1#DVVSREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4482,8 +5132,18 @@
 	bd:name "VSLOC"^^xsd:string ;
 	bd:description "Location relevant to the collection of Vital Signs measurement. Example: LEFT ARM for blood pressure."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(LOC)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/VS/V1#DVVSLOC_TMC1> ;
+.
+<http://www.cdisc.org/VS/V1#DVVSLOC_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "LOC"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/VS/V1#DVVSBLFL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4493,8 +5153,18 @@
 	bd:name "VSBLFL"^^xsd:string ;
 	bd:description "Indicator used to identify a baseline value. The value should be 'Y' or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/VS/V1#DVVSBLFL_TMC1> ;
+.
+<http://www.cdisc.org/VS/V1#DVVSBLFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/VS/V1#DVVSDRVFL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4504,8 +5174,18 @@
 	bd:name "VSDRVFL"^^xsd:string ;
 	bd:description "Used to indicate a derived record. The value should be Y or null. Records which represent the average of other records or which do not come from the CRF are examples of records that would be derived for the submission datasets. If VSDRVFL=Y, then VSORRES may be null, with VSSTRESC and (if numeric) VSSTRESN having the derived value."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/VS/V1#DVVSDRVFL_TMC1> ;
+.
+<http://www.cdisc.org/VS/V1#DVVSDRVFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/VS/V1#DVVISITNUM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4547,8 +5227,8 @@
 	bd:ordinal "25"^^xsd:positiveInteger ;
 	bd:name "VSDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/VS/V1#DVVSDY>
@@ -4591,8 +5271,8 @@
 	bd:ordinal "29"^^xsd:positiveInteger ;
 	bd:name "VSELTM"^^xsd:string ;
 	bd:description "Planned Elapsed time (in ISO 8601) relative to a planned fixed reference (VSTPTREF). This variable is useful where there are repetitive measures. Not a clock time or a date time variable. Represented as an ISO 8601 Duration. Examples: '-PT15M' to represent the period of 15 minutes prior to the reference point indicated by VSTPTREF, or 'PT8H' to represent the period of 8 hours after the reference point indicated by VSTPTREF."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/VS/V1#DVVSTPTREF>
@@ -4613,8 +5293,8 @@
 	bd:ordinal "31"^^xsd:positiveInteger ;
 	bd:name "VSRFTDTC"^^xsd:string ;
 	bd:description "Date/time of the reference time point, LBTPTREF."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/DA/V1>
@@ -4815,8 +5495,18 @@
 	bd:name "DAORRESU"^^xsd:string ;
 	bd:description "Unit for DAORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/DA/V1#DVDAORRESU_TMC1> ;
+.
+<http://www.cdisc.org/DA/V1#DVDAORRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/DA/V1#DVDASTRESC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4848,8 +5538,18 @@
 	bd:name "DASTRESU"^^xsd:string ;
 	bd:description "Standardized units used for DASTRESC and DASTRESN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/DA/V1#DVDASTRESU_TMC1> ;
+.
+<http://www.cdisc.org/DA/V1#DVDASTRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/DA/V1#DVDASTAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4859,8 +5559,18 @@
 	bd:name "DASTAT"^^xsd:string ;
 	bd:description "Used to indicate that a drug accountability assessment was not done. Should be null or have a value of NOT DONE."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/DA/V1#DVDASTAT_TMC1> ;
+.
+<http://www.cdisc.org/DA/V1#DVDASTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/DA/V1#DVDAREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4913,8 +5623,8 @@
 	bd:ordinal "22"^^xsd:positiveInteger ;
 	bd:name "DADTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/DA/V1#DVDADY>
@@ -5140,8 +5850,18 @@
 	bd:name "MBORRESU"^^xsd:string ;
 	bd:description "Original unit for MBORRES. Example: mcg/mL"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/MB/V1#DVMBORRESU_TMC1> ;
+.
+<http://www.cdisc.org/MB/V1#DVMBORRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MB/V1#DVMBSTRESC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5173,8 +5893,18 @@
 	bd:name "MBSTRESU"^^xsd:string ;
 	bd:description "Standardized unit used for MBSTRESC and MBSTRESN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/MB/V1#DVMBSTRESU_TMC1> ;
+.
+<http://www.cdisc.org/MB/V1#DVMBSTRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MB/V1#DVMBRESCAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5195,8 +5925,18 @@
 	bd:name "MBSTAT"^^xsd:string ;
 	bd:description "Used to indicate Microbiology was not done, or a test was not done. Should be null or have a value of NOT DONE."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/MB/V1#DVMBSTAT_TMC1> ;
+.
+<http://www.cdisc.org/MB/V1#DVMBSTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MB/V1#DVMBREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5261,8 +6001,18 @@
 	bd:name "MBLOC"^^xsd:string ;
 	bd:description "Location relevant to the collection of the measurement. Examples: LUNG, VEIN, LEFT KNEE WOUND, ARM ULCER 1, RIGHT THIGH LATERAL"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(LOC)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/MB/V1#DVMBLOC_TMC1> ;
+.
+<http://www.cdisc.org/MB/V1#DVMBLOC_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "LOC"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MB/V1#DVMBMETHOD>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5283,8 +6033,18 @@
 	bd:name "MBBLFL"^^xsd:string ;
 	bd:description "Indicator used to identify a baseline value. The value should be 'Y' or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/MB/V1#DVMBBLFL_TMC1> ;
+.
+<http://www.cdisc.org/MB/V1#DVMBBLFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MB/V1#DVMBDRVFL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5294,8 +6054,18 @@
 	bd:name "MBDRVFL"^^xsd:string ;
 	bd:description "Used to indicate a derived record. The value should be Y or null. Records that represent the average of other records or some other derivation, and those that do not come from the CRF, are examples of records that would be derived for the submission datasets. If MBDRVFL=Y, then MBORRES may be null with MBSTRESC and (if numeric) MBSTRESN having the derived value."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/MB/V1#DVMBDRVFL_TMC1> ;
+.
+<http://www.cdisc.org/MB/V1#DVMBDRVFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MB/V1#DVVISITNUM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5337,8 +6107,8 @@
 	bd:ordinal "31"^^xsd:positiveInteger ;
 	bd:name "MBDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/MB/V1#DVMBDY>
@@ -5381,8 +6151,8 @@
 	bd:ordinal "35"^^xsd:positiveInteger ;
 	bd:name "MBELTM"^^xsd:string ;
 	bd:description "Planned elapsed time (in ISO 8601) relative to a planned fixed reference (MBTPTREF). This variable is useful where there are repetitive measures. Not a clock time or a date time variable. Represented as an ISO 8601 duration. Examples: '-PT15M' to represent the period of 15 minutes prior to the reference point indicated by MBTPTREF, or 'PT8H' to represent the period of 8 hours after the reference point indicated by MBTPTREF."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/MB/V1#DVMBTPTREF>
@@ -5403,8 +6173,8 @@
 	bd:ordinal "37"^^xsd:positiveInteger ;
 	bd:name "MBRFTDTC"^^xsd:string ;
 	bd:description "Date/time of the reference time point, MBTPTREF."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/MS/V1>
@@ -5615,8 +6385,18 @@
 	bd:name "MSORRESU"^^xsd:string ;
 	bd:description "Original units in which the data were collected. The unit for MSORRES. Example: mcg/mL"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/MS/V1#DVMSORRESU_TMC1> ;
+.
+<http://www.cdisc.org/MS/V1#DVMSORRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MS/V1#DVMSSTRESC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5648,8 +6428,18 @@
 	bd:name "MSSTRESU"^^xsd:string ;
 	bd:description "Standardized unit used for MSSTRESC and MSSTRESN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/MS/V1#DVMSSTRESU_TMC1> ;
+.
+<http://www.cdisc.org/MS/V1#DVMSSTRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MS/V1#DVMSRESCAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5670,8 +6460,18 @@
 	bd:name "MSSTAT"^^xsd:string ;
 	bd:description "Used to indicate a test on an organism was not done, or a test was not performed. Should be null if a result exists in MSORRES or have a value of NOT DONE."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/MS/V1#DVMSSTAT_TMC1> ;
+.
+<http://www.cdisc.org/MS/V1#DVMSSTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MS/V1#DVMSREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5725,8 +6525,18 @@
 	bd:name "MSBLFL"^^xsd:string ;
 	bd:description "Indicator used to identify a baseline value. The value should be 'Y' or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/MS/V1#DVMSBLFL_TMC1> ;
+.
+<http://www.cdisc.org/MS/V1#DVMSBLFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MS/V1#DVMSDRVFL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5736,8 +6546,18 @@
 	bd:name "MSDRVFL"^^xsd:string ;
 	bd:description "Used to indicate a derived record. The value should be Y or null. Records that represent the average of other records or some other derivation, and those that do not come from the CRF, are examples of records that would be derived for the submission datasets. If MSDRVFL=Y, then MSORRES may be null, with MSSTRESC and (if numeric) MSSTRESN having the derived value."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/MS/V1#DVMSDRVFL_TMC1> ;
+.
+<http://www.cdisc.org/MS/V1#DVMSDRVFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/MS/V1#DVVISITNUM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5779,8 +6599,8 @@
 	bd:ordinal "28"^^xsd:positiveInteger ;
 	bd:name "MSDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/MS/V1#DVMSDY>
@@ -5823,8 +6643,8 @@
 	bd:ordinal "32"^^xsd:positiveInteger ;
 	bd:name "MSELTM"^^xsd:string ;
 	bd:description "Elapsed time (in ISO 8601) relative to a planned fixed reference (MSTPTREF). This variable is useful where there are repetitive measures. Not a clock time or a date time variable. Examples: '-PT15M' to represent the period of 15 minutes prior to the reference point indicated by MSTPTREF, or 'P8H' to represent the period of 8 hours after the reference point indicated by MSTPTREF."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/MS/V1#DVMSTPTREF>
@@ -6050,8 +6870,18 @@
 	bd:name "PCORRESU"^^xsd:string ;
 	bd:description "Original units in which the data were collected. The unit for PCORRES. Example: mg/L."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/PC/V1#DVPCORRESU_TMC1> ;
+.
+<http://www.cdisc.org/PC/V1#DVPCORRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/PC/V1#DVPCSTRESC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6083,8 +6913,18 @@
 	bd:name "PCSTRESU"^^xsd:string ;
 	bd:description "Standardized unit used for PCSTRESC and PCSTRESN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/PC/V1#DVPCSTRESU_TMC1> ;
+.
+<http://www.cdisc.org/PC/V1#DVPCSTRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/PC/V1#DVPCSTAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6094,8 +6934,18 @@
 	bd:name "PCSTAT"^^xsd:string ;
 	bd:description "Used to indicate a result was not obtained. Should be null if a result exists in PCORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/PC/V1#DVPCSTAT_TMC1> ;
+.
+<http://www.cdisc.org/PC/V1#DVPCSTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/PC/V1#DVPCREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6160,8 +7010,18 @@
 	bd:name "PCFAST"^^xsd:string ;
 	bd:description "Indicator used to identify fasting status."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/PC/V1#DVPCFAST_TMC1> ;
+.
+<http://www.cdisc.org/PC/V1#DVPCFAST_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/PC/V1#DVPCDRVFL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6171,8 +7031,18 @@
 	bd:name "PCDRVFL"^^xsd:string ;
 	bd:description "Used to indicate a derived record. The value should be Y or null. Records that represent the average of other records, which do not come from the CRF, are examples of records that would be derived for the submission datasets. If PCDRVFL=Y, then PCORRES should be null with PCSTRESC, and (if numeric) PCSTRESN having the derived value."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/PC/V1#DVPCDRVFL_TMC1> ;
+.
+<http://www.cdisc.org/PC/V1#DVPCDRVFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/PC/V1#DVPCLLOQ>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6225,8 +7095,8 @@
 	bd:ordinal "29"^^xsd:positiveInteger ;
 	bd:name "PCDTC"^^xsd:string ;
 	bd:description "Date/time of specimen collection represented in ISO 8601 character format. If there is no end time, then this will be the collection time."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/PC/V1#DVPCENDTC>
@@ -6236,8 +7106,8 @@
 	bd:ordinal "30"^^xsd:positiveInteger ;
 	bd:name "PCENDTC"^^xsd:string ;
 	bd:description "End date/time of specimen collection represented in ISO 8601 character format. If there is no end time, the collection time should be stored in PCDTC, and PCENDTC should be null."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/PC/V1#DVPCDY>
@@ -6280,8 +7150,8 @@
 	bd:ordinal "34"^^xsd:positiveInteger ;
 	bd:name "PCELTM"^^xsd:string ;
 	bd:description "Planned elapsed time (in ISO 8601) relative to a planned fixed reference (PCTPTREF) such as 'PREVIOUS DOSE' or 'PREVIOUS MEAL'. This variable is useful where there are repetitive measures. Not a clock time or a date time variable."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/PC/V1#DVPCTPTREF>
@@ -6302,8 +7172,8 @@
 	bd:ordinal "36"^^xsd:positiveInteger ;
 	bd:name "PCRFTDTC"^^xsd:string ;
 	bd:description "Date/time of the reference time point described by PCTPTREF."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/PC/V1#DVPCEVLINT>
@@ -6313,8 +7183,8 @@
 	bd:ordinal "37"^^xsd:positiveInteger ;
 	bd:name "PCEVLINT"^^xsd:string ;
 	bd:description "Evaluation Interval associated with a PCTEST record represented in ISO 8601 character format. Example: '-P2H' to represent an interval of 2 hours prior to a PCTPT."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/PP/V1>
@@ -6489,8 +7359,18 @@
 	bd:name "PPORRESU"^^xsd:string ;
 	bd:description "Original units in which the data were collected. The unit for PPORRES. Example: ng/L."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/PP/V1#DVPPORRESU_TMC1> ;
+.
+<http://www.cdisc.org/PP/V1#DVPPORRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/PP/V1#DVPPSTRESC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6522,8 +7402,18 @@
 	bd:name "PPSTRESU"^^xsd:string ;
 	bd:description "Standardized unit used for PPSTRESC and PPSTRESN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/PP/V1#DVPPSTRESU_TMC1> ;
+.
+<http://www.cdisc.org/PP/V1#DVPPSTRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/PP/V1#DVPPSTAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6533,8 +7423,18 @@
 	bd:name "PPSTAT"^^xsd:string ;
 	bd:description "Used to indicate that a parameter was not calculated. Should be null if a result exists in PPORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/PP/V1#DVPPSTAT_TMC1> ;
+.
+<http://www.cdisc.org/PP/V1#DVPPSTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/PP/V1#DVPPREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6565,8 +7465,8 @@
 	bd:ordinal "18"^^xsd:positiveInteger ;
 	bd:name "PPDTC"^^xsd:string ;
 	bd:description "Nominal date/time of parameter calculations."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/PP/V1#DVPPRFTDTC>
@@ -6576,8 +7476,8 @@
 	bd:ordinal "19"^^xsd:positiveInteger ;
 	bd:name "PPRFTDTC"^^xsd:string ;
 	bd:description "Date/time of the reference time point from the PC records used to calculate a parameter record. The values in PPRFTDTC should be the same as that in PCRFTDTC for related records."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/FA/V1>
@@ -6781,8 +7681,18 @@
 	bd:name "FAORRESU"^^xsd:string ;
 	bd:description "Original units in which the data were collected. The unit for FAORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/FA/V1#DVFAORRESU_TMC1> ;
+.
+<http://www.cdisc.org/FA/V1#DVFAORRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/FA/V1#DVFASTRESC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6814,8 +7724,18 @@
 	bd:name "FASTRESU"^^xsd:string ;
 	bd:description "Standardized unit used for FASTRESC and FASTRESN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/FA/V1#DVFASTRESU_TMC1> ;
+.
+<http://www.cdisc.org/FA/V1#DVFASTRESU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/FA/V1#DVFASTAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6825,8 +7745,18 @@
 	bd:name "FASTAT"^^xsd:string ;
 	bd:description "Used to indicate that the measurement was not done. Should be null if a result exists in FAORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/FA/V1#DVFASTAT_TMC1> ;
+.
+<http://www.cdisc.org/FA/V1#DVFASTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/FA/V1#DVFAREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6847,8 +7777,18 @@
 	bd:name "FALOC"^^xsd:string ;
 	bd:description "Used to specify the location of the clinical evaluation. Example: LEFT ARM"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(LOC)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/FA/V1#DVFALOC_TMC1> ;
+.
+<http://www.cdisc.org/FA/V1#DVFALOC_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "LOC"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/FA/V1#DVFABLFL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6858,8 +7798,18 @@
 	bd:name "FABLFL"^^xsd:string ;
 	bd:description "Indicator used to identify a baseline value. The value should be 'Y' or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/FA/V1#DVFABLFL_TMC1> ;
+.
+<http://www.cdisc.org/FA/V1#DVFABLFL_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/FA/V1#DVFAEVAL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6912,8 +7862,8 @@
 	bd:ordinal "25"^^xsd:positiveInteger ;
 	bd:name "FADTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/FA/V1#DVFADY>
@@ -7128,8 +8078,18 @@
 	bd:name "CMPRESP"^^xsd:string ;
 	bd:description "Used to indicate whether (Y/null) information about the use of a specific medication was solicited on the CRF."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CM/V1#DVCMPRESP_TMC1> ;
+.
+<http://www.cdisc.org/CM/V1#DVCMPRESP_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMOCCUR>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7139,8 +8099,18 @@
 	bd:name "CMOCCUR"^^xsd:string ;
 	bd:description "When the use of specific medications is solicited, CMOCCUR is used to indicate whether or not (Y/N) use of the medication occurred. Values are null for medications not specifically solicited."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CM/V1#DVCMOCCUR_TMC1> ;
+.
+<http://www.cdisc.org/CM/V1#DVCMOCCUR_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMSTAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7150,8 +8120,18 @@
 	bd:name "CMSTAT"^^xsd:string ;
 	bd:description "Used to indicate that a question about a pre-specified medication was not answered. Should be null or have a value of NOT DONE."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CM/V1#DVCMSTAT_TMC1> ;
+.
+<http://www.cdisc.org/CM/V1#DVCMSTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7227,8 +8207,18 @@
 	bd:name "CMDOSU"^^xsd:string ;
 	bd:description "Units for CMDOSE, CMDOSTXT, and CMDOSTOT. Examples: ng, mg, or mg/kg."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CM/V1#DVCMDOSU_TMC1> ;
+.
+<http://www.cdisc.org/CM/V1#DVCMDOSU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMDOSFRM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7238,8 +8228,18 @@
 	bd:name "CMDOSFRM"^^xsd:string ;
 	bd:description "Dose form for CMTRT. Examples: TABLET, LOTION."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(FRM)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CM/V1#DVCMDOSFRM_TMC1> ;
+.
+<http://www.cdisc.org/CM/V1#DVCMDOSFRM_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "FRM"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66726/V13#C66726> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMDOSFRQ>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7249,8 +8249,18 @@
 	bd:name "CMDOSFRQ"^^xsd:string ;
 	bd:description "Usually expressed as the number of repeated administrations of CMDOSE within a specific time period. Examples: BID (twice daily), Q12H (every 12 hours)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(FREQ)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CM/V1#DVCMDOSFRQ_TMC1> ;
+.
+<http://www.cdisc.org/CM/V1#DVCMDOSFRQ_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "FREQ"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71113/V6#C71113> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMDOSTOT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7282,8 +8292,18 @@
 	bd:name "CMROUTE"^^xsd:string ;
 	bd:description "Route of administration for CMTRT. Examples: ORAL, INTRAVENOUS."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ROUTE)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CM/V1#DVCMROUTE_TMC1> ;
+.
+<http://www.cdisc.org/CM/V1#DVCMROUTE_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ROUTE"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66738/V4#C66738_C38114> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMSTDTC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7292,8 +8312,8 @@
 	bd:ordinal "27"^^xsd:positiveInteger ;
 	bd:name "CMSTDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMENDTC>
@@ -7303,8 +8323,8 @@
 	bd:ordinal "28"^^xsd:positiveInteger ;
 	bd:name "CMENDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMSTDY>
@@ -7336,8 +8356,8 @@
 	bd:ordinal "31"^^xsd:positiveInteger ;
 	bd:name "CMDUR"^^xsd:string ;
 	bd:description "Collected duration for a treatment episode. Used only if collected on the CRF and not derived from start and end date/times."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMSTRF>
@@ -7348,8 +8368,18 @@
 	bd:name "CMSTRF"^^xsd:string ;
 	bd:description "Describes the start of the medication relative to sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point (represented by RFSTDTC and RFENDTC in Demographics). If information such as 'PRIOR', 'ONGOING', or 'CONTINUING' was collected, this information may be translated into CMSTRF."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(STENRF)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CM/V1#DVCMSTRF_TMC1> ;
+.
+<http://www.cdisc.org/CM/V1#DVCMSTRF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "STENRF"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66728/V4#C66728> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMENRF>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7359,8 +8389,18 @@
 	bd:name "CMENRF"^^xsd:string ;
 	bd:description "Describes the end of the medication relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point (represented by RFSTDTC and RFENDTC in Demographics). If information such as 'PRIOR', 'ONGOING', or 'CONTINUING' was collected, this information may be translated into CMENRF."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(STENRF)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CM/V1#DVCMENRF_TMC1> ;
+.
+<http://www.cdisc.org/CM/V1#DVCMENRF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "STENRF"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66728/V4#C66728> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMSTRTPT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7370,7 +8410,7 @@
 	bd:name "CMSTRTPT"^^xsd:string ;
 	bd:description "Identifies the start of the medication as being before or after the reference time point defined by variable CMSTTPT."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(STRTPT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMSTTPT>
@@ -7392,7 +8432,7 @@
 	bd:name "CMENRTPT"^^xsd:string ;
 	bd:description "Identifies the end of the medication as being before or after the reference time point defined by variable CMENTPT."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ENRTPT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMENTPT>
@@ -7604,8 +8644,18 @@
 	bd:name "EXDOSU"^^xsd:string ;
 	bd:description "Units for EXDOSE and EXDOSTOT. Examples: ng, mg, or mg/kg."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/EX/V1#DVEXDOSU_TMC1> ;
+.
+<http://www.cdisc.org/EX/V1#DVEXDOSU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EX/V1#DVEXDOSFRM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7615,8 +8665,18 @@
 	bd:name "EXDOSFRM"^^xsd:string ;
 	bd:description "Dose form for EXTRT. Examples: TABLET, LOTION."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(FRM)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/EX/V1#DVEXDOSFRM_TMC1> ;
+.
+<http://www.cdisc.org/EX/V1#DVEXDOSFRM_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "FRM"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66726/V13#C66726> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EX/V1#DVEXDOSFRQ>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7626,8 +8686,18 @@
 	bd:name "EXDOSFRQ"^^xsd:string ;
 	bd:description "Usually expressed as the number of repeated administrations of EXDOSE within a specific time period. Examples: BID (twice daily), Q4S (once every four weeks), BIS (twice a week)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(FREQ)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/EX/V1#DVEXDOSFRQ_TMC1> ;
+.
+<http://www.cdisc.org/EX/V1#DVEXDOSFRQ_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "FREQ"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71113/V6#C71113> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EX/V1#DVEXDOSTOT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7659,8 +8729,18 @@
 	bd:name "EXROUTE"^^xsd:string ;
 	bd:description "Route of administration for EXTRT. Examples: ORAL, INTRAVENOUS."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ROUTE)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/EX/V1#DVEXROUTE_TMC1> ;
+.
+<http://www.cdisc.org/EX/V1#DVEXROUTE_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ROUTE"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66738/V4#C66738_C38114> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EX/V1#DVEXLOT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7681,8 +8761,18 @@
 	bd:name "EXLOC"^^xsd:string ;
 	bd:description "Specifies location of administration. Example: LEFT ARM for a topical application."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(LOC)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/EX/V1#DVEXLOC_TMC1> ;
+.
+<http://www.cdisc.org/EX/V1#DVEXLOC_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "LOC"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EX/V1#DVEXTRTV>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7714,8 +8804,18 @@
 	bd:name "EXVAMTU"^^xsd:string ;
 	bd:description "Units of the treatment vehicle amount indicated by EXVAMT"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/EX/V1#DVEXVAMTU_TMC1> ;
+.
+<http://www.cdisc.org/EX/V1#DVEXVAMTU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/EX/V1#DVEXADJ>
 	rdf:type bd:SdtmDomainVariable ;
@@ -7757,8 +8857,8 @@
 	bd:ordinal "26"^^xsd:positiveInteger ;
 	bd:name "EXSTDTC"^^xsd:string ;
 	bd:description "The time when administration of the treatment indicated by EXTRT and EXDOSE began."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/EX/V1#DVEXENDTC>
@@ -7768,8 +8868,8 @@
 	bd:ordinal "27"^^xsd:positiveInteger ;
 	bd:name "EXENDTC"^^xsd:string ;
 	bd:description "The time when administration of the treatment indicated by EXTRT and EXDOSE ended."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/EX/V1#DVEXSTDY>
@@ -7801,8 +8901,8 @@
 	bd:ordinal "30"^^xsd:positiveInteger ;
 	bd:name "EXDUR"^^xsd:string ;
 	bd:description "Collected duration and unit of a treatment. Used only if collected on the CRF and not derived from start and end date/times."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/EX/V1#DVEXTPT>
@@ -7834,8 +8934,8 @@
 	bd:ordinal "33"^^xsd:positiveInteger ;
 	bd:name "EXELTM"^^xsd:string ;
 	bd:description "Planned elapsed time (in ISO 8601 format) relative to the planned fixed reference (EXTPTREF). This variable is useful where there are repetitive measures. Not a clock time. Represented as an ISO duration."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/EX/V1#DVEXTPTREF>
@@ -8048,8 +9148,18 @@
 	bd:name "SUPRESP"^^xsd:string ;
 	bd:description "Used to indicate whether (Y/null) information about the use of a specific substance was solicited on the CRF."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/SU/V1#DVSUPRESP_TMC1> ;
+.
+<http://www.cdisc.org/SU/V1#DVSUPRESP_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUOCCUR>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8059,8 +9169,18 @@
 	bd:name "SUOCCUR"^^xsd:string ;
 	bd:description "When the use of specific substances is solicited, SUOCCUR is used to indicate whether or not (Y/N) a particular pre-specified substance was used. Values are null for substances not specifically solicited."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/SU/V1#DVSUOCCUR_TMC1> ;
+.
+<http://www.cdisc.org/SU/V1#DVSUOCCUR_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUSTAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8070,8 +9190,18 @@
 	bd:name "SUSTAT"^^xsd:string ;
 	bd:description "When the use of pre-specified substances is solicited, the completion status indicates that there was no response to the question about the pre-specified substance. When there is no pre-specified list on the CRF, then the completion status indicates that substance use was not assessed for the subject."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ND)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/SU/V1#DVSUSTAT_TMC1> ;
+.
+<http://www.cdisc.org/SU/V1#DVSUSTAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ND"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUREASND>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8136,8 +9266,18 @@
 	bd:name "SUDOSU"^^xsd:string ;
 	bd:description "Units for SUDOSE, SUDOSTXT, and SUDOSTOT. Examples: OUNCES, CIGARETTE EQUIVALENTS, or GRAMS."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(UNIT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/SU/V1#DVSUDOSU_TMC1> ;
+.
+<http://www.cdisc.org/SU/V1#DVSUDOSU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "UNIT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V11#C71620> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUDOSFRM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8158,8 +9298,18 @@
 	bd:name "SUDOSFRQ"^^xsd:string ;
 	bd:description "Usually expressed as the number of repeated administrations of SUDOSE within a specific time period. Example: Q24H (every day)"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(FREQ)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/SU/V1#DVSUDOSFRQ_TMC1> ;
+.
+<http://www.cdisc.org/SU/V1#DVSUDOSFRQ_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "FREQ"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71113/V6#C71113> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUDOSTOT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8180,8 +9330,18 @@
 	bd:name "SUROUTE"^^xsd:string ;
 	bd:description "Route of administration for SUTRT. Examples: ORAL, INTRAVENOUS."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ROUTE)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/SU/V1#DVSUROUTE_TMC1> ;
+.
+<http://www.cdisc.org/SU/V1#DVSUROUTE_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ROUTE"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66738/V4#C66738_C38114> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUSTDTC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8190,8 +9350,8 @@
 	bd:ordinal "25"^^xsd:positiveInteger ;
 	bd:name "SUSTDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUENDTC>
@@ -8201,8 +9361,8 @@
 	bd:ordinal "26"^^xsd:positiveInteger ;
 	bd:name "SUENDTC"^^xsd:string ;
 	bd:description ""^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUSTDY>
@@ -8234,8 +9394,8 @@
 	bd:ordinal "29"^^xsd:positiveInteger ;
 	bd:name "SUDUR"^^xsd:string ;
 	bd:description "Collected duration of substance use in ISO 8601 format. Used only if collected on the CRF and not derived from start and end date/times."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUSTRF>
@@ -8246,8 +9406,18 @@
 	bd:name "SUSTRF"^^xsd:string ;
 	bd:description "Describes the start of the substance use relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point (represented by RFSTDTC and RFENDTC in Demographics). If information such as 'PRIOR', 'ONGOING', or 'CONTINUING' was collected, this information may be translated into SUSTRF."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(STENRF)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/SU/V1#DVSUSTRF_TMC1> ;
+.
+<http://www.cdisc.org/SU/V1#DVSUSTRF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "STENRF"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66728/V4#C66728> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUENRF>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8257,8 +9427,18 @@
 	bd:name "SUENRF"^^xsd:string ;
 	bd:description "Describes the end of the substance use with relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point (represented by RFSTDTC and RFENDTC in Demographics). If information such as 'PRIOR', 'ONGOING', or 'CONTINUING' was collected, this information may be translated into SUENRF."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(STENRF)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/SU/V1#DVSUENRF_TMC1> ;
+.
+<http://www.cdisc.org/SU/V1#DVSUENRF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "STENRF"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66728/V4#C66728> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUSTRTPT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8268,7 +9448,7 @@
 	bd:name "SUSTRTPT"^^xsd:string ;
 	bd:description "Identifies the start of the medication as being before or after the reference time point defined by variable SUSTTPT."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(STRTPT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUSTTPT>
@@ -8290,7 +9470,7 @@
 	bd:name "SUENRTPT"^^xsd:string ;
 	bd:description "Identifies the end of the medication as being before or after the reference time point defined by variable SUENTPT."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ENRTPT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUENTPT>
@@ -8365,8 +9545,18 @@
 	bd:name "RDOMAIN"^^xsd:string ;
 	bd:description "Two-character abbreviation for the domain of the parent record(s)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/RELREC/V1#DVRDOMAIN_TMC1> ;
+.
+<http://www.cdisc.org/RELREC/V1#DVRDOMAIN_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DOMAIN"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66734/V4#C66734> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/RELREC/V1#DVUSUBJID>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8409,7 +9599,7 @@
 	bd:name "RELTYPE"^^xsd:string ;
 	bd:description "Identifies the hierarchical level of the records in the relationship. Values should be either ONE or MANY. Used only when identifying a relationship between datasets (as described in Section 8.3)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(RELTYPE)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/RELREC/V1#DVRELID>
@@ -8542,8 +9732,8 @@
 	bd:ordinal "7"^^xsd:positiveInteger ;
 	bd:name "SESTDTC"^^xsd:string ;
 	bd:description "Start date/time for an Element for each subject."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 .
 <http://www.cdisc.org/SE/V1#DVSEENDTC>
@@ -8553,8 +9743,8 @@
 	bd:ordinal "8"^^xsd:positiveInteger ;
 	bd:name "SEENDTC"^^xsd:string ;
 	bd:description "End date/time for an Element for each subject."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/SE/V1#DVTAETORD>
@@ -8666,8 +9856,18 @@
 	bd:name "RDOMAIN"^^xsd:string ;
 	bd:description "Two-character abbreviation for the domain of the parent record(s)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/CO/V1#DVRDOMAIN_TMC1> ;
+.
+<http://www.cdisc.org/CO/V1#DVRDOMAIN_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DOMAIN"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66734/V4#C66734> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/CO/V1#DVUSUBJID>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8753,8 +9953,8 @@
 	bd:ordinal "11"^^xsd:positiveInteger ;
 	bd:name "CODTC"^^xsd:string ;
 	bd:description "Date/time of comment on dedicated comment form. Should be null if this is a child record of another domain or if comment date was not collected."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/DM/V1>
@@ -8863,8 +10063,8 @@
 	bd:ordinal "5"^^xsd:positiveInteger ;
 	bd:name "RFSTDTC"^^xsd:string ;
 	bd:description "Reference Start Date/time for the subject in ISO 8601 character format. Usually equivalent to date/time when subject was first exposed to study treatment. Required for all randomized subjects; will be null for all subjects who did not meet the milestone the date requires, such as screen failures or unassigned subjects."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/DM/V1#DVRFENDTC>
@@ -8874,8 +10074,8 @@
 	bd:ordinal "6"^^xsd:positiveInteger ;
 	bd:name "RFENDTC"^^xsd:string ;
 	bd:description "Reference End Date/time for the subject in ISO 8601 character format. Usually equivalent to the date/time when subject was determined to have ended the trial, and often equivalent to date/time of last exposure to study treatment. Required for all randomized subjects; null for screen failures or unassigned subjects."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/DM/V1#DVSITEID>
@@ -8918,8 +10118,8 @@
 	bd:ordinal "10"^^xsd:positiveInteger ;
 	bd:name "BRTHDTC"^^xsd:string ;
 	bd:description "Date/time of birth of the subject."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/DM/V1#DVAGE>
@@ -8941,8 +10141,18 @@
 	bd:name "AGEU"^^xsd:string ;
 	bd:description "Units associated with AGE."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(AGEU)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/DM/V1#DVAGEU_TMC1> ;
+.
+<http://www.cdisc.org/DM/V1#DVAGEU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "AGEU"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66738/V4#C66738_C50400> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/DM/V1#DVSEX>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8952,8 +10162,18 @@
 	bd:name "SEX"^^xsd:string ;
 	bd:description "Sex of the subject."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(SEX)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/DM/V1#DVSEX_TMC1> ;
+.
+<http://www.cdisc.org/DM/V1#DVSEX_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "SEX"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V4#C66731> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/DM/V1#DVRACE>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8963,8 +10183,18 @@
 	bd:name "RACE"^^xsd:string ;
 	bd:description "Race of the subject. Sponsors should refer to 'Collection of Race and Ethnicity Data in Clinical Trials' (FDA, September 2005) for guidance regarding the collection of race (http://www.fda.gov/cder/guidance/5656fnl.htm) See Assumption below regarding RACE."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(RACE)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:ctReference <http://www.cdisc.org/DM/V1#DVRACE_TMC1> ;
+.
+<http://www.cdisc.org/DM/V1#DVRACE_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "RACE"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/DM/V1#DVETHNIC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8974,8 +10204,18 @@
 	bd:name "ETHNIC"^^xsd:string ;
 	bd:description "The ethnicity of the subject. Sponsors should refer to 'Collection of Race and Ethnicity Data in Clinical Trials' (FDA, September 2005) for guidance regarding the collection of ethnicity (http://www.fda.gov/cder/guidance/5656fnl.htm)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(ETHNIC)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/DM/V1#DVETHNIC_TMC1> ;
+.
+<http://www.cdisc.org/DM/V1#DVETHNIC_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ETHNIC"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66790/V13#C66790> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/DM/V1#DVARMCD>
 	rdf:type bd:SdtmDomainVariable ;
@@ -9007,8 +10247,18 @@
 	bd:name "COUNTRY"^^xsd:string ;
 	bd:description "Country of the investigational site in which the subject participated in the trial."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(COUNTRY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/DM/V1#DVCOUNTRY_TMC1> ;
+.
+<http://www.cdisc.org/DM/V1#DVCOUNTRY_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "COUNTRY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66786/V4#C66786> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/DM/V1#DVDMDTC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -9017,8 +10267,8 @@
 	bd:ordinal "19"^^xsd:positiveInteger ;
 	bd:name "DMDTC"^^xsd:string ;
 	bd:description "Date/time of demographic data collection."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/DM/V1#DVDMDY>
@@ -9151,8 +10401,8 @@
 	bd:ordinal "7"^^xsd:positiveInteger ;
 	bd:name "SVSTDTC"^^xsd:string ;
 	bd:description "Start date/time for a Visit."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/SV/V1#DVSVENDTC>
@@ -9162,8 +10412,8 @@
 	bd:ordinal "8"^^xsd:positiveInteger ;
 	bd:name "SVENDTC"^^xsd:string ;
 	bd:description "End date/time of a Visit."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/SV/V1#DVSVSTDY>
@@ -9263,8 +10513,18 @@
 	bd:name "RDOMAIN"^^xsd:string ;
 	bd:description "Two-character abbreviation for the domain of the parent record(s)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/SUPPQUAL/V1#DVRDOMAIN_TMC1> ;
+.
+<http://www.cdisc.org/SUPPQUAL/V1#DVRDOMAIN_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DOMAIN"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66734/V4#C66734> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/SUPPQUAL/V1#DVUSUBJID>
 	rdf:type bd:SdtmDomainVariable ;
@@ -9767,8 +11027,8 @@
 	bd:ordinal "7"^^xsd:positiveInteger ;
 	bd:name "TEDUR"^^xsd:string ;
 	bd:description "Planned Duration of Element in ISO 8601 format. Used when the rule for ending the Element is applied after a fixed duration."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/TI/V1>
@@ -9866,8 +11126,18 @@
 	bd:name "IECAT"^^xsd:string ;
 	bd:description "Used to define a category of related records across subjects."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(IECAT)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/TI/V1#DVIECAT_TMC1> ;
+.
+<http://www.cdisc.org/TI/V1#DVIECAT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "IECAT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66797/V13#C66797> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/TI/V1#DVIESCAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -9996,8 +11266,18 @@
 	bd:name "TSPARMCD"^^xsd:string ;
 	bd:description "TSPARMCD (the companion to TSPARM) is limited to 8 characters and does not have special character restrictions. These values should be short for ease of use in programming, but it is not expected that TSPARMCD will need to serve as variable names. Examples: AGEMIN, AGEMAX"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(TSPARMCD)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/TS/V1#DVTSPARMCD_TMC1> ;
+.
+<http://www.cdisc.org/TS/V1#DVTSPARMCD_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TSPARMCD"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66738/V5#C66738> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/TS/V1#DVTSPARM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -10007,8 +11287,18 @@
 	bd:name "TSPARM"^^xsd:string ;
 	bd:description "Term for the Trial Summary Parameter. The value in TSPARM cannot be longer than 40 characters. Examples Planned Minimum Age of Subjects, Planned Maximum Age of Subjects"^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat ""^^xsd:string ;
+	bd:ctAndFormat "(TSPARM)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:ctReference <http://www.cdisc.org/TS/V1#DVTSPARM_TMC1> ;
+.
+<http://www.cdisc.org/TS/V1#DVTSPARM_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TSPARM"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C67152/V4#C67152> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 <http://www.cdisc.org/TS/V1#DVTSVAL>
 	rdf:type bd:SdtmDomainVariable ;

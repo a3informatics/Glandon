@@ -7,6 +7,7 @@ describe "Import CDISC SDTM Implementation Guide Data" do
   include PublicFileHelpers
   include SparqlHelpers
   include IsoHelpers
+  include CdiscCtHelpers
 
   def sub_dir
     return "models/import/data/cdisc/sdtm_ig"
@@ -29,6 +30,7 @@ describe "Import CDISC SDTM Implementation Guide Data" do
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
     load_data_file_into_triple_store("canonical_references.ttl")
     load_data_file_into_triple_store("canonical_references_migration_1.ttl")
+    load_cdisc_term_versions(CdiscCtHelpers.version_range)
     setup
   end
 
@@ -66,9 +68,10 @@ describe "Import CDISC SDTM Implementation Guide Data" do
   end
 
   def set_params(version, date, files)
+    ctv = @date_to_ct_map[version-1]
     file_type = !files.empty? ? "0" : "3"
     { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "Controlled Terminology", 
-      semantic_version: "#{version}.0.0", job: @job, file_type: file_type}
+      semantic_version: "#{version}.0.0", job: @job, file_type: file_type, ct: Uri.new(uri: "http://www.cdisc.org/CT/V#{ctv}#TH")}
   end
 
   def dump_errors_if_present(filename, version, date)
@@ -124,8 +127,10 @@ describe "Import CDISC SDTM Implementation Guide Data" do
     ]
 
     @date_to_filename_map = [
-      "sdtm_3-1-2.xlsx", "sdtm_3-1-3.xlsx", "sdtm_3-2.xlsx", "sdtm_3-3.xlsx"
+      "sdtm_ig_3-1-2.xlsx", "sdtm_ig_3-1-3.xlsx", "sdtm_ig_3-2.xlsx", "sdtm_ig_3-3.xlsx"
     ]
+
+    @date_to_ct_map = ["13", "31", "36", "57"]
   end
   
   describe "all versions" do
