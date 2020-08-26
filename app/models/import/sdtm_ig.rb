@@ -95,7 +95,7 @@ private
       child.has_previous_version = previous.nil? ? nil : previous.uri
     end
 
-    # Check for differences. If no change then use previous version.
+    # Add terminology
     filtered.each_with_index do |domain, index| 
       domain.children.each do |variable|
         next if variable.ct_and_format.empty?

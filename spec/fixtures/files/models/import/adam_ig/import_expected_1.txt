@@ -238,7 +238,6 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:notes "DM.STUDYID"^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVUSUBJID>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -248,7 +247,6 @@
 	bd:name "USUBJID"^^xsd:string ;
 	bd:notes "DM.USUBJID"^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVSUBJID>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -258,7 +256,6 @@
 	bd:name "SUBJID"^^xsd:string ;
 	bd:notes "DM.SUBJID. SUBJID is required in ADSL, but permissible in other datasets."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVSITEID>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -268,7 +265,6 @@
 	bd:name "SITEID"^^xsd:string ;
 	bd:notes "DM.SITEID. SITEID is required in ADSL, but permissible in other datasets."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVSITEGRy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -278,7 +274,6 @@
 	bd:name "SITEGRy"^^xsd:string ;
 	bd:notes "Character description of a grouping or pooling of clinical sites for analysis purposes. For example, SITEGR3 is the name of a variable containing site group (pooled site) names, where the grouping has been done according to the third site grouping algorithm, defined in variable metadata; SITEGR3 does not mean the third group of sites."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVSITEGRyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -288,7 +283,6 @@
 	bd:name "SITEGRyN"^^xsd:string ;
 	bd:notes "The numeric code for SITEGRy. One-to-one mapping to SITEGRy within a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVREGIONy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -298,7 +292,6 @@
 	bd:name "REGIONy"^^xsd:string ;
 	bd:notes "Character description of geographical region. For example, REGION1 might have values of 'Asia', 'Europe', 'North America', 'Rest of World'; REGION2 might have values of 'United States', 'Rest of World'."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVREGIONyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -308,7 +301,6 @@
 	bd:name "REGIONyN"^^xsd:string ;
 	bd:notes "The numeric code for REGIONy. Orders REGIONy for analysis and reporting. One-to-one mapping to REGIONy within a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAGE>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -318,7 +310,6 @@
 	bd:name "AGE"^^xsd:string ;
 	bd:notes "DM.AGE. If analysis needs require a derived age that does not match DM.AGE, then AAGE must be added"^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAGEU>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -327,8 +318,17 @@
 	bd:ordinal "10"^^xsd:positiveInteger ;
 	bd:name "AGEU"^^xsd:string ;
 	bd:notes "DM.AGEU"^^xsd:string ;
-	bd:ct "AGEU"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(AGEU)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVAGEU_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVAGEU_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "AGEU"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C90009/V26#C90009_C50400> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAGEGRy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -338,7 +338,6 @@
 	bd:name "AGEGRy"^^xsd:string ;
 	bd:notes "Character description of a grouping or pooling of the subject's age for analysis purposes. For example, AGEGR1 might have values of \"<18\", \"18-65\", and \">65\"; AGEGR2 might have values of \"Less than 35 y old\" and \"At least 35 y old\"."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAGEGRyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -348,7 +347,6 @@
 	bd:name "AGEGRyN"^^xsd:string ;
 	bd:notes "The numeric code for AGEGRy. Orders the grouping or pooling of subject age for analysis and reporting. One-to-one mapping to AGEGRy within a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAAGE>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -358,7 +356,6 @@
 	bd:name "AAGE"^^xsd:string ;
 	bd:notes "Age used for analysis that is derived differently from DM.AGE. AAGE is required if age is calculated differently than in SDTM."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVSEX>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -367,8 +364,17 @@
 	bd:ordinal "14"^^xsd:positiveInteger ;
 	bd:name "SEX"^^xsd:string ;
 	bd:notes "The sex of the subject is a required variable in ADSL; must be identical to DM.SEX."^^xsd:string ;
-	bd:ct "SEX"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(SEX)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVSEX_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVSEX_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "SEX"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V56#C66731> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVRACE>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -377,8 +383,17 @@
 	bd:ordinal "15"^^xsd:positiveInteger ;
 	bd:name "RACE"^^xsd:string ;
 	bd:notes "The race of the subject is a required variable in ADSL; must be identical to DM.RACE."^^xsd:string ;
-	bd:ct "RACE"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(RACE)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVRACE_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVRACE_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "RACE"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V58#C74457> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVRACEGRy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -388,7 +403,6 @@
 	bd:name "RACEGRy"^^xsd:string ;
 	bd:notes "Character description of a grouping or pooling of the subject's race for analysis purposes."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVRACEGRyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -398,7 +412,6 @@
 	bd:name "RACEGRyN"^^xsd:string ;
 	bd:notes "The numeric code for RACEGRy. Orders the grouping or pooling of subject race for analysis and reporting. One-to-one mapping to RACEGRy within a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVFASFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -407,8 +420,7 @@
 	bd:ordinal "18"^^xsd:positiveInteger ;
 	bd:name "FASFL"^^xsd:string ;
 	bd:notes "These flags identify whether or not the subject is included in the specified population. A minimum of one subject-level population flag variable is required in ADSL."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y, N"^^xsd:string ;
+	bd:ct "Y, N"^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVSAFFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -417,8 +429,7 @@
 	bd:ordinal "19"^^xsd:positiveInteger ;
 	bd:name "SAFFL"^^xsd:string ;
 	bd:notes "Not all of the indicators listed here need to be included in ADSL. As stated in Section 3.1.4, Item 2, only those indicators corresponding to populations defined in the statistical analysis plan or populations used as a basis for analysis need be included in ADSL."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y, N"^^xsd:string ;
+	bd:ct "Y, N"^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVITTFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -427,8 +438,7 @@
 	bd:ordinal "20"^^xsd:positiveInteger ;
 	bd:name "ITTFL"^^xsd:string ;
 	bd:notes "This list of flags is not meant to be all-inclusive. Additional population flags may be added."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y, N"^^xsd:string ;
+	bd:ct "Y, N"^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPPROTFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -437,8 +447,7 @@
 	bd:ordinal "21"^^xsd:positiveInteger ;
 	bd:name "PPROTFL"^^xsd:string ;
 	bd:notes "The values of subject-level population flags cannot be blank. If a flag is used, the corresponding numeric version (*FN, where 0=no and 1=yes) of the population flag can also be included. Please also refer to Section 3.1.4."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y, N"^^xsd:string ;
+	bd:ct "Y, N"^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVCOMPLFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -447,8 +456,7 @@
 	bd:ordinal "22"^^xsd:positiveInteger ;
 	bd:name "COMPLFL"^^xsd:string ;
 	bd:notes "The values of subject-level population flags cannot be blank. If a flag is used, the corresponding numeric version (*FN, where 0=no and 1=yes) of the population flag can also be included. Please also refer to Section 3.1.4."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y, N"^^xsd:string ;
+	bd:ct "Y, N"^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVRANDFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -457,8 +465,7 @@
 	bd:ordinal "23"^^xsd:positiveInteger ;
 	bd:name "RANDFL"^^xsd:string ;
 	bd:notes "The values of subject-level population flags cannot be blank. If a flag is used, the corresponding numeric version (*FN, where 0=no and 1=yes) of the population flag can also be included. Please also refer to Section 3.1.4."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y, N"^^xsd:string ;
+	bd:ct "Y, N"^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVENRLFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -467,8 +474,7 @@
 	bd:ordinal "24"^^xsd:positiveInteger ;
 	bd:name "ENRLFL"^^xsd:string ;
 	bd:notes "The values of subject-level population flags cannot be blank. If a flag is used, the corresponding numeric version (*FN, where 0=no and 1=yes) of the population flag can also be included. Please also refer to Section 3.1.4."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y, N"^^xsd:string ;
+	bd:ct "Y, N"^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVARM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -478,7 +484,6 @@
 	bd:name "ARM"^^xsd:string ;
 	bd:notes "DM.ARM"^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVACTARM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -488,7 +493,6 @@
 	bd:name "ACTARM"^^xsd:string ;
 	bd:notes "DM.ACTARM"^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTxxP>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -498,7 +502,6 @@
 	bd:name "TRTxxP"^^xsd:string ;
 	bd:notes "Subject-level identifier that represents the planned treatment for period xx. In a one-period randomized trial, TRT01P would be the treatment to which the subject was randomized. TRTxxP might be derived from the SDTM DM variable ARM. At least TRT01P is required."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTxxPN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -508,7 +511,6 @@
 	bd:name "TRTxxPN"^^xsd:string ;
 	bd:notes "The numeric code variable for TRTxxP. One-to-one mapping to TRTxxP within a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTxxA>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -518,7 +520,6 @@
 	bd:name "TRTxxA"^^xsd:string ;
 	bd:notes "Subject-level identifier that represents the actual treatment for the subject for period xx. Required when actual treatment does not match planned and there is an analysis of the data as treated."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTxxAN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -528,7 +529,6 @@
 	bd:name "TRTxxAN"^^xsd:string ;
 	bd:notes "The numeric code variable for TRTxxA. One-to-one mapping to TRTxxA within a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTSEQP>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -538,7 +538,6 @@
 	bd:name "TRTSEQP"^^xsd:string ;
 	bd:notes "Required when there is an analysis based on the sequence of treatments, for example in a crossover design. TRTSEQP is not necessarily equal to ARM, for example if ARM contains elements that are not relevant to analysis of treatments or ARM is not fully descriptive (e.g., \"GROUP 1,\" \"GROUP 2\"). When analyzing based on the sequence of treatments, TRTSEQP is required even if identical to ARM."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTSEQPN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -548,7 +547,6 @@
 	bd:name "TRTSEQPN"^^xsd:string ;
 	bd:notes "Numeric version of TRTSEQP. One-to-one mapping to TRTSEQP within a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTSEQA>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -558,7 +556,6 @@
 	bd:name "TRTSEQA"^^xsd:string ;
 	bd:notes "TRTSEQA is required if a situation occurred in the conduct of the trial where a subject received a sequence of treatments other than what was planned and there is an analysis based on the sequence of treatments."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTSEQAN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -568,7 +565,6 @@
 	bd:name "TRTSEQAN"^^xsd:string ;
 	bd:notes "Numeric version of TRTSEQA. One-to-one mapping to TRTSEQA within a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxPGy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -578,7 +574,6 @@
 	bd:name "TRxxPGy"^^xsd:string ;
 	bd:notes "Planned pooled treatment y for period xx. Useful when planned treatments (TRTxxP) in the specified period xx are pooled together for analysis according to pooling algorithm y. For example when in period 2 the first pooling algorithm dictates that all doses of Drug A (TR02PG1=\"All doses of Drug A\") are pooled together for comparison to all doses of Drug B (TR02PG1=\"All doses of Drug B\"). Each value of TRTxxP is pooled within at most one value of TRxxPGy."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxPGyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -588,7 +583,6 @@
 	bd:name "TRxxPGyN"^^xsd:string ;
 	bd:notes "The numeric code for TRxxPGy. One-to-one mapping to TRxxPGy within a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxAGy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -598,7 +592,6 @@
 	bd:name "TRxxAGy"^^xsd:string ;
 	bd:notes "Actual pooled treatment y for period xx. Required when TRxxPGy is present and TRTxxA is present."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxAGyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -608,7 +601,6 @@
 	bd:name "TRxxAGyN"^^xsd:string ;
 	bd:notes "The numeric code for TRxxAGy. One-to-one mapping to TRxxAGy within a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTSEQPGy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -618,7 +610,6 @@
 	bd:name "TSEQPGy"^^xsd:string ;
 	bd:notes "Planned pooled treatment sequence y. Useful when planned treatment sequences (TRTSEQP) are pooled together for analysis according to pooling algorithm y. For example, this might be used in an analysis of an extension study when the analysis is based on what the subject received in the parent study as well as in the extension study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTSEQPGyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -628,7 +619,6 @@
 	bd:name "TSEQPGyN"^^xsd:string ;
 	bd:notes "Numeric version of TSEQPGy. One-to-one mapping to TSEQPGy within a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTSEQAGy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -638,7 +628,6 @@
 	bd:name "TSEQAGy"^^xsd:string ;
 	bd:notes "Actual pooled treatment sequence y. Required when TSEQPGy is present and TRTSEQA is present."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTSEQAGyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -648,7 +637,6 @@
 	bd:name "TSEQAGyN"^^xsd:string ;
 	bd:notes "Numeric version of TSEQAGy. One-to-one mapping to TSEQAGy within a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDOSExxP>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -658,7 +646,6 @@
 	bd:name "DOSExxP"^^xsd:string ;
 	bd:notes "Subject-level identifier that represents the planned treatment dosage for period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDOSExxA>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -668,7 +655,6 @@
 	bd:name "DOSExxA"^^xsd:string ;
 	bd:notes "Subject-level identifier that represents the actual treatment dosage for period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDOSExxU>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -678,7 +664,6 @@
 	bd:name "DOSExxU"^^xsd:string ;
 	bd:notes "The units for DOSExxP and DOSExxA. It is permissible to use suffixes such as \"P\" and \"A\" if needed, with labels modified accordingly."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTSDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -688,7 +673,6 @@
 	bd:name "TRTSDT"^^xsd:string ;
 	bd:notes "Date of first exposure to treatment for a subject in a study. TRTSDT and/or TRTSDTM are required if there is an investigational product. Note that TRTSDT is not required to have the same value as the SDTM DM variable RFXSTDTC. While both of these dates reflect the concept of first exposure, the ADaM date may be derived to support the analysis which may not necessarily be the very first date in the SDTM EX domain."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTSTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -698,7 +682,6 @@
 	bd:name "TRTSTM"^^xsd:string ;
 	bd:notes "Time of first exposure to treatment for a subject in a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -708,7 +691,6 @@
 	bd:name "TRTSDTM"^^xsd:string ;
 	bd:notes "Datetime of first exposure to treatment for a subject in a study. TRTSDT and/or TRTSDTM are required if there is an investigational product."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -717,8 +699,17 @@
 	bd:ordinal "49"^^xsd:positiveInteger ;
 	bd:name "TRTSDTF"^^xsd:string ;
 	bd:notes "The level of imputation of date of first exposure to treatment. If TRTSDT (or the date part of TRTSDTM) was imputed, TRTSDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVTRTSDTF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVTRTSDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -727,8 +718,17 @@
 	bd:ordinal "50"^^xsd:positiveInteger ;
 	bd:name "TRTSTMF"^^xsd:string ;
 	bd:notes "The level of imputation of time of first exposure to treatment. If TRTSTM (or the time part of TRTSDTM) was imputed, TRTSTMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVTRTSTMF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVTRTSTMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTEDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -738,7 +738,6 @@
 	bd:name "TRTEDT"^^xsd:string ;
 	bd:notes "Date of last exposure to treatment for a subject in a study. TRTEDT and/or TRTEDTM are required if there is an investigational product. Note that TRTEDT is not required to have the same value as the SDTM DM variable RFXENDTC. While both of these dates reflect the concept of last exposure, the ADaM date may be derived to support the analysis which may not necessarily be the very last date in the SDTM EX domain."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTETM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -748,7 +747,6 @@
 	bd:name "TRTETM"^^xsd:string ;
 	bd:notes "Time of last exposure to treatment for a subject in a study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTEDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -758,7 +756,6 @@
 	bd:name "TRTEDTM"^^xsd:string ;
 	bd:notes "Datetime of last exposure to treatment for a subject in a study. TRTEDT and/or TRTEDTM are required if there is an investigational product."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTEDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -767,8 +764,17 @@
 	bd:ordinal "54"^^xsd:positiveInteger ;
 	bd:name "TRTEDTF"^^xsd:string ;
 	bd:notes "The level of imputation of date of last exposure to treatment. If TRTEDT (or the date part of TRTEDTM) was imputed, TRTEDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVTRTEDTF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVTRTEDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTETMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -777,8 +783,17 @@
 	bd:ordinal "55"^^xsd:positiveInteger ;
 	bd:name "TRTETMF"^^xsd:string ;
 	bd:notes "The level of imputation of time of last exposure to treatment. If TRTETM (or the time part of TRTEDTM) was imputed, TRTETMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVTRTETMF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVTRTETMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxSDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -788,7 +803,6 @@
 	bd:name "TRxxSDT"^^xsd:string ;
 	bd:notes "Date of first exposure to treatment in period xx. TRxxSDT and/or TRxxSDTM are only required in trial designs where multiple treatments are given to the same subject, such as a crossover design, but are permissible for other trial designs. Also useful in designs where multiple periods exist for the same treatment (i.e., multiple cycles of the same study treatment)."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxSTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -798,7 +812,6 @@
 	bd:name "TRxxSTM"^^xsd:string ;
 	bd:notes "The starting time of exposure to treatment in period xx. TRxxSTM and/or TRxxSDTM are only required in trial designs where multiple treatments are given to the same subject, such as a crossover design (but are permissible for other trial designs), and time is important to the analysis."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -808,7 +821,6 @@
 	bd:name "TRxxSDTM"^^xsd:string ;
 	bd:notes "Datetime of first exposure to treatment in period xx. TRxxSDT and/or TRxxSDTM are only required in trial designs where multiple treatments are given to the same subject, such as a crossover design, but are permissible for other trial designs."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -817,8 +829,17 @@
 	bd:ordinal "59"^^xsd:positiveInteger ;
 	bd:name "TRxxSDTF"^^xsd:string ;
 	bd:notes "The level of imputation of date of first exposure to treatment in period xx. If TRxxSDT (or the date part of TRxxSDTM) was imputed, TRxxSDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVTRxxSDTF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVTRxxSDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -827,8 +848,17 @@
 	bd:ordinal "60"^^xsd:positiveInteger ;
 	bd:name "TRxxSTMF"^^xsd:string ;
 	bd:notes "The level of imputation of time of first exposure to treatment in period xx. If TRxxSTM (or the time part of TRxxSDTM) was imputed, TRxxSTMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVTRxxSTMF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVTRxxSTMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxEDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -838,7 +868,6 @@
 	bd:name "TRxxEDT"^^xsd:string ;
 	bd:notes "Date of last exposure to treatment in period xx. TRxxEDT and/or TRxxEDTM are only required in trial designs where multiple treatments are given to the same subject, such as a crossover design, but are permissible for other trial designs."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxETM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -848,7 +877,6 @@
 	bd:name "TRxxETM"^^xsd:string ;
 	bd:notes "The ending time of exposure to treatment in period xx. TRxxETM and/or TRxxEDTM are only required in trial designs where multiple treatments are given to the same subject, such as a crossover design, and ending time is important to the analysis, but are permissible for other trial designs."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxEDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -858,7 +886,6 @@
 	bd:name "TRxxEDTM"^^xsd:string ;
 	bd:notes "The datetime of last exposure to treatment in period xx. TRxxEDT and/or TRxxEDTM are only required in trial designs where multiple treatments are given to the same subject, such as a crossover design, but are permissible for other trial designs."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxEDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -867,8 +894,17 @@
 	bd:ordinal "64"^^xsd:positiveInteger ;
 	bd:name "TRxxEDTF"^^xsd:string ;
 	bd:notes "The level of imputation of date of last exposure to treatment in period xx. If TRxxEDT (or the date part of TRxxEDTM) was imputed, TRxxEDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVTRxxEDTF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVTRxxEDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxETMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -877,8 +913,17 @@
 	bd:ordinal "65"^^xsd:positiveInteger ;
 	bd:name "TRxxETMF"^^xsd:string ;
 	bd:notes "The level of imputation of time of last exposure to treatment in period xx. If TRxxETM (or the time part of TRxxEDTM) was imputed, TRxxETMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVTRxxETMF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVTRxxETMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAPxxSDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -888,7 +933,6 @@
 	bd:name "APxxSDT"^^xsd:string ;
 	bd:notes "The starting date of period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAPxxSTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -898,7 +942,6 @@
 	bd:name "APxxSTM"^^xsd:string ;
 	bd:notes "The starting time of period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAPxxSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -908,7 +951,6 @@
 	bd:name "APxxSDTM"^^xsd:string ;
 	bd:notes "The starting datetime of period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAPxxSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -917,8 +959,17 @@
 	bd:ordinal "69"^^xsd:positiveInteger ;
 	bd:name "APxxSDTF"^^xsd:string ;
 	bd:notes "The level of imputation of period xx start date. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVAPxxSDTF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVAPxxSDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAPxxSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -927,8 +978,17 @@
 	bd:ordinal "70"^^xsd:positiveInteger ;
 	bd:name "APxxSTMF"^^xsd:string ;
 	bd:notes "The level of imputation of period xx start time. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVAPxxSTMF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVAPxxSTMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAPxxEDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -938,7 +998,6 @@
 	bd:name "APxxEDT"^^xsd:string ;
 	bd:notes "The ending date of period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAPxxETM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -948,7 +1007,6 @@
 	bd:name "APxxETM"^^xsd:string ;
 	bd:notes "The ending time of period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAPxxEDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -958,7 +1016,6 @@
 	bd:name "APxxEDTM"^^xsd:string ;
 	bd:notes "The ending datetime of period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAPxxEDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -967,8 +1024,17 @@
 	bd:ordinal "74"^^xsd:positiveInteger ;
 	bd:name "APxxEDTF"^^xsd:string ;
 	bd:notes "The level of imputation of period xx end date. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVAPxxEDTF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVAPxxEDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAPxxETMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -977,8 +1043,17 @@
 	bd:ordinal "75"^^xsd:positiveInteger ;
 	bd:name "APxxETMF"^^xsd:string ;
 	bd:notes "The level of imputation of period xx end time. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVAPxxETMF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVAPxxETMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPxxSw>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -988,7 +1063,6 @@
 	bd:name "PxxSw"^^xsd:string ;
 	bd:notes "Description of analysis subperiod w within period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPxxSwSDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -998,7 +1072,6 @@
 	bd:name "PxxSwSDT"^^xsd:string ;
 	bd:notes "The starting date of subperiod w within period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPxxSwSTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1008,7 +1081,6 @@
 	bd:name "PxxSwSTM"^^xsd:string ;
 	bd:notes "The starting time of subperiod w within period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPxxSwSDM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1018,7 +1090,6 @@
 	bd:name "PxxSwSDM"^^xsd:string ;
 	bd:notes "The starting datetime of subperiod w within period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPxxSwSDF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1027,8 +1098,17 @@
 	bd:ordinal "80"^^xsd:positiveInteger ;
 	bd:name "PxxSwSDF"^^xsd:string ;
 	bd:notes "The level of imputation of the start date for subperiod w within period xx. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVPxxSwSDF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVPxxSwSDF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPxxSwSTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1037,8 +1117,17 @@
 	bd:ordinal "81"^^xsd:positiveInteger ;
 	bd:name "PxxSwSTF"^^xsd:string ;
 	bd:notes "The level of imputation of the start time for subperiod w within period xx. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVPxxSwSTF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVPxxSwSTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPxxSwEDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1048,7 +1137,6 @@
 	bd:name "PxxSwEDT"^^xsd:string ;
 	bd:notes "The ending date of subperiod w within period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPxxSwETM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1058,7 +1146,6 @@
 	bd:name "PxxSwETM"^^xsd:string ;
 	bd:notes "The ending time of subperiod w within period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPxxSwEDM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1068,7 +1155,6 @@
 	bd:name "PxxSwEDM"^^xsd:string ;
 	bd:notes "The ending datetime of subperiod w within period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPxxSwEDF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1077,8 +1163,17 @@
 	bd:ordinal "85"^^xsd:positiveInteger ;
 	bd:name "PxxSwEDF"^^xsd:string ;
 	bd:notes "The level of imputation of the end date for subperiod w within period xx. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVPxxSwEDF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVPxxSwEDF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPxxSwETF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1087,8 +1182,17 @@
 	bd:ordinal "86"^^xsd:positiveInteger ;
 	bd:name "PxxSwETF"^^xsd:string ;
 	bd:notes "The level of imputation of the end time for subperiod w within period xx. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVPxxSwETF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVPxxSwETF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVAPHASEw>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1098,7 +1202,6 @@
 	bd:name "APHASEw"^^xsd:string ;
 	bd:notes "Description of analysis phase w."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPHwSDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1108,7 +1211,6 @@
 	bd:name "PHwSDT"^^xsd:string ;
 	bd:notes "The starting date of phase w."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPHwSTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1118,7 +1220,6 @@
 	bd:name "PHwSTM"^^xsd:string ;
 	bd:notes "The starting time of phase w."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPHwSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1128,7 +1229,6 @@
 	bd:name "PHwSDTM"^^xsd:string ;
 	bd:notes "The starting datetime of phase w."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPHwSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1137,8 +1237,17 @@
 	bd:ordinal "91"^^xsd:positiveInteger ;
 	bd:name "PHwSDTF"^^xsd:string ;
 	bd:notes "The level of imputation of the start date for phase w. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVPHwSDTF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVPHwSDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPHwSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1147,8 +1256,17 @@
 	bd:ordinal "92"^^xsd:positiveInteger ;
 	bd:name "PHwSTMF"^^xsd:string ;
 	bd:notes "The level of imputation of the start time for phase w. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVPHwSTMF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVPHwSTMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPHwEDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1158,7 +1276,6 @@
 	bd:name "PHwEDT"^^xsd:string ;
 	bd:notes "The ending date of phase w."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPHwETM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1168,7 +1285,6 @@
 	bd:name "PHwETM"^^xsd:string ;
 	bd:notes "The ending time of phase w."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPHwEDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1178,7 +1294,6 @@
 	bd:name "PHwEDTM"^^xsd:string ;
 	bd:notes "The ending datetime of phase w."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPHwEDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1187,8 +1302,17 @@
 	bd:ordinal "96"^^xsd:positiveInteger ;
 	bd:name "PHwEDTF"^^xsd:string ;
 	bd:notes "The level of imputation of the end date for phase w. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVPHwEDTF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVPHwEDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVPHwETMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1197,8 +1321,17 @@
 	bd:ordinal "97"^^xsd:positiveInteger ;
 	bd:name "PHwETMF"^^xsd:string ;
 	bd:notes "The level of imputation of the end time for phase w. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/ADSL/V1#AVPHwETMF_TMC1> ;
+.
+<http://www.cdisc.org/ADSL/V1#AVPHwETMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/ADSL/V1#AVEOSSTT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1208,7 +1341,6 @@
 	bd:name "EOSSTT"^^xsd:string ;
 	bd:notes "The subject's status as of the end of study or data cutoff. Examples: COMPLETED, DISCONTINUED, ONGOING."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVEOSDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1218,7 +1350,6 @@
 	bd:name "EOSDT"^^xsd:string ;
 	bd:notes "Date subject ended the study - either date of completion or date of discontinuation or data cutoff date for interim analyses."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDCSREAS>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1228,7 +1359,6 @@
 	bd:name "DCSREAS"^^xsd:string ;
 	bd:notes "Reason for subject's discontinuation from study. The source would most likely be the SDTM DS dataset. Null for subjects who completed the study."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDCSREASP>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1238,7 +1368,6 @@
 	bd:name "DCSREASP"^^xsd:string ;
 	bd:notes "Additional detail regarding subject's discontinuation from study (e.g., description of \"other\")."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVEOTSTT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1248,7 +1377,6 @@
 	bd:name "EOTSTT"^^xsd:string ;
 	bd:notes "The subject's status as of the end of treatment or data cutoff. Examples: COMPLETED, DISCONTINUED, ONGOING."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDCTREAS>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1258,7 +1386,6 @@
 	bd:name "DCTREAS"^^xsd:string ;
 	bd:notes "If a subject discontinued treatment in the study, then this variable indicates the reason for discontinuation. This is for discontinuation of treatment in the overall study and not to be used for discontinuation reason within individual treatment periods."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDCTREASP>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1268,7 +1395,6 @@
 	bd:name "DCTREASP"^^xsd:string ;
 	bd:notes "Additional detail regarding subject's discontinuation from treatment (e.g., description of \"other\")."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVEOTxxSTT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1278,7 +1404,6 @@
 	bd:name "EOTxxSTT"^^xsd:string ;
 	bd:notes "The subject's treatment status as of the end of period xx, or data cutoff if within period xx. Examples: COMPLETED, DISCONTINUED, ONGOING."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDCTxxRS>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1288,7 +1413,6 @@
 	bd:name "DCTxxRS"^^xsd:string ;
 	bd:notes "Reason for discontinuing treatment in period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDCTxxRSP>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1298,7 +1422,6 @@
 	bd:name "DCTxxRSP"^^xsd:string ;
 	bd:notes "Additional detail regarding subject's discontinuation of treatment in period xx (e.g., description of \"other\")."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVEOPxxSTT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1308,7 +1431,6 @@
 	bd:name "EOPxxSTT"^^xsd:string ;
 	bd:notes "The subject's status as of the end of period xx, or data cutoff if within period xx. Examples: COMPLETED, DISCONTINUED, ONGOING."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDCPxxRS>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1318,7 +1440,6 @@
 	bd:name "DCPxxRS"^^xsd:string ;
 	bd:notes "Reason for discontinuing analysis period xx."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDCPxxRSP>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1328,7 +1449,6 @@
 	bd:name "DCPxxRSP"^^xsd:string ;
 	bd:notes "Additional detail regarding subject's discontinuation from period xx (e.g., description of \"other\")."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVRFICDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1338,7 +1458,6 @@
 	bd:name "RFICDT"^^xsd:string ;
 	bd:notes "Date subject gave informed consent. Generally equivalent to DM.RFICDTC."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVENRLDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1348,7 +1467,6 @@
 	bd:name "ENRLDT"^^xsd:string ;
 	bd:notes "Date of subject's enrollment into trial."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVRANDDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1358,7 +1476,6 @@
 	bd:name "RANDDT"^^xsd:string ;
 	bd:notes "Required in randomized trials."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVRFICyDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1368,7 +1485,6 @@
 	bd:name "RFICyDT"^^xsd:string ;
 	bd:notes "This variable may be used in the case where there are multiple consent dates within a study. This date does not need to repeat the date in RFICDT. 'y' can start with 1 but it is not required to start with 1."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVENRLyDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1378,7 +1494,6 @@
 	bd:name "ENRLyDT"^^xsd:string ;
 	bd:notes "This variable may be used in the case where there are multiple enrollment dates within a study. This date does not need to repeat the date in ENRLDT. 'y' can start with 1 but it is not required to start with 1."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVRANDyDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1388,7 +1503,6 @@
 	bd:name "RANDyDT"^^xsd:string ;
 	bd:notes "This variable may be used in the case where there are multiple randomization dates within a study. This date does not need to repeat the date in RANDDT. 'y' can start with 1 but it is not required to start with 1."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVLSTALVDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1398,7 +1512,6 @@
 	bd:name "LSTALVDT"^^xsd:string ;
 	bd:notes "If this variable is included in ADSL, the best practice is to populate it for everyone. If the derivation for subjects who died differs from the derivation for subjects who are not known to have died, the differences should be noted in metadata."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRCMP>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1408,7 +1521,6 @@
 	bd:name "TRCMP"^^xsd:string ;
 	bd:notes "Overall percent compliance with treatment in the trial. TRCMP may be useful for inclusion in ADSL for reasons such as defining subgroups and/or populations."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRCMPGy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1418,7 +1530,6 @@
 	bd:name "TRCMPGy"^^xsd:string ;
 	bd:notes "Grouping 'y' of TRCMP, treatment compliance percentage."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRCMPGyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1428,7 +1539,6 @@
 	bd:name "TRCMPGyN"^^xsd:string ;
 	bd:notes "Numeric version of treatment compliance (%) grouping 'y'. Must have a one-to-one mapping to TRCMPGy."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxDURD>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1438,7 +1548,6 @@
 	bd:name "TRxxDURD"^^xsd:string ;
 	bd:notes "Treatment duration for period xx as measured in days. More than one of TRxxDURD, TRxxDURM, and TRxxDURY can be populated, but each represents the entire duration in its respective units."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxDURM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1448,7 +1557,6 @@
 	bd:name "TRxxDURM"^^xsd:string ;
 	bd:notes "Treatment duration for period xx, as measure in months. More than one of TRxxDURD, TRxxDURM, and TRxxDURY can be populated, but each represents the entire duration in its respective units."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRxxDURY>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1458,7 +1566,6 @@
 	bd:name "TRxxDURY"^^xsd:string ;
 	bd:notes "Treatment duration for period xx, as measured in years. More than one of TRxxDURD, TRxxDURM, and TRxxDURY can be populated, but each represents the entire duration in its respective units."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTDURD>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1468,7 +1575,6 @@
 	bd:name "TRTDURD"^^xsd:string ;
 	bd:notes "Total treatment duration, as measured in days. More than one of TRTDURD, TRTDURM, and TRTDURY can be populated, but each represents the entire duration in its respective units."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTDURM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1478,7 +1584,6 @@
 	bd:name "TRTDURM"^^xsd:string ;
 	bd:notes "Total treatment duration, as measured in months. More than one of TRTDURD, TRTDURM, and TRTDURY can be populated, but each represents the entire duration in its respective units."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVTRTDURY>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1488,7 +1593,6 @@
 	bd:name "TRTDURY"^^xsd:string ;
 	bd:notes "Total treatment duration, as measured in years. More than one of TRTDURD, TRTDURM, and TRTDURY can be populated, but each represents the entire duration in its respective units."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDTHDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1498,7 +1602,6 @@
 	bd:name "DTHDT"^^xsd:string ;
 	bd:notes "Date of subject's death. Derived from DM.DTHDTC."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDTHDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1508,7 +1611,6 @@
 	bd:name "DTHDTF"^^xsd:string ;
 	bd:notes "Imputation flag for date of subject's death. If DTHDT was imputed, DTHDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDTHCAUS>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1518,7 +1620,6 @@
 	bd:name "DTHCAUS"^^xsd:string ;
 	bd:notes "Cause of Death."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDTHCAUSN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1528,7 +1629,6 @@
 	bd:name "DTHCAUSN"^^xsd:string ;
 	bd:notes "Numeric representation of cause of death. Must have a one-to-one mapping to DTHCAUS."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDTHCGRy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1538,7 +1638,6 @@
 	bd:name "DTHCGRy"^^xsd:string ;
 	bd:notes "Grouping 'y' of DTHCAUS, the subject's cause of death."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/ADSL/V1#AVDTHCGRyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1548,7 +1647,6 @@
 	bd:name "DTHCGRyN"^^xsd:string ;
 	bd:notes "Numeric version of grouping 'y' of the subject's cause of death. Must have a one-to-one mapping to DTHCGRy."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1>
 	rdf:type bd:ADaMDataset ;
@@ -1771,7 +1869,6 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:notes "DM.STUDYID"^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVUSUBJID>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1781,7 +1878,6 @@
 	bd:name "USUBJID"^^xsd:string ;
 	bd:notes "DM.USUBJID"^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVSUBJID>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1791,7 +1887,6 @@
 	bd:name "SUBJID"^^xsd:string ;
 	bd:notes "DM.SUBJID. SUBJID is required in ADSL, but permissible in other datasets."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVSITEID>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1801,7 +1896,6 @@
 	bd:name "SITEID"^^xsd:string ;
 	bd:notes "DM.SITEID. SITEID is required in ADSL, but permissible in other datasets."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASEQ>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1811,7 +1905,6 @@
 	bd:name "ASEQ"^^xsd:string ;
 	bd:notes "Sequence number given to ensure uniqueness of subject records within an ADaM dataset. As long as values are unique within a subject within the dataset, any valid number can be used for ASEQ. ASEQ uniquely indexes records within a subject within an ADaM dataset.\n\nASEQ is useful for traceability when the dataset is used as input to another ADaM dataset. To refer to a record in a predecessor ADaM dataset, set SRCDOM to the name of the predecessor dataset, and set SRCSEQ to the value of ASEQ in the predecessor dataset. \nnumber can be used for ASEQ. ASEQ uniquely indexes records within a subject within an ADaM dataset."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTP>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1821,7 +1914,6 @@
 	bd:name "TRTP"^^xsd:string ;
 	bd:notes "TRTP is a record-level identifier that represents the planned treatment attributed to a record for analysis purposes. TRTP indicates how treatment varies by record within a subject and enables analysis of crossover and other designs. Though there is no requirement that TRTP will correspond to the TRTxxP as defined by the record's value of APERIOD, if populated, TRTP must match at least one value of the character planned treatment variables in ADSL (e.g., TRTxxP, TRTSEQP, TRxxPGy).\n\nAs noted previously, at least one treatment variable is required even in non-randomized trials. This requirement is satisfied by any subject-level or record-level treatment variables (e.g., TRTxxP, TRTP, TRTA). Even if not used for analysis, any ADSL treatment variable may be included in the BDS dataset."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTPN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1831,7 +1923,6 @@
 	bd:name "TRTPN"^^xsd:string ;
 	bd:notes "The numeric code for TRTP. One-to-one mapping within a study to TRTP."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTA>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1841,7 +1932,6 @@
 	bd:name "TRTA"^^xsd:string ;
 	bd:notes "TRTA is a record-level identifier that represents the actual treatment attributed to a record for analysis purposes. TRTA indicates how treatment varies by record within a subject and enables analysis of crossover and other multi-period designs. Though there is no requirement that TRTA will correspond to the TRTxxA as defined by the record's value of APERIOD, TRTA must match at least one value of the character actual treatment variables in ADSL (e.g., TRTxxA, TRTSEQA, TRxxAGy). \n\nAs noted previously, at least one treatment variable is required. This requirement is satisfied by any subject-level or record-level treatment variables (e.g., TRTxxP, TRTP, TRTA). Even if not used for analysis, any ADSL treatment variable may be included in the BDS dataset."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTAN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1851,7 +1941,6 @@
 	bd:name "TRTAN"^^xsd:string ;
 	bd:notes "The numeric code for TRTA. One-to-one mapping within a study to TRTA."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTPGy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1861,7 +1950,6 @@
 	bd:name "TRTPGy"^^xsd:string ;
 	bd:notes "TRTPGy is the planned pooled treatment y attributed to a record for analysis purposes. \"y\" represents an integer [1-99, not zero-padded] corresponding to a particular pooling scheme. Useful when planned treatments (TRTP) are pooled together for analysis, for example when all doses of Drug A (TRTPG1=All doses of Drug A) are compared to all doses of Drug B (TRTPG1=All doses of Drug B). Each value of TRTP is pooled within at most one value of TRTPGy."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTPGyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1871,7 +1959,6 @@
 	bd:name "TRTPGyN"^^xsd:string ;
 	bd:notes "The numeric code for TRTPGy. One-to-one mapping within a study to TRTPGy."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTAGy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1881,7 +1968,6 @@
 	bd:name "TRTAGy"^^xsd:string ;
 	bd:notes "TRTAGy is the actual pooled treatment y attributed to a record for analysis purposes. \"y\" represents an integer [1-99, not zero-padded] corresponding to a particular pooling scheme. Required when TRTPGy is present and TRTA is present."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTAGyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1891,7 +1977,6 @@
 	bd:name "TRTAGyN"^^xsd:string ;
 	bd:notes "The numeric code for TRTAGy. One-to-one mapping within a study to TRTAGy."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSEP>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1901,7 +1986,6 @@
 	bd:name "DOSEP"^^xsd:string ;
 	bd:notes "DOSEP represents the planned treatment dosage associated with the record."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSCUMP>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1911,7 +1995,6 @@
 	bd:name "DOSCUMP"^^xsd:string ;
 	bd:notes "Cumulative planned dosage of treatment for the subject at the point in time of the record (e.g., ADT)."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSEA>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1921,7 +2004,6 @@
 	bd:name "DOSEA"^^xsd:string ;
 	bd:notes "DOSEA represents the actual treatment dosage associated with the record."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSCUMA>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1931,7 +2013,6 @@
 	bd:name "DOSCUMA"^^xsd:string ;
 	bd:notes "Cumulative actual dosage of treatment for the subject at the point in time of the record (e.g., ADT)."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSEU>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1941,7 +2022,6 @@
 	bd:name "DOSEU"^^xsd:string ;
 	bd:notes "The units for DOSEP, DOSCUMP, DOSEA, and DOSCUMA. It is permissible to use suffixes such as \"P\" and \"A\" if needed, with labels modified accordingly."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVADT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1951,7 +2031,6 @@
 	bd:name "ADT"^^xsd:string ;
 	bd:notes "The date associated with AVAL and/or AVALC in numeric format."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVATM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1961,7 +2040,6 @@
 	bd:name "ATM"^^xsd:string ;
 	bd:notes "The time associated with AVAL and/or AVALC in numeric format."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVADTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1971,7 +2049,6 @@
 	bd:name "ADTM"^^xsd:string ;
 	bd:notes "The datetime associated with AVAL and/or AVALC in numeric format."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVADY>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1981,7 +2058,6 @@
 	bd:name "ADY"^^xsd:string ;
 	bd:notes "The relative day of AVAL and/or AVALC. The number of days from an anchor date (not necessarily DM.RFSTDTC) to ADT. See Section 3.1.2."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVADTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -1990,8 +2066,17 @@
 	bd:ordinal "23"^^xsd:positiveInteger ;
 	bd:name "ADTF"^^xsd:string ;
 	bd:notes "The level of imputation of analysis date. If ADT (or the date part of ADTM) was imputed, ADTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVADTF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVADTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVATMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2000,8 +2085,17 @@
 	bd:ordinal "24"^^xsd:positiveInteger ;
 	bd:name "ATMF"^^xsd:string ;
 	bd:notes "The level of imputation of analysis time. If ATM (or the time part of ADTM) was imputed, ATMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVATMF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVATMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2011,7 +2105,6 @@
 	bd:name "ASTDT"^^xsd:string ;
 	bd:notes "The start date associated with AVAL and/or AVALC. ASTDT and AENDT may be useful for traceability when AVAL summarizes data collected over an interval of time, or when AVAL is a duration."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2021,7 +2114,6 @@
 	bd:name "ASTTM"^^xsd:string ;
 	bd:notes "The start time associated with AVAL and/or AVALC. ASTTM and AENTM may be useful for traceability when AVAL summarizes data collected over an interval of time, or when AVAL is a duration."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2031,7 +2123,6 @@
 	bd:name "ASTDTM"^^xsd:string ;
 	bd:notes "The start datetime associated with AVAL and/or AVALC. ASTDTM and AENDTM may be useful for traceability when AVAL summarizes data collected over an interval of time, or when AVAL is a duration."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDY>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2041,7 +2132,6 @@
 	bd:name "ASTDY"^^xsd:string ;
 	bd:notes "The number of days from an anchor date (not necessarily DM.RFSTDTC) to ASTDT. See Section 3.1.2."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2050,8 +2140,17 @@
 	bd:ordinal "29"^^xsd:positiveInteger ;
 	bd:name "ASTDTF"^^xsd:string ;
 	bd:notes "The level of imputation of analysis start date. If ASTDT (or the date part of ASTDTM) was imputed, ASTDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDTF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTTMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2060,8 +2159,17 @@
 	bd:ordinal "30"^^xsd:positiveInteger ;
 	bd:name "ASTTMF"^^xsd:string ;
 	bd:notes "The level of imputation of analysis start time. If ASTTM (or the time part of ASTDTM) was imputed, ASTTMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTTMF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASTTMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2071,7 +2179,6 @@
 	bd:name "AENDT"^^xsd:string ;
 	bd:notes "The end date associated with AVAL and/or AVALC. See also ASTDT."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2081,7 +2188,6 @@
 	bd:name "AENTM"^^xsd:string ;
 	bd:notes "The end time associated with AVAL and/or AVALC. See also ASTTM."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2091,7 +2197,6 @@
 	bd:name "AENDTM"^^xsd:string ;
 	bd:notes "The end datetime associated with AVAL and/or AVALC. See also ASTDTM."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDY>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2101,7 +2206,6 @@
 	bd:name "AENDY"^^xsd:string ;
 	bd:notes "The number of days from an anchor date (not necessarily DM.RFSTDTC) to AENDT. See Section 3.1.2."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2110,8 +2214,17 @@
 	bd:ordinal "35"^^xsd:positiveInteger ;
 	bd:name "AENDTF"^^xsd:string ;
 	bd:notes "The level of imputation of analysis end date. If AENDT (or the date part of AENDTM) was imputed, AENDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDTF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENTMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2120,8 +2233,17 @@
 	bd:ordinal "36"^^xsd:positiveInteger ;
 	bd:name "AENTMF"^^xsd:string ;
 	bd:notes "The level of imputation of analysis end time. If AENTM (or the time part of AENDTM) was imputed, AENTMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENTMF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAENTMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAVISIT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2131,7 +2253,6 @@
 	bd:name "AVISIT"^^xsd:string ;
 	bd:notes "The analysis visit description; required if an analysis is done by nominal, assigned or analysis visit. AVISIT may contain the visit names as observed (i.e., from SDTM VISIT), derived visit names, time window names, conceptual descriptions (such as Average, Endpoint, etc.), or a combination of any of these. AVISIT is a derived field and does not have to map to VISIT from the SDTM. AVISIT represents the analysis visit of the record, but it does not mean that the record was analyzed. There are often multiple records for the same subject and parameter that have the same value of AVISIT. ANLzzFL and other variables may be needed to identify the records selected for any given analysis. See Section 3.3.8 for information about flag variables. AVISIT should be unique for a given analysis visit window. In the event that a record does not fall within any predefined analysis timepoint window, AVISIT can be populated in any way that the producer chooses to indicate this fact (i.e., blank or \"Not Windowed\"). The way that AVISIT is calculated, including the variables used in its derivation, should be indicated in the variable metadata for AVISIT. The values and the rules for deriving AVISIT may be different for different parameters within the same dataset. Values of AVISIT are producer-defined, and are often directly usable in Clinical Study Report displays."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAVISITN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2141,7 +2262,6 @@
 	bd:name "AVISITN"^^xsd:string ;
 	bd:notes "A numeric representation of AVISIT. Since study visits are usually defined by certain timepoints, defining AVISITN so that it represents the timepoint associated with the visit can facilitate plotting and interpretation of the values. Alternatively, AVISITN may be a protocol visit number, a cycle number, an analysis visit number, or any other number logically related to AVISIT or useful for sorting that is needed for analysis.\n\nWithin a parameter, there is a one-to-one mapping between AVISITN and AVISIT so that AVISITN has the same value for each distinct AVISIT. (Best practice would dictate that the mapping would be one-to-one within a study, but that is not an ADaM requirement.) In the event that a record does not fall within any predefined analysis timepoint window, AVISITN can be populated in any way that the producer chooses to indicate this fact (e.g., may be null). Values of AVISITN are producer-defined."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVATPT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2151,7 +2271,6 @@
 	bd:name "ATPT"^^xsd:string ;
 	bd:notes "The analysis timepoint description; required if an analysis is done by nominal, assigned or analysis timepoint (instead of or in addition to by-visit). Timepoints are relative to ATPTREF. ATPT may contain the timepoint names as observed (i.e., from SDTM --TPT), derived timepoint names, time window names, conceptual descriptions (such as Average, Endpoint, etc.), or a combination of any of these. This variable is often used in conjunction with AVISIT. ATPT represents the analysis timepoint of the record. \nATPT can be within an analysis visit (e.g., blood pressure assessments at 10 min, 20 min, and 30 min post-dose at AVISIT=Week 1) or can be unrelated to AVISIT (e.g., migraine symptoms 30 min, 60 min, and 120 min post-dose for attack 1).\n\nThe way that ATPT is calculated, including the variables used in its derivation, should be indicated in the variable metadata for ATPT. The values and the rules for deriving ATPT may be different for different parameters within the same dataset. Values of ATPT are producer-defined, and are often directly usable in Clinical Study Report displays."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVATPTN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2161,7 +2280,6 @@
 	bd:name "ATPTN"^^xsd:string ;
 	bd:notes "ATPTN provides a numeric representation of ATPT. Defining ATPTN so that its values represent the planned timepoints (e.g., minutes or hours after dosing) is not required but can facilitate plotting and interpretation of the values. Within the same parameter, there is a one-to-one mapping between ATPT and ATPTN. (Best practice would dictate that the mapping would be one-to-one within a study, but that is not an ADaM requirement.)"^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVATPTREF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2171,7 +2289,6 @@
 	bd:name "ATPTREF"^^xsd:string ;
 	bd:notes "Description of the fixed reference point referred to by ATPT/ATPTN (e.g., time of dose)."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPHASE>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2181,7 +2298,6 @@
 	bd:name "APHASE"^^xsd:string ;
 	bd:notes "APHASE is a categorization of timing within a study, for example a higher-level categorization of APERIOD or an analysis epoch. For example, APHASE could describe spans of time for SCREENING, ON TREATMENT, and FOLLOW-UP."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPHASEN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2191,7 +2307,6 @@
 	bd:name "APHASEN"^^xsd:string ;
 	bd:notes "APHASEN provides a numeric representation of APHASE. Within a study, there is a one-to-one mapping between APHASE and APHASEN."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERIOD>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2201,7 +2316,6 @@
 	bd:name "APERIOD"^^xsd:string ;
 	bd:notes "APERIOD is a record-level timing variable that represents the analysis period within the study associated with the record for analysis purposes. The value of APERIOD (if populated) must be one of the xx values found in the ADSL TRTxxP variables."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERIODC>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2211,7 +2325,6 @@
 	bd:name "APERIODC"^^xsd:string ;
 	bd:notes "Text characterizing to which analysis period the record belongs. One-to-one mapping within a dataset to APERIOD."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPER>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2221,7 +2334,6 @@
 	bd:name "ASPER"^^xsd:string ;
 	bd:notes "The numeric value characterizing a sublevel within APERIOD to which the record belongs. Within each APERIOD, the first ASPER is 1 (i.e., it resets to 1 when the APERIOD value changes)."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPERC>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2231,7 +2343,6 @@
 	bd:name "ASPERC"^^xsd:string ;
 	bd:notes "Text characterizing to which subperiod the record belongs. One-to-one mapping within a period to ASPER."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVARELTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2241,7 +2352,6 @@
 	bd:name "ARELTM"^^xsd:string ;
 	bd:notes "The time relative to an anchor time. The amount of time from an anchor time to ATM. When ARELTM is present, the anchor time variable and ARELTMU must also be included in the dataset, and the anchor time variable must be identified in the metadata for ARELTM."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVARELTMU>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2251,7 +2361,6 @@
 	bd:name "ARELTMU"^^xsd:string ;
 	bd:notes "The units of ARELTM. For example, \"HOURS\" or \"MINUTES.\" ARELTMU is required if ARELTM is present."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2261,7 +2370,6 @@
 	bd:name "APERSDT"^^xsd:string ;
 	bd:notes "The starting date for the period defined by APERIOD."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2271,7 +2379,6 @@
 	bd:name "APERSTM"^^xsd:string ;
 	bd:notes "The starting time for the period defined by APERIOD."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2281,7 +2388,6 @@
 	bd:name "APERSDTM"^^xsd:string ;
 	bd:notes "The starting datetime for the period defined by APERIOD."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2290,8 +2396,17 @@
 	bd:ordinal "53"^^xsd:positiveInteger ;
 	bd:name "APERSDTF"^^xsd:string ;
 	bd:notes "The level of imputation of period start date. If APERSDT (or the date part of APERSDTM) was imputed, APERSDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSDTF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2300,8 +2415,17 @@
 	bd:ordinal "54"^^xsd:positiveInteger ;
 	bd:name "APERSTMF"^^xsd:string ;
 	bd:notes "The level of imputation of period start time. If APERSTM (or the time part of APERSDTM) was imputed, APERSTMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSTMF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSTMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPEREDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2311,7 +2435,6 @@
 	bd:name "APEREDT"^^xsd:string ;
 	bd:notes "The ending date for the period defined by APERIOD."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERETM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2321,7 +2444,6 @@
 	bd:name "APERETM"^^xsd:string ;
 	bd:notes "The ending time for the period defined by APERIOD."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPEREDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2331,7 +2453,6 @@
 	bd:name "APEREDTM"^^xsd:string ;
 	bd:notes "The ending datetime for the period defined by APERIOD."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPEREDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2340,8 +2461,17 @@
 	bd:ordinal "58"^^xsd:positiveInteger ;
 	bd:name "APEREDTF"^^xsd:string ;
 	bd:notes "The level of imputation of period end date. If APEREDT (or the date part of APEREDTM) was imputed, APEREDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPEREDTF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPEREDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERETMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2350,8 +2480,17 @@
 	bd:ordinal "59"^^xsd:positiveInteger ;
 	bd:name "APERETMF"^^xsd:string ;
 	bd:notes "The level of imputation of period end time. If APERETM (or the time part of APEREDTM) was imputed, APERETMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERETMF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERETMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2361,7 +2500,6 @@
 	bd:name "ASPRSDT"^^xsd:string ;
 	bd:notes "The starting date for the subperiod defined by ASPER."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2371,7 +2509,6 @@
 	bd:name "ASPRSTM"^^xsd:string ;
 	bd:notes "The starting time for the subperiod defined by ASPER."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2381,7 +2518,6 @@
 	bd:name "ASPRSDTM"^^xsd:string ;
 	bd:notes "The starting datetime for the subperiod defined by ASPER."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2390,8 +2526,17 @@
 	bd:ordinal "63"^^xsd:positiveInteger ;
 	bd:name "ASPRSDTF"^^xsd:string ;
 	bd:notes "The level of imputation of subperiod start date. If ASPRSDT (or the date part of ASPRSDTM) was imputed, ASPRSDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSDTF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2400,8 +2545,17 @@
 	bd:ordinal "64"^^xsd:positiveInteger ;
 	bd:name "ASPRSTMF"^^xsd:string ;
 	bd:notes "The level of imputation of subperiod start time. If ASPRSTM (or the time part of ASPRSDTM) was imputed, ASPRSTMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSTMF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSTMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPREDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2411,7 +2565,6 @@
 	bd:name "ASPREDT"^^xsd:string ;
 	bd:notes "The ending date for the subperiod defined by ASPER."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRETM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2421,7 +2574,6 @@
 	bd:name "ASPRETM"^^xsd:string ;
 	bd:notes "The ending time for the subperiod defined by ASPER."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPREDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2431,7 +2583,6 @@
 	bd:name "ASPREDTM"^^xsd:string ;
 	bd:notes "The ending datetime for the subperiod defined by ASPER."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPREDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2440,8 +2591,17 @@
 	bd:ordinal "68"^^xsd:positiveInteger ;
 	bd:name "ASPREDTF"^^xsd:string ;
 	bd:notes "The level of imputation of subperiod end date. If ASPREDT (or the date part of ASPREDTM) was imputed, ASPREDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPREDTF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPREDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRETMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2450,8 +2610,17 @@
 	bd:ordinal "69"^^xsd:positiveInteger ;
 	bd:name "ASPRETMF"^^xsd:string ;
 	bd:notes "The level of imputation of subperiod end time. If ASPRETM (or the time part of ASPREDTM) was imputed, ASPRETMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRETMF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRETMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2461,7 +2630,6 @@
 	bd:name "PHSDT"^^xsd:string ;
 	bd:notes "The starting date for the phase defined by APHASE."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2471,7 +2639,6 @@
 	bd:name "PHSTM"^^xsd:string ;
 	bd:notes "The starting time for the phase defined by APHASE."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2481,7 +2648,6 @@
 	bd:name "PHSDTM"^^xsd:string ;
 	bd:notes "The starting datetime for the phase defined by APHASE."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2490,8 +2656,17 @@
 	bd:ordinal "73"^^xsd:positiveInteger ;
 	bd:name "PHSDTF"^^xsd:string ;
 	bd:notes "The level of imputation of phase start date. If PHSDT (or the date part of PHSDTM) was imputed, PHSDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSDTF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2500,8 +2675,17 @@
 	bd:ordinal "74"^^xsd:positiveInteger ;
 	bd:name "PHSTMF"^^xsd:string ;
 	bd:notes "The level of imputation of phase start time. If PHSTM (or the time part of PHSDTM) was imputed, PHSTMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSTMF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSTMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHEDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2511,7 +2695,6 @@
 	bd:name "PHEDT"^^xsd:string ;
 	bd:notes "The ending date for the phase defined by APHASE."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHETM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2521,7 +2704,6 @@
 	bd:name "PHETM"^^xsd:string ;
 	bd:notes "The ending time for the phase defined by APHASE."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHEDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2531,7 +2713,6 @@
 	bd:name "PHEDTM"^^xsd:string ;
 	bd:notes "The ending datetime for the phase defined by APHASE."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHEDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2540,8 +2721,17 @@
 	bd:ordinal "78"^^xsd:positiveInteger ;
 	bd:name "PHEDTF"^^xsd:string ;
 	bd:notes "The level of imputation of phase end date. If PHEDT (or the date part of PHEDTM) was imputed, PHEDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHEDTF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHEDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHETMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2550,8 +2740,17 @@
 	bd:ordinal "79"^^xsd:positiveInteger ;
 	bd:name "PHETMF"^^xsd:string ;
 	bd:notes "The level of imputation of phase end time. If PHETM (or the time part of PHEDTM) was imputed, PHETMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHETMF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHETMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*DT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2561,7 +2760,6 @@
 	bd:name "*DT"^^xsd:string ;
 	bd:notes "Analysis date not directly characterizing AVAL and/or AVALC in numeric format."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*TM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2571,7 +2769,6 @@
 	bd:name "*TM"^^xsd:string ;
 	bd:notes "Analysis time not directly characterizing AVAL and/or AVALC in numeric format."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*DTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2581,7 +2778,6 @@
 	bd:name "*DTM"^^xsd:string ;
 	bd:notes "Analysis datetime not directly characterizing AVAL and/or AVALC in numeric format."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*ADY>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2591,7 +2787,6 @@
 	bd:name "*ADY"^^xsd:string ;
 	bd:notes "Analysis relative day not directly characterizing AVAL and/or AVALC."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*DTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2600,8 +2795,17 @@
 	bd:ordinal "84"^^xsd:positiveInteger ;
 	bd:name "*DTF"^^xsd:string ;
 	bd:notes "The level of imputation of *DT. If *DT (or the date part of *DTM) was imputed, *DTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AV*DTF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*DTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*TMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2610,8 +2814,17 @@
 	bd:ordinal "85"^^xsd:positiveInteger ;
 	bd:name "*TMF"^^xsd:string ;
 	bd:notes "The level of imputation of *TM. If *TM (or the time part of *DTM) was imputed, *TMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AV*TMF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*TMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2621,7 +2834,6 @@
 	bd:name "*SDT"^^xsd:string ;
 	bd:notes "Starting analysis date not directly characterizing AVAL and/or AVALC in numeric format."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*STM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2631,7 +2843,6 @@
 	bd:name "*STM"^^xsd:string ;
 	bd:notes "Starting analysis time not directly characterizing AVAL and/or AVALC in numeric format."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2641,7 +2852,6 @@
 	bd:name "*SDTM"^^xsd:string ;
 	bd:notes "Starting analysis datetime not directly characterizing AVAL and/or AVALC in numeric format."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDY>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2651,7 +2861,6 @@
 	bd:name "*SDY"^^xsd:string ;
 	bd:notes "Starting analysis relative day not directly characterizing AVAL and/or AVALC."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2660,8 +2869,17 @@
 	bd:ordinal "90"^^xsd:positiveInteger ;
 	bd:name "*SDTF"^^xsd:string ;
 	bd:notes "The level of imputation of *SDT. If *SDT (or the date part of *SDTM) was imputed, *SDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDTF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*STMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2670,8 +2888,17 @@
 	bd:ordinal "91"^^xsd:positiveInteger ;
 	bd:name "*STMF"^^xsd:string ;
 	bd:notes "The level of imputation of *STM. If *STM (or the time part of *SDTM) was imputed, *STMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AV*STMF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*STMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2681,7 +2908,6 @@
 	bd:name "*EDT"^^xsd:string ;
 	bd:notes "Ending analysis date not directly characterizing AVAL and/or AVALC in numeric format."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*ETM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2691,7 +2917,6 @@
 	bd:name "*ETM"^^xsd:string ;
 	bd:notes "Ending analysis time not directly characterizing AVAL and/or AVALC in numeric format."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2701,7 +2926,6 @@
 	bd:name "*EDTM"^^xsd:string ;
 	bd:notes "Ending analysis datetime not directly characterizing AVAL and/or AVALC in numeric format."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDY>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2711,7 +2935,6 @@
 	bd:name "*EDY"^^xsd:string ;
 	bd:notes "Ending analysis relative day not directly characterizing AVAL and/or AVALC."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2720,8 +2943,17 @@
 	bd:ordinal "96"^^xsd:positiveInteger ;
 	bd:name "*EDTF"^^xsd:string ;
 	bd:notes "The level of imputation of *EDT. If *EDT (or the date part of *EDTM) was imputed, *EDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDTF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AV*ETMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2730,8 +2962,17 @@
 	bd:ordinal "97"^^xsd:positiveInteger ;
 	bd:name "*ETMF"^^xsd:string ;
 	bd:notes "The level of imputation of *ETM. If *ETM (or the time part of *EDTM) was imputed, *ETMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AV*ETMF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*ETMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2741,7 +2982,6 @@
 	bd:name "PARAM"^^xsd:string ;
 	bd:notes "The description of the analysis parameter. Examples include: \"Supine Systolic Blood Pressure (mm Hg)\", \"Log10 (Weight (kg))\", \"Time to First Hypertension Event (Days)\", \"Estimated Tumor Growth Rate\", etc. PARAM should be sufficient to describe unambiguously the contents of AVAL and/or AVALC. PARAM must include all descriptive and qualifying information relevant to the analysis purpose of the parameter.\n\nExamples of qualifying information that might be relevant to analysis and therefore are candidates for inclusion in PARAM are units, specimen type, location, position, machine type, and transformation function. There is no need to include qualifiers that are not relevant to the analysis of PARAM. In contrast to SDTM --TEST, no additional variable is needed to further qualify PARAM. \n\nPARAM may be longer than 40 characters in length but is restricted to a maximum of 200 characters. PARAM is often directly usable in Clinical Study Report displays. Note that in the ADaMIG, \"parameter\" is a synonym of \"analysis parameter.\""^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAMCD>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2751,7 +2991,6 @@
 	bd:name "PARAMCD"^^xsd:string ;
 	bd:notes "The short name of the analysis parameter in PARAM. Values of PARAMCD should follow the SAS Version 5 transport file format and Oracle constraints as noted under General Variable Conventions in Section 3.1.1. There must be a one-to-one mapping to PARAM within a dataset."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAMN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2761,7 +3000,6 @@
 	bd:name "PARAMN"^^xsd:string ;
 	bd:notes "A numeric representation of PARAM. Useful for ordering and programmatic manipulation. There must be a one-to-one mapping to PARAM within a dataset."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAMTYP>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2770,8 +3008,17 @@
 	bd:ordinal "101"^^xsd:positiveInteger ;
 	bd:name "PARAMTYP"^^xsd:string ;
 	bd:notes "ndicator of whether the parameter is derived as a function of one or more other parameters. \nThis variable will be retired from the ADaMIG in the next version because it was confused with the concept of DTYPE and therefore was being misused. The variable metadata should be adequate to indicate when a parameter is wholly derived."^^xsd:string ;
-	bd:ct "PARAMTYP"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(PARAMTYP)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAMTYP_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAMTYP_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "PARAMTYP"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81225/V19#C81225> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPARCATy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2781,7 +3028,6 @@
 	bd:name "PARCATy"^^xsd:string ;
 	bd:notes "A categorization of PARAM within a dataset. For example, values of PARCAT1 might group the parameters having to do with a particular questionnaire, lab specimen type, or area of investigation. Note that PARCATy is not a qualifier for PARAM. PARAM to PARCATy is a many-to-one mapping; any given PARAM may be associated with at most one level of PARCATy (e.g., one level of PARCAT1 and one level of PARCAT2)."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPARCATyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2791,7 +3037,6 @@
 	bd:name "PARCATyN"^^xsd:string ;
 	bd:notes "A numeric representation of PARCATy. This can be used for operations on PARCATy. There must be a one-to-one relationship within a dataset between PARCATy and PARCATyN."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAVAL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2801,7 +3046,6 @@
 	bd:name "AVAL"^^xsd:string ;
 	bd:notes "Numeric analysis value described by PARAM. On a given record, it is permissible for AVAL, AVALC, or both to be null. AVAL is required if AVALC is not present, since either AVAL or AVALC must be present in the dataset."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAVALC>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2811,7 +3055,6 @@
 	bd:name "AVALC"^^xsd:string ;
 	bd:notes "Character analysis value described by PARAM. AVALC can be a character string mapping to AVAL, but if so there must be a one-to-one map between AVAL and AVALC within a given PARAM. AVALC should not be used to categorize the values of AVAL. Within a given parameter, if there exists a row on which both AVALC and AVAL are populated, then there must be a one-to-one mapping between AVALC and AVAL on all rows on which both variables are populated. (In other words, there is no requirement that records with a null value in either AVAL or AVALC be included when determining whether the one-to-one mapping requirement is satisfied.) On a given record, it is permissible for AVAL, AVALC, or both to be null.\n\nAVALC is required if AVAL is not present, since either AVAL or AVALC must be present in the dataset."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAVALCATy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2821,7 +3064,6 @@
 	bd:name "AVALCATy"^^xsd:string ;
 	bd:notes "A categorization of AVAL or AVALC within a parameter. Not necessarily a one-to-one mapping to AVAL and/or AVALC. For example, if PARAM is \"Headache Severity\" and AVAL has values 0, 1, 2, or 3, AVALCAT1 can categorize AVAL into \"None or Mild\" (for AVAL 0 or 1) and \"Moderate or Severe\" (for AVAL 2 or 3)."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAVALCAyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2831,7 +3073,6 @@
 	bd:name "AVALCAyN"^^xsd:string ;
 	bd:notes "A numeric representation of AVALCATy. This can be used for ordering of values of AVALCATy or for other purposes. There must be a one-to-one relationship within a parameter between AVALCATy and AVALCAyN."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVBASE>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2841,7 +3082,6 @@
 	bd:name "BASE"^^xsd:string ;
 	bd:notes "The subject's baseline analysis value for a parameter and baseline definition (i.e. BASETYPE) if present. BASE contains the value of AVAL copied from a record within the parameter on which ABLFL = \"Y\". Required if dataset supports analysis or review of numeric baseline value or functions of numeric baseline value. If BASE is populated for a parameter, and BASE is non-null for a subject for that parameter, then there must be a record flagged by ABLFL for that subject and parameter. Note that a baseline record may be derived (e.g., it may be an average) in which case DTYPE must be populated on the baseline record."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVBASEC>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2851,7 +3091,6 @@
 	bd:name "BASEC"^^xsd:string ;
 	bd:notes "The subject's baseline value of AVALC for a parameter and baseline definition (i.e. BASETYPE) if present. May be needed when AVALC is of interest. BASEC contains the value of AVALC copied from a record within the parameter on which ABLFL = \"Y\". If both AVAL and AVALC are populated within a parameter, the baseline record for AVALC must be the same record as that for AVAL. \n\nWithin a given parameter, if there exists a row on which both BASEC and BASE are populated, then there must be a one-to-one mapping between BASEC and BASE on all rows on which both variables are populated. (In other words, there is no requirement that records with a null value in either BASE or BASEC be included when determining whether the one-to-one mapping requirement is satisfied.) On a given record, it is permissible for BASE, BASEC, or both to be null."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVBASECATy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2861,7 +3100,6 @@
 	bd:name "BASECATy"^^xsd:string ;
 	bd:notes "A categorization of BASE or BASEC within a parameter. Not necessarily a one-to-one mapping to BASE or BASEC. For example, if PARAM is \"Headache Severity\" and AVAL has values 0, 1, 2, or 3, BASECAT1 can categorize BASE into \"None or Mild\" (for BASE 0 or 1) and \"Moderate or Severe\" (for BASE 2 or 3)."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVBASECAyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2871,7 +3109,6 @@
 	bd:name "BASECAyN"^^xsd:string ;
 	bd:notes "A numeric representation of BASECATy. This can be used for ordering of values of BASECATy or for other purposes. There must be a one-to-one relationship within a parameter between BASECATy and BASECAyN."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVBASETYPE>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2881,7 +3118,6 @@
 	bd:name "BASETYPE"^^xsd:string ;
 	bd:notes "Producer-defined text describing the definition of baseline relevant to the value of BASE on the current record. Required when there are multiple ways that baseline is defined. If used for any PARAM within a dataset, should be non-null for all records of that dataset. Refer to Section 4.2.1, Rule 6, for an example."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVCHG>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2891,7 +3127,6 @@
 	bd:name "CHG"^^xsd:string ;
 	bd:notes "Change from baseline analysis value. Equal to AVAL-BASE. If used for a given PARAM, should be populated for all post-baseline records of that PARAM regardless of whether that record is used for analysis. The decision on how to populate pre-baseline and baseline values of CHG is left to producer choice."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVCHGCATy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2901,7 +3136,6 @@
 	bd:name "CHGCATy"^^xsd:string ;
 	bd:notes "A categorization of CHG within a parameter. Not necessarily a one-to-one mapping to CHG. The definition of CHGCATy may vary by PARAM. For example, CHGCAT1 may be used to categorize CHG with respect to ranges of change in SYSBP; \"-10 to -5 mm Hg\", \"-5 to 0 mm Hg\" categories."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVCHGCATyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2911,7 +3145,6 @@
 	bd:name "CHGCATyN"^^xsd:string ;
 	bd:notes "A numeric representation of CHGCATy. This can be used for ordering of values of CHGCATy or for other purposes. There must be a one-to-one relationship within a parameter between CHGCATy and CHGCATyN."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPCHG>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2921,7 +3154,6 @@
 	bd:name "PCHG"^^xsd:string ;
 	bd:notes "Percent change from baseline analysis value. Equal to ((AVAL-BASE)/BASE)*100. If used for a given PARAM, should be populated (when calculable) for all post-baseline records of that PARAM regardless of whether that record is used for analysis. The decision on how to populate pre-baseline and baseline values of PCHG is left to producer choice."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPCHGCATy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2931,7 +3163,6 @@
 	bd:name "PCHGCATy"^^xsd:string ;
 	bd:notes "A categorization of PCHG within a parameter. Not necessarily a one-to-one mapping to PCHG. The definition of PCHGCATy may vary by PARAM. For example, PCHGCAT1 may be used to categorize PCHG with respect to ranges of change in SYSBP; \">5%\", \">10%\" categories."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPCHGCAyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2941,7 +3172,6 @@
 	bd:name "PCHGCAyN"^^xsd:string ;
 	bd:notes "A numeric representation of PCHGCATy. This can be used for ordering of values of PCHGCATy or for other purposes. There must be a one-to-one relationship within a parameter between PCHGCATy and PCHGCAyN."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVR2BASE>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2951,7 +3181,6 @@
 	bd:name "R2BASE"^^xsd:string ;
 	bd:notes "Ratio to the baseline value. Equal to AVAL / BASE. If used for a given PARAM, should be populated for all post-baseline records of that PARAM regardless of whether that record is used for analysis. The decision on how to populate pre-baseline and baseline values of R2BASE is left to producer choice."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVR2AyLO>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2961,7 +3190,6 @@
 	bd:name "R2AyLO"^^xsd:string ;
 	bd:notes "Ratio to the lower limit of the analysis range y. Equal to AVAL / AyLO. AyLO must exist in the ADaM dataset. If used for a given PARAM, should be populated for all post-baseline records of that PARAM regardless of whether that record is used for analysis. The decision on how to populate pre-baseline and baseline values of R2AyLO is left to producer choice."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVR2AyHI>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2971,7 +3199,6 @@
 	bd:name "R2AyHI"^^xsd:string ;
 	bd:notes "Ratio to the upper limit of the analysis range y. Equal to AVAL / AyHI. AyHI must exist in the ADaM dataset. If used for a given PARAM, should be populated for all post-baseline records of that PARAM regardless of whether that record is used for analysis. The decision on how to populate pre-baseline and baseline values of R2AyHI is left to producer choice."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVSHIFTy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2981,7 +3208,6 @@
 	bd:name "SHIFTy"^^xsd:string ;
 	bd:notes "A shift in values depending on the defined pairing for group y. SHIFTy can be based on the change in value of any of the following pairs (BASECATy, AVALCATy), (BNRIND, ANRIND), (ByIND, AyIND), (BTOXGR, ATOXGR), (BASE, AVAL) or (BASEC, AVALC). Useful for shift tables. For example, \"NORMAL to HIGH\". If used for a given PARAM, should be populated (when calculable) for all post-baseline records of that PARAM regardless of whether that record is used for analysis. The decision on how to populate baseline and pre-baseline values of SHIFTy is left to producer choice."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVSHIFTyN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -2991,7 +3217,6 @@
 	bd:name "SHIFTyN"^^xsd:string ;
 	bd:notes "Numeric version of SHIFTy. SHIFTyN maps one-to-one to SHIFTy within a parameter. If used for a given PARAM, should be populated (when calculable) for all post-baseline records of that PARAM regardless of whether that record is used for analysis. The decision on how to populate baseline and pre-baseline values of SHIFTyN is left to producer choice."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVCRITy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3001,7 +3226,6 @@
 	bd:name "CRITy"^^xsd:string ;
 	bd:notes "A text string identifying a pre-specified criterion within a parameter, for example SYSBP > 90. Required if CRITyFL exists. In some cases, the presence of the text string indicates that the criterion is satisfied on this record and CRITyFL is set to Y, while a null value indicates that the criterion is not satisfied or is not evaluable and is accompanied by a null value in CRITyFL. In other cases, the text string identifies the criterion being evaluated and is populated on every row for the parameter, but whether or not the criterion is satisfied is indicated by the value of the variable CRITyFL. See CRITyFL and CRITyFN. Refer to Section 4.7 for additional discussion of CRITy, CRITyFL and CRITyFN."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVCRITyFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3010,8 +3234,7 @@
 	bd:ordinal "125"^^xsd:positiveInteger ;
 	bd:name "CRITyFL"^^xsd:string ;
 	bd:notes "Character flag variable indicating whether the criterion defined in CRITy was met by the data on the record. See CRITy for more information regarding how to use CRITy and CRITyFL to indicate whether a criterion is met. Required if CRITy exists. Refer to Section 4.7 for additional discussion."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y \nor\nY, N"^^xsd:string ;
+	bd:ct "Y \nor\nY, N"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVCRITyFN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3020,8 +3243,7 @@
 	bd:ordinal "126"^^xsd:positiveInteger ;
 	bd:name "CRITyFN"^^xsd:string ;
 	bd:notes "Numeric representation of CRITyFL. There is a one-to-one mapping between CRITyFL and CRITyFN. CRITyFN can be included only if CRITyFL is also included."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "1\nor\n1, 0"^^xsd:string ;
+	bd:ct "1\nor\n1, 0"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVMCRITy>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3031,7 +3253,6 @@
 	bd:name "MCRITy"^^xsd:string ;
 	bd:notes "A text string identifying a pre-specified criterion within a parameter, where the criterion can have multiple responses (as opposed to CRITy which has binary responses). Required if MCRITyML exists. For example, the grade of a lab analyte is compared to the baseline grade, with the possible conditions being 0 to 1, 0 to 2, etc. The text string identifies the criterion being evaluated (for example, \"Grade increase\") and is populated on every row for the parameter; which level of the criterion is satisfied is indicated by the value of the variable MCRITyML (for example \"0 to 1\", \"0 to 2\", etc.) See MCRITyML and MCRITyMN below, and refer to Section 4.7 for additional discussion of MCRITy, MCRITyML, and MCRITyMN."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVMCRITyML>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3041,7 +3262,6 @@
 	bd:name "MCRITyML"^^xsd:string ;
 	bd:notes "Character variable indicating which level of the criterion defined in MCRITy was met by the data on the record. See MCRITy for more information regarding how to use MCRITy and MCRITyML to indicate whether a criterion was met. Content is sponsor-defined. Required if MCRITy exists."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVMCRITyMN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3051,7 +3271,6 @@
 	bd:name "MCRITyMN"^^xsd:string ;
 	bd:notes "Numeric representation of MCRITyML. There is a one-to-one mapping between MCRITyML and MCRITyMN. Content is sponsor-defined. MCRITyMN can be included only if MCRITyML is also included."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVDTYPE>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3060,8 +3279,17 @@
 	bd:ordinal "130"^^xsd:positiveInteger ;
 	bd:name "DTYPE"^^xsd:string ;
 	bd:notes "Analysis value derivation method. DTYPE is used to denote, and is required to be populated, when the value of AVAL or AVALC has been imputed or derived differently than the other analysis values within the parameter. DTYPE is required to be populated even if AVAL and AVALC are null on the derived record. \n\nThree common situations when DTYPE should be populated: \n(1) a new row is added within a parameter with the analysis value populated based on other rows within the parameter, \n(2) a new row is added within a parameter with the analysis value populated based on a constant value or data from other subjects, \n(3) an analysis value (AVAL or AVALC) on an existing record is being replaced with a value based on a pre-specified algorithm.\n\nDTYPE is used to denote analysis values that are \"special cases\" within a parameter. For each value of DTYPE, the precise derivation algorithm must be defined in analysis variable metadata, even for DTYPE values in the controlled terminology. The controlled terminology for DTYPE is extensible. See Section 4 for examples of the use of DTYPE.\n\nExamples of DTYPE values:\nLOCF = last observation carried forward.\nWOCF = worst observation carried forward.\nAVERAGE = average of values."^^xsd:string ;
-	bd:ct "DTYPE"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DTYPE)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVDTYPE_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVDTYPE_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DTYPE"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81224/V53#C81224> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAWRANGE>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3071,7 +3299,6 @@
 	bd:name "AWRANGE"^^xsd:string ;
 	bd:notes "The range of values that are valid for a given analysis timepoint (a given value of AVISIT). For example, \"5-9 DAYS\"."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAWTARGET>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3081,7 +3308,6 @@
 	bd:name "AWTARGET"^^xsd:string ;
 	bd:notes "The target or most desired analysis relative day (ADY) value or analysis relative time (ARELTM) value for a given value of AVISIT."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAWTDIFF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3091,7 +3317,6 @@
 	bd:name "AWTDIFF"^^xsd:string ;
 	bd:notes "Absolute difference between ADY or ARELTM and AWTARGET. It will be necessary to adjust for the fact that there is no day 0 in the event that ADY and AWTARGET are not of the same sign.\n\nIf the sign of the difference is important, then AWTDIFF might have to be used in conjunction with ADY or ARELTM and possibly AWTARGET when choosing among records."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAWLO>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3101,7 +3326,6 @@
 	bd:name "AWLO"^^xsd:string ;
 	bd:notes "The value of the beginning timepoint (inclusive) needs to be used in conjunction to AWRANGE. For example, if AWRANGE is \"5-9 DAYS\", then AWLO is \"5\"."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAWHI>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3111,7 +3335,6 @@
 	bd:name "AWHI"^^xsd:string ;
 	bd:notes "The value of the ending timepoint (inclusive) needs to be used in conjunction to AWRANGE. For example, if AWRANGE is \"5-9 DAYS\", then AWHI is \"9\"."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAWU>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3121,7 +3344,6 @@
 	bd:name "AWU"^^xsd:string ;
 	bd:notes "Unit used for AWLO and AWHI. Examples: DAYS, HOURS."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTDT>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3131,7 +3353,6 @@
 	bd:name "STARTDT"^^xsd:string ;
 	bd:notes "The original date of risk for the time-to-event analysis. This is generally the time at which a subject is first at risk for the event of interest evaluation (as defined in the Protocol or Statistical Analysis Plan). For example, this may be the randomization date or the date of first study therapy exposure."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTDTM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3141,7 +3362,6 @@
 	bd:name "STARTDTM"^^xsd:string ;
 	bd:notes "The datetime associated with STARTDT in numeric format."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTDTF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3150,8 +3370,17 @@
 	bd:ordinal "139"^^xsd:positiveInteger ;
 	bd:name "STARTDTF"^^xsd:string ;
 	bd:notes "The level of imputation of the start date. See Section 3.1.3."^^xsd:string ;
-	bd:ct "DATEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(DATEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTDTF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTDTF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "DATEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTTMF>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3160,8 +3389,17 @@
 	bd:ordinal "140"^^xsd:positiveInteger ;
 	bd:name "STARTTMF"^^xsd:string ;
 	bd:notes "The level of imputation of the start time. See Section 3.1.3."^^xsd:string ;
-	bd:ct "TIMEFL"^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
+	bd:ct "(TIMEFL)"^^xsd:string ;
+	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTTMF_TMC1> ;
+.
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTTMF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "TIMEFL"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:context <http://www.cdisc.org/CT/V60#TH> ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVCNSR>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3171,7 +3409,6 @@
 	bd:name "CNSR"^^xsd:string ;
 	bd:notes "Defines whether the event was censored for the subject within the parameter (period of observation truncated prior to event being observed). It is strongly recommended to use 0 as an event indicator and positive integers as censoring indicators. It is also recommended that unique positive integers be used to indicate coded descriptions of censoring reasons. CNSR is required for time-to-event parameters."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVEVNTDESC>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3181,7 +3418,6 @@
 	bd:name "EVNTDESC"^^xsd:string ;
 	bd:notes "Description of the event of interest or censoring reason for the subject within the parameter."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVCNSDTDSC>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3191,7 +3427,6 @@
 	bd:name "CNSDTDSC"^^xsd:string ;
 	bd:notes "Describes the circumstance represented by the censoring date if different from the event date that warrants censoring."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVATOXGR>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3201,7 +3436,6 @@
 	bd:name "ATOXGR"^^xsd:string ;
 	bd:notes "Toxicity grade of AVAL or AVALC for analysis; may be based on SDTM --TOXGR or an imputed or assigned value."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVBTOXGR>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3211,7 +3445,6 @@
 	bd:name "BTOXGR"^^xsd:string ;
 	bd:notes "ATOXGR of the baseline record identified by ABLFL."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVANRIND>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3221,7 +3454,6 @@
 	bd:name "ANRIND"^^xsd:string ;
 	bd:notes "Indicates where AVAL or AVALC falls with respect to the normal reference range for analysis; may be based on SDTM --NRIND or an imputed or assigned value."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVBNRIND>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3231,7 +3463,6 @@
 	bd:name "BNRIND"^^xsd:string ;
 	bd:notes "ANRIND of the baseline record identified by ABLFL."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVANRLO>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3241,7 +3472,6 @@
 	bd:name "ANRLO"^^xsd:string ;
 	bd:notes "Normal range lower limit for analysis; may be based on SDTM --NRLO or an imputed or assigned value."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVANRLOC>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3251,7 +3481,6 @@
 	bd:name "ANRLOC"^^xsd:string ;
 	bd:notes "Character analysis normal range lower limit. ANRLOC can be a character string mapping to ANRLO, but if so there must be a one-to-one map between ANRLO and ANRLOC within a given PARAM. ANRLOC should not be used to categorize the values of ANRLO. Within a given parameter, if there exists a row on which both ANRLOC and ANRLO are populated, then there must be a one-to-one mapping between ANRLOC and ANRLO on all rows on which both variables are populated. (In other words, there is no requirement that records with a null value in either ANRLO or ANRLOC be included when determining whether the one-to-one mapping requirement is satisfied.) On a given record, it is permissible for ANRLO, ANRLOC, or both to be null."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVANRHI>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3261,7 +3490,6 @@
 	bd:name "ANRHI"^^xsd:string ;
 	bd:notes "Normal range upper limit for analysis; may be based on SDTM --NRHI or an imputed or assigned value."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVANRHIC>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3271,7 +3499,6 @@
 	bd:name "ANRHIC"^^xsd:string ;
 	bd:notes "Character analysis normal range upper limit. ANRHIC can be a character string mapping to ANRHI, but if so there must be a one-to-one map between ANRHI and ANRHIC within a given PARAM. ANRHIC should not be used to categorize the values of ANRHI. Within a given parameter, if there exists a row on which both ANRHIC and ANRHI are populated, then there must be a one-to-one mapping between ANRHIC and ANRHI on all rows on which both variables are populated. (In other words, there is no requirement that records with a null value in either ANRHI or ANRHIC be included when determining whether the one-to-one mapping requirement is satisfied.) On a given record, it is permissible for ANRHI, ANRHIC, or both to be null."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAyLO>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3281,7 +3508,6 @@
 	bd:name "AyLO"^^xsd:string ;
 	bd:notes "AyLO and/or AyHI are used for analysis ranges other than the normal range. AyLO and/or AyHI are created to capture the different levels of cutoff values used to determine whether an analysis is within a clinically acceptable value range or outside that value range. AyLO and/or AyHI are usually but not necessarily constants, parameter-specific constants, or subject-specific constants. AyLO must be included if R2AyLO is included in the dataset."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAyLOC>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3291,7 +3517,6 @@
 	bd:name "AyLOC"^^xsd:string ;
 	bd:notes "Character analysis range y lower limit. AyLOC can be a character string mapping to AyLO, but if so there must be a one-to-one map between AyLO and AyLOC within a given PARAM. AyLOC should not be used to categorize the values of AyLO. Within a given parameter, if there exists a row on which both AyLOC and AyLO are populated, then there must be a one-to-one mapping between AyLOC and AyLO on all rows on which both variables are populated. (In other words, there is no requirement that records with a null value in either AyLO or AyLOC be included when determining whether the one-to-one mapping requirement is satisfied.) On a given record, it is permissible for AyLO, AyLOC, or both to be null."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAyHI>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3301,7 +3526,6 @@
 	bd:name "AyHI"^^xsd:string ;
 	bd:notes "See AyLO. \nFor example, if ECG QTc values are summarized based on values >450, values >480, and values >500, there is a need for 3 \"hi value\" range variables against which to compare values: A1HI=450, A2HI=480, A3HI=500.\nAyHI must be included if R2AyHI is included in the dataset."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAyHIC>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3311,7 +3535,6 @@
 	bd:name "AyHIC"^^xsd:string ;
 	bd:notes "Character analysis range y upper limit. AyHIC can be a character string mapping to AyHI, but if so there must be a one-to-one map between AyHI and AyHIC within a given PARAM. AyHIC should not be used to categorize the values of AyHI. Within a given parameter, if there exists a row on which both AyHIC and AyHI are populated, then there must be a one-to-one mapping between AyHIC and AyHI on all rows on which both variables are populated. (In other words, there is no requirement that records with a null value in either AyHI or AyHIC be included when determining whether the one-to-one mapping requirement is satisfied.) On a given record, it is permissible for AyHI, AyHIC, or both to be null."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVAyIND>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3321,7 +3544,6 @@
 	bd:name "AyIND"^^xsd:string ;
 	bd:notes "Indicates relationship of AVAL to the analysis range variables AyLO and/or AyHI, or the relationship of AVALC to the analysis range variables AyLOC and/or AyHIC."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVByIND>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3331,7 +3553,6 @@
 	bd:name "ByIND"^^xsd:string ;
 	bd:notes "AyIND of the baseline record identified by ABLFL."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVABLFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3340,8 +3561,7 @@
 	bd:ordinal "158"^^xsd:positiveInteger ;
 	bd:name "ABLFL"^^xsd:string ;
 	bd:notes "Character indicator to identify the baseline record for each subject, parameter, and baseline type (BASETYPE) combination. See BASETYPE in Table 3.3.4.1. ABLFL is required if BASE is present in the dataset.\nA baseline record may be derived (e.g., it may be an average), in which case DTYPE must also be populated. If BASE is populated for a parameter, and BASE is non-null for a subject for that parameter, then there must be a record flagged by ABLFL for that subject and parameter."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVABLFN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3350,8 +3570,7 @@
 	bd:ordinal "159"^^xsd:positiveInteger ;
 	bd:name "ABLFN"^^xsd:string ;
 	bd:notes "A numeric representation of ABLFL. ABLFN has a one-to-one mapping with ABLFL. As described in Section 3.1.1 Item 8, ABLFN can be included only if ABLFL is also included."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "1"^^xsd:string ;
+	bd:ct "1"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVANLzzFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3360,8 +3579,7 @@
 	bd:ordinal "160"^^xsd:positiveInteger ;
 	bd:name "ANLzzFL"^^xsd:string ;
 	bd:notes "ANLzzFL is a conditionally required flag to be used in addition to other selection variables when the other selection variables in combination are insufficient to identify the exact set of records used for one or more analyses. Often one ANLzzFL will serve to support the accurate selection of records for more than one analysis. Note that it is allowable to add additional descriptive text to the label (see Section 3.1.6, Item 1). \n\nWhen one is defining the set of records used in a particular analysis or family of analyses, ANLzzFL is supplemental to, and is intended to be used in conjunction with, other selection variables, such as subject-level, parameter-level and record-level population flags, AVISIT, DTYPE, grouping variables such as SITEGRy, and others. The lower-case letter \"zz\" in the variable name is an index for the zzth record selection algorithm where \"zz\" is replaced with a zero-padded two-digit integer [01-99]. Every record selection algorithm \"zz\" (i.e., every algorithm for populating an ANLzzFL) must be defined in variable metadata. When the set of records that the algorithm \"zz\" operates on is pre-filtered by application of other criteria, such as a record-level population flag, then the selection algorithm definition in the metadata must so specify.\n\nNote that the ANLzzFL value of Y indicates that the record fulfilled the requirements of the algorithm, but does not necessarily imply that the record was actually used in one or more analyses, as whether or not a record is used also depends on the other selection variables applied. The ANLzzFL flag is useful in many circumstances; an example is when there is more than one record for an analysis timepoint within a subject and parameter, as it can be used to identify the record chosen to represent the timepoint for an analysis. \"zz\" is an index for a record selection algorithm, such as \"record closest to target relative day for the AVISIT, with ties broken by the latest record, for each AVISIT within <list of AVISITS>.\" \n\nNote that it is not required that a specific ANLzzFL variable has the same definition across a project or even across datasets within a study. There is also no requirement that the ANLzzFL variables in a dataset or study be used in numerical order; e.g. ANL02FL might occur in a dataset or study without ANL01FL present in the same dataset or study."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVANLzzFN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3370,8 +3588,7 @@
 	bd:ordinal "161"^^xsd:positiveInteger ;
 	bd:name "ANLzzFN"^^xsd:string ;
 	bd:notes "Numeric version of ANLzzFL. There is a one-to-one mapping between ANLzzFL and ANLzzFN within a dataset. As described in Section 3.1.1 Item 8, ANLzzFN can be included only if ANLzzFL is also included."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "1"^^xsd:string ;
+	bd:ct "1"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVONTRTFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3380,8 +3597,7 @@
 	bd:ordinal "162"^^xsd:positiveInteger ;
 	bd:name "ONTRTFL"^^xsd:string ;
 	bd:notes "Character indicator of whether the observation occurred while the subject was on treatment. ONTRTFL is producer-defined, and its definition may vary across datasets in a study based on analysis needs."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVONTRTFN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3390,8 +3606,7 @@
 	bd:ordinal "163"^^xsd:positiveInteger ;
 	bd:name "ONTRTFN"^^xsd:string ;
 	bd:notes "Numeric representation of ONTRTFL. There is a one-to-one mapping between ONTRTFL and ONTRTFN. As described in Section 3.1.1 Item 8, ONTRTFN can be included only if ONTRTFL is also included."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "1"^^xsd:string ;
+	bd:ct "1"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVLVOTFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3400,8 +3615,7 @@
 	bd:ordinal "164"^^xsd:positiveInteger ;
 	bd:name "LVOTFL"^^xsd:string ;
 	bd:notes "Character indicator of the subject's last non-missing value on treatment for each parameter."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVLVOTFN>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3410,8 +3624,7 @@
 	bd:ordinal "165"^^xsd:positiveInteger ;
 	bd:name "LVOTFN"^^xsd:string ;
 	bd:notes "Numeric representation of LVOTFL. There is a one-to-one mapping between LVOTFL and LVOTFN. As described in Section 3.1.1 Item 8, LVOTFN can be included only if LVOTFL is also included."^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "1"^^xsd:string ;
+	bd:ct "1"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVITTRFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3420,8 +3633,7 @@
 	bd:ordinal "166"^^xsd:positiveInteger ;
 	bd:name "ITTRFL"^^xsd:string ;
 	bd:notes "<html>These indicators identify whether or not the subject was in the specified analysis for the specific record. Useful when the subject is included in the subject-level population, but there are records for the subject that do not satisfy requirements for the population. The valid values of these record-level population indicators are Y or Null. If a flag is used, the corresponding numeric version (*FN, where 1=yes) of the flag can also be included. As described in Section <u>3.1.1</u> Item 8, the *FN version of the variable can be included only if the corresponding *FL is also included. Additional indicators may also be used; refer to Section<u> 3.1.4.</u></html>"^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVSAFRFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3430,8 +3642,7 @@
 	bd:ordinal "167"^^xsd:positiveInteger ;
 	bd:name "SAFRFL"^^xsd:string ;
 	bd:notes "<html>These indicators identify whether or not the subject was in the specified analysis for the specific record. Useful when the subject is included in the subject-level population, but there are records for the subject that do not satisfy requirements for the population. The valid values of these record-level population indicators are Y or Null. If a flag is used, the corresponding numeric version (*FN, where 1=yes) of the flag can also be included. As described in Section <u>3.1.1</u> Item 8, the *FN version of the variable can be included only if the corresponding *FL is also included. Additional indicators may also be used; refer to Section<u> 3.1.4.</u></html>"^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVFASRFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3440,8 +3651,7 @@
 	bd:ordinal "168"^^xsd:positiveInteger ;
 	bd:name "FASRFL"^^xsd:string ;
 	bd:notes "<html>These indicators identify whether or not the subject was in the specified analysis for the specific record. Useful when the subject is included in the subject-level population, but there are records for the subject that do not satisfy requirements for the population. The valid values of these record-level population indicators are Y or Null. If a flag is used, the corresponding numeric version (*FN, where 1=yes) of the flag can also be included. As described in Section <u>3.1.1</u> Item 8, the *FN version of the variable can be included only if the corresponding *FL is also included. Additional indicators may also be used; refer to Section<u> 3.1.4.</u></html>"^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPPROTRFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3450,8 +3660,7 @@
 	bd:ordinal "169"^^xsd:positiveInteger ;
 	bd:name "PPROTRFL"^^xsd:string ;
 	bd:notes "<html>These indicators identify whether or not the subject was in the specified analysis for the specific record. Useful when the subject is included in the subject-level population, but there are records for the subject that do not satisfy requirements for the population. The valid values of these record-level population indicators are Y or Null. If a flag is used, the corresponding numeric version (*FN, where 1=yes) of the flag can also be included. As described in Section <u>3.1.1</u> Item 8, the *FN version of the variable can be included only if the corresponding *FL is also included. Additional indicators may also be used; refer to Section<u> 3.1.4.</u></html>"^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVCOMPLRFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3460,8 +3669,7 @@
 	bd:ordinal "170"^^xsd:positiveInteger ;
 	bd:name "COMPLRFL"^^xsd:string ;
 	bd:notes "<html>These indicators identify whether or not the subject was in the specified analysis for the specific parameter. Useful when the subject is included in the subject-level population, but there are parameters for which the subject does not satisfy requirements for the population. The valid values of these parameter-level population indicators are Y or Null. If a flag is used, the corresponding numeric version (*FN, where 1=yes) of the flag can also be included. As described in Section <u>3.1.1</u> Item 8, the *FN version of the variable can be included only if the corresponding *FL is also included. Additional indicators may also be used; refer to Section <u>3.1.4</u>, \"Flag Variable Conventions.\"</html>"^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVITTPFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3470,8 +3678,7 @@
 	bd:ordinal "171"^^xsd:positiveInteger ;
 	bd:name "ITTPFL"^^xsd:string ;
 	bd:notes "<html>These indicators identify whether or not the subject was in the specified analysis for the specific parameter. Useful when the subject is included in the subject-level population, but there are parameters for which the subject does not satisfy requirements for the population. The valid values of these parameter-level population indicators are Y or Null. If a flag is used, the corresponding numeric version (*FN, where 1=yes) of the flag can also be included. As described in Section <u>3.1.1</u> Item 8, the *FN version of the variable can be included only if the corresponding *FL is also included. Additional indicators may also be used; refer to Section <u>3.1.4</u>, \"Flag Variable Conventions.\"</html>"^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVSAFPFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3480,8 +3687,7 @@
 	bd:ordinal "172"^^xsd:positiveInteger ;
 	bd:name "SAFPFL"^^xsd:string ;
 	bd:notes "<html>These indicators identify whether or not the subject was in the specified analysis for the specific parameter. Useful when the subject is included in the subject-level population, but there are parameters for which the subject does not satisfy requirements for the population. The valid values of these parameter-level population indicators are Y or Null. If a flag is used, the corresponding numeric version (*FN, where 1=yes) of the flag can also be included. As described in Section <u>3.1.1</u> Item 8, the *FN version of the variable can be included only if the corresponding *FL is also included. Additional indicators may also be used; refer to Section <u>3.1.4</u>, \"Flag Variable Conventions.\"</html>"^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVFASPFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3490,8 +3696,7 @@
 	bd:ordinal "173"^^xsd:positiveInteger ;
 	bd:name "FASPFL"^^xsd:string ;
 	bd:notes "<html>These indicators identify whether or not the subject was in the specified analysis for the specific parameter. Useful when the subject is included in the subject-level population, but there are parameters for which the subject does not satisfy requirements for the population. The valid values of these parameter-level population indicators are Y or Null. If a flag is used, the corresponding numeric version (*FN, where 1=yes) of the flag can also be included. As described in Section <u>3.1.1</u> Item 8, the *FN version of the variable can be included only if the corresponding *FL is also included. Additional indicators may also be used; refer to Section <u>3.1.4</u>, \"Flag Variable Conventions.\"</html>"^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVPPROTPFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3500,8 +3705,7 @@
 	bd:ordinal "174"^^xsd:positiveInteger ;
 	bd:name "PPROTPFL"^^xsd:string ;
 	bd:notes "<html>These indicators identify whether or not the subject was in the specified analysis for the specific parameter. Useful when the subject is included in the subject-level population, but there are parameters for which the subject does not satisfy requirements for the population. The valid values of these parameter-level population indicators are Y or Null. If a flag is used, the corresponding numeric version (*FN, where 1=yes) of the flag can also be included. As described in Section <u>3.1.1</u> Item 8, the *FN version of the variable can be included only if the corresponding *FL is also included. Additional indicators may also be used; refer to Section <u>3.1.4</u>, \"Flag Variable Conventions.\"</html>"^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVCOMPLPFL>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3510,8 +3714,7 @@
 	bd:ordinal "175"^^xsd:positiveInteger ;
 	bd:name "COMPLPFL"^^xsd:string ;
 	bd:notes "<html>These indicators identify whether or not the subject was in the specified analysis for the specific parameter. Useful when the subject is included in the subject-level population, but there are parameters for which the subject does not satisfy requirements for the population. The valid values of these parameter-level population indicators are Y or Null. If a flag is used, the corresponding numeric version (*FN, where 1=yes) of the flag can also be included. As described in Section <u>3.1.1</u> Item 8, the *FN version of the variable can be included only if the corresponding *FL is also included. Additional indicators may also be used; refer to Section <u>3.1.4</u>, \"Flag Variable Conventions.\"</html>"^^xsd:string ;
-	bd:ct ""^^xsd:string ;
-	bd:ctNotes "Y"^^xsd:string ;
+	bd:ct "Y"^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVSRCDOM>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3521,7 +3724,6 @@
 	bd:name "SRCDOM"^^xsd:string ;
 	bd:notes "The SDTM domain name or ADaM dataset name that relates to the analysis value (e.g., AVAL or AVALC in a BDS dataset). If the source data is a supplemental qualifier in SDTM, this variable will contain the value of RDOMAIN in SUPP-- or SUPPQUAL."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVSRCVAR>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3531,7 +3733,6 @@
 	bd:name "SRCVAR"^^xsd:string ;
 	bd:notes "The name of the column (in the domain or dataset identified by SRCDOM) that relates to the analysis value (e.g., AVAL or AVALC in a BDS dataset). In the event that SRCDOM is a SUPPQUAL, then SRCVAR will be populated with the value of the related QNAM."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .
 <http://www.cdisc.org/Basic_Data_Structure/V1#AVSRCSEQ>
 	rdf:type bd:ADaMDatasetVariable ;
@@ -3541,5 +3742,4 @@
 	bd:name "SRCSEQ"^^xsd:string ;
 	bd:notes "The sequence number --SEQ or ASEQ of the row (in the domain or dataset identified by SRCDOM) that relates to the analysis value (e.g., AVAL or AVALC in a BDS dataset). In the event that SRCDOM is a SUPPQUAL, then this variable will contain the sequence number of the relevant related domain record."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
-	bd:ctNotes ""^^xsd:string ;
 .

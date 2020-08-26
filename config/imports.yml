@@ -1236,13 +1236,10 @@ defaults: &defaults
             label: "Codelist/Controlled Terms"
             actions:
               -
-                method: ct_reference
+                method: set_property
                 object: child
+                can_be_empty: true
                 property: ct
-              -
-                method: ct_other
-                object: child
-                property: ct_notes
           -
             label: "Core"
             actions:
@@ -1349,13 +1346,10 @@ defaults: &defaults
             label: "Codelist/Controlled Terms"
             actions:
               -
-                method: ct_reference
+                method: set_property
                 object: child
+                can_be_empty: true
                 property: ct
-              -
-                method: ct_other
-                object: child
-                property: ct_notes
           -
             label: "Core"
             actions:

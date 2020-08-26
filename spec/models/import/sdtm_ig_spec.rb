@@ -28,6 +28,7 @@ describe Import::SdtmIg do
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+    load_cdisc_term_versions(1..60)
     Import.destroy_all
     delete_all_public_test_files
     setup
@@ -54,7 +55,8 @@ describe Import::SdtmIg do
 
   it "import, no errors" do
     full_path = test_file_path(sub_dir, "import_input_1.xlsx")
-    params = {version: "1", date: "2020-01-01", files: [full_path], version_label: "1.1.1", label: "SDTM Implememntation Giude", semantic_version: "1.1.1", job: @job}
+    params = {version: "1", date: "2020-01-01", files: [full_path], version_label: "1.1.1", label: "SDTM Implememntation Giude", 
+      semantic_version: "1.1.1", job: @job, ct: Uri.new(uri: "http://www.cdisc.org/CT/V60#TH")}
     result = @object.import(params)
     filename = "cdisc_sdtm_ig_#{@object.id}_errors.yml"
     public_file_does_not_exist?("test", filename)
@@ -69,7 +71,8 @@ describe Import::SdtmIg do
 
   it "import, errors" do
     full_path = test_file_path(sub_dir, "import_input_2.xlsx")
-    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", semantic_version: "1.2.3", job: @job}
+    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", 
+      semantic_version: "1.2.3", job: @job, ct: Uri.new(uri: "http://www.cdisc.org/CT/V50#TH")}
     result = @object.import(params)
     filename = "cdisc_sdtm_ig_#{@object.id}_load.ttl"
     expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
@@ -87,7 +90,8 @@ describe Import::SdtmIg do
   it "import, exception" do
     expect_any_instance_of(Excel).to receive(:execute).and_raise(StandardError.new("error"))
     full_path = test_file_path(sub_dir, "import_input_2.xlsx")
-    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", semantic_version: "1.2.3", job: @job}
+    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", 
+      semantic_version: "1.2.3", job: @job, ct: Uri.new(uri: "http://www.cdisc.org/CT/V50#TH")}
     @object.import(params)
     expect(@job.status).to include("An exception was detected during the import processes.\nDetails: error.\nBacktrace: ")
   end

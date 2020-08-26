@@ -216,7 +216,7 @@
 .
 :format
   rdf:type owl:DatatypeProperty ;
-  rdfs:label "format"^^xsd:string ;
+  rdfs:label "Format"^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain :SdtmDomainVariable ;
@@ -225,7 +225,7 @@
 .
 :ctReference
   rdf:type owl:DatatypeProperty ;
-  rdfs:label "ct"^^xsd:string ;
+  rdfs:label "CT"^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain [ a owl:Class ;
@@ -234,18 +234,18 @@
   rdfs:range bo:TMcReference ;
   skos:definition "Controlled terminology reference for the variable."^^xsd:string ;
 .
-:ctNotes
+:ct
   rdf:type owl:DatatypeProperty ;
-  rdfs:label "CT Notes"^^xsd:string ;
+  rdfs:label "CT"^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain :ADaMDatasetVariable ;
   rdfs:range xsd:string ;
-  skos:definition "Controlled terminology notes."^^xsd:string ;
+  skos:definition "Raw Codelist and Controlled Terminology."^^xsd:string ;
 .
 :ctAndFormat
   rdf:type owl:DatatypeProperty ;
-  rdfs:label "format"^^xsd:string ;
+  rdfs:label "Format"^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain :SdtmDomainVariable ;
@@ -263,7 +263,7 @@
 .
 :comment
   rdf:type owl:DatatypeProperty ;
-  rdfs:label "Comments."^^xsd:string ;
+  rdfs:label "Comments"^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain :SdtmDomainVariable ;
