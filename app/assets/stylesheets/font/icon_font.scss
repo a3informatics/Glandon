@@ -30,6 +30,18 @@
   justify-content: center;
 }
 
+.icon-center:before {
+  content: "\e96d";
+}
+.icon-collapse-special:before {
+  content: "\e96a";
+}
+.icon-collapse:before {
+  content: "\e96b";
+}
+.icon-expand:before {
+  content: "\e96c";
+}
 .icon-biocon-template:before {
   content: "\e969";
 }
