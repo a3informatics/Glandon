@@ -74,6 +74,7 @@ describe Excel::Engine do
     attr_accessor :tagged
 
     def initialize
+      @property_name = nil
       @ct = ""
       @ct_notes = ""
       @label = ""
@@ -92,6 +93,27 @@ describe Excel::Engine do
 
     def add_tag_no_save(tag)
       @tagged << tag
+    end
+
+    def properties
+      @super_properties = super
+      self
+    end
+
+    def property(name)
+      if [:ct, :ct_notes].include? name
+        @property_name = "#{name}"
+        self
+      else
+        @super_properties.property(name)
+      end
+    end
+
+    def set_value(value)
+      self.instance_variable_set("@#{@property_name}", value)
+      @property_name = nil
+    rescue => e
+      byebug
     end
 
   end
@@ -867,7 +889,7 @@ describe Excel::Engine do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
-    result = object.sheet_info(:cdisc_adam_ig, :main)
+    result = object.sheet_info(:cdisc_adam_ig, :version_1)
     check_file_actual_expected(result, sub_dir, "sheet_info_expected_1.yaml", equate_method: :hash_equal)
   end
 

@@ -494,7 +494,6 @@ class Excel::Engine
   def ct_reference(params)
     check_params(__method__.to_s, params, [:row, :col, :property, :object])
     ref = check_ct(params[:row], params[:col])
-    return if ref.empty?
     property_set_value(params[:object], params[:property], ref)
   end
 
