@@ -57,21 +57,22 @@ class FormsController < ManagedItemsController
   #   end
   # end
 
-  # def edit
-  #   authorize Form
-  #   @form = Form.find(params[:id], params[:namespace])
-  #   @token = get_token(@form)
-  #   if @form.new_version?
-  #     new_form = Form.create(@form.to_operation)
-  #     @form = Form.find(new_form.id, new_form.namespace)
-  #     @token.release
-  #     @token = get_token(@form)
-  #     @operation = @form.update_operation
-  #   else
-  #     @operation = @form.to_operation
-  #   end
-  #   @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id)
-  # end
+  def edit
+    authorize Form
+    @form = Form.find_minimum(protect_from_bad_id(params))
+    return true unless edit_lock(@form)
+    respond_to do |format|
+      format.html do
+        @form = @edit.item
+        @close_path = history_forms_path({ form:
+            { identifier: @form.scoped_identifier, scope_id: @form.scope } })
+      end
+      format.json do
+        @form = Form.find_full(@form.id)
+        render :json => { data: @form.to_h }, :status => 200
+      end
+    end
+  end
 
   # def clone
   #   authorize Form
@@ -234,7 +235,7 @@ private
       when :show
         return form_path(object)
       when :edit
-        return ""
+        return edit_form_path(object)
       else
         return ""
     end
@@ -245,11 +246,11 @@ private
   end
 
   def history_path_for(identifier, scope_id)
-    return {history_path: history_forms_path({form:{identifier: identifier, scope_id: scope_id}})} 
+    return {history_path: history_forms_path({form:{identifier: identifier, scope_id: scope_id}})}
   end
 
   def close_path_for
     forms_path
-  end   
+  end
 
 end
