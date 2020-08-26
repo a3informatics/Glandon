@@ -33,22 +33,13 @@ class Form::Item::Question < Form::Item
     html += question_cell(self.question_text)
     #qa = question_annotations(node[:id], node[:mapping], annotations, options)
     #html += mapping_cell(qa, options)
-    #if node[:children].length == 0
-      #html += input_field(node, annotations)
-      #html += input_field
-    #else
-      #html += terminology_cell(node, annotations, options)
-      #html += terminology_cell
-    #end
+    if self.has_coded_value.count == 0
+      html += input_field
+    else
+      html += terminology_cell
+    end
     html += end_row
+    return html
   end
-
-  def question_cell(text)
-    return "<td>#{text}</td>"
-  end
-
-private
-  
-
 
 end
