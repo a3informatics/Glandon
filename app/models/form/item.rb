@@ -46,16 +46,6 @@ class Form::Item < IsoConceptV2
     return "<td></td>"
   end
 
-  def terminology_cell
-    html = '<td>'
-    self.has_coded_value.each do |cv|
-  byebug
-      html += cv.to_crf
-    end
-    html += '</td>'
-    return html
-  end
-
   # Format input field
   def input_field
     html = '<td>'
