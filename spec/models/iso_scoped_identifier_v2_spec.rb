@@ -120,7 +120,7 @@ describe "IsoScopedIdentifierV2" do
   end
 
   it "allows the first version to be found" do
-    expect(IsoScopedIdentifierV2.first_version).to eq(1)
+    expect(IsoScopedIdentifierV2.first_integer_version).to eq(1)
   end
 
   it "detects if a identifier exists" do
