@@ -118,4 +118,8 @@ puts colourize("***** Error finding CT Ref: #{notation} *****", "red") if cl.emp
     temp.map {|x| x.gsub(/[()]/, "")}
   end
 
+  def get_temporary(object, name)
+    object.instance_variable_get("@#{name}")
+  end
+
 end

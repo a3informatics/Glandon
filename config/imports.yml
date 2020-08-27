@@ -298,6 +298,8 @@ defaults: &defaults
                 method: create_parent
                 object: parent
                 klass: SdtmClass
+                additional:
+                  prefix: SDTM MODEL
                 condition:
                   column: 3
                   method: column_not_blank?
@@ -519,6 +521,8 @@ defaults: &defaults
                 method: create_parent
                 object: parent
                 klass: SdtmClass
+                additional:
+                  prefix: SDTM MODEL
                 condition:
                   column: 4
                   method: column_not_blank?
@@ -742,6 +746,8 @@ defaults: &defaults
                 method: create_parent
                 object: parent
                 klass: SdtmClass
+                additional:
+                  prefix: SDTM MODEL
                 condition:
                   column: 4
                   method: column_not_blank?
@@ -916,7 +922,7 @@ defaults: &defaults
               -
                 method: set_property
                 object: parent
-                property: based_on_class
+                property: referenced_class
                 mapping:
                   map:
                     All Classes: SDTM MODEL ALL
@@ -926,9 +932,10 @@ defaults: &defaults
                     Interventions-General: SDTM MODEL INTERVENTIONS
                     Findings: SDTM MODEL FINDINGS
                     Findings-General: SDTM MODEL FINDINGS
-                condition:
-                  column: 3
-                  method: column_blank?
+                    Special Purpose: SDTM SPECIAL PURPOSE
+                    Trial Design: SDTM TRIAL DESIGN
+                    Relationships: SDTM RELATIONSHIPS
+                    Study Reference: SDTM STUDY REFERENCE
           -
             label: "Variable Name (minus domain prefix)"  
             actions: []
@@ -1058,7 +1065,7 @@ defaults: &defaults
               -
                 method: set_property
                 object: parent
-                property: label
+                property: referenced_class
                 mapping:
                   map:
                     All Classes: SDTM MODEL ALL
@@ -1068,9 +1075,10 @@ defaults: &defaults
                     Interventions-General: SDTM MODEL INTERVENTIONS
                     Findings: SDTM MODEL FINDINGS
                     Findings-General: SDTM MODEL FINDINGS
-                condition:
-                  column: 4
-                  method: column_blank?
+                    Special-Purpose: SDTM SPECIAL PURPOSE
+                    Trial Design: SDTM TRIAL DESIGN
+                    Relationships: SDTM RELATIONSHIPS
+                    Study Reference: SDTM STUDY REFERENCE
           -
             label: "Variable Name (minus domain prefix)"  
             actions: []

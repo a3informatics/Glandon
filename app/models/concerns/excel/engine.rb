@@ -190,6 +190,8 @@ class Excel::Engine
     check_params(__method__.to_s, params, [:row, :col, :mapping, :klass])
     identifier = params[:mapping][:map].any? ? check_mapped(params[:row], params[:col], params[:mapping][:map]) : check_value(params[:row], params[:col])
     return if identifier.blank?
+    prefix = params.dig(:additional, :prefix)
+    identifier = prefix.nil? ? identifier : "#{prefix} #{identifier}"
     result = parent_create(params[:klass].constantize, identifier)
     yield(result) if block_given?
   end
@@ -731,9 +733,19 @@ private
     return item
   end
 
+  # Set a property value
   def property_set_value(object, name, value)
+    object.properties.ignore?(name.to_sym) ? set_temporary(object, name, value) : set_defined(object, name, value) 
+  end
+
+  # Set a defined property
+  def set_defined(object, name, value)
     object.properties.property(name.to_sym).set_value(value)
   end
 
+  # Set a temporary property
+  def set_temporary(object, name, value)
+    object.instance_variable_set("@#{name}", value)
+  end
 
 end    

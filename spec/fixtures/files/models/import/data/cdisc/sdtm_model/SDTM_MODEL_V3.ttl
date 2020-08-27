@@ -94,7 +94,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "4"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/RELREC/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_RELREC/V3#CL> ;
 .
 :M_R5
 	rdf:type bo:Reference ;
@@ -102,7 +102,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "5"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/SUPPQUAL/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V3#CL> ;
 .
 :M_R6
 	rdf:type bo:Reference ;
@@ -110,7 +110,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "6"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/CO/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_CO/V3#CL> ;
 .
 :M_R7
 	rdf:type bo:Reference ;
@@ -118,7 +118,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "7"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/DM/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_DM/V3#CL> ;
 .
 :M_R8
 	rdf:type bo:Reference ;
@@ -126,7 +126,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "8"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/SE/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_SE/V3#CL> ;
 .
 :M_R9
 	rdf:type bo:Reference ;
@@ -134,7 +134,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "9"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/SV/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_SV/V3#CL> ;
 .
 :M_R10
 	rdf:type bo:Reference ;
@@ -142,7 +142,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "10"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/TA/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_TA/V3#CL> ;
 .
 :M_R11
 	rdf:type bo:Reference ;
@@ -150,7 +150,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "11"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/TD/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_TD/V3#CL> ;
 .
 :M_R12
 	rdf:type bo:Reference ;
@@ -158,7 +158,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "12"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/TE/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_TE/V3#CL> ;
 .
 :M_R13
 	rdf:type bo:Reference ;
@@ -166,7 +166,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "13"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/TI/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_TI/V3#CL> ;
 .
 :M_R14
 	rdf:type bo:Reference ;
@@ -174,7 +174,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "14"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/TS/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_TS/V3#CL> ;
 .
 :M_R15
 	rdf:type bo:Reference ;
@@ -182,7 +182,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "15"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/TV/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_TV/V3#CL> ;
 .
 :M_R16
 	rdf:type bo:Reference ;
@@ -190,7 +190,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "16"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/TX/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_TX/V3#CL> ;
 .
 :M_R17
 	rdf:type bo:Reference ;
@@ -198,7 +198,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "17"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/POOLDEF/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL> ;
 .
 :M_R18
 	rdf:type bo:Reference ;
@@ -206,7 +206,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "18"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/RELSUB/V3#CL> ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL>
 	rdf:type bd:SdtmClass ;
@@ -221,91 +221,91 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_CVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_CVPOOLID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVSPDEVID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--SEQ> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--GRPID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--REFID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--SPID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--LNKID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--LNKGRP> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVVISITNUM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVVISIT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVVISITDY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVTAETORD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVEPOCH> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DTC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STDY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENDY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DUR> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--TPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--TPTNUM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ELTM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--TPTREF> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--RFTDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STRF> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENRF> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--EVLINT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--EVINTX> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STRTPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STTPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENRTPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENTPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STINT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENINT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DETECT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_CV--TERM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--MODIFY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--LLT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--LLTCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--DECOD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--PTCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--HLT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--HLTCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--HLGT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--HLGTCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--CAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--SCAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--PRESP> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--OCCUR> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--STAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--REASND> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--BODSYS> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--BDSYCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--SOC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--SOCCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_CV--LOC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--LAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--DIR> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--PORTOT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--PARTY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--PRTYID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SEV> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SER> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--ACN> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--ACNOTH> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--ACNDEV> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--REL> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--RELNST> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--PATT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--OUT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SCAN> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SCONG> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SDISAB> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SDTH> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SHOSP> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SLIFE> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SOD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SMIE> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--CONTRT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--TOX> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--TOXGR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_POOLID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_SPDEVID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--SEQ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--GRPID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--REFID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--SPID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--LNKID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--LNKGRP> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_VISITNUM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_VISIT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_VISITDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_TAETORD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_EPOCH> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DUR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--TPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--TPTNUM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ELTM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--TPTREF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--RFTDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STRF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENRF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--EVLINT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--EVINTX> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STRTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENRTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STINT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENINT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DETECT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TERM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--MODIFY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--LLT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--LLTCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--DECOD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--PTCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--HLT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--HLTCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--HLGT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--HLGTCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--CAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SCAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--PRESP> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--OCCUR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--STAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--REASND> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--BODSYS> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--BDSYCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SOC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SOCCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--LOC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--LAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--DIR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--PORTOT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--PARTY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--PRTYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SEV> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SER> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--ACN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--ACNOTH> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--ACNDEV> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--REL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--RELNST> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--PATT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--OUT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SCAN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SCONG> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SDISAB> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SDTH> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SHOSP> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SLIFE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SOD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SMIE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--CONTRT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--TOX> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--TOXGR> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
@@ -327,7 +327,7 @@
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVSPDEVID>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_SPDEVID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Sponsor Device Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -338,7 +338,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--SEQ>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--SEQ>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Sequence Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -349,7 +349,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--GRPID>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--GRPID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Group ID"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -360,7 +360,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--REFID>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--REFID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reference ID"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -371,7 +371,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--SPID>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--SPID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Sponsor-Defined Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -382,7 +382,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--LNKID>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--LNKID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Link ID"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -393,7 +393,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--LNKGRP>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--LNKGRP>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Link Group ID"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -404,7 +404,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVVISITNUM>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_VISITNUM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Visit Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -415,7 +415,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVVISIT>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_VISIT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Visit Name"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -426,7 +426,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVVISITDY>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_VISITDY>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Planned Study Day of Visit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -437,7 +437,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVTAETORD>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_TAETORD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Planned Order of Element within Arm"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -448,7 +448,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVEPOCH>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_EPOCH>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Epoch"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -459,7 +459,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DTC>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DTC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Date/Time of Collection"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -471,7 +471,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 	bd:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STDTC>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STDTC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Start Date/Time of Observation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -483,7 +483,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 	bd:isA <http://www.s-cubed.dk/CAR#83c87956785cde43c109e30fcbd95cca63a18d38> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENDTC>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENDTC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "End Date/Time of Observation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -495,7 +495,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 	bd:isA <http://www.s-cubed.dk/CAR#71c54c70967ea84127e4bd588bd627ec0e581dfb> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DY>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DY>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Study Day of Visit/Collection/Exam"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -506,7 +506,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STDY>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STDY>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Study Day of Start of Observation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -517,7 +517,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENDY>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENDY>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Study Day of End of Observation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -528,7 +528,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DUR>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DUR>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Duration"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -539,7 +539,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--TPT>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--TPT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Planned Time Point Name"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -550,7 +550,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--TPTNUM>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--TPTNUM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Planned Time Point Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -561,7 +561,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ELTM>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ELTM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Planned Elapsed Time from Time Point Ref"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -572,7 +572,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--TPTREF>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--TPTREF>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Time Point Reference"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -583,7 +583,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--RFTDTC>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--RFTDTC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Date/Time of Reference Time Point"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -594,7 +594,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STRF>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STRF>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Start Relative to Reference Period"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -605,7 +605,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENRF>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENRF>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "End Relative to Reference Period"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -616,7 +616,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--EVLINT>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--EVLINT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Evaluation Interval"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -627,7 +627,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--EVINTX>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--EVINTX>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Evaluation Interval Text"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -638,7 +638,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STRTPT>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STRTPT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Start Relative to Reference Time Point"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -649,7 +649,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STTPT>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STTPT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Start Reference Time Point"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -660,7 +660,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENRTPT>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENRTPT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "End Relative to Reference Time Point"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -671,7 +671,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENTPT>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENTPT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "End Reference Time Point"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -682,7 +682,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STINT>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STINT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Planned Start of Assessment Interval"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -693,7 +693,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENINT>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENINT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Planned End of Assessment Interval"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -704,7 +704,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DETECT>
+<http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DETECT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Time in Days to Detection"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -715,7 +715,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--LAT>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--LAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Laterality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -727,7 +727,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--DIR>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--DIR>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Directionality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -739,7 +739,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#b8480e9c78891769429c713a44f238f2ca3c3abb> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--PORTOT>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--PORTOT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Portion or Totality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -750,7 +750,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--PARTY>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--PARTY>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Accountable Party"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -761,7 +761,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--PRTYID>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--PRTYID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Identification of Accountable Party"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -772,7 +772,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SEV>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SEV>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Severity/Intensity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -784,7 +784,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#de314fa0c9d9e359b633f2fdab4659c886fe5986> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SER>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SER>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Serious Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -796,7 +796,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#bc7845e67c63c354e69a957bab304d72da2f9fb7> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--ACN>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--ACN>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -808,7 +808,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#485290959383eee39c093e50e84fdc851ac37a32> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--ACNOTH>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--ACNOTH>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Other Action Taken"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -820,7 +820,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#1baf5ac06f7430ac72727c2dfb3f152e07d9d5da> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--ACNDEV>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--ACNDEV>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Action Taken with Device"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -831,7 +831,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--REL>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--REL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Causality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -842,7 +842,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--RELNST>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--RELNST>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Relationship to Non-Study Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -853,7 +853,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--PATT>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--PATT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Pattern of Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -865,7 +865,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#1fff6a31661b491fc40cc9c1ad7fe5e479cb7500> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--OUT>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--OUT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Outcome of Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -877,7 +877,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#73a0f131076b513c16bfe3f4cff9ab8b765c9f23> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SCAN>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SCAN>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Involves Cancer"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -888,7 +888,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SCONG>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SCONG>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Congenital Anomaly or Birth Defect"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -899,7 +899,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SDISAB>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SDISAB>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Persist or Signif Disability/Incapacity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -910,7 +910,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SDTH>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SDTH>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Results in Death"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -921,7 +921,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SHOSP>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SHOSP>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Requires or Prolongs Hospitalization"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -933,7 +933,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#3239c890f4b1b44ea81233e5766557a1008c0b6b> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SLIFE>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SLIFE>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Is Life Threatening"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -944,7 +944,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SOD>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SOD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Occurred with Overdose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -955,7 +955,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--SMIE>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SMIE>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Other Medically Important Serious Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -966,7 +966,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--CONTRT>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--CONTRT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Concomitant or Additional Trtmnt Given"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -977,7 +977,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--TOX>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--TOX>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Toxicity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -988,7 +988,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_CV--TOXGR>
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--TOXGR>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Toxicity Grade"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1012,97 +1012,97 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_CVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_CVPOOLID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVSPDEVID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--SEQ> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--GRPID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--REFID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--SPID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--LNKID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--LNKGRP> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVVISITNUM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVVISIT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVVISITDY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVTAETORD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVEPOCH> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DTC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STDY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENDY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DUR> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--TPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--TPTNUM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ELTM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--TPTREF> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--RFTDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STRF> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENRF> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--EVLINT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--EVINTX> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STRTPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STTPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENRTPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENTPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STINT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENINT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DETECT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_CV--TESTCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_CV--TEST> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_CV--MODIFY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--TSTDTL> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--CAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--SCAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--POS> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--BODSYS> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ORRES> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ORRESU> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ORNRLO> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ORNRHI> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STRESC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STRESN> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STRESU> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STNRLO> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STNRHI> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STNRC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--NRIND> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--RESCAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--REASND> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--XFN> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--NAM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--LOINC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--SPEC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ANTREG> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--SPCCND> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--SPCUFL> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--LOC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--LAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--DIR> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--PORTOT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--METHOD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--RUNID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ANMETH> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--LEAD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--CSTATE> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--BLFL> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--FAST> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--DRVFL> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--EVAL> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--EVALID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ACPTFL> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--TOX> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--TOXGR> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--SEV> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--DTHREL> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--LLOQ> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ULOQ> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--EXCLFL> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--REASEX> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_POOLID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_SPDEVID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--SEQ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--GRPID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--REFID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--SPID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--LNKID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--LNKGRP> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_VISITNUM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_VISIT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_VISITDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_TAETORD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_EPOCH> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DUR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--TPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--TPTNUM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ELTM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--TPTREF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--RFTDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STRF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENRF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--EVLINT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--EVINTX> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STRTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENRTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STINT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENINT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DETECT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TEST> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--MODIFY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--TSTDTL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--CAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--SCAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--POS> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--BODSYS> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ORRES> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ORRESU> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ORNRLO> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ORNRHI> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STRESC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STRESN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STRESU> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STNRLO> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STNRHI> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STNRC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--NRIND> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--RESCAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--REASND> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--XFN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--NAM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--LOINC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--SPEC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ANTREG> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--SPCCND> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--SPCUFL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--LOC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--LAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--DIR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--PORTOT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--METHOD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--RUNID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ANMETH> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--LEAD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--CSTATE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--BLFL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--FAST> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--DRVFL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--EVAL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--EVALID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ACPTFL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--TOX> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--TOXGR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--SEV> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--DTHREL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--LLOQ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ULOQ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--EXCLFL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--REASEX> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
@@ -1124,7 +1124,7 @@
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--TSTDTL>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--TSTDTL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Measurement, Test or Examination Detail"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1135,7 +1135,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--CAT>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--CAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Category"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1147,7 +1147,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c42c1199-69be-4b0e-a466-78bf06d2e831> ;
 	bd:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--SCAT>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--SCAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Subcategory"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1159,7 +1159,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c42c1199-69be-4b0e-a466-78bf06d2e831> ;
 	bd:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--POS>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--POS>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Position of Subject During Observation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1171,7 +1171,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--BODSYS>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--BODSYS>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Body System or Organ Class"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1182,7 +1182,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ORRES>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ORRES>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Result or Finding in Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1194,7 +1194,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#a5cd53b6-ceca-4325-aa4e-71267169582f> ;
 	bd:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ORRESU>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ORRESU>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1206,7 +1206,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ORNRLO>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ORNRLO>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range Lower Limit-Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1217,7 +1217,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ORNRHI>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ORNRHI>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range Upper Limit-Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1228,7 +1228,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STRESC>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STRESC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Result or Finding in Standard Format"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1239,7 +1239,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#a5cd53b6-ceca-4325-aa4e-71267169582f> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STRESN>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STRESN>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Numeric Result/Finding in Standard Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1250,7 +1250,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#a5cd53b6-ceca-4325-aa4e-71267169582f> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STRESU>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STRESU>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Standard Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1261,7 +1261,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STNRLO>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STNRLO>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range Lower Limit-Standard Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1272,7 +1272,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STNRHI>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STNRHI>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range Upper Limit-Standard Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1283,7 +1283,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STNRC>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STNRC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range for Character Results"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1294,7 +1294,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--NRIND>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--NRIND>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal/Reference Range Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1305,7 +1305,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--RESCAT>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--RESCAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Result Category"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1316,7 +1316,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--STAT>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--STAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Completion Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1328,7 +1328,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--REASND>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--REASND>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason Not Done"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1339,7 +1339,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--XFN>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--XFN>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "External File Path"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1350,7 +1350,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--NAM>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--NAM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Laboratory/Vendor Name"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1361,7 +1361,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--LOINC>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--LOINC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "LOINC Code"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1372,7 +1372,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--SPEC>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--SPEC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Specimen Material Type"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1384,7 +1384,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#465e8e7b0c616acafe9d6226a6ba40b31f849e8e> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ANTREG>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ANTREG>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Anatomical Region"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1395,7 +1395,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--SPCCND>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--SPCCND>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Specimen Condition"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1406,7 +1406,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--SPCUFL>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--SPCUFL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Specimen Usability for the Test"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1417,7 +1417,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--LOC>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--LOC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Location Used for the Measurement"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1429,7 +1429,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--LAT>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--LAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Laterality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1441,7 +1441,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--DIR>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--DIR>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Directionality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1453,7 +1453,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#b8480e9c78891769429c713a44f238f2ca3c3abb> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--PORTOT>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--PORTOT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Portion or Totality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1464,7 +1464,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--METHOD>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--METHOD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Method of Test or Examination"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1476,7 +1476,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--RUNID>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--RUNID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Run ID"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1487,7 +1487,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ANMETH>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ANMETH>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Analysis Method"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1498,7 +1498,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--LEAD>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--LEAD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Lead Identified to Collect Measurements"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1509,7 +1509,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--CSTATE>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--CSTATE>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Consciousness State"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1520,7 +1520,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--BLFL>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--BLFL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Baseline Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1531,7 +1531,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--FAST>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--FAST>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Fasting Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1542,7 +1542,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--DRVFL>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--DRVFL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Derived Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1553,7 +1553,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--EVAL>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--EVAL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Evaluator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1565,7 +1565,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#07500ad5733a5c873074c6df8d3e516da1de8ae1> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--EVALID>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--EVALID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Evaluator Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1576,7 +1576,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ACPTFL>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ACPTFL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Accepted Record Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1587,7 +1587,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--TOX>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--TOX>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Toxicity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1598,7 +1598,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--TOXGR>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--TOXGR>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Toxicity Grade"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1609,7 +1609,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--SEV>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--SEV>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Severity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1621,7 +1621,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#de314fa0c9d9e359b633f2fdab4659c886fe5986> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--DTHREL>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--DTHREL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Relationship to Death"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1632,7 +1632,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--LLOQ>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--LLOQ>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Lower Limit of Quantitation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1643,7 +1643,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--ULOQ>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ULOQ>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Upper Limit of Quantitation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1654,7 +1654,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--EXCLFL>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--EXCLFL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Exclude from Statistics"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1665,7 +1665,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_CV--REASEX>
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--REASEX>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason for Exclusion from Statistics"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1689,78 +1689,78 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_CVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_CVPOOLID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVSPDEVID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--SEQ> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--GRPID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--REFID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--SPID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--LNKID> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--LNKGRP> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVVISITNUM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVVISIT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVVISITDY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVTAETORD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CVEPOCH> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DTC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STDY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENDY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DUR> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--TPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--TPTNUM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ELTM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--TPTREF> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--RFTDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STRF> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENRF> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--EVLINT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--EVINTX> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STRTPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STTPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENRTPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENTPT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--STINT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--ENINT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_CV--DETECT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_CV--TRT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_CV--MODIFY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_CV--DECOD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--MOOD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--CAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--SCAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--PRESP> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--OCCUR> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--STAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--REASND> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--INDC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--CLAS> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--CLASCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSE> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSTXT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSU> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSFRM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSFRQ> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSTOT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSRGM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--ROUTE> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--LOT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--LOC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--LAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DIR> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--PORTOT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--FAST> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--PSTRG> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--PSTRGU> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--TRTV> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--VAMT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--VAMTU> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--ADJ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_POOLID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_SPDEVID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--SEQ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--GRPID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--REFID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--SPID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--LNKID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--LNKGRP> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_VISITNUM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_VISIT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_VISITDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_TAETORD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_EPOCH> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DUR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--TPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--TPTNUM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ELTM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--TPTREF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--RFTDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STRF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENRF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--EVLINT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--EVINTX> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STRTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENRTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STINT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENINT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DETECT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--TRT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--MODIFY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DECOD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--MOOD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--CAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--SCAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--PRESP> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--OCCUR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--STAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--REASND> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--INDC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--CLAS> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--CLASCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSTXT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSU> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSFRM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSFRQ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSTOT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSRGM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--ROUTE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--LOT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--LOC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--LAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DIR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--PORTOT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--FAST> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--PSTRG> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--PSTRGU> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--TRTV> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--VAMT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--VAMTU> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--ADJ> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
@@ -1782,7 +1782,7 @@
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--MOOD>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--MOOD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Mood"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1793,7 +1793,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--CAT>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--CAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Category"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1805,7 +1805,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c42c1199-69be-4b0e-a466-78bf06d2e831> ;
 	bd:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--SCAT>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--SCAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Subcategory"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1817,7 +1817,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c42c1199-69be-4b0e-a466-78bf06d2e831> ;
 	bd:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--PRESP>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--PRESP>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Pre-specified"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1828,7 +1828,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--OCCUR>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--OCCUR>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Occurrence"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1839,7 +1839,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--STAT>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--STAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Completion Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1851,7 +1851,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--REASND>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--REASND>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason Not Done"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1862,7 +1862,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--INDC>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--INDC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Indication"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1873,7 +1873,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--CLAS>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--CLAS>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Class"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1884,7 +1884,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--CLASCD>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--CLASCD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Class Code"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1895,7 +1895,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSE>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSE>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1906,7 +1906,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSTXT>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSTXT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dose Description"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1917,7 +1917,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSU>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSU>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dose Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1928,7 +1928,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSFRM>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSFRM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dose Form"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1939,7 +1939,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSFRQ>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSFRQ>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dosing Frequency per Interval"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1950,7 +1950,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSTOT>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSTOT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Total Daily Dose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1961,7 +1961,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DOSRGM>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSRGM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Intended Dose Regimen"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1972,7 +1972,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--ROUTE>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--ROUTE>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Route of Administration"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1983,7 +1983,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--LOT>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--LOT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Lot Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1994,7 +1994,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--LOC>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--LOC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Location of Dose Administration"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2006,7 +2006,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 	bd:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--LAT>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--LAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Laterality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2018,7 +2018,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--DIR>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DIR>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Directionality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2030,7 +2030,7 @@
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#b8480e9c78891769429c713a44f238f2ca3c3abb> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--PORTOT>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--PORTOT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Portion or Totality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2041,7 +2041,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--FAST>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--FAST>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Fasting Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2052,7 +2052,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--PSTRG>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--PSTRG>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Pharmaceutical Strength"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2062,7 +2062,7 @@
 	bd:description "Amount of an active ingredient expressed quantitatively per dosage unit, per unit of volume, or per unit of weight, according to the pharmaceutical dose form. Example: 50 mg/TABLET, 300 mg/L"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--PSTRGU>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--PSTRGU>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Pharmaceutical Strength Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2072,7 +2072,7 @@
 	bd:description "Unit for --PSTRG. Example: mg/TABLET, mg/mL"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--TRTV>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--TRTV>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Treatment Vehicle"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2083,7 +2083,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--VAMT>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--VAMT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Treatment Vehicle Amount"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2094,7 +2094,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--VAMTU>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--VAMTU>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Treatment Vehicle Amount Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2105,7 +2105,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_CV--ADJ>
+<http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--ADJ>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason for Dose Adjustment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2116,12 +2116,12 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/RELREC/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_RELREC/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "RELREC"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/RELREC/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/RELREC/V3#CL_SI> ;
-	isoT:hasPreviousVersion <http://www.cdisc.org/RELREC/V2#CL> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_RELREC/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_RELREC/V3#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_RELREC/V2#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -2129,15 +2129,15 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/RELREC/V2#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/RELREC/V2#CL_CVRDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/RELREC/V1#CL_CVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/RELREC/V1#CL_CVIDVAR> ;
-	bd:includesColumn <http://www.cdisc.org/RELREC/V3#CL_CVIDVARVAL> ;
-	bd:includesColumn <http://www.cdisc.org/RELREC/V1#CL_CVRELTYPE> ;
-	bd:includesColumn <http://www.cdisc.org/RELREC/V2#CL_CVRELID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_RELREC/V2#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_RELREC/V2#CL_RDOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_IDVAR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_RELREC/V3#CL_IDVARVAL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_RELTYPE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_RELREC/V2#CL_RELID> ;
 .
-<http://www.cdisc.org/RELREC/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_RELREC/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -2149,15 +2149,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/RELREC/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_RELREC/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "RELREC"^^xsd:string ;
+	isoI:identifier "SDTM MODEL RELREC"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/RELREC/V3#CL_CVIDVARVAL>
+<http://www.cdisc.org/SDTM_MODEL_RELREC/V3#CL_IDVARVAL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Identifying Variable Value"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2168,12 +2168,12 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/SUPPQUAL/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "SUPPQUAL"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/SUPPQUAL/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/SUPPQUAL/V3#CL_SI> ;
-	isoT:hasPreviousVersion <http://www.cdisc.org/SUPPQUAL/V2#CL> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V3#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -2181,18 +2181,18 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/SUPPQUAL/V2#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/SUPPQUAL/V1#CL_CVRDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/SUPPQUAL/V2#CL_CVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/SUPPQUAL/V2#CL_CVIDVAR> ;
-	bd:includesColumn <http://www.cdisc.org/SUPPQUAL/V2#CL_CVIDVARVAL> ;
-	bd:includesColumn <http://www.cdisc.org/SUPPQUAL/V2#CL_CVQNAM> ;
-	bd:includesColumn <http://www.cdisc.org/SUPPQUAL/V1#CL_CVQLABEL> ;
-	bd:includesColumn <http://www.cdisc.org/SUPPQUAL/V1#CL_CVQVAL> ;
-	bd:includesColumn <http://www.cdisc.org/SUPPQUAL/V3#CL_CVQORIG> ;
-	bd:includesColumn <http://www.cdisc.org/SUPPQUAL/V1#CL_CVQEVAL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_RDOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_IDVAR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_IDVARVAL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_QNAM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QLABEL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QVAL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V3#CL_QORIG> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QEVAL> ;
 .
-<http://www.cdisc.org/SUPPQUAL/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -2204,15 +2204,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/SUPPQUAL/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "SUPPQUAL"^^xsd:string ;
+	isoI:identifier "SDTM MODEL SUPPQUAL"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/SUPPQUAL/V3#CL_CVQORIG>
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V3#CL_QORIG>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Origin"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2223,12 +2223,12 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/CO/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_CO/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "CO"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/CO/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/CO/V3#CL_SI> ;
-	isoT:hasPreviousVersion <http://www.cdisc.org/CO/V2#CL> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_CO/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_CO/V3#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_CO/V2#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -2236,19 +2236,19 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/CO/V1#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/CO/V1#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/CO/V2#CL_CVRDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/CO/V1#CL_CVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/CO/V1#CL_CVCOSEQ> ;
-	bd:includesColumn <http://www.cdisc.org/CO/V2#CL_CVIDVAR> ;
-	bd:includesColumn <http://www.cdisc.org/CO/V2#CL_CVIDVARVAL> ;
-	bd:includesColumn <http://www.cdisc.org/CO/V1#CL_CVCOREF> ;
-	bd:includesColumn <http://www.cdisc.org/CO/V3#CL_CVCOVAL> ;
-	bd:includesColumn <http://www.cdisc.org/CO/V1#CL_CVCOEVAL> ;
-	bd:includesColumn <http://www.cdisc.org/CO/V1#CL_CVCODTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_CO/V2#CL_RDOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_COSEQ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_CO/V2#CL_IDVAR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_CO/V2#CL_IDVARVAL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_COREF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_CO/V3#CL_COVAL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_COEVAL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_CODTC> ;
 .
-<http://www.cdisc.org/CO/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_CO/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -2260,15 +2260,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/CO/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_CO/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "CO"^^xsd:string ;
+	isoI:identifier "SDTM MODEL CO"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/CO/V3#CL_CVCOVAL>
+<http://www.cdisc.org/SDTM_MODEL_CO/V3#CL_COVAL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Comment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2279,12 +2279,12 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
 .
-<http://www.cdisc.org/DM/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_DM/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "DM"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/DM/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/DM/V3#CL_SI> ;
-	isoT:hasPreviousVersion <http://www.cdisc.org/DM/V2#CL> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_DM/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_DM/V3#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -2292,36 +2292,36 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/DM/V1#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V1#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V1#CL_CVSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V1#CL_CVRFSTDTC> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V1#CL_CVRFENDTC> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVRFXSTDTC> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVRFXENDTC> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVRFICDTC> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVRFPENDTC> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVDTHDTC> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVDTHFL> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVSITEID> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVINVID> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVINVNAM> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVBRTHDTC> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVAGE> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVAGEU> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVSEX> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V3#CL_CVRACE> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V3#CL_CVETHNIC> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVARMCD> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVARM> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V3#CL_CVACTARMCD> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVACTARM> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVCOUNTRY> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVDMDTC> ;
-	bd:includesColumn <http://www.cdisc.org/DM/V2#CL_CVDMDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_SUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RFSTDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RFENDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_RFXSTDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_RFXENDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_RFICDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_RFPENDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_DTHDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_DTHFL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_SITEID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_INVID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_INVNAM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_BRTHDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_AGE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_AGEU> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_SEX> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V3#CL_RACE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V3#CL_ETHNIC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_ARMCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_ARM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V3#CL_ACTARMCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_ACTARM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_COUNTRY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_DMDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_DMDY> ;
 .
-<http://www.cdisc.org/DM/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_DM/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -2333,15 +2333,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/DM/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_DM/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "DM"^^xsd:string ;
+	isoI:identifier "SDTM MODEL DM"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/DM/V3#CL_CVRACE>
+<http://www.cdisc.org/SDTM_MODEL_DM/V3#CL_RACE>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Race"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2352,7 +2352,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/DM/V3#CL_CVETHNIC>
+<http://www.cdisc.org/SDTM_MODEL_DM/V3#CL_ETHNIC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Ethnicity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2363,7 +2363,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/DM/V3#CL_CVACTARMCD>
+<http://www.cdisc.org/SDTM_MODEL_DM/V3#CL_ACTARMCD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Actual Arm Code"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2374,12 +2374,12 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/SE/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_SE/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "SE"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/SE/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/SE/V3#CL_SI> ;
-	isoT:hasPreviousVersion <http://www.cdisc.org/SE/V2#CL> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_SE/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_SE/V3#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_SE/V2#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -2387,19 +2387,19 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/SE/V1#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/SE/V1#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/SE/V1#CL_CVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/SE/V1#CL_CVSESEQ> ;
-	bd:includesColumn <http://www.cdisc.org/SE/V3#CL_CVETCD> ;
-	bd:includesColumn <http://www.cdisc.org/SE/V2#CL_CVELEMENT> ;
-	bd:includesColumn <http://www.cdisc.org/SE/V1#CL_CVSESTDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SE/V1#CL_CVSEENDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SE/V2#CL_CVTAETORD> ;
-	bd:includesColumn <http://www.cdisc.org/SE/V1#CL_CVEPOCH> ;
-	bd:includesColumn <http://www.cdisc.org/SE/V2#CL_CVSEUPDES> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_SESEQ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SE/V3#CL_ETCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SE/V2#CL_ELEMENT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_SESTDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_SEENDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SE/V2#CL_TAETORD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_EPOCH> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SE/V2#CL_SEUPDES> ;
 .
-<http://www.cdisc.org/SE/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_SE/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -2411,15 +2411,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/SE/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_SE/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "SE"^^xsd:string ;
+	isoI:identifier "SDTM MODEL SE"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/SE/V3#CL_CVETCD>
+<http://www.cdisc.org/SDTM_MODEL_SE/V3#CL_ETCD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Element Code"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2430,12 +2430,12 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
 .
-<http://www.cdisc.org/SV/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_SV/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "SV"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/SV/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/SV/V3#CL_SI> ;
-	isoT:hasPreviousVersion <http://www.cdisc.org/SV/V2#CL> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_SV/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_SV/V3#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_SV/V2#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -2443,19 +2443,19 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/SV/V1#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V1#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V1#CL_CVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V3#CL_CVVISITNUM> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V3#CL_CVVISIT> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V2#CL_CVVISITDY> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V1#CL_CVSVSTDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V1#CL_CVSVENDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V1#CL_CVSVSTDY> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V1#CL_CVSVENDY> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V1#CL_CVSVUPDES> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SV/V3#CL_VISITNUM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SV/V3#CL_VISIT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SV/V2#CL_VISITDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_SVSTDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_SVENDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_SVSTDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_SVENDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_SVUPDES> ;
 .
-<http://www.cdisc.org/SV/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_SV/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -2467,15 +2467,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/SV/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_SV/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "SV"^^xsd:string ;
+	isoI:identifier "SDTM MODEL SV"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/SV/V3#CL_CVVISITNUM>
+<http://www.cdisc.org/SDTM_MODEL_SV/V3#CL_VISITNUM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Visit Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2486,7 +2486,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
 .
-<http://www.cdisc.org/SV/V3#CL_CVVISIT>
+<http://www.cdisc.org/SDTM_MODEL_SV/V3#CL_VISIT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Visit Name"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2497,12 +2497,12 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
 .
-<http://www.cdisc.org/TA/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_TA/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "TA"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/TA/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/TA/V3#CL_SI> ;
-	isoT:hasPreviousVersion <http://www.cdisc.org/TA/V2#CL> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_TA/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_TA/V3#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_TA/V2#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -2510,18 +2510,18 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/TA/V1#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/TA/V1#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/TA/V2#CL_CVARMCD> ;
-	bd:includesColumn <http://www.cdisc.org/TA/V1#CL_CVARM> ;
-	bd:includesColumn <http://www.cdisc.org/TA/V3#CL_CVTAETORD> ;
-	bd:includesColumn <http://www.cdisc.org/TA/V1#CL_CVETCD> ;
-	bd:includesColumn <http://www.cdisc.org/TA/V2#CL_CVELEMENT> ;
-	bd:includesColumn <http://www.cdisc.org/TA/V2#CL_CVTABRANCH> ;
-	bd:includesColumn <http://www.cdisc.org/TA/V1#CL_CVTATRANS> ;
-	bd:includesColumn <http://www.cdisc.org/TA/V2#CL_CVEPOCH> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TA/V2#CL_ARMCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_ARM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TA/V3#CL_TAETORD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_ETCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TA/V2#CL_ELEMENT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TA/V2#CL_TABRANCH> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_TATRANS> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TA/V2#CL_EPOCH> ;
 .
-<http://www.cdisc.org/TA/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_TA/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -2533,15 +2533,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/TA/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_TA/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "TA"^^xsd:string ;
+	isoI:identifier "SDTM MODEL TA"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/TA/V3#CL_CVTAETORD>
+<http://www.cdisc.org/SDTM_MODEL_TA/V3#CL_TAETORD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Planned Order of Element within Arm"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2552,11 +2552,11 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/TD/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_TD/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "TD"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/TD/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/TD/V3#CL_SI> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -2564,17 +2564,17 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#CL_CVTDORDER> ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#CL_CVTDANCVAR> ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#CL_CVTDSTOFF> ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#CL_CVTDTGTPAI> ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#CL_CVTDMINPAI> ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#CL_CVTDMAXPAI> ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#CL_CVTDNUMRPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDORDER> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDANCVAR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDSTOFF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDTGTPAI> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDMINPAI> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDMAXPAI> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDNUMRPT> ;
 .
-<http://www.cdisc.org/TD/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -2586,15 +2586,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/TD/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "TD"^^xsd:string ;
+	isoI:identifier "SDTM MODEL TD"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/TD/V3#CL_CVSTUDYID>
+<http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_STUDYID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Study Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2605,7 +2605,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
 .
-<http://www.cdisc.org/TD/V3#CL_CVDOMAIN>
+<http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_DOMAIN>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Domain Abbreviation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2616,7 +2616,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
 .
-<http://www.cdisc.org/TD/V3#CL_CVTDORDER>
+<http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDORDER>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Sequence of Planned Assessment Schedule"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2627,7 +2627,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/TD/V3#CL_CVTDANCVAR>
+<http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDANCVAR>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Anchor Variable Name"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2638,7 +2638,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/TD/V3#CL_CVTDSTOFF>
+<http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDSTOFF>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Offset from the Anchor"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2649,7 +2649,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/TD/V3#CL_CVTDTGTPAI>
+<http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDTGTPAI>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Planned Assessment Interval"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2660,7 +2660,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/TD/V3#CL_CVTDMINPAI>
+<http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDMINPAI>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Planned Assessment Interval Minimum"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2671,7 +2671,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/TD/V3#CL_CVTDMAXPAI>
+<http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDMAXPAI>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Planned Assessment Interval Maximum"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2682,7 +2682,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/TD/V3#CL_CVTDNUMRPT>
+<http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDNUMRPT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Maximum Number of Actual Assessments"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2693,12 +2693,12 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/TE/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_TE/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "TE"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/TE/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/TE/V3#CL_SI> ;
-	isoT:hasPreviousVersion <http://www.cdisc.org/TE/V2#CL> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_TE/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_TE/V3#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_TE/V2#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -2706,15 +2706,15 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/TE/V1#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/TE/V1#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/TE/V1#CL_CVETCD> ;
-	bd:includesColumn <http://www.cdisc.org/TE/V2#CL_CVELEMENT> ;
-	bd:includesColumn <http://www.cdisc.org/TE/V1#CL_CVTESTRL> ;
-	bd:includesColumn <http://www.cdisc.org/TE/V1#CL_CVTEENRL> ;
-	bd:includesColumn <http://www.cdisc.org/TE/V1#CL_CVTEDUR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_ETCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TE/V2#CL_ELEMENT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_TESTRL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_TEENRL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_TEDUR> ;
 .
-<http://www.cdisc.org/TE/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_TE/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -2726,20 +2726,20 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/TE/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_TE/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "TE"^^xsd:string ;
+	isoI:identifier "SDTM MODEL TE"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/TI/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_TI/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "TI"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/TI/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/TI/V3#CL_SI> ;
-	isoT:hasPreviousVersion <http://www.cdisc.org/TI/V2#CL> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_TI/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_TI/V3#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_TI/V2#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -2747,16 +2747,16 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/TI/V1#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/TI/V1#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/TI/V3#CL_CVIETESTCD> ;
-	bd:includesColumn <http://www.cdisc.org/TI/V2#CL_CVIETEST> ;
-	bd:includesColumn <http://www.cdisc.org/TI/V2#CL_CVIECAT> ;
-	bd:includesColumn <http://www.cdisc.org/TI/V1#CL_CVIESCAT> ;
-	bd:includesColumn <http://www.cdisc.org/TI/V1#CL_CVTIRL> ;
-	bd:includesColumn <http://www.cdisc.org/TI/V1#CL_CVTIVERS> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TI/V3#CL_IETESTCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TI/V2#CL_IETEST> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TI/V2#CL_IECAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_IESCAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_TIRL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_TIVERS> ;
 .
-<http://www.cdisc.org/TI/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_TI/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -2768,15 +2768,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/TI/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_TI/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "TI"^^xsd:string ;
+	isoI:identifier "SDTM MODEL TI"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/TI/V3#CL_CVIETESTCD>
+<http://www.cdisc.org/SDTM_MODEL_TI/V3#CL_IETESTCD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Incl/Excl Criterion Short Name e"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2787,12 +2787,12 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
 .
-<http://www.cdisc.org/TS/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_TS/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "TS"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/TS/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/TS/V3#CL_SI> ;
-	isoT:hasPreviousVersion <http://www.cdisc.org/TS/V2#CL> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_TS/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_TS/V3#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_TS/V2#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -2800,19 +2800,19 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/TS/V1#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/TS/V1#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/TS/V3#CL_CVTSSEQ> ;
-	bd:includesColumn <http://www.cdisc.org/TS/V1#CL_CVTSGRPID> ;
-	bd:includesColumn <http://www.cdisc.org/TS/V1#CL_CVTSPARMCD> ;
-	bd:includesColumn <http://www.cdisc.org/TS/V3#CL_CVTSPARM> ;
-	bd:includesColumn <http://www.cdisc.org/TS/V2#CL_CVTSVAL> ;
-	bd:includesColumn <http://www.cdisc.org/TS/V2#CL_CVTSVALNF> ;
-	bd:includesColumn <http://www.cdisc.org/TS/V2#CL_CVTSVALCD> ;
-	bd:includesColumn <http://www.cdisc.org/TS/V2#CL_CVTSVCDREF> ;
-	bd:includesColumn <http://www.cdisc.org/TS/V2#CL_CVTSVCDVER> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TS/V3#CL_TSSEQ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL_TSGRPID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL_TSPARMCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TS/V3#CL_TSPARM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TS/V2#CL_TSVAL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TS/V2#CL_TSVALNF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TS/V2#CL_TSVALCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TS/V2#CL_TSVCDREF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TS/V2#CL_TSVCDVER> ;
 .
-<http://www.cdisc.org/TS/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_TS/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -2824,15 +2824,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/TS/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_TS/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "TS"^^xsd:string ;
+	isoI:identifier "SDTM MODEL TS"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/TS/V3#CL_CVTSSEQ>
+<http://www.cdisc.org/SDTM_MODEL_TS/V3#CL_TSSEQ>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Sequence Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2843,7 +2843,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
 .
-<http://www.cdisc.org/TS/V3#CL_CVTSPARM>
+<http://www.cdisc.org/SDTM_MODEL_TS/V3#CL_TSPARM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Trial Summary Parameter"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2854,12 +2854,12 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
 .
-<http://www.cdisc.org/TV/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_TV/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "TV"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/TV/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/TV/V3#CL_SI> ;
-	isoT:hasPreviousVersion <http://www.cdisc.org/TV/V2#CL> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_TV/V2#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -2867,17 +2867,17 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/TV/V1#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/TV/V2#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/TV/V3#CL_CVVISITNUM> ;
-	bd:includesColumn <http://www.cdisc.org/TV/V3#CL_CVVISIT> ;
-	bd:includesColumn <http://www.cdisc.org/TV/V3#CL_CVVISITDY> ;
-	bd:includesColumn <http://www.cdisc.org/TV/V3#CL_CVARMCD> ;
-	bd:includesColumn <http://www.cdisc.org/TV/V3#CL_CVARM> ;
-	bd:includesColumn <http://www.cdisc.org/TV/V1#CL_CVTVSTRL> ;
-	bd:includesColumn <http://www.cdisc.org/TV/V1#CL_CVTVENRL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TV/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TV/V2#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_VISITNUM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_VISIT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_VISITDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_ARMCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_ARM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TV/V1#CL_TVSTRL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TV/V1#CL_TVENRL> ;
 .
-<http://www.cdisc.org/TV/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -2889,15 +2889,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/TV/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "TV"^^xsd:string ;
+	isoI:identifier "SDTM MODEL TV"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/TV/V3#CL_CVVISITNUM>
+<http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_VISITNUM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Visit Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2908,7 +2908,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
 .
-<http://www.cdisc.org/TV/V3#CL_CVVISIT>
+<http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_VISIT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Visit Name"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2919,7 +2919,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
 .
-<http://www.cdisc.org/TV/V3#CL_CVVISITDY>
+<http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_VISITDY>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Planned Study Day of Visit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2930,7 +2930,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
 .
-<http://www.cdisc.org/TV/V3#CL_CVARMCD>
+<http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_ARMCD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Planned Arm Code"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2941,7 +2941,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
 .
-<http://www.cdisc.org/TV/V3#CL_CVARM>
+<http://www.cdisc.org/SDTM_MODEL_TV/V3#CL_ARM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Description of Planned Arm"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2952,11 +2952,11 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
 .
-<http://www.cdisc.org/TX/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_TX/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "TX"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/TX/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/TX/V3#CL_SI> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -2964,16 +2964,16 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/TX/V3#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/TX/V3#CL_CVDOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/TX/V3#CL_CVSETCD> ;
-	bd:includesColumn <http://www.cdisc.org/TX/V3#CL_CVSET> ;
-	bd:includesColumn <http://www.cdisc.org/TX/V3#CL_CVTXSEQ> ;
-	bd:includesColumn <http://www.cdisc.org/TX/V3#CL_CVTXPARMCD> ;
-	bd:includesColumn <http://www.cdisc.org/TX/V3#CL_CVTXPARM> ;
-	bd:includesColumn <http://www.cdisc.org/TX/V3#CL_CVTXVAL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_SETCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_SET> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_TXSEQ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_TXPARMCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_TXPARM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_TXVAL> ;
 .
-<http://www.cdisc.org/TX/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -2985,15 +2985,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/TX/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "TX"^^xsd:string ;
+	isoI:identifier "SDTM MODEL TX"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/TX/V3#CL_CVSTUDYID>
+<http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_STUDYID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Study Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3004,7 +3004,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/TX/V3#CL_CVDOMAIN>
+<http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_DOMAIN>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Domain Abbreviation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3015,7 +3015,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/TX/V3#CL_CVSETCD>
+<http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_SETCD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Set Code"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3026,7 +3026,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/TX/V3#CL_CVSET>
+<http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_SET>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Set Description"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3037,7 +3037,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/TX/V3#CL_CVTXSEQ>
+<http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_TXSEQ>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Sequence Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3048,7 +3048,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/TX/V3#CL_CVTXPARMCD>
+<http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_TXPARMCD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Trial Set Parameter Short Name"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3059,7 +3059,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/TX/V3#CL_CVTXPARM>
+<http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_TXPARM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Trial Set Parameter"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3070,7 +3070,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/TX/V3#CL_CVTXVAL>
+<http://www.cdisc.org/SDTM_MODEL_TX/V3#CL_TXVAL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Trial Set Parameter Value"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3081,11 +3081,11 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/POOLDEF/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "POOLDEF"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/POOLDEF/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/POOLDEF/V3#CL_SI> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -3093,12 +3093,12 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/POOLDEF/V3#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/POOLDEF/V3#CL_CVPOOLID> ;
-	bd:includesColumn <http://www.cdisc.org/POOLDEF/V3#CL_CVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/POOLDEF/V3#CL_CVAPID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL_POOLID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL_APID> ;
 .
-<http://www.cdisc.org/POOLDEF/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -3110,15 +3110,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/POOLDEF/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "POOLDEF"^^xsd:string ;
+	isoI:identifier "SDTM MODEL POOLDEF"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/POOLDEF/V3#CL_CVSTUDYID>
+<http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL_STUDYID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Study Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3129,7 +3129,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/POOLDEF/V3#CL_CVPOOLID>
+<http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL_POOLID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Pool Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3140,7 +3140,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/POOLDEF/V3#CL_CVUSUBJID>
+<http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Unique Subject Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3151,7 +3151,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/POOLDEF/V3#CL_CVAPID>
+<http://www.cdisc.org/SDTM_MODEL_POOLDEF/V3#CL_APID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Associated Persons Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3162,11 +3162,11 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/RELSUB/V3#CL>
+<http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL>
 	rdf:type bd:SdtmClass ;
 	isoC:label "RELSUB"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/RELSUB/V3#CL_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/RELSUB/V3#CL_SI> ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -3174,13 +3174,13 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/RELSUB/V3#CL_CVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/RELSUB/V3#CL_CVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/RELSUB/V3#CL_CVPOOLID> ;
-	bd:includesColumn <http://www.cdisc.org/RELSUB/V3#CL_CVRSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/RELSUB/V3#CL_CVSREL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_POOLID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_RSUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_SREL> ;
 .
-<http://www.cdisc.org/RELSUB/V3#CL_RS>
+<http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -3192,15 +3192,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/RELSUB/V3#CL_SI>
+<http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "RELSUB"^^xsd:string ;
+	isoI:identifier "SDTM MODEL RELSUB"^^xsd:string ;
 	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/RELSUB/V3#CL_CVSTUDYID>
+<http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_STUDYID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Study Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3211,7 +3211,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/RELSUB/V3#CL_CVUSUBJID>
+<http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Unique Subject Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3222,7 +3222,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/RELSUB/V3#CL_CVPOOLID>
+<http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_POOLID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Pool Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3233,7 +3233,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/RELSUB/V3#CL_CVRSUBJID>
+<http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_RSUBJID>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Related Subject or Pool Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3244,7 +3244,7 @@
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
 .
-<http://www.cdisc.org/RELSUB/V3#CL_CVSREL>
+<http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_SREL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Subject Relationship"^^xsd:string ;
 	bd:rule ""^^xsd:string ;

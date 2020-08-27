@@ -97,7 +97,6 @@ private
     results[:managed_children].each_with_index do |child, index| 
       previous_info = SdtmClass.latest({scope: child.scope, identifier: child.scoped_identifier})
       previous = previous_info.nil? ? nil : SdtmClass.find_full(previous_info.id) 
-byebug unless previous.nil?      
       actual = child.replace_if_no_change(previous)
       parent.add_no_save(actual, index + 1) # Parent needs ref to child whatever new or previous
       next if actual.uri != child.uri # No changes if actual = previous, so skip next

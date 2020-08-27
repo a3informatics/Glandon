@@ -1,7 +1,6 @@
 class SdtmIgDomain::Variable < Tabulation::Column
 
   configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmDomainVariable",
-            uri_suffix: "DV",
             uri_property: :name
 
   data_property :name

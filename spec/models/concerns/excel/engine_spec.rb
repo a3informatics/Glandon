@@ -95,27 +95,6 @@ describe Excel::Engine do
       @tagged << tag
     end
 
-    def properties
-      @super_properties = super
-      self
-    end
-
-    def property(name)
-      if [:ct, :ct_notes].include? name
-        @property_name = "#{name}"
-        self
-      else
-        @super_properties.property(name)
-      end
-    end
-
-    def set_value(value)
-      self.instance_variable_set("@#{@property_name}", value)
-      @property_name = nil
-    rescue => e
-      byebug
-    end
-
   end
 
   class ParentClass < IsoManagedV2
@@ -663,13 +642,13 @@ describe Excel::Engine do
     child = ChildClass.new
     object.set_property_with_regex({row: 2, col: 1, object: child, can_be_empty: false, mapping: {map: {}}, property: "label", additional: {regex: "^--"}})
     expect(parent.errors.any?).to eq(false)
-    expect(child.label).to eq("true") # Label results look odd but mapped to string not boolean
+    expect(child.label).to eq(true) # Label results look odd but mapped to string not boolean
     object.set_property_with_regex({row: 3, col: 1, object: child, can_be_empty: false, mapping: {map: {}}, property: "label", additional: {regex: "^--"}})
     expect(parent.errors.any?).to eq(false)
-    expect(child.label).to eq("false")
+    expect(child.label).to eq(false)
     object.set_property_with_regex({row: 4, col: 1, object: child, can_be_empty: false, mapping: {map: {}}, property: "label", additional: {regex: "^--"}})
     expect(parent.errors.any?).to eq(false)
-    expect(child.label).to eq("false")
+    expect(child.label).to eq(false)
     object.set_property_with_regex({row: 5, col: 1, object: child, can_be_empty: false, mapping: {map: {}}, property: "label", additional: {regex: "^--"}})
     expect(parent.errors.any?).to eq(true)
     expect(parent.errors.count).to eq(1)

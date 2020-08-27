@@ -59,6 +59,7 @@ describe Import::SdtmIg do
       semantic_version: "1.1.1", job: @job, ct: Uri.new(uri: "http://www.cdisc.org/CT/V60#TH")}
     result = @object.import(params)
     filename = "cdisc_sdtm_ig_#{@object.id}_errors.yml"
+byebug
     public_file_does_not_exist?("test", filename)
     filename = "cdisc_sdtm_ig_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
