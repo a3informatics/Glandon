@@ -31,8 +31,6 @@ class Form::Item::Question < Form::Item
     html = ""
     html += start_row(self.optional)
     html += question_cell(self.question_text)
-    #qa = question_annotations(node[:id], node[:mapping], annotations, options)
-    #html += mapping_cell(qa, options)
     if self.has_coded_value.count == 0
       html += input_field
     else

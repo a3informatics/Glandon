@@ -23,8 +23,6 @@ class Form < IsoManagedV2
 
   def to_crf
     form = self.class.find_full(self.uri)
-    @domain_map = {}
-    @common_map = {}
     html = "<style>"
     html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
     html += "table.crf-input-field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; " 
@@ -49,21 +47,16 @@ class Form < IsoManagedV2
     html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
     html += '</tr>'
     form.has_group.sort_by {|x| x.ordinal}.each do |group|
-  byebug
       html += group.to_crf
     end
     html += '</table>'
     return html
   end
 
-  def build_common_map
-    self.has_group.sort_by {|x| x.ordinal}.each do |group|
-      group.build_common_map
-    end
-  end
-
-  def empty_cell
-    return "<td></td>"
-  end
+  # def build_common_map
+  #   self.has_group.sort_by {|x| x.ordinal}.each do |group|
+  #     group.build_common_map
+  #   end
+  # end
 
 end

@@ -14,11 +14,11 @@ class Form::Item < IsoConceptV2
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
   validates :optional, inclusion: { in: [ true, false ] }
 
-  def build_common_map
-    if self.class == Form::Item::BcProperty
-      self.build_common_map
-    end
-  end
+  # def build_common_map
+  #   if self.class == Form::Item::BcProperty
+  #     self.build_common_map
+  #   end
+  # end
 
   def start_row(optional)
     return '<tr class="warning">' if optional
@@ -86,6 +86,18 @@ class Form::Item < IsoConceptV2
       html += "<td>#{cell}</td>"
     end
     html += "</tr></table>"
+    return html
+  end
+
+  def terminology_cell
+    html = '<td>'
+    self.has_coded_value.each do |cv|
+      tc = Thesaurus::UnmanagedConcept.find(cv.reference)
+      if cv.enabled
+        html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
+      end
+    end
+    html += '</td>'
     return html
   end
 

@@ -13,10 +13,10 @@ class Form::Group::Common < Form::Group
     return html
   end
 
-  def build_common_map
-    self.has_item.sort_by {|x| x.ordinal}.each do |item|
-      item.build_common_map
-    end
-  end
+  # def build_common_map
+  #   self.has_item.sort_by {|x| x.ordinal}.each do |item|
+  #     item.build_common_map
+  #   end
+  # end
 
 end
