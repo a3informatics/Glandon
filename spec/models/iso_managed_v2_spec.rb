@@ -100,6 +100,7 @@ describe "IsoManagedV2" do
           :creation_date => "2016-01-01T00:00:00+00:00",
           :last_change_date => "2016-01-01T00:00:00+00:00",
           :explanatory_comment => "",
+          :has_previous_version => nil,
           :id => nil,
           tagged: []
         }
@@ -174,7 +175,7 @@ describe "IsoManagedV2" do
       expect(item.new_version?).to eq(false)
       expect(item.next_integer_version).to eq(2)
       expect(item.next_semantic_version.to_s).to eq("0.2.0")
-      expect(item.first_version).to eq(1)
+      expect(item.first_integer_version).to eq(1)
     end
 
     it "allows next version for an identifier to be determned" do
@@ -752,7 +753,7 @@ describe "IsoManagedV2" do
       item.has_identifier.has_scope = IsoNamespace.new
       item.has_identifier.version = 1
       expect(IsoScopedIdentifierV2).to receive(:exists?).with("XXX", instance_of(IsoNamespace)).and_return(true)
-      expect(IsoScopedIdentifierV2).to receive(:latest_version).with("XXX", instance_of(IsoNamespace)).and_return(4)
+      expect(IsoScopedIdentifierV2).to receive(:latest_integer_version).with("XXX", instance_of(IsoNamespace)).and_return(4)
       expect(item.create_permitted?).to eq(false)
       expect(item.errors.count).to eq(1)
       expect(item.errors.full_messages.to_sentence).to eq("The item cannot be created. The identifier is already in use.")
@@ -765,7 +766,7 @@ describe "IsoManagedV2" do
       item.has_identifier.has_scope = IsoNamespace.new
       item.has_identifier.version = 2
       expect(IsoScopedIdentifierV2).to receive(:exists?).with("XXX", instance_of(IsoNamespace)).and_return(false)
-      expect(IsoScopedIdentifierV2).to receive(:latest_version).with("XXX", instance_of(IsoNamespace)).and_return(0)
+      expect(IsoScopedIdentifierV2).to receive(:latest_integer_version).with("XXX", instance_of(IsoNamespace)).and_return(0)
       expect(item.create_permitted?).to eq(false)
       expect(item.errors.count).to eq(1)
       expect(item.errors.full_messages.to_sentence).to eq("The item cannot be created. Identifier does not exist but version [2] error.")
@@ -778,7 +779,7 @@ describe "IsoManagedV2" do
       item.has_identifier.has_scope = IsoNamespace.new
       item.has_identifier.version = 2
       expect(IsoScopedIdentifierV2).to receive(:exists?).with("XXX", instance_of(IsoNamespace)).and_return(true)
-      expect(IsoScopedIdentifierV2).to receive(:latest_version).with("XXX", instance_of(IsoNamespace)).and_return(1)
+      expect(IsoScopedIdentifierV2).to receive(:latest_integer_version).with("XXX", instance_of(IsoNamespace)).and_return(1)
       expect(item.create_permitted?).to eq(true)
       expect(item.errors.count).to eq(0)
     end
@@ -790,7 +791,7 @@ describe "IsoManagedV2" do
       item.has_identifier.has_scope = IsoNamespace.new
       item.has_identifier.version = 5
       expect(IsoScopedIdentifierV2).to receive(:exists?).with("XXX", instance_of(IsoNamespace)).and_return(true)
-      expect(IsoScopedIdentifierV2).to receive(:latest_version).with("XXX", instance_of(IsoNamespace)).and_return(4)
+      expect(IsoScopedIdentifierV2).to receive(:latest_integer_version).with("XXX", instance_of(IsoNamespace)).and_return(4)
       expect(item.create_permitted?).to eq(true)
       expect(item.errors.count).to eq(0)
     end
@@ -802,7 +803,7 @@ describe "IsoManagedV2" do
       item.has_identifier.has_scope = IsoNamespace.new
       item.has_identifier.version = 3
       expect(IsoScopedIdentifierV2).to receive(:exists?).with("XXX", instance_of(IsoNamespace)).and_return(true)
-      expect(IsoScopedIdentifierV2).to receive(:latest_version).with("XXX", instance_of(IsoNamespace)).and_return(4)
+      expect(IsoScopedIdentifierV2).to receive(:latest_integer_version).with("XXX", instance_of(IsoNamespace)).and_return(4)
       expect(item.create_permitted?).to eq(false)
       expect(item.errors.count).to eq(1)
       expect(item.errors.full_messages.to_sentence).to eq("The item cannot be created. The identifier is already in use.")
