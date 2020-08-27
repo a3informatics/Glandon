@@ -8,7 +8,7 @@ class IsoManagedV2 < IsoConceptV2
 
   object_property :has_state, cardinality: :one, model_class: "IsoRegistrationStateV2"
   object_property :has_identifier, cardinality: :one, model_class: "IsoScopedIdentifierV2"
-  object_property :has_previous_version, cardinality: :one, model_class: "IsoManagedV2"
+  object_property :has_previous_version, cardinality: :one, model_class: "IsoManagedV2", delete_exclude: true, read_exclude: true
   data_property :origin
   data_property :change_description
   data_property :creation_date
