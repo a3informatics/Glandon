@@ -7,6 +7,13 @@ class SdtmVariableName
     set_data(name, domain_prefix)
   end
 
+  # Name
+  #
+  # @return returns the full name
+  def name
+    "#{@domain_prefix}#{@stem}"
+  end
+
   # Prefixed?
   #
   # @return returns true if prefixed, otherwise false

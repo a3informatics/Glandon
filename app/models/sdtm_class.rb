@@ -5,11 +5,13 @@ class SdtmClass < Tabulation
   
   def find_variable(variable_name, domain_prefix)
     variable = SdtmVariableName.new(variable_name, domain_prefix)
+    search_clause = "{?s bd:name '#{variable.generic_prefix}'}"
+    search_clause += " UNION {?s bd:name '#{variable.name}'}" unless variable.generic_prefix == variable.name
     query_string = %Q{
       SELECT DISTINCT ?s WHERE
       {
         #{self.uri.to_ref} bd:includesColumn ?s .
-        ?s bd:name '#{variable.generic_prefix}' .
+        #{search_clause}
       }
     }
     self.class.find_single(query_string, [:bd])

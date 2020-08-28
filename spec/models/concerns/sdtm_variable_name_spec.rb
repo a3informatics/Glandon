@@ -4,13 +4,15 @@ describe SdtmVariableName do
 	
 	it "checks if name prefixed I" do
 		expect(SdtmVariableName.new("--XXXXXX").prefixed?).to eq(true)
+    expect(SdtmVariableName.new("--XXXXXX").name).to eq("XXXXXX")
 	end
 
   it "checks if name prefixed II" do
     expect(SdtmVariableName.new("YYXXXXXX", "YY").prefixed?).to eq(true)
+    expect(SdtmVariableName.new("YYXXXXXX").name).to eq("YYXXXXXX")
   end
 
-  it "checks if name not prefixe, I" do
+  it "checks if name not prefixed, I" do
     expect(SdtmVariableName.new("YYXXXXXX").prefixed?).to eq(false)
   end
 
@@ -24,6 +26,7 @@ describe SdtmVariableName do
 
   it "replaces alpha prefix II" do
     expect(SdtmVariableName.new("CCCC").alpha_prefix).to eq("CCCC")
+    expect(SdtmVariableName.new("CCCC").name).to eq("CCCC")
   end
 
   it "replaces generic prefix I" do

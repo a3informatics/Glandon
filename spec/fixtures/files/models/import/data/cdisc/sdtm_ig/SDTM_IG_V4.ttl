@@ -594,12 +594,12 @@
 	bd:includesColumn <http://www.cdisc.org/CO/V4#DOMAIN> ;
 	bd:includesColumn <http://www.cdisc.org/CO/V4#RDOMAIN> ;
 	bd:includesColumn <http://www.cdisc.org/CO/V4#USUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/CO/V1#COSEQ> ;
+	bd:includesColumn <http://www.cdisc.org/CO/V4#COSEQ> ;
 	bd:includesColumn <http://www.cdisc.org/CO/V4#IDVAR> ;
 	bd:includesColumn <http://www.cdisc.org/CO/V4#IDVARVAL> ;
 	bd:includesColumn <http://www.cdisc.org/CO/V4#COREF> ;
-	bd:includesColumn <http://www.cdisc.org/CO/V3#COVAL> ;
-	bd:includesColumn <http://www.cdisc.org/CO/V1#COEVAL> ;
+	bd:includesColumn <http://www.cdisc.org/CO/V4#COVAL> ;
+	bd:includesColumn <http://www.cdisc.org/CO/V4#COEVAL> ;
 	bd:includesColumn <http://www.cdisc.org/CO/V4#COEVALID> ;
 	bd:includesColumn <http://www.cdisc.org/CO/V4#CODTC> ;
 	bd:includesColumn <http://www.cdisc.org/CO/V4#CODY> ;
@@ -675,6 +675,18 @@
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_CO/V6#CL_USUBJID> ;
 .
+<http://www.cdisc.org/CO/V4#COSEQ>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Sequence Number"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "COSEQ"^^xsd:string ;
+	bd:description "Sequence Number given to ensure uniqueness of subject records within a domain. May be any valid number."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_CO/V6#CL_COSEQ> ;
+.
 <http://www.cdisc.org/CO/V4#IDVAR>
 	rdf:type bd:SdtmDomainVariable ;
 	isoC:label "Identifying Variable"^^xsd:string ;
@@ -709,6 +721,31 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_CO/V6#CL_COREF> ;
+.
+<http://www.cdisc.org/CO/V4#COVAL>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Comment"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:name "COVAL"^^xsd:string ;
+	bd:description "The text of the comment. Text over 200 characters can be added to additional columns COVAL1-COVALn. See Assumption 3."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_CO/V6#CL_COVAL> ;
+.
+<http://www.cdisc.org/CO/V4#COEVAL>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Evaluator"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:name "COEVAL"^^xsd:string ;
+	bd:description "Used to describe the originator of the comment. Examples: CENTRAL, REVIEWER, ADJUDICATION COMMITTEE, PRINCIPAL INVESTIGATOR."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_CO/V6#CL_COEVAL> ;
 .
 <http://www.cdisc.org/CO/V4#COEVALID>
 	rdf:type bd:SdtmDomainVariable ;
@@ -721,6 +758,7 @@
 	bd:ctAndFormat "(MEDEVAL)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 	bd:ctReference <http://www.cdisc.org/CO/V4#COEVALID_TMC1> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_CO/V6#CL_COEVALID> ;
 .
 <http://www.cdisc.org/CO/V4#COEVALID_TMC1>
 	rdf:type bo:TMcReference ;
@@ -741,6 +779,7 @@
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_CO/V6#CL_CODTC> ;
 .
 <http://www.cdisc.org/CO/V4#CODY>
 	rdf:type bd:SdtmDomainVariable ;
@@ -752,6 +791,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_CO/V6#CL_CODY> ;
 .
 <http://www.cdisc.org/DM/V4>
 	rdf:type bd:SdtmDomain ;
@@ -1216,6 +1256,7 @@
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V6#CL_DMDTC> ;
 .
 <http://www.cdisc.org/DM/V4#DMDY>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1227,6 +1268,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V6#CL_DMDY> ;
 .
 <http://www.cdisc.org/SE/V4>
 	rdf:type bd:SdtmDomain ;
@@ -1322,6 +1364,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SE/V6#CL_SESEQ> ;
 .
 <http://www.cdisc.org/SE/V4#ETCD>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1391,6 +1434,7 @@
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SE/V6#CL_SESTDTC> ;
 .
 <http://www.cdisc.org/SE/V4#SEENDTC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1402,6 +1446,7 @@
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SE/V6#CL_SEENDTC> ;
 .
 <http://www.cdisc.org/SE/V4#SEUPDES>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1413,6 +1458,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SE/V6#CL_SEUPDES> ;
 .
 <http://www.cdisc.org/SM/V4>
 	rdf:type bd:SdtmDomain ;
@@ -1506,6 +1552,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SM/V6#CL_SMSEQ> ;
 .
 <http://www.cdisc.org/SM/V4#MIDS>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1541,6 +1588,7 @@
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SM/V6#CL_SMSTDTC> ;
 .
 <http://www.cdisc.org/SM/V4#SMENDTC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1552,6 +1600,7 @@
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SM/V6#CL_SMENDTC> ;
 .
 <http://www.cdisc.org/SM/V4#SMSTDY>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1563,6 +1612,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SM/V6#CL_SMSTDY> ;
 .
 <http://www.cdisc.org/SM/V4#SMENDY>
 	rdf:type bd:SdtmDomainVariable ;
@@ -1574,6 +1624,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SM/V6#CL_SMENDY> ;
 .
 <http://www.cdisc.org/SV/V4>
 	rdf:type bd:SdtmDomain ;
@@ -1594,11 +1645,11 @@
 	bd:includesColumn <http://www.cdisc.org/SV/V4#VISITNUM> ;
 	bd:includesColumn <http://www.cdisc.org/SV/V4#VISIT> ;
 	bd:includesColumn <http://www.cdisc.org/SV/V4#VISITDY> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V1#SVSTDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V1#SVENDTC> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V1#SVSTDY> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V1#SVENDY> ;
-	bd:includesColumn <http://www.cdisc.org/SV/V1#SVUPDES> ;
+	bd:includesColumn <http://www.cdisc.org/SV/V4#SVSTDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SV/V4#SVENDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SV/V4#SVSTDY> ;
+	bd:includesColumn <http://www.cdisc.org/SV/V4#SVENDY> ;
+	bd:includesColumn <http://www.cdisc.org/SV/V4#SVUPDES> ;
 	bd:prefix "SV"^^xsd:string ;
 	bd:structure "One record per subject per actual visit"^^xsd:string ;
 	bd:basedOnClass <http://www.cdisc.org/SDTM_MODEL_SV/V6#CL> ;
@@ -1694,6 +1745,66 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SV/V2#CL_VISITDY> ;
+.
+<http://www.cdisc.org/SV/V4#SVSTDTC>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Start Date/Time of Visit"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:name "SVSTDTC"^^xsd:string ;
+	bd:description "Start date/time for a Visit."^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SV/V6#CL_SVSTDTC> ;
+.
+<http://www.cdisc.org/SV/V4#SVENDTC>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "End Date/Time of Visit"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:name "SVENDTC"^^xsd:string ;
+	bd:description "End date/time of a Visit."^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SV/V6#CL_SVENDTC> ;
+.
+<http://www.cdisc.org/SV/V4#SVSTDY>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Study Day of Start of Visit"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:name "SVSTDY"^^xsd:string ;
+	bd:description "Study day of start of visit relative to the sponsor-defined RFSTDTC."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_SVSTDY> ;
+.
+<http://www.cdisc.org/SV/V4#SVENDY>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Study Day of End of Visit"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:name "SVENDY"^^xsd:string ;
+	bd:description "Study day of end of visit relative to the sponsor-defined RFSTDTC."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_SVENDY> ;
+.
+<http://www.cdisc.org/SV/V4#SVUPDES>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Description of Unplanned Visit"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "11"^^xsd:positiveInteger ;
+	bd:name "SVUPDES"^^xsd:string ;
+	bd:description "Description of what happened to the subject during an unplanned visit."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SV/V6#CL_SVUPDES> ;
 .
 <http://www.cdisc.org/AG/V4>
 	rdf:type bd:SdtmDomain ;
@@ -28836,7 +28947,7 @@
 	bd:includesColumn <http://www.cdisc.org/TA/V4#DOMAIN> ;
 	bd:includesColumn <http://www.cdisc.org/TA/V4#ARMCD> ;
 	bd:includesColumn <http://www.cdisc.org/TA/V4#ARM> ;
-	bd:includesColumn <http://www.cdisc.org/TA/V3#TAETORD> ;
+	bd:includesColumn <http://www.cdisc.org/TA/V4#TAETORD> ;
 	bd:includesColumn <http://www.cdisc.org/TA/V4#ETCD> ;
 	bd:includesColumn <http://www.cdisc.org/TA/V4#ELEMENT> ;
 	bd:includesColumn <http://www.cdisc.org/TA/V4#TABRANCH> ;
@@ -28914,6 +29025,18 @@
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TA/V6#CL_ARM> ;
 .
+<http://www.cdisc.org/TA/V4#TAETORD>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Planned Order of Element within Arm"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "TAETORD"^^xsd:string ;
+	bd:description "Number that gives the order of the Element within the Arm."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TA/V6#CL_TAETORD> ;
+.
 <http://www.cdisc.org/TA/V4#ETCD>
 	rdf:type bd:SdtmDomainVariable ;
 	isoC:label "Element Code"^^xsd:string ;
@@ -28948,6 +29071,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TA/V6#CL_TABRANCH> ;
 .
 <http://www.cdisc.org/TA/V4#TATRANS>
 	rdf:type bd:SdtmDomainVariable ;
@@ -28959,6 +29083,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TA/V6#CL_TATRANS> ;
 .
 <http://www.cdisc.org/TA/V4#EPOCH>
 	rdf:type bd:SdtmDomainVariable ;
@@ -28999,9 +29124,9 @@
 	bd:includesColumn <http://www.cdisc.org/TE/V4#DOMAIN> ;
 	bd:includesColumn <http://www.cdisc.org/TE/V4#ETCD> ;
 	bd:includesColumn <http://www.cdisc.org/TE/V4#ELEMENT> ;
-	bd:includesColumn <http://www.cdisc.org/TE/V1#TESTRL> ;
-	bd:includesColumn <http://www.cdisc.org/TE/V1#TEENRL> ;
-	bd:includesColumn <http://www.cdisc.org/TE/V1#TEDUR> ;
+	bd:includesColumn <http://www.cdisc.org/TE/V4#TESTRL> ;
+	bd:includesColumn <http://www.cdisc.org/TE/V4#TEENRL> ;
+	bd:includesColumn <http://www.cdisc.org/TE/V4#TEDUR> ;
 	bd:prefix "TE"^^xsd:string ;
 	bd:structure "One record per planned Element"^^xsd:string ;
 	bd:basedOnClass <http://www.cdisc.org/SDTM_MODEL_TE/V6#CL> ;
@@ -29074,6 +29199,42 @@
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TE/V6#CL_ELEMENT> ;
 .
+<http://www.cdisc.org/TE/V4#TESTRL>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Rule for Start of Element"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "TESTRL"^^xsd:string ;
+	bd:description "Expresses rule for beginning Element."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TE/V6#CL_TESTRL> ;
+.
+<http://www.cdisc.org/TE/V4#TEENRL>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Rule for End of Element"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:name "TEENRL"^^xsd:string ;
+	bd:description "Expresses rule for ending Element. Either TEENRL or TEDUR must be present for each Element."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TE/V6#CL_TEENRL> ;
+.
+<http://www.cdisc.org/TE/V4#TEDUR>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Planned Duration of Element"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:name "TEDUR"^^xsd:string ;
+	bd:description "Planned Duration of Element in ISO 8601 format. Used when the rule for ending the Element is applied after a fixed duration."^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TE/V6#CL_TEDUR> ;
+.
 <http://www.cdisc.org/TV/V4>
 	rdf:type bd:SdtmDomain ;
 	isoC:label "Trial Visits"^^xsd:string ;
@@ -29094,8 +29255,8 @@
 	bd:includesColumn <http://www.cdisc.org/TV/V4#VISITDY> ;
 	bd:includesColumn <http://www.cdisc.org/TV/V4#ARMCD> ;
 	bd:includesColumn <http://www.cdisc.org/TV/V4#ARM> ;
-	bd:includesColumn <http://www.cdisc.org/TV/V1#TVSTRL> ;
-	bd:includesColumn <http://www.cdisc.org/TV/V1#TVENRL> ;
+	bd:includesColumn <http://www.cdisc.org/TV/V4#TVSTRL> ;
+	bd:includesColumn <http://www.cdisc.org/TV/V4#TVENRL> ;
 	bd:prefix "TV"^^xsd:string ;
 	bd:structure "One record per planned Visit per Arm"^^xsd:string ;
 	bd:basedOnClass <http://www.cdisc.org/SDTM_MODEL_TV/V6#CL> ;
@@ -29204,6 +29365,30 @@
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TV/V6#CL_ARM> ;
 .
+<http://www.cdisc.org/TV/V4#TVSTRL>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Visit Start Rule"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:name "TVSTRL"^^xsd:string ;
+	bd:description "Rule describing when the Visit starts, in relation to the sequence of Elements."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TV/V6#CL_TVSTRL> ;
+.
+<http://www.cdisc.org/TV/V4#TVENRL>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Visit End Rule"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:name "TVENRL"^^xsd:string ;
+	bd:description "Rule describing when the Visit ends, in relation to the sequence of Elements."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TV/V6#CL_TVENRL> ;
+.
 <http://www.cdisc.org/TD/V4>
 	rdf:type bd:SdtmDomain ;
 	isoC:label "Trial Disease Assessments"^^xsd:string ;
@@ -29219,12 +29404,12 @@
 	bd:ordinal "1"^^xsd:positiveInteger ;
 	bd:includesColumn <http://www.cdisc.org/TD/V4#STUDYID> ;
 	bd:includesColumn <http://www.cdisc.org/TD/V4#DOMAIN> ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#TDORDER> ;
+	bd:includesColumn <http://www.cdisc.org/TD/V4#TDORDER> ;
 	bd:includesColumn <http://www.cdisc.org/TD/V4#TDANCVAR> ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#TDSTOFF> ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#TDTGTPAI> ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#TDMINPAI> ;
-	bd:includesColumn <http://www.cdisc.org/TD/V3#TDMAXPAI> ;
+	bd:includesColumn <http://www.cdisc.org/TD/V4#TDSTOFF> ;
+	bd:includesColumn <http://www.cdisc.org/TD/V4#TDTGTPAI> ;
+	bd:includesColumn <http://www.cdisc.org/TD/V4#TDMINPAI> ;
+	bd:includesColumn <http://www.cdisc.org/TD/V4#TDMAXPAI> ;
 	bd:includesColumn <http://www.cdisc.org/TD/V4#TDNUMRPT> ;
 	bd:prefix "TD"^^xsd:string ;
 	bd:structure "One record per planned constant assessment period"^^xsd:string ;
@@ -29274,6 +29459,18 @@
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TD/V6#CL_DOMAIN> ;
 .
+<http://www.cdisc.org/TD/V4#TDORDER>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Sequence of Planned Assessment Schedule"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:name "TDORDER"^^xsd:string ;
+	bd:description "A number given to ensure ordinal sequencing of the planned assessment schedules within a trial."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TD/V3#CL_TDORDER> ;
+.
 <http://www.cdisc.org/TD/V4#TDANCVAR>
 	rdf:type bd:SdtmDomainVariable ;
 	isoC:label "Anchor Variable Name"^^xsd:string ;
@@ -29284,6 +29481,55 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TD/V6#CL_TDANCVAR> ;
+.
+<http://www.cdisc.org/TD/V4#TDSTOFF>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Offset from the Anchor"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "TDSTOFF"^^xsd:string ;
+	bd:description "A fixed offset from the date provided by the variable referenced in TDANCVAR. This is used when the timing of planned cycles does not start on the exact day referenced in the variable indicated in TDANCVAR. The value of this variable will be either zero or a positive value and will be represented in ISO 8601 character format."^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TD/V6#CL_TDSTOFF> ;
+.
+<http://www.cdisc.org/TD/V4#TDTGTPAI>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Planned Assessment Interval"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:name "TDTGTPAI"^^xsd:string ;
+	bd:description "The planned interval between disease assessments represented in ISO 8601 character format."^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TD/V6#CL_TDTGTPAI> ;
+.
+<http://www.cdisc.org/TD/V4#TDMINPAI>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Planned Assessment Interval Minimum"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:name "TDMINPAI"^^xsd:string ;
+	bd:description "The lower limit of the allowed range for the planned interval between disease assessments represented in ISO 8601 character format."^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TD/V6#CL_TDMINPAI> ;
+.
+<http://www.cdisc.org/TD/V4#TDMAXPAI>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Planned Assessment Interval Maximum"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:name "TDMAXPAI"^^xsd:string ;
+	bd:description "The upper limit of the allowed range for the planned interval between disease assessments represented in ISO 8601 character format."^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TD/V6#CL_TDMAXPAI> ;
 .
 <http://www.cdisc.org/TD/V4#TDNUMRPT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -29295,6 +29541,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TD/V6#CL_TDNUMRPT> ;
 .
 <http://www.cdisc.org/TM/V4>
 	rdf:type bd:SdtmDomain ;
@@ -29383,6 +29630,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TM/V6#CL_TMDEF> ;
 .
 <http://www.cdisc.org/TM/V4#TMRPT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -29395,6 +29643,7 @@
 	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 	bd:ctReference <http://www.cdisc.org/TM/V4#TMRPT_TMC1> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TM/V6#CL_TMRPT> ;
 .
 <http://www.cdisc.org/TM/V4#TMRPT_TMC1>
 	rdf:type bo:TMcReference ;
@@ -29425,7 +29674,7 @@
 	bd:includesColumn <http://www.cdisc.org/TI/V4#IECAT> ;
 	bd:includesColumn <http://www.cdisc.org/TI/V4#IESCAT> ;
 	bd:includesColumn <http://www.cdisc.org/TI/V4#TIRL> ;
-	bd:includesColumn <http://www.cdisc.org/TI/V1#TIVERS> ;
+	bd:includesColumn <http://www.cdisc.org/TI/V4#TIVERS> ;
 	bd:prefix "TI"^^xsd:string ;
 	bd:structure "One record per I/E crierion"^^xsd:string ;
 	bd:basedOnClass <http://www.cdisc.org/SDTM_MODEL_TI/V6#CL> ;
@@ -29542,6 +29791,19 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TI/V6#CL_TIRL> ;
+.
+<http://www.cdisc.org/TI/V4#TIVERS>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Protocol Criteria Versions"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:name "TIVERS"^^xsd:string ;
+	bd:description "The number of this version of the Inclusion/Exclusion criteria. May be omitted if there is only one version."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TI/V6#CL_TIVERS> ;
 .
 <http://www.cdisc.org/TS/V4>
 	rdf:type bd:SdtmDomain ;
@@ -29565,8 +29827,8 @@
 	bd:includesColumn <http://www.cdisc.org/TS/V4#TSVAL> ;
 	bd:includesColumn <http://www.cdisc.org/TS/V4#TSVALNF> ;
 	bd:includesColumn <http://www.cdisc.org/TS/V4#TSVALCD> ;
-	bd:includesColumn <http://www.cdisc.org/TS/V2#TSVCDREF> ;
-	bd:includesColumn <http://www.cdisc.org/TS/V2#TSVCDVER> ;
+	bd:includesColumn <http://www.cdisc.org/TS/V4#TSVCDREF> ;
+	bd:includesColumn <http://www.cdisc.org/TS/V4#TSVCDVER> ;
 	bd:prefix "TS"^^xsd:string ;
 	bd:structure "One record per trial summary parameter value"^^xsd:string ;
 	bd:basedOnClass <http://www.cdisc.org/SDTM_MODEL_TS/V6#CL> ;
@@ -29625,6 +29887,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V6#CL_TSSEQ> ;
 .
 <http://www.cdisc.org/TS/V4#TSGRPID>
 	rdf:type bd:SdtmDomainVariable ;
@@ -29636,6 +29899,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V6#CL_TSGRPID> ;
 .
 <http://www.cdisc.org/TS/V4#TSPARMCD>
 	rdf:type bd:SdtmDomainVariable ;
@@ -29648,6 +29912,7 @@
 	bd:ctAndFormat "(TSPARMCD)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 	bd:ctReference <http://www.cdisc.org/TS/V4#TSPARMCD_TMC1> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V6#CL_TSPARMCD> ;
 .
 <http://www.cdisc.org/TS/V4#TSPARMCD_TMC1>
 	rdf:type bo:TMcReference ;
@@ -29669,6 +29934,7 @@
 	bd:ctAndFormat "(TSPARM)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 	bd:ctReference <http://www.cdisc.org/TS/V4#TSPARM_TMC1> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V6#CL_TSPARM> ;
 .
 <http://www.cdisc.org/TS/V4#TSPARM_TMC1>
 	rdf:type bo:TMcReference ;
@@ -29689,6 +29955,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V6#CL_TSVAL> ;
 .
 <http://www.cdisc.org/TS/V4#TSVALNF>
 	rdf:type bd:SdtmDomainVariable ;
@@ -29700,6 +29967,7 @@
 	bd:format "ISO 21090 NullFlavor enumeration"^^xsd:string ;
 	bd:ctAndFormat "ISO 21090 NullFlavor enumeration"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V6#CL_TSVALNF> ;
 .
 <http://www.cdisc.org/TS/V4#TSVALCD>
 	rdf:type bd:SdtmDomainVariable ;
@@ -29711,6 +29979,31 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V6#CL_TSVALCD> ;
+.
+<http://www.cdisc.org/TS/V4#TSVCDREF>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Name of the Reference Terminology"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:name "TSVCDREF"^^xsd:string ;
+	bd:description "The name of the Reference Terminology from which TSVALCD is taken. For example; CDISC, SNOMED, ISO 8601."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V6#CL_TSVCDREF> ;
+.
+<http://www.cdisc.org/TS/V4#TSVCDVER>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Version of the Reference Terminology"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "11"^^xsd:positiveInteger ;
+	bd:name "TSVCDVER"^^xsd:string ;
+	bd:description "The version number of the Reference Terminology, if applicable."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V6#CL_TSVCDVER> ;
 .
 <http://www.cdisc.org/RELREC/V4>
 	rdf:type bd:SdtmDomain ;
