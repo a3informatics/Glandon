@@ -100,11 +100,9 @@ private
     # Add terminology
     filtered.each_with_index do |domain, index| 
 puts colourize("Domain: #{domain.prefix}, Class: #{get_temporary(domain,"referenced_class")}", "green")
-      domain.based_on_class = find_base_class(domain)
-puts colourize("Domain: #{domain.prefix}, No class found.", "red") if domain.based_on_class.nil?
+      found = find_base_class(domain)
       domain.children.each do |variable|
-#        variable.based_on_class_variable = find_base_class_variable(domain.based_on_class)
-#        variable.is_a = variable.based_on_class_variable.is_a
+        found = find_base_class_variable(domain.based_on_class, domain, variable)
         next if variable.ct_and_format.empty?
         notations = extract_notations(variable.ct_and_format) 
         notations.each do |notation|
@@ -121,14 +119,22 @@ puts colourize("***** Error finding CT Ref: #{notation} *****", "red") if cl.emp
   end
 
   def find_base_class(domain)
-    @model.find_class(class_identifier(get_temporary(domain, "referenced_class"), domain.prefix))
+    uri = @model.find_class(class_identifier(get_temporary(domain, "referenced_class"), domain.prefix))
+puts colourize("Domain: #{domain.prefix}, No class found.", "red") if uri.nil?
+    return false if uri.nil?
+    domain.based_on_class = ::SdtmClass.find_minimum(uri)
+    true
   end
 
-#  def find_base_class_variable(the_class, variable)
-#    return nil if class.nil?
-#    result = the_class.find_variable(variable.name)
-#    SdtmModel::Variable.find(result)
-#  end
+  def find_base_class_variable(the_class, domain, variable)
+    return false if the_class.nil?
+    result = the_class.find_variable(variable.name, domain.prefix)
+puts colourize("***** Error finding variable: #{variable.name} *****", "red") if result.nil?
+    return false if result.nil?
+    variable.based_on_class_variable = SdtmClass::Variable.find(result)
+    variable.is_a = variable.based_on_class_variable.is_a
+    true
+  end
 
   def extract_notations(value)
     temp = value.scan(/\(\w+\)*/)
