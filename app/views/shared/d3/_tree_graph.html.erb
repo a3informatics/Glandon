@@ -1,0 +1,35 @@
+<%= stylesheet_link_tag 'shared/d3/d3_graph' %>
+
+<div class="d3 d3-tree" id="d3">
+
+  <div class="btns-wrap">
+
+    <button class="btn white ttip" id='center-graph'>
+      <span class='icon-center'></span>
+      <span class='ttip-text text-small shadow-small text-medium'>Center graph</span>
+    </button>
+    <button class="btn white ttip" id='collapse-except-graph'>
+      <span class='icon-collapse-special'></span>
+      <span class='ttip-text text-small shadow-small text-medium'>Collapse all nodes but selected</span>
+    </button>
+    <button class="btn white ttip" id='collapse-graph'>
+      <span class='icon-collapse'></span>
+      <span class='ttip-text text-small shadow-small text-medium'>Collapse all nodes</span>
+    </button>
+    <button class="btn white ttip" id='expand-graph'>
+      <span class='icon-expand'></span>
+      <span class='ttip-text text-small shadow-small text-medium'>Expand all nodes</span>
+    </button>
+
+    <div class="form-wrap">
+      <div class="form-group">
+        <input id="d3-search" type="text" value="" placeholder="Search graph"/>
+        <span class="font-light text-light text-xtiny" id="d3-search-count" style="margin: 0 4px"> (0) </span>
+        <span class="icon-times clickable text-link text-xtiny" id="d3-clear-search"></span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

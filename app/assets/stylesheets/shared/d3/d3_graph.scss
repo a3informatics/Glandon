@@ -1,0 +1,87 @@
+@import 'shared/vars';
+
+// General
+
+.d3 .btns-wrap {
+	position: absolute;
+	width: auto;
+	height: 50px;
+	left: 50%;
+	transform: translateX(-50%);
+	align-items: baseline;
+	background: rgba(255,255,255,0.8);
+	border-radius: 10px;
+}
+
+.d3 #d3-search {
+	margin-left: 10px;
+	background: white;
+}
+
+// Nodes and link styles
+
+.d3 .node {
+	cursor: pointer;
+}
+
+.d3 .node .label-border {
+  stroke-width: 1px;
+  stroke: $grey-light;
+  fill: white;
+  height: 22px;
+}
+
+.d3 .node circle {
+}
+
+.d3 .node .icon {
+	font-size: 20px;
+}
+
+.d3 .node text {
+	font-size: 9pt;
+}
+
+.d3 .link {
+	stroke: #ddd;
+	stroke-width: 1.5px;
+}
+
+.d3 .node.search-match .label-border {
+	stroke: $accent-color-2-light !important;
+	stroke-width: 3px !important;
+}
+
+.d3 .node.search-match .label {
+	fill: $accent-color-2-dark;
+}
+
+// Loading
+
+.d3.loading .btn, .d3.loading .clickable, .d3.loading svg {
+	pointer-events: none;
+}
+
+.d3.loading svg {
+	opacity: 0.5;
+}
+
+.d3.loading .spinner-container {
+	z-index: 30;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+// Tooltip
+
+.graph-tooltip {
+	position: absolute;
+	max-width: 240px;
+	visibility: hidden;
+	background: white;
+	padding: 10px;
+	border-radius: 10px;
+	font-family: 'Roboto-Light';
+	font-size: 10pt;
+}
