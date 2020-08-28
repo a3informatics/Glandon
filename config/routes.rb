@@ -373,6 +373,7 @@ Rails.application.routes.draw do
   resources :forms do
     member do
       get :show_data
+      get :crf
     end
     collection do
       get :history
