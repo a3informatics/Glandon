@@ -204,7 +204,7 @@ const rdfTypesMap = {
  * @return {string} Item type as string name
  */
 function getRdfName(shortcut) {
-  return rdfTypesMap[name].name;
+  return rdfTypesMap[shortcut].name;
 }
 
 /**
@@ -213,17 +213,17 @@ function getRdfName(shortcut) {
  * @return {string} Item type as rdf type (url)
  */
 function getRdfType(shortcut) {
-  return rdfTypesMap[name].rdfType;
+  return rdfTypesMap[shortcut].rdfType;
 }
 
 /**
  * Checks if RDF types are a match
- * @param {string} name Type key in the map
+ * @param {string} shortcut Shortcut key to item in the map
  * @param {string} value RDF Type value to compare
  * @return {boolean} match result
  */
-function rdfTypesMatch(name, value) {
-  return rdfTypesMap[name].rdfType === value;
+function rdfTypesMatch(shortcut, value) {
+  return rdfTypesMap[shortcut].rdfType === value;
 }
 
 /**

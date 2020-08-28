@@ -1,5 +1,6 @@
 import { getRdfType, getRdfName } from 'shared/helpers/rdf_types'
 import { isCDISC } from 'shared/helpers/utils'
+import colors from 'shared/ui/colors'
 
 /*** Icon Renderers ***/
 
@@ -8,7 +9,7 @@ const icons = {
    * Returns HTML for an true/false icon
    * @param {boolean} value type of icon to be returned
    * @param {string} cssClasses custom css classes, optional
-   * @param {boolean} focusable set to true to include tabindex in icon  
+   * @param {boolean} focusable set to true to include tabindex in icon
    * @return {string} formatted icon HTML
    */
   checkMarkIcon(value, cssClasses = '', focusable = false ) {
@@ -72,65 +73,17 @@ const iconsInline = { 
 
 const iconTypes = { 
   /**
-   * Defines an RDF Type - Icon, Char & Color map, and fetches these values based on type argument
+   * Fetches mapped Icon, Char and Color object based on type argument
    * @param {string} type Item RDF type to get the icon & color details for
    * @param {Object} params optional ownership specifying parameter (for CDISC color override)
    * @return {Object} Object containing icon, char and color definitions for the type argument
    */
-  typeIconsColorsMap(type, params = {}) {
-    const typeDefsMap = {}
-
-    iconTypeMap[getRdfType('C_TH')] = {
-      icon: 'icon-terminology',
-      char: '\ue909',
-      color: '#6d91a1'
-    }
-    iconTypeMap[getRdfType('C_TH_CL')] = {
-      icon: 'icon-codelist',
-      char: '\ue952',
-      color: '#9dc0cf'
-    }
-    iconTypeMap[getRdfType('C_TH_SUBSET')] = {
-      icon: 'icon-subset',
-      char: '\ue941',
-      color: '#9dc0cf'
-    }
-    iconTypeMap[getRdfType('C_TH_EXT')] = {
-      icon: 'icon-extension',
-      char: '\ue945',
-      color: '#9dc0cf'
-    }
-    iconTypeMap[getRdfType('C_TH_CLI')] = {
-      icon: 'icon-codelist-item',
-      char: '\ue958',
-      color: '#9dc0cf'
-    }
-    iconTypeMap[getRdfType('FORM')] = {
-      icon: 'icon-forms',
-      char: '\ue91c',
-      color: '#96d6bc'
-    }
-    iconTypeMap[getRdfType('BC')] = {
-      icon: 'icon-biocon',
-      char: '\ue90b',
-      color: '#989df1'
-    }
-    iconTypeMap[getRdfType('BCT')] = {
-      icon: 'icon-biocon-template',
-      char: '\ue969',
-      color: '#adb2f6'
-    }
-    iconTypeMap['unknown'] = {
-      icon: 'icon-help',
-      char: '\ue94e',
-      color: '#c4c4c4'
-    }
-
-    const result = type in iconTypeMap ? iconTypeMap[type] : iconTypeMap['unknown'];
+  typeIconMap(type, params = {}) {
+    const result = type in _typeIconMap ? _typeIconMap[type] : _typeIconMap['unknown'];
 
     // Override color if CDISC owned
-    if(isCDISC(params))
-      result.color = '#f5d684';
+    if ( isCDISC(params) )
+      result.color = colors.accent1;
 
     return result;
   },
@@ -145,7 +98,7 @@ const iconTypes = { 
    */
   renderIcon(type, params) {
     let size = params.size || "text-xnormal",
-        iconParams = this.typeIconsColorsMap(type, params),
+        iconParams = this.typeIconMap(type, params),
         output = '';
 
     output += `<span class="${iconParams.icon} ${size} ${params.ttip ? 'ttip' : ''}" style="color: ${iconParams.color}">`
@@ -166,7 +119,7 @@ const iconTypes = { 
    */
   renderIconBadge(type, params) {
     let size = params.size || "small",
-        iconParams = this.typeIconsColorsMap(type, params),
+        iconParams = this.typeIconMap(type, params),
         output = '';
 
     output += `<span class="circular-badge text-white ${size} ${params.ttip ? 'ttip' : ''}" style="background: ${iconParams.color}">`
@@ -197,6 +150,97 @@ function _renderIcon({
   return `<span class='icon-${iconName} ${cssClasses} ${ttip ? 'ttip' : ''}' style='${style}' ${focusable ? "tabindex='1'" : ""}>` +
             (ttip ? `<span class='ttip-text shadow-small text-medium ${ttipClasses}'> ${ttipText} </span>` : '') +
          `</span>`;
+}
+
+/**
+ * Defines an RDF Type - Icon, Char & Color map
+ */
+const _typeIconMap = {}
+
+_typeIconMap[getRdfType('TH')] = {
+  icon: 'icon-terminology',
+  char: '\ue909',
+  color: colors.primaryLight
+}
+_typeIconMap[getRdfType('TH_CL')] = {
+  icon: 'icon-codelist',
+  char: '\ue952',
+  color: colors.primaryBright
+}
+_typeIconMap[getRdfType('TH_SUBSET')] = {
+  icon: 'icon-subset',
+  char: '\ue941',
+  color: colors.primaryBright
+}
+_typeIconMap[getRdfType('TH_EXT')] = {
+  icon: 'icon-extension',
+  char: '\ue945',
+  color: colors.primaryBright
+}
+_typeIconMap[getRdfType('TH_CLI')] = {
+  icon: 'icon-codelist-item',
+  char: '\ue958',
+  color: colors.primaryBright
+}
+_typeIconMap[getRdfType('FORM')] = {
+  icon: 'icon-forms',
+  char: '\ue91c',
+  color: colors.accentAqua
+}
+_typeIconMap[getRdfType('BC')] = {
+  icon: 'icon-biocon',
+  char: '\ue90b',
+  color: colors.accentPurple
+}
+_typeIconMap[getRdfType('BCT')] = {
+  icon: 'icon-biocon-template',
+  char: '\ue969',
+  color: colors.accentPurpleLight
+}
+_typeIconMap[getRdfType('NORMAL_GROUP')] = {
+  icon: 'icon-forms',
+  char: 'G',
+  color: colors.lightOrange
+}
+_typeIconMap[getRdfType('COMMON_GROUP')] = {
+  icon: 'icon-forms',
+  char: 'C',
+  color: colors.lightOrange
+}
+_typeIconMap[getRdfType('COMMON_ITEM')] = {
+  icon: 'icon-forms',
+  char: 'I',
+  color: colors.fadedRed
+}
+_typeIconMap[getRdfType('TEXTLABEL')] = {
+  icon: 'icon-forms',
+  char: 'T',
+  color: '#7dbca1'
+}
+_typeIconMap[getRdfType('PLACEHOLDER')] = {
+  icon: 'icon-forms',
+  char: 'P',
+  color: colors.greyLight
+}
+_typeIconMap[getRdfType('QUESTION')] = {
+  icon: 'icon-forms',
+  char: 'Q',
+  color: colors.secondaryLight
+}
+_typeIconMap[getRdfType('MAPPING')] = {
+  icon: 'icon-forms',
+  char: 'M',
+  color: colors.accentAquaDark
+}
+_typeIconMap[getRdfType('BC_QUESTION')] = {
+  icon: 'icon-biocon',
+  char: '\ue90b',
+  color: colors.accentPurpleLight
+}
+_typeIconMap['unknown'] = {
+  icon: 'icon-help',
+  char: '\ue94e',
+  color: colors.greyLight
 }
 
 export {

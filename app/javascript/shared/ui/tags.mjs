@@ -1,20 +1,22 @@
+import colors from 'shared/ui/colors'
+
 /*** Renderers for Tags ***/
 
 /**
  * Master Tag HEX color map
  */
 const tagColorsMap = {
-  'SDTM': '#f29c8c',
-  'QS': '#e4aca1',
-    'QS-FT': '#e4aca1',
-    'COA': '#e4aca1',
-    'QRS': '#e4aca1',
-  'CDASH': '#eec293',
-  'ADaM': '#b6d58f',
-  'Protocol': '#93c9b5',
-  'SEND': '#a9aee0',
-  'CDISC': '#9dc0cf',
-  'default': '#6d91a1'
+  'SDTM': colors.lightRed,
+  'QS': colors.fadedRed,
+    'QS-FT': colors.fadedRed,
+    'COA': colors.fadedRed,
+    'QRS': colors.fadedRed,
+  'CDASH': colors.lightOrange,
+  'ADaM': colors.oliveGreen,
+  'Protocol': colors.accentAquaDark,
+  'SEND': colors.accentPurple,
+  'CDISC': colors.accent1Dark,
+  'default': colors.primaryLight
 }
 
 /**
