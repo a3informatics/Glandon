@@ -30,6 +30,13 @@ describe "Import CDISC SDTM Implementation Guide Data" do
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
     load_data_file_into_triple_store("canonical_references.ttl")
     load_data_file_into_triple_store("canonical_references_migration_1.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V2.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V3.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V4.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V5.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
     load_cdisc_term_versions(CdiscCtHelpers.version_range)
     setup
   end
@@ -68,10 +75,14 @@ describe "Import CDISC SDTM Implementation Guide Data" do
   end
 
   def set_params(version, date, files)
-    ctv = @date_to_ct_map[version-1]
+    ctv = @date_to_ref_map[version-1][:ct]
+    modelv = @date_to_ref_map[version-1][:model]
     file_type = !files.empty? ? "0" : "3"
     { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "Controlled Terminology", 
-      semantic_version: "#{version}.0.0", job: @job, file_type: file_type, ct: Uri.new(uri: "http://www.cdisc.org/CT/V#{ctv}#TH")}
+      semantic_version: "#{version}.0.0", job: @job, file_type: file_type, 
+      ct: Uri.new(uri: "http://www.cdisc.org/CT/V#{ctv}#TH"),
+      model: Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL/V#{modelv}#M"),
+    }
   end
 
   def dump_errors_if_present(filename, version, date)
@@ -130,7 +141,12 @@ describe "Import CDISC SDTM Implementation Guide Data" do
       "sdtm_ig_3-1-2.xlsx", "sdtm_ig_3-1-3.xlsx", "sdtm_ig_3-2.xlsx", "sdtm_ig_3-3.xlsx"
     ]
 
-    @date_to_ct_map = ["13", "31", "36", "57"]
+    @date_to_ref_map = [
+      {ct: 13, model: 1}, 
+      {ct: 31, model: 2}, 
+      {ct: 36, model: 3}, 
+      {ct: 57, model: 6}
+    ]
   end
   
   describe "all versions" do

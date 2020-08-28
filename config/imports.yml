@@ -831,16 +831,16 @@ defaults: &defaults
                     - "Classification"
                 mapping:
                   map:
-                                                        "": None
-                  Identifier: Identifier
-                  Topic: Topic
-                  Timing: Timing
-                  Rule: Rule
-                  Grouping Qualifier: Grouping
-                  Result Qualifier: Result
-                  Synonym Qualifier: Synonym
-                  Record Qualifier: Record
-                  Variable Qualifier: Variable
+                    "": None
+                    Identifier: Identifier
+                    Topic: Topic
+                    Timing: Timing
+                    Rule: Rule
+                    Grouping Qualifier: Grouping
+                    Result Qualifier: Result
+                    Synonym Qualifier: Synonym
+                    Record Qualifier: Record
+                    Variable Qualifier: Variable
               -
                 method: set_property_with_tag
                 object: child
@@ -945,9 +945,12 @@ defaults: &defaults
                     Findings: SDTM MODEL FINDINGS
                     Findings-General: SDTM MODEL FINDINGS
                     Special Purpose: SDTM SPECIAL PURPOSE
+                    Special-Purpose: SDTM SPECIAL PURPOSE
                     Trial Design: SDTM TRIAL DESIGN
+                    Relationship: SDTM RELATIONSHIPS
                     Relationships: SDTM RELATIONSHIPS
                     Study Reference: SDTM STUDY REFERENCE
+                    Associated Persons: SDTM ASSOCIATED PERSONS
           -
             label: "Variable Name (minus domain prefix)"  
             actions: []
@@ -1099,10 +1102,13 @@ defaults: &defaults
                     Interventions-General: SDTM MODEL INTERVENTIONS
                     Findings: SDTM MODEL FINDINGS
                     Findings-General: SDTM MODEL FINDINGS
+                    Special Purpose: SDTM SPECIAL PURPOSE
                     Special-Purpose: SDTM SPECIAL PURPOSE
                     Trial Design: SDTM TRIAL DESIGN
+                    Relationship: SDTM RELATIONSHIPS
                     Relationships: SDTM RELATIONSHIPS
                     Study Reference: SDTM STUDY REFERENCE
+                    Associated Persons: SDTM ASSOCIATED PERSONS
           -
             label: "Variable Name (minus domain prefix)"  
             actions: []
