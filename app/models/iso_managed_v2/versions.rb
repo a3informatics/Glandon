@@ -50,7 +50,7 @@ class IsoManagedV2
   private
 
     def single_minimum(query)
-      uri = self.class.find_single(query)
+      uri = self.class.find_single(query, [:isoT])
       return nil if uri.nil?
       self.class.find_minimum(self.class.find_single(query))
     end

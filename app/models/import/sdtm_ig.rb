@@ -22,12 +22,14 @@ class Import::SdtmIg < Import
   # @option params [String] :date the date of issue
   # @option params [Array] :files
   # @option params [URI] :ct the CDISC CT uri to be used for CT references
+  # @option params [URI] :model the CDISC SDTM Model uri to be used for references
   # @option params [Background] :job the background job
   # @return [Void] no return value
   def import(params)
     @tags = []
     @parent_set = {}
     @ct = ::CdiscTerm.find_minimum(params[:ct])
+    @model = ::SdtmModel.find_minimum(params[:model])
     params[:identifier] = ::SdtmIg.identifier
     results = read_and_process(params) if self.errors.empty?
     objects = self.errors.empty? ? process_results(results) : {parent: self, managed_children: []}
@@ -97,7 +99,12 @@ private
 
     # Add terminology
     filtered.each_with_index do |domain, index| 
+puts colourize("Domain: #{domain.prefix}, Class: #{get_temporary(domain,"referenced_class")}", "green")
+      domain.based_on_class = find_base_class(domain)
+puts colourize("Domain: #{domain.prefix}, No class found.", "red") if domain.based_on_class.nil?
       domain.children.each do |variable|
+#        variable.based_on_class_variable = find_base_class_variable(domain.based_on_class)
+#        variable.is_a = variable.based_on_class_variable.is_a
         next if variable.ct_and_format.empty?
         notations = extract_notations(variable.ct_and_format) 
         notations.each do |notation|
@@ -113,6 +120,16 @@ puts colourize("***** Error finding CT Ref: #{notation} *****", "red") if cl.emp
     {parent: parent, managed_children: filtered, tags: []}
   end
 
+  def find_base_class(domain)
+    @model.find_class(class_identifier(get_temporary(domain, "referenced_class"), domain.prefix))
+  end
+
+#  def find_base_class_variable(the_class, variable)
+#    return nil if class.nil?
+#    result = the_class.find_variable(variable.name)
+#    SdtmModel::Variable.find(result)
+#  end
+
   def extract_notations(value)
     temp = value.scan(/\(\w+\)*/)
     temp.map {|x| x.gsub(/[()]/, "")}
@@ -120,6 +137,14 @@ puts colourize("***** Error finding CT Ref: #{notation} *****", "red") if cl.emp
 
   def get_temporary(object, name)
     object.instance_variable_get("@#{name}")
+  end
+
+  def class_identifier(the_class, prefix)
+    return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM SPECIAL PURPOSE"
+    return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM TRIAL DESIGN"
+    return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM RELATIONSHIPS"
+    return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM STUDY REFERENCE"
+    the_class
   end
 
 end

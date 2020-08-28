@@ -7,6 +7,21 @@ class SdtmModel < ManagedCollection
 
   @@cdisc_ra = nil
 
+  # Find Class. Return a class from within the model
+  #
+  # @param [String] identifier the identifier required
+  # @return [SdtmModel::Class] the class. nil if not found
+  def find_class(identifier)
+    query_string = %Q{
+      SELECT DISTINCT ?s WHERE
+      {
+        #{self.uri.to_ref} bo:hasManaged/bo:reference ?s .
+        ?s isoT:hasIdentifier/isoI:identifier '#{identifier}' 
+      } 
+    }
+    self.class.find_single(query_string, [:isoT, :isoI, :bo])
+  end
+
   # Owner
   #
   # @return [IsoRegistrationAuthority] the owner

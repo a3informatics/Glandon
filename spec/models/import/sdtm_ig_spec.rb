@@ -28,6 +28,13 @@ describe Import::SdtmIg do
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V2.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V3.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V4.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V5.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
     load_cdisc_term_versions(1..60)
     Import.destroy_all
     delete_all_public_test_files
@@ -56,10 +63,10 @@ describe Import::SdtmIg do
   it "import, no errors" do
     full_path = test_file_path(sub_dir, "import_input_1.xlsx")
     params = {version: "1", date: "2020-01-01", files: [full_path], version_label: "1.1.1", label: "SDTM Implememntation Giude", 
-      semantic_version: "1.1.1", job: @job, ct: Uri.new(uri: "http://www.cdisc.org/CT/V60#TH")}
+      semantic_version: "1.1.1", job: @job, ct: Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"), 
+      model: Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL/V7#M")}
     result = @object.import(params)
     filename = "cdisc_sdtm_ig_#{@object.id}_errors.yml"
-byebug
     public_file_does_not_exist?("test", filename)
     filename = "cdisc_sdtm_ig_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
@@ -73,7 +80,8 @@ byebug
   it "import, errors" do
     full_path = test_file_path(sub_dir, "import_input_2.xlsx")
     params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", 
-      semantic_version: "1.2.3", job: @job, ct: Uri.new(uri: "http://www.cdisc.org/CT/V50#TH")}
+      semantic_version: "1.2.3", job: @job, ct: Uri.new(uri: "http://www.cdisc.org/CT/V50#TH"), 
+      model: Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL/V7#M")}
     result = @object.import(params)
     filename = "cdisc_sdtm_ig_#{@object.id}_load.ttl"
     expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
@@ -92,7 +100,8 @@ byebug
     expect_any_instance_of(Excel).to receive(:execute).and_raise(StandardError.new("error"))
     full_path = test_file_path(sub_dir, "import_input_2.xlsx")
     params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", 
-      semantic_version: "1.2.3", job: @job, ct: Uri.new(uri: "http://www.cdisc.org/CT/V50#TH")}
+      semantic_version: "1.2.3", job: @job, ct: Uri.new(uri: "http://www.cdisc.org/CT/V50#TH"), 
+      model: Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL/V7#M")}
     @object.import(params)
     expect(@job.status).to include("An exception was detected during the import processes.\nDetails: error.\nBacktrace: ")
   end

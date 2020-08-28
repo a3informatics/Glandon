@@ -104,8 +104,8 @@ module Fuseki
         where({})
       end
 
-      def find_single(query_string, permit_empty=true)
-        query_results = Sparql::Query.new.query(query_string, "", [:isoT])
+      def find_single(query_string, prefixes=[], permit_empty=true)
+        query_results = Sparql::Query.new.query(query_string, "", prefixes)
         results = query_results.by_object(:s)
         return nil if results.empty? && permit_empty
         Errors.application_error(self.name, "previous_version", "Failed to find single item.") if results.empty?
