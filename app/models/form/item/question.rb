@@ -37,7 +37,6 @@ class Form::Item::Question < Form::Item
       html += terminology_cell
     end
     html += end_row
-    return html
   end
 
 end

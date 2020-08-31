@@ -76,7 +76,6 @@ class Form::Item < IsoConceptV2
       html += field_table(["?", "?", "?"])
     end
     html += '</td>'
-    return html
   end
 
   # Format a field
@@ -86,7 +85,6 @@ class Form::Item < IsoConceptV2
       html += "<td>#{cell}</td>"
     end
     html += "</tr></table>"
-    return html
   end
 
   def terminology_cell
@@ -98,7 +96,6 @@ class Form::Item < IsoConceptV2
       end
     end
     html += '</td>'
-    return html
   end
 
   def coded_values_to_hash(coded_values)

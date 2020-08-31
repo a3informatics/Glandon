@@ -19,7 +19,6 @@ class Form::Item::TextLabel < Form::Item
   def to_crf
     html = ""
     html += markdown_row(self.label_text)
-    return html
   end
 
   # # To XML

@@ -156,7 +156,6 @@ class Form::Group::Normal < Form::Group
       end
     end
     html += '</td>'
-    return html
   end
 
   def start_row(optional)

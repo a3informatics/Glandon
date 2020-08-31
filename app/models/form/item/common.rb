@@ -17,16 +17,15 @@ class Form::Item::Common < Form::Item
   def to_crf
     html = ""
     common_item = self.has_common_item.first
-      property = BiomedicalConcept::PropertyX.find(common_item.uri)
-      html += start_row(self.optional)
-      html += question_cell(property.question_text)
-      if property.has_coded_value.length == 0
-        html += property.input_field
-      else
-        html += terminology_cell(property)
-      end
+    property = BiomedicalConcept::PropertyX.find(common_item.uri)
+    html += start_row(self.optional)
+    html += question_cell(property.question_text)
+    if property.has_coded_value.length == 0
+      html += property.input_field
+    else
+      html += terminology_cell(property)
+    end
     html += end_row
-    return html
   end
 
   def terminology_cell(property)
@@ -39,7 +38,6 @@ class Form::Item::Common < Form::Item
       end
     end
     html += '</td>'
-    return html
   end
 
 end

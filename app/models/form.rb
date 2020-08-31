@@ -21,8 +21,25 @@ class Form < IsoManagedV2
     return results
   end
 
+  # To CRF. 
+  #
+  # @return [String] String of HTML form representation
   def to_crf
     form = self.class.find_full(self.uri)
+    html = ''
+    #form.build_common_map
+    html += get_css
+    html += '<table class="table table-striped table-bordered table-condensed">'
+    html += '<tr>'
+    html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
+    html += '</tr>'
+    form.has_group.sort_by {|x| x.ordinal}.each do |group|
+      html += group.to_crf
+    end
+    html += '</table>'
+  end
+
+  def get_css
     html = "<style>"
     html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
     html += "table.crf-input-field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; " 
@@ -41,16 +58,6 @@ class Form < IsoManagedV2
     html += "h4.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
     html += "p.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
     html += "</style>"
-    #form.build_common_map
-    html += '<table class="table table-striped table-bordered table-condensed">'
-    html += '<tr>'
-    html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
-    html += '</tr>'
-    form.has_group.sort_by {|x| x.ordinal}.each do |group|
-      html += group.to_crf
-    end
-    html += '</table>'
-    return html
   end
 
   # def build_common_map
