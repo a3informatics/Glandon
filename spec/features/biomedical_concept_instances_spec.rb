@@ -73,7 +73,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       wait_for_ajax 10
       expect(page).to have_content 'Show: Biomedical Concept'
       expect(page).to have_content 'Incomplete'
-      ui_check_table_info("show", 1, 3, 3)
+      ui_check_table_info("show", 1, 4, 4)
       ui_check_table_cell("show", 1, 3, "value")
       ui_check_table_cell("show", 1, 4, "Result")
       ui_check_table_cell("show", 1, 5, "Height")
@@ -113,7 +113,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       context_menu_element_v2('history', 'DIABP', :show)
       wait_for_ajax 10
       expect(page).to have_content 'Show: Biomedical Concept'
-      ui_check_table_info("show", 1, 6, 6)
+      ui_check_table_info("show", 1, 7, 7)
       click_on 'CSV'
 
       file = download_content
@@ -131,7 +131,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       context_menu_element_v2('history', 'WEIGHT', :show)
       wait_for_ajax 10
       expect(page).to have_content 'Show: Biomedical Concept'
-      ui_check_table_info("show", 1, 3, 3)
+      ui_check_table_info("show", 1, 4, 4)
       click_on 'Excel'
 
       file = download_content
@@ -177,7 +177,7 @@ describe "Biomedical Concept Instances", :type => :feature do
         ui_in_modal do
           fill_in 'identifier', with: 'BC Test'
           fill_in 'label', with: 'Test Label'
-          find('#new-bc-template').click
+          find('#new-item-template').click
           ip_pick_managed_items(:bct, [ { identifier: 'BASIC OBS', version: '1' } ], 'new-bc')
 
           click_on 'Submit'
@@ -215,7 +215,7 @@ describe "Biomedical Concept Instances", :type => :feature do
 
           fill_in 'identifier', with: 'BC Test'
           fill_in 'label', with: 'Test Label'
-          find('#new-bc-template').click
+          find('#new-item-template').click
           ip_pick_managed_items(:bct, [ { identifier: 'BASIC OBS', version: '1' } ], 'new-bc')
 
           click_on 'Submit'
