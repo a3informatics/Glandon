@@ -2,6 +2,7 @@ import TreeGraph from 'shared/base/d3/tree_graph'
 
 import { $post } from 'shared/helpers/ajax'
 import { iconTypes } from 'shared/ui/icons'
+import { iconBtn } from 'shared/ui/buttons'
 import { getRdfNameByType } from 'shared/helpers/rdf_types'
 import { isCharLetter, cropText } from 'shared/helpers/strings'
 import colors from 'shared/ui/colors'
@@ -41,13 +42,44 @@ export default class FormEditor extends TreeGraph {
 
     super.clearGraph();
     // Remove tooltip element
-    this.d3.select(`.graph-tooltip`).remove();
+    this.d3.select('.graph-tooltip').remove();
+    this.d3.select('.node-actions').remove();
+
+  }
+
+  /**
+   * Selects a given node and update styling, shows node actions
+   * @extends selectNode parent implementation
+   * @requires selectable parameter set to true
+   * @param {JQuery element} $node Target node element
+   * @param {Object} d D3 Node object
+   * @param {boolean} allowToggle Specifies whether deselection of the node on 2nd click should be allowed, optional [default=false]
+   * @return {boolean} Selection success, true if a node was selected, false otherwise
+   */
+  selectNode($node, d, allowToggle = true) {
+
+    this._hideNodeActions();
+
+    let wasNodeSelected = super.selectNode( $node, d, allowToggle );
+
+    if ( this.selectable && wasNodeSelected )
+      this._showNodeActions( this.selected );
+
+    return wasNodeSelected;
 
   }
 
 
   /** Private **/
 
+
+  _setListeners() {
+
+    super._setListeners();
+
+    $(window).on( 'resize',  () => this._showNodeActions( this.selected ) );
+
+  }
 
   /**
    * Preprocess data and convert it into a D3 hierarchy
@@ -66,6 +98,25 @@ export default class FormEditor extends TreeGraph {
 
   }
 
+  _newZoom(zoomProps) {
+
+    let zoom = super._newZoom(zoomProps);
+
+    if (zoom) {
+
+      let zoomCallback = zoom.on('zoom');
+
+      return zoom.on('zoom', () => {
+        zoomCallback();
+        this._showNodeActions( this.selected );
+      });
+
+    }
+
+    return zoom;
+
+  }
+
 
   /** Renderers **/
 
@@ -75,7 +126,10 @@ export default class FormEditor extends TreeGraph {
    * @override parent implementation
    */
   _renderCustom() {
+
     this.graph.tooltip = this._newTooltip();
+    this.graph.nodeActions = this._newNodeActions();
+
   }
 
   /**
@@ -112,6 +166,7 @@ export default class FormEditor extends TreeGraph {
          // Character alignment
          .attr( 'text-anchor', 'middle' )
          .text( (d) => this._nodeIcon(d) )
+         .style( 'font-size', '20px' )
          .style( 'fill', (d) => this._nodeColor(d) )
          // Icon font depending whether it is a letter or a font-icon
          .style( 'font-family', (d) => isCharLetter( this._nodeIcon(d) ) ? 'Roboto-Bold' : 'icomoon' );
@@ -131,6 +186,7 @@ export default class FormEditor extends TreeGraph {
          .attr( 'dx', nodeProps.radius + 12 )
          .attr( 'class', 'label' )
          .text( (d) => cropText(d.data.label) )
+         .style ( 'font-size', '9pt' )
          .style( 'fill', colors.greyMedium )
          // Render and hide tooltip on mouse hover
          .on( 'mouseover mousemove', (d) => this._renderTooltip(d) )
@@ -143,7 +199,63 @@ export default class FormEditor extends TreeGraph {
          .attr( 'rx', 10 )
          .attr( 'ry', 10 )
          .attr( 'class', 'label-border' )
-         .attr( 'width', function(d) { return this.parentNode.getBBox().width - 12 } );
+         .attr( 'width', function(d) { return this.parentNode.getBBox().width - 12 } )
+         .attr( 'height', '22px' )
+         .style( 'stroke-width', '1px' )
+         .style( 'stroke', colors.greyLight )
+         .style( 'fill', '#fff' );
+
+
+  }
+
+
+  /** Node Actions **/
+
+
+  /**
+   * Create a new node actions div in the page body
+   * @return {D3} New node actions element
+   */
+  _newNodeActions() {
+
+    // Inner tooltip HTML
+    let naHTML = `<div class='btns-wrap'>` +
+                  iconBtn({ icon: 'edit', color: 'light', ttip: 'Edit node' }) +
+                  iconBtn({ icon: 'arrow-u', color: 'light', ttip: 'Move node up' }) +
+                  iconBtn({ icon: 'arrow-d', color: 'light', ttip: 'Move node down' }) +
+                  iconBtn({ icon: 'times', color: 'red', ttip: 'Remove node' }) +
+                `</div>`;
+
+    return this.d3.select( `${ this.selector } #d3` )
+                  .append( 'div' )
+                  .attr( 'class', 'node-actions' )
+                  .html( naHTML );
+
+  }
+
+  _showNodeActions(n) {
+
+    if ( !this.graph.nodeActions || !n )
+      return;
+
+    let nodeCoords = n.node[0].getBoundingClientRect(),
+        xCoord = nodeCoords.x + (nodeCoords.width / 2) - ($('.node-actions').width() / 2) -
+                  this._graphProps.container.offset().left,
+        yCoord = nodeCoords.y + nodeCoords.height + 2 - this._graphProps.container.offset().top;
+
+    this.graph.nodeActions.style( 'display', 'block' )
+                          .style( 'left', `${ xCoord }px` )
+                          .style( 'top', `${ yCoord }px` )
+                          .style( 'border-color', this._nodeColor(n.data) );
+
+  }
+
+  _hideNodeActions() {
+
+    if ( !this.graph.nodeActions )
+      return;
+
+    this.graph.nodeActions.style( 'display', 'none' );
 
   }
 
@@ -153,7 +265,7 @@ export default class FormEditor extends TreeGraph {
 
   /**
    * Create a new tooltip div in the page body
-   * @return {D3} new tooltip element
+   * @return {D3} New tooltip element
    */
   _newTooltip() {
 
@@ -265,11 +377,16 @@ export default class FormEditor extends TreeGraph {
    */
   get _graphProps() {
 
-    let props = super._graphProps;
+    let props = super._graphProps,
+        self = this;
 
     // Custom nodeWidth function
     Object.defineProperty(props.tree, 'nodeWidth', {
-    	get: () => ( props.svg.width / this.treeDepth ) - 80
+      get() {
+        return (props.svg.width / self.treeDepth) < this.minNodeWidth ?
+                  this.minNodeWidth:
+                  (props.svg.width / self.treeDepth) - 80
+      }
     });
 
     // Custom zoom values

@@ -1,5 +1,6 @@
 <%= javascript_tag "setPageTitle('Edit: #{@form.has_identifier.identifier} (#{@form.semantic_version})')"%>
 
+<%= stylesheet_link_tag 'shared/forms/form_editor' %>
 <%= javascript_pack_tag 'forms/edit' %>
 
 <% third_level_breadcrumb(:forms, @form, @close_path) %>
@@ -31,7 +32,7 @@
 
 		<div class="card-content">
 
-			<div id="form-editor">
+			<div id="form-editor" style="min-height: 400px">
 
 			  <%= render partial: "shared/d3/tree_graph" %>
 

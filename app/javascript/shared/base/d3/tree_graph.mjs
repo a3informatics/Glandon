@@ -136,11 +136,12 @@ export default class TreeGraph {
    * @param {JQuery element} $node Target node element
    * @param {Object} d D3 Node object
    * @param {boolean} allowToggle Specifies whether deselection of the node on 2nd click should be allowed, optional [default=false]
+   * @return {boolean} Selection success, true if a node was selected, false otherwise
    */
   selectNode($node, d, allowToggle = true) {
 
     if ( !this.selectable )
-      return;
+      return false;
 
     let prevSelected = this.selected,
         sameNode = prevSelected && (prevSelected.node[0] == $node[0]);
@@ -152,8 +153,12 @@ export default class TreeGraph {
     }
 
     // Select given node
-    if ( !prevSelected || !sameNode )
+    if ( (!prevSelected || !sameNode) || (prevSelected && sameNode && !allowToggle) ) {
       this._toggleNodeSelected( $node, d, true );
+      return true;
+    }
+
+    return false;
 
   }
 
@@ -181,6 +186,10 @@ export default class TreeGraph {
 
   }
 
+  /**
+   * Get the graph nodes marked as search-match
+   * @return {D3} Selection of nodes with the search-match class 
+   */
   get searchMatches() {
     return this.d3.selectAll(`${this.selector} .node.search-match`);
   }
@@ -406,8 +415,8 @@ export default class TreeGraph {
     }
 
     // Reselect node on graph redraw
-    if ( !reset && this.selectable && this.selected )
-      this._toggleNodeSelected( this.selected.node, this.selected.data, true )
+    if ( !reset && this.selected )
+      this.selectNode( this.selected.node, this.selected.data, false )
 
   }
 
@@ -452,6 +461,8 @@ export default class TreeGraph {
                               .attr( 'transform', (d) => `translate(${d.y}, ${d.x})` )
                               // CSS class dependent on selected data flag
                               .attr( 'class', (d) => (d.data.selected ? 'node selected' : 'node') )
+                              // Pointer cursor if selectable set to true
+                              .style( 'cursor', this.selectable ? 'pointer' : 'inherit' )
                               // Click event, prevents firing on double click
                               .on( 'click', function (d) { self.d3.event.detail ? self._onNodeClick( $(this), d ) : null })
                               // Double click event
@@ -720,8 +731,13 @@ export default class TreeGraph {
     let props = {
       container: $(this.selector),
       tree: {
-        get nodeWidth() { return (props.svg.width / self.treeDepth) },
-        nodeHeight: 30
+        get nodeWidth() {
+          return (props.svg.width / self.treeDepth) < this.minNodeWidth ?
+                    this.minNodeWidth :
+                    (props.svg.width / self.treeDepth)
+        },
+        nodeHeight: 30,
+        minNodeWidth: 240
       },
       svg: {
         margin: 20,
