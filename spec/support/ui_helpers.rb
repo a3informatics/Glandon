@@ -608,7 +608,8 @@ module UiHelpers
 			edit_ranks: "Edit ranks",
 			pair: "Pair",
 			unpair: "Unpair",
-			show_paired: "Show Paired"
+			show_paired: "Show Paired",
+      crf: "CRF"
     }
 	end
 
