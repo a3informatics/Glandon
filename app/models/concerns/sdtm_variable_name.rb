@@ -9,7 +9,7 @@ class SdtmVariableName
 
   # Name
   #
-  # @return returns the full name
+  # @return returns the name
   def name
     "#{@domain_prefix}#{@stem}"
   end

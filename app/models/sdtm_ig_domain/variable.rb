@@ -16,4 +16,9 @@ class SdtmIgDomain::Variable < Tabulation::Column
     self.name
   end
 
+  def replace_if_no_change(previous)
+    return self if previous.nil?
+    self.diff?(previous, {ignore: [:ct_reference, :based_on_class_variable, :is_a, :tagged]}) ? self : previous
+  end
+
 end
