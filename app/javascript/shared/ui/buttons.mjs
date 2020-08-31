@@ -1,6 +1,26 @@
 import { managedConceptRef, unmanagedConceptRef } from 'shared/ui/strings'
+import { renderIcon } from 'shared/ui/icons'
 
 /*** Renderers for Buttons ***/
+
+/**
+ * Returns HTML for a button linking to item's history
+ * @param {string} url path to the item's history
+ * @return {string} formatted button HTML
+ */
+function iconBtn({
+  url = '#',
+  icon,
+  color = '',
+  ttip
+  }) {
+
+  return `<a href='${url}' class='btn icon-only ${ color } ${ ttip ? 'ttip' : '' }'>` +
+            (ttip ? `<span class='ttip-text shadow-small text-medium text-small'>${ ttip }</span>` : '') +
+            renderIcon({ iconName: icon }) +
+         `</a>`;
+
+}
 
 /**
  * Returns HTML for a button linking to item's history
@@ -36,5 +56,6 @@ function termReferenceBtn(url, item, parent, newTab = false) {
 export {
   historyBtn,
   termReferenceBtn,
-  showBtn
+  showBtn,
+  iconBtn
 }

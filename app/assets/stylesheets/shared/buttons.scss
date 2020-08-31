@@ -154,6 +154,18 @@
   margin-top: 6px;
 }
 
+// Icon button for non-text font-icon based simple buttons, note, different from ico-btn
+.btn.icon-only {
+  width: 23px;
+  height: 23px;
+  padding: 3px;
+}
+
+.btn.icon-only span[class^='icon-'] {
+  line-height: 18px;
+  font-size: $font-tiny;
+}
+
 // An icon button, inside of which is an icon symbol span element, and a ico-btn-text span element.
 .ico-btn{
   padding: 6px 6px;

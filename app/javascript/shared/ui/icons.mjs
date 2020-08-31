@@ -14,13 +14,13 @@ const icons = {
    */
   checkMarkIcon(value, cssClasses = '', focusable = false ) {
     if (value)
-      return _renderIcon({
+      return renderIcon({
         iconName: 'sel-filled text-normal',
         cssClasses: cssClasses || 'text-link',
         focusable
       });
     else
-      return _renderIcon({
+      return renderIcon({
         iconName: 'times-circle text-normal',
         cssClasses: cssClasses || 'text-accent-2',
        focusable
@@ -41,7 +41,7 @@ const iconsInline = { 
   removeIcon({ disabled = false, ttip = false, ttipText = "" } = {}) {
     let cssClasses = `remove in-line clickable text-accent-2 ${disabled ? 'disabled' : ''}`;
 
-    return _renderIcon({
+    return renderIcon({
       iconName: 'times',
       ttip,
       ttipText,
@@ -59,7 +59,7 @@ const iconsInline = { 
   editIcon({ disabled = false, ttip = false, ttipText = "" } = {}) {
     let cssClasses = `edit in-line clickable text-link ${disabled ? 'disabled' : ''}`;
 
-    return _renderIcon({
+    return renderIcon({
       iconName: 'edit',
       ttip,
       ttipText,
@@ -132,13 +132,13 @@ const iconTypes = { 
   }
 }
 
-/*** Private ***/
+/*** Generic Renderer ***/
 
 /**
  * Returns HTML for a generic inline icon button based on parameters
  * @return {string} formatted button HTML
  */
-function _renderIcon({
+function renderIcon({
   iconName,
   cssClasses = "",
   ttip = false,
@@ -246,5 +246,6 @@ _typeIconMap['unknown'] = {
 export {
   icons,
   iconsInline,
-  iconTypes
+  iconTypes,
+  renderIcon
 }

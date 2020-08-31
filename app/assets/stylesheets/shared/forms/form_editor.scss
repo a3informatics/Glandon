@@ -1,0 +1,20 @@
+@import 'shared/vars';
+
+.node-actions {
+  position: absolute;
+	width: 122px;
+  background: white;
+  border-radius: 20px;
+  border: 2px solid;
+  display: none;
+}
+
+.node-actions .btns-wrap .btn {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.node-actions .btns-wrap .btn .icon-arrow-u,
+  .node-actions .btns-wrap .btn .icon-arrow-d {
+  font-size: $font-small;
+}
