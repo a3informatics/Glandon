@@ -10,6 +10,20 @@ describe Sparql::Update do
     return "models/concerns/sparql/update"
   end
 
+  def get_value(name, uri, node)
+    path = "binding[@name='" + name + "']/"
+    if uri 
+      path = path + "uri"
+    else
+      path = path + "literal"
+    end
+    valueArray = node.xpath(path)
+    if valueArray.length == 1
+      return valueArray[0].text
+    else
+      return ""
+    end
+  end
 
   def create_simple_triple
     sparql = Sparql::Update.new()
@@ -30,11 +44,11 @@ describe Sparql::Update do
     count = ontology ? 2 : 1
     expect(xmlDoc.xpath("//result").count). to eq(count) 
     xmlDoc.xpath("//result").each_with_index do |node, index|
-      sub = ModelUtility.getValue('s', true, node)
+      sub = get_value('s', true, node)
       expect(sub.to_s).to eq(triples[index][0])
-      pre = ModelUtility.getValue('p', true, node)
+      pre = get_value('p', true, node)
       expect(pre.to_s).to eq(triples[index][1])
-      obj = ModelUtility.getValue('o', true, node)
+      obj = get_value('o', true, node)
       expect(obj.to_s).to eq(triples[index][2])
     end
   end
@@ -321,9 +335,9 @@ describe Sparql::Update do
     xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      pre = ModelUtility.getValue('p', true, node)
+      pre = get_value('p', true, node)
       next if pre != "http://www.example.com/default#ooo4"
-      obj = ModelUtility.getValue('o', false, node)
+      obj = get_value('o', false, node)
       expect(obj).to eq("+/aaa&\n\r\t")
     end
   end
@@ -344,12 +358,12 @@ describe Sparql::Update do
     xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
-      pre = ModelUtility.getValue('p', true, node)
+      pre = get_value('p', true, node)
       if pre == "http://www.example.com/default#ooo4" 
-        obj = ModelUtility.getValue('o', false, node)
+        obj = get_value('o', false, node)
         expect(obj).to eq("+/ \\ \"test\" 'aaa \\ \" ' / % & \n\r\t")
       elsif pre == "http://www.example.com/default#ooo5" 
-        obj = ModelUtility.getValue('o', false, node)
+        obj = get_value('o', false, node)
         expect(obj).to eq(string)
       end
     end
