@@ -27,7 +27,7 @@ configure rdf_type: <uri>, uri_suffix: <string>, uri_unique: <boolean>, uri_prop
 ```
 
 | Name | Values | Purpose|
-|:===|:===|:===|
+| :-- | :-- | :-- |
 | :rdf_type | URI | the URI from the schema tha defines the subject and the associated properties |
 | :uri_suffix | Class name as string or class | Defines the class at the other end of the relationship |
 | :uri_unique | boolean or property | Generate a unique URI for instances. If true use a unique random string. If a property name is quoted will uses a SHA1 digest of the property value |
