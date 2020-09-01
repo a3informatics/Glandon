@@ -42,7 +42,6 @@ module Glandon
 
     # Generic configurations
     config.metadata = config_for(:metadata).deep_symbolize_keys
-    config.bridg_sdtm = config_for(:bridg_sdtm)
     config.iso_registration_state = config_for(:iso_registration_state)
     config.roles = config_for(:roles)
     config.policy = config_for(:policy).deep_symbolize_keys
