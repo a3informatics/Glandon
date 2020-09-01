@@ -23,7 +23,8 @@ The properties declared must be defined within the triple store schema.
 This allows the basic configuration of the class of the base RDF type and the method to be used for class instance URI generation
 
 ```
-configure rdf_type: <uri>, uri_suffix: <string>, uri_unique: <boolean>, uri_property: <data property>, base_uri: <uri>, key_property: <>, cache: <boolean>
+configure rdf_type: <uri>, uri_suffix: <string>, uri_unique: <boolean>, uri_property: <data property>, 
+          base_uri: <uri>, key_property: <>, cache: <boolean>
 ```
 
 | Name | Values | Purpose|
