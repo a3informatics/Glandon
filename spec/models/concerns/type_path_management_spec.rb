@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'tabulation'
 
 describe TypePathManagement do
 

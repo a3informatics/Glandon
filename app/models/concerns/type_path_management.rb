@@ -17,7 +17,7 @@ module TypePathManagement
     Form::Item::Question.rdf_type.to_s => { klass: Form::Item::Question },
     Form::Item::TextLabel.rdf_type.to_s => { klass: Form::Item::TextLabel },
     SdtmModel.rdf_type.to_s => { klass: SdtmModel },
-    SdtmModel::Variable.rdf_type.to_s => { klass: SdtmModel::Variable }
+    SdtmClass::Variable.rdf_type.to_s => { klass: SdtmClass::Variable }
   }
 
   @@mi_history_path =

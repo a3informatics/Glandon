@@ -24,14 +24,14 @@ class IsoScopedIdentifierV2 < Fuseki::Base
   C_CLASS_NAME = self.name
   C_FIRST_VERSION = 1
 
-  # Get the next version
+  # Next Integer Version. Get the next integer version
   #
   # @return [integer] The updated version
-  def next_version
+  def next_integer_version
     return self.version + 1
   end
   
-  # Get the next version
+  # Next Semantic Version. Get the next semantic version
   #
   # @return [integer] The updated version
   def next_semantic_version
@@ -40,7 +40,7 @@ class IsoScopedIdentifierV2 < Fuseki::Base
     return temp
   end
   
-  # A later version than specified?
+  # Later Version? A later version than the specified version?
   #
   # @param version [integer] The version to compare against
   # @return [boolean] True or False
@@ -48,7 +48,7 @@ class IsoScopedIdentifierV2 < Fuseki::Base
     return self.version > version
   end
   
-  # An earlier version than specified?
+  # Earlier Version? A earlier version than the specified version?
   #
   # @param version [integer] The version to compare against
   # @return [boolean] True or False
@@ -56,7 +56,7 @@ class IsoScopedIdentifierV2 < Fuseki::Base
     return self.version < version
   end
   
-  # Same version than specified?
+  # Same Version? Same version than specified?
   #
   # @param version [integer] The version to compare against
   # @return [boolean] True or False
@@ -64,14 +64,14 @@ class IsoScopedIdentifierV2 < Fuseki::Base
     return self.version == version
   end
   
-  # Return the first version
+  # First Integer Version. Return the first version
   #
   # @return [integer] The first version
-  def self.first_version
+  def self.first_integer_version
     return C_FIRST_VERSION
   end
 
-  # Find if the object with identifier exists within the specified scope (ISO Namespace).
+  # Exists? Find if the object with identifier exists within the specified scope (ISO Namespace).
   #
   # @param identifier [String] The identifer being checked.
   # @param scope [IsoNamespace] the scope namespace (IsoNamespace object).
@@ -81,7 +81,7 @@ class IsoScopedIdentifierV2 < Fuseki::Base
     !results.empty?
   end
 
-  # Find if the object with the identifier with a specified version exists within the specified scope (namespace).
+  # Version Exists? Find if the object with the identifier with a specified version exists within the specified scope (namespace).
   #
   # @param identifier [String] the identifer being checked.
   # @param version [Integer] the version being checked.
@@ -92,23 +92,23 @@ class IsoScopedIdentifierV2 < Fuseki::Base
     !results.empty?
   end
 
-  # Find the latest version for a given identifier within the specified scope (namespace).
+  # Latest Integer Version. Find the latest version for a given identifier within the specified scope (namespace).
   #
   # @param identifier [String] the identifer being checked.
   # @param scope [IsoNamespace] the scope namespace (IsoNamespace object).
   # @return [Boolean] true if the item exists, false otherwise.
-  def self.latest_version(identifier, scope)   
+  def self.latest_integer_version(identifier, scope)   
     results = object_results(latest_version_query(identifier, scope), prefixes: [:isoI])
     return C_FIRST_VERSION if results.empty?
     return results.by_object.first.to_i
   end
 
-  # Next Version. Obtain the next version for a given identifier within the specified scope (namespace).
+  # Next Integer Version. Obtain the next version for a given identifier within the specified scope (namespace).
   #
   # @param identifier [String] the identifer being checked.
   # @param scope [IsoNamespace] the scope namespace (IsoNamespace object).
   # @return [Integer] the next version.
-  def self.next_version(identifier, scope)   
+  def self.next_integer_version(identifier, scope)   
     results = object_results(latest_version_query(identifier, scope), prefixes: [:isoI])
     return C_FIRST_VERSION if results.empty?
     return results.by_object.first.to_i + 1

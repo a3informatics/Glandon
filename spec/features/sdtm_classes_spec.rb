@@ -30,7 +30,7 @@ describe "SDTM Classes", :type => :feature do
 
     it "allows access to index page (REQ-MDR-MIT-015)", js:true do
       click_navbar_sdtm_class
-      wait_for_ajax 10
+      wait_for_ajax 20
       expect(page).to have_content 'Index: SDTM Classes'
       ui_check_table_info("index", 1, 7, 7)
       ui_check_table_cell("index", 1, 2, "SDTMMODEL FINDINGS ABOUT")

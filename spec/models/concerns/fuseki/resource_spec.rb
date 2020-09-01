@@ -199,13 +199,15 @@ describe Fuseki::Resource do
       item = TestR4.new
       expect(TestR4.respond_to?(:children_klass)).to eq(true)
       expect(TestR4.respond_to?(:children_predicate)).to eq(true)
+      expect(TestR4.children_predicate?).to eq(true)
       expect(item.respond_to?(:children)).to eq(true)
       expect(item.respond_to?(:children_objects)).to eq(true)
     end
 
     it "object and link properties" do
       TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
-      TestR4.object_property(:fred, {cardinality: :one, model_class: "TestRTarget", children: true})
+      TestR4.object_property(:fred, {cardinality: :one, model_class: "TestRTarget"})
+      expect(TestR4.children_predicate?).to eq(false)
       item = TestR4.new
       expect(item.respond_to?(:fred_links)).to eq(true)
       expect(item.respond_to?(:fred_links?)).to eq(true)
