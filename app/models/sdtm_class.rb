@@ -3,6 +3,8 @@ class SdtmClass < Tabulation
   configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmClass",
             uri_suffix: "CL"
   
+  object_property_class :includes_column, model_class: "SdtmClass::Variable"
+
   def find_variable(variable_name, domain_prefix)
     variable = SdtmVariableName.new(variable_name, domain_prefix)
     search_clause = "{?s bd:name '#{variable.generic_prefix}'}"

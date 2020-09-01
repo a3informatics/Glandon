@@ -10,6 +10,12 @@ class Form::Group::Normal < Form::Group
   object_property :has_sub_group, cardinality: :many, model_class: "Form::Group::Normal"
   object_property :has_biomedical_concept, cardinality: :many, model_class: "OperationalReferenceV3"
 
+  object_property_class :has_item, model_classes: 
+    [ 
+      Form::Item::BcProperty, Form::Item::Mapping,
+      Form::Item::Placeholder, Form::Item::Question, Form::Item::TextLabel 
+    ]
+
   validates_with Validator::Field, attribute: :repeating, method: :valid_boolean?
 
   # Get Item

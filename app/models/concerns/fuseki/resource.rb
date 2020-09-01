@@ -273,6 +273,20 @@ module Fuseki
 
     end
 
+    # Object Property Class. Add a class to a relatinship
+    #
+    # @param name [Symbol] the property name
+    # @param opts [Hash] the option hash
+    # @option opts [Symbol] :model_class the model class handling the other end of the relationship
+    # @raise [Errors::ApplicationLogicError] raised if model_class not found.
+    # @return [Void] no return
+    def object_property_class(name, opts = {})
+      Errors.application_error(self.name, __method__.to_s, "No model class(es) specified for object property class.") unless opts.key?(:model_class) || opts.key?(:model_classes)
+      properties = Fuseki::Resource::Properties.new(self, self.resources)
+      properties.property(name).add_klasses(opts[:model_classes].map{|x| "#{x}".constantize}) if opts.key?(:model_classes)
+      properties.property(name).add_klasses(["#{opts[:model_class]}".constantize]) if opts.key?(:model_class)
+    end
+
     # Data Property
     #
     # @param name [Symbol] the property name

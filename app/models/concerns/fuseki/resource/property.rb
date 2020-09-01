@@ -44,6 +44,14 @@ module Fuseki
 
       alias :target :klass
 
+      # Add Klassess. Add classes to the set of classes
+      # 
+      # @param [Array] klasses array of classes to be added
+      # @return [Void] no return
+      def add_klasses(klasses)
+        @metadata[:model_classes] += klasses.map{|x| "#{x}".constantize}
+      end
+
       # Cardinality
       # 
       # @return [Symbol] the cardinality for the specified property, either :one or :many
