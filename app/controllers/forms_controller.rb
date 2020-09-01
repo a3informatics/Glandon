@@ -234,7 +234,7 @@ private
         return form_path(object)
       when :edit
         return ""
-      when :crf
+      when :view
         return crf_form_path(object)
       else
         return ""
