@@ -28,10 +28,6 @@ describe Import::AdamIg do
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..60)
-    clear_iso_concept_object
-    clear_iso_namespace_object
-    clear_iso_registration_authority_object
-    clear_iso_registration_state_object
     Import.destroy_all
     delete_all_public_test_files
     setup
