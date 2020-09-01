@@ -44,7 +44,7 @@ data_property <name as symbol>, <option>, <option>
 ```
 
 | Name | Values | Purpose|
-|:===|:===|:===|
+| :-- | :-- | :-- |
 | :default | any | the desired default value of the correct type |
 
 ### Object Property
@@ -56,21 +56,27 @@ data_property <name as symbol>, <option>, <option>
 ```
 
 | Name | Values | Purpose|
-|:===|:===|:===|
+| :-- | :-- | :-- |
 | :cardinatlity | :one or :many | Defines whether a single or array of relationships |
 | :model_class | Class name as string or class | Defines the class at the other end of the relationship |
 | :model_classes | Array of class names as string or class | Defines the classes at the other end of the relationship |
+| :read_exclude | boolean | Removes relationship for read operations. Read paths will stop at this relationship |
+| :delete_exlude | boolean | Removes relationship for delete operations. Delete paths will stop at this relationship |
 
-Classes inheriting from a class may need to add to the class list for an object. This can be achieved by
+Classes inheriting from a class may need to add to the class list for an object. This can be achieved using
 
 ```
 object_property_class :has_item, <option> 
 ```
 
 | Name | Values | Purpose|
-|:===|:===|:===|
+| :-- | :-- | :-- |
 | :model_class | Class name as string or class | Defines the class at the other end of the relationship |
 | :model_classes | Array of class names as string or class | Defines the classes at the other end of the relationship |
+
+### Paths
+
+There are several types of path - a series of predicates to read all subjects and child subjects linked via relationships - used to peform reads and deletes. The paths should generally be used from the top of a heirarchy and will stop under certain conditions such as a given rdf type of a subject node or a predicate.
 
 ## Persistance
 
