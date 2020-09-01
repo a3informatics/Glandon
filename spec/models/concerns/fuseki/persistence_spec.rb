@@ -424,7 +424,7 @@ describe Fuseki::Persistence do
       expect(result).to eq(uri_1)
       expect{FusekiBaseHelpers::TestAdministeredItem.find_single("SELECT ?s WHERE {?s <http://www.assero.co.uk/Test#changeDescription> \"find\"}")}.to raise_error(Errors::ApplicationLogicError, "Multiple items found when single required.")
       expect(FusekiBaseHelpers::TestAdministeredItem.find_single("SELECT ?s WHERE {?s <http://www.assero.co.uk/Test#changeDescription> \"find X\"}")).to be_nil
-      expect{FusekiBaseHelpers::TestAdministeredItem.find_single("SELECT ?s WHERE {?s <http://www.assero.co.uk/Test#changeDescription> \"find X\"}", false)}.to raise_error(Errors::ApplicationLogicError, "Failed to find single item.")
+      expect{FusekiBaseHelpers::TestAdministeredItem.find_single("SELECT ?s WHERE {?s <http://www.assero.co.uk/Test#changeDescription> \"find X\"}", [], false)}.to raise_error(Errors::ApplicationLogicError, "Failed to find single item.")
     end
 
   end
