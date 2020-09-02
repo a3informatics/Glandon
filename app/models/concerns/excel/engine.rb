@@ -735,7 +735,15 @@ private
 
   # Set a property value
   def property_set_value(object, name, value)
+    return if only_temporary?(object, name, value)
     object.properties.ignore?(name.to_sym) ? set_temporary(object, name, value) : set_defined(object, name, value) 
+  end
+
+  # Set a temporary property
+  def only_temporary?(object, name, value)
+    return false if object.respond_to?(:properties)
+    object.instance_variable_set("@#{name}", value)
+    true
   end
 
   # Set a defined property

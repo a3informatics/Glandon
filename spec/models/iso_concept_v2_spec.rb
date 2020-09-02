@@ -8,7 +8,7 @@ describe "IsoConceptV2" do
   include IsoHelpers
 
 	def sub_dir
-    return "models/iso_concept"
+    return "models/iso_concept_v2"
   end
 
 	context "Main Tests" do

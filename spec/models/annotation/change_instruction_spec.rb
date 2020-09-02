@@ -51,7 +51,7 @@ describe Annotation::ChangeInstruction do
     result.label = "Label"
     result.semantic = "A Relationship"
     allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
-		parent_uri = UriV2.new(uri: "http://example.com/A#base")
+		parent_uri = Uri.new(uri: "http://example.com/A#base")
 		sparql = Sparql::Update.new
     result.generate_uri(parent_uri)
 		result.to_sparql(sparql)
