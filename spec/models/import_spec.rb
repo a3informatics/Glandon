@@ -258,7 +258,7 @@ describe Import do
     object.uri = Uri.new(uri: "http://www.example.com/A#A")
     item = simple_import
     expect(TypePathManagement).to receive(:history_url_v2).with(object)
-    expect(object).to receive(:to_sparql).and_return(SparqlUpdateV2.new)
+    expect(object).to receive(:to_sparql).and_return(Sparql::Update.new)
     item.save_load_file({parent: object, managed_children: [], tags: []})
     result = Import.find(item.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "save_error_file_expected_2.yaml")
