@@ -67,14 +67,14 @@ Rails.application.routes.draw do
     end
   end
   resources :iso_concept, only: [:show] do
-    collection do
-      get :graph
-      get :graph_links
-      get :impact
-      get :impact_start
-      get :impact_next
-      get :changes
-    end
+    #collection do
+      # get :graph
+      # get :graph_links
+      # get :impact
+      # get :impact_start
+      # get :impact_next
+      # get :changes
+    #end
     member do
       get :tags
       put :add_tag
@@ -97,23 +97,23 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :iso_managed do
-    collection do
-      get :status
-      get :find_by_tag
-      get :tags
-      get :graph
-      get :graph_links
-      get :impact
-      get :impact_start
-      get :impact_next
-      get :changes
-      get :comments
-    end
-    member do
-      get :branches
-    end
-  end
+  # resources :iso_managed do
+  #   collection do
+  #     get :status
+  #     get :find_by_tag
+  #     get :tags
+  #     get :graph
+  #     get :graph_links
+  #     get :impact
+  #     get :impact_start
+  #     get :impact_next
+  #     get :changes
+  #     get :comments
+  #   end
+  #   member do
+  #     get :branches
+  #   end
+  # end
   resources :iso_managed_v2, only: [] do
     collection do
       get :find_by_tag
@@ -138,9 +138,9 @@ Rails.application.routes.draw do
   end
   resources :dashboard, only: [:index] do
     collection do
-      get :view
-      get :database
-      get :admin
+      # get :view
+      # get :database
+      # get :admin
     end
   end
   resources :iso_concept_systems, only: [:index, :show, :destroy] do
