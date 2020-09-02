@@ -16,14 +16,14 @@ describe Sparql::Update::Statement::Uri do
   end
 
   it "allows for the class to be created, uri" do
-    uri = UriV2.new(uri: "http://www.example.com/www#fragment")
+    uri = Uri.new(uri: "http://www.example.com/www#fragment")
 		result = Sparql::Update::Statement::Uri.new({uri: uri}, "", @prefixes)
     expect("#{result.to_ref}").to eq("<http://www.example.com/www#fragment>")
     expect(@prefixes).to eq({})
 	end
 
   it "allows for the uri to be obtained" do
-    uri = UriV2.new(uri: "http://www.example.com/www#fragment")
+    uri = Uri.new(uri: "http://www.example.com/www#fragment")
     result = Sparql::Update::Statement::Uri.new({uri: uri}, "", @prefixes)
     expect("#{result.uri.to_ref}").to eq("<http://www.example.com/www#fragment>")
   end

@@ -163,10 +163,11 @@ describe Uri do
     expect{Uri.from_uri_or_string(1)}.to raise_error(Errors::ApplicationLogicError, "The value is not a string or an existing URI.")
   end
 
-  it "to Version 2" do
-    uri = Uri.new({uri: "http://www.example.com/path1/path2#1"})
-    expect(uri.to_v2.to_s).to eq(uri.to_s)
-  end
+  # No longer required
+  # it "to Version 2" do
+  #   uri = Uri.new({uri: "http://www.example.com/path1/path2#1"})
+  #   expect(uri.to_v2.to_s).to eq(uri.to_s)
+  # end
 
   it "speed test" do
     timer_start
