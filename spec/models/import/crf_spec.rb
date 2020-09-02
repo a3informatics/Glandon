@@ -24,10 +24,6 @@ describe Import::Crf do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..49)
-    clear_iso_concept_object
-    clear_iso_namespace_object
-    clear_iso_registration_authority_object
-    clear_iso_registration_state_object
     @th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V49#TH"))
     @th.has_state.make_current
   end

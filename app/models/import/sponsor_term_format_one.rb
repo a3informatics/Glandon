@@ -119,6 +119,7 @@ private
         existing_ref = true
       elsif child.future_referenced?(@th)
         add_log("Future Reference Sponsor detected: #{child.identifier}")
+        child.update_identifier(child.identifier)
         ref = child
       elsif child.subset_of_extension?(@extensions)
         add_log("Subset of extension detected: #{child.identifier}")
@@ -135,12 +136,14 @@ private
         @extensions[ref.identifier] = ref if !ref.nil?
       elsif child.sponsor?
         add_log("Sponsor detected: #{child.identifier}")
+        child.update_identifier(child.identifier)
         ref = child
       elsif child.hybrid_sponsor?
         add_log("Hybrid Sponsor detected: #{child.identifier}")
         ref = child.to_hybrid_sponsor(@th, @fixes)
       elsif child.future_hybrid_sponsor?  
         add_log("Future Hybrid Sponsor detected: #{child.identifier}")
+        child.update_identifier(child.identifier)
         ref = child
       else
         add_error(@parent, "Code list type not detected, identifier '#{child.identifier}'.")
