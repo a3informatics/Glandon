@@ -23,13 +23,14 @@ describe "IsoConceptV2" do
 	  end
 
 		it "validates a valid object" do
-	    result = IsoConcept.new
+	    result = IsoConceptV2.new
+      result.uri = Uri.new(uri: "http://www.assero.co.uk/Y/V1#F-T_G1")
 	    result.label = "123456789"
 	    expect(result.valid?).to eq(true)
 	  end
 
 	  it "does not validate an invalid object" do
-	    result = IsoConcept.new
+	    result = IsoConceptV2.new
 	    result.label = "123456789@£$%"
 	    expect(result.valid?).to eq(false)
 	  end
