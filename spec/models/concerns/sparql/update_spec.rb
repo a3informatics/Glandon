@@ -5,7 +5,8 @@ describe Sparql::Update do
 	include DataHelpers
   include PublicFileHelpers
   include TimeHelpers
-
+  include Sparql::PrefixClauses
+  
   def sub_dir
     return "models/concerns/sparql/update"
   end
@@ -39,7 +40,7 @@ describe Sparql::Update do
       [s_uri.to_s, p_uri.to_s, o_uri.to_s],
       ["http://www.example.com/test", "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#Ontology"]
     ]
-    xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
+    xmlDoc = Nokogiri::XML(CRUD.query("#{build_clauses("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
     xmlDoc.remove_namespaces!
     count = ontology ? 2 : 1
     expect(xmlDoc.xpath("//result").count). to eq(count) 
@@ -332,7 +333,7 @@ describe Sparql::Update do
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo3"}, {:prefix => "", :fragment => "ooo4"})
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo4"}, {:literal => "+/aaa&\n\r\t", :primitive_type => XSDDatatype.new("string")})
     sparql.create
-    xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
+    xmlDoc = Nokogiri::XML(CRUD.query("#{build_clauses("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
       pre = get_value('p', true, node)
@@ -355,7 +356,7 @@ describe Sparql::Update do
     string = %Q{+/ \ "test" 'aaa \ "  / % & \n\r\t}
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo5"}, {:literal => string, :primitive_type => XSDDatatype.new("string")})
     sparql.upload
-    xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
+    xmlDoc = Nokogiri::XML(CRUD.query("#{build_clauses("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
       pre = get_value('p', true, node)
