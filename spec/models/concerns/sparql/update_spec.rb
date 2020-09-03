@@ -55,7 +55,7 @@ describe Sparql::Update do
   end
 
   def check_deleted
-    xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
+    xmlDoc = Nokogiri::XML(CRUD.query("#{build_clauses("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
     xmlDoc.remove_namespaces!
     expect(xmlDoc.xpath("//result").count). to eq(0) 
   end
