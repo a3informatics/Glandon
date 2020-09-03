@@ -67,14 +67,14 @@ Rails.application.routes.draw do
     end
   end
   resources :iso_concept, only: [:show] do
-    collection do
-      get :graph
-      get :graph_links
-      get :impact
-      get :impact_start
-      get :impact_next
-      get :changes
-    end
+    #collection do
+      # get :graph
+      # get :graph_links
+      # get :impact
+      # get :impact_start
+      # get :impact_next
+      # get :changes
+    #end
     member do
       get :tags
       put :add_tag
@@ -97,23 +97,23 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :iso_managed do
-    collection do
-      get :status
-      get :find_by_tag
-      get :tags
-      get :graph
-      get :graph_links
-      get :impact
-      get :impact_start
-      get :impact_next
-      get :changes
-      get :comments
-    end
-    member do
-      get :branches
-    end
-  end
+  # resources :iso_managed do
+  #   collection do
+  #     get :status
+  #     get :find_by_tag
+  #     get :tags
+  #     get :graph
+  #     get :graph_links
+  #     get :impact
+  #     get :impact_start
+  #     get :impact_next
+  #     get :changes
+  #     get :comments
+  #   end
+  #   member do
+  #     get :branches
+  #   end
+  # end
   resources :iso_managed_v2, only: [] do
     collection do
       get :find_by_tag
@@ -138,9 +138,9 @@ Rails.application.routes.draw do
   end
   resources :dashboard, only: [:index] do
     collection do
-      get :view
-      get :database
-      get :admin
+      # get :view
+      # get :database
+      # get :admin
     end
   end
   resources :iso_concept_systems, only: [:index, :show, :destroy] do
@@ -373,6 +373,7 @@ Rails.application.routes.draw do
   resources :forms do
     member do
       get :show_data
+      get :crf
     end
     collection do
       get :history
@@ -451,19 +452,24 @@ Rails.application.routes.draw do
   end
 
   #ADAM
-  resources :adam_igs do
+  resources :adam_igs, :only => [:show, :index] do
     collection do
       get :history
     end
     member do
-      get :export_json
-      get :export_ttl
+      get :show_data
+      # get :export_json
+      # get :export_ttl
     end
   end
-  resources :adam_ig_datasets, :only => [:show] do
+  resources :adam_ig_datasets, :only => [:show, :index] do
+    collection do
+      get :history
+    end
     member do
-      get :export_json
-      get :export_ttl
+      get :show_data
+      # get :export_json
+      # get :export_ttl
     end
   end
 

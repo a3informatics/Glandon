@@ -21,20 +21,30 @@ describe "CanonicalReference" do
     end
 
     it "valid" do
-      item = CanonicalReference.new(definition: "xxxx", bridg: "xxx.xxx.xxx")
+      item = CanonicalReference.new(definition: "xxxx", bridg: "xxx.xxx.xxx", sdtm: "--QWER")
       item.uri = item.create_uri(Uri.new(uri: "http://www.example.com/path#a"))
       result = item.valid?
       expect(result).to be(true)
-      item = CanonicalReference.new(bridg: "xxx.xxx.xxx")
+      item = CanonicalReference.new(bridg: "xxx.xxx.xxx", sdtm: "--QWER")
       item.uri = item.create_uri(Uri.new(uri: "http://www.example.com/path#a"))
       result = item.valid?
       expect(result).to be(false)
       expect(item.errors.full_messages.to_sentence).to eq("Definition can't be blank")
-      item = CanonicalReference.new(definition: "ddddd")
+      item = CanonicalReference.new(definition: "ddddd", sdtm: "--QWER")
       item.uri = item.create_uri(Uri.new(uri: "http://www.example.com/path#a"))
       result = item.valid?
       expect(result).to be(false)
       expect(item.errors.full_messages.to_sentence).to eq("Bridg can't be blank")
+      item = CanonicalReference.new(definition: "xxxx", bridg: "xxx.xxx.xxx")
+      item.uri = item.create_uri(Uri.new(uri: "http://www.example.com/path#a"))
+      result = item.valid?
+      expect(result).to be(false)
+      expect(item.errors.full_messages.to_sentence).to eq("Sdtm contains invalid characters, is empty or is too long and Sdtm can't be blank")
+      item = CanonicalReference.new(definition: "xxxx", bridg: "xxx.xxx.xxx", sdtm: "--1QWER")
+      item.uri = item.create_uri(Uri.new(uri: "http://www.example.com/path#a"))
+      result = item.valid?
+      expect(result).to be(false)
+      expect(item.errors.full_messages.to_sentence).to eq("Sdtm contains invalid characters, is empty or is too long")
     end
 
   end

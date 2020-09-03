@@ -45,6 +45,7 @@
     :short_name: S-cubed
     :name: S-cubed Aps
     :authority: www.s-cubed.dk
+:has_previous_version: 
 :origin: ''
 :change_description: ''
 :creation_date: '2020-07-30T19:17:42+02:00'
@@ -66,7 +67,7 @@
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: all nodes should change
     :tagged: []
-    :based_on: http://www.s-cubed.dk/CDT#CD
+    :is_complex_datatype: http://www.s-cubed.dk/CDT#CD
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGU=
       :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode
@@ -89,5 +90,6 @@
         :context: http://www.cdisc.org/C66741/V61#C66741
         :local_label: ''
       :is_a: http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413
+      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
 :identified_by: 
 :based_on: 

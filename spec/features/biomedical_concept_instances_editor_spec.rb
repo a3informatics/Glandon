@@ -19,6 +19,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
@@ -76,7 +77,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       expect(page).to have_selector '.card.mini.selected .icon-edit', count: 1
       expect(page).to have_selector '.card.mini.selected .token-timeout', count: 1
       expect(page).to have_selector '.card.mini.selected .remove-bc.disabled', count: 1
-      ui_check_table_info 'editor', 1, 3, 3
+      ui_check_table_info 'editor', 1, 4, 4
       ui_check_table_cell 'editor', 1, 5, 'Height'
       ui_check_table_cell 'editor', 3, 8, 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
       ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
@@ -103,7 +104,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       wait_for_ajax 10
 
       ui_check_table_cell_icon 'editor', 1, 2, 'times-circle'
-      ui_check_table_cell_icon 'editor', 2, 2, 'times-circle'
+      ui_check_table_cell_icon 'editor', 3, 2, 'times-circle'
 
       ui_editor_press_key :arrow_down
       ui_editor_press_key :arrow_right
@@ -170,7 +171,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       go_to_edit 'HEIGHT'
 
       expect(page).to have_selector '.card.mini', count: 1
-      ui_check_table_info 'editor', 1, 3, 3
+      ui_check_table_info 'editor', 1, 4, 4
 
       # Add BC
       find('#add-bc-edit-button').click
@@ -189,7 +190,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       expect(page).to have_selector '.card.mini .remove-bc', count: 2
 
       click_bc 'WEIGHT', :edit
-      ui_check_table_info 'editor', 1, 3, 3
+      ui_check_table_info 'editor', 1, 4, 4
       ui_editor_check_value 2, 8, 'WEIGHT C25208 (VSTESTCD C66741 v61.0.0)'
 
       # Add BC
@@ -254,7 +255,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
       click_bc 'DIABP', :edit
 
-      ui_check_table_info 'editor', 1, 6, 6
+      ui_check_table_info 'editor', 1, 7, 7
 
       # Sort
       find(:xpath, "//th[contains(.,'Question Text')]").click
@@ -262,7 +263,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       # Inline text
       ui_editor_select_by_content 'Body Position', true
       ui_editor_fill_inline "question_text", "Patient Body Position\n"
-      ui_editor_check_value 4, 4, 'Patient Body Position'
+      ui_editor_check_value 5, 4, 'Patient Body Position'
 
       # Truefalse field
       ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
@@ -313,7 +314,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
           ], 'bc-term-ref'
       end
 
-      ui_editor_check_value 3, 8, 'ARM C32141 (LOC C74456 v62.0.0) LEG C32974 (LOC C74456 v62.0.0)'
+      ui_editor_check_value 5, 8, 'ARM C32141 (LOC C74456 v62.0.0) LEG C32974 (LOC C74456 v62.0.0)'
 
       # Remove Term Reference
 

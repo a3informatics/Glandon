@@ -8,7 +8,7 @@ class BiomedicalConcept::ComplexDatatype  < IsoConceptV2
             uri_property: :label,
             uri_suffix: 'BCCDT'
 
-  object_property :based_on, cardinality: :one, model_class: "ComplexDatatype", read_exclude: true, delete_exclude: true
+  object_property :is_complex_datatype, cardinality: :one, model_class: "ComplexDatatype", read_exclude: true, delete_exclude: true
   object_property :has_property, cardinality: :many, model_class: "BiomedicalConcept::PropertyX", children: true
 
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class

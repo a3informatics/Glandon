@@ -34,6 +34,21 @@ class FormsController < ManagedItemsController
     render json: { data: items }, status: 200
   end
 
+  def crf
+    @form = Form.find_minimum(protect_from_bad_id(params))
+    @close_path = history_forms_path(:form => { identifier: @form.has_identifier.identifier, scope_id: @form.scope })
+    #respond_to do |format|
+      #format.html do
+        @html = @form.to_crf
+      #end
+      # format.pdf do
+      #   @html = Reports::CrfReport.new.create(@form, {:annotate => false, :full => true}, current_user)
+      #   @render_args = {pdf: "#{@form.owner_short_name}_#{@form.identifier}_CRF", page_size: current_user.paper_size, lowquality: true}
+      #   render @render_args
+      # end
+    #end
+  end
+
   # def new
   #   authorize Form
   #   @form = Form.new
@@ -207,22 +222,6 @@ class FormsController < ManagedItemsController
   #   end
   # end
 
-  # def crf
-  #   authorize Form, :view?
-  #   @form = Form.find(params[:id], params[:namespace])
-  #   @close_path = request.referer
-  #   respond_to do |format|
-  #     format.html do
-  #       @html = Reports::CrfReport.new.create(@form, {:annotate => false, :full => false}, current_user)
-  #     end
-  #     format.pdf do
-  #       @html = Reports::CrfReport.new.create(@form, {:annotate => false, :full => true}, current_user)
-  #       @render_args = {pdf: "#{@form.owner_short_name}_#{@form.identifier}_CRF", page_size: current_user.paper_size, lowquality: true}
-  #       render @render_args
-  #     end
-  #   end
-  # end
-
 private
 
   def the_params
@@ -236,6 +235,8 @@ private
         return form_path(object)
       when :edit
         return edit_form_path(object)
+      when :view
+        return crf_form_path(object)
       else
         return ""
     end

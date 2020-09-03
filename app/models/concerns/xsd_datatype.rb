@@ -28,6 +28,34 @@ class XSDDatatype
     @fragment == C_XSD_STRING
   end
 
+  # Integer?
+  #
+  # @return [Boolean] true if it is an integer
+  def integer?
+    @fragment == "integer"
+  end
+
+  # Datetime?
+  #
+  # @return [Boolean] true if it is an integer
+  def datetime?
+    @fragment == "dateTime"
+  end
+
+  # Boolean?
+  #
+  # @return [Boolean] true if it is an integer
+  def boolean?
+    @fragment == "boolean"
+  end
+
+  # Float?
+  #
+  # @return [Boolean] true if it is an integer
+  def float?
+    @fragment == "float"
+  end
+
   # To Typed
   #
   # @param value [String] the value

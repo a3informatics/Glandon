@@ -185,6 +185,23 @@ function dtSDTMIGDomainShowColumns() {
   ];
 };
 
+/**
+ * Column definitions for ADaM IG Dataset show
+ * @return {Array} DataTables  ADaM IG Dataset show column definitions collection
+ */
+function dtADaMIGDatasetShowColumns() {
+  return [
+    { data: "ordinal" },
+    { data: "name" },
+    { data: "label" },
+    { data: "label" }, //datatype_label
+    { data: "ct" },
+    { data: "ct_notes" },
+    { data: "notes" },
+    { data: "compliance" }
+  ];
+};
+
 export {
   dtIndexColumns,
   dtSimpleHistoryColumns,
@@ -195,5 +212,6 @@ export {
   dtFormShowColumns,
   dtSDTMClassShowColumns,
   dtSDTMShowColumns,
-  dtSDTMIGDomainShowColumns
+  dtSDTMIGDomainShowColumns,
+  dtADaMIGDatasetShowColumns
 }

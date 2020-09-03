@@ -30,7 +30,7 @@ describe "SDTM IG Domains", :type => :feature do
 
     it "allows access to index page (REQ-MDR-MIT-015)", js:true do
       click_navbar_ig_domain
-      wait_for_ajax 10
+      wait_for_ajax 20
       expect(page).to have_content 'Index: SDTM IG Domains'
       ui_check_table_info("index", 1, 10, 41)
       find(:xpath, "//*[@id='index']/thead/tr/th[2]").click #Order data

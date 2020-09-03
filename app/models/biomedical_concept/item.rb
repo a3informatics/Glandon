@@ -14,6 +14,8 @@ configure rdf_type: "http://www.assero.co.uk/BiomedicalConcept#Item",
   data_property :ordinal, default: 1
   object_property :has_complex_datatype, cardinality: :many, model_class: "BiomedicalConcept::ComplexDatatype", children: true
 
+  validates_with Validator::Field, attribute: :enabled, method: :valid_boolean?
+
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #
   # @return [String] the path as an expanded set of predicates

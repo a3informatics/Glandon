@@ -255,3 +255,11 @@
   rdfs:range xsd:string ;
   skos:definition "The question text."^^xsd:string
 .
+:isCommon
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :BcProperty ;
+  rdfs:label "Is common"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+  skos:definition "The item is common."^^xsd:string
+.

@@ -142,12 +142,12 @@ describe "Thesauri Search", :type => :feature do
       wait_for_ajax(10)
       context_menu_element("history", 1, "0.1.0", :make_current)
       wait_for_ajax(10)
-      ui_check_table_row_indicators("history", 1, 8, ["Current version"])
+      ui_check_table_row_indicators("history", 1, 8, ["Current version"], new_style: true)
       click_navbar_cdisc_terminology
       wait_for_ajax(30)
       context_menu_element("history", 1, "2009-10-06", :make_current)
       wait_for_ajax(10)
-      ui_check_table_row_indicators("history", 3, 8, ["Current version"])
+      ui_check_table_row_indicators("history", 3, 8, ["Current version"], new_style: true)
       click_navbar_terminology
       click_link 'Search Terminologies'
       sleep 0.6

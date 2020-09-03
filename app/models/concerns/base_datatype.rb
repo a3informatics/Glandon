@@ -54,7 +54,7 @@ module BaseDatatype
   # @param [String] fragment the xsd fragment
   # @return [String] The generic datatype
   def self.from_xsd_fragment(fragment)
-    uri = UriV3.new(namespace: C_XML_SCHEMA, fragment: fragment)
+    uri = Uri.new(namespace: C_XML_SCHEMA, fragment: fragment)
     results = @@map.select{|key, value| value[:xsd] == uri.to_s}
     if results.length > 0
       return results.keys.first.to_s

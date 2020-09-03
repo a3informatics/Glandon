@@ -16,6 +16,11 @@ class Form::Item::TextLabel < Form::Item
     return self.to_h.merge!(item_blank_fields)
   end
 
+  def to_crf
+    html = ""
+    html += markdown_row(self.label_text)
+  end
+
   # # To XML
   # #
   # # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node

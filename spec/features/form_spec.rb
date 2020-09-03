@@ -78,6 +78,19 @@ describe "Forms", :type => :feature do
       expect(find("table#show tbody tr", match: :first)[:class]).to include("row-subtitle")
     end
 
+    it "history allows the crf page to be viewed (REQ-MDR-BC-???)", js:true do
+      click_navbar_forms
+      wait_for_ajax 10
+      expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'FN000150\''
+      context_menu_element('history', 4, 'Height (Pilot)', :crf)
+      wait_for_ajax 10
+      expect(page).to have_content 'Not Set'
+      expect(page).to have_content 'Compltion Status'
+    end
+
     it "show page has terminology reference links", js:true do
       click_navbar_forms
       wait_for_ajax 10
