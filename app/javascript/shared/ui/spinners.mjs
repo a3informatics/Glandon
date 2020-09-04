@@ -16,7 +16,7 @@ function renderSpinner(size, text = '') {
                     `<div class='spinner-el ${size}'>` +
                       `<div></div><div></div><div><div></div></div><div><div></div></div>` +
                     `</div>` +
-                    (text ? '' : `<div class='spinner-text'>${text}</div>`) +
+                    (text == '' ? text : `<div class='spinner-text'>${text}</div>`) +
                   `</div>` +
                `</div>`
 
@@ -37,11 +37,14 @@ function renderFullPageSpinner(text = '') {
 
 /**
  * Render a Spinner within an element
- * @param {( string | JQuery Element )} element selector / element to append the spinner to
- * @param {string} size desired spinner size ('small'/'medium'/'large')
+ * The element cannot not already have a direct child spinner - duplicate render
+ * @param {( string | JQuery Element )} element Selector / element to append the spinner to
+ * @param {string} size Desired spinner size ('small'/'medium'/'large')
+ * @param {string} text Spinner text, optional
  */
-function renderSpinnerIn$(element, size) {
-  $(element).append(renderSpinner(size));
+function renderSpinnerIn$(element, size, text = '') {
+  if ( !$(element).children('.spinner-container').length )
+    $(element).append(renderSpinner(size, text));
 }
 
 /**

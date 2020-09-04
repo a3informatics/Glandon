@@ -198,37 +198,37 @@ _typeIconMap[getRdfType('BCT')] = {
   color: colors.accentPurpleLight
 }
 _typeIconMap[getRdfType('NORMAL_GROUP')] = {
-  icon: 'icon-forms',
+  icon: '',
   char: 'G',
   color: colors.lightOrange
 }
 _typeIconMap[getRdfType('COMMON_GROUP')] = {
-  icon: 'icon-forms',
+  icon: '',
   char: 'C',
   color: colors.lightOrange
 }
 _typeIconMap[getRdfType('COMMON_ITEM')] = {
-  icon: 'icon-forms',
+  icon: '',
   char: 'I',
   color: colors.fadedRed
 }
 _typeIconMap[getRdfType('TEXTLABEL')] = {
-  icon: 'icon-forms',
+  icon: '',
   char: 'T',
   color: '#7dbca1'
 }
 _typeIconMap[getRdfType('PLACEHOLDER')] = {
-  icon: 'icon-forms',
+  icon: '',
   char: 'P',
   color: colors.greyLight
 }
 _typeIconMap[getRdfType('QUESTION')] = {
-  icon: 'icon-forms',
+  icon: '',
   char: 'Q',
   color: colors.secondaryLight
 }
 _typeIconMap[getRdfType('MAPPING')] = {
-  icon: 'icon-forms',
+  icon: '',
   char: 'M',
   color: colors.accentAquaDark
 }
@@ -236,6 +236,16 @@ _typeIconMap[getRdfType('BC_QUESTION')] = {
   icon: 'icon-biocon',
   char: '\ue90b',
   color: colors.accentPurpleLight
+}
+_typeIconMap[getRdfType('TC_REF')] = {
+  icon: 'icon-codelist',
+  char: '\ue952',
+  color: colors.primaryBright
+}
+_typeIconMap[getRdfType('TUC_REF')] = {
+  icon: 'icon-codelist-item',
+  char: '\ue958',
+  color: colors.primaryBright
 }
 _typeIconMap['unknown'] = {
   icon: 'icon-help',
