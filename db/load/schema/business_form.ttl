@@ -39,6 +39,12 @@
   rdfs:subClassOf :Group ;
   skos:definition "Normal group."^^xsd:string
 .
+:BcGroup
+  rdf:type owl:Class ;
+  rdfs:label "BC Group"^^xsd:string ;
+  rdfs:subClassOf :Group ;
+  skos:definition "BC group."^^xsd:string
+.
 :CommonGroup
   rdf:type owl:Class ;
   rdfs:label "Group"^^xsd:string ;
@@ -106,7 +112,7 @@
 :hasCommon
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :NormalGroup ;
+  rdfs:domain :BcGroup ;
   rdfs:label "Has common group relationship"^^xsd:string ;
   rdfs:range :CommonGroup ;
   skos:definition "Has a common group relationship"^^xsd:string
@@ -124,13 +130,15 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:domain :NormalGroup ;
   rdfs:label "Has sub group relationship"^^xsd:string ;
-  rdfs:range :NormalGroup ;
+  rdfs:range [ a owl:Class ;
+    owl:unionOf  (:NormalGroup :BcGroup)
+    ] ;
   skos:definition "Has a sub group relationship"^^xsd:string
 .
 :hasBiomedicalConcept
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :Group ;
+  rdfs:domain :BcGroup ;
   rdfs:label "Reference to Biomedical Concept"^^xsd:string ;
   rdfs:range bo:BcReference ;
   skos:definition "Reference to a Biomedical Concept"^^xsd:string
