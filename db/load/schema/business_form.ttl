@@ -130,9 +130,7 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:domain :NormalGroup ;
   rdfs:label "Has sub group relationship"^^xsd:string ;
-  rdfs:range [ a owl:Class ;
-    owl:unionOf  (:NormalGroup :BcGroup)
-    ] ;
+  rdfs:range :Group ;
   skos:definition "Has a sub group relationship"^^xsd:string
 .
 :hasBiomedicalConcept
