@@ -66,7 +66,7 @@ describe Form do
 
     def query_sub_group(group)
       query_string = %Q{
-        SELECT ?g ?t ?l ?c ?n ?r ?o ?ordinal WHERE
+        SELECT ?g ?t ?l ?c ?n ?r ?o ?ordinal ?has_bc WHERE
         {
           #{group[:g].to_ref} <http://www.assero.co.uk/BusinessForm#hasSubGroup> ?sg  .
           ?sg <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?t .
@@ -76,12 +76,13 @@ describe Form do
           ?sg <http://www.assero.co.uk/BusinessForm#repeating> ?r .
           ?sg <http://www.assero.co.uk/BusinessForm#optional> ?o .
           ?sg <http://www.assero.co.uk/BusinessForm#ordinal> ?ordinal .
+          ?sg <http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> ?has_bc .
           BIND(?sg as ?g)
         }
       }
       query_results = Sparql::Query.new.query(query_string, "", [])
       return [] if query_results.empty?
-      query_results.by_object_set([:g, :t, :l, :c, :n, :r, :o, :ordinal])
+      query_results.by_object_set([:g, :t, :l, :c, :n, :r, :o, :ordinal, :has_bc])
     end
 
     def query_bc(group)
@@ -102,11 +103,7 @@ describe Form do
       }
       query_results = Sparql::Query.new.query(query_string, "", [])
       return [] if query_results.empty?
-      triples = query_results.by_object_set([:g, :t, :l, :enabled, :optional, :local_label, :ordinal, :bc])
-      triples.each do |x|
-        results << OperationalReferenceV3.new(reference: x[:bc], ordinal: x[:ordinal], label: x[:l], optional: x[:optional], enabled: x[:enabled])
-      end
-      results
+      query_results.by_object_set([:g, :t, :l, :enabled, :optional, :local_label, :ordinal, :bc])
     end
 
     def query_common(group)
@@ -239,40 +236,62 @@ describe Form do
           optional: params[:o].blank? ? "Not Set" : params[:o],
           repeating: params[:r].blank? ? "Not Set" : params[:r],
           has_item: [],
-          has_sub_group: [],
-          has_biomedical_concept: query_bc(params),
-          has_common: []
+          has_sub_group: []
       }
     end
 
     def add_sub_group(group, params)
-      group[:has_sub_group] << {
+      if params[:has_bc].blank? #Normal subgroup
+        hash_group = {
+          label: params[:l].blank? ? "Not Set" : params[:l],
+          ordinal: params[:ordinal],
+          note: params[:n].blank? ? "Not Set" : params[:n],
+          completion: params[:c].blank? ? "Not Set" : params[:c],
+          optional: params[:o].blank? ? "Not Set" : params[:o],
+          repeating: params[:r].blank? ? "Not Set" : params[:r],
+          has_item: [],
+          has_sub_group: []
+        }
+        group[:has_sub_group] << Form::Group::Normal.from_h(hash_group)
+      else #BC subgroup
+        hash_group = {
         label: params[:l].blank? ? "Not Set" : params[:l],
         ordinal: params[:ordinal],
         note: params[:n].blank? ? "Not Set" : params[:n],
         completion: params[:c].blank? ? "Not Set" : params[:c],
         optional: params[:o].blank? ? "Not Set" : params[:o],
-        repeating: params[:r].blank? ? "Not Set" : params[:r],
         has_item: [],
-        has_sub_group: [],
-        has_biomedical_concept: query_bc(params),
+        has_biomedical_concept: [],
         has_common: []
       }
+        group[:has_sub_group] << Form::Group::Bc.from_h(hash_group)
+      end
+    end
+
+    def add_bc(group, params)
+      bc = {
+          reference: params[:bc],
+          optional: params[:optional],
+          ordinal: params[:ordinal],
+          label: params[:l],
+          enabled: params[:enabled]
+          }
+       group.has_biomedical_concept << OperationalReferenceV3.from_h(bc)
     end
 
     def add_common(group, params)
-      group[:has_common] << {
-        label: params[:l].blank? ? "Not Set" : params[:l],
-        completion: params[:c].blank? ? "Not Set" : params[:c],
-        optional: params[:o].blank? ? "Not Set" : params[:o],
-        repeating: params[:r].blank? ? "Not Set" : params[:r],
-        ordinal: params[:ordinal],
-        note: params[:n].blank? ? "Not Set" : params[:n],
-        has_item: []
-      }
+      common = {
+          label: params[:l].blank? ? "Not Set" : params[:l],
+          completion: params[:c].blank? ? "Not Set" : params[:c],
+          optional: params[:o].blank? ? "Not Set" : params[:o],
+          ordinal: params[:ordinal],
+          note: params[:n].blank? ? "Not Set" : params[:n],
+          has_item: []
+          }
+       group.has_common << Form::Group::Common.from_h(common)
     end
 
-    def add_item(group, params)
+    def add_item_group(group, params)
       case params[:type].to_sym
         when :Question
          item = {
@@ -343,6 +362,77 @@ describe Form do
       end
     end
 
+    def add_item_sub_group(group, params)
+      case params[:type].to_sym
+        when :Question
+         item = {
+          label: params[:l].blank? ? "Not Set" : params[:l],
+          completion: params[:c].blank? ? "Not Set" : params[:c],
+          note: params[:n],
+          optional: params[:o],
+          ordinal: params[:ordinal],
+          mapping: params[:mapping],
+          question_text: params[:question_text],
+          format: params[:format],
+          datatype: params[:datatype],
+          has_coded_value: query_tc(params)
+          }
+          group.has_item << Form::Item::Question.from_h(item)
+        when :Mapping
+         item = {
+            label: params[:l].blank? ? "Not Set" : params[:l],
+            completion: params[:c].blank? ? "Not Set" : params[:c],
+            note: params[:n],
+            optional: params[:o],
+            ordinal: params[:ordinal],
+            mapping: params[:mapping]
+          }
+          group.has_item << Form::Item::Mapping.from_h(item)
+        when :Placeholder
+          item =  {
+              label: params[:l].blank? ? "Not Set" : params[:l],
+              completion: params[:c].blank? ? "Not Set" : params[:c],
+              note: params[:n],
+              optional: params[:o],
+              ordinal: params[:ordinal],
+              free_text: params[:free_text]
+            }
+          group.has_item << Form::Item::Placeholder.from_h(item)
+        when :BcProperty
+          item =  {
+              label: params[:l].blank? ? "Not Set" : params[:l],
+              completion: params[:c].blank? ? "Not Set" : params[:c],
+              note: params[:n],
+              optional: params[:o],
+              ordinal: params[:ordinal],
+              is_common: params[:is_common],
+              has_coded_value: query_tc(params),
+              has_property: query_property(params)
+              }
+          group.has_item << Form::Item::BcProperty.from_h(item)
+        when :CommonItem
+          item =  {
+              label: params[:l].blank? ? "Not Set" : params[:l],
+              completion: params[:c].blank? ? "Not Set" : params[:c],
+              note: params[:n],
+              optional: params[:o],
+              ordinal: params[:ordinal],
+              has_common_item: params[:common_item]
+            }
+          group.has_item << Form::Item::Common.from_h(item)
+        when :TextLabel
+          item =  {
+              label: params[:l].blank? ? "Not Set" : params[:l],
+              completion: params[:c].blank? ? "Not Set" : params[:c],
+              note: params[:n],
+              optional: params[:o],
+              ordinal: params[:ordinal],
+              label_text: params[:label_text]
+            }
+          group.has_item << Form::Item::TextLabel.from_h(item)
+      end
+    end
+
     def load_old_files
       files = ["FN000150_old.ttl", "FN000120_old.ttl", "VSTADIABETES_old.ttl"]
       #files = ["form_crf_test_1_old.ttl"]
@@ -360,7 +450,7 @@ describe Form do
           items = query_items(group)
           groups = add_group(form, group)
           items.each do |i|
-            item = add_item(groups[index], i)
+            item = add_item_group(groups[index], i)
           end
           if !query_sub_group(group).empty?
             sub_groups = query_sub_group(group)
@@ -368,17 +458,23 @@ describe Form do
               sub_items = query_items(sub_group)
               sub_groups = add_sub_group(groups[index], sub_group)
               sub_items.each do |si|
-                item = add_item(sub_groups[inde], si)
+                item = add_item_sub_group(sub_groups[inde], si)
               end
-            end
-          end
-          if !query_common(group).empty?
-            commons = query_common(group)
-            commons.each_with_index do |common, ind|
-              s_items = query_items(common)
-              commons = add_common(groups[index], common)
-              s_items.each do |si|
-                item = add_item(commons[ind], si)
+              if !query_bc(sub_group).empty?
+                sub_bcs = query_bc(sub_group)
+                sub_bcs.each do |bc|
+                  bc = add_bc(sub_groups[inde], bc)
+                end
+              end
+              if !query_common(group).empty?
+                commons = query_common(group)
+                commons.each_with_index do |cm, ind|
+                  sub_commons = query_items(cm)
+                  commons = add_common(sub_groups[inde], cm)
+                  sub_commons.each do |sc|
+                    item = add_item_sub_group(commons[ind], sc)
+                  end
+                end
               end
             end
           end
