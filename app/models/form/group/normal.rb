@@ -6,14 +6,11 @@ class Form::Group::Normal < Form::Group
 
   data_property :repeating
 
-  object_property :has_common, cardinality: :many, model_class: "Form::Group::Common"
-  object_property :has_sub_group, cardinality: :many, model_class: "Form::Group::Normal"
-  object_property :has_biomedical_concept, cardinality: :many, model_class: "OperationalReferenceV3"
+  object_property :has_sub_group, cardinality: :many, model_classes: [ "Form::Group::Normal", "Form::Group::Bc" ]
 
   object_property_class :has_item, model_classes: 
     [ 
-      Form::Item::BcProperty, Form::Item::Mapping,
-      Form::Item::Placeholder, Form::Item::Question, Form::Item::TextLabel 
+      Form::Item::Mapping, Form::Item::Placeholder, Form::Item::Question, Form::Item::TextLabel 
     ]
 
   validates_with Validator::Field, attribute: :repeating, method: :valid_boolean?
@@ -46,9 +43,6 @@ class Form::Group::Normal < Form::Group
     else
       self.has_item.sort_by {|x| x.ordinal}.each do |item|
         html += item.to_crf
-      end
-      self.has_common.sort_by {|x| x.ordinal}.each do |c|
-        html += c.to_crf 
       end
       self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
         html += sg.to_crf

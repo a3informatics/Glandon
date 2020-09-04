@@ -16,8 +16,18 @@ class Form::Item::BcProperty < Form::Item
     blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:""}
     item = self.to_h.merge!(blank_fields)
     item[:has_coded_value] = coded_values_to_hash(self.has_coded_value)
-    item[:has_property] = []
+    item[:has_property] = properties_to_hash(self.has_property)
     return item
+  end
+
+  def properties_to_hash(properties)
+    results = []
+    properties.each do |pr|
+      ref = pr.to_h
+      ref[:reference] = BiomedicalConcept::PropertyX.find(ref[:id]).to_h
+      results << ref
+    end
+    results
   end
 
   def to_crf
