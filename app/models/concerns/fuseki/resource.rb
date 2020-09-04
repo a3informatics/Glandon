@@ -190,7 +190,7 @@ module Fuseki
     # @return [Void] no return
     def object_property(name, opts = {})
       Errors.application_error(self.name, __method__.to_s, "No cardinality specified for object property.") if !opts.key?(:cardinality)
-      Errors.application_error(self.name, __method__.to_s, "No model class specified for object property.") if !opts.key?(:model_class)
+      Errors.application_error(self.name, __method__.to_s, "No model class specified for object property.") unless opts.key?(:model_class) || opts.key?(:model_classes) 
       if opts.key?(:model_classes)
         opts[:model_classes].unshift(opts[:model_class]) if opts.key?(:model_class)
         opts[:model_classes] = opts[:model_classes].map{|x| "#{x}".constantize}
