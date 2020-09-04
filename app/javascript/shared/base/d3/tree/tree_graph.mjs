@@ -21,6 +21,7 @@ export default class TreeGraph {
    * @param {Object} params Instance parameters
    * @param {string} params.selector JQuery selector of the editor panel
    * @param {string} params.dataUrl Url to fetch the graph data from
+   * @param {module} params.nodeModule Custom Node module class (wrapper), optional [default=TreeNode]
    * @param {boolean} params.autoScale Determines whether the graph container should scale height to fit window height, optional [default=true]
    * @param {boolean} params.zoomable Determines whether the graph can be zoomed and dragged, optional [default=true]
    * @param {boolean} params.selectable Determines whether the nodes can be selected by clicking, optional [default=true]
@@ -28,13 +29,17 @@ export default class TreeGraph {
   constructor({
     selector,
     dataUrl,
+    nodeModule = TreeNode,
     autoScale = true,
     zoomable = true,
     selectable = true
   }) {
 
-    Object.assign( this, { dataUrl, selector, autoScale, zoomable,
-      selectable, d3: d3Lib.default } );
+    Object.assign( this, {
+      dataUrl, selector, autoScale, zoomable, selectable,
+      d3: d3Lib.default,
+      Node: nodeModule
+    });
 
     this._init();
 
@@ -132,7 +137,7 @@ export default class TreeGraph {
 
     if ( this.graph.root ) {
 
-      this._expandAll( new TreeNode( this.graph.root ) );
+      this._expandAll( new this.Node( this.graph.root ) );
       this.render()._restoreGraph().reCenter();
 
     }
@@ -246,7 +251,7 @@ export default class TreeGraph {
     if ( selected.empty() )
       return null;
 
-    return new TreeNode( selected.data()[0] );
+    return new this.Node( selected.data()[0] );
 
   }
 
@@ -270,7 +275,7 @@ export default class TreeGraph {
 
     return this.d3.selectAll(`${this.selector} .node`)
                     .data()
-                    .map( (d) => new TreeNode(d) );
+                    .map( (d) => new this.Node(d) );
 
   }
 
@@ -403,6 +408,8 @@ export default class TreeGraph {
    */
   _collapseExcept(node) {
 
+    node.expand();
+    
     while ( node && node.parent ) {
 
       for ( let child of node.parent.children ) {
@@ -531,7 +538,7 @@ export default class TreeGraph {
 
     node.collapseOrExpand();
     // Re-draw graph
-    this._render()._restoreGraph();
+    this.render()._restoreGraph();
 
   }
 
@@ -573,18 +580,18 @@ export default class TreeGraph {
     this.graph.svg = this._newSVG();
     this.graph.g = this.graph.svg.append('g');
 
-    renderLinks({
+    this.graph.links = renderLinks({
       target: this.graph.g,
       data: this.graph.root.descendants().slice(1)
     });
 
-    renderNodes({
+    this.graph.nodes = renderNodes({
       target: this.graph.g,
       data: this.graph.root.descendants(),
       selectable: this.selectable,
-      onClick: (d) => this._onNodeClick( new TreeNode(d) ),
-      onDblClick: (d) => this._onNodeDblClick( new TreeNode(d) ),
-      onRightClick: (d) => this._onNodeRightClick( new TreeNode(d) )
+      onClick: (d) => this._onNodeClick( new this.Node(d) ),
+      onDblClick: (d) => this._onNodeDblClick( new this.Node(d) ),
+      onRightClick: (d) => this._onNodeRightClick( new this.Node(d) )
     });
 
     this._renderCustom(); // Render any custom additional elements
@@ -720,7 +727,7 @@ export default class TreeGraph {
       return;
 
     // Focus on next node
-    let nextNode = new TreeNode( nodesFound[ this.searchIndex ] );
+    let nextNode = new this.Node( nodesFound[ this.searchIndex ] );
     this.focusOn( nextNode );
 
     // Update search index
@@ -760,11 +767,12 @@ export default class TreeGraph {
           container: $(this.selector),
           tree: {
             get nodeWidth() {
-              return (props.svg.width / self.treeDepth) < this.minNodeWidth ?
-                        this.minNodeWidth : (props.svg.width / self.treeDepth)
+              return (props.svg.width / self.treeDepth) - this.rightOffset < this.minNodeWidth ?
+                        this.minNodeWidth : (props.svg.width / self.treeDepth) - this.rightOffset;
             },
             nodeHeight: 26,
-            minNodeWidth: 240
+            minNodeWidth: 240,
+            rightOffset: 0
           },
           svg: {
             margin: 20,
