@@ -208,7 +208,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code> ;
+	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
 :F_NG2_BCG3_BP3_TUC1
 	rdf:type bo:TucReference ;
@@ -266,7 +266,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_value> ;
+	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
 :F_NG2_BCG3_BP1
 	rdf:type bf:BcProperty ;
@@ -284,7 +284,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
+	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
 :F_NG2_BCG3_R1
 	rdf:type bo:Reference ;
@@ -292,7 +292,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347> ;
+	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI> ;
 .
 :F_NG2_BCG2
 	rdf:type bf:BcGroup ;
@@ -326,7 +326,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_code> ;
+	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
 :F_NG2_BCG2_BP3_TUC1
 	rdf:type bo:TucReference ;
@@ -384,7 +384,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208_PerformedClinicalResult_value_PQR_value> ;
+	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
 :F_NG2_BCG2_BP1
 	rdf:type bf:BcProperty ;
@@ -402,7 +402,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
+	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
 :F_NG2_BCG2_R1
 	rdf:type bo:Reference ;
@@ -410,7 +410,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208> ;
+	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI> ;
 .
 :F_NG2_BCG1
 	rdf:type bf:BcGroup ;
@@ -440,7 +440,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
+	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
 :F_NG2_BCG1_BP3
 	rdf:type bf:BcProperty ;
@@ -459,7 +459,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_code> ;
+	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
 :F_NG2_BCG1_BP3_TUC1
 	rdf:type bo:TucReference ;
@@ -487,7 +487,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_value> ;
+	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
 :F_NG2_BCG1_R1
 	rdf:type bo:Reference ;
@@ -495,7 +495,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> ;
+	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI> ;
 .
 :F_NG1
 	rdf:type bf:NormalGroup ;
@@ -538,7 +538,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_value> ;
+	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
 :F_NG1_BCG3_BP2
 	rdf:type bf:BcProperty ;
@@ -559,7 +559,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code> ;
+	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
 .
 :F_NG1_BCG3_BP2_TUC1
 	rdf:type bo:TucReference ;
@@ -607,7 +607,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
+	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
 :F_NG1_BCG3_BP4
 	rdf:type bf:BcProperty ;
@@ -626,7 +626,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedClinicalResult_value_PQR_code> ;
+	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
 :F_NG1_BCG3_BP4_TUC1
 	rdf:type bo:TucReference ;
@@ -674,7 +674,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299> ;
+	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI> ;
 .
 :F_NG1_BCG2
 	rdf:type bf:BcGroup ;
@@ -707,7 +707,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_code> ;
+	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
 :F_NG1_BCG2_BP4_TUC1
 	rdf:type bo:TucReference ;
@@ -735,7 +735,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedClinicalResult_value_PQR_value> ;
+	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
 :F_NG1_BCG2_BP2
 	rdf:type bf:BcProperty ;
@@ -756,7 +756,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code> ;
+	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
 .
 :F_NG1_BCG2_BP2_TUC1
 	rdf:type bo:TucReference ;
@@ -804,7 +804,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
+	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
 :F_NG1_BCG2_CG
 	rdf:type bf:CommonGroup ;
@@ -823,8 +823,8 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code> ;
-	bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code> ;
+	bf:hasCommonItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
+	bf:hasCommonItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
 .
 :F_NG1_BCG2_CG_CI1
 	rdf:type bf:CommonItem ;
@@ -833,8 +833,8 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
-	bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
+	bf:hasCommonItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
+	bf:hasCommonItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
 :F_NG1_BCG2_R1
 	rdf:type bo:Reference ;
@@ -842,5 +842,5 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298> ;
+	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI> ;
 .

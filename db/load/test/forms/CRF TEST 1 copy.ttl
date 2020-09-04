@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-04T14:42:33+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-20T13:19:43+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -172,23 +172,24 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:repeating "true"^^xsd:boolean ;
-	bf:hasSubGroup :F_NG2_BCG3 ;
-	bf:hasSubGroup :F_NG2_BCG2 ;
-	bf:hasSubGroup :F_NG2_BCG1 ;
+	bf:hasSubGroup :F_NG2_NG3 ;
+	bf:hasSubGroup :F_NG2_NG2 ;
+	bf:hasSubGroup :F_NG2_NG1 ;
 .
-:F_NG2_BCG3
-	rdf:type bf:BcGroup ;
+:F_NG2_NG3
+	rdf:type bf:NormalGroup ;
 	isoC:label "Height (BC C25347)"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note "Not Set"^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG2_BCG3_BP3 ;
-	bf:hasItem :F_NG2_BCG3_BP2 ;
-	bf:hasItem :F_NG2_BCG3_BP1 ;
-	bf:hasBiomedicalConcept :F_NG2_BCG3_R1 ;
+	bf:hasItem :F_NG2_NG3_BP3 ;
+	bf:hasItem :F_NG2_NG3_BP2 ;
+	bf:hasItem :F_NG2_NG3_BP1 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasBiomedicalConcept :F_NG2_NG3_R1 ;
 .
-:F_NG2_BCG3_BP3
+:F_NG2_NG3_BP3
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
@@ -196,13 +197,13 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:isCommon "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG2_BCG3_BP3_R1 ;
-	bf:hasCodedValue :F_NG2_BCG3_BP3_TUC1 ;
-	bf:hasCodedValue :F_NG2_BCG3_BP3_TUC2 ;
-	bf:hasCodedValue :F_NG2_BCG3_BP3_TUC3 ;
-	bf:hasCodedValue :F_NG2_BCG3_BP3_TUC4 ;
+	bf:hasProperty :F_NG2_NG3_BP3_R1 ;
+	bf:hasCodedValue :F_NG2_NG3_BP3_TUC1 ;
+	bf:hasCodedValue :F_NG2_NG3_BP3_TUC2 ;
+	bf:hasCodedValue :F_NG2_NG3_BP3_TUC3 ;
+	bf:hasCodedValue :F_NG2_NG3_BP3_TUC4 ;
 .
-:F_NG2_BCG3_BP3_R1
+:F_NG2_NG3_BP3_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -210,7 +211,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
-:F_NG2_BCG3_BP3_TUC1
+:F_NG2_NG3_BP3_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -220,7 +221,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG2_BCG3_BP3_TUC2
+:F_NG2_NG3_BP3_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -230,7 +231,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG2_BCG3_BP3_TUC3
+:F_NG2_NG3_BP3_TUC3
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -240,7 +241,7 @@
 	bo:context <http://www.cdisc.org/C71620/V65#C71620> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG2_BCG3_BP3_TUC4
+:F_NG2_NG3_BP3_TUC4
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -250,7 +251,7 @@
 	bo:context <http://www.cdisc.org/C71620/V65#C71620> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG2_BCG3_BP2
+:F_NG2_NG3_BP2
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
@@ -258,9 +259,9 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:isCommon "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG2_BCG3_BP2_R1 ;
+	bf:hasProperty :F_NG2_NG3_BP2_R1 ;
 .
-:F_NG2_BCG3_BP2_R1
+:F_NG2_NG3_BP2_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -268,7 +269,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
-:F_NG2_BCG3_BP1
+:F_NG2_NG3_BP1
 	rdf:type bf:BcProperty ;
 	isoC:label "Date and Time (--DTC)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -276,9 +277,9 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:isCommon "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG2_BCG3_BP1_R1 ;
+	bf:hasProperty :F_NG2_NG3_BP1_R1 ;
 .
-:F_NG2_BCG3_BP1_R1
+:F_NG2_NG3_BP1_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -286,7 +287,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
-:F_NG2_BCG3_R1
+:F_NG2_NG3_R1
 	rdf:type bo:Reference ;
 	isoC:label "BC Reference"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -294,19 +295,20 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI> ;
 .
-:F_NG2_BCG2
-	rdf:type bf:BcGroup ;
+:F_NG2_NG2
+	rdf:type bf:NormalGroup ;
 	isoC:label "Weight (BC C25208)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note "Not Set"^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG2_BCG2_BP3 ;
-	bf:hasItem :F_NG2_BCG2_BP2 ;
-	bf:hasItem :F_NG2_BCG2_BP1 ;
-	bf:hasBiomedicalConcept :F_NG2_BCG2_R1 ;
+	bf:hasItem :F_NG2_NG2_BP3 ;
+	bf:hasItem :F_NG2_NG2_BP2 ;
+	bf:hasItem :F_NG2_NG2_BP1 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasBiomedicalConcept :F_NG2_NG2_R1 ;
 .
-:F_NG2_BCG2_BP3
+:F_NG2_NG2_BP3
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
@@ -314,13 +316,13 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:isCommon "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG2_BCG2_BP3_R1 ;
-	bf:hasCodedValue :F_NG2_BCG2_BP3_TUC1 ;
-	bf:hasCodedValue :F_NG2_BCG2_BP3_TUC2 ;
-	bf:hasCodedValue :F_NG2_BCG2_BP3_TUC3 ;
-	bf:hasCodedValue :F_NG2_BCG2_BP3_TUC4 ;
+	bf:hasProperty :F_NG2_NG2_BP3_R1 ;
+	bf:hasCodedValue :F_NG2_NG2_BP3_TUC1 ;
+	bf:hasCodedValue :F_NG2_NG2_BP3_TUC2 ;
+	bf:hasCodedValue :F_NG2_NG2_BP3_TUC3 ;
+	bf:hasCodedValue :F_NG2_NG2_BP3_TUC4 ;
 .
-:F_NG2_BCG2_BP3_R1
+:F_NG2_NG2_BP3_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -328,7 +330,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
-:F_NG2_BCG2_BP3_TUC1
+:F_NG2_NG2_BP3_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -338,7 +340,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG2_BCG2_BP3_TUC2
+:F_NG2_NG2_BP3_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -348,7 +350,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG2_BCG2_BP3_TUC3
+:F_NG2_NG2_BP3_TUC3
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -358,7 +360,7 @@
 	bo:context <http://www.cdisc.org/C71620/V65#C71620> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG2_BCG2_BP3_TUC4
+:F_NG2_NG2_BP3_TUC4
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -368,7 +370,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG2_BCG2_BP2
+:F_NG2_NG2_BP2
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
@@ -376,9 +378,9 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:isCommon "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG2_BCG2_BP2_R1 ;
+	bf:hasProperty :F_NG2_NG2_BP2_R1 ;
 .
-:F_NG2_BCG2_BP2_R1
+:F_NG2_NG2_BP2_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -386,7 +388,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
-:F_NG2_BCG2_BP1
+:F_NG2_NG2_BP1
 	rdf:type bf:BcProperty ;
 	isoC:label "Date and Time (--DTC)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -394,9 +396,9 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:isCommon "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG2_BCG2_BP1_R1 ;
+	bf:hasProperty :F_NG2_NG2_BP1_R1 ;
 .
-:F_NG2_BCG2_BP1_R1
+:F_NG2_NG2_BP1_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -404,7 +406,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
-:F_NG2_BCG2_R1
+:F_NG2_NG2_R1
 	rdf:type bo:Reference ;
 	isoC:label "BC Reference"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -412,19 +414,20 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI> ;
 .
-:F_NG2_BCG1
-	rdf:type bf:BcGroup ;
+:F_NG2_NG1
+	rdf:type bf:NormalGroup ;
 	isoC:label "Temperature (BC C25206)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note "Not Set"^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG2_BCG1_BP1 ;
-	bf:hasItem :F_NG2_BCG1_BP3 ;
-	bf:hasItem :F_NG2_BCG1_BP2 ;
-	bf:hasBiomedicalConcept :F_NG2_BCG1_R1 ;
+	bf:hasItem :F_NG2_NG1_BP1 ;
+	bf:hasItem :F_NG2_NG1_BP3 ;
+	bf:hasItem :F_NG2_NG1_BP2 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasBiomedicalConcept :F_NG2_NG1_R1 ;
 .
-:F_NG2_BCG1_BP1
+:F_NG2_NG1_BP1
 	rdf:type bf:BcProperty ;
 	isoC:label "Date and Time (--DTC)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -432,9 +435,9 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:isCommon "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG2_BCG1_BP1_R1 ;
+	bf:hasProperty :F_NG2_NG1_BP1_R1 ;
 .
-:F_NG2_BCG1_BP1_R1
+:F_NG2_NG1_BP1_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -442,7 +445,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
-:F_NG2_BCG1_BP3
+:F_NG2_NG1_BP3
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
@@ -450,10 +453,10 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:isCommon "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG2_BCG1_BP3_R1 ;
-	bf:hasCodedValue :F_NG2_BCG1_BP3_TUC1 ;
+	bf:hasProperty :F_NG2_NG1_BP3_R1 ;
+	bf:hasCodedValue :F_NG2_NG1_BP3_TUC1 ;
 .
-:F_NG2_BCG1_BP3_R1
+:F_NG2_NG1_BP3_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -461,7 +464,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
-:F_NG2_BCG1_BP3_TUC1
+:F_NG2_NG1_BP3_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -471,7 +474,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG2_BCG1_BP2
+:F_NG2_NG1_BP2
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
@@ -479,9 +482,9 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:isCommon "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG2_BCG1_BP2_R1 ;
+	bf:hasProperty :F_NG2_NG1_BP2_R1 ;
 .
-:F_NG2_BCG1_BP2_R1
+:F_NG2_NG1_BP2_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -489,7 +492,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
-:F_NG2_BCG1_R1
+:F_NG2_NG1_R1
 	rdf:type bo:Reference ;
 	isoC:label "BC Reference"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -505,318 +508,21 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:repeating "false"^^xsd:boolean ;
-	bf:hasSubGroup :F_NG1_BCG3 ;
-	bf:hasSubGroup :F_NG1_BCG2 ;
+	bf:hasCommon :F_NG1_CG ;
+	bf:hasSubGroup :F_NG1_NG3 ;
+	bf:hasSubGroup :F_NG1_NG2 ;
 .
-:F_NG1_BCG3
-	rdf:type bf:BcGroup ;
-	isoC:label "Diastolic Blood Pressure (BC C25299)"^^xsd:string ;
-	bf:ordinal "3"^^xsd:integer ;
-	bf:note "Not Set"^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_BCG3_BP3 ;
-	bf:hasItem :F_NG1_BCG3_BP2 ;
-	bf:hasItem :F_NG1_BCG3_BP1 ;
-	bf:hasItem :F_NG1_BCG3_BP4 ;
-	bf:hasCommon :F_NG1_BCG3_CG ;
-	bf:hasBiomedicalConcept :F_NG1_BCG3_R1 ;
-.
-:F_NG1_BCG3_BP3
-	rdf:type bf:BcProperty ;
-	isoC:label "Result Value (--ORRES)"^^xsd:string ;
-	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_BCG3_BP3_R1 ;
-.
-:F_NG1_BCG3_BP3_R1
-	rdf:type bo:Reference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
-.
-:F_NG1_BCG3_BP2
-	rdf:type bf:BcProperty ;
-	isoC:label "Body Position (--POS)"^^xsd:string ;
-	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "true"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_BCG3_BP2_R1 ;
-	bf:hasCodedValue :F_NG1_BCG3_BP2_TUC1 ;
-	bf:hasCodedValue :F_NG1_BCG3_BP2_TUC2 ;
-	bf:hasCodedValue :F_NG1_BCG3_BP2_TUC3 ;
-.
-:F_NG1_BCG3_BP2_R1
-	rdf:type bo:Reference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
-.
-:F_NG1_BCG3_BP2_TUC1
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
-.
-:F_NG1_BCG3_BP2_TUC2
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
-.
-:F_NG1_BCG3_BP2_TUC3
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "3"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62166> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
-.
-:F_NG1_BCG3_BP1
-	rdf:type bf:BcProperty ;
-	isoC:label "Date and Time (--DTC)"^^xsd:string ;
-	bf:ordinal "1"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "true"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_BCG3_BP1_R1 ;
-.
-:F_NG1_BCG3_BP1_R1
-	rdf:type bo:Reference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
-.
-:F_NG1_BCG3_BP4
-	rdf:type bf:BcProperty ;
-	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
-	bf:ordinal "4"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_BCG3_BP4_R1 ;
-	bf:hasCodedValue :F_NG1_BCG3_BP4_TUC1 ;
-.
-:F_NG1_BCG3_BP4_R1
-	rdf:type bo:Reference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
-.
-:F_NG1_BCG3_BP4_TUC1
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66770/V38#C66770_C49670> ;
-	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
-	bo:localLabel ""^^xsd:string ;
-.
-:F_NG1_BCG3_CG
+:F_NG1_CG
 	rdf:type bf:CommonGroup ;
 	isoC:label "Common Group"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note "Not Set"^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_BCG3_CG_CI2 ;
-	bf:hasItem :F_NG1_BCG3_CG_CI1 ;
+	bf:hasItem :F_NG1_CG_CI2 ;
+	bf:hasItem :F_NG1_CG_CI1 ;
 .
-:F_NG1_BCG3_CG_CI2
-	rdf:type bf:CommonItem ;
-	isoC:label "Body Position (--POS)"^^xsd:string ;
-	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code> ;
-	bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code> ;
-.
-:F_NG1_BCG3_CG_CI1
-	rdf:type bf:CommonItem ;
-	isoC:label "Date and Time (--DTC)"^^xsd:string ;
-	bf:ordinal "1"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
-	bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
-.
-:F_NG1_BCG3_R1
-	rdf:type bo:Reference ;
-	isoC:label "BC Reference"^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI> ;
-.
-:F_NG1_BCG2
-	rdf:type bf:BcGroup ;
-	isoC:label "Systolic Blood Pressure (BC C25298)"^^xsd:string ;
-	bf:ordinal "2"^^xsd:integer ;
-	bf:note "Not Set"^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_BCG2_BP4 ;
-	bf:hasItem :F_NG1_BCG2_BP3 ;
-	bf:hasItem :F_NG1_BCG2_BP2 ;
-	bf:hasItem :F_NG1_BCG2_BP1 ;
-	bf:hasCommon :F_NG1_BCG2_CG ;
-	bf:hasBiomedicalConcept :F_NG1_BCG2_R1 ;
-.
-:F_NG1_BCG2_BP4
-	rdf:type bf:BcProperty ;
-	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
-	bf:ordinal "4"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_BCG2_BP4_R1 ;
-	bf:hasCodedValue :F_NG1_BCG2_BP4_TUC1 ;
-.
-:F_NG1_BCG2_BP4_R1
-	rdf:type bo:Reference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
-.
-:F_NG1_BCG2_BP4_TUC1
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66770/V38#C66770_C49670> ;
-	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
-	bo:localLabel ""^^xsd:string ;
-.
-:F_NG1_BCG2_BP3
-	rdf:type bf:BcProperty ;
-	isoC:label "Result Value (--ORRES)"^^xsd:string ;
-	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_BCG2_BP3_R1 ;
-.
-:F_NG1_BCG2_BP3_R1
-	rdf:type bo:Reference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
-.
-:F_NG1_BCG2_BP2
-	rdf:type bf:BcProperty ;
-	isoC:label "Body Position (--POS)"^^xsd:string ;
-	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "true"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_BCG2_BP2_R1 ;
-	bf:hasCodedValue :F_NG1_BCG2_BP2_TUC1 ;
-	bf:hasCodedValue :F_NG1_BCG2_BP2_TUC2 ;
-	bf:hasCodedValue :F_NG1_BCG2_BP2_TUC3 ;
-.
-:F_NG1_BCG2_BP2_R1
-	rdf:type bo:Reference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
-.
-:F_NG1_BCG2_BP2_TUC1
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
-.
-:F_NG1_BCG2_BP2_TUC2
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
-.
-:F_NG1_BCG2_BP2_TUC3
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "3"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62166> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
-.
-:F_NG1_BCG2_BP1
-	rdf:type bf:BcProperty ;
-	isoC:label "Date and Time (--DTC)"^^xsd:string ;
-	bf:ordinal "1"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "true"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_BCG2_BP1_R1 ;
-.
-:F_NG1_BCG2_BP1_R1
-	rdf:type bo:Reference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
-.
-:F_NG1_BCG2_CG
-	rdf:type bf:CommonGroup ;
-	isoC:label "Common Group"^^xsd:string ;
-	bf:ordinal "1"^^xsd:integer ;
-	bf:note "Not Set"^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_BCG2_CG_CI2 ;
-	bf:hasItem :F_NG1_BCG2_CG_CI1 ;
-.
-:F_NG1_BCG2_CG_CI2
+:F_NG1_CG_CI2
 	rdf:type bf:CommonItem ;
 	isoC:label "Body Position (--POS)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
@@ -826,7 +532,7 @@
 	bf:hasCommonItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
 	bf:hasCommonItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
 .
-:F_NG1_BCG2_CG_CI1
+:F_NG1_CG_CI1
 	rdf:type bf:CommonItem ;
 	isoC:label "Date and Time (--DTC)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -836,7 +542,275 @@
 	bf:hasCommonItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 	bf:hasCommonItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
-:F_NG1_BCG2_R1
+:F_NG1_NG3
+	rdf:type bf:NormalGroup ;
+	isoC:label "Diastolic Blood Pressure (BC C25299)"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_NG3_BP3 ;
+	bf:hasItem :F_NG1_NG3_BP2 ;
+	bf:hasItem :F_NG1_NG3_BP1 ;
+	bf:hasItem :F_NG1_NG3_BP4 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasBiomedicalConcept :F_NG1_NG3_R1 ;
+.
+:F_NG1_NG3_BP3
+	rdf:type bf:BcProperty ;
+	isoC:label "Result Value (--ORRES)"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_NG3_BP3_R1 ;
+.
+:F_NG1_NG3_BP3_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
+.
+:F_NG1_NG3_BP2
+	rdf:type bf:BcProperty ;
+	isoC:label "Body Position (--POS)"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "true"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_NG3_BP2_R1 ;
+	bf:hasCodedValue :F_NG1_NG3_BP2_TUC1 ;
+	bf:hasCodedValue :F_NG1_NG3_BP2_TUC2 ;
+	bf:hasCodedValue :F_NG1_NG3_BP2_TUC3 ;
+.
+:F_NG1_NG3_BP2_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+.
+:F_NG1_NG3_BP2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG3_BP2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG3_BP2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62166> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG3_BP1
+	rdf:type bf:BcProperty ;
+	isoC:label "Date and Time (--DTC)"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "true"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_NG3_BP1_R1 ;
+.
+:F_NG1_NG3_BP1_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
+.
+:F_NG1_NG3_BP4
+	rdf:type bf:BcProperty ;
+	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_NG3_BP4_R1 ;
+	bf:hasCodedValue :F_NG1_NG3_BP4_TUC1 ;
+.
+:F_NG1_NG3_BP4_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
+.
+:F_NG1_NG3_BP4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V38#C66770_C49670> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG3_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI> ;
+.
+:F_NG1_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label "Systolic Blood Pressure (BC C25298)"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_NG2_BP4 ;
+	bf:hasItem :F_NG1_NG2_BP3 ;
+	bf:hasItem :F_NG1_NG2_BP2 ;
+	bf:hasItem :F_NG1_NG2_BP1 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasBiomedicalConcept :F_NG1_NG2_R1 ;
+.
+:F_NG1_NG2_BP4
+	rdf:type bf:BcProperty ;
+	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_NG2_BP4_R1 ;
+	bf:hasCodedValue :F_NG1_NG2_BP4_TUC1 ;
+.
+:F_NG1_NG2_BP4_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
+.
+:F_NG1_NG2_BP4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V38#C66770_C49670> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG2_BP3
+	rdf:type bf:BcProperty ;
+	isoC:label "Result Value (--ORRES)"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_NG2_BP3_R1 ;
+.
+:F_NG1_NG2_BP3_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
+.
+:F_NG1_NG2_BP2
+	rdf:type bf:BcProperty ;
+	isoC:label "Body Position (--POS)"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "true"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_NG2_BP2_R1 ;
+	bf:hasCodedValue :F_NG1_NG2_BP2_TUC1 ;
+	bf:hasCodedValue :F_NG1_NG2_BP2_TUC2 ;
+	bf:hasCodedValue :F_NG1_NG2_BP2_TUC3 ;
+.
+:F_NG1_NG2_BP2_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
+.
+:F_NG1_NG2_BP2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG2_BP2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG2_BP2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62166> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG2_BP1
+	rdf:type bf:BcProperty ;
+	isoC:label "Date and Time (--DTC)"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "true"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_NG2_BP1_R1 ;
+.
+:F_NG1_NG2_BP1_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
+.
+:F_NG1_NG2_R1
 	rdf:type bo:Reference ;
 	isoC:label "BC Reference"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
