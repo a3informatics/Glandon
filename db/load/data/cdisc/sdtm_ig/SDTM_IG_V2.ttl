@@ -435,7 +435,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/DM/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_DOMAIN> ;
 .
@@ -457,7 +457,7 @@
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product. This must be a unique number, and could be a compound identifier formed by concatenating STUDYID-SITEID-SUBJID."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_USUBJID> ;
 .
 <http://www.cdisc.org/DM/V2#RFXSTDTC>
@@ -469,7 +469,7 @@
 	bd:description "First date of exposure to any protocol-specified treatment or therapy, equal to the earliest value of EXSTDTC."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_RFXSTDTC> ;
 .
 <http://www.cdisc.org/DM/V2#RFXENDTC>
@@ -481,7 +481,7 @@
 	bd:description "Last date of exposure to any protocol-specified treatment or therapy, equal to the latest value of EXENDTC (or the latest value of EXSTDTC if EXENDTC was not collected or is missing)."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_RFXENDTC> ;
 .
 <http://www.cdisc.org/DM/V2#RFICDTC>
@@ -493,7 +493,7 @@
 	bd:description "Date/time of informed consent in ISO 8601 character format. This will be the same as the date of informed consent in the Disposition domain, if that protocol milestone is documented. Would be null only in studies not collecting the date of informed consent."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_RFICDTC> ;
 .
 <http://www.cdisc.org/DM/V2#RFPENDTC>
@@ -505,7 +505,7 @@
 	bd:description "Date/time when subject ended participation or follow-up in a trial, as defined in the protocol, in ISO 8601 character format. Should correspond to the last known date of contact. Examples include completion date, withdrawal date, last follow-up, date recorded for lost to follow up, or death date."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_RFPENDTC> ;
 .
 <http://www.cdisc.org/DM/V2#DTHDTC>
@@ -517,7 +517,7 @@
 	bd:description "Date/time of death for any subject who died, in ISO 8601 format. Should represent the date/time that is captured in the clinical-trial database."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_DTHDTC> ;
 .
 <http://www.cdisc.org/DM/V2#DTHFL>
@@ -529,7 +529,7 @@
 	bd:description "Indicates the subject died. Should be Y or null. Should be populated even when the death date is unknown."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/DM/V2#DTHFL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_DTHFL> ;
 .
@@ -551,7 +551,7 @@
 	bd:description "Unique identifier for a site within a study."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_SITEID> ;
 .
 <http://www.cdisc.org/DM/V2#INVID>
@@ -563,7 +563,7 @@
 	bd:description "An identifier to describe the Investigator for the study. May be used in addition to SITEID. Not needed if SITEID is equivalent to INVID."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_INVID> ;
 .
 <http://www.cdisc.org/DM/V2#INVNAM>
@@ -575,7 +575,7 @@
 	bd:description "Name of the investigator for a site."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_INVNAM> ;
 .
 <http://www.cdisc.org/DM/V2#BRTHDTC>
@@ -587,7 +587,7 @@
 	bd:description "Date/time of birth of the subject."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_BRTHDTC> ;
 .
 <http://www.cdisc.org/DM/V2#AGE>
@@ -599,7 +599,7 @@
 	bd:description "Age expressed in AGEU. May be derived from RFSTDTC and BRTHDTC, but BRTHDTC may not be available in all cases (due to subject privacy concerns)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_AGE> ;
 .
 <http://www.cdisc.org/DM/V2#AGEU>
@@ -611,7 +611,7 @@
 	bd:description "Units associated with AGE."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(AGEU)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/DM/V2#AGEU_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_AGEU> ;
 .
@@ -633,7 +633,7 @@
 	bd:description "Sex of the subject."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(SEX)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/DM/V2#SEX_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_SEX> ;
 .
@@ -655,7 +655,7 @@
 	bd:description "Race of the subject. Sponsors should refer to \"Collection of Race and Ethnicity Data in Clinical Trials\" (FDA, September 2005) for guidance regarding the collection of race (http://www.fda.gov/cder/guidance/5656fnl.htm) See Assumption below regarding RACE."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(RACE)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/DM/V2#RACE_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_RACE> ;
 .
@@ -677,7 +677,7 @@
 	bd:description "The ethnicity of the subject. Sponsors should refer to \"Collection of Race and Ethnicity Data in Clinical Trials\" (FDA, September 2005) for guidance regarding the collection of ethnicity (http://www.fda.gov/cder/guidance/5656fnl.htm)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(ETHNIC)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/DM/V2#ETHNIC_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_ETHNIC> ;
 .
@@ -699,7 +699,7 @@
 	bd:description "ARMCD is limited to 20 characters and does not have special character restrictions. The maximum length of ARMCD is longer than for other \"short\" variables to accommodate the kind of values that are likely to be needed for crossover trials. For example, if ARMCD values for a seven-period crossover were constructed using two-character abbreviations for each treatment and separating hyphens, the length of ARMCD values would be 20."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_ARMCD> ;
 .
 <http://www.cdisc.org/DM/V2#ARM>
@@ -711,7 +711,7 @@
 	bd:description "Name of the Arm to which the subject was assigned."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_ARM> ;
 .
 <http://www.cdisc.org/DM/V2#ACTARMCD>
@@ -723,7 +723,7 @@
 	bd:description "Code of actual Arm. When an Arm is not planned (not in Trial Arms), ACTARMCD will be UNPLAN. Randomized subjects who were not treated will be given a value of NOTTRT. Values should be \"SCRNFAIL\" for screen failures and \"NOTASSGN\" for subjects not assigned to treatment. Restricted to values in Trial Arms in all other cases.\n\nACTARMCD is limited to 20 characters and does not have special character restrictions. The maximum length of ACTARMCD is longer than for other short variables to accommodate the kind of values that are likely to be needed for crossover trials."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_ACTARMCD> ;
 .
 <http://www.cdisc.org/DM/V2#ACTARM>
@@ -735,7 +735,7 @@
 	bd:description "Description of actual Arm. When an Arm is not planned (not in Trial Arms), ACTARM will be \"Unplanned Treatment\". Randomized subjects who were not treated will be given a value of \"Not Treated\". Values should be \"Screen Failure\" for screen failures and \"Not Assigned\" for subjects not assigned to treatment. Restricted to values in Trial Arms in all other cases."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_ACTARM> ;
 .
 <http://www.cdisc.org/DM/V2#COUNTRY>
@@ -747,7 +747,7 @@
 	bd:description "Country of the investigational site in which the subject participated in the trial."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(COUNTRY)\nISO 3166"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/DM/V2#COUNTRY_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_COUNTRY> ;
 .
@@ -769,7 +769,7 @@
 	bd:description "Date/time of demographic data collection."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_DMDTC> ;
 .
 <http://www.cdisc.org/DM/V2#DMDY>
@@ -781,7 +781,7 @@
 	bd:description "Study day of collection measured as integer days."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_DMDY> ;
 .
 <http://www.cdisc.org/CO/V2>
@@ -841,7 +841,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/CO/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_DOMAIN> ;
 .
@@ -863,7 +863,7 @@
 	bd:description "Two-character abbreviation for the domain of the parent record(s). Null for comments collected on a general comments or additional information CRF page."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_CO/V2#CL_RDOMAIN> ;
 .
 <http://www.cdisc.org/CO/V2#IDVAR>
@@ -875,7 +875,7 @@
 	bd:description "Identifying variable in the parent dataset that identifies the record(s) to which the comment applies. Examples AESEQ or CMGRPID. Used only when individual comments are related to domain records. Null for comments collected on separate CRFs."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_CO/V2#CL_IDVAR> ;
 .
 <http://www.cdisc.org/CO/V2#IDVARVAL>
@@ -887,7 +887,7 @@
 	bd:description "Value of identifying variable of the parent record(s). Used only when individual comments are related to domain records. Null for comments collected on separate CRFs."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_CO/V2#CL_IDVARVAL> ;
 .
 <http://www.cdisc.org/SE/V2>
@@ -947,7 +947,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/SE/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_DOMAIN> ;
 .
@@ -969,7 +969,7 @@
 	bd:description "1. ETCD (the companion to ELEMENT) is limited to 8 characters and does not have special character restrictions. These values should be short for ease of use in programming, but it is not expected that ETCD will need to serve as a variable name.\n2. If an encountered Element differs from the planned Element to the point that it is considered a new Element, then use \"UNPLAN\" as the value for ETCD to represent this Element."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SE/V2#CL_ETCD> ;
 .
 <http://www.cdisc.org/SE/V2#ELEMENT>
@@ -981,7 +981,7 @@
 	bd:description "The name of the Element. If ETCD has a value of \"UNPLAN\" then ELEMENT should be Null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SE/V2#CL_ELEMENT> ;
 .
 <http://www.cdisc.org/SE/V2#TAETORD>
@@ -993,7 +993,7 @@
 	bd:description "Number that gives the planned order of the Element within the subject's assigned ARM."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SE/V2#CL_TAETORD> ;
 .
 <http://www.cdisc.org/SE/V2#SEUPDES>
@@ -1005,7 +1005,7 @@
 	bd:description "Description of what happened to the subject during this unplanned Element. Used only if ETCD has the value of \"UNPLAN\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SE/V2#CL_SEUPDES> ;
 .
 <http://www.cdisc.org/SV/V2>
@@ -1065,7 +1065,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/SV/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_DOMAIN> ;
 .
@@ -1087,7 +1087,7 @@
 	bd:description "1. Clinical encounter number. (Decimal numbering may be useful for inserting unplanned visits.)\n2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SV/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/SV/V2#VISIT>
@@ -1099,7 +1099,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter.\n2. May be used in addition to VISITNUM and/or VISITDY as a text description of the clinical encounter."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SV/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/SV/V2#VISITDY>
@@ -1111,7 +1111,7 @@
 	bd:description "Planned study day of the start of the visit based upon RFSTDTC in Demographics."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SV/V2#CL_VISITDY> ;
 .
 <http://www.cdisc.org/CM/V2>
@@ -1197,7 +1197,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/CM/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -1219,7 +1219,7 @@
 	bd:description "Describes the start of the medication relative to sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point (represented by RFSTDTC and RFENDTC in Demographics). If information such as \"PRIOR\", \"ONGOING\", or \"CONTINUING\" was collected, this information may be translated into CMSTRF."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(STENRF)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/CM/V2#CMSTRF_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--STRF> ;
 .
@@ -1241,7 +1241,7 @@
 	bd:description "Describes the end of the medication relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point (represented by RFSTDTC and RFENDTC in Demographics). If information such as \"PRIOR\", \"ONGOING\", or \"CONTINUING\" was collected, this information may be translated into CMENRF."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(STENRF)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/CM/V2#CMENRF_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ENRF> ;
 .
@@ -1263,7 +1263,7 @@
 	bd:description "Description or date/time in ISO 8601 character format of the reference point referred to by CMSTRTPT. Examples: \"2003-12-15\" or \"VISIT 1\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--STTPT> ;
 .
 <http://www.cdisc.org/CM/V2#CMENRTPT>
@@ -1275,7 +1275,7 @@
 	bd:description "Identifies the end of the medication as being before or after the reference time point defined by variable CMENTPT."^^xsd:string ;
 	bd:format "BEFORE, COINCIDENT, AFTER, ONGOING, U"^^xsd:string ;
 	bd:ctAndFormat "BEFORE, COINCIDENT, AFTER, ONGOING, U"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ENRTPT> ;
 .
 <http://www.cdisc.org/CM/V2#CMENTPT>
@@ -1287,7 +1287,7 @@
 	bd:description "Description or date/time in ISO 8601 character format of the reference point referred to by CMENRTPT. Examples: \"2003-12-25\" or \"VISIT 2\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ENTPT> ;
 .
 <http://www.cdisc.org/EX/V2>
@@ -1370,7 +1370,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/EX/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -1392,7 +1392,7 @@
 	bd:description "Sponsor-defined identifier. Perhaps pre-printed on the CRF as an explicit line identifier or defined in the sponsor's operational database. Example: Line number on a CRF Page."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--SPID> ;
 .
 <http://www.cdisc.org/EX/V2#TAETORD>
@@ -1404,7 +1404,7 @@
 	bd:description "Number that gives the order of the Element within the Arm."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_TAETORD> ;
 .
 <http://www.cdisc.org/EX/V2#EPOCH>
@@ -1416,7 +1416,7 @@
 	bd:description "Trial Epoch of the Exposure record. Examples: SCREENING, TREATMENT PHASE, FOLLOW-UP"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_EPOCH> ;
 .
 <http://www.cdisc.org/EX/V2#EXTPT>
@@ -1428,7 +1428,7 @@
 	bd:description "1. Text Description of time when a dose should be given.\n2. This may be represented as an elapsed time relative to a fixed reference point, such as time of last dose. See EXTPTNUM and EXTPTREF. Examples: Start or 5 min post."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--TPT> ;
 .
 <http://www.cdisc.org/SU/V2>
@@ -1512,7 +1512,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/SU/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -1534,7 +1534,7 @@
 	bd:description "Substance use class. May be obtained from coding. When coding to a single class, populate with class value. If using a dictionary and coding to multiple classes, then follow assumption 4.1.2.8.3 or omit SUCLAS."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--CLAS> ;
 .
 <http://www.cdisc.org/SU/V2#SUSTRF>
@@ -1546,7 +1546,7 @@
 	bd:description "Describes the start of the substance use relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point (represented by RFSTDTC and RFENDTC in Demographics). If information such as \"PRIOR\", \"ONGOING\", or \"CONTINUING\" was collected, this information may be translated into SUSTRF."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(STENRF)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SU/V2#SUSTRF_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--STRF> ;
 .
@@ -1568,7 +1568,7 @@
 	bd:description "Describes the end of the substance use with relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point (represented by RFSTDTC and RFENDTC in Demographics). If information such as \"PRIOR\", \"ONGOING\", or \"CONTINUING\" was collected, this information may be translated into SUENRF."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(STENRF)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SU/V2#SUENRF_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ENRF> ;
 .
@@ -1590,7 +1590,7 @@
 	bd:description "Identifies the start of the substance as being before or after the reference time point defined by variable SUSTTPT."^^xsd:string ;
 	bd:format "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
 	bd:ctAndFormat "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--STRTPT> ;
 .
 <http://www.cdisc.org/SU/V2#SUSTTPT>
@@ -1602,7 +1602,7 @@
 	bd:description "Description or date/time in ISO 8601 character format of the reference point referred to by SUSTRTPT. Examples: \"2003-12-15\" or \"VISIT 1\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--STTPT> ;
 .
 <http://www.cdisc.org/SU/V2#SUENRTPT>
@@ -1614,7 +1614,7 @@
 	bd:description "Identifies the end of the substance as being before or after the reference time point defined by variable SUENTPT."^^xsd:string ;
 	bd:format "BEFORE, COINCIDENT, AFTER, ONGOING, U"^^xsd:string ;
 	bd:ctAndFormat "BEFORE, COINCIDENT, AFTER, ONGOING, U"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ENRTPT> ;
 .
 <http://www.cdisc.org/SU/V2#SUENTPT>
@@ -1626,7 +1626,7 @@
 	bd:description "Description or date/time in ISO 8601 character format of the reference point referred to by SUENRTPT. Examples: \"2003-12-25\" or \"VISIT 2\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ENTPT> ;
 .
 <http://www.cdisc.org/AE/V2>
@@ -1726,7 +1726,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -1748,7 +1748,7 @@
 	bd:description "Dictionary-derived text description of the Lowest Level Term."^^xsd:string ;
 	bd:format "MedDRA"^^xsd:string ;
 	bd:ctAndFormat "MedDRA"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--LLT> ;
 .
 <http://www.cdisc.org/AE/V2#AELLTCD>
@@ -1760,7 +1760,7 @@
 	bd:description "Dictionary-derived code for the Lowest Level Term."^^xsd:string ;
 	bd:format "MedDRA"^^xsd:string ;
 	bd:ctAndFormat "MedDRA"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--LLTCD> ;
 .
 <http://www.cdisc.org/AE/V2#AEDECOD>
@@ -1772,7 +1772,7 @@
 	bd:description "Dictionary-derived text description of AETERM or AEMODIFY. Equivalent to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary name and version used to map the terms utilizing the define.xml external codelist attributes"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--DECOD> ;
 .
 <http://www.cdisc.org/AE/V2#AEPTCD>
@@ -1784,7 +1784,7 @@
 	bd:description "Dictionary-derived code for the Preferred Term."^^xsd:string ;
 	bd:format "MedDRA"^^xsd:string ;
 	bd:ctAndFormat "MedDRA"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--PTCD> ;
 .
 <http://www.cdisc.org/AE/V2#AEHLT>
@@ -1796,7 +1796,7 @@
 	bd:description "Dictionary-derived text description of the High Level Term for the primary System Organ Class."^^xsd:string ;
 	bd:format "MedDRA"^^xsd:string ;
 	bd:ctAndFormat "MedDRA"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--HLT> ;
 .
 <http://www.cdisc.org/AE/V2#AEHLTCD>
@@ -1808,7 +1808,7 @@
 	bd:description "Dictionary-derived code for the High Level Term for the primary System Organ Class."^^xsd:string ;
 	bd:format "MedDRA"^^xsd:string ;
 	bd:ctAndFormat "MedDRA"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--HLTCD> ;
 .
 <http://www.cdisc.org/AE/V2#AEHLGT>
@@ -1820,7 +1820,7 @@
 	bd:description "Dictionary-derived text description of the High Level Group Term for the primary System Organ Class."^^xsd:string ;
 	bd:format "MedDRA"^^xsd:string ;
 	bd:ctAndFormat "MedDRA"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--HLGT> ;
 .
 <http://www.cdisc.org/AE/V2#AEHLGTCD>
@@ -1832,7 +1832,7 @@
 	bd:description "Dictionary-derived code for the High Level Group Term for the primary System Organ Class."^^xsd:string ;
 	bd:format "MedDRA"^^xsd:string ;
 	bd:ctAndFormat "MedDRA"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--HLGTCD> ;
 .
 <http://www.cdisc.org/AE/V2#AECAT>
@@ -1844,7 +1844,7 @@
 	bd:description "Used to define a category of related records. Example: BLEEDING, NEUROPSYCHIATRIC."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--CAT> ;
 	bd:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
 .
@@ -1857,7 +1857,7 @@
 	bd:description "A further categorization of adverse event. Example: NEUROLOGIC."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SCAT> ;
 	bd:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
 .
@@ -1870,7 +1870,7 @@
 	bd:description "A value of \"Y\" indicates that this adverse event was pre-specified on the CRF. Values are null for spontaneously reported events (i.e., those collected as free-text verbatim terms)"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AEPRESP_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--PRESP> ;
 .
@@ -1892,7 +1892,7 @@
 	bd:description "Dictionary derived. Body system or organ class used by the sponsor from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary such as MedDRA, this should contain the SOC used for the sponsor's analyses and summary tables which may not necessarily be the primary SOC."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--BODSYS> ;
 .
 <http://www.cdisc.org/AE/V2#AEBDSYCD>
@@ -1904,7 +1904,7 @@
 	bd:description "Dictionary derived. Code for the body system or organ class used by the sponsor. When using a multi-axial dictionary such as MedDRA, this should contain the SOC used for the sponsor's analyses and summary tables, which may not necessarily be the primary SOC."^^xsd:string ;
 	bd:format "MedDRA"^^xsd:string ;
 	bd:ctAndFormat "MedDRA"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--BDSYCD> ;
 .
 <http://www.cdisc.org/AE/V2#AESOC>
@@ -1916,7 +1916,7 @@
 	bd:description "Dictionary-derived text description of the primary System Organ Class. Will be the same as AEBODSYS if the primary SOC was used for analysis."^^xsd:string ;
 	bd:format "MedDRA"^^xsd:string ;
 	bd:ctAndFormat "MedDRA"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SOC> ;
 .
 <http://www.cdisc.org/AE/V2#AESOCCD>
@@ -1928,7 +1928,7 @@
 	bd:description "Dictionary-derived code for the primary System Organ Class. Will be the same as AEBDSYCD if the primary SOC was used for analysis."^^xsd:string ;
 	bd:format "MedDRA"^^xsd:string ;
 	bd:ctAndFormat "MedDRA"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SOCCD> ;
 .
 <http://www.cdisc.org/AE/V2#AELOC>
@@ -1940,7 +1940,7 @@
 	bd:description "Describes anatomical location relevant for the event (e.g., LEFT ARM for skin rash)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(LOC)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AELOC_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--LOC> ;
 	bd:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
@@ -1963,7 +1963,7 @@
 	bd:description "The severity or intensity of the event. Examples: MILD, MODERATE, SEVERE."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(AESEV)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AESEV_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SEV> ;
 	bd:isA <http://www.s-cubed.dk/CAR#de314fa0c9d9e359b633f2fdab4659c886fe5986> ;
@@ -1986,7 +1986,7 @@
 	bd:description "Is this a serious event?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AESER_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SER> ;
 	bd:isA <http://www.s-cubed.dk/CAR#bc7845e67c63c354e69a957bab304d72da2f9fb7> ;
@@ -2009,7 +2009,7 @@
 	bd:description "Describes changes to the study treatment as a result of the event. AEACN is specifically for the relationship to study treatment. AEACNOTH is for actions unrelated to dose adjustments of study treatment. Examples of AEACN values include ICH E2B values: DRUG WITHDRAWN, DOSE REDUCED, DOSE INCREASED, DOSE NOT CHANGED, UNKNOWN or NOT APPLICABLE"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(ACN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AEACN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--ACN> ;
 	bd:isA <http://www.s-cubed.dk/CAR#485290959383eee39c093e50e84fdc851ac37a32> ;
@@ -2032,7 +2032,7 @@
 	bd:description "Describes other actions taken as a result of the event that are unrelated to dose adjustments of study treatment. Usually reported as free text. Example: \"TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.\""^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--ACNOTH> ;
 	bd:isA <http://www.s-cubed.dk/CAR#1baf5ac06f7430ac72727c2dfb3f152e07d9d5da> ;
 .
@@ -2045,7 +2045,7 @@
 	bd:description "Records the investigator's opinion as to the causality of the event to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED, POSSIBLY RELATED, RELATED. Controlled Terminology may be defined in the future. Check with regulatory authority for population of this variable"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--REL> ;
 .
 <http://www.cdisc.org/AE/V2#AERELNST>
@@ -2057,7 +2057,7 @@
 	bd:description "Records the investigator's opinion as to whether the event may have been due to a treatment other than study drug. May be reported as free text. Example: \"MORE LIKELY RELATED TO ASPIRIN USE.\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--RELNST> ;
 .
 <http://www.cdisc.org/AE/V2#AEPATT>
@@ -2069,7 +2069,7 @@
 	bd:description "Used to indicate the pattern of the event over time. Examples: INTERMITTENT, CONTINUOUS, SINGLE EVENT."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--PATT> ;
 	bd:isA <http://www.s-cubed.dk/CAR#1fff6a31661b491fc40cc9c1ad7fe5e479cb7500> ;
 .
@@ -2082,7 +2082,7 @@
 	bd:description "Description of the outcome of an event."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(OUT)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AEOUT_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--OUT> ;
 	bd:isA <http://www.s-cubed.dk/CAR#73a0f131076b513c16bfe3f4cff9ab8b765c9f23> ;
@@ -2105,7 +2105,7 @@
 	bd:description "Was the serious event associated with the development of cancer?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AESCAN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SCAN> ;
 .
@@ -2127,7 +2127,7 @@
 	bd:description "Was the serious event associated with congenital anomaly or birth defect?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AESCONG_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SCONG> ;
 .
@@ -2149,7 +2149,7 @@
 	bd:description "Did the serious event result in persistent or significant disability/incapacity?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AESDISAB_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SDISAB> ;
 .
@@ -2171,7 +2171,7 @@
 	bd:description "Did the serious event result in death?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AESDTH_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SDTH> ;
 .
@@ -2193,7 +2193,7 @@
 	bd:description "Did the serious event require or prolong hospitalization?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AESHOSP_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SHOSP> ;
 	bd:isA <http://www.s-cubed.dk/CAR#3239c890f4b1b44ea81233e5766557a1008c0b6b> ;
@@ -2216,7 +2216,7 @@
 	bd:description "Was the serious event life threatening?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AESLIFE_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SLIFE> ;
 .
@@ -2238,7 +2238,7 @@
 	bd:description "Did the serious event occur with an overdose?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AESOD_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SOD> ;
 .
@@ -2260,7 +2260,7 @@
 	bd:description "Do additional categories for seriousness apply?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AESMIE_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SMIE> ;
 .
@@ -2282,7 +2282,7 @@
 	bd:description "Was another treatment given because of the occurrence of the event?"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AECONTRT_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--CONTRT> ;
 .
@@ -2304,7 +2304,7 @@
 	bd:description "Toxicity grade according to a standard toxicity scale such as Common Terminology Criteria for Adverse Events v3.0 (CTCAE). Sponsor should specify name of the scale and version used in the metadata (see Section 6.2.1.1, Assumption 6d). If value is from a numeric scale, represent only the number (e.g., \"2\" and not \"Grade 2\")."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--TOXGR> ;
 .
 <http://www.cdisc.org/AE/V2#AESTDTC>
@@ -2316,7 +2316,7 @@
 	bd:description ""^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--STDTC> ;
 	bd:isA <http://www.s-cubed.dk/CAR#83c87956785cde43c109e30fcbd95cca63a18d38> ;
 .
@@ -2329,7 +2329,7 @@
 	bd:description ""^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ENDTC> ;
 	bd:isA <http://www.s-cubed.dk/CAR#71c54c70967ea84127e4bd588bd627ec0e581dfb> ;
 .
@@ -2342,7 +2342,7 @@
 	bd:description "Study day of start of adverse event relative to the sponsor-defined RFSTDTC."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--STDY> ;
 .
 <http://www.cdisc.org/AE/V2#AEENDY>
@@ -2354,7 +2354,7 @@
 	bd:description "Study day of end of event relative to the sponsor-defined RFSTDTC."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ENDY> ;
 .
 <http://www.cdisc.org/AE/V2#AEDUR>
@@ -2366,7 +2366,7 @@
 	bd:description "Collected duration and unit of an adverse event. Used only if collected on the CRF and not derived from start and end date/times. Example: P1DT2H (for 1 day, 2 hours)."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DUR> ;
 .
 <http://www.cdisc.org/AE/V2#AEENRF>
@@ -2378,7 +2378,7 @@
 	bd:description "Describes the end of the event relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of the trial."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(STENRF)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/AE/V2#AEENRF_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ENRF> ;
 .
@@ -2400,7 +2400,7 @@
 	bd:description "Identifies the end of the event as being before or after the reference time point defined by variable AEENTPT."^^xsd:string ;
 	bd:format "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
 	bd:ctAndFormat "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ENRTPT> ;
 .
 <http://www.cdisc.org/AE/V2#AEENTPT>
@@ -2412,7 +2412,7 @@
 	bd:description "Description of date/time in ISO 8601 character format of the reference point referred to by AEENRTPT. Examples: \"2003-12-25\" or \"VISIT 2\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ENTPT> ;
 .
 <http://www.cdisc.org/DS/V2>
@@ -2476,7 +2476,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/DS/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -2498,7 +2498,7 @@
 	bd:description "Verbatim name of the event or protocol milestone. Some terms in DSTERM will match DSDECOD, but others, such as \"Subject moved\" will map to controlled terminology in DSDECOD, such as \"LOST TO FOLLOW-UP.\""^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TERM> ;
 	bd:isA <http://www.s-cubed.dk/CAR#2a4eb8036d87ab68656ba5b80bbf77123f088904> ;
 .
@@ -2511,7 +2511,7 @@
 	bd:description "Used to define a category of related records. DSCAT is now an \"Expected\" variable. DSCAT was permissible in SDTMIG 3.1.1 and earlier versions. The change from \"permissible\" to \"expected\" is based on the requirement to distinguish protocol milestones and/or other events from disposition events. DSCAT may be null if there are only \"disposition events\"; however, it is recommended that DSCAT always be populated."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DSCAT)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/DS/V2#DSCAT_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--CAT> ;
 	bd:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
@@ -2534,7 +2534,7 @@
 	bd:description "EPOCH may be used when DSCAT = \"DISPOSITION EVENT\". Examples: SCREENING, TREATMENT PHASE, FOLLOW-UP"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_EPOCH> ;
 .
 <http://www.cdisc.org/MH/V2>
@@ -2607,7 +2607,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/MH/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -2629,7 +2629,7 @@
 	bd:description "A value of \"Y\" indicates that this medical history event was pre-specified on the CRF. Values are null for spontaneously reported events (i.e., those collected as free-text verbatim terms)"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/MH/V2#MHPRESP_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--PRESP> ;
 .
@@ -2651,7 +2651,7 @@
 	bd:description "1. Study day of medical history collection, measured as integer days.\n2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics. This formula should be consistent across the submission."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/MH/V2#MHENTPT>
@@ -2663,7 +2663,7 @@
 	bd:description "Description or date/time in ISO 8601 character format of the reference point referred to by MHENRTPT. Examples: \"2003-12-25\" or \"VISIT 2\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ENTPT> ;
 .
 <http://www.cdisc.org/DV/V2>
@@ -2725,7 +2725,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/DV/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -2747,7 +2747,7 @@
 	bd:description "Epoch associated with the start date/time of the deviation. Examples: TREATMENT PHASE, SCREENING, and FOLLOW-UP."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_EPOCH> ;
 .
 <http://www.cdisc.org/CE/V2>
@@ -2823,7 +2823,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/CE/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -2845,7 +2845,7 @@
 	bd:description "1. Study day of clinical event collection, measured as integer days.\n2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics. This formula should be consistent across the submission."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/CE/V2#CESTTPT>
@@ -2857,7 +2857,7 @@
 	bd:description "Description or date/time in ISO 8601 character format of the sponsor-defined reference point referred to by --STRTPT. Examples: \"2003-12-15\" or \"VISIT 1\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--STTPT> ;
 .
 <http://www.cdisc.org/CE/V2#CEENTPT>
@@ -2869,7 +2869,7 @@
 	bd:description "Description or date/time in ISO 8601 character format of the reference point referred to by CEENRTPT. Examples: \"2003-12-25\" or \"VISIT 2\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ENTPT> ;
 .
 <http://www.cdisc.org/EG/V2>
@@ -2954,7 +2954,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/EG/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -2976,7 +2976,7 @@
 	bd:description "Short name of the measurement, test, or examination described in EGTEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in EGTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g., \"1TEST\"). EGTESTCD cannot contain characters other than letters, numbers, or underscores. Examples :PRMEAN, QTMEAN"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(EGTESTCD)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/EG/V2#EGTESTCD_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
@@ -2999,7 +2999,7 @@
 	bd:description "Result of the ECG measurement or finding as originally received or collected. Examples of expected values are 62 or 0.151 when the result is an interval or measurement, or \"ATRIAL FIBRILLATION\" or \"QT PROLONGATION\" when the result is a finding."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--ORRES> ;
 	bd:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
@@ -3012,7 +3012,7 @@
 	bd:description "Contains the result value for all findings, copied or derived from EGORRES in a standard format or standard units. EGSTRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in EGSTRESN. For example, if a test has results of \"NONE\", \"NEG\", and \"NEGATIVE\" in EGORRES and these results effectively have the same meaning, they could be represented in standard format in EGSTRESC as \"NEGATIVE\". For other examples, see general assumptions. Additional examples of result data: SINUS BRADYCARDIA, ATRIAL FLUTTER, ATRIAL FIBRILLATION."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(EGSTRESC)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/EG/V2#EGSTRESC_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--STRESC> ;
 .
@@ -3034,7 +3034,7 @@
 	bd:description "File name and path for the external ECG Waveform file."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--XFN> ;
 .
 <http://www.cdisc.org/EG/V2#EGBLFL>
@@ -3046,7 +3046,7 @@
 	bd:description "Indicator used to identify a baseline value. The value should be \"Y\" or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/EG/V2#EGBLFL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--BLFL> ;
 .
@@ -3068,7 +3068,7 @@
 	bd:description "1. Clinical encounter number. 2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/EG/V2#EGELTM>
@@ -3080,7 +3080,7 @@
 	bd:description "Planned elapsed time (in ISO 8601) relative to a fixed time point reference (EGTPTREF). Not a clock time or a date time variable. Represented as an ISO 8601 duration. Examples: \"-PT15M\" to represent the period of 15 minutes prior to the reference point indicated by EGTPTREF, or \"PT8H\" to represent the period of 8 hours after the reference point indicated by EGTPTREF."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ELTM> ;
 .
 <http://www.cdisc.org/IE/V2>
@@ -3145,7 +3145,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/IE/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -3167,7 +3167,7 @@
 	bd:description "Short name of the criterion described in IETEST. The value in IETESTCD cannot be longer than 8 characters, nor can it start with a number (e.g.\"1TEST\"). IETESTCD cannot contain characters other than letters, numbers, or underscores. Examples: IN01, EX01."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
@@ -3180,7 +3180,7 @@
 	bd:description "Used to define a category of related records across subjects."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(IECAT)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/IE/V2#IECAT_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--CAT> ;
 	bd:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
@@ -3203,7 +3203,7 @@
 	bd:description "1. Clinical encounter number.\n2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/IE/V2#VISIT>
@@ -3215,7 +3215,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter.\n2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/IE/V2#IEDY>
@@ -3227,7 +3227,7 @@
 	bd:description "1. Study day of collection of the inclusion/exclusion exceptions, measured as integer days.\n2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics. This formula should be consistent across the submission."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/LB/V2>
@@ -3321,7 +3321,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/LB/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -3343,7 +3343,7 @@
 	bd:description "Short name of the measurement, test, or examination described in LBTEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in LBTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g.\"1TEST\"). LBTESTCD cannot contain characters other than letters, numbers, or underscores. Examples: ALT, LDH."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(LBTESTCD)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/LB/V2#LBTESTCD_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
@@ -3366,7 +3366,7 @@
 	bd:description "Contains the result value for all findings, copied or derived from LBORRES in a standard format or standard units. LBSTRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in LBSTRESN. For example, if a test has results \"NONE\", \"NEG\", and \"NEGATIVE\" in LBORRES and these results effectively have the same meaning, they could be represented in standard format in LBSTRESC as \"NEGATIVE\". For other examples, see general assumptions."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--STRESC> ;
 .
 <http://www.cdisc.org/LB/V2#LBSTNRC>
@@ -3378,7 +3378,7 @@
 	bd:description "For normal range values that are character in ordinal scale or if categorical ranges were supplied (e.g., \"-1 to +1\", \"NEGATIVE TO TRACE\")."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--STNRC> ;
 .
 <http://www.cdisc.org/LB/V2#LBNRIND>
@@ -3390,7 +3390,7 @@
 	bd:description "1. Indicates where the value falls with respect to reference range defined by LBORNRLO and LBORNRHI, LBSTNRLO and LBSTNRHI, or by LBSTNRC. Examples: NORMAL, ABNORMAL, HIGH, LOW.\n2. Sponsors should specify in the study metadata (Comments column in the define.xml) whether LBNRIND refers to the original or standard reference ranges and results.\n3. Should not be used to indicate clinical significance."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--NRIND> ;
 .
 <http://www.cdisc.org/LB/V2#LBLOINC>
@@ -3402,7 +3402,7 @@
 	bd:description "1. Dictionary-derived LOINC Code for LBTEST.\n2. The sponsor is expected to provide the dictionary name and version used to map the terms utilizing the define.xml external codelist attributes"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--LOINC> ;
 .
 <http://www.cdisc.org/LB/V2#LBBLFL>
@@ -3414,7 +3414,7 @@
 	bd:description "Indicator used to identify a baseline value. The value should be \"Y\" or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/LB/V2#LBBLFL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--BLFL> ;
 .
@@ -3436,7 +3436,7 @@
 	bd:description "Records toxicity grade value using a standard toxicity scale (such as the NCI CTCAE). If value is from a numeric scale, represent only the number (e.g., \"2\" and not \"Grade 2\"). The sponsor is expected to provide the name of the scale and version used to map the terms, utilizing the define.xml external codelist attributes."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--TOXGR> ;
 .
 <http://www.cdisc.org/LB/V2#VISITNUM>
@@ -3448,7 +3448,7 @@
 	bd:description "1. Clinical encounter number. \n2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/LB/V2#VISIT>
@@ -3460,7 +3460,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter\n2. May be used in addition to VISITNUM and/or VISITDY"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/LB/V2#LBDY>
@@ -3472,7 +3472,7 @@
 	bd:description "1. Study day of specimen collection, measured as integer days. \n2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics. This formula should be consistent across the submission."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/LB/V2#LBTPT>
@@ -3484,7 +3484,7 @@
 	bd:description "1. Text Description of time when specimen should be taken.\n2. This may be represented as an elapsed time relative to a fixed reference point, such as time of last dose. See LBTPTNUM and LBTPTREF. Examples: Start, 5 min post."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--TPT> ;
 .
 <http://www.cdisc.org/LB/V2#LBELTM>
@@ -3496,7 +3496,7 @@
 	bd:description "Planned Elapsed time (in ISO 8601) relative to a planned fixed reference (LBTPTREF). This variable is useful where there are repetitive measures. Not a clock time or a date time variable. Represented as an ISO 8601 duration. Examples: \"-PT15M\" to represent the period of 15 minutes prior to the reference point indicated by LBTPTREF, or \"PT8H\" to represent the period of 8 hours after the reference point indicated by LBTPTREF."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ELTM> ;
 .
 <http://www.cdisc.org/PE/V2>
@@ -3570,7 +3570,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/PE/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -3592,7 +3592,7 @@
 	bd:description "Short name of the measurement, test, or examination described in PETEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in PETESTCD cannot be longer than 8 characters, nor can it start with a number (e.g.\"1TEST\"). PETESTCD cannot contain characters other than letters, numbers, or underscores."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
@@ -3605,7 +3605,7 @@
 	bd:description "Verbatim term part of the body examined. The value in PETEST cannot be longer than 40 characters. Examples: Cardiovascular and Respiratory. For subject-level exam, value should be \"Physical Examination\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TEST> ;
 .
 <http://www.cdisc.org/PE/V2#PEBODSYS>
@@ -3617,7 +3617,7 @@
 	bd:description "Body system or organ class ( MedDRA SOC) that is involved in a measurement from the standard hierarchy (e.g., MedDRA)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--BODSYS> ;
 .
 <http://www.cdisc.org/PE/V2#VISITNUM>
@@ -3629,7 +3629,7 @@
 	bd:description "1. Clinical encounter number.\n2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/PE/V2#VISIT>
@@ -3641,7 +3641,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter.\n2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/PE/V2#PEDY>
@@ -3653,7 +3653,7 @@
 	bd:description "1. Study day of physical exam, measured as integer days.\n2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/QS/V2>
@@ -3732,7 +3732,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/QS/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -3754,7 +3754,7 @@
 	bd:description "Topic variable for QS. Short name for the value in QSTEST, which can be used as a column name when converting the dataset from a vertical format to a horizontal format. The value in QSTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g.\"1TEST\"). QSTESTCD cannot contain characters other than letters, numbers, or underscores. Examples: COG01, GH1, PF1."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
@@ -3767,7 +3767,7 @@
 	bd:description "Indicator used to identify a baseline value. The value should be \"Y\" or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/QS/V2#QSBLFL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--BLFL> ;
 .
@@ -3789,7 +3789,7 @@
 	bd:description "1. Clinical encounter number.\n2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/QS/V2#VISIT>
@@ -3801,7 +3801,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter.\n2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/QS/V2#QSDY>
@@ -3813,7 +3813,7 @@
 	bd:description "1. Study day of finding collection, measured as integer days.\n2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/QS/V2#QSTPT>
@@ -3825,7 +3825,7 @@
 	bd:description "1. Text Description of time when questionnaire should be administered.\n2. This may be represented as an elapsed time relative to a fixed reference point, such as time of last dose. See QSTPTNUM and QSTPTREF."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--TPT> ;
 .
 <http://www.cdisc.org/QS/V2#QSELTM>
@@ -3837,7 +3837,7 @@
 	bd:description "Planned Elapsed time (in ISO 8601) relative to a planned fixed reference (QSTPTREF). This variable is useful where there are repetitive measures. Not a clock time or a date time variable. Represented as an ISO 8601 duration. Examples: \"-PT15M\" to represent the period of 15 minutes prior to the reference point indicated by QSTPTREF, or \"PT8H\" to represent the period of 8 hours after the reference point indicated by QSTPTREF."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ELTM> ;
 .
 <http://www.cdisc.org/QS/V2#QSEVLINT>
@@ -3849,7 +3849,7 @@
 	bd:description "Evaluation Interval associated with a QSTEST question represented in ISO 8601 character format. Example: \"-P2Y\" to represent an interval of 2 years in the question \"Have you experienced any episodes in the past 2 years?\""^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--EVLINT> ;
 .
 <http://www.cdisc.org/SC/V2>
@@ -3917,7 +3917,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/SC/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -3939,7 +3939,7 @@
 	bd:description "Short name of the measurement, test, or examination described in SCTEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in SCTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g.\"1TEST\"). SCTESTCD cannot contain characters other than letters, numbers, or underscores. Example: SUBJINIT, EYECD."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(SCCD)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/SC/V2#SCTESTCD_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
@@ -3962,7 +3962,7 @@
 	bd:description "Contains the result value for all findings, copied or derived from SCORRES in a standard format or standard units. SCSTRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in SCSTRESN. For example, if a test has results \"NONE\", \"NEG\", and \"NEGATIVE\" in SCORRES and these results effectively have the same meaning, they could be represented in standard format in SCSTRESC as \"NEGATIVE\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--STRESC> ;
 .
 <http://www.cdisc.org/VS/V2>
@@ -4042,7 +4042,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/VS/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -4064,7 +4064,7 @@
 	bd:description "Short name of the measurement, test, or examination described in VSTEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in VSTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g.\"1TEST\"). VSTESTCD cannot contain characters other than letters, numbers, or underscores. Examples: SYSBP, DIABP, BMI."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(VSTESTCD)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/VS/V2#VSTESTCD_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
@@ -4087,7 +4087,7 @@
 	bd:description "Contains the result value for all findings, copied or derived from VSORRES in a standard format or standard units. VSSTRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in VSSTRESN. For example, if a test has results \"NONE\", \"NEG\", and \"NEGATIVE\" in VSORRES and these results effectively have the same meaning, they could be represented in standard format in VSSTRESC as \"NEGATIVE\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--STRESC> ;
 .
 <http://www.cdisc.org/VS/V2#VSBLFL>
@@ -4099,7 +4099,7 @@
 	bd:description "Indicator used to identify a baseline value. The value should be \"Y\" or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/VS/V2#VSBLFL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--BLFL> ;
 .
@@ -4121,7 +4121,7 @@
 	bd:description "1. Clinical encounter number.\n2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/VS/V2#VISIT>
@@ -4133,7 +4133,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter.\n2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/VS/V2#VSDY>
@@ -4145,7 +4145,7 @@
 	bd:description "1. Study day of vital signs measurements, measured as integer days.\n2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/VS/V2#VSTPT>
@@ -4157,7 +4157,7 @@
 	bd:description "1. Text Description of time when measurement should be taken.\n2. This may be represented as an elapsed time relative to a fixed reference point, such as time of last dose. See VSTPTNUM and VSTPTREF. Examples: Start, 5 min post."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--TPT> ;
 .
 <http://www.cdisc.org/VS/V2#VSELTM>
@@ -4169,7 +4169,7 @@
 	bd:description "Planned Elapsed time (in ISO 8601) relative to a planned fixed reference (VSTPTREF). This variable is useful where there are repetitive measures. Not a clock time or a date time variable. Represented as an ISO 8601 Duration. Examples: \"-PT15M\" to represent the period of 15 minutes prior to the reference point indicated by VSTPTREF, or \"PT8H\" to represent the period of 8 hours after the reference point indicated by VSTPTREF."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ELTM> ;
 .
 <http://www.cdisc.org/DA/V2>
@@ -4241,7 +4241,7 @@
 	bd:description "Unique identifier for a study within the submission."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_STUDYID> ;
 .
 <http://www.cdisc.org/DA/V2#DOMAIN>
@@ -4253,7 +4253,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/DA/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -4275,7 +4275,7 @@
 	bd:description "Unique subject identifier within the submission."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_USUBJID> ;
 .
 <http://www.cdisc.org/DA/V2#VISITNUM>
@@ -4287,7 +4287,7 @@
 	bd:description "1. Clinical encounter number.\n2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/DA/V2#VISIT>
@@ -4299,7 +4299,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter\n2. May be used in addition to VISITNUM and/or VISITDY"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/DA/V2#VISITDY>
@@ -4311,7 +4311,7 @@
 	bd:description " Planned study day of the visit based upon RFSTDTC in Demographics."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITDY> ;
 .
 <http://www.cdisc.org/DA/V2#DADY>
@@ -4323,7 +4323,7 @@
 	bd:description "1. Study day of drug accountability assessment, measured as integer days.\n2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/MB/V2>
@@ -4409,7 +4409,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/MB/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -4431,7 +4431,7 @@
 	bd:description "Short name of the measurement, test, or finding described in MBTEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in MBTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g., \"1TEST\"). MBTESTCD cannot contain characters other than letters, numbers, or underscores. Examples for GRAM STAIN findings: GMNROD, GMNCOC, GMSQEPCE, GMPMNLOW. Examples for CULTURE PLATE findings: ORGANISM."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
@@ -4444,7 +4444,7 @@
 	bd:description "Contains the result value for all findings, copied or derived from MBORRES in a standard format or standard units. MBSTRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in MBSTRESN. For example, if a test has results \"+3 MODERATE\", \"MOD\", and \"MODERATE\" in MBORRES and these results effectively have the same meaning, they could be represented in standard format in MBSTRESC as \"MODERATE\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--STRESC> ;
 .
 <http://www.cdisc.org/MB/V2#MBLOINC>
@@ -4456,7 +4456,7 @@
 	bd:description "1. Dictionary-derived LOINC Code for MBTEST.\n2. The sponsor is expected to provide the dictionary name and version used to map the terms utilizing the define.xml external codelist attributes"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--LOINC> ;
 .
 <http://www.cdisc.org/MB/V2#MBBLFL>
@@ -4468,7 +4468,7 @@
 	bd:description "Indicator used to identify a baseline value. The value should be \"Y\" or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/MB/V2#MBBLFL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--BLFL> ;
 .
@@ -4490,7 +4490,7 @@
 	bd:description "1. Clinical encounter number.\n2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/MB/V2#VISIT>
@@ -4502,7 +4502,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter.\n2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/MB/V2#MBDY>
@@ -4514,7 +4514,7 @@
 	bd:description "1. Study day of the specimen collection, measured as integer days.\n2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics. This formula should be consistent across the submission."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/MB/V2#MBTPT>
@@ -4526,7 +4526,7 @@
 	bd:description "1. Text Description of time when specimen should be taken.\n2. This may be represented as an elapsed time relative to a fixed reference point, such as time of last dose. See MBTPTNUM and MBTPTREF. Examples: Start, 5 min post."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--TPT> ;
 .
 <http://www.cdisc.org/MB/V2#MBELTM>
@@ -4538,7 +4538,7 @@
 	bd:description "Planned elapsed time (in ISO 8601) relative to a planned fixed reference (MBTPTREF). This variable is useful where there are repetitive measures. Not a clock time or a date time variable. Represented as an ISO 8601 duration. Examples: \"-PT15M\" to represent the period of 15 minutes prior to the reference point indicated by MBTPTREF, or \"PT8H\" to represent the period of 8 hours after the reference point indicated by MBTPTREF."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ELTM> ;
 .
 <http://www.cdisc.org/MS/V2>
@@ -4620,7 +4620,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/MS/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -4642,7 +4642,7 @@
 	bd:description "Short name of the measurement, test, or finding described in MSTEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in MSTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g.\"1TEST). MSTESTCD cannot contain characters other than letters, numbers, or underscores. Examples for GROWTH findings: EXTGROW, COLCOUNT. For SUSCEPTIBILITY findings, the test is the drug the organism was tested with, i.e. PENICLLN, AMOXCLLN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
@@ -4655,7 +4655,7 @@
 	bd:description "Contains the result value for all findings, copied or derived from MSORRES in a standard format or standard units. MSSTRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in MSSTRESN. For example, if a test has results \"+3 MODERATE\", \"MOD\", and \"MODERATE\", and in MSORRES and these results effectively have the same meaning, they could be represented in standard format in MSSTRESC as \"MODERATE\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--STRESC> ;
 .
 <http://www.cdisc.org/MS/V2#MSLOINC>
@@ -4667,7 +4667,7 @@
 	bd:description "1. Dictionary-derived LOINC Code for MSTEST.\n2. The sponsor is expected to provide the dictionary name and version used to map the terms utilizing the define.xml external codelist attributes"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--LOINC> ;
 .
 <http://www.cdisc.org/MS/V2#MSBLFL>
@@ -4679,7 +4679,7 @@
 	bd:description "Indicator used to identify a baseline value. The value should be \"Y\" or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/MS/V2#MSBLFL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--BLFL> ;
 .
@@ -4701,7 +4701,7 @@
 	bd:description "1. Clinical encounter number.\n2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/MS/V2#VISIT>
@@ -4713,7 +4713,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter.\n2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/MS/V2#MSDY>
@@ -4725,7 +4725,7 @@
 	bd:description "1. Study day of the test, measured as integer days.\n2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics. This formula should be consistent across the submission."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/MS/V2#MSTPT>
@@ -4737,7 +4737,7 @@
 	bd:description "1. Text Description of time when test should be done. \n2. This may be represented as an elapsed time relative to a fixed reference point, such as time of last dose. See MSTPTNUM and MSTPTREF. Examples: Start, 5 min post."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--TPT> ;
 .
 <http://www.cdisc.org/MS/V2#MSELTM>
@@ -4749,7 +4749,7 @@
 	bd:description "Elapsed time (in ISO 8601) relative to a planned fixed reference (MSTPTREF). This variable is useful where there are repetitive measures. Not a clock time or a date time variable. Examples: \"-PT15M\" to represent the period of 15 minutes prior to the reference point indicated by MSTPTREF, or \"P8H\" to represent the period of 8 hours after the reference point indicated by MSTPTREF."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ELTM> ;
 .
 <http://www.cdisc.org/PC/V2>
@@ -4835,7 +4835,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/PC/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -4857,7 +4857,7 @@
 	bd:description "Unique subject identifier within the submission."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_USUBJID> ;
 .
 <http://www.cdisc.org/PC/V2#PCTESTCD>
@@ -4869,7 +4869,7 @@
 	bd:description "Short name of the analyte or specimen characteristic. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in PCTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g., \"1TEST\"). PCTESTCD cannot contain characters other than letters, numbers, or underscores. Examples: ASA, VOL, SPG."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
@@ -4882,7 +4882,7 @@
 	bd:description "Contains the result value for all findings, copied or derived from PCORRES in a standard format or standard units. PCSTRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in PCSTRESN. For example, if a test has results \"NONE\", \"NEG\", and \"NEGATIVE\" in PCORRES and these results effectively have the same meaning, they could be represented in standard format in PCSTRESC as \"NEGATIVE\". For other examples, see general assumptions."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--STRESC> ;
 .
 <http://www.cdisc.org/PC/V2#VISITNUM>
@@ -4894,7 +4894,7 @@
 	bd:description "1. Clinical encounter number.\n2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/PC/V2#VISIT>
@@ -4906,7 +4906,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter\n2. May be used in addition to VISITNUM and/or VISITDY"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/PC/V2#PCDY>
@@ -4918,7 +4918,7 @@
 	bd:description "1. Study day of specimen collection, measured as integer days.\n2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/PC/V2#PCTPT>
@@ -4930,7 +4930,7 @@
 	bd:description "1. Text Description of time when specimen should be taken.\n2. This may be represented as an elapsed time relative to a fixed reference point, such as time of last dose. See PCTPTNUM and PCTPTREF. Examples: Start, 5 min post."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--TPT> ;
 .
 <http://www.cdisc.org/PC/V2#PCELTM>
@@ -4942,7 +4942,7 @@
 	bd:description "Planned elapsed time (in ISO 8601) relative to a planned fixed reference (PCTPTREF) such as \"PREVIOUS DOSE\" or \"PREVIOUS MEAL\". This variable is useful where there are repetitive measures. Not a clock time or a date time variable."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--ELTM> ;
 .
 <http://www.cdisc.org/PC/V2#PCEVLINT>
@@ -4954,7 +4954,7 @@
 	bd:description "Evaluation Interval associated with a PCTEST record represented in ISO 8601 character format. Example: \"-P2H\" to represent an interval of 2 hours prior to a PCTPT."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--EVLINT> ;
 .
 <http://www.cdisc.org/PP/V2>
@@ -5022,7 +5022,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/PP/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -5044,7 +5044,7 @@
 	bd:description "Unique subject identifier within the submission."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_USUBJID> ;
 .
 <http://www.cdisc.org/PP/V2#PPTESTCD>
@@ -5056,7 +5056,7 @@
 	bd:description "Short name of the pharmacokinetic parameter. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in PPTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g., \"1TEST\"). PPTESTCD cannot contain characters other than letters, numbers, or underscores. Examples: AUC, TMAX, CMAX."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
@@ -5069,7 +5069,7 @@
 	bd:description "Used to define a category of related records. For PP, this should be the name of the analyte in PCTEST whose profile the parameter is associated with."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--CAT> ;
 	bd:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
 .
@@ -5145,7 +5145,7 @@
 	bd:description "Unique identifier for a study."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_STUDYID> ;
 .
 <http://www.cdisc.org/TU/V2#DOMAIN>
@@ -5157,7 +5157,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/TU/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -5179,7 +5179,7 @@
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_USUBJID> ;
 .
 <http://www.cdisc.org/TU/V2#TUSEQ>
@@ -5191,7 +5191,7 @@
 	bd:description "Sequence number given to ensure uniqueness within a dataset for a subject. May be any valid number."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--SEQ> ;
 .
 <http://www.cdisc.org/TU/V2#TUGRPID>
@@ -5203,7 +5203,7 @@
 	bd:description "Used to link together a block of related records within a subject in a domain.  Can be used to group split or merged tumors which have been identified."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--GRPID> ;
 .
 <http://www.cdisc.org/TU/V2#TUREFID>
@@ -5215,7 +5215,7 @@
 	bd:description "Internal or external identifier. Example: Medical image ID number."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--REFID> ;
 .
 <http://www.cdisc.org/TU/V2#TUSPID>
@@ -5227,7 +5227,7 @@
 	bd:description "Sponsor-defined identifier."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--SPID> ;
 .
 <http://www.cdisc.org/TU/V2#TULNKID>
@@ -5239,7 +5239,7 @@
 	bd:description "Identifier used to link identified tumors to the assessment results (in TR domain) over the course of the study."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--LNKID> ;
 .
 <http://www.cdisc.org/TU/V2#TUTESTCD>
@@ -5251,7 +5251,7 @@
 	bd:description "Short name of the TEST in TUTEST. TUTESTCD cannot be longer than 8 characters nor can start with a number. TUTESTCD contain characters other than letters, numbers, or underscores.  Example: TUMIDENT (Tumor Identification). See Assumption 2."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(TUTESTCD)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/TU/V2#TUTESTCD_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
@@ -5274,7 +5274,7 @@
 	bd:description "Verbatim name of the test for the tumor identification. The value in TUTEST cannot be longer than 40 characters. Example: Tumor Identification. See Assumption 2."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(TUTEST)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/TU/V2#TUTEST_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TEST> ;
 .
@@ -5296,7 +5296,7 @@
 	bd:description "Result of the Tumor identification.  The result of tumor identification is a classification of identified tumor.  Examples: When TUTESTCD=TUMIDENT (Tumor Identification), values of TUORRES might be: TARGET, NON-TARGET, or NEW. or BENIGN ABNORMALITY"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--ORRES> ;
 	bd:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
@@ -5309,7 +5309,7 @@
 	bd:description "Contains the result value for all findings copied from TUORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(TUMIDENT)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/TU/V2#TUSTRESC_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--STRESC> ;
 .
@@ -5331,7 +5331,7 @@
 	bd:description "The name or identifier of the vendor that performed the Tumor Identification.  This column can be left Null when the Investigator provides the complete set of data in the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--NAM> ;
 .
 <http://www.cdisc.org/TU/V2#TULOC>
@@ -5343,7 +5343,7 @@
 	bd:description "Used to specify the anatomical location of the identified tumor. Example: LIVER  Note: When anatomical location is broken down and collected as distinct pieces of data that when combined provide the overall location information (e.g. laterality /directionality / distribution) then the additional anatomical location qualifiers should be used. See Assumption 3."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(LOC)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/TU/V2#TULOC_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--LOC> ;
 	bd:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
@@ -5366,7 +5366,7 @@
 	bd:description "Qualifier for anatomical location or specimen further detailing laterality, for example, LEFT, RIGHT, BILATERAL."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(LAT)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/TU/V2#TULAT_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--LAT> ;
 	bd:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
@@ -5389,7 +5389,7 @@
 	bd:description "Qualifier for anatomical location or specimen further detailing directionality, for example, UPPER, INTERIOR."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DIR)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/TU/V2#TUDIR_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--DIR> ;
 	bd:isA <http://www.s-cubed.dk/CAR#b8480e9c78891769429c713a44f238f2ca3c3abb> ;
@@ -5412,7 +5412,7 @@
 	bd:description "Qualifier for anatomical location or specimen further detailing the distribution which means arrangement of, or apportioning of, for example, ENTIRE, SINGLE, SEGMENT, MANY."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(PORTOT)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/TU/V2#TUPORTOT_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--PORTOT> ;
 .
@@ -5434,7 +5434,7 @@
 	bd:description "Method used to identify the tumor. Examples:  MRI, CT SCAN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(METHOD)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/TU/V2#TUMETHOD_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--METHOD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
@@ -5457,7 +5457,7 @@
 	bd:description "Role of the person who provided the evaluation. Examples: INVESTIGATOR, INDEPENDNT ASSESSOR  This column can be left Null when the Investigator provides the complete set of data in the domain. However the column should contain no Null values when data from one or more independent assessors is included meaning that the rows attributed to the Investigator should contain a value of INVESTIGATOR."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(EVAL)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/TU/V2#TUEVAL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--EVAL> ;
 	bd:isA <http://www.s-cubed.dk/CAR#07500ad5733a5c873074c6df8d3e516da1de8ae1> ;
@@ -5480,7 +5480,7 @@
 	bd:description "The Evaluator Specified variable is used in conjunction with TUEVAL to provide an additional level of detail. When multiple assessors play the role identified in TUEVAL, values of TUEVALID will attribute a row of data to a particular assessor. TUEVALID should not contain the names of the assessors, or a code identifier for a specific assessor, but should contain values such as RADIOLOGIST, RADIOLOGIST 1 or RADIOLOGIST 2. The TUEVALID is subject to CDISC Controlled Terminology. See Assumption 7."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(MEDEVAL)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/TU/V2#TUEVALID_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--EVALID> ;
 .
@@ -5502,7 +5502,7 @@
 	bd:description "In cases where more than one independent assessor (e.g. RADIOLOGIST 1, RADIOLOGIST 2, ADJUDICATOR) provide independent assessments at the same time point this flag identifies the record that is considered to be the accepted assessment."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/TU/V2#TUACPTFL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--ACPTFL> ;
 .
@@ -5524,7 +5524,7 @@
 	bd:description "1. Clinical encounter number.  2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/TU/V2#VISIT>
@@ -5536,7 +5536,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter.  2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/TU/V2#VISITDY>
@@ -5548,7 +5548,7 @@
 	bd:description ""^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITDY> ;
 .
 <http://www.cdisc.org/TU/V2#EPOCH>
@@ -5560,7 +5560,7 @@
 	bd:description "Epoch associated with the Element in the planned sequence of Elements for the ARM to which the subject was assigned."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_EPOCH> ;
 .
 <http://www.cdisc.org/TU/V2#TUDTC>
@@ -5572,7 +5572,7 @@
 	bd:description "TUDTC variable represents the date of the scan/image/physical exam not the date that the image was read to identify tumors.  TUDTC variable does not represent the VISIT date."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DTC> ;
 	bd:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 .
@@ -5585,7 +5585,7 @@
 	bd:description "1. Study day of the scan/image/physical exam, measured as integer days.  2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/TR/V2>
@@ -5662,7 +5662,7 @@
 	bd:description "Unique identifier for a study."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_STUDYID> ;
 .
 <http://www.cdisc.org/TR/V2#DOMAIN>
@@ -5674,7 +5674,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/TR/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -5696,7 +5696,7 @@
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_USUBJID> ;
 .
 <http://www.cdisc.org/TR/V2#TRSEQ>
@@ -5708,7 +5708,7 @@
 	bd:description "Sequence number given to ensure uniqueness within a dataset for a subject. May be any valid number."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--SEQ> ;
 .
 <http://www.cdisc.org/TR/V2#TRGRPID>
@@ -5720,7 +5720,7 @@
 	bd:description "Used to link together a block of related records within a subject in a domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--GRPID> ;
 .
 <http://www.cdisc.org/TR/V2#TRREFID>
@@ -5732,7 +5732,7 @@
 	bd:description "Internal or external identifier."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--REFID> ;
 .
 <http://www.cdisc.org/TR/V2#TRSPID>
@@ -5744,7 +5744,7 @@
 	bd:description "Sponsor-defined identifier."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--SPID> ;
 .
 <http://www.cdisc.org/TR/V2#TRLNKID>
@@ -5756,7 +5756,7 @@
 	bd:description "Identifier used to link the assessment result records to the individual tumor identification record in TU domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--LNKID> ;
 .
 <http://www.cdisc.org/TR/V2#TRLNKGRP>
@@ -5768,7 +5768,7 @@
 	bd:description "Used to group and link all of the measurement/assessment records used in the assessment of the response record in the RS domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--LNKGRP> ;
 .
 <http://www.cdisc.org/TR/V2#TRTESTCD>
@@ -5780,7 +5780,7 @@
 	bd:description "Short name of the TEST in TRTEST. TRTESTCD cannot contain characters other than letters, numbers, or underscores. Examples: TUMSTATE, DIAMETER. See Assumption 2."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(TRTESTCD)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/TR/V2#TRTESTCD_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
@@ -5803,7 +5803,7 @@
 	bd:description "Verbatim name of the test or examination used to obtain the measurement or finding. The value in TRTEST cannot be longer than 40 characters. Examples: Tumor State, Diameter, Longest Perpendicular diameter, Volume, Area. See Assumption 2."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(TRTEST)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/TR/V2#TRTEST_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TEST> ;
 .
@@ -5825,7 +5825,7 @@
 	bd:description "Result of the Tumor measurement/assessment as originally received or collected."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--ORRES> ;
 	bd:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
@@ -5838,7 +5838,7 @@
 	bd:description "Original units in which the data were collected. The unit for TRORRES. Example: mm"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(UNIT)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/TR/V2#TRORRESU_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--ORRESU> ;
 	bd:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
@@ -5861,7 +5861,7 @@
 	bd:description "Contains the result value for all findings, copied or derived from TRORRES in a standard format or standard units. TRSTRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in TRSTRESN"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--STRESC> ;
 .
 <http://www.cdisc.org/TR/V2#TRSTRESN>
@@ -5873,7 +5873,7 @@
 	bd:description "Used for continuous or numeric results or findings in standard format; copied in numeric format from TRSTRESC. TRSTRESN should store all numeric test results or findings."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--STRESN> ;
 .
 <http://www.cdisc.org/TR/V2#TRSTRESU>
@@ -5885,7 +5885,7 @@
 	bd:description "Standardized unit used for TRSTRESN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(UNIT)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/TR/V2#TRSTRESU_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--STRESU> ;
 .
@@ -5907,7 +5907,7 @@
 	bd:description "Used to indicate a scan/image/physical exam was not performed or a tumor measurement was not taken. Should be Null if a result exists in TRORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(ND)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/TR/V2#TRSTAT_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--STAT> ;
 	bd:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
@@ -5930,7 +5930,7 @@
 	bd:description "Describes why a scan/image/physical exam was not performed or a tumor measurement was not taken. Examples: SCAN NOT PERFORMED, NOT ASSESSABLE: Image obscured, TUMOR. Used in conjunction with TRSTAT when value is NOT DONE."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--REASND> ;
 .
 <http://www.cdisc.org/TR/V2#TRNAM>
@@ -5942,7 +5942,7 @@
 	bd:description "The name or identifier of the vendor that performed the Tumor measurement or assessment.  This column can be left Null when the Investigator provides the complete set of data in the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--NAM> ;
 .
 <http://www.cdisc.org/TR/V2#TRMETHOD>
@@ -5954,7 +5954,7 @@
 	bd:description "Method used to measure the tumor. Examples: MRI, CT SCAN."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(METHOD)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/TR/V2#TRMETHOD_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--METHOD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
@@ -5977,7 +5977,7 @@
 	bd:description "Role of the person who provided the evaluation. Examples: INVESTIGATOR, INDEPENDENT ASSESSOR.\nThis column can be left Null when the Investigator provides the complete set of data in the domain. However the column should contain no Null values when data from one or more independent assessors is included meaning that the rows attributed to the Investigator should contain a value of INVESTIGATOR."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(EVAL)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/TR/V2#TREVAL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--EVAL> ;
 	bd:isA <http://www.s-cubed.dk/CAR#07500ad5733a5c873074c6df8d3e516da1de8ae1> ;
@@ -6000,7 +6000,7 @@
 	bd:description "The Evaluator Specified variable is used in conjunction with TREVAL to provide an additional level of detail. When multiple assessors play the role identified in TREVAL, values of TREVALID will attribute a row of data to a particular assessor. TREVALID should not contain the names of the assessors, or a code identifier for a specific assessor, but should contain values such as RADIOLOGIST, RADIOLOGIST 1 or RADIOLOGIST 2. The TREVALID variable is subject to CDISC Controlled Terminology. Note TREVAL must also be populated when TREVALID is populated. See Assumption 7."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(MEDEVAL)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/TR/V2#TREVALID_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--EVALID> ;
 .
@@ -6022,7 +6022,7 @@
 	bd:description "In cases where more than one independent assessor (e.g. RADIOLOGIST 1, RADIOLOGIST 2, ADJUDICATOR) provide independent assessments at the same timepoint this flag identifies the record that is considered to be the accepted assessment."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/TR/V2#TRACPTFL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--ACPTFL> ;
 .
@@ -6044,7 +6044,7 @@
 	bd:description "1. Clinical encounter number. 2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/TR/V2#VISIT>
@@ -6056,7 +6056,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter. 2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/TR/V2#VISITDY>
@@ -6068,7 +6068,7 @@
 	bd:description ""^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITDY> ;
 .
 <http://www.cdisc.org/TR/V2#EPOCH>
@@ -6080,7 +6080,7 @@
 	bd:description "Epoch associated with the Element in the planned sequence of Elements for the ARM to which the subject was assigned"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_EPOCH> ;
 .
 <http://www.cdisc.org/TR/V2#TRDTC>
@@ -6092,7 +6092,7 @@
 	bd:description "TRDTC variable represents the date of the scan/image/physical exam not the date that the image was read to identify tumors. TRDTC variable does not represent the VISIT date."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DTC> ;
 	bd:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 .
@@ -6105,7 +6105,7 @@
 	bd:description "1. Study day of the scan/image/physical exam, measured as integer days. 2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/RS/V2>
@@ -6179,7 +6179,7 @@
 	bd:description "Unique identifier for a study."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_STUDYID> ;
 .
 <http://www.cdisc.org/RS/V2#DOMAIN>
@@ -6191,7 +6191,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/RS/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -6213,7 +6213,7 @@
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_USUBJID> ;
 .
 <http://www.cdisc.org/RS/V2#RSSEQ>
@@ -6225,7 +6225,7 @@
 	bd:description "Sequence number given to ensure uniqueness within a dataset for a subject. May be any valid number."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--SEQ> ;
 .
 <http://www.cdisc.org/RS/V2#RSGRPID>
@@ -6237,7 +6237,7 @@
 	bd:description "Used to link together a block of related records within a subject in a domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--GRPID> ;
 .
 <http://www.cdisc.org/RS/V2#RSREFID>
@@ -6249,7 +6249,7 @@
 	bd:description "Internal or external identifier."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--REFID> ;
 .
 <http://www.cdisc.org/RS/V2#RSSPID>
@@ -6261,7 +6261,7 @@
 	bd:description "Sponsor-defined identifier."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--SPID> ;
 .
 <http://www.cdisc.org/RS/V2#RSLNKID>
@@ -6273,7 +6273,7 @@
 	bd:description "Used to link the response assessment to the appropriate measurement records (in TR) for same tumor that was used to determine the response result."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--LNKID> ;
 .
 <http://www.cdisc.org/RS/V2#RSLNKGRP>
@@ -6285,7 +6285,7 @@
 	bd:description "Used to link the response assessment to the all of the measurement/assessment records in the TR domain which were used in the assessment of the response."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--LNKGRP> ;
 .
 <http://www.cdisc.org/RS/V2#RSTESTCD>
@@ -6297,7 +6297,7 @@
 	bd:description "Short name of the TEST in RSTEST. RSTESTCD cannot contain characters other than letters, numbers, or underscores. Examples: TRGRESP, NTRGRESP, OVRRESP, BESTRESP, NRADPROG"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(RSTESTCD)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/RS/V2#RSTESTCD_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
@@ -6320,7 +6320,7 @@
 	bd:description "Verbatim name of the response assessment. The value in RSTEST cannot be longer than 40 characters. Examples: Target Response, Non-target Response, Overall Response, Best Overall Response, Non-radiological progression (i.e. Symptomatic deterioration)"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(RSTEST)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/RS/V2#RSTEST_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TEST> ;
 .
@@ -6342,7 +6342,7 @@
 	bd:description "RSCAT is used to identify the criteria used in the assessment of response and a version number if appropriate"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--CAT> ;
 	bd:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
 .
@@ -6355,7 +6355,7 @@
 	bd:description "Result of the Response assessment as originally received, collected, or calculated."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--ORRES> ;
 	bd:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
@@ -6368,7 +6368,7 @@
 	bd:description "Contains the result value for the response assessment, copied or derived from RSORRES in a standard format or standard units. RSSTRESC should store all results or findings in character format;"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--STRESC> ;
 .
 <http://www.cdisc.org/RS/V2#RSSTAT>
@@ -6380,7 +6380,7 @@
 	bd:description "Used to indicate the response assessment was not performed. Should be Null if a result exists in RSORRES."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(ND)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/RS/V2#RSSTAT_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--STAT> ;
 	bd:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
@@ -6403,7 +6403,7 @@
 	bd:description "Describes why a response assessment was not performed. Examples: All target tumors not evaluated, Subject does not have non-target tumors. Used in conjunction with TRSTAT when value is NOT DONE."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--REASND> ;
 .
 <http://www.cdisc.org/RS/V2#RSNAM>
@@ -6415,7 +6415,7 @@
 	bd:description "The name or identifier of the vendor that performed the response assessment. This column can be left Null when the Investigator provides the complete set of data in the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--NAM> ;
 .
 <http://www.cdisc.org/RS/V2#RSEVAL>
@@ -6427,7 +6427,7 @@
 	bd:description "Role of the person who provided the evaluation. Examples: INVESTIGATOR, INDEPENDENT ASSESSOR. This column can be left Null when the Investigator provides the complete set of data in the domain. However the column should contain no Null values when data from one or more independent assessors is included meaning that the rows attributed to the Investigator should contain a value of INVESTIGATOR."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(EVAL)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/RS/V2#RSEVAL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--EVAL> ;
 	bd:isA <http://www.s-cubed.dk/CAR#07500ad5733a5c873074c6df8d3e516da1de8ae1> ;
@@ -6450,7 +6450,7 @@
 	bd:description "The Evaluator Specified variable is used in conjunction with RSEVAL to provide an additional level of detail. When multiple assessors play the role identified in RSEVAL, values of RSEVALID will attribute a row of data to a particular assessor. RSEVALID should not contain the names of the assessors, or a code identifier for a specific assessor. The RSEVALID variable is subject to CDISC Controlled Terminology. Examples: RADIOLOGIST, RADIOLOGIST 1 or RADIOLOGIST 2. See Assumption 4"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(MEDEVAL)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/RS/V2#RSEVALID_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--EVALID> ;
 .
@@ -6472,7 +6472,7 @@
 	bd:description "In cases where more than one independent assessor (e.g. RADIOLOGIST 1, RADIOLOGIST 2, ADJUDICATOR) provides an evaluation of response this flag identifies the record that is considered to be the accepted evaluation."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/RS/V2#RSACPTFL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--ACPTFL> ;
 .
@@ -6494,7 +6494,7 @@
 	bd:description "1. Clinical encounter number. 2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/RS/V2#VISIT>
@@ -6506,7 +6506,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter. 2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/RS/V2#VISITDY>
@@ -6518,7 +6518,7 @@
 	bd:description ""^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITDY> ;
 .
 <http://www.cdisc.org/RS/V2#EPOCH>
@@ -6530,7 +6530,7 @@
 	bd:description "Epoch associated with the Element in the planned sequence of Elements for the ARM to which the subject was assigned"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_EPOCH> ;
 .
 <http://www.cdisc.org/RS/V2#RSDTC>
@@ -6542,7 +6542,7 @@
 	bd:description "RSDTC may be derived from the dates of scans/images/physical exams which may be performed on different dates. However, if all assessments are performed on the same date, RSDTC may be consistent with the TUDTC and TRDTC. Note the physical exam date may correspond to the visit date."^^xsd:string ;
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DTC> ;
 	bd:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 .
@@ -6555,7 +6555,7 @@
 	bd:description "1. Study day of the response assessment, measured as integer days. 2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/FA/V2>
@@ -6630,7 +6630,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/FA/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_DOMAIN> ;
 .
@@ -6652,7 +6652,7 @@
 	bd:description "Short name of the measurement, test, or examination described in FATEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in FATESTCD cannot be longer than 8 characters, nor can it start with a number (e.g. \"1TEST\"). FATESTCD cannot contain characters other than letters, numbers, or underscores. Example: SEV, OCCUR."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
@@ -6665,7 +6665,7 @@
 	bd:description "Contains the result value for all findings, copied or derived from FAORRES in a standard format or standard units. FASTRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in FASTRESN. For example, if a test has results \"NONE\", \"NEG\", and \"NEGATIVE\" in FAORRES and these results effectively have the same meaning; they could be represented in standard format in FASTRESC as \"NEGATIVE\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--STRESC> ;
 .
 <http://www.cdisc.org/FA/V2#FABLFL>
@@ -6677,7 +6677,7 @@
 	bd:description "Indicator used to identify a baseline value. The value should be \"Y\" or null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(NY)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/FA/V2#FABLFL_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--BLFL> ;
 .
@@ -6699,7 +6699,7 @@
 	bd:description "1. Clinical encounter number.\n2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/FA/V2#VISIT>
@@ -6711,7 +6711,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter.\n2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/FA/V2#FADY>
@@ -6723,7 +6723,7 @@
 	bd:description "1. Study day of collection, measured as integer days.\n2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics. This formula should be consistent across the submission."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_ALL/V2#CL_--DY> ;
 .
 <http://www.cdisc.org/TA/V2>
@@ -6782,7 +6782,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/TA/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_DOMAIN> ;
 .
@@ -6804,7 +6804,7 @@
 	bd:description "ARMCD is limited to 20 characters and does not have special character restrictions. The maximum length of ARMCD is longer than that for other \"short\" variables to accommodate the kind of values that are likely to be needed for crossover trials. For example, if ARMCD values for a seven-period crossover were constructed using two-character abbreviations for each treatment and separating hyphens, the length of ARMCD values would be 20."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TA/V2#CL_ARMCD> ;
 .
 <http://www.cdisc.org/TA/V2#ELEMENT>
@@ -6816,7 +6816,7 @@
 	bd:description "The name of the Element. The same Element may occur more than once within an Arm."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TA/V2#CL_ELEMENT> ;
 .
 <http://www.cdisc.org/TA/V2#TABRANCH>
@@ -6828,7 +6828,7 @@
 	bd:description "Condition subject met, at a \"branch\" in the trial design at the end of this Element, to be included in this Arm; (e.g., randomization to DRUG X)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TA/V2#CL_TABRANCH> ;
 .
 <http://www.cdisc.org/TA/V2#EPOCH>
@@ -6840,7 +6840,7 @@
 	bd:description "Name of the Trial Epoch with which this Element of the Arm is associated."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TA/V2#CL_EPOCH> ;
 .
 <http://www.cdisc.org/TE/V2>
@@ -6896,7 +6896,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/TE/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_DOMAIN> ;
 .
@@ -6918,7 +6918,7 @@
 	bd:description "The name of the Element."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TE/V2#CL_ELEMENT> ;
 .
 <http://www.cdisc.org/TV/V2>
@@ -6976,7 +6976,7 @@
 	bd:description "Two-character abbreviation for the domain"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/TV/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TV/V2#CL_DOMAIN> ;
 .
@@ -6998,7 +6998,7 @@
 	bd:description "1. Clinical encounter number\n2. Numeric version of VISIT, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TV/V2#CL_VISITNUM> ;
 .
 <http://www.cdisc.org/TV/V2#VISIT>
@@ -7010,7 +7010,7 @@
 	bd:description "1. Protocol-defined description of clinical encounter.\n2. May be used in addition to VISITNUM and/or VISITDY as a text description of the clinical encounter."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TV/V2#CL_VISIT> ;
 .
 <http://www.cdisc.org/TV/V2#VISITDY>
@@ -7022,7 +7022,7 @@
 	bd:description "1. Planned study day of VISIT.\n2. Due to its sequential nature, used for sorting."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TV/V2#CL_VISITDY> ;
 .
 <http://www.cdisc.org/TV/V2#ARMCD>
@@ -7034,7 +7034,7 @@
 	bd:description "1.ARMCD is limited to 20 characters and does not have special character restrictions. The maximum length of ARMCD is longer than for other \"short\" variables to accommodate the kind of values that are likely to be needed for crossover trials. For example, if ARMCD values for a seven-period crossover were constructed using two-character abbreviations for each treatment and separating hyphens, the length of ARMCD values would be 20.\n2. If the timing of Visits for a trial does not depend on which ARM a subject is in, then ARMCD should be null."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TV/V2#CL_ARMCD> ;
 .
 <http://www.cdisc.org/TV/V2#ARM>
@@ -7046,7 +7046,7 @@
 	bd:description "1. Name given to an Arm or Treatment Group.\n2. If the timing of Visits for a trial does not depend on which Arm a subject is in, then Arm should be left blank."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TV/V2#CL_ARM> ;
 .
 <http://www.cdisc.org/TI/V2>
@@ -7103,7 +7103,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/TI/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_DOMAIN> ;
 .
@@ -7125,7 +7125,7 @@
 	bd:description "Short name IETEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in IETESTCD cannot be longer than 8 characters, nor can it start with a number (e.g., \"1TEST\"). IETESTCD cannot contain characters other than letters, numbers, or underscores. The prefix \"IE\" is used to ensure consistency with the IE domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TI/V2#CL_IETESTCD> ;
 .
 <http://www.cdisc.org/TI/V2#IETEST>
@@ -7137,7 +7137,7 @@
 	bd:description "Full text of the inclusion or exclusion criterion. The prefix \"IE\" is used to ensure consistency with the IE domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TI/V2#CL_IETEST> ;
 .
 <http://www.cdisc.org/TI/V2#IECAT>
@@ -7149,7 +7149,7 @@
 	bd:description "Used for categorization of the inclusion or exclusion criteria."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(IECAT)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/TI/V2#IECAT_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TI/V2#CL_IECAT> ;
 .
@@ -7219,7 +7219,7 @@
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/TS/V2#DOMAIN_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL_DOMAIN> ;
 .
@@ -7241,7 +7241,7 @@
 	bd:description "Sequence number given to ensure uniqueness within a dataset.  Allows inclusion of multiple records for the same TSPARMCD, and can be used to join related records."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V2#CL_TSSEQ> ;
 .
 <http://www.cdisc.org/TS/V2#TSPARMCD>
@@ -7253,7 +7253,7 @@
 	bd:description "TSPARMCD (the companion to TSPARM) is limited to 8 characters and does not have special character restrictions. These values should be short for ease of use in programming, but it is not expected that TSPARMCD will need to serve as variable names. Examples: AGEMIN, AGEMAX"^^xsd:string ;
 	bd:format "TSPARMCD"^^xsd:string ;
 	bd:ctAndFormat "TSPARMCD"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL_TSPARMCD> ;
 .
 <http://www.cdisc.org/TS/V2#TSPARM>
@@ -7265,7 +7265,7 @@
 	bd:description "Term for the Trial Summary Parameter. The value in TSPARM cannot be longer than 40 characters. Examples Planned Minimum Age of Subjects, Planned Maximum Age of Subjects"^^xsd:string ;
 	bd:format "TSPARM"^^xsd:string ;
 	bd:ctAndFormat "TSPARM"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V2#CL_TSPARM> ;
 .
 <http://www.cdisc.org/TS/V2#TSVAL>
@@ -7277,7 +7277,7 @@
 	bd:description "Value of TSPARM. Example: \"ASTHMA\" when TSPARM value is \"Trial Indication\". TSVAL can only be null when TSVALNF is populated. Text over 200 characters can be added to additional columns TSVAL1-TSVALn."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V2#CL_TSVAL> ;
 .
 <http://www.cdisc.org/TS/V2#TSVALNF>
@@ -7289,7 +7289,7 @@
 	bd:description "Null flavor for the value of TSPARM, to be populated if and only if TSVAL is null."^^xsd:string ;
 	bd:format "NULLFLAVOR"^^xsd:string ;
 	bd:ctAndFormat "NULLFLAVOR"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V2#CL_TSVALNF> ;
 .
 <http://www.cdisc.org/TS/V2#TSVALCD>
@@ -7301,7 +7301,7 @@
 	bd:description "This is the code of the term in TSVAL. For example; 6CW7F3G59X is the code for Gabapentin, C49488 is the code for Y. The length of this variable can be longer than 8 to accommodate the length of the external terminology."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V2#CL_TSVALCD> ;
 .
 <http://www.cdisc.org/TS/V2#TSVCDREF>
@@ -7313,7 +7313,7 @@
 	bd:description "The name of the Reference Terminology from which TSVALCD is taken. For example; CDISC, SNOMED, ISO 8601."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V2#CL_TSVCDREF> ;
 .
 <http://www.cdisc.org/TS/V2#TSVCDVER>
@@ -7325,7 +7325,7 @@
 	bd:description "The version number of the Reference Terminology, if applicable."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_TS/V2#CL_TSVCDVER> ;
 .
 <http://www.cdisc.org/RELREC/V2>
@@ -7381,7 +7381,7 @@
 	bd:description "Unique identifier for a study"^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_RELREC/V2#CL_STUDYID> ;
 .
 <http://www.cdisc.org/RELREC/V2#RDOMAIN>
@@ -7393,7 +7393,7 @@
 	bd:description "Two-character abbreviation for the domain of the parent record(s)"^^xsd:string ;
 	bd:format "DOMAIN"^^xsd:string ;
 	bd:ctAndFormat "DOMAIN"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_RELREC/V2#CL_RDOMAIN> ;
 .
 <http://www.cdisc.org/RELREC/V2#RELID>
@@ -7405,7 +7405,7 @@
 	bd:description "Unique value within USUBJID that identifies the relationship. All records for the same USUBJID that have the same RELID are considered \"related/associated.\" RELID can be any value the sponsor chooses, and is only meaningful within the RELREC dataset to identify the related/associated Domain records."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_RELREC/V2#CL_RELID> ;
 .
 <http://www.cdisc.org/SUPPQUAL/V2>
@@ -7464,7 +7464,7 @@
 	bd:description "Study Identifier of the Parent record(s)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_STUDYID> ;
 .
 <http://www.cdisc.org/SUPPQUAL/V2#RDOMAIN>
@@ -7476,7 +7476,7 @@
 	bd:description "Two-character abbreviation for the domain of the parent record(s)."^^xsd:string ;
 	bd:format "DOMAIN"^^xsd:string ;
 	bd:ctAndFormat "DOMAIN"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_RDOMAIN> ;
 .
 <http://www.cdisc.org/SUPPQUAL/V2#USUBJID>
@@ -7488,7 +7488,7 @@
 	bd:description "Unique Subject Identifier of the Parent record(s)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_USUBJID> ;
 .
 <http://www.cdisc.org/SUPPQUAL/V2#IDVAR>
@@ -7500,7 +7500,7 @@
 	bd:description "Identifying variable in the dataset that identifies the related record(s). Examples: --SEQ, --GRPID."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_IDVAR> ;
 .
 <http://www.cdisc.org/SUPPQUAL/V2#IDVARVAL>
@@ -7512,7 +7512,7 @@
 	bd:description "Value of identifying variable of the parent record(s)."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_IDVARVAL> ;
 .
 <http://www.cdisc.org/SUPPQUAL/V2#QNAM>
@@ -7524,6 +7524,6 @@
 	bd:description "The short name of the Qualifier variable, which is used as a column name in a domain view with data from the parent domain. The value in QNAM cannot be longer than 8 characters, nor can it start with a number (e.g., \"1TEST\"). QNAM cannot contain characters other than letters, numbers, or underscores. This will often be the column name in the sponsor's operational dataset."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_QNAM> ;
 .

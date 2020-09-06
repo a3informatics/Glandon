@@ -259,7 +259,7 @@ module Fuseki
 
         # Define a class method to get the child predicate
         define_singleton_method "children_predicate" do
-          predicate_uri(name)
+          @resources["#{name}".to_sym][:predicate]
         end
 
       else

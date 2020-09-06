@@ -30,6 +30,7 @@ describe "Import CDISC ADaM Implementation Guide Data" do
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
     load_data_file_into_triple_store("canonical_references.ttl")
     load_data_file_into_triple_store("canonical_references_migration_1.ttl")
+    load_cdisc_term_versions(CdiscCtHelpers.version_range)
     setup
   end
 
@@ -67,9 +68,12 @@ describe "Import CDISC ADaM Implementation Guide Data" do
   end
 
   def set_params(version, date, files)
+    ctv = @date_to_ref_map[version-1][:ct]
     file_type = !files.empty? ? "0" : "3"
     { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "Controlled Terminology", 
-      semantic_version: "#{version}.0.0", job: @job, file_type: file_type}
+      semantic_version: "#{version}.0.0", job: @job, file_type: file_type, 
+      ct: Uri.new(uri: "http://www.cdisc.org/CT/V#{ctv}#TH")
+    }
   end
 
   def dump_errors_if_present(filename, version, date)
@@ -126,6 +130,12 @@ describe "Import CDISC ADaM Implementation Guide Data" do
 
     @date_to_filename_map = [
       "adam_ig_1-0.xlsx", "adam_ig_1-1.xlsx", "adam_ig_1-2.xlsx"
+    ]
+
+    @date_to_ref_map = [
+      {ct: 18}, 
+      {ct: 46}, 
+      {ct: 61}
     ]
   end
   

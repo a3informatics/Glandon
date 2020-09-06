@@ -148,7 +148,7 @@ function dtSDTMClassShowColumns() {
     { data: "typed_as" },
     { data: "description" },
     { data: "classified_as" },
-    { data: "classified_as" }
+    { data: "sub_classified_as" }
   ];
 };
 
@@ -176,11 +176,11 @@ function dtSDTMIGDomainShowColumns() {
     { data: "ordinal" },
     { data: "name" },
     { data: "label" },
-    { data: "label" }, //datatype_label
+    { data: "typed_as" }, 
     { data: "format" },
-    { data: "label" }, //classification_label
-    { data: "label" }, //sub_classification_label
-    { data: "notes" },
+    { data: "classified_as" },
+    { data: "sub_classified_as" },
+    { data: "description" },
     { data: "compliance" }
   ];
 };
@@ -194,9 +194,8 @@ function dtADaMIGDatasetShowColumns() {
     { data: "ordinal" },
     { data: "name" },
     { data: "label" },
-    { data: "label" }, //datatype_label
+    { data: "typed_as" }, //datatype_label
     { data: "ct" },
-    { data: "ct_notes" },
     { data: "notes" },
     { data: "compliance" }
   ];

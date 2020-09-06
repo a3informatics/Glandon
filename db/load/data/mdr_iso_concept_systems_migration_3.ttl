@@ -9,41 +9,41 @@
 <http://www.assero.co.uk/CSN>
 	rdf:type owl:Ontology ;
 .
-:59e96ffd-73e5-4974-a009-7bef105ac870
+:116c6901-eadd-411d-ab4b-fdf2f813ec2c
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "ADAM-STD"^^xsd:string ;
 	isoC:description "Information relating to the internal structure of the ADaM standard."^^xsd:string ;
-	isoC:narrower :30296b58-dbc8-4a78-804a-3fedafeaeedb ;
+	isoC:narrower :9c2b2de7-f60f-4e2e-8916-4198fbef1625 ;
 .
-:30296b58-dbc8-4a78-804a-3fedafeaeedb
+:9c2b2de7-f60f-4e2e-8916-4198fbef1625
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Variable"^^xsd:string ;
 	isoC:description "Information relating to the variables within ADaM."^^xsd:string ;
-	isoC:narrower :30321a8c-ea66-4289-a00f-9d3ed645a394 ;
+	isoC:narrower :98507a36-da17-414e-8c47-f0bd20412ee9 ;
 .
-:30321a8c-ea66-4289-a00f-9d3ed645a394
+:98507a36-da17-414e-8c47-f0bd20412ee9
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Compliance"^^xsd:string ;
 	isoC:description "SDTM variable compliance."^^xsd:string ;
-	isoC:narrower :85609fc1-151b-4eb6-b731-36967e103236 ;
-	isoC:narrower :09b4288f-53ed-431a-ac74-f6ca365598bf ;
-	isoC:narrower :3c1f1632-1b35-43cd-8036-e8d84cb99530 ;
+	isoC:narrower :60f96efc-9930-4551-9949-0c66691291a7 ;
+	isoC:narrower :7101c3da-e91f-4633-8257-2e4bbd936b72 ;
+	isoC:narrower :c32abbc7-dc3f-4fed-badc-4116e5983e17 ;
 .
-:85609fc1-151b-4eb6-b731-36967e103236
+:60f96efc-9930-4551-9949-0c66691291a7
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Required"^^xsd:string ;
 	isoC:description "The variable must be included in the dataset."^^xsd:string ;
 .
-:09b4288f-53ed-431a-ac74-f6ca365598bf
+:7101c3da-e91f-4633-8257-2e4bbd936b72
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Conditional"^^xsd:string ;
 	isoC:description "The variable must be included in the dataset in certain circumstances."^^xsd:string ;
 .
-:3c1f1632-1b35-43cd-8036-e8d84cb99530
+:c32abbc7-dc3f-4fed-badc-4116e5983e17
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Permissible"^^xsd:string ;
 	isoC:description " The variable may be included in the dataset, but is not required."^^xsd:string ;
 .
 :22f1319e-37a9-49ce-9fea-47b1471283a5
-	isoC:narrower :59e96ffd-73e5-4974-a009-7bef105ac870 ;
+	isoC:narrower :116c6901-eadd-411d-ab4b-fdf2f813ec2c ;
 .
