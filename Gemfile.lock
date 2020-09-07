@@ -211,7 +211,6 @@ GEM
     lumberjack (1.2.7)
     macaddr (1.7.2)
       systemu (~> 2.6.5)
-    magic_encoding (0.0.2)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
@@ -301,8 +300,6 @@ GEM
     rdoc (6.2.1)
     redcarpet (3.5.0)
     regexp_parser (1.7.1)
-    report_builder (1.9)
-      json (>= 2.3.0)
     require_all (3.0.0)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -435,7 +432,6 @@ DEPENDENCIES
   jquery-rails
   jquery-validation-rails
   launchy
-  magic_encoding
   nokogiri
   odm (= 1.0.5)!
   passenger (>= 5.0.25)
@@ -451,7 +447,6 @@ DEPENDENCIES
   rails_email_validator
   rails_layout
   redcarpet
-  report_builder
   rolify
   roo (~> 2.7.0)
   rspec

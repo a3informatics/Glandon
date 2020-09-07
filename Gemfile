@@ -123,7 +123,6 @@ group :test do
   gem 'google-protobuf'
   gem 'protobuf-cucumber'
   gem 'watir'
-  gem 'magic_encoding'
 end
 
 

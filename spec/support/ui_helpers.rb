@@ -610,12 +610,16 @@ module UiHelpers
     page.execute_script(js_code)
   end
 
-	def context_menu_element_v2 (table, text, action)
-		option = context_menu_actions_map[action]
-		js_code = "var el = contextMenuElementV2('#{table}', '#{text}', '#{option}'); "
-		js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
-		page.execute_script(js_code)
-	end
+  def context_menu_element_v2 (table, text, action)
+      option = context_menu_actions_map[action]
+      find(:xpath, "//table[@id='#{table}']//tr[contains(.,'#{text}')]//span[contains(@class, 'icon-context-menu')]").click
+      find(:xpath, "//a[contains(.,'#{option}')]").click
+  end
+
+  def context_menu_element_v3(table, text, option)
+      find(:xpath, "//table[@id='#{table}']//tr[contains(.,'#{text}')]//span[contains(@class, 'icon-context-menu')]").click
+      find(:xpath, "//a[contains(.,'#{option}')]").click
+  end
 
 	def context_menu_element_header (action)
 		option = context_menu_actions_map[action]
@@ -623,6 +627,11 @@ module UiHelpers
     js_code += "if (el != null && !$(el).hasClass('disabled')) { el.click(); } else { console.log('No match found'); } "
 		page.execute_script(js_code)
 	end
+
+  def context_menu_element_header_v2 (option) 
+    find(:xpath, "//*[@id='header-con-menu']").click
+    find(:xpath, "//a[contains(.,'#{option}')]").click
+  end
 
 	def context_menu_element_header_present?(action, state="enabled")
 		class_list = state == "enabled" ? "option" : "disabled" # Note the space, horrid but ....

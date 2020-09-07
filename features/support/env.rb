@@ -13,6 +13,17 @@ require 'allure-cucumber'
 require 'rspec/expectations'
 require 'rspec'
 require 'base64'
+require 'selenium-webdriver'
+
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+ #TURN_ON_SCREEN_SHOT=false
+ TURN_ON_SCREEN_SHOT=true
+
+ TYPE ='Expected'
+
+#RemoteServerHelpers.switch_to_remote
+RemoteServerHelpers.switch_to_local
 
 Capybara::Screenshot.autosave_on_failure = false
 Capybara::Screenshot.append_timestamp = false
@@ -26,33 +37,65 @@ Capybara.default_driver = :selenium_chrome
 
 #root='/Users/Kirsten/Documents/rails/Glandon'
 
-Capybara::save_path = "./cucumber-report/screenshots/"
-
-module Capybara
-  module DSL
-    def my_screenshot_and_save_page(screenshot_name)
-      Capybara::Screenshot.my_screenshot_and_save_page(screenshot_name)
-    end
-  end
+if TYPE == 'Actual' 
+    Capybara::save_path = "./cucumber-report/screenshots/actual/"
+    # Clean out the screenshot folder before run
+     FileUtils.rm_rf(Dir[Capybara::save_path])
+else
+  Capybara::save_path = "./cucumber-report/screenshots/expected/"
+  # Clean out the screenshot folder before run
+    FileUtils.rm_rf(Dir[Capybara::save_path])
 end
 
-module Capybara
-  module Screenshot
-    def self.my_screenshot_and_save_page(screenshot_name)
-      saver = new_saver(Capybara, Capybara.page, true, screenshot_name)
-      if saver.save
-        {:html => saver.html_path, :image => saver.screenshot_path}
-      end
-    end
-  end
+def zoom_in
+  page.execute_script("document.body.style.zoom='100%'")
 end
+
+def zoom_out
+  page.execute_script("document.body.style.zoom='75%'")
+end
+
+def save_screen(e_or_a,screen_shot_enabled=TURN_ON_SCREEN_SHOT)
+
+  if screen_shot_enabled
+     Capybara.current_session.current_window.maximize
+     zoom_out
+     screenshot_file_name = "#{Time.now.strftime("#{e_or_a}_%d_%m_%Y__%H_%M_%S")}.png" 
+     save_screenshot(screenshot_file_name, :full => true)
+     screenshot_path = Capybara::save_path+screenshot_file_name
+     attach(File.open(screenshot_path), "image/png")
+     #attach(screenshot_path, "image/png")
+     zoom_in
+    end
+end
+
+
+# module Capybara
+#   module DSL
+#     def my_screenshot_and_save_page(screenshot_name)
+#       Capybara::Screenshot.my_screenshot_and_save_page(screenshot_name)
+#     end
+#   end
+# end
+
+# module Capybara
+#   module Screenshot
+#     def self.my_screenshot_and_save_page(screenshot_name)
+#       saver = new_saver(Capybara, Capybara.page, true, screenshot_name)
+#       if saver.save
+#         {:html => saver.html_path, :image => saver.screenshot_path}
+#       end
+#     end
+#   end
+# end
 
 #Run after each scenario
 
-# After do |scenario|
-#   screenshot_file_name = "screenshot_"+scenario.name.gsub(' ', '-').gsub(/^.*\/spec\//,'')+'.png'
+# AfterStep do |step|
+#   #screenshot_file_name = TYPE+step.name.gsub(' ', '-').gsub(/^.*\/spec\//,'')+'.png'
+#   screenshot_file_name = TYPE+"#{Time.now.strftime("_%d_%m_%Y_%H_%M_%S")}.png"
 #   save_screenshot(screenshot_file_name,:full => true)
-#   screenshot_path = 'cucumber-report/screenshots/'+screenshot_file_name
+#   screenshot_path = 'cucumber-report/screenshots/expected/'+screenshot_file_name
 #   #screenshot = Base64.encode64(screenshot_path)
 #   image = open(screenshot_path, 'rb', &:read)
 #   encoded_image = Base64.encode64(image)
@@ -60,27 +103,25 @@ end
 #     log(screenshot_path)
 # end
 
+# After do |scenario|
+#   screenshot_file_name = TYPE+'_'+scenario.name.gsub(' ', '-').gsub(/^.*\/spec\//,'')+'.png'
+#   save_screenshot(screenshot_file_name,:full => true)
+#   screenshot_path = './cucumber-report/screenshots/expected/'+screenshot_file_name
+#   #screenshot = Base64.encode64(screenshot_path)
+#   # image = open(screenshot_path, 'rb', &:read)
+#   # encoded_image = Base64.encode64(image)
+#   # attach(encoded_image, "image/png;base64")
+#   attach(screenshot_path,'image/png')
+# end
 
-After do |scenario|
-   add_screenshot(scenario)
-end
-
-def add_screenshot(scenario)
- file_path = Capybara::save_path+"screenshot_"+scenario.name.gsub(' ', '-').gsub(/^.*\/spec\//,'')+'.png'
- page.driver.browser.save_screenshot(file_path)
- image = open(file_path, 'rb', &:read)
- attach(image, 'image/png;base64')
-end
-
-
-AllureCucumber.configure do |config|
-# config.results_directory = "/cucumber-report"
-  config.clean_results_directory = true
-  config.logging_level = Logger::INFO
-  # these are used for creating links to bugs or test cases where {} is replaced with keys of relevant items
-  config.link_tms_pattern = "http://www.jira.com/browse/{}"
-  config.link_issue_pattern = "http://www.jira.com/browse/{}"
-end
+# AllureCucumber.configure do |config|
+# # config.results_directory = "/cucumber-report"
+#   config.clean_results_directory = true
+#   config.logging_level = Logger::INFO
+#   # these are used for creating links to bugs or test cases where {} is replaced with keys of relevant items
+#   config.link_tms_pattern = "http://www.jira.com/browse/{}"
+#   config.link_issue_pattern = "http://www.jira.com/browse/{}"
+# end
 
 # frozen_string_literal: true
 
