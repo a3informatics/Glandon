@@ -61,7 +61,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/Basic_Data_Structure/V2> ;
+	bo:reference <http://www.cdisc.org/BDS/V2> ;
 .
 <http://www.cdisc.org/ADSL/V2>
 	rdf:type bd:ADaMDataset ;
@@ -1780,11 +1780,11 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2>
+<http://www.cdisc.org/BDS/V2>
 	rdf:type bd:ADaMDataset ;
 	isoC:label "Basic Data Structure"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/Basic_Data_Structure/V2#RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/Basic_Data_Structure/V2#SI> ;
+	isoT:hasState <http://www.cdisc.org/BDS/V2#RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/BDS/V2#SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-02-12T00:00:00+00:00"^^xsd:dateTime ;
@@ -1792,188 +1792,188 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSITEID> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASEQ> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTP> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTPN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTA> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTAN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTPGy> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTPGyN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTAGy> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTAGyN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVDOSEP> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVDOSCUMP> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVDOSEA> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVDOSCUMA> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVDOSEU> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVADT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVATM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVADTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVADY> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVADTF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVATMF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASTDT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASTTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASTDTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASTDY> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASTDTF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASTTMF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAENDT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAENTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAENDTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAENDY> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAENDTF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAENTMF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAVISIT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAVISITN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVATPT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVATPTN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVATPTREF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPHASE> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPHASEN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERIOD> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERIODC> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPER> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPERC> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVARELTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVARELTMU> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSDT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSDTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSDTF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSTMF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPEREDT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERETM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPEREDTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPEREDTF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERETMF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSDT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSDTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSDTF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSTMF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPREDT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRETM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPREDTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPREDTF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRETMF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSDT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSDTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSDTF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSTMF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHEDT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHETM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHEDTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHEDTF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHETMF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*DT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*TM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*DTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*ADY> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*DTF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*TMF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*SDT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*STM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*SDTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*SDY> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*SDTF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*STMF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*EDT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*ETM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*EDTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*EDY> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*EDTF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AV*ETMF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPARAM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPARAMCD> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPARAMN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPARAMTYP> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPARCATy> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPARCATyN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAVAL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAVALC> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAVALCATy> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAVALCAyN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVBASE> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVBASEC> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVBASECATy> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVBASECAyN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVBASETYPE> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVCHG> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVCHGCATy> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVCHGCATyN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPCHG> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPCHGCATy> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPCHGCAyN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVR2BASE> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVR2AyLO> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVR2AyHI> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSHIFTy> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSHIFTyN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVCRITy> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVCRITyFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVCRITyFN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVMCRITy> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVMCRITyML> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVMCRITyMN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVDTYPE> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAWRANGE> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAWTARGET> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAWTDIFF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAWLO> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAWHI> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAWU> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSTARTDT> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSTARTDTM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSTARTDTF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSTARTTMF> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVCNSR> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVEVNTDESC> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVCNSDTDSC> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVATOXGR> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVBTOXGR> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVANRIND> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVBNRIND> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVANRLO> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVANRLOC> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVANRHI> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVANRHIC> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAyLO> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAyLOC> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAyHI> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAyHIC> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVAyIND> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVByIND> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVABLFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVABLFN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVANLzzFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVANLzzFN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVONTRTFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVONTRTFN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVLVOTFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVLVOTFN> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVITTRFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSAFRFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVFASRFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPPROTRFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVCOMPLRFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVITTPFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSAFPFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVFASPFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVPPROTPFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVCOMPLPFL> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSRCDOM> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSRCVAR> ;
-	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V2#AVSRCSEQ> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSTUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVUSUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSITEID> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASEQ> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVTRTP> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVTRTPN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVTRTA> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVTRTAN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVTRTPGy> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVTRTPGyN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVTRTAGy> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVTRTAGyN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVDOSEP> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVDOSCUMP> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVDOSEA> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVDOSCUMA> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVDOSEU> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVADT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVATM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVADTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVADY> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVADTF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVATMF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASTDT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASTTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASTDTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASTDY> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASTDTF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASTTMF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAENDT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAENTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAENDTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAENDY> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAENDTF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAENTMF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAVISIT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAVISITN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVATPT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVATPTN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVATPTREF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPHASE> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPHASEN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPERIOD> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPERIODC> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASPER> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASPERC> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVARELTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVARELTMU> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPERSDT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPERSTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPERSDTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPERSDTF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPERSTMF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPEREDT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPERETM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPEREDTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPEREDTF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAPERETMF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASPRSDT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASPRSTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASPRSDTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASPRSDTF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASPRSTMF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASPREDT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASPRETM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASPREDTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASPREDTF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVASPRETMF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPHSDT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPHSTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPHSDTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPHSDTF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPHSTMF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPHEDT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPHETM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPHEDTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPHEDTF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPHETMF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*DT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*TM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*DTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*ADY> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*DTF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*TMF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*SDT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*STM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*SDTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*SDY> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*SDTF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*STMF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*EDT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*ETM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*EDTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*EDY> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*EDTF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AV*ETMF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPARAM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPARAMCD> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPARAMN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPARAMTYP> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPARCATy> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPARCATyN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAVAL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAVALC> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAVALCATy> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAVALCAyN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVBASE> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVBASEC> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVBASECATy> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVBASECAyN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVBASETYPE> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVCHG> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVCHGCATy> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVCHGCATyN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPCHG> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPCHGCATy> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPCHGCAyN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVR2BASE> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVR2AyLO> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVR2AyHI> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSHIFTy> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSHIFTyN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVCRITy> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVCRITyFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVCRITyFN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVMCRITy> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVMCRITyML> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVMCRITyMN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVDTYPE> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAWRANGE> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAWTARGET> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAWTDIFF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAWLO> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAWHI> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAWU> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSTARTDT> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSTARTDTM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSTARTDTF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSTARTTMF> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVCNSR> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVEVNTDESC> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVCNSDTDSC> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVATOXGR> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVBTOXGR> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVANRIND> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVBNRIND> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVANRLO> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVANRLOC> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVANRHI> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVANRHIC> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAyLO> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAyLOC> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAyHI> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAyHIC> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVAyIND> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVByIND> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVABLFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVABLFN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVANLzzFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVANLzzFN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVONTRTFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVONTRTFN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVLVOTFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVLVOTFN> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVITTRFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSAFRFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVFASRFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPPROTRFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVCOMPLRFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVITTPFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSAFPFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVFASPFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVPPROTPFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVCOMPLPFL> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSRCDOM> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSRCVAR> ;
+	bd:includesColumn <http://www.cdisc.org/BDS/V2#AVSRCSEQ> ;
 	bd:prefix ""^^xsd:string ;
 	bd:structure ""^^xsd:string ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#RS>
+<http://www.cdisc.org/BDS/V2#RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -1985,15 +1985,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#SI>
+<http://www.cdisc.org/BDS/V2#SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "Basic Data Structure"^^xsd:string ;
+	isoI:identifier "BDS"^^xsd:string ;
 	isoI:versionLabel "2016-02-12 Release"^^xsd:string ;
 	isoI:version "2"^^xsd:positiveInteger ;
 	isoI:semanticVersion "2.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSTUDYID>
+<http://www.cdisc.org/BDS/V2#AVSTUDYID>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Study Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2003,7 +2003,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVUSUBJID>
+<http://www.cdisc.org/BDS/V2#AVUSUBJID>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Unique Subject Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2013,7 +2013,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSUBJID>
+<http://www.cdisc.org/BDS/V2#AVSUBJID>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subject Identifier for the Study"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2023,7 +2023,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSITEID>
+<http://www.cdisc.org/BDS/V2#AVSITEID>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Study Site Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2033,7 +2033,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASEQ>
+<http://www.cdisc.org/BDS/V2#AVASEQ>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Sequence Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2043,7 +2043,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTP>
+<http://www.cdisc.org/BDS/V2#AVTRTP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2053,7 +2053,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTPN>
+<http://www.cdisc.org/BDS/V2#AVTRTPN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Treatment (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2063,7 +2063,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTA>
+<http://www.cdisc.org/BDS/V2#AVTRTA>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2073,7 +2073,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTAN>
+<http://www.cdisc.org/BDS/V2#AVTRTAN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Treatment (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2083,7 +2083,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTPGy>
+<http://www.cdisc.org/BDS/V2#AVTRTPGy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Pooled Treatment y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2093,7 +2093,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTPGyN>
+<http://www.cdisc.org/BDS/V2#AVTRTPGyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Pooled Treatment y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2103,7 +2103,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTAGy>
+<http://www.cdisc.org/BDS/V2#AVTRTAGy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Pooled Treatment y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2113,7 +2113,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVTRTAGyN>
+<http://www.cdisc.org/BDS/V2#AVTRTAGyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Pooled Treatment y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2123,7 +2123,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVDOSEP>
+<http://www.cdisc.org/BDS/V2#AVDOSEP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Treatment Dose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2133,7 +2133,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVDOSCUMP>
+<http://www.cdisc.org/BDS/V2#AVDOSCUMP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Cumulative Planned Treatment Dose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2143,7 +2143,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVDOSEA>
+<http://www.cdisc.org/BDS/V2#AVDOSEA>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Treatment Dose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2153,7 +2153,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVDOSCUMA>
+<http://www.cdisc.org/BDS/V2#AVDOSCUMA>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Cumulative Actual Treatment Dose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2163,7 +2163,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVDOSEU>
+<http://www.cdisc.org/BDS/V2#AVDOSEU>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Treatment Dose Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2173,7 +2173,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVADT>
+<http://www.cdisc.org/BDS/V2#AVADT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2183,7 +2183,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVATM>
+<http://www.cdisc.org/BDS/V2#AVATM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2193,7 +2193,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVADTM>
+<http://www.cdisc.org/BDS/V2#AVADTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2203,7 +2203,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVADY>
+<http://www.cdisc.org/BDS/V2#AVADY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Relative Day"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2213,7 +2213,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVADTF>
+<http://www.cdisc.org/BDS/V2#AVADTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Date Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2221,10 +2221,10 @@
 	bd:name "ADTF"^^xsd:string ;
 	bd:notes "The level of imputation of analysis date. If ADT (or the date part of ADTM) was imputed, ADTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(DATEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVADTF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVADTF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVADTF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVADTF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DATEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2233,7 +2233,7 @@
 	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVATMF>
+<http://www.cdisc.org/BDS/V2#AVATMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Time Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2241,10 +2241,10 @@
 	bd:name "ATMF"^^xsd:string ;
 	bd:notes "The level of imputation of analysis time. If ATM (or the time part of ADTM) was imputed, ATMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(TIMEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVATMF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVATMF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVATMF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVATMF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "TIMEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2253,7 +2253,7 @@
 	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASTDT>
+<http://www.cdisc.org/BDS/V2#AVASTDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Start Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2263,7 +2263,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASTTM>
+<http://www.cdisc.org/BDS/V2#AVASTTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Start Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2273,7 +2273,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASTDTM>
+<http://www.cdisc.org/BDS/V2#AVASTDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Start Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2283,7 +2283,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASTDY>
+<http://www.cdisc.org/BDS/V2#AVASTDY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Start Relative Day"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2293,7 +2293,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASTDTF>
+<http://www.cdisc.org/BDS/V2#AVASTDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Start Date Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2301,10 +2301,10 @@
 	bd:name "ASTDTF"^^xsd:string ;
 	bd:notes "The level of imputation of analysis start date. If ASTDT (or the date part of ASTDTM) was imputed, ASTDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(DATEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVASTDTF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVASTDTF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASTDTF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVASTDTF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DATEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2313,7 +2313,7 @@
 	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASTTMF>
+<http://www.cdisc.org/BDS/V2#AVASTTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Start Time Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2321,10 +2321,10 @@
 	bd:name "ASTTMF"^^xsd:string ;
 	bd:notes "The level of imputation of analysis start time. If ASTTM (or the time part of ASTDTM) was imputed, ASTTMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(TIMEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVASTTMF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVASTTMF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASTTMF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVASTTMF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "TIMEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2333,7 +2333,7 @@
 	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAENDT>
+<http://www.cdisc.org/BDS/V2#AVAENDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis End Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2343,7 +2343,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAENTM>
+<http://www.cdisc.org/BDS/V2#AVAENTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis End Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2353,7 +2353,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAENDTM>
+<http://www.cdisc.org/BDS/V2#AVAENDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis End Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2363,7 +2363,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAENDY>
+<http://www.cdisc.org/BDS/V2#AVAENDY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis End Relative Day"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2373,7 +2373,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAENDTF>
+<http://www.cdisc.org/BDS/V2#AVAENDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis End Date Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2381,10 +2381,10 @@
 	bd:name "AENDTF"^^xsd:string ;
 	bd:notes "The level of imputation of analysis end date. If AENDT (or the date part of AENDTM) was imputed, AENDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(DATEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVAENDTF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVAENDTF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAENDTF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVAENDTF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DATEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2393,7 +2393,7 @@
 	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAENTMF>
+<http://www.cdisc.org/BDS/V2#AVAENTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis End Time Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2401,10 +2401,10 @@
 	bd:name "AENTMF"^^xsd:string ;
 	bd:notes "The level of imputation of analysis end time. If AENTM (or the time part of AENDTM) was imputed, AENTMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(TIMEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVAENTMF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVAENTMF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAENTMF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVAENTMF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "TIMEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2413,7 +2413,7 @@
 	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAVISIT>
+<http://www.cdisc.org/BDS/V2#AVAVISIT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Visit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2423,7 +2423,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAVISITN>
+<http://www.cdisc.org/BDS/V2#AVAVISITN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Visit (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2433,7 +2433,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVATPT>
+<http://www.cdisc.org/BDS/V2#AVATPT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Timepoint"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2443,7 +2443,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVATPTN>
+<http://www.cdisc.org/BDS/V2#AVATPTN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Timepoint (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2453,7 +2453,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVATPTREF>
+<http://www.cdisc.org/BDS/V2#AVATPTREF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Timepoint Reference"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2463,7 +2463,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPHASE>
+<http://www.cdisc.org/BDS/V2#AVAPHASE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2473,7 +2473,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPHASEN>
+<http://www.cdisc.org/BDS/V2#AVAPHASEN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2483,7 +2483,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERIOD>
+<http://www.cdisc.org/BDS/V2#AVAPERIOD>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2493,7 +2493,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERIODC>
+<http://www.cdisc.org/BDS/V2#AVAPERIODC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2503,7 +2503,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPER>
+<http://www.cdisc.org/BDS/V2#AVASPER>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod within Period"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2513,7 +2513,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPERC>
+<http://www.cdisc.org/BDS/V2#AVASPERC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod within Period (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2523,7 +2523,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVARELTM>
+<http://www.cdisc.org/BDS/V2#AVARELTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Relative Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2533,7 +2533,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVARELTMU>
+<http://www.cdisc.org/BDS/V2#AVARELTMU>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Relative Time Unit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2543,7 +2543,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSDT>
+<http://www.cdisc.org/BDS/V2#AVAPERSDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period Start Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2553,7 +2553,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSTM>
+<http://www.cdisc.org/BDS/V2#AVAPERSTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period Start Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2563,7 +2563,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSDTM>
+<http://www.cdisc.org/BDS/V2#AVAPERSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period Start Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2573,7 +2573,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSDTF>
+<http://www.cdisc.org/BDS/V2#AVAPERSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period Start Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2581,10 +2581,10 @@
 	bd:name "APERSDTF"^^xsd:string ;
 	bd:notes "The level of imputation of period start date. If APERSDT (or the date part of APERSDTM) was imputed, APERSDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(DATEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSDTF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVAPERSDTF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSDTF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVAPERSDTF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DATEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2593,7 +2593,7 @@
 	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSTMF>
+<http://www.cdisc.org/BDS/V2#AVAPERSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period Start Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2601,10 +2601,10 @@
 	bd:name "APERSTMF"^^xsd:string ;
 	bd:notes "The level of imputation of period start time. If APERSTM (or the time part of APERSDTM) was imputed, APERSTMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(TIMEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSTMF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVAPERSTMF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERSTMF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVAPERSTMF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "TIMEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2613,7 +2613,7 @@
 	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPEREDT>
+<http://www.cdisc.org/BDS/V2#AVAPEREDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period End Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2623,7 +2623,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERETM>
+<http://www.cdisc.org/BDS/V2#AVAPERETM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period End Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2633,7 +2633,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPEREDTM>
+<http://www.cdisc.org/BDS/V2#AVAPEREDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period End Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2643,7 +2643,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPEREDTF>
+<http://www.cdisc.org/BDS/V2#AVAPEREDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period End Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2651,10 +2651,10 @@
 	bd:name "APEREDTF"^^xsd:string ;
 	bd:notes "The level of imputation of period end date. If APEREDT (or the date part of APEREDTM) was imputed, APEREDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(DATEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPEREDTF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVAPEREDTF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPEREDTF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVAPEREDTF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DATEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2663,7 +2663,7 @@
 	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERETMF>
+<http://www.cdisc.org/BDS/V2#AVAPERETMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period End Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2671,10 +2671,10 @@
 	bd:name "APERETMF"^^xsd:string ;
 	bd:notes "The level of imputation of period end time. If APERETM (or the time part of APEREDTM) was imputed, APERETMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(TIMEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERETMF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVAPERETMF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAPERETMF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVAPERETMF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "TIMEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2683,7 +2683,7 @@
 	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSDT>
+<http://www.cdisc.org/BDS/V2#AVASPRSDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod Start Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2693,7 +2693,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSTM>
+<http://www.cdisc.org/BDS/V2#AVASPRSTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod Start Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2703,7 +2703,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSDTM>
+<http://www.cdisc.org/BDS/V2#AVASPRSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod Start Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2713,7 +2713,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSDTF>
+<http://www.cdisc.org/BDS/V2#AVASPRSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod Start Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2721,10 +2721,10 @@
 	bd:name "ASPRSDTF"^^xsd:string ;
 	bd:notes "The level of imputation of subperiod start date. If ASPRSDT (or the date part of ASPRSDTM) was imputed, ASPRSDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(DATEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSDTF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVASPRSDTF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSDTF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVASPRSDTF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DATEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2733,7 +2733,7 @@
 	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSTMF>
+<http://www.cdisc.org/BDS/V2#AVASPRSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod Start Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2741,10 +2741,10 @@
 	bd:name "ASPRSTMF"^^xsd:string ;
 	bd:notes "The level of imputation of subperiod start time. If ASPRSTM (or the time part of ASPRSDTM) was imputed, ASPRSTMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(TIMEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSTMF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVASPRSTMF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRSTMF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVASPRSTMF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "TIMEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2753,7 +2753,7 @@
 	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPREDT>
+<http://www.cdisc.org/BDS/V2#AVASPREDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod End Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2763,7 +2763,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRETM>
+<http://www.cdisc.org/BDS/V2#AVASPRETM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod End Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2773,7 +2773,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPREDTM>
+<http://www.cdisc.org/BDS/V2#AVASPREDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod End Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2783,7 +2783,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPREDTF>
+<http://www.cdisc.org/BDS/V2#AVASPREDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod End Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2791,10 +2791,10 @@
 	bd:name "ASPREDTF"^^xsd:string ;
 	bd:notes "The level of imputation of subperiod end date. If ASPREDT (or the date part of ASPREDTM) was imputed, ASPREDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(DATEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPREDTF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVASPREDTF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPREDTF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVASPREDTF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DATEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2803,7 +2803,7 @@
 	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRETMF>
+<http://www.cdisc.org/BDS/V2#AVASPRETMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod End Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2811,10 +2811,10 @@
 	bd:name "ASPRETMF"^^xsd:string ;
 	bd:notes "The level of imputation of subperiod end time. If ASPRETM (or the time part of ASPREDTM) was imputed, ASPRETMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(TIMEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRETMF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVASPRETMF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVASPRETMF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVASPRETMF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "TIMEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2823,7 +2823,7 @@
 	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSDT>
+<http://www.cdisc.org/BDS/V2#AVPHSDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase Start Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2833,7 +2833,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSTM>
+<http://www.cdisc.org/BDS/V2#AVPHSTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase Start Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2843,7 +2843,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSDTM>
+<http://www.cdisc.org/BDS/V2#AVPHSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase Start Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2853,7 +2853,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSDTF>
+<http://www.cdisc.org/BDS/V2#AVPHSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase Start Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2861,10 +2861,10 @@
 	bd:name "PHSDTF"^^xsd:string ;
 	bd:notes "The level of imputation of phase start date. If PHSDT (or the date part of PHSDTM) was imputed, PHSDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(DATEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSDTF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVPHSDTF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSDTF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVPHSDTF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DATEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2873,7 +2873,7 @@
 	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSTMF>
+<http://www.cdisc.org/BDS/V2#AVPHSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase Start Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2881,10 +2881,10 @@
 	bd:name "PHSTMF"^^xsd:string ;
 	bd:notes "The level of imputation of phase start time. If PHSTM (or the time part of PHSDTM) was imputed, PHSTMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(TIMEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSTMF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVPHSTMF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHSTMF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVPHSTMF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "TIMEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2893,7 +2893,7 @@
 	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHEDT>
+<http://www.cdisc.org/BDS/V2#AVPHEDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase End Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2903,7 +2903,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHETM>
+<http://www.cdisc.org/BDS/V2#AVPHETM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase End Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2913,7 +2913,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHEDTM>
+<http://www.cdisc.org/BDS/V2#AVPHEDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase End Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2923,7 +2923,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHEDTF>
+<http://www.cdisc.org/BDS/V2#AVPHEDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase End Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2931,10 +2931,10 @@
 	bd:name "PHEDTF"^^xsd:string ;
 	bd:notes "The level of imputation of phase end date. If PHEDT (or the date part of PHEDTM) was imputed, PHEDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(DATEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHEDTF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVPHEDTF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHEDTF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVPHEDTF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DATEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2943,7 +2943,7 @@
 	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHETMF>
+<http://www.cdisc.org/BDS/V2#AVPHETMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase End Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2951,10 +2951,10 @@
 	bd:name "PHETMF"^^xsd:string ;
 	bd:notes "The level of imputation of phase end time. If PHETM (or the time part of PHEDTM) was imputed, PHETMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(TIMEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVPHETMF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVPHETMF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPHETMF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVPHETMF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "TIMEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2963,7 +2963,7 @@
 	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*DT>
+<http://www.cdisc.org/BDS/V2#AV*DT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Date}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2973,7 +2973,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*TM>
+<http://www.cdisc.org/BDS/V2#AV*TM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Time}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2983,7 +2983,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*DTM>
+<http://www.cdisc.org/BDS/V2#AV*DTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Datetime}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2993,7 +2993,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*ADY>
+<http://www.cdisc.org/BDS/V2#AV*ADY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Relative Day}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3003,7 +3003,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*DTF>
+<http://www.cdisc.org/BDS/V2#AV*DTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Date Imputation Flag}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3011,10 +3011,10 @@
 	bd:name "*DTF"^^xsd:string ;
 	bd:notes "The level of imputation of *DT. If *DT (or the date part of *DTM) was imputed, *DTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(DATEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AV*DTF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AV*DTF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*DTF_TMC1>
+<http://www.cdisc.org/BDS/V2#AV*DTF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DATEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -3023,7 +3023,7 @@
 	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*TMF>
+<http://www.cdisc.org/BDS/V2#AV*TMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Time Imputation Flag}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3031,10 +3031,10 @@
 	bd:name "*TMF"^^xsd:string ;
 	bd:notes "The level of imputation of *TM. If *TM (or the time part of *DTM) was imputed, *TMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(TIMEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AV*TMF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AV*TMF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*TMF_TMC1>
+<http://www.cdisc.org/BDS/V2#AV*TMF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "TIMEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -3043,7 +3043,7 @@
 	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*SDT>
+<http://www.cdisc.org/BDS/V2#AV*SDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Start Date}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3053,7 +3053,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*STM>
+<http://www.cdisc.org/BDS/V2#AV*STM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Start Time}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3063,7 +3063,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*SDTM>
+<http://www.cdisc.org/BDS/V2#AV*SDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Start Datetime}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3073,7 +3073,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*SDY>
+<http://www.cdisc.org/BDS/V2#AV*SDY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Relative Start Day}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3083,7 +3083,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*SDTF>
+<http://www.cdisc.org/BDS/V2#AV*SDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Start Date Imputation Flag}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3091,10 +3091,10 @@
 	bd:name "*SDTF"^^xsd:string ;
 	bd:notes "The level of imputation of *SDT. If *SDT (or the date part of *SDTM) was imputed, *SDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(DATEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AV*SDTF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AV*SDTF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*SDTF_TMC1>
+<http://www.cdisc.org/BDS/V2#AV*SDTF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DATEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -3103,7 +3103,7 @@
 	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*STMF>
+<http://www.cdisc.org/BDS/V2#AV*STMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Start Time Imputation Flag}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3111,10 +3111,10 @@
 	bd:name "*STMF"^^xsd:string ;
 	bd:notes "The level of imputation of *STM. If *STM (or the time part of *SDTM) was imputed, *STMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(TIMEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AV*STMF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AV*STMF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*STMF_TMC1>
+<http://www.cdisc.org/BDS/V2#AV*STMF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "TIMEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -3123,7 +3123,7 @@
 	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*EDT>
+<http://www.cdisc.org/BDS/V2#AV*EDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{End Date}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3133,7 +3133,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*ETM>
+<http://www.cdisc.org/BDS/V2#AV*ETM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{End Time}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3143,7 +3143,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*EDTM>
+<http://www.cdisc.org/BDS/V2#AV*EDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{End Datetime}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3153,7 +3153,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*EDY>
+<http://www.cdisc.org/BDS/V2#AV*EDY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Relative End Day}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3163,7 +3163,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*EDTF>
+<http://www.cdisc.org/BDS/V2#AV*EDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{End Date Imputation Flag}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3171,10 +3171,10 @@
 	bd:name "*EDTF"^^xsd:string ;
 	bd:notes "The level of imputation of *EDT. If *EDT (or the date part of *EDTM) was imputed, *EDTF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(DATEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AV*EDTF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AV*EDTF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*EDTF_TMC1>
+<http://www.cdisc.org/BDS/V2#AV*EDTF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DATEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -3183,7 +3183,7 @@
 	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*ETMF>
+<http://www.cdisc.org/BDS/V2#AV*ETMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{End Time Imputation Flag}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3191,10 +3191,10 @@
 	bd:name "*ETMF"^^xsd:string ;
 	bd:notes "The level of imputation of *ETM. If *ETM (or the time part of *EDTM) was imputed, *ETMF must be populated and is required. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(TIMEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AV*ETMF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AV*ETMF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AV*ETMF_TMC1>
+<http://www.cdisc.org/BDS/V2#AV*ETMF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "TIMEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -3203,7 +3203,7 @@
 	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPARAM>
+<http://www.cdisc.org/BDS/V2#AVPARAM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Parameter"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3213,7 +3213,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPARAMCD>
+<http://www.cdisc.org/BDS/V2#AVPARAMCD>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Parameter Code"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3223,7 +3223,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPARAMN>
+<http://www.cdisc.org/BDS/V2#AVPARAMN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Parameter (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3233,7 +3233,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPARAMTYP>
+<http://www.cdisc.org/BDS/V2#AVPARAMTYP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Parameter Type"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3241,10 +3241,10 @@
 	bd:name "PARAMTYP"^^xsd:string ;
 	bd:notes "ndicator of whether the parameter is derived as a function of one or more other parameters. \nThis variable will be retired from the ADaMIG in the next version because it was confused with the concept of DTYPE and therefore was being misused. The variable metadata should be adequate to indicate when a parameter is wholly derived."^^xsd:string ;
 	bd:ct "(PARAMTYP)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVPARAMTYP_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVPARAMTYP_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPARAMTYP_TMC1>
+<http://www.cdisc.org/BDS/V2#AVPARAMTYP_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "PARAMTYP"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -3253,7 +3253,7 @@
 	bo:reference <http://www.cdisc.org/C81225/V19#C81225> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPARCATy>
+<http://www.cdisc.org/BDS/V2#AVPARCATy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Parameter Category y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3263,7 +3263,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPARCATyN>
+<http://www.cdisc.org/BDS/V2#AVPARCATyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Parameter Category y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3273,7 +3273,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAVAL>
+<http://www.cdisc.org/BDS/V2#AVAVAL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Value"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3283,7 +3283,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAVALC>
+<http://www.cdisc.org/BDS/V2#AVAVALC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Value (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3293,7 +3293,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAVALCATy>
+<http://www.cdisc.org/BDS/V2#AVAVALCATy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Value Category y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3303,7 +3303,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAVALCAyN>
+<http://www.cdisc.org/BDS/V2#AVAVALCAyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Value Category y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3313,7 +3313,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVBASE>
+<http://www.cdisc.org/BDS/V2#AVBASE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Value"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3323,7 +3323,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVBASEC>
+<http://www.cdisc.org/BDS/V2#AVBASEC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Value (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3333,7 +3333,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVBASECATy>
+<http://www.cdisc.org/BDS/V2#AVBASECATy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Category y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3343,7 +3343,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVBASECAyN>
+<http://www.cdisc.org/BDS/V2#AVBASECAyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Category y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3353,7 +3353,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVBASETYPE>
+<http://www.cdisc.org/BDS/V2#AVBASETYPE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Type"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3363,7 +3363,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVCHG>
+<http://www.cdisc.org/BDS/V2#AVCHG>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Change from Baseline"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3373,7 +3373,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVCHGCATy>
+<http://www.cdisc.org/BDS/V2#AVCHGCATy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Change from Baseline Category y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3383,7 +3383,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVCHGCATyN>
+<http://www.cdisc.org/BDS/V2#AVCHGCATyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Change from Baseline Category y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3393,7 +3393,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPCHG>
+<http://www.cdisc.org/BDS/V2#AVPCHG>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Percent Change from Baseline"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3403,7 +3403,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPCHGCATy>
+<http://www.cdisc.org/BDS/V2#AVPCHGCATy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Percent Chg from Baseline Category y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3413,7 +3413,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPCHGCAyN>
+<http://www.cdisc.org/BDS/V2#AVPCHGCAyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Percent Chg from Baseline Category y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3423,7 +3423,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVR2BASE>
+<http://www.cdisc.org/BDS/V2#AVR2BASE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Ratio to Baseline"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3433,7 +3433,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVR2AyLO>
+<http://www.cdisc.org/BDS/V2#AVR2AyLO>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Ratio to Analysis Range y Lower Limit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3443,7 +3443,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVR2AyHI>
+<http://www.cdisc.org/BDS/V2#AVR2AyHI>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Ratio to Analysis Range y Upper Limit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3453,7 +3453,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSHIFTy>
+<http://www.cdisc.org/BDS/V2#AVSHIFTy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Shift y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3463,7 +3463,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSHIFTyN>
+<http://www.cdisc.org/BDS/V2#AVSHIFTyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Shift y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3473,7 +3473,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVCRITy>
+<http://www.cdisc.org/BDS/V2#AVCRITy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Criterion y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3483,7 +3483,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVCRITyFL>
+<http://www.cdisc.org/BDS/V2#AVCRITyFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Criterion y Evaluation Result Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3493,7 +3493,7 @@
 	bd:ct "Y \nor\nY, N"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVCRITyFN>
+<http://www.cdisc.org/BDS/V2#AVCRITyFN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Criterion y Evaluation Result Flag (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3503,7 +3503,7 @@
 	bd:ct "1\nor\n1, 0"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVMCRITy>
+<http://www.cdisc.org/BDS/V2#AVMCRITy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Multi-Response Criterion y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3513,7 +3513,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVMCRITyML>
+<http://www.cdisc.org/BDS/V2#AVMCRITyML>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Multi-Response Criterion y Evaluation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3523,7 +3523,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVMCRITyMN>
+<http://www.cdisc.org/BDS/V2#AVMCRITyMN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Multi-Response Criterion y Eval (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3533,7 +3533,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVDTYPE>
+<http://www.cdisc.org/BDS/V2#AVDTYPE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Derivation Type"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3541,10 +3541,10 @@
 	bd:name "DTYPE"^^xsd:string ;
 	bd:notes "Analysis value derivation method. DTYPE is used to denote, and is required to be populated, when the value of AVAL or AVALC has been imputed or derived differently than the other analysis values within the parameter. DTYPE is required to be populated even if AVAL and AVALC are null on the derived record. \n\nThree common situations when DTYPE should be populated: \n(1) a new row is added within a parameter with the analysis value populated based on other rows within the parameter, \n(2) a new row is added within a parameter with the analysis value populated based on a constant value or data from other subjects, \n(3) an analysis value (AVAL or AVALC) on an existing record is being replaced with a value based on a pre-specified algorithm.\n\nDTYPE is used to denote analysis values that are \"special cases\" within a parameter. For each value of DTYPE, the precise derivation algorithm must be defined in analysis variable metadata, even for DTYPE values in the controlled terminology. The controlled terminology for DTYPE is extensible. See Section 4 for examples of the use of DTYPE.\n\nExamples of DTYPE values:\nLOCF = last observation carried forward.\nWOCF = worst observation carried forward.\nAVERAGE = average of values."^^xsd:string ;
 	bd:ct "(DTYPE)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVDTYPE_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVDTYPE_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVDTYPE_TMC1>
+<http://www.cdisc.org/BDS/V2#AVDTYPE_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DTYPE"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -3553,7 +3553,7 @@
 	bo:reference <http://www.cdisc.org/C81224/V22#C81224> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAWRANGE>
+<http://www.cdisc.org/BDS/V2#AVAWRANGE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Window Valid Relative Range"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3563,7 +3563,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAWTARGET>
+<http://www.cdisc.org/BDS/V2#AVAWTARGET>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Window Target"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3573,7 +3573,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAWTDIFF>
+<http://www.cdisc.org/BDS/V2#AVAWTDIFF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Window Diff from Target"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3583,7 +3583,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAWLO>
+<http://www.cdisc.org/BDS/V2#AVAWLO>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Window Beginning Timepoint"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3593,7 +3593,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAWHI>
+<http://www.cdisc.org/BDS/V2#AVAWHI>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Window Ending Timepoint"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3603,7 +3603,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAWU>
+<http://www.cdisc.org/BDS/V2#AVAWU>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Window Unit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3613,7 +3613,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSTARTDT>
+<http://www.cdisc.org/BDS/V2#AVSTARTDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Time-to-Event Origin Date for Subject"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3623,7 +3623,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSTARTDTM>
+<http://www.cdisc.org/BDS/V2#AVSTARTDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Time-to-Event Origin Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3633,7 +3633,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSTARTDTF>
+<http://www.cdisc.org/BDS/V2#AVSTARTDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Origin Date Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3641,10 +3641,10 @@
 	bd:name "STARTDTF"^^xsd:string ;
 	bd:notes "The level of imputation of the start date. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(DATEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVSTARTDTF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVSTARTDTF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSTARTDTF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVSTARTDTF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "DATEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -3653,7 +3653,7 @@
 	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSTARTTMF>
+<http://www.cdisc.org/BDS/V2#AVSTARTTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Origin Time Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3661,10 +3661,10 @@
 	bd:name "STARTTMF"^^xsd:string ;
 	bd:notes "The level of imputation of the start time. See Section 3.1.3."^^xsd:string ;
 	bd:ct "(TIMEFL)"^^xsd:string ;
-	bd:ctReference <http://www.cdisc.org/Basic_Data_Structure/V2#AVSTARTTMF_TMC1> ;
+	bd:ctReference <http://www.cdisc.org/BDS/V2#AVSTARTTMF_TMC1> ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSTARTTMF_TMC1>
+<http://www.cdisc.org/BDS/V2#AVSTARTTMF_TMC1>
 	rdf:type bo:TMcReference ;
 	isoC:label "TIMEFL"^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -3673,7 +3673,7 @@
 	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 	bo:context <http://www.cdisc.org/CT/V46#TH> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVCNSR>
+<http://www.cdisc.org/BDS/V2#AVCNSR>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Censor"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3683,7 +3683,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVEVNTDESC>
+<http://www.cdisc.org/BDS/V2#AVEVNTDESC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Event or Censoring Description"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3693,7 +3693,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVCNSDTDSC>
+<http://www.cdisc.org/BDS/V2#AVCNSDTDSC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Censor Date Description"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3703,7 +3703,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVATOXGR>
+<http://www.cdisc.org/BDS/V2#AVATOXGR>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Toxicity Grade"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3713,7 +3713,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVBTOXGR>
+<http://www.cdisc.org/BDS/V2#AVBTOXGR>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Toxicity Grade"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3723,7 +3723,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVANRIND>
+<http://www.cdisc.org/BDS/V2#AVANRIND>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Reference Range Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3733,7 +3733,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVBNRIND>
+<http://www.cdisc.org/BDS/V2#AVBNRIND>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Reference Range Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3743,7 +3743,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVANRLO>
+<http://www.cdisc.org/BDS/V2#AVANRLO>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Normal Range Lower Limit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3753,7 +3753,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVANRLOC>
+<http://www.cdisc.org/BDS/V2#AVANRLOC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Normal Range Lower Limit (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3763,7 +3763,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVANRHI>
+<http://www.cdisc.org/BDS/V2#AVANRHI>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Normal Range Upper Limit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3773,7 +3773,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVANRHIC>
+<http://www.cdisc.org/BDS/V2#AVANRHIC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Normal Range Upper Limit (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3783,7 +3783,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAyLO>
+<http://www.cdisc.org/BDS/V2#AVAyLO>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Range y Lower Limit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3793,7 +3793,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAyLOC>
+<http://www.cdisc.org/BDS/V2#AVAyLOC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Range y Lower Limit (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3803,7 +3803,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAyHI>
+<http://www.cdisc.org/BDS/V2#AVAyHI>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Range y Upper Limit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3813,7 +3813,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAyHIC>
+<http://www.cdisc.org/BDS/V2#AVAyHIC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Range y Upper Limit (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3823,7 +3823,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVAyIND>
+<http://www.cdisc.org/BDS/V2#AVAyIND>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Range y Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3833,7 +3833,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVByIND>
+<http://www.cdisc.org/BDS/V2#AVByIND>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Analysis Range y Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3843,7 +3843,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVABLFL>
+<http://www.cdisc.org/BDS/V2#AVABLFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Record Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3853,7 +3853,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVABLFN>
+<http://www.cdisc.org/BDS/V2#AVABLFN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Record Flag (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3863,7 +3863,7 @@
 	bd:ct "1"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVANLzzFL>
+<http://www.cdisc.org/BDS/V2#AVANLzzFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Flag zz"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3873,7 +3873,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVANLzzFN>
+<http://www.cdisc.org/BDS/V2#AVANLzzFN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Flag zz (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3883,7 +3883,7 @@
 	bd:ct "1"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVONTRTFL>
+<http://www.cdisc.org/BDS/V2#AVONTRTFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "On Treatment Record Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3893,7 +3893,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVONTRTFN>
+<http://www.cdisc.org/BDS/V2#AVONTRTFN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "On Treatment Record Flag (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3903,7 +3903,7 @@
 	bd:ct "1"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVLVOTFL>
+<http://www.cdisc.org/BDS/V2#AVLVOTFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Last Value On Treatment Record Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3913,7 +3913,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVLVOTFN>
+<http://www.cdisc.org/BDS/V2#AVLVOTFN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Last Value On Treatment Record Flag (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3923,7 +3923,7 @@
 	bd:ct "1"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVITTRFL>
+<http://www.cdisc.org/BDS/V2#AVITTRFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Intent-To-Treat Record-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3933,7 +3933,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSAFRFL>
+<http://www.cdisc.org/BDS/V2#AVSAFRFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Safety Analysis Record-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3943,7 +3943,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVFASRFL>
+<http://www.cdisc.org/BDS/V2#AVFASRFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Full Analysis Set Record-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3953,7 +3953,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPPROTRFL>
+<http://www.cdisc.org/BDS/V2#AVPPROTRFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Per-Protocol Record-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3963,7 +3963,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVCOMPLRFL>
+<http://www.cdisc.org/BDS/V2#AVCOMPLRFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Completers Record-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3973,7 +3973,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVITTPFL>
+<http://www.cdisc.org/BDS/V2#AVITTPFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Intent-To-Treat Parameter-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3983,7 +3983,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSAFPFL>
+<http://www.cdisc.org/BDS/V2#AVSAFPFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Safety Analysis Parameter-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3993,7 +3993,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVFASPFL>
+<http://www.cdisc.org/BDS/V2#AVFASPFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Full Analysis Set Parameter-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -4003,7 +4003,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVPPROTPFL>
+<http://www.cdisc.org/BDS/V2#AVPPROTPFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Per-Protocol Parameter-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -4013,7 +4013,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVCOMPLPFL>
+<http://www.cdisc.org/BDS/V2#AVCOMPLPFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Completers Parameter-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -4023,7 +4023,7 @@
 	bd:ct "Y"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSRCDOM>
+<http://www.cdisc.org/BDS/V2#AVSRCDOM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Source Data"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -4033,7 +4033,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSRCVAR>
+<http://www.cdisc.org/BDS/V2#AVSRCVAR>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Source Variable"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -4043,7 +4043,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
-<http://www.cdisc.org/Basic_Data_Structure/V2#AVSRCSEQ>
+<http://www.cdisc.org/BDS/V2#AVSRCSEQ>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Source Sequence Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
