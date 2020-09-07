@@ -331,29 +331,29 @@
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V5#CL_--STINT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V5#CL_--ENINT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V5#CL_--DETECT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--TRT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--MODIFY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DECOD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--TRT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--MODIFY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--DECOD> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--MOOD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--CAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--SCAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--PRESP> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--CAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--SCAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--PRESP> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--OCCUR> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--STAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--STAT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--REASND> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--INDC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--CLAS> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--CLASCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSE> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSTXT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--INDC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--CLAS> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--CLASCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--DOSE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--DOSTXT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--DOSU> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--DOSFRM> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--DOSFRQ> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--DOSTOT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--DOSTOT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--DOSRGM> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--ROUTE> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--LOT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--LOC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--LOT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--LOC> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--LAT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--DIR> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--PORTOT> ;
@@ -361,7 +361,7 @@
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--PSTRG> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--PSTRGU> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--TRTV> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--VAMT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--VAMT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--VAMTU> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--ADJ> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--RSDISC> ;
@@ -534,7 +534,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Mood"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:ordinal "60"^^xsd:positiveInteger ;
 	bd:name "--MOOD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Mode or condition of the record (e.g., \"SCHEDULED\", \"PERFORMED\")."^^xsd:string ;
@@ -545,7 +545,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Occurrence Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:ordinal "64"^^xsd:positiveInteger ;
 	bd:name "--OCCUR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to record whether a pre-specified intervention occurred when information about the occurrence of a specific intervention is solicited."^^xsd:string ;
@@ -556,7 +556,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason Not Done"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:ordinal "66"^^xsd:positiveInteger ;
 	bd:name "--REASND"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Reason not done. Used in conjunction with --STAT when value is \"NOT DONE\"."^^xsd:string ;
@@ -567,7 +567,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dose Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "16"^^xsd:positiveInteger ;
+	bd:ordinal "72"^^xsd:positiveInteger ;
 	bd:name "--DOSU"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Units for --DOSE, --DOSTOT, or --DOSTXT. Examples: \"ng\", \"mg\", \"mg/kg\"."^^xsd:string ;
@@ -578,7 +578,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dose Form"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "17"^^xsd:positiveInteger ;
+	bd:ordinal "73"^^xsd:positiveInteger ;
 	bd:name "--DOSFRM"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Dose form for the treatment. Examples: \"TABLET\", \"CAPSULE\"."^^xsd:string ;
@@ -589,7 +589,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dosing Frequency per Interval"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "18"^^xsd:positiveInteger ;
+	bd:ordinal "74"^^xsd:positiveInteger ;
 	bd:name "--DOSFRQ"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Usually expressed as the number of doses given per a specific interval. Examples: \"Q2H\", \"QD\", \"PRN\"."^^xsd:string ;
@@ -600,7 +600,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Intended Dose Regimen"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "20"^^xsd:positiveInteger ;
+	bd:ordinal "76"^^xsd:positiveInteger ;
 	bd:name "--DOSRGM"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Text description of the (intended) schedule or regimen for the Intervention. Example: \"TWO WEEKS ON, TWO WEEKS OFF\"."^^xsd:string ;
@@ -611,7 +611,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Route of Administration"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "21"^^xsd:positiveInteger ;
+	bd:ordinal "77"^^xsd:positiveInteger ;
 	bd:name "--ROUTE"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Route of administration for the intervention. Examples: \"ORAL\", \"INTRAVENOUS\"."^^xsd:string ;
@@ -622,7 +622,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Laterality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "24"^^xsd:positiveInteger ;
+	bd:ordinal "80"^^xsd:positiveInteger ;
 	bd:name "--LAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Qualifier for anatomical location further detailing laterality of intervention administration. Examples: \"RIGHT\", \"LEFT\", \"BILATERAL\"."^^xsd:string ;
@@ -634,7 +634,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Directionality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "25"^^xsd:positiveInteger ;
+	bd:ordinal "81"^^xsd:positiveInteger ;
 	bd:name "--DIR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Qualifier for anatomical location further detailing directionality of intervention administration. Examples: \"ANTERIOR\", \"LOWER\", \"PROXIMAL\"."^^xsd:string ;
@@ -646,7 +646,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Portion or Totality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "26"^^xsd:positiveInteger ;
+	bd:ordinal "82"^^xsd:positiveInteger ;
 	bd:name "--PORTOT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Qualifier for anatomical location further detailing the distribution, which means arrangement of, apportioning of the intervention administration. Examples: \"ENTIRE\", \"SINGLE\", \"SEGMENT\", \"MANY\"."^^xsd:string ;
@@ -657,7 +657,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Fasting Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "27"^^xsd:positiveInteger ;
+	bd:ordinal "83"^^xsd:positiveInteger ;
 	bd:name "--FAST"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicator used to identify fasting status. Valid values include \"Y\", \"N\", \"U\" or null if not relevant."^^xsd:string ;
@@ -668,7 +668,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Pharmaceutical Strength"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "28"^^xsd:positiveInteger ;
+	bd:ordinal "84"^^xsd:positiveInteger ;
 	bd:name "--PSTRG"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Amount of an active ingredient expressed quantitatively per dosage unit, per unit of volume, or per unit of weight, according to the pharmaceutical dose form. Example: \"50 mg/TABLET\", \"300 mg/L\"."^^xsd:string ;
@@ -679,7 +679,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Pharmaceutical Strength Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "29"^^xsd:positiveInteger ;
+	bd:ordinal "85"^^xsd:positiveInteger ;
 	bd:name "--PSTRGU"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Unit for --PSTRG. Example: \"mg/TABLET\", \"mg/m\"L."^^xsd:string ;
@@ -690,7 +690,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Treatment Vehicle"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "30"^^xsd:positiveInteger ;
+	bd:ordinal "86"^^xsd:positiveInteger ;
 	bd:name "--TRTV"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Vehicle for administration of treatment, such as a liquid in which the treatment drug is dissolved. Example: \"SALINE\"."^^xsd:string ;
@@ -701,7 +701,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Treatment Vehicle Amount Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "32"^^xsd:positiveInteger ;
+	bd:ordinal "88"^^xsd:positiveInteger ;
 	bd:name "--VAMTU"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Units for the prepared product (treatment + vehicle). Examples: \"mL\", \"mg\"."^^xsd:string ;
@@ -712,7 +712,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason for Dose Adjustment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "33"^^xsd:positiveInteger ;
+	bd:ordinal "89"^^xsd:positiveInteger ;
 	bd:name "--ADJ"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes reason or explanation of why a dose is adjusted. Examples \"ADVERSE EVENT\", \"INSUFFICIENT RESPONSE\", \"NON-MEDICAL REASON\"."^^xsd:string ;
@@ -723,7 +723,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason for Treatment Discontinuation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "34"^^xsd:positiveInteger ;
+	bd:ordinal "90"^^xsd:positiveInteger ;
 	bd:name "--RSDISC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Reason why the treatment was discontinued."^^xsd:string ;
@@ -734,7 +734,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Unscheduled Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "35"^^xsd:positiveInteger ;
+	bd:ordinal "91"^^xsd:positiveInteger ;
 	bd:name "--USCHFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicates whether the timing of a performed test or observation was unscheduled. If a test or observation was performed based upon a schedule defined in the protocol, this flag should be null. Expected values are Y or null. Not to be used with human clinical trials. This variable would not be needed when information on planned assessments is provided, such as when the Trial Visits (TV) and Subject Visits (SV) domains are used."^^xsd:string ;
@@ -810,26 +810,26 @@
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V5#CL_--STINT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V5#CL_--ENINT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V5#CL_--DETECT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TERM> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--MODIFY> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--LLT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--LLTCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--DECOD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--PTCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--HLT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--HLTCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--HLGT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--HLGTCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--CAT> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SCAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--TERM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--MODIFY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--LLT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--LLTCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--DECOD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--PTCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--HLT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--HLTCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--HLGT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--HLGTCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--CAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--SCAT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--PRESP> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--OCCUR> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--STAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--STAT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--REASND> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--BODSYS> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--BDSYCD> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SOC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_--SOCCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--BDSYCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--SOC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--SOCCD> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--LOC> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--LAT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--DIR> ;
@@ -837,9 +837,9 @@
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--PARTY> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--PRTYID> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--SEV> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--SER> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--SER> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--ACN> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL_--ACNOTH> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--ACNOTH> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--ACNDEV> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--REL> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--RELNST> ;
@@ -856,7 +856,7 @@
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--CONTRT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--TOX> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--TOXGR> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V4#CL_--USCHFL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--USCHFL> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_RS>
 	rdf:type isoR:RegistrationState ;
@@ -882,7 +882,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Pre-Specified"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "13"^^xsd:positiveInteger ;
+	bd:ordinal "69"^^xsd:positiveInteger ;
 	bd:name "--PRESP"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate whether the event described by --TERM was pre-specified on a CRF. Value is Y for pre-specified events, null for spontaneously reported events."^^xsd:string ;
@@ -893,7 +893,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Occurrence Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "14"^^xsd:positiveInteger ;
+	bd:ordinal "70"^^xsd:positiveInteger ;
 	bd:name "--OCCUR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to record whether a pre-specified event occurred when information about the occurrence of a specific event is solicited."^^xsd:string ;
@@ -904,7 +904,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason Not Done"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "16"^^xsd:positiveInteger ;
+	bd:ordinal "72"^^xsd:positiveInteger ;
 	bd:name "--REASND"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Reason not done. Used in conjunction with --STAT when its value is \"NOT DONE\"."^^xsd:string ;
@@ -915,7 +915,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Body System or Organ Class"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "17"^^xsd:positiveInteger ;
+	bd:ordinal "73"^^xsd:positiveInteger ;
 	bd:name "--BODSYS"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Body system or system organ class assigned for analysis from a standard hierarchy (e.g., MedDRA) associated with an event. Example: \"GASTROINTESTINAL DISORDERS\"."^^xsd:string ;
@@ -926,7 +926,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Location of Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "21"^^xsd:positiveInteger ;
+	bd:ordinal "77"^^xsd:positiveInteger ;
 	bd:name "--LOC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes anatomical location relevant for the event. Example: \"ARM\" for skin rash."^^xsd:string ;
@@ -938,7 +938,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Laterality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "22"^^xsd:positiveInteger ;
+	bd:ordinal "78"^^xsd:positiveInteger ;
 	bd:name "--LAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Qualifier for anatomical location further detailing laterality. Examples: \"RIGHT\", \"LEFT\", \"BILATERAL\"."^^xsd:string ;
@@ -950,7 +950,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Directionality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "23"^^xsd:positiveInteger ;
+	bd:ordinal "79"^^xsd:positiveInteger ;
 	bd:name "--DIR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Qualifier for anatomical location further detailing directionality. Examples: \"ANTERIOR\", \"LOWER\", \"PROXIMAL\"."^^xsd:string ;
@@ -962,7 +962,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Portion or Totality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "24"^^xsd:positiveInteger ;
+	bd:ordinal "80"^^xsd:positiveInteger ;
 	bd:name "--PORTOT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Qualifier for anatomical location further detailing the distribution, which means arrangement of, apportioning of. Examples: \"ENTIRE\", \"SINGLE\", \"SEGMENT\", \"MANY\"."^^xsd:string ;
@@ -973,7 +973,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Accountable Party"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "25"^^xsd:positiveInteger ;
+	bd:ordinal "81"^^xsd:positiveInteger ;
 	bd:name "--PARTY"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Party accountable for the transferable object (e.g., device, specimen) as a result of the activity performed in the associated --TERM variable. The party could be an individual (e.g., subject), an organization (e.g., sponsor), or a location that is a proxy for an individual or organization (e.g., site). It is usually a somewhat general term that is further identified in the --PRTYID variable."^^xsd:string ;
@@ -984,7 +984,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Identification of Accountable Party"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "26"^^xsd:positiveInteger ;
+	bd:ordinal "82"^^xsd:positiveInteger ;
 	bd:name "--PRTYID"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Identification of the specific party accountable for the transferable object (e.g., device, specimen) after the action in --TERM is taken. Used in conjunction with --PARTY."^^xsd:string ;
@@ -995,7 +995,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Severity/Intensity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "27"^^xsd:positiveInteger ;
+	bd:ordinal "83"^^xsd:positiveInteger ;
 	bd:name "--SEV"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "The severity or intensity of the event. Examples: \"MILD\", \"MODERATE\", \"SEVERE\"."^^xsd:string ;
@@ -1007,7 +1007,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "29"^^xsd:positiveInteger ;
+	bd:ordinal "85"^^xsd:positiveInteger ;
 	bd:name "--ACN"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes changes made to the study treatment as a result of the event. Examples: \"DOSE INCREASED\", \"DOSE NOT CHANGED\"."^^xsd:string ;
@@ -1019,7 +1019,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Action Taken with Device"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "31"^^xsd:positiveInteger ;
+	bd:ordinal "87"^^xsd:positiveInteger ;
 	bd:name "--ACNDEV"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Action taken with respect to a device in a study, which may or may not be the device under study."^^xsd:string ;
@@ -1030,7 +1030,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Causality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "32"^^xsd:positiveInteger ;
+	bd:ordinal "88"^^xsd:positiveInteger ;
 	bd:name "--REL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Records the investigator's opinion as to the causality of the event to the treatment. ICH E2A and E2B examples include \"NOT RELATED\", \"UNLIKELY RELATED\", \"POSSIBLY RELATED\", \"RELATED\"."^^xsd:string ;
@@ -1041,7 +1041,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Relationship to Non-Study Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "33"^^xsd:positiveInteger ;
+	bd:ordinal "89"^^xsd:positiveInteger ;
 	bd:name "--RELNST"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "An opinion as to whether the event may have been due to a treatment other than study drug. Example: \"MORE LIKELY RELATED TO ASPIRIN USE\"."^^xsd:string ;
@@ -1052,7 +1052,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Pattern of Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "34"^^xsd:positiveInteger ;
+	bd:ordinal "90"^^xsd:positiveInteger ;
 	bd:name "--PATT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate the pattern of the event over time. Examples: \"INTERMITTENT\", \"CONTINUOUS\", \"SINGLE EVENT\"."^^xsd:string ;
@@ -1064,7 +1064,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Outcome of Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "35"^^xsd:positiveInteger ;
+	bd:ordinal "91"^^xsd:positiveInteger ;
 	bd:name "--OUT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Description of the outcome of an event. Examples: \"RECOVERED/RESOLVED\", \"FATAL\"."^^xsd:string ;
@@ -1076,7 +1076,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Involves Cancer"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "36"^^xsd:positiveInteger ;
+	bd:ordinal "92"^^xsd:positiveInteger ;
 	bd:name "--SCAN"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Was the event associated with the development of cancer? Valid values are \"Y\", \"N\", and null."^^xsd:string ;
@@ -1087,7 +1087,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Congenital Anomaly or Birth Defect"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "37"^^xsd:positiveInteger ;
+	bd:ordinal "93"^^xsd:positiveInteger ;
 	bd:name "--SCONG"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Was the event associated with congenital anomaly or birth defect? Valid values are \"Y\", \"N\", and null."^^xsd:string ;
@@ -1098,7 +1098,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Persist or Signif Disability/Incapacity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "38"^^xsd:positiveInteger ;
+	bd:ordinal "94"^^xsd:positiveInteger ;
 	bd:name "--SDISAB"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Did the event result in persistent or significant disability/incapacity? Valid values are \"Y\", \"N\", and null."^^xsd:string ;
@@ -1109,7 +1109,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Results in Death"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "39"^^xsd:positiveInteger ;
+	bd:ordinal "95"^^xsd:positiveInteger ;
 	bd:name "--SDTH"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Did the event result in death? Valid values are \"Y\", \"N\", and null."^^xsd:string ;
@@ -1120,7 +1120,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Requires or Prolongs Hospitalization"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "40"^^xsd:positiveInteger ;
+	bd:ordinal "96"^^xsd:positiveInteger ;
 	bd:name "--SHOSP"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Did the event require or prolong hospitalization? Valid values are \"Y\", \"N\", and null."^^xsd:string ;
@@ -1132,7 +1132,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Is Life Threatening"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "41"^^xsd:positiveInteger ;
+	bd:ordinal "97"^^xsd:positiveInteger ;
 	bd:name "--SLIFE"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Was the event life threatening? Valid values are \"Y\", \"N\", and null."^^xsd:string ;
@@ -1143,7 +1143,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Occurred with Overdose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "42"^^xsd:positiveInteger ;
+	bd:ordinal "98"^^xsd:positiveInteger ;
 	bd:name "--SOD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Did the event occur with an overdose? Valid values are \"Y\", \"N\", and null."^^xsd:string ;
@@ -1154,7 +1154,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Other Medically Important Serious Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "43"^^xsd:positiveInteger ;
+	bd:ordinal "99"^^xsd:positiveInteger ;
 	bd:name "--SMIE"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Do additional categories for seriousness apply? Valid values are \"Y\", \"N\", and null."^^xsd:string ;
@@ -1165,7 +1165,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Concomitant or Additional Trtmnt Given"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "44"^^xsd:positiveInteger ;
+	bd:ordinal "100"^^xsd:positiveInteger ;
 	bd:name "--CONTRT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Was another treatment given because of the occurrence of the event? Valid values are \"Y\", \"N\", and null."^^xsd:string ;
@@ -1176,7 +1176,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Toxicity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "45"^^xsd:positiveInteger ;
+	bd:ordinal "101"^^xsd:positiveInteger ;
 	bd:name "--TOX"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Description of toxicity quantified by --TOXGR such as NCI CTCAE Short Name. Examples: \"HYPERCALCEMIA\", \"HYPOCALCEMIA\". Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define-XML document."^^xsd:string ;
@@ -1187,7 +1187,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Toxicity Grade"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "46"^^xsd:positiveInteger ;
+	bd:ordinal "102"^^xsd:positiveInteger ;
 	bd:name "--TOXGR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Records toxicity grade using a standard toxicity scale (such as the NCI CTCAE). Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define.XML document."^^xsd:string ;
@@ -1265,25 +1265,25 @@
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V5#CL_--DETECT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--TESTCD> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--TEST> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--MODIFY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--MODIFY> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--TSTDTL> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--CAT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--SCAT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--POS> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--BODSYS> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--BODSYS> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--ORRES> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--ORRESU> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ORNRLO> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ORNRHI> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V4#CL_--ORREF> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V4#CL_--STRESC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V4#CL_--STRESN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--ORNRLO> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--ORNRHI> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--ORREF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--STRESC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--STRESN> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--STRESU> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--STNRLO> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--STNRHI> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--STNRC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V4#CL_--STREFC> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V4#CL_--STREFN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--STREFC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--STREFN> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--NRIND> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--RESCAT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--CHRON> ;
@@ -1349,7 +1349,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Short Name of Measurement, Test, or Exam"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:ordinal "57"^^xsd:positiveInteger ;
 	bd:name "--TESTCD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Short character value for --TEST used as a column name when converting a dataset from a vertical format to a horizontal format. The short value can be up to 8 characters. Examples: \"PLAT\", \"SYSBP\", \"RRMIN\", \"EYEEXAM\"."^^xsd:string ;
@@ -1361,7 +1361,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Name of Measurement, Test, or Exam"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:ordinal "58"^^xsd:positiveInteger ;
 	bd:name "--TEST"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Long name For --TESTCD. Examples: Platelets, Systolic Blood Pressure, Summary (Min) RR Duration, Eye Examination."^^xsd:string ;
@@ -1372,7 +1372,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Measurement, Test, or Examination Detail"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:ordinal "60"^^xsd:positiveInteger ;
 	bd:name "--TSTDTL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Further description of --TESTCD and --TEST. Example: \"The percentage of cells with +1 intensity of staining\" when MITEST = \"Thyroid Transcription Factor 1\"."^^xsd:string ;
@@ -1383,7 +1383,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Category"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:ordinal "61"^^xsd:positiveInteger ;
 	bd:name "--CAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to define a category of topic-variable values. Examples: \"HEMATOLOGY\", \"URINALYSIS\", \"CHEMISTRY\", \"HAMD 17\", \"SF36 V2.0 ACUTE\", \"EGFR MUTATION ANALYSIS\"."^^xsd:string ;
@@ -1395,7 +1395,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Subcategory"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:ordinal "62"^^xsd:positiveInteger ;
 	bd:name "--SCAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to define a further categorization of --CAT values. Example: \"WBC DIFFERENTIAL\"."^^xsd:string ;
@@ -1407,7 +1407,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Position of Subject During Observation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:ordinal "63"^^xsd:positiveInteger ;
 	bd:name "--POS"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Position of the subject during a measurement or examination. Examples: \"SUPINE\", \"STANDING\", \"SITTING\"."^^xsd:string ;
@@ -1419,7 +1419,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Result or Finding in Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:ordinal "65"^^xsd:positiveInteger ;
 	bd:name "--ORRES"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Result of the measurement or finding as originally received or collected. Examples: \"120\", \"<1\", \"POS\"."^^xsd:string ;
@@ -1431,7 +1431,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:ordinal "66"^^xsd:positiveInteger ;
 	bd:name "--ORRESU"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Unit for --ORRES and --ORREF. Examples: \"in\", \"LB\", \"kg/L\"."^^xsd:string ;
@@ -1443,7 +1443,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Standard Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "16"^^xsd:positiveInteger ;
+	bd:ordinal "72"^^xsd:positiveInteger ;
 	bd:name "--STRESU"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Standardized units used for --STRESC, --STRESN, --STREFC, and --STREFN. Example: \"mol/L\"."^^xsd:string ;
@@ -1454,7 +1454,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range for Character Results"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "19"^^xsd:positiveInteger ;
+	bd:ordinal "75"^^xsd:positiveInteger ;
 	bd:name "--STNRC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Normal range or reference range for results stored in --STRESC that are character in ordinal or categorical scale. Example: \"Negative to Trace\"."^^xsd:string ;
@@ -1465,7 +1465,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal/Reference Range Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "22"^^xsd:positiveInteger ;
+	bd:ordinal "78"^^xsd:positiveInteger ;
 	bd:name "--NRIND"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate the value is outside the normal range or reference range. May be defined by --ORNRLO and --ORNRHI or other objective criteria. Examples: \"Y\", \"N\"; \"HIGH\", \"LOW\"; \"NORMAL\", \"ABNORMAL\"."^^xsd:string ;
@@ -1476,7 +1476,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Result Category"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "23"^^xsd:positiveInteger ;
+	bd:ordinal "79"^^xsd:positiveInteger ;
 	bd:name "--RESCAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to categorize the result of a finding. Example: \"MALIGNANT\" or \"BENIGN\" for tumor findings."^^xsd:string ;
@@ -1487,7 +1487,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Chronicity of Finding"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "24"^^xsd:positiveInteger ;
+	bd:ordinal "80"^^xsd:positiveInteger ;
 	bd:name "--CHRON"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Characterization of the duration of a biological process resulting in a particular finding. Examples: \"ACUTE\", \"CHRONIC\", \"SUBACUTE\"."^^xsd:string ;
@@ -1498,7 +1498,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Distribution Pattern of Finding"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "25"^^xsd:positiveInteger ;
+	bd:ordinal "81"^^xsd:positiveInteger ;
 	bd:name "--DISTR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Description of the distribution pattern of a finding within the examined area. Examples: \"FOCAL\", \"MULTIFOCAL\", \"DIFFUSE\", \"FOCAL\", \"MULTIFOCAL\"."^^xsd:string ;
@@ -1509,7 +1509,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Completion Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "27"^^xsd:positiveInteger ;
+	bd:ordinal "83"^^xsd:positiveInteger ;
 	bd:name "--STAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate that a question was not asked or a test was not done, or a test was attempted but did not generate a result. Should be null or have a value of \"NOT DONE\"."^^xsd:string ;
@@ -1521,7 +1521,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason Not Done"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "28"^^xsd:positiveInteger ;
+	bd:ordinal "84"^^xsd:positiveInteger ;
 	bd:name "--REASND"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Reason not done. Used in conjunction with --STAT when value is \"NOT DONE\"."^^xsd:string ;
@@ -1532,7 +1532,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Specimen Material Type"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "32"^^xsd:positiveInteger ;
+	bd:ordinal "88"^^xsd:positiveInteger ;
 	bd:name "--SPEC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Defines the type of specimen used for a measurement. Examples: \"SERUM\", \"PLASMA\", \"URINE\", \"DNA\", \"RNA\"."^^xsd:string ;
@@ -1544,7 +1544,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Anatomical Region"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "33"^^xsd:positiveInteger ;
+	bd:ordinal "89"^^xsd:positiveInteger ;
 	bd:name "--ANTREG"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Defines the specific anatomical or biological region of a tissue, organ specimen or the region from which the specimen is obtained, as defined in the protocol, such as a section or part of what is described in the --SPEC variable. Examples: \"CORTEX\", \"MEDULLA\", \"MUCOSA\"."^^xsd:string ;
@@ -1555,7 +1555,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Specimen Condition"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "34"^^xsd:positiveInteger ;
+	bd:ordinal "90"^^xsd:positiveInteger ;
 	bd:name "--SPCCND"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Defines the condition of the specimen. Example: \"CLOUDY\"."^^xsd:string ;
@@ -1566,7 +1566,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Specimen Usability for the Test"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "35"^^xsd:positiveInteger ;
+	bd:ordinal "91"^^xsd:positiveInteger ;
 	bd:name "--SPCUFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes the usability of the specimen for the test. The value will be \"N\" if the specimen is not usable, and null if the specimen is usable."^^xsd:string ;
@@ -1577,7 +1577,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Location Used for the Measurement"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "36"^^xsd:positiveInteger ;
+	bd:ordinal "92"^^xsd:positiveInteger ;
 	bd:name "--LOC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Anatomical location of the subject relevant to the collection of the measurement. Examples: \"RECTAL\" for temperature, \"ARM\" for blood pressure."^^xsd:string ;
@@ -1589,7 +1589,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Laterality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "37"^^xsd:positiveInteger ;
+	bd:ordinal "93"^^xsd:positiveInteger ;
 	bd:name "--LAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Qualifier for anatomical location or specimen further detailing laterality. Examples: \"RIGHT\", \"LEFT\", \"BILATERAL\"."^^xsd:string ;
@@ -1601,7 +1601,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Directionality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "38"^^xsd:positiveInteger ;
+	bd:ordinal "94"^^xsd:positiveInteger ;
 	bd:name "--DIR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Qualifier for anatomical location or specimen further detailing directionality. Examples: \"ANTERIOR\", \"LOWER\", \"PROXIMAL\"."^^xsd:string ;
@@ -1613,7 +1613,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Portion or Totality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "39"^^xsd:positiveInteger ;
+	bd:ordinal "95"^^xsd:positiveInteger ;
 	bd:name "--PORTOT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Qualifier for anatomical location or specimen further detailing the distribution, which means arrangement of, apportioning of. Examples: \"ENTIRE\", \"SINGLE\", \"SEGMENT\", \"MANY\"."^^xsd:string ;
@@ -1624,7 +1624,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Method of Test or Examination"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "40"^^xsd:positiveInteger ;
+	bd:ordinal "96"^^xsd:positiveInteger ;
 	bd:name "--METHOD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Method of the test or examination. Examples: \"EIA\" (enzyme immunoassay), \"ELECTROPHORESIS\", \"DIPSTICK\"."^^xsd:string ;
@@ -1636,7 +1636,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Analysis Method"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "42"^^xsd:positiveInteger ;
+	bd:ordinal "98"^^xsd:positiveInteger ;
 	bd:name "--ANMETH"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Analysis method applied to obtain a summarized result. Analysis method describes the method of secondary processing applied to a complex observation result (e.g., an image or a genetic sequence)."^^xsd:string ;
@@ -1647,7 +1647,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Lead Identified to Collect Measurements"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "43"^^xsd:positiveInteger ;
+	bd:ordinal "99"^^xsd:positiveInteger ;
 	bd:name "--LEAD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Lead or leads identified to capture the measurement for a test from an instrument. Examples: \"LEAD I\", \"LEAD V2\", \"LEAD CM5\"."^^xsd:string ;
@@ -1658,7 +1658,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Consciousness State"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "44"^^xsd:positiveInteger ;
+	bd:ordinal "100"^^xsd:positiveInteger ;
 	bd:name "--CSTATE"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "The consciousness state of the subject at the time of measurement. Examples: \"CONSCIOUS\", \"SEMI-CONSCIOUS\", \"UNCONSCIOUS\"."^^xsd:string ;
@@ -1669,7 +1669,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Last Observation Before Exposure Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "45"^^xsd:positiveInteger ;
+	bd:ordinal "101"^^xsd:positiveInteger ;
 	bd:name "--LOBXFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Operationally-derived indicator used to identify the last non-missing value prior to RFXSTDTC. Should be \"Y\" or null."^^xsd:string ;
@@ -1680,7 +1680,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Baseline Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "46"^^xsd:positiveInteger ;
+	bd:ordinal "102"^^xsd:positiveInteger ;
 	bd:name "--BLFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicator used to identify a baseline value. Should be \"Y\" or null."^^xsd:string ;
@@ -1691,7 +1691,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Fasting Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "47"^^xsd:positiveInteger ;
+	bd:ordinal "103"^^xsd:positiveInteger ;
 	bd:name "--FAST"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicator used to identify fasting status. Valid values include \"Y\", \"N\", \"U\", or null if not relevant."^^xsd:string ;
@@ -1702,7 +1702,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Derived Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "48"^^xsd:positiveInteger ;
+	bd:ordinal "104"^^xsd:positiveInteger ;
 	bd:name "--DRVFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate a derived record (e.g., a record that represents the average of other records such as a computed baseline). Should be \"Y\" or null."^^xsd:string ;
@@ -1713,7 +1713,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Evaluator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "49"^^xsd:positiveInteger ;
+	bd:ordinal "105"^^xsd:positiveInteger ;
 	bd:name "--EVAL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Role of the person who provided the evaluation. Used only for results that are subjective (e.g., assigned by a person or a group). Examples: \"ADJUDICATION COMMITTEE\", \"INDEPENDENT ASSESSOR\", \"RADIOLOGIST\"."^^xsd:string ;
@@ -1725,7 +1725,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Evaluator Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "50"^^xsd:positiveInteger ;
+	bd:ordinal "106"^^xsd:positiveInteger ;
 	bd:name "--EVALID"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to distinguish multiple evaluators with the same role recorded in --EVAL. Examples: \"RADIOLOGIST1\", \"RADIOLOGIST2\"."^^xsd:string ;
@@ -1736,7 +1736,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Accepted Record Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "51"^^xsd:positiveInteger ;
+	bd:ordinal "107"^^xsd:positiveInteger ;
 	bd:name "--ACPTFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "In cases where more than one assessor provides an evaluation of a result or response, this flag identifies the record that is considered to be the accepted evaluation. Expected values can include \"Y\", \"N\", or null. This is not intended to be an analysis flag to indicate acceptability for a given analysis."^^xsd:string ;
@@ -1747,7 +1747,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Toxicity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "52"^^xsd:positiveInteger ;
+	bd:ordinal "108"^^xsd:positiveInteger ;
 	bd:name "--TOX"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Description of toxicity quantified by --TOXGR such as NCI CTCAE Short Name. Examples: \"HYPERCALCEMIA\", \"HYPOCALCEMIA\". Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define-XML document."^^xsd:string ;
@@ -1758,7 +1758,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Severity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "54"^^xsd:positiveInteger ;
+	bd:ordinal "110"^^xsd:positiveInteger ;
 	bd:name "--SEV"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes the severity or intensity of a particular finding. Examples: \"MILD\", \"MODERATE\", \"SEVERE\"."^^xsd:string ;
@@ -1770,7 +1770,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Relationship to Death"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "55"^^xsd:positiveInteger ;
+	bd:ordinal "111"^^xsd:positiveInteger ;
 	bd:name "--DTHREL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes the relationship of a particular finding to the death of a subject. Examples: \"Y\", \"N\", or \"U\". Not to be used with human clinical trials."^^xsd:string ;
@@ -1781,7 +1781,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Exclude from Statistics"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "58"^^xsd:positiveInteger ;
+	bd:ordinal "114"^^xsd:positiveInteger ;
 	bd:name "--EXCLFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicates whether the values in the result variables for this record should be excluded from summary statistical calculations such as Mean, Standard Deviation, and Count (and others). Expected to be Y or null. --EXCLFL should not be used when --STAT is \"NOT DONE\". Not to be used with human clinical trials."^^xsd:string ;
@@ -1792,7 +1792,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason for Exclusion from Statistics"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "59"^^xsd:positiveInteger ;
+	bd:ordinal "115"^^xsd:positiveInteger ;
 	bd:name "--REASEX"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Reason excluded from statistics. Used in conjunction with --EXCLFL when its value is \"Y\". Not to be used with human clinical trials."^^xsd:string ;
@@ -1803,7 +1803,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Unscheduled Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "60"^^xsd:positiveInteger ;
+	bd:ordinal "116"^^xsd:positiveInteger ;
 	bd:name "--USCHFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicates whether the timing of a performed test or observation was unscheduled. If a test or observation was performed based upon a schedule defined in the protocol, this flag should be null. Expected values are \"Y\" or null. Not to be used with human clinical trials. This variable would not be needed when information on planned assessments is provided, such as when the Trial Visits (TV) and Subject Visits (SV) domains are used."^^xsd:string ;
@@ -1814,7 +1814,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Repetition Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "61"^^xsd:positiveInteger ;
+	bd:ordinal "117"^^xsd:positiveInteger ;
 	bd:name "--REPNUM"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "The instance number of a test that is repeated within a given timeframe for the same test. The level of granularity can vary (e.g., within a time point or within a visit). For example, multiple measurements of blood pressure or multiple analyses of a sample."^^xsd:string ;
