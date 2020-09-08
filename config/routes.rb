@@ -114,9 +114,10 @@ Rails.application.routes.draw do
   #     get :branches
   #   end
   # end
-  resources :iso_managed_v2, only: [] do
+  resources :iso_managed_v2, only: [:edit, :update] do
     collection do
       get :find_by_tag
+      get :comments
     end
     member do
       get :status
