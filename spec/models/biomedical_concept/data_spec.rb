@@ -29,16 +29,18 @@ describe BiomedicalConcept do
       cdt = create_complex_datatype(datatype, cdt, t_item) 
       item.has_complex_datatype_push(cdt)
     end
+    #puts "I Alias=#{item.to_h[:has_complex_datatype].map{|x| x[:has_property].map{|y| y[:alias]}}}"
     item
   end
 
   def find_item(bc_template, label)
-#    return bc_template.identified_by if bc_template.identified_by.label == label
     bc_template.has_item.find{|x| x.label == label}
   end
 
   def create_property(params, t_cdt)
     params = params.merge(format: "", question_test: "", prompt_text: "") if t_cdt.nil?
+    #puts "CP Params=#{params}"
+    params = params.merge(alias: "xxx") unless t_cdt.nil?
     refs = params[:has_coded_value].blank? ? [] : params[:has_coded_value].dup
     params[:has_coded_value] = []
     property = BiomedicalConcept::PropertyX.new(params)
@@ -48,6 +50,8 @@ describe BiomedicalConcept do
     else
       t_cdt.has_property_objects
       t_property = t_cdt.has_property.find{|x| x.label == params[:label]} 
+      property.alias = t_property.alias
+      #puts "Template=#{t_property.to_h}"
       property.is_a = t_property.is_a
       cdt_properties = ComplexDatatype.find_children(t_cdt.is_complex_datatype)
       cdt_property = cdt_properties.has_property.find{|x| x.label == params[:label]} 
@@ -64,6 +68,7 @@ describe BiomedicalConcept do
         property.has_coded_value_push(op_ref) 
       end
     end
+    #puts "CP Alias=#{property.to_h[:alias]}"
     property
   end
 
@@ -77,6 +82,7 @@ describe BiomedicalConcept do
     params[:has_property].each do |property|
       cdt.has_property_push(create_property(property, t_cdt))
     end
+    puts "CDT Alias=#{cdt.to_h[:has_property].map{|x| x[:alias]}}"
     cdt
   end
 
@@ -106,7 +112,7 @@ describe BiomedicalConcept do
     sparql.default_namespace(results.first.uri.namespace)
     results.each{|x| x.to_sparql(sparql, true)}
     full_path = sparql.to_file
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
+  #copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
 	end
 
   it "create instances" do
@@ -124,15 +130,15 @@ describe BiomedicalConcept do
         next if !item[:enabled]
         object.has_item_push(create_item(item, index+2, template))
       end
+      #puts "Obj Final Alias=#{object.to_h[:has_item].map{|z| z[:has_complex_datatype].map{|x| x[:has_property].map{|y| y[:alias]}}}}"
       object.set_initial(instance[:identifier])
-byebug
       results << object
     end
     sparql = Sparql::Update.new
     sparql.default_namespace(results.first.uri.namespace)
     results.each{|x| x.to_sparql(sparql, true)}
     full_path = sparql.to_file
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_instances.ttl")
+  #copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_instances.ttl")
   end
 
   it "check data" do
