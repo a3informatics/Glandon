@@ -82,8 +82,10 @@ class Form::Group::Normal < Form::Group
   # Is a BC group with common group
   def is_bc_common?
     self.has_sub_group.each do |sg|
-      if self.class == Form::Group::Bc
-        return true unless sg.has_common.empty? 
+      if sg.class == Form::Group::Bc
+        if !sg.has_common.empty?
+          return true
+        end
       end
     end
     return false

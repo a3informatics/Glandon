@@ -23,12 +23,12 @@ class Form::Group::Bc < Form::Group
     self.has_item.sort_by {|x| x.ordinal}.each do |item|
       results << item.get_item
     end
-    self.has_biomedical_concept.sort_by {|x| x.ordinal}.each do |bc|
-      bc = BiomedicalConceptInstance.find(bc.reference)
-      blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:""}
-      bc = bc.to_h.merge!(blank_fields)
-      results << bc
-    end
+    # self.has_biomedical_concept.sort_by {|x| x.ordinal}.each do |bc|
+    #   bc = BiomedicalConceptInstance.find(bc.reference)
+    #   blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: []}
+    #   bc = bc.to_h.merge!(blank_fields)
+    #   results << bc
+    # end
     self.has_common.sort_by {|x| x.ordinal}.each do |cm|
       results += cm.get_item
     end
