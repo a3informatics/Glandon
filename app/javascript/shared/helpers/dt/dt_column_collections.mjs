@@ -75,7 +75,7 @@ function dtBCEditColumns() {
   return [
     dtTrueFalseEditColumn('enabled'),
     dtTrueFalseEditColumn('collect'),
-    { data: 'has_complex_datatype.has_property.label' },
+    { data: 'has_complex_datatype.has_property.alias' },
     dtInlineEditColumn('has_complex_datatype.has_property.question_text', 'question_text', '25%'),
     dtInlineEditColumn('has_complex_datatype.has_property.prompt_text', 'prompt_text', '25%'),
     { data: "has_complex_datatype.label" },
@@ -100,7 +100,7 @@ function dtBCShowColumns() {
   return [
     dtTrueFalseColumn("enabled"),
     dtTrueFalseColumn("collect"),
-    { data: "has_complex_datatype.has_property.label" },
+    { data: "has_complex_datatype.has_property.alias" },
     { data: "has_complex_datatype.has_property.question_text" },
     { data: "has_complex_datatype.has_property.prompt_text" },
     { data: "has_complex_datatype.label" },
@@ -176,7 +176,7 @@ function dtSDTMIGDomainShowColumns() {
     { data: "ordinal" },
     { data: "name" },
     { data: "label" },
-    { data: "typed_as" }, 
+    { data: "typed_as" },
     { data: "format" },
     { data: "classified_as" },
     { data: "sub_classified_as" },
@@ -214,4 +214,3 @@ export {
   dtSDTMIGDomainShowColumns,
   dtADaMIGDatasetShowColumns
 }
-
