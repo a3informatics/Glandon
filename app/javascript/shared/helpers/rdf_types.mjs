@@ -113,7 +113,7 @@ const rdfTypesMap = {
     rdfType: "http://www.assero.co.uk/BusinessForm#TextLabel",
     name: "Text Label"
   },
-  BC_QUESTION: {
+  BC_PROPERTY: {
     rdfType: "http://www.assero.co.uk/BusinessForm#BcProperty",
     name: "Biomedical Concept Property"
   },

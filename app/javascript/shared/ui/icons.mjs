@@ -221,14 +221,14 @@ _typeIconMap[getRdfType('BC_GROUP')] = {
   color: colors.accentPurple
 }
 _typeIconMap[getRdfType('COMMON_ITEM')] = {
-  icon: '',
-  char: 'I',
-  color: colors.fadedRed
+  icon: 'icon-pair',
+  char: '\ue966',
+  color: colors.greyLight
 }
 _typeIconMap[getRdfType('TEXTLABEL')] = {
   icon: '',
-  char: 'T',
-  color: '#7dbca1'
+  char: 'L',
+  color: colors.greyLight
 }
 _typeIconMap[getRdfType('PLACEHOLDER')] = {
   icon: '',
@@ -238,14 +238,14 @@ _typeIconMap[getRdfType('PLACEHOLDER')] = {
 _typeIconMap[getRdfType('QUESTION')] = {
   icon: '',
   char: 'Q',
-  color: colors.secondaryLight
+  color: colors.accentAquaDark
 }
 _typeIconMap[getRdfType('MAPPING')] = {
   icon: '',
   char: 'M',
-  color: colors.accentAquaDark
+  color: colors.oliveGreen
 }
-_typeIconMap[getRdfType('BC_QUESTION')] = {
+_typeIconMap[getRdfType('BC_PROPERTY')] = {
   icon: 'icon-biocon',
   char: '\ue90b',
   color: colors.accentPurpleLight
