@@ -409,7 +409,7 @@ export default class TreeGraph {
   _collapseExcept(node) {
 
     node.expand();
-    
+
     while ( node && node.parent ) {
 
       for ( let child of node.parent.children ) {
@@ -560,6 +560,17 @@ export default class TreeGraph {
   }
 
   /**
+   * Graph zoomed / dragged on event, apply and cache the transform
+   * Extend method for custom behavior
+   */
+  _onZoom() {
+    // Transform graph
+    this.graph.g.attr( 'transform', this.d3.event.transform );
+    // Cache transform value
+    this.graph.lastTransform = this.d3.event.transform;
+  }
+
+  /**
    * Called when render completed and graph drawn
    * Override for custom behavior
    */
@@ -706,12 +717,7 @@ export default class TreeGraph {
 
     return this.d3.zoom()
                   .scaleExtent( [ this._props.zoom.min, this._props.zoom.max ] )
-                  .on('zoom', () => {
-                    // Transform graph
-                    this.graph.g.attr( 'transform', this.d3.event.transform );
-                    // Cache transform value
-                    this.graph.lastTransform = this.d3.event.transform;
-                  });
+                  .on( 'zoom', () => this._onZoom() );
 
   }
 
@@ -752,6 +758,16 @@ export default class TreeGraph {
       renderSpinnerIn$( graph, 'small' );
     else
       removeSpinnerFrom$( graph );
+
+  }
+
+  /**
+   * Toggle unintrusive loading-extra state of the Tree Graph
+   * @param {boolean} enable Desired loading state
+   */
+  _loadingExtra(enable) {
+
+    $( this.selector ).find( '#d3 #loading-extra' ).toggle( enable );
 
   }
 

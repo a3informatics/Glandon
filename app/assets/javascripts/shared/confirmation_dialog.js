@@ -38,6 +38,11 @@ ConfirmationDialog.prototype.show = function() {
   setTimeout(function(){
     $(this.id).addClass("cd-show");
   }.bind(this), 1);
+
+  setTimeout(function(){
+    $(this.id).find('#cd-negative-button').get(0).focus();
+  }.bind(this), 300);
+
 }
 
 

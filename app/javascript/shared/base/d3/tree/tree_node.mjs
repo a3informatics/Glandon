@@ -27,7 +27,7 @@ export default class TreeNode {
 
 
   /** Getters **/
-  
+
 
   /**
    * Get data
@@ -43,6 +43,14 @@ export default class TreeNode {
    */
   get $() {
     return this.el ? $(this.el) : null;
+  }
+
+  /**
+   * Get node element bounding client rectangle
+   * @return {Object} Node Element bounding rectangle object
+   */
+  get coordinates() {
+    return this.$.get(0).getBoundingClientRect();
   }
 
   /**
