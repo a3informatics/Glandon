@@ -78,7 +78,43 @@ export default class NodeEditor extends ModalView {
       case rdfs.NORMAL_GROUP.rdfType:
         this._renderGroup();
         break;
+      case rdfs.COMMON_GROUP.rdfType:
+        this._renderCommon();
+        break;
+      case rdfs.BC_GROUP.rdfType:
+        this._renderBC();
+        break;
+      case rdfs.BC_PROPERTY.rdfType:
+        this._renderBCProperty();
+        break;
+      case rdfs.MAPPING.rdfType:
+        this._renderMapping();
+        break;
+      case rdfs.TEXTLABEL.rdfType:
+        this._renderTextLabel();
+        break;
+      case rdfs.PLACEHOLDER.rdfType:
+        this._renderPlaceholder();
+        break;
+      case rdfs.QUESTION.rdfType:
+        this._renderQuestion();
+        this._questionListeners();
+        break;
     }
+
+    this._onRenderComplete();
+
+  }
+
+  _onRenderComplete() {
+
+    setTimeout( () => {
+      this.div.find('textarea').each( (i, ta) => {
+        $(ta).css( 'height', ta.scrollHeight > ta.clientHeight ? ta.scrollHeight + 5 : '');
+      });
+    }, 200);
+
+    console.log(this.node.data);
 
   }
 
@@ -88,50 +124,154 @@ export default class NodeEditor extends ModalView {
 
   _renderForm() {
 
-    let identifier = {
-      label: 'Identifier',
-      value: this._labelStyled( this.node.data.has_identifier.identifier )
-    },
-    label = {
-      label: 'Label',
-      value: this._textarea( this.node.data.label, 'label' )
-    },
-    completion = {
-      label: 'Completion Instructions',
-      value: this._textarea( this.node.data.completion, 'completion', true )
-    },
-    notes = {
-      label: 'Notes',
-      value: this._textarea( this.node.data.note, 'note', true )
-    },
-    fieldTable = this._fieldTable( [ identifier, label, completion, notes ] );
+    let label = [ 'Label', this._textarea( 'label' ) ],
+        fields = this._fieldTable( [ this._identifier, label,
+                                     this._completion, this._notes ] );
 
-    this.div.append( fieldTable );
+    this.div.append( fields );
 
   }
 
   _renderGroup() {
 
-    let label = {
-      label: 'Label',
-      value: this._textarea( this.node.data.label, 'label' )
-    },
-    tfProps = {
-      label: '',
-      value: this._checkbox( this.node.data.repeating, 'Repeating', 'repeating' )
-    },
-    completion = {
-      label: 'Completion Instructions',
-      value: this._textarea( this.node.data.completion, 'completion', true )
-    },
-    notes = {
-      label: 'Notes',
-      value: this._textarea( this.node.data.note, 'note', true )
-    },
-    fieldTable = this._fieldTable( [ label, tfProps, completion, notes ] );
+    let label = [ 'Label', this._textarea( 'label' ) ],
+        repeating = [ 'Repeating', this._checkbox( 'repeating' ) ],
+        optional = [ 'Optional', this._checkbox( 'optional' ) ],
 
-    this.div.append( fieldTable );
+        fields = this._fieldTable([ label, this._completion, this._notes,
+                                    repeating, optional ]);
 
+    this.div.append( fields );
+
+  }
+
+  _renderCommon() {
+
+    let label = [ 'Label', this._textarea( 'label' ) ],
+        fields = this._fieldTable([ label ]);
+
+    this.div.append( fields );
+
+  }
+
+  _renderBC() {
+
+    let label = [ 'Label', this._labelStyled( this.node.data.label ) ],
+        fields = this._fieldTable([ label, this._completion, this._notes ]);
+
+    this.div.append( fields );
+
+  }
+
+  _renderBCProperty() {
+
+    let label = [ 'Label', this._labelStyled( this.node.data.label ) ],
+        enabled = [ 'Enabled', this._checkbox( 'enabled', this.node.data.has_property[0].enabled ) ],
+        optional = [ 'Optional', this._checkbox( 'optional', this.node.data.has_property[0].optional ) ],
+
+        fields = this._fieldTable([ label, this._completion, this._notes,
+                                    enabled, optional ]);
+
+    this.div.append( fields );
+
+  }
+
+  _renderMapping() {
+
+    let label = [ 'Label', this._textarea( 'label' ) ],
+        mapping = [ 'Mapping', this._input( 'mapping' ) ],
+
+        fields = this._fieldTable([ label, mapping ]);
+
+    this.div.append( fields );
+
+  }
+
+  _renderTextLabel() {
+
+    let label = [ 'Label', this._textarea( 'label' ) ],
+        labelText = [ 'Label Text', this._textarea( 'label_text' ) ],
+
+        fields = this._fieldTable([ label, labelText ]);
+
+    this.div.append( fields );
+
+  }
+
+  _renderPlaceholder() {
+
+    let label = [ 'Label', this._textarea( 'label' ) ],
+        placeholder = [ 'Placeholder Text', this._textarea( 'free_text' ) ],
+
+        fields = this._fieldTable([ label, placeholder ]);
+
+    this.div.append( fields );
+
+  }
+
+  _renderQuestion() {
+
+    let label = [ 'Label', this._textarea( 'label' ) ],
+        qText = [ 'Question Text', this._textarea( 'question_text' ) ],
+        mapping = [ 'Mapping', this._input( 'mapping' ) ],
+        datatype = [ 'Datatype', this._select( 'datatype', this._datatypeOpts ) ],
+        datatypeFormat = [ 'Format', this._input( 'format', true ) ],
+        optional = [ 'Optional', this._checkbox( 'optional' ) ],
+
+        fields = this._fieldTable([ label, qText, mapping, datatype, datatypeFormat,
+                                    this._completion, this._notes, optional ]);
+
+    this.div.append( fields );
+
+  }
+
+
+  /** Event listeners **/
+
+
+  _questionListeners() {
+
+    this.div.find( 'select' ).on( 'change', (e) => {
+
+      let option = $( e.target ).val(),
+          props = this._datatypeOpts[option],
+          value = ( this.node.data.datatype === option ?
+                                this.node.data.format :
+                                (props.default || '') )
+
+      this.div.find( 'input[name="format"]' ).prop( 'disabled', !props.editable )
+                                             .val( value );
+
+    } );
+
+  }
+
+
+  /** Shared fields **/
+
+
+  get _identifier() {
+    return [ 'Completion Instructions', this._labelStyled( this.node.data.has_identifier.identifier ) ];
+  }
+
+  get _completion() {
+    return [ 'Completion Instructions', this._textarea( 'completion', true ) ]
+  }
+
+  get _notes() {
+    return [ 'Notes', this._textarea( 'notes', true ) ]
+  }
+
+  get _datatypeOpts() {
+    return {
+      'string':   { default: '20', editable: true },
+      'boolean':  { editable: false },
+      'integer':  { default: '3', editable: true },
+      'float':    { default: '6.2', editable: true },
+      'dateTime': { editable: false },
+      'date':     { editable: false },
+      'time':     { editable: false }
+    }
   }
 
 
@@ -146,8 +286,8 @@ export default class NodeEditor extends ModalView {
 
       let r = $( '<tr>' );
 
-      let labelC = $( '<td>' ).html( row.label ),
-          valueC = $( '<td>' ).html( row.value );
+      let labelC = $( '<td>' ).html( row[0]),
+          valueC = $( '<td>' ).html( row[1] );
 
       r.append( labelC ).append( valueC );
       table.append( r );
@@ -166,12 +306,12 @@ export default class NodeEditor extends ModalView {
 
   }
 
-  _textarea(value, dataName, wide = false, disabled = false) {
+  _textarea(property, wide = false, disabled = false) {
 
-    let input = $( '<textarea>' ).val( value )
+    let input = $( '<textarea>' ).val( this.node.data[property] )
                                  .addClass(( wide ? ' wide' : '' ))
-                                 .attr( 'name', dataName )
-                                 .attr( 'disabled', disabled )
+                                 .prop( 'name', property )
+                                 .prop( 'disabled', disabled )
                                  .css( 'border-bottom-color', this.node.color ),
 
         wrapper = $( '<div>' ).addClass( 'ne-field' )
@@ -181,12 +321,13 @@ export default class NodeEditor extends ModalView {
 
   }
 
-  _input(value, dataName, disabled = false) {
+  _input(property, narrow = false, disabled = false) {
 
-    let input = $( '<input>' ).val( value )
-                              .attr( 'name', dataName )
-                              .attr( 'disabled', disabled )
-                              .css( 'border-color', this.node.color )
+    let input = $( '<input>' ).val( this.node.data[property] )
+                              .prop( 'type', 'text' )
+                              .prop( 'name', property )
+                              .prop( 'disabled', disabled )
+                              .addClass( (narrow ? 'narrow' : '') )
                               .css( 'border-bottom-color', this.node.color ),
 
         wrapper = $( '<div>' ).addClass( 'ne-field' )
@@ -196,17 +337,42 @@ export default class NodeEditor extends ModalView {
 
   }
 
-  _checkbox(checked, text, dataName, disabled = false) {
+  _checkbox(property, value = null, disabled = false) {
 
-    let input = $( '<input>' ).attr( 'type', 'checkbox' )
-                              .attr( 'checked', checked)
-                              .attr( 'disabled', disabled )
-                              .attr( 'name', dataName ),
+    let input = $( '<input>' ).prop( 'type', 'checkbox' )
+                              .addClass( 'styled' )
+                              .prop( 'checked', value === null ? this.node.data[property] : value )
+                              .prop( 'disabled', disabled )
+                              .prop( 'name', property ),
 
-        label = $( '<label>' ).append( input )
-                              .append( text )
+        styledInput = $( '<span>' ).addClass( 'checkbox-styled green' ),
 
-    return label;
+        wrapper = $( '<label>' ).append( input )
+                                .append( styledInput );
+
+    return wrapper;
+
+  }
+
+  _select(property, options = [], value = null, disabled = false) {
+
+    let select = $( '<select>' ).prop( 'name', property )
+                                .prop( 'disabled', disabled )
+                                .css( 'border-bottom-color', this.node.color );
+
+    for ( let option of Object.keys(options) ) {
+
+      let o = $( '<option>' ).prop( 'value', option )
+                             .prop( 'selected', this.node.data[property] === option )
+                             .text( option );
+      select.append(o);
+
+    }
+
+    let wrapper = $( '<div>' ).addClass( 'ne-field' )
+                              .append( select );
+
+    return wrapper;
 
   }
 
@@ -220,7 +386,6 @@ export default class NodeEditor extends ModalView {
                             .css( 'color', this.node.color )
                             .append( icon )
                             .append( this.node.rdfName );
-
 
     return title;
 

@@ -287,6 +287,10 @@ export default class FormEditor extends TreeGraph {
     D3Actions.actions.find( '#remove-node' )
                      .toggle( node.removeAllowed );
 
+     // Toggle Restore button depending on node type
+     D3Actions.actions.find( '#restore-node' )
+                      .toggle( node.restoreAllowed );
+
     D3Actions.show( node );
 
   }
@@ -303,6 +307,7 @@ export default class FormEditor extends TreeGraph {
       iconBtn({ icon: 'arrow-u', color: 'light', id: 'move-up' }),
       iconBtn({ icon: 'arrow-d', color: 'light', id: 'move-down' }),
       iconBtn({ icon: 'C', color: 'light', id: 'common-node' }),
+      iconBtn({ icon: 'R', color: 'light', id: 'restore-node' }),
       iconBtn({ icon: 'times', color: 'red', id: 'remove-node' }),
     ]
 
@@ -401,8 +406,8 @@ export default class FormEditor extends TreeGraph {
         return [ rdfs.NORMAL_GROUP ]
         break;
       case rdfs.NORMAL_GROUP.rdfType:
-        return [ rdfs.NORMAL_GROUP, rdfs.COMMON_GROUP, rdfs.QUESTION,
-                 rdfs.MAPPING, rdfs.TEXTLABEL, rdfs.PLACEHOLDER ]
+        return [ rdfs.NORMAL_GROUP, rdfs.COMMON_GROUP, rdfs.BC_GROUP,
+                 rdfs.QUESTION, rdfs.MAPPING, rdfs.TEXTLABEL, rdfs.PLACEHOLDER ]
         break;
       case rdfs.QUESTION.rdfType:
         return [ rdfs.TUC_REF ]
