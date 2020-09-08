@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-26T10:11:28+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-04T14:49:10+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -56,38 +56,39 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:repeating "false"^^xsd:boolean ;
-	bf:hasSubGroup :F_NG1_NG5 ;
-	bf:hasSubGroup :F_NG1_NG1 ;
-	bf:hasSubGroup :F_NG1_NG8 ;
-	bf:hasSubGroup :F_NG1_NG2 ;
-	bf:hasSubGroup :F_NG1_NG3 ;
-	bf:hasSubGroup :F_NG1_NG6 ;
-	bf:hasSubGroup :F_NG1_NG7 ;
-	bf:hasSubGroup :F_NG1_NG4 ;
+	bf:hasSubGroup :F_NG1_BCG5 ;
+	bf:hasSubGroup :F_NG1_BCG1 ;
+	bf:hasSubGroup :F_NG1_BCG8 ;
+	bf:hasSubGroup :F_NG1_BCG2 ;
+	bf:hasSubGroup :F_NG1_BCG3 ;
+	bf:hasSubGroup :F_NG1_BCG6 ;
+	bf:hasSubGroup :F_NG1_BCG7 ;
+	bf:hasSubGroup :F_NG1_BCG4 ;
 .
-:F_NG1_NG5
-	rdf:type bf:NormalGroup ;
+:F_NG1_BCG5
+	rdf:type bf:BcGroup ;
 	isoC:label "Systolic Blood Pressure"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
 	bf:note "Not Set"^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_NG5_BP3 ;
-	bf:hasItem :F_NG1_NG5_BP2 ;
-	bf:hasItem :F_NG1_NG5_BP1 ;
-	bf:repeating "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_BCG5_BP3 ;
+	bf:hasItem :F_NG1_BCG5_BP2 ;
+	bf:hasItem :F_NG1_BCG5_BP1 ;
+	bf:hasBiomedicalConcept :F_NG1_BCG5_R1 ;
 .
-:F_NG1_NG5_BP3
+:F_NG1_BCG5_BP3
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG5_BP3_R1 ;
-	bf:hasCodedValue :F_NG1_NG5_BP3_TUC1 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG5_BP3_R1 ;
+	bf:hasCodedValue :F_NG1_BCG5_BP3_TUC1 ;
 .
-:F_NG1_NG5_BP3_R1
+:F_NG1_BCG5_BP3_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -95,7 +96,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023_I11_DT1_P2> ;
 .
-:F_NG1_NG5_BP3_TUC1
+:F_NG1_BCG5_BP3_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -105,16 +106,17 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG5_BP2
+:F_NG1_BCG5_BP2
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG5_BP2_R1 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG5_BP2_R1 ;
 .
-:F_NG1_NG5_BP2_R1
+:F_NG1_BCG5_BP2_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -122,19 +124,20 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023_I11_DT1_P1> ;
 .
-:F_NG1_NG5_BP1
+:F_NG1_BCG5_BP1
 	rdf:type bf:BcProperty ;
 	isoC:label "Body Position (--POS)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG5_BP1_R1 ;
-	bf:hasCodedValue :F_NG1_NG5_BP1_TUC1 ;
-	bf:hasCodedValue :F_NG1_NG5_BP1_TUC2 ;
-	bf:hasCodedValue :F_NG1_NG5_BP1_TUC3 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG5_BP1_R1 ;
+	bf:hasCodedValue :F_NG1_BCG5_BP1_TUC1 ;
+	bf:hasCodedValue :F_NG1_BCG5_BP1_TUC2 ;
+	bf:hasCodedValue :F_NG1_BCG5_BP1_TUC3 ;
 .
-:F_NG1_NG5_BP1_R1
+:F_NG1_BCG5_BP1_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -142,7 +145,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023_I4_DT1_P1> ;
 .
-:F_NG1_NG5_BP1_TUC1
+:F_NG1_BCG5_BP1_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -152,7 +155,7 @@
 	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG5_BP1_TUC2
+:F_NG1_BCG5_BP1_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -162,7 +165,7 @@
 	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG5_BP1_TUC3
+:F_NG1_BCG5_BP1_TUC3
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -172,30 +175,39 @@
 	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG1
-	rdf:type bf:NormalGroup ;
+:F_NG1_BCG5_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023> ;
+.
+:F_NG1_BCG1
+	rdf:type bf:BcGroup ;
 	isoC:label "Height"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note "Not Set"^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_NG1_BP2 ;
-	bf:hasItem :F_NG1_NG1_BP1 ;
-	bf:repeating "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_BCG1_BP2 ;
+	bf:hasItem :F_NG1_BCG1_BP1 ;
+	bf:hasBiomedicalConcept :F_NG1_BCG1_R1 ;
 .
-:F_NG1_NG1_BP2
+:F_NG1_BCG1_BP2
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG1_BP2_R1 ;
-	bf:hasCodedValue :F_NG1_NG1_BP2_TUC1 ;
-	bf:hasCodedValue :F_NG1_NG1_BP2_TUC2 ;
-	bf:hasCodedValue :F_NG1_NG1_BP2_TUC3 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG1_BP2_R1 ;
+	bf:hasCodedValue :F_NG1_BCG1_BP2_TUC1 ;
+	bf:hasCodedValue :F_NG1_BCG1_BP2_TUC2 ;
+	bf:hasCodedValue :F_NG1_BCG1_BP2_TUC3 ;
 .
-:F_NG1_NG1_BP2_R1
+:F_NG1_BCG1_BP2_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -203,7 +215,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V7#BC-ACME_BC000020_I10_DT1_P2> ;
 .
-:F_NG1_NG1_BP2_TUC1
+:F_NG1_BCG1_BP2_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -213,7 +225,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG1_BP2_TUC2
+:F_NG1_BCG1_BP2_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -223,7 +235,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG1_BP2_TUC3
+:F_NG1_BCG1_BP2_TUC3
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -233,16 +245,17 @@
 	bo:context <http://www.cdisc.org/C71620/V65#C71620> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG1_BP1
+:F_NG1_BCG1_BP1
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG1_BP1_R1 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG1_BP1_R1 ;
 .
-:F_NG1_NG1_BP1_R1
+:F_NG1_BCG1_BP1_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -250,27 +263,36 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V7#BC-ACME_BC000020_I10_DT1_P1> ;
 .
-:F_NG1_NG8
-	rdf:type bf:NormalGroup ;
+:F_NG1_BCG1_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V7#BC-ACME_BC000020> ;
+.
+:F_NG1_BCG8
+	rdf:type bf:BcGroup ;
 	isoC:label "Hip circumference"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;
 	bf:note "Not Set"^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_NG8_BP1 ;
-	bf:hasItem :F_NG1_NG8_BP2 ;
-	bf:repeating "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_BCG8_BP1 ;
+	bf:hasItem :F_NG1_BCG8_BP2 ;
+	bf:hasBiomedicalConcept :F_NG1_BCG8_R1 ;
 .
-:F_NG1_NG8_BP1
+:F_NG1_BCG8_BP1
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG8_BP1_R1 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG8_BP1_R1 ;
 .
-:F_NG1_NG8_BP1_R1
+:F_NG1_BCG8_BP1_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -278,19 +300,20 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000014_I11_DT1_P1> ;
 .
-:F_NG1_NG8_BP2
+:F_NG1_BCG8_BP2
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG8_BP2_R1 ;
-	bf:hasCodedValue :F_NG1_NG8_BP2_TUC1 ;
-	bf:hasCodedValue :F_NG1_NG8_BP2_TUC2 ;
-	bf:hasCodedValue :F_NG1_NG8_BP2_TUC3 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG8_BP2_R1 ;
+	bf:hasCodedValue :F_NG1_BCG8_BP2_TUC1 ;
+	bf:hasCodedValue :F_NG1_BCG8_BP2_TUC2 ;
+	bf:hasCodedValue :F_NG1_BCG8_BP2_TUC3 ;
 .
-:F_NG1_NG8_BP2_R1
+:F_NG1_BCG8_BP2_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -298,7 +321,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000014_I11_DT1_P2> ;
 .
-:F_NG1_NG8_BP2_TUC1
+:F_NG1_BCG8_BP2_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -308,7 +331,7 @@
 	bo:context <http://www.cdisc.org/C71620/V65#C71620> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG8_BP2_TUC2
+:F_NG1_BCG8_BP2_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -318,7 +341,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG8_BP2_TUC3
+:F_NG1_BCG8_BP2_TUC3
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -328,29 +351,38 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG2
-	rdf:type bf:NormalGroup ;
+:F_NG1_BCG8_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000014> ;
+.
+:F_NG1_BCG2
+	rdf:type bf:BcGroup ;
 	isoC:label "Weight"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note "Not Set"^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_NG2_BP2 ;
-	bf:hasItem :F_NG1_NG2_BP1 ;
-	bf:repeating "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_BCG2_BP2 ;
+	bf:hasItem :F_NG1_BCG2_BP1 ;
+	bf:hasBiomedicalConcept :F_NG1_BCG2_R1 ;
 .
-:F_NG1_NG2_BP2
+:F_NG1_BCG2_BP2
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "true"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG2_BP2_R1 ;
-	bf:hasCodedValue :F_NG1_NG2_BP2_TUC1 ;
-	bf:hasCodedValue :F_NG1_NG2_BP2_TUC2 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG2_BP2_R1 ;
+	bf:hasCodedValue :F_NG1_BCG2_BP2_TUC1 ;
+	bf:hasCodedValue :F_NG1_BCG2_BP2_TUC2 ;
 .
-:F_NG1_NG2_BP2_R1
+:F_NG1_BCG2_BP2_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -358,7 +390,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V8#BC-ACME_BC000010_I10_DT1_P2> ;
 .
-:F_NG1_NG2_BP2_TUC1
+:F_NG1_BCG2_BP2_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -368,7 +400,7 @@
 	bo:context <http://www.cdisc.org/C71620/V65#C71620> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG2_BP2_TUC2
+:F_NG1_BCG2_BP2_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -378,16 +410,17 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG2_BP1
+:F_NG1_BCG2_BP1
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG2_BP1_R1 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG2_BP1_R1 ;
 .
-:F_NG1_NG2_BP1_R1
+:F_NG1_BCG2_BP1_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -395,28 +428,37 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V8#BC-ACME_BC000010_I10_DT1_P1> ;
 .
-:F_NG1_NG3
-	rdf:type bf:NormalGroup ;
+:F_NG1_BCG2_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V8#BC-ACME_BC000010> ;
+.
+:F_NG1_BCG3
+	rdf:type bf:BcGroup ;
 	isoC:label "BMI"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note "Not Set"^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_NG3_BP2 ;
-	bf:hasItem :F_NG1_NG3_BP1 ;
-	bf:repeating "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_BCG3_BP2 ;
+	bf:hasItem :F_NG1_BCG3_BP1 ;
+	bf:hasBiomedicalConcept :F_NG1_BCG3_R1 ;
 .
-:F_NG1_NG3_BP2
+:F_NG1_BCG3_BP2
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG3_BP2_R1 ;
-	bf:hasCodedValue :F_NG1_NG3_BP2_TUC1 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG3_BP2_R1 ;
+	bf:hasCodedValue :F_NG1_BCG3_BP2_TUC1 ;
 .
-:F_NG1_NG3_BP2_R1
+:F_NG1_BCG3_BP2_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -424,7 +466,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000012_I11_DT1_P2> ;
 .
-:F_NG1_NG3_BP2_TUC1
+:F_NG1_BCG3_BP2_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -434,16 +476,17 @@
 	bo:context <http://www.cdisc.org/C71620/V65#C71620> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG3_BP1
+:F_NG1_BCG3_BP1
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG3_BP1_R1 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG3_BP1_R1 ;
 .
-:F_NG1_NG3_BP1_R1
+:F_NG1_BCG3_BP1_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -451,28 +494,37 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000012_I11_DT1_P1> ;
 .
-:F_NG1_NG6
-	rdf:type bf:NormalGroup ;
+:F_NG1_BCG3_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000012> ;
+.
+:F_NG1_BCG6
+	rdf:type bf:BcGroup ;
 	isoC:label "Diastolic Blood Pressure"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
 	bf:note "Not Set"^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_NG6_BP2 ;
-	bf:hasItem :F_NG1_NG6_BP1 ;
-	bf:repeating "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_BCG6_BP2 ;
+	bf:hasItem :F_NG1_BCG6_BP1 ;
+	bf:hasBiomedicalConcept :F_NG1_BCG6_R1 ;
 .
-:F_NG1_NG6_BP2
+:F_NG1_BCG6_BP2
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG6_BP2_R1 ;
-	bf:hasCodedValue :F_NG1_NG6_BP2_TUC1 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG6_BP2_R1 ;
+	bf:hasCodedValue :F_NG1_BCG6_BP2_TUC1 ;
 .
-:F_NG1_NG6_BP2_R1
+:F_NG1_BCG6_BP2_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -480,7 +532,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000024_I8_DT1_P2> ;
 .
-:F_NG1_NG6_BP2_TUC1
+:F_NG1_BCG6_BP2_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -490,16 +542,17 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG6_BP1
+:F_NG1_BCG6_BP1
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG6_BP1_R1 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG6_BP1_R1 ;
 .
-:F_NG1_NG6_BP1_R1
+:F_NG1_BCG6_BP1_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -507,30 +560,39 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000024_I8_DT1_P1> ;
 .
-:F_NG1_NG7
-	rdf:type bf:NormalGroup ;
+:F_NG1_BCG6_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000024> ;
+.
+:F_NG1_BCG7
+	rdf:type bf:BcGroup ;
 	isoC:label "Waist circumference"^^xsd:string ;
 	bf:ordinal "7"^^xsd:integer ;
 	bf:note "Not Set"^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_NG7_BP2 ;
-	bf:hasItem :F_NG1_NG7_BP1 ;
-	bf:repeating "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_BCG7_BP2 ;
+	bf:hasItem :F_NG1_BCG7_BP1 ;
+	bf:hasBiomedicalConcept :F_NG1_BCG7_R1 ;
 .
-:F_NG1_NG7_BP2
+:F_NG1_BCG7_BP2
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG7_BP2_R1 ;
-	bf:hasCodedValue :F_NG1_NG7_BP2_TUC1 ;
-	bf:hasCodedValue :F_NG1_NG7_BP2_TUC2 ;
-	bf:hasCodedValue :F_NG1_NG7_BP2_TUC3 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG7_BP2_R1 ;
+	bf:hasCodedValue :F_NG1_BCG7_BP2_TUC1 ;
+	bf:hasCodedValue :F_NG1_BCG7_BP2_TUC2 ;
+	bf:hasCodedValue :F_NG1_BCG7_BP2_TUC3 ;
 .
-:F_NG1_NG7_BP2_R1
+:F_NG1_BCG7_BP2_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -538,7 +600,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000013_I11_DT1_P2> ;
 .
-:F_NG1_NG7_BP2_TUC1
+:F_NG1_BCG7_BP2_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -548,7 +610,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG7_BP2_TUC2
+:F_NG1_BCG7_BP2_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -558,7 +620,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG7_BP2_TUC3
+:F_NG1_BCG7_BP2_TUC3
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -568,16 +630,17 @@
 	bo:context <http://www.cdisc.org/C71620/V65#C71620> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_NG7_BP1
+:F_NG1_BCG7_BP1
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG7_BP1_R1 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG7_BP1_R1 ;
 .
-:F_NG1_NG7_BP1_R1
+:F_NG1_BCG7_BP1_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -585,27 +648,36 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000013_I11_DT1_P1> ;
 .
-:F_NG1_NG4
-	rdf:type bf:NormalGroup ;
+:F_NG1_BCG7_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000013> ;
+.
+:F_NG1_BCG4
+	rdf:type bf:BcGroup ;
 	isoC:label "Heart Rate"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note "Not Set"^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_NG4_BP1 ;
-	bf:hasItem :F_NG1_NG4_BP2 ;
-	bf:repeating "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_BCG4_BP1 ;
+	bf:hasItem :F_NG1_BCG4_BP2 ;
+	bf:hasBiomedicalConcept :F_NG1_BCG4_R1 ;
 .
-:F_NG1_NG4_BP1
+:F_NG1_BCG4_BP1
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG4_BP1_R1 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG4_BP1_R1 ;
 .
-:F_NG1_NG4_BP1_R1
+:F_NG1_BCG4_BP1_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -613,17 +685,18 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000026_I11_DT1_P1> ;
 .
-:F_NG1_NG4_BP2
+:F_NG1_BCG4_BP2
 	rdf:type bf:BcProperty ;
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :F_NG1_NG4_BP2_R1 ;
-	bf:hasCodedValue :F_NG1_NG4_BP2_TUC1 ;
+	bf:isCommon "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_BCG4_BP2_R1 ;
+	bf:hasCodedValue :F_NG1_BCG4_BP2_TUC1 ;
 .
-:F_NG1_NG4_BP2_R1
+:F_NG1_BCG4_BP2_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -631,7 +704,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000026_I11_DT1_P2> ;
 .
-:F_NG1_NG4_BP2_TUC1
+:F_NG1_BCG4_BP2_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -640,4 +713,12 @@
 	bo:reference <http://www.cdisc.org/C71620/V6#C71620_C49673> ;
 	bo:context <http://www.cdisc.org/C71620/V65#C71620> ;
 	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_BCG4_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000026> ;
 .

@@ -13,7 +13,12 @@ class Form::Item::TextLabel < Form::Item
   # @return [Hash] A hash of Text Label Item
   def get_item
     blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", has_coded_value: [], has_property: []}
-    return self.to_h.merge!(item_blank_fields)
+    return self.to_h.merge!(blank_fields)
+  end
+
+  def to_crf
+    html = ""
+    html += markdown_row(self.label_text)
   end
 
   # # To XML

@@ -4,7 +4,7 @@ class Imports::AdamIgsController < Imports::BaseController
   
   def new
     super
-    @next_version = AdamIg.next_version
+    @next_version = AdamIg.next_integer_version
   end
 
   def create

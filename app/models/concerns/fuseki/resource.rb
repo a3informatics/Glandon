@@ -190,7 +190,7 @@ module Fuseki
     # @return [Void] no return
     def object_property(name, opts = {})
       Errors.application_error(self.name, __method__.to_s, "No cardinality specified for object property.") if !opts.key?(:cardinality)
-      Errors.application_error(self.name, __method__.to_s, "No model class specified for object property.") if !opts.key?(:model_class)
+      Errors.application_error(self.name, __method__.to_s, "No model class specified for object property.") unless opts.key?(:model_class) || opts.key?(:model_classes) 
       if opts.key?(:model_classes)
         opts[:model_classes].unshift(opts[:model_class]) if opts.key?(:model_class)
         opts[:model_classes] = opts[:model_classes].map{|x| "#{x}".constantize}
@@ -228,8 +228,14 @@ module Fuseki
         generic_objects?(name)
       end
 
+      # Children properties
       if opts.key?(:children)
         
+        # Define a class method to return if children predicate exists
+        define_singleton_method "children_predicate?" do
+          true
+        end
+
         # Define an instance method to return the children
         define_method "children" do
           instance_variable_get("@#{name}")
@@ -256,8 +262,29 @@ module Fuseki
           predicate_uri(name)
         end
 
+      else
+
+        # Define a class method to return if children predicate exists
+        define_singleton_method "children_predicate?" do
+          false
+        end
+
       end
 
+    end
+
+    # Object Property Class. Add a class to a relatinship
+    #
+    # @param name [Symbol] the property name
+    # @param opts [Hash] the option hash
+    # @option opts [Symbol] :model_class the model class handling the other end of the relationship
+    # @raise [Errors::ApplicationLogicError] raised if model_class not found.
+    # @return [Void] no return
+    def object_property_class(name, opts = {})
+      Errors.application_error(self.name, __method__.to_s, "No model class(es) specified for object property class.") unless opts.key?(:model_class) || opts.key?(:model_classes)
+      properties = Fuseki::Resource::Properties.new(self, self.resources)
+      properties.property(name).add_klasses(opts[:model_classes].map{|x| "#{x}".constantize}) if opts.key?(:model_classes)
+      properties.property(name).add_klasses(["#{opts[:model_class]}".constantize]) if opts.key?(:model_class)
     end
 
     # Data Property

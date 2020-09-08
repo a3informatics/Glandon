@@ -138,7 +138,8 @@ export default class HistoryPanel extends TablePanel {
       { url: data.list_cn_path, icon: "icon-note", text: "List Change notes", endOffset: 1, types: ["managed_concept"] },
       { url: data.current_path, icon: "icon-current", text: "Make current", disabled: (data.indicators.current), endOffset: 2, types: ["all"] },
       { url: data.clone_path, target: "#newTerminologyModal", icon: "icon-copy", text: "Clone", endOffset: 2, types: ["thesauri"], dataToggle: "modal" },
-      { url: data.compare_path, target: "#", icon: "icon-compare", text: "Compare", dataToggle: "modal", endOffset: 2, types: ["thesauri", "cdisc_term"] }
+      { url: data.compare_path, target: "#", icon: "icon-compare", text: "Compare", dataToggle: "modal", endOffset: 2, types: ["thesauri", "cdisc_term"] },
+      { url: data.view_path, icon: "icon-forms", text: "CRF", endOffset: 1, types: ["form"] }
     ]
   }
 
@@ -162,6 +163,7 @@ export default class HistoryPanel extends TablePanel {
    * @return {boolean} Determines if item should be displayed in the context menu
    */
   _isItemValid(item) {
+    console.log(item)
     if (item.required)
       return true;
     return (item.url) && (item.types.includes(this.param) || item.types.includes("all"));

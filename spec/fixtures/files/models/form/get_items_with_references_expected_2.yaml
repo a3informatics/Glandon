@@ -9,8 +9,6 @@
   :completion: Not Set
   :optional: false
   :repeating: false
-  :has_common: []
-  :has_biomedical_concept: []
   :datatype: ''
   :format: ''
   :question_text: ''
@@ -29,8 +27,6 @@
   :completion: Not Set
   :optional: false
   :repeating: false
-  :has_common: []
-  :has_biomedical_concept: []
   :datatype: ''
   :format: ''
   :question_text: ''
@@ -48,7 +44,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzFfQlAxX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG1_BP1_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzFfQlAxX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG1_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V7#BC-ACME_BC000020_I10_DT1_P1
+      :context: 
+    :context: 
   :has_coded_value: []
   :datatype: ''
   :format: ''
@@ -65,7 +82,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzFfQlAyX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG1_BP2_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzFfQlAyX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG1_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V7#BC-ACME_BC000020_I10_DT1_P2
+      :context: 
+    :context: 
   :has_coded_value:
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzFfQlAyX1RVQzM=
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG1_BP2_TUC3
@@ -176,8 +214,6 @@
   :completion: Not Set
   :optional: false
   :repeating: false
-  :has_common: []
-  :has_biomedical_concept: []
   :datatype: ''
   :format: ''
   :question_text: ''
@@ -195,7 +231,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzJfQlAxX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG2_BP1_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzJfQlAxX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG2_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V8#BC-ACME_BC000010_I10_DT1_P1
+      :context: 
+    :context: 
   :has_coded_value: []
   :datatype: ''
   :format: ''
@@ -212,7 +269,28 @@
   :note: ''
   :completion: Not Set
   :optional: true
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzJfQlAyX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG2_BP2_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzJfQlAyX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG2_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V8#BC-ACME_BC000010_I10_DT1_P2
+      :context: 
+    :context: 
   :has_coded_value:
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzJfQlAyX1RVQzI=
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG2_BP2_TUC2
@@ -296,8 +374,6 @@
   :completion: Not Set
   :optional: false
   :repeating: false
-  :has_common: []
-  :has_biomedical_concept: []
   :datatype: ''
   :format: ''
   :question_text: ''
@@ -315,7 +391,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzNfQlAxX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG3_BP1_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzNfQlAxX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG3_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000012_I11_DT1_P1
+      :context: 
+    :context: 
   :has_coded_value: []
   :datatype: ''
   :format: ''
@@ -332,7 +429,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzNfQlAyX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG3_BP2_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzNfQlAyX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG3_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000012_I11_DT1_P2
+      :context: 
+    :context: 
   :has_coded_value:
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzNfQlAyX1RVQzE=
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG3_BP2_TUC1
@@ -380,8 +498,6 @@
   :completion: Not Set
   :optional: false
   :repeating: false
-  :has_common: []
-  :has_biomedical_concept: []
   :datatype: ''
   :format: ''
   :question_text: ''
@@ -399,7 +515,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzRfQlAxX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG4_BP1_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzRfQlAxX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG4_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000026_I11_DT1_P1
+      :context: 
+    :context: 
   :has_coded_value: []
   :datatype: ''
   :format: ''
@@ -416,7 +553,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzRfQlAyX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG4_BP2_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzRfQlAyX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG4_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000026_I11_DT1_P2
+      :context: 
+    :context: 
   :has_coded_value:
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzRfQlAyX1RVQzE=
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG4_BP2_TUC1
@@ -464,8 +622,6 @@
   :completion: Not Set
   :optional: false
   :repeating: false
-  :has_common: []
-  :has_biomedical_concept: []
   :datatype: ''
   :format: ''
   :question_text: ''
@@ -483,7 +639,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzVfQlAxX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG5_BP1_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzVfQlAxX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG5_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023_I4_DT1_P1
+      :context: 
+    :context: 
   :has_coded_value:
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzVfQlAxX1RVQzM=
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG5_BP1_TUC3
@@ -592,7 +769,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzVfQlAyX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG5_BP2_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzVfQlAyX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG5_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023_I11_DT1_P1
+      :context: 
+    :context: 
   :has_coded_value: []
   :datatype: ''
   :format: ''
@@ -609,7 +807,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzVfQlAzX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG5_BP3_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzVfQlAzX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG5_BP3_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023_I11_DT1_P2
+      :context: 
+    :context: 
   :has_coded_value:
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzVfQlAzX1RVQzE=
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG5_BP3_TUC1
@@ -659,8 +878,6 @@
   :completion: Not Set
   :optional: false
   :repeating: false
-  :has_common: []
-  :has_biomedical_concept: []
   :datatype: ''
   :format: ''
   :question_text: ''
@@ -678,7 +895,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzZfQlAxX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG6_BP1_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzZfQlAxX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG6_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000024_I8_DT1_P1
+      :context: 
+    :context: 
   :has_coded_value: []
   :datatype: ''
   :format: ''
@@ -695,7 +933,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzZfQlAyX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG6_BP2_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzZfQlAyX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG6_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000024_I8_DT1_P2
+      :context: 
+    :context: 
   :has_coded_value:
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzZfQlAyX1RVQzE=
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG6_BP2_TUC1
@@ -745,8 +1004,6 @@
   :completion: Not Set
   :optional: false
   :repeating: false
-  :has_common: []
-  :has_biomedical_concept: []
   :datatype: ''
   :format: ''
   :question_text: ''
@@ -764,7 +1021,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzdfQlAxX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG7_BP1_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzdfQlAxX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG7_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000013_I11_DT1_P1
+      :context: 
+    :context: 
   :has_coded_value: []
   :datatype: ''
   :format: ''
@@ -781,7 +1059,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzdfQlAyX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG7_BP2_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzdfQlAyX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG7_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000013_I11_DT1_P2
+      :context: 
+    :context: 
   :has_coded_value:
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzdfQlAyX1RVQzM=
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG7_BP2_TUC3
@@ -892,8 +1191,6 @@
   :completion: Not Set
   :optional: false
   :repeating: false
-  :has_common: []
-  :has_biomedical_concept: []
   :datatype: ''
   :format: ''
   :question_text: ''
@@ -911,7 +1208,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzhfQlAxX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG8_BP1_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzhfQlAxX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG8_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000014_I11_DT1_P1
+      :context: 
+    :context: 
   :has_coded_value: []
   :datatype: ''
   :format: ''
@@ -928,7 +1246,28 @@
   :note: ''
   :completion: Not Set
   :optional: false
-  :has_property: []
+  :is_common: true
+  :has_property:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzhfQlAyX1Ix
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG8_BP2_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzhfQlAyX1Ix
+      :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG8_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000014_I11_DT1_P2
+      :context: 
+    :context: 
   :has_coded_value:
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9ORzhfQlAyX1RVQzI=
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_NG8_BP2_TUC2

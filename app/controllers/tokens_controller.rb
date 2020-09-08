@@ -62,7 +62,7 @@ private
     item = Token.find(id)
     item.release
   rescue => e
-    ConsoleLogger.info(this.class.name, "release_multiple", "Exception raised releasing token #{id}.")
+    ConsoleLogger.info(self.class.name, "release_multiple", "Exception raised releasing token #{id}.")
   end
 
   # Strong params

@@ -201,7 +201,7 @@ describe BiomedicalConceptInstance do
       property = BiomedicalConcept::PropertyX.find(uri)
       property = instance.update_property({property_id: property.id, enabled: "ZZZ±"})
       expect(property.errors.count).to eq(1)
-      expect(property.errors.full_messages.to_sentence).to eq("Question text contains invalid characters")
+      expect(property.errors.full_messages.to_sentence).to eq("Enabled contains an invalid boolean value")
     end
 
     it "update multiple, errors" do

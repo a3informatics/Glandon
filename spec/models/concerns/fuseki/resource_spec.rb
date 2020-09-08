@@ -64,6 +64,15 @@ describe Fuseki::Resource do
     class TestRTarget
     end
 
+    class TestRTargetUpdated1
+    end
+
+    class TestRTargetUpdated2
+    end
+
+    class TestRTargetUpdated3
+    end
+
     it "error if RDF type not configured" do
       expect{TestR1.configure({})}.to raise_error(Errors::ApplicationLogicError, "No RDF type specified when configuring class.")
     end
@@ -152,6 +161,19 @@ describe Fuseki::Resource do
       expect(TestR4.instance_variable_get(:@resources)).to hash_equal({:sid => sid_expected}) 
     end
 
+    it "object property class configured" do
+      TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
+      fred_expected = {:base_type=>"", :cardinality=>:one, :default=>nil, :model_classes=>[TestRTarget, TestRTargetUpdated1, TestRTargetUpdated2, TestRTargetUpdated3], :read_exclude=>false, :delete_exclude=>false, :name=>:fred, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#fred")}
+      TestR4.object_property(:fred, {cardinality: :one, model_class: "TestRTarget"})
+      TestR4.object_property_class(:fred, {model_class: "TestRTargetUpdated1"})
+      TestR4.object_property_class(:fred, {model_classes: ["TestRTargetUpdated2", "TestRTargetUpdated3"]})
+      expect(TestR4.instance_variable_get(:@resources)).to eq({:fred => fred_expected})
+    end
+
+    it "error if additional class not configured" do
+      expect{TestR3.object_property_class(:fred, {})}.to raise_error(Errors::ApplicationLogicError, "No model class(es) specified for object property class.")
+    end
+
     it "data property configured, no default" do
       metadata = Fuseki::Schema::SchemaMap.new({})
       expect(TestR5).to receive(:schema_metadata).and_return(metadata)
@@ -199,13 +221,15 @@ describe Fuseki::Resource do
       item = TestR4.new
       expect(TestR4.respond_to?(:children_klass)).to eq(true)
       expect(TestR4.respond_to?(:children_predicate)).to eq(true)
+      expect(TestR4.children_predicate?).to eq(true)
       expect(item.respond_to?(:children)).to eq(true)
       expect(item.respond_to?(:children_objects)).to eq(true)
     end
 
     it "object and link properties" do
       TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
-      TestR4.object_property(:fred, {cardinality: :one, model_class: "TestRTarget", children: true})
+      TestR4.object_property(:fred, {cardinality: :one, model_class: "TestRTarget"})
+      expect(TestR4.children_predicate?).to eq(false)
       item = TestR4.new
       expect(item.respond_to?(:fred_links)).to eq(true)
       expect(item.respond_to?(:fred_links?)).to eq(true)

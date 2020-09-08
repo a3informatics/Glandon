@@ -106,6 +106,24 @@ class Thesaurus <  IsoManagedV2
     query_results.by_object_set([:uri, :rdf_type])
   end
 
+  # Find Notation. Finds any children with the specified notation.
+  #
+  # @param [String] notation the notation to be found
+  # @result [Array] an array of hash containing the uri and rdf_type for the item
+  def find_notation(notation)
+    query_string = %Q{
+      SELECT ?uri ?rdf_type WHERE
+      {
+        #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?b .
+        ?b th:narrower* ?uri .
+        ?uri th:notation "#{notation}" .
+        ?uri rdf:type ?rdf_type
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
+    query_results.by_object_set([:uri, :rdf_type])
+  end
+
   # Changes
   #
   # @param [Integer] window_size the required window size for changes

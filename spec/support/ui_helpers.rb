@@ -233,23 +233,23 @@ module UiHelpers
 
 
 	# Indicators
-  def ui_check_table_row_indicators(table_id, row, col, indicators)
+  def ui_check_table_row_indicators(table_id, row, col, indicators, new_style: false)
 		within("##{table_id}") do
 			Capybara.ignore_hidden_elements = false
 			indicators.each do |i|
-				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/span", count: indicators.length())
-				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/span", text: "#{i}", count: 1)
+				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/#{ new_style ? 'div/' : '' }span", count: indicators.length)
+				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/#{ new_style ? 'div/' : '' }span", text: "#{i}", count: 1)
 			end
 			Capybara.ignore_hidden_elements = true
 		end
   end
 
-	def ui_check_indicators(parent, indicators)
+	def ui_check_indicators(parent, indicators, new_style: false)
 		within(parent) do
 			Capybara.ignore_hidden_elements = false
 			indicators.each do |i|
-				expect(page).to have_xpath("./span", count: indicators.length())
-				expect(page).to have_xpath("./span", text: "#{i}", count: 1)
+				expect(page).to have_xpath("./#{ new_style ? 'div/' : '' }span", count: indicators.length)
+				expect(page).to have_xpath("./#{ new_style ? 'div/' : '' }span", text: "#{i}", count: 1)
 			end
 			Capybara.ignore_hidden_elements = true
 		end
@@ -411,7 +411,7 @@ module UiHelpers
 			main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
 			main_nav_f: "main_nav_forms",
 			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm", main_nav_c: "main_nav_sdtm",
-			main_nav_aig: "main_nav_adam"
+			main_nav_aig: "main_nav_adam", main_nav_aigd: "main_nav_adam"
 		}
 	end
 
@@ -548,8 +548,12 @@ module UiHelpers
   end
 
 	#ADaM
-	def click_navbar_adam_ig_domain
+	def click_navbar_adam_ig
     ui_navbar_click('main_nav_aig')
+  end
+
+  def click_navbar_adam_ig_dataset
+    ui_navbar_click('main_nav_aigd')
   end
 
   #Community Version
@@ -608,7 +612,8 @@ module UiHelpers
 			edit_ranks: "Edit ranks",
 			pair: "Pair",
 			unpair: "Unpair",
-			show_paired: "Show Paired"
+			show_paired: "Show Paired",
+      crf: "CRF"
     }
 	end
 

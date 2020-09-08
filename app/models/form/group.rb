@@ -9,32 +9,17 @@ class Form::Group < IsoConceptV2
   data_property :completion
   data_property :optional, default: false
 
-  object_property :has_item, cardinality: :many, model_class: Form::Item, 
-    model_classes: 
-    [ 
-      Form::Item::BcProperty, Form::Item::Common, Form::Item::Mapping,
-      Form::Item::Placeholder, Form::Item::Question, Form::Item::TextLabel 
-    ],
-    children: true
+  object_property :has_item, cardinality: :many, model_class: Form::Item, children: true
 
   validates_with Validator::Field, attribute: :ordinal, method: :valid_positive_integer?
   validates_with Validator::Field, attribute: :note, method: :valid_markdown?
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
   validates :optional, inclusion: { in: [ true, false ] }
+
+private
   
-#   # To XML
-#   #
-#   # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
-#   # @param [Nokogiri::Node] form_def the ODM FormDef node
-#   # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
-#   # @return [void]
-#   def to_xml(metadata_version, form_def)
-#     form_def.add_item_group_ref("#{self.id}", "#{self.ordinal}", "No", "")
-#     item_group_def = metadata_version.add_item_group_def("#{self.id}", "#{self.label}", "No", "", "", "", "", "", "")
-#     self.children.sort_by! {|u| u.ordinal}
-#     self.children.each do |item|
-#       item.to_xml(metadata_version, form_def, item_group_def)
-#     end
-#   end
+  def text_row(text)
+    return "<tr><td colspan=\"3\"><h5>#{text}</h5></td></tr>"
+  end
 
 end

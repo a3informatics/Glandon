@@ -104,6 +104,7 @@ module Import::STFOClasses
         end
         self.narrower = new_narrower
       end
+      self.update_identifier(self.identifier)
       self
     rescue => e
       add_error("Exception in to_extension, #{e}, identifier '#{self.identifier}'.")
@@ -279,6 +280,7 @@ module Import::STFOClasses
         new_narrower << new_child 
       end
       self.narrower = new_narrower
+      self.update_identifier(self.identifier)
       self
     rescue => e
       add_error("Exception in to_hybrid_sponsor, identifier '#{self.identifier}'.")

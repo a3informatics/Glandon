@@ -51,10 +51,10 @@ SELECT DISTINCT ?s ?d WHERE
     results
   end
 
-  # Next Version
+  # Next Integer Version
   #
   # @return [Integer] the next version for the terminology
-  def self.next_version
+  def self.next_integer_version
     super(C_IDENTIFIER, IsoRegistrationAuthority.cdisc_scope)
   end
   

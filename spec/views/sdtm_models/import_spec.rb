@@ -28,7 +28,7 @@ describe 'sdtm_models/import.html.erb', :type => :view do
     assign(:sdtm_class_model, SdtmModel.new)
     assign(:cdiscTerm, CdiscTerm.new)
     assign(:files, files)
-    assign(:next_version, next_version)
+    assign(:next_version, next_integer_version)
 
     render
 

@@ -1,8 +1,3 @@
-# baseURI: http://www.assero.co.uk/ISO11179Types
-# imports: http://purl.org/dc/elements/1.1/
-# imports: http://purl.org/dc/terms/
-# imports: http://www.w3.org/2004/02/skos/core
-
 @prefix : <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -122,4 +117,12 @@
   rdfs:label "Item Registration Relationship"^^xsd:string ;
   rdfs:range :RegistrationState ;
   skos:definition "Identifies the state of the registered item."^^xsd:string ;
+.
+:hasPreviousVersion
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :IdentifiedItem ;
+  rdfs:label "Previous Version Relationship"^^xsd:string ;
+  rdfs:range :IdentifiedItem ;
+  skos:definition "Identifies the previous version of the item."^^xsd:string ;
 .

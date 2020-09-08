@@ -425,7 +425,7 @@ describe "Import::SponsorTermFormatOne" do
       expect(code_lists.count).to eq(results[uri.to_s].count)
     end
     check_file_actual_expected(results, sub_dir, "code_lists_expected.yaml", equate_method: :hash_equal, write_file: write_file)
-    {"2-6" => {uri: uri_26, count: 334811}, "3-0" => {uri: uri_30, count: 479350}}.each do |version, data|
+    {"2-6" => {uri: uri_26, count: 334824}, "3-0" => {uri: uri_30, count: 479363}}.each do |version, data|
       triples = triple_store.subject_triples_tree(data[:uri]) # Reading all triples as a test.
       expect(triples.count).to eq(data[:count])
     end
@@ -448,7 +448,7 @@ describe "Import::SponsorTermFormatOne" do
       expect(code_lists.count).to eq(results[uri.to_s].count)
     end
     check_file_actual_expected(results, sub_dir, "code_lists_expected.yaml", equate_method: :hash_equal) # Previous test results
-    {"2-6" => {uri: uri_26, count: 334811}, "3-0" => {uri: uri_30, count: 479350}}.each do |version, data|
+    {"2-6" => {uri: uri_26, count: 334824}, "3-0" => {uri: uri_30, count: 479363}}.each do |version, data|
       # Leave commented out lines
       #subject_count = {}
       triples = triple_store.subject_triples_tree(data[:uri]) # Reading all triples as a test.

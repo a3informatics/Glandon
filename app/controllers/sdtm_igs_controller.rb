@@ -25,23 +25,18 @@ class SdtmIgsController < ManagedItemsController
     sdtm_ig = SdtmIg.find_minimum(protect_from_bad_id(params))
     items = sdtm_ig.managed_children_pagination(the_params)
     items.each do |item|
-      sdtm_ig = SdtmIg.find_minimum(item.id).to_h
-      results << sdtm_ig.reverse_merge!({show_path: sdtm_ig_domain_path({id: sdtm_ig[:id]})})
+      sdtm_ig_domain = SdtmIgDomain.find_minimum(item.id).to_h
+      results << sdtm_ig_domain.reverse_merge!({show_path: sdtm_ig_domain_path({id: sdtm_ig_domain[:id]})})
     end
     render json: {data: results}, status: 200
   end
-  
-  # def history
-  #   authorize SdtmIg
-  #   @history = SdtmIg.history
-  # end
   
   # def import
   #   authorize SdtmIg
   #   @files = Dir.glob(Rails.root.join("public","upload") + "*.xlsx")
   #   @sdtm_ig = SdtmIg.new
   #   @sdtm_models = SdtmModel.all
-  #   @next_version = SdtmIg.all.last.next_version
+  #   @next_version = SdtmIg.all.last.next_integer_version
   # end
   
   # def create
@@ -57,27 +52,6 @@ class SdtmIgsController < ManagedItemsController
   #   end
   # end
   
-  # def show
-  #   authorize SdtmIg
-  #   @sdtm_ig_domains = Array.new
-  #   @sdtm_ig = SdtmIg.find(params[:id], the_params[:namespace])
-  #   @sdtm_ig.domain_refs.each do |op_ref|
-  #     @sdtm_ig_domains << IsoManaged.find(op_ref.subject_ref.id, op_ref.subject_ref.namespace, false)
-  #   end
-  # end
-  
-  # def export_ttl
-  #   authorize SdtmIg
-  #   @sdtm_ig = IsoManaged::find(params[:id], the_params[:namespace])
-  #   send_data to_turtle(@sdtm_ig.triples), filename: "#{@sdtm_ig.owner_short_name}_#{@sdtm_ig.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
-  # end
-  
-  # def export_json
-  #   authorize SdtmIg
-  #   @sdtm_ig = SdtmIg.find(params[:id], the_params[:namespace])
-  #   send_data @sdtm_ig.to_json.to_json, filename: "#{@sdtm_ig.owner_short_name}_#{@sdtm_ig.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
-  # end
-
 private
   
   def the_params

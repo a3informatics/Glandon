@@ -313,12 +313,16 @@
                 </ul>
               </div>
               <% end %>
-              <% if link_group_on_role([AdamIg]) %>
+              <% if link_group_on_role([AdamIg, AdamIgDataset]) %>
               <div id="main_nav_adam" class="category-container <%= if c_adam != menu_category_title then "collapsed" end %>">
                 <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-adam", category_title: c_adam} %>
                 <ul class="nav">
                   <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => AdamIg, link_id: "main_nav_aig",
-                    link_path: history_adam_igs_path, link_text: "CDISC ADaM IGs", current_link: controller_name.to_s} %>
+                    link_path: adam_igs_path, link_text: "CDISC ADaM IGs", current_link: controller_name.to_s} %>
+                </ul>
+                <ul class="nav">
+                  <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => AdamIgDataset, link_id: "main_nav_aigd",
+                    link_path: adam_ig_datasets_path, link_text: "CDISC ADaM IG Datasets", current_link: controller_name.to_s} %>
                 </ul>
               </div>
               <% end %>

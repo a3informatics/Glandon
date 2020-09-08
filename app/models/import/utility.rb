@@ -44,7 +44,7 @@ module Import::Utility
 
   # Add a single managed child
   def add_managed_child(dataset, parent, ordinal)
-    dataset.set_import(identifier: dataset.identifier, label: parent.label, 
+    dataset.set_import(identifier: dataset.scoped_identifier, label: parent.label, 
       semantic_version: parent.semantic_version, version_label: parent.version_label, 
       version: parent.version, date: parent.creation_date.to_s, ordinal: ordinal)
     return dataset

@@ -4,7 +4,7 @@ class Imports::CdiscTermsController < Imports::BaseController
   
   def new
     super
-    @next_version = CdiscTerm.next_version
+    @next_version = CdiscTerm.next_integer_version
   end
 
   def create

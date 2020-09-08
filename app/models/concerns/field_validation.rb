@@ -14,6 +14,7 @@ module FieldValidation
   C_SUBMISSION = "[#{C_FREE_TEXT}]*" 
   C_SDTM_LABEL = "[#{C_FREE_TEXT}]{1,40}"
   C_SDTM_NAME = "[A-Z][A-Z0-9]{0,7}"
+  C_SDTM_NAME_NO_PREFIX = "[A-Z\\-]{2,2}[A-Z][A-Z0-9]{0,5}"
   C_MAPPING = "[#{C_FREE_TEXT}]*"
   
   # Valid Identifier
@@ -96,6 +97,23 @@ module FieldValidation
       return false
     else
       return true if value =~ /\A#{C_SDTM_NAME}\z/
+      object.errors.add(symbol, "contains invalid characters, is empty or is too long")
+      return false
+    end
+  end
+
+  # Valid SDTM Variable No Prefix
+  #
+  # @param symbol [String] The item being checked
+  # @param value [String] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_sdtm_variable_name_no_prefix?(symbol, value, object)
+    if value.nil?
+      object.errors.add(symbol, "is empty")
+      return false
+    else
+      return true if value =~ /\A#{C_SDTM_NAME_NO_PREFIX}\z/
       object.errors.add(symbol, "contains invalid characters, is empty or is too long")
       return false
     end

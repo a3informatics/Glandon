@@ -48,6 +48,8 @@ describe Fuseki::Resource::Property do
     expect(item.name).to eq(:fred)
     expect(item.instance_name).to eq(:@fred)
     expect(item.klass).to eq(nil)
+    item.add_klasses(["Fuseki::Base"])
+    expect(item.klass).to eq(Fuseki::Base)
     expect(item.cardinality).to eq(:one)
     expect(item.predicate).to eq("XXX")
     expect(item.object?).to eq(true)

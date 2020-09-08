@@ -20,6 +20,10 @@ defaults: &defaults
     typed: :to_i 
     literal: :to_s
     default: 1
+  http://www.w3.org/2001/XMLSchema#float: 
+    typed: :to_i 
+    literal: :to_s
+    default: 1.0
 
 development:
   <<: *defaults

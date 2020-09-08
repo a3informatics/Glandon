@@ -76,7 +76,7 @@ describe AuditTrail do
 	end
 
   it "allows a create item event to be added" do
-    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST"))
     user = User.new
     user.email = "UserName1@example.com"
     AuditTrail.create_item_event(user, item, "Any old text")
@@ -94,7 +94,7 @@ describe AuditTrail do
   end
 
   it "allows a update item event to be added" do
-    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST"))
     user = User.new
     user.email = "UserName2@example.com"
     AuditTrail.update_item_event(user, item, "Any old text")
@@ -103,7 +103,7 @@ describe AuditTrail do
   end
 
   it "allows a delete item event to be added" do
-    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST"))
     user = User.new
     user.email = "UserName3@example.com"
     AuditTrail.delete_item_event(user, item, "Any old text")
@@ -230,7 +230,7 @@ describe AuditTrail do
   end
 
 	it "allows filtering of events" do
-		item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+		item = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST"))
 		user = User.new
 		user.email = "UserName1@example.com"
   	20.times do |index|
@@ -276,7 +276,7 @@ describe AuditTrail do
   	expect(items.count).to eq(280)
   	items = AuditTrail.where({:user => "UserName1@example.com"})
     expect(items.count).to eq(90)
-  	items = AuditTrail.where({:identifier => item.identifier})
+  	items = AuditTrail.where({:identifier => item.scoped_identifier})
     expect(items.count).to eq(180)
   	items = AuditTrail.where({:owner => item.owner.ra_namespace.short_name})
     expect(items.count).to eq(180)
@@ -284,15 +284,15 @@ describe AuditTrail do
     expect(items.count).to eq(90)
     items = AuditTrail.where({:event => 4})
     expect(items.count).to eq(10)
-  	items = AuditTrail.where({:user => "UserName1@example.com", :identifier => item.identifier, :event => 2, :owner => item.owner.ra_namespace.short_name})
+  	items = AuditTrail.where({:user => "UserName1@example.com", :identifier => item.scoped_identifier, :event => 2, :owner => item.owner.ra_namespace.short_name})
     expect(items.count).to eq(20)
     items = AuditTrail.where({:user => "UserName4@example.com"})
     expect(items.count).to eq(10)
 	end
 
   it "allows CSV export of the audit trail" do
-    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    item.scopedIdentifier.semantic_version = "1.2.3"
+    item = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST"))
+    item.has_identifier.semantic_version = "1.2.3"
     user = User.new
     user.email = "UserName1@example.com"
     20.times do |index|

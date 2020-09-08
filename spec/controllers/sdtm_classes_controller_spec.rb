@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'tabulation'
 
 describe SdtmClassesController do
 
@@ -37,7 +38,7 @@ describe SdtmClassesController do
     end
 
     it "show results" do
-      sdtm_class = SdtmClass.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN"))
+      sdtm_class = SdtmClass.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS"))
       request.env['HTTP_ACCEPT'] = "application/json"
       get :show_data, params:{id: sdtm_class.id}
       expect(response.content_type).to eq("application/json")

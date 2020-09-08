@@ -53,7 +53,7 @@ describe "CdiscTerm" do
     end
 
     it "returns the next version" do
-      expect(CdiscTerm.next_version).to eq(11)
+      expect(CdiscTerm.next_integer_version).to eq(11)
     end
 
   end

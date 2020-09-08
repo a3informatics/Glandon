@@ -17,24 +17,11 @@ class DashboardController < ApplicationController
     end
   end
 
-  def view
-  	authorize Dashboard
-    @dashboard = Dashboard.new
-  	@id = params[:id]
-    @namespace = params[:namespace]
-  end
-
-  def database
-  	authorize Dashboard
-    @triples = Dashboard.find(params[:id], params[:namespace])
-    render json: @triples
-  end
-
 private
 
-  def the_params
-    params.require(:dashboard).permit(:id, :namespace)
-  end
+  # def the_params
+  #   params.require(:dashboard).permit(:id, :namespace)
+  # end
 
   def user_access_on_role
     return :community if current_user.is_only_community?
@@ -48,6 +35,5 @@ private
 		return :term if policy(Thesaurus).index?
 		return :none
 	end
-
 
 end

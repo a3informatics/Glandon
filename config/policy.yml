@@ -341,6 +341,10 @@ defaults: &defaults
       create_from_template: create
       edit_data: edit
       update_property: update
+  FormPolicy:
+    policies: {}
+    alias:
+      crf: show
   CdiscTermPolicy:
     policies:
       index:

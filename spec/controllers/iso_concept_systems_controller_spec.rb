@@ -16,10 +16,10 @@ describe IsoConceptSystemsController do
       clear_triple_store
       data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
       load_files(schema_files, data_files)
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
+      # clear_iso_concept_object
+      # clear_iso_namespace_object
+      # clear_iso_registration_authority_object
+      # clear_iso_registration_state_object
     end
 
     it "returns a concept system tree, none exists" do
