@@ -204,6 +204,7 @@ module Fuseki
       opts[:read_exclude] = opts.key?(:read_exclude)
       opts[:delete_exclude] = opts.key?(:delete_exclude)
       opts[:base_type] = ""
+      opts[:extension] = false
       add_to_resources(name, opts)
 
       if opts[:cardinality] != :one 
@@ -302,7 +303,8 @@ module Fuseki
         type: :data, 
         base_type: simple_datatype, 
         read_exclude: false, 
-        delete_exclude: false 
+        delete_exclude: false,
+        extension: false
       }
       options[:default] = opts.key?(:default) ? opts[:default] : simple_datatype.default
       add_to_resources(name, options)
