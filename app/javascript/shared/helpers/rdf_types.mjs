@@ -125,13 +125,13 @@ const rdfTypesMap = {
     rdfType: "http://www.assero.co.uk/BusinessForm#CommonItem",
     name: "Common Item"
   },
-  Q_CL: {
+  TC_REF: {
     rdfType: "http://www.assero.co.uk/BusinessOperational#TcReference",
-    name: "Terminology Reference"
+    name: "Code List Reference"
   },
-  BC_CL: {
-    rdfType: "http://www.assero.co.uk/BusinessOperational#TcReference",
-    name: "Terminology Reference"
+  TUC_REF: {
+    rdfType: "http://www.assero.co.uk/BusinessOperational#TucReference",
+    name: "Code List Item Reference"
   },
 
   // BC Types

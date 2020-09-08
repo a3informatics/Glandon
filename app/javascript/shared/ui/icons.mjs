@@ -1,6 +1,7 @@
 import { getRdfType, getRdfName } from 'shared/helpers/rdf_types'
 import { isCDISC } from 'shared/helpers/utils'
 import colors from 'shared/ui/colors'
+import { isCharLetter } from 'shared/helpers/strings'
 
 /*** Icon Renderers ***/
 
@@ -147,6 +148,13 @@ function renderIcon({
   style = "",
   focusable = false
 }) {
+
+  if ( isCharLetter(iconName) )
+    return `<span class='font-bold ${cssClasses} ${ttip ? 'ttip' : ''}'> ` +
+            (ttip ? `<span class='ttip-text shadow-small text-medium ${ttipClasses}'> ${ttipText} </span>` : '') +
+            `${ iconName }`+
+            `</span>`;
+
   return `<span class='icon-${iconName} ${cssClasses} ${ttip ? 'ttip' : ''}' style='${style}' ${focusable ? "tabindex='1'" : ""}>` +
             (ttip ? `<span class='ttip-text shadow-small text-medium ${ttipClasses}'> ${ttipText} </span>` : '') +
          `</span>`;

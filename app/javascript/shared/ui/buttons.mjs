@@ -5,18 +5,24 @@ import { renderIcon } from 'shared/ui/icons'
 
 /**
  * Returns HTML for a button linking to item's history
- * @param {string} url path to the item's history
+ * @param {Object} params Button parameters
+ * @param {string} params.url Path to the item's history
+ * @param {string} params.id Button id, optional
+ * @param {string} params.icon Button icon name (without 'icon-' prefix)
+ * @param {string} params.color Button color css class, optional
+ * @param {string} params.ttip Button tooltip text, optional
  * @return {string} formatted button HTML
  */
 function iconBtn({
   url = '#',
+  id,
   icon,
   color = '',
   ttip
   }) {
 
-  return `<a href='${url}' class='btn icon-only ${ color } ${ ttip ? 'ttip' : '' }'>` +
-            (ttip ? `<span class='ttip-text shadow-small text-medium text-small'>${ ttip }</span>` : '') +
+  return `<a href='${url}' ${ id ? ` id='${ id }' ` : '' } class='btn icon-only ${ color } ${ ttip ? 'ttip' : '' }'>` +
+            (ttip ? `<span class='ttip-text ttip-top shadow-small text-medium text-small'>${ ttip }</span>` : '') +
             renderIcon({ iconName: icon }) +
          `</a>`;
 

@@ -24,7 +24,7 @@ function cropText(text, maxLength = 30) {
  * @return {boolean} True if character is an english alphabet letter
  */
 function isCharLetter(char) {
-  return  char.toUpperCase() != char.toLowerCase();
+  return char.length === 1 && char.toUpperCase() != char.toLowerCase();
 }
 
 export {
