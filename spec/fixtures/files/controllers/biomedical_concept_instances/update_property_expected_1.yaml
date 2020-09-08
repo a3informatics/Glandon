@@ -18,6 +18,7 @@
       :question_text: something
       :prompt_text: ''
       :format: '8'
+      :alias: "--TESTCD"
       :has_coded_value:
       - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUzNDc=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y2MSNDNjY3NDE%3D"
         :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGVfVFVDMQ==
@@ -71,6 +72,7 @@
       :question_text: Result
       :prompt_text: Height
       :format: '5.2'
+      :alias: "--ORRES"
       :has_coded_value: []
       :is_a: http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80
       :is_complex_datatype_property: http://www.s-cubed.dk/CDT#PQR_value
@@ -92,6 +94,7 @@
       :question_text: Unit
       :prompt_text: Unit
       :format: '20'
+      :alias: "--ORRESU"
       :has_coded_value:
       - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNDExMzk=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2MiNDNzE2MjA%3D"
         :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQY29kZV9UVUMz
@@ -244,6 +247,7 @@
       :question_text: Date and time
       :prompt_text: Date Time
       :format: ''
+      :alias: "--DTC"
       :has_coded_value: []
       :is_a: http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995
       :is_complex_datatype_property: http://www.s-cubed.dk/CDT#DATETIME_value
