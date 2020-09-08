@@ -106,7 +106,7 @@ describe BiomedicalConcept do
     sparql.default_namespace(results.first.uri.namespace)
     results.each{|x| x.to_sparql(sparql, true)}
     full_path = sparql.to_file
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
+  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
 	end
 
   it "create instances" do
@@ -125,13 +125,14 @@ describe BiomedicalConcept do
         object.has_item_push(create_item(item, index+2, template))
       end
       object.set_initial(instance[:identifier])
+byebug
       results << object
     end
     sparql = Sparql::Update.new
     sparql.default_namespace(results.first.uri.namespace)
     results.each{|x| x.to_sparql(sparql, true)}
     full_path = sparql.to_file
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_instances.ttl")
+  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_instances.ttl")
   end
 
   it "check data" do

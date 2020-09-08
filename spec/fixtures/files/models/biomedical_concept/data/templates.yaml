@@ -10,6 +10,7 @@
       :has_property: 
       - 
         :label: "code"
+        :alias: "--TESTCD"
         :is_a: "Test Code"
   :has_items:
   - :label: "Category Code"
@@ -20,6 +21,7 @@
       :has_property: 
       - 
         :label: "code"
+        :alias: "--CAT"
         :is_a: "Category"
   - :label: "Subcategory Code"
     :madatory: false
@@ -29,6 +31,7 @@
       :has_property: 
       - 
         :label: "code"
+        :alias: "--SCAT"
         :is_a: "Sub Category"
   - :label: "Position"
     :madatory: false
@@ -38,6 +41,7 @@
       :has_property: 
       - 
         :label: "code"
+        :alias: "--POS"
         :is_a: "Position"
   - :label: "Site of Administration"
     :madatory: false
@@ -47,6 +51,7 @@
       :has_property: 
       - 
         :label: "code"
+        :alias: "--LOC"
         :is_a: "Location"
   - :label: "Laterality"
     :madatory: false
@@ -56,6 +61,7 @@
       :has_property: 
       - 
         :label: "code"
+        :alias: "--LAT"
         :is_a: "Laterality"
   - :label: "Method"
     :madatory: false
@@ -65,6 +71,7 @@
       :has_property: 
       - 
         :label: "code"
+        :alias: "--METHOD"
         :is_a: "Method"
   - :label: "Date Time"
     :madatory: true
@@ -74,6 +81,7 @@
       :has_property: 
       - 
         :label: "value"
+        :alias: "--DTC"
         :is_a: "Date Time of Observation"
   - :label: "Not Done"
     :madatory: true
@@ -83,6 +91,7 @@
       :has_property: 
       - 
         :label: "value"
+        :alias: "--STAT"
         :is_a: "Status"
   - :label: "Reason Not Done"
     :madatory: true
@@ -92,6 +101,7 @@
       :has_property: 
       - 
         :label: "value"
+        :alias: "--REASND"
         :is_a: "Reason Not Done"
   - :label: "Result"
     :madatory: true
@@ -101,14 +111,15 @@
       :has_property: 
       - 
         :label: "code"
+        :alias: "--ORRES"
         :is_a: "Result Value"
     - :short_name: PQR
       :has_property: 
       - 
         :label: "code"
+        :alias: "--ORRESU"
         :is_a: "Result Units"
       - 
         :label: "value"
+        :alias: "--ORRES"
         :is_a: "Result Value"
-
-
