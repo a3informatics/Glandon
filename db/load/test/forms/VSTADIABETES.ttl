@@ -94,7 +94,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023_I11_DT1_P2> ;
+	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
 :F_NG1_BCG5_BP3_TUC1
 	rdf:type bo:TucReference ;
@@ -122,7 +122,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023_I11_DT1_P1> ;
+	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
 :F_NG1_BCG5_BP1
 	rdf:type bf:BcProperty ;
@@ -143,7 +143,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023_I4_DT1_P1> ;
+	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
 .
 :F_NG1_BCG5_BP1_TUC1
 	rdf:type bo:TucReference ;
@@ -181,7 +181,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023> ;
+	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI> ;
 .
 :F_NG1_BCG1
 	rdf:type bf:BcGroup ;
@@ -213,7 +213,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V7#BC-ACME_BC000020_I10_DT1_P2> ;
+	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
 :F_NG1_BCG1_BP2_TUC1
 	rdf:type bo:TucReference ;
@@ -261,7 +261,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V7#BC-ACME_BC000020_I10_DT1_P1> ;
+	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
 :F_NG1_BCG1_R1
 	rdf:type bo:Reference ;
@@ -269,7 +269,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V7#BC-ACME_BC000020> ;
+	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI> ;
 .
 :F_NG1_BCG8
 	rdf:type bf:BcGroup ;
@@ -388,7 +388,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V8#BC-ACME_BC000010_I10_DT1_P2> ;
+	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
 :F_NG1_BCG2_BP2_TUC1
 	rdf:type bo:TucReference ;
@@ -426,7 +426,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V8#BC-ACME_BC000010_I10_DT1_P1> ;
+	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
 :F_NG1_BCG2_R1
 	rdf:type bo:Reference ;
@@ -434,7 +434,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V8#BC-ACME_BC000010> ;
+	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI> ;
 .
 :F_NG1_BCG3
 	rdf:type bf:BcGroup ;
@@ -464,7 +464,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000012_I11_DT1_P2> ;
+	bo:reference <http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
 .
 :F_NG1_BCG3_BP2_TUC1
 	rdf:type bo:TucReference ;
@@ -492,7 +492,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000012_I11_DT1_P1> ;
+	bo:reference <http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
 .
 :F_NG1_BCG3_R1
 	rdf:type bo:Reference ;
@@ -500,7 +500,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000012> ;
+	bo:reference <http://www.s-cubed.dk/BMI/V1#BCI> ;
 .
 :F_NG1_BCG6
 	rdf:type bf:BcGroup ;
@@ -530,7 +530,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000024_I8_DT1_P2> ;
+	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
 :F_NG1_BCG6_BP2_TUC1
 	rdf:type bo:TucReference ;
@@ -558,7 +558,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000024_I8_DT1_P1> ;
+	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
 :F_NG1_BCG6_R1
 	rdf:type bo:Reference ;
@@ -566,7 +566,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000024> ;
+	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI> ;
 .
 :F_NG1_BCG7
 	rdf:type bf:BcGroup ;
@@ -683,7 +683,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000026_I11_DT1_P1> ;
+	bo:reference <http://www.s-cubed.dk/HR/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
 .
 :F_NG1_BCG4_BP2
 	rdf:type bf:BcProperty ;
@@ -702,7 +702,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000026_I11_DT1_P2> ;
+	bo:reference <http://www.s-cubed.dk/HR/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
 .
 :F_NG1_BCG4_BP2_TUC1
 	rdf:type bo:TucReference ;
@@ -720,5 +720,5 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000026> ;
+	bo:reference <http://www.s-cubed.dk/HR/V1#BCI> ;
 .
