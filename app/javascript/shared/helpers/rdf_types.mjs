@@ -101,6 +101,10 @@ const rdfTypesMap = {
     rdfType: "http://www.assero.co.uk/BusinessForm#CommonGroup",
     name: "Common Group"
   },
+  BC_GROUP: {
+    rdfType: "http://www.assero.co.uk/BusinessForm#BcGroup",
+    name: "Biomedical Concept"
+  },
   PLACEHOLDER: {
     rdfType: "http://www.assero.co.uk/BusinessForm#Placeholder",
     name: "Placeholder"

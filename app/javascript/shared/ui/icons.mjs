@@ -215,6 +215,11 @@ _typeIconMap[getRdfType('COMMON_GROUP')] = {
   char: 'C',
   color: colors.lightOrange
 }
+_typeIconMap[getRdfType('BC_GROUP')] = {
+  icon: 'icon-biocon',
+  char: '\ue90b',
+  color: colors.accentPurple
+}
 _typeIconMap[getRdfType('COMMON_ITEM')] = {
   icon: '',
   char: 'I',
