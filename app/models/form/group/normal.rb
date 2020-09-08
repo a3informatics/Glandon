@@ -40,7 +40,9 @@ class Form::Group::Normal < Form::Group
       html += repeating_question_group
     elsif self.repeating && self.is_bc_only_group?
       html += repeating_bc_group
-    else
+    elsif self.is_bc_common?
+      html += bc_common_group
+    else 
       self.has_item.sort_by {|x| x.ordinal}.each do |item|
         html += item.to_crf
       end
@@ -53,8 +55,10 @@ class Form::Group::Normal < Form::Group
 
   # Is a Question only group
   def is_question_only_group?
-    self.has_sub_group.each do |sg|
-      sg.is_question_only_group?
+    if self.class == Form::Group::Normal
+      self.has_sub_group.each do |sg|
+        sg.is_question_only_group? if sg.class == Form::Group::Normal
+      end
     end
     self.has_item.each do |item|
       return true if item.class == Form::Item::Question || item.class == Form::Item::Mapping || item.class == Form::Item::TextLabel 
@@ -67,10 +71,41 @@ class Form::Group::Normal < Form::Group
     self.has_item.each do |item|
       return false if item.class != Form::Item::BcProperty
     end
-    self.has_sub_group.each do |sg|
-      sg.is_bc_only_group?
+    if self.class == Form::Group::Normal
+      self.has_sub_group.each do |sg|
+        sg.is_bc_only_group? if sg.class == Form::Group::Normal
+      end
     end
     return true
+  end
+
+  # Is a BC group with common group
+  def is_bc_common?
+    self.has_sub_group.each do |sg|
+      if !sg.has_common.empty?
+        return true
+      end
+    end
+    return false
+  end
+
+  #BC common group
+  def bc_common_group
+    html = ""
+    items = {}
+    self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
+      html += text_row(sg.label)
+      sg.has_item.sort_by {|x| x.ordinal}.each do |item|
+        html += item.to_crf
+      end
+      sg.has_common.sort_by {|x| x.ordinal}.each do |cm|
+        if !items.has_key?(cm.label)
+            html += cm.to_crf
+            items[cm.label] = cm.label
+        end
+      end   
+    end
+    return html
   end
 
   # Repeating Question group
@@ -131,14 +166,16 @@ class Form::Group::Normal < Form::Group
       html += start_row(false)
       sg.has_item.sort_by {|x| x.ordinal}.each do |item|
         property = BiomedicalConcept::PropertyX.find(item.has_property.first.reference)
-          if columns.has_key?(property.uri.to_s)
-            if property.has_coded_value.length == 0
-              html += property.input_field
-            else
-              html += terminology_cell(property)
-            end
+        if columns.has_key?(property.uri.to_s)
+          if property.has_coded_value.length == 0
+            html += property.input_field
+          else
+            html += terminology_cell(property)
           end
+        end
       end
+      html += end_row
+      html += start_row(false)
       html += end_row
     end
     html += '</tr>'
