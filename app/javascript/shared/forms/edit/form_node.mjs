@@ -78,7 +78,7 @@ export default class FormNode extends TreeNode {
    * @return {boolean} Value specifying if Node's type is a allowed to be Common
    */
    get commonAllowed() {
-    return rdfTypesMap.BC_QUESTION.rdfType === this.rdf;
+    return this.rdf === rdfTypesMap.BC_PROPERTY.rdfType;
   }
 
   /**
@@ -87,11 +87,15 @@ export default class FormNode extends TreeNode {
    */
    get removeAllowed() {
     return ![
-      rdfTypesMap.BC_QUESTION.rdfType,
+      rdfTypesMap.BC_PROPERTY.rdfType,
       rdfTypesMap.FORM.rdfType,
       rdfTypesMap.TC_REF.rdfType,
       rdfTypesMap.TUC_REF.rdfType
     ].includes( this.rdf );
+  }
+
+  get restoreAllowed() {
+    return this.rdf === rdfTypesMap.COMMON_ITEM.rdfType;
   }
 
 
