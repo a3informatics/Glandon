@@ -1,6 +1,6 @@
 import TreeGraph from 'shared/base/d3/tree/tree_graph'
 import FormNode from 'shared/forms/edit/form_node'
-import NodeEditor from 'shared/forms/edit/node_editor_view'
+import NodeEditor from 'shared/forms/edit/form_node_editor'
 
 import { D3Tooltip } from 'shared/helpers/d3/renderers/tooltip'
 import { D3Actions } from 'shared/helpers/d3/renderers/actions'
