@@ -5,6 +5,7 @@
 .d3 {
 	position: relative;
 	overflow: hidden;
+	height: 100%;
 }
 
 .d3 #graph-controls {
@@ -13,6 +14,7 @@
 	width: auto;
 	height: 50px;
 	left: 50%;
+	padding: 4px 14px;
 	transform: translateX(-50%);
 	align-items: baseline;
 	background: rgba(255,255,255,0.9);
@@ -24,11 +26,20 @@
 	background: white;
 }
 
-// Nodes and link styles
+// Custom styles
 
-.d3 .node.search-match .label-border {
+.d3 .node.disabled .label {
+  fill: $grey-light !important;
+}
+
+.d3 .node.search-match .label-border,
+	.d3 .node.search-match circle {
 	stroke: $accent-color-2-light !important;
 	stroke-width: 3px !important;
+}
+
+.d3 .node.search-match circle.with-icon {
+	stroke-width: 0px !important;
 }
 
 // Loading
@@ -48,12 +59,23 @@
 	transform: translateY(-50%);
 }
 
+.d3 #loading-extra {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	padding: 2px 4px;
+	background: white;
+	font-family: $font-light;
+	color: $grey-light;
+	display: none;
+}
+
 // Tooltip
 
 .graph-tooltip {
 	position: absolute;
 	max-width: 240px;
-	visibility: hidden;
+	display: none;
 	background: white;
 	padding: 10px;
 	border-radius: 10px;

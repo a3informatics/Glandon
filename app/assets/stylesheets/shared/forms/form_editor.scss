@@ -1,12 +1,17 @@
 @import 'shared/vars';
 
+// Node actions
+
 .node-actions {
   position: absolute;
-	width: 122px;
   background: white;
   border-radius: 20px;
   border: 2px solid;
   display: none;
+}
+
+.node-actions .btns-wrap {
+  flex-wrap: nowrap;
 }
 
 .node-actions .btns-wrap .btn {
@@ -17,4 +22,86 @@
 .node-actions .btns-wrap .btn .icon-arrow-u,
   .node-actions .btns-wrap .btn .icon-arrow-d {
   font-size: $font-small;
+}
+
+.node-actions .context-menu {
+  max-height: 130px;
+}
+
+// Node Editor
+
+.ne-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ne-content .ne-title .ne-icon {
+  font-size: $font-xlarge;
+}
+
+.ne-content .ne-title {
+  font-size: $font-normal;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.ne-content .field-table tr td {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.ne-content .field-table tr td:first-of-type {
+  font-size: $font-xtiny;
+  text-align: right;
+}
+
+.ne-content .field-table tr td:last-of-type {
+  padding-left: 10px;
+}
+
+.ne-content .ne-field {
+  max-width: 80%;
+}
+
+.ne-content .ne-field input[type='text'] {
+  min-width: 300px;
+  padding-right: 20px;
+}
+
+.ne-content input[type='checkbox'] {
+  min-width: auto;
+  margin-right: 4px;
+}
+
+.ne-content label {
+  display: flex;
+  align-items: center;
+}
+
+.ne-content .ne-field textarea {
+  min-width: 300px;
+  max-width: 500px;
+  min-height: 50px;
+  max-height: 150px;
+}
+
+.ne-content .ne-field textarea.wide {
+  min-width: 400px;
+  min-height: 72px;
+}
+
+.ne-content .ne-field input:disabled,
+  .ne-content .ne-field textarea:disabled {
+  background: $row-highlight-background;
+}
+
+@media ( max-width: 1000px ) {
+
+  .ne-content .ne-field textarea,
+    .ne-content .ne-field input {
+      min-width: 200px !important;
+    }
+
 }

@@ -38,9 +38,11 @@ span.icon-context-menu, div.icon-context-menu{
 }
 
 .context-menu .option{
+  text-align: left;
   padding: 10px 14px;
   min-width: 150px;
   font-family: $font-light;
+  font-size: $font-small;
   color: $grey-medium;
   display: block;
   white-space: nowrap;
@@ -55,6 +57,8 @@ span.icon-context-menu, div.icon-context-menu{
   margin-right: 10px;
 }
 
+// Colors
+
 .context-menu .option:hover{
   background: $secondary-color-medium;
   color: $grey-white;
@@ -64,6 +68,19 @@ span.icon-context-menu, div.icon-context-menu{
 .context-menu.blue .option:hover{
   background: $primary-color-medium;
 }
+
+.context-menu.light .option:hover{
+  background: $primary-color-bright;
+}
+
+// Size
+
+.context-menu.small .option {
+  padding: 7px 10px;
+  min-width: 120px;
+  font-size: $font-xtiny;
+}
+
 // FIXES
 
 #history_wrapper .row{

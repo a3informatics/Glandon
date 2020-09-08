@@ -1,10 +1,30 @@
-// MODALS
+// Modals
+
+// Override BS Modal styles
+
+.modal-dialog {
+  transition-duration: 0.1s;
+  -webkit-transition-duration: 0.1s;
+}
+
+.modal-content {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  border-radius: $card-border-radius;
+}
+
+.modal-content .modal-header, .modal-content .modal-footer  {
+  color: $grey-medium;
+  border: 0;
+}
 
 .modal-body.centered{
   display: flex;
   align-items: center;
   flex-direction: column;
 }
+
+// Modal Sizes
 
 .modal-lg.small-screen {
   width: 50%;
@@ -38,7 +58,7 @@
   }
 }
 
-// MODAL IMGS
+// Modal Images
 img.modal-img{
   width: 120px;
   margin: 10px 0px;
