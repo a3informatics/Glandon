@@ -35,16 +35,16 @@ class Form::Group::Bc < Form::Group
     results
   end
 
-  # def to_crf
-  #   html = ""
-  #   html += text_row(self.label)
-  #   self.has_item.sort_by {|x| x.ordinal}.each do |item|
-  #     html += item.to_crf
-  #   end
-  #   self.has_common.sort_by {|x| x.ordinal}.each do |cm|
-  #     html += cm.to_crf
-  #   end
-  #   return html
-  # end
+  def to_crf
+    html = ""
+    html += text_row(self.label)
+    self.has_item.sort_by {|x| x.ordinal}.each do |item|
+      html += item.to_crf
+    end
+    self.has_common.sort_by {|x| x.ordinal}.each do |cm|
+      html += cm.to_crf
+    end
+    return html
+  end
 
 end
