@@ -76,7 +76,10 @@ describe Form do
           ?sg <http://www.assero.co.uk/BusinessForm#repeating> ?r .
           ?sg <http://www.assero.co.uk/BusinessForm#optional> ?o .
           ?sg <http://www.assero.co.uk/BusinessForm#ordinal> ?ordinal .
-          ?sg <http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> ?has_bc .
+          OPTIONAL 
+          {
+            ?sg <http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> ?has_bc .
+          }
           BIND(?sg as ?g)
         }
       }
