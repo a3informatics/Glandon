@@ -1,4 +1,4 @@
-import FormEditor from 'shared/forms/form_editor'
+import FormEditor from 'shared/forms/edit/editor_panel'
 import TokenTimer from 'shared/tokens/token_timer'
 
 $(document).ready( () => {
@@ -7,11 +7,12 @@ $(document).ready( () => {
     tokenId: tokenTimerId,
     warningTime: tokenTimerWarning
   });
-  
+
   let fe = new FormEditor({
     urls: {
       data: editorDataUrl,
-      update: editorUpdateUrl
+      update: editorUpdateUrl,
+      ucData: editorUCDataUrl
     }
   });
 
