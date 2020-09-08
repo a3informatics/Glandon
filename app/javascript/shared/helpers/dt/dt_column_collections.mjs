@@ -75,7 +75,10 @@ function dtBCEditColumns() {
   return [
     dtTrueFalseEditColumn('enabled'),
     dtTrueFalseEditColumn('collect'),
-    { data: 'has_complex_datatype.has_property.alias' },
+    {
+      data: 'has_complex_datatype.has_property.alias',
+      width: '18%' 
+    },
     dtInlineEditColumn('has_complex_datatype.has_property.question_text', 'question_text', '25%'),
     dtInlineEditColumn('has_complex_datatype.has_property.prompt_text', 'prompt_text', '25%'),
     { data: "has_complex_datatype.label" },
