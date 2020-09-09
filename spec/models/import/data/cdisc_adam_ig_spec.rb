@@ -68,10 +68,11 @@ describe "Import CDISC ADaM Implementation Guide Data" do
   end
 
   def set_params(version, date, files)
-    ctv = @date_to_ref_map[version-1][:ct]
+    ctv = @date_to_info_map[version-1][:ct]
+    sv = @date_to_info_map[version-1][:semantic_version]
     file_type = !files.empty? ? "0" : "3"
-    { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "Controlled Terminology", 
-      semantic_version: "#{version}.0.0", job: @job, file_type: file_type, 
+    { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "ADaM Implementation Guide", 
+      semantic_version: "#{sv}", job: @job, file_type: file_type, 
       ct: Uri.new(uri: "http://www.cdisc.org/CT/V#{ctv}#TH")
     }
   end
@@ -132,10 +133,10 @@ describe "Import CDISC ADaM Implementation Guide Data" do
       "adam_ig_1-0.xlsx", "adam_ig_1-1.xlsx", "adam_ig_1-2.xlsx"
     ]
 
-    @date_to_ref_map = [
-      {ct: 18}, 
-      {ct: 46}, 
-      {ct: 61}
+    @date_to_info_map = [
+      {ct: 18, semantic_version: "1.0.0"}, 
+      {ct: 46, semantic_version: "1.1.0"}, 
+      {ct: 61, semantic_version: "1.2.0"}
     ]
   end
   

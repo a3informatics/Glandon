@@ -75,11 +75,12 @@ describe "Import CDISC SDTM Implementation Guide Data" do
   end
 
   def set_params(version, date, files)
-    ctv = @date_to_ref_map[version-1][:ct]
-    modelv = @date_to_ref_map[version-1][:model]
+    ctv = @date_to_info_map[version-1][:ct]
+    modelv = @date_to_info_map[version-1][:model]
+    sv = @date_to_info_map[version-1][:semantic_version]
     file_type = !files.empty? ? "0" : "3"
-    { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "Controlled Terminology", 
-      semantic_version: "#{version}.0.0", job: @job, file_type: file_type, 
+    { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "SDTM Implementation Guide", 
+      semantic_version: "#{sv}", job: @job, file_type: file_type, 
       ct: Uri.new(uri: "http://www.cdisc.org/CT/V#{ctv}#TH"),
       model: Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL/V#{modelv}#M"),
     }
@@ -141,11 +142,11 @@ describe "Import CDISC SDTM Implementation Guide Data" do
       "sdtm_ig_3-1-2.xlsx", "sdtm_ig_3-1-3.xlsx", "sdtm_ig_3-2.xlsx", "sdtm_ig_3-3.xlsx"
     ]
 
-    @date_to_ref_map = [
-      {ct: 13, model: 1}, 
-      {ct: 31, model: 2}, 
-      {ct: 36, model: 3}, 
-      {ct: 57, model: 6}
+    @date_to_info_map = [
+      {ct: 13, model: 1, semantic_version: "3.1.2"}, 
+      {ct: 31, model: 2, semantic_version: "3.1.3"}, 
+      {ct: 36, model: 3, semantic_version: "3.2.0"}, 
+      {ct: 57, model: 6, semantic_version: "3.3.0"}
     ]
   end
   

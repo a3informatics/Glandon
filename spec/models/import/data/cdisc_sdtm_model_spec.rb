@@ -67,7 +67,7 @@ describe "Import CDISC SDTM Model Data" do
 
   def set_params(version, date, files)
     file_type = !files.empty? ? "0" : "3"
-    { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "Controlled Terminology", 
+    { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "SDTM Model", 
       semantic_version: "#{version}.0.0", job: @job, file_type: file_type}
   end
 

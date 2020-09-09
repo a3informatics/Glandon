@@ -1,6 +1,7 @@
 class SdtmIgDomain < Tabulation
 
-  configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmDomain"
+  configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmDomain",
+            uri_suffix: "IGD"
 
   data_property :prefix
   data_property :structure

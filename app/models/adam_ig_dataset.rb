@@ -10,7 +10,8 @@
 # @since 2.21.0
 class AdamIgDataset < Tabulation
 
-  configure rdf_type: "http://www.assero.co.uk/Tabulation#ADaMDataset"
+  configure rdf_type: "http://www.assero.co.uk/Tabulation#ADaMDataset",
+            uri_suffix: "ADS"
 
   data_property :prefix
   data_property :structure
