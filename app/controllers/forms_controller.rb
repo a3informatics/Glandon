@@ -49,6 +49,12 @@ class FormsController < ManagedItemsController
     #end
   end
 
+  def referenced_items
+    form = Form.find_minimum(protect_from_bad_id(params))
+    items = form.get_referenced_items
+    render json: { data: items }, status: 200
+  end
+
   # def new
   #   authorize Form
   #   @form = Form.new
