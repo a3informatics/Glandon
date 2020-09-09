@@ -4,7 +4,7 @@
   :status_path: ''
   :current_path: ''
   :delete_path: ''
-  :show_path: "/sdtm_models/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9JTlRFUlZFTlRJT05TL1YxI0NM"
+  :show_path: "/sdtm_models/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTC9WMSNN"
   :search_path: ''
   :list_cn_path: ''
   :impact_path: ''
@@ -18,14 +18,14 @@
     :subsetted: false
   :view_path: ''
   :compare_path: ''
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9JTlRFUlZFTlRJT05TL1YxI0NM
-  :uri: http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTC9WMSNN
+  :uri: http://www.cdisc.org/SDTM_MODEL/V1#M
   :rdf_type: http://www.assero.co.uk/Tabulation#Model
-  :label: SDTM MODEL INTERVENTIONS
+  :label: Controlled Terminology
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9JTlRFUlZFTlRJT05TL1YxI0NMX1JT
-    :uri: http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_RS
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTC9WMSNNX1JT
+    :uri: http://www.cdisc.org/SDTM_MODEL/V1#M_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Standard
     :administrative_note: ''
@@ -50,10 +50,10 @@
         :name: Clinical Data Interchange Standards Consortium
         :authority: www.cdisc.org
   :has_identifier:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9JTlRFUlZFTlRJT05TL1YxI0NMX1NJ
-    :uri: http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_SI
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTC9WMSNNX1NJ
+    :uri: http://www.cdisc.org/SDTM_MODEL/V1#M_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTM MODEL INTERVENTIONS
+    :identifier: SDTM MODEL
     :version_label: 2008-11-12 Release
     :version: 1
     :semantic_version: 1.0.0
@@ -65,7 +65,7 @@
       :name: Clinical Data Interchange Standards Consortium
       :authority: www.cdisc.org
   :has_previous_version: 
-  :origin: ''
+  :origin: 'Created from files: ''sdtm_1-2.xlsx'''
   :change_description: ''
   :creation_date: '2008-11-12T00:00:00+00:00'
   :last_change_date: '2008-11-12T00:00:00+00:00'

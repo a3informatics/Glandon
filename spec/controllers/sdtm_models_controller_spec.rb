@@ -36,13 +36,13 @@ describe SdtmModelsController do
     end
 
     it "show" do
-      sdtm_model = SdtmModel.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL"))
+      sdtm_model = SdtmModel.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL/V1#M"))
       get :show, params: { :id => sdtm_model.id}
       expect(response).to render_template("show")
     end
 
     it "show results" do
-      sdtm_model = SdtmModel.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL"))
+      sdtm_model = SdtmModel.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL/V1#M"))
       request.env['HTTP_ACCEPT'] = "application/json"
       get :show_data, params:{id: sdtm_model.id, sdtm_model:{count: 10, offset: 0}}
       expect(response.content_type).to eq("application/json")
@@ -52,7 +52,7 @@ describe SdtmModelsController do
     end
 
     it "shows the history, page" do
-      sdtm_model = SdtmModel.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL"))
+      sdtm_model = SdtmModel.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL/V1#M"))
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(SdtmModel).to receive(:history_pagination).with({identifier: sdtm_model.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([sdtm_model])
       get :history, params:{sdtm_model: {identifier: sdtm_model.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=", count: 20, offset: 20}}
