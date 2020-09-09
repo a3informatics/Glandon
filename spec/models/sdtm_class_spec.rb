@@ -25,6 +25,10 @@ describe SdtmClass do
     check_file_actual_expected(item.to_h, sub_dir, "find_expected.yaml", equate_method: :hash_equal)
   end
 
+  it "allows a class to be found, not found error" do
+    expect{SdtmClass.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_SE/V1#CLxx"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.cdisc.org/SDTM_MODEL_SE/V1#CLxx in SdtmClass.")
+  end
+
   it "allows a class to get children (class variables)" do
     actual = []
     item = SdtmClass.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL"))
