@@ -21,7 +21,7 @@ class Form::Item::Common < Form::Item
     html += start_row(self.optional)
     html += question_cell(property.question_text)
     if property.has_coded_value.length == 0
-      html += property.input_field
+      html += input_field(property)
     else
       html += terminology_cell(property)
     end

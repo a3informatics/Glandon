@@ -20,6 +20,8 @@ class Form::Group::Common < Form::Group
   end
 
   # To CRF
+  #
+  # @return [String] An html string of Common group
   def to_crf
     html = ""
     html += text_row(self.label)
@@ -28,11 +30,5 @@ class Form::Group::Common < Form::Group
     end
     return html
   end
-
-  # def build_common_map
-  #   self.has_item.sort_by {|x| x.ordinal}.each do |item|
-  #     item.build_common_map
-  #   end
-  # end
 
 end

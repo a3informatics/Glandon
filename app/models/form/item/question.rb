@@ -31,7 +31,7 @@ class Form::Item::Question < Form::Item
     html += start_row(self.optional)
     html += question_cell(self.question_text)
     if self.has_coded_value.count == 0
-      html += input_field
+      html += input_field(self)
     else
       html += terminology_cell
     end

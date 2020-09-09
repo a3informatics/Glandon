@@ -38,7 +38,7 @@ class Form::Item::BcProperty < Form::Item
       html += start_row(self.optional)
       html += question_cell(property.question_text)
       if property.has_coded_value.length == 0
-        html += property.input_field
+        html += input_field(property)
       else
         html += terminology_cell
       end
@@ -46,15 +46,5 @@ class Form::Item::BcProperty < Form::Item
     end
     return html
   end
-
-  # def build_common_map
-  #   if self.is_common
-  #     property_ref = self.has_property.first.reference
-  #     property = BiomedicalConcept::PropertyX.find(property_ref)
-  #     node = property.to_h
-  #     common_map[property.uri.to_s] = node if !common_map.has_key?(property.uri.to_s)        
-  #   end
-  #   return common_map
-  # end
 
  end

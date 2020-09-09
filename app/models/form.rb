@@ -27,7 +27,6 @@ class Form < IsoManagedV2
   def to_crf
     form = self.class.find_full(self.uri)
     html = ''
-    #form.build_common_map
     html += get_css
     html += '<table class="table table-striped table-bordered table-condensed">'
     html += '<tr>'
@@ -59,11 +58,5 @@ class Form < IsoManagedV2
     html += "p.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
     html += "</style>"
   end
-
-  # def build_common_map
-  #   self.has_group.sort_by {|x| x.ordinal}.each do |group|
-  #     group.build_common_map
-  #   end
-  # end
 
 end

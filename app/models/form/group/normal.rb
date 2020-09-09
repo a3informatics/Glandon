@@ -129,7 +129,7 @@ class Form::Group::Normal < Form::Group
     html += '</tr>'
     html += '<tr>'
     self.has_item.sort_by {|x| x.ordinal}.each do |item|
-      html += item.input_field if item.class == Form::Item::Question
+      html += input_field(item) if item.class == Form::Item::Question
     end
     html += '</tr>'
     html += '</table></td>' 
@@ -170,7 +170,7 @@ class Form::Group::Normal < Form::Group
         property = BiomedicalConcept::PropertyX.find(item.has_property.first.reference)
         if columns.has_key?(property.uri.to_s)
           if property.has_coded_value.length == 0
-            html += property.input_field
+            html += input_field(property)
           else
             html += terminology_cell(property)
           end
@@ -183,6 +183,52 @@ class Form::Group::Normal < Form::Group
     html += '</tr>'
     html += '</table></td>'
     return html
+  end
+
+  # Format input field
+  def input_field(item)
+    html = '<td>'
+    if item.class == BiomedicalConcept::PropertyX
+      prop = ComplexDatatype::PropertyX.find(item.is_complex_datatype_property)
+      datatype = XSDDatatype.new(prop.simple_datatype)
+    else
+      datatype = XSDDatatype.new(item.datatype)
+    end
+      if datatype.datetime?
+        html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
+      #elsif datatype.date?
+      #  html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
+      #elsif datatype.time?
+      #  html += field_table(["H", "H", ":", "M", "M"])
+      elsif datatype.float?
+        item.format = "5.1" if item.format.blank?
+        parts = item.format.split('.')
+        major = parts[0].to_i
+        minor = parts[1].to_i
+        pattern = ["#"] * major
+        pattern[major-minor-1] = "."
+        html += field_table(pattern)
+      elsif datatype.integer?
+        count = item.format.to_i
+        html += field_table(["#"]*count)
+      elsif datatype.string?
+        length = item.format.scan /\w/
+        html += field_table([" "]*5 + ["S"] + length + [""]*5)
+      elsif datatype.boolean?
+        html += '<input type="checkbox">'
+      else
+        html += field_table(["?", "?", "?"])
+      end
+      html += '</td>'
+  end
+
+  # Format a field
+  def field_table(cell_content)
+    html = "<table class=\"crf-input-field\"><tr>"
+    cell_content.each do |cell|
+      html += "<td>#{cell}</td>"
+    end
+    html += "</tr></table>"
   end
 
   def terminology_cell(property)
@@ -205,17 +251,5 @@ class Form::Group::Normal < Form::Group
   def end_row
     return "</tr>"
   end
-
-  # def build_common_map
-  #   self.has_item.sort_by {|x| x.ordinal}.each do |item|
-  #     item.build_common_map
-  #   end
-  #   self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-  #     sg.build_common_map
-  #   end
-  #   self.has_common.sort_by {|x| x.ordinal}.each do |cg|
-  #     cg.build_common_map
-  #   end
-  # end
 
 end
