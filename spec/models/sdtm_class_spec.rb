@@ -11,18 +11,23 @@ describe SdtmClass do
   end
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "sdtm/SDTM_Model_1-4.ttl"]
+    data_files = []
     load_files(schema_files, data_files)
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
   end
 
 	it "allows a class to be found" do
-    item = SdtmClass.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS"))
+    item = SdtmClass.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_SE/V1#CL"))
     check_file_actual_expected(item.to_h, sub_dir, "find_expected.yaml", equate_method: :hash_equal)
   end
 
   it "allows a class to get children (class variables)" do
     actual = []
-    item = SdtmClass.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS"))
+    item = SdtmClass.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL"))
     children = item.get_children
     children.each {|x| actual << x.to_h}
     check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)

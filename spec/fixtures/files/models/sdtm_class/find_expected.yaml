@@ -1,12 +1,12 @@
 ---
-:id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMSU5URVJWRU5USU9OUw==
-:uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS
+:id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTA==
+:uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL
 :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
-:label: Interventions
+:label: SE
 :tagged: []
 :has_state:
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQ0RJU0NfU0RUTU1PREVMSU5URVJWRU5USU9OUy0z
-  :uri: http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODELINTERVENTIONS-3
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9SUw==
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_RS
   :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
   :registration_status: Standard
   :administrative_note: ''
@@ -14,7 +14,7 @@
   :until_date: '2016-01-01T00:00:00+00:00'
   :unresolved_issue: ''
   :administrative_status: ''
-  :previous_state: Incomplete
+  :previous_state: Standard
   :multiple_edit: false
   :by_authority:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
@@ -31,13 +31,13 @@
       :name: Clinical Data Interchange Standards Consortium
       :authority: www.cdisc.org
 :has_identifier:
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQ0RJU0NfU0RUTU1PREVMSU5URVJWRU5USU9OUy0z
-  :uri: http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODELINTERVENTIONS-3
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9TSQ==
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_SI
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-  :identifier: SDTMMODEL INTERVENTIONS
-  :version_label: '1.4'
-  :version: 3
-  :semantic_version: 1.4.0
+  :identifier: SDTM MODEL SE
+  :version_label: 2008-11-12 Release
+  :version: 1
+  :semantic_version: 1.0.0
   :has_scope:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
     :uri: http://www.assero.co.uk/NS#CDISC
@@ -48,8 +48,8 @@
 :has_previous_version: 
 :origin: ''
 :change_description: ''
-:creation_date: '2013-11-26T00:00:00+00:00'
-:last_change_date: '2013-11-26T00:00:00+00:00'
+:creation_date: '2008-11-12T00:00:00+00:00'
+:last_change_date: '2008-11-12T00:00:00+00:00'
 :explanatory_comment: ''
 :rule: ''
 :ordinal: 1
