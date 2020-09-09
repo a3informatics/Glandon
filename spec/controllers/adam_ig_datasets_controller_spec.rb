@@ -35,13 +35,13 @@ describe AdamIgDatasetsController do
     end
 
     it "show" do
-      adam_ig_dataset = AdamIgDataset.find_minimum(Uri.new(uri: "http://www.cdisc.org/BDS/V1"))
+      adam_ig_dataset = AdamIgDataset.find_minimum(Uri.new(uri: "http://www.cdisc.org/BDS/V1#ADS"))
       get :show, params: { :id => adam_ig_dataset.id}
       expect(response).to render_template("show")
     end
 
     it "show results" do
-      adam_ig_dataset = AdamIgDataset.find_minimum(Uri.new(uri: "http://www.cdisc.org/BDS/V1"))
+      adam_ig_dataset = AdamIgDataset.find_minimum(Uri.new(uri: "http://www.cdisc.org/BDS/V1#ADS"))
       request.env['HTTP_ACCEPT'] = "application/json"
       get :show_data, params:{id: adam_ig_dataset.id, adam_ig_dataset:{count: 10, offset: 0}}
       expect(response.content_type).to eq("application/json")
@@ -51,7 +51,7 @@ describe AdamIgDatasetsController do
     end
 
     it "shows the history, page" do
-      adam_ig_dataset = AdamIgDataset.find_minimum(Uri.new(uri: "http://www.cdisc.org/BDS/V1"))
+      adam_ig_dataset = AdamIgDataset.find_minimum(Uri.new(uri: "http://www.cdisc.org/BDS/V1#ADS"))
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(AdamIgDataset).to receive(:history_pagination).with({identifier: adam_ig_dataset.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([adam_ig_dataset])
       get :history, params:{adam_ig_dataset: {identifier: adam_ig_dataset.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 20}}

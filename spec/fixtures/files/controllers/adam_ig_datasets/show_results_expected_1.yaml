@@ -1,5 +1,5 @@
 ---
-- :uri: http://www.cdisc.org/BDS/V1#AVSTUDYID
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVSTUDYID
   :ordinal: 1
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Study Identifier
@@ -8,7 +8,7 @@
   :notes: SDTM DM.STUDYID
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVUSUBJID
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVUSUBJID
   :ordinal: 2
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Unique Subject Identifier
@@ -17,7 +17,7 @@
   :notes: SDTM DM.USUBJID
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVSUBJID
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVSUBJID
   :ordinal: 3
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Subject Identifier for the Study
@@ -26,7 +26,7 @@
   :notes: SDTM DM.SUBJID. SUBJID is required in ADSL, but permissible in other datasets.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVSITEID
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVSITEID
   :ordinal: 4
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Study Site Identifier
@@ -35,7 +35,7 @@
   :notes: SDTM DM.SITEID. SITEID is required in ADSL, but permissible in other datasets.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVTRTP
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVTRTP
   :ordinal: 5
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Planned Treatment
@@ -48,7 +48,7 @@
     be useful for traceability and to provide context.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVTRTPN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVTRTPN
   :ordinal: 6
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Planned Treatment (N)
@@ -57,7 +57,7 @@
   :notes: The numeric code for TRTP. One-to-one map to TRTP.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVTRTA
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVTRTA
   :ordinal: 7
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Actual Treatment
@@ -72,7 +72,7 @@
     with a treatment other than the planned treatment.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVTRTAN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVTRTAN
   :ordinal: 8
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Actual Treatment (N)
@@ -81,7 +81,7 @@
   :notes: The numeric code for TRTA. One-to-one map to TRTA.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVTRTPGy
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVTRTPGy
   :ordinal: 9
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Planned Pooled Treatment y
@@ -95,7 +95,7 @@
     within a subject.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVTRTPGyN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVTRTPGyN
   :ordinal: 10
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Planned Pooled Treatment y (N)
@@ -104,7 +104,7 @@
   :notes: The numeric code for TRTPGy. One-to-one map to TRTPGy.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVTRTAGy
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVTRTAGy
   :ordinal: 11
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Actual Pooled Treatment y
@@ -115,7 +115,7 @@
     May vary by record within a subject.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVTRTAGyN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVTRTAGyN
   :ordinal: 12
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Actual Pooled Treatment y (N)
@@ -124,7 +124,7 @@
   :notes: The numeric code for TRTAGy. One-to-one map to TRTAGy.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVADT
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVADT
   :ordinal: 13
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Date
@@ -133,7 +133,7 @@
   :notes: The date associated with AVAL and/or AVALC in numeric format.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVATM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVATM
   :ordinal: 14
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Time
@@ -142,7 +142,7 @@
   :notes: The time associated with AVAL and/or AVALC in numeric format.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVADTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVADTM
   :ordinal: 15
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Date/Time
@@ -151,7 +151,7 @@
   :notes: The date/time associated with AVAL and/or AVALC in numeric format.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVADY
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVADY
   :ordinal: 16
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Relative Day
@@ -163,7 +163,7 @@
     as a variable in the given analysis dataset or alternatively in ADSL.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVADTF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVADTF
   :ordinal: 17
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Date Imputation Flag
@@ -173,7 +173,7 @@
     General Timing Variable Convention #6.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVATMF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVATMF
   :ordinal: 18
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Time Imputation Flag
@@ -183,7 +183,7 @@
     General Timing Variable Convention #7.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVASTDT
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVASTDT
   :ordinal: 19
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Start Date
@@ -194,7 +194,7 @@
     time, or when AVAL is a duration.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVASTTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVASTTM
   :ordinal: 20
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Start Time
@@ -205,7 +205,7 @@
     time, or when AVAL is a duration.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVASTDTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVASTDTM
   :ordinal: 21
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Start Date/Time
@@ -216,7 +216,7 @@
     of time, or when AVAL is a duration.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVASTDY
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVASTDY
   :ordinal: 22
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Start Relative Day
@@ -228,7 +228,7 @@
     an analysis dataset (typically, but not necessarily, ADSL).
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVASTDTF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVASTDTF
   :ordinal: 23
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Start Date Imputation Flag
@@ -238,7 +238,7 @@
     See General Timing Variable Convention #6.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVASTTMF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVASTTMF
   :ordinal: 24
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Start Time Imputation Flag
@@ -248,7 +248,7 @@
     See General Timing Variable Convention #7.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAENDT
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAENDT
   :ordinal: 25
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis End Date
@@ -257,7 +257,7 @@
   :notes: The end date associated with AVAL and/or AVALC. See also ASTDT.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAENTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAENTM
   :ordinal: 26
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis End Time
@@ -266,7 +266,7 @@
   :notes: The end time associated with AVAL and/or AVALC. See also ASTTM.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAENDTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAENDTM
   :ordinal: 27
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis End Date/Time
@@ -275,7 +275,7 @@
   :notes: The end datetime associated with AVAL and/or AVALC. See also ASTDTM.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAENDY
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAENDY
   :ordinal: 28
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis End Relative Day
@@ -285,7 +285,7 @@
     AENDT. See also ASTDY.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAENDTF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAENDTF
   :ordinal: 29
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis End Date Imputation Flag
@@ -295,7 +295,7 @@
     See General Timing Variable Convention #6.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAENTMF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAENTMF
   :ordinal: 30
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis End Time Imputation Flag
@@ -305,7 +305,7 @@
     See General Timing Variable Convention #7.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAVISIT
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAVISIT
   :ordinal: 31
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Visit
@@ -329,7 +329,7 @@
     usable in Clinical Study Report displays.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAVISITN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAVISITN
   :ordinal: 32
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Visit (N)
@@ -345,7 +345,7 @@
     Values of AVISITN are sponsor-defined.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVATPT
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVATPT
   :ordinal: 33
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Timepoint
@@ -358,7 +358,7 @@
     60 min, and 120 min post-dose for attack 1).
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVATPTN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVATPTN
   :ordinal: 34
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Timepoint (N)
@@ -368,7 +368,7 @@
     there is a one-to-one mapping between ATPT and ATPTN.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVATPTREF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVATPTREF
   :ordinal: 35
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Timepoint Reference
@@ -377,7 +377,7 @@
   :notes: Description of the fixed reference point referred to by ATPT/ATPTN.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAPERIOD
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAPERIOD
   :ordinal: 36
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period
@@ -388,7 +388,7 @@
     all variables whose names begin with TRxx and APxx.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAPERIODC
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAPERIODC
   :ordinal: 37
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period (C)
@@ -398,7 +398,7 @@
     APERIOD.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAPHASE
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAPHASE
   :ordinal: 38
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Phase
@@ -408,7 +408,7 @@
     because APERIOD provides the indexing for the TRxx and APxx variables.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVARELTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVARELTM
   :ordinal: 39
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Relative Time
@@ -419,7 +419,7 @@
     time variable must be identified in the metadata for ARELTM.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVARELTMU
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVARELTMU
   :ordinal: 40
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Relative Time Unit
@@ -429,7 +429,7 @@
     if ARELTM is present.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAPERSDT
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAPERSDT
   :ordinal: 41
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period Start Date
@@ -438,7 +438,7 @@
   :notes: The starting date for the period defined by APERIOD.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAPERSTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAPERSTM
   :ordinal: 42
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period Start Time
@@ -447,7 +447,7 @@
   :notes: The starting time for the period defined by APERIOD.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAPERSDTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAPERSDTM
   :ordinal: 43
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period Start Date/Time
@@ -456,7 +456,7 @@
   :notes: The starting datetime for the period defined by APERIOD.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAPERSDTF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAPERSDTF
   :ordinal: 44
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period Start Date Imput. Flag
@@ -466,7 +466,7 @@
     See General Timing Variable Convention #6.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAPERSTMF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAPERSTMF
   :ordinal: 45
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period Start Time Imput. Flag
@@ -476,7 +476,7 @@
     See General Timing Variable Convention #7.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAPEREDT
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAPEREDT
   :ordinal: 46
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period End Date
@@ -485,7 +485,7 @@
   :notes: The ending date for the period defined by APERIOD.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAPERETM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAPERETM
   :ordinal: 47
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period End Time
@@ -494,7 +494,7 @@
   :notes: The ending time for the period defined by APERIOD.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAPEREDTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAPEREDTM
   :ordinal: 48
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period End Date/Time
@@ -503,7 +503,7 @@
   :notes: The ending datetime for the period defined by APERIOD.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAPEREDTF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAPEREDTF
   :ordinal: 49
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period End Date Imput. Flag
@@ -513,7 +513,7 @@
     See General Timing Variable Convention #6.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAPERETMF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAPERETMF
   :ordinal: 50
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period End Time Imput. Flag
@@ -523,7 +523,7 @@
     See General Timing Variable Convention #7.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVsDT
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsDT
   :ordinal: 51
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Date of
@@ -532,7 +532,7 @@
   :notes: Analysis date not directly characterizing AVAL and/or AVALC in numeric format.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVsTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsTM
   :ordinal: 52
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Time of
@@ -541,7 +541,7 @@
   :notes: Analysis time not directly characterizing AVAL and/or AVALC in numeric format.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVsDTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsDTM
   :ordinal: 53
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Date/Time of
@@ -551,7 +551,7 @@
     format.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVsADY
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsADY
   :ordinal: 54
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Relative Day of
@@ -560,7 +560,7 @@
   :notes: Analysis relative day not directly characterizing AVAL and/or AVALC.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVsDTF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsDTF
   :ordinal: 55
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Date Imputation Qual of
@@ -570,7 +570,7 @@
     General Timing Variable Convention #6.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVsTMF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsTMF
   :ordinal: 56
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Time Imputation Flag of
@@ -580,7 +580,7 @@
     General Timing Variable Convention #7.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVsSDT
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsSDT
   :ordinal: 57
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Start Date of
@@ -590,7 +590,7 @@
     numeric format.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVsSTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsSTM
   :ordinal: 58
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Start Time of
@@ -600,7 +600,7 @@
     numeric format.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVsSDTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsSDTM
   :ordinal: 59
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Start Date/Time of
@@ -610,7 +610,7 @@
     in numeric format.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVsSDY
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsSDY
   :ordinal: 60
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Relative Start Day of
@@ -619,7 +619,7 @@
   :notes: Starting analysis relative day not directly characterizing AVAL and/or AVALC.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVsSDTF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsSDTF
   :ordinal: 61
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Start Date Imputation Flag of
@@ -629,7 +629,7 @@
     See General Timing Variable Convention #6.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVsSTMF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsSTMF
   :ordinal: 62
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Start Time Imputation Qual of
@@ -639,7 +639,7 @@
     See General Timing Variable Convention #7.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVsEDT
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsEDT
   :ordinal: 63
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: End Date of
@@ -649,7 +649,7 @@
     format.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVsETM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsETM
   :ordinal: 64
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: End Time of
@@ -659,7 +659,7 @@
     format.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVsEDTM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsEDTM
   :ordinal: 65
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: End Date/Time of
@@ -669,7 +669,7 @@
     in numeric format.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVsEDY
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsEDY
   :ordinal: 66
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Relative End Day of
@@ -678,7 +678,7 @@
   :notes: Ending analysis relative day not directly characterizing AVAL and/or AVALC.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVsEDTF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsEDTF
   :ordinal: 67
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: End Date Imputation Flag of
@@ -688,7 +688,7 @@
     See General Timing Variable Convention #6.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVsETMF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVsETMF
   :ordinal: 68
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: End Time Imputation Flag of
@@ -698,7 +698,7 @@
     See General Timing Variable Convention #7.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVPARAM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVPARAM
   :ordinal: 69
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Parameter
@@ -715,7 +715,7 @@
     that in the ADaMIG, ''parameter'' is a synonym of ''analysis parameter.'''
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVPARAMCD
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVPARAMCD
   :ordinal: 70
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Parameter Code
@@ -727,7 +727,7 @@
     with PARAM. Examples: SYSBP, LWEIGHT, HYPEREVT.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVPARAMN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVPARAMN
   :ordinal: 71
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Parameter (N)
@@ -737,7 +737,7 @@
     mapping with PARAM. Must be an integer.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVPARAMTYP
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVPARAMTYP
   :ordinal: 72
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Parameter Type
@@ -748,7 +748,7 @@
     derived AVAL and/or AVALC values.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVPARCATy
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVPARCATy
   :ordinal: 73
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Parameter Category y
@@ -759,7 +759,7 @@
     area of investigation.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVPARCATyN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVPARCATyN
   :ordinal: 74
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Parameter Category y (N)
@@ -769,7 +769,7 @@
     PARCATy. There should be a one to one relationship between PARCATy and PARCATyN.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAVAL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAVAL
   :ordinal: 75
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Value
@@ -778,7 +778,7 @@
   :notes: Numeric analysis value described by PARAM.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAVALC
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAVALC
   :ordinal: 76
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Value (C)
@@ -789,7 +789,7 @@
     within a given PARAM. AVALC should not be used to categorize the values of AVAL.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAVALCATy
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAVALCATy
   :ordinal: 77
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Category y
@@ -801,7 +801,7 @@
     (for AVAL 1 or 2) and 'Moderate or Severe' (for AVAL 3 or 4)
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVBASE
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVBASE
   :ordinal: 78
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Value
@@ -814,7 +814,7 @@
     then there must be a record flagged by ABLFL for that subject and parameter.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVBASEC
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVBASEC
   :ordinal: 79
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Value (C)
@@ -825,7 +825,7 @@
     populated. The baseline record for AVALC must be the same as that for AVAL.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVBASECATy
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVBASECATy
   :ordinal: 80
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Category y
@@ -837,7 +837,7 @@
     or Severe' (for BASE 3 or 4)
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVBASETYPE
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVBASETYPE
   :ordinal: 81
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Type
@@ -849,7 +849,7 @@
     of that PARAM. Refer to Section 4.2.1, Rule 6, for an example.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVCHG
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVCHG
   :ordinal: 82
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Change from Baseline
@@ -861,7 +861,7 @@
     choice.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVCHGCATy
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVCHGCATy
   :ordinal: 83
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Change from Baseline Category y
@@ -873,7 +873,7 @@
     mm Hg', '-5 to 0 mm Hg' categories.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVPCHG
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVPCHG
   :ordinal: 84
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Percent Change from Baseline
@@ -885,7 +885,7 @@
     of PCHG are left to sponsor choice.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVPCHGCATy
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVPCHGCATy
   :ordinal: 85
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Percent Change from Baseline y
@@ -897,7 +897,7 @@
     categories.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVR2BASE
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVR2BASE
   :ordinal: 86
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Ratio to Baseline
@@ -906,7 +906,7 @@
   :notes: AVAL / BASE
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVR2AyLO
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVR2AyLO
   :ordinal: 87
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Ratio to Analysis Range y Lower Limit
@@ -915,7 +915,7 @@
   :notes: AVAL / AyLO. AyLO must exist in the analysis dataset.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVR2AyHI
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVR2AyHI
   :ordinal: 88
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Ratio to Analysis Range y Upper Limit
@@ -924,7 +924,7 @@
   :notes: AVAL / AyHI. AyHI must exist in the analysis dataset.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVSHIFTy
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVSHIFTy
   :ordinal: 89
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Shift y
@@ -937,7 +937,7 @@
     and pre-baseline values of SHIFTy are left to sponsor choice.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVSHIFTyN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVSHIFTyN
   :ordinal: 90
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Shift y (N)
@@ -948,7 +948,7 @@
     are left to sponsor choice.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVCRITy
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVCRITy
   :ordinal: 91
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Criterion y
@@ -963,7 +963,7 @@
     4.7 for additional discussion of CRITy, CRITyFL and CRITyFN.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVDTYPE
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVDTYPE
   :ordinal: 92
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Derivation Type
@@ -981,7 +981,7 @@
     = worst observation carried forward. AVERAGE = average of values.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAWRANGE
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAWRANGE
   :ordinal: 93
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Window Valid Relative Range
@@ -991,7 +991,7 @@
     value of AVISIT). For example, '5-9 DAYS'.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAWTARGET
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAWTARGET
   :ordinal: 94
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Window Target
@@ -1001,7 +1001,7 @@
     relative time (ARELTM) value for a given value of AVISIT.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAWTDIFF
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAWTDIFF
   :ordinal: 95
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Window Diff from Target
@@ -1014,7 +1014,7 @@
     when choosing among records.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAWLO
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAWLO
   :ordinal: 96
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Window Beginning Timepoint
@@ -1024,7 +1024,7 @@
     to AWRANGE. For example, if AWRANGE is'5-9 DAYS', then AWLO is '5'.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAWHI
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAWHI
   :ordinal: 97
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Window Ending Timepoint
@@ -1034,7 +1034,7 @@
     to AWRANGE. For example, if AWRANGE is'5-9 DAYS', then AWHI is '9'.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVAWU
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAWU
   :ordinal: 98
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Window Unit
@@ -1043,7 +1043,7 @@
   :notes: 'Unit used for AWLO and AWHI. Examples: DAYS, HOURS.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVSTARTDT
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVSTARTDT
   :ordinal: 99
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Time to Event Origin Date for Subject
@@ -1055,7 +1055,7 @@
     date or the date of first study therapy exposure.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVCNSR
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVCNSR
   :ordinal: 100
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Censor
@@ -1068,7 +1068,7 @@
     reasons. CNSR is required for time-to-event parameters.
   :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.cdisc.org/BDS/V1#AVEVNTDESC
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVEVNTDESC
   :ordinal: 101
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Event or Censoring Description
@@ -1077,7 +1077,7 @@
   :notes: Description of the event of interest or censoring reason.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVATOXGR
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVATOXGR
   :ordinal: 102
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Toxicity Grade
@@ -1087,7 +1087,7 @@
     or assigned value.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVBTOXGR
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVBTOXGR
   :ordinal: 103
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Toxicity Grade
@@ -1096,7 +1096,7 @@
   :notes: ATOXGR of the baseline record identified by ABLFL.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVANRIND
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVANRIND
   :ordinal: 104
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Reference Range Indicator
@@ -1106,7 +1106,7 @@
     imputed or assigned value.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVBNRIND
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVBNRIND
   :ordinal: 105
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Reference Range Indicator
@@ -1115,7 +1115,7 @@
   :notes: ANRIND of the baseline record identified by ABLFL.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVANRLO
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVANRLO
   :ordinal: 106
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Normal Range Lower Limit
@@ -1125,7 +1125,7 @@
     imputed or assigned value.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVANRHI
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVANRHI
   :ordinal: 107
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Normal Range Upper Limit
@@ -1135,7 +1135,7 @@
     imputed or assigned value.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAyLO
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAyLO
   :ordinal: 108
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Range y Lower Limit
@@ -1149,7 +1149,7 @@
     be included if R2AyLO is included in the dataset.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVAyHI
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVAyHI
   :ordinal: 109
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Range y Upper Limit
@@ -1161,7 +1161,7 @@
     if R2AyHI is included in the dataset.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVABLFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVABLFL
   :ordinal: 110
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Record Flag
@@ -1176,7 +1176,7 @@
     flagged by ABLFL for that subject and parameter.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVABLFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVABLFN
   :ordinal: 111
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Record Flag (N)
@@ -1187,7 +1187,7 @@
     type (BASETYPE).
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVANLzzFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVANLzzFL
   :ordinal: 112
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Record Flag zz
@@ -1217,7 +1217,7 @@
     each AVISIT within <list of AVISITS>.'
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVANLzzFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVANLzzFN
   :ordinal: 113
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analyzed Record Flag zz (N)
@@ -1226,7 +1226,7 @@
   :notes: Numeric version of ANLzzFL.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVONTRTFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVONTRTFL
   :ordinal: 114
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: On Treatment Record Flag
@@ -1236,7 +1236,7 @@
     was on treatment.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVONTRTFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVONTRTFN
   :ordinal: 115
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: On Treatment Record Flag (N)
@@ -1246,7 +1246,7 @@
     was on treatment.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVLVOTFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVLVOTFL
   :ordinal: 116
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Last Value On Treatment Record Flag
@@ -1256,7 +1256,7 @@
     parameter.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVLVOTFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVLVOTFN
   :ordinal: 117
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Last Value On Treatment Record Flag (N)
@@ -1265,7 +1265,7 @@
   :notes: Numeric indicator of the last non-missing value on treatment for each parameter.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVITTRFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVITTRFL
   :ordinal: 118
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Intent-To-Treat Record-Level Flag
@@ -1275,7 +1275,7 @@
     for the specific record.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVITTRFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVITTRFN
   :ordinal: 119
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Intent-To-Treat Record-Level Flag (N)
@@ -1285,7 +1285,7 @@
     for the specific record.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVITTPFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVITTPFL
   :ordinal: 120
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Intent-To-Treat Parameter-Level Flag
@@ -1295,7 +1295,7 @@
     for the specific parameter.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVITTPFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVITTPFN
   :ordinal: 121
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Intent-To-Treat Param-Level Flag (N)
@@ -1305,7 +1305,7 @@
     for the specific parameter.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVSAFRFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVSAFRFL
   :ordinal: 122
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Safety Analysis Record-Level Flag
@@ -1315,7 +1315,7 @@
     the specific record.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVSAFRFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVSAFRFN
   :ordinal: 123
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Safety Analysis Record-Level Flag (N)
@@ -1325,7 +1325,7 @@
     the specific record.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVSAFPFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVSAFPFL
   :ordinal: 124
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Safety Analysis Parameter-Level Flag
@@ -1335,7 +1335,7 @@
     the specific parameter.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVSAFPFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVSAFPFN
   :ordinal: 125
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Safety Analysis Param-Level Flag (N)
@@ -1345,7 +1345,7 @@
     the specific parameter.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVFASRFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVFASRFL
   :ordinal: 126
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Full Analysis Set Record-Level Flag
@@ -1355,7 +1355,7 @@
     analysis for the specific record.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVFASRFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVFASRFN
   :ordinal: 127
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Full Analysis Set Record-Level Flag (N)
@@ -1365,7 +1365,7 @@
     for the specific record.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVFASPFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVFASPFL
   :ordinal: 128
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Full Analysis Set Parameter-Level Flag
@@ -1375,7 +1375,7 @@
     analysis for the specific parameter.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVFASPFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVFASPFN
   :ordinal: 129
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Full Analysis Set Param-Level Flag (N)
@@ -1385,7 +1385,7 @@
     for the specific parameter.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVPPROTRFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVPPROTRFL
   :ordinal: 130
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Per-Protocol Record-Level Flag
@@ -1395,7 +1395,7 @@
     for the specific record.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVPPROTRFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVPPROTRFN
   :ordinal: 131
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Per-Protocol Record-Level Flag (N)
@@ -1405,7 +1405,7 @@
     for the specific record.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVPPROTPFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVPPROTPFL
   :ordinal: 132
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Per-Protocol Parameter-Level Flag
@@ -1415,7 +1415,7 @@
     for the specific parameter.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVPPROTPFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVPPROTPFN
   :ordinal: 133
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Per-Protocol Parameter-Level Flag (N)
@@ -1425,7 +1425,7 @@
     for the specific parameter.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVCOMPRFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVCOMPRFL
   :ordinal: 134
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Completers Record-Level Flag
@@ -1435,7 +1435,7 @@
     analysis for the specific record.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVCOMPRFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVCOMPRFN
   :ordinal: 135
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Completers Record-Level Flag (N)
@@ -1445,7 +1445,7 @@
     for the specific record.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVCOMPPFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVCOMPPFL
   :ordinal: 136
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Completers Parameter-Level Flag
@@ -1455,7 +1455,7 @@
     analysis for the specific parameter.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVCOMPPFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVCOMPPFN
   :ordinal: 137
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Completers Parameter-Level Flag (N)
@@ -1465,7 +1465,7 @@
     for the specific parameter.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVCRITyFL
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVCRITyFL
   :ordinal: 138
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Criterion y Evaluation Result Flag
@@ -1476,7 +1476,7 @@
     additional discussion.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVCRITyFN
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVCRITyFN
   :ordinal: 139
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Criterion y Evaluation Result Flag (N)
@@ -1485,7 +1485,7 @@
   :notes: Numeric indicator of whether the criterion defined in CRITy was met.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVSRCDOM
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVSRCDOM
   :ordinal: 140
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Source Domain
@@ -1494,7 +1494,7 @@
   :notes: The 2-character identifier of the SDTM domain that relates to AVAL or AVALC.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVSRCVAR
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVSRCVAR
   :ordinal: 141
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Source Variable
@@ -1504,7 +1504,7 @@
     to AVAL or AVALC.
   :compliance: ''
   :typed_as: Character
-- :uri: http://www.cdisc.org/BDS/V1#AVSRCSEQ
+- :uri: http://www.cdisc.org/BDS/V1#ADS_AVSRCSEQ
   :ordinal: 142
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Source Sequence Number
