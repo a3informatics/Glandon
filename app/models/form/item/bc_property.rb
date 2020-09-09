@@ -20,16 +20,9 @@ class Form::Item::BcProperty < Form::Item
     return item
   end
 
-  def properties_to_hash(properties)
-    results = []
-    properties.each do |pr|
-      ref = pr.to_h
-      ref[:reference] = BiomedicalConcept::PropertyX.find(ref[:id]).to_h
-      results << ref
-    end
-    results
-  end
-
+  # To CRF
+  #
+  # @return [String] An html string of BC Property
   def to_crf
     html = ""
     if !self.is_common
@@ -46,5 +39,17 @@ class Form::Item::BcProperty < Form::Item
     end
     return html
   end
+
+  private
+
+    def properties_to_hash(properties)
+      results = []
+      properties.each do |pr|
+        ref = pr.to_h
+        ref[:reference] = BiomedicalConcept::PropertyX.find(ref[:id]).to_h
+        results << ref
+      end
+      results
+    end
 
  end

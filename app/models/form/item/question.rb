@@ -26,6 +26,9 @@ class Form::Item::Question < Form::Item
     return item
   end
 
+  # To CRF
+  #
+  # @return [String] An html string of Question Item
   def to_crf
     html = ""
     html += start_row(self.optional)

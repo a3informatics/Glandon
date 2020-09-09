@@ -16,9 +16,12 @@ class Form::Item::Placeholder < Form::Item
     return self.to_h.merge!(blank_fields)
   end
 
+  # To CRF
+  #
+  # @return [String] An html string of Placeholder item
   def to_crf
     html = ""
     html += markdown_row(self.free_text)
   end
-  
+
  end
