@@ -66,9 +66,10 @@ describe "Import CDISC SDTM Model Data" do
   end
 
   def set_params(version, date, files)
+    sv = @date_to_info_map[version-1][:semantic_version]
     file_type = !files.empty? ? "0" : "3"
     { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "SDTM Model", 
-      semantic_version: "#{version}.0.0", job: @job, file_type: file_type}
+      semantic_version: "#{sv}", job: @job, file_type: file_type}
   end
 
   def dump_errors_if_present(filename, version, date)
@@ -126,6 +127,16 @@ describe "Import CDISC SDTM Model Data" do
     @date_to_filename_map = [
       "sdtm_1-2.xlsx", "sdtm_1-3.xlsx", "sdtm_1-4.xlsx", "sdtm_1-5.xlsx", "sdtm_1-6.xlsx", "sdtm_1-7.xlsx", "sdtm_1-8.xlsx"
     ]
+
+    @date_to_info_map = [
+      {semantic_version: "1.2.0"}, 
+      {semantic_version: "1.3.0"}, 
+      {semantic_version: "1.4.0"}, 
+      {semantic_version: "1.5.0"},
+      {semantic_version: "1.6.0"},
+      {semantic_version: "1.7.0"},
+      {semantic_version: "1.8.0"}
+    ]  
   end
   
   describe "all versions" do
