@@ -345,6 +345,7 @@ defaults: &defaults
     policies: {}
     alias:
       crf: show
+      referenced_items: show
   CdiscTermPolicy:
     policies:
       index:
