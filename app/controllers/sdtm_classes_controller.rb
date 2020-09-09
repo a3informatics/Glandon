@@ -28,19 +28,6 @@ class SdtmClassesController < ManagedItemsController
     render json: {data: items}, status: 200
   end
   
-  #def history
-  #  authorize SdtmModelDomain
-  #  @history = SdtmDomainModel.history()
-  #end
-  
-  # def show
-  #   @variables = Array.new
-  #   @sdtm_model_domain = SdtmModelDomain.find(protect_from_bad_id(params))
-  #   @sdtm_model_domain.children.each do |child|
-  #     @variables << SdtmModel::Variable.find(child.variable_ref.subject_ref.id, child.variable_ref.subject_ref.namespace)
-  #   end
-  # end
-
   # def export_ttl
   #   authorize SdtmModelDomain
   #   @sdtm_model_domain = IsoManaged::find(params[:id], the_params[:namespace])

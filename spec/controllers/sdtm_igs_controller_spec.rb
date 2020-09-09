@@ -19,9 +19,13 @@ describe SdtmIgsController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "sdtm/SDTM_IG_3-2.ttl"]
+      data_files = []
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
     end
 
     it "index, JSON" do  
@@ -32,13 +36,13 @@ describe SdtmIgsController do
     end
 
     it "show" do
-      sdtm_ig = SdtmIg.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG"))
+      sdtm_ig = SdtmIg.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG/V1#IG"))
       get :show, params: { :id => sdtm_ig.id}
       expect(response).to render_template("show")
     end
 
     it "show results" do
-      sdtm_ig = SdtmIg.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG"))
+      sdtm_ig = SdtmIg.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG/V1#IG"))
       request.env['HTTP_ACCEPT'] = "application/json"
       get :show_data, params:{id: sdtm_ig.id, sdtm_ig:{count: 10, offset: 0}}
       expect(response.content_type).to eq("application/json")
@@ -48,7 +52,7 @@ describe SdtmIgsController do
     end
 
     it "shows the history, page" do
-      sdtm_ig = SdtmIg.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG"))
+      sdtm_ig = SdtmIg.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG/V1#IG"))
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(SdtmIg).to receive(:history_pagination).with({identifier: sdtm_ig.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([sdtm_ig])
       get :history, params:{sdtm_ig: {identifier: sdtm_ig.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 20}}

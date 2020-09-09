@@ -1,75 +1,68 @@
 ---
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_STUDYID
+- :uri: http://www.cdisc.org/BDS/V1#AVSTUDYID
   :ordinal: 1
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Study Identifier
   :name: STUDYID
   :ct: ''
-  :ct_notes: ''
   :notes: SDTM DM.STUDYID
-  :compliance: Required
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_USUBJID
+- :uri: http://www.cdisc.org/BDS/V1#AVUSUBJID
   :ordinal: 2
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Unique Subject Identifier
   :name: USUBJID
   :ct: ''
-  :ct_notes: ''
   :notes: SDTM DM.USUBJID
-  :compliance: Required
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_SUBJID
+- :uri: http://www.cdisc.org/BDS/V1#AVSUBJID
   :ordinal: 3
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Subject Identifier for the Study
   :name: SUBJID
   :ct: ''
-  :ct_notes: ''
   :notes: SDTM DM.SUBJID. SUBJID is required in ADSL, but permissible in other datasets.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_SITEID
+- :uri: http://www.cdisc.org/BDS/V1#AVSITEID
   :ordinal: 4
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Study Site Identifier
   :name: SITEID
   :ct: ''
-  :ct_notes: ''
   :notes: SDTM DM.SITEID. SITEID is required in ADSL, but permissible in other datasets.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_TRTP
+- :uri: http://www.cdisc.org/BDS/V1#AVTRTP
   :ordinal: 5
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Planned Treatment
   :name: TRTP
   :ct: ''
-  :ct_notes: ''
   :notes: TRTP is a record-level identifier that represents the planned treatment
     attributed to a record for analysis purposes. TRTP indicates how treatment varies
     by record within a subject and enables analysis of crossover and other designs.
     TRTxxP (copied from ADSL) may also be needed for some analysis purposes, and may
     be useful for traceability and to provide context.
-  :compliance: Required
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_TRTPN
+- :uri: http://www.cdisc.org/BDS/V1#AVTRTPN
   :ordinal: 6
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Planned Treatment (N)
   :name: TRTPN
   :ct: ''
-  :ct_notes: ''
   :notes: The numeric code for TRTP. One-to-one map to TRTP.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_TRTA
+- :uri: http://www.cdisc.org/BDS/V1#AVTRTA
   :ordinal: 7
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Actual Treatment
   :name: TRTA
   :ct: ''
-  :ct_notes: ''
   :notes: TRTA is a record-level identifier that represents the actual treatment attributed
     to a record for analysis purposes. TRTA indicates how treatment varies by record
     within a subject and enables analysis of crossover and other multi-period designs.
@@ -77,271 +70,247 @@
     be useful for traceability and to provide context. TRTA is required when there
     is an analysis of data as treated and at least one subject has any data associated
     with a treatment other than the planned treatment.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_TRTAN
+- :uri: http://www.cdisc.org/BDS/V1#AVTRTAN
   :ordinal: 8
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Actual Treatment (N)
   :name: TRTAN
   :ct: ''
-  :ct_notes: ''
   :notes: The numeric code for TRTA. One-to-one map to TRTA.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_TRTPGy
+- :uri: http://www.cdisc.org/BDS/V1#AVTRTPGy
   :ordinal: 9
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Planned Pooled Treatment y
   :name: TRTPGy
   :ct: ''
-  :ct_notes: ''
   :notes: Planned pooled treatment y. 'y' represents an integer [1-9] corresponding
     to a particular pooling scheme. Useful when planned treatments (TRTP) are pooled
     together for analysis, for example when all doses of Drug A (TRTPG1=All doses
     of Drug A) are compared to all doses of Drug B (TRTPG1=All doses of Drug B). Each
     value of TRTP is pooled within at most one value of TRTPGy. May vary by record
     within a subject.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_TRTPGyN
+- :uri: http://www.cdisc.org/BDS/V1#AVTRTPGyN
   :ordinal: 10
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Planned Pooled Treatment y (N)
   :name: TRTPGyN
   :ct: ''
-  :ct_notes: ''
   :notes: The numeric code for TRTPGy. One-to-one map to TRTPGy.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_TRTAGy
+- :uri: http://www.cdisc.org/BDS/V1#AVTRTAGy
   :ordinal: 11
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Actual Pooled Treatment y
   :name: TRTAGy
   :ct: ''
-  :ct_notes: ''
   :notes: Actual pooled treatment y. 'y' represents an integer [1-9] corresponding
     to a particular pooling scheme. Required when TRTPGy is present and TRTA is present.
     May vary by record within a subject.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_TRTAGyN
+- :uri: http://www.cdisc.org/BDS/V1#AVTRTAGyN
   :ordinal: 12
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Actual Pooled Treatment y (N)
   :name: TRTAGyN
   :ct: ''
-  :ct_notes: ''
   :notes: The numeric code for TRTAGy. One-to-one map to TRTAGy.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ADT
+- :uri: http://www.cdisc.org/BDS/V1#AVADT
   :ordinal: 13
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Date
   :name: ADT
   :ct: ''
-  :ct_notes: ''
   :notes: The date associated with AVAL and/or AVALC in numeric format.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ATM
+- :uri: http://www.cdisc.org/BDS/V1#AVATM
   :ordinal: 14
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Time
   :name: ATM
   :ct: ''
-  :ct_notes: ''
   :notes: The time associated with AVAL and/or AVALC in numeric format.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ADTM
+- :uri: http://www.cdisc.org/BDS/V1#AVADTM
   :ordinal: 15
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Date/Time
   :name: ADTM
   :ct: ''
-  :ct_notes: ''
   :notes: The date/time associated with AVAL and/or AVALC in numeric format.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ADY
+- :uri: http://www.cdisc.org/BDS/V1#AVADY
   :ordinal: 16
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Relative Day
   :name: ADY
   :ct: ''
-  :ct_notes: ''
   :notes: The relative day of AVAL and/or AVALC. The number of days from a reference
     date (not necessarily DM.RFSTDTC) to ADT. The reference date should be indicated
     in the variable-level metadata for ADY and the reference date should be included
     as a variable in the given analysis dataset or alternatively in ADSL.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ADTF
+- :uri: http://www.cdisc.org/BDS/V1#AVADTF
   :ordinal: 17
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Date Imputation Flag
   :name: ADTF
-  :ct: DATEFL
-  :ct_notes: ''
+  :ct: "(DATEFL)"
   :notes: 'The level of imputation of ADT based on the source SDTM DTC variable. See
     General Timing Variable Convention #6.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ATMF
+- :uri: http://www.cdisc.org/BDS/V1#AVATMF
   :ordinal: 18
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Time Imputation Flag
   :name: ATMF
-  :ct: TIMEFL
-  :ct_notes: ''
+  :ct: "(TIMEFL)"
   :notes: 'The level of imputation of ATM based on the source SDTM DTC variable. See
     General Timing Variable Convention #7.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ASTDT
+- :uri: http://www.cdisc.org/BDS/V1#AVASTDT
   :ordinal: 19
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Start Date
   :name: ASTDT
   :ct: ''
-  :ct_notes: ''
   :notes: The start date associated with AVAL and/or AVALC. ASTDT and AENDT may be
     useful for traceability when AVAL summarizes data collected over an interval of
     time, or when AVAL is a duration.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ASTTM
+- :uri: http://www.cdisc.org/BDS/V1#AVASTTM
   :ordinal: 20
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Start Time
   :name: ASTTM
   :ct: ''
-  :ct_notes: ''
   :notes: The start time associated with AVAL and/or AVALC. ASTTM and AENTM may be
     useful for traceability when AVAL summarizes data collected over an interval of
     time, or when AVAL is a duration.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ASTDTM
+- :uri: http://www.cdisc.org/BDS/V1#AVASTDTM
   :ordinal: 21
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Start Date/Time
   :name: ASTDTM
   :ct: ''
-  :ct_notes: ''
   :notes: The start datetime associated with AVAL and/or AVALC. ASTDTM and AENDTM
     may be useful for traceability when AVAL summarizes data collected over an interval
     of time, or when AVAL is a duration.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ASTDY
+- :uri: http://www.cdisc.org/BDS/V1#AVASTDY
   :ordinal: 22
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Start Relative Day
   :name: ASTDY
   :ct: ''
-  :ct_notes: ''
   :notes: The number of days from a reference date (not necessarily DM.RFSTDTC) to
     ASTDT. The reference date variable should be indicated in the variable-level metadata
     for ASTDY and the reference date variable should be included as a variable in
     an analysis dataset (typically, but not necessarily, ADSL).
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ASTDTF
+- :uri: http://www.cdisc.org/BDS/V1#AVASTDTF
   :ordinal: 23
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Start Date Imputation Flag
   :name: ASTDTF
-  :ct: DATEFL
-  :ct_notes: ''
+  :ct: "(DATEFL)"
   :notes: 'The level of imputation of ASTDT based on the source SDTM DTC variable.
     See General Timing Variable Convention #6.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ASTTMF
+- :uri: http://www.cdisc.org/BDS/V1#AVASTTMF
   :ordinal: 24
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Start Time Imputation Flag
   :name: ASTTMF
-  :ct: TIMEFL
-  :ct_notes: ''
+  :ct: "(TIMEFL)"
   :notes: 'The level of imputation of ASTTM based on the source SDTM DTC variable.
     See General Timing Variable Convention #7.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AENDT
+- :uri: http://www.cdisc.org/BDS/V1#AVAENDT
   :ordinal: 25
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis End Date
   :name: AENDT
   :ct: ''
-  :ct_notes: ''
   :notes: The end date associated with AVAL and/or AVALC. See also ASTDT.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AENTM
+- :uri: http://www.cdisc.org/BDS/V1#AVAENTM
   :ordinal: 26
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis End Time
   :name: AENTM
   :ct: ''
-  :ct_notes: ''
   :notes: The end time associated with AVAL and/or AVALC. See also ASTTM.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AENDTM
+- :uri: http://www.cdisc.org/BDS/V1#AVAENDTM
   :ordinal: 27
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis End Date/Time
   :name: AENDTM
   :ct: ''
-  :ct_notes: ''
   :notes: The end datetime associated with AVAL and/or AVALC. See also ASTDTM.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AENDY
+- :uri: http://www.cdisc.org/BDS/V1#AVAENDY
   :ordinal: 28
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis End Relative Day
   :name: AENDY
   :ct: ''
-  :ct_notes: ''
   :notes: The number of days from a reference date (not necessarily DM.RFSTDTC) to
     AENDT. See also ASTDY.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AENDTF
+- :uri: http://www.cdisc.org/BDS/V1#AVAENDTF
   :ordinal: 29
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis End Date Imputation Flag
   :name: AENDTF
-  :ct: DATEFL
-  :ct_notes: ''
+  :ct: "(DATEFL)"
   :notes: 'The level of imputation of AENDT based on the source SDTM DTC variable.
     See General Timing Variable Convention #6.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AENTMF
+- :uri: http://www.cdisc.org/BDS/V1#AVAENTMF
   :ordinal: 30
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis End Time Imputation Flag
   :name: AENTMF
-  :ct: TIMEFL
-  :ct_notes: ''
+  :ct: "(TIMEFL)"
   :notes: 'The level of imputation of AENTM based on the source SDTM DTC variable.
     See General Timing Variable Convention #7.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AVISIT
+- :uri: http://www.cdisc.org/BDS/V1#AVAVISIT
   :ordinal: 31
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Visit
   :name: AVISIT
   :ct: ''
-  :ct_notes: ''
   :notes: AVISIT may contain the visit names as observe d (i.e., from SDTM VISIT),
     derived visit names, time window names, conceptual descriptions (such as Average,
     Endpoint, etc.), or a combination of any of these. AVISIT is a derived field and
@@ -358,15 +327,14 @@
     and the rules for deriving AVISIT may be different for different parameters within
     the same dataset. Values of AVISIT are sponsor-defined, and are often directly
     usable in Clinical Study Report displays.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AVISITN
+- :uri: http://www.cdisc.org/BDS/V1#AVAVISITN
   :ordinal: 32
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Visit (N)
   :name: AVISITN
   :ct: ''
-  :ct_notes: ''
   :notes: A numeric representation of AVISIT. This may be a protocol visit number,
     a week or cycle number, an analysis visit number, or any other number logically
     related to AVISIT or useful for sorting that is needed for analysis. Within a
@@ -375,404 +343,367 @@
     fall within any predefined analysis timepoint window, AVISITN can be populated
     in any way that the sponsor chooses to indicate this fact (e.g., may be null).
     Values of AVISITN are sponsor-defined.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ATPT
+- :uri: http://www.cdisc.org/BDS/V1#AVATPT
   :ordinal: 33
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Timepoint
   :name: ATPT
   :ct: ''
-  :ct_notes: ''
   :notes: The analysis time point description which is required if analysis times
     are derived. Timepoints are relative to ATPTREF. ATPT can be within an analysis
     visit (e.g., blood pressure assessments at 10 min, 20 min, and 30 min post-dose
     at AVISIT=Week 1) or can be unrelated to AVISIT (e.g., migraine symptoms 30 min,
     60 min, and 120 min post-dose for attack 1).
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ATPTN
+- :uri: http://www.cdisc.org/BDS/V1#AVATPTN
   :ordinal: 34
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Timepoint (N)
   :name: ATPTN
   :ct: ''
-  :ct_notes: ''
   :notes: ATPTN provides a numeric representation of ATPT. Within the same parameter,
     there is a one-to-one mapping between ATPT and ATPTN.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ATPTREF
+- :uri: http://www.cdisc.org/BDS/V1#AVATPTREF
   :ordinal: 35
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Timepoint Reference
   :name: ATPTREF
   :ct: ''
-  :ct_notes: ''
   :notes: Description of the fixed reference point referred to by ATPT/ATPTN.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_APERIOD
+- :uri: http://www.cdisc.org/BDS/V1#AVAPERIOD
   :ordinal: 36
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period
   :name: APERIOD
   :ct: ''
-  :ct_notes: ''
   :notes: The numeric value characterizing the period to which the record belongs.
     The value of APERIOD must be consistent with the xx value in TRTxxP, TRTxxA, and
     all variables whose names begin with TRxx and APxx.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_APERIODC
+- :uri: http://www.cdisc.org/BDS/V1#AVAPERIODC
   :ordinal: 37
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period (C)
   :name: APERIODC
   :ct: ''
-  :ct_notes: ''
   :notes: Text characterizing to which period the record belongs. One-to-one map to
     APERIOD.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_APHASE
+- :uri: http://www.cdisc.org/BDS/V1#AVAPHASE
   :ordinal: 38
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Phase
   :name: APHASE
   :ct: ''
-  :ct_notes: ''
   :notes: Generally, a higher-level categorization of APERIOD. Does not replace APERIOD,
     because APERIOD provides the indexing for the TRxx and APxx variables.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ARELTM
+- :uri: http://www.cdisc.org/BDS/V1#AVARELTM
   :ordinal: 39
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Relative Time
   :name: ARELTM
   :ct: ''
-  :ct_notes: ''
   :notes: The time relative to an anchor time. When ARELTM is present, the anchor
     time variable and ARELTMU must also be included in the dataset, and the anchor
     time variable must be identified in the metadata for ARELTM.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ARELTMU
+- :uri: http://www.cdisc.org/BDS/V1#AVARELTMU
   :ordinal: 40
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Relative Time Unit
   :name: ARELTMU
   :ct: ''
-  :ct_notes: ''
   :notes: The units of ARELTM. For example, 'HOURS' or 'MINUTES.' ARELTMU is required
     if ARELTM is present.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_APERSDT
+- :uri: http://www.cdisc.org/BDS/V1#AVAPERSDT
   :ordinal: 41
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period Start Date
   :name: APERSDT
   :ct: ''
-  :ct_notes: ''
   :notes: The starting date for the period defined by APERIOD.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_APERSTM
+- :uri: http://www.cdisc.org/BDS/V1#AVAPERSTM
   :ordinal: 42
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period Start Time
   :name: APERSTM
   :ct: ''
-  :ct_notes: ''
   :notes: The starting time for the period defined by APERIOD.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_APERSDTM
+- :uri: http://www.cdisc.org/BDS/V1#AVAPERSDTM
   :ordinal: 43
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period Start Date/Time
   :name: APERSDTM
   :ct: ''
-  :ct_notes: ''
   :notes: The starting datetime for the period defined by APERIOD.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_APERSDTF
+- :uri: http://www.cdisc.org/BDS/V1#AVAPERSDTF
   :ordinal: 44
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period Start Date Imput. Flag
   :name: APERSDTF
-  :ct: DATEFL
-  :ct_notes: ''
+  :ct: "(DATEFL)"
   :notes: 'The level of imputation of APERSDT based on the source SDTM DTC variable.
     See General Timing Variable Convention #6.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_APERSTMF
+- :uri: http://www.cdisc.org/BDS/V1#AVAPERSTMF
   :ordinal: 45
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period Start Time Imput. Flag
   :name: APERSTMF
-  :ct: TIMEFL
-  :ct_notes: ''
+  :ct: "(TIMEFL)"
   :notes: 'The level of imputation of APERSTM based on the source SDTM DTC variable.
     See General Timing Variable Convention #7.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_APEREDT
+- :uri: http://www.cdisc.org/BDS/V1#AVAPEREDT
   :ordinal: 46
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period End Date
   :name: APEREDT
   :ct: ''
-  :ct_notes: ''
   :notes: The ending date for the period defined by APERIOD.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_APERETM
+- :uri: http://www.cdisc.org/BDS/V1#AVAPERETM
   :ordinal: 47
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period End Time
   :name: APERETM
   :ct: ''
-  :ct_notes: ''
   :notes: The ending time for the period defined by APERIOD.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_APEREDTM
+- :uri: http://www.cdisc.org/BDS/V1#AVAPEREDTM
   :ordinal: 48
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period End Date/Time
   :name: APEREDTM
   :ct: ''
-  :ct_notes: ''
   :notes: The ending datetime for the period defined by APERIOD.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_APEREDTF
+- :uri: http://www.cdisc.org/BDS/V1#AVAPEREDTF
   :ordinal: 49
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period End Date Imput. Flag
   :name: APEREDTF
-  :ct: DATEFL
-  :ct_notes: ''
+  :ct: "(DATEFL)"
   :notes: 'The level of imputation of APEREDT based on the source SDTM DTC variable.
     See General Timing Variable Convention #6.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_APERETMF
+- :uri: http://www.cdisc.org/BDS/V1#AVAPERETMF
   :ordinal: 50
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Period End Time Imput. Flag
   :name: APERETMF
-  :ct: TIMEFL
-  :ct_notes: ''
+  :ct: "(TIMEFL)"
   :notes: 'The level of imputation of APERETM based on the source SDTM DTC variable.
     See General Timing Variable Convention #7.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sDT
+- :uri: http://www.cdisc.org/BDS/V1#AVsDT
   :ordinal: 51
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Date of
   :name: sDT
   :ct: ''
-  :ct_notes: ''
   :notes: Analysis date not directly characterizing AVAL and/or AVALC in numeric format.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sTM
+- :uri: http://www.cdisc.org/BDS/V1#AVsTM
   :ordinal: 52
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Time of
   :name: sTM
   :ct: ''
-  :ct_notes: ''
   :notes: Analysis time not directly characterizing AVAL and/or AVALC in numeric format.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sDTM
+- :uri: http://www.cdisc.org/BDS/V1#AVsDTM
   :ordinal: 53
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Date/Time of
   :name: sDTM
   :ct: ''
-  :ct_notes: ''
   :notes: Analysis date/time not directly characterizing AVAL and/or AVALC in numeric
     format.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sADY
+- :uri: http://www.cdisc.org/BDS/V1#AVsADY
   :ordinal: 54
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Relative Day of
   :name: sADY
   :ct: ''
-  :ct_notes: ''
   :notes: Analysis relative day not directly characterizing AVAL and/or AVALC.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sDTF
+- :uri: http://www.cdisc.org/BDS/V1#AVsDTF
   :ordinal: 55
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Date Imputation Qual of
   :name: sDTF
-  :ct: DATEFL
-  :ct_notes: ''
+  :ct: "(DATEFL)"
   :notes: 'The level of imputation of *DT based on the source SDTM DTC variable. See
     General Timing Variable Convention #6.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sTMF
+- :uri: http://www.cdisc.org/BDS/V1#AVsTMF
   :ordinal: 56
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Time Imputation Flag of
   :name: sTMF
-  :ct: TIMEFL
-  :ct_notes: ''
+  :ct: "(TIMEFL)"
   :notes: 'The level of imputation of *TM based on the source SDTM DTC variable. See
     General Timing Variable Convention #7.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sSDT
+- :uri: http://www.cdisc.org/BDS/V1#AVsSDT
   :ordinal: 57
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Start Date of
   :name: sSDT
   :ct: ''
-  :ct_notes: ''
   :notes: Starting analysis date not directly characterizing AVAL and/or AVALC in
     numeric format.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sSTM
+- :uri: http://www.cdisc.org/BDS/V1#AVsSTM
   :ordinal: 58
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Start Time of
   :name: sSTM
   :ct: ''
-  :ct_notes: ''
   :notes: Starting analysis time not directly characterizing AVAL and/or AVALC in
     numeric format.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sSDTM
+- :uri: http://www.cdisc.org/BDS/V1#AVsSDTM
   :ordinal: 59
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Start Date/Time of
   :name: sSDTM
   :ct: ''
-  :ct_notes: ''
   :notes: Starting analysis date/time not directly characterizing AVAL and/or AVALC
     in numeric format.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sSDY
+- :uri: http://www.cdisc.org/BDS/V1#AVsSDY
   :ordinal: 60
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Relative Start Day of
   :name: sSDY
   :ct: ''
-  :ct_notes: ''
   :notes: Starting analysis relative day not directly characterizing AVAL and/or AVALC.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sSDTF
+- :uri: http://www.cdisc.org/BDS/V1#AVsSDTF
   :ordinal: 61
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Start Date Imputation Flag of
   :name: sSDTF
-  :ct: DATEFL
-  :ct_notes: ''
+  :ct: "(DATEFL)"
   :notes: 'The level of imputation of *SDT based on the source SDTM DTC variable.
     See General Timing Variable Convention #6.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sSTMF
+- :uri: http://www.cdisc.org/BDS/V1#AVsSTMF
   :ordinal: 62
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Start Time Imputation Qual of
   :name: sSTMF
-  :ct: TIMEFL
-  :ct_notes: ''
+  :ct: "(TIMEFL)"
   :notes: 'The level of imputation of *STM based on the source SDTM DTC variable.
     See General Timing Variable Convention #7.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sEDT
+- :uri: http://www.cdisc.org/BDS/V1#AVsEDT
   :ordinal: 63
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: End Date of
   :name: sEDT
   :ct: ''
-  :ct_notes: ''
   :notes: Ending analysis date not directly characterizing AVAL and/or AVALC in numeric
     format.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sETM
+- :uri: http://www.cdisc.org/BDS/V1#AVsETM
   :ordinal: 64
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: End Time of
   :name: sETM
   :ct: ''
-  :ct_notes: ''
   :notes: Ending analysis time not directly characterizing AVAL and/or AVALC in numeric
     format.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sEDTM
+- :uri: http://www.cdisc.org/BDS/V1#AVsEDTM
   :ordinal: 65
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: End Date/Time of
   :name: sEDTM
   :ct: ''
-  :ct_notes: ''
   :notes: Ending analysis date/time not directly characterizing AVAL and/or AVALC
     in numeric format.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sEDY
+- :uri: http://www.cdisc.org/BDS/V1#AVsEDY
   :ordinal: 66
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Relative End Day of
   :name: sEDY
   :ct: ''
-  :ct_notes: ''
   :notes: Ending analysis relative day not directly characterizing AVAL and/or AVALC.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sEDTF
+- :uri: http://www.cdisc.org/BDS/V1#AVsEDTF
   :ordinal: 67
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: End Date Imputation Flag of
   :name: sEDTF
-  :ct: DATEFL
-  :ct_notes: ''
+  :ct: "(DATEFL)"
   :notes: 'The level of imputation of *EDT based on the source SDTM DTC variable.
     See General Timing Variable Convention #6.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_sETMF
+- :uri: http://www.cdisc.org/BDS/V1#AVsETMF
   :ordinal: 68
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: End Time Imputation Flag of
   :name: sETMF
-  :ct: TIMEFL
-  :ct_notes: ''
+  :ct: "(TIMEFL)"
   :notes: 'The level of imputation of *ETM based on the source SDTM DTC variable.
     See General Timing Variable Convention #7.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_PARAM
+- :uri: http://www.cdisc.org/BDS/V1#AVPARAM
   :ordinal: 69
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Parameter
   :name: PARAM
   :ct: ''
-  :ct_notes: ''
   :notes: 'The description of the analysis parameter. Examples include: ''Supine Systolic
     Blood Pressure (mm Hg)'', ''Log10 (Weight (kg))'', ''Time to First Hypertension
     Event (Days)'', ''Estimated Tumor Growth Rate'', etc. PARAM should be sufficient
@@ -782,269 +713,247 @@
     function, and indeed any text that is needed. PARAM may be longer than 40 characters
     in length. PARAM is often directly usable in Clinical Study Report displays. Note
     that in the ADaMIG, ''parameter'' is a synonym of ''analysis parameter.'''
-  :compliance: Required
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_PARAMCD
+- :uri: http://www.cdisc.org/BDS/V1#AVPARAMCD
   :ordinal: 70
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Parameter Code
   :name: PARAMCD
   :ct: ''
-  :ct_notes: ''
   :notes: 'The short name of the analysis parameter in PARAM. Values of PARAMCD should
     follow SAS 5 variable naming conventions (8 characters or less; starts with a
     letter; contains only letters and digits). There must be a one-to-one mapping
     with PARAM. Examples: SYSBP, LWEIGHT, HYPEREVT.'
-  :compliance: Required
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_PARAMN
+- :uri: http://www.cdisc.org/BDS/V1#AVPARAMN
   :ordinal: 71
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Parameter (N)
   :name: PARAMN
   :ct: ''
-  :ct_notes: ''
   :notes: Useful for ordering and programmatic manipulation. There must be a one-to-one
     mapping with PARAM. Must be an integer.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_PARAMTYP
+- :uri: http://www.cdisc.org/BDS/V1#AVPARAMTYP
   :ordinal: 72
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Parameter Type
   :name: PARAMTYP
-  :ct: PARAMTYP
-  :ct_notes: ''
+  :ct: "(PARAMTYP)"
   :notes: Indicator of whether the parameter is derived as a function of one or more
     other parameters. This should not be confused with DTYPE which is relevant to
     derived AVAL and/or AVALC values.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_PARCATy
+- :uri: http://www.cdisc.org/BDS/V1#AVPARCATy
   :ordinal: 73
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Parameter Category y
   :name: PARCATy
   :ct: ''
-  :ct_notes: ''
   :notes: A categorization of PARAM. For example, value of PARCAT1 might group the
     parameters having to do with a particular questionnaire, lab specimen type, or
     area of investigation.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_PARCATyN
+- :uri: http://www.cdisc.org/BDS/V1#AVPARCATyN
   :ordinal: 74
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Parameter Category y (N)
   :name: PARCATyN
   :ct: ''
-  :ct_notes: ''
   :notes: A numeric representation of PARCATy. This can be used for operations on
     PARCATy. There should be a one to one relationship between PARCATy and PARCATyN.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AVAL
+- :uri: http://www.cdisc.org/BDS/V1#AVAVAL
   :ordinal: 75
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Value
   :name: AVAL
   :ct: ''
-  :ct_notes: ''
   :notes: Numeric analysis value described by PARAM.
-  :compliance: Required
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AVALC
+- :uri: http://www.cdisc.org/BDS/V1#AVAVALC
   :ordinal: 76
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Value (C)
   :name: AVALC
   :ct: ''
-  :ct_notes: ''
   :notes: Character analysis value described by PARAM. AVALC can be a character string
     mapping to AVAL, but if so there must be a one-to-one map between AVAL and AVALC
     within a given PARAM. AVALC should not be used to categorize the values of AVAL.
-  :compliance: Required
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AVALCATy
+- :uri: http://www.cdisc.org/BDS/V1#AVAVALCATy
   :ordinal: 77
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Category y
   :name: AVALCATy
   :ct: ''
-  :ct_notes: ''
   :notes: A categorical representation of AVAL and/or AVALC. Not necessarily a one-to-one
     mapping to AVAL and/or AVALC. For example, if PARAM is 'Headache Severity' and
     AVAL has values 0, 1, 2, or 3, AVALCAT1 can categorize AVAL into 'None or Mild'
     (for AVAL 1 or 2) and 'Moderate or Severe' (for AVAL 3 or 4)
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_BASE
+- :uri: http://www.cdisc.org/BDS/V1#AVBASE
   :ordinal: 78
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Value
   :name: BASE
   :ct: ''
-  :ct_notes: ''
   :notes: Baseline analysis value. Required if dataset supports analysis or review
     of baseline value or functions of baseline value. A baseline record may be derived
     (e.g., it may be an average) in which case DTYPE must also be populated. If BASE
     is populated for a parameter, and BASE is non-null for a subject for that parameter,
     then there must be a record flagged by ABLFL for that subject and parameter.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_BASEC
+- :uri: http://www.cdisc.org/BDS/V1#AVBASEC
   :ordinal: 79
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Value (C)
   :name: BASEC
   :ct: ''
-  :ct_notes: ''
   :notes: Baseline value of AVALC. May be needed when AVALC is of interest. There
     must be a one-to-one map between BASE and BASEC within a given PARAM if both are
     populated. The baseline record for AVALC must be the same as that for AVAL.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_BASECATy
+- :uri: http://www.cdisc.org/BDS/V1#AVBASECATy
   :ordinal: 80
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Category y
   :name: BASECATy
   :ct: ''
-  :ct_notes: ''
   :notes: A categorical representation of BASE. Not necessarily a one-to-one map to
     BASE. For example, if PARAM is 'Headache Severity' and AVAL has values 0, 1, 2,
     or 3, BASECAT1 can categorize BASE into 'None or Mild' (for BASE 1 or 2) and 'Moderate
     or Severe' (for BASE 3 or 4)
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_BASETYPE
+- :uri: http://www.cdisc.org/BDS/V1#AVBASETYPE
   :ordinal: 81
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Type
   :name: BASETYPE
   :ct: ''
-  :ct_notes: ''
   :notes: Sponsor-defined text describing the definition of baseline relevant to the
     value of BASE on the current record. Required when there are multiple ways that
     baseline is defined. If used for a given PARAM, should be populated for all records
     of that PARAM. Refer to Section 4.2.1, Rule 6, for an example.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_CHG
+- :uri: http://www.cdisc.org/BDS/V1#AVCHG
   :ordinal: 82
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Change from Baseline
   :name: CHG
   :ct: ''
-  :ct_notes: ''
   :notes: Change from baseline analysis value. Equal to AVAL-BASE. If used for a given
     PARAM, should be populated for all post-baseline records of that PARAM. The decision
     on how to populate pre-baseline and baseline values of CHG are left to sponsor
     choice.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_CHGCATy
+- :uri: http://www.cdisc.org/BDS/V1#AVCHGCATy
   :ordinal: 83
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Change from Baseline Category y
   :name: CHGCATy
   :ct: ''
-  :ct_notes: ''
   :notes: A categorical representation of CHG. Not necessarily a one-to-one mapping
     to CHG. The definition of CHGCATy may vary by PARAM. For example, CHGCAT1 may
     be used to categorize CHG with respect to ranges of change in SYSBP; '-10 to -5
     mm Hg', '-5 to 0 mm Hg' categories.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_PCHG
+- :uri: http://www.cdisc.org/BDS/V1#AVPCHG
   :ordinal: 84
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Percent Change from Baseline
   :name: PCHG
   :ct: ''
-  :ct_notes: ''
   :notes: Percent change from baseline analysis value. Equal to ((AVAL-BASE)/BASE)*100.
     If used for a given PARAM, should be populated (when calculable) for all records
     of that PARAM. The decision on how to populate pre-baseline and baseline values
     of PCHG are left to sponsor choice.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_PCHGCATy
+- :uri: http://www.cdisc.org/BDS/V1#AVPCHGCATy
   :ordinal: 85
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Percent Change from Baseline y
   :name: PCHGCATy
   :ct: ''
-  :ct_notes: ''
   :notes: A categorical representation of PCHG. Not necessarily a one-to-one mapping
     to PCHG. The definition of PCHGCATy may vary by PARAM. For example, PCHGCAT1 may
     be used to categorize PCHG with respect to ranges of change in SYSBP; '>5%', '>10%'
     categories.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_R2BASE
+- :uri: http://www.cdisc.org/BDS/V1#AVR2BASE
   :ordinal: 86
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Ratio to Baseline
   :name: R2BASE
   :ct: ''
-  :ct_notes: ''
   :notes: AVAL / BASE
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_R2AyLO
+- :uri: http://www.cdisc.org/BDS/V1#AVR2AyLO
   :ordinal: 87
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Ratio to Analysis Range y Lower Limit
   :name: R2AyLO
   :ct: ''
-  :ct_notes: ''
   :notes: AVAL / AyLO. AyLO must exist in the analysis dataset.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_R2AyHI
+- :uri: http://www.cdisc.org/BDS/V1#AVR2AyHI
   :ordinal: 88
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Ratio to Analysis Range y Upper Limit
   :name: R2AyHI
   :ct: ''
-  :ct_notes: ''
   :notes: AVAL / AyHI. AyHI must exist in the analysis dataset.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_SHIFTy
+- :uri: http://www.cdisc.org/BDS/V1#AVSHIFTy
   :ordinal: 89
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Shift y
   :name: SHIFTy
   :ct: ''
-  :ct_notes: ''
   :notes: A shift in values depending on the defined pairing for group 'y'. SHIFTy
     can be based on the change in value of any of the following pairs (BASECATy, AVALCATy),
     (BNRIND, ANRIND), (BTOXGR, ATOXGR), (BASE, AVAL) or (BASEC, AVALC). Useful for
     shift tables. For example, 'NORMAL to HIGH'. The decision on how to populate baseline
     and pre-baseline values of SHIFTy are left to sponsor choice.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_SHIFTyN
+- :uri: http://www.cdisc.org/BDS/V1#AVSHIFTyN
   :ordinal: 90
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Shift y (N)
   :name: SHIFTyN
   :ct: ''
-  :ct_notes: ''
   :notes: Numeric version of SHIFT. SHIFTN has a one-to-one mapping relationship with
     SHIFT. The decision on how to populate baseline and pre-baseline values of SHIFTN
     are left to sponsor choice.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_CRITy
+- :uri: http://www.cdisc.org/BDS/V1#AVCRITy
   :ordinal: 91
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Criterion y
   :name: CRITy
   :ct: ''
-  :ct_notes: ''
   :notes: A text string identifying a pre-specified criterion, for example SYSBP >
     90. In some cases, the presence of the text string indicates that the criterion
     is satisfied on this record, while a null value indicates that the criterion is
@@ -1052,15 +961,14 @@
     evaluated, but whether or not the criterion is satisfied is indicated by the value
     of the variable CRITyFL. See CRITyFL and CRITyFN in Section 3.2.6. Refer to Section
     4.7 for additional discussion of CRITy, CRITyFL and CRITyFN.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_DTYPE
+- :uri: http://www.cdisc.org/BDS/V1#AVDTYPE
   :ordinal: 92
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Derivation Type
   :name: DTYPE
-  :ct: DTYPE
-  :ct_notes: ''
+  :ct: "(DTYPE)"
   :notes: Analysis value derivation method. DTYPE is used to denote, and is required
     to be populated, when the value of AVAL or AVALC (and thus the entire record)
     has been imputed, derived, or copied from other record(s). DTYPE is required to
@@ -1071,212 +979,194 @@
     values in the controlled terminology. See Section 4 for examples of the use of
     DTYPE. Examples of DTYPE values LOCF = last observation carried forward. WOCF
     = worst observation carried forward. AVERAGE = average of values.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AWRANGE
+- :uri: http://www.cdisc.org/BDS/V1#AVAWRANGE
   :ordinal: 93
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Window Valid Relative Range
   :name: AWRANGE
   :ct: ''
-  :ct_notes: ''
   :notes: The range of values that are valid for a given analysis timepoint (a given
     value of AVISIT). For example, '5-9 DAYS'.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AWTARGET
+- :uri: http://www.cdisc.org/BDS/V1#AVAWTARGET
   :ordinal: 94
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Window Target
   :name: AWTARGET
   :ct: ''
-  :ct_notes: ''
   :notes: The target or most desired analysis relative day (ADY) value or analysis
     relative time (ARELTM) value for a given value of AVISIT.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AWTDIFF
+- :uri: http://www.cdisc.org/BDS/V1#AVAWTDIFF
   :ordinal: 95
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Window Diff from Target
   :name: AWTDIFF
   :ct: ''
-  :ct_notes: ''
   :notes: Absolute difference between ADY or ARELTM and AWTARGET. It will be necessary
     to adjust for the fact that there is no day 0 in the event that ADY and AWTARGET
     are not of the same sign. If the sign of the difference is important, then AWTDIFF
     might have to be used in conjunction with ADY or ARELTM and possibly AWTARGET
     when choosing among records.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AWLO
+- :uri: http://www.cdisc.org/BDS/V1#AVAWLO
   :ordinal: 96
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Window Beginning Timepoint
   :name: AWLO
   :ct: ''
-  :ct_notes: ''
   :notes: The value of the beginning timepoint (inclusive) needs to be used in conjunction
     to AWRANGE. For example, if AWRANGE is'5-9 DAYS', then AWLO is '5'.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AWHI
+- :uri: http://www.cdisc.org/BDS/V1#AVAWHI
   :ordinal: 97
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Window Ending Timepoint
   :name: AWHI
   :ct: ''
-  :ct_notes: ''
   :notes: The value of the ending timepoint (inclusive) needs to be used in conjunction
     to AWRANGE. For example, if AWRANGE is'5-9 DAYS', then AWHI is '9'.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AWU
+- :uri: http://www.cdisc.org/BDS/V1#AVAWU
   :ordinal: 98
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Window Unit
   :name: AWU
   :ct: ''
-  :ct_notes: ''
   :notes: 'Unit used for AWLO and AWHI. Examples: DAYS, HOURS.'
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_STARTDT
+- :uri: http://www.cdisc.org/BDS/V1#AVSTARTDT
   :ordinal: 99
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Time to Event Origin Date for Subject
   :name: STARTDT
   :ct: ''
-  :ct_notes: ''
   :notes: The original date of risk for the time-to-event analysis. This is generally
     the time at which a subject is first at risk of the event of interest (as defined
     in the protocol or Statistical Analysis Plan). For example, this may be the randomization
     date or the date of first study therapy exposure.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_CNSR
+- :uri: http://www.cdisc.org/BDS/V1#AVCNSR
   :ordinal: 100
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Censor
   :name: CNSR
   :ct: ''
-  :ct_notes: ''
   :notes: Defines whether the event was censored (period of observation truncated
     prior to event being observed). It is strongly recommended to use 0 as an event
     indicator and positive integers as censoring indicators. It is also recommended
     that unique positive integers be used to indicate coded descriptions of censoring
     reasons. CNSR is required for time-to-event parameters.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Numeric
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_EVNTDESC
+- :uri: http://www.cdisc.org/BDS/V1#AVEVNTDESC
   :ordinal: 101
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Event or Censoring Description
   :name: EVNTDESC
   :ct: ''
-  :ct_notes: ''
   :notes: Description of the event of interest or censoring reason.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ATOXGR
+- :uri: http://www.cdisc.org/BDS/V1#AVATOXGR
   :ordinal: 102
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Toxicity Grade
   :name: ATOXGR
   :ct: ''
-  :ct_notes: ''
   :notes: Toxicity grade for analysis; may be based on SDTM --TOXGR or an imputed
     or assigned value.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_BTOXGR
+- :uri: http://www.cdisc.org/BDS/V1#AVBTOXGR
   :ordinal: 103
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Toxicity Grade
   :name: BTOXGR
   :ct: ''
-  :ct_notes: ''
   :notes: ATOXGR of the baseline record identified by ABLFL.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ANRIND
+- :uri: http://www.cdisc.org/BDS/V1#AVANRIND
   :ordinal: 104
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Reference Range Indicator
   :name: ANRIND
   :ct: ''
-  :ct_notes: ''
   :notes: Normal range indicator for analysis; may be based on SDTM --NRIND or an
     imputed or assigned value.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_BNRIND
+- :uri: http://www.cdisc.org/BDS/V1#AVBNRIND
   :ordinal: 105
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Reference Range Indicator
   :name: BNRIND
   :ct: ''
-  :ct_notes: ''
   :notes: ANRIND of the baseline record identified by ABLFL.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ANRLO
+- :uri: http://www.cdisc.org/BDS/V1#AVANRLO
   :ordinal: 106
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Normal Range Lower Limit
   :name: ANRLO
   :ct: ''
-  :ct_notes: ''
   :notes: Normal range lower limit for analysis; may be based on SDTM --NRLO or an
     imputed or assigned value.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ANRHI
+- :uri: http://www.cdisc.org/BDS/V1#AVANRHI
   :ordinal: 107
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Normal Range Upper Limit
   :name: ANRHI
   :ct: ''
-  :ct_notes: ''
   :notes: Normal range upper limit for analysis; may be based on SDTM --NRHI or an
     imputed or assigned value.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AyLO
+- :uri: http://www.cdisc.org/BDS/V1#AVAyLO
   :ordinal: 108
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Range y Lower Limit
   :name: AyLO
   :ct: ''
-  :ct_notes: ''
   :notes: AyLO and/or AyHI are used where there are multiple ranges used for analysis.
     AyLO and/or AyHI are created to capture the different levels of cutoff values
     used to determine whether an analysis is within a clinically acceptable value
     range or outside that value range. AyLO and/or AyHI are usually but not necessarily
     constants, parameter-specific constants, or subject-specific constants. AyLO must
     be included if R2AyLO is included in the dataset.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_AyHI
+- :uri: http://www.cdisc.org/BDS/V1#AVAyHI
   :ordinal: 109
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Range y Upper Limit
   :name: AyHI
   :ct: ''
-  :ct_notes: ''
   :notes: 'See AyLO. For example, if ECG QTc values are summarized based on values
     450, values >480, and values >500, there is a need for 3 ''hi value'' range variables
     to calculate values against: A1HI=450, A2HI=480, A3HI=500. AyHI must be included
     if R2AyHI is included in the dataset.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ABLFL
+- :uri: http://www.cdisc.org/BDS/V1#AVABLFL
   :ordinal: 110
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Record Flag
   :name: ABLFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: Character indicator to identify the baseline record for each parameter,
     or if there is more than one baseline definition, for each parameter and baseline
     type (BASETYPE). See BASETYPE in Table 3.2.4.1. ABLFL is required if BASE is present
@@ -1284,27 +1174,25 @@
     in which case DTYPE must also be populated. If BASE is populated for a parameter,
     and BASE is non-null for a subject for that parameter, then there must be a record
     flagged by ABLFL for that subject and parameter.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ABLFN
+- :uri: http://www.cdisc.org/BDS/V1#AVABLFN
   :ordinal: 111
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Baseline Record Flag (N)
   :name: ABLFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric indicator to identify the baseline record for each parameter, or
     if there is more than one baseline definition, for each parameter and baseline
     type (BASETYPE).
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ANLzzFL
+- :uri: http://www.cdisc.org/BDS/V1#AVANLzzFL
   :ordinal: 112
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analysis Record Flag zz
   :name: ANLzzFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: ANLzzFL is a conditionally required flag to be used in addition to other
     selection variables when the other selection variables in combination are insufficient
     to identify the exact set of records used for one or more analyses. Often one
@@ -1327,332 +1215,302 @@
     'zz' is an index for a record selection algorithm, such as 'record closest to
     target relative day for the AVISIT, with ties broken by the latest record, for
     each AVISIT within <list of AVISITS>.'
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ANLzzFN
+- :uri: http://www.cdisc.org/BDS/V1#AVANLzzFN
   :ordinal: 113
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Analyzed Record Flag zz (N)
   :name: ANLzzFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric version of ANLzzFL.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ONTRTFL
+- :uri: http://www.cdisc.org/BDS/V1#AVONTRTFL
   :ordinal: 114
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: On Treatment Record Flag
   :name: ONTRTFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: Character indicator of whether the observation occurred while the subject
     was on treatment.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ONTRTFN
+- :uri: http://www.cdisc.org/BDS/V1#AVONTRTFN
   :ordinal: 115
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: On Treatment Record Flag (N)
   :name: ONTRTFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric indicator of whether the observation occurred while the subject
     was on treatment.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_LVOTFL
+- :uri: http://www.cdisc.org/BDS/V1#AVLVOTFL
   :ordinal: 116
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Last Value On Treatment Record Flag
   :name: LVOTFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: Character indicator of the last non-missing value on treatment for each
     parameter.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_LVOTFN
+- :uri: http://www.cdisc.org/BDS/V1#AVLVOTFN
   :ordinal: 117
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Last Value On Treatment Record Flag (N)
   :name: LVOTFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric indicator of the last non-missing value on treatment for each parameter.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ITTRFL
+- :uri: http://www.cdisc.org/BDS/V1#AVITTRFL
   :ordinal: 118
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Intent-To-Treat Record-Level Flag
   :name: ITTRFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: Character indicator of whether the subject was in the intent-to-treat analysis
     for the specific record.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ITTRFN
+- :uri: http://www.cdisc.org/BDS/V1#AVITTRFN
   :ordinal: 119
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Intent-To-Treat Record-Level Flag (N)
   :name: ITTRFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric indicator of whether the subject was in the intent-to-treat analysis
     for the specific record.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ITTPFL
+- :uri: http://www.cdisc.org/BDS/V1#AVITTPFL
   :ordinal: 120
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Intent-To-Treat Parameter-Level Flag
   :name: ITTPFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: Character indicator of whether the subject was in the intent-to-treat analysis
     for the specific parameter.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_ITTPFN
+- :uri: http://www.cdisc.org/BDS/V1#AVITTPFN
   :ordinal: 121
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Intent-To-Treat Param-Level Flag (N)
   :name: ITTPFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric indicator of whether the subject was in the intent-to-treat analysis
     for the specific parameter.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_SAFRFL
+- :uri: http://www.cdisc.org/BDS/V1#AVSAFRFL
   :ordinal: 122
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Safety Analysis Record-Level Flag
   :name: SAFRFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: Character indicator of whether the subject was in the safety analysis for
     the specific record.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_SAFRFN
+- :uri: http://www.cdisc.org/BDS/V1#AVSAFRFN
   :ordinal: 123
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Safety Analysis Record-Level Flag (N)
   :name: SAFRFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric indicator of whether the subject was in the safety analysis for
     the specific record.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_SAFPFL
+- :uri: http://www.cdisc.org/BDS/V1#AVSAFPFL
   :ordinal: 124
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Safety Analysis Parameter-Level Flag
   :name: SAFPFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: Character indicator of whether the subject was in the safety analysis for
     the specific parameter.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_SAFPFN
+- :uri: http://www.cdisc.org/BDS/V1#AVSAFPFN
   :ordinal: 125
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Safety Analysis Param-Level Flag (N)
   :name: SAFPFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric indicator of whether the subject was in the safety analysis for
     the specific parameter.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_FASRFL
+- :uri: http://www.cdisc.org/BDS/V1#AVFASRFL
   :ordinal: 126
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Full Analysis Set Record-Level Flag
   :name: FASRFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: Character indicator of whether the subject was in the full analysis set
     analysis for the specific record.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_FASRFN
+- :uri: http://www.cdisc.org/BDS/V1#AVFASRFN
   :ordinal: 127
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Full Analysis Set Record-Level Flag (N)
   :name: FASRFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric indicator of whether the subject was in the full analysis set analysis
     for the specific record.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_FASPFL
+- :uri: http://www.cdisc.org/BDS/V1#AVFASPFL
   :ordinal: 128
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Full Analysis Set Parameter-Level Flag
   :name: FASPFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: Character indicator of whether the subject was in the full analysis set
     analysis for the specific parameter.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_FASPFN
+- :uri: http://www.cdisc.org/BDS/V1#AVFASPFN
   :ordinal: 129
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Full Analysis Set Param-Level Flag (N)
   :name: FASPFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric indicator of whether the subject was in the full analysis set analysis
     for the specific parameter.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_PPROTRFL
+- :uri: http://www.cdisc.org/BDS/V1#AVPPROTRFL
   :ordinal: 130
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Per-Protocol Record-Level Flag
   :name: PPROTRFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: Character indicator of whether the subject was in the per-protocol analysis
     for the specific record.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_PPROTRFN
+- :uri: http://www.cdisc.org/BDS/V1#AVPPROTRFN
   :ordinal: 131
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Per-Protocol Record-Level Flag (N)
   :name: PPROTRFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric indicator of whether the subject was in the per-protocol analysis
     for the specific record.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_PPROTPFL
+- :uri: http://www.cdisc.org/BDS/V1#AVPPROTPFL
   :ordinal: 132
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Per-Protocol Parameter-Level Flag
   :name: PPROTPFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: Character indicator of whether the subject was in the per-protocol analysis
     for the specific parameter.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_PPROTPFN
+- :uri: http://www.cdisc.org/BDS/V1#AVPPROTPFN
   :ordinal: 133
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Per-Protocol Parameter-Level Flag (N)
   :name: PPROTPFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric indicator of whether the subject was in the per-protocol analysis
     for the specific parameter.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_COMPRFL
+- :uri: http://www.cdisc.org/BDS/V1#AVCOMPRFL
   :ordinal: 134
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Completers Record-Level Flag
   :name: COMPRFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: Character indicator of whether the subject was in the completed subjects
     analysis for the specific record.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_COMPRFN
+- :uri: http://www.cdisc.org/BDS/V1#AVCOMPRFN
   :ordinal: 135
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Completers Record-Level Flag (N)
   :name: COMPRFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric indicator of whether the subject was in the completed subjects analysis
     for the specific record.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_COMPPFL
+- :uri: http://www.cdisc.org/BDS/V1#AVCOMPPFL
   :ordinal: 136
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Completers Parameter-Level Flag
   :name: COMPPFL
-  :ct: ''
-  :ct_notes: Y
+  :ct: Y
   :notes: Character indicator of whether the subject was in the completed subjects
     analysis for the specific parameter.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_COMPPFN
+- :uri: http://www.cdisc.org/BDS/V1#AVCOMPPFN
   :ordinal: 137
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Completers Parameter-Level Flag (N)
   :name: COMPPFN
-  :ct: ''
-  :ct_notes: '1'
+  :ct: '1'
   :notes: Numeric indicator of whether the subject was in the completed subjects analysis
     for the specific parameter.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_CRITyFL
+- :uri: http://www.cdisc.org/BDS/V1#AVCRITyFL
   :ordinal: 138
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Criterion y Evaluation Result Flag
   :name: CRITyFL
-  :ct: ''
-  :ct_notes: N, Y
+  :ct: N, Y
   :notes: Character indicator of whether the criterion defined in CRITy was met. See
     also CRITy in Section 3.2.4. Required if CRITy exists. Refer to Section 4.7 for
     additional discussion.
-  :compliance: Conditional
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_CRITyFN
+- :uri: http://www.cdisc.org/BDS/V1#AVCRITyFN
   :ordinal: 139
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Criterion y Evaluation Result Flag (N)
   :name: CRITyFN
-  :ct: ''
-  :ct_notes: 0, 1
+  :ct: 0, 1
   :notes: Numeric indicator of whether the criterion defined in CRITy was met.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_SRCDOM
+- :uri: http://www.cdisc.org/BDS/V1#AVSRCDOM
   :ordinal: 140
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Source Domain
   :name: SRCDOM
   :ct: ''
-  :ct_notes: ''
   :notes: The 2-character identifier of the SDTM domain that relates to AVAL or AVALC.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_SRCVAR
+- :uri: http://www.cdisc.org/BDS/V1#AVSRCVAR
   :ordinal: 141
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Source Variable
   :name: SRCVAR
   :ct: ''
-  :ct_notes: ''
   :notes: The name of the column (in the SDTM domain identified by SRCDOM) that relates
     to AVAL or AVALC.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Character
-- :uri: http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS_SRCSEQ
+- :uri: http://www.cdisc.org/BDS/V1#AVSRCSEQ
   :ordinal: 142
   :rdf_type: http://www.assero.co.uk/Tabulation#ADaMDatasetVariable
   :label: Source Sequence Number
   :name: SRCSEQ
   :ct: ''
-  :ct_notes: ''
   :notes: The sequence number SEQ of the row (in the SDTM domain identified by SRCDOM)
     that relates to AVAL or AVALC.
-  :compliance: Permissible
+  :compliance: ''
   :typed_as: Numeric

@@ -4,7 +4,7 @@
   :status_path: ''
   :current_path: ''
   :delete_path: ''
-  :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bUlnRC9DRElTQy9WMyNJRy1DRElTQ19TRFRNSUdSUw=="
+  :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvQ00vVjE="
   :search_path: ''
   :list_cn_path: ''
   :impact_path: ''
@@ -18,14 +18,14 @@
     :subsetted: false
   :view_path: ''
   :compare_path: ''
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bUlnRC9DRElTQy9WMyNJRy1DRElTQ19TRFRNSUdSUw==
-  :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ00vVjE=
+  :uri: http://www.cdisc.org/CM/V1
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
-  :label: Disease Response
+  :label: Concomitant/Prior Medications
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQ0RJU0NfU0RUTUlHUlMtMw==
-    :uri: http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIGRS-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ00vVjEjUlM=
+    :uri: http://www.cdisc.org/CM/V1#RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Standard
     :administrative_note: ''
@@ -33,7 +33,7 @@
     :until_date: '2016-01-01T00:00:00+00:00'
     :unresolved_issue: ''
     :administrative_status: ''
-    :previous_state: Incomplete
+    :previous_state: Standard
     :multiple_edit: false
     :by_authority:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
@@ -50,13 +50,13 @@
         :name: Clinical Data Interchange Standards Consortium
         :authority: www.cdisc.org
   :has_identifier:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQ0RJU0NfU0RUTUlHUlMtMw==
-    :uri: http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIGRS-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ00vVjEjU0k=
+    :uri: http://www.cdisc.org/CM/V1#SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTM IG RS
-    :version_label: '3.2'
-    :version: 2
-    :semantic_version: 3.2.0
+    :identifier: CM
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 1.0.0
     :has_scope:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
       :uri: http://www.assero.co.uk/NS#CDISC
@@ -67,8 +67,8 @@
   :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2013-11-26T00:00:00+00:00'
-  :last_change_date: '2013-11-26T00:00:00+00:00'
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
   :explanatory_comment: ''
   :rule: ''
   :ordinal: 1
