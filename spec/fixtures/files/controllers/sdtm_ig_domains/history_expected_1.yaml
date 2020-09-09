@@ -4,7 +4,7 @@
   :status_path: ''
   :current_path: ''
   :delete_path: ''
-  :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvQ00vVjE="
+  :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0Q="
   :search_path: ''
   :list_cn_path: ''
   :impact_path: ''
@@ -18,14 +18,14 @@
     :subsetted: false
   :view_path: ''
   :compare_path: ''
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ00vVjE=
-  :uri: http://www.cdisc.org/CM/V1
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0Q=
+  :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
   :label: Concomitant/Prior Medications
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ00vVjEjUlM=
-    :uri: http://www.cdisc.org/CM/V1#RS
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfUlM=
+    :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Standard
     :administrative_note: ''
@@ -50,13 +50,13 @@
         :name: Clinical Data Interchange Standards Consortium
         :authority: www.cdisc.org
   :has_identifier:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ00vVjEjU0k=
-    :uri: http://www.cdisc.org/CM/V1#SI
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfU0k=
+    :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: CM
+    :identifier: SDTM IG CM
     :version_label: 2008-11-12 Release
     :version: 1
-    :semantic_version: 1.0.0
+    :semantic_version: 3.1.2
     :has_scope:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
       :uri: http://www.assero.co.uk/NS#CDISC

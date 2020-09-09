@@ -36,13 +36,13 @@ describe SdtmIgDomainsController do
     end
 
     it "show" do
-      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/CM/V1"))
+      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_CM/V1#IGD"))
       get :show, params: { :id => sdtm_ig_domain.id}
       expect(response).to render_template("show")
     end
 
     it "show results" do
-      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/CM/V1"))
+      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_CM/V1#IGD"))
       request.env['HTTP_ACCEPT'] = "application/json"
       get :show_data, params:{id: sdtm_ig_domain.id}
       expect(response.content_type).to eq("application/json")
@@ -52,7 +52,7 @@ describe SdtmIgDomainsController do
     end
 
     it "shows the history, page" do
-      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/CM/V1"))
+      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_CM/V1#IGD"))
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(SdtmIgDomain).to receive(:history_pagination).with({identifier: sdtm_ig_domain.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "0", count: "20"}).and_return([sdtm_ig_domain])
       get :history, params:{sdtm_ig_domain: {identifier: sdtm_ig_domain.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 0}}
