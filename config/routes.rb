@@ -374,6 +374,7 @@ Rails.application.routes.draw do
     member do
       get :show_data
       get :crf
+      get :referenced_items
     end
     collection do
       get :history

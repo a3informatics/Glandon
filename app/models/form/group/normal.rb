@@ -33,6 +33,9 @@ class Form::Group::Normal < Form::Group
     results
   end
 
+  # To CRF
+  #
+  # @return [String] An html string of Normal group
   def to_crf
     html = ""
     html += text_row(self.label)
@@ -102,8 +105,8 @@ class Form::Group::Normal < Form::Group
       end
       sg.has_common.sort_by {|x| x.ordinal}.each do |cm|
         if !items.has_key?(cm.label)
-            html += cm.to_crf
-            items[cm.label] = cm.label
+          html += cm.to_crf
+          items[cm.label] = cm.label
         end
       end   
     end

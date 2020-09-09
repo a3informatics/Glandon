@@ -14,6 +14,9 @@ class Form::Item::Common < Form::Item
     return self.to_h.merge!(blank_fields)
   end
 
+  # To CRF
+  #
+  # @return [String] An html string of Common Item
   def to_crf
     html = ""
     common_item = self.has_common_item.first
@@ -28,16 +31,18 @@ class Form::Item::Common < Form::Item
     html += end_row
   end
 
-  def terminology_cell(property)
-    html = '<td>'
-    property.has_coded_value.each do |cv|
-      op_ref = OperationalReferenceV3.find(cv)
-      tc = Thesaurus::UnmanagedConcept.find(op_ref.reference)
-      if op_ref.enabled
-        html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
+  private
+
+    def terminology_cell(property)
+      html = '<td>'
+      property.has_coded_value.each do |cv|
+        op_ref = OperationalReferenceV3.find(cv)
+        tc = Thesaurus::UnmanagedConcept.find(op_ref.reference)
+        if op_ref.enabled
+          html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
+        end
       end
+      html += '</td>'
     end
-    html += '</td>'
-  end
 
 end

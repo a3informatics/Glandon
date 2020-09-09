@@ -16,6 +16,9 @@ class Form::Item::Mapping < Form::Item
     return self.to_h.merge!(blank_fields)
   end
 
+  # To CRF
+  #
+  # @return [String] An html string of Mapping item
   def to_crf
     html = ""
     #html += mapping_row(self.mapping) #if options[:annotate]

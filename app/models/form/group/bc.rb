@@ -29,6 +29,9 @@ class Form::Group::Bc < Form::Group
     results
   end
 
+  # To CRF
+  #
+  # @return [String] An html string of BC Group
   def to_crf
     html = ""
     html += text_row(self.label)
