@@ -22,10 +22,18 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:41+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:33+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCI_BCI1 ;
 	bc:hasItem :BCI_BCI2 ;
+	bc:hasItem :BCI_BCI3 ;
+	bc:hasItem :BCI_BCI4 ;
+	bc:hasItem :BCI_BCI5 ;
+	bc:hasItem :BCI_BCI6 ;
+	bc:hasItem :BCI_BCI7 ;
+	bc:hasItem :BCI_BCI8 ;
+	bc:hasItem :BCI_BCI9 ;
+	bc:hasItem :BCI_BCI10 ;
 	bc:hasItem :BCI_BCI11 ;
 	bc:identifiedBy :BCI_BCI1 ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -110,6 +118,205 @@
 	bc:alias "--DTC"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#DATETIME_value> ;
+.
+:BCI_BCI3
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCI_BCI3_BCCDTCD ;
+.
+:BCI_BCI3_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty :BCI_BCI3_BCCDTCD_BCPcode ;
+.
+:BCI_BCI3_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+:BCI_BCI4
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCI_BCI4_BCCDTCD ;
+.
+:BCI_BCI4_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty :BCI_BCI4_BCCDTCD_BCPcode ;
+.
+:BCI_BCI4_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+:BCI_BCI5
+	rdf:type bc:Item ;
+	isoC:label "Position"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "5"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCI_BCI5_BCCDTCD ;
+.
+:BCI_BCI5_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty :BCI_BCI5_BCCDTCD_BCPcode ;
+.
+:BCI_BCI5_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--POS"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+:BCI_BCI6
+	rdf:type bc:Item ;
+	isoC:label "Site of Administration"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "6"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCI_BCI6_BCCDTCD ;
+.
+:BCI_BCI6_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty :BCI_BCI6_BCCDTCD_BCPcode ;
+.
+:BCI_BCI6_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LOC"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+:BCI_BCI7
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCI_BCI7_BCCDTCD ;
+.
+:BCI_BCI7_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty :BCI_BCI7_BCCDTCD_BCPcode ;
+.
+:BCI_BCI7_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+:BCI_BCI8
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCI_BCI8_BCCDTCD ;
+.
+:BCI_BCI8_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty :BCI_BCI8_BCCDTCD_BCPcode ;
+.
+:BCI_BCI8_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+:BCI_BCI9
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCI_BCI9_BCCDTBL ;
+.
+:BCI_BCI9_BCCDTBL
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty :BCI_BCI9_BCCDTBL_BCPvalue ;
+.
+:BCI_BCI9_BCCDTBL_BCPvalue
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+:BCI_BCI10
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "10"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCI_BCI10_BCCDTCD ;
+.
+:BCI_BCI10_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty :BCI_BCI10_BCCDTCD_BCPvalue ;
+.
+:BCI_BCI10_BCCDTCD_BCPvalue
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 :BCI_BCI11
 	rdf:type bc:Item ;
@@ -199,10 +406,18 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:41+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:33+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI3> ;
+	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI4> ;
+	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI5> ;
+	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI6> ;
+	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI8> ;
+	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI9> ;
+	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10> ;
 	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11> ;
 	bc:identifiedBy <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -288,6 +503,205 @@
 	bc:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#DATETIME_value> ;
 .
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI3>
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI3_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI3_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI3_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI3_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI4>
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI4_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI4_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI4_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI5>
+	rdf:type bc:Item ;
+	isoC:label "Position"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "5"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI5_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI5_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI5_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--POS"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI6>
+	rdf:type bc:Item ;
+	isoC:label "Site of Administration"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "6"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI6_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI6_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI6_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI6_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LOC"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI7>
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI7_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI7_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI7_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI7_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI8>
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI8_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI8_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI8_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI8_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI9>
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI9_BCCDTBL> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI9_BCCDTBL>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI9_BCCDTBL_BCPvalue> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI9_BCCDTBL_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10>
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "10"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTCD_BCPvalue> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTCD_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+.
 <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11>
 	rdf:type bc:Item ;
 	isoC:label "Result"^^xsd:string ;
@@ -354,9 +768,17 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:41+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:33+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI1> ;
+	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI3> ;
+	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI4> ;
+	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI5> ;
+	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI6> ;
+	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI8> ;
+	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI9> ;
 	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI10> ;
 	bc:identifiedBy <http://www.s-cubed.dk/BMI/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -417,6 +839,205 @@
 	bo:context <http://www.cdisc.org/C66741/V61#C66741> ;
 	bo:localLabel ""^^xsd:string ;
 .
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI2>
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/BMI/V1#BCI_BCI2_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI2_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/BMI/V1#BCI_BCI2_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI2_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI3>
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/BMI/V1#BCI_BCI3_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI3_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/BMI/V1#BCI_BCI3_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI3_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI4>
+	rdf:type bc:Item ;
+	isoC:label "Position"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/BMI/V1#BCI_BCI4_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI4_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/BMI/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI4_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--POS"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI5>
+	rdf:type bc:Item ;
+	isoC:label "Site of Administration"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "5"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/BMI/V1#BCI_BCI5_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI5_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/BMI/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI5_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LOC"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI6>
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "6"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/BMI/V1#BCI_BCI6_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI6_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/BMI/V1#BCI_BCI6_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI6_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI7>
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/BMI/V1#BCI_BCI7_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI7_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/BMI/V1#BCI_BCI7_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI7_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI8>
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/BMI/V1#BCI_BCI8_BCCDTBL> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI8_BCCDTBL>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty <http://www.s-cubed.dk/BMI/V1#BCI_BCI8_BCCDTBL_BCPvalue> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI8_BCCDTBL_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI9>
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/BMI/V1#BCI_BCI9_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI9_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/BMI/V1#BCI_BCI9_BCCDTCD_BCPvalue> ;
+.
+<http://www.s-cubed.dk/BMI/V1#BCI_BCI9_BCCDTCD_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+.
 <http://www.s-cubed.dk/BMI/V1#BCI_BCI10>
 	rdf:type bc:Item ;
 	isoC:label "Result"^^xsd:string ;
@@ -472,9 +1093,17 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:41+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:34+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI1> ;
+	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI3> ;
+	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI4> ;
+	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI5> ;
+	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI6> ;
+	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI8> ;
+	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI9> ;
 	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI10> ;
 	bc:identifiedBy <http://www.s-cubed.dk/RACE/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -534,6 +1163,205 @@
 	bo:reference <http://www.s-cubed.dk/H000002/V1#H000002_HI000006> ;
 	bo:context <http://www.s-cubed.dk/H000002/V1#H000002> ;
 	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI2>
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/RACE/V1#BCI_BCI2_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI2_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/RACE/V1#BCI_BCI2_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI2_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI3>
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/RACE/V1#BCI_BCI3_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI3_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/RACE/V1#BCI_BCI3_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI3_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI4>
+	rdf:type bc:Item ;
+	isoC:label "Position"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/RACE/V1#BCI_BCI4_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI4_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/RACE/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI4_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--POS"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI5>
+	rdf:type bc:Item ;
+	isoC:label "Site of Administration"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "5"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/RACE/V1#BCI_BCI5_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI5_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/RACE/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI5_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LOC"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI6>
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "6"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/RACE/V1#BCI_BCI6_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI6_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/RACE/V1#BCI_BCI6_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI6_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI7>
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/RACE/V1#BCI_BCI7_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI7_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/RACE/V1#BCI_BCI7_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI7_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI8>
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/RACE/V1#BCI_BCI8_BCCDTBL> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI8_BCCDTBL>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty <http://www.s-cubed.dk/RACE/V1#BCI_BCI8_BCCDTBL_BCPvalue> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI8_BCCDTBL_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI9>
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/RACE/V1#BCI_BCI9_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI9_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/RACE/V1#BCI_BCI9_BCCDTCD_BCPvalue> ;
+.
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI9_BCCDTCD_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.s-cubed.dk/RACE/V1#BCI_BCI10>
 	rdf:type bc:Item ;
@@ -645,9 +1473,17 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:41+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:34+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI1> ;
+	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI3> ;
+	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI4> ;
+	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI5> ;
+	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI6> ;
+	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI8> ;
+	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI9> ;
 	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI10> ;
 	bc:identifiedBy <http://www.s-cubed.dk/SEX/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -707,6 +1543,205 @@
 	bo:reference <http://www.s-cubed.dk/H000002/V1#H000002_HI000008> ;
 	bo:context <http://www.s-cubed.dk/H000002/V1#H000002> ;
 	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI2>
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SEX/V1#BCI_BCI2_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI2_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/SEX/V1#BCI_BCI2_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI2_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI3>
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SEX/V1#BCI_BCI3_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI3_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/SEX/V1#BCI_BCI3_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI3_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI4>
+	rdf:type bc:Item ;
+	isoC:label "Position"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SEX/V1#BCI_BCI4_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI4_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/SEX/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI4_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--POS"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI5>
+	rdf:type bc:Item ;
+	isoC:label "Site of Administration"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "5"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SEX/V1#BCI_BCI5_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI5_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/SEX/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI5_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LOC"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI6>
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "6"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SEX/V1#BCI_BCI6_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI6_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/SEX/V1#BCI_BCI6_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI6_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI7>
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SEX/V1#BCI_BCI7_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI7_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/SEX/V1#BCI_BCI7_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI7_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI8>
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SEX/V1#BCI_BCI8_BCCDTBL> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI8_BCCDTBL>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty <http://www.s-cubed.dk/SEX/V1#BCI_BCI8_BCCDTBL_BCPvalue> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI8_BCCDTBL_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI9>
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SEX/V1#BCI_BCI9_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI9_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/SEX/V1#BCI_BCI9_BCCDTCD_BCPvalue> ;
+.
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI9_BCCDTCD_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.s-cubed.dk/SEX/V1#BCI_BCI10>
 	rdf:type bc:Item ;
@@ -785,9 +1820,17 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:41+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:34+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI1> ;
+	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI3> ;
+	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI4> ;
+	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI5> ;
+	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI6> ;
+	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI8> ;
+	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI9> ;
 	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI10> ;
 	bc:identifiedBy <http://www.s-cubed.dk/AGE/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -848,6 +1891,205 @@
 	bo:context <http://www.s-cubed.dk/H000002/V1#H000002> ;
 	bo:localLabel ""^^xsd:string ;
 .
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI2>
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AGE/V1#BCI_BCI2_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI2_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AGE/V1#BCI_BCI2_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI2_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI3>
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AGE/V1#BCI_BCI3_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI3_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AGE/V1#BCI_BCI3_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI3_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI4>
+	rdf:type bc:Item ;
+	isoC:label "Position"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AGE/V1#BCI_BCI4_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI4_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AGE/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI4_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--POS"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI5>
+	rdf:type bc:Item ;
+	isoC:label "Site of Administration"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "5"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AGE/V1#BCI_BCI5_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI5_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AGE/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI5_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LOC"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI6>
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "6"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AGE/V1#BCI_BCI6_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI6_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AGE/V1#BCI_BCI6_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI6_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI7>
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AGE/V1#BCI_BCI7_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI7_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AGE/V1#BCI_BCI7_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI7_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI8>
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AGE/V1#BCI_BCI8_BCCDTBL> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI8_BCCDTBL>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty <http://www.s-cubed.dk/AGE/V1#BCI_BCI8_BCCDTBL_BCPvalue> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI8_BCCDTBL_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI9>
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AGE/V1#BCI_BCI9_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI9_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AGE/V1#BCI_BCI9_BCCDTCD_BCPvalue> ;
+.
+<http://www.s-cubed.dk/AGE/V1#BCI_BCI9_BCCDTCD_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+.
 <http://www.s-cubed.dk/AGE/V1#BCI_BCI10>
 	rdf:type bc:Item ;
 	isoC:label "Result"^^xsd:string ;
@@ -903,9 +2145,17 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:41+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:35+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI1> ;
+	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI3> ;
+	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI4> ;
+	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI5> ;
+	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI6> ;
+	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI8> ;
+	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI9> ;
 	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI10> ;
 	bc:identifiedBy <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -965,6 +2215,205 @@
 	bo:reference <http://www.s-cubed.dk/H000002/V1#H000002_HI000007> ;
 	bo:context <http://www.s-cubed.dk/H000002/V1#H000002> ;
 	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI2>
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI2_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI2_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI2_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI2_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI3>
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI3_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI3_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI3_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI3_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI4>
+	rdf:type bc:Item ;
+	isoC:label "Position"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI4_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI4_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI4_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--POS"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI5>
+	rdf:type bc:Item ;
+	isoC:label "Site of Administration"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "5"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI5_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI5_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI5_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LOC"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI6>
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "6"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI6_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI6_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI6_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI6_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI7>
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI7_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI7_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI7_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI7_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI8>
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI8_BCCDTBL> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI8_BCCDTBL>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI8_BCCDTBL_BCPvalue> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI8_BCCDTBL_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI9>
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI9_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI9_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI9_BCCDTCD_BCPvalue> ;
+.
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI9_BCCDTCD_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI10>
 	rdf:type bc:Item ;
@@ -1043,13 +2492,18 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:42+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:35+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI3> ;
+	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4> ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5> ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6> ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI8> ;
+	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI9> ;
+	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10> ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11> ;
 	bc:identifiedBy <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -1134,6 +2588,56 @@
 	bc:alias "--DTC"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#DATETIME_value> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI3>
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI3_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI3_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI3_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI3_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4>
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5>
 	rdf:type bc:Item ;
@@ -1287,6 +2791,80 @@
 	bo:context <http://www.cdisc.org/C99073/V57#C99073> ;
 	bo:localLabel ""^^xsd:string ;
 .
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI8>
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI8_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI8_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI8_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI8_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI9>
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI9_BCCDTBL> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI9_BCCDTBL>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI9_BCCDTBL_BCPvalue> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI9_BCCDTBL_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10>
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "10"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTCD_BCPvalue> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTCD_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+.
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11>
 	rdf:type bc:Item ;
 	isoC:label "Result"^^xsd:string ;
@@ -1353,13 +2931,18 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:42+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:35+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI3> ;
+	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4> ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5> ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6> ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI8> ;
+	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI9> ;
+	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10> ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11> ;
 	bc:identifiedBy <http://www.s-cubed.dk/DIABP/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -1444,6 +3027,56 @@
 	bc:alias "--DTC"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#DATETIME_value> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI3>
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/DIABP/V1#BCI_BCI3_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI3_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI3_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI3_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI4>
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5>
 	rdf:type bc:Item ;
@@ -1597,6 +3230,80 @@
 	bo:context <http://www.cdisc.org/C99073/V57#C99073> ;
 	bo:localLabel ""^^xsd:string ;
 .
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI8>
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/DIABP/V1#BCI_BCI8_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI8_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI8_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI8_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI9>
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/DIABP/V1#BCI_BCI9_BCCDTBL> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI9_BCCDTBL>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI9_BCCDTBL_BCPvalue> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI9_BCCDTBL_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI10>
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "10"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTCD_BCPvalue> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTCD_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+.
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11>
 	rdf:type bc:Item ;
 	isoC:label "Result"^^xsd:string ;
@@ -1663,12 +3370,17 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:43+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:36+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI1> ;
+	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI3> ;
 	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI4> ;
 	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI5> ;
 	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI6> ;
+	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI8> ;
+	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI9> ;
 	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI10> ;
 	bc:identifiedBy <http://www.s-cubed.dk/HR/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -1728,6 +3440,56 @@
 	bo:reference <http://www.cdisc.org/C66741/V4#C66741_C49677> ;
 	bo:context <http://www.cdisc.org/C66741/V61#C66741> ;
 	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI2>
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/HR/V1#BCI_BCI2_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI2_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/HR/V1#BCI_BCI2_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI2_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI3>
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/HR/V1#BCI_BCI3_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI3_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/HR/V1#BCI_BCI3_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI3_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
 .
 <http://www.s-cubed.dk/HR/V1#BCI_BCI4>
 	rdf:type bc:Item ;
@@ -1881,6 +3643,80 @@
 	bo:context <http://www.cdisc.org/C99073/V57#C99073> ;
 	bo:localLabel ""^^xsd:string ;
 .
+<http://www.s-cubed.dk/HR/V1#BCI_BCI7>
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/HR/V1#BCI_BCI7_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI7_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/HR/V1#BCI_BCI7_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI7_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI8>
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/HR/V1#BCI_BCI8_BCCDTBL> ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI8_BCCDTBL>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty <http://www.s-cubed.dk/HR/V1#BCI_BCI8_BCCDTBL_BCPvalue> ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI8_BCCDTBL_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI9>
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/HR/V1#BCI_BCI9_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI9_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/HR/V1#BCI_BCI9_BCCDTCD_BCPvalue> ;
+.
+<http://www.s-cubed.dk/HR/V1#BCI_BCI9_BCCDTCD_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+.
 <http://www.s-cubed.dk/HR/V1#BCI_BCI10>
 	rdf:type bc:Item ;
 	isoC:label "Result"^^xsd:string ;
@@ -1947,13 +3783,18 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:43+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:36+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI3> ;
+	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4> ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5> ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6> ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI8> ;
+	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI9> ;
+	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10> ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI11> ;
 	bc:identifiedBy <http://www.s-cubed.dk/TEMP/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -2038,6 +3879,56 @@
 	bc:alias "--DTC"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#DATETIME_value> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI3>
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/TEMP/V1#BCI_BCI3_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI3_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI3_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI3_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI4>
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5>
 	rdf:type bc:Item ;
@@ -2191,6 +4082,80 @@
 	bo:context <http://www.cdisc.org/C99073/V57#C99073> ;
 	bo:localLabel ""^^xsd:string ;
 .
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI8>
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/TEMP/V1#BCI_BCI8_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI8_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI8_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI8_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI9>
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/TEMP/V1#BCI_BCI9_BCCDTBL> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI9_BCCDTBL>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI9_BCCDTBL_BCPvalue> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI9_BCCDTBL_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI10>
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "10"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTCD_BCPvalue> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTCD_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+.
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI11>
 	rdf:type bc:Item ;
 	isoC:label "Result"^^xsd:string ;
@@ -2257,9 +4222,17 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:43+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:37+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI1> ;
+	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI3> ;
+	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI4> ;
+	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI5> ;
+	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI6> ;
+	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI8> ;
+	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI9> ;
 	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI10> ;
 	bc:identifiedBy <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -2319,6 +4292,205 @@
 	bo:reference <http://www.cdisc.org/C65047/V62#C65047_C64849> ;
 	bo:context <http://www.cdisc.org/C65047/V62#C65047> ;
 	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI2>
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI2_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI2_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI2_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI2_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI3>
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI3_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI3_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI3_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI3_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI4>
+	rdf:type bc:Item ;
+	isoC:label "Position"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI4_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI4_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI4_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--POS"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI5>
+	rdf:type bc:Item ;
+	isoC:label "Site of Administration"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "5"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI5_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI5_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI5_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LOC"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI6>
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "6"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI6_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI6_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI6_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI6_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI7>
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI7_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI7_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI7_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI7_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI8>
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI8_BCCDTBL> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI8_BCCDTBL>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI8_BCCDTBL_BCPvalue> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI8_BCCDTBL_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI9>
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI9_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI9_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI9_BCCDTCD_BCPvalue> ;
+.
+<http://www.s-cubed.dk/HBA1C/V1#BCI_BCI9_BCCDTCD_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI10>
 	rdf:type bc:Item ;
@@ -2386,9 +4558,17 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:43+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:37+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI1> ;
+	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI3> ;
+	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI4> ;
+	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI5> ;
+	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI6> ;
+	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI8> ;
+	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI9> ;
 	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI10> ;
 	bc:identifiedBy <http://www.s-cubed.dk/AE/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -2448,6 +4628,205 @@
 	bo:reference <http://www.cdisc.org/C66741/V4#C66741_C25347> ;
 	bo:context <http://www.cdisc.org/C66741/V61#C66741> ;
 	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI2>
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AE/V1#BCI_BCI2_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI2_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AE/V1#BCI_BCI2_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI2_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI3>
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AE/V1#BCI_BCI3_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI3_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AE/V1#BCI_BCI3_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI3_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI4>
+	rdf:type bc:Item ;
+	isoC:label "Position"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AE/V1#BCI_BCI4_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI4_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AE/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI4_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--POS"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI5>
+	rdf:type bc:Item ;
+	isoC:label "Site of Administration"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "5"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AE/V1#BCI_BCI5_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI5_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AE/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI5_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LOC"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI6>
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "6"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AE/V1#BCI_BCI6_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI6_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AE/V1#BCI_BCI6_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI6_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI7>
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AE/V1#BCI_BCI7_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI7_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AE/V1#BCI_BCI7_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI7_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI8>
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AE/V1#BCI_BCI8_BCCDTBL> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI8_BCCDTBL>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty <http://www.s-cubed.dk/AE/V1#BCI_BCI8_BCCDTBL_BCPvalue> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI8_BCCDTBL_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI9>
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/AE/V1#BCI_BCI9_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI9_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/AE/V1#BCI_BCI9_BCCDTCD_BCPvalue> ;
+.
+<http://www.s-cubed.dk/AE/V1#BCI_BCI9_BCCDTCD_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.s-cubed.dk/AE/V1#BCI_BCI10>
 	rdf:type bc:Item ;
@@ -2537,9 +4916,17 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-08T15:21:43+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-10T10:45:37+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI1> ;
+	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI3> ;
+	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI4> ;
+	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI5> ;
+	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI6> ;
+	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI8> ;
+	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI9> ;
 	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI10> ;
 	bc:identifiedBy <http://www.s-cubed.dk/INTP/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
@@ -2599,6 +4986,205 @@
 	bo:reference <http://www.cdisc.org/C71153/V26#C71153_C41255> ;
 	bo:context <http://www.cdisc.org/C71153/V60#C71153> ;
 	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI2>
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/INTP/V1#BCI_BCI2_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI2_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/INTP/V1#BCI_BCI2_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI2_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--CAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI3>
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/INTP/V1#BCI_BCI3_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI3_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/INTP/V1#BCI_BCI3_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI3_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--SCAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI4>
+	rdf:type bc:Item ;
+	isoC:label "Position"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/INTP/V1#BCI_BCI4_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI4_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/INTP/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI4_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--POS"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI5>
+	rdf:type bc:Item ;
+	isoC:label "Site of Administration"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "5"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/INTP/V1#BCI_BCI5_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI5_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/INTP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI5_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LOC"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI6>
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "6"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/INTP/V1#BCI_BCI6_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI6_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/INTP/V1#BCI_BCI6_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI6_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--LAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI7>
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/INTP/V1#BCI_BCI7_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI7_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/INTP/V1#BCI_BCI7_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI7_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--METHOD"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI8>
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/INTP/V1#BCI_BCI8_BCCDTBL> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI8_BCCDTBL>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
+	bc:hasProperty <http://www.s-cubed.dk/INTP/V1#BCI_BCI8_BCCDTBL_BCPvalue> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI8_BCCDTBL_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--STAT"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#BL_value> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI9>
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "false"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/INTP/V1#BCI_BCI9_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI9_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/INTP/V1#BCI_BCI9_BCCDTCD_BCPvalue> ;
+.
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI9_BCCDTCD_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:alias "--REASND"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.s-cubed.dk/INTP/V1#BCI_BCI10>
 	rdf:type bc:Item ;

@@ -5,7 +5,7 @@
     :label: "Test"
     :madatory: true
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: CD 
       :has_property: 
       - 
@@ -16,7 +16,7 @@
   - :label: "Category Code"
     :madatory: false
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: CD
       :has_property: 
       - 
@@ -26,7 +26,7 @@
   - :label: "Subcategory Code"
     :madatory: false
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: CD
       :has_property: 
       - 
@@ -36,7 +36,7 @@
   - :label: "Position"
     :madatory: false
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: CD
       :has_property: 
       - 
@@ -46,7 +46,7 @@
   - :label: "Site of Administration"
     :madatory: false
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: CD
       :has_property: 
       - 
@@ -56,7 +56,7 @@
   - :label: "Laterality"
     :madatory: false
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: CD
       :has_property: 
       - 
@@ -66,7 +66,7 @@
   - :label: "Method"
     :madatory: false
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: CD
       :has_property: 
       - 
@@ -76,7 +76,7 @@
   - :label: "Date Time"
     :madatory: true
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: DATETIME
       :has_property: 
       - 
@@ -86,7 +86,7 @@
   - :label: "Not Done"
     :madatory: true
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: BL
       :has_property: 
       - 
@@ -96,7 +96,7 @@
   - :label: "Reason Not Done"
     :madatory: true
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: CD
       :has_property: 
       - 
@@ -106,7 +106,7 @@
   - :label: "Result"
     :madatory: true
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: CD
       :has_property: 
       - 
