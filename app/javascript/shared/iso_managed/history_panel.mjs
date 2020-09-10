@@ -163,7 +163,6 @@ export default class HistoryPanel extends TablePanel {
    * @return {boolean} Determines if item should be displayed in the context menu
    */
   _isItemValid(item) {
-    console.log(item)
     if (item.required)
       return true;
     return (item.url) && (item.types.includes(this.param) || item.types.includes("all"));

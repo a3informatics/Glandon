@@ -141,6 +141,18 @@ export default class EditablePanel extends TablePanel {
         e.preventDefault();
       }
     });
+
+    // Custom inline editing with no onBlur action event for Pickable fields
+    this.table.on( 'click', 'td.editable.inline.pickable', (e) => {
+      if ( e.detail === 2 )
+        this.editor.inline( e.currentTarget, { onBlur: 'none' } );
+    });
+
+    this.table.on( 'key', ( e, dt, key, cell, oe) => {
+      if ( $( cell.node() ).hasClass('editable inline pickable') )
+        this.editor.close().inline( cell.node(), { onBlur: 'none' } );
+    });
+
   }
 
   /**

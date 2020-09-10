@@ -3,6 +3,7 @@ import ManagedItemSelector from 'shared/ui/items_picker/managed_item_selector'
 import IPPanel from 'shared/ui/items_picker/ip_panel'
 import { makeMCChildrenUrl } from 'shared/helpers/urls'
 import { tableInteraction } from 'shared/helpers/utils'
+import { conceptRef } from 'shared/ui/strings'
 
 /**
  * Unmanaged Item Selector
@@ -42,6 +43,7 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
   clear() {
     super.clear();
     this.childrenPanel.clear();
+    this._clearItemRef();
 
     this._togglePanels('index');
   }
@@ -56,7 +58,16 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
   _initialize() {
     super._initialize();
 
-    // Modify selection type of history panel to is
+    // Extend indexPanel's onSelect and onDeselect callbacks
+    this.indexPanel.onSelect = () => {
+      this._loadHistoryData();
+      this._showItemRef();
+    }
+    this.indexPanel.onDeselect = () => {
+      this.historyPanel.clear();
+      this._clearItemRef();
+    }
+    // Modify selection type of history panel
     this.historyPanel.table.select.style('single');
     // Reset history panel's draw callback
     this.historyPanel.drawCallback = () => { }
@@ -88,6 +99,8 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
       }
     });
 
+    this._renderBtns();
+
   }
 
   /**
@@ -99,6 +112,20 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
 
     // Selection change event, auto-update row selection
     this.selectionView.div.on('selection-change', (e, type) => this._updateRowSelection(this.childrenPanel, type));
+
+    $(this.selector).find('.select-all').on( 'click', () => {
+      if ( !this.multiple )
+        return;
+
+      this.childrenPanel.table.rows().select();
+    });
+
+    $(this.selector).find('.deselect-all').on( 'click', () => {
+      if ( !this.multiple )
+        return;
+
+      this.childrenPanel.table.rows({selected: true}).deselect();
+    });
   }
 
   /**
@@ -148,6 +175,42 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
       this._toggleInteractivity(false);
       this.childrenPanel.loadData( makeMCChildrenUrl (this.urls.children, selectedItem) );
     }
+  }
+
+
+  /** Concept reference  **/
+
+  /**
+   * Show picked item reference in UI placeholder
+   */
+  _showItemRef() {
+    const selectedItem = this.indexPanel.selectedData[0];
+    $(this.selector).find('.item-placeholder')
+                    .text( conceptRef(selectedItem) );
+  }
+
+  /**
+   * Initialize a new DataTable
+   * @return {DataTable instance} An initialized table panel
+   */
+  _renderBtns() {
+
+    if ( !this.multiple )
+      return;
+
+    let filter = $(this.selector).find('#children_filter');
+
+    filter.append('<button class="btn btn-xs white select-all"> Select All </button>')
+          .append('<button class="btn btn-xs white deselect-all"> Deselect All </button>');
+
+  }
+
+  /**
+   * Clear picked item reference in UI placeholder
+   */
+  _clearItemRef() {
+    $(this.selector).find('.item-placeholder')
+                    .text('');
   }
 
 

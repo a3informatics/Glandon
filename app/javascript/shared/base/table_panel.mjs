@@ -88,10 +88,10 @@ export default class TablePanel {
   }
 
   /**
-   * Clears table data
+   * Clears table data and filters
    */
   clear() {
-    this.table.clear().draw();
+    this.table.search('').clear().draw();
   }
 
   /**
