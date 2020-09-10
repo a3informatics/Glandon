@@ -51,7 +51,7 @@ class Form < IsoManagedV2
     items = items.each do |item|
       if item[:rdf_type] == "http://www.assero.co.uk/BusinessForm#Question" || item[:rdf_type] == "http://www.assero.co.uk/BusinessForm#BcProperty"
         item[:has_coded_value].each do |cv|
-          results << cv[:reference].reverse_merge!({reference_id: cv[:id]})
+          results << {cv[:id]=>cv[:reference]}
         end
       end
     end
