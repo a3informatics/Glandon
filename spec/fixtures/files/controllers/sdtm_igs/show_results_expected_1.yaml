@@ -1,124 +1,4 @@
 ---
-- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0Q="
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0Q=
-  :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD
-  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
-  :label: Adverse Events
-  :tagged: []
-  :has_state:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfUlM=
-    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_RS
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
-    :registration_status: Standard
-    :administrative_note: ''
-    :effective_date: '2016-01-01T00:00:00+00:00'
-    :until_date: '2016-01-01T00:00:00+00:00'
-    :unresolved_issue: ''
-    :administrative_status: ''
-    :previous_state: Standard
-    :multiple_edit: false
-    :by_authority:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
-      :uri: http://www.assero.co.uk/RA#DUNS084433759
-      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-      :organization_identifier: '084433759'
-      :international_code_designator: DUNS
-      :owner: false
-      :ra_namespace:
-        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-        :uri: http://www.assero.co.uk/NS#CDISC
-        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-        :short_name: CDISC
-        :name: Clinical Data Interchange Standards Consortium
-        :authority: www.cdisc.org
-  :has_identifier:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfU0k=
-    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_SI
-    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTM IG AE
-    :version_label: 2008-11-12 Release
-    :version: 1
-    :semantic_version: 3.1.2
-    :has_scope:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-      :uri: http://www.assero.co.uk/NS#CDISC
-      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: CDISC
-      :name: Clinical Data Interchange Standards Consortium
-      :authority: www.cdisc.org
-  :has_previous_version: 
-  :origin: ''
-  :change_description: ''
-  :creation_date: '2008-11-12T00:00:00+00:00'
-  :last_change_date: '2008-11-12T00:00:00+00:00'
-  :explanatory_comment: ''
-  :rule: ''
-  :ordinal: 1
-  :includes_column: []
-  :prefix: ''
-  :structure: ''
-  :has_biomedical_concept: []
-  :based_on_class: 
-- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19EUy9WMSNJR0Q="
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19EUy9WMSNJR0Q=
-  :uri: http://www.cdisc.org/SDTM_IG_DS/V1#IGD
-  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
-  :label: Disposition
-  :tagged: []
-  :has_state:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19EUy9WMSNJR0RfUlM=
-    :uri: http://www.cdisc.org/SDTM_IG_DS/V1#IGD_RS
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
-    :registration_status: Standard
-    :administrative_note: ''
-    :effective_date: '2016-01-01T00:00:00+00:00'
-    :until_date: '2016-01-01T00:00:00+00:00'
-    :unresolved_issue: ''
-    :administrative_status: ''
-    :previous_state: Standard
-    :multiple_edit: false
-    :by_authority:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
-      :uri: http://www.assero.co.uk/RA#DUNS084433759
-      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-      :organization_identifier: '084433759'
-      :international_code_designator: DUNS
-      :owner: false
-      :ra_namespace:
-        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-        :uri: http://www.assero.co.uk/NS#CDISC
-        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-        :short_name: CDISC
-        :name: Clinical Data Interchange Standards Consortium
-        :authority: www.cdisc.org
-  :has_identifier:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19EUy9WMSNJR0RfU0k=
-    :uri: http://www.cdisc.org/SDTM_IG_DS/V1#IGD_SI
-    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTM IG DS
-    :version_label: 2008-11-12 Release
-    :version: 1
-    :semantic_version: 3.1.2
-    :has_scope:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-      :uri: http://www.assero.co.uk/NS#CDISC
-      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: CDISC
-      :name: Clinical Data Interchange Standards Consortium
-      :authority: www.cdisc.org
-  :has_previous_version: 
-  :origin: ''
-  :change_description: ''
-  :creation_date: '2008-11-12T00:00:00+00:00'
-  :last_change_date: '2008-11-12T00:00:00+00:00'
-  :explanatory_comment: ''
-  :rule: ''
-  :ordinal: 1
-  :includes_column: []
-  :prefix: ''
-  :structure: ''
-  :has_biomedical_concept: []
-  :based_on_class: 
 - :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0Q="
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0Q=
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD
@@ -156,66 +36,6 @@
     :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
     :identifier: SDTM IG MH
-    :version_label: 2008-11-12 Release
-    :version: 1
-    :semantic_version: 3.1.2
-    :has_scope:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-      :uri: http://www.assero.co.uk/NS#CDISC
-      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: CDISC
-      :name: Clinical Data Interchange Standards Consortium
-      :authority: www.cdisc.org
-  :has_previous_version: 
-  :origin: ''
-  :change_description: ''
-  :creation_date: '2008-11-12T00:00:00+00:00'
-  :last_change_date: '2008-11-12T00:00:00+00:00'
-  :explanatory_comment: ''
-  :rule: ''
-  :ordinal: 1
-  :includes_column: []
-  :prefix: ''
-  :structure: ''
-  :has_biomedical_concept: []
-  :based_on_class: 
-- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19EVi9WMSNJR0Q="
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19EVi9WMSNJR0Q=
-  :uri: http://www.cdisc.org/SDTM_IG_DV/V1#IGD
-  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
-  :label: Protocol Deviations
-  :tagged: []
-  :has_state:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19EVi9WMSNJR0RfUlM=
-    :uri: http://www.cdisc.org/SDTM_IG_DV/V1#IGD_RS
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
-    :registration_status: Standard
-    :administrative_note: ''
-    :effective_date: '2016-01-01T00:00:00+00:00'
-    :until_date: '2016-01-01T00:00:00+00:00'
-    :unresolved_issue: ''
-    :administrative_status: ''
-    :previous_state: Standard
-    :multiple_edit: false
-    :by_authority:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
-      :uri: http://www.assero.co.uk/RA#DUNS084433759
-      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-      :organization_identifier: '084433759'
-      :international_code_designator: DUNS
-      :owner: false
-      :ra_namespace:
-        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-        :uri: http://www.assero.co.uk/NS#CDISC
-        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-        :short_name: CDISC
-        :name: Clinical Data Interchange Standards Consortium
-        :authority: www.cdisc.org
-  :has_identifier:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19EVi9WMSNJR0RfU0k=
-    :uri: http://www.cdisc.org/SDTM_IG_DV/V1#IGD_SI
-    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTM IG DV
     :version_label: 2008-11-12 Release
     :version: 1
     :semantic_version: 3.1.2
@@ -299,306 +119,6 @@
   :structure: ''
   :has_biomedical_concept: []
   :based_on_class: 
-- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19FRy9WMSNJR0Q="
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19FRy9WMSNJR0Q=
-  :uri: http://www.cdisc.org/SDTM_IG_EG/V1#IGD
-  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
-  :label: ECG Test Results
-  :tagged: []
-  :has_state:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19FRy9WMSNJR0RfUlM=
-    :uri: http://www.cdisc.org/SDTM_IG_EG/V1#IGD_RS
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
-    :registration_status: Standard
-    :administrative_note: ''
-    :effective_date: '2016-01-01T00:00:00+00:00'
-    :until_date: '2016-01-01T00:00:00+00:00'
-    :unresolved_issue: ''
-    :administrative_status: ''
-    :previous_state: Standard
-    :multiple_edit: false
-    :by_authority:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
-      :uri: http://www.assero.co.uk/RA#DUNS084433759
-      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-      :organization_identifier: '084433759'
-      :international_code_designator: DUNS
-      :owner: false
-      :ra_namespace:
-        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-        :uri: http://www.assero.co.uk/NS#CDISC
-        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-        :short_name: CDISC
-        :name: Clinical Data Interchange Standards Consortium
-        :authority: www.cdisc.org
-  :has_identifier:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19FRy9WMSNJR0RfU0k=
-    :uri: http://www.cdisc.org/SDTM_IG_EG/V1#IGD_SI
-    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTM IG EG
-    :version_label: 2008-11-12 Release
-    :version: 1
-    :semantic_version: 3.1.2
-    :has_scope:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-      :uri: http://www.assero.co.uk/NS#CDISC
-      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: CDISC
-      :name: Clinical Data Interchange Standards Consortium
-      :authority: www.cdisc.org
-  :has_previous_version: 
-  :origin: ''
-  :change_description: ''
-  :creation_date: '2008-11-12T00:00:00+00:00'
-  :last_change_date: '2008-11-12T00:00:00+00:00'
-  :explanatory_comment: ''
-  :rule: ''
-  :ordinal: 1
-  :includes_column: []
-  :prefix: ''
-  :structure: ''
-  :has_biomedical_concept: []
-  :based_on_class: 
-- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19JRS9WMSNJR0Q="
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19JRS9WMSNJR0Q=
-  :uri: http://www.cdisc.org/SDTM_IG_IE/V1#IGD
-  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
-  :label: Inclusion/Exclusion Criteria Not Met
-  :tagged: []
-  :has_state:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19JRS9WMSNJR0RfUlM=
-    :uri: http://www.cdisc.org/SDTM_IG_IE/V1#IGD_RS
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
-    :registration_status: Standard
-    :administrative_note: ''
-    :effective_date: '2016-01-01T00:00:00+00:00'
-    :until_date: '2016-01-01T00:00:00+00:00'
-    :unresolved_issue: ''
-    :administrative_status: ''
-    :previous_state: Standard
-    :multiple_edit: false
-    :by_authority:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
-      :uri: http://www.assero.co.uk/RA#DUNS084433759
-      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-      :organization_identifier: '084433759'
-      :international_code_designator: DUNS
-      :owner: false
-      :ra_namespace:
-        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-        :uri: http://www.assero.co.uk/NS#CDISC
-        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-        :short_name: CDISC
-        :name: Clinical Data Interchange Standards Consortium
-        :authority: www.cdisc.org
-  :has_identifier:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19JRS9WMSNJR0RfU0k=
-    :uri: http://www.cdisc.org/SDTM_IG_IE/V1#IGD_SI
-    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTM IG IE
-    :version_label: 2008-11-12 Release
-    :version: 1
-    :semantic_version: 3.1.2
-    :has_scope:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-      :uri: http://www.assero.co.uk/NS#CDISC
-      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: CDISC
-      :name: Clinical Data Interchange Standards Consortium
-      :authority: www.cdisc.org
-  :has_previous_version: 
-  :origin: ''
-  :change_description: ''
-  :creation_date: '2008-11-12T00:00:00+00:00'
-  :last_change_date: '2008-11-12T00:00:00+00:00'
-  :explanatory_comment: ''
-  :rule: ''
-  :ordinal: 1
-  :includes_column: []
-  :prefix: ''
-  :structure: ''
-  :has_biomedical_concept: []
-  :based_on_class: 
-- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19MQi9WMSNJR0Q="
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19MQi9WMSNJR0Q=
-  :uri: http://www.cdisc.org/SDTM_IG_LB/V1#IGD
-  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
-  :label: Laboratory Test Results
-  :tagged: []
-  :has_state:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19MQi9WMSNJR0RfUlM=
-    :uri: http://www.cdisc.org/SDTM_IG_LB/V1#IGD_RS
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
-    :registration_status: Standard
-    :administrative_note: ''
-    :effective_date: '2016-01-01T00:00:00+00:00'
-    :until_date: '2016-01-01T00:00:00+00:00'
-    :unresolved_issue: ''
-    :administrative_status: ''
-    :previous_state: Standard
-    :multiple_edit: false
-    :by_authority:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
-      :uri: http://www.assero.co.uk/RA#DUNS084433759
-      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-      :organization_identifier: '084433759'
-      :international_code_designator: DUNS
-      :owner: false
-      :ra_namespace:
-        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-        :uri: http://www.assero.co.uk/NS#CDISC
-        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-        :short_name: CDISC
-        :name: Clinical Data Interchange Standards Consortium
-        :authority: www.cdisc.org
-  :has_identifier:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19MQi9WMSNJR0RfU0k=
-    :uri: http://www.cdisc.org/SDTM_IG_LB/V1#IGD_SI
-    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTM IG LB
-    :version_label: 2008-11-12 Release
-    :version: 1
-    :semantic_version: 3.1.2
-    :has_scope:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-      :uri: http://www.assero.co.uk/NS#CDISC
-      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: CDISC
-      :name: Clinical Data Interchange Standards Consortium
-      :authority: www.cdisc.org
-  :has_previous_version: 
-  :origin: ''
-  :change_description: ''
-  :creation_date: '2008-11-12T00:00:00+00:00'
-  :last_change_date: '2008-11-12T00:00:00+00:00'
-  :explanatory_comment: ''
-  :rule: ''
-  :ordinal: 1
-  :includes_column: []
-  :prefix: ''
-  :structure: ''
-  :has_biomedical_concept: []
-  :based_on_class: 
-- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19QRS9WMSNJR0Q="
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19QRS9WMSNJR0Q=
-  :uri: http://www.cdisc.org/SDTM_IG_PE/V1#IGD
-  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
-  :label: Physical Examination
-  :tagged: []
-  :has_state:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19QRS9WMSNJR0RfUlM=
-    :uri: http://www.cdisc.org/SDTM_IG_PE/V1#IGD_RS
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
-    :registration_status: Standard
-    :administrative_note: ''
-    :effective_date: '2016-01-01T00:00:00+00:00'
-    :until_date: '2016-01-01T00:00:00+00:00'
-    :unresolved_issue: ''
-    :administrative_status: ''
-    :previous_state: Standard
-    :multiple_edit: false
-    :by_authority:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
-      :uri: http://www.assero.co.uk/RA#DUNS084433759
-      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-      :organization_identifier: '084433759'
-      :international_code_designator: DUNS
-      :owner: false
-      :ra_namespace:
-        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-        :uri: http://www.assero.co.uk/NS#CDISC
-        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-        :short_name: CDISC
-        :name: Clinical Data Interchange Standards Consortium
-        :authority: www.cdisc.org
-  :has_identifier:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19QRS9WMSNJR0RfU0k=
-    :uri: http://www.cdisc.org/SDTM_IG_PE/V1#IGD_SI
-    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTM IG PE
-    :version_label: 2008-11-12 Release
-    :version: 1
-    :semantic_version: 3.1.2
-    :has_scope:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-      :uri: http://www.assero.co.uk/NS#CDISC
-      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: CDISC
-      :name: Clinical Data Interchange Standards Consortium
-      :authority: www.cdisc.org
-  :has_previous_version: 
-  :origin: ''
-  :change_description: ''
-  :creation_date: '2008-11-12T00:00:00+00:00'
-  :last_change_date: '2008-11-12T00:00:00+00:00'
-  :explanatory_comment: ''
-  :rule: ''
-  :ordinal: 1
-  :includes_column: []
-  :prefix: ''
-  :structure: ''
-  :has_biomedical_concept: []
-  :based_on_class: 
-- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19RUy9WMSNJR0Q="
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19RUy9WMSNJR0Q=
-  :uri: http://www.cdisc.org/SDTM_IG_QS/V1#IGD
-  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
-  :label: Questionnaires
-  :tagged: []
-  :has_state:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19RUy9WMSNJR0RfUlM=
-    :uri: http://www.cdisc.org/SDTM_IG_QS/V1#IGD_RS
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
-    :registration_status: Standard
-    :administrative_note: ''
-    :effective_date: '2016-01-01T00:00:00+00:00'
-    :until_date: '2016-01-01T00:00:00+00:00'
-    :unresolved_issue: ''
-    :administrative_status: ''
-    :previous_state: Standard
-    :multiple_edit: false
-    :by_authority:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
-      :uri: http://www.assero.co.uk/RA#DUNS084433759
-      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-      :organization_identifier: '084433759'
-      :international_code_designator: DUNS
-      :owner: false
-      :ra_namespace:
-        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-        :uri: http://www.assero.co.uk/NS#CDISC
-        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-        :short_name: CDISC
-        :name: Clinical Data Interchange Standards Consortium
-        :authority: www.cdisc.org
-  :has_identifier:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19RUy9WMSNJR0RfU0k=
-    :uri: http://www.cdisc.org/SDTM_IG_QS/V1#IGD_SI
-    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTM IG QS
-    :version_label: 2008-11-12 Release
-    :version: 1
-    :semantic_version: 3.1.2
-    :has_scope:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-      :uri: http://www.assero.co.uk/NS#CDISC
-      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: CDISC
-      :name: Clinical Data Interchange Standards Consortium
-      :authority: www.cdisc.org
-  :has_previous_version: 
-  :origin: ''
-  :change_description: ''
-  :creation_date: '2008-11-12T00:00:00+00:00'
-  :last_change_date: '2008-11-12T00:00:00+00:00'
-  :explanatory_comment: ''
-  :rule: ''
-  :ordinal: 1
-  :includes_column: []
-  :prefix: ''
-  :structure: ''
-  :has_biomedical_concept: []
-  :based_on_class: 
 - :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19TQy9WMSNJR0Q="
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19TQy9WMSNJR0Q=
   :uri: http://www.cdisc.org/SDTM_IG_SC/V1#IGD
@@ -659,15 +179,15 @@
   :structure: ''
   :has_biomedical_concept: []
   :based_on_class: 
-- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19WUy9WMSNJR0Q="
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19WUy9WMSNJR0Q=
-  :uri: http://www.cdisc.org/SDTM_IG_VS/V1#IGD
+- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19QQy9WMSNJR0Q="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19QQy9WMSNJR0Q=
+  :uri: http://www.cdisc.org/SDTM_IG_PC/V1#IGD
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
-  :label: Vital Signs
+  :label: Pharmacokinetics Concentrations
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19WUy9WMSNJR0RfUlM=
-    :uri: http://www.cdisc.org/SDTM_IG_VS/V1#IGD_RS
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19QQy9WMSNJR0RfUlM=
+    :uri: http://www.cdisc.org/SDTM_IG_PC/V1#IGD_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Standard
     :administrative_note: ''
@@ -692,10 +212,370 @@
         :name: Clinical Data Interchange Standards Consortium
         :authority: www.cdisc.org
   :has_identifier:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19WUy9WMSNJR0RfU0k=
-    :uri: http://www.cdisc.org/SDTM_IG_VS/V1#IGD_SI
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19QQy9WMSNJR0RfU0k=
+    :uri: http://www.cdisc.org/SDTM_IG_PC/V1#IGD_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTM IG VS
+    :identifier: SDTM IG PC
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 3.1.2
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+  :has_previous_version: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
+  :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
+  :prefix: ''
+  :structure: ''
+  :has_biomedical_concept: []
+  :based_on_class: 
+- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19GQS9WMSNJR0Q="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19GQS9WMSNJR0Q=
+  :uri: http://www.cdisc.org/SDTM_IG_FA/V1#IGD
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
+  :label: Findings About Events or Interventions
+  :tagged: []
+  :has_state:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19GQS9WMSNJR0RfUlM=
+    :uri: http://www.cdisc.org/SDTM_IG_FA/V1#IGD_RS
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :multiple_edit: false
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: CDISC
+        :name: Clinical Data Interchange Standards Consortium
+        :authority: www.cdisc.org
+  :has_identifier:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19GQS9WMSNJR0RfU0k=
+    :uri: http://www.cdisc.org/SDTM_IG_FA/V1#IGD_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SDTM IG FA
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 3.1.2
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+  :has_previous_version: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
+  :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
+  :prefix: ''
+  :structure: ''
+  :has_biomedical_concept: []
+  :based_on_class: 
+- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19SRUxSRUMvVjEjSUdE"
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19SRUxSRUMvVjEjSUdE
+  :uri: http://www.cdisc.org/SDTM_IG_RELREC/V1#IGD
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
+  :label: Related Records
+  :tagged: []
+  :has_state:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19SRUxSRUMvVjEjSUdEX1JT
+    :uri: http://www.cdisc.org/SDTM_IG_RELREC/V1#IGD_RS
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :multiple_edit: false
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: CDISC
+        :name: Clinical Data Interchange Standards Consortium
+        :authority: www.cdisc.org
+  :has_identifier:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19SRUxSRUMvVjEjSUdEX1NJ
+    :uri: http://www.cdisc.org/SDTM_IG_RELREC/V1#IGD_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SDTM IG RELREC
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 3.1.2
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+  :has_previous_version: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
+  :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
+  :prefix: ''
+  :structure: ''
+  :has_biomedical_concept: []
+  :based_on_class: 
+- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTy9WMSNJR0Q="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTy9WMSNJR0Q=
+  :uri: http://www.cdisc.org/SDTM_IG_CO/V1#IGD
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
+  :label: Comments
+  :tagged: []
+  :has_state:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTy9WMSNJR0RfUlM=
+    :uri: http://www.cdisc.org/SDTM_IG_CO/V1#IGD_RS
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :multiple_edit: false
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: CDISC
+        :name: Clinical Data Interchange Standards Consortium
+        :authority: www.cdisc.org
+  :has_identifier:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTy9WMSNJR0RfU0k=
+    :uri: http://www.cdisc.org/SDTM_IG_CO/V1#IGD_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SDTM IG CO
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 3.1.2
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+  :has_previous_version: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
+  :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
+  :prefix: ''
+  :structure: ''
+  :has_biomedical_concept: []
+  :based_on_class: 
+- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19UVi9WMSNJR0Q="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19UVi9WMSNJR0Q=
+  :uri: http://www.cdisc.org/SDTM_IG_TV/V1#IGD
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
+  :label: Trial Visits
+  :tagged: []
+  :has_state:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19UVi9WMSNJR0RfUlM=
+    :uri: http://www.cdisc.org/SDTM_IG_TV/V1#IGD_RS
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :multiple_edit: false
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: CDISC
+        :name: Clinical Data Interchange Standards Consortium
+        :authority: www.cdisc.org
+  :has_identifier:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19UVi9WMSNJR0RfU0k=
+    :uri: http://www.cdisc.org/SDTM_IG_TV/V1#IGD_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SDTM IG TV
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 3.1.2
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+  :has_previous_version: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
+  :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
+  :prefix: ''
+  :structure: ''
+  :has_biomedical_concept: []
+  :based_on_class: 
+- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19URS9WMSNJR0Q="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19URS9WMSNJR0Q=
+  :uri: http://www.cdisc.org/SDTM_IG_TE/V1#IGD
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
+  :label: Trial Elements
+  :tagged: []
+  :has_state:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19URS9WMSNJR0RfUlM=
+    :uri: http://www.cdisc.org/SDTM_IG_TE/V1#IGD_RS
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :multiple_edit: false
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: CDISC
+        :name: Clinical Data Interchange Standards Consortium
+        :authority: www.cdisc.org
+  :has_identifier:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19URS9WMSNJR0RfU0k=
+    :uri: http://www.cdisc.org/SDTM_IG_TE/V1#IGD_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SDTM IG TE
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 3.1.2
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+  :has_previous_version: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
+  :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
+  :prefix: ''
+  :structure: ''
+  :has_biomedical_concept: []
+  :based_on_class: 
+- :show_path: "/sdtm_ig_domains/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19UUy9WMSNJR0Q="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19UUy9WMSNJR0Q=
+  :uri: http://www.cdisc.org/SDTM_IG_TS/V1#IGD
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomain
+  :label: Trial Summary Information
+  :tagged: []
+  :has_state:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19UUy9WMSNJR0RfUlM=
+    :uri: http://www.cdisc.org/SDTM_IG_TS/V1#IGD_RS
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :multiple_edit: false
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: CDISC
+        :name: Clinical Data Interchange Standards Consortium
+        :authority: www.cdisc.org
+  :has_identifier:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19UUy9WMSNJR0RfU0k=
+    :uri: http://www.cdisc.org/SDTM_IG_TS/V1#IGD_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SDTM IG TS
     :version_label: 2008-11-12 Release
     :version: 1
     :semantic_version: 3.1.2
