@@ -9,7 +9,7 @@
  */
 function $get(params = {}) {
   params.type = "GET";
-  _simpleAjax(params);
+  return _simpleAjax(params);
 }
 
 /**
@@ -22,7 +22,7 @@ function $get(params = {}) {
  */
 function $delete(params = {}) {
   params.type = "DELETE";
-  _simpleAjax(params);
+  return _simpleAjax(params);
 }
 
 /**
@@ -35,7 +35,7 @@ function $delete(params = {}) {
  */
 function $put(params = {}) {
   params.type = "PUT";
-  _simpleAjax(params);
+  return _simpleAjax(params);
 }
 
 /**
@@ -48,7 +48,7 @@ function $put(params = {}) {
  */
 function $post(params = {}) {
   params.type = "POST";
-  _simpleAjax(params);
+  return _simpleAjax(params);
 }
 
 
@@ -67,7 +67,7 @@ function $post(params = {}) {
  * @param {boolean} params.cache False if cache should be disabled. Default true
  */
 function $getPaginated(offset = 0, params = {}) {
-  $.get({
+  return $.get({
     url: _jsonizeUrl(params.url),
     dataType: "json",
     data: _getPaginationParams(offset, params),
@@ -83,7 +83,10 @@ function $getPaginated(offset = 0, params = {}) {
       // Data loaded
       params.done();
   })
-  .fail((x, s, e) => handleAjaxError(x, s, e, params.errorDiv))
+  .fail((x, s, e) => {
+    if ( e !== 'abort' )
+      handleAjaxError(x, s, e, params.errorDiv)
+  })
   .always(() => params.always());
 }
 
@@ -103,7 +106,7 @@ function $getPaginated(offset = 0, params = {}) {
  * @param {boolean} params.rawResult Set to true to return the raw result to the done callback. Otherwise result.data will be returned. Optional [default=false]
  */
 function _simpleAjax({ url, type, data = {}, done = () => {}, always = () => {}, error = handleAjaxError, cache = true, errorDiv = null, rawResult = false }) {
-  $.ajax({
+  return $.ajax({
     url: _jsonizeUrl(url),
     type: type,
     dataType: "json",
@@ -111,7 +114,10 @@ function _simpleAjax({ url, type, data = {}, done = () => {}, always = () => {},
     cache: cache,
   })
   .done((result) => done( rawResult ? result : (result.data || result) ))
-  .fail((x, s, e) => error(x, s, e, errorDiv))
+  .fail((x, s, e) => {
+    if ( e !== 'abort' )
+      error(x, s, e, errorDiv)
+  })
   .always(() => always());
 }
 

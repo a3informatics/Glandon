@@ -62,7 +62,7 @@ export default class TablePanel {
     this._loading(true);
 
     if (this.paginated)
-      $getPaginated(0, {
+      this.request = $getPaginated(0, {
         url: this.url,
         count: this.count,
         strictParam: this.param,
@@ -73,7 +73,7 @@ export default class TablePanel {
         always: () => this._loading(false)
       });
     else
-      $get({
+      this.request = $get({
         url: this.url,
         cache: this.cache,
         errorDiv: this.errorDiv,
@@ -88,10 +88,11 @@ export default class TablePanel {
   }
 
   /**
-   * Clears table data and filters
+   * Clears table data and filters and kills any running requests
    */
   clear() {
     this.table.search('').clear().draw();
+    this.kill();
   }
 
   /**
@@ -100,6 +101,14 @@ export default class TablePanel {
    */
   refresh(url) {
     this.loadData(url);
+  }
+
+  /**
+   * Kill any ongoing loading process
+   */
+  kill() {
+    if ( this.request )
+      this.request.abort();
   }
 
   /** Private **/

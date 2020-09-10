@@ -135,30 +135,28 @@ export default class ItemsPicker extends ModalView {
    * Called on modal show, open the first available Tab, render selectionView
    */
   _onShow() {
+    this.isOpen = true;
+
     // Execute onShow callback
     if ( this.onShow )
       this.onShow();
 
-    $(`${this.selector} #items-picker-tabs .tab-option`)[0].click();
     this.selectionView._render();
+
+    $(`${this.selector} #items-picker-tabs .tab-option`)[0].click();
   }
 
   /**
    * Called on modal hide, reset Items Picker to initial state, call onHide callback
    */
   _onHide() {
-    // Prevent closing the modal while loading active
-    if ( this._isLoading ) {
-      displayAlertsInElement( alertError('Cannot close while data is loading!'), this._errorDiv );
-      return false;
-    }
-
-    this.reset();
-
     // Execute onHide callback
     if (this.onHide)
       this.onHide();
 
+    this.reset();
+
+    this.isOpen = false;
   }
 
   /**
@@ -282,10 +280,6 @@ export default class ItemsPicker extends ModalView {
    */
   get _errorDiv() {
     return $(`${this.selector} #items-picker-error`)
-  }
-
-  get _isLoading() {
-    return $(this.selector).find('.spinner-container:visible').length > 0;
   }
 
 }
