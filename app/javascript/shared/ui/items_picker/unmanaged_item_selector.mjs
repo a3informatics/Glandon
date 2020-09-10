@@ -99,6 +99,8 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
       }
     });
 
+    this._renderBtns();
+
   }
 
   /**
@@ -110,6 +112,20 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
 
     // Selection change event, auto-update row selection
     this.selectionView.div.on('selection-change', (e, type) => this._updateRowSelection(this.childrenPanel, type));
+
+    $(this.selector).find('.select-all').on( 'click', () => {
+      if ( !this.multiple )
+        return;
+
+      this.childrenPanel.table.rows().select();
+    });
+
+    $(this.selector).find('.deselect-all').on( 'click', () => {
+      if ( !this.multiple )
+        return;
+
+      this.childrenPanel.table.rows({selected: true}).deselect();
+    });
   }
 
   /**
@@ -171,6 +187,22 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
     const selectedItem = this.indexPanel.selectedData[0];
     $(this.selector).find('.item-placeholder')
                     .text( conceptRef(selectedItem) );
+  }
+
+  /**
+   * Initialize a new DataTable
+   * @return {DataTable instance} An initialized table panel
+   */
+  _renderBtns() {
+
+    if ( !this.multiple )
+      return;
+
+    let filter = $(this.selector).find('#children_filter');
+
+    filter.append('<button class="btn btn-xs white select-all"> Select All </button>')
+          .append('<button class="btn btn-xs white deselect-all"> Deselect All </button>');
+
   }
 
   /**
