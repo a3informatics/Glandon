@@ -146,7 +146,7 @@ describe IsoConceptSystem do
       sdtm_std.to_sparql(sparql, true)
       sparql.add({uri: cdisc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:isoC), :fragment => "narrower"}, {uri: sdtm_std.uri})
       file = sparql.to_file
-    copy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_migration_2.ttl")
+    #Xcopy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_migration_2.ttl")
     end
 
   end
@@ -181,7 +181,7 @@ describe IsoConceptSystem do
       adam_std.to_sparql(sparql, true)
       sparql.add({uri: cdisc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:isoC), :fragment => "narrower"}, {uri: adam_std.uri})
       file = sparql.to_file
-    copy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_migration_3.ttl")
+    #Xcopy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_migration_3.ttl")
     end
 
   end
