@@ -10,7 +10,7 @@ class Form::Item::Common < Form::Item
   #
   # @return [Hash] A hash of Common Item
   def get_item
-    blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: []}
+    blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: {}}
     return self.to_h.merge!(blank_fields)
   end
 

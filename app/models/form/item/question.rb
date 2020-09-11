@@ -20,7 +20,7 @@ class Form::Item::Question < Form::Item
   #
   # @return [Hash] A hash of Question Item with CLI and CL references.
   def get_item
-    blank_fields = {free_text:"", label_text:"", has_property: []}
+    blank_fields = {free_text:"", label_text:"", has_property: {}}
     item = self.to_h.merge!(blank_fields)
     item[:has_coded_value] = coded_values_to_hash(self.has_coded_value)
     return item

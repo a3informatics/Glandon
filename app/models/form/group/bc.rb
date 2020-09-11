@@ -16,7 +16,7 @@ class Form::Group::Bc < Form::Group
   #
   # @return [Array] Array of hashes, one per group, sub group and item.
   def get_item
-    blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: []}
+    blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: {}}
     group = self.to_h.merge!(blank_fields)
     group.delete(:has_item)
     results = [group]

@@ -12,7 +12,7 @@ class Form::Item::Mapping < Form::Item
   #
   # @return [Hash] A hash of Mapping Item
   def get_item
-    blank_fields = {datatype:"", format:"", question_text:"", free_text:"", label_text:"", has_coded_value: [], has_property: []}
+    blank_fields = {datatype:"", format:"", question_text:"", free_text:"", label_text:"", has_coded_value: [], has_property: {}}
     return self.to_h.merge!(blank_fields)
   end
 
