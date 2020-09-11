@@ -394,9 +394,21 @@ Rails.application.routes.draw do
     end
   end
   namespace :forms do
-    resources :groups
-    resources :items, :only => [:show]
+    namespace :items do
+      resources :questions, :only => [:update]
+      resources :text_labels, :only => [:update]
+      resources :placeholders, :only => [:update]
+      resources :mappings, :only => [:update]
+      resources :commons, :only => [:update]
+      resources :bc_properties, :only => [:update]
+    end
+    namespace :groups do
+      resources :bc_groups, :only => [:update]
+      resources :normal_groups, :only => [:update]
+      resources :common_groups, :only => [:update]
+    end
   end
+
   resources :backgrounds, :only => [:index, :destroy] do
     collection do
       delete :destroy_multiple
