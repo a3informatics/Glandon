@@ -30,7 +30,7 @@ private
   end
 
   def update_params
-    params.require(:bc_property).permit(:label, :completion, :note, :ordinal, :optional, :has_property => [:id], :has_coded_value => [:id, :context_id])
+    params.require(:bc_property).permit(:completion, :note, :has_property => [:id, :optional, :enabled])
   end
 
   def model_klass
