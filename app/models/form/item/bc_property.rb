@@ -6,7 +6,7 @@ class Form::Item::BcProperty < Form::Item
 
   data_property :is_common
 
-  object_property :has_property, cardinality: :many, model_class: "OperationalReferenceV3"
+  object_property :has_property, cardinality: :one, model_class: "OperationalReferenceV3"
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
 
   # Get Item
@@ -16,7 +16,7 @@ class Form::Item::BcProperty < Form::Item
     blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:""}
     item = self.to_h.merge!(blank_fields)
     item[:has_coded_value] = coded_values_to_hash(self.has_coded_value)
-    item[:has_property] = properties_to_hash(self.has_property)
+    item[:has_property] = property_to_hash(self.has_property)
     return item
   end
 
@@ -42,14 +42,10 @@ class Form::Item::BcProperty < Form::Item
 
   private
 
-    def properties_to_hash(properties)
-      results = []
-      properties.each do |pr|
-        ref = pr.to_h
-        ref[:reference] = BiomedicalConcept::PropertyX.find(ref[:id]).to_h
-        results << ref
-      end
-      results
+    def property_to_hash(property)
+      ref = property.to_h
+      ref[:reference] = BiomedicalConcept::PropertyX.find(ref[:id]).to_h
+      ref
     end
 
  end

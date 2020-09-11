@@ -43,17 +43,15 @@ class Form < IsoManagedV2
   # @return [Array] Array of hashes, 
   def get_referenced_items
     items = []
-    results = []
+    results = {}
     form = self.class.find_full(self.uri)
     form.has_group.sort_by {|x| x.ordinal}.each do |group|
       items += group.get_item
     end
     items = items.each do |item|
-      if item[:rdf_type] == "http://www.assero.co.uk/BusinessForm#Question" || item[:rdf_type] == "http://www.assero.co.uk/BusinessForm#BcProperty"
         item[:has_coded_value].each do |cv|
-          results << {cv[:id]=>cv[:reference]}
+          results[cv[:id]] = cv[:reference]
         end
-      end
     end
     return results
   end
