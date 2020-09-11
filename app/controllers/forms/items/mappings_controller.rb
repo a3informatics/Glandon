@@ -30,7 +30,7 @@ private
   end
 
   def update_params
-    params.require(:mapping).permit(:label, :completion, :note, :ordinal, :optional, :mapping)
+    params.require(:mapping).permit(:completion, :note, :mapping)
   end
 
   def model_klass

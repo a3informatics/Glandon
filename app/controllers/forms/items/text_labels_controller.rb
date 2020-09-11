@@ -30,7 +30,7 @@ private
   end
 
   def update_params
-    params.require(:text_label).permit(:label, :completion, :note, :ordinal, :optional, :label_text)
+    params.require(:text_label).permit(:completion, :note, :label_text)
   end
 
   def model_klass

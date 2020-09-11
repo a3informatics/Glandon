@@ -30,7 +30,7 @@ private
   end
 
   def update_params
-    params.require(:common).permit(:label, :completion, :note, :ordinal, :optional, :has_common_item => [:id])
+    params.require(:common).permit(:completion, :note)
   end
 
   def model_klass
