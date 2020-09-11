@@ -147,7 +147,7 @@ class Form::Group::Normal < Form::Group
     columns = {}
     self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
       sg.has_item.sort_by {|x| x.ordinal}.each do |item|
-        property = BiomedicalConcept::PropertyX.find(item.has_property.first.reference)
+        property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
         #if property.enabled && property.collect
           if !columns.has_key?(property.uri.to_s)
             columns[property.uri.to_s] = property.uri.to_s
@@ -159,7 +159,7 @@ class Form::Group::Normal < Form::Group
     html += start_row(false)
     self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
       sg.has_item.sort_by {|x| x.ordinal}.each do |item|
-        property = BiomedicalConcept::PropertyX.find(item.has_property.first.reference)
+        property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
           if !columns.has_key?(property.uri.to_s)
             html += question_cell(property.question_text)
           end
@@ -170,7 +170,7 @@ class Form::Group::Normal < Form::Group
     self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
       html += start_row(false)
       sg.has_item.sort_by {|x| x.ordinal}.each do |item|
-        property = BiomedicalConcept::PropertyX.find(item.has_property.first.reference)
+        property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
         if columns.has_key?(property.uri.to_s)
           if property.has_coded_value.length == 0
             html += input_field(property)
