@@ -32,7 +32,7 @@ describe Forms::Items::MappingsController do
     end
 
     it "update" do
-      update_params = {form_id: @form.id, label:"label u", note:"note u", completion:"completion u", mapping:"mapping u"} 
+      update_params = {form_id: @form.id, note:"note u", completion:"completion u", mapping:"mapping u"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
@@ -42,11 +42,11 @@ describe Forms::Items::MappingsController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_mapping_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_mapping_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it 'update, second update so no audit' do
-      update_params = {form_id: @form.id, label:"label u", note:"note u", completion:"completion u", mapping:"mapping u"} 
+      update_params = {form_id: @form.id, note:"note u", completion:"completion u", mapping:"mapping u"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
@@ -55,29 +55,29 @@ describe Forms::Items::MappingsController do
       put :update, params:{id: @mapping.id, mapping: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_mapping_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_mapping_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it 'update, locked by another user' do
-      update_params = {form_id: @form.id, label:"label u", note:"note u", completion:"completion u", mapping:"mapping u"} 
+      update_params = {form_id: @form.id, note:"note u", completion:"completion u", mapping:"mapping u"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @lock_user)
       audit_count = AuditTrail.count
       put :update, params:{id: @mapping.id, mapping: update_params}
       expect(AuditTrail.count).to eq(audit_count)
       actual = check_error_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_mapping_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_mapping_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it 'update, errors' do
-      update_params = {form_id: @form.id, label:"label u", note:"note u", completion:"completion u", mapping:"mapping ±±±"} 
+      update_params = {form_id: @form.id, note:"note u", completion:"completion u", mapping:"mapping ±±±"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
       put :update, params:{id: @mapping.id, mapping: update_params}
       expect(AuditTrail.count).to eq(audit_count)
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_mapping_expected_4.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_mapping_expected_4.yaml", equate_method: :hash_equal)
     end
 
   end
