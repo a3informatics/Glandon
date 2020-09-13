@@ -395,12 +395,11 @@ Rails.application.routes.draw do
   end
   namespace :forms do
     namespace :items do
-      resources :questions, :only => [:update]
-      resources :text_labels, :only => [:update]
-      resources :placeholders, :only => [:update]
-      resources :mappings, :only => [:update]
-      resources :commons, :only => [:update]
-      resources :bc_properties, :only => [:update]
+      resources :questions, :text_labels, :placeholders, :mappings, :commons, :bc_properties, :only => [:update] do
+        member do
+          put :move_after
+        end
+      end
     end
     namespace :groups do
       resources :bc_groups, :only => [:update]
