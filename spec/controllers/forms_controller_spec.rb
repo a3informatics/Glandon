@@ -7,7 +7,8 @@ describe FormsController do
   include UserAccountHelpers
   include IsoHelpers
   include ControllerHelpers
-  
+  include AuditTrailHelpers
+
   describe "Curator User" do
   	
     login_curator
@@ -21,9 +22,12 @@ describe FormsController do
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..65)
       load_data_file_into_triple_store("mdr_identification.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
     end
 
     after :all do
+      ua_remove_user("lock@example.com")
     end
 
     it "index, JSON" do  
@@ -69,6 +73,44 @@ describe FormsController do
       expect(response).to render_template("history")
     end
 
+    it 'creates form' do
+      audit_count = AuditTrail.count
+      count = Form.all.count
+      expect(count).to eq(1)
+      post :create, params:{form: { :identifier => "NEW FORM", :label => "New Form" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(Form.all.count).to eq(count + 1)
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "destroy" do
+      @request.env['HTTP_REFERER'] = '/path'
+      form = Form.create({ :identifier => "NEW FORM 2", :label => "New Form 2" })
+      audit_count = AuditTrail.count
+      count = Form.all.count
+      token_count = Token.all.count
+      delete :destroy, params:{id: form.id}
+      expect(Form.all.count).to eq(count - 1)
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(Token.count).to eq(token_count)
+      check_file_actual_expected(last_audit_event, sub_dir, "destroy_expected_1.yaml", equate_method: :hash_equal)
+      expect(response).to redirect_to("/path")
+    end
+
+    it 'delete, locked by another user' do
+      @request.env['HTTP_REFERER'] = '/path'
+      form = Form.create({ :identifier => "NEW FORM 2", :label => "New Form 2" })
+      token = Token.obtain(form, @lock_user)
+      audit_count = AuditTrail.count
+      delete :destroy, params:{id: form.id}
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
+      expect(response).to redirect_to("/path")
+    end
     # it "provides a new object" do
     #   get :new
     #   result = assigns[:form]

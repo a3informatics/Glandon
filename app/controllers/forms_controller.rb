@@ -37,16 +37,7 @@ class FormsController < ManagedItemsController
   def crf
     @form = Form.find_minimum(protect_from_bad_id(params))
     @close_path = history_forms_path(:form => { identifier: @form.has_identifier.identifier, scope_id: @form.scope })
-    #respond_to do |format|
-      #format.html do
-        @html = @form.to_crf
-      #end
-      # format.pdf do
-      #   @html = Reports::CrfReport.new.create(@form, {:annotate => false, :full => true}, current_user)
-      #   @render_args = {pdf: "#{@form.owner_short_name}_#{@form.identifier}_CRF", page_size: current_user.paper_size, lowquality: true}
-      #   render @render_args
-      # end
-    #end
+    @html = @form.to_crf
   end
 
   def referenced_items
@@ -55,28 +46,25 @@ class FormsController < ManagedItemsController
     render json: { data: items }, status: 200
   end
 
-  # def new
-  #   authorize Form
-  #   @form = Form.new
-  # end
+  def destroy
+    form = Form.find_minimum(protect_from_bad_id(params))
+    return true unless get_lock_for_item(form)
+    form.delete
+    AuditTrail.delete_item_event(current_user, form, form.audit_message(:deleted))
+    @lock.release
+    redirect_to request.referer
+  end
 
-  # def placeholder_new
-  #   authorize Form, :new?
-  #   @form = Form.new
-  # end
-
-  # def placeholder_create
-  #   authorize Form, :create?
-  #   @form = Form.create_placeholder(the_params)
-  #   if @form.errors.empty?
-  #     flash[:success] = 'Form was successfully created.'
-  #     AuditTrail.create_item_event(current_user, @form, "Form created.")
-  #     redirect_to forms_path
-  #   else
-  #     flash[:error] = @form.errors.full_messages.to_sentence
-  #     redirect_to placeholder_new_forms_path
-  #   end
-  # end
+  def create
+    instance = Form.create(the_params)
+    return true if item_errors(instance)
+    AuditTrail.create_item_event(current_user, instance, instance.audit_message(:created))
+    result = instance.to_h
+    result[:history_path] = history_forms_path({form: {identifier: instance.scoped_identifier, scope_id: instance.scope}})
+    render :json => {data: result}, :status => 200
+    rescue => e
+      render :json => {errors: instance.errors.full_messages}, :status => 422
+  end
 
   def edit
     authorize Form
@@ -231,7 +219,7 @@ class FormsController < ManagedItemsController
 private
 
   def the_params
-    params.require(:form).permit(:namespace, :freeText, :offset, :count, :identifier, :label, :scope_id, :children => {}, :bcs => [])
+    params.require(:form).permit(:offset, :count, :identifier, :label, :scope_id)
   end
 
   # Path for given action
