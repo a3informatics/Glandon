@@ -32,13 +32,13 @@ describe OperationalReferenceV3::TucReferencesController do
     end
 
     it "update" do
-      update_params = {form_id: @form.id, label:"label u"} 
+      update_params = {form_id: @form.id, label:"label u", enabled: false, optional: true} 
       request.env['HTTP_ACCEPT'] = "application/json"
+      request.content_type = 'application/json'
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
       put :update, params:{id: @tuc_reference.id, tuc_reference: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
-      #@tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1"))
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_tuc_reference_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
