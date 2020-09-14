@@ -6,7 +6,7 @@
 <% third_level_breadcrumb(:forms, @form, @close_path) %>
 
 <%= javascript_tag "let editorDataUrl = '#{edit_form_path(@form)}',
-                        editorUCDataUrl = '#{show_data_thesauri_unmanaged_concept_path(id: 'ucId')}'
+                        editorRefDataUrl = '#{referenced_items_form_path(@form)}'
                         editorUpdateUrl = '#{edit_form_path(@form)}',
                         tokenTimerId = '#{@edit.token.id}',
                         tokenTimerWarning = '#{current_user.edit_lock_warning}';"%>
@@ -44,4 +44,4 @@
 
 </div>
 
-<%= render partial: "shared/forms/edit/node_editor_view" %>
+<%= render partial: "shared/forms/edit/node_editor_modal" %>

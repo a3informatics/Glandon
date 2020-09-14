@@ -12,7 +12,7 @@ $(document).ready( () => {
     urls: {
       data: editorDataUrl,
       update: editorUpdateUrl,
-      ucData: editorUCDataUrl
+      refData: editorRefDataUrl
     }
   });
 
