@@ -1,4 +1,4 @@
-import * as d3Lib from 'd3'
+import d3 from 'shared/base/d3/tree/d3_tree'
 import colors from 'shared/ui/colors'
 import { defaultProps } from 'shared/helpers/d3/renderers/nodes'
 
@@ -16,13 +16,12 @@ export default class TreeNode {
    */
   constructor(d, withElement = true) {
 
-    Object.assign( this, { d3: d3Lib.default, d });
+    this.d = d;
 
     if ( withElement )
-      this.el = this.d3.selectAll('.node')
-                       .filter( (nd) => nd.data.id === d.data.id )
-                       .node();
-
+      this.el = d3.selectAll('.node')
+                  .filter( (nd) => nd.data.id === d.data.id )
+                  .node();
   }
 
 
@@ -74,7 +73,7 @@ export default class TreeNode {
    * @return {boolean} Value representing whether Node has children
    */
   get hasChildren() {
-    return this.d.children;
+    return this.d.children && this.d.children.length > 0;
   }
 
   /**
@@ -84,7 +83,7 @@ export default class TreeNode {
   get children() {
 
     if ( this.hasChildren )
-      return this.d.children.map( (n) => new TreeNode(n) );
+      return this.d.children.map( (n) => new this.constructor(n) );
 
     return []
 
@@ -97,7 +96,58 @@ export default class TreeNode {
   get parent() {
 
     if ( this.d.parent )
-      return new TreeNode( this.d.parent );
+      return new this.constructor( this.d.parent );
+
+    return null;
+
+  }
+
+  /**
+   * Get previous Node (sibling)
+   * @return {(TreeNode | null)} Previous Node instance or null if Node has no previous sibling
+   */
+  get previous() {
+    return this.sibling(-1);
+  }
+
+  /**
+   * Get next Node (sibling)
+   * @return {(TreeNode | null)} Next Node instance or null if Node has no next sibling
+   */
+  get next() {
+    return this.sibling(1);
+  }
+
+  /**
+   * Get the middle child Node
+   * @return {(TreeNode | null)} Middle child Node instance or null if Node has no children
+   */
+  get middleChild() {
+
+    if ( this.hasChildren )
+      return this.children[ Math.floor(this.d.children.length / 2) ];
+
+    return null;
+
+  }
+
+  /**
+   * Get the sibling of a node by a given offset
+   * @param {integer} offset Offset - distance of the sibling from this Node, positive offset for next, negative for previous sibling
+   * @return {(TreeNode | null)} Sibling Node instance or null if Node sibling with specified offset does not exist
+   */
+  sibling(offset) {
+
+    let parent = this.d.parent;
+
+    if ( parent && parent.children.length > 1 ) {
+
+      let index = parent.children.indexOf(this.d);
+
+      if ( parent.children[ index + offset] )
+        return new this.constructor( parent.children[index + offset] )
+
+    }
 
     return null;
 

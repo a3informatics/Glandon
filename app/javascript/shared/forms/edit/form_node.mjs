@@ -86,10 +86,12 @@ export default class FormNode extends TreeNode {
    * @return {boolean} Value specifying if Node's type is a allowed to be removed
    */
    get removeAllowed() {
+
+    // if ( this.rdf === rdfTypesMap.TUC_REF )
+
     return ![
       rdfTypesMap.BC_PROPERTY.rdfType,
       rdfTypesMap.FORM.rdfType,
-      rdfTypesMap.TC_REF.rdfType,
       rdfTypesMap.TUC_REF.rdfType
     ].includes( this.rdf );
   }
@@ -153,7 +155,11 @@ export default class FormNode extends TreeNode {
    * @return {string} Node color code from its data RDF type
    */
   static color(d) {
-    return iconTypes.typeIconMap( d.data.rdf_type ).color;
+
+    // Include reference URI to check for CDISC ownership if exists
+    let param = d.data.reference || '';
+
+    return iconTypes.typeIconMap( d.data.rdf_type, param ).color;
   }
 
 }

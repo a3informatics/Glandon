@@ -1,3 +1,5 @@
+import d3 from 'shared/base/d3/tree/d3_tree'
+
 import TreeGraph from 'shared/base/d3/tree/tree_graph'
 import FormNode from 'shared/forms/edit/form_node'
 import NodeEditor from 'shared/forms/edit/form_node_editor'
@@ -170,13 +172,57 @@ export default class FormEditor extends TreeGraph {
    */
   _preprocessData(rawData) {
 
-    return this.d3.hierarchy( rawData, (d) =>[
+    return d3.hierarchy( rawData, (d) =>[
         ...d.has_group||[],
         ...d.has_common||[],
         ...d.has_item||[],
         ...d.has_sub_group||[],
         ...d.has_coded_value||[]
       ]);
+
+  }
+
+
+  /** Referenced Items **/
+
+
+  /**
+   * Fetch additional referenced item data from the server
+   */
+  _loadReferences() {
+
+    this._loadingExtra( true );
+
+    $get({
+      url: this.urls.refData,
+      done: (refData) => this._appendReferences(refData),
+      always: () => this._loadingExtra( false )
+    });
+
+  }
+
+  /**
+   * Append reference data to the graph structure and re-render graph
+   * @param {Object} refData The raw refences data from the server (Keys: reference ids, Values: referenced item data)
+   */
+  _appendReferences(refData) {
+
+    // Expand to make sure all nodes are in the graph
+    this.expandAll( false );
+
+    // Select reference nodes and append data
+    d3.selectAll( '.node.reference' )
+      .each( (d) => {
+        let referenced = refData[d.data.id];
+
+        if ( referenced ) {
+          d.data.label = referenced.label
+          d.data.referenceData = referenced
+        }
+      });
+
+    this.render()
+        ._restoreGraph();
 
   }
 
@@ -206,10 +252,15 @@ export default class FormEditor extends TreeGraph {
 
 
   /**
-   * On render complete (graph drawn) event, fetch additional reference data
-   * @override parent implementation
+   * Process and render raw graph data from the server, load referenced item data
+   * @extends _onDataLoaded parent implementation
+   * @param {Object} rawData Compatible graph data fetched from the server
    */
-  _onRenderComplete() {
+  _onDataLoaded(rawData) {
+
+    super._onDataLoaded(rawData)
+    // Fetch additional refData once rawData processed
+    this._loadReferences();
 
   }
 
@@ -222,6 +273,13 @@ export default class FormEditor extends TreeGraph {
 
     super._onZoom();
     this._renderActions( this.selected );
+
+  }
+
+  _onRenderComplete() {
+
+    if ( this.nodeEditor.isOpen )
+      this.nodeEditor.render();
 
   }
 

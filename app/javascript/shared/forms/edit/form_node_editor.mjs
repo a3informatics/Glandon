@@ -1,23 +1,20 @@
 import ModalView from 'shared/base/modal_view'
 
 import { $post } from 'shared/helpers/ajax'
-import { $confirm } from 'shared/helpers/confirmable'
-import { iconTypes } from 'shared/ui/icons'
-// import { iconBtn } from 'shared/ui/buttons'
-import { getRdfNameByType as nameFromRdf, rdfTypesMap as rdfs } from 'shared/helpers/rdf_types'
+import { rdfTypesMap as rdfs } from 'shared/helpers/rdf_types'
 import { isCharLetter } from 'shared/helpers/strings'
-// import colors from 'shared/ui/colors'
 
 /**
  * Node Editor
- * @description D3-Graph based Editor of a Form
+ * @description RDF-Type based Editor of a Form Node
+ * @requires FormNode module
  * @extends ModalView base module
  * @author Samuel Banas <sab@s-cubed.dk>
  */
 export default class NodeEditor extends ModalView {
 
   /**
-   * Create a Form Editor instance
+   * Create a Node Editor instance
    * @param {Object} params Instance parameters
    * @param {string} params.selector JQuery selector of the node editor view
    * @param {Function} params.onEdited Callback to execute on node edit, optional
@@ -34,7 +31,7 @@ export default class NodeEditor extends ModalView {
   }
 
   /**
-   * Set Edit Node instance and show dialog
+   * Edit a Node instance and show
    * @param {FormNode} node Node instance to Edit
    */
   edit(node) {
@@ -47,6 +44,25 @@ export default class NodeEditor extends ModalView {
 
   }
 
+  reset() {
+
+    this.div.empty();
+    $(this.selector).find('.modal-footer .btn')
+                    .show();
+
+  }
+
+  render() {
+
+    this.reset();
+    this._renderContent();
+
+  }
+
+  /**
+   * Get the Node Editor content div
+   * @return {JQuery Element} Editor content div
+   */
   get div() {
     return $(this.selector).find('.ne-content');
   }
@@ -55,20 +71,27 @@ export default class NodeEditor extends ModalView {
   /** Private **/
 
 
+  /**
+   * Set event listeners, handlers
+   */
   _setListeners() {
 
   }
 
+  /**
+   * Render content on modal show
+   * @override parent
+   */
   _onShow() {
-    this._renderContent();
+    this.render();
   }
 
+  /**
+   * Render the Node Editor content for the current Node instance
+   * @override parent
+   */
   _renderContent() {
 
-    // Empty div contents
-    this.div.empty();
-
-    // Render item type and icon
     this.div.append( this._editorTitle() );
 
     switch( this.node.rdf ) {
@@ -100,6 +123,12 @@ export default class NodeEditor extends ModalView {
         this._renderQuestion();
         this._questionListeners();
         break;
+      case rdfs.COMMON_ITEM.rdfType:
+        this._renderCommonItem();
+        break;
+      case rdfs.TUC_REF.rdfType:
+        this._renderTUCRef();
+        break;
     }
 
     this._onRenderComplete();
@@ -114,8 +143,6 @@ export default class NodeEditor extends ModalView {
       });
     }, 200);
 
-    console.log(this.node.data);
-
   }
 
 
@@ -124,9 +151,10 @@ export default class NodeEditor extends ModalView {
 
   _renderForm() {
 
-    let label = [ 'Label', this._textarea( 'label' ) ],
-        fields = this._fieldTable( [ this._identifier, label,
-                                     this._completion, this._notes ] );
+    let identifier = [ 'Identifier', this._labelStyled( this.node.data.has_identifier.identifier ) ],
+        label = [ 'Label', this._textarea( 'label' ) ],
+
+        fields = this._fieldTable( [ identifier, label, this._completion, this._notes ] );
 
     this.div.append( fields );
 
@@ -166,8 +194,8 @@ export default class NodeEditor extends ModalView {
   _renderBCProperty() {
 
     let label = [ 'Label', this._labelStyled( this.node.data.label ) ],
-        enabled = [ 'Enabled', this._checkbox( 'enabled', this.node.data.has_property[0].enabled ) ],
-        optional = [ 'Optional', this._checkbox( 'optional', this.node.data.has_property[0].optional ) ],
+        enabled = [ 'Enabled', this._checkbox( 'enabled', this.node.data.has_property.enabled ) ],
+        optional = [ 'Optional', this._checkbox( 'optional', this.node.data.has_property.optional ) ],
 
         fields = this._fieldTable([ label, this._completion, this._notes,
                                     enabled, optional ]);
@@ -211,15 +239,54 @@ export default class NodeEditor extends ModalView {
 
   _renderQuestion() {
 
+    let hasRefs = this.node.hasChildren;
+
     let label = [ 'Label', this._textarea( 'label' ) ],
         qText = [ 'Question Text', this._textarea( 'question_text' ) ],
         mapping = [ 'Mapping', this._input( 'mapping' ) ],
-        datatype = [ 'Datatype', this._select( 'datatype', this._datatypeOpts ) ],
-        datatypeFormat = [ 'Format', this._input( 'format', true ) ],
+        datatype = [ 'Datatype', this._select( 'datatype', this._datatypeOpts, null, hasRefs ) ],
+        datatypeFormat = [ 'Format', this._input( 'format', true, hasRefs ) ],
         optional = [ 'Optional', this._checkbox( 'optional' ) ],
 
         fields = this._fieldTable([ label, qText, mapping, datatype, datatypeFormat,
                                     this._completion, this._notes, optional ]);
+
+    this.div.append( fields );
+
+  }
+
+  _renderCommonItem() {
+
+    let label =  [ 'Label', this._labelStyled( this.node.data.label ) ],
+        fields = this._fieldTable([ label ]);
+
+    this.div.append( fields );
+
+    // Hide Save button as node is not ediftable
+    $(this.selector).find( '#editor-submit' )
+                    .hide();
+
+  }
+
+  _renderTUCRef() {
+
+    // Show loading message if reference data not available
+    if ( !this.node.data.referenceData ) {
+      this.div.append( 'Loading reference data...' );
+      return;
+    }
+
+    const qIsParent = this.node.parent.rdf === rdfs.QUESTION.rdfType;
+
+    let identifier = [ 'Identifier', this._labelStyled( this.node.data.referenceData.identifier ) ],
+        defLabel =  [ 'Default Label', this._labelStyled( this.node.data.referenceData.label ) ],
+        submission = [ 'Submission Value', this._labelStyled( this.node.data.referenceData.notation ) ],
+        label = [ 'Label', this._input( this.node.data.label ) ],
+        enable = [ 'Enabled', this._checkbox( 'enabled', null, qIsParent ) ],
+        optional = [ 'Optional', this._checkbox( 'optional' ) ],
+
+        fields = this._fieldTable([ identifier, defLabel, submission, label,
+                                    enable, optional ]);
 
     this.div.append( fields );
 
@@ -231,7 +298,7 @@ export default class NodeEditor extends ModalView {
 
   _questionListeners() {
 
-    this.div.find( 'select' ).on( 'change', (e) => {
+    this.div.find( 'select[name="datatype"]' ).on( 'change', (e) => {
 
       let option = $( e.target ).val(),
           props = this._datatypeOpts[option],
@@ -248,11 +315,6 @@ export default class NodeEditor extends ModalView {
 
 
   /** Shared fields **/
-
-
-  get _identifier() {
-    return [ 'Completion Instructions', this._labelStyled( this.node.data.has_identifier.identifier ) ];
-  }
 
   get _completion() {
     return [ 'Completion Instructions', this._textarea( 'completion', true ) ]
@@ -312,6 +374,7 @@ export default class NodeEditor extends ModalView {
                                  .addClass(( wide ? ' wide' : '' ))
                                  .prop( 'name', property )
                                  .prop( 'disabled', disabled )
+                                 .prop( 'placeholder', 'Enter text')
                                  .css( 'border-bottom-color', this.node.color ),
 
         wrapper = $( '<div>' ).addClass( 'ne-field' )
@@ -327,6 +390,7 @@ export default class NodeEditor extends ModalView {
                               .prop( 'type', 'text' )
                               .prop( 'name', property )
                               .prop( 'disabled', disabled )
+                              .prop( 'placeholder', 'Enter text')
                               .addClass( (narrow ? 'narrow' : '') )
                               .css( 'border-bottom-color', this.node.color ),
 
@@ -388,6 +452,17 @@ export default class NodeEditor extends ModalView {
                             .append( this.node.rdfName );
 
     return title;
+
+  }
+
+  _loading(enable) {
+
+    this.div.toggleClass( 'loading', enable );
+
+    this.modal.find( '.btn' )
+              .toggleClass( 'disabled', enable )
+              .filter( '#editor-submit' )
+                .toggleClass( 'el-loading', enable );
 
   }
 
