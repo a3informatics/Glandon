@@ -32,7 +32,7 @@ describe Forms::Items::TextLabelsController do
     end
 
     it "update" do
-      update_params = {form_id: @form.id, note:"note u", completion:"completion u", label_text:"text_label u"} 
+      update_params = {form_id: @form.id, label_text:"text_label u"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
@@ -46,7 +46,7 @@ describe Forms::Items::TextLabelsController do
     end
 
     it 'update, second update so no audit' do
-      update_params = {form_id: @form.id, note:"note u", completion:"completion u", label_text:"text_label u"} 
+      update_params = {form_id: @form.id, label_text:"text_label u"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
@@ -59,7 +59,7 @@ describe Forms::Items::TextLabelsController do
     end
 
     it 'update, locked by another user' do
-      update_params = {form_id: @form.id, note:"note u", completion:"completion u", label_text:"text_label u"} 
+      update_params = {form_id: @form.id, label_text:"text_label u"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @lock_user)
       audit_count = AuditTrail.count
@@ -70,7 +70,7 @@ describe Forms::Items::TextLabelsController do
     end
 
     it 'update, errors' do
-      update_params = {form_id: @form.id, note:"note u", completion:"completion u", label_text:"text_label ±±±"} 
+      update_params = {form_id: @form.id, label_text:"text_label ±±±"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count

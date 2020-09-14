@@ -30,7 +30,7 @@ private
   end
 
   def update_params
-    params.require(:normal_group).permit(:completion, :note)
+    params.require(:normal_group).permit(:label, :completion, :note)
   end
 
   def model_klass
