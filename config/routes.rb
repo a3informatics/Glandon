@@ -375,6 +375,7 @@ Rails.application.routes.draw do
       get :show_data
       get :crf
       get :referenced_items
+      post :add_child
     end
     collection do
       get :history
@@ -398,14 +399,21 @@ Rails.application.routes.draw do
       resources :questions, :text_labels, :placeholders, :mappings, :commons, :bc_properties, :only => [:update] do
         member do
           put :move_after
+          #post :add_child
         end
       end
     end
     namespace :groups do
-      resources :bc_groups, :only => [:update]
-      resources :normal_groups, :only => [:update]
-      resources :common_groups, :only => [:update]
+      resources :bc_groups, :normal_groups, :common_groups, :only => [:update] do
+        member do
+          post :add_child
+        end
+      end
     end
+  end
+
+  namespace :operational_reference_v3 do
+    resources :tuc_references, :only => [:update]
   end
 
   resources :backgrounds, :only => [:index, :destroy] do
