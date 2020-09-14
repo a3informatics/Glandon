@@ -61,8 +61,15 @@
   padding-left: 10px;
 }
 
+// Node Editor inputs
+
 .ne-content .ne-field {
   max-width: 80%;
+}
+
+.ne-content .label-styled {
+  padding: 4px 6px;
+  padding-right: 14px;
 }
 
 .ne-content .ne-field input[type='text'] {
@@ -91,12 +98,23 @@
   border-bottom-width: 2px;
 }
 
+// Disabled styling
+
 .ne-content .ne-field input:disabled,
   .ne-content .ne-field textarea:disabled,
   .ne-content .ne-field select:disabled {
   background: $row-highlight-background;
   opacity: .8;
 }
+
+// Loading
+
+.ne-content.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+// Fixes
 
 .ne-content .field-table label {
   margin: 0px;
