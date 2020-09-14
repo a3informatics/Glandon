@@ -32,11 +32,11 @@ describe Forms::Items::QuestionsController do
     end
 
     it "update" do
-      update_params = {form_id: @form.id, note:"note u", completion:"completion u", datatype: "string u", format:"2", mapping:"mapping u", question_text:"question_text u"} 
       request.env['HTTP_ACCEPT'] = "application/json"
+      request.content_type = 'application/json'
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
-      put :update, params:{id: @question.id, question: update_params}
+      put :update, params:{id: @question.id, question: {question_text: "something", optional: false, form_id: @form.id}}
       expect(AuditTrail.count).to eq(audit_count+1)
       @question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
       expect(response.content_type).to eq("application/json")
