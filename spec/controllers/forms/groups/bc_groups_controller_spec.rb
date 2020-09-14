@@ -36,7 +36,7 @@ describe Forms::Groups::BcGroupsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
-      put :update, params:{id: @bc.id, bc: update_params}
+      put :update, params:{id: @bc.id, bc_group: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
       @bc = Form::Group::Bc.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2"))
       expect(response.content_type).to eq("application/json")
@@ -50,9 +50,9 @@ describe Forms::Groups::BcGroupsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
-      put :update, params:{id: @bc.id, bc: update_params}
+      put :update, params:{id: @bc.id, bc_group: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
-      put :update, params:{id: @bc.id, bc: update_params}
+      put :update, params:{id: @bc.id, bc_group: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_bc_expected_2.yaml", equate_method: :hash_equal)
@@ -63,7 +63,7 @@ describe Forms::Groups::BcGroupsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @lock_user)
       audit_count = AuditTrail.count
-      put :update, params:{id: @bc.id, bc: update_params}
+      put :update, params:{id: @bc.id, bc_group: update_params}
       expect(AuditTrail.count).to eq(audit_count)
       actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_bc_expected_3.yaml", equate_method: :hash_equal)
@@ -74,7 +74,7 @@ describe Forms::Groups::BcGroupsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
-      put :update, params:{id: @bc.id, bc: update_params}
+      put :update, params:{id: @bc.id, bc_group: update_params}
       expect(AuditTrail.count).to eq(audit_count)
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_bc_expected_4.yaml", equate_method: :hash_equal)

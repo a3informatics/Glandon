@@ -26,11 +26,11 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
 private
 
   def the_params
-    params.require(:bc).permit(:form_id)
+    params.require(:bc_group).permit(:form_id)
   end
 
   def update_params
-    params.require(:bc).permit(:completion, :note)
+    params.require(:bc_group).permit(:completion, :note)
   end
 
   def model_klass

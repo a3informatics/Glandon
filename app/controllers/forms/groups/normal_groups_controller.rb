@@ -26,11 +26,11 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
 private
 
   def the_params
-    params.require(:normal).permit(:form_id)
+    params.require(:normal_group).permit(:form_id)
   end
 
   def update_params
-    params.require(:normal).permit(:completion, :note)
+    params.require(:normal_group).permit(:completion, :note)
   end
 
   def model_klass
