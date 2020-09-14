@@ -346,6 +346,7 @@ defaults: &defaults
     alias:
       crf: show
       referenced_items: show
+      add_child: update
   CdiscTermPolicy:
     policies:
       index:
