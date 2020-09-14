@@ -30,7 +30,7 @@ private
   end
 
   def update_params
-    params.require(:question).permit(:completion, :note, :ordinal, :optional, :datatype, :format, :question_text, :mapping, :has_coded_value => [:id, :context_id])
+    params.require(:question).permit(:label, :completion, :note, :datatype, :format, :question_text, :mapping)
   end
 
   def model_klass
