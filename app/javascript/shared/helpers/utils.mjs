@@ -17,7 +17,7 @@ function isCDISC(data) {
   const ownerName = data.owner || data;
 
   try {
-    return ownerName.toLowerCase() === 'cdisc';
+    return ownerName.toLowerCase().includes('cdisc');
   }
   catch {
     return false
@@ -41,8 +41,27 @@ const tableInteraction = {
   }
 }
 
+/**
+ * Check if element is within parent viewport or not
+ * @param {JQuery Element} parent Parent element
+ * @param {JQuery Element} element Child element to check
+ * @return {boolean} Value specifying whether element is inside the parent viewport
+ */
+function isInViewport(parent, element) {
+
+  let elBBox = element[0].getBBox(),
+      left = element.position().left + (elBBox.width / 2) >= parent.position().left,
+      top = element.position().top + (elBBox.height / 2) >= parent.position().top,
+      bottom = element.position().top + (elBBox.height / 2) <= parent.position().top + parent.height(),
+      right = element.position().left + (elBBox.width / 2) <= parent.position().left + parent.width()
+
+  return left && top && bottom && right;
+
+}
+
 export {
   compareRefItems,
   isCDISC,
-  tableInteraction
+  tableInteraction,
+  isInViewport
 }

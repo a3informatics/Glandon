@@ -13,7 +13,11 @@ export default class ModalView {
    * @param {Object} args Optional additional arguments for extending classes
    */
   constructor({ selector }, args = {} ) {
-    Object.assign(this, { selector, ...args });
+    Object.assign(this, {
+      selector, 
+      isOpen: false,
+      ...args
+    });
 
     this._setModalListeners();
   }
@@ -49,13 +53,19 @@ export default class ModalView {
    */
   _setModalListeners() {
     // Called immediately, before fade-in animation
-    this.modal.on('show.bs.modal', () => this._onShow());
+    this.modal.on('show.bs.modal', () => {
+      this.isOpen = true;
+      this._onShow();
+    });
 
     // Called after modal visible
     this.modal.on('shown.bs.modal', () => this._onShowComplete());
 
     // Called immediately, before fade-out animation
-    this.modal.on('hide.bs.modal', () => this._onHide());
+    this.modal.on('hide.bs.modal', () => {
+      this._onHide();
+      this.isOpen = false;
+    });
 
     // Called after modal hidden fully
     this.modal.on('hidden.bs.modal', () => this._onHideComplete());
