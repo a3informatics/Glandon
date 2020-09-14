@@ -332,8 +332,8 @@ export default class TreeGraph {
     // Search graph on input key up event
     $(this.selector).find('#d3-search').on( 'keyup', (e) => this._onSearchInput(e) );
 
-    if ( this.selectable && this.keyNavigation )
-      $('body').on('keydown', (e) => this._onKeyPress(e) );
+    // Key down event handler
+    $('body').on('keydown', (e) => this._onKeyPress(e) );
 
   }
 
@@ -581,12 +581,13 @@ console.log(rawData);
   }
 
   /**
-   * Key down event
-   * Extend method for custom behavior
+   * On keydown event, handle graph navigation if enabled 
+   * Extend / override method for custom behavior
+   * @param {event} e Keydown event object
    */
   _onKeyPress(e) {
 
-    if ( !this.selected )
+    if ( !this.selectable || !this.keyNavigation || !this.selected )
       return;
 
     if ( e.which < 37 || e.which > 40 )
