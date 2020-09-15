@@ -1,3 +1,4 @@
 ---
-:errors:
-- Label text contains invalid markdown
+:fieldErrors:
+- :name: label_text
+  :status: contains invalid markdown

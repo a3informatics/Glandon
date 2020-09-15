@@ -1,3 +1,4 @@
 ---
-:errors:
-- Free text contains invalid markdown
+:fieldErrors:
+- :name: free_text
+  :status: contains invalid markdown

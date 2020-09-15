@@ -1,3 +1,4 @@
 ---
-:errors:
-- Question text contains invalid characters
+:fieldErrors:
+- :name: question_text
+  :status: contains invalid characters
