@@ -253,9 +253,11 @@ export default class NodeEditor extends ModalView {
   _renderForm() {
 
     let identifier = [ 'Identifier', this._labelStyled( this.node.data.has_identifier.identifier ) ],
-        label = [ 'Label', this._textarea( 'label' ) ],
+        label =      [ 'Label', this._textarea( 'label' ) ],
 
-        fields = this._fieldTable( [ identifier, label, this._completion, this._notes ] );
+        fields =      this._fieldTable(
+                        [ identifier, label, this._completion, this._notes ]
+                      )
 
     this.content.append( fields );
 
@@ -266,12 +268,13 @@ export default class NodeEditor extends ModalView {
    */
   _renderGroup() {
 
-    let label = [ 'Label', this._textarea( 'label' ) ],
+    let label =     [ 'Label', this._textarea( 'label' ) ],
         repeating = [ 'Repeating', this._checkbox( 'repeating' ) ],
-        optional = [ 'Optional', this._checkbox( 'optional' ) ],
+        optional =  [ 'Optional', this._checkbox( 'optional' ) ],
 
-        fields = this._fieldTable([ label, this._completion, this._notes,
-                                    repeating, optional ]);
+        fields =    this._fieldTable(
+                      [ label, this._completion, this._notes, repeating, optional ]
+                    )
 
     this.content.append( fields );
 
@@ -282,8 +285,10 @@ export default class NodeEditor extends ModalView {
    */
   _renderCommon() {
 
-    let label = [ 'Label', this._textarea( 'label' ) ],
-        fields = this._fieldTable([ label ]);
+    let label =   [ 'Label', this._textarea( 'label' ) ],
+        fields =  this._fieldTable(
+                    [ label ]
+                  )
 
     this.content.append( fields );
 
@@ -294,8 +299,23 @@ export default class NodeEditor extends ModalView {
    */
   _renderBC() {
 
-    let label = [ 'Label', this._labelStyled( this.node.data.label ) ],
-        fields = this._fieldTable([ label, this._completion, this._notes ]);
+    // Show loading message if reference data not available
+    if ( !this.node.data.referenceData ) {
+      this.content.append( 'Loading reference data...' );
+      return;
+    }
+
+    let bcId =    [ 'BC Identifier', this._labelStyled(
+                    this.node.data.referenceData.has_identifier.identifier
+                  ) ],
+        bcLabel = [ 'BC Label', this._labelStyled(
+                    this.node.data.referenceData.label
+                  ) ],
+        label =   [ 'Label', this._textarea( 'label' ) ],
+
+        fields =  this._fieldTable(
+                    [ bcId, bcLabel, label, this._completion, this._notes ]
+                  );
 
     this.content.append( fields );
 
@@ -306,12 +326,13 @@ export default class NodeEditor extends ModalView {
    */
   _renderBCProperty() {
 
-    let label = [ 'Label', this._labelStyled( this.node.data.label ) ],
-        enabled = [ 'Enabled', this._checkbox( 'enabled', this.node.data.has_property.enabled ) ],
+    let label =    [ 'Label', this._labelStyled( this.node.data.label ) ],
+        enabled =  [ 'Enabled', this._checkbox( 'enabled', this.node.data.has_property.enabled ) ],
         optional = [ 'Optional', this._checkbox( 'optional', this.node.data.has_property.optional ) ],
 
-        fields = this._fieldTable([ label, this._completion, this._notes,
-                                    enabled, optional ]);
+        fields =    this._fieldTable(
+                      [ label, this._completion, this._notes, enabled, optional ]
+                    );
 
     this.content.append( fields );
 
@@ -322,10 +343,12 @@ export default class NodeEditor extends ModalView {
    */
   _renderMapping() {
 
-    let label = [ 'Label', this._textarea( 'label' ) ],
+    let label =   [ 'Label', this._textarea( 'label' ) ],
         mapping = [ 'Mapping', this._input( 'mapping' ) ],
 
-        fields = this._fieldTable([ label, mapping ]);
+        fields =  this._fieldTable(
+                    [ label, mapping ]
+                  );
 
     this.content.append( fields );
 
@@ -336,10 +359,12 @@ export default class NodeEditor extends ModalView {
    */
   _renderTextLabel() {
 
-    let label = [ 'Label', this._textarea( 'label' ) ],
+    let label =     [ 'Label', this._textarea( 'label' ) ],
         labelText = [ 'Label Text', this._textarea( 'label_text' ) ],
 
-        fields = this._fieldTable([ label, labelText ]);
+        fields =    this._fieldTable(
+                      [ label, labelText ]
+                    );
 
     this.content.append( fields );
 
@@ -350,10 +375,12 @@ export default class NodeEditor extends ModalView {
    */
   _renderPlaceholder() {
 
-    let label = [ 'Label', this._textarea( 'label' ) ],
+    let label =       [ 'Label', this._textarea( 'label' ) ],
         placeholder = [ 'Placeholder Text', this._textarea( 'free_text' ) ],
 
-        fields = this._fieldTable([ label, placeholder ]);
+        fields =      this._fieldTable(
+                        [ label, placeholder ]
+                      );
 
     this.content.append( fields );
 
@@ -366,15 +393,17 @@ export default class NodeEditor extends ModalView {
 
     let hasRefs = this.node.hasChildren;
 
-    let label = [ 'Label', this._textarea( 'label' ) ],
-        qText = [ 'Question Text', this._textarea( 'question_text' ) ],
-        mapping = [ 'Mapping', this._input( 'mapping' ) ],
+    let label =    [ 'Label', this._textarea( 'label' ) ],
+        qText =    [ 'Question Text', this._textarea( 'question_text' ) ],
+        mapping =  [ 'Mapping', this._input( 'mapping' ) ],
         datatype = [ 'Datatype', this._select( 'datatype', this._datatypeOpts, hasRefs ) ],
-        datatypeFormat = [ 'Format', this._input( 'format', true, hasRefs ) ],
+        dFormat =  [ 'Format', this._input( 'format', true, hasRefs ) ],
         optional = [ 'Optional', this._checkbox( 'optional' ) ],
 
-        fields = this._fieldTable([ label, qText, mapping, datatype, datatypeFormat,
-                                    this._completion, this._notes, optional ]);
+        fields =   this._fieldTable(
+                      [ label, qText, mapping, datatype,
+                        dFormat, this._completion, this._notes, optional ]
+                    );
 
     this.content.append( fields );
 
@@ -386,7 +415,9 @@ export default class NodeEditor extends ModalView {
   _renderCommonItem() {
 
     let label =  [ 'Label', this._labelStyled( this.node.data.label ) ],
-        fields = this._fieldTable([ label ]);
+        fields = this._fieldTable(
+                  [ label ]
+                 );
 
     this.content.append( fields );
 
@@ -409,15 +440,22 @@ export default class NodeEditor extends ModalView {
 
     let parentQuestion = this.node.parent.is( 'QUESTION' );
 
-    let identifier = [ 'Identifier', this._labelStyled( this.node.data.referenceData.identifier ) ],
-        dLabel =  [ 'Default Label', this._labelStyled( this.node.data.referenceData.label ) ],
-        notation = [ 'Submission Value', this._labelStyled( this.node.data.referenceData.notation ) ],
-        label = [ 'Label', this._input( 'label' ) ],
-        enable = [ 'Enabled', this._checkbox( 'enabled', null, parentQuestion ) ],
-        optional = [ 'Optional', this._checkbox( 'optional' ) ],
+    let identifier = [ 'Identifier', this._labelStyled(
+                          this.node.data.referenceData.identifier
+                     ) ],
+        dLabel =     [ 'Default Label', this._labelStyled(
+                          this.node.data.referenceData.label
+                     ) ],
+        notation =   [ 'Submission Value', this._labelStyled(
+                          this.node.data.referenceData.notation
+                     ) ],
+        label =      [ 'Label', this._input( 'label' ) ],
+        enable =     [ 'Enabled', this._checkbox( 'enabled', null, parentQuestion ) ],
+        optional =   [ 'Optional', this._checkbox( 'optional' ) ],
 
-        fields = this._fieldTable([ identifier, dLabel, notation, label,
-                                    enable, optional ]);
+        fields =     this._fieldTable(
+                      [ identifier, dLabel, notation, label, enable, optional ]
+                     );
 
     this.content.append( fields );
 
@@ -432,7 +470,12 @@ export default class NodeEditor extends ModalView {
    * @return {array} Completion Instructions field table row definition array
    */
   get _completion() {
-    return [ 'Completion Instructions', this._textarea( 'completion', true ) ]
+
+    return [
+      'Completion Instructions',
+      this._textarea( 'completion', true )
+    ]
+
   }
 
   /**
@@ -440,7 +483,12 @@ export default class NodeEditor extends ModalView {
    * @return {array} Notes field table row definition array
    */
   get _notes() {
-    return [ 'Notes', this._textarea( 'note', true ) ]
+
+    return [
+      'Notes',
+      this._textarea( 'note', true )
+    ]
+
   }
 
   /**
@@ -448,6 +496,7 @@ export default class NodeEditor extends ModalView {
    * @return {object} Question type datatype options definition
    */
   get _datatypeOpts() {
+
     return {
       'string':   { default: '20', editable: true },
       'boolean':  { editable: false },
@@ -457,6 +506,7 @@ export default class NodeEditor extends ModalView {
       'date':     { editable: false },
       'time':     { editable: false }
     }
+
   }
 
 
@@ -478,7 +528,7 @@ export default class NodeEditor extends ModalView {
                   let field = $( e.target ),
                       name = field.prop( 'name' ),
                       value = field.prop( 'type' ) === 'checkbox' ?
-                                field.prop( 'checked' ) : field.val()
+                                field.prop( 'checked' ) : field.val().trim()
 
                   if ( value !== cachedValues[name] )
                     this.changedFields[name] = value;
@@ -511,8 +561,6 @@ export default class NodeEditor extends ModalView {
                   .trigger( 'input' );
 
     }).trigger( 'change' );
-
-
 
   }
 
@@ -713,7 +761,7 @@ export default class NodeEditor extends ModalView {
               let field = $(el),
                   name = field.prop( 'name' ),
                   value = field.prop( 'type' ) === 'checkbox' ?
-                            field.prop( 'checked' ) : field.val()
+                            field.prop( 'checked' ) : field.val().trim()
 
                 cache[ name ] = value;
             });

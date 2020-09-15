@@ -178,7 +178,7 @@ export default class FormEditor extends TreeGraph {
    */
   _preprocessData(rawData) {
 
-    return d3.hierarchy( rawData, (d) =>[
+    return d3.hierarchy( rawData, (d) => [
         ...d.has_group||[],
         ...d.has_common||[],
         ...d.has_item||[],
@@ -219,7 +219,11 @@ export default class FormEditor extends TreeGraph {
     // Select reference nodes and append data
     d3.selectAll( '.node.reference' )
       .each( (d) => {
-        let referenced = refData[d.data.id];
+
+        let id = d.data.has_biomedical_concept ?
+                    d.data.has_biomedical_concept.id : d.data.id;
+
+        let referenced = refData[id];
 
         if ( referenced ) {
           if (d.data.label === '')

@@ -73,7 +73,7 @@ export default class FormNode extends TreeNode {
    * @return {boolean} Value specifying if Node's type is a reference
    */
   get isReference() {
-    return this.is( 'TC_REF' ) || this.is( 'TUC_REF' );
+    return this.is( 'TUC_REF' ) || this.is( 'BC_GROUP' );
   }
 
   /**
