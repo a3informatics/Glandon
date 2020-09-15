@@ -97,15 +97,15 @@ class FormsController < ManagedItemsController
     end
   end
 
-  # def add_child
-  #   form = Form.find_minimum(protect_from_bad_id(params))
-  #   return true unless check_lock_for_item(form)
-  #   new_child = form.add_child(add_child_params)
-  #   return true if item_errors(new_child)
-  #   return true if lock_item_errors
-  #   AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
-  #   render :json => {data: new_child.to_h}, :status => 200
-  # end
+  def add_child
+    form = Form.find_minimum(protect_from_bad_id(params))
+    return true unless check_lock_for_item(form)
+    new_child = form.add_child(add_child_params)
+    return true if item_errors(new_child)
+    return true if lock_item_errors
+    AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
+    render :json => {data: new_child.to_h}, :status => 200
+  end
 
   # def clone
   #   authorize Form
@@ -246,9 +246,9 @@ private
     params.require(:form).permit(:offset, :count, :identifier, :label, :scope_id)
   end
 
-  # def add_child_params
-  #   params.require(:form).permit(:type)
-  # end
+  def add_child_params
+    params.require(:form).permit(:type)
+  end
 
   def update_params
     params.require(:form).permit(:label, :completion, :note)
