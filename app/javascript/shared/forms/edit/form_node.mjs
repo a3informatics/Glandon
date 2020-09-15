@@ -2,7 +2,7 @@ import TreeNode from 'shared/base/d3/tree/tree_node'
 
 import colors from 'shared/ui/colors'
 import { iconTypes } from 'shared/ui/icons'
-import { getRdfNameByType as nameFromRdf, rdfTypesMap } from 'shared/helpers/rdf_types'
+import { getRdfNameByType, rdfTypesMap, getRdfObject } from 'shared/helpers/rdf_types'
 
 /**
  * D3 Form Editor Tree Graph Node
@@ -10,6 +10,15 @@ import { getRdfNameByType as nameFromRdf, rdfTypesMap } from 'shared/helpers/rdf
  * @author Samuel Banas <sab@s-cubed.dk>
  */
 export default class FormNode extends TreeNode {
+
+  /**
+   * Check if Node is an RDF type
+   * @param {string} rdfShortcut Key value for RDF Type in the rdfTypesMap
+   * @return {boolean} Value representing Node being the argument rdf type
+   */
+  is(rdfShortcut) {
+    return this.rdf === rdfTypesMap[ rdfShortcut ].rdfType;
+  }
 
   /**
    * Check if Node disabled
@@ -28,11 +37,19 @@ export default class FormNode extends TreeNode {
   }
 
   /**
+   * Get Node's Rdf Object definition
+   * @return {Object} Rdf object from the rdfTypesMap
+   */
+  get rdfObject() {
+    return getRdfObject( this.rdf );
+  }
+
+  /**
    * Get Node's name
    * @return {string} Value representing Node's name corresponding to its RDF type
    */
   get rdfName() {
-    return nameFromRdf( this.rdf );
+    return getRdfNameByType( this.rdf );
   }
 
   /**
@@ -56,7 +73,7 @@ export default class FormNode extends TreeNode {
    * @return {boolean} Value specifying if Node's type is a reference
    */
   get isReference() {
-    return [ rdfTypesMap.TC_REF.rdfType, rdfTypesMap.TUC_REF.rdfType ].includes( this.rdf );
+    return this.is( 'TC_REF' ) || this.is( 'TUC_REF' );
   }
 
   /**
@@ -64,13 +81,7 @@ export default class FormNode extends TreeNode {
    * @return {boolean} Value specifying if Node's type is a allowed to add a child in the Editor
    */
   get addChildAllowed() {
-
-    return [
-      rdfTypesMap.NORMAL_GROUP.rdfType,
-      rdfTypesMap.FORM.rdfType,
-      rdfTypesMap.QUESTION.rdfType
-    ].includes( this.rdf );
-
+    return this.is( 'FORM' ) || this.is( 'NORMAL_GROUP' ) || this.is( 'QUESTION' );
   }
 
   /**
@@ -78,7 +89,7 @@ export default class FormNode extends TreeNode {
    * @return {boolean} Value specifying if Node's type is a allowed to be Common
    */
    get commonAllowed() {
-    return this.rdf === rdfTypesMap.BC_PROPERTY.rdfType;
+    return this.is( 'BC_PROPERTY' );
   }
 
   /**
@@ -87,17 +98,39 @@ export default class FormNode extends TreeNode {
    */
    get removeAllowed() {
 
-    // if ( this.rdf === rdfTypesMap.TUC_REF )
+    if ( this.is( 'TUC_REF' ) )
+      return this.parent.is( 'QUESTION' );
 
-    return ![
-      rdfTypesMap.BC_PROPERTY.rdfType,
-      rdfTypesMap.FORM.rdfType,
-      rdfTypesMap.TUC_REF.rdfType
-    ].includes( this.rdf );
+    return !this.is( 'BC_PROPERTY' ) && !this.is( 'FORM' );
+
   }
 
+  /**
+   * Check if Node type is allowed to be restored (from being common)
+   * @return {boolean} Value specifying if Node's type is a allowed to be restored
+   */
   get restoreAllowed() {
-    return this.rdf === rdfTypesMap.COMMON_ITEM.rdfType;
+    return this.is( 'COMMON_ITEM' );
+  }
+
+  /**
+   * Get a list of allowed children types for Node
+   * @return {array} RDF shortcut names of types allowed as children for Node
+   */
+  get childTypes() {
+
+    if ( this.is( 'NORMAL_GROUP' ) )
+      return [ 'NORMAL_GROUP', 'COMMON_GROUP', 'BC_GROUP', 'QUESTION',
+               'MAPPING', 'TEXTLABEL', 'PLACEHOLDER' ]
+
+    else if ( this.is( 'FORM' ) )
+      return [ 'NORMAL_GROUP' ]
+
+    else if ( this.is( 'QUESTION' ) )
+      return [ 'TUC_REF' ]
+
+    return [];
+
   }
 
 
@@ -158,8 +191,8 @@ export default class FormNode extends TreeNode {
 
     // Include reference URI to check for CDISC ownership if exists
     let param = d.data.reference || '';
-
     return iconTypes.typeIconMap( d.data.rdf_type, param ).color;
+
   }
 
 }

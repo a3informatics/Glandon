@@ -26,11 +26,13 @@ export default class FormEditor extends TreeGraph {
   /**
    * Create a Form Editor instance
    * @param {Object} params Instance parameters
+   * @param {string} params.formId ID of the currently edited form
    * @param {object} params.urls Must contain urls for 'data', 'update'
    * @param {string} params.selector JQuery selector of the editor panel
    * @param {function} params.onEdited Callback executed on any edit action
    */
   constructor({
+    formId,
     urls,
     selector = '#form-editor',
     onEdited = () => {}
@@ -43,8 +45,13 @@ export default class FormEditor extends TreeGraph {
     });
 
     Object.assign( this, {
-      onEdited, urls,
-      nodeEditor: new NodeEditor()
+      formId, onEdited, urls,
+      nodeEditor: new NodeEditor({
+        formId,
+        onShow: () => this.keysDisable(),
+        onHide: () => this.keysEnable(),
+        onUpdate: () => this.render()._restoreGraph()
+      })
     });
 
   }
@@ -60,7 +67,6 @@ export default class FormEditor extends TreeGraph {
   clearGraph() {
 
     super.clearGraph();
-
     D3Tooltip.destroy();
     D3Actions.destroy();
 
@@ -216,7 +222,8 @@ export default class FormEditor extends TreeGraph {
         let referenced = refData[d.data.id];
 
         if ( referenced ) {
-          d.data.label = referenced.label
+          if (d.data.label === '')
+            d.data.label = referenced.label
           d.data.referenceData = referenced
         }
       });
@@ -276,6 +283,10 @@ export default class FormEditor extends TreeGraph {
 
   }
 
+  /**
+   * Render completed callback, re-render nodeEditor contents if open
+   * @override parent implementation
+   */
   _onRenderComplete() {
 
     if ( this.nodeEditor.isOpen )
@@ -302,7 +313,7 @@ export default class FormEditor extends TreeGraph {
   }
 
   /**
-   * Render Nodes in customis style (with icons and labels)
+   * Render Nodes in custom style (with icons and labels)
    */
   _renderNodes() {
 
@@ -382,15 +393,24 @@ export default class FormEditor extends TreeGraph {
    */
    _showAddChildMenu(node, e) {
 
+    if ( !node.addChildAllowed )
+      return;
+
     //  Map allowed children RDFs into Menu item list
-    let menuItems = this._addChildrenTypes( node ).map( (rdf) => {
-      return { text: rdf.name, url: '#', icon: 'icon-plus' }
+    let menuItems = node.childTypes.map( (type) => {
+      return {
+        text: rdfs[type].name,
+        url: '#',
+        icon: 'icon-plus'
+      }
     }),
+
     //  Raw menu HTML
     menuHTML = renderMenuOnly({
       menuStyle: { color: 'light', size: 'small' },
       menuItems
     }),
+
     //  Styled menu element
     $menu = $( menuHTML ).css( 'display', 'block' );
 
@@ -449,30 +469,6 @@ export default class FormEditor extends TreeGraph {
       classList += ' reference'
 
     return classList;
-
-  }
-
-  /**
-   * Get a list of allowed children types for a given node
-   * @param {FormNode} node Node instance to generate the list for
-   * @return {Array} RDF Objects of types allowed as children for a given node
-   */
-  _addChildrenTypes(node) {
-
-    switch( node.rdf ) {
-      case rdfs.FORM.rdfType:
-        return [ rdfs.NORMAL_GROUP ]
-        break;
-      case rdfs.NORMAL_GROUP.rdfType:
-        return [ rdfs.NORMAL_GROUP, rdfs.COMMON_GROUP, rdfs.BC_GROUP,
-                 rdfs.QUESTION, rdfs.MAPPING, rdfs.TEXTLABEL, rdfs.PLACEHOLDER ]
-        break;
-      case rdfs.QUESTION.rdfType:
-        return [ rdfs.TUC_REF ]
-        break;
-    }
-
-    return [];
 
   }
 
