@@ -2,6 +2,8 @@ require 'controller_helpers.rb'
 
 class Forms::Items::QuestionsController < ManagedItemsController
 
+  include DatatablesHelpers
+
   before_action :authenticate_and_authorized
 
   C_CLASS_NAME = "Forms::Items::QuestionController"
@@ -17,7 +19,7 @@ class Forms::Items::QuestionsController < ManagedItemsController
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: question.to_h}, :status => 200
     else
-      render :json => {:errors => question.errors.full_messages}, :status => 200
+      render :json => {:fieldErrors => format_editor_errors(question.errors)}, :status => 422
     end
   end
 
