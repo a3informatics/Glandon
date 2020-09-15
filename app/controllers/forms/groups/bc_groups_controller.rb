@@ -2,6 +2,8 @@ require 'controller_helpers.rb'
 
 class Forms::Groups::BcGroupsController < ManagedItemsController
 
+  include DatatablesHelpers
+
   before_action :authenticate_and_authorized
 
   C_CLASS_NAME = Forms::Groups::BcGroupsController
