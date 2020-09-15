@@ -36,7 +36,26 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+      :label: Height
+      :tagged: []
+      :has_state: http://www.s-cubed.dk/HEIGHT/V1#BCI_RS
+      :has_identifier: http://www.s-cubed.dk/HEIGHT/V1#BCI_SI
+      :has_previous_version: 
+      :origin: ''
+      :change_description: ''
+      :creation_date: '2016-01-01T00:00:00+00:00'
+      :last_change_date: '2020-08-27T10:06:43+02:00'
+      :explanatory_comment: ''
+      :has_item:
+      - http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1
+      - http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11
+      - http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2
+      :identified_by: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1
+      :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
     :context: 
   :datatype: ''
   :format: ''
@@ -234,7 +253,26 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1dFSUdIVC9WMSNCQ0k=
+      :uri: http://www.s-cubed.dk/WEIGHT/V1#BCI
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+      :label: Weight
+      :tagged: []
+      :has_state: http://www.s-cubed.dk/WEIGHT/V1#BCI_RS
+      :has_identifier: http://www.s-cubed.dk/WEIGHT/V1#BCI_SI
+      :has_previous_version: 
+      :origin: ''
+      :change_description: ''
+      :creation_date: '2016-01-01T00:00:00+00:00'
+      :last_change_date: '2020-08-27T10:06:43+02:00'
+      :explanatory_comment: ''
+      :has_item:
+      - http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1
+      - http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11
+      - http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2
+      :identified_by: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1
+      :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
     :context: 
   :datatype: ''
   :format: ''
@@ -405,7 +443,25 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.s-cubed.dk/BMI/V1#BCI
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0k=
+      :uri: http://www.s-cubed.dk/BMI/V1#BCI
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+      :label: BMI
+      :tagged: []
+      :has_state: http://www.s-cubed.dk/BMI/V1#BCI_RS
+      :has_identifier: http://www.s-cubed.dk/BMI/V1#BCI_SI
+      :has_previous_version: 
+      :origin: ''
+      :change_description: ''
+      :creation_date: '2016-01-01T00:00:00+00:00'
+      :last_change_date: '2020-08-27T10:06:43+02:00'
+      :explanatory_comment: ''
+      :has_item:
+      - http://www.s-cubed.dk/BMI/V1#BCI_BCI1
+      - http://www.s-cubed.dk/BMI/V1#BCI_BCI10
+      :identified_by: http://www.s-cubed.dk/BMI/V1#BCI_BCI1
+      :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
     :context: 
   :datatype: ''
   :format: ''
@@ -540,7 +596,28 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.s-cubed.dk/HR/V1#BCI
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hSL1YxI0JDSQ==
+      :uri: http://www.s-cubed.dk/HR/V1#BCI
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+      :label: Heart Rate
+      :tagged: []
+      :has_state: http://www.s-cubed.dk/HR/V1#BCI_RS
+      :has_identifier: http://www.s-cubed.dk/HR/V1#BCI_SI
+      :has_previous_version: 
+      :origin: ''
+      :change_description: ''
+      :creation_date: '2016-01-01T00:00:00+00:00'
+      :last_change_date: '2020-08-27T10:06:45+02:00'
+      :explanatory_comment: ''
+      :has_item:
+      - http://www.s-cubed.dk/HR/V1#BCI_BCI1
+      - http://www.s-cubed.dk/HR/V1#BCI_BCI10
+      - http://www.s-cubed.dk/HR/V1#BCI_BCI4
+      - http://www.s-cubed.dk/HR/V1#BCI_BCI5
+      - http://www.s-cubed.dk/HR/V1#BCI_BCI6
+      :identified_by: http://www.s-cubed.dk/HR/V1#BCI_BCI1
+      :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
     :context: 
   :datatype: ''
   :format: ''
@@ -675,7 +752,29 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.s-cubed.dk/SYSBP/V1#BCI
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NZU0JQL1YxI0JDSQ==
+      :uri: http://www.s-cubed.dk/SYSBP/V1#BCI
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+      :label: Systolic Blood Pressure
+      :tagged: []
+      :has_state: http://www.s-cubed.dk/SYSBP/V1#BCI_RS
+      :has_identifier: http://www.s-cubed.dk/SYSBP/V1#BCI_SI
+      :has_previous_version: 
+      :origin: ''
+      :change_description: ''
+      :creation_date: '2016-01-01T00:00:00+00:00'
+      :last_change_date: '2020-08-27T10:06:44+02:00'
+      :explanatory_comment: ''
+      :has_item:
+      - http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1
+      - http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6
+      - http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5
+      - http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7
+      - http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2
+      - http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11
+      :identified_by: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1
+      :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
     :context: 
   :datatype: ''
   :format: ''
@@ -942,7 +1041,29 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.s-cubed.dk/DIABP/V1#BCI
+    :reference:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0RJQUJQL1YxI0JDSQ==
+      :uri: http://www.s-cubed.dk/DIABP/V1#BCI
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+      :label: Diastolic Blood Pressure
+      :tagged: []
+      :has_state: http://www.s-cubed.dk/DIABP/V1#BCI_RS
+      :has_identifier: http://www.s-cubed.dk/DIABP/V1#BCI_SI
+      :has_previous_version: 
+      :origin: ''
+      :change_description: ''
+      :creation_date: '2016-01-01T00:00:00+00:00'
+      :last_change_date: '2020-08-27T10:06:45+02:00'
+      :explanatory_comment: ''
+      :has_item:
+      - http://www.s-cubed.dk/DIABP/V1#BCI_BCI5
+      - http://www.s-cubed.dk/DIABP/V1#BCI_BCI1
+      - http://www.s-cubed.dk/DIABP/V1#BCI_BCI6
+      - http://www.s-cubed.dk/DIABP/V1#BCI_BCI7
+      - http://www.s-cubed.dk/DIABP/V1#BCI_BCI2
+      - http://www.s-cubed.dk/DIABP/V1#BCI_BCI11
+      :identified_by: http://www.s-cubed.dk/DIABP/V1#BCI_BCI1
+      :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
     :context: 
   :datatype: ''
   :format: ''
@@ -1070,17 +1191,6 @@
   :completion: Not Set
   :optional: false
   :has_common: []
-  :has_biomedical_concept:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c3X1Ix
-    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG7_R1
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-    :label: BC Reference
-    :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :reference: http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000013
-    :context: 
   :datatype: ''
   :format: ''
   :question_text: ''
@@ -1268,17 +1378,6 @@
   :completion: Not Set
   :optional: false
   :has_common: []
-  :has_biomedical_concept:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c4X1Ix
-    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG8_R1
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-    :label: BC Reference
-    :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :reference: http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000014
-    :context: 
   :datatype: ''
   :format: ''
   :question_text: ''

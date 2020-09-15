@@ -18,6 +18,15 @@ class Form::Group::Bc < Form::Group
   def get_item
     blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: {}}
     group = self.to_h.merge!(blank_fields)
+    begin
+      bci = BiomedicalConceptInstance.find(Uri.new(uri: group[:has_biomedical_concept][:reference]))
+    rescue => e
+      group.delete(:has_biomedical_concept)
+    else
+      group[:has_biomedical_concept][:reference] = bci.to_h
+    end
+    #bci = BiomedicalConceptInstance.find(Uri.new(uri: group[:has_biomedical_concept][:reference]))
+    #group[:has_biomedical_concept][:reference] = bci.to_h
     group.delete(:has_item)
     results = [group]
     self.has_item.sort_by {|x| x.ordinal}.each do |item|
@@ -43,5 +52,16 @@ class Form::Group::Bc < Form::Group
     end
     return html
   end
+
+  # # Add child. 
+  # #
+  # # @return 
+  # def self.add_child(parent)
+  #     ordinal = self.next_ordinal(:has_sub_group)
+  #     child = Form::Group::Bc.create(ordinal: ordinal+1)
+  #     return child if child.errors.any?
+  #     self.add_link(:has_sub_group, child.uri)
+  #     child
+  # end
 
 end
