@@ -19,9 +19,10 @@
   margin-right: 2px;
 }
 
-.node-actions .btns-wrap .btn .icon-arrow-u,
-  .node-actions .btns-wrap .btn .icon-arrow-d {
-  font-size: $font-small;
+.node-actions .btns-wrap .btn {
+  .icon-arrow-u, .icon-arrow-d {
+    font-size: $font-small;
+  }
 }
 
 .node-actions .context-menu {
@@ -48,8 +49,8 @@
 }
 
 .ne-content .field-table tr td {
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 .ne-content .field-table tr td:first-of-type {
@@ -63,8 +64,9 @@
 
 // Node Editor inputs
 
-.ne-content .ne-field {
+.ne-content .form-group {
   max-width: 80%;
+  margin: 0px;
 }
 
 .ne-content .label-styled {
@@ -72,39 +74,51 @@
   padding-right: 14px;
 }
 
-.ne-content .ne-field input[type='text'] {
+.ne-content .form-group {
+  input, textarea {
+    margin: 0px;
+  }
+}
+
+.ne-content .form-group input[type='text'] {
   min-width: 300px;
   padding-right: 20px;
 }
 
-.ne-content .ne-field input[type='text'].narrow {
+.ne-content .form-group input[type='text'].narrow {
   min-width: 100px;
 }
 
-.ne-content .ne-field textarea {
+.ne-content .form-group textarea {
   min-width: 300px;
   max-width: 500px;
   min-height: 50px;
   max-height: 150px;
 }
 
-.ne-content .ne-field textarea.wide {
+.ne-content .form-group textarea.wide {
   min-width: 400px;
   min-height: 72px;
 }
 
-.ne-content .ne-field select {
+.ne-content .form-group select {
   border: 1px solid $grey-bright;
   border-bottom-width: 2px;
 }
 
-// Disabled styling
+// Disabled and error styling
 
-.ne-content .ne-field input:disabled,
-  .ne-content .ne-field textarea:disabled,
-  .ne-content .ne-field select:disabled {
-  background: $row-highlight-background;
-  opacity: .8;
+.ne-content .form-group.has-error {
+  input, textarea {
+    border-color: $accent-color-2 !important;
+  }
+}
+
+.ne-content .form-group {
+  input:disabled, textarea:disabled, select:disabled {
+    background: $row-highlight-background;
+    opacity: .8;
+  }
 }
 
 // Loading
@@ -122,9 +136,10 @@
 
 @media ( max-width: 1000px ) {
 
-  .ne-content .ne-field textarea,
-    .ne-content .ne-field input {
+  .ne-content .form-group {
+    textarea, input {
       min-width: 200px !important;
     }
+  }
 
 }

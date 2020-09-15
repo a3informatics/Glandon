@@ -28,8 +28,8 @@
 
 // Custom styles
 
-.d3 .node.disabled .label {
-  fill: $grey-light !important;
+.d3 .node.disabled {
+  opacity: .7;
 }
 
 .d3 .node.search-match .label-border,
