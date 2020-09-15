@@ -9,6 +9,7 @@ $(document).ready( () => {
   });
 
   let fe = new FormEditor({
+    formId: editorFormId,
     urls: {
       data: editorDataUrl,
       update: editorUpdateUrl,

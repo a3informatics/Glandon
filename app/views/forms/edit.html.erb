@@ -5,7 +5,8 @@
 
 <% third_level_breadcrumb(:forms, @form, @close_path) %>
 
-<%= javascript_tag "let editorDataUrl = '#{edit_form_path(@form)}',
+<%= javascript_tag "let editorFormId = '#{@form.id}',
+                        editorDataUrl = '#{edit_form_path(@form)}',
                         editorRefDataUrl = '#{referenced_items_form_path(@form)}'
                         editorUpdateUrl = '#{edit_form_path(@form)}',
                         tokenTimerId = '#{@edit.token.id}',
