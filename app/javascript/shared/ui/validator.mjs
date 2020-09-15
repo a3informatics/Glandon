@@ -24,18 +24,22 @@ export default class Validator {
    * @static
    */
   static validate(form, rules) {
+
     // Clear all errors in form
     Validator._clear(form);
 
     let success = true;
 
-    Validator._eachField(form, rules, (field, fieldRules) => {
+    Validator._eachField( form, rules, ( field, fieldRules ) => {
+
       // Field did not pass all validation checks
-      if ( !Validator.validateField(field, fieldRules) )
+      if ( !Validator.validateField( field, fieldRules ) )
         success = false;
+
     });
 
     return success;
+
   }
 
   /**
@@ -46,18 +50,21 @@ export default class Validator {
    * @static
    */
   static validateField(field, fieldRules) {
+
     let success = true;
 
-    Validator._eachRule(fieldRules, (attr, rule) => {
+    Validator._eachRule( fieldRules, ( attr, rule ) => {
+
       // Rule validation did not pass
-      if( !Validator.validateFieldRule(field, attr, rule) ) {
-        Validator._renderError(field, this.allRules[rule].message)
+      if( !Validator.validateFieldRule( field, attr, rule ) ) {
+        Validator._renderError( field, this.allRules[rule].message )
         success = false;
       }
 
     });
 
     return success;
+
   }
 
   /**
@@ -70,13 +77,18 @@ export default class Validator {
    * @static
    */
   static validateFieldRule(field, attribute, rule) {
-    switch (attribute) {
+
+    switch ( attribute ) {
       case 'val':
       case 'value':
-        return Validator.allRules[rule].regex.test($(field).val());
+        return Validator.allRules[rule]
+                        .regex
+                        .test( $( field ).val() );
         break;
       default:
-        return Validator.allRules[rule].regex.test($(field).attr(attribute));
+        return Validator.allRules[rule]
+                        .regex
+                        .test( $( field ).attr( attribute ) );
     }
 
   }
@@ -93,11 +105,16 @@ export default class Validator {
    * @static
    */
   static _eachField(form, rules, action) {
-    for ( const[fieldName, fieldRules] of Object.entries(rules) ) {
-      let field = $(form).find(`input[name='${fieldName}']`);
 
-      action(field, fieldRules);
+    for ( const[ fieldName, fieldRules ] of Object.entries( rules ) ) {
+
+      let field = $( form ).find( `[name='${ fieldName }']` );
+
+      if ( field.length )
+        action( field, fieldRules );
+
     }
+
   }
 
   /**
@@ -107,9 +124,11 @@ export default class Validator {
    * @static
    */
   static _eachRule(fieldRules, action) {
-    for ( const[attribute, rule] of Object.entries(fieldRules) ) {
-      action(attribute, rule);
+
+    for ( const[ attribute, rule ] of Object.entries( fieldRules ) ) {
+      action( attribute, rule );
     }
+
   }
 
   /**
@@ -119,11 +138,14 @@ export default class Validator {
    * @static
    */
   static _renderError(field, error) {
-    // Remove any present field errors
-    Validator._clearFieldErrors(field);
 
-    Validator._getParent(field).addClass('has-error')
-                               .append(`<span class='help-block'>${error}</span>`);
+    // Remove any present field errors
+    Validator._clearFieldErrors( field );
+
+    Validator._getParent( field )
+             .addClass( 'has-error' )
+             .append( `<span class='help-block'>${ error }</span>` );
+
   }
 
   /**
@@ -134,7 +156,11 @@ export default class Validator {
    * @static
    */
   static _fieldHasError(field, error) {
-    return Validator._getParent(field).text().includes( error );
+
+    return Validator._getParent( field )
+                    .text()
+                    .includes( error );
+
   }
 
   /**
@@ -143,9 +169,12 @@ export default class Validator {
    * @static
    */
   static _clearFieldErrors(field) {
-    Validator._getParent(field).removeClass('has-error')
-           .find('.help-block')
-           .remove();
+
+    Validator._getParent( field )
+             .removeClass( 'has-error' )
+             .find( '.help-block' )
+             .remove();
+
   }
 
   /**
@@ -154,7 +183,7 @@ export default class Validator {
    * @static
    */
   static _clear(form) {
-    Validator._clearFieldErrors($(form).find('.has-error'));
+    Validator._clearFieldErrors( $( form ).find( '.has-error' ) );
   }
 
   /**
@@ -164,7 +193,7 @@ export default class Validator {
    * @static
    */
   static _getParent(field) {
-    return $(field).closest('.form-group');
+    return $( field ).closest( '.form-group' );
   }
 
   /**
@@ -174,11 +203,13 @@ export default class Validator {
    * @static
    */
   static get allRules() {
+
     return { 
       'not-empty': {
           regex: /^(?!\s*$).+/,
           message: "Field cannot be empty"
       }
     }
+
   }
 }
