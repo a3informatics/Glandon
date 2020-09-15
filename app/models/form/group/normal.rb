@@ -4,7 +4,7 @@ class Form::Group::Normal < Form::Group
             uri_suffix: "NG",
             uri_property: :ordinal
 
-  data_property :repeating
+  data_property :repeating, default: false
 
   object_property :has_sub_group, cardinality: :many, model_classes: [ "Form::Group::Normal", "Form::Group::Bc" ]
 
@@ -54,6 +54,55 @@ class Form::Group::Normal < Form::Group
       end
     end
     return html
+  end
+
+  #Add child. 
+  # 
+  #@return 
+  def add_child(params)
+    if params[:type].to_sym == :normal_group
+      ordinal = next_ordinal(:has_sub_group)
+      child = Form::Group::Normal.create(ordinal: ordinal, parent_uri: self.uri)
+      return child if child.errors.any?
+      self.add_link(:has_sub_group, child.uri)
+      child
+    elsif params[:type].to_sym == :biomedical_concept_instance
+      results = []
+      params[:id_set].each_with_index do |id, index|
+        transaction = transaction_begin
+        bci = BiomedicalConceptInstance.find_full(id)
+        ordinal = next_ordinal(:has_sub_group)
+        child = Form::Group::Bc.create(ordinal: ordinal, parent_uri: self.uri)
+        return child if child.errors.any?
+        ref = OperationalReferenceV3.create({reference: bci, ordinal: index, transaction: transaction}, self)
+        self.add_link(:has_sub_group, child.uri)
+        child.add_link(:has_biomedical_concept, ref.uri)
+        transaction_execute
+        results << child.to_h
+      end
+      results
+    elsif items.include?params[:type].to_sym
+      ordinal = next_ordinal(:has_item)
+      child = type_to_class[params[:type].to_sym].create(ordinal: ordinal, parent_uri: self.uri)
+      return child if child.errors.any?
+      self.add_link(:has_item, child.uri)
+      child
+    else
+      Errors.application_error(self.class.name, __method__.to_s, "Attempting to add an invalid child type")
+    end 
+  end
+
+  def type_to_class
+    {
+      question: Form::Item::Question,
+      text_label: Form::Item::TextLabel,
+      placeholder: Form::Item::Placeholder,
+      mapping: Form::Item::Mapping
+    }
+  end
+
+  def items
+      items = [:text_label, :placeholder, :mapping, :question]
   end
 
   # Is a Question only group

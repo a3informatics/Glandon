@@ -334,7 +334,7 @@ describe FormsController do
 
   end
 
-    describe "Update" do
+  describe "Update" do
 
     login_curator
 
@@ -404,42 +404,42 @@ describe FormsController do
 
   end
 
-  # describe "Add child" do
+  describe "Add child" do
 
-  #   login_curator
+    login_curator
 
-  #   def sub_dir
-  #     return "controllers/forms"
-  #   end
+    def sub_dir
+      return "controllers/forms"
+    end
 
-  #   before :all do
-  #     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000150.ttl"]
-  #     load_files(schema_files, data_files)
-  #     load_cdisc_term_versions(1..15)
-  #     load_data_file_into_triple_store("mdr_identification.ttl")
-  #     @lock_user = ua_add_user(email: "lock@example.com")
-  #     Token.delete_all
-  #   end
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000150.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..15)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
 
-  #   after :all do
-  #     ua_remove_user("lock@example.com")
-  #   end
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
 
-  #   it 'Add normal group' do
-  #     form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
-  #     request.env['HTTP_ACCEPT'] = "application/json"
-  #     audit_count = AuditTrail.count
-  #     token = Token.obtain(form, @user)
-  #     post :add_child, params:{id: form.id, form:{type: "normal_group"} }
-  #     expect(response.content_type).to eq("application/json")
-  #     expect(response.code).to eq("200")
-  #     expect(AuditTrail.count).to eq(audit_count + 1)
-  #     expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
-  #     actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-  #     check_file_actual_expected(actual.to_h, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal, write_file: true)
-  #   end
+    it 'Add normal group' do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      audit_count = AuditTrail.count
+      token = Token.obtain(form, @user)
+      post :add_child, params:{id: form.id, form:{type: "normal_group"} }
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual.to_h, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    end
 
-  # end
+  end
 
   # describe "Unauthorized User" do
     
