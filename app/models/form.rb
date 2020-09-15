@@ -9,6 +9,8 @@ class Form < IsoManagedV2
 
   object_property :has_group, cardinality: :many, model_class: "Form::Group::Normal", children: true
 
+  validates_with Validator::Field, attribute: :note, method: :valid_markdown?
+  validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
   # Get Items. 
   #
   # @return [Array] Array of hashes, one per group, sub group and item. Ordered by ordinal.
@@ -40,7 +42,7 @@ class Form < IsoManagedV2
 
   # Get Referenced Items. 
   #
-  # @return [Array] Array of hashes, 
+  # @return [Hash] key: reference ID, value: item 
   def get_referenced_items
     items = []
     results = {}
@@ -49,14 +51,46 @@ class Form < IsoManagedV2
       items += group.get_item
     end
     items = items.each do |item|
-        item[:has_coded_value].each do |cv|
-          results[cv[:id]] = cv[:reference]
-        end
+      item[:has_coded_value].each do |cv|
+        results[cv[:id]] = cv[:reference]
+      end
+      results[item[:has_biomedical_concept][:id]] = item[:has_biomedical_concept][:reference] unless item[:has_biomedical_concept].nil?
     end
     return results
   end
 
+  # Add child. 
+  #
+  # @return 
+  def add_child(params)
+    Errors.application_error(self.class.name, __method__.to_s, "Attempting to add an invalid child type") if params[:type].to_sym != :normal_group
+    ordinal = next_ordinal(:has_group)
+    child = Form::Group::Normal.create(ordinal: ordinal, parent_uri: self.uri)
+    return child if child.errors.any?
+    self.add_link(:has_group, child.uri)
+    child
+  end
+
   private
+
+    # Next Ordinal. Get the next ordinal for a managed item collection
+    #
+    # @param [String] name the name of the property holding the collection
+    # @return [Integer] the next ordinal
+    def next_ordinal(name)
+      predicate = self.properties.property(name).predicate
+      query_string = %Q{
+        SELECT (MAX(?ordinal) AS ?max)
+        {
+          #{self.uri.to_ref} #{predicate.to_ref} ?s .
+          ?s bf:ordinal ?ordinal
+        }
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:bf])
+      return 1 if query_results.empty?
+      query_results.by_object(:max).first.to_i + 1
+    end
+
     def get_css
       html = "<style>"
       html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
