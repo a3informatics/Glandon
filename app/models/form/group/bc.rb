@@ -19,7 +19,7 @@ class Form::Group::Bc < Form::Group
     blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: {}}
     group = self.to_h.merge!(blank_fields)
     begin
-      bci = BiomedicalConceptInstance.find(Uri.new(uri: group[:has_biomedical_concept][:reference]))
+      bci = BiomedicalConceptInstance.find_minimum(Uri.new(uri: group[:has_biomedical_concept][:reference]))
     rescue => e
       group.delete(:has_biomedical_concept)
     else
@@ -53,15 +53,19 @@ class Form::Group::Bc < Form::Group
     return html
   end
 
-  # # Add child. 
-  # #
-  # # @return 
-  # def self.add_child(parent)
-  #     ordinal = self.next_ordinal(:has_sub_group)
-  #     child = Form::Group::Bc.create(ordinal: ordinal+1)
-  #     return child if child.errors.any?
-  #     self.add_link(:has_sub_group, child.uri)
-  #     child
-  # end
+  #Add child. 
+  # 
+  #@return 
+  def add_child(params)
+    if params[:type].to_sym == :common_group
+      ordinal = next_ordinal(:has_common)
+      child = Form::Group::Common.create(ordinal: ordinal, parent_uri: self.uri)
+      return child if child.errors.any?
+      self.add_link(:has_common, child.uri)
+      child
+    else
+      Errors.application_error(self.class.name, __method__.to_s, "Attempting to add an invalid child type")
+    end 
+  end
 
 end
