@@ -17,14 +17,14 @@ class Forms::Items::MappingsController < ManagedItemsController
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: mapping.to_h}, :status => 200
     else
-      render :json => {errors: mapping.errors.full_messages}, :status => 200
+      render :json => {:fieldErrors => format_editor_errors(mapping.errors)}, :status => 200
     end
   end
 
 private
 
   def update_params
-    params.require(:mapping).permit(:form_id, :completion, :note, :mapping)
+    params.require(:mapping).permit(:form_id, :label, :mapping)
   end
 
   def model_klass

@@ -17,7 +17,7 @@ class Forms::Items::TextLabelsController < ManagedItemsController
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: text_label.to_h}, :status => 200
     else
-      render :json => {:errors => text_label.errors.full_messages}, :status => 200
+      render :json => {:fieldErrors => format_editor_errors(text_label.errors)}, :status => 200
     end
   end
 

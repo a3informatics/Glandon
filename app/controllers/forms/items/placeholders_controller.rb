@@ -17,14 +17,14 @@ class Forms::Items::PlaceholdersController < ManagedItemsController
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: placeholder.to_h}, :status => 200
     else
-      render :json => {errors: placeholder.errors.full_messages}, :status => 200
+      render :json => {:fieldErrors => format_editor_errors(placeholder.errors)}, :status => 200
     end
   end
 
 private
 
   def update_params
-    params.require(:placeholder).permit(:form_id, :completion, :note, :free_text)
+    params.require(:placeholder).permit(:form_id, :label, :free_text)
   end
 
   def model_klass

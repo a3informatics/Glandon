@@ -19,7 +19,7 @@ class Forms::Items::QuestionsController < ManagedItemsController
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: question.to_h}, :status => 200
     else
-      render :json => {:fieldErrors => format_editor_errors(question.errors)}, :status => 422
+      render :json => {:fieldErrors => format_editor_errors(question.errors)}, :status => 200
     end
   end
 

@@ -2,8 +2,6 @@ require 'controller_helpers.rb'
 
 class OperationalReferenceV3::TucReferencesController < ManagedItemsController
 
-  include DatatablesHelpers
-
   before_action :authenticate_and_authorized
 
   C_CLASS_NAME = "OperationalReferenceV3::TucReferencesController"
@@ -11,7 +9,7 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
   include ControllerHelpers
 
   def update
-    form = Form.find_full(the_params[:form_id])
+    form = Form.find_full(update_params[:form_id])
     return true unless check_lock_for_item(form)
     tuc_reference = OperationalReferenceV3::TucReference.find(protect_from_bad_id(params))
     tuc_reference = tuc_reference.update(update_params)
@@ -25,12 +23,8 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
 
 private
 
-  def the_params
-    params.require(:tuc_reference).permit(:form_id)
-  end
-
   def update_params
-    params.require(:tuc_reference).permit(:label, :optional, :enabled)
+    params.require(:tuc_reference).permit(:form_id, :label, :optional, :enabled)
   end
 
   def model_klass

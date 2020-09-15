@@ -32,15 +32,13 @@ describe Forms::Items::TextLabelsController do
     end
 
     it "update" do
-      update_params = {form_id: @form.id, label_text:"text_label u"} 
+      update_params = {form_id: @form.id, label: "label u", label_text:"text_label u"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
       put :update, params:{id: @text_label.id, text_label: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
       @text_label = Form::Item::TextLabel.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG3_TL4"))
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_text_label_expected_1.yaml", equate_method: :hash_equal)
     end

@@ -17,14 +17,14 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: bc_property.to_h}, :status => 200
     else
-      render :json => {errors: bc_property.errors.full_messages}, :status => 200
+      render :json => {:fieldErrors => format_editor_errors(bc_property.errors)}, :status => 200
     end
   end
 
 private
 
   def update_params
-    params.require(:bc_property).permit(:form_id, :completion, :note, :has_property => [:id, :optional, :enabled])
+    params.require(:bc_property).permit(:form_id, :completion, :note, :enabled, :optional)
   end
 
   def model_klass

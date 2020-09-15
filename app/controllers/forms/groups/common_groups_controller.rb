@@ -17,14 +17,14 @@ class Forms::Groups::CommonGroupsController < ManagedItemsController
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: common.to_h}, :status => 200
     else
-      render :json => {errors: common.errors.full_messages}, :status => 200
+      render :json => {:fieldErrors => format_editor_errors(common.errors)}, :status => 200
     end
   end
 
 private
 
   def update_params
-    params.require(:common_group).permit(:form_id, :label, :completion, :note)
+    params.require(:common_group).permit(:form_id, :label)
   end
 
   def model_klass
