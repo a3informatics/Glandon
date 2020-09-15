@@ -2,8 +2,6 @@ require 'controller_helpers.rb'
 
 class Forms::Items::QuestionsController < ManagedItemsController
 
-  include DatatablesHelpers
-
   before_action :authenticate_and_authorized
 
   C_CLASS_NAME = "Forms::Items::QuestionController"
@@ -24,10 +22,6 @@ class Forms::Items::QuestionsController < ManagedItemsController
   end
 
 private
-
-  # def the_params
-  #   params.require(:question).permit(:form_id)
-  # end
 
   def update_params
     params.require(:question).permit(:form_id, :label, :completion, :note, :datatype, :format, :question_text, :mapping, :optional)

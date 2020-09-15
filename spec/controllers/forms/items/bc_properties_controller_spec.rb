@@ -42,7 +42,7 @@ describe Forms::Items::BcPropertiesController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_bc_property_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_bc_property_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it 'update, second update so no audit' do
@@ -55,7 +55,7 @@ describe Forms::Items::BcPropertiesController do
       put :update, params:{id: @bc_property.id, bc_property: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_bc_property_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_bc_property_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it 'update, locked by another user' do
@@ -66,7 +66,7 @@ describe Forms::Items::BcPropertiesController do
       put :update, params:{id: @bc_property.id, bc_property: update_params}
       expect(AuditTrail.count).to eq(audit_count)
       actual = check_error_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_bc_property_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_bc_property_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it 'update, errors' do
@@ -77,7 +77,7 @@ describe Forms::Items::BcPropertiesController do
       put :update, params:{id: @bc_property.id, bc_property: update_params}
       expect(AuditTrail.count).to eq(audit_count)
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_bc_property_expected_4.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_bc_property_expected_4.yaml", equate_method: :hash_equal)
     end
 
   end
