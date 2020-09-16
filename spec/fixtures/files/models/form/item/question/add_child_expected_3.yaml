@@ -2,7 +2,7 @@
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1ExX1RVQzI=
   :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC2
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-  :label: Not set
+  :label: Not Done
   :tagged: []
   :enabled: true
   :optional: false
@@ -20,12 +20,73 @@
       initiated or completed. (NCI)
     :extensible: false
     :narrower: []
-    :preferred_term:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjODA2OTM4NTZiMDY2OTc0Y2QyMWRhYzc5NGY3YWRmNGIzNDM3Y2U3OA==
-      :uri: http://www.assero.co.uk/PT#80693856b066974cd21dac794f7adf4b3437ce78
-      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-      :label: Not Done
-      :tagged: []
+    :preferred_term: http://www.assero.co.uk/PT#80693856b066974cd21dac794f7adf4b3437ce78
     :synonym: []
-  :context: 
+  :context:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=
+    :uri: http://www.cdisc.org/C66789/V13#C66789
+    :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+    :label: Not Done
+    :tagged: []
+    :has_state:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODlfUlM=
+      :uri: http://www.cdisc.org/C66789/V13#C66789_RS
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+      :registration_status: Standard
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00+00:00'
+      :until_date: '2016-01-01T00:00:00+00:00'
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Standard
+      :multiple_edit: false
+      :by_authority:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+        :uri: http://www.assero.co.uk/RA#DUNS084433759
+        :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+        :organization_identifier: '084433759'
+        :international_code_designator: DUNS
+        :owner: false
+        :ra_namespace:
+          :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+          :uri: http://www.assero.co.uk/NS#CDISC
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: CDISC
+          :name: Clinical Data Interchange Standards Consortium
+          :authority: www.cdisc.org
+    :has_identifier:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODlfU0k=
+      :uri: http://www.cdisc.org/C66789/V13#C66789_SI
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+      :identifier: C66789
+      :version_label: 2008-10-15 Release
+      :version: 13
+      :semantic_version: 13.0.0
+      :has_scope:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: CDISC
+        :name: Clinical Data Interchange Standards Consortium
+        :authority: www.cdisc.org
+    :has_previous_version: 
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2008-10-15T00:00:00+00:00'
+    :last_change_date: '2008-10-15T00:00:00+00:00'
+    :explanatory_comment: ''
+    :identifier: C66789
+    :notation: ND
+    :definition: Indicates a task, process or examination that has either not been
+      initiated or completed. (NCI)
+    :extensible: false
+    :narrower: []
+    :extends: 
+    :subsets: 
+    :paired_with: 
+    :refers_to: []
+    :preferred_term: 
+    :synonym: []
+    :is_ordered: 
+    :is_ranked: 
   :local_label: ''

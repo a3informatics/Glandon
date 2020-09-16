@@ -36,7 +36,7 @@ class Forms::Items::QuestionsController < ManagedItemsController
 private
 
   def add_child_params
-    params.require(:question).permit(:form_id, :type, :id_set => [])
+    params.require(:question).permit(:form_id, :type, :id_set => [:id, :context_id])
   end
 
   def update_params

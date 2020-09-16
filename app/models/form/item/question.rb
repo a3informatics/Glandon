@@ -47,11 +47,12 @@ class Form::Item::Question < Form::Item
   def add_child(params)
     if params[:type].to_sym == :tuc_reference
       results = []
-      params[:id_set].each_with_index do |id, index|
+      params[:id_set].each do |params|
         transaction = transaction_begin
         ordinal = next_ordinal(:has_coded_value)
-        cli = Thesaurus::UnmanagedConcept.find_full(id)
-        child = OperationalReferenceV3::TucReference.create({label: "Not set", reference: cli, ordinal: ordinal, transaction: transaction, parent_uri: self}, self)
+        cli = Thesaurus::UnmanagedConcept.find(params[:id])
+        cl = Thesaurus::ManagedConcept.find_with_properties(params[:context_id])
+        child = OperationalReferenceV3::TucReference.create({label: cli.label, reference: cli, context: cl, ordinal: ordinal, transaction: transaction, parent_uri: self}, self)
         return child if child.errors.any?
         self.add_link(:has_coded_value, child.uri)
         transaction_execute

@@ -109,10 +109,11 @@ describe Forms::Items::QuestionsController do
       cli_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66789/V4#C66789_C49484"))
       cli_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66790/V4#C66790_C17998"))
       cli_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66790/V4#C66790_C43234"))
+      context_1 = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66789/V13#C66789"))
       request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
       token = Token.obtain(@form, @user)
-      post :add_child, params:{id: @question.id, question:{type: "tuc_reference",id_set:[cli_1.id, cli_2.id, cli_3.id], form_id: @form.id} }
+      post :add_child, params:{id: @question.id, question:{type: "tuc_reference",id_set:[{id:cli_1.id, context_id: context_1.id}, {id: cli_2.id, context_id: context_1.id}, {id: cli_3.id, context_id: context_1.id}], form_id: @form.id} }
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(AuditTrail.count).to eq(audit_count + 1)
