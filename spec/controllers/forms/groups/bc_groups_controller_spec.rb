@@ -82,4 +82,42 @@ describe Forms::Groups::BcGroupsController do
 
   end
 
+  describe "Add child" do
+
+    login_curator
+
+    def sub_dir
+      return "controllers/forms/groups"
+    end
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/CRF TEST 1.ttl", "forms/FN000120.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..15)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+      @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+      @bc_group = Form::Group::Bc.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG2"))
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it 'Add common group' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      audit_count = AuditTrail.count
+      token = Token.obtain(@form, @user)
+      post :add_child, params:{id: @bc_group.id, bc_group:{type: "common_group", form_id: @form} }
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual.to_h, sub_dir, "add_child_bc_group_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end

@@ -23,7 +23,22 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
     end
   end
 
+  def add_child
+    form = Form.find_minimum(add_child_params[:form_id])
+    return true unless check_lock_for_item(form)
+    bc_group = Form::Group::Bc.find(protect_from_bad_id(params))
+    new_child = bc_group.add_child(add_child_params)
+    return true if item_errors(new_child)
+    return true if lock_item_errors
+    AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
+    render :json => {data: new_child.to_h}, :status => 200
+  end
+
 private
+
+  def add_child_params
+    params.require(:bc_group).permit(:form_id, :type, :id_set => [])
+  end
 
   def update_params
     params.require(:bc_group).permit(:form_id, :label, :completion, :note)
