@@ -59,7 +59,7 @@ class Form::Item::Question < Form::Item
       end
       results
     else
-      Errors.application_error(self.class.name, __method__.to_s, "Attempting to add an invalid child type")
+      self.errors.add(:base, "Attempting to add an invalid child type")
     end 
   end
 

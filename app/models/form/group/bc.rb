@@ -59,12 +59,12 @@ class Form::Group::Bc < Form::Group
   def add_child(params)
     if params[:type].to_sym == :common_group
       ordinal = next_ordinal(:has_common)
-      child = Form::Group::Common.create(ordinal: ordinal, parent_uri: self.uri)
+      child = Form::Group::Common.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
       return child if child.errors.any?
       self.add_link(:has_common, child.uri)
       child
     else
-      Errors.application_error(self.class.name, __method__.to_s, "Attempting to add an invalid child type")
+      self.errors.add(:base, "Attempting to add an invalid child type")
     end 
   end
 
