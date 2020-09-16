@@ -1,7 +1,8 @@
 class Form::Group::Common < Form::Group
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#CommonGroup",
-            uri_suffix: "CG"
+            uri_suffix: "CG",
+            uri_property: :ordinal
 
   object_property_class :has_item, model_class: Form::Item::Common
 
