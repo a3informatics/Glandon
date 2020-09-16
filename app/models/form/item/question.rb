@@ -41,4 +41,26 @@ class Form::Item::Question < Form::Item
     html += end_row
   end
 
+  #Add child. 
+  # 
+  #@return 
+  def add_child(params)
+    if params[:type].to_sym == :tuc_reference
+      results = []
+      params[:id_set].each_with_index do |id, index|
+        transaction = transaction_begin
+        ordinal = next_ordinal(:has_coded_value)
+        cli = Thesaurus::UnmanagedConcept.find_full(id)
+        child = OperationalReferenceV3::TucReference.create({label: "Not set", reference: cli, ordinal: ordinal, transaction: transaction, parent_uri: self}, self)
+        return child if child.errors.any?
+        self.add_link(:has_coded_value, child.uri)
+        transaction_execute
+        results << child.to_h
+      end
+      results
+    else
+      Errors.application_error(self.class.name, __method__.to_s, "Attempting to add an invalid child type")
+    end 
+  end
+
 end

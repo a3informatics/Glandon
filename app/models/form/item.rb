@@ -109,4 +109,22 @@ class Form::Item < IsoConceptV2
     results
   end
 
+  # Next Ordinal. Get the next ordinal for a managed item collection
+  #
+  # @param [String] name the name of the property holding the collection
+  # @return [Integer] the next ordinal
+  def next_ordinal(name)
+    predicate = self.properties.property(name).predicate
+    query_string = %Q{
+      SELECT (MAX(?ordinal) AS ?max)
+      {
+        #{self.uri.to_ref} #{predicate.to_ref} ?s .
+        ?s bo:ordinal ?ordinal
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:bo])
+    return 1 if query_results.empty?
+    query_results.by_object(:max).first.to_i + 1
+  end
+
 end
