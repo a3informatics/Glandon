@@ -74,7 +74,7 @@ class Form::Group::Normal < Form::Group
         ordinal = next_ordinal(:has_sub_group)
         child = Form::Group::Bc.create(ordinal: ordinal, parent_uri: self.uri)
         return child if child.errors.any?
-        ref = OperationalReferenceV3.create({reference: bci, ordinal: index, transaction: transaction}, self)
+        ref = OperationalReferenceV3.create({reference: bci.uri, ordinal: index, transaction: transaction}, self)
         self.add_link(:has_sub_group, child.uri)
         child.add_link(:has_biomedical_concept, ref.uri)
         transaction_execute
@@ -93,16 +93,11 @@ class Form::Group::Normal < Form::Group
   end
 
   def type_to_class
-    {
-      question: Form::Item::Question,
-      text_label: Form::Item::TextLabel,
-      placeholder: Form::Item::Placeholder,
-      mapping: Form::Item::Mapping
-    }
+    {question: Form::Item::Question, text_label: Form::Item::TextLabel, placeholder: Form::Item::Placeholder, mapping: Form::Item::Mapping}
   end
 
   def items
-      items = [:text_label, :placeholder, :mapping, :question]
+    items = [:text_label, :placeholder, :mapping, :question]
   end
 
   # Is a Question only group

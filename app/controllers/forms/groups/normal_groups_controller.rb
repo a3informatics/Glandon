@@ -23,7 +23,28 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
     end
   end
 
+  def add_child
+    form = Form.find_minimum(add_child_params[:form_id])
+    return true unless check_lock_for_item(form)
+    normal = Form::Group::Normal.find(protect_from_bad_id(params))
+    new_child = normal.add_child(add_child_params)
+    if new_child.is_a?(Array) ### IMPROVE CODE ###
+      return true if lock_item_errors
+      AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
+     render :json => {data: new_child}, :status => 200
+    else
+      return true if item_errors(new_child)
+      return true if lock_item_errors
+      AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
+      render :json => {data: new_child.to_h}, :status => 200
+    end
+  end
+
 private
+
+  def add_child_params
+    params.require(:normal_group).permit(:form_id, :type, :id_set => [])
+  end
 
   def update_params
     params.require(:normal_group).permit(:form_id, :label, :completion, :note, :repeating, :optional)
