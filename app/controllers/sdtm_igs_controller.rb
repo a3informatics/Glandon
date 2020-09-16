@@ -28,7 +28,7 @@ class SdtmIgsController < ManagedItemsController
       sdtm_ig_domain = SdtmIgDomain.find_minimum(item.id).to_h
       results << sdtm_ig_domain.reverse_merge!({show_path: sdtm_ig_domain_path({id: sdtm_ig_domain[:id]})})
     end
-    render json: {data: results}, status: 200
+    render json: {data: results, offset: the_params[:offset].to_i, count: results.count}, status: 200
   end
   
   # def import

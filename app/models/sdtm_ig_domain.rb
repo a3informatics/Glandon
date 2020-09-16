@@ -1,6 +1,7 @@
 class SdtmIgDomain < Tabulation
 
-  configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmDomain"
+  configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmDomain",
+            uri_suffix: "IGD"
 
   data_property :prefix
   data_property :structure
@@ -16,23 +17,34 @@ class SdtmIgDomain < Tabulation
   def get_children
     results = []
     query_string = %Q{
-      SELECT DISTINCT ?ordinal ?c ?type ?label ?name ?format ?notes ?compliance WHERE
+      SELECT DISTINCT ?ordinal ?c ?type ?label ?name ?format ?description ?compliance ?typedas ?class ?sub_class WHERE
       {
         #{self.uri.to_ref} bd:includesColumn ?c .
         ?c bd:ordinal ?ordinal .
         ?c rdf:type ?type .
         ?c isoC:label ?label . 
         ?c bd:name ?name .
-        ?c bd:controlled_term_or_format ?format .
-        ?c bd:notes ?notes .
-        ?c bd:compliance ?com .
-        ?com isoC:label ?compliance .  
+        ?c bd:description ?description .
+        ?c bd:ctAndFormat ?format .
+        ?c bd:basedOnClassVariable/bd:typedAs/isoC:prefLabel ?typedas .
+        ?c bd:compliance/isoC:prefLabel ?compliance .
+        {           
+          ?c bd:basedOnClassVariable/bd:classifiedAs/isoC:prefLabel ?sub_class .             
+          ?c bd:basedOnClassVariable/bd:classifiedAs/^isoC:narrower/isoC:prefLabel ?class .
+          NOT EXISTS {?c bd:basedOnClassVariable/bd:classifiedAs/^isoC:narrower/isoC:prefLabel 'Classification'} 
+        }         
+        UNION         
+        {           
+          ?c bd:basedOnClassVariable/bd:classifiedAs/isoC:prefLabel ?class . 
+          BIND ("" as ?sub_class)
+          EXISTS {?c bd:basedOnClassVariable/bd:classifiedAs/^isoC:narrower/isoC:prefLabel 'Classification'} 
+        }      
       } ORDER BY ?ordinal
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bd])
     query_results.by_object_set([:ordinal, :var, :type, :label, :name, :format, :notes, :compliance]).each do |x|
       results << {uri: x[:c].to_s, ordinal: x[:ordinal].to_i, rdf_type: x[:type].to_s, label: x[:label], name: x[:name],
-                  format: x[:format], notes: x[:notes], compliance: x[:compliance]}
+                  format: x[:format], description: x[:description], typed_as: x[:typedas], compliance: x[:compliance], classified_as: x[:class], sub_classified_as: x[:sub_class]}
     end
     results
   end

@@ -4,7 +4,7 @@
   :status_path: ''
   :current_path: ''
   :delete_path: ''
-  :show_path: "/sdtm_models/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU0vQ0RJU0MvVjMjTS1DRElTQ19TRFRNTU9ERUw="
+  :show_path: "/sdtm_models/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTC9WMSNN"
   :search_path: ''
   :list_cn_path: ''
   :impact_path: ''
@@ -18,14 +18,14 @@
     :subsetted: false
   :view_path: ''
   :compare_path: ''
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU0vQ0RJU0MvVjMjTS1DRElTQ19TRFRNTU9ERUw=
-  :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTC9WMSNN
+  :uri: http://www.cdisc.org/SDTM_MODEL/V1#M
   :rdf_type: http://www.assero.co.uk/Tabulation#Model
-  :label: SDTM Model 2013-11-26
+  :label: SDTM Model
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQ0RJU0NfU0RUTU1PREVMLTM=
-    :uri: http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTC9WMSNNX1JT
+    :uri: http://www.cdisc.org/SDTM_MODEL/V1#M_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Standard
     :administrative_note: ''
@@ -33,7 +33,7 @@
     :until_date: '2016-01-01T00:00:00+00:00'
     :unresolved_issue: ''
     :administrative_status: ''
-    :previous_state: Incomplete
+    :previous_state: Standard
     :multiple_edit: false
     :by_authority:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
@@ -50,13 +50,13 @@
         :name: Clinical Data Interchange Standards Consortium
         :authority: www.cdisc.org
   :has_identifier:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQ0RJU0NfU0RUTU1PREVMLTM=
-    :uri: http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTC9WMSNNX1NJ
+    :uri: http://www.cdisc.org/SDTM_MODEL/V1#M_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
     :identifier: SDTM MODEL
-    :version_label: '1.4'
-    :version: 3
-    :semantic_version: 1.4.0
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 1.2.0
     :has_scope:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
       :uri: http://www.assero.co.uk/NS#CDISC
@@ -65,9 +65,9 @@
       :name: Clinical Data Interchange Standards Consortium
       :authority: www.cdisc.org
   :has_previous_version: 
-  :origin: ''
+  :origin: 'Created from files: ''sdtm_1-2.xlsx'''
   :change_description: ''
-  :creation_date: '2013-11-26T00:00:00+00:00'
-  :last_change_date: '2013-11-26T00:00:00+00:00'
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
   :explanatory_comment: ''
   :has_managed: []

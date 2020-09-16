@@ -1,0 +1,18 @@
+# Biomedical Concept Migration
+#
+# Adds in alias.
+
+@prefix : <http://www.assero.co.uk/BiomedicalConcept#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:alias
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :PropertyX ;
+  rdfs:label "Meaningful alias for users for the property"^^xsd:string ;
+  rdfs:range xsd:string ;
+.

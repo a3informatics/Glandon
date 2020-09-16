@@ -19,9 +19,13 @@ describe SdtmIgDomainsController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "sdtm/SDTM_IG_3-2.ttl"]
+      data_files = []
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
     end
 
     it "index, JSON" do  
@@ -32,13 +36,13 @@ describe SdtmIgDomainsController do
     end
 
     it "show" do
-      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS"))
+      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_CM/V1#IGD"))
       get :show, params: { :id => sdtm_ig_domain.id}
       expect(response).to render_template("show")
     end
 
     it "show results" do
-      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS"))
+      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_CM/V1#IGD"))
       request.env['HTTP_ACCEPT'] = "application/json"
       get :show_data, params:{id: sdtm_ig_domain.id}
       expect(response.content_type).to eq("application/json")
@@ -48,7 +52,7 @@ describe SdtmIgDomainsController do
     end
 
     it "shows the history, page" do
-      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS"))
+      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_CM/V1#IGD"))
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(SdtmIgDomain).to receive(:history_pagination).with({identifier: sdtm_ig_domain.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "0", count: "20"}).and_return([sdtm_ig_domain])
       get :history, params:{sdtm_ig_domain: {identifier: sdtm_ig_domain.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 0}}
@@ -61,8 +65,8 @@ describe SdtmIgDomainsController do
     it "shows the history, initial view" do
       params = {}
       expect(SdtmIgDomain).to receive(:latest).and_return(SdtmIgDomain.new)
-      get :history, params:{sdtm_ig_domain: {identifier: "SDTM IG RS", scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE"}}
-      expect(assigns(:identifier)).to eq("SDTM IG RS")
+      get :history, params:{sdtm_ig_domain: {identifier: "CM", scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE"}}
+      expect(assigns(:identifier)).to eq("CM")
       expect(assigns(:scope_id)).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
       expect(response).to render_template("history")
     end

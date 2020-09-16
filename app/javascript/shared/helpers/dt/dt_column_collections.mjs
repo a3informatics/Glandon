@@ -75,7 +75,10 @@ function dtBCEditColumns() {
   return [
     dtTrueFalseEditColumn('enabled'),
     dtTrueFalseEditColumn('collect'),
-    { data: 'has_complex_datatype.has_property.label' },
+    {
+      data: 'has_complex_datatype.has_property.alias',
+      width: '18%' 
+    },
     dtInlineEditColumn('has_complex_datatype.has_property.question_text', 'question_text', '25%'),
     dtInlineEditColumn('has_complex_datatype.has_property.prompt_text', 'prompt_text', '25%'),
     { data: "has_complex_datatype.label" },
@@ -100,7 +103,7 @@ function dtBCShowColumns() {
   return [
     dtTrueFalseColumn("enabled"),
     dtTrueFalseColumn("collect"),
-    { data: "has_complex_datatype.has_property.label" },
+    { data: "has_complex_datatype.has_property.alias" },
     { data: "has_complex_datatype.has_property.question_text" },
     { data: "has_complex_datatype.has_property.prompt_text" },
     { data: "has_complex_datatype.label" },
@@ -148,7 +151,7 @@ function dtSDTMClassShowColumns() {
     { data: "typed_as" },
     { data: "description" },
     { data: "classified_as" },
-    { data: "classified_as" }
+    { data: "sub_classified_as" }
   ];
 };
 
@@ -176,11 +179,11 @@ function dtSDTMIGDomainShowColumns() {
     { data: "ordinal" },
     { data: "name" },
     { data: "label" },
-    { data: "label" }, //datatype_label
+    { data: "typed_as" },
     { data: "format" },
-    { data: "label" }, //classification_label
-    { data: "label" }, //sub_classification_label
-    { data: "notes" },
+    { data: "classified_as" },
+    { data: "sub_classified_as" },
+    { data: "description" },
     { data: "compliance" }
   ];
 };
@@ -194,9 +197,8 @@ function dtADaMIGDatasetShowColumns() {
     { data: "ordinal" },
     { data: "name" },
     { data: "label" },
-    { data: "label" }, //datatype_label
+    { data: "typed_as" }, //datatype_label
     { data: "ct" },
-    { data: "ct_notes" },
     { data: "notes" },
     { data: "compliance" }
   ];

@@ -7,7 +7,7 @@
     :label: "Test"
     :enabled: true
     :collect: false  
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -24,7 +24,7 @@
   :has_items:
   - :label: "Date Time"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: DATETIME
       :has_property: 
       - 
@@ -50,7 +50,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: PQR
       :has_property: 
@@ -86,7 +86,7 @@
     :label: "Test"
     :enabled: true 
     :collect: false 
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -103,7 +103,7 @@
   :has_items:
   - :label: "Date Time"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: DATETIME
       :has_property: 
       - 
@@ -129,7 +129,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: PQR
       :has_property: 
@@ -159,7 +159,7 @@
     :label: "Test"
     :enabled: true 
     :collect: false 
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -192,7 +192,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: PQR
       :has_property: 
@@ -219,7 +219,7 @@
     :label: "Test"
     :enabled: true
     :collect: false  
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -252,7 +252,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -291,7 +291,7 @@
     :label: "Test"
     :enabled: true 
     :collect: false 
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -324,7 +324,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -354,7 +354,7 @@
     :label: "Test"
     :enabled: true
     :collect: false  
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -386,7 +386,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: PQR
       :has_property: 
@@ -413,7 +413,7 @@
   :identified_by: 
     :label: "Test"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -446,7 +446,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -475,7 +475,7 @@
   :identified_by: 
     :label: "Test"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -492,7 +492,7 @@
   :has_items:
   - :label: "Date Time"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: DATETIME
       :has_property: 
       - 
@@ -507,7 +507,7 @@
     :enabled: false
   - :label: "Position"
     :enabled: true
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -530,7 +530,7 @@
   - :label: "Site of Administration"
     :enabled: true
     :collet: false
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -546,7 +546,7 @@
 
   - :label: "Laterality"
     :enabled: true
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -574,7 +574,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: PQR
       :has_property: 
@@ -603,7 +603,7 @@
   :identified_by: 
     :label: "Test"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -620,7 +620,7 @@
   :has_items:
   - :label: "Date Time"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: DATETIME
       :has_property: 
       - 
@@ -634,7 +634,7 @@
     :enabled: false
   - :label: "Position"
     :enabled: true
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -657,7 +657,7 @@
   - :label: "Site of Administration"
     :enabled: true
     :collet: false
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -673,7 +673,7 @@
 
   - :label: "Laterality"
     :enabled: true
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -701,7 +701,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: PQR
       :has_property: 
@@ -730,7 +730,7 @@
   :identified_by: 
     :label: "Test"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -751,7 +751,7 @@
     :enabled: false
   - :label: "Position"
     :enabled: true
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -774,7 +774,7 @@
   - :label: "Site of Administration"
     :enabled: true
     :collet: false
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -790,7 +790,7 @@
 
   - :label: "Laterality"
     :enabled: true
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -818,7 +818,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: PQR
       :has_property: 
@@ -847,7 +847,7 @@
   :identified_by: 
     :label: "Test"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -864,7 +864,7 @@
   :has_items:
   - :label: "Date Time"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - :short_name: DATETIME
       :has_property: 
       - 
@@ -878,7 +878,7 @@
     :enabled: false
   - :label: "Position"
     :enabled: true
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -901,7 +901,7 @@
   - :label: "Site of Administration"
     :enabled: true
     :collet: false
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -917,7 +917,7 @@
 
   - :label: "Laterality"
     :enabled: true
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 
@@ -945,7 +945,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: PQR
       :has_property: 
@@ -974,7 +974,7 @@
   :identified_by: 
     :label: "Test"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -1007,7 +1007,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: PQR
       :has_property: 
@@ -1036,7 +1036,7 @@
   :identified_by: 
     :label: "Test"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -1069,7 +1069,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: PQR
       :has_property: 
@@ -1104,7 +1104,7 @@
   :identified_by: 
     :label: "Test"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
      - 
       :short_name: CD 
       :has_property: 
@@ -1136,7 +1136,7 @@
     :enabled: false 
   - :label: "Result"
     :enabled: true  
-    :complex_datatype: 
+    :has_complex_datatype: 
     - 
       :short_name: CD
       :has_property: 

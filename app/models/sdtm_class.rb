@@ -25,25 +25,32 @@ class SdtmClass < Tabulation
   def get_children
     results = []
     query_string = %Q{
-      SELECT DISTINCT ?var ?ordinal ?type ?label ?typedas ?name ?desc ?classifiedas WHERE
+      SELECT DISTINCT ?var ?ordinal ?type ?label ?typedas ?name ?desc ?class ?sub_class WHERE
       {
         #{self.uri.to_ref} bd:includesColumn ?c .
         ?c bd:ordinal ?ordinal .
-        ?c bd:basedOnModelVariable ?var .     
-        ?var rdf:type ?type.
-        ?var isoC:label ?label. 
-        ?var bd:name ?name .
-        ?var bd:description ?desc .
-        ?var bd:typedAs ?tas .
-        ?tas isoC:label ?typedas .
-        ?var bd:classifiedAs ?cas .
-        ?cas isoC:label ?classifiedas .  
+        ?c rdf:type ?type.
+        ?c isoC:label ?label. 
+        ?c bd:name ?name .
+        ?c bd:description ?desc .
+        ?c bd:typedAs/isoC:prefLabel ?typedas .
+        {           
+          ?c bd:classifiedAs/isoC:prefLabel ?sub_class .             
+          ?c bd:classifiedAs/^isoC:narrower/isoC:prefLabel ?class .
+          NOT EXISTS {?c bd:classifiedAs/^isoC:narrower/isoC:prefLabel 'Classification'} 
+        }         
+        UNION         
+        {           
+          ?c bd:classifiedAs/isoC:prefLabel ?class . 
+          BIND ("" as ?sub_class)
+          EXISTS {?c bd:classifiedAs/^isoC:narrower/isoC:prefLabel 'Classification'} 
+        }
       } ORDER BY ?ordinal
     }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bd])
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bd, :th])
     query_results.by_object_set([:var, :ordinal, :type, :label, :typedas, :name, :desc, :classifiedas]).each do |x|
       results << {uri: x[:var].to_s, ordinal: x[:ordinal].to_i, rdf_type: x[:type].to_s, label: x[:label], name: x[:name],
-                  description: x[:desc], typed_as: x[:typedas], classified_as: x[:classifiedas]}
+                  description: x[:desc], typed_as: x[:typedas], classified_as: x[:class], sub_classified_as: x[:sub_class]}
     end
     results
   end

@@ -166,3 +166,10 @@
   rdfs:label "The format for the reponse"^^xsd:string ;
   rdfs:range xsd:string ;
 .
+:alias
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :PropertyX ;
+  rdfs:label "Meaningful alias for users for the property"^^xsd:string ;
+  rdfs:range xsd:string ;
+.

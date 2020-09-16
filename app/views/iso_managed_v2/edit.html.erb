@@ -1,0 +1,42 @@
+<%= javascript_include_tag 'iso_managed/iso_managed_comment_edit', 'ajax_requests', 'field_validation' %>
+<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Comments:", :item => @managed_item} %>
+<div class="row">
+  <div class="col-md-7">
+    <div id="markdown_panel" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Comments</h3>
+      </div>
+      <div class="panel-body">
+        <%= form_for @managed_item, :url => iso_managed_v2_path, :html=> {:id => 'main_form'} do |f| %>
+          <div class="form-group">
+              <%= f.label "[iso_managed]change_description", "Change Description:" %><br />
+              <textarea class="form-control" rows="8" name="[iso_managed]change_description", id="[iso_managed]change_description"><%= @managed_item.change_description %></textarea>
+          </div>
+          <div class="form-group">
+              <%= f.label "[iso_managed]explanatory_comment", "Comments:" %><br />
+              <textarea class="form-control" rows="8" name="[iso_managed]explanatory_comment",  id="[iso_managed]explanatory_comment"><%= @managed_item.explanatory_comment %></textarea>
+          </div>
+          <div class="form-group">
+              <%= f.label "[iso_managed]origin", "References / Supporting Information:" %><br />
+              <textarea class="form-control" rows="8" name="[iso_managed]origin",  id="[iso_managed]origin"><%= @managed_item.origin %></textarea>
+          </div>
+          </div>
+          <input value="<%= @referer %>" type="hidden" name="[iso_managed]referer" id="[iso_managed]referer" />
+          <%= f.submit "Submit", class: "btn  " %>
+        <% end %>
+      </div>
+    </div>
+    <%= link_to "Close", @close_path, :class => "btn " %>  
+  </div>
+  <div class="col-md-5" >
+    <div id="markdown_panel" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Markdown Preview</h3>
+      </div>
+      <div class="panel-body">
+        <div id="generic_markdown"></div>
+        <button type="button" id="markdown_preview" class="btn ">Preview</button>    
+      </div>
+    </div>
+  </div>
+</div>

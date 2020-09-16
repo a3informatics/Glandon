@@ -89,6 +89,7 @@ private
     results[:managed_children].each_with_index do |child, index| 
       class_vars = []
       model_vars = classes.include?(child.scoped_identifier) ? all.includes_column + child.includes_column : child.includes_column
+      model_vars.each_with_index{|x, i| x.ordinal = i+1}
       child.includes_column = model_vars
     end
 
