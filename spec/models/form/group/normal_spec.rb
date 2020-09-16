@@ -98,10 +98,10 @@ describe Form::Group::Normal do
       bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
       bci_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/RACE/V1#BCI"))
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
-      result = normal.add_child({type:"biomedical_concept_instance", id_set:[bci_1.id]})
+      result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
       check_file_actual_expected(result, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal)
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
-      result = normal.add_child({type:"biomedical_concept_instance", id_set:[bci_2.id, bci_3.id ]})
+      result = normal.add_child({type:"bc_group", id_set:[bci_2.id, bci_3.id ]})
       check_file_actual_expected(result, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
     end
 

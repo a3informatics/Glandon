@@ -66,7 +66,7 @@ class Form::Group::Normal < Form::Group
       return child if child.errors.any?
       self.add_link(:has_sub_group, child.uri)
       child
-    elsif params[:type].to_sym == :biomedical_concept_instance
+    elsif params[:type].to_sym == :bc_group
       results = []
       params[:id_set].each_with_index do |id, index|
         transaction = transaction_begin

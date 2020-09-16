@@ -125,7 +125,7 @@ describe Forms::Groups::NormalGroupsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
       token = Token.obtain(@form, @user)
-      post :add_child, params:{id: @normal.id, normal_group:{type: "biomedical_concept_instance", id_set: [bci_1.id,bci_2.id, bci_3.id ], form_id: @form} }
+      post :add_child, params:{id: @normal.id, normal_group:{type: "bc_group", id_set: [bci_1.id,bci_2.id, bci_3.id ], form_id: @form} }
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(AuditTrail.count).to eq(audit_count + 1)
