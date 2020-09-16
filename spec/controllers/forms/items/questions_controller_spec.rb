@@ -82,4 +82,45 @@ describe Forms::Items::QuestionsController do
 
   end
 
+  describe "Add child" do
+
+    login_curator
+
+    def sub_dir
+      return "controllers/forms/items"
+    end
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000120.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..15)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+      @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+      @question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_Q2"))
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it 'Add cli' do
+      cli_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66789/V4#C66789_C49484"))
+      cli_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66790/V4#C66790_C17998"))
+      cli_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66790/V4#C66790_C43234"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      audit_count = AuditTrail.count
+      token = Token.obtain(@form, @user)
+      post :add_child, params:{id: @question.id, question:{type: "tuc_reference",id_set:[cli_1.id, cli_2.id, cli_3.id], form_id: @form.id} }
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "add_child_question_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end
