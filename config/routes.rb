@@ -398,14 +398,17 @@ Rails.application.routes.draw do
     namespace :items do
       resources :questions, :text_labels, :placeholders, :mappings, :commons, :bc_properties, :only => [:update] do
         member do
-          put :move_after
-          #post :add_child
+          put :move_up
+          put :move_down
+          post :add_child
         end
       end
     end
     namespace :groups do
       resources :bc_groups, :normal_groups, :common_groups, :only => [:update] do
         member do
+          put :move_up
+          put :move_down
           post :add_child
         end
       end
