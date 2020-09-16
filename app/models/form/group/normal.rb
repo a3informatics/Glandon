@@ -62,7 +62,7 @@ class Form::Group::Normal < Form::Group
   def add_child(params)
     if params[:type].to_sym == :normal_group
       ordinal = next_ordinal(:has_sub_group)
-      child = Form::Group::Normal.create(ordinal: ordinal, parent_uri: self.uri)
+      child = Form::Group::Normal.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
       return child if child.errors.any?
       self.add_link(:has_sub_group, child.uri)
       child
@@ -72,7 +72,7 @@ class Form::Group::Normal < Form::Group
         transaction = transaction_begin
         bci = BiomedicalConceptInstance.find_full(id)
         ordinal = next_ordinal(:has_sub_group)
-        child = Form::Group::Bc.create(ordinal: ordinal, parent_uri: self.uri)
+        child = Form::Group::Bc.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
         return child if child.errors.any?
         ref = OperationalReferenceV3.create({reference: bci.uri, ordinal: index, transaction: transaction}, self)
         self.add_link(:has_sub_group, child.uri)
@@ -83,7 +83,7 @@ class Form::Group::Normal < Form::Group
       results
     elsif items.include?params[:type].to_sym
       ordinal = next_ordinal(:has_item)
-      child = type_to_class[params[:type].to_sym].create(ordinal: ordinal, parent_uri: self.uri)
+      child = type_to_class[params[:type].to_sym].create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
       return child if child.errors.any?
       self.add_link(:has_item, child.uri)
       child
