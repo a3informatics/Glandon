@@ -65,7 +65,7 @@ class Form < IsoManagedV2
   def add_child(params)
     Errors.application_error(self.class.name, __method__.to_s, "Attempting to add an invalid child type") if params[:type].to_sym != :normal_group
     ordinal = next_ordinal(:has_group)
-    child = Form::Group::Normal.create(ordinal: ordinal, parent_uri: self.uri)
+    child = Form::Group::Normal.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
     return child if child.errors.any?
     self.add_link(:has_group, child.uri)
     child
