@@ -16,7 +16,7 @@
 .
 :M
 	rdf:type bd:Model ;
-	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:label "SDTM Model"^^xsd:string ;
 	isoT:hasState :M_RS ;
 	isoT:hasIdentifier :M_SI ;
 	isoT:origin "Created from files: 'sdtm_1-2.xlsx'"^^xsd:string ;
@@ -56,7 +56,7 @@
 	isoI:identifier "SDTM MODEL"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 :M_R1
@@ -262,7 +262,7 @@
 	isoI:identifier "SDTM MODEL EVENTS"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_STUDYID>
@@ -273,8 +273,8 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_DOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -284,8 +284,8 @@
 	bd:name "DOMAIN"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -295,8 +295,8 @@
 	bd:name "USUBJID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--SEQ>
 	rdf:type bd:SdtmClassVariable ;
@@ -306,8 +306,8 @@
 	bd:name "--SEQ"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Sequence number to ensure uniqueness of records within a dataset for a subject (or within a parameter, in the case of the Trial Summary domain). May be any valid number (including decimals) and does not have to start at 1. Should be assigned to be in a consistent chronological order."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--GRPID>
 	rdf:type bd:SdtmClassVariable ;
@@ -317,8 +317,8 @@
 	bd:name "--GRPID"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Optional group identifier, used to link together a block of related records within a subject in a domain. Also used to link together a block of related records in the Trial Summary dataset (Section 3.4)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--REFID>
 	rdf:type bd:SdtmClassVariable ;
@@ -328,8 +328,8 @@
 	bd:name "--REFID"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Optional internal or external identifier such as lab specimen ID, or UUID for an ECG waveform or a medical image."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--SPID>
 	rdf:type bd:SdtmClassVariable ;
@@ -339,8 +339,8 @@
 	bd:name "--SPID"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Sponsor-defined identifier. Example: pre-printed line identifier on a Concomitant Medications page."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_VISITNUM>
 	rdf:type bd:SdtmClassVariable ;
@@ -350,8 +350,8 @@
 	bd:name "VISITNUM"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Clinical encounter number. Numeric version of VISIT, used for sorting."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_VISIT>
 	rdf:type bd:SdtmClassVariable ;
@@ -361,8 +361,8 @@
 	bd:name "VISIT"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "1. Protocol-defined description of clinical encounter. 2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_VISITDY>
 	rdf:type bd:SdtmClassVariable ;
@@ -372,8 +372,8 @@
 	bd:name "VISITDY"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Planned study day of the visit based upon RFSTDTC in Demographics."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_TAETORD>
 	rdf:type bd:SdtmClassVariable ;
@@ -383,8 +383,8 @@
 	bd:name "TAETORD"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Number that gives the order of the Element within the Arm."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_EPOCH>
 	rdf:type bd:SdtmClassVariable ;
@@ -394,8 +394,8 @@
 	bd:name "EPOCH"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Epoch associated with the Element in the planned sequence of Elements for the ARM to which the subject was assigned"^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--DTC>
 	rdf:type bd:SdtmClassVariable ;
@@ -405,8 +405,8 @@
 	bd:name "--DTC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Collection date and time of an observation represented in IS0 8601 character format."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 	bd:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STDTC>
@@ -417,8 +417,8 @@
 	bd:name "--STDTC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Start date/time of an observation represented in IS0 8601 character format."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 	bd:isA <http://www.s-cubed.dk/CAR#83c87956785cde43c109e30fcbd95cca63a18d38> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENDTC>
@@ -429,8 +429,8 @@
 	bd:name "--ENDTC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "End date/time of the observation represented in IS0 8601 character format."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 	bd:isA <http://www.s-cubed.dk/CAR#71c54c70967ea84127e4bd588bd627ec0e581dfb> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--DY>
@@ -441,8 +441,8 @@
 	bd:name "--DY"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Actual study day of visit/collection/exam expressed in integer days relative to the sponsor-defined RFSTDTC in Demographics."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STDY>
 	rdf:type bd:SdtmClassVariable ;
@@ -452,8 +452,8 @@
 	bd:name "--STDY"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Actual study day of start of observation expressed in integer days relative to the sponsor-defined RFSTDTC in Demographics."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENDY>
 	rdf:type bd:SdtmClassVariable ;
@@ -463,8 +463,8 @@
 	bd:name "--ENDY"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Actual study day of end of observation expressed in integer days relative to the sponsor-defined RFSTDTC in Demographics."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--DUR>
 	rdf:type bd:SdtmClassVariable ;
@@ -474,8 +474,8 @@
 	bd:name "--DUR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Collected duration of an event, intervention, or finding represented in ISO 8601 character format. Used only if collected on the CRF and not derived."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--TPT>
 	rdf:type bd:SdtmClassVariable ;
@@ -485,8 +485,8 @@
 	bd:name "--TPT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Text description of time when a measurement or observation should be taken as defined in the protocol. This may be represented as an elapsed time relative to a fixed reference point, such as time of last dose. See --TPTNUM and --TPTREF."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--TPTNUM>
 	rdf:type bd:SdtmClassVariable ;
@@ -496,8 +496,8 @@
 	bd:name "--TPTNUM"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Numeric version of planned time point used in sorting."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ELTM>
 	rdf:type bd:SdtmClassVariable ;
@@ -507,8 +507,8 @@
 	bd:name "--ELTM"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Planned Elapsed time in ISO 8601 character format relative to a planned fixed reference (--TPTREF) such as 'Previous Dose' or 'Previous Meal'. This variable is useful where there are repetitive measures. Not a clock time or a date/time variable, but an interval, represented as ISO duration."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--TPTREF>
 	rdf:type bd:SdtmClassVariable ;
@@ -518,8 +518,8 @@
 	bd:name "--TPTREF"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Description of the fixed reference point referred to by --ELTM, --TPTNUM, and --TPT. Examples: PREVIOUS DOSE, PREVIOUS MEAL."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--RFTDTC>
 	rdf:type bd:SdtmClassVariable ;
@@ -529,8 +529,8 @@
 	bd:name "--RFTDTC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Date/time for a fixed reference time point defined by --TPTREF in ISO 8601 character format."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STRF>
 	rdf:type bd:SdtmClassVariable ;
@@ -540,8 +540,8 @@
 	bd:name "--STRF"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Identifies the start of the observation as being before, during, or after the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point represented by RFSTDTC and RFENDTC in Demographics."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENRF>
 	rdf:type bd:SdtmClassVariable ;
@@ -551,8 +551,8 @@
 	bd:name "--ENRF"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Identifies the end of the observation as being before, during or after the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point represented by RFSTDTC and RFENDTC in Demographics."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--EVLINT>
 	rdf:type bd:SdtmClassVariable ;
@@ -562,8 +562,8 @@
 	bd:name "--EVLINT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Evaluation interval associated with an observation such as a finding --TESTCD, represented in ISO 8601 character format. Example: -P2M to represent a period of the past 2 months as the evaluation interval for a question from a questionnaire such as SF-36."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STRTPT>
 	rdf:type bd:SdtmClassVariable ;
@@ -573,8 +573,8 @@
 	bd:name "--STRTPT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Identifies the start of the observation as being before or after the sponsor-defined reference time point defined by variable --STTPT."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STTPT>
 	rdf:type bd:SdtmClassVariable ;
@@ -584,8 +584,8 @@
 	bd:name "--STTPT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Description or date/time in ISO 8601 character format of the sponsor-defined reference point referred to by --STRTPT. Examples: '2003-12-15' or 'VISIT 1'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENRTPT>
 	rdf:type bd:SdtmClassVariable ;
@@ -595,8 +595,8 @@
 	bd:name "--ENRTPT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Identifies the end of the observation as being before or after the sponsor-defined reference time point defined by variable --ENTPT."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENTPT>
 	rdf:type bd:SdtmClassVariable ;
@@ -606,350 +606,350 @@
 	bd:name "--ENTPT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Description or date/time in ISO 8601 character format of the sponsor-defined reference point referred to by --ENRTPT. Examples: '2003-12-25' or 'VISIT 2'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TERM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reported Term"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:ordinal "32"^^xsd:positiveInteger ;
 	bd:name "--TERM"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Topic variable for an event observation, which is the verbatim or pre-specified name of the event."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#2a4eb8036d87ab68656ba5b80bbf77123f088904> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--MODIFY>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Modified Reported Term"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:ordinal "33"^^xsd:positiveInteger ;
 	bd:name "--MODIFY"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "If the value for --TRT is modified for coding purposes, then the modified text is placed here."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--DECOD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dictionary-Derived Term"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:ordinal "34"^^xsd:positiveInteger ;
 	bd:name "--DECOD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Standardized or dictionary-derived name of the topic variable, --TRT, or the modified topic variable (--MODIFY), if applicable. Equivalent to the generic drug name in WHO Drug, or a term in SNOMED, ICD9, or other published or sponsor-defined dictionaries."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--CAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Category"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:ordinal "35"^^xsd:positiveInteger ;
 	bd:name "--CAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to define a category of topic-variable values. Examples: HEMATOLOGY, URINALYSIS, CHEMISTRY, HAMILTON DEPRESSION SCALE, SF36."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c42c1199-69be-4b0e-a466-78bf06d2e831> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#9fb29f8b-505a-4c4f-b550-175fbfec932d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Subcategory"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:ordinal "36"^^xsd:positiveInteger ;
 	bd:name "--SCAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to define a further categorization of --CAT values."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c42c1199-69be-4b0e-a466-78bf06d2e831> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#9fb29f8b-505a-4c4f-b550-175fbfec932d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--PRESP>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Pre-specified"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:ordinal "37"^^xsd:positiveInteger ;
 	bd:name "--PRESP"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used when a specific intervention is pre-specified on a CRF. Values should be 'Y' or null."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--OCCUR>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Occurrence"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:ordinal "38"^^xsd:positiveInteger ;
 	bd:name "--OCCUR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to record whether a pre-specified event occurred when information about the occurrence of a specific event is solicited."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--STAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Completion Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:ordinal "39"^^xsd:positiveInteger ;
 	bd:name "--STAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate when a question about the occurrence of a pre-specified event was not answered. Should be null or have a value of NOT DONE."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--REASND>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason Not Done"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:ordinal "40"^^xsd:positiveInteger ;
 	bd:name "--REASND"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Reason not done. Used in conjunction with --STAT when value is NOT DONE."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--BODSYS>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Body System or Organ Class"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:ordinal "41"^^xsd:positiveInteger ;
 	bd:name "--BODSYS"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Body System or Organ Class that is involved for a finding from the standard hierarchy for dictionary-coded results. Example: MedDRA SOC."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--LOC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Location of Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "11"^^xsd:positiveInteger ;
+	bd:ordinal "42"^^xsd:positiveInteger ;
 	bd:name "--LOC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Anatomical location of an intervention, such as an injection site. Example: RIGHT ARM for an injection."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SEV>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Severity/Intensity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "12"^^xsd:positiveInteger ;
+	bd:ordinal "43"^^xsd:positiveInteger ;
 	bd:name "--SEV"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes the severity or intensity of a particular finding. Examples: MILD, MODERATE, SEVERE."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#de314fa0c9d9e359b633f2fdab4659c886fe5986> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SER>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Serious Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "13"^^xsd:positiveInteger ;
+	bd:ordinal "44"^^xsd:positiveInteger ;
 	bd:name "--SER"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Is this is a serious event? Valid values are 'Y' and 'N'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#bc7845e67c63c354e69a957bab304d72da2f9fb7> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--ACN>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "14"^^xsd:positiveInteger ;
+	bd:ordinal "45"^^xsd:positiveInteger ;
 	bd:name "--ACN"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes changes made to the study treatment as a result of the event. Examples: DOSE INCREASED, DOSE NOT CHANGED."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#485290959383eee39c093e50e84fdc851ac37a32> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--ACNOTH>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Other Action Taken"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "15"^^xsd:positiveInteger ;
+	bd:ordinal "46"^^xsd:positiveInteger ;
 	bd:name "--ACNOTH"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes other actions taken as a result of the event that are unrelated to dose adjustments of study treatment."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#1baf5ac06f7430ac72727c2dfb3f152e07d9d5da> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--REL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Causality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "16"^^xsd:positiveInteger ;
+	bd:ordinal "47"^^xsd:positiveInteger ;
 	bd:name "--REL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Records the investigator's opinion as to the causality of the event to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED, POSSIBLY RELATED, RELATED."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--RELNST>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Relationship to Non-Study Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "17"^^xsd:positiveInteger ;
+	bd:ordinal "48"^^xsd:positiveInteger ;
 	bd:name "--RELNST"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "An opinion as to whether the event may have been due to a treatment other than study drug. Example: 'MORE LIKELY RELATED TO ASPIRIN USE.'"^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--PATT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Pattern of Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "18"^^xsd:positiveInteger ;
+	bd:ordinal "49"^^xsd:positiveInteger ;
 	bd:name "--PATT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate the pattern of the event over time. Examples: INTERMITTENT, CONTINUOUS, SINGLE EVENT."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#1fff6a31661b491fc40cc9c1ad7fe5e479cb7500> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--OUT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Outcome of Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "19"^^xsd:positiveInteger ;
+	bd:ordinal "50"^^xsd:positiveInteger ;
 	bd:name "--OUT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Description of the outcome of an event. Examples: RECOVERED/RESOLVED, FATAL."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#73a0f131076b513c16bfe3f4cff9ab8b765c9f23> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCAN>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Involves Cancer"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "20"^^xsd:positiveInteger ;
+	bd:ordinal "51"^^xsd:positiveInteger ;
 	bd:name "--SCAN"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Was the event associated with the development of cancer? Valid values are 'Y' and 'N'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCONG>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Congenital Anomaly or Birth Defect"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "21"^^xsd:positiveInteger ;
+	bd:ordinal "52"^^xsd:positiveInteger ;
 	bd:name "--SCONG"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Was the event associated with congenital anomaly or birth defect? Valid values are 'Y' and 'N'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SDISAB>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Persist or Signif Disability/Incapacity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "22"^^xsd:positiveInteger ;
+	bd:ordinal "53"^^xsd:positiveInteger ;
 	bd:name "--SDISAB"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Did the event result in persistent or significant disability/incapacity? Valid values are 'Y' and 'N'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SDTH>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Results in Death"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "23"^^xsd:positiveInteger ;
+	bd:ordinal "54"^^xsd:positiveInteger ;
 	bd:name "--SDTH"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Did the event result in death? Valid values are 'Y' and 'N'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SHOSP>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Requires or Prolongs Hospitalization"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "24"^^xsd:positiveInteger ;
+	bd:ordinal "55"^^xsd:positiveInteger ;
 	bd:name "--SHOSP"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Did the event require or prolong hospitalization? Valid values are 'Y' and 'N'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#3239c890f4b1b44ea81233e5766557a1008c0b6b> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SLIFE>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Is Life Threatening"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "25"^^xsd:positiveInteger ;
+	bd:ordinal "56"^^xsd:positiveInteger ;
 	bd:name "--SLIFE"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Was the event life threatening? Valid values are 'Y' and 'N'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SOD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Occurred with Overdose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "26"^^xsd:positiveInteger ;
+	bd:ordinal "57"^^xsd:positiveInteger ;
 	bd:name "--SOD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Did the event occur with an overdose? Valid values are 'Y' and 'N'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SMIE>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Other Medically Important Serious Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "27"^^xsd:positiveInteger ;
+	bd:ordinal "58"^^xsd:positiveInteger ;
 	bd:name "--SMIE"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Do additional categories for seriousness apply? Valid values are 'Y' and 'N'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--CONTRT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Concomitant or Additional Trtmnt Given"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "28"^^xsd:positiveInteger ;
+	bd:ordinal "59"^^xsd:positiveInteger ;
 	bd:name "--CONTRT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Was another treatment given because of the occurrence of the event? Valid values are 'Y' and 'N'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TOX>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Toxicity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "29"^^xsd:positiveInteger ;
+	bd:ordinal "60"^^xsd:positiveInteger ;
 	bd:name "--TOX"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Description of toxicity quantified by --TOXGR such as NCI CTCAE Short Name. Examples: HYPERCALCEMIA, HYPOCALCEMIA. Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define.xml document."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TOXGR>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Toxicity Grade"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "30"^^xsd:positiveInteger ;
+	bd:ordinal "61"^^xsd:positiveInteger ;
 	bd:name "--TOXGR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Records toxicity grade using a standard toxicity scale (such as the NCI CTCAE). Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define.xml document."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -1050,438 +1050,438 @@
 	isoI:identifier "SDTM MODEL FINDINGS"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TESTCD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Short Name of Measurement, Test or Examination"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:ordinal "32"^^xsd:positiveInteger ;
 	bd:name "--TESTCD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Short character value for --TEST used as a column name when converting a dataset from a vertical format to a horizontal format. The short value can be up to 8 characters. Examples: PLAT, SYSBP, RRMIN, EYEEXAM."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TEST>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Name of Measurement, Test or Examination"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:ordinal "33"^^xsd:positiveInteger ;
 	bd:name "--TEST"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Long name For --TESTCD. Examples: Platelet, Systolic Blood Pressure, Summary (Min) RR Duration, Eye Examination."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--MODIFY>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Modified Term"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:ordinal "34"^^xsd:positiveInteger ;
 	bd:name "--MODIFY"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "If the value for --TRT is modified for coding purposes, then the modified text is placed here."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--CAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Category"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:ordinal "35"^^xsd:positiveInteger ;
 	bd:name "--CAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to define a category of topic-variable values. Examples: HEMATOLOGY, URINALYSIS, CHEMISTRY, HAMILTON DEPRESSION SCALE, SF36."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c42c1199-69be-4b0e-a466-78bf06d2e831> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#9fb29f8b-505a-4c4f-b550-175fbfec932d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--SCAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Subcategory"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:ordinal "36"^^xsd:positiveInteger ;
 	bd:name "--SCAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to define a further categorization of --CAT values."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c42c1199-69be-4b0e-a466-78bf06d2e831> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#9fb29f8b-505a-4c4f-b550-175fbfec932d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--POS>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Position of Subject During Observation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:ordinal "37"^^xsd:positiveInteger ;
 	bd:name "--POS"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Position of the subject during a measurement or examination. Examples: SUPINE, STANDING, SITTING."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--BODSYS>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Body System or Organ Class"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:ordinal "38"^^xsd:positiveInteger ;
 	bd:name "--BODSYS"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Body System or Organ Class that is involved for a finding from the standard hierarchy for dictionary-coded results. Example: MedDRA SOC."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--ORRES>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Result or Finding in Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:ordinal "39"^^xsd:positiveInteger ;
 	bd:name "--ORRES"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Result of the measurement or finding as originally received or collected. Examples: 120, <1, POS."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#a5cd53b6-ceca-4325-aa4e-71267169582f> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4e516e50-4563-4412-aa8d-6e7740d99444> ;
 	bd:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--ORRESU>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:ordinal "40"^^xsd:positiveInteger ;
 	bd:name "--ORRESU"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Unit for --ORRES. Examples: IN, LB, kg/L."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 	bd:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--ORNRLO>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range Lower Limit-Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:ordinal "41"^^xsd:positiveInteger ;
 	bd:name "--ORNRLO"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Lower end of normal range or reference range for results stored in --ORRES."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--ORNRHI>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range Upper Limit-Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "11"^^xsd:positiveInteger ;
+	bd:ordinal "42"^^xsd:positiveInteger ;
 	bd:name "--ORNRHI"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Upper end of normal range or reference range for results stored in --ORRES."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--STRESC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Result or Finding in Standard Format"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "12"^^xsd:positiveInteger ;
+	bd:ordinal "43"^^xsd:positiveInteger ;
 	bd:name "--STRESC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Contains the result value for all findings, copied or derived from --ORRES in a standard format or in standard units. --STRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in --STRESN. For example, if various tests have results 'NONE', 'NEG', and 'NEGATIVE' in --ORRES and these results effectively have the same meaning, they could be represented in standard format in --STRESC as 'NEGATIVE'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#a5cd53b6-ceca-4325-aa4e-71267169582f> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4e516e50-4563-4412-aa8d-6e7740d99444> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--STRESN>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Numeric Result/Finding in Standard Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "13"^^xsd:positiveInteger ;
+	bd:ordinal "44"^^xsd:positiveInteger ;
 	bd:name "--STRESN"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used for continuous or numeric results or findings in standard format; copied in numeric format from --STRESC. --STRESN should store all numeric test results or findings."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#a5cd53b6-ceca-4325-aa4e-71267169582f> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4e516e50-4563-4412-aa8d-6e7740d99444> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--STRESU>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Standard Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "14"^^xsd:positiveInteger ;
+	bd:ordinal "45"^^xsd:positiveInteger ;
 	bd:name "--STRESU"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Standardized units used for --STRESC and --STRESN. Example: mol/L."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--STNRLO>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range Lower Limit-Standard Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "15"^^xsd:positiveInteger ;
+	bd:ordinal "46"^^xsd:positiveInteger ;
 	bd:name "--STNRLO"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Lower end of normal range or reference range for standardized results (e.g., --STRESC, --STRESN) represented in standardized units (--STRESU)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--STNRHI>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range Upper Limit-Standard Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "16"^^xsd:positiveInteger ;
+	bd:ordinal "47"^^xsd:positiveInteger ;
 	bd:name "--STNRHI"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Upper end of normal range or reference range for standardized results (e.g., --STRESC, --STRESN) represented in standardized units (--STRESU)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--STNRC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range for Character Results"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "17"^^xsd:positiveInteger ;
+	bd:ordinal "48"^^xsd:positiveInteger ;
 	bd:name "--STNRC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Normal range or reference range for results stored in --STRESC that are character in ordinal or categorical scale. Example: Negative to Trace."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--NRIND>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal/Reference Range Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "18"^^xsd:positiveInteger ;
+	bd:ordinal "49"^^xsd:positiveInteger ;
 	bd:name "--NRIND"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate the value is outside the normal range or reference range. May be defined by --ORNRLO and --ORNRHI or other objective criteria. Examples: Y, N; HIGH, LOW; NORMAL; ABNORMAL."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--RESCAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Result Category"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "19"^^xsd:positiveInteger ;
+	bd:ordinal "50"^^xsd:positiveInteger ;
 	bd:name "--RESCAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to categorize the result of a finding. Example: MALIGNANT or BENIGN for tumor findings."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--STAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Completion Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "20"^^xsd:positiveInteger ;
+	bd:ordinal "51"^^xsd:positiveInteger ;
 	bd:name "--STAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate when a question about the occurrence of a pre-specified event was not answered. Should be null or have a value of NOT DONE."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--REASND>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason Not Done"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "21"^^xsd:positiveInteger ;
+	bd:ordinal "52"^^xsd:positiveInteger ;
 	bd:name "--REASND"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Reason not done. Used in conjunction with --STAT when value is NOT DONE."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--XFN>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "External Filename"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "22"^^xsd:positiveInteger ;
+	bd:ordinal "53"^^xsd:positiveInteger ;
 	bd:name "--XFN"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Filename for an external file, such as one for an ECG waveform or a medical image."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--NAM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Laboratory/Vendor Name"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "23"^^xsd:positiveInteger ;
+	bd:ordinal "54"^^xsd:positiveInteger ;
 	bd:name "--NAM"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Name or identifier of the vendor (e.g., laboratory) that provided the test results."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--LOINC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "LOINC Code"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "24"^^xsd:positiveInteger ;
+	bd:ordinal "55"^^xsd:positiveInteger ;
 	bd:name "--LOINC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Logical Observation Identifiers Names and Codes (LOINC) code for the topic variable such as a lab test."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--SPEC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Specimen Material Type"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "25"^^xsd:positiveInteger ;
+	bd:ordinal "56"^^xsd:positiveInteger ;
 	bd:name "--SPEC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Defines the type of specimen used for a measurement. Examples: SERUM, PLASMA, URINE."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#465e8e7b0c616acafe9d6226a6ba40b31f849e8e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--SPCCND>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Specimen Condition"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "26"^^xsd:positiveInteger ;
+	bd:ordinal "57"^^xsd:positiveInteger ;
 	bd:name "--SPCCND"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Defines the condition of the specimen. Example: CLOUDY."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--LOC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Location Used for the Measurement"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "27"^^xsd:positiveInteger ;
+	bd:ordinal "58"^^xsd:positiveInteger ;
 	bd:name "--LOC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Anatomical location of an intervention, such as an injection site. Example: RIGHT ARM for an injection."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--METHOD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Method of Test or Examination"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "28"^^xsd:positiveInteger ;
+	bd:ordinal "59"^^xsd:positiveInteger ;
 	bd:name "--METHOD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Method of the test or examination. Examples: EIA (Enzyme Immunoassay), ELECTROPHORESIS, DIPSTICK."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--BLFL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Baseline Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "29"^^xsd:positiveInteger ;
+	bd:ordinal "60"^^xsd:positiveInteger ;
 	bd:name "--BLFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicator used to identify a baseline value. Should be Y or null."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--FAST>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Fasting Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "30"^^xsd:positiveInteger ;
+	bd:ordinal "61"^^xsd:positiveInteger ;
 	bd:name "--FAST"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicator used to identify fasting status. Valid values include Y, N, U or null if not relevant."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--DRVFL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Derived Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "31"^^xsd:positiveInteger ;
+	bd:ordinal "62"^^xsd:positiveInteger ;
 	bd:name "--DRVFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate a derived record (e.g., a record that represents the average of other records such as a computed baseline). Should be Y or null."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--EVAL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Evaluator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "32"^^xsd:positiveInteger ;
+	bd:ordinal "63"^^xsd:positiveInteger ;
 	bd:name "--EVAL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Role of the person who provided the evaluation. Used only for results that are subjective (e.g., assigned by a person or a group). Examples: ADJUDICATION COMMITTEE, VENDOR."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#07500ad5733a5c873074c6df8d3e516da1de8ae1> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TOX>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Toxicity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "33"^^xsd:positiveInteger ;
+	bd:ordinal "64"^^xsd:positiveInteger ;
 	bd:name "--TOX"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Description of toxicity quantified by --TOXGR such as NCI CTCAE Short Name. Examples: HYPERCALCEMIA, HYPOCALCEMIA. Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define.xml document."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--TOXGR>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Toxicity Grade"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "34"^^xsd:positiveInteger ;
+	bd:ordinal "65"^^xsd:positiveInteger ;
 	bd:name "--TOXGR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Records toxicity grade using a standard toxicity scale (such as the NCI CTCAE). Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define.xml document."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--SEV>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Severity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "35"^^xsd:positiveInteger ;
+	bd:ordinal "66"^^xsd:positiveInteger ;
 	bd:name "--SEV"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes the severity or intensity of a particular finding. Examples: MILD, MODERATE, SEVERE."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#de314fa0c9d9e359b633f2fdab4659c886fe5986> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--DTHREL>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Relationship to Death"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "36"^^xsd:positiveInteger ;
+	bd:ordinal "67"^^xsd:positiveInteger ;
 	bd:name "--DTHREL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes the relationship of a particular finding to the death of a subject."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--LLOQ>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Lower Limit of Quantitation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "37"^^xsd:positiveInteger ;
+	bd:ordinal "68"^^xsd:positiveInteger ;
 	bd:name "--LLOQ"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicates the lower limit of quantitation for an assay. Units will be those used for --STRESU."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_--OBJ>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Object of the Observation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:ordinal "69"^^xsd:positiveInteger ;
 	bd:name "--OBJ"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used in domains modeled as Findings About Events or Findings About Interventions. Describes the event or intervention whose property is being measured in --TESTCD/--TEST. Example: an event of vomiting which has findings, where --OBJ = 'VOMIT' and the volume of VOMIT is being measured where --TESTCD = 'VOLUME'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -1570,298 +1570,298 @@
 	isoI:identifier "SDTM MODEL INTERVENTIONS"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--TRT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Name of Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:ordinal "32"^^xsd:positiveInteger ;
 	bd:name "--TRT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "The topic for the intervention observation, usually the verbatim name of the treatment, drug, medicine, or therapy given during the dosing interval for the observation."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--MODIFY>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Modified Treatment Name"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:ordinal "33"^^xsd:positiveInteger ;
 	bd:name "--MODIFY"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "If the value for --TRT is modified for coding purposes, then the modified text is placed here."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DECOD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Standardized Treatment Name"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:ordinal "34"^^xsd:positiveInteger ;
 	bd:name "--DECOD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Standardized or dictionary-derived name of the topic variable, --TRT, or the modified topic variable (--MODIFY), if applicable. Equivalent to the generic drug name in WHO Drug, or a term in SNOMED, ICD9, or other published or sponsor-defined dictionaries."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--CAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Category"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:ordinal "35"^^xsd:positiveInteger ;
 	bd:name "--CAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to define a category of topic-variable values. Examples: HEMATOLOGY, URINALYSIS, CHEMISTRY, HAMILTON DEPRESSION SCALE, SF36."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c42c1199-69be-4b0e-a466-78bf06d2e831> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#9fb29f8b-505a-4c4f-b550-175fbfec932d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--SCAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Subcategory"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:ordinal "36"^^xsd:positiveInteger ;
 	bd:name "--SCAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to define a further categorization of --CAT values."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c42c1199-69be-4b0e-a466-78bf06d2e831> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#9fb29f8b-505a-4c4f-b550-175fbfec932d> ;
 	bd:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--PRESP>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Pre-specified"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:ordinal "37"^^xsd:positiveInteger ;
 	bd:name "--PRESP"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used when a specific intervention is pre-specified on a CRF. Values should be 'Y' or null."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--OCCUR>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Occurrence"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:ordinal "38"^^xsd:positiveInteger ;
 	bd:name "--OCCUR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to record whether a pre-specified event occurred when information about the occurrence of a specific event is solicited."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--STAT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Completion Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:ordinal "39"^^xsd:positiveInteger ;
 	bd:name "--STAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate when a question about the occurrence of a pre-specified event was not answered. Should be null or have a value of NOT DONE."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--REASND>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason Not Done"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:ordinal "40"^^xsd:positiveInteger ;
 	bd:name "--REASND"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Reason not done. Used in conjunction with --STAT when value is NOT DONE."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--INDC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Indication"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:ordinal "41"^^xsd:positiveInteger ;
 	bd:name "--INDC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Denotes the indication for the intervention (e.g., why the therapy was taken or administered)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--CLAS>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Class"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "11"^^xsd:positiveInteger ;
+	bd:ordinal "42"^^xsd:positiveInteger ;
 	bd:name "--CLAS"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Class for a medication or treatment, often obtained from a coding dictionary."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--CLASCD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Class Code"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "12"^^xsd:positiveInteger ;
+	bd:ordinal "43"^^xsd:positiveInteger ;
 	bd:name "--CLASCD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to represent code for --CLAS."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DOSE>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "13"^^xsd:positiveInteger ;
+	bd:ordinal "44"^^xsd:positiveInteger ;
 	bd:name "--DOSE"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Amount of --TRT given. Not populated when --DOSTXT is populated."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DOSTXT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dose Description"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "14"^^xsd:positiveInteger ;
+	bd:ordinal "45"^^xsd:positiveInteger ;
 	bd:name "--DOSTXT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Dosing information collected in text form. Examples: <1 per day, 200-400. Not populated when --DOSE is populated."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DOSU>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dose Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "15"^^xsd:positiveInteger ;
+	bd:ordinal "46"^^xsd:positiveInteger ;
 	bd:name "--DOSU"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Units for --DOSE, --DOSTOT, or --DOSTXT (Examples: ng, mg, mg/kg)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DOSFRM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dose Form"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "16"^^xsd:positiveInteger ;
+	bd:ordinal "47"^^xsd:positiveInteger ;
 	bd:name "--DOSFRM"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Dose form for the treatment. Examples: TABLET, CAPSULE."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DOSFRQ>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Dosing Frequency per Interval"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "17"^^xsd:positiveInteger ;
+	bd:ordinal "48"^^xsd:positiveInteger ;
 	bd:name "--DOSFRQ"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Usually expressed as the number of doses given per a specific interval. Examples: QD, BID, TID, QID."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DOSTOT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Total Daily Dose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "18"^^xsd:positiveInteger ;
+	bd:ordinal "49"^^xsd:positiveInteger ;
 	bd:name "--DOSTOT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Total daily dose of --TRT using the units in --DOSU. Used when dosing is collected as Total Daily Dose."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DOSRGM>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Intended Dose Regimen"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "19"^^xsd:positiveInteger ;
+	bd:ordinal "50"^^xsd:positiveInteger ;
 	bd:name "--DOSRGM"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Text description of the (intended) schedule or regimen for the Intervention. Examples: TWO WEEKS ON, TWO WEEKS OFF."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--ROUTE>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Route of Administration"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "20"^^xsd:positiveInteger ;
+	bd:ordinal "51"^^xsd:positiveInteger ;
 	bd:name "--ROUTE"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Route of administration for the intervention. Examples: ORAL, INTRAVENOUS."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--LOT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Lot Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "21"^^xsd:positiveInteger ;
+	bd:ordinal "52"^^xsd:positiveInteger ;
 	bd:name "--LOT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Lot number for the intervention described in --TRT."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--LOC>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Location of Dose Administration"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "22"^^xsd:positiveInteger ;
+	bd:ordinal "53"^^xsd:positiveInteger ;
 	bd:name "--LOC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Anatomical location of an intervention, such as an injection site. Example: RIGHT ARM for an injection."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 	bd:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--TRTV>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Treatment Vehicle"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "23"^^xsd:positiveInteger ;
+	bd:ordinal "54"^^xsd:positiveInteger ;
 	bd:name "--TRTV"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Vehicle for administration of treatment, such as a liquid in which the treatment drug is dissolved. Example: SALINE."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--VAMT>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Treatment Vehicle Amount"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "24"^^xsd:positiveInteger ;
+	bd:ordinal "55"^^xsd:positiveInteger ;
 	bd:name "--VAMT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Amount of the treatment vehicle administered or given."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--VAMTU>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Treatment Vehicle Amount Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "25"^^xsd:positiveInteger ;
+	bd:ordinal "56"^^xsd:positiveInteger ;
 	bd:name "--VAMTU"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Units for the treatment vehicle. Examples: mL, mg."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--ADJ>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason for Dose Adjustment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "26"^^xsd:positiveInteger ;
+	bd:ordinal "57"^^xsd:positiveInteger ;
 	bd:name "--ADJ"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes reason or explanation of why a dose is adjusted. Examples ADVERSE EVENT, INSUFFICIENT RESPONSE, NON-MEDICAL REASON."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -1900,7 +1900,7 @@
 	isoI:identifier "SDTM MODEL RELREC"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_STUDYID>
@@ -1911,8 +1911,8 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_RDOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -1922,8 +1922,8 @@
 	bd:name "RDOMAIN"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain of the parent record(s)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -1933,8 +1933,8 @@
 	bd:name "USUBJID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_IDVAR>
 	rdf:type bd:SdtmClassVariable ;
@@ -1944,8 +1944,8 @@
 	bd:name "IDVAR"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Name of the identifying variable in the general-observation-class dataset that identifies the related record(s). Examples include --SEQ and --GRPID."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_IDVARVAL>
 	rdf:type bd:SdtmClassVariable ;
@@ -1955,8 +1955,8 @@
 	bd:name "IDVARVAL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Value of identifying variable described in IDVAR. If --SEQ is the variable being used to describe this record, then the value of --SEQ would be entered here."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_RELTYPE>
 	rdf:type bd:SdtmClassVariable ;
@@ -1966,8 +1966,8 @@
 	bd:name "RELTYPE"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifies the hierarchical level of the records in the relationship. Values should be either ONE or MANY. Used only when identifying a relationship between datasets (as described in Section 8.3)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_RELID>
 	rdf:type bd:SdtmClassVariable ;
@@ -1977,8 +1977,8 @@
 	bd:name "RELID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique value within USUBJID that identifies the relationship. All records for the same USUBJID that have the same RELID are considered 'related/associated.' RELID can be any value the sponsor chooses, and is only meaningful within the RELREC dataset to identify the related/associated Domain records."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -2021,7 +2021,7 @@
 	isoI:identifier "SDTM MODEL SE"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_STUDYID>
@@ -2032,8 +2032,8 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_DOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -2043,8 +2043,8 @@
 	bd:name "DOMAIN"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -2054,8 +2054,8 @@
 	bd:name "USUBJID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_SESEQ>
 	rdf:type bd:SdtmClassVariable ;
@@ -2065,8 +2065,8 @@
 	bd:name "SESEQ"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Sequence Number given to ensure uniqueness of subject records within a domain. Should be assigned to be consistent chronological order."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_ETCD>
 	rdf:type bd:SdtmClassVariable ;
@@ -2076,8 +2076,8 @@
 	bd:name "ETCD"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "ETCD (the companion to ELEMENT) is limited to 8 characters and does not have special character restrictions. These values should be short for ease of use in programming, but it is not expected that ETCD will need to serve as a variable name."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_ELEMENT>
 	rdf:type bd:SdtmClassVariable ;
@@ -2087,8 +2087,8 @@
 	bd:name "ELEMENT"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "The name of the Element. If ETCD has a value of 'UNPLAN' then ELEMENT should be Null."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_SESTDTC>
 	rdf:type bd:SdtmClassVariable ;
@@ -2098,8 +2098,8 @@
 	bd:name "SESTDTC"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Start date/time for an Element for each subject."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_SEENDTC>
 	rdf:type bd:SdtmClassVariable ;
@@ -2109,8 +2109,8 @@
 	bd:name "SEENDTC"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "End date/time for an Element for each subject."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_TAETORD>
 	rdf:type bd:SdtmClassVariable ;
@@ -2120,8 +2120,8 @@
 	bd:name "TAETORD"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Number that gives the order of the Element within the Arm."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_EPOCH>
 	rdf:type bd:SdtmClassVariable ;
@@ -2131,8 +2131,8 @@
 	bd:name "EPOCH"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Epoch associated with the Element in the planned sequence of Elements for the ARM to which the subject was assigned"^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_SEUPDES>
 	rdf:type bd:SdtmClassVariable ;
@@ -2142,8 +2142,8 @@
 	bd:name "SEUPDES"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Description of what happened to the subject during this unplanned Element. Used only if ETCD has the value of 'UNPLAN'."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -2186,7 +2186,7 @@
 	isoI:identifier "SDTM MODEL CO"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_STUDYID>
@@ -2197,8 +2197,8 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_DOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -2208,8 +2208,8 @@
 	bd:name "DOMAIN"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_RDOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -2219,8 +2219,8 @@
 	bd:name "RDOMAIN"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain of the parent record(s)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -2230,8 +2230,8 @@
 	bd:name "USUBJID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_COSEQ>
 	rdf:type bd:SdtmClassVariable ;
@@ -2241,8 +2241,8 @@
 	bd:name "COSEQ"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Sequence Number given to ensure uniqueness of subject records within a domain. May be any valid number."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_IDVAR>
 	rdf:type bd:SdtmClassVariable ;
@@ -2252,8 +2252,8 @@
 	bd:name "IDVAR"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Name of the identifying variable in the general-observation-class dataset that identifies the related record(s). Examples include --SEQ and --GRPID."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_IDVARVAL>
 	rdf:type bd:SdtmClassVariable ;
@@ -2263,8 +2263,8 @@
 	bd:name "IDVARVAL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Value of identifying variable described in IDVAR. If --SEQ is the variable being used to describe this record, then the value of --SEQ would be entered here."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_COREF>
 	rdf:type bd:SdtmClassVariable ;
@@ -2274,8 +2274,8 @@
 	bd:name "COREF"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Sponsor-defined reference associated with the comment. May be the CRF page number (e.g. 650), or a module name (e.g. DEMOG), or a combination of information that identifies the reference (e.g. 650-VITALS-VISIT 2)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_COVAL>
 	rdf:type bd:SdtmClassVariable ;
@@ -2285,8 +2285,8 @@
 	bd:name "COVAL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "The text of the comment. Text over 200 characters can be added to additional columns COVAL1-COVALn. See assumption 5.2.1.1.3."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_COEVAL>
 	rdf:type bd:SdtmClassVariable ;
@@ -2296,8 +2296,8 @@
 	bd:name "COEVAL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Used to describe the originator of the comment. Examples: CENTRAL, REVIEWER, ADJUDICATION COMMITTEE, PRINCIPAL INVESTIGATOR."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_CODTC>
 	rdf:type bd:SdtmClassVariable ;
@@ -2307,8 +2307,8 @@
 	bd:name "CODTC"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Date/time of comment on dedicated comment form. Should be null if this is a child record of another domain or if comment date was not collected."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -2360,7 +2360,7 @@
 	isoI:identifier "SDTM MODEL DM"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_STUDYID>
@@ -2371,8 +2371,8 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_DOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -2382,8 +2382,8 @@
 	bd:name "DOMAIN"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -2393,8 +2393,8 @@
 	bd:name "USUBJID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_SUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -2404,8 +2404,8 @@
 	bd:name "SUBJID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Subject identifier, which must be unique within the study. Often the ID of the subject as recorded on a CRF."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RFSTDTC>
 	rdf:type bd:SdtmClassVariable ;
@@ -2415,8 +2415,8 @@
 	bd:name "RFSTDTC"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Reference Start Date/time for the subject in ISO 8601 character format. Usually equivalent to date/time when subject was first exposed to study treatment. Required for all randomized subjects; will be null for all subjects who did not meet the milestone the date requires, such as screen failures or unassigned subjects."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RFENDTC>
 	rdf:type bd:SdtmClassVariable ;
@@ -2426,8 +2426,8 @@
 	bd:name "RFENDTC"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Reference End Date/time for the subject in ISO 8601 character format. Usually equivalent to the date/time when subject was determined to have ended the trial, and often equivalent to date/time of last exposure to study treatment. Required for all randomized subjects; null for screen failures or unassigned subjects."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_SITEID>
 	rdf:type bd:SdtmClassVariable ;
@@ -2437,8 +2437,8 @@
 	bd:name "SITEID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a site within a study."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_INVID>
 	rdf:type bd:SdtmClassVariable ;
@@ -2448,8 +2448,8 @@
 	bd:name "INVID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "An identifier to describe the Investigator for the study. May be used in addition to SITEID. Not needed if SITEID is equivalent to INVID."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_INVNAM>
 	rdf:type bd:SdtmClassVariable ;
@@ -2459,8 +2459,8 @@
 	bd:name "INVNAM"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Name of the investigator for a site."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_BRTHDTC>
 	rdf:type bd:SdtmClassVariable ;
@@ -2470,8 +2470,8 @@
 	bd:name "BRTHDTC"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Date/time of birth of the subject."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_AGE>
 	rdf:type bd:SdtmClassVariable ;
@@ -2481,8 +2481,8 @@
 	bd:name "AGE"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Age expressed in AGEU. May be derived from RFSTDTC and BRTHDTC, but BRTHDTC may not be available in all cases (due to subject privacy concerns)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_AGEU>
 	rdf:type bd:SdtmClassVariable ;
@@ -2492,7 +2492,7 @@
 	bd:name "AGEU"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Units associated with AGE."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_SEX>
 	rdf:type bd:SdtmClassVariable ;
@@ -2502,8 +2502,8 @@
 	bd:name "SEX"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Sex of the subject."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RACE>
 	rdf:type bd:SdtmClassVariable ;
@@ -2513,8 +2513,8 @@
 	bd:name "RACE"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Race of the subject. Sponsors should refer to 'Collection of Race and Ethnicity Data in Clinical Trials' (FDA, September 2005) for guidance regarding the collection of race (http://www.fda.gov/cder/guidance/5656fnl.htm) See Assumption below regarding RACE."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_ETHNIC>
 	rdf:type bd:SdtmClassVariable ;
@@ -2524,8 +2524,8 @@
 	bd:name "ETHNIC"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "The ethnicity of the subject. Sponsors should refer to 'Collection of Race and Ethnicity Data in Clinical Trials' (FDA, September 2005) for guidance regarding the collection of ethnicity (http://www.fda.gov/cder/guidance/5656fnl.htm)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_ARMCD>
 	rdf:type bd:SdtmClassVariable ;
@@ -2535,8 +2535,8 @@
 	bd:name "ARMCD"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "1.ARMCD is limited to 20 characters and does not have special character restrictions. The maximum length of ARMCD is longer than for other 'short' variables to accommodate the kind of values that are likely to be needed for crossover trials. For example, if ARMCD values for a seven-period crossover were constructed using two-character abbreviations for each treatment and separating hyphens, the length of ARMCD values would be 20. 2. If the timing of Visits for a trial does not depend on which ARM a subject is in, then ARMCD should be null."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_ARM>
 	rdf:type bd:SdtmClassVariable ;
@@ -2546,8 +2546,8 @@
 	bd:name "ARM"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Name given to an Arm or treatment group."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_COUNTRY>
 	rdf:type bd:SdtmClassVariable ;
@@ -2557,8 +2557,8 @@
 	bd:name "COUNTRY"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Country of the investigational site in which the subject participated in the trial."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_DMDTC>
 	rdf:type bd:SdtmClassVariable ;
@@ -2568,8 +2568,8 @@
 	bd:name "DMDTC"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Date/time of demographic data collection."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_DMDY>
 	rdf:type bd:SdtmClassVariable ;
@@ -2579,8 +2579,8 @@
 	bd:name "DMDY"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Study day of collection measured as integer days."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -2623,7 +2623,7 @@
 	isoI:identifier "SDTM MODEL SV"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_STUDYID>
@@ -2634,8 +2634,8 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_DOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -2645,8 +2645,8 @@
 	bd:name "DOMAIN"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -2656,8 +2656,8 @@
 	bd:name "USUBJID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_VISITNUM>
 	rdf:type bd:SdtmClassVariable ;
@@ -2667,8 +2667,8 @@
 	bd:name "VISITNUM"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Clinical encounter number. Numeric version of VISIT, used for sorting."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_VISIT>
 	rdf:type bd:SdtmClassVariable ;
@@ -2678,8 +2678,8 @@
 	bd:name "VISIT"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "1. Protocol-defined description of clinical encounter. 2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_VISITDY>
 	rdf:type bd:SdtmClassVariable ;
@@ -2689,8 +2689,8 @@
 	bd:name "VISITDY"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Planned study day of the visit based upon RFSTDTC in Demographics."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_SVSTDTC>
 	rdf:type bd:SdtmClassVariable ;
@@ -2700,8 +2700,8 @@
 	bd:name "SVSTDTC"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Start date/time for a Visit."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_SVENDTC>
 	rdf:type bd:SdtmClassVariable ;
@@ -2711,8 +2711,8 @@
 	bd:name "SVENDTC"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "End date/time of a Visit."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_SVSTDY>
 	rdf:type bd:SdtmClassVariable ;
@@ -2722,8 +2722,8 @@
 	bd:name "SVSTDY"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Study day of start of visit relative to the sponsor-defined RFSTDTC."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_SVENDY>
 	rdf:type bd:SdtmClassVariable ;
@@ -2733,8 +2733,8 @@
 	bd:name "SVENDY"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Study day of end of visit relative to the sponsor-defined RFSTDTC."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_SVUPDES>
 	rdf:type bd:SdtmClassVariable ;
@@ -2744,8 +2744,8 @@
 	bd:name "SVUPDES"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Description of what happened to the subject during an unplanned visit."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -2787,7 +2787,7 @@
 	isoI:identifier "SDTM MODEL SUPPQUAL"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_STUDYID>
@@ -2798,8 +2798,8 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_RDOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -2809,8 +2809,8 @@
 	bd:name "RDOMAIN"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain of the parent record(s)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -2820,8 +2820,8 @@
 	bd:name "USUBJID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_IDVAR>
 	rdf:type bd:SdtmClassVariable ;
@@ -2831,8 +2831,8 @@
 	bd:name "IDVAR"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Name of the identifying variable in the general-observation-class dataset that identifies the related record(s). Examples include --SEQ and --GRPID."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_IDVARVAL>
 	rdf:type bd:SdtmClassVariable ;
@@ -2842,8 +2842,8 @@
 	bd:name "IDVARVAL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Value of identifying variable described in IDVAR. If --SEQ is the variable being used to describe this record, then the value of --SEQ would be entered here."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QNAM>
 	rdf:type bd:SdtmClassVariable ;
@@ -2853,8 +2853,8 @@
 	bd:name "QNAM"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "The short name of the Qualifier variable, which is used as a column name in a domain view with data from the parent domain. The value in QNAM cannot be longer than 8 characters, nor can it start with a number (e.g., '1TEST'). QNAM cannot contain characters other than letters, numbers, or underscores. This will often be the column name in the sponsor's operational dataset."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QLABEL>
 	rdf:type bd:SdtmClassVariable ;
@@ -2864,8 +2864,8 @@
 	bd:name "QLABEL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "This is the long name or label associated with QNAM. The value in QLABEL cannot be longer than 40 characters. This will often be the column label in the sponsor's original dataset."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QVAL>
 	rdf:type bd:SdtmClassVariable ;
@@ -2875,8 +2875,8 @@
 	bd:name "QVAL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Result of, response to, or value associated with QNAM. A value for this column is required; no records can be in SUPP-- with a null value for QVAL."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QORIG>
 	rdf:type bd:SdtmClassVariable ;
@@ -2886,8 +2886,8 @@
 	bd:name "QORIG"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Since QVAL can represent a mixture of collected (on a CRF), derived, or assigned items, QORIG is used to indicate the origin of this data. Examples include CRF, ASSIGNED, or DERIVED. See Section 4.1.1.8."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QEVAL>
 	rdf:type bd:SdtmClassVariable ;
@@ -2897,8 +2897,8 @@
 	bd:name "QEVAL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Used only for results that are subjective (e.g., assigned by a person or a group). Should be null for records that contain objectively collected or derived data. Some examples include ADJUDICATION COMMITTEE, STATISTICIAN, DATABASE ADMINISTRATOR, CLINICAL COORDINATOR, etc."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#aa0ca4c2-93bf-477f-bf84-00cef2308e4d> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -2940,7 +2940,7 @@
 	isoI:identifier "SDTM MODEL TA"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_STUDYID>
@@ -2951,8 +2951,8 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_DOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -2962,8 +2962,8 @@
 	bd:name "DOMAIN"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_ARMCD>
 	rdf:type bd:SdtmClassVariable ;
@@ -2973,8 +2973,8 @@
 	bd:name "ARMCD"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "1.ARMCD is limited to 20 characters and does not have special character restrictions. The maximum length of ARMCD is longer than for other 'short' variables to accommodate the kind of values that are likely to be needed for crossover trials. For example, if ARMCD values for a seven-period crossover were constructed using two-character abbreviations for each treatment and separating hyphens, the length of ARMCD values would be 20. 2. If the timing of Visits for a trial does not depend on which ARM a subject is in, then ARMCD should be null."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_ARM>
 	rdf:type bd:SdtmClassVariable ;
@@ -2984,8 +2984,8 @@
 	bd:name "ARM"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Name given to an Arm or treatment group."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_TAETORD>
 	rdf:type bd:SdtmClassVariable ;
@@ -2995,8 +2995,8 @@
 	bd:name "TAETORD"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Number that gives the order of the Element within the Arm."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_ETCD>
 	rdf:type bd:SdtmClassVariable ;
@@ -3006,8 +3006,8 @@
 	bd:name "ETCD"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "ETCD (the companion to ELEMENT) is limited to 8 characters and does not have special character restrictions. These values should be short for ease of use in programming, but it is not expected that ETCD will need to serve as a variable name."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_ELEMENT>
 	rdf:type bd:SdtmClassVariable ;
@@ -3017,8 +3017,8 @@
 	bd:name "ELEMENT"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "The name of the Element. If ETCD has a value of 'UNPLAN' then ELEMENT should be Null."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_TABRANCH>
 	rdf:type bd:SdtmClassVariable ;
@@ -3028,8 +3028,8 @@
 	bd:name "TABRANCH"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Condition subject met, at a 'branch' in the trial design at the end of this Element, to be included in this Arm; (e.g., randomization to DRUG X)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#b7fb26b2-f61f-4483-a4b2-68cce9de42b4> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#f14b71ab-a38e-41a4-9438-f4eb95f0340c> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_TATRANS>
 	rdf:type bd:SdtmClassVariable ;
@@ -3039,8 +3039,8 @@
 	bd:name "TATRANS"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "If the trial design allows a subject to transition to an Element other than the next Element in sequence, then the conditions for transitioning to those other Elements, and the alternative Element sequences, are specified in this rule (e.g., Responders go to washout)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#b7fb26b2-f61f-4483-a4b2-68cce9de42b4> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#f14b71ab-a38e-41a4-9438-f4eb95f0340c> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_EPOCH>
 	rdf:type bd:SdtmClassVariable ;
@@ -3050,8 +3050,8 @@
 	bd:name "EPOCH"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Epoch associated with the Element in the planned sequence of Elements for the ARM to which the subject was assigned"^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TV/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -3092,7 +3092,7 @@
 	isoI:identifier "SDTM MODEL TV"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TV/V1#CL_STUDYID>
@@ -3103,8 +3103,8 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TV/V1#CL_DOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -3114,8 +3114,8 @@
 	bd:name "DOMAIN"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TV/V1#CL_VISITNUM>
 	rdf:type bd:SdtmClassVariable ;
@@ -3125,8 +3125,8 @@
 	bd:name "VISITNUM"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Clinical encounter number. Numeric version of VISIT, used for sorting."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TV/V1#CL_VISIT>
 	rdf:type bd:SdtmClassVariable ;
@@ -3136,8 +3136,8 @@
 	bd:name "VISIT"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "1. Protocol-defined description of clinical encounter. 2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TV/V1#CL_VISITDY>
 	rdf:type bd:SdtmClassVariable ;
@@ -3147,8 +3147,8 @@
 	bd:name "VISITDY"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Planned study day of the visit based upon RFSTDTC in Demographics."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TV/V1#CL_ARMCD>
 	rdf:type bd:SdtmClassVariable ;
@@ -3158,8 +3158,8 @@
 	bd:name "ARMCD"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "1.ARMCD is limited to 20 characters and does not have special character restrictions. The maximum length of ARMCD is longer than for other 'short' variables to accommodate the kind of values that are likely to be needed for crossover trials. For example, if ARMCD values for a seven-period crossover were constructed using two-character abbreviations for each treatment and separating hyphens, the length of ARMCD values would be 20. 2. If the timing of Visits for a trial does not depend on which ARM a subject is in, then ARMCD should be null."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TV/V1#CL_ARM>
 	rdf:type bd:SdtmClassVariable ;
@@ -3169,8 +3169,8 @@
 	bd:name "ARM"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Name given to an Arm or treatment group."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TV/V1#CL_TVSTRL>
 	rdf:type bd:SdtmClassVariable ;
@@ -3180,8 +3180,8 @@
 	bd:name "TVSTRL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Rule describing when the Visit starts, in relation to the sequence of Elements."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#b7fb26b2-f61f-4483-a4b2-68cce9de42b4> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#f14b71ab-a38e-41a4-9438-f4eb95f0340c> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TV/V1#CL_TVENRL>
 	rdf:type bd:SdtmClassVariable ;
@@ -3191,8 +3191,8 @@
 	bd:name "TVENRL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Rule describing when the Visit ends, in relation to the sequence of Elements."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#b7fb26b2-f61f-4483-a4b2-68cce9de42b4> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#f14b71ab-a38e-41a4-9438-f4eb95f0340c> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -3231,7 +3231,7 @@
 	isoI:identifier "SDTM MODEL TE"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_STUDYID>
@@ -3242,8 +3242,8 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_DOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -3253,8 +3253,8 @@
 	bd:name "DOMAIN"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_ETCD>
 	rdf:type bd:SdtmClassVariable ;
@@ -3264,8 +3264,8 @@
 	bd:name "ETCD"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "ETCD (the companion to ELEMENT) is limited to 8 characters and does not have special character restrictions. These values should be short for ease of use in programming, but it is not expected that ETCD will need to serve as a variable name."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_ELEMENT>
 	rdf:type bd:SdtmClassVariable ;
@@ -3275,8 +3275,8 @@
 	bd:name "ELEMENT"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "The name of the Element. If ETCD has a value of 'UNPLAN' then ELEMENT should be Null."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_TESTRL>
 	rdf:type bd:SdtmClassVariable ;
@@ -3286,8 +3286,8 @@
 	bd:name "TESTRL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Expresses rule for beginning Element."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#b7fb26b2-f61f-4483-a4b2-68cce9de42b4> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#f14b71ab-a38e-41a4-9438-f4eb95f0340c> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_TEENRL>
 	rdf:type bd:SdtmClassVariable ;
@@ -3297,8 +3297,8 @@
 	bd:name "TEENRL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Expresses rule for ending Element. Either TEENRL or TEDUR must be present for each Element."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#b7fb26b2-f61f-4483-a4b2-68cce9de42b4> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#f14b71ab-a38e-41a4-9438-f4eb95f0340c> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TE/V1#CL_TEDUR>
 	rdf:type bd:SdtmClassVariable ;
@@ -3308,8 +3308,8 @@
 	bd:name "TEDUR"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Planned Duration of Element in ISO 8601 format. Used when the rule for ending the Element is applied after a fixed duration."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#ef6281db-14c7-44d8-b41e-4b6c96de1b79> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -3349,7 +3349,7 @@
 	isoI:identifier "SDTM MODEL TI"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_STUDYID>
@@ -3360,8 +3360,8 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_DOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -3371,8 +3371,8 @@
 	bd:name "DOMAIN"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_IETESTCD>
 	rdf:type bd:SdtmClassVariable ;
@@ -3382,8 +3382,8 @@
 	bd:name "IETESTCD"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Short name of the criterion described in IETEST. The value in IETESTCD cannot be longer than 8 characters, nor can it start with a number (e.g.'1TEST'). IETESTCD cannot contain characters other than letters, numbers, or underscores. Examples: IN01, EX01."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_IETEST>
 	rdf:type bd:SdtmClassVariable ;
@@ -3393,8 +3393,8 @@
 	bd:name "IETEST"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Verbatim description of the inclusion or exclusion criterion that was the exception for the subject within the study. IETEST cannot be longer than 200 characters."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_IECAT>
 	rdf:type bd:SdtmClassVariable ;
@@ -3404,8 +3404,8 @@
 	bd:name "IECAT"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Used to define a category of related records across subjects."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c42c1199-69be-4b0e-a466-78bf06d2e831> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#9fb29f8b-505a-4c4f-b550-175fbfec932d> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_IESCAT>
 	rdf:type bd:SdtmClassVariable ;
@@ -3415,8 +3415,8 @@
 	bd:name "IESCAT"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "A further categorization of the exception criterion. Can be used to distinguish criteria for a sub-study or for to categorize as a major or minor exceptions. Examples: MAJOR, MINOR."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c42c1199-69be-4b0e-a466-78bf06d2e831> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#9fb29f8b-505a-4c4f-b550-175fbfec932d> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_TIRL>
 	rdf:type bd:SdtmClassVariable ;
@@ -3426,8 +3426,8 @@
 	bd:name "TIRL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Rule that expresses the criterion in computer-executable form (see assumption 4 below)."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#b7fb26b2-f61f-4483-a4b2-68cce9de42b4> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#f14b71ab-a38e-41a4-9438-f4eb95f0340c> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TI/V1#CL_TIVERS>
 	rdf:type bd:SdtmClassVariable ;
@@ -3437,8 +3437,8 @@
 	bd:name "TIVERS"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "The number of this version of the Inclusion/Exclusion criteria. May be omitted if there is only one version."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#c87fdb01-a54e-44b2-b4e7-2aadbe8ada87> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -3477,7 +3477,7 @@
 	isoI:identifier "SDTM MODEL TS"^^xsd:string ;
 	isoI:versionLabel "2008-11-12 Release"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.2.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL_STUDYID>
@@ -3488,8 +3488,8 @@
 	bd:name "STUDYID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL_DOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -3499,8 +3499,8 @@
 	bd:name "DOMAIN"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL_TSSEQ>
 	rdf:type bd:SdtmClassVariable ;
@@ -3510,8 +3510,8 @@
 	bd:name "TSSEQ"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Sequence number given to ensure uniqueness within a dataset. Allows inclusion of multiple records for the same TSPARMCD, and can be used to join related records."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL_TSGRPID>
 	rdf:type bd:SdtmClassVariable ;
@@ -3521,8 +3521,8 @@
 	bd:name "TSGRPID"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Used to tie together a group of related records"^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#31553bfb-458e-4356-8f78-9d84ca25f745> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL_TSPARMCD>
 	rdf:type bd:SdtmClassVariable ;
@@ -3532,8 +3532,8 @@
 	bd:name "TSPARMCD"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "TSPARMCD (the companion to TSPARM) is limited to 8 characters and does not have special character restrictions. These values should be short for ease of use in programming, but it is not expected that TSPARMCD will need to serve as variable names. Examples: AGEMIN, AGEMAX"^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#4f6c8f78-280e-42b3-8289-a146dd5e47f0> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL_TSPARM>
 	rdf:type bd:SdtmClassVariable ;
@@ -3543,8 +3543,8 @@
 	bd:name "TSPARM"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Term for the Trial Summary Parameter. The value in TSPARM cannot be longer than 40 characters. Examples Planned Minimum Age of Subjects, Planned Maximum Age of Subjects"^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#9e246430-42c2-476a-8c1a-07ba9e698024> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_TS/V1#CL_TSVAL>
 	rdf:type bd:SdtmClassVariable ;
@@ -3554,6 +3554,6 @@
 	bd:name "TSVAL"^^xsd:string ;
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Value of TSPARM. Example: 'ASTHMA' when TSPARM value is 'Trial Indication'. TSVAL cannot be null - a value is required for the record to be valid. Text over 200 characters can be added to additional columns TSVAL1-TSVALn."^^xsd:string ;
-	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
-	bd:classifiedAs <http://www.assero.co.uk/CSN#a5cd53b6-ceca-4325-aa4e-71267169582f> ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4e516e50-4563-4412-aa8d-6e7740d99444> ;
 .

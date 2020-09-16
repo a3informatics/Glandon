@@ -59,17 +59,10 @@ export default class SelectionView {
 
   /**
    * Remove item(s) from selection and render selection view
-   * @param {(Array | string)} id a single id / collection of item ids to remove from the selection
+   * @param {(Array | string)} ids a single id / collection of item ids to remove from the selection
    */
-  removeById(id) {
-    // Find and remove array of item ids
-    if ( Array.isArray(id) )
-      id.forEach( (itemId) => this._removeFromSelection(itemId) )
-
-    // Find and remove one item id
-    else
-      this._removeFromSelection(id);
-
+  removeById(ids) {
+    this._removeFromSelection(ids);
     this._render();
   }
 
@@ -166,33 +159,37 @@ export default class SelectionView {
    * @param {object} data item's data object
    */
   _addToSelection(data) {
+    if ( !Array.isArray(data) )
+      data = [ data ];
+
     // Add array of item data object
-    if ( Array.isArray(data) )
-      data.forEach( (d) => this._addToSelection(d));
+    for (const d of data) {
+      if ( !this.selectionContains(d.id) )
+        this.selection.push(d);
+    };
 
-    // Add single item data object if already not present
-    else if ( !this.selectionContains(data.id) ) {
-      this.selection.push(data);
-
-      // Notify selection data changed
-      this._selectionChanged('added');
-    }
+    // Notify selection data changed
+    this._selectionChanged('added');
   }
 
 
   /**
    * Private remove from selection function, find and remove item from selection
-   * @param {string} id Item to remove, must contain the index field
+   * @param {(string | array)} ids Item to remove, must contain the index field
    */
-  _removeFromSelection(id) {
-    // Find item
-    let item = this._findById(id);
+  _removeFromSelection(ids) {
+    // Convert single id into array 
+    if ( !Array.isArray(ids) )
+      ids = [ ids ];
 
-    if (!item)
-      return;
+    // Find and remove array of item ids
+    for (const id of ids) {
+      let item = this._findById(id);
 
-    // Remove item from the selection
-    this.selection.splice(item.index, 1);
+      // Remove item from the selection
+      if (item)
+        this.selection.splice(item.index, 1);
+    }
 
     // Notify selection data changed
     this._selectionChanged('removed');

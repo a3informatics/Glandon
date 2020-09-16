@@ -1060,19 +1060,38 @@ private
 
   # Standard managed children pagination query
   def managed_children_pagination_query(params)
-    triple_count = 28
-    count = params[:count].to_i * triple_count
-    offset = params[:offset].to_i * triple_count
-    %Q{SELECT ?s ?p ?o ?e ?v WHERE
-{
-  #{self.uri.to_ref} #{self.class.children_predicate.to_ref} ?r .
-  ?r bo:reference ?e .
-  ?r bo:ordinal ?v .
-  { ?e ?p ?o . FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179")) BIND (?e as ?s) }
-  UNION   { ?e isoT:hasIdentifier ?s . ?s ?p ?o }
-  UNION   { ?e isoT:hasState ?s . ?s ?p ?o }    
-} ORDER BY (?v) LIMIT #{count} OFFSET #{offset}
-}
+    count = params[:count]
+    offset = params[:offset]
+    %Q{
+      SELECT ?s ?p ?o ?e ?v WHERE
+      {
+        {
+          SELECT ?r WHERE
+          {
+            #{self.uri.to_ref} #{self.class.children_predicate.to_ref} ?r .
+          } LIMIT #{count} OFFSET #{offset}
+        }    
+        ?r bo:ordinal ?v .
+        ?r bo:reference ?e .
+        {
+          { 
+            ?e ?p ?o . 
+            FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179")) 
+            BIND (?e as ?s) 
+          }
+          UNION   
+          {  
+            ?e isoT:hasIdentifier ?s . 
+            ?s ?p ?o 
+          }
+          UNION   
+          { 
+            ?e isoT:hasState ?s . 
+            ?s ?p ?o 
+          } 
+        }   
+      } ORDER BY (?v)
+    }
   end
 
   # Standard unmanaged children pagination query
@@ -1080,13 +1099,14 @@ private
     count = params[:count].to_i
     offset = params[:offset].to_i
     uris = children.map{|x| x.uri.to_ref}[offset..(offset+count-1)].join(" ")
-    %Q{SELECT DISTINCT ?s ?p ?o ?e WHERE
-{
-  VALUES ?e { #{uris} }
-  ?e ?p ?o .
-  BIND (?e as ?s)
-}
-}
+    %Q{
+      SELECT DISTINCT ?s ?p ?o ?e WHERE
+      {
+        VALUES ?e { #{uris} }
+        ?e ?p ?o .
+        BIND (?e as ?s)
+      }
+    }
   end
 
   # Mini history with state and semantic version

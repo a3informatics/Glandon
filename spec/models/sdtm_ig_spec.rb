@@ -10,38 +10,33 @@ describe SdtmIg do
   end
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "sdtm/SDTM_IG_3-2.ttl"]
+    data_files = []
     load_files(schema_files, data_files)
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
   end
 
   it "allows an IG to be found" do
-    item = SdtmIg.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG"))
+    item = SdtmIg.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG/V1#IG"))
     check_file_actual_expected(item.to_h, sub_dir, "find_expected.yaml", equate_method: :hash_equal)
+  end
+
+  it "allows a IG to be found, not found error" do
+    expect{SdtmIg.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG/V1#IGxx"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.cdisc.org/SDTM_IG/V1#IGxx in SdtmIg.")
   end
 
   it "allows an IG to get children (domains)" do
     actual = []
-    item = SdtmIg.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG"))
+    item = SdtmIg.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG/V1#IG"))
     children = item.managed_children_pagination({offset: 0, count: 10})
     children.each {|x| actual << x.to_h}
     check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)
   end
 
- #  it "allows a IG to be found" do
- #    item = SdtmIg.find("IG-CDISC_SDTMIG", "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3")
- #    check_file_actual_expected(item.to_json, sub_dir, "find_input.yaml", equate_method: :hash_equal)
- #  end
-
- #  it "allows a IG to be found, not found error" do
- #    expect{SdtmIg.find("IG-CDISC_SDTMIGvv", "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3")}.to raise_error(Exceptions::NotFoundError)
- #  end
-
- #  it "allows all IGs to be found" do
- #    result = SdtmIg.all 
- #    expect(result.count).to eq(1)
- #    expect(result[0].identifier).to eq("SDTM IG")
- #  end
-  
  #  it "allows the IG history to be found" do
  #    result = SdtmIg.history
  #    expect(result.count).to eq(1)    
@@ -50,56 +45,6 @@ describe SdtmIg do
  #  it "allows the model to be exported as JSON" do
  #    item = SdtmIg.find("IG-CDISC_SDTMIG", "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3")
  #    check_file_actual_expected(item.to_json, sub_dir, "to_json_expected.yaml", equate_method: :hash_equal)
- #  end
-
-	# it "allows the model to be created from JSON" do 
-	# 	input = read_yaml_file(sub_dir, "from_json_input.yaml")
- #    item = SdtmIg.from_json(input)
- #    check_file_actual_expected(item.to_json, sub_dir, "from_json_expected.yaml", equate_method: :hash_equal)
- #  end
-
-	# it "allows the object to be output as sparql" do
- #  	sparql = SparqlUpdateV2.new
- #  	json = read_yaml_file(sub_dir, "from_json_input.yaml")
- #    item = SdtmIg.from_json(json)
- #    result = item.to_sparql_v2(sparql)
- #  #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_1.txt")
- #    #expected = read_text_file_2(sub_dir, "to_sparql_expected_1.txt")
- #    #expect(sparql.to_s).to eq(expected)
- #    check_sparql_no_file(sparql.to_s, "to_sparql_expected_1.txt")
- #    expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG")
- #  end
-
- # 	it "allows the object domain references to be output as sparql" do
- #  	sparql = SparqlUpdateV2.new
- #  	json = read_yaml_file(sub_dir, "from_json_input.yaml")
- #    item = SdtmIg.from_json(json)
- #    result = item.domain_refs_to_sparql(sparql)
- #  #write_text_file_2(sparql.to_s, sub_dir, "domain_refs_to_sparql_expected_1.txt")
- #    #expected = read_text_file_2(sub_dir, "domain_refs_to_sparql_expected_1.txt")
- #    #expect(sparql.to_s).to eq(expected)
- #    check_sparql_no_file(sparql.to_s, "domain_refs_to_sparql_expected_1.txt")
- #    expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG")
- #  end
-
-	# it "allows the item to be built" do
-	# 	clear_triple_store
- #    load_schema_file_into_triple_store("ISO11179Types.ttl")
- #    load_schema_file_into_triple_store("ISO11179Identification.ttl")
- #    load_schema_file_into_triple_store("ISO11179Registration.ttl")
- #    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
- #    load_schema_file_into_triple_store("business_operational.ttl")
- #    load_schema_file_into_triple_store("BusinessDomain.ttl")
- #    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
- #    load_test_file_into_triple_store("iso_namespace_real.ttl")
- #    sparql = SparqlUpdateV2.new
- #  	json = read_yaml_file(sub_dir, "build_input.yaml")
-	# 	result = SdtmIg.build(json, sparql)
- #    check_file_actual_expected(sparql.to_s, sub_dir, "build_expected.yaml", equate_method: :hash_equal)
-	# 	expect(result.errors.count).to eq(0)
- #  #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_2.txt")
- #    expected = read_text_file_2(sub_dir, "to_sparql_expected_2.txt")
-
  #  end
 
  #  it "allows for the addition of a domain" do

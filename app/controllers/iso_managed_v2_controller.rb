@@ -2,6 +2,20 @@ class IsoManagedV2Controller < ApplicationController
 
   before_action :authenticate_user!
 
+  def edit
+    authorize IsoManaged
+    @managed_item = find_item(params)
+    @referer = request.referer
+    @close_path = TypePathManagement.history_url_v2(@managed_item, true)
+  end
+
+  def update
+    authorize IsoManaged
+    managed_item = IsoManagedV2.find_minimum(protect_from_bad_id(params))
+    managed_item.update_comments(the_params)
+    redirect_to the_params[:referer]
+  end
+
   def status
     authorize IsoManaged, :status?
     @referer = request.referer
@@ -14,6 +28,16 @@ class IsoManagedV2Controller < ApplicationController
     else
       redirect_to @referer
     end
+  end
+
+  def comments
+    authorize IsoManaged, :edit?
+    comments = IsoManagedV2.comments(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+    comments.each do |x|
+      x[:edit_path] = edit_iso_managed_v2_path({id: x[:uri].to_id})
+      x[:uri] = x[:uri].to_s
+    end
+    render json: {data: comments}
   end
 
   def impact
@@ -118,7 +142,9 @@ private
   # Strong parameters.
   def the_params
     # Strong parameter using iso_managed not V2 version.
-    params.require(:iso_managed).permit(:current_id, :tag_id, :registration_status, :previous_state, :administrative_note, :unresolved_issue, :sv_type, :offset, :count, :new_th_id)
+    params.require(:iso_managed).permit(:identifier, :scope_id, :current_id, :tag_id, :registration_status, :previous_state, 
+      :administrative_note, :unresolved_issue, :sv_type, :offset, :count, :new_th_id, 
+      :change_description, :explanatory_comment, :origin, :referer)
   end
 
 end

@@ -11,6 +11,7 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
   data_property :question_text
   data_property :prompt_text
   data_property :format
+  data_property :alias
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
   object_property :is_a, cardinality: :one, model_class: "CanonicalReference", read_exclude: true, delete_exclude: true
   object_property :is_complex_datatype_property, cardinality: :one, model_class: "ComplexDatatype::PropertyX", delete_exclude: true

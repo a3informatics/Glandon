@@ -6,4 +6,6 @@ class Tabulation::Column < IsoConceptV2
   data_property :rule
   data_property :ordinal, default: 1
   
+  validates_with Validator::Field, attribute: :ordinal, method: :valid_positive_integer?
+
 end
