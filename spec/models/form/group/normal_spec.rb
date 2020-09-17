@@ -90,7 +90,8 @@ describe Form::Group::Normal do
 
     it "add child II, error" do
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
-      expect{normal.add_child({type:"x_group"})}.to raise_error(Errors::ApplicationLogicError, "Attempting to add an invalid child type")
+      result = normal.add_child({type:"x_group"})
+      check_file_actual_expected(result, sub_dir, "add_child_error_expected.yaml", equate_method: :hash_equal)
     end
 
     it "add child III, bc groups" do
