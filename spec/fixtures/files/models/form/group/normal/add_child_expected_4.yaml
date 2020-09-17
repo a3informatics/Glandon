@@ -2,24 +2,220 @@
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzI=
   :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
-  :label: Not set
+  :label: BMI
   :tagged: []
   :ordinal: 2
   :note: ''
   :completion: ''
   :optional: false
-  :has_item: []
+  :has_item:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAx
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP1
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: code
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :is_common: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAxX1Ix
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGVfVFVDMQ==
+      :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: true
+      :ordinal: 1
+      :reference: http://www.cdisc.org/C66741/V4#C66741_C16358
+      :context: http://www.cdisc.org/C66741/V61#C66741
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQY29kZV9UVUMx
+      :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: true
+      :ordinal: 1
+      :reference: http://www.cdisc.org/C66770/V38#C66770_C49671
+      :context: http://www.cdisc.org/C66770/V59#C66770
+      :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAy
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP2
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: value
+    :tagged: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :is_common: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAyX1Iy
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP2_R2
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPvalue
+      :context: 
+    :has_coded_value: []
   :has_common: []
-  :has_biomedical_concept: 
+  :has_biomedical_concept:
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfUjE=
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.s-cubed.dk/BMI/V1#BCI
+    :context: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzM=
   :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
-  :label: Not set
+  :label: Race
   :tagged: []
   :ordinal: 3
   :note: ''
   :completion: ''
   :optional: false
-  :has_item: []
+  :has_item:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAx
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP1
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: code
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :is_common: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAxX1Ix
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/RACE/V1#BCI_BCI1_BCCDTCD_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUM2
+      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC6
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: true
+      :ordinal: 6
+      :reference: http://www.cdisc.org/C74457/V58#C74457_C17998
+      :context: http://www.cdisc.org/C74457/V58#C74457
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUMx
+      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: true
+      :ordinal: 1
+      :reference: http://www.cdisc.org/C74457/V49#C74457_C16352
+      :context: http://www.cdisc.org/C74457/V58#C74457
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUM0
+      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC4
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: true
+      :ordinal: 4
+      :reference: http://www.cdisc.org/C74457/V10#C74457_C41219
+      :context: http://www.cdisc.org/C74457/V58#C74457
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUM3
+      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC7
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: true
+      :ordinal: 7
+      :reference: http://www.cdisc.org/C74457/V58#C74457_C43234
+      :context: http://www.cdisc.org/C74457/V58#C74457
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUMy
+      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC2
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: true
+      :ordinal: 2
+      :reference: http://www.cdisc.org/C74457/V10#C74457_C41259
+      :context: http://www.cdisc.org/C74457/V58#C74457
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUM1
+      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC5
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: true
+      :ordinal: 5
+      :reference: http://www.cdisc.org/C74457/V10#C74457_C41261
+      :context: http://www.cdisc.org/C74457/V58#C74457
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTFfQkNDRFRDRF9CQ1Bjb2RlX1RVQzE=
+      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: true
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/H000002/V1#H000002_HI000006
+      :context: http://www.s-cubed.dk/H000002/V1#H000002
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUMz
+      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC3
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: true
+      :ordinal: 3
+      :reference: http://www.cdisc.org/C74457/V10#C74457_C41260
+      :context: http://www.cdisc.org/C74457/V58#C74457
+      :local_label: ''
   :has_common: []
-  :has_biomedical_concept: 
+  :has_biomedical_concept:
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfUjE=
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.s-cubed.dk/RACE/V1#BCI
+    :context: 

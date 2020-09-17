@@ -61,35 +61,57 @@ class Form::Group::Normal < Form::Group
   #@return 
   def add_child(params)
     if params[:type].to_sym == :normal_group
-      ordinal = next_ordinal(:has_sub_group)
-      child = Form::Group::Normal.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
-      return child if child.errors.any?
-      self.add_link(:has_sub_group, child.uri)
-      child
+      add_normal_group
     elsif params[:type].to_sym == :bc_group
       results = []
       params[:id_set].each_with_index do |id, index|
         transaction = transaction_begin
-        bci = BiomedicalConceptInstance.find_full(id)
+        bci = BiomedicalConceptInstance.find(id)
         ordinal = next_ordinal(:has_sub_group)
-        child = Form::Group::Bc.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
+        child = Form::Group::Bc.create(label: bci.label, ordinal: ordinal, parent_uri: self.uri)
         return child if child.errors.any?
-        ref = OperationalReferenceV3.create({reference: bci.uri, ordinal: index, transaction: transaction}, self)
+        bc_reference = OperationalReferenceV3.create({reference: bci.uri, transaction: transaction}, child)
+        child.add_link(:has_biomedical_concept, bc_reference.uri)
+        bci.has_item_objects.each do |item|
+          item.has_complex_datatype_objects.each do |cdt|
+            cdt.has_property_objects.each_with_index do |property, ind|
+              bc_property = Form::Item::BcProperty.create(label: property.label, ordinal: ind+1, parent_uri: child.uri)
+              bc_property_reference = OperationalReferenceV3.create({reference: property.uri, ordinal: ind+1, transaction: transaction}, bc_property)
+              property.has_coded_value_objects.each do |cv_ref|
+                bc_property.add_link(:has_coded_value, cv_ref.uri)
+              end
+              bc_property.add_link(:has_property, bc_property_reference.uri)
+              child.add_link(:has_item, bc_property.uri)
+            end 
+          end
+        end
         self.add_link(:has_sub_group, child.uri)
-        child.add_link(:has_biomedical_concept, ref.uri)
         transaction_execute
+        child = Form::Group::Bc.find_full(child.uri)
         results << child.to_h
       end
       results
     elsif items.include?params[:type].to_sym
-      ordinal = next_ordinal(:has_item)
-      child = type_to_class[params[:type].to_sym].create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
-      return child if child.errors.any?
-      self.add_link(:has_item, child.uri)
-      child
+      add_item(params)
     else
       self.errors.add(:base, "Attempting to add an invalid child type")
     end 
+  end
+
+  def add_normal_group
+    ordinal = next_ordinal(:has_sub_group)
+    child = Form::Group::Normal.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
+    return child if child.errors.any?
+    self.add_link(:has_sub_group, child.uri)
+    child
+  end
+
+  def add_item(params)
+    ordinal = next_ordinal(:has_item)
+    child = type_to_class[params[:type].to_sym].create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
+    return child if child.errors.any?
+    self.add_link(:has_item, child.uri)
+    child
   end
 
   def type_to_class
