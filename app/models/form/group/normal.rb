@@ -65,30 +65,38 @@ class Form::Group::Normal < Form::Group
     elsif params[:type].to_sym == :bc_group
       results = []
       params[:id_set].each_with_index do |id, index|
-        transaction = transaction_begin
         bci = BiomedicalConceptInstance.find(id)
+        transaction = transaction_begin
         ordinal = next_ordinal(:has_sub_group)
         child = Form::Group::Bc.create(label: bci.label, ordinal: ordinal, parent_uri: self.uri)
         return child if child.errors.any?
         bc_reference = OperationalReferenceV3.create({reference: bci.uri, transaction: transaction}, child)
         child.add_link(:has_biomedical_concept, bc_reference.uri)
-        bci.has_item_objects.each do |item|
+        bci.has_item_objects.each do |item| #EACH ITEM
           item.has_complex_datatype_objects.each do |cdt|
             cdt.has_property_objects.each_with_index do |property, ind|
-              bc_property = Form::Item::BcProperty.create(label: property.label, ordinal: ind+1, parent_uri: child.uri)
+              bc_property = Form::Item::BcProperty.create(label: property.alias, ordinal: ind+1, parent_uri: child.uri)
               bc_property_reference = OperationalReferenceV3.create({reference: property.uri, ordinal: ind+1, transaction: transaction}, bc_property)
               property.has_coded_value_objects.each do |cv_ref|
-                bc_property.add_link(:has_coded_value, cv_ref.uri)
+                cli = Thesaurus::UnmanagedConcept.find_full(cv_ref.reference)
+                cl = Thesaurus::ManagedConcept.find_with_properties(cv_ref.context)
+                coded_value_reference = OperationalReferenceV3::TucReference.create({label: cli.label, reference: cli, context: cl, ordinal: ordinal, transaction: transaction}, bc_property)
+                bc_property.add_link(:has_coded_value, coded_value_reference.uri)
               end
               bc_property.add_link(:has_property, bc_property_reference.uri)
               child.add_link(:has_item, bc_property.uri)
             end 
           end
-        end
+        end ##END EACH ITEM
         self.add_link(:has_sub_group, child.uri)
         transaction_execute
-        child = Form::Group::Bc.find_full(child.uri)
-        results << child.to_h
+        child = Form::Group::Bc.find_full(child.uri).to_h
+        child[:has_item].each do |item|
+          item[:has_coded_value].each do |cv|
+            cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
+          end
+        end
+        results << child
       end
       results
     elsif items.include?params[:type].to_sym

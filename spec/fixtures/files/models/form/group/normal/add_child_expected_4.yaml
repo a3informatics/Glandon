@@ -12,7 +12,7 @@
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAx
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP1
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: code
+    :label: "--TESTCD"
     :tagged: []
     :ordinal: 1
     :note: ''
@@ -28,35 +28,39 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode
+      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI7_BCCDTCD_BCPcode
       :context: 
     :has_coded_value:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGVfVFVDMQ==
-      :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAxX1RVQzI=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP1_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
+      :label: Kilogram per Square Meter
       :tagged: []
       :enabled: true
-      :optional: true
-      :ordinal: 1
-      :reference: http://www.cdisc.org/C66741/V4#C66741_C16358
+      :optional: false
+      :ordinal: 2
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YzOCNDNjY3NzBfQzQ5Njcx
+        :uri: http://www.cdisc.org/C66770/V38#C66770_C49671
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Kilogram per Square Meter
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
+        :identifier: C49671
+        :notation: kg/m2
+        :definition: A unit expressed as kilogram of mass per square meter of area.(NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#2d2896805038f7d59edd0a6e072316d80d5df43a
+        :synonym:
+        - http://www.assero.co.uk/SYN#2d2896805038f7d59edd0a6e072316d80d5df43a
       :context: http://www.cdisc.org/C66741/V61#C66741
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQY29kZV9UVUMx
-      :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: true
-      :ordinal: 1
-      :reference: http://www.cdisc.org/C66770/V38#C66770_C49671
-      :context: http://www.cdisc.org/C66770/V59#C66770
       :local_label: ''
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAy
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP2
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: value
+    :label: "--ORRES"
     :tagged: []
     :ordinal: 2
     :note: ''
@@ -100,7 +104,7 @@
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAx
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP1
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: code
+    :label: "--TESTCD"
     :tagged: []
     :ordinal: 1
     :note: ''
@@ -116,96 +120,31 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/RACE/V1#BCI_BCI1_BCCDTCD_BCPcode
+      :reference: http://www.s-cubed.dk/RACE/V1#BCI_BCI8_BCCDTBL_BCPvalue
       :context: 
     :has_coded_value:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUM2
-      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC6
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAxX1RVQzM=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP1_TUC3
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
+      :label: Not Reported
       :tagged: []
       :enabled: true
-      :optional: true
-      :ordinal: 6
-      :reference: http://www.cdisc.org/C74457/V58#C74457_C17998
-      :context: http://www.cdisc.org/C74457/V58#C74457
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUMx
-      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: true
-      :ordinal: 1
-      :reference: http://www.cdisc.org/C74457/V49#C74457_C16352
-      :context: http://www.cdisc.org/C74457/V58#C74457
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUM0
-      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC4
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: true
-      :ordinal: 4
-      :reference: http://www.cdisc.org/C74457/V10#C74457_C41219
-      :context: http://www.cdisc.org/C74457/V58#C74457
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUM3
-      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC7
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: true
-      :ordinal: 7
-      :reference: http://www.cdisc.org/C74457/V58#C74457_C43234
-      :context: http://www.cdisc.org/C74457/V58#C74457
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUMy
-      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC2
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: true
-      :ordinal: 2
-      :reference: http://www.cdisc.org/C74457/V10#C74457_C41259
-      :context: http://www.cdisc.org/C74457/V58#C74457
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUM1
-      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC5
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: true
-      :ordinal: 5
-      :reference: http://www.cdisc.org/C74457/V10#C74457_C41261
-      :context: http://www.cdisc.org/C74457/V58#C74457
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTFfQkNDRFRDRF9CQ1Bjb2RlX1RVQzE=
-      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: true
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/H000002/V1#H000002_HI000006
-      :context: http://www.s-cubed.dk/H000002/V1#H000002
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX0JDSTEwX0JDQ0RUQ0RfQkNQY29kZV9UVUMz
-      :uri: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC3
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: true
+      :optional: false
       :ordinal: 3
-      :reference: http://www.cdisc.org/C74457/V10#C74457_C41260
-      :context: http://www.cdisc.org/C74457/V58#C74457
+      :reference:
+        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0gwMDAwMDIvVjEjSDAwMDAwMl9ISTAwMDAwNg==
+        :uri: http://www.s-cubed.dk/H000002/V1#H000002_HI000006
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Race
+        :tagged: []
+        :identifier: HI000006
+        :notation: RACE
+        :definition: Race
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#9514269f0b4d36bb1ee413dd0b59dc203d8b3828
+        :synonym: []
+      :context: http://www.s-cubed.dk/H000002/V1#H000002
       :local_label: ''
   :has_common: []
   :has_biomedical_concept:

@@ -12,7 +12,7 @@
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAx
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP1
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: code
+    :label: "--TESTCD"
     :tagged: []
     :ordinal: 1
     :note: ''
@@ -28,46 +28,41 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI5_BCCDTCD_BCPcode
       :context: 
     :has_coded_value:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1dFSUdIVC9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGVfVFVDMQ==
-      :uri: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAxX1RVQzE=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP1_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
+      :label: Kilogram
       :tagged: []
       :enabled: true
-      :optional: true
+      :optional: false
       :ordinal: 1
-      :reference: http://www.cdisc.org/C66741/V4#C66741_C25208
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0OSNDNjY3NzBfQzI4MjUy
+        :uri: http://www.cdisc.org/C66770/V49#C66770_C28252
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Kilogram
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
+        :identifier: C28252
+        :notation: kg
+        :definition: The base unit of mass in the International System of Units (SI)
+          equal to the mass of the international prototype kilogram, a platinum-iridium
+          cylinder in the custody of the International Bureau of Weights and Measures.
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#4bc17b82eb026aa064b71b05667b89d5d2d678bb
+        :synonym:
+        - http://www.assero.co.uk/SYN#4bc17b82eb026aa064b71b05667b89d5d2d678bb
       :context: http://www.cdisc.org/C66741/V61#C66741
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1dFSUdIVC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQY29kZV9UVUMx
-      :uri: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: true
-      :ordinal: 1
-      :reference: http://www.cdisc.org/C66770/V49#C66770_C28252
-      :context: http://www.cdisc.org/C66770/V59#C66770
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1dFSUdIVC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQY29kZV9UVUMy
-      :uri: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC2
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: true
-      :ordinal: 2
-      :reference: http://www.cdisc.org/C66770/V4#C66770_C48531
-      :context: http://www.cdisc.org/C66770/V59#C66770
       :local_label: ''
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAy
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP2
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: value
+    :label: "--ORRES"
     :tagged: []
     :ordinal: 2
     :note: ''
