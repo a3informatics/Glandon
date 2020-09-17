@@ -28,6 +28,10 @@ module UiHelpers
     a.dismiss
   end
 
+ def ui_table_sort(table,column_name)
+    find(:xpath, "//table[@id='#{table}']/thead/tr/th[contains(.,'#{column_name}')]").click 
+ end
+
   def ui_table_row_link_click(content, link_text)
     find(:xpath, "//tr[contains(.,'#{content}')]/td/a", :text => "#{link_text}").click
   end
@@ -135,7 +139,7 @@ module UiHelpers
     input.set(text)
   end
 
-  # check table cell
+    # check table cell
   def ui_check_table_cell(table_id, row, col, text)
     cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").text
     expect(cell).to eq(text)
@@ -144,6 +148,11 @@ module UiHelpers
   def ui_check_table_cell_edit(table_id, row, col)
     td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
     expect(td.find('div span.icon-edit-circle', visible: :all)).to_not eq(nil)
+  end
+
+  def ui_check_table_cell_create(table_id, row, col)
+    td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+    expect(td.find('div span.icon-plus-circle', visible: :all)).to_not eq(nil)
   end
 
   def ui_check_table_cell_delete(table_id, row, col)

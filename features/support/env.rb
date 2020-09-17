@@ -38,13 +38,13 @@ Capybara.default_driver = :selenium_chrome
 #root='/Users/Kirsten/Documents/rails/Glandon'
 
 if TYPE == 'Actual' 
-    Capybara::save_path = "./cucumber-report/screenshots/actual/"
-    # Clean out the screenshot folder before run
-     FileUtils.rm_rf(Dir[Capybara::save_path])
+  Capybara::save_path = "./cucumber-report/screenshots/actual/"
+  # Clean out the screenshot folder before run
+  FileUtils.rm_rf(Dir[Capybara::save_path])
 else
   Capybara::save_path = "./cucumber-report/screenshots/expected/"
   # Clean out the screenshot folder before run
-    FileUtils.rm_rf(Dir[Capybara::save_path])
+  FileUtils.rm_rf(Dir[Capybara::save_path])
 end
 
 def zoom_in
