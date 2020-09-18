@@ -268,6 +268,7 @@ class IsoConceptV2 < Fuseki::Base
     else
       self.errors.add(:base, "Attempting to move up the first node")
     end
+    self
   end
 
   def move_down(parent_id)
@@ -284,6 +285,7 @@ class IsoConceptV2 < Fuseki::Base
     else
       self.errors.add(:base, "Attempting to move down the last node")
     end
+    self
   end
 
 private
