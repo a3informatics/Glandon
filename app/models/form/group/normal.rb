@@ -131,7 +131,7 @@ class Form::Group::Normal < Form::Group
   end
 
   def children_ordered(child)
-    if child.class == Form::Group::Normal
+    if child.class == Form::Group::Normal || child.class == Form::Group::Bc
      self.has_sub_group_objects.sort_by {|x| x.ordinal}
     else items_classes.include?(child.class)
       self.has_item_objects.sort_by {|x| x.ordinal}
