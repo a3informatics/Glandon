@@ -105,7 +105,7 @@ describe Forms::Items::TextLabelsController do
     it "Move up I" do
       request.env['HTTP_ACCEPT'] = "application/json"
       request.content_type = 'application/json'
-      item = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG3_TL4"))
+      item = Form::Item::TextLabel.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG3_TL4"))
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG3"))
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
@@ -117,7 +117,7 @@ describe Forms::Items::TextLabelsController do
     it 'Move up I, Error locked by another user' do
       request.env['HTTP_ACCEPT'] = "application/json"
       request.content_type = 'application/json'
-      item = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG3_TL4"))
+      item = Form::Item::TextLabel.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG3_TL4"))
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG3"))
       token = Token.obtain(@form, @lock_user)
       audit_count = AuditTrail.count
