@@ -397,7 +397,7 @@ Rails.application.routes.draw do
   end
   namespace :forms do
     namespace :items do
-      resources :questions, :text_labels, :placeholders, :mappings, :commons, :bc_properties, :only => [:update] do
+      resources :questions, :text_labels, :placeholders, :mappings, :commons, :bc_properties, :only => [:update, :destroy] do
         member do
           put :move_up
           put :move_down
@@ -406,7 +406,7 @@ Rails.application.routes.draw do
       end
     end
     namespace :groups do
-      resources :bc_groups, :normal_groups, :common_groups, :only => [:update] do
+      resources :bc_groups, :normal_groups, :common_groups, :only => [:update, :destroy] do
         member do
           put :move_up
           put :move_down
