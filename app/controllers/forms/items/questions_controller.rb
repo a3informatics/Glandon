@@ -34,10 +34,10 @@ class Forms::Items::QuestionsController < ManagedItemsController
   end
 
   def move_up
-    form = Form.find_minimum(move_params[:form_id])
+    form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     question = Form::Item::Question.find(protect_from_bad_id(params))
-    question = question.move_up(move_params[:parent_id])
+    question = question.move_up(the_params0000[:parent_id])
     if question.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -47,10 +47,10 @@ class Forms::Items::QuestionsController < ManagedItemsController
   end
 
   def move_down
-    form = Form.find_minimum(move_params[:form_id])
+    form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     question = Form::Item::Question.find(protect_from_bad_id(params))
-    question = question.move_down(move_params[:parent_id])
+    question = question.move_down(the_params[:parent_id])
     if question.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -59,54 +59,20 @@ class Forms::Items::QuestionsController < ManagedItemsController
     end
   end
 
-  # def destroy
-  #   authorize Thesaurus
-  #   tc = Thesaurus::UnmanagedConcept.find(protect_from_bad_id(params))
-  #   parent = Thesaurus::ManagedConcept.find_minimum(the_params[:parent_id])
-  #   return true unless check_lock_for_item(parent)
-  #   tc.delete_or_unlink(parent)
-  #   AuditTrail.update_item_event(current_user, parent, "Code list updated, item #{tc.identifier} deleted.") if @lock.token.refresh == 1
-  #   render :json => {data: []}, :status => 200
-  # end
-
-  # def destroy
-  #   bc = BiomedicalConcept.find_minimum(protect_from_bad_id(params))
-  #   return true unless get_lock_for_item(bc)
-  #   bc.delete
-  #   AuditTrail.delete_item_event(current_user, bc, bc.audit_message(:deleted))
-  #   @lock.release
-  #   redirect_to request.referer
-  # end
-
-  #   def remove
-  #   authorize Thesaurus, :edit?
-  #   subset = Thesaurus::Subset.find(protect_from_bad_id(params))
-  #   parent_mc = Thesaurus::ManagedConcept.find_minimum(subset.find_mc.id)
-  #   return true unless check_lock_for_item(parent_mc)
-  #   sm = subset.remove(the_params[:member_id])
-  #   return true if lock_item_errors
-  #   render json: { }, status: 200
-  # end
-
-  #   def destroy
-  #   authorize Thesaurus
-  #   tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
-  #   token = get_token(tc)
-  #   if !token.nil?
-  #     if tc.delete_or_unlink == 1
-  #       AuditTrail.delete_item_event(current_user, tc, tc.audit_message(:deleted))
-  #       render :json => {}, :status => 200
-  #     else
-  #       render :json => {errors: tc.errors.full_messages}, :status => 422
-  #     end
-  #   else
-  #     render :json => {errors: [token_destroy_message(tc)]}, :status => 422
-  #   end
-  # end
+  def destroy
+    question = Form::Item::Question.find(protect_from_bad_id(params))
+    parent = Form::Group.find(the_params[:parent_id])
+    form = Form.find_minimum(the_params[:form_id])
+    return true unless check_lock_for_item(form)
+    question.delete(parent)
+    return true if lock_item_errors
+    AuditTrail.update_item_event(current_user, form, "Form updated, item #{question.label} deleted.") if @lock.token.refresh == 1
+    render json: {data: "" }, status: 200
+  end
 
 private
 
-  def move_params
+  def the_params
     params.require(:question).permit(:form_id, :parent_id)
   end
 
