@@ -262,11 +262,12 @@ class IsoConceptV2 < Fuseki::Base
       second_node = parent[index_item -1] 
       transaction = transaction_begin
       self.ordinal, second_node.ordinal = second_node.ordinal, self.ordinal #Swap ordinals
+      second_node.save
+      self.save
       transaction_execute
     else
       self.errors.add(:base, "Attempting to move up the first node")
     end
-    self
   end
 
   def move_down(parent_id)
@@ -277,11 +278,12 @@ class IsoConceptV2 < Fuseki::Base
       second_node = parent[index_item +1] 
       transaction = transaction_begin
       self.ordinal, second_node.ordinal = second_node.ordinal, self.ordinal #Swap ordinals
+      second_node.save
+      self.save
       transaction_execute
     else
       self.errors.add(:base, "Attempting to move down the last node")
     end
-    self
   end
 
 private
