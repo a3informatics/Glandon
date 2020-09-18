@@ -71,6 +71,10 @@ class Form < IsoManagedV2
     child
   end
 
+  def children_ordered(child)
+    self.has_group_objects.sort_by {|x| x.ordinal}
+  end
+
   private
 
     # Next Ordinal. Get the next ordinal for a managed item collection

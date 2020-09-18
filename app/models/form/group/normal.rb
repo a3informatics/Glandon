@@ -130,6 +130,18 @@ class Form::Group::Normal < Form::Group
     items = [:text_label, :placeholder, :mapping, :question]
   end
 
+  def children_ordered(child)
+    if child.class == Form::Group::Normal
+     self.has_sub_group_objects.sort_by {|x| x.ordinal}
+    else items_classes.include?(child.class)
+      self.has_item_objects.sort_by {|x| x.ordinal}
+    end  
+  end
+
+  def items_classes
+    items_classes = [Form::Item::Question, Form::Item::Placeholder, Form::Item::Mapping, Form::Item::TextLabel]
+  end
+
   # Is a Question only group
   def is_question_only_group?
     if self.class == Form::Group::Normal

@@ -64,4 +64,8 @@ class Form::Item::Question < Form::Item
     end 
   end
 
+  def children_ordered(child)
+    self.has_coded_value_objects.sort_by {|x| x.ordinal}
+  end
+
 end

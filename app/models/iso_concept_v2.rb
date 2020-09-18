@@ -254,6 +254,36 @@ class IsoConceptV2 < Fuseki::Base
     return self
   end
 
+  def move_up(parent_id)
+    parent = IsoConceptV2.find(Uri.new(id:parent_id))#Find parent
+    parent = parent.children_ordered(self) #Order items
+    index_item = parent.each_index.select{|i| parent[i].uri == self.uri }.first
+    unless index_item == 0
+      second_node = parent[index_item -1] 
+      transaction = transaction_begin
+      self.ordinal, second_node.ordinal = second_node.ordinal, self.ordinal #Swap ordinals
+      transaction_execute
+    else
+      self.errors.add(:base, "Attempting to move up the first node")
+    end
+    self
+  end
+
+  def move_down(parent_id)
+    parent = IsoConceptV2.find(Uri.new(id:parent_id))#Find parent
+    parent = parent.children_ordered(self) #Order items
+    index_item = parent.each_index.select{|i| parent[i].uri == self.uri }.first
+    unless index_item == parent.length-1
+      second_node = parent[index_item +1] 
+      transaction = transaction_begin
+      self.ordinal, second_node.ordinal = second_node.ordinal, self.ordinal #Swap ordinals
+      transaction_execute
+    else
+      self.errors.add(:base, "Attempting to move down the last node")
+    end
+    self
+  end
+
 private
 
   # Replace children if no change. Replaces current child with the previous one if there are no difference.

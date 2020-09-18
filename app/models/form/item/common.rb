@@ -31,6 +31,10 @@ class Form::Item::Common < Form::Item
     html += end_row
   end
 
+  def children_ordered(child)
+    self.has_common_item_objects.sort_by {|x| x.ordinal} 
+  end
+
   private
 
     def terminology_cell(property)
