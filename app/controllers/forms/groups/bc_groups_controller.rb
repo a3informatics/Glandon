@@ -34,7 +34,37 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
     render :json => {data: new_child.to_h}, :status => 200
   end
 
+  def move_up
+    form = Form.find_minimum(move_params[:form_id])
+    return true unless check_lock_for_item(form)
+    bc = Form::Group::Bc.find(protect_from_bad_id(params))
+    bc = bc.move_up(move_params[:parent_id])
+    if bc.errors.empty?
+      AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
+      render :json => {data: ""}, :status => 200
+    else
+      render :json => {:errors => bc.errors.full_messages}, :status => 422
+    end
+  end
+
+  def move_down
+    form = Form.find_minimum(move_params[:form_id])
+    return true unless check_lock_for_item(form)
+    bc = Form::Group::Bc.find(protect_from_bad_id(params))
+    bc = bc.move_down(move_params[:parent_id])
+    if bc.errors.empty?
+      AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
+      render :json => {data: ""}, :status => 200
+    else
+      render :json => {:errors => bc.errors.full_messages}, :status => 422
+    end
+  end
+
 private
+
+  def move_params
+    params.require(:bc_group).permit(:form_id, :parent_id)
+  end
 
   def add_child_params
     params.require(:bc_group).permit(:form_id, :type, :id_set => [])
