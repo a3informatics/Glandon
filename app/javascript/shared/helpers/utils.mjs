@@ -45,15 +45,17 @@ const tableInteraction = {
  * Check if element is within parent viewport or not
  * @param {JQuery Element} parent Parent element
  * @param {JQuery Element} element Child element to check
+ * @param {int} portion Amount of element overflowing parent which will be considered visible (default = 2 ~ half of element)
  * @return {boolean} Value specifying whether element is inside the parent viewport
  */
-function isInViewport(parent, element) {
+function isInViewport(parent, element, portion = 2) {
 
-  let elBBox = element[0].getBBox(),
-      left = element.position().left + (elBBox.width / 2) >= parent.position().left,
-      top = element.position().top + (elBBox.height / 2) >= parent.position().top,
-      bottom = element.position().top + (elBBox.height / 2) <= parent.position().top + parent.height(),
-      right = element.position().left + (elBBox.width / 2) <= parent.position().left + parent.width()
+  let elRect = element.get(0).getBoundingClientRect(),
+
+      left = elRect.left + (elRect.width / portion) >= parent.position().left,
+      top = elRect.top + (elRect.height / portion) >= parent.position().top,
+      bottom = elRect.top + (elRect.height / portion) <= parent.position().top + parent.height(),
+      right = elRect.left + (elRect.width / portion) <= parent.position().left + parent.width()
 
   return left && top && bottom && right;
 

@@ -1,3 +1,5 @@
+import { alerts } from 'shared/ui/alerts'
+
 /**
  * Fetches data from server
  * @param {Object} params Request parameters
@@ -90,11 +92,10 @@ function $getPaginated(offset = 0, params = {}) {
     if ( _.isNumber( r.count ) && _.isNumber( r.offset ) && r.count >= params.count )
       $getPaginated( r.offset + params.count, params );
     else
-      // Data loaded
-      params.done();
+      params.done(); // All data loaded
 
   })
-  .fail( (x, s, e) => handleAjaxError( x, s, e, params.errorDiv ) )
+  .fail( (x, s, e) => $handleError( x, s, e, params.errorDiv ) )
   .always( () => params.always() );
 
 }
@@ -121,7 +122,7 @@ function _simpleAjax({
   data = {},
   done = () => {},
   always = () => {},
-  error = handleAjaxError,
+  error = $handleError,
   cache = true,
   errorDiv = null,
   rawResult = false,
@@ -184,10 +185,37 @@ function _jsonizeUrl(url) {
 
 }
 
+/**
+ * Generic AJAX error-handling function, shows alerts with errors
+ */
+function $handleError(xhr, status, error, target) {
+
+  // Force refresh when request unauthorized
+  if ( xhr.status === 401 ) {
+    location.reload(true);
+    return;
+  }
+
+  let errors = [];
+
+  try {
+
+    let json = JSON.parse( xhr.responseText );
+    errors.push( json.error || json.errors || 'Error communicating with the server.' );
+
+  } catch( err ) {
+    errors.push( 'Error communicating with the server.' );
+  }
+
+  alerts.error( errors, target );
+
+}
+
 export {
   $get,
   $put,
   $post,
   $delete,
-  $getPaginated
+  $getPaginated,
+  $handleError
 }

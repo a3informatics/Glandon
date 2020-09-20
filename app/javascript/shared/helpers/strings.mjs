@@ -5,7 +5,12 @@
  * @return {boolean} True if value found in string
  */
 function findInString(value, text) {
-  return text.toLowerCase().includes( value.toLowerCase() );
+
+  if ( typeof text === 'string' )
+    return text.toLowerCase().includes( value.toLowerCase() );
+  else
+    return false
+
 }
 
 /**
@@ -15,7 +20,12 @@ function findInString(value, text) {
  * @return {string} Cropped text if over maxLength limit, otherwise returns text
  */
 function cropText(text, maxLength = 30) {
-  return text.length > 30 ? `${ text.substring(0, 30) }...` : text;
+
+  if ( typeof text === 'string' )
+    return text.length > 30 ? `${ text.substring(0, 30) }...` : text;
+  else
+    return text
+
 }
 
 /**
