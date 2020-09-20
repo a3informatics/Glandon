@@ -27,7 +27,7 @@ export default class TreeGraph {
    * @param {boolean} params.autoScale Determines whether the graph container should scale height to fit window height, optional [default=true]
    * @param {boolean} params.zoomable Determines whether the graph can be zoomed and dragged, optional [default=true]
    * @param {boolean} params.selectable Determines whether the nodes can be selected by clicking, optional [default=true]
-   * @param {boolean} params.keyNavigation Determines whether the nodes can be selected with keyboard arrow keys, optional [default=true]
+   * @param {boolean} params.keyControls Determines whether the nodes can be selected with keyboard arrow keys, optional [default=true]
    */
   constructor({
     selector,
@@ -36,12 +36,12 @@ export default class TreeGraph {
     autoScale = true,
     zoomable = true,
     selectable = true,
-    keyNavigation = true
+    keyControls = true
   }) {
 
     Object.assign( this, {
       dataUrl, selector, autoScale,
-      zoomable, selectable, keyNavigation,
+      zoomable, selectable, keyControls,
       Node: nodeModule
     });
 
@@ -186,6 +186,22 @@ export default class TreeGraph {
 
   }
 
+  /**
+   * Collapse / expand (toggle) Node and re-draw
+   * @param {TreeNode} node Node instance to toggle
+   * @return {TreeGraph} This instance for method chaining
+   */
+  collapseOrExpand(node) {
+
+    if ( node ) {
+      node.collapseOrExpand();
+      this.render()._restoreGraph();
+    }
+
+    return this;
+
+  }
+
 
   /** Search **/
 
@@ -235,14 +251,14 @@ export default class TreeGraph {
    * Enable graph key navigation
    */
   keysEnable() {
-    this.keyNavigation = true;
+    this.keyControls = true;
   }
 
   /**
    * Disable graph key navigation
    */
   keysDisable() {
-    this.keyNavigation = false;
+    this.keyControls = false;
   }
 
 
@@ -350,7 +366,7 @@ export default class TreeGraph {
                       .on( 'keyup', e => this._onSearchInput(e) );
 
     // Key navigation event handler
-    if ( this.keyNavigation )
+    if ( this.keyControls )
       $( 'body' ).on( 'keydown', e => this._onKeyPress(e) );
 
   }
@@ -519,7 +535,7 @@ export default class TreeGraph {
    * @param {Object} rawData Compatible graph data fetched from the server
    */
   _onDataLoaded(rawData) {
-console.log(rawData);
+
     // Convert raw data to d3 hierarchy
     this.graph.root = this._preprocessData( rawData );
     this.render().reCenter();
@@ -560,10 +576,7 @@ console.log(rawData);
 
     // Prevent context menu display
     d3.event.preventDefault();
-
-    node.collapseOrExpand();
-    // Re-draw graph
-    this.render()._restoreGraph();
+    this.collapseOrExpand( node );
 
   }
 
@@ -598,37 +611,20 @@ console.log(rawData);
   }
 
   /**
-   * On keydown event, handle graph navigation if enabled
+   * On keydown event, handle graph key navigation and controls
    * Extend / override method for custom behavior
    * @param {event} e Keydown event object
    */
   _onKeyPress(e) {
 
-    if ( !this.selectable || !this.keyNavigation || !this.selected )
+    if ( !this.keyControls || this.loading || e.ctrlKey )
       return;
 
-    if ( e.which < 37 || e.which > 40 )
-      return;
+    if ( this.selectable && this.selected )
+      this._keyNavigation( e );
 
-    switch(e.which) {
-      case 38:
-        this.selectNode( this.selected.previous );
-        break;
-      case 39:
-        this.selectNode( this.selected.middleChild );
-        break;
-      case 40:
-        this.selectNode( this.selected.next );
-        break;
-      case 37:
-        this.selectNode( this.selected.parent );
-        break;
-    }
-
-    e.preventDefault();
-
-    if ( !isInViewport( $( this.graph.svg.node() ), this.selected.$ ) )
-      this.focusOn( this.selected, false, false );
+    if ( this._props.keys.includes( e.which ) )
+      this._keyControls( e );
 
   }
 
@@ -637,6 +633,69 @@ console.log(rawData);
    * Override for custom behavior
    */
   _onRenderComplete() { }
+
+
+  /** Keys **/
+
+
+  /**
+   * Handle graph selected node navigation
+   * Extend / override method for custom behavior
+   * @param {event} e Key event object
+   */
+  _keyNavigation(e) {
+
+    if ( e.which === 37 && !e.shiftKey ) // Arrow Left
+      this.selectNode( this.selected.parent );
+
+    else if ( e.which === 38 && !e.shiftKey ) // Arrow Up
+      this.selectNode( this.selected.previous );
+
+    else if ( e.which === 39 && !e.shiftKey ) // Arrow Right
+      this.selectNode( this.selected.middleChild );
+
+    else if ( e.which === 40 && !e.shiftKey ) // Arrow Down
+      this.selectNode( this.selected.next );
+
+    else
+      return;
+
+    e.preventDefault();
+
+    // Focus on Node if out of viewport
+    if ( !isInViewport( $(this.graph.svg.node()), this.selected.$, 1 ) )
+      this.focusOn( this.selected, false, false );
+
+  }
+
+  /**
+   * Handle graph key controls
+   * Extend / override method for custom behavior
+   * @param {event} e Key event object
+   */
+  _keyControls(e) {
+
+    if ( e.shiftKey && e.which === 67 ) // Shift + C
+      this.collapseAll();
+
+    else if ( e.shiftKey && e.which === 88 ) // Shift + X
+      this.collapseExcept( this.selected );
+
+    else if ( e.shiftKey && e.which === 69 ) // Shift + E
+      this.expandAll( false );
+
+    else if ( !e.shiftKey && e.which === 67 ) // C
+      this.reCenter();
+
+    else if ( e.which === 32 && this.selected ) // Spacebar
+      this.collapseOrExpand( this.selected );
+
+    else
+      return;
+
+    e.preventDefault();
+
+  }
 
 
   /** Renderers **/
@@ -812,6 +871,8 @@ console.log(rawData);
    */
   _loading(enable) {
 
+    this.loading = enable;
+
     let graph = $( this.selector ).find( '#d3' );
 
     graph.toggleClass( 'loading', enable );
@@ -841,7 +902,7 @@ console.log(rawData);
   /**
    * Graph properties definitions
    * Extend and override method to customize
-   * @return {Object} Graph properties for tree, svg, zoom
+   * @return {Object} Graph properties for tree, svg, zoom, allowed keys
    */
   get _props() {
 
@@ -865,7 +926,8 @@ console.log(rawData);
           zoom: {
             min: 0.5,
             max: 2
-          }
+          },
+          keys: [ 32, 38, 40, 67, 69, 88 ]
         }
 
     return props;

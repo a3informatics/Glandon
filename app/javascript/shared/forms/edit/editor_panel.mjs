@@ -265,6 +265,30 @@ export default class FormEditor extends TreeGraph {
   }
 
 
+  /** Keys ** /
+
+
+  /**
+   * Handle graph key controls ( edit, move node up & down )
+   * @extends _keyControls parent implementation
+   * @param {event} e Key event object
+   */
+  _keyControls(e) {
+
+    super._keyControls(e);
+
+    if ( e.shiftKey && e.which === 38 && this.selected ) // Shift + Arrow Up
+      this.moveNode( this.selected, 'up' );
+
+    else if ( e.shiftKey && e.which === 40 && this.selected ) // Shift + Arrow Down
+      this.moveNode( this.selected, 'down' );
+
+    else if ( !e.shiftKey && e.which === 69 && this.selected ) // E
+      this.editNode( this.selected );
+
+  }
+
+
   /** Referenced Items **/
 
 
@@ -461,6 +485,9 @@ export default class FormEditor extends TreeGraph {
     // Custom zoom values
     props.zoom.min = 0.3;
     props.zoom.max = 1.6;
+
+    // Custom key controls
+    props.keys = props.keys.concat( [ 38, 40 ] );
 
     return props;
 
