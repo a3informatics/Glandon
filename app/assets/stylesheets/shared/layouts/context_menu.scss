@@ -37,6 +37,11 @@ span.icon-context-menu, div.icon-context-menu{
   transform: translateX(-100%);
 }
 
+.context-menu.top{
+  top: 0px;
+  transform: translateY(-100%);
+}
+
 .context-menu .option{
   text-align: left;
   padding: 10px 14px;
@@ -59,18 +64,25 @@ span.icon-context-menu, div.icon-context-menu{
 
 // Colors
 
-.context-menu .option:hover{
-  background: $secondary-color-medium;
-  color: $grey-white;
-  text-decoration: none;
+.context-menu {
+  .option:hover, .option:focus {
+    outline: none;
+    background: $secondary-color-medium;
+    color: $grey-white;
+    text-decoration: none;
+  }
 }
 
-.context-menu.blue .option:hover{
-  background: $primary-color-medium;
+.context-menu.blue {
+  .option:hover, .option:focus {
+    background: $primary-color-medium;
+  }
 }
 
-.context-menu.light .option:hover{
-  background: $primary-color-bright;
+.context-menu.light {
+  .option:hover, .option:focus {
+    background: $primary-color-bright;
+  }
 }
 
 // Size

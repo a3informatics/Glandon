@@ -29,13 +29,16 @@
 // Custom styles
 
 .d3 .node.disabled {
-  opacity: .7;
+	.label-border, .label {
+  	opacity: .6;
+	}
 }
 
-.d3 .node.search-match .label-border,
-	.d3 .node.search-match circle {
-	stroke: $accent-color-2-light !important;
-	stroke-width: 3px !important;
+.d3 .node.search-match {
+	.label-border, circle {
+		stroke: $accent-color-2-light !important;
+		stroke-width: 3px !important;
+	}
 }
 
 .d3 .node.search-match circle.with-icon {
@@ -48,15 +51,12 @@
 	pointer-events: none;
 }
 
-.d3.loading svg {
-	opacity: 0.5;
-}
-
 .d3.loading .spinner-container {
 	z-index: 30;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
+	background: rgba(255, 255, 255, .6);
 }
 
 .d3 #loading-extra {
@@ -67,6 +67,48 @@
 	background: white;
 	font-family: $font-light;
 	color: $grey-light;
+	display: none;
+}
+
+// Graph Alerts
+
+.d3 #graph-alerts {
+	position: absolute;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	top: 40px;
+}
+
+.d3 #graph-alerts {
+
+	.alert {
+		padding: 6px 12px;
+		margin: 2px 0;
+		font-size: $font-xtiny;
+		font-family: $font-primary;
+		border: none;
+		border-radius: 20px;
+		color: white;
+	}
+
+	.alert.alert-danger {
+		background: $accent-color-2;
+	}
+
+	.alert.alert-warning {
+		background-color: $grey-light;
+	}
+
+	.alert.alert-success {
+		background-color: $accent-aqua;
+	}
+
+}
+
+.d3 #graph-alerts:empty, .d3 #graph-alerts button {
 	display: none;
 }
 
