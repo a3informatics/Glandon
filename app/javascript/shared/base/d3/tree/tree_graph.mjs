@@ -361,13 +361,15 @@ export default class TreeGraph {
     $( this.selector ).find( '#d3-clear-search' )
                       .on( 'click', () => this.clearSearch( true ) );
 
-    // Search graph on input key up event
+    // Search graph on input key up event, enable / disable graph keys controls on focus out / in
     $( this.selector ).find( '#d3-search' )
-                      .on( 'keyup', e => this._onSearchInput(e) );
+                      .on( 'keyup', e => this._onSearchInput(e) )
+                      .on( 'focusin', e => this.keysDisable() )
+                      .on( 'focusout', e => this.keysEnable() );
 
     // Key navigation event handler
     if ( this.keyControls )
-      $( 'body' ).on( 'keydown', e => this._onKeyPress(e) );
+      $( 'body' ).on( 'keyup', e => this._onKeyPress(e) );
 
   }
 
@@ -611,9 +613,9 @@ export default class TreeGraph {
   }
 
   /**
-   * On keydown event, handle graph key navigation and controls
+   * On keyup event, handle graph key navigation and controls
    * Extend / override method for custom behavior
-   * @param {event} e Keydown event object
+   * @param {event} e Keyup event object
    */
   _onKeyPress(e) {
 
