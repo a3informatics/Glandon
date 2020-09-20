@@ -12,9 +12,9 @@ $(document).ready( () => {
     formId: editorFormId,
     urls: {
       data: editorDataUrl,
-      update: editorUpdateUrl,
       refData: editorRefDataUrl
-    }
+    },
+    onEdited: () => tt.extend()
   });
 
 });

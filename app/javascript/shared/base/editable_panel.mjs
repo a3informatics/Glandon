@@ -1,5 +1,7 @@
 import TablePanel from 'shared/base/table_panel'
 
+import { $handleError } from 'shared/helpers/ajax'
+
 /**
  * Base Editable Panel
  * @description Extensible Editable DataTable panel
@@ -121,7 +123,7 @@ export default class EditablePanel extends TablePanel {
     // Loading animation
     this.editor.on('processing', (ev, enable) => this._inlineProcessing(enable));
     // Data submit server error
-    this.editor.on('submitError', (x, s, e) => handleAjaxError(x, s, e));
+    this.editor.on('submitError', (x, s, e) => $handleError(x, s, e));
     // Data submitted - Item Edited callback
     this.editor.on('submitSuccess submitUnsuccessful', (e, json) => {
       // Handle any errors thrown by the server

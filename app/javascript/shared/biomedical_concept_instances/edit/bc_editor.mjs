@@ -187,6 +187,7 @@ export default class BCEditor extends EditablePanel {
     options.rowId = (d) => {
       return d.has_complex_datatype.has_property.id
     }
+    options.keys.blurable = false;
 
     return options;
 
