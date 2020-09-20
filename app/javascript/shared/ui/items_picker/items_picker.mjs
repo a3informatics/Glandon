@@ -85,6 +85,41 @@ export default class ItemsPicker extends ModalView {
       this.modal.find('#items-picker-submit').html(submitText);
   }
 
+  /**
+   * Disable a set of (already allowed) types tabs
+   * @param {array} types Types to become disabled (must be a subset of allowed types )
+   * @return {ItemsPicker} this instance (for method chaining)
+   */
+  disableTypes(types) {
+
+    if ( !types )
+      return;
+
+    this.enableAll();
+
+    for ( let type of types ) {
+
+      if ( !this.types.includes( type ) )
+        continue;
+
+      let tabId = $( this._typeToTabSelector( type ) ).attr( 'data-tab' );
+      $(`#${ tabId }`).addClass( 'disabled' );
+
+    }
+
+    return this;
+
+  }
+
+  /**
+   * Enable all (already disabled) types tabs
+   */
+  enableAll() {
+
+    $(this.selector).find( '.tab-option.disabled' )
+                    .removeClass( 'disabled' );
+
+  }
 
 
   /** Private **/
@@ -143,7 +178,7 @@ export default class ItemsPicker extends ModalView {
 
     this.selectionView._render();
 
-    $(`${this.selector} #items-picker-tabs .tab-option`)[0].click();
+    $(`${this.selector} #items-picker-tabs .tab-option:not(.disabled)`)[0].click();
   }
 
   /**
