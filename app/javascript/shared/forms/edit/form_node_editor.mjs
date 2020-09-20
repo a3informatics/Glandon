@@ -3,7 +3,6 @@ import ModalView from 'shared/base/modal_view'
 import Validator from 'shared/ui/validator'
 
 import { $put } from 'shared/helpers/ajax'
-import { rdfTypesMap as rdfs } from 'shared/helpers/rdf_types'
 import { isCharLetter } from 'shared/helpers/strings'
 
 /**
@@ -33,14 +32,17 @@ export default class NodeEditor extends ModalView {
   } = {} ) {
 
     super( { selector } );
-    Object.assign( this, { formId, onUpdate, onShow, onHide } );
+
+    Object.assign( this, {
+      formId, onUpdate, onShow, onHide
+    });
 
     this._setListeners();
 
   }
 
   /**
-   * Edit a Node instance and show
+   * Set Node to this instance and show modal
    * @param {FormNode} node Node instance to Edit
    */
   edit(node) {
@@ -53,32 +55,35 @@ export default class NodeEditor extends ModalView {
 
   }
 
+  /**
+   * Validate and submit the changed data to the server
+   */
   submit() {
 
+    // Stop if no fields have been changed
     if ( !this.changedFields || _.isEmpty( this.changedFields ) ) {
+
       this.hide();
       return;
+
     }
 
+    // Validate fields based on defined rules
     if ( !Validator.validate( this.content, this._validationRules ) )
       return;
 
-    let request = this._requestSpec;
+    // Update data server request
     this._loading( true );
 
     $put({
-      url: request.url,
-      data: request.data,
+      url: this._requestSpec.url,
+      data: this._requestSpec.data,
       contentType: 'application/json',
       errorDiv: this.$error,
-      done: (d) => {
+      done: d => d.fieldErrors ?
+                  this._onError( d.fieldErrors ) :
+                  this._onSuccess( d ),
 
-        if ( d.fieldErrors )
-          this._onError( d.fieldErrors );
-        else
-          this._onSuccess( d );
-
-      },
       always: () => this._loading( false )
     });
 
@@ -300,16 +305,18 @@ export default class NodeEditor extends ModalView {
   _renderBC() {
 
     // Show loading message if reference data not available
-    if ( !this.node.data.referenceData ) {
+    if ( typeof this.node.data.reference === 'string' ) {
+
       this.content.append( 'Loading reference data...' );
       return;
+
     }
 
     let bcId =    [ 'BC Identifier', this._labelStyled(
-                    this.node.data.referenceData.has_identifier.identifier
+                    this.node.data.reference.has_identifier.identifier
                   ) ],
         bcLabel = [ 'BC Label', this._labelStyled(
-                    this.node.data.referenceData.label
+                    this.node.data.reference.label
                   ) ],
         label =   [ 'Label', this._textarea( 'label' ) ],
 
@@ -433,21 +440,23 @@ export default class NodeEditor extends ModalView {
   _renderTUCRef() {
 
     // Show loading message if reference data not available
-    if ( !this.node.data.referenceData ) {
+    if ( typeof this.node.data.reference === 'string' ) {
+
       this.content.append( 'Loading reference data...' );
       return;
+
     }
 
     let parentQuestion = this.node.parent.is( 'QUESTION' );
 
     let identifier = [ 'Identifier', this._labelStyled(
-                          this.node.data.referenceData.identifier
+                          this.node.data.reference.identifier
                      ) ],
         dLabel =     [ 'Default Label', this._labelStyled(
-                          this.node.data.referenceData.label
+                          this.node.data.reference.label
                      ) ],
         notation =   [ 'Submission Value', this._labelStyled(
-                          this.node.data.referenceData.notation
+                          this.node.data.reference.notation
                      ) ],
         label =      [ 'Label', this._input( 'label' ) ],
         enable =     [ 'Enabled', this._checkbox( 'enabled', null, parentQuestion ) ],
@@ -763,7 +772,8 @@ export default class NodeEditor extends ModalView {
                   value = field.prop( 'type' ) === 'checkbox' ?
                             field.prop( 'checked' ) : field.val().trim()
 
-                cache[ name ] = value;
+               cache[ name ] = value;
+
             });
 
     return cache;
@@ -786,7 +796,7 @@ export default class NodeEditor extends ModalView {
 
     return {
       url,
-      data: JSON.stringify(data)
+      data: JSON.stringify( data )
     }
 
   }

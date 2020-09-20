@@ -2,18 +2,15 @@ import d3 from 'shared/base/d3/tree/d3_tree'
 
 import TreeGraph from 'shared/base/d3/tree/tree_graph'
 import FormNode from 'shared/forms/edit/form_node'
-import NodeEditor from 'shared/forms/edit/form_node_editor'
+
+import { $get } from 'shared/helpers/ajax'
 
 import { D3Tooltip } from 'shared/helpers/d3/renderers/tooltip'
 import { D3Actions } from 'shared/helpers/d3/renderers/actions'
 
-import { $get, $post } from 'shared/helpers/ajax'
-import { $confirm } from 'shared/helpers/confirmable'
-import { iconTypes } from 'shared/ui/icons'
-import { iconBtn } from 'shared/ui/buttons'
-import { getRdfNameByType as nameFromRdf, rdfTypesMap as rdfs } from 'shared/helpers/rdf_types'
 import colors from 'shared/ui/colors'
-import { renderMenuOnly } from 'shared/ui/context_menu'
+import { iconBtn } from 'shared/ui/buttons'
+
 import { renderIconsLabels } from 'shared/helpers/d3/renderers/nodes'
 
 /**
@@ -29,7 +26,7 @@ export default class FormEditor extends TreeGraph {
    * @param {string} params.formId ID of the currently edited form
    * @param {object} params.urls Must contain urls for 'data', 'update'
    * @param {string} params.selector JQuery selector of the editor panel
-   * @param {function} params.onEdited Callback executed on any edit action
+   * @param {function} params.onEdited Callback executed on any edit/update action
    */
   constructor({
     formId,
@@ -45,14 +42,10 @@ export default class FormEditor extends TreeGraph {
     });
 
     Object.assign( this, {
-      formId, onEdited, urls,
-      nodeEditor: new NodeEditor({
-        formId,
-        onShow: () => this.keysDisable(),
-        onHide: () => this.keysEnable(),
-        onUpdate: () => this.render()._restoreGraph()
-      })
+      formId, onEdited, urls
     });
+
+    this._importModules();
 
   }
 
@@ -77,8 +70,8 @@ export default class FormEditor extends TreeGraph {
 
 
   /**
-   * Makes server request to remove node, handles update
-   * @confirmable
+   * Remove a Node from the graph
+   * @requires NodeHandler
    * @param {FormNode} node Node instance to remove
    */
   removeNode(node) {
@@ -86,51 +79,49 @@ export default class FormEditor extends TreeGraph {
     if ( !node )
       return;
 
-    $confirm({
-      callback: () => {
-        node.d.parent.children.splice( ( node.d.parent.children.indexOf( node.d ) ), 1 );
-
-        if (node.d.parent.children.length === 0)
-          delete node.d.parent.children;
-
-        this.render()._restoreGraph();
-      },
-      dangerous: true
-    });
+    if ( this.nodeHandler )
+      this.nodeHandler.remove( node );
 
   }
 
   /**
-   * Makes server request to move node up or down, handles update
-   * @param {FormNode} node Node instance to move
-   * @param {string} dir Direction of movement 'up' or 'down'
+   * Move a Node on the graph (up/down)
+   * @requires NodeHandler
+   * @param {FormNode} node Node instance to remove
+   * @param {string} dir Direction of move ( up / down )
    */
   moveNode(node, dir) {
 
     if ( !node )
       return;
 
-    // Update call
-
-    switch (dir) {
-      case 'up':
-        console.log('Moved up');
-        break;
-      case 'down':
-        console.log('Moved down');
-        break;
-    }
+    if ( this.nodeHandler )
+      this.nodeHandler.move( node, dir );
 
   }
 
   /**
-   * Opens a node Editor window
+   * Open a nodeEditor panel with given Node instance
+   * @requires NodeEditor
    * @param {FormNode} node Node instance to edit
    */
   editNode(node) {
 
     if ( this.nodeEditor )
       this.nodeEditor.edit( node );
+
+  }
+
+  /**
+   * Open / close Node's add children context menu
+   * @requires NodeHandler
+   * @param {string} state Target menu state ( show / hide )
+   * @param {event} e Event that triggered state change ( focus / blur )
+   */
+  childrenMenu(state, e) {
+
+    if ( this.nodeHandler )
+        this.nodeHandler.childrenMenu( state, this.selected, e );
 
   }
 
@@ -151,11 +142,11 @@ export default class FormEditor extends TreeGraph {
 
     // Node actions edit button click
     $( this.selector ).on( 'focus', '#add-child',
-                           (e) => this._showAddChildMenu( this.selected, e ) );
+                           e => this.childrenMenu( 'show', e ) );
 
     // Node actions edit button click
-    $( this.selector ).on( 'focusout', '#add-child',
-                           (e) => this._hideAddChildMenu() );
+    $( this.selector ).on( 'blur', '#add-child',
+                           e => this.childrenMenu( 'hide', e ) );
 
     // Node actions remove button click
     $( this.selector ).on( 'click', '#remove-node',
@@ -167,18 +158,18 @@ export default class FormEditor extends TreeGraph {
 
     // Node actions move down button click
     $( this.selector ).on( 'click', '#move-down',
-                                    () => this.moveNode( this.selected, 'down' ) );
+                           () => this.moveNode( this.selected, 'down' ) );
 
   }
 
   /**
-   * Preprocess data and convert it into a D3 hierarchy
+   * Preprocess data and convert it into a sorted D3 hierarchy
    * @override parent implementation
    * @param {Object} rawData Graph data fetched from the server
    */
   _preprocessData(rawData) {
 
-    return d3.hierarchy( rawData, (d) => [
+    let data = d3.hierarchy( rawData, d => [
         ...d.has_group||[],
         ...d.has_common||[],
         ...d.has_item||[],
@@ -186,54 +177,12 @@ export default class FormEditor extends TreeGraph {
         ...d.has_coded_value||[]
       ]);
 
-  }
+    // Sort by ordinals
+    data.descendants().forEach( n =>
+          n.sort( (a, b) => (a.data.ordinal - b.data.ordinal) )
+    );
 
-
-  /** Referenced Items **/
-
-
-  /**
-   * Fetch additional referenced item data from the server
-   */
-  _loadReferences() {
-
-    this._loadingExtra( true );
-
-    $get({
-      url: this.urls.refData,
-      done: (refData) => this._appendReferences(refData),
-      always: () => this._loadingExtra( false )
-    });
-
-  }
-
-  /**
-   * Append reference data to the graph structure and re-render graph
-   * @param {Object} refData The raw refences data from the server (Keys: reference ids, Values: referenced item data)
-   */
-  _appendReferences(refData) {
-
-    // Expand to make sure all nodes are in the graph
-    this.expandAll( false );
-
-    // Select reference nodes and append data
-    d3.selectAll( '.node.reference' )
-      .each( (d) => {
-
-        let id = d.data.has_biomedical_concept ?
-                    d.data.has_biomedical_concept.id : d.data.id;
-
-        let referenced = refData[id];
-
-        if ( referenced ) {
-          if (d.data.label === '')
-            d.data.label = referenced.label
-          d.data.referenceData = referenced
-        }
-      });
-
-    this.render()
-        ._restoreGraph();
+    return data;
 
   }
 
@@ -269,7 +218,7 @@ export default class FormEditor extends TreeGraph {
    */
   _onDataLoaded(rawData) {
 
-    super._onDataLoaded(rawData)
+    super._onDataLoaded(rawData);
     // Fetch additional refData once rawData processed
     this._loadReferences();
 
@@ -293,8 +242,76 @@ export default class FormEditor extends TreeGraph {
    */
   _onRenderComplete() {
 
-    if ( this.nodeEditor.isOpen )
+    if ( this.nodeEditor && this.nodeEditor.isOpen )
       this.nodeEditor.render();
+
+  }
+
+  /**
+   * On graph data update; re-render, extend edit token and focus on node if available
+   * @param {FormNode} node Node to focus on after update, optional
+   */
+  _onUpdate(node) {
+
+    this.render()._restoreGraph();
+
+    this.onEdited();
+
+    if (node) {
+      node.findElement();
+      this.focusOn( node, false );
+    }
+
+  }
+
+
+  /** Referenced Items **/
+
+
+  /**
+   * Fetch additional referenced item data from the server
+   */
+  _loadReferences() {
+
+    this._loadingExtra( true );
+
+    $get({
+      url: this.urls.refData,
+      done: refData => this._appendReferences(refData),
+      always: () => this._loadingExtra( false )
+    });
+
+  }
+
+  /**
+   * Append reference data to the graph structure and re-render graph
+   * @param {Object} references The raw refences data from the server (Keys: reference ids, Values: referenced item data)
+   */
+  _appendReferences(references) {
+
+    // Filter referenced nodes and append data
+    this.allNodes.filter( node => node.isReference )
+                 .forEach( node => {
+
+        // Find reference
+        let referenceId = node.data.has_biomedical_concept ?
+                          node.data.has_biomedical_concept.id :
+                          node.data.id,
+            data = references[ referenceId ];
+
+        if ( !data )
+          return;
+
+        // Merge reference data into Node data
+        node.data.reference = data;
+
+        if ( node.data.label === '' )
+          node.data.label = data.label;
+
+    });
+
+    // Render changes
+    this.render()._restoreGraph();
 
   }
 
@@ -326,12 +343,12 @@ export default class FormEditor extends TreeGraph {
       nodes: this.graph.nodes,
       nodeIcon: this.Node.icon,
       nodeColor: this.Node.color,
-      onHover: (d) => this._renderTooltip( new this.Node(d) ),
-      onHoverOut: (d) => D3Tooltip.hide()
+      onHover: d => this._renderTooltip( new this.Node(d) ),
+      onHoverOut: d => D3Tooltip.hide()
     })
 
     // Override nodes class attribute to build a custom class list
-    this.graph.nodes.attr( 'class', (d) => this._nodeClassList( new this.Node(d) ) );
+    this.graph.nodes.attr( 'class', d => this._nodeClassList( new this.Node(d) ) );
 
   }
 
@@ -360,9 +377,9 @@ export default class FormEditor extends TreeGraph {
     D3Actions.actions.find( '#remove-node' )
                      .toggle( node.removeAllowed );
 
-     // Toggle Restore button depending on node type
-     D3Actions.actions.find( '#restore-node' )
-                      .toggle( node.restoreAllowed );
+    // Toggle Restore button depending on node type
+    D3Actions.actions.find( '#restore-node' )
+                     .toggle( node.restoreAllowed );
 
     D3Actions.show( node );
 
@@ -383,52 +400,6 @@ export default class FormEditor extends TreeGraph {
       iconBtn({ icon: 'R', color: 'light', id: 'restore-node' }),
       iconBtn({ icon: 'times', color: 'red', id: 'remove-node' }),
     ]
-
-  }
-
-
-  /** Node Add-Child Menu **/
-
-
-  /**
-   * Shows a Context Menu with addable children options
-   * @param {FormNode} node Node instance to render the add-child menu for
-   * @param {Event} e Focus event that trigerred the action
-   */
-   _showAddChildMenu(node, e) {
-
-    if ( !node.addChildAllowed )
-      return;
-
-    //  Map allowed children RDFs into Menu item list
-    let menuItems = node.childTypes.map( (type) => {
-      return {
-        text: rdfs[type].name,
-        url: '#',
-        icon: 'icon-plus'
-      }
-    }),
-
-    //  Raw menu HTML
-    menuHTML = renderMenuOnly({
-      menuStyle: { color: 'light', size: 'small' },
-      menuItems
-    }),
-
-    //  Styled menu element
-    $menu = $( menuHTML ).css( 'display', 'block' );
-
-    $( e.currentTarget ).append( $menu );
-
-  }
-
-  /**
-   * Hides a Context Menu with addable children options
-   */
-  _hideAddChildMenu() {
-
-    $( this.selector ).find( '.node-actions .context-menu' )
-                      .remove();
 
   }
 
@@ -469,8 +440,6 @@ export default class FormEditor extends TreeGraph {
       classList += ' selected'
     if ( node.disabled )
       classList += ' disabled'
-    if ( node.isReference )
-      classList += ' reference'
 
     return classList;
 
@@ -494,6 +463,39 @@ export default class FormEditor extends TreeGraph {
     props.zoom.max = 1.6;
 
     return props;
+
+  }
+
+  /**
+   * Load modules that are required later on
+   */
+  _importModules() {
+
+    import( /* webpackPrefetch: true */
+            'shared/forms/edit/form_node_editor' ).then( NodeEditor => {
+
+      this.nodeEditor = new NodeEditor.default({
+        formId: this.formId,
+        onShow: () => this.keysDisable(),
+        onHide: () => this.keysEnable(),
+        onUpdate: () => this._onUpdate()
+      });
+
+    });
+
+    import( /* webpackPrefetch: true */
+            'shared/forms/edit/form_node_handler' ).then( NodeHandler => {
+
+      this.nodeHandler = new NodeHandler.default({
+        selector: this.selector,
+        formId: this.formId,
+        alertDiv: this._alertDiv,
+        processData: data => this._preprocessData( data ),
+        loading: enable => this._loading( enable ),
+        onUpdate: node => this._onUpdate( node )
+      });
+
+    });
 
   }
 

@@ -5,10 +5,11 @@ import { renderLinksSimple as renderLinks } from 'shared/helpers/d3/renderers/li
 import { renderNodesSimple as renderNodes } from 'shared/helpers/d3/renderers/nodes'
 
 import { $get } from 'shared/helpers/ajax'
+
+import colors from 'shared/ui/colors'
 import { isInViewport } from 'shared/helpers/utils'
 import { findInString } from 'shared/helpers/strings'
 import { renderSpinnerIn$, removeSpinnerFrom$ } from 'shared/ui/spinners'
-import colors from 'shared/ui/colors'
 
 /**
  * Tree Graph Base Class
@@ -39,7 +40,8 @@ export default class TreeGraph {
   }) {
 
     Object.assign( this, {
-      dataUrl, selector, autoScale, zoomable, selectable, keyNavigation,
+      dataUrl, selector, autoScale,
+      zoomable, selectable, keyNavigation,
       Node: nodeModule
     });
 
@@ -62,7 +64,8 @@ export default class TreeGraph {
     // Get request, handles response
     $get({
       url: this.dataUrl,
-      done: ( rawData ) => this._onDataLoaded( rawData ),
+      errorDiv: this._alertDiv,
+      done: rawData => this._onDataLoaded( rawData ),
       always: () => this._loading( false )
     });
 
@@ -127,7 +130,7 @@ export default class TreeGraph {
   clearGraph() {
 
     d3.select(`${this.selector} #d3 svg`)
-           .remove();
+      .remove();
 
   }
 
@@ -236,7 +239,7 @@ export default class TreeGraph {
   }
 
   /**
-   * Disable graph key navigation 
+   * Disable graph key navigation
    */
   keysDisable() {
     this.keyNavigation = false;
@@ -293,9 +296,8 @@ export default class TreeGraph {
    */
   get allNodes() {
 
-    return d3.selectAll(`${this.selector} .node`)
-                    .data()
-                    .map( (d) => new this.Node(d) );
+    return this.graph.root.descendants()
+                          .map( d => new this.Node(d) );
 
   }
 
@@ -321,34 +323,35 @@ export default class TreeGraph {
   _setListeners() {
 
     // Resize graph on window resize event
-    $(window).on( 'resize', () => this._onResize() );
+    $( window ).on( 'resize', () => this._onResize() );
 
     // Center graph on btn click
-    $(this.selector).find('#center-graph')
-                    .on( 'click', () => this.reCenter() );
+    $( this.selector ).find( '#center-graph' )
+                      .on( 'click', () => this.reCenter() );
 
     // Collapse graph nodes on btn click
-    $(this.selector).find('#collapse-except-graph')
-                    .on( 'click', () => this.collapseExcept( this.selected ) );
+    $( this.selector ).find( '#collapse-except-graph' )
+                      .on( 'click', () => this.collapseExcept( this.selected ) );
 
     // Collapse graph nodes on btn click
-    $(this.selector).find('#collapse-graph')
-                    .on( 'click', () => this.collapseAll() );
+    $( this.selector ).find( '#collapse-graph' )
+                      .on( 'click', () => this.collapseAll() );
 
     // Expand graph nodes on btn click
-    $(this.selector).find('#expand-graph')
-                    .on( 'click', () => this.expandAll() );
+    $( this.selector ).find( '#expand-graph' )
+                      .on( 'click', () => this.expandAll() );
 
     // Clear Search stylings and field value on btn click
-    $(this.selector).find('#d3-clear-search')
-                    .on( 'click', () => this.clearSearch( true ) );
+    $( this.selector ).find( '#d3-clear-search' )
+                      .on( 'click', () => this.clearSearch( true ) );
 
     // Search graph on input key up event
-    $(this.selector).find('#d3-search').on( 'keyup', (e) => this._onSearchInput(e) );
+    $( this.selector ).find( '#d3-search' )
+                      .on( 'keyup', e => this._onSearchInput(e) );
 
     // Key navigation event handler
     if ( this.keyNavigation )
-      $('body').on('keydown', (e) => this._onKeyPress(e) );
+      $( 'body' ).on( 'keydown', e => this._onKeyPress(e) );
 
   }
 
@@ -359,7 +362,7 @@ export default class TreeGraph {
    */
   _preprocessData(rawData) {
 
-    return d3.hierarchy( rawData, (d) => d.children );
+    return d3.hierarchy( rawData, d => d.children );
 
   }
 
@@ -383,7 +386,7 @@ export default class TreeGraph {
     // Call transform to given node
     this.graph.svg.call( this.graph.zoom.transform, transform );
 
-    if (select)
+    if ( select )
       this.selectNode( node, false );
 
   }
@@ -421,7 +424,6 @@ export default class TreeGraph {
   _collapseAll() {
 
     this.expandAll();
-
     this.allNodes.forEach( (node) => node.collapse() );
 
   }
@@ -458,11 +460,11 @@ export default class TreeGraph {
   _search(searchText, property = 'label') {
 
     // Find matches
-    let matches = d3.selectAll(`${this.selector} .node`)
-                         .filter( (n) => findInString( searchText, n.data[property] ) )
-                         .nodes();
+    let matches = d3.selectAll( `${this.selector} .node` )
+                    .filter( n => findInString( searchText, n.data[ property ] ) )
+                    .nodes();
 
-    $( matches ).addClass('search-match'); // Mark matching nodes
+    $( matches ).addClass( 'search-match' ); // Mark matching nodes
 
     // Update search count
     this._renderSearchCount();
@@ -519,7 +521,7 @@ export default class TreeGraph {
   _onDataLoaded(rawData) {
 console.log(rawData);
     // Convert raw data to d3 hierarchy
-    this.graph.root = this._preprocessData(rawData);
+    this.graph.root = this._preprocessData( rawData );
     this.render().reCenter();
 
   }
@@ -660,9 +662,9 @@ console.log(rawData);
       target: this.graph.g,
       data: this.graph.root.descendants(),
       selectable: this.selectable,
-      onClick: (d) => this._onNodeClick( new this.Node(d) ),
-      onDblClick: (d) => this._onNodeDblClick( new this.Node(d) ),
-      onRightClick: (d) => this._onNodeRightClick( new this.Node(d) )
+      onClick: d => this._onNodeClick( new this.Node(d) ),
+      onDblClick: d => this._onNodeDblClick( new this.Node(d) ),
+      onRightClick: d => this._onNodeRightClick( new this.Node(d) )
     });
 
     this._renderCustom(); // Render any custom additional elements
@@ -736,7 +738,7 @@ console.log(rawData);
   _newTree() {
 
     return d3.tree()
-                  .nodeSize( [this._props.tree.nodeHeight, this._props.tree.nodeWidth] );
+             .nodeSize( [this._props.tree.nodeHeight, this._props.tree.nodeWidth] );
 
   }
 
@@ -776,8 +778,8 @@ console.log(rawData);
       return null;
 
     return d3.zoom()
-                  .scaleExtent( [ this._props.zoom.min, this._props.zoom.max ] )
-                  .on( 'zoom', () => this._onZoom() );
+             .scaleExtent( [ this._props.zoom.min, this._props.zoom.max ] )
+             .on( 'zoom', () => this._onZoom() );
 
   }
 
@@ -827,8 +829,13 @@ console.log(rawData);
    */
   _loadingExtra(enable) {
 
-    $( this.selector ).find( '#d3 #loading-extra' ).toggle( enable );
+    $( this.selector ).find( '#d3 #loading-extra' )
+                      .toggle( enable );
 
+  }
+
+  get _alertDiv() {
+    return $( this.selector ).find( '#graph-alerts' );
   }
 
   /**

@@ -19,9 +19,19 @@ export default class TreeNode {
     this.d = d;
 
     if ( withElement )
-      this.el = d3.selectAll('.node')
-                  .filter( (nd) => nd.data.id === d.data.id )
-                  .node();
+      this.findElement();
+
+  }
+
+  /**
+   * Find the DOM element belonging to this Node Instance and set it to 'el' property
+   */
+  findElement() {
+
+    this.el = d3.selectAll( '.node' )
+                .filter( (nd) => nd.data.id === this.d.data.id )
+                .node();
+
   }
 
 
@@ -131,6 +141,10 @@ export default class TreeNode {
 
   }
 
+  get hasSiblings() {
+    return this.d.parent && this.d.parent.children.length > 1;
+  }
+
   /**
    * Get the sibling of a node by a given offset
    * @param {integer} offset Offset - distance of the sibling from this Node, positive offset for next, negative for previous sibling
@@ -138,18 +152,14 @@ export default class TreeNode {
    */
   sibling(offset) {
 
-    let parent = this.d.parent;
+    if ( !this.hasSiblings )
+      return null;
 
-    if ( parent && parent.children.length > 1 ) {
+    let parent = this.d.parent,
+        index = parent.children.indexOf( this.d );
 
-      let index = parent.children.indexOf(this.d);
-
-      if ( parent.children[ index + offset] )
-        return new this.constructor( parent.children[index + offset] )
-
-    }
-
-    return null;
+    if ( parent.children[index + offset] )
+      return new this.constructor( parent.children[index + offset] )
 
   }
 
@@ -169,6 +179,23 @@ export default class TreeNode {
 
   /** Actions **/
 
+  /**
+   * Remove a child Node from this instance
+   * @param {TreeNode} node Node instance to be removed
+   */
+  removeChild(node) {
+
+    if ( !this.hasChildren )
+      return;
+
+    let nodeIndex = this.d.children.indexOf( node.d );
+
+    this.d.children.splice( nodeIndex, 1 );
+
+    if ( this.d.children.length === 0 )
+      delete this.d.children;
+
+  }
 
   /**
    * Select node (add respective styles and data)

@@ -120,8 +120,8 @@ export default class FormNode extends TreeNode {
   get childTypes() {
 
     if ( this.is( 'NORMAL_GROUP' ) )
-      return [ 'NORMAL_GROUP', 'COMMON_GROUP', 'BC_GROUP', 'QUESTION',
-               'MAPPING', 'TEXTLABEL', 'PLACEHOLDER' ]
+      return [ 'BC_GROUP', 'QUESTION',
+               'MAPPING', 'TEXTLABEL', 'PLACEHOLDER', 'NORMAL_GROUP', 'COMMON_GROUP' ]
 
     else if ( this.is( 'FORM' ) )
       return [ 'NORMAL_GROUP' ]
@@ -167,6 +167,29 @@ export default class FormNode extends TreeNode {
 
   }
 
+  /**
+   * Swap ordinals between two Nodes
+   * @param {FormNode} node Node to swap ordinals with
+   */
+  swapOrdinals(node) {
+
+    let o = this.data.ordinal;
+
+    this.data.ordinal = node.data.ordinal;
+    node.data.ordinal = o;
+
+  }
+
+  /**
+   * Sort Node children by their ordinal values 
+   */
+  sortChildren() {
+
+    if ( this.hasChildren )
+      this.d.children.sort( (a, b) => (a.data.ordinal - b.data.ordinal) );
+
+  }
+
 
   /** Static **/
 
@@ -190,7 +213,7 @@ export default class FormNode extends TreeNode {
   static color(d) {
 
     // Include reference URI to check for CDISC ownership if exists
-    let param = d.data.reference || '';
+    let param = d.data.reference ? (d.data.reference.uri || d.data.reference) : '';
     return iconTypes.typeIconMap( d.data.rdf_type, param ).color;
 
   }
