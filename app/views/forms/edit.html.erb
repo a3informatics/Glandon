@@ -8,7 +8,6 @@
 <%= javascript_tag "let editorFormId = '#{@form.id}',
                         editorDataUrl = '#{edit_form_path(@form)}',
                         editorRefDataUrl = '#{referenced_items_form_path(@form)}'
-                        editorUpdateUrl = '#{edit_form_path(@form)}',
                         tokenTimerId = '#{@edit.token.id}',
                         tokenTimerWarning = '#{current_user.edit_lock_warning}';"%>
 
@@ -46,3 +45,4 @@
 </div>
 
 <%= render partial: "shared/forms/edit/node_editor_modal" %>
+<%= render partial: "shared/items_picker/items_picker", locals: { id: "node-add-child" } %>
