@@ -41,9 +41,12 @@ class Form::Item::Question < Form::Item
     html += end_row
   end
 
-  # Add child. 
-  # 
-  # @return 
+  # Add Child. Adds a child or children TUC references.
+  #
+  # @params [Hash] params the parameters
+  # @option params [String] :type the param name of the new node
+  # @option params [Array] :id_set array of unmanaged concepts ids
+  # @return [Array] the created objects. May contain errors if unsuccesful. 
   def add_child(params)
     if params[:type].to_sym == :tuc_reference
       results = []
@@ -64,28 +67,27 @@ class Form::Item::Question < Form::Item
     end 
   end
 
-  def delete(parent)
-    update_query = %Q{
-      DELETE DATA
-    {
-      #{parent.uri.to_ref} <http://www.assero.co.uk/BusinessForm#hasItem> #{self.uri.to_ref} 
-    };
-      DELETE {?s ?p ?o} WHERE 
-      { 
-        { BIND (#{self.uri.to_ref} as ?s). 
-          ?s ?p ?o
-        }
-        UNION
-        { #{self.uri.to_ref} <http://www.assero.co.uk/BusinessForm#hasCodedValue> ?o1 . 
-          BIND (?o1 as ?s) . 
-          ?s ?p ?o .
-        }
-      }
-    }
-    #results = Sparql::Update.new.sparql_update(update_string, "", [])
-    partial_update(update_query, [])
-    1
-  end
+  # def delete(parent)
+  #   update_query = %Q{
+  #     DELETE DATA
+  #     {
+  #       #{parent.uri.to_ref} bf:hasItem #{self.uri.to_ref} 
+  #     };
+  #     DELETE {?s ?p ?o} WHERE 
+  #     { 
+  #       { BIND (#{self.uri.to_ref} as ?s). 
+  #         ?s ?p ?o
+  #       }
+  #       UNION
+  #       { #{self.uri.to_ref} bf:hasCodedValue ?o1 . 
+  #         BIND (?o1 as ?s) . 
+  #         ?s ?p ?o .
+  #       }
+  #     }
+  #   }
+  #   partial_update(update_query, [:bf])
+  #   1
+  # end
 
   def children_ordered(child)
     self.has_coded_value_objects.sort_by {|x| x.ordinal}
