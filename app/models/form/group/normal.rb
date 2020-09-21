@@ -56,47 +56,19 @@ class Form::Group::Normal < Form::Group
     return html
   end
 
-  #Add child. 
-  # 
-  #@return 
+  # Add Child.
+  #
+  # @params [Hash] params the parameters
+  # @option params [String] :type the param name of the new node
+  # @option params [Array] :id_set array of biomedical concept ids
+  # @return [Array] the created objects. May contain errors if unsuccesful.  
   def add_child(params)
     if params[:type].to_sym == :normal_group
       add_normal_group
     elsif params[:type].to_sym == :bc_group
       results = []
-      params[:id_set].each_with_index do |id, index|
-        bci = BiomedicalConceptInstance.find(id)
-        transaction = transaction_begin
-        ordinal = next_ordinal(:has_sub_group)
-        child = Form::Group::Bc.create(label: bci.label, ordinal: ordinal, parent_uri: self.uri)
-        return child if child.errors.any?
-        bc_reference = OperationalReferenceV3.create({reference: bci.uri, transaction: transaction}, child)
-        child.add_link(:has_biomedical_concept, bc_reference.uri)
-        bci.has_item_objects.each do |item| #EACH ITEM
-          item.has_complex_datatype_objects.each do |cdt|
-            cdt.has_property_objects.each_with_index do |property, ind|
-              bc_property = Form::Item::BcProperty.create(label: property.alias, ordinal: ind+1, parent_uri: child.uri)
-              bc_property_reference = OperationalReferenceV3.create({reference: property.uri, ordinal: ind+1, transaction: transaction}, bc_property)
-              property.has_coded_value_objects.each do |cv_ref|
-                cli = Thesaurus::UnmanagedConcept.find_full(cv_ref.reference)
-                cl = Thesaurus::ManagedConcept.find_with_properties(cv_ref.context)
-                coded_value_reference = OperationalReferenceV3::TucReference.create({label: cli.label, reference: cli, context: cl, ordinal: ordinal, transaction: transaction}, bc_property)
-                bc_property.add_link(:has_coded_value, coded_value_reference.uri)
-              end
-              bc_property.add_link(:has_property, bc_property_reference.uri)
-              child.add_link(:has_item, bc_property.uri)
-            end 
-          end
-        end ##END EACH ITEM
-        self.add_link(:has_sub_group, child.uri)
-        transaction_execute
-        child = Form::Group::Bc.find_full(child.uri).to_h
-        child[:has_item].each do |item|
-          item[:has_coded_value].each do |cv|
-            cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
-          end
-        end
-        results << child
+      params[:id_set].each do |id|
+        results << add_bc_group(id)
       end
       results
     elsif items.include?params[:type].to_sym
@@ -104,30 +76,6 @@ class Form::Group::Normal < Form::Group
     else
       self.errors.add(:base, "Attempting to add an invalid child type")
     end 
-  end
-
-  def add_normal_group
-    ordinal = next_ordinal(:has_sub_group)
-    child = Form::Group::Normal.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
-    return child if child.errors.any?
-    self.add_link(:has_sub_group, child.uri)
-    child
-  end
-
-  def add_item(params)
-    ordinal = next_ordinal(:has_item)
-    child = type_to_class[params[:type].to_sym].create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
-    return child if child.errors.any?
-    self.add_link(:has_item, child.uri)
-    child
-  end
-
-  def type_to_class
-    {question: Form::Item::Question, text_label: Form::Item::TextLabel, placeholder: Form::Item::Placeholder, mapping: Form::Item::Mapping}
-  end
-
-  def items
-    items = [:text_label, :placeholder, :mapping, :question]
   end
 
   def children_ordered(child)
@@ -339,6 +287,71 @@ class Form::Group::Normal < Form::Group
 
   def end_row
     return "</tr>"
+  end
+
+  private
+  def add_bc_group(id)
+    bci = BiomedicalConceptInstance.find(id)
+    transaction = transaction_begin
+    ordinal = next_ordinal(:has_sub_group)
+    bc_group = Form::Group::Bc.create(label: bci.label, ordinal: ordinal, parent_uri: self.uri)
+    return bc_group if bc_group.errors.any?
+    bc_reference = OperationalReferenceV3.create({reference: bci.uri, transaction: transaction}, bc_group)
+    bc_group.add_link(:has_biomedical_concept, bc_reference.uri)
+    bci.has_item_objects.each do |item|
+      next if !item.enabled
+      item.has_complex_datatype_objects.each do |cdt|
+        cdt.has_property_objects.each_with_index do |property, ind|
+          add_bc_property(property, ind, transaction, bc_group)
+        end 
+      end
+    end
+    self.add_link(:has_sub_group, bc_group.uri)
+    transaction_execute
+    bc_group = Form::Group::Bc.find_full(bc_group.uri).to_h
+    bc_group[:has_item].each do |item|
+      item[:has_coded_value].each do |cv|
+        cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
+      end
+    end
+    bc_group
+  end
+
+  def add_bc_property(property, index, transaction, bc_group)
+    bc_property = Form::Item::BcProperty.create(label: property.alias, ordinal: index+1, parent_uri: bc_group.uri)
+    bc_property_reference = OperationalReferenceV3.create({reference: property.uri, ordinal: index+1, transaction: transaction}, bc_property)
+    property.has_coded_value_objects.each do |cv_ref|
+      cli = Thesaurus::UnmanagedConcept.find_full(cv_ref.reference)
+      cl = Thesaurus::ManagedConcept.find_with_properties(cv_ref.context)
+      coded_value_reference = OperationalReferenceV3::TucReference.create({label: cli.label, reference: cli, context: cl, ordinal: ordinal, transaction: transaction}, bc_property)
+      bc_property.add_link(:has_coded_value, coded_value_reference.uri)
+    end
+    bc_property.add_link(:has_property, bc_property_reference.uri)
+    bc_group.add_link(:has_item, bc_property.uri)
+  end
+
+  def add_normal_group
+    ordinal = next_ordinal(:has_sub_group)
+    child = Form::Group::Normal.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
+    #return child if child.errors.any? ##Merge error
+    self.add_link(:has_sub_group, child.uri)
+    child
+  end
+
+  def add_item(params)
+    ordinal = next_ordinal(:has_item)
+    child = type_to_class[params[:type].to_sym].create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
+    #return child if child.errors.any? ##Merge error
+    self.add_link(:has_item, child.uri)
+    child
+  end
+
+  def type_to_class
+    {question: Form::Item::Question, text_label: Form::Item::TextLabel, placeholder: Form::Item::Placeholder, mapping: Form::Item::Mapping}
+  end
+
+  def items
+    items = [:text_label, :placeholder, :mapping, :question]
   end
 
 end

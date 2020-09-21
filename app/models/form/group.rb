@@ -16,6 +16,56 @@ class Form::Group < IsoConceptV2
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
   validates :optional, inclusion: { in: [ true, false ] }
 
+  def delete(parent)
+    # if parent.class == Form
+    #   predicate = "<http://www.assero.co.uk/BusinessForm#hasGroup>"
+    # elsif parent.class == Form::Group::Normal
+    #   predicate = "<http://www.assero.co.uk/BusinessForm#hasSubGroup>"
+    # end
+    update_query = %Q{
+      DELETE DATA
+      {
+        #{parent.uri.to_ref} bf:hasCommon #{self.uri.to_ref} 
+      };
+      DELETE DATA
+      {
+        #{parent.uri.to_ref} bf:hasSubGroup #{self.uri.to_ref} 
+      };
+      DELETE DATA
+      {
+        #{parent.uri.to_ref} bf:hasGroup #{self.uri.to_ref} 
+      };
+      DELETE {?s ?p ?o} WHERE 
+      { 
+        { BIND (#{self.uri.to_ref} as ?s). 
+          ?s ?p ?o
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasItem ?o1 . 
+          BIND (?o1 as ?s) . 
+          ?s ?p ?o .
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasSubGroup ?o2 . 
+          BIND (?o2 as ?s) . 
+          ?s ?p ?o .
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasCommon ?o3 . 
+          BIND (?o3 as ?s) . 
+          ?s ?p ?o .
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasBiomedicalConcept ?o4 . 
+          BIND (?o4 as ?s) . 
+          ?s ?p ?o .
+        }
+      }
+    }
+    partial_update(update_query, [:bf])
+    1
+  end
+
 private
   
   def text_row(text)

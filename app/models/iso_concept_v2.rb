@@ -257,7 +257,7 @@ class IsoConceptV2 < Fuseki::Base
   # Move up. Move a child node up
   #
   # @param [String] parent_id the parent's node id
-  # @return [Object] the object updated or the object's error
+  # @return [Object] the object updated. May contain errors if unsuccesful.
   def move_up(parent_id)
     parent = IsoConceptV2.find(Uri.new(id:parent_id))#Find parent
     parent = parent.children_ordered(self) #Order items
@@ -278,7 +278,7 @@ class IsoConceptV2 < Fuseki::Base
   # Move Down. Move a child node down
   #
   # @param [String] parent_id the parent's node id
-  # @return [Object] the object updated or the object's error
+  # @return [Object] the object updated. May contain errors if unsuccesful.
   def move_down(parent_id)
     parent = IsoConceptV2.find(Uri.new(id:parent_id))#Find parent
     parent = parent.children_ordered(self) #Order items
