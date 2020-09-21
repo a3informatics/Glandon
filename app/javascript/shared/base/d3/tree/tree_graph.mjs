@@ -1,4 +1,3 @@
-import d3 from 'shared/base/d3/tree/d3_tree'
 import TreeNode from 'shared/base/d3/tree/tree_node'
 
 import { renderLinksSimple as renderLinks } from 'shared/helpers/d3/renderers/links'
@@ -45,7 +44,7 @@ export default class TreeGraph {
       Node: nodeModule
     });
 
-    this._init();
+    this._loadD3();
 
   }
 
@@ -129,8 +128,8 @@ export default class TreeGraph {
    */
   clearGraph() {
 
-    d3.select(`${this.selector} #d3 svg`)
-      .remove();
+    this.d3.select(`${this.selector} #d3 svg`)
+           .remove();
 
   }
 
@@ -225,7 +224,7 @@ export default class TreeGraph {
    */
   get searchMatches() {
 
-    return d3.selectAll(`${this.selector} .node.search-match`);
+    return this.d3.selectAll(`${this.selector} .node.search-match`);
 
   }
 
@@ -284,7 +283,7 @@ export default class TreeGraph {
    */
   get selected() {
 
-    let selected = d3.select(`${this.selector} .node.selected`);
+    let selected = this.d3.select(`${this.selector} .node.selected`);
 
     // Return null if selection is empty
     if ( selected.empty() )
@@ -380,7 +379,7 @@ export default class TreeGraph {
    */
   _preprocessData(rawData) {
 
-    return d3.hierarchy( rawData, d => d.children );
+    return this.d3.hierarchy( rawData, d => d.children );
 
   }
 
@@ -399,7 +398,7 @@ export default class TreeGraph {
     let scale = zoom ? 1.15 : this.graph.lastTransform.k,
         tX = (this._props.svg.width / 2) - ( node.d.y + (node.width / 2) ) * scale,
         tY = (this._props.svg.height / 2) - node.d.x * scale,
-        transform = d3.zoomIdentity.translate( tX, tY ).scale( scale );
+        transform = this.d3.zoomIdentity.translate( tX, tY ).scale( scale );
 
     // Call transform to given node
     this.graph.svg.call( this.graph.zoom.transform, transform );
@@ -419,7 +418,7 @@ export default class TreeGraph {
 
     this.graph.svg.call(
       this.graph.zoom.transform,
-      d3.zoomIdentity.translate( tX, tY )
+      this.d3.zoomIdentity.translate( tX, tY )
     );
 
   }
@@ -478,9 +477,9 @@ export default class TreeGraph {
   _search(searchText, property = 'label') {
 
     // Find matches
-    let matches = d3.selectAll( `${this.selector} .node` )
-                    .filter( n => findInString( searchText, n.data[ property ] ) )
-                    .nodes();
+    let matches = this.d3.selectAll( `${this.selector} .node` )
+                         .filter( n => findInString( searchText, n.data[ property ] ) )
+                         .nodes();
 
     $( matches ).addClass( 'search-match' ); // Mark matching nodes
 
@@ -552,7 +551,7 @@ export default class TreeGraph {
    */
   _onNodeClick(node) {
 
-    if ( d3.event.detail < 2 )
+    if ( this.d3.event.detail < 2 )
       this.selectNode( node )
 
   }
@@ -565,7 +564,7 @@ export default class TreeGraph {
   _onNodeDblClick(node) {
 
     if ( this.zoomable )
-      d3.event.stopPropagation();
+      this.d3.event.stopPropagation();
 
   }
 
@@ -577,7 +576,7 @@ export default class TreeGraph {
   _onNodeRightClick(node) {
 
     // Prevent context menu display
-    d3.event.preventDefault();
+    this.d3.event.preventDefault();
     this.collapseOrExpand( node );
 
   }
@@ -606,9 +605,9 @@ export default class TreeGraph {
   _onZoom() {
 
     // Transform graph
-    this.graph.g.attr( 'transform', d3.event.transform );
+    this.graph.g.attr( 'transform', this.d3.event.transform );
     // Cache transform value
-    this.graph.lastTransform = d3.event.transform;
+    this.graph.lastTransform = this.d3.event.transform;
 
   }
 
@@ -798,8 +797,8 @@ export default class TreeGraph {
    */
   _newTree() {
 
-    return d3.tree()
-             .nodeSize( [this._props.tree.nodeHeight, this._props.tree.nodeWidth] );
+    return this.d3.tree()
+                  .nodeSize( [this._props.tree.nodeHeight, this._props.tree.nodeWidth] );
 
   }
 
@@ -813,7 +812,7 @@ export default class TreeGraph {
 
     let width = this._props.svg.width,
         height = this._props.svg.height,
-        svg = d3.select( `${this.selector} #d3` )
+        svg = this.d3.select( `${this.selector} #d3` )
                      .append( 'svg' )
                      .attr( 'width', (responsive ? '100%' : width) )
                      .attr( 'height', height )
@@ -838,9 +837,9 @@ export default class TreeGraph {
     if ( !this.zoomable )
       return null;
 
-    return d3.zoom()
-             .scaleExtent( [ this._props.zoom.min, this._props.zoom.max ] )
-             .on( 'zoom', () => this._onZoom() );
+    return this.d3.zoom()
+                  .scaleExtent( [ this._props.zoom.min, this._props.zoom.max ] )
+                  .on( 'zoom', () => this._onZoom() );
 
   }
 
@@ -933,6 +932,20 @@ export default class TreeGraph {
         }
 
     return props;
+
+  }
+
+  /**
+   * Load D3 module asynchronously and init graph afterwards 
+   */
+  async _loadD3() {
+
+    this._loading( true );
+
+    let d3 = await import( /* webpackPrefetch: true */ 'shared/base/d3/tree/d3_tree' );
+    this.d3 = d3.default;
+
+    this._init();
 
   }
 

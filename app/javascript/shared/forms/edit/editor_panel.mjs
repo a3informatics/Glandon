@@ -1,5 +1,3 @@
-import d3 from 'shared/base/d3/tree/d3_tree'
-
 import TreeGraph from 'shared/base/d3/tree/tree_graph'
 import FormNode from 'shared/forms/edit/form_node'
 
@@ -130,6 +128,18 @@ export default class FormEditor extends TreeGraph {
 
 
   /**
+   * Initialize D3Tooltip and D3Actions modules with D3 library
+   * @extends _init parent implementation
+   */
+  _init() {
+
+    super._init();
+    D3Tooltip.init( this.d3 );
+    D3Actions.init( this.d3 );
+
+  }
+
+  /**
    * Set event listeners, handlers
    */
   _setListeners() {
@@ -169,7 +179,7 @@ export default class FormEditor extends TreeGraph {
    */
   _preprocessData(rawData) {
 
-    let data = d3.hierarchy( rawData, d => [
+    let data = this.d3.hierarchy( rawData, d => [
         ...d.has_group||[],
         ...d.has_common||[],
         ...d.has_item||[],
@@ -179,7 +189,7 @@ export default class FormEditor extends TreeGraph {
 
     // Sort by ordinals
     data.descendants().forEach( n =>
-          n.sort( (a, b) => (a.data.ordinal - b.data.ordinal) )
+        n.sort( (a, b) => (a.data.ordinal - b.data.ordinal) )
     );
 
     return data;
@@ -497,32 +507,26 @@ export default class FormEditor extends TreeGraph {
   /**
    * Load modules that are required later on
    */
-  _importModules() {
+  async _importModules() {
 
-    import( /* webpackPrefetch: true */
-            'shared/forms/edit/form_node_editor' ).then( NodeEditor => {
+    let NodeEditor = await import( /* webpackPrefetch: true */ 'shared/forms/edit/form_node_editor' );
 
-      this.nodeEditor = new NodeEditor.default({
-        formId: this.formId,
-        onShow: () => this.keysDisable(),
-        onHide: () => this.keysEnable(),
-        onUpdate: () => this._onUpdate()
-      });
-
+    this.nodeEditor = new NodeEditor.default({
+      formId: this.formId,
+      onShow: () => this.keysDisable(),
+      onHide: () => this.keysEnable(),
+      onUpdate: () => this._onUpdate()
     });
 
-    import( /* webpackPrefetch: true */
-            'shared/forms/edit/form_node_handler' ).then( NodeHandler => {
+    let NodeHandler = await import( /* webpackPrefetch: true */ 'shared/forms/edit/form_node_handler' );
 
-      this.nodeHandler = new NodeHandler.default({
-        selector: this.selector,
-        formId: this.formId,
-        alertDiv: this._alertDiv,
-        processData: data => this._preprocessData( data ),
-        loading: enable => this._loading( enable ),
-        onUpdate: node => this._onUpdate( node )
-      });
-
+    this.nodeHandler = new NodeHandler.default({
+      selector: this.selector,
+      formId: this.formId,
+      alertDiv: this._alertDiv,
+      processData: data => this._preprocessData( data ),
+      loading: enable => this._loading( enable ),
+      onUpdate: node => this._onUpdate( node )
     });
 
   }

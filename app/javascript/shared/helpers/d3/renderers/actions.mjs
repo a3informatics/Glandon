@@ -1,6 +1,11 @@
-import * as d3Lib from 'd3'
-
 const D3Actions = { 
+
+  /**
+   * Init instance with d3 module
+   */
+  init(d3) {
+    this.d3 = d3;
+  },
 
   /**
    * Create a new actions div in the page body
@@ -32,7 +37,7 @@ const D3Actions = { 
 
     if ( !node )
       return;
-      
+
     let coords = this._coords(node);
 
     this.actions.css( 'left', `${ coords.x }px`  )

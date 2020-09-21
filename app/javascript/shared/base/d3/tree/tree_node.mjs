@@ -1,4 +1,5 @@
-import d3 from 'shared/base/d3/tree/d3_tree'
+import * as d3 from 'd3-selection'
+
 import colors from 'shared/ui/colors'
 import { defaultProps } from 'shared/helpers/d3/renderers/nodes'
 
@@ -28,9 +29,9 @@ export default class TreeNode {
    */
   findElement() {
 
-    this.el = d3.selectAll( '.node' )
-                .filter( (nd) => nd.data.id === this.d.data.id )
-                .node();
+    this.el = d3.default.selectAll( '.node' )
+                     .filter( (nd) => nd.data.id === this.d.data.id )
+                     .node();
 
   }
 

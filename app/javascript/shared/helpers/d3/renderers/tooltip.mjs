@@ -1,6 +1,11 @@
-import * as d3Lib from 'd3'
-
 const D3Tooltip = { 
+
+  /**
+   * Init instance with d3 module
+   */
+  init(d3) {
+    this.d3 = d3;
+  },
 
   /**
    * Create a new tooltip div in the page body
@@ -61,7 +66,7 @@ const D3Tooltip = { 
    */
   get _coords() {
 
-    let event = d3Lib.default.event,
+    let event = this.d3.event,
         isOut = event.pageX + this.tooltip.width() >= window.innerWidth - 40;
 
     return {

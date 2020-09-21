@@ -83,6 +83,7 @@
 .ne-content .form-group input[type='text'] {
   min-width: 300px;
   padding-right: 20px;
+  color: $grey-dark;
 }
 
 .ne-content .form-group input[type='text'].narrow {
@@ -94,6 +95,7 @@
   max-width: 500px;
   min-height: 50px;
   max-height: 150px;
+  color: $grey-dark;
 }
 
 .ne-content .form-group textarea.wide {
@@ -104,6 +106,7 @@
 .ne-content .form-group select {
   border: 1px solid $grey-bright;
   border-bottom-width: 2px;
+  color: $grey-dark;
 }
 
 // Disabled and error styling
