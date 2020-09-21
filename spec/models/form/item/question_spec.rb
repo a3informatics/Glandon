@@ -88,23 +88,4 @@ describe Form::Item::Question do
 
   end
 
-  describe "Destroy" do
-    
-    before :each do
-      data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
-      load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..15)
-      load_data_file_into_triple_store("mdr_identification.ttl")
-    end
-
-    it "Delete question" do
-      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
-      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
-      result = question.delete(parent)
-      expect{Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1 in Form::Item::Question.")
-    end
-
-  end
-
-end
-  
+end  
