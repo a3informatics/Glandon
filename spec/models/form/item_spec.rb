@@ -81,6 +81,13 @@ describe Form::Item do
       expect{Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1 in Form::Item::Question.")
     end
 
+    it "Delete placeholder" do
+      placeholder = Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      result = placeholder.delete(parent)
+      expect{Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2 in Form::Item::Placeholder.")
+    end
+
   end
   
 end
