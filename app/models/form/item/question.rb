@@ -67,28 +67,6 @@ class Form::Item::Question < Form::Item
     end 
   end
 
-  # def delete(parent)
-  #   update_query = %Q{
-  #     DELETE DATA
-  #     {
-  #       #{parent.uri.to_ref} bf:hasItem #{self.uri.to_ref} 
-  #     };
-  #     DELETE {?s ?p ?o} WHERE 
-  #     { 
-  #       { BIND (#{self.uri.to_ref} as ?s). 
-  #         ?s ?p ?o
-  #       }
-  #       UNION
-  #       { #{self.uri.to_ref} bf:hasCodedValue ?o1 . 
-  #         BIND (?o1 as ?s) . 
-  #         ?s ?p ?o .
-  #       }
-  #     }
-  #   }
-  #   partial_update(update_query, [:bf])
-  #   1
-  # end
-
   def children_ordered(child)
     self.has_coded_value_objects.sort_by {|x| x.ordinal}
   end
