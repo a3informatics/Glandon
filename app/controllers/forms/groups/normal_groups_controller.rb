@@ -28,16 +28,9 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
     return true unless check_lock_for_item(form)
     normal = Form::Group::Normal.find(protect_from_bad_id(params))
     new_child = normal.add_child(add_child_params)
-    if new_child.is_a?(Array) ### IMPROVE CODE ###
-      return true if lock_item_errors
-      AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
-     render :json => {data: new_child}, :status => 200
-    else
-      return true if item_errors(new_child)
-      return true if lock_item_errors
-      AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
-      render :json => {data: new_child.to_h}, :status => 200
-    end
+    return true if item_errors(normal)
+    AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
+    render :json => {data: format_data(new_child)}, :status => 200
   end
 
   def move_up
@@ -67,6 +60,10 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
   end
 
 private
+
+  def format_data(data)
+    data.is_a?(Array) ? data : data.to_h
+  end
 
   def move_params
     params.require(:normal_group).permit(:form_id, :parent_id)
