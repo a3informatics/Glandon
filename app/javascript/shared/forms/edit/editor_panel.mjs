@@ -438,10 +438,11 @@ export default class FormEditor extends TreeGraph {
   _renderTooltip(node) {
 
     let html = `<div>` +
-                  `<div class='font-regular' style='color: ${ node.color }'> ${ node.rdfName } </div>` +
-                  ( node.disabled ? '<i>Disabled</i> <br>' : '') +
-                  `${ node.data.label }` +
-               `</div>`;
+                  `<div class='font-regular' style='color: ${ node.color }'> ${ node.rdfName } </div>
+                   ${ ( node.disabled ? '<i>Disabled</i> <br>' : '') }
+                   ${ ( node.data.is_common ? '<i>Common</i> <br>' : '') }
+                   ${ node.data.label }
+                </div>`;
 
     D3Tooltip.show( html );
 
