@@ -369,7 +369,7 @@ export default class TreeGraph {
 
     // Key navigation event handler
     if ( this.keyControls )
-      $( 'body' ).on( 'keyup', e => this._onKeyPress(e) );
+      $( 'body' ).on( 'keydown', e => this._onKeyPress(e) );
 
   }
 
@@ -662,11 +662,11 @@ export default class TreeGraph {
     else
       return;
 
-    e.preventDefault();
-
     // Focus on Node if out of viewport
     if ( !isInViewport( $(this.graph.svg.node()), this.selected.$, 1 ) )
       this.focusOn( this.selected, false, false );
+
+    e.preventDefault();
 
   }
 
@@ -695,7 +695,7 @@ export default class TreeGraph {
     else
       return;
 
-    e.preventDefault();
+    e.preventDefault()
 
   }
 

@@ -462,7 +462,7 @@ export default class FormEditor extends TreeGraph {
 
     if ( node.selected )
       classList += ' selected'
-    if ( node.disabled )
+    if ( node.disabled || node.data.is_common )
       classList += ' disabled'
 
     return classList;
