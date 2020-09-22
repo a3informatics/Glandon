@@ -268,43 +268,42 @@ class Form::Group::Normal < Form::Group
   private
     
     def add_bc_group(id)
+      tx = transaction_begin
       bci = BiomedicalConceptInstance.find(id)
-      #transaction = transaction_begin
-      ordinal = next_ordinal(:has_sub_group)
-      bc_group = Form::Group::Bc.create(label: bci.label, ordinal: ordinal, parent_uri: self.uri)
+      bc_group = Form::Group::Bc.create(label: bci.label, ordinal: next_ordinal(:has_sub_group), parent_uri: self.uri, transaction: tx)
       #return bc_group if bc_group.errors.any? #Merge error
-      bc_reference = OperationalReferenceV3.create({reference: bci.uri}, bc_group)
-      bc_group.add_link(:has_biomedical_concept, bc_reference.uri)
-      bci.has_item_objects.each do |item|
-        #next if !item.enabled
+      bc_reference = OperationalReferenceV3.create({reference: bci.uri, transaction: tx}, bc_group)
+      bc_group.has_biomedical_concept = bc_reference
+      bc_group.save
+      bci.has_item_objects.each_with_index do |item, indx|
         item.has_complex_datatype_objects.each do |cdt|
           cdt.has_property_objects.each_with_index do |property, ind|
-            add_bc_property(property, ind, bc_group)
+            bc_property = Form::Item::BcProperty.create(label: property.alias, parent_uri: bc_group.uri, ordinal: indx + 1, transaction: tx)
+            bc_group.has_item_push(bc_property)
+            add_bc_property(property, bc_property)
           end 
         end
       end
       self.add_link(:has_sub_group, bc_group.uri)
-      #transaction_execute
-      bc_group = Form::Group::Bc.find_full(bc_group.uri).to_h
-      # bc_group[:has_item].each do |item|
-      #   item[:has_coded_value].each do |cv|
-      #     cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
-      #   end
-      # end
+      transaction_execute
+      bc_group = bc_group.to_h
+      bc_group[:has_item].each do |item|
+        item[:has_coded_value].each do |cv|
+          cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
+        end
+      end
       bc_group
     end
 
-    def add_bc_property(property, index, bc_group)
-      bc_property = Form::Item::BcProperty.create(label: property.alias, parent_uri: bc_group.uri)
+    def add_bc_property(property, bc_property)
       bc_property_reference = OperationalReferenceV3.create({reference: property.uri}, bc_property)
-      bc_property.add_link(:has_property, bc_property_reference.uri)
-      property.has_coded_value_objects.each do |cv_ref|
+      bc_property.has_property = bc_property_reference
+      property.has_coded_value_objects.each_with_index do |cv_ref, indx|
         cli = Thesaurus::UnmanagedConcept.find_full(cv_ref.reference)
         cl = Thesaurus::ManagedConcept.find_with_properties(cv_ref.context)
-        coded_value_reference = OperationalReferenceV3::TucReference.create({label: cli.label, reference: cli, context: cl}, bc_property)
-        bc_property.add_link(:has_coded_value, coded_value_reference.uri)
+        coded_value_reference = OperationalReferenceV3::TucReference.create({local_label: cli.label, reference: cli.uri, context: cl.uri, ordinal: indx+1}, bc_property)
+        bc_property.has_coded_value_push(coded_value_reference)
       end
-      bc_group.add_link(:has_item, bc_property.uri)
     end
 
     def add_normal_group

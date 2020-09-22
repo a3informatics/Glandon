@@ -2,7 +2,7 @@
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzE=
   :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
-  :label: Weight
+  :label: Height
   :tagged: []
   :ordinal: 1
   :note: ''
@@ -12,7 +12,7 @@
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAx
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP1
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--TESTCD"
+    :label: "--REASND"
     :tagged: []
     :ordinal: 1
     :note: ''
@@ -27,39 +27,13 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode
+      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTCD_BCPvalue
       :context: 
-    :has_coded_value:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAxX1RVQzE=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP1_TUC1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference:
-        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUyMDg=
-        :uri: http://www.cdisc.org/C66741/V4#C66741_C25208
-        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-        :label: Weight
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        :identifier: C25208
-        :notation: WEIGHT
-        :definition: The vertical force exerted by a mass as a result of gravity.
-          (NCI)
-        :extensible: false
-        :narrower: []
-        :preferred_term: http://www.assero.co.uk/PT#69c0b81540bd6771fbae52b1e5922cfd40155633
-        :synonym:
-        - http://www.assero.co.uk/SYN#69c0b81540bd6771fbae52b1e5922cfd40155633
-      :context: http://www.cdisc.org/C66741/V61#C66741
-      :local_label: Weight
+    :has_coded_value: []
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAy
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP2
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--REASND"
+    :label: "--TESTCD"
     :tagged: []
     :ordinal: 2
     :note: ''
@@ -74,7 +48,54 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTCD_BCPvalue
+      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAyX1RVQzE=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP2_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUzNDc=
+        :uri: http://www.cdisc.org/C66741/V4#C66741_C25347
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Height
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C25347
+        :notation: HEIGHT
+        :definition: The vertical measurement or distance from the base to the top
+          of an object; the vertical dimension of extension. (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#3f608b4935ead643d43b2642dc4ec863d170aa1d
+        :synonym:
+        - http://www.assero.co.uk/SYN#3f608b4935ead643d43b2642dc4ec863d170aa1d
+      :context: http://www.cdisc.org/C66741/V61#C66741
+      :local_label: Height
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAz
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP3
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: "--ORRES"
+    :tagged: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAzX1Ix
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP3_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue
       :context: 
     :has_coded_value: []
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAz
@@ -95,7 +116,7 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode
+      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode
       :context: 
     :has_coded_value:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAzX1RVQzE=
@@ -107,25 +128,24 @@
       :optional: false
       :ordinal: 1
       :reference:
-        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0OSNDNjY3NzBfQzI4MjUy
-        :uri: http://www.cdisc.org/C66770/V49#C66770_C28252
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNDExMzk=
+        :uri: http://www.cdisc.org/C71620/V6#C71620_C41139
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-        :label: Kilogram
+        :label: Meter
         :tagged:
         - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
-        :identifier: C28252
-        :notation: kg
-        :definition: The base unit of mass in the International System of Units (SI)
-          equal to the mass of the international prototype kilogram, a platinum-iridium
-          cylinder in the custody of the International Bureau of Weights and Measures.
+        :identifier: C41139
+        :notation: m
+        :definition: A meter is defined as the length of the path traveled by light
+          in a vacuum during a time interval of 1/299 792 458 of a second and is equal
+          to 1.093 61 yards.(NCI)
         :extensible: false
         :narrower: []
-        :preferred_term: http://www.assero.co.uk/PT#4bc17b82eb026aa064b71b05667b89d5d2d678bb
+        :preferred_term: http://www.assero.co.uk/PT#df8fad2cc28080ebffb2553e4679edc2f50cfbfe
         :synonym:
-        - http://www.assero.co.uk/SYN#4bc17b82eb026aa064b71b05667b89d5d2d678bb
-      :context: http://www.cdisc.org/C66770/V59#C66770
-      :local_label: Kilogram
+        - http://www.assero.co.uk/SYN#df8fad2cc28080ebffb2553e4679edc2f50cfbfe
+      :context: http://www.cdisc.org/C71620/V62#C71620
+      :local_label: Meter
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAzX1RVQzI=
       :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP3_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
@@ -135,45 +155,77 @@
       :optional: false
       :ordinal: 2
       :reference:
-        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0I0M2Njc3MF9DNDg1MzE=
-        :uri: http://www.cdisc.org/C66770/V4#C66770_C48531
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YzNCNDNjY3NzBfQzQ5NjY4
+        :uri: http://www.cdisc.org/C66770/V34#C66770_C49668
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-        :label: Pound
+        :label: Centimeter
         :tagged:
         - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        :identifier: C48531
-        :notation: LB
-        :definition: A traditional unit of mass. By international agreement, one avoirdupois
-          pound is equal to exactly 0.453 592 37 kilogram, 16 ounces, or 1.215 28
-          troy pounds. (NCI)
+        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
+        :identifier: C49668
+        :notation: cm
+        :definition: A basic unit of length equal to one hundredth of a meter or approximately
+          0.393700787 inch.
         :extensible: false
         :narrower: []
-        :preferred_term: http://www.assero.co.uk/PT#3470368ac24fd837c677bc8499cf6baf04005fb5
+        :preferred_term: http://www.assero.co.uk/PT#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
         :synonym:
-        - http://www.assero.co.uk/SYN#3470368ac24fd837c677bc8499cf6baf04005fb5
+        - http://www.assero.co.uk/SYN#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
       :context: http://www.cdisc.org/C66770/V59#C66770
-      :local_label: Pound
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAz
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP3
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--ORRES"
-    :tagged: []
-    :ordinal: 3
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAzX1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP3_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :local_label: Centimeter
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAzX1RVQzM=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP3_TUC3
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
       :enabled: true
       :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue
-      :context: 
-    :has_coded_value: []
+      :ordinal: 3
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0MiNDNjY3NzBfQzQ4NTAw
+        :uri: http://www.cdisc.org/C66770/V42#C66770_C48500
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Inch
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
+        :identifier: C48500
+        :notation: in
+        :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+        :synonym:
+        - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+      :context: http://www.cdisc.org/C66770/V59#C66770
+      :local_label: Inch
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAzX1RVQzQ=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP3_TUC4
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 4
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNzEyNTM=
+        :uri: http://www.cdisc.org/C71620/V6#C71620_C71253
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: International Foot
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C71253
+        :notation: ft
+        :definition: A unit of length defined by the U.S. National Bureau of Standards
+          as 30.48 centimeters. It is equal to 0.3048 meter, 12 inches, or to approximately
+          0.999998 survey foot.(NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#83503451d19c8ae02e0dc5f2bb30111e8d71c65d
+        :synonym:
+        - http://www.assero.co.uk/SYN#d88c8ea10f076325483be42bbe1abf9c709658f0
+      :context: http://www.cdisc.org/C71620/V62#C71620
+      :local_label: International Foot
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlA0
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP4
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
@@ -192,13 +244,13 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
       :context: 
     :has_coded_value: []
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlA1
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP5
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--LOC"
+    :label: "--POS"
     :tagged: []
     :ordinal: 5
     :note: ''
@@ -213,13 +265,13 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI6_BCCDTCD_BCPcode
+      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI5_BCCDTCD_BCPcode
       :context: 
     :has_coded_value: []
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlA2
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP6
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--LAT"
+    :label: "--LOC"
     :tagged: []
     :ordinal: 6
     :note: ''
@@ -234,13 +286,13 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI7_BCCDTCD_BCPcode
+      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI6_BCCDTCD_BCPcode
       :context: 
     :has_coded_value: []
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlA3
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP7
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--METHOD"
+    :label: "--LAT"
     :tagged: []
     :ordinal: 7
     :note: ''
@@ -255,13 +307,13 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI8_BCCDTCD_BCPcode
+      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI7_BCCDTCD_BCPcode
       :context: 
     :has_coded_value: []
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlA4
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP8
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--CAT"
+    :label: "--METHOD"
     :tagged: []
     :ordinal: 8
     :note: ''
@@ -276,13 +328,13 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI3_BCCDTCD_BCPcode
+      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI8_BCCDTCD_BCPcode
       :context: 
     :has_coded_value: []
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlA5
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP9
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--STAT"
+    :label: "--CAT"
     :tagged: []
     :ordinal: 9
     :note: ''
@@ -297,13 +349,13 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI9_BCCDTBL_BCPvalue
+      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI3_BCCDTCD_BCPcode
       :context: 
     :has_coded_value: []
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAxMA==
     :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG1_BP10
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--POS"
+    :label: "--STAT"
     :tagged: []
     :ordinal: 10
     :note: ''
@@ -318,7 +370,7 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI5_BCCDTCD_BCPcode
+      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI9_BCCDTBL_BCPvalue
       :context: 
     :has_coded_value: []
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzFfQlAxMQ==
@@ -339,7 +391,7 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI4_BCCDTCD_BCPcode
+      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI4_BCCDTCD_BCPcode
       :context: 
     :has_coded_value: []
   :has_biomedical_concept:
@@ -351,5 +403,5 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI
+    :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI
     :context: 

@@ -73,7 +73,7 @@ describe Form::Group::Normal do
   describe "Add child" do
     
     before :each do
-      data_files = ["forms/FN000150.ttl", "forms/VSTADIABETES.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -105,6 +105,13 @@ describe Form::Group::Normal do
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = normal.add_child({type:"bc_group", id_set:[bci_2.id, bci_3.id ]})
       check_file_actual_expected(result, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
+    end
+
+    it "add child III, bc groups" do
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
+      check_file_actual_expected(result, sub_dir, "add_child_expected_7.yaml", equate_method: :hash_equal)
     end
 
     it "add child IV, items" do

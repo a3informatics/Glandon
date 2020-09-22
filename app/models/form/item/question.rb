@@ -55,7 +55,7 @@ class Form::Item::Question < Form::Item
         ordinal = next_ordinal(:has_coded_value)
         cli = Thesaurus::UnmanagedConcept.find(params[:id])
         cl = Thesaurus::ManagedConcept.find_with_properties(params[:context_id])
-        child = OperationalReferenceV3::TucReference.create({label: cli.label, reference: cli, context: cl, ordinal: ordinal, transaction: transaction, parent_uri: self}, self)
+        child = OperationalReferenceV3::TucReference.create({local_label: cli.label, reference: cli, context: cl, ordinal: ordinal, transaction: transaction, parent_uri: self}, self)
         return child if child.errors.any?
         self.add_link(:has_coded_value, child.uri)
         transaction_execute
