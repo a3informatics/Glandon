@@ -20,7 +20,7 @@ class Form::Item::Common < Form::Item::BcProperty
   def to_crf
     html = ""
     common_item = self.has_common_item.first
-    property = BiomedicalConcept::PropertyX.find(common_item.uri)
+    property = BiomedicalConcept::PropertyX.find(common_item.has_property.reference)
     html += start_row(self.optional)
     html += question_cell(property.question_text)
     if property.has_coded_value.length == 0

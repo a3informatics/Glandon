@@ -23,7 +23,7 @@ class Form::Item::BcProperty < Form::Item
   # @return [String] An html string of BC Property
   def to_crf
     html = ""
-    if !self.is_common
+    if !is_common?
       property_ref = self.has_property.reference
       property = BiomedicalConcept::PropertyX.find(property_ref)
       html += start_row(self.optional)
@@ -45,6 +45,14 @@ class Form::Item::BcProperty < Form::Item
   end
 
   private
+
+    def is_common?
+      query_string = %Q{         
+        SELECT ?result WHERE {BIND ( EXISTS {#{self.uri.to_ref} ^bf:hasCommonItem ?s} as ?result )}
+      }     
+      query_results = Sparql::Query.new.query(query_string, "", [:bf])
+      query_results.by_object(:result).first.to_bool
+    end
 
     def property_to_hash(property)
       ref = property.to_h

@@ -47,9 +47,10 @@ class Form::Group::Normal < Form::Group
       html += repeating_question_group
     elsif self.repeating && self.is_bc_only_group?
       html += repeating_bc_group
-    elsif self.is_bc_common?
-      html += bc_common_group
-    else 
+    else
+      self.has_common.sort_by {|x| x.ordinal}.each do |cm|
+        html += cm.to_crf
+      end 
       self.has_item.sort_by {|x| x.ordinal}.each do |item|
         html += item.to_crf
       end
@@ -120,37 +121,6 @@ class Form::Group::Normal < Form::Group
       end
     end
     return true
-  end
-
-  # Is a BC group with common group
-  def is_bc_common?
-    self.has_sub_group.each do |sg|
-      if sg.class == Form::Group::Bc
-        if !sg.has_common.empty?
-          return true
-        end
-      end
-    end
-    return false
-  end
-
-  #BC common group
-  def bc_common_group
-    html = ""
-    items = {}
-    self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-      html += text_row(sg.label)
-      sg.has_item.sort_by {|x| x.ordinal}.each do |item|
-        html += item.to_crf
-      end
-      sg.has_common.sort_by {|x| x.ordinal}.each do |cm|
-        if !items.has_key?(cm.label)
-          html += cm.to_crf
-          items[cm.label] = cm.label
-        end
-      end   
-    end
-    return html
   end
 
   # Repeating Question group
@@ -316,7 +286,6 @@ class Form::Group::Normal < Form::Group
       self.add_link(:has_sub_group, bc_group.uri)
       #transaction_execute
       bc_group = Form::Group::Bc.find_full(bc_group.uri).to_h
-  byebug
       # bc_group[:has_item].each do |item|
       #   item[:has_coded_value].each do |cv|
       #     cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
