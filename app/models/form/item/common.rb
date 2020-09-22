@@ -1,4 +1,4 @@
-class Form::Item::Common < Form::Item
+class Form::Item::Common < Form::Item::BcProperty
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#CommonItem",
             uri_suffix: "CI",  

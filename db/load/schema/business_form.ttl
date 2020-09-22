@@ -90,7 +90,7 @@
 :CommonItem
   rdf:type owl:Class ;
   rdfs:label "Common Item"^^xsd:string ;
-  rdfs:subClassOf :Item ;
+  rdfs:subClassOf :BcProperty ;
   skos:definition "A common item."^^xsd:string
 .
 :hasGroup
@@ -112,7 +112,7 @@
 :hasCommon
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :BcGroup ;
+  rdfs:domain :NormalGroup ;
   rdfs:label "Has common group relationship"^^xsd:string ;
   rdfs:range :CommonGroup ;
   skos:definition "Has a common group relationship"^^xsd:string
@@ -138,7 +138,7 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:domain :BcGroup ;
   rdfs:label "Reference to Biomedical Concept"^^xsd:string ;
-  rdfs:range bo:BcReference ;
+  rdfs:range bo:Reference ;
   skos:definition "Reference to a Biomedical Concept"^^xsd:string
 .
 :hasProperty
@@ -146,9 +146,10 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:domain :BcProperty ;
   rdfs:label "Reference to Biomedical Concept property."^^xsd:string ;
-  rdfs:range bo:BcReference;
+  rdfs:range bo:Reference;
   skos:definition "Reference to a Biomedical Concept property"^^xsd:string
 .
+# Deprecated
 :hasThesaurusConcept
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -260,12 +261,4 @@
   rdfs:label "Question text"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "The question text."^^xsd:string
-.
-:isCommon
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :BcProperty ;
-  rdfs:label "Is common"^^xsd:string ;
-  rdfs:range xsd:boolean ;
-  skos:definition "The item is common."^^xsd:string
 .
