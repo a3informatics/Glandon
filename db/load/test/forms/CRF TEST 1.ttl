@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-09-04T14:42:33+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-09-22T11:03:09+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -195,7 +195,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_BCG3_BP3_R1 ;
 	bf:hasCodedValue :F_NG2_BCG3_BP3_TUC1 ;
 	bf:hasCodedValue :F_NG2_BCG3_BP3_TUC2 ;
@@ -257,7 +256,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_BCG3_BP2_R1 ;
 .
 :F_NG2_BCG3_BP2_R1
@@ -275,7 +273,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_BCG3_BP1_R1 ;
 .
 :F_NG2_BCG3_BP1_R1
@@ -313,7 +310,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_BCG2_BP3_R1 ;
 	bf:hasCodedValue :F_NG2_BCG2_BP3_TUC1 ;
 	bf:hasCodedValue :F_NG2_BCG2_BP3_TUC2 ;
@@ -375,7 +371,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_BCG2_BP2_R1 ;
 .
 :F_NG2_BCG2_BP2_R1
@@ -393,7 +388,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_BCG2_BP1_R1 ;
 .
 :F_NG2_BCG2_BP1_R1
@@ -431,7 +425,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_BCG1_BP1_R1 ;
 .
 :F_NG2_BCG1_BP1_R1
@@ -449,7 +442,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_BCG1_BP3_R1 ;
 	bf:hasCodedValue :F_NG2_BCG1_BP3_TUC1 ;
 .
@@ -478,7 +470,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_BCG1_BP2_R1 ;
 .
 :F_NG2_BCG1_BP2_R1
@@ -507,6 +498,7 @@
 	bf:repeating "false"^^xsd:boolean ;
 	bf:hasSubGroup :F_NG1_BCG3 ;
 	bf:hasSubGroup :F_NG1_BCG2 ;
+	bf:hasCommon :F_NG1_CG1 ;
 .
 :F_NG1_BCG3
 	rdf:type bf:BcGroup ;
@@ -519,7 +511,6 @@
 	bf:hasItem :F_NG1_BCG3_BP2 ;
 	bf:hasItem :F_NG1_BCG3_BP1 ;
 	bf:hasItem :F_NG1_BCG3_BP4 ;
-	bf:hasCommon :F_NG1_BCG3_CG ;
 	bf:hasBiomedicalConcept :F_NG1_BCG3_R1 ;
 .
 :F_NG1_BCG3_BP3
@@ -529,7 +520,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_BCG3_BP3_R1 ;
 .
 :F_NG1_BCG3_BP3_R1
@@ -547,7 +537,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "true"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_BCG3_BP2_R1 ;
 	bf:hasCodedValue :F_NG1_BCG3_BP2_TUC1 ;
 	bf:hasCodedValue :F_NG1_BCG3_BP2_TUC2 ;
@@ -598,7 +587,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "true"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_BCG3_BP1_R1 ;
 .
 :F_NG1_BCG3_BP1_R1
@@ -607,7 +595,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
+	bo:reference <http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
 :F_NG1_BCG3_BP4
 	rdf:type bf:BcProperty ;
@@ -616,7 +604,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_BCG3_BP4_R1 ;
 	bf:hasCodedValue :F_NG1_BCG3_BP4_TUC1 ;
 .
@@ -638,36 +625,6 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:F_NG1_BCG3_CG
-	rdf:type bf:CommonGroup ;
-	isoC:label "Common Group"^^xsd:string ;
-	bf:ordinal "1"^^xsd:integer ;
-	bf:note "Not Set"^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_BCG3_CG_CI2 ;
-	bf:hasItem :F_NG1_BCG3_CG_CI1 ;
-.
-:F_NG1_BCG3_CG_CI2
-	rdf:type bf:CommonItem ;
-	isoC:label "Body Position (--POS)"^^xsd:string ;
-	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:hasCommonItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
-	bf:hasCommonItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
-.
-:F_NG1_BCG3_CG_CI1
-	rdf:type bf:CommonItem ;
-	isoC:label "Date and Time (--DTC)"^^xsd:string ;
-	bf:ordinal "1"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:hasCommonItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
-	bf:hasCommonItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
-.
 :F_NG1_BCG3_R1
 	rdf:type bo:Reference ;
 	isoC:label "BC Reference"^^xsd:string ;
@@ -687,7 +644,6 @@
 	bf:hasItem :F_NG1_BCG2_BP3 ;
 	bf:hasItem :F_NG1_BCG2_BP2 ;
 	bf:hasItem :F_NG1_BCG2_BP1 ;
-	bf:hasCommon :F_NG1_BCG2_CG ;
 	bf:hasBiomedicalConcept :F_NG1_BCG2_R1 ;
 .
 :F_NG1_BCG2_BP4
@@ -697,7 +653,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_BCG2_BP4_R1 ;
 	bf:hasCodedValue :F_NG1_BCG2_BP4_TUC1 ;
 .
@@ -726,7 +681,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_BCG2_BP3_R1 ;
 .
 :F_NG1_BCG2_BP3_R1
@@ -744,7 +698,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "true"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_BCG2_BP2_R1 ;
 	bf:hasCodedValue :F_NG1_BCG2_BP2_TUC1 ;
 	bf:hasCodedValue :F_NG1_BCG2_BP2_TUC2 ;
@@ -795,7 +748,6 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:isCommon "true"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_BCG2_BP1_R1 ;
 .
 :F_NG1_BCG2_BP1_R1
@@ -804,37 +756,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
-.
-:F_NG1_BCG2_CG
-	rdf:type bf:CommonGroup ;
-	isoC:label "Common Group"^^xsd:string ;
-	bf:ordinal "1"^^xsd:integer ;
-	bf:note "Not Set"^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_BCG2_CG_CI2 ;
-	bf:hasItem :F_NG1_BCG2_CG_CI1 ;
-.
-:F_NG1_BCG2_CG_CI2
-	rdf:type bf:CommonItem ;
-	isoC:label "Body Position (--POS)"^^xsd:string ;
-	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:hasCommonItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
-	bf:hasCommonItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
-.
-:F_NG1_BCG2_CG_CI1
-	rdf:type bf:CommonItem ;
-	isoC:label "Date and Time (--DTC)"^^xsd:string ;
-	bf:ordinal "1"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion "Not Set"^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:hasCommonItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
-	bf:hasCommonItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
+	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
 :F_NG1_BCG2_R1
 	rdf:type bo:Reference ;
@@ -843,4 +765,34 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/SYSBP/V1#BCI> ;
+.
+:F_NG1_CG1
+	rdf:type bf:CommonGroup ;
+	isoC:label "Common Group"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_CG1_CI2 ;
+	bf:hasItem :F_NG1_CG1_CI1 ;
+.
+:F_NG1_CG1_CI2
+	rdf:type bf:CommonItem ;
+	isoC:label "Body Position (--POS)"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasCommonItem :F_NG1_BCG2_BP2 ;
+	bf:hasCommonItem :F_NG1_BCG3_BP2 ;
+.
+:F_NG1_CG1_CI1
+	rdf:type bf:CommonItem ;
+	isoC:label "Date and Time (--DTC)"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasCommonItem :F_NG1_BCG3_BP1 ;
+	bf:hasCommonItem :F_NG1_BCG2_BP1 ;
 .

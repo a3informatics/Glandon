@@ -89,7 +89,6 @@ describe Form do
     end
 
     def query_bc(group)
-      results = []
       query_string = %Q{
         SELECT ?g ?t ?l ?enabled ?optional ?local_label ?ordinal ?bc WHERE
         {
@@ -130,7 +129,7 @@ describe Form do
 
     def query_items(group)
       query_string = %Q{
-        SELECT ?i ?l ?c ?n ?o ?ordinal ?format ?mapping ?question_text ?free_text ?label_text ?is_common ?datatype ?common_item ?type WHERE
+        SELECT ?i ?l ?c ?n ?o ?ordinal ?format ?mapping ?question_text ?free_text ?label_text ?datatype ?common_item ?type WHERE
         {
           #{group[:g].to_ref} <http://www.assero.co.uk/BusinessForm#hasItem> ?i .
           ?i <http://www.w3.org/2000/01/rdf-schema#label> ?l .
@@ -162,7 +161,6 @@ describe Form do
           OPTIONAL 
           {
             ?i <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#BcProperty> .
-            ?i <http://www.assero.co.uk/BusinessForm#is_common> ?is_common .
             BIND ("BcProperty" as ?type)
           }
           OPTIONAL 
@@ -180,7 +178,7 @@ describe Form do
         }
       }
       query_results = Sparql::Query.new.query(query_string, "", [])
-      query_results.by_object_set([:i, :l, :c, :n, :o, :ordinal, :format, :mapping, :question_text, :free_text, :label_text, :is_common, :datatype, :common_item, :type ])
+      query_results.by_object_set([:i, :l, :c, :n, :o, :ordinal, :format, :mapping, :question_text, :free_text, :label_text, :datatype, :common_item, :type ])
     end
 
     def query_tc(item)
@@ -239,7 +237,8 @@ describe Form do
           optional: params[:o].blank? ? "Not Set" : params[:o],
           repeating: params[:r].blank? ? "Not Set" : params[:r],
           has_item: [],
-          has_sub_group: []
+          has_sub_group: [],
+          has_common: []
       }
     end
 
@@ -253,7 +252,8 @@ describe Form do
           optional: params[:o].blank? ? "Not Set" : params[:o],
           repeating: params[:r].blank? ? "Not Set" : params[:r],
           has_item: [],
-          has_sub_group: []
+          has_sub_group: [],
+          has_common: []
         }
         group[:has_sub_group] << Form::Group::Normal.from_h(hash_group)
       else #BC subgroup
@@ -264,8 +264,7 @@ describe Form do
         completion: params[:c].blank? ? "Not Set" : params[:c],
         optional: params[:o].blank? ? "Not Set" : params[:o],
         has_item: [],
-        has_biomedical_concept: [],
-        has_common: []
+        has_biomedical_concept: []
       }
         group[:has_sub_group] << Form::Group::Bc.from_h(hash_group)
       end
@@ -279,7 +278,7 @@ describe Form do
           label: params[:l],
           enabled: params[:enabled]
           }
-       group.has_biomedical_concept << OperationalReferenceV3.from_h(bc)
+       group.has_biomedical_concept = OperationalReferenceV3.from_h(bc)
     end
 
     def add_common(group, params)
@@ -291,7 +290,7 @@ describe Form do
           note: params[:n].blank? ? "Not Set" : params[:n],
           has_item: []
           }
-       group.has_common << Form::Group::Common.from_h(common)
+       group[:has_common] << Form::Group::Common.from_h(common)
     end
 
     def add_item_group(group, params)
@@ -337,7 +336,6 @@ describe Form do
               note: params[:n],
               optional: params[:o],
               ordinal: params[:ordinal],
-              is_common: params[:is_common],
               has_coded_value: query_tc(params),
               has_property: query_property(params)
               }
@@ -408,7 +406,6 @@ describe Form do
               note: params[:n],
               optional: params[:o],
               ordinal: params[:ordinal],
-              is_common: params[:is_common],
               has_coded_value: query_tc(params),
               has_property: query_property(params)
               }
@@ -473,7 +470,7 @@ describe Form do
                 commons = query_common(group)
                 commons.each_with_index do |cm, ind|
                   sub_commons = query_items(cm)
-                  commons = add_common(sub_groups[inde], cm)
+                  commons = add_common(groups[index], cm)
                   sub_commons.each do |sc|
                     item = add_item_sub_group(commons[ind], sc)
                   end
