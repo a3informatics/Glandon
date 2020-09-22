@@ -31,6 +31,9 @@ class Form::Group::Normal < Form::Group
     self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
       results += sg.get_item
     end
+    self.has_common.sort_by {|x| x.ordinal}.each do |cm|
+      results += cm.get_item
+    end
     results
   end
 
@@ -72,6 +75,8 @@ class Form::Group::Normal < Form::Group
         results << add_bc_group(id)
       end
       results
+    elsif params[:type].to_sym == :common_group
+      add_common_group
     elsif items.include?params[:type].to_sym
       add_item(params)
     else
@@ -338,6 +343,14 @@ class Form::Group::Normal < Form::Group
       child = Form::Group::Normal.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
       #return child if child.errors.any? ##Merge error
       self.add_link(:has_sub_group, child.uri)
+      child
+    end
+
+    def add_common_group
+      ordinal = next_ordinal(:has_common)
+      child = Form::Group::Common.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
+      #return child if child.errors.any? ##Merge error
+      self.add_link(:has_common, child.uri)
       child
     end
 
