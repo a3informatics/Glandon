@@ -4,7 +4,6 @@ class Form::Group::Bc < Form::Group
             uri_suffix: "BCG",
             uri_property: :ordinal
 
-  object_property :has_common, cardinality: :many, model_class: "Form::Group::Common"
   object_property :has_biomedical_concept, cardinality: :one, model_class: "OperationalReferenceV3"
 
   object_property_class :has_item, model_classes: 

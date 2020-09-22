@@ -4,12 +4,8 @@ class Form::Item::BcProperty < Form::Item
             uri_suffix: "BP",  
             uri_property: :ordinal
 
-  data_property :is_common, default: false
-
   object_property :has_property, cardinality: :one, model_class: "OperationalReferenceV3"
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
-
-  validates :is_common, inclusion: { in: [ true, false ] }
 
   # Get Item
   #
