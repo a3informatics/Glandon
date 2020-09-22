@@ -1,0 +1,85 @@
+<%= render layout: "shared/information_dialog", :locals => {id: "id-form-editor", title: "How to use Form Editor", wide: true} do %>
+
+This panel is a tree-graph based editor for Forms. <br><br>
+
+<div class="font-regular text-link"> Graph navigation </div>
+To <span class="font-regular">move</span> along the graph in any direction, click-and-drag anywhere using the mouse. <br>
+To <span class="font-regular">zoom-in and out</span>, use the mouse scroll. <br><br>
+
+<div class="font-regular text-link"> Graph controls </div>
+The following actions can be invoked by clicking their respective button or by pressing a key combination on the keyboard.
+
+<ul>
+  <li>
+    To <span class="font-regular">re-center</span> the graph to initial position and zoom level, click <button class="btn white" style="margin:3px"><span class='icon-center'></span></button>
+    or press <i>C</i>.
+  </li>
+  <li>
+    To <span class="font-regular">collapse all</span> Nodes (and their descendants) <span class="font-regular">except selected</span> Node, click <button class="btn white" style="margin:3px"><span class='icon-collapse-special'></span></button>
+    or press <i>Shift + X</i>.
+  </li>
+  <li>
+    To <span class="font-regular">collapse all</span> Nodes (and their descendants), click <button class="btn white" style="margin:3px"><span class='icon-collapse'></span></button>
+    or press <i>Shift + C</i>.
+  </li>
+  <li>
+    To <span class="font-regular">expand all</span> Nodes, click <button class="btn white" style="margin:3px"><span class='icon-expand'></span></button>
+    or press <i>Shift + E</i>.
+  </li>
+  <li>
+    To <span class="font-regular">search</span> through displayed Nodes, use the Search bar. The Nodes with labels matching the search string will be <span class="text-accent-2">highlighted</span> as you type.
+    To traverse the matching Nodes, press <i>Enter</i> one or more times.
+  </li>
+</ul>
+
+<div class="font-regular text-link"> Nodes </div>
+A <span class="font-regular">Node</span> is a single vertex displayed on the graph and has a label and colored icon (representing its type). <br>
+<ul>
+  <li>
+    To see Node's <span class="font-regular">type and full label text</span>, <i>hover</i> the mouse over it.
+  </li>
+  <li>
+    To <span class="font-regular">select/ deselect</span> a Node use <i>mouse left-click</i>. <br>
+    Use <i>arrow keys</i> to select & traverse Nodes in the graph (arrow left, right, up, down).
+  </li>
+  <li>
+    To <span class="font-regular">collapse / expand</span> Node's children (descendants), use <i>mouse right-click</i> or <i>Spacebar</i>. <br>
+    When Node's children are collapsed, <span class='icon-plus text-xtiny text-light'></span> icon appears next to it.
+  </li>
+</ul>
+
+<div class="font-regular text-link"> Node actions </div>
+When a Node is selected, an <span class="font-regular">actions bar</span> appears under it. Different Nodes allow for different actions. <br>
+
+<ul>
+  <li>
+    To <span class="font-regular">edit</span> a Node, click <button class="btn icon-only light" style="margin:3px"><span class='icon-edit'></span></button>
+    or press <i>E</i>. <br>
+    This will open a Node Editor panel, where data fields of the Node instance can be viewed and modified.
+  </li>
+  <li>
+    To <span class="font-regular">add a child</span> to a Node, click <button class="btn icon-only light" style="margin:3px"><span class='icon-plus'></span></button>. <br>
+    Children Nodes can only be added to some Nodes. Clicking the button will display a list of item types that can be added to a Node.
+    You will be prompted to pick items in the system when adding <i>Biomedical Concepts</i> or <i>Code List Item References</i>.
+  </li>
+  <li>
+    To <span class="font-regular">move</span> a Node up or down in the graph, click <button class="btn icon-only light" style="margin:3px"><span class='icon-arrow-u'></span></button> and
+    <button class="btn icon-only light" style="margin:3px"><span class='icon-arrow-d'></span></button> or press <i>Shift + Arrow Up</i> and <i>Shift + Arrow Down</i>. <br>
+  </li>
+  <li>
+    To avoid repetition, Biomedical Concept Properties can be set as <span class="font-regular">Common</span> (shared across multiple BCs). <br>
+    This requires a <span class="font-regular">Common Group</span> to be created first (in the outer group).
+    To make a Property Common, click on <button class="btn icon-only light" style="margin:3px"><span class="font-bold">C</span></button>.
+    All the matching Properties across the BCs in the same Group will be then automatically marked as Common.
+  </li>
+  <li>
+    To <span class="font-regular">Restore</span> a Property from being Common, click on <button class="btn icon-only light" style="margin:3px"><span class="font-bold">R</span></button>. <br>
+    This will automatically revert the Common status of matching Properties across the BCs in the same Group.
+  </li>
+  <li>
+    To <span class="font-regular">remove</span> a Node and all its descendants, click <button class="btn icon-only red" style="margin:3px"><span class='icon-times'></span></button>
+    or press <i>Delete</i> <br>
+  </li>
+</ul>
+
+<% end %>

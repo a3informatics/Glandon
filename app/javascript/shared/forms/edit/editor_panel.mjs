@@ -1,6 +1,8 @@
 import TreeGraph from 'shared/base/d3/tree/tree_graph'
 import FormNode from 'shared/forms/edit/form_node'
 
+import InformationDialog from 'shared/ui/dialogs/information_dialog'
+
 import { $get } from 'shared/helpers/ajax'
 
 import { D3Tooltip } from 'shared/helpers/d3/renderers/tooltip'
@@ -145,6 +147,10 @@ export default class FormEditor extends TreeGraph {
   _setListeners() {
 
     super._setListeners();
+
+    // Editor Help dialog
+    $( '#editor-help-btn' ).on( 'click',
+                                () => new InformationDialog({ div: '#id-form-editor' }).show() );
 
     // Node actions edit button click
     $( this.selector ).on( 'click', '#edit-node',
