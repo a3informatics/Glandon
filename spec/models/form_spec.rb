@@ -168,10 +168,10 @@ describe Form do
       check_file_actual_expected(result.to_h, sub_dir, "add_child_expected_2.yaml", equate_method: :hash_equal)
     end
 
-    it "add child II, error" do
-      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
-      expect{form.add_child({type:"x_group"})}.to raise_error(Errors::ApplicationLogicError, "Attempting to add an invalid child type")
-    end
+    # it "add child II, error" do
+    #   form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+    #   expect{form.add_child({type:"x_group"})}.to raise_error(Errors::ApplicationLogicError, "Attempting to add an invalid child type")
+    # end
 
   end
 
@@ -186,12 +186,6 @@ describe Form do
     end
 
   end
-
-  # it "allows a placeholder form to be created from parameters" do
-  #   item = Form.create_placeholder({:identifier => "PLACE NEW", :label => "Placeholder New", :freeText => "Placeholder Test Form"})
-  #   expect(item.errors.full_messages.to_sentence).to eq("")
-  #   expect(item.errors.count).to eq(0)
-  # end
 
   # it "allows a form to be updated" do
   #   old_item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
