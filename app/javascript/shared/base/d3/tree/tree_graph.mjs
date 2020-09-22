@@ -589,7 +589,7 @@ export default class TreeGraph {
 
     // Resize container if autoScale enabled
     if ( this.autoScale )
-      this._props.container.height( window.innerHeight - 230 );
+      this._props.container.height( window.innerHeight - 200 );
 
     // Resize graph svg
     if ( this.graph && this.graph.svg )
@@ -936,7 +936,7 @@ export default class TreeGraph {
   }
 
   /**
-   * Load D3 module asynchronously and init graph afterwards 
+   * Load D3 module asynchronously and init graph afterwards
    */
   async _loadD3() {
 

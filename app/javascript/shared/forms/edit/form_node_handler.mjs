@@ -51,6 +51,9 @@ export default class NodeHandler {
    */
   addChild(node, type) {
 
+    if ( !node.addChildAllowed )
+      return;
+
     this.node = node;
 
     // Expand node as children are being added
@@ -112,6 +115,9 @@ export default class NodeHandler {
    */
   remove(node) {
 
+    if ( !node.removeAllowed )
+      return;
+
     this.node = node;
 
     $confirm({
@@ -120,6 +126,28 @@ export default class NodeHandler {
       dangerous: true,
       callback: () => this._remove()
     });
+
+  }
+
+  /**
+   * Make a Node Common
+   * @param {FormNode} node Node instance to make Common
+   */
+  makeCommon(node) {
+
+    if ( !node.commonAllowed )
+      return;
+
+  }
+
+  /**
+   * Restore a Node from being Common
+   * @param {FormNode} node Node instance to Restore from Common
+   */
+  restoreCommon(node) {
+
+    if ( !node.restoreAllowed )
+      return;
 
   }
 

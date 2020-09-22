@@ -136,7 +136,7 @@ export default class TreeNode {
   get middleChild() {
 
     if ( this.hasChildren )
-      return this.children[ Math.floor(this.d.children.length / 2) ];
+      return this.children[ Math.floor((this.d.children.length - 1) / 2) ];
 
     return null;
 

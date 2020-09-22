@@ -47,7 +47,7 @@ export default class NodeEditor extends ModalView {
    */
   edit(node) {
 
-    if ( !node )
+    if ( !node || !node.editAllowed )
       return;
 
     this.node = node;

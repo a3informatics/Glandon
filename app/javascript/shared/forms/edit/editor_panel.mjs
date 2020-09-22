@@ -302,6 +302,9 @@ export default class FormEditor extends TreeGraph {
     else if ( !e.shiftKey && e.which === 69 && this.selected ) // E
       this.editNode( this.selected );
 
+    else if ( !e.shiftKey && (e.which === 46 || e.which === 8) && this.selected ) // Delete / Backspace
+      this.removeNode( this.selected );
+
   }
 
 
@@ -405,6 +408,10 @@ export default class FormEditor extends TreeGraph {
     if ( !node )
       return;
 
+    // Toggle edit button depending on node
+    D3Actions.actions.find( '#edit-node' )
+                     .toggle( node.editAllowed );
+
     // Toggle add-child button depending on node type
     D3Actions.actions.find( '#add-child' )
                      .toggle( node.addChildAllowed );
@@ -504,7 +511,7 @@ export default class FormEditor extends TreeGraph {
     props.zoom.max = 1.6;
 
     // Custom key controls
-    props.keys = props.keys.concat( [ 38, 40 ] );
+    props.keys = props.keys.concat( [ 38, 40, 46, 8 ] );
 
     return props;
 

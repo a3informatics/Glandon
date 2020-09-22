@@ -77,6 +77,14 @@ export default class FormNode extends TreeNode {
   }
 
   /**
+   * Check if Node type is allowed to be edited
+   * @return {boolean} Value specifying if Node's type is a allowed to be edited
+   */
+  get editAllowed() {
+    return !this.data.is_common;
+  }
+
+  /**
    * Check if Node type is allowed to add a child into
    * @return {boolean} Value specifying if Node's type is a allowed to add a child in the Editor
    */
@@ -101,7 +109,7 @@ export default class FormNode extends TreeNode {
     if ( this.is( 'TUC_REF' ) )
       return this.parent.is( 'QUESTION' );
 
-    return !this.is( 'BC_PROPERTY' ) && !this.is( 'FORM' );
+    return !this.is( 'BC_PROPERTY' ) && !this.is( 'FORM' ) && !this.is( 'COMMON_ITEM' );
 
   }
 
@@ -164,6 +172,28 @@ export default class FormNode extends TreeNode {
     this.$.find( '.label' ).css( 'fill', colors.greyMedium );
     this.$.find( '.label-border' ).css( 'fill', '#fff')
                                   .css( 'stroke', colors.greyLight );
+
+  }
+
+  /**
+   * Remove a child Node from this instance and update sibling ordinals
+   * @override parent implementation
+   * @param {FormNode} node Node instance to be removed
+   */
+  removeChild(node) {
+
+    if ( !this.hasChildren )
+      return;
+
+    let nodeIndex = this.d.children.indexOf( node.d );
+
+    super.removeChild( node );
+
+    // Update ordinals of siblings
+    while( this.d.children && this.d.children[nodeIndex] ) {
+      this.d.children[nodeIndex].data.ordinal -= 1;
+      nodeIndex ++;
+    }
 
   }
 
