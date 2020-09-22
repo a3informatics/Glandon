@@ -32,6 +32,9 @@ function ConfirmationDialog(confirmCallback, options, negativeCallback) {
  * @return [void]
  */
 ConfirmationDialog.prototype.show = function() {
+  if ( $(".confirmation-dialog").length )
+    $(".confirmation-dialog").remove();
+
   $("body").prepend(this.generateDialogHTML());
   this.setListeners();
 
@@ -40,7 +43,7 @@ ConfirmationDialog.prototype.show = function() {
   }.bind(this), 1);
 
   setTimeout(function(){
-    $(this.id).find('#cd-negative-button').get(0).focus();
+    $(this.id).find('#cd-negative-button').focus();
   }.bind(this), 300);
 
 }
@@ -78,10 +81,13 @@ ConfirmationDialog.prototype.setListeners = function() {
       _this.negativeCallback();
   });
 
-  $(window).one("keyup", function(e){
-    if(e.keyCode == 27 || e.which == 27)
-      this.dismiss();
-  }.bind(this));
+  setTimeout( function() {
+    $(window).one("keyup", function(e){
+      if(e.keyCode == 27 || e.which == 27)
+        this.dismiss();
+    }.bind(this));
+  }.bind(this), 200);
+
 }
 
 /**
@@ -132,7 +138,7 @@ ConfirmationDialog.prototype.defaultOptions = function(userOptions) {
  */
 ConfirmationDialog.prototype.generateDialogHTML = function() {
   var html = '';
-  html += '<div id="' + this.id.replace('#','') + '" class="cd-wrap">';
+  html += '<div id="' + this.id.replace('#','') + '" class="confirmation-dialog cd-wrap">';
   html +=   '<div class="cd-body shadow-medium ' + (this.options.dangerous ? 'danger' : '') + '">';
   html +=     '<div class="cd-title text-xnormal">' + this.options.title + '</div>';
   html +=     '<div class="cd-subtitle scroll-styled text-small font-light">' + this.options.subtitle + '</div>';
