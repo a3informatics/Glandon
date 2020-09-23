@@ -785,6 +785,10 @@
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasCommonItem :F_NG1_BCG2_BP2 ;
 	bf:hasCommonItem :F_NG1_BCG3_BP2 ;
+	bf:hasProperty :F_NG1_BCG2_BP2_R1 ;
+	bf:hasCodedValue :F_NG1_BCG2_BP2_TUC1 ;
+	bf:hasCodedValue :F_NG1_BCG2_BP2_TUC2 ;
+	bf:hasCodedValue :F_NG1_BCG2_BP2_TUC3 ;
 .
 :F_NG1_CG1_CI1
 	rdf:type bf:CommonItem ;
@@ -795,4 +799,5 @@
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasCommonItem :F_NG1_BCG3_BP1 ;
 	bf:hasCommonItem :F_NG1_BCG2_BP1 ;
+	bf:hasProperty :F_NG1_BCG3_BP1_R1 ;
 .
