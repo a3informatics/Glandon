@@ -43,26 +43,8 @@ class Form::Group::Bc < Form::Group
     self.has_item.sort_by {|x| x.ordinal}.each do |item|
       html += item.to_crf
     end
-    # self.has_common.sort_by {|x| x.ordinal}.each do |cm|
-    #   html += cm.to_crf
-    # end
     return html
   end
-
-  #Add child. 
-  # 
-  #@return 
-  # def add_child(params)
-  #   if params[:type].to_sym == :common_group
-  #     ordinal = next_ordinal(:has_common)
-  #     child = Form::Group::Common.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
-  #     return child if child.errors.any?
-  #     self.add_link(:has_common, child.uri)
-  #     child
-  #   else
-  #     self.errors.add(:base, "Attempting to add an invalid child type")
-  #   end 
-  # end
 
   def children_ordered(child)
     if child.class == Form::Group::Common
