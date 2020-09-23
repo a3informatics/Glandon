@@ -28,6 +28,10 @@
 
 // Custom styles
 
+.d3 .node:focus {
+	outline: none;
+}
+
 .d3 .node.disabled {
 	.label {
   	opacity: .6;

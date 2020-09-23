@@ -30,6 +30,8 @@ function renderNodesSimple({
                       .attr( 'transform', (d) => `translate(${d.y}, ${d.x})` )
                       // CSS class dependent on selected data flag
                       .attr( 'class', (d) => ((selectable && d.data.selected) ? 'node selected' : 'node') )
+                      // Add tabindex to node to make it focusable
+                      .attr( 'tabindex', '-1' )
                       // Pointer cursor if selectable set to true
                       .style( 'cursor', selectable ? 'pointer' : 'inherit' )
                       // Events
@@ -62,7 +64,7 @@ function renderNodesSimple({
  * @param {D3} nodes Pre-rendered D3 Nodes selection (e.g. from renderNodesSimple)
  * @param {{string | function}} nodeIcon Defines the icon (char code or letter) for a node
  * @param {{string | function}} nodeColor Defines the color code for a node
- * @param {string} labelProperty Specifies which Node data property should be used for the label text
+ * @param {string | function} labelProperty Specifies which Node data property should be used for the label text or specifies a text function
  * @param {function} onHover Node label hover callback, optional
  * @param {function} onHoverOut Node label hover-out callback, optional
  * @param {Object} props Properties containing the radius and color values, optional
@@ -93,14 +95,24 @@ function renderIconsLabels({
        .style( 'fill', nodeColor )
        .style( 'font-size', '20px' )
        // Icon font depending whether it is a letter or a font-icon
-       .style( 'font-family', (d) => isCharLetter( nodeIcon(d) ) ? 'Roboto-Bold' : 'icomoon' );
+       .style( 'font-family', d => isCharLetter( nodeIcon( d ) ) ?
+                                   'Roboto-Bold' :
+                                   'icomoon'
+             );
 
    // Render Labels
    nodes.append( 'text' )
         .attr( 'dy', 4 )
         .attr( 'dx', props.radius + 16 )
         // Crop label text or show '...' for empty labels
-        .text( (d) => cropText( d.data[labelProperty] ) || '...' )
+        .text( d => {
+
+          if (typeof labelProperty === 'function' )
+            return labelProperty(d);
+
+          return cropText( d.data[ labelProperty ] ) || '...';
+
+        })
         .attr( 'class', 'label' )
         .style( 'fill', colors.greyMedium )
         .style ( 'font-size', '9pt' )
@@ -115,7 +127,9 @@ function renderIconsLabels({
         .attr( 'rx', 10 )
         .attr( 'ry', 10 )
         .attr( 'class', 'label-border' )
-        .attr( 'width', function(d) { return this.parentNode.getBBox().width - 12 } )
+        .attr( 'width', function(d) { 
+          return this.parentNode.getBBox().width - 12
+        })
         .attr( 'height', '22px' )
         .style( 'stroke-width', '1px' )
         .style( 'stroke', colors.greyLight )
