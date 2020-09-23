@@ -7,7 +7,7 @@ class Form::Group::Normal < Form::Group
   data_property :repeating, default: false
 
   object_property :has_sub_group, cardinality: :many, model_classes: [ "Form::Group::Normal", "Form::Group::Bc" ]
-  object_property :has_common, cardinality: :many, model_class: "Form::Group::Common"
+  object_property :has_common, cardinality: :one, model_class: "Form::Group::Common"
 
   object_property_class :has_item, model_classes: 
     [ 
@@ -270,18 +270,21 @@ class Form::Group::Normal < Form::Group
     def add_bc_group(id)
       tx = transaction_begin
       bci = BiomedicalConceptInstance.find(id)
-      bc_group = Form::Group::Bc.create(label: bci.label, ordinal: next_ordinal(:has_sub_group), parent_uri: self.uri, transaction: tx)
+      bc_group = Form::Group::Bc.create(label: bci.label, ordinal: next_ordinal, parent_uri: self.uri, transaction: tx)
       #return bc_group if bc_group.errors.any? #Merge error
       bc_reference = OperationalReferenceV3.create({reference: bci.uri, transaction: tx}, bc_group)
       bc_group.has_biomedical_concept = bc_reference
       bc_group.save
-      bci.has_item_objects.each_with_index do |item, indx|
+      ordinal = 1
+      bci.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
+        next unless item.enabled && item.collect
         item.has_complex_datatype_objects.each do |cdt|
-          cdt.has_property_objects.each_with_index do |property, ind|
-            bc_property = Form::Item::BcProperty.create(label: property.alias, parent_uri: bc_group.uri, ordinal: indx + 1, transaction: tx)
+          cdt.has_property_objects.each do |property|
+            bc_property = Form::Item::BcProperty.create(label: property.alias, parent_uri: bc_group.uri, ordinal: ordinal, transaction: tx)
             bc_group.has_item_push(bc_property)
             add_bc_property(property, bc_property)
             bc_group.add_link(:has_item, bc_property.uri)
+            ordinal += 1
           end 
         end
       end
@@ -310,7 +313,7 @@ class Form::Group::Normal < Form::Group
     end
 
     def add_normal_group
-      ordinal = next_ordinal(:has_sub_group)
+      ordinal = next_ordinal
       child = Form::Group::Normal.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
       #return child if child.errors.any? ##Merge error
       self.add_link(:has_sub_group, child.uri)
@@ -318,15 +321,16 @@ class Form::Group::Normal < Form::Group
     end
 
     def add_common_group
-      ordinal = next_ordinal(:has_common)
-      child = Form::Group::Common.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
+      #ordinal = next_ordinal(:has_common)
+      #Check if there is an existing common group
+      child = Form::Group::Common.create(label: "Not set", ordinal: 1, parent_uri: self.uri)
       #return child if child.errors.any? ##Merge error
       self.add_link(:has_common, child.uri)
       child
     end
 
     def add_item(params)
-      ordinal = next_ordinal(:has_item)
+      ordinal = next_ordinal
       child = type_to_class[params[:type].to_sym].create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
       #return child if child.errors.any? ##Merge error
       self.add_link(:has_item, child.uri)

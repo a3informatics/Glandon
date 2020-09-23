@@ -76,12 +76,11 @@ private
   #
   # @param [String] name the name of the property holding the collection
   # @return [Integer] the next ordinal
-  def next_ordinal(name)
-    predicate = self.properties.property(name).predicate
+  def next_ordinal
     query_string = %Q{
       SELECT (MAX(?ordinal) AS ?max)
       {
-        #{self.uri.to_ref} #{predicate.to_ref} ?s .
+        #{self.uri.to_ref} bf:hasSubGroup|bf:hasItem ?s .
         ?s bf:ordinal ?ordinal
       }
     }

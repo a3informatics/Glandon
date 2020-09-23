@@ -406,12 +406,12 @@ Rails.application.routes.draw do
       end
       resources :bc_properties do
         member do
-          put :make_common
+          post :make_common
         end
       end
       resources :commons do
         member do
-          put :restore
+          delete :restore
         end
       end
     end
