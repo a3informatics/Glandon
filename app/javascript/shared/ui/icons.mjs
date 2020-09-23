@@ -206,14 +206,14 @@ _typeIconMap[getRdfType('BCT')] = {
   color: colors.accentPurpleLight
 }
 _typeIconMap[getRdfType('NORMAL_GROUP')] = {
-  icon: '',
-  char: 'G',
-  color: colors.lightOrange
+  icon: 'icon-group',
+  char: '\ue970',
+  color: colors.primaryBright
 }
 _typeIconMap[getRdfType('COMMON_GROUP')] = {
-  icon: '',
-  char: 'C',
-  color: colors.lightOrange
+  icon: 'icon-common-group',
+  char: '\ue96f',
+  color: colors.primaryBrightest
 }
 _typeIconMap[getRdfType('BC_GROUP')] = {
   icon: 'icon-biocon',
@@ -221,9 +221,9 @@ _typeIconMap[getRdfType('BC_GROUP')] = {
   color: colors.accentPurple
 }
 _typeIconMap[getRdfType('COMMON_ITEM')] = {
-  icon: 'icon-pair',
-  char: '\ue966',
-  color: colors.greyLight
+  icon: 'icon-common-biocon',
+  char: '\ue96e',
+  color: colors.primaryBrightest
 }
 _typeIconMap[getRdfType('TEXTLABEL')] = {
   icon: '',
