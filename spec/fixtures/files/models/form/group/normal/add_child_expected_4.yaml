@@ -1,73 +1,26 @@
 ---
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzI=
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzY=
+  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG6
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: BMI
   :tagged: []
-  :ordinal: 2
+  :ordinal: 6
   :note: ''
   :completion: ''
   :optional: false
   :has_item:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAx
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP1
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzZfQlAx
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG6_BP1
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--TESTCD"
+    :label: "--ORRESU"
     :tagged: []
     :ordinal: 1
     :note: ''
     :completion: ''
     :optional: false
     :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAxX1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP1_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAxX1RVQzE=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP1_TUC1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference:
-        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMTYzNTg=
-        :uri: http://www.cdisc.org/C66741/V4#C66741_C16358
-        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-        :label: Body Mass Index
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        :identifier: C16358
-        :notation: BMI
-        :definition: A general indicator of the body fat an individual is carrying
-          based upon the ratio of weight to height. (NCI)
-        :extensible: false
-        :narrower: []
-        :preferred_term: http://www.assero.co.uk/PT#abae54abfd2247587b48ae2626a517ca685781fb
-        :synonym:
-        - http://www.assero.co.uk/SYN#abae54abfd2247587b48ae2626a517ca685781fb
-      :context: http://www.cdisc.org/C66741/V61#C66741
-      :local_label: Body Mass Index
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAy
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP2
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--ORRESU"
-    :tagged: []
-    :ordinal: 2
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAyX1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP2_R1
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzZfQlAxX1Ix
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG6_BP1_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
       :tagged: []
@@ -77,8 +30,8 @@
       :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode
       :context: 
     :has_coded_value:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAyX1RVQzE=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP2_TUC1
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzZfQlAxX1RVQzE=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG6_BP1_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -103,8 +56,8 @@
         - http://www.assero.co.uk/SYN#2d2896805038f7d59edd0a6e072316d80d5df43a
       :context: http://www.cdisc.org/C66770/V59#C66770
       :local_label: Kilogram per Square Meter
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAy
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP2
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzZfQlAy
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG6_BP2
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--ORRES"
     :tagged: []
@@ -113,8 +66,8 @@
     :completion: ''
     :optional: false
     :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAyX1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP2_R1
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzZfQlAyX1Ix
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG6_BP2_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
       :tagged: []
@@ -124,177 +77,9 @@
       :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPvalue
       :context: 
     :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAz
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP3
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--LAT"
-    :tagged: []
-    :ordinal: 3
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAzX1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP3_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI6_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlA0
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP4
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--METHOD"
-    :tagged: []
-    :ordinal: 4
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlA0X1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP4_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI7_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlA1
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP5
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--CAT"
-    :tagged: []
-    :ordinal: 5
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlA1X1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP5_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI2_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlA2
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP6
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--STAT"
-    :tagged: []
-    :ordinal: 6
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlA2X1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP6_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI8_BCCDTBL_BCPvalue
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlA3
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP7
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--SCAT"
-    :tagged: []
-    :ordinal: 7
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlA3X1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP7_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI3_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlA4
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP8
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--REASND"
-    :tagged: []
-    :ordinal: 8
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlA4X1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP8_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI9_BCCDTCD_BCPvalue
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlA5
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP9
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--POS"
-    :tagged: []
-    :ordinal: 9
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlA5X1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP9_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI4_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAxMA==
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP10
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--LOC"
-    :tagged: []
-    :ordinal: 10
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfQlAxMF9SMQ==
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_BP10_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI5_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value: []
   :has_biomedical_concept:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzJfUjE=
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG2_R1
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzZfUjE=
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG6_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
     :tagged: []
@@ -303,72 +88,28 @@
     :ordinal: 1
     :reference: http://www.s-cubed.dk/BMI/V1#BCI
     :context: 
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzM=
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzc=
+  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Race
   :tagged: []
-  :ordinal: 3
+  :ordinal: 7
   :note: ''
   :completion: ''
   :optional: false
   :has_item:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAx
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP1
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfQlAx
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_BP1
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--TESTCD"
+    :label: "--ORRES"
     :tagged: []
     :ordinal: 1
     :note: ''
     :completion: ''
     :optional: false
     :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAxX1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP1_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/RACE/V1#BCI_BCI1_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAxX1RVQzE=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP1_TUC1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference:
-        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0gwMDAwMDIvVjEjSDAwMDAwMl9ISTAwMDAwNg==
-        :uri: http://www.s-cubed.dk/H000002/V1#H000002_HI000006
-        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-        :label: Race
-        :tagged: []
-        :identifier: HI000006
-        :notation: RACE
-        :definition: Race
-        :extensible: false
-        :narrower: []
-        :preferred_term: http://www.assero.co.uk/PT#9514269f0b4d36bb1ee413dd0b59dc203d8b3828
-        :synonym: []
-      :context: http://www.s-cubed.dk/H000002/V1#H000002
-      :local_label: Race
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAy
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP2
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--ORRES"
-    :tagged: []
-    :ordinal: 2
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAyX1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP2_R1
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfQlAxX1Ix
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_BP1_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
       :tagged: []
@@ -378,8 +119,8 @@
       :reference: http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode
       :context: 
     :has_coded_value:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAyX1RVQzE=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP2_TUC1
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfQlAxX1RVQzE=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_BP1_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -405,8 +146,8 @@
         - http://www.assero.co.uk/SYN#cc202b3aa2a95f0125652f112a76611ea44e2d13
       :context: http://www.cdisc.org/C74457/V58#C74457
       :local_label: Unknown
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAyX1RVQzI=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP2_TUC2
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfQlAxX1RVQzI=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_BP1_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -431,8 +172,8 @@
         :synonym: []
       :context: http://www.cdisc.org/C74457/V58#C74457
       :local_label: Black or African American
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAyX1RVQzM=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP2_TUC3
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfQlAxX1RVQzM=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_BP1_TUC3
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -458,8 +199,8 @@
         :synonym: []
       :context: http://www.cdisc.org/C74457/V58#C74457
       :local_label: Native Hawaiian or Other Pacific Islander
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAyX1RVQzQ=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP2_TUC4
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfQlAxX1RVQzQ=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_BP1_TUC4
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -483,8 +224,8 @@
         - http://www.assero.co.uk/SYN#98e856820171b6204a73629df62a2fc4bcd78c01
       :context: http://www.cdisc.org/C74457/V58#C74457
       :local_label: Not Reported
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAyX1RVQzU=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP2_TUC5
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfQlAxX1RVQzU=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_BP1_TUC5
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -509,8 +250,8 @@
         :synonym: []
       :context: http://www.cdisc.org/C74457/V58#C74457
       :local_label: American Indian or Alaska Native
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAyX1RVQzY=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP2_TUC6
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfQlAxX1RVQzY=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_BP1_TUC6
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -534,8 +275,8 @@
         :synonym: []
       :context: http://www.cdisc.org/C74457/V58#C74457
       :local_label: White
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAyX1RVQzc=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP2_TUC7
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfQlAxX1RVQzc=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_BP1_TUC7
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -561,177 +302,9 @@
         :synonym: []
       :context: http://www.cdisc.org/C74457/V58#C74457
       :local_label: Asian
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAz
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP3
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--METHOD"
-    :tagged: []
-    :ordinal: 3
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAzX1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP3_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/RACE/V1#BCI_BCI7_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlA0
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP4
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--CAT"
-    :tagged: []
-    :ordinal: 4
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlA0X1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP4_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/RACE/V1#BCI_BCI2_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlA1
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP5
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--STAT"
-    :tagged: []
-    :ordinal: 5
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlA1X1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP5_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/RACE/V1#BCI_BCI8_BCCDTBL_BCPvalue
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlA2
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP6
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--SCAT"
-    :tagged: []
-    :ordinal: 6
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlA2X1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP6_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/RACE/V1#BCI_BCI3_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlA3
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP7
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--LOC"
-    :tagged: []
-    :ordinal: 7
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlA3X1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP7_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/RACE/V1#BCI_BCI5_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlA4
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP8
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--LAT"
-    :tagged: []
-    :ordinal: 8
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlA4X1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP8_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/RACE/V1#BCI_BCI6_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlA5
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP9
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--POS"
-    :tagged: []
-    :ordinal: 9
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlA5X1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP9_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/RACE/V1#BCI_BCI4_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAxMA==
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP10
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--REASND"
-    :tagged: []
-    :ordinal: 10
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfQlAxMF9SMQ==
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_BP10_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/RACE/V1#BCI_BCI9_BCCDTCD_BCPvalue
-      :context: 
-    :has_coded_value: []
   :has_biomedical_concept:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzNfUjE=
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG3_R1
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfUjE=
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
     :tagged: []
