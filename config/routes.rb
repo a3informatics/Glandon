@@ -404,6 +404,16 @@ Rails.application.routes.draw do
           post :add_child
         end
       end
+      resources :bc_properties do
+        member do
+          put :make_common
+        end
+      end
+      resources :commons do
+        member do
+          put :restore
+        end
+      end
     end
     namespace :groups do
       resources :bc_groups, :normal_groups, :common_groups, :only => [:update, :destroy] do
@@ -417,7 +427,12 @@ Rails.application.routes.draw do
   end
 
   namespace :operational_reference_v3 do
-    resources :tuc_references, :only => [:update]
+    resources :tuc_references, :only => [:update] do
+      member do
+          put :move_up
+          put :move_down
+      end
+    end
   end
 
   resources :backgrounds, :only => [:index, :destroy] do
