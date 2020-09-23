@@ -10,6 +10,7 @@ import { D3Actions } from 'shared/helpers/d3/renderers/actions'
 
 import colors from 'shared/ui/colors'
 import { iconBtn } from 'shared/ui/buttons'
+import { cropText } from 'shared/helpers/strings'
 
 import { renderIconsLabels } from 'shared/helpers/d3/renderers/nodes'
 
@@ -185,6 +186,8 @@ export default class FormEditor extends TreeGraph {
    */
   _preprocessData(rawData) {
 
+    console.log(rawData);
+
     let data = this.d3.hierarchy( rawData, d => [
         ...d.has_group||[],
         ...d.has_common||[],
@@ -193,10 +196,18 @@ export default class FormEditor extends TreeGraph {
         ...d.has_coded_value||[]
       ]);
 
-    // Sort by ordinals
-    data.descendants().forEach( n =>
-        n.sort( (a, b) => (a.data.ordinal - b.data.ordinal) )
-    );
+    data.descendants().forEach( n => {
+
+      // Sort all nodes by ordinals
+      n.sort( (a, b) => (a.data.ordinal - b.data.ordinal) )
+
+      // Hide children of common BC Properties
+      if ( n.data.is_common === true ) {
+        n.__children = n.children;
+        n.children = null;
+      }
+
+    });
 
     return data;
 
@@ -348,8 +359,9 @@ export default class FormEditor extends TreeGraph {
         // Merge reference data into Node data
         node.data.reference = data;
 
-        if ( node.data.label === '' )
-          node.data.label = data.label;
+        // Set default local label value if none is set 
+        if ( node.data.local_label === '' )
+          node.data.local_label = data.label;
 
     });
 
@@ -387,7 +399,15 @@ export default class FormEditor extends TreeGraph {
       nodeIcon: this.Node.icon,
       nodeColor: this.Node.color,
       onHover: d => this._renderTooltip( new this.Node(d) ),
-      onHoverOut: d => D3Tooltip.hide()
+      onHoverOut: d => D3Tooltip.hide(),
+      labelProperty: d => {
+
+        if ( d.data.local_label )
+          return cropText( d.data.local_label );
+
+        return cropText( d.data.label ) || '...';
+
+      }
     })
 
     // Override nodes class attribute to build a custom class list
@@ -463,7 +483,7 @@ export default class FormEditor extends TreeGraph {
     let html = `<div>` +
                   `<div class='font-regular' style='color: ${ node.color }'> ${ node.rdfName } </div>
                    ${ ( node.disabled ? '<i>Disabled</i> <br>' : '') }
-                   ${ ( node.data.is_common ? '<i>Common</i> <br>' : '') }
+                   ${ ( node.isCommon ? '<i>Common</i> <br>' : '') }
                    ${ node.data.label }
                 </div>`;
 
@@ -486,7 +506,7 @@ export default class FormEditor extends TreeGraph {
 
     if ( node.selected )
       classList += ' selected'
-    if ( node.disabled || node.data.is_common )
+    if ( node.disabled || node.isCommon )
       classList += ' disabled'
 
     return classList;
@@ -527,7 +547,10 @@ export default class FormEditor extends TreeGraph {
     this.nodeEditor = new NodeEditor.default({
       formId: this.formId,
       onShow: () => this.keysDisable(),
-      onHide: () => this.keysEnable(),
+      onHide: () => {
+        this.selected.el.focus(); // Restore focus from the Editor back to Graph
+        this.keysEnable();
+      },
       onUpdate: () => this._onUpdate()
     });
 

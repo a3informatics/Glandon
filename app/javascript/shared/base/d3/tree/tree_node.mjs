@@ -30,8 +30,17 @@ export default class TreeNode {
   findElement() {
 
     this.el = d3.default.selectAll( '.node' )
-                     .filter( (nd) => nd.data.id === this.d.data.id )
-                     .node();
+                        .filter( nd => {
+
+                          // Check parent ids if available as some Nodes have duplicate IDs (TUCRefs)
+                          if ( nd.parent && this.d.parent )
+                            return nd.parent.data.id === this.d.parent.data.id &&
+                                   nd.data.id === this.d.data.id;
+
+                          return nd.data.id === this.d.data.id;
+
+                        })
+                        .node();
 
   }
 
