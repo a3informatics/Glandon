@@ -23,22 +23,11 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
     end
   end
 
-  def add_child
-    form = Form.find_minimum(add_child_params[:form_id])
-    return true unless check_lock_for_item(form)
-    bc_group = Form::Group::Bc.find(protect_from_bad_id(params))
-    new_child = bc_group.add_child(add_child_params)
-    return true if item_errors(new_child)
-    return true if lock_item_errors
-    AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
-    render :json => {data: new_child.to_h}, :status => 200
-  end
-
   def move_up
-    form = Form.find_minimum(move_params[:form_id])
+    form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     bc = Form::Group::Bc.find(protect_from_bad_id(params))
-    bc = bc.move_up(move_params[:parent_id])
+    bc = bc.move_up(the_params[:parent_id])
     if bc.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -48,10 +37,10 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
   end
 
   def move_down
-    form = Form.find_minimum(move_params[:form_id])
+    form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     bc = Form::Group::Bc.find(protect_from_bad_id(params))
-    bc = bc.move_down(move_params[:parent_id])
+    bc = bc.move_down(the_params[:parent_id])
     if bc.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -60,10 +49,21 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
     end
   end
 
+  def destroy
+    parent = Form.find(the_params[:parent_id])
+    form = Form.find_minimum(the_params[:form_id])
+    return true unless check_lock_for_item(form)
+    bc = Form::Group::Bc.find(protect_from_bad_id(params))
+    bc.delete(parent)
+    return true if lock_item_errors
+    AuditTrail.update_item_event(current_user, form, "Form updated, group #{bc.label} deleted.") if @lock.token.refresh == 1
+    render json: {data: "" }, status: 200
+  end
+
 private
 
-  def move_params
-    params.require(:bc_group).permit(:form_id, :parent_id)
+  def the_params
+    params.require(:normal_group).permit(:form_id, :parent_id)
   end
 
   def add_child_params

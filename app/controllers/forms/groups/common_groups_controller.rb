@@ -23,7 +23,22 @@ class Forms::Groups::CommonGroupsController < ManagedItemsController
     end
   end
 
+  def destroy
+    parent = Form.find(the_params[:parent_id])
+    form = Form.find_minimum(the_params[:form_id])
+    return true unless check_lock_for_item(form)
+    common = Form::Group::Common.find(protect_from_bad_id(params))
+    common.delete(parent)
+    return true if lock_item_errors
+    AuditTrail.update_item_event(current_user, form, "Form updated, group #{common.label} deleted.") if @lock.token.refresh == 1
+    render json: {data: "" }, status: 200
+  end
+
 private
+  
+  def the_params
+    params.require(:common_group).permit(:form_id, :parent_id)
+  end
 
   def update_params
     params.require(:common_group).permit(:form_id, :label)
