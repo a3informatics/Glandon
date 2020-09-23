@@ -21,7 +21,37 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
     end
   end
 
+  def move_up
+    form = Form.find_minimum(the_params[:form_id])
+    return true unless check_lock_for_item(form)
+    tuc_reference = OperationalReferenceV3::TucReference.find(protect_from_bad_id(params))
+    tuc_reference = tuc_reference.move_up(the_params[:parent_id])
+    if tuc_reference.errors.empty?
+      AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
+      render :json => {data: ""}, :status => 200
+    else
+      render :json => {:errors => tuc_reference.errors.full_messages}, :status => 422
+    end
+  end
+
+  def move_down
+    form = Form.find_minimum(the_params[:form_id])
+    return true unless check_lock_for_item(form)
+    tuc_reference = OperationalReferenceV3::TucReference.find(protect_from_bad_id(params))
+    tuc_reference = tuc_reference.move_down(the_params[:parent_id])
+    if tuc_reference.errors.empty?
+      AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
+      render :json => {data: ""}, :status => 200
+    else
+      render :json => {:errors => tuc_reference.errors.full_messages}, :status => 422
+    end
+  end
+
 private
+
+  def the_params
+    params.require(:tuc_reference).permit(:form_id, :parent_id)
+  end
 
   def update_params
     params.require(:tuc_reference).permit(:form_id, :label, :optional, :enabled)
