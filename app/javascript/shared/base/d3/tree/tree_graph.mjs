@@ -915,7 +915,7 @@ export default class TreeGraph {
               return (props.svg.width / self.treeDepth) - this.rightOffset < this.minNodeWidth ?
                         this.minNodeWidth : (props.svg.width / self.treeDepth) - this.rightOffset;
             },
-            nodeHeight: 26,
+            nodeHeight: 28,
             minNodeWidth: 240,
             rightOffset: 0
           },

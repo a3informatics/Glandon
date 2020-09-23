@@ -361,6 +361,9 @@ export default class FormEditor extends TreeGraph {
    */
   _appendReferences(references) {
 
+    // Needs to expand all nodes to access all reference nodes 
+    this._expandAll( new this.Node( this.graph.root ) );
+
     // Filter referenced nodes and append data
     this.allNodes.filter( node => node.isReference )
                  .forEach( node => {
