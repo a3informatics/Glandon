@@ -127,32 +127,19 @@ export default class NodeHandler {
   }
 
   /**
-   * Make a Node Common
+   * Make a Node Common or Restore it from being Common
    * @param {FormNode} node Node instance to make Common
+   * @param {string} action Desired action on the Node (make_common / restore)
    */
-  makeCommon(node) {
+  commonOrRestore(node, action) {
 
-    if ( !node.commonAllowed )
+    if ( ( action === 'make_common' && !node.commonAllowed ) ||
+         ( action === 'restore' && !node.restoreAllowed ) )
       return;
 
     this.node = node;
 
-    this._commonOrRestore( 'make_common' );
-
-  }
-
-  /**
-   * Restore a Node from being Common
-   * @param {FormNode} node Node instance to Restore from Common
-   */
-  restoreCommon(node) {
-
-    if ( !node.restoreAllowed )
-      return;
-
-    this.node = node;
-
-    this._commonOrRestore( 'restore' );
+    this._commonOrRestore( action );
 
   }
 

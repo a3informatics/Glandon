@@ -113,6 +113,16 @@ export default class FormEditor extends TreeGraph {
 
   }
 
+  commonOrRestore(node, action) {
+
+    if ( !node )
+      return;
+
+    if ( this.nodeHandler )
+      this.nodeHandler.commonOrRestore( node, action );
+
+  }
+
   /**
    * Open / close Node's add children context menu
    * @requires NodeHandler
@@ -176,6 +186,14 @@ export default class FormEditor extends TreeGraph {
     // Node actions move down button click
     $( this.selector ).on( 'click', '#move-down',
                            () => this.moveNode( this.selected, 'down' ) );
+
+    // Node actions make common button click
+    $( this.selector ).on( 'click', '#common-node',
+                            () => this.commonOrRestore( this.selected, 'make_common' ) );
+
+    // Node actions restore button click
+    $( this.selector ).on( 'click', '#restore-node',
+                           () => this.commonOrRestore( this.selected, 'restore' ) );
 
   }
 
@@ -359,7 +377,7 @@ export default class FormEditor extends TreeGraph {
         // Merge reference data into Node data
         node.data.reference = data;
 
-        // Set default local label value if none is set 
+        // Set default local label value if none is set
         if ( node.data.local_label === '' )
           node.data.local_label = data.label;
 
