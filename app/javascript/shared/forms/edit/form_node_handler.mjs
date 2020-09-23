@@ -1,7 +1,7 @@
 import FormNode from 'shared/forms/edit/form_node'
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
 
-import { $post, $put, $delete } from 'shared/helpers/ajax'
+import { $ajax } from 'shared/helpers/ajax'
 
 import { $confirm } from 'shared/helpers/confirmable'
 import { alerts } from 'shared/ui/alerts'
@@ -11,7 +11,7 @@ import { isInViewport } from 'shared/helpers/utils'
 
 /**
  * Node Handler
- * @description Handler for adding, removing and moving Form Nodes / Children
+ * @description Handler for manipulating Form Nodes and their children
  * @author Samuel Banas <sab@s-cubed.dk>
  */
 export default class NodeHandler {
@@ -91,15 +91,12 @@ export default class NodeHandler {
    */
   move(node, dir) {
 
-    // Validate direction
-    if ( dir !== 'up' && dir !== 'down' )
+    if ( dir !== 'up' && dir !== 'down' ) // Validate direction
       return;
 
     this.node = node;
 
-    let sibling = dir === 'up' ?
-                  node.previous :
-                  node.next
+    let sibling = dir === 'up' ? node.previous : node.next;
 
     if ( sibling )
       this._move( dir );
@@ -138,6 +135,10 @@ export default class NodeHandler {
     if ( !node.commonAllowed )
       return;
 
+    this.node = node;
+
+    this._commonOrRestore( 'make_common' );
+
   }
 
   /**
@@ -148,6 +149,38 @@ export default class NodeHandler {
 
     if ( !node.restoreAllowed )
       return;
+
+    this.node = node;
+
+    this._commonOrRestore( 'restore' );
+
+  }
+
+  /**
+   * Executes a server request, handles loading, alerts and response
+   */
+  executeRequest({
+    url,
+    data,
+    type,
+    done,
+    success = ''
+  }) {
+
+    this.loading( true );
+
+    $ajax({
+      url, data, type,
+      contentType: 'application/json',
+      errorDiv: this.alertDiv,
+      done: d => {
+
+        done(d);
+        alerts.success( success, this.alertDiv );
+
+      },
+      always: () => this.loading( false )
+    });
 
   }
 
@@ -160,27 +193,14 @@ export default class NodeHandler {
    * @param {string} type Child/children type (rdf param value)
    * @param {array | null} extraData Additional data to include in request, or null if none
    */
-  _addChild(type, extraData = null) {
+  _addChild(type, extraData) {
 
-    let url = this._addChildUrl,
-        data = this._makeRequestData( 'add', type, extraData );
-
-    this.loading( true );
-
-    $post({
-      url,
-      data,
-      contentType: 'application/json',
-      errorDiv: this.alertDiv,
-      done: d => {
-
-        let result = this._appendData( d );
-
-        this.onUpdate( result );
-        alerts.success( 'Added successfully.', this.alertDiv );
-
-      },
-      always: () => this.loading( false )
+    this.executeRequest({
+      type: 'POST',
+      url: this._nodeUrl + '/add_child',
+      data: this._makeRequestData( 'add', type, extraData ),
+      success: 'Added successfully.',
+      done: d => this.onUpdate( this._appendData( d ) )
     });
 
   }
@@ -283,16 +303,11 @@ export default class NodeHandler {
    */
   _move(dir) {
 
-    let url = this._moveUrl( dir ),
-        data = this._makeRequestData( 'move' );
-
-    this.loading( true );
-
-    $put({
-      url,
-      data,
-      contentType: 'application/json',
-      errorDiv: this.alertDiv,
+    this.executeRequest({
+      type: 'PUT',
+      url: this._nodeUrl + '/move_' + dir,
+      data: this._makeRequestData( 'move' ),
+      success: 'Moved successfully.',
       done: d => {
 
         let sibling = dir === 'up' ?
@@ -303,10 +318,8 @@ export default class NodeHandler {
         this.node.parent.sortChildren();
 
         this.onUpdate();
-        alerts.success( 'Moved successfully.', this.alertDiv );
 
-      },
-      always: () => this.loading( false )
+      }
     });
 
   }
@@ -320,25 +333,45 @@ export default class NodeHandler {
    */
   _remove() {
 
-    let url = this._nodeUrl,
-        data = this._makeRequestData( 'remove' )
-
-    this.loading( true );
-
-    $delete({
-      url,
-      data,
-      contentType: 'application/json',
-      errorDiv: this.alertDiv,
+    this.executeRequest({
+      type: 'DELETE',
+      url: this._nodeUrl,
+      data: this._makeRequestData( 'remove' ),
+      success: 'Node removed successfully.',
       done: d => {
 
         this.node.parent.removeChild( this.node );
         this.onUpdate( this.node.parent );
-        alerts.success( 'Node removed successfully.', this.alertDiv );
+
+      }
+    });
+
+  }
 
 
-      },
-      always: () => this.loading( false )
+  /** Common / Restore **/
+
+
+  /**
+   * Make a Node common / restore request to server (current instance Node)
+   * @param {string} action Target action (common / restore)
+   */
+  _commonOrRestore(action) {
+
+    let type = action === 'restore' ?
+               'DELETE' : 'POST';
+
+    this.executeRequest({
+      type,
+      url: this._nodeUrl + '/' + action,
+      data: this._makeRequestData( action ),
+      success: 'Node updated successfully.',
+      done: d => {
+
+        // TODO: Append returned data
+        this.onUpdate();
+
+      }
     });
 
   }
@@ -461,30 +494,13 @@ export default class NodeHandler {
   }
 
   /**
-   * Get a URL to add child action
-   * @return {string} URL pointing to current Node's add_child action
-   */
-  get _addChildUrl() {
-    return `${ this._nodeUrl }/add_child`
-  }
-
-  /**
-   * Get a URL to move node action
-   * @param {string} dir Move direction: up / down
-   * @return {string} URL pointing to current Node's move action
-   */
-  _moveUrl(dir) {
-    return `${ this._nodeUrl }/move_${ dir }`
-  }
-
-  /**
    * Get request data object for specific action and item type
    * @param {string} action Request action - add / remove / move
    * @param {string} type Item type (rdf param value) (only for 'add' action)
    * @param {?} extraData Additional data, optional
    * @return {json} Stringified data object for a server request
    */
-  _makeRequestData(action, type, extraData = null) {
+  _makeRequestData(action, type, extraData) {
 
     let param = this.node.rdfObject.param,
         data = {}
@@ -503,9 +519,9 @@ export default class NodeHandler {
 
     }
 
-    // Remove / Move Node request data
+    // Remove / Move Node require Node parent ID
     else if ( action === 'remove' || action === 'move' )
-      data[ param ].parent_id = this.node.parent.data.id;
+      data[ param ].parent_id = this.node.d.parent.data.id;
 
     return JSON.stringify( data );
 

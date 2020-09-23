@@ -77,11 +77,19 @@ export default class FormNode extends TreeNode {
   }
 
   /**
+   * Check if Node instance has is_common flag set to true
+   * @return {boolean} Value specifying if Node instance is_common
+   */
+  get isCommon() {
+    return this.data.is_common === true;
+  }
+
+  /**
    * Check if Node type is allowed to be edited
    * @return {boolean} Value specifying if Node's type is a allowed to be edited
    */
   get editAllowed() {
-    return !this.data.is_common;
+    return !this.data.is_common && !this.is( 'COMMON_ITEM' );
   }
 
   /**
@@ -108,6 +116,9 @@ export default class FormNode extends TreeNode {
 
     if ( this.is( 'TUC_REF' ) )
       return this.parent.is( 'QUESTION' );
+
+    if ( this.is( 'COMMON_GROUP' ) )
+      return !this.hasChildren;
 
     return !this.is( 'BC_PROPERTY' ) && !this.is( 'FORM' ) && !this.is( 'COMMON_ITEM' );
 

@@ -148,7 +148,7 @@ export default class NodeEditor extends ModalView {
    * On modal hide callback
    * @override parent
    */
-  _onHide() {
+  _onHideComplete() {
 
     if ( this.onHide )
       this.onHide();
@@ -417,24 +417,6 @@ export default class NodeEditor extends ModalView {
   }
 
   /**
-   * Render the Common Item type Editor
-   */
-  _renderCommonItem() {
-
-    let label =  [ 'Label', this._labelStyled( this.node.data.label ) ],
-        fields = this._fieldTable(
-                  [ label ]
-                 );
-
-    this.content.append( fields );
-
-    // Hide Save button as node is not ediftable
-    this.modal.find( '#editor-submit' )
-              .hide();
-
-  }
-
-  /**
    * Render the TUC Reference type Editor
    */
   _renderTUCRef() {
@@ -458,7 +440,7 @@ export default class NodeEditor extends ModalView {
         notation =   [ 'Submission Value', this._labelStyled(
                           this.node.data.reference.notation
                      ) ],
-        label =      [ 'Label', this._input( 'label' ) ],
+        label =      [ 'Label', this._input( 'local_label' ) ],
         enable =     [ 'Enabled', this._checkbox( 'enabled', null, parentQuestion ) ],
         optional =   [ 'Optional', this._checkbox( 'optional' ) ],
 
