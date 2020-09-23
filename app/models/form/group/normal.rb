@@ -281,6 +281,7 @@ class Form::Group::Normal < Form::Group
             bc_property = Form::Item::BcProperty.create(label: property.alias, parent_uri: bc_group.uri, ordinal: indx + 1, transaction: tx)
             bc_group.has_item_push(bc_property)
             add_bc_property(property, bc_property)
+            bc_group.add_link(:has_item, bc_property.uri)
           end 
         end
       end
@@ -298,12 +299,14 @@ class Form::Group::Normal < Form::Group
     def add_bc_property(property, bc_property)
       bc_property_reference = OperationalReferenceV3.create({reference: property.uri}, bc_property)
       bc_property.has_property = bc_property_reference
+      bc_property.add_link(:has_property, bc_property_reference.uri)
       property.has_coded_value_objects.each_with_index do |cv_ref, indx|
         cli = Thesaurus::UnmanagedConcept.find_full(cv_ref.reference)
         cl = Thesaurus::ManagedConcept.find_with_properties(cv_ref.context)
         coded_value_reference = OperationalReferenceV3::TucReference.create({local_label: cli.label, reference: cli.uri, context: cl.uri, ordinal: indx+1}, bc_property)
         bc_property.has_coded_value_push(coded_value_reference)
       end
+      bc_property.save
     end
 
     def add_normal_group
