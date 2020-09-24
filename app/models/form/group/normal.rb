@@ -7,7 +7,7 @@ class Form::Group::Normal < Form::Group
   data_property :repeating, default: false
 
   object_property :has_sub_group, cardinality: :many, model_classes: [ "Form::Group::Normal", "Form::Group::Bc" ]
-  object_property :has_common, cardinality: :one, model_class: "Form::Group::Common"
+  object_property :has_common, cardinality: :many, model_class: "Form::Group::Common"
 
   object_property_class :has_item, model_classes: 
     [ 
@@ -321,12 +321,23 @@ class Form::Group::Normal < Form::Group
     end
 
     def add_common_group
-      #ordinal = next_ordinal(:has_common)
-      #Check if there is an existing common group
-      child = Form::Group::Common.create(label: "Not set", ordinal: 1, parent_uri: self.uri)
-      #return child if child.errors.any? ##Merge error
-      self.add_link(:has_common, child.uri)
-      child
+      unless common_group?
+        ordinal = next_ordinal
+        child = Form::Group::Common.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
+        #return child if child.errors.any? ##Merge error
+        self.add_link(:has_common, child.uri)
+        child
+      else
+        #merge_errors(self, "Normal group already contains a Common Group")
+      end
+    end
+
+    def common_group?
+      query_string = %Q{         
+        SELECT ?result WHERE {BIND ( EXISTS {#{self.uri.to_ref} bf:hasCommon ?c_g  } as ?result )}
+      }     
+      query_results = Sparql::Query.new.query(query_string, "", [:bf])
+      query_results.by_object(:result).first.to_bool
     end
 
     def add_item(params)
