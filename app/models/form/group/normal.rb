@@ -329,6 +329,7 @@ class Form::Group::Normal < Form::Group
         child
       else
         #merge_errors(self, "Normal group already contains a Common Group")
+        self.errors.add(:base, "Normal group already contains a Common Group")
       end
     end
 
