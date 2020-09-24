@@ -263,6 +263,8 @@ private
         return edit_form_path(object)
       when :view
         return crf_form_path(object)
+      when :destroy
+        return form_path(object)
       else
         return ""
     end
