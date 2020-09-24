@@ -617,33 +617,44 @@ module UiHelpers
     }
 	end
 
-  def context_menu_element (table_id, column_nr, text, action, row_nr = 'null' )
-    option = context_menu_actions_map[action]
-    js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}', #{row_nr}); "
-    js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
-    page.execute_script(js_code)
+  def context_menu_element (table_id, column_nr, text, action, row_nr = nil )
+  	context_menu_element_v2(table_id, text, action)
   end
 
 	def context_menu_element_v2 (table, text, action)
 		option = context_menu_actions_map[action]
-		js_code = "var el = contextMenuElementV2('#{table}', '#{text}', '#{option}'); "
-		js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
-		page.execute_script(js_code)
+		row = find(:xpath, "//table[@id='#{ table }']//tr[contains(.,'#{ text }')]")
+
+		within( row ) do
+			find(".icon-context-menu").click
+			sleep 0.2
+			find( "a.option", text: option ).click
+		end
 	end
 
 	def context_menu_element_header (action)
 		option = context_menu_actions_map[action]
-		js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
-    js_code += "if (el != null && !$(el).hasClass('disabled')) { el.click(); } else { console.log('No match found'); } "
-		page.execute_script(js_code)
+		menu = find( '#header-con-menu' )
+		menu.click
+		sleep 0.2
+
+		within( menu ) do
+			find( "a.option", text: option ).click
+		end
 	end
 
 	def context_menu_element_header_present?(action, state="enabled")
-		class_list = state == "enabled" ? "option" : "disabled" # Note the space, horrid but ....
 		option = context_menu_actions_map[action]
-		js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
-		js_code += "if (el != null && (el.className.indexOf('#{class_list}' !== -1) ) ) { return true; } else { return false; } "
-		page.execute_script(js_code)
+		menu = find( '#header-con-menu' )
+		class_list = state == "enabled" ?
+								 ".option" :
+								 ".option.disabled"
+
+		Capybara.ignore_hidden_elements = false
+		result = menu.has_css?( class_list, text: option )
+		Capybara.ignore_hidden_elements = true
+
+		result
 	end
 
   def ui_dashboard_slider (start_date, end_date)
