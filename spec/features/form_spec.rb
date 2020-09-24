@@ -138,6 +138,84 @@ describe "Forms", :type => :feature do
       expected = read_text_file_2(sub_dir, "show_excel_expected.xlsx")
     end
 
+  end
+
+  describe "Create a Form", :type => :feature, js:true do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      ua_create
+    end
+
+    after :all do
+      ua_destroy
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    it "allows to create a new Form" do
+      click_navbar_forms
+      wait_for_ajax 20
+      expect(page).to have_content 'Index: Forms'
+      click_on 'New Form'
+
+      ui_in_modal do
+        fill_in 'identifier', with: 'FORM Test'
+        fill_in 'label', with: 'Test Label'
+        click_on 'Submit'
+      end
+
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'FORM Test\''
+    end
+
+    # Depends on previous test
+    it "create Form, clear fields, field validation" do
+      click_navbar_forms
+      wait_for_ajax 20
+      expect(page).to have_content 'Index: Forms'
+      click_on 'New Form'
+
+      ui_in_modal do
+        click_on 'Submit'
+
+        expect(page).to have_content('Field cannot be empty', count: 2)
+        expect(page).to have_selector('.form-group.has-error', count: 2)
+
+        fill_in 'identifier', with: 'FORM Test'
+
+        click_on 'Submit'
+
+        expect(page).to have_content('Field cannot be empty', count: 1)
+        expect(page).to have_selector('.form-group.has-error', count: 1)
+
+        click_on 'Clear fields'
+
+        expect(find_field('identifier').value).to eq('')
+        expect(find_field('label').value).to eq('')
+
+        fill_in 'identifier', with: 'FORM Test'
+        fill_in 'label', with: 'Test Label 2'
+
+        click_on 'Submit'
+        wait_for_ajax 10
+
+        expect(page).to have_content 'already exists in the database'
+        click_on 'Close'
+      end
+
+    end
+
+  end
+
+
     # it "history allows the view page to be viewed (REQ-MDR-CRF-010)", js:true do
     #   click_navbar_forms
     #   expect(page).to have_content 'Index: Forms'
@@ -340,7 +418,5 @@ describe "Forms", :type => :feature do
     #   expect(page).to have_content 'Branch: DM1 For Branching DM1 BRANCH (V0.0.0, 1, Standard)'
     #   expect(page).to have_content 'Identifier contains invalid characters'
     # end
-
-  end
 
 end
