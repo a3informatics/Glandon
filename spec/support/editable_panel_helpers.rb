@@ -42,8 +42,4 @@ module EditorHelpers
     expect(find(".DTE_Field_Name_#{field}")[:class]).to include("disabled")
   end
 
-  def ui_editor_press_key(key)
-    page.driver.browser.action.send_keys(key).perform
-  end
-
 end

@@ -93,32 +93,32 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       ui_editor_check_value 1, 4, 'Test Result'
 
       # Truefalse field
-      ui_editor_press_key :arrow_left
+      ui_press_key :arrow_left
       ui_editor_check_focus(1, 2)
       ui_check_table_cell_icon 'editor', 1, 2, 'sel-filled'
       ui_check_table_cell_icon 'editor', 2, 2, 'sel-filled'
 
-      ui_editor_press_key :enter
-      ui_editor_press_key :arrow_right
-      ui_editor_press_key :enter
+      ui_press_key :enter
+      ui_press_key :arrow_right
+      ui_press_key :enter
       wait_for_ajax 10
 
       ui_check_table_cell_icon 'editor', 1, 2, 'times-circle'
       ui_check_table_cell_icon 'editor', 3, 2, 'times-circle'
 
-      ui_editor_press_key :arrow_down
-      ui_editor_press_key :arrow_right
-      ui_editor_press_key :arrow_right
-      ui_editor_press_key :arrow_right
+      ui_press_key :arrow_down
+      ui_press_key :arrow_right
+      ui_press_key :arrow_right
+      ui_press_key :arrow_right
 
       # Field error check
-      ui_editor_press_key :enter
+      ui_press_key :enter
       ui_editor_fill_inline 'format', "x\n"
       ui_editor_check_error 'format', 'contains invalid characters'
-      ui_editor_press_key :escape
+      ui_press_key :escape
 
       # Inline Text
-      ui_editor_press_key :enter
+      ui_press_key :enter
       ui_editor_fill_inline 'format', "123\n"
       ui_editor_check_value 2, 7, '123'
 
@@ -143,8 +143,8 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       ui_editor_check_value 1, 8, 'UNCLE, BIOLOGICAL C96587 (RELSUB C100130 v62.0.0) SISTER, BIOLOGICAL C96586 (RELSUB C100130 v62.0.0)'
 
       # Remove Multiple Terminology References
-      ui_editor_press_key :arrow_down
-      ui_editor_press_key :enter
+      ui_press_key :arrow_down
+      ui_press_key :enter
 
       ui_in_modal do
         ip_remove_from_selection [ 'C48500', 'C71253' ], 'bc-term-ref'
@@ -156,7 +156,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
       # Remove All Terminology References
 
-      ui_editor_press_key :enter
+      ui_press_key :enter
       ui_in_modal do
         ip_clear_selection 'bc-term-ref'
         ip_check_selected_info '0', 'bc-term-ref'
@@ -269,8 +269,8 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
 
       ui_editor_select_by_location 1, 1
-      ui_editor_press_key :arrow_right
-      ui_editor_press_key :enter
+      ui_press_key :arrow_right
+      ui_press_key :enter
       wait_for_ajax 10
 
       ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
@@ -283,7 +283,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       ui_editor_check_value 1, 5, 'Custom Prompt Text'
 
       ui_editor_check_focus 1, 7
-      ui_editor_press_key :enter
+      ui_press_key :enter
       ui_editor_fill_inline "format", "0\n"
       wait_for_ajax 10
       ui_editor_check_value 1, 7, '0'
@@ -318,7 +318,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
       # Remove Term Reference
 
-      ui_editor_press_key :enter
+      ui_press_key :enter
 
       ui_in_modal do
         ip_remove_from_selection ['C32141'], 'bc-term-ref'

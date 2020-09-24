@@ -824,6 +824,11 @@ module UiHelpers
     expect(page).to have_content version
   end
 
+	# Keys
+	def ui_press_key(key)
+		page.driver.browser.action.send_keys(key).perform
+	end
+
 
 	# Items Selector ### DEPRECATED
 	def ui_selector_check_tabs(tab_names)

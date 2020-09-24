@@ -348,13 +348,13 @@ describe "Thesaurus", :type => :feature do
       ui_editor_fill_inline "notation", "SUBMISSION 999C\n"
       ui_editor_check_value 1, 2, "SUBMISSION 999C"
 
-      ui_editor_press_key :arrow_right
-      ui_editor_press_key :enter
+      ui_press_key :arrow_right
+      ui_press_key :enter
 
       ui_editor_fill_inline "preferred_term", "The PT 999C\t"
       ui_editor_check_value 1, 3, "The PT 999C"
 
-      ui_editor_press_key :enter
+      ui_press_key :enter
 
       ui_editor_fill_inline "synonym", "Same as 999C\n"
       ui_editor_check_value 1, 4, "Same as 999C"
@@ -366,7 +366,7 @@ describe "Thesaurus", :type => :feature do
       # Cancel edit
       ui_editor_select_by_location 1, 2
       ui_editor_fill_inline "notation", "This should not be saved"
-      ui_editor_press_key :escape
+      ui_press_key :escape
       ui_editor_check_value 1, 2, "SUBMISSION 999C"
 
       # Field validation
@@ -416,9 +416,9 @@ describe "Thesaurus", :type => :feature do
       ui_editor_select_by_content "OTHER OR MIXED"
       ui_editor_check_disabled "notation"
 
-      ui_editor_press_key :escape
-      ui_editor_press_key :arrow_right
-      ui_editor_press_key :enter
+      ui_press_key :escape
+      ui_press_key :arrow_right
+      ui_press_key :enter
       ui_editor_check_disabled "preferred_term"
 
     end
