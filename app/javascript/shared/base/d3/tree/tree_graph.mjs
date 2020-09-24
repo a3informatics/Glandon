@@ -618,7 +618,7 @@ export default class TreeGraph {
    */
   _onKeyPress(e) {
 
-    if ( !this.keyControls || this.loading || e.ctrlKey )
+    if ( !this.keyControls || this.loading || e.ctrlKey || e.altKey || e.metaKey )
       return;
 
     if ( this.selectable && this.selected )
