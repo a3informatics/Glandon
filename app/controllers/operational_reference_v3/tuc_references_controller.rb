@@ -6,6 +6,7 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
 
   C_CLASS_NAME = "OperationalReferenceV3::TucReferencesController"
 
+  include DatatablesHelpers
   include ControllerHelpers
 
   def update
@@ -54,7 +55,7 @@ private
   end
 
   def update_params
-    params.require(:tuc_reference).permit(:form_id, :label, :optional, :enabled)
+    params.require(:tuc_reference).permit(:form_id, :local_label, :optional, :enabled)
   end
 
   def model_klass
