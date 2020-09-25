@@ -123,6 +123,43 @@ describe Form::Group::Normal do
       check_file_actual_expected(result.to_h, sub_dir, "add_child_expected_6.yaml", equate_method: :hash_equal)
     end
 
+    it "add child III, common group" do
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG4"))
+      result = normal.add_child({type:"common_group"})
+      check_file_actual_expected(result.to_h, sub_dir, "add_child_expected_8.yaml", equate_method: :hash_equal)
+    end
+
+    it "add child III, common group, error" do
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1"))
+      result = normal.add_child({type:"common_group"})
+      check_file_actual_expected(result, sub_dir, "add_child_expected_9.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "Delete" do
+    
+    before :all do
+      data_files = ["forms/FN000150.ttl", "forms/CRF TEST 1.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..15)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("hackathon_thesaurus.ttl") 
+    end
+
+    it "delete I" do
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      result = normal.add_child({type:"question"})
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      result = normal.add_child({type:"placeholder"})
+      normal = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      check_file_actual_expected(normal.to_h, sub_dir, "delete_expected_1.yaml", equate_method: :hash_equal)
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4"))
+      result = question.delete(normal)
+      normal = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      check_file_actual_expected(normal.to_h, sub_dir, "delete_expected_2.yaml", equate_method: :hash_equal)
+    end
+
   end
   
 end
