@@ -88,6 +88,16 @@ describe Form::Item do
       expect{Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2 in Form::Item::Placeholder.")
     end
 
+    it "Delete Common item" do
+      common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1"))
+      expect(parent.has_item.count).to eq(2)
+      result = common_item.delete(parent)
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1"))
+      expect(parent.has_item.count).to eq(1)
+      expect{Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1 in Form::Item::Common.")
+    end
+
   end
 
   describe "Move up/down" do
