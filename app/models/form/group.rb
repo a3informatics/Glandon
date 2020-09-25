@@ -65,8 +65,6 @@ class Form::Group < IsoConceptV2
     partial_update(update_query, [:bf])
     1
   end
-
-private
   
   def text_row(text)
     return "<tr><td colspan=\"3\"><h5>#{text}</h5></td></tr>"
