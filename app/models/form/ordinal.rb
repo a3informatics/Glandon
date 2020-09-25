@@ -21,7 +21,7 @@ class Form
     def uris_ordered(parent)
       query_string = %Q{
         SELECT ?s WHERE {
-          #{parent.uri.to_ref} bf:hasItem ?s. ?s bf:ordinal ?ordinal .
+          #{parent.uri.to_ref} bf:hasItem|bf:hasGroup|bf:hasSubGroup|bf:hasCodedValue ?s. ?s bf:ordinal ?ordinal .
         } ORDER BY ?ordinal
       }
       query_results = Sparql::Query.new.query(query_string, "", [:bf])
