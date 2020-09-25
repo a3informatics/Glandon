@@ -63,7 +63,7 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
 private
 
   def the_params
-    params.require(:normal_group).permit(:form_id, :parent_id)
+    params.require(:bc_group).permit(:form_id, :parent_id)
   end
 
   def add_child_params
