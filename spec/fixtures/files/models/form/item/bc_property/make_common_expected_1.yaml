@@ -1,0 +1,1007 @@
+---
+:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzE=
+:uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1
+:rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+:label: BC Group
+:tagged: []
+:ordinal: 1
+:note: Not Set
+:completion: Not Set
+:optional: false
+:has_item: []
+:repeating: false
+:has_sub_group:
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMg==
+  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2
+  :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
+  :label: Systolic Blood Pressure (BC C25298)
+  :tagged: []
+  :ordinal: 2
+  :note: Not Set
+  :completion: Not Set
+  :optional: false
+  :has_item:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDE=
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP1
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: Date and Time (--DTC)
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDFfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+      :context: 
+    :has_coded_value: []
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDQ=
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP4
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: Result Units (--ORRESU)
+    :tagged: []
+    :ordinal: 4
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDRfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP4_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDRfVFVDMQ==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP4_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YzOCNDNjY3NzBfQzQ5Njcw
+        :uri: http://www.cdisc.org/C66770/V38#C66770_C49670
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Millimeter of Mercury
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
+        :identifier: C49670
+        :notation: mmHg
+        :definition: A unit of pressure equal to 0.001316 atmosphere and equal to
+          the pressure indicated by one millimeter rise of mercury in a barometer
+          at the Earth's surface. (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#2bdde86e2670dd41617c7be1092b5a671feb4c3b
+        :synonym:
+        - http://www.assero.co.uk/SYN#2bdde86e2670dd41617c7be1092b5a671feb4c3b
+      :context: http://www.cdisc.org/C66770/V59#C66770
+      :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDM=
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP3
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: Result Value (--ORRES)
+    :tagged: []
+    :ordinal: 3
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDNfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP3_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPvalue
+      :context: 
+    :has_coded_value: []
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDI=
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: Body Position (--POS)
+    :tagged: []
+    :ordinal: 2
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMQ==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxMjI=
+        :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Sitting
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C62122
+        :notation: SITTING
+        :definition: The state or act of one who sits; the posture of one who occupies
+          a seat. (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#d79919201623d71b31f2ac9d83bc18e08a779e8a
+        :synonym:
+        - http://www.assero.co.uk/SYN#d79919201623d71b31f2ac9d83bc18e08a779e8a
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMw==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC3
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjY=
+        :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Standing
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C62166
+        :notation: STANDING
+        :definition: The act of assuming or maintaining an erect upright position.
+          (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+        :synonym:
+        - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMg==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC2
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjc=
+        :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Supine Position
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C62167
+        :notation: SUPINE
+        :definition: A posterior recumbent body position whereby the person lies on
+          its back and faces upward. (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#120bf64d01680390ffcf00cc1bdce0d885791a9e
+        :synonym:
+        - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: ''
+  :has_biomedical_concept:
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9SMQ==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: BC Reference
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.s-cubed.dk/SYSBP/V1#BCI
+    :context: 
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMw==
+  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3
+  :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
+  :label: Diastolic Blood Pressure (BC C25299)
+  :tagged: []
+  :ordinal: 3
+  :note: Not Set
+  :completion: Not Set
+  :optional: false
+  :has_item:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDQ=
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP4
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: Result Units (--ORRESU)
+    :tagged: []
+    :ordinal: 4
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDRfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP4_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDRfVFVDMQ==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP4_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YzOCNDNjY3NzBfQzQ5Njcw
+        :uri: http://www.cdisc.org/C66770/V38#C66770_C49670
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Millimeter of Mercury
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
+        :identifier: C49670
+        :notation: mmHg
+        :definition: A unit of pressure equal to 0.001316 atmosphere and equal to
+          the pressure indicated by one millimeter rise of mercury in a barometer
+          at the Earth's surface. (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#2bdde86e2670dd41617c7be1092b5a671feb4c3b
+        :synonym:
+        - http://www.assero.co.uk/SYN#2bdde86e2670dd41617c7be1092b5a671feb4c3b
+      :context: http://www.cdisc.org/C66770/V59#C66770
+      :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDM=
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP3
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: Result Value (--ORRES)
+    :tagged: []
+    :ordinal: 3
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDNfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP3_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPvalue
+      :context: 
+    :has_coded_value: []
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDE=
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: Date and Time (--DTC)
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDFfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+      :context: 
+    :has_coded_value: []
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDI=
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: Body Position (--POS)
+    :tagged: []
+    :ordinal: 2
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMw==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC3
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjY=
+        :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Standing
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C62166
+        :notation: STANDING
+        :definition: The act of assuming or maintaining an erect upright position.
+          (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+        :synonym:
+        - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMg==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC2
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxMjI=
+        :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Sitting
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C62122
+        :notation: SITTING
+        :definition: The state or act of one who sits; the posture of one who occupies
+          a seat. (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#d79919201623d71b31f2ac9d83bc18e08a779e8a
+        :synonym:
+        - http://www.assero.co.uk/SYN#d79919201623d71b31f2ac9d83bc18e08a779e8a
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMQ==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjc=
+        :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Supine Position
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C62167
+        :notation: SUPINE
+        :definition: A posterior recumbent body position whereby the person lies on
+          its back and faces upward. (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#120bf64d01680390ffcf00cc1bdce0d885791a9e
+        :synonym:
+        - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: ''
+  :has_biomedical_concept:
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19SMQ==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: BC Reference
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.s-cubed.dk/DIABP/V1#BCI
+    :context: 
+:has_common:
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cx
+  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1
+  :rdf_type: http://www.assero.co.uk/BusinessForm#CommonGroup
+  :label: Common Group
+  :tagged: []
+  :ordinal: 1
+  :note: Not Set
+  :completion: Not Set
+  :optional: false
+  :has_item:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMQ==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1
+    :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
+    :label: Date and Time (--DTC)
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDFfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+      :context: 
+    :has_coded_value: []
+    :has_common_item:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP1
+      :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :label: Date and Time (--DTC)
+      :tagged: []
+      :ordinal: 1
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :has_property:
+        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDFfUjE=
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP1_R1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+        :context: 
+      :has_coded_value: []
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1
+      :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :label: Date and Time (--DTC)
+      :tagged: []
+      :ordinal: 1
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :has_property:
+        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDFfUjE=
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1_R1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+        :context: 
+      :has_coded_value: []
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMg==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2
+    :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
+    :label: Body Position (--POS)
+    :tagged: []
+    :ordinal: 2
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMQ==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxMjI=
+        :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Sitting
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C62122
+        :notation: SITTING
+        :definition: The state or act of one who sits; the posture of one who occupies
+          a seat. (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#d79919201623d71b31f2ac9d83bc18e08a779e8a
+        :synonym:
+        - http://www.assero.co.uk/SYN#d79919201623d71b31f2ac9d83bc18e08a779e8a
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMw==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC3
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjY=
+        :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Standing
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C62166
+        :notation: STANDING
+        :definition: The act of assuming or maintaining an erect upright position.
+          (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+        :synonym:
+        - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMg==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC2
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjc=
+        :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Supine Position
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C62167
+        :notation: SUPINE
+        :definition: A posterior recumbent body position whereby the person lies on
+          its back and faces upward. (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#120bf64d01680390ffcf00cc1bdce0d885791a9e
+        :synonym:
+        - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: ''
+    :has_common_item:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDI=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2
+      :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :label: Body Position (--POS)
+      :tagged: []
+      :ordinal: 2
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :has_property:
+        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfUjE=
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_R1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode
+        :context: 
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMw==
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjY=
+          :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Standing
+          :tagged:
+          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+          :identifier: C62166
+          :notation: STANDING
+          :definition: The act of assuming or maintaining an erect upright position.
+            (NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+          :synonym:
+          - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+        :context: http://www.cdisc.org/C71148/V62#C71148
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMg==
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxMjI=
+          :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Sitting
+          :tagged:
+          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+          :identifier: C62122
+          :notation: SITTING
+          :definition: The state or act of one who sits; the posture of one who occupies
+            a seat. (NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#d79919201623d71b31f2ac9d83bc18e08a779e8a
+          :synonym:
+          - http://www.assero.co.uk/SYN#d79919201623d71b31f2ac9d83bc18e08a779e8a
+        :context: http://www.cdisc.org/C71148/V62#C71148
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMQ==
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjc=
+          :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Supine Position
+          :tagged:
+          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+          :identifier: C62167
+          :notation: SUPINE
+          :definition: A posterior recumbent body position whereby the person lies
+            on its back and faces upward. (NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#120bf64d01680390ffcf00cc1bdce0d885791a9e
+          :synonym:
+          - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
+        :context: http://www.cdisc.org/C71148/V62#C71148
+        :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDI=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2
+      :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :label: Body Position (--POS)
+      :tagged: []
+      :ordinal: 2
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :has_property:
+        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfUjE=
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_R1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode
+        :context: 
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMQ==
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxMjI=
+          :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Sitting
+          :tagged:
+          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+          :identifier: C62122
+          :notation: SITTING
+          :definition: The state or act of one who sits; the posture of one who occupies
+            a seat. (NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#d79919201623d71b31f2ac9d83bc18e08a779e8a
+          :synonym:
+          - http://www.assero.co.uk/SYN#d79919201623d71b31f2ac9d83bc18e08a779e8a
+        :context: http://www.cdisc.org/C71148/V62#C71148
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMw==
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjY=
+          :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Standing
+          :tagged:
+          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+          :identifier: C62166
+          :notation: STANDING
+          :definition: The act of assuming or maintaining an erect upright position.
+            (NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+          :synonym:
+          - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+        :context: http://www.cdisc.org/C71148/V62#C71148
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMg==
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjc=
+          :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Supine Position
+          :tagged:
+          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+          :identifier: C62167
+          :notation: SUPINE
+          :definition: A posterior recumbent body position whereby the person lies
+            on its back and faces upward. (NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#120bf64d01680390ffcf00cc1bdce0d885791a9e
+          :synonym:
+          - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
+        :context: http://www.cdisc.org/C71148/V62#C71148
+        :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMw==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI3
+    :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
+    :label: "--POS"
+    :tagged: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMQ==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxMjI=
+        :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Sitting
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C62122
+        :notation: SITTING
+        :definition: The state or act of one who sits; the posture of one who occupies
+          a seat. (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#d79919201623d71b31f2ac9d83bc18e08a779e8a
+        :synonym:
+        - http://www.assero.co.uk/SYN#d79919201623d71b31f2ac9d83bc18e08a779e8a
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMw==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC3
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjY=
+        :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Standing
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C62166
+        :notation: STANDING
+        :definition: The act of assuming or maintaining an erect upright position.
+          (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+        :synonym:
+        - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMg==
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC2
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjc=
+        :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Supine Position
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C62167
+        :notation: SUPINE
+        :definition: A posterior recumbent body position whereby the person lies on
+          its back and faces upward. (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#120bf64d01680390ffcf00cc1bdce0d885791a9e
+        :synonym:
+        - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: ''
+    :has_common_item:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDI=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2
+      :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :label: Body Position (--POS)
+      :tagged: []
+      :ordinal: 2
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :has_property:
+        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfUjE=
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_R1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode
+        :context: 
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMQ==
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxMjI=
+          :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Sitting
+          :tagged:
+          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+          :identifier: C62122
+          :notation: SITTING
+          :definition: The state or act of one who sits; the posture of one who occupies
+            a seat. (NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#d79919201623d71b31f2ac9d83bc18e08a779e8a
+          :synonym:
+          - http://www.assero.co.uk/SYN#d79919201623d71b31f2ac9d83bc18e08a779e8a
+        :context: http://www.cdisc.org/C71148/V62#C71148
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMw==
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjY=
+          :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Standing
+          :tagged:
+          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+          :identifier: C62166
+          :notation: STANDING
+          :definition: The act of assuming or maintaining an erect upright position.
+            (NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+          :synonym:
+          - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+        :context: http://www.cdisc.org/C71148/V62#C71148
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMg==
+        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjc=
+          :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Supine Position
+          :tagged:
+          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+          :identifier: C62167
+          :notation: SUPINE
+          :definition: A posterior recumbent body position whereby the person lies
+            on its back and faces upward. (NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#120bf64d01680390ffcf00cc1bdce0d885791a9e
+          :synonym:
+          - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
+        :context: http://www.cdisc.org/C71148/V62#C71148
+        :local_label: ''
