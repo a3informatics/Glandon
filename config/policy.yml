@@ -349,6 +349,8 @@ defaults: &defaults
       add_child: update
       move_up: update
       move_down: update
+      make_common: update
+      restore: update
   CdiscTermPolicy:
     policies:
       index:
