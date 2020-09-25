@@ -24,10 +24,10 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
   end
 
   def move_up
-    form = Form.find_minimum(move_params[:form_id])
+    form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     bc_property = Form::Item::BcProperty.find(protect_from_bad_id(params))
-    bc_property = bc_property.move_up(move_params[:parent_id])
+    bc_property = bc_property.move_up(the_params[:parent_id])
     if bc_property.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -37,10 +37,10 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
   end
 
   def move_down
-    form = Form.find_minimum(move_params[:form_id])
+    form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     bc_property = Form::Item::BcProperty.find(protect_from_bad_id(params))
-    bc_property = bc_property.move_down(move_params[:parent_id])
+    bc_property = bc_property.move_down(the_params[:parent_id])
     if bc_property.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -49,9 +49,19 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
     end
   end
 
+  def make_common
+    form = Form.find_full(the_params[:form_id])
+    return true unless check_lock_for_item(form)
+    bc_property = Form::Item::BcProperty.find(protect_from_bad_id(params))
+    common_item = bc_property.make_common
+    return true if item_errors(bc_property)
+    AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
+    render :json => {data: common_item}, :status => 200
+  end
+
 private
   
-  def move_params
+  def the_params
     params.require(:bc_property).permit(:form_id, :parent_id)
   end
 
