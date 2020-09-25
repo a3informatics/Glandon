@@ -7,7 +7,8 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
   C_CLASS_NAME = "OperationalReferenceV3::TucReferencesController"
 
   include ControllerHelpers
-
+  include DatatablesHelpers
+  
   def update
     form = Form.find_full(update_params[:form_id])
     return true unless check_lock_for_item(form)
