@@ -14,6 +14,8 @@ class Form::Item < IsoConceptV2
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
   validates :optional, inclusion: { in: [ true, false ] }
 
+  include Form::Ordinal
+
   def delete(parent)
     update_query = %Q{
       DELETE DATA
@@ -38,6 +40,7 @@ class Form::Item < IsoConceptV2
       }
     }
     partial_update(update_query, [:bf])
+    reset_ordinals(parent)
     1
   end
 

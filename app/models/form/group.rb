@@ -16,12 +16,9 @@ class Form::Group < IsoConceptV2
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
   validates :optional, inclusion: { in: [ true, false ] }
 
+  include Form::Ordinal
+
   def delete(parent)
-    # if parent.class == Form
-    #   predicate = "<http://www.assero.co.uk/BusinessForm#hasGroup>"
-    # elsif parent.class == Form::Group::Normal
-    #   predicate = "<http://www.assero.co.uk/BusinessForm#hasSubGroup>"
-    # end
     update_query = %Q{
       DELETE DATA
       {
@@ -63,6 +60,7 @@ class Form::Group < IsoConceptV2
       }
     }
     partial_update(update_query, [:bf])
+    reset_ordinals(parent)
     1
   end
   
