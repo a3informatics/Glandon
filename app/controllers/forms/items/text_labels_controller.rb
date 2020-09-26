@@ -3,12 +3,11 @@ require 'controller_helpers.rb'
 class Forms::Items::TextLabelsController < ManagedItemsController
 
   include DatatablesHelpers
+  include ControllerHelpers
 
   before_action :authenticate_and_authorized
 
   C_CLASS_NAME = "Forms::Items::TextLabelsController"
-
-  include ControllerHelpers
 
   def update
     form = Form.find_full(update_params[:form_id])
