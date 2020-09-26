@@ -28,7 +28,7 @@ describe Forms::Groups::CommonGroupsController do
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
       @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
-      @common = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_CG"))
+      @common = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1"))
     end
 
     it "update" do
@@ -38,7 +38,7 @@ describe Forms::Groups::CommonGroupsController do
       audit_count = AuditTrail.count
       put :update, params:{id: @common.id, common_group: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
-      @common = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_CG"))
+      @common = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1"))
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = check_good_json_response(response)
