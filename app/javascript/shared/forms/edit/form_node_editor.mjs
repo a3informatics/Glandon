@@ -148,7 +148,7 @@ export default class NodeEditor extends ModalView {
    * On modal hide callback
    * @override parent
    */
-  _onHideComplete() {
+  _onHide() {
 
     if ( this.onHide )
       this.onHide();

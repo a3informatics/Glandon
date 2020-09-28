@@ -568,25 +568,23 @@ export default class FormEditor extends TreeGraph {
       formId: this.formId,
       onShow: () => this.keysDisable(),
       onHide: () => {
-        this.selected.el.focus(); // Restore focus from the Editor back to Graph
+
         this.keysEnable();
+        setTimeout( () =>
+            this.selected.el.focus(), 300 ); // Restore focus
+
       },
       onUpdate: () => {
-        this._onUpdate()
+
+        this._onUpdate();
         alerts.success( 'Node updated successfully.', this._alertDiv );
+
       }
     });
 
     let NodeHandler = await import( /* webpackPrefetch: true */ 'shared/forms/edit/form_node_handler' );
 
-    this.nodeHandler = new NodeHandler.default({
-      selector: this.selector,
-      formId: this.formId,
-      alertDiv: this._alertDiv,
-      processData: data => this._preprocessData( data ),
-      loading: enable => this._loading( enable ),
-      onUpdate: node => this._onUpdate( node )
-    });
+    this.nodeHandler = new NodeHandler.default( this );
 
   }
 
