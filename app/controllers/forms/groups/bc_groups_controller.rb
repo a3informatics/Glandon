@@ -3,12 +3,11 @@ require 'controller_helpers.rb'
 class Forms::Groups::BcGroupsController < ManagedItemsController
 
   include DatatablesHelpers
+  include ControllerHelpers
 
   before_action :authenticate_and_authorized
 
   C_CLASS_NAME = Forms::Groups::BcGroupsController
-
-  include ControllerHelpers
 
   def update
     form = Form.find_full(update_params[:form_id])
@@ -63,7 +62,7 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
 private
 
   def the_params
-    params.require(:normal_group).permit(:form_id, :parent_id)
+    params.require(:bc_group).permit(:form_id, :parent_id)
   end
 
   def add_child_params

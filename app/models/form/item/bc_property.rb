@@ -62,7 +62,7 @@ class Form::Item::BcProperty < Form::Item
       common_group.save
       common_item.save
       normal_group = Form::Group::Normal.find_full(get_normal_group.first).to_h
-      normal_group_hash
+      normal_group_hash(normal_group)
     else
       self.errors.add(:base, "There is no Common group")
     end  

@@ -3,12 +3,11 @@ require 'controller_helpers.rb'
 class Forms::Groups::CommonGroupsController < ManagedItemsController
 
   include DatatablesHelpers
+  include ControllerHelpers
 
   before_action :authenticate_and_authorized
 
   C_CLASS_NAME = Forms::Groups::CommonGroupsController
-
-  include ControllerHelpers
 
   def update
     form = Form.find_full(update_params[:form_id])

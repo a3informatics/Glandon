@@ -40,7 +40,7 @@ describe OperationalReferenceV3::TucReferencesController do
       put :update, params:{id: @tuc_reference.id, tuc_reference: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_tuc_reference_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_tuc_reference_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it 'update, second update so no audit' do
@@ -53,7 +53,7 @@ describe OperationalReferenceV3::TucReferencesController do
       put :update, params:{id: @tuc_reference.id, tuc_reference: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_tuc_reference_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_tuc_reference_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it 'update, locked by another user' do
@@ -64,7 +64,7 @@ describe OperationalReferenceV3::TucReferencesController do
       put :update, params:{id: @tuc_reference.id, tuc_reference: update_params}
       expect(AuditTrail.count).to eq(audit_count)
       actual = check_error_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_tuc_reference_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_tuc_reference_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it 'update, errors' do

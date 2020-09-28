@@ -93,12 +93,11 @@ describe Forms::Groups::NormalGroupsController do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000120.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..15)
+      load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
       @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
-      @normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F_NG12"))
     end
 
     after :all do
@@ -109,7 +108,8 @@ describe Forms::Groups::NormalGroupsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
       token = Token.obtain(@form, @user)
-      post :add_child, params:{id: @normal.id, normal_group:{type: "normal_group", form_id: @form} }
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F_NG12"))
+      post :add_child, params:{id: normal.id, normal_group:{type: "normal_group", form_id: @form} }
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(AuditTrail.count).to eq(audit_count + 1)
@@ -119,13 +119,14 @@ describe Forms::Groups::NormalGroupsController do
     end
 
     it 'Add Bc group' do
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F_NG2"))
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
       bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
       bci_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/RACE/V1#BCI"))
       request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
       token = Token.obtain(@form, @user)
-      post :add_child, params:{id: @normal.id, normal_group:{type: "bc_group", id_set: [bci_1.id,bci_2.id, bci_3.id ], form_id: @form} }
+      post :add_child, params:{id: normal.id, normal_group:{type: "bc_group", id_set: [bci_1.id,bci_2.id, bci_3.id ], form_id: @form} }
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(AuditTrail.count).to eq(audit_count + 1)
