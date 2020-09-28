@@ -825,8 +825,12 @@ module UiHelpers
   end
 
 	# Keys
-	def ui_press_key(key)
-		page.driver.browser.action.send_keys(key).perform
+	def ui_press_key(key, with_key = nil)
+		if with_key.nil?
+			page.driver.browser.action.send_keys(key).perform
+		else
+			page.driver.browser.action.key_down(with_key).send_keys(key).key_up(with_key).perform
+		end
 	end
 
 
