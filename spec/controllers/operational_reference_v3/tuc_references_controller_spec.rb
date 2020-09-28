@@ -32,7 +32,7 @@ describe OperationalReferenceV3::TucReferencesController do
     end
 
     it "update" do
-      update_params = {form_id: @form.id, label:"label u", enabled: false, optional: true} 
+      update_params = {form_id: @form.id, local_label:"label u", enabled: false, optional: true} 
       request.env['HTTP_ACCEPT'] = "application/json"
       request.content_type = 'application/json'
       token = Token.obtain(@form, @user)
@@ -44,7 +44,7 @@ describe OperationalReferenceV3::TucReferencesController do
     end
 
     it 'update, second update so no audit' do
-      update_params = {form_id: @form.id, label:"label u"} 
+      update_params = {form_id: @form.id, local_label:"label u"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
@@ -57,7 +57,7 @@ describe OperationalReferenceV3::TucReferencesController do
     end
 
     it 'update, locked by another user' do
-      update_params = {form_id: @form.id, label:"label u"} 
+      update_params = {form_id: @form.id, local_label:"label u"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @lock_user)
       audit_count = AuditTrail.count
@@ -68,14 +68,14 @@ describe OperationalReferenceV3::TucReferencesController do
     end
 
     it 'update, errors' do
-      update_params = {form_id: @form.id, label:"label ±±±"} 
+      update_params = {form_id: @form.id, local_label:"label ±±±"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
       put :update, params:{id: @tuc_reference.id, tuc_reference: update_params}
       expect(AuditTrail.count).to eq(audit_count)
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_tuc_reference_expected_4.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_tuc_reference_expected_4.yaml", equate_method: :hash_equal)
     end
 
   end
