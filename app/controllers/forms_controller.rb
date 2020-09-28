@@ -71,9 +71,9 @@ class FormsController < ManagedItemsController
   def edit
     authorize Form
     @form = Form.find_minimum(protect_from_bad_id(params))
-    return true unless edit_lock(@form)
     respond_to do |format|
       format.html do
+        return true unless edit_lock(@form)
         @form = @edit.item
         @close_path = history_forms_path({ form:
             { identifier: @form.scoped_identifier, scope_id: @form.scope } })

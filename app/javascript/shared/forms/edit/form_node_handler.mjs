@@ -138,7 +138,7 @@ export default class NodeHandler {
     success = ''
   }) {
 
-    this.editor.loading( true );
+    this.editor._loading( true );
 
     $ajax({
       url, data, type,
@@ -150,7 +150,7 @@ export default class NodeHandler {
         alerts.success( success, this.editor._alertDiv );
 
       },
-      always: () => this.editor.loading( false )
+      always: () => this.editor._loading( false )
     });
 
   }

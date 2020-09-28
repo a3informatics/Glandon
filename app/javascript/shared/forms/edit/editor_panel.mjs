@@ -504,7 +504,7 @@ export default class FormEditor extends TreeGraph {
                   `<div class='font-regular' style='color: ${ node.color }'> ${ node.rdfName } </div>
                    ${ ( node.disabled ? '<i>Disabled</i> <br>' : '') }
                    ${ ( node.isCommon ? '<i>Common</i> <br>' : '') }
-                   ${ node.data.label }
+                   ${ node.label }
                 </div>`;
 
     D3Tooltip.show( html );
