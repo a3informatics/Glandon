@@ -243,7 +243,7 @@ export default class NodeHandler {
     // Merge multiple data items into Node
     if ( Array.isArray(data) ) {
 
-      data.forEach( d => this._mergeIntoNode( this.processData(d) ) );
+      data.forEach( d => this._merge( this.node, this.processData(d) ) );
       return;
 
     }
@@ -253,7 +253,7 @@ export default class NodeHandler {
       this.processData( data ),
       false
     );
-    this._mergeIntoNode( child.d );
+    this._merge( this.node, child.d );
 
     return child;
 
@@ -261,22 +261,36 @@ export default class NodeHandler {
 
   /**
    * Merge data object and its descendants into current Node's children collection
-   * @param {object} data Child data object to marge into Node children
+   * @param {FormNode} node Node instance to merge data into
+   * @param {object} data Data object to merge / replace Node's descendant
+   * @param {boolean} replace Specifies if the descendant of Node should be replaced or not  
    */
-  _mergeIntoNode(data) {
+  _merge(node, data, replace = false) {
 
-    let node = this.node.d;
+    data.height = node.d.height;
+    data.parent = node.d;
 
-    data.height = node.height;
-    data.parent = node;
+    // Replace Node child with data
+    if ( replace ) {
 
-    if ( node.children )
-      node.children.push( data );
-    else
-      node.children = [ data ];
+      let index = node.d.children.indexOf(
+                    _.find( node.d.children, n => n.data.id === data.data.id )
+                  );
+      node.d.children.splice(index, 1, data);
+
+    }
+    // Merge data into Node's children
+    else {
+
+      if ( node.d.children )
+        node.d.children.push( data );
+      else
+        node.d.children = [ data ];
+
+    }
 
     // Update depth of new node descendants offset by current Node depth
-    data.descendants().forEach( d => d.depth += node.depth + 1 );
+    data.descendants().forEach( d => d.depth += node.d.depth + 1 );
 
   }
 
@@ -355,7 +369,12 @@ export default class NodeHandler {
       success: 'Node updated successfully.',
       done: d => {
 
-        // TODO: Append returned data
+        // Merge new data into parent node
+        let newData = this.processData(d),
+            parent = this.node.parent.parent.parent;
+
+        this._merge( parent, newData, true );
+
         this.onUpdate();
 
       }
@@ -507,7 +526,7 @@ export default class NodeHandler {
     }
 
     // Remove / Move Node require Node parent ID
-    else if ( action === 'remove' || action === 'move' )
+    else if ( action === 'remove' || action === 'move' || action === 'restore' )
       data[ param ].parent_id = this.node.d.parent.data.id;
 
     return JSON.stringify( data );
