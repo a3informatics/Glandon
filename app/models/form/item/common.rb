@@ -36,7 +36,20 @@ class Form::Item::Common < Form::Item::BcProperty
   end
 
   def delete(parent)
-    super
+    update_query = %Q{
+      DELETE DATA
+      {
+        #{parent.uri.to_ref} bf:hasItem #{self.uri.to_ref} 
+      };
+      DELETE {?s ?p ?o} WHERE 
+      { 
+        { BIND (#{self.uri.to_ref} as ?s). 
+          ?s ?p ?o
+        }
+      }
+    }
+    partial_update(update_query, [:bf])
+    reset_ordinals(parent)
     common_group = Form::Group::Common.find(parent.uri)
     normal_group = Form::Group::Normal.find_full(get_normal_group(common_group).first).to_h
     normal_group_hash(normal_group)

@@ -36,7 +36,7 @@ describe Form::Item::Common do
   describe "Restore" do
     
     before :each do
-      data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      data_files = ["forms/MAKE_COMMON_TEST.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -51,6 +51,24 @@ describe Form::Item::Common do
       expect(parent.has_item.count).to eq(1)
       expect{Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1 in Form::Item::Common.")
       check_file_actual_expected(result, sub_dir, "restore_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "Restore (delete) Common item" do
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
+      bc_property.make_common
+      common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1_CI1"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1"))
+      expect(parent.has_item.count).to eq(1)
+      result = common_item.delete(parent)
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1"))
+      expect(parent.has_item.count).to eq(0)
+      expect{Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1_CI1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1_CI1 in Form::Item::Common.")
+      check_file_actual_expected(result, sub_dir, "restore_2.yaml", equate_method: :hash_equal)
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
+      bc_property.make_common
+      common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1_CI1"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1"))
+      expect(parent.has_item.count).to eq(1)
     end
 
   end
