@@ -1,4 +1,5 @@
 import { $get, $post } from 'shared/helpers/ajax'
+import { alerts } from 'shared/ui/alerts'
 
 /**
  * Token Timer
@@ -44,7 +45,7 @@ export default class TokenTimer {
 
     $get({
       url: `/tokens/${this.tokenId}/extend_token`,
-      error: () => displayError("An error has occurred extending the edit lock timeout."),
+      error: () => alerts.error( 'An error has occurred extending the edit lock timeout.' ),
       done: (r) => this._initTokenTimer(this.reqInterval),
       always: () => this._loading(false)
     });
@@ -170,7 +171,7 @@ export default class TokenTimer {
     $get({
       url: `/tokens/${this.tokenId}/status`,
       error: () => {
-        displayError("An error has occurred obtaining the edit lock timeout information.")
+        alerts.error( 'An error has occurred obtaining the edit lock timeout information.' )
         this.expire()
         this._render()
       },

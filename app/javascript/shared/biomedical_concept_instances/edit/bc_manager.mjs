@@ -9,6 +9,7 @@ import InformationDialog from 'shared/ui/dialogs/information_dialog'
 import { $get, $post } from 'shared/helpers/ajax'
 import { renderSpinnerIn$, removeSpinnerFrom$ } from 'shared/ui/spinners'
 import { tableInteraction } from 'shared/helpers/utils'
+import { alerts } from 'shared/ui/alerts'
 
 /**
  * Biomedical Concept Edit Manager
@@ -54,7 +55,7 @@ export default class BCManager extends Cacheable {
 
     // Check if BC instance already added
     if ( this.activeBCs[id] ) {
-      displayError('This BC has already been added.');
+      alerts.error('This BC has already been added.');
       return;
     }
 
@@ -99,7 +100,7 @@ export default class BCManager extends Cacheable {
     // Initialize the Create BC View
     this.createBCView = new CreateBCView({
       onCreated: (data) => {
-        displaySuccess('BC created successfully.');
+        alerts.success('BC created successfully.');
         this.editBC(data.id);
       },
       onShow: () => this.bcEditor.kDisable(),
