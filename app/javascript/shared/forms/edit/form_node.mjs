@@ -21,6 +21,14 @@ export default class FormNode extends TreeNode {
   }
 
   /**
+   * Get node label
+   * @return {string} Node label value (local_label for TUC Reference)
+   */
+  get label() {
+    return this.is('TUC_REF') ? this.data.local_label : this.data.label;
+  }
+
+  /**
    * Check if Node disabled
    * @return {boolean} Value representing Node's enabled data flag equal to false
    */

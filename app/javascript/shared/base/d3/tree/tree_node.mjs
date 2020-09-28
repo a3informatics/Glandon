@@ -65,6 +65,14 @@ export default class TreeNode {
   }
 
   /**
+   * Get node label
+   * @return {string} Node label value
+   */
+  get label() {
+    return this.data.label;
+  }
+
+  /**
    * Get node element bounding client rectangle
    * @return {Object} Node Element bounding rectangle object
    */

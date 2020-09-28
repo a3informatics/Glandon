@@ -89,7 +89,7 @@ export default class TreeGraph {
 
     this._render();
 
-    // Trigger keyup event to re-apply search on re-rendered items 
+    // Trigger keyup event to re-apply search on re-rendered items
     $( this.selector ).find( '#d3-search' )
                       .keyup();
 
@@ -476,13 +476,12 @@ export default class TreeGraph {
   /**
    * Search through displayed nodes in graph and mark matching results
    * @param {string} searchText The text to search for
-   * @param {string} property Data property to compare, [default=label]
    */
-  _search(searchText, property = 'label') {
+  _search(searchText) {
 
     // Find matches
     let matches = this.d3.selectAll( `${this.selector} .node` )
-                         .filter( n => findInString( searchText, n.data[ property ] ) )
+                         .filter( d => findInString( searchText, new this.Node(d).label ) )
                          .nodes();
 
     $( matches ).addClass( 'search-match' ); // Mark matching nodes
