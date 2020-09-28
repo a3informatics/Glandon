@@ -47,20 +47,24 @@ class Form::Item::BcProperty < Form::Item
   def make_common
     if !get_common_group.empty? #Check if there is a common group
       common_group = Form::Group::Common.find(get_common_group.first)
+      common_bcp = find_common_matches
       property_ref = self.has_property_objects.reference
       property = BiomedicalConcept::PropertyX.find(property_ref)
       common_item = Form::Item::Common.create(label: property.alias, ordinal: common_group.next_ordinal, parent_uri: common_group.uri)
       common_group.add_link(:has_item, common_item.uri)
+      common_group.has_item_push(common_item.uri)
       self.has_coded_value_objects
       common_item.has_coded_value = []
       self.has_coded_value.each do |ref|
         common_item.has_coded_value << ref
       end
       common_item.has_property = self.has_property
-      common_item.add_link(:has_common_item, self.uri)
-      common_item.has_common_item_push(self.uri)
-      common_group.save
-      common_item.save
+      common_bcp.each do |common_uri|
+        common_item.add_link(:has_common_item, common_uri)
+        common_item.has_common_item_push(common_uri)
+        common_group.save
+        common_item.save
+      end
       normal_group = Form::Group::Normal.find_full(get_normal_group.first).to_h
       normal_group_hash(normal_group)
     else
@@ -76,6 +80,19 @@ class Form::Item::BcProperty < Form::Item
   end
 
   private
+
+    def find_common_matches
+      query_string = %Q{         
+        SELECT ?common_bcp WHERE 
+        {
+          #{self.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref .
+          #{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup/bf:hasSubGroup/bf:hasItem ?common_bcp .
+          ?common_bcp bf:hasProperty/bo:reference/bc:isA ?ref
+        }
+      }     
+      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bc])
+      query_results.by_object(:common_bcp)
+    end
 
     def get_common_group
       query_string = %Q{         
