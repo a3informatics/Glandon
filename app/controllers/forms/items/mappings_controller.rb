@@ -23,10 +23,10 @@ class Forms::Items::MappingsController < ManagedItemsController
   end
 
   def move_up
-    form = Form.find_minimum(move_params[:form_id])
+    form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     mapping = Form::Item::Mapping.find(protect_from_bad_id(params))
-    mapping = mapping.move_up(move_params[:parent_id])
+    mapping = mapping.move_up(the_params[:parent_id])
     if mapping.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -36,10 +36,10 @@ class Forms::Items::MappingsController < ManagedItemsController
   end
 
   def move_down
-    form = Form.find_minimum(move_params[:form_id])
+    form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     mapping = Form::Item::Mapping.find(protect_from_bad_id(params))
-    mapping = mapping.move_down(move_params[:parent_id])
+    mapping = mapping.move_down(the_params[:parent_id])
     if mapping.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
