@@ -57,6 +57,15 @@ describe Form::Item::BcProperty do
       check_file_actual_expected(result, sub_dir, "make_common_expected_2.yaml", equate_method: :hash_equal)
     end
 
+    it "make common III, check terminologies" do 
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG2"))
+      normal.add_child({type:"common_group"})
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG2"))
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG2_BCG3_BP3"))
+      result = bc_property.make_common
+      check_file_actual_expected(result, sub_dir, "make_common_expected_3.yaml", equate_method: :hash_equal)
+    end
+
   end
 
 end
