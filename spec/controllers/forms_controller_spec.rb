@@ -83,8 +83,6 @@ describe FormsController do
       expect(Form.all.count).to eq(count + 1)
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "destroy" do
