@@ -35,7 +35,49 @@ class Form::Item::Common < Form::Item::BcProperty
     self.has_common_item_objects.sort_by {|x| x.ordinal} 
   end
 
+  def delete(parent)
+    super
+    common_group = Form::Group::Common.find(parent.uri)
+    normal_group = Form::Group::Normal.find_full(get_normal_group(common_group).first).to_h
+    normal_group_hash(normal_group)
+    normal_group
+  end
+
   private
+
+    # Normal group hash
+    #
+    # @return [Hash] Return the data of the whole parent Normal Group, all its children BC Groups, Common Group + any referenced item data.
+    def normal_group_hash(normal_group)
+      normal_group[:has_item].each do |item|
+        get_referenced_item(item)
+      end
+      normal_group[:has_common].first[:has_item].each do |item|
+        get_referenced_item(item)
+      end
+      normal_group[:has_common].first[:has_item].each do |item|
+        item[:has_common_item].each do |ci|
+          get_referenced_item(ci)
+        end
+      end
+      normal_group[:has_sub_group].each do |sg|
+        sg[:has_item].each do |item|
+          get_referenced_item(item)
+        end
+      end
+      normal_group
+    end
+
+    def get_normal_group(common_group)
+      query_string = %Q{         
+        SELECT ?normal_group WHERE 
+        {
+          #{common_group.uri.to_ref} ^bf:hasCommon ?normal_group. 
+        }
+      }     
+      query_results = Sparql::Query.new.query(query_string, "", [:bf])
+      query_results.by_object(:normal_group)
+    end
 
     def terminology_cell(property)
       html = '<td>'
