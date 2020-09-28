@@ -43,17 +43,18 @@ class Form::Item::Common < Form::Item::BcProperty
       };
       DELETE {?s ?p ?o} WHERE 
       { 
-        { BIND (#{self.uri.to_ref} as ?s). 
-          ?s ?p ?o
+        {  
+          BIND (#{self.uri.to_ref} as ?s) .
+          ?s ?p ?o .
         }
       }
     }
     partial_update(update_query, [:bf])
     reset_ordinals(parent)
     common_group = Form::Group::Common.find(parent.uri)
-    normal_group = Form::Group::Normal.find_full(get_normal_group(common_group).first).to_h
-    normal_group_hash(normal_group)
-    normal_group
+    normal_group_hash = Form::Group::Normal.find_full(get_normal_group(common_group).first).to_h
+    full_normal_group(normal_group_hash)
+    normal_group_hash
   end
 
   private
@@ -61,7 +62,7 @@ class Form::Item::Common < Form::Item::BcProperty
     # Normal group hash
     #
     # @return [Hash] Return the data of the whole parent Normal Group, all its children BC Groups, Common Group + any referenced item data.
-    def normal_group_hash(normal_group)
+    def full_normal_group(normal_group)
       normal_group[:has_item].each do |item|
         get_referenced_item(item)
       end
