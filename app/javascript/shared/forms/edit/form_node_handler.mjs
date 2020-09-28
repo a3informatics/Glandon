@@ -11,34 +11,18 @@ import { isInViewport } from 'shared/helpers/utils'
 
 /**
  * Node Handler
- * @description Handler for manipulating Form Nodes and their children
+ * @description Handler for manipulating Form Nodes and their children, extension to Form Editor
  * @author Samuel Banas <sab@s-cubed.dk>
  */
 export default class NodeHandler {
 
   /**
    * Create a Node Handler instance
-   * @param {Object} params Instance parameters
-   * @param {string} params.selector JQuery selector of the wrapping panel
-   * @param {string} params.formId ID of the currently edited form
-   * @param {JQuery Element} params.alertDiv Div to display alerts & errors in
-   * @param {Function} params.onUpdate Callback to execute on node update success
-   * @param {Function} params.processData Function reference to convert raw data structure to a compatible d3 hierarchy
-   * @param {Function} params.loading Loading function reference
+   * @param {FormEditor} editor Form Editor instance reference
    */
-  constructor({
-    selector,
-    formId,
-    alertDiv,
-    onUpdate = () => {},
-    processData = () => {},
-    loading = () => {}
-  } = {} ) {
+  constructor(editor) {
 
-    Object.assign( this, {
-      selector, formId, alertDiv, onUpdate,
-      processData, loading
-    });
+    this.editor = editor;
 
     this._initPicker();
 
@@ -101,7 +85,7 @@ export default class NodeHandler {
     if ( sibling )
       this._move( dir );
     else
-      alerts.warning( `Cannot move Node ${ dir }.`, this.alertDiv );
+      alerts.warning( `Cannot move Node ${ dir }.`, this.editor._alertDiv );
 
   }
 
@@ -154,19 +138,19 @@ export default class NodeHandler {
     success = ''
   }) {
 
-    this.loading( true );
+    this.editor.loading( true );
 
     $ajax({
       url, data, type,
       contentType: 'application/json',
-      errorDiv: this.alertDiv,
+      errorDiv: this.editor._alertDiv,
       done: d => {
 
         done(d);
-        alerts.success( success, this.alertDiv );
+        alerts.success( success, this.editor._alertDiv );
 
       },
-      always: () => this.loading( false )
+      always: () => this.editor.loading( false )
     });
 
   }
@@ -187,7 +171,7 @@ export default class NodeHandler {
       url: this._nodeUrl + '/add_child',
       data: this._makeRequestData( 'add', type, extraData ),
       success: 'Added successfully.',
-      done: d => this.onUpdate( this._appendData( d ) )
+      done: d => this.editor._onUpdate( this._appendData( d ) )
     });
 
   }
@@ -243,14 +227,16 @@ export default class NodeHandler {
     // Merge multiple data items into Node
     if ( Array.isArray(data) ) {
 
-      data.forEach( d => this._merge( this.node, this.processData(d) ) );
+      data.forEach( d =>
+        this._merge( this.node, this.editor._preprocessData(d) )
+      );
       return;
 
     }
 
     // Merge single item data into Node
     let child = new FormNode(
-      this.processData( data ),
+      this.editor._preprocessData( data ),
       false
     );
     this._merge( this.node, child.d );
@@ -263,7 +249,7 @@ export default class NodeHandler {
    * Merge data object and its descendants into current Node's children collection
    * @param {FormNode} node Node instance to merge data into
    * @param {object} data Data object to merge / replace Node's descendant
-   * @param {boolean} replace Specifies if the descendant of Node should be replaced or not  
+   * @param {boolean} replace Specifies if the descendant of Node should be replaced or not
    */
   _merge(node, data, replace = false) {
 
@@ -290,7 +276,8 @@ export default class NodeHandler {
     }
 
     // Update depth of new node descendants offset by current Node depth
-    data.descendants().forEach( d => d.depth += node.d.depth + 1 );
+    data.descendants()
+        .forEach( d => d.depth += node.d.depth + 1 );
 
   }
 
@@ -318,7 +305,7 @@ export default class NodeHandler {
         this.node.swapOrdinals( sibling );
         this.node.parent.sortChildren();
 
-        this.onUpdate();
+        this.editor._onUpdate();
 
       }
     });
@@ -342,7 +329,7 @@ export default class NodeHandler {
       done: d => {
 
         this.node.parent.removeChild( this.node );
-        this.onUpdate( this.node.parent );
+        this.editor._onUpdate( this.node.parent );
 
       }
     });
@@ -369,13 +356,15 @@ export default class NodeHandler {
       success: 'Node updated successfully.',
       done: d => {
 
+        console.log(d);
+
         // Merge new data into parent node
-        let newData = this.processData(d),
+        let newData = this.editor._preprocessData(d),
             parent = this.node.parent.parent.parent;
 
         this._merge( parent, newData, true );
 
-        this.onUpdate();
+        this.editor._onUpdate();
 
       }
     });
@@ -426,7 +415,7 @@ export default class NodeHandler {
     if ( e && $( e.relatedTarget ).hasClass('option') )
       return;
 
-    $( this.selector ).find( '.node-actions .context-menu' )
+    $( this.editor.selector ).find( '.node-actions .context-menu' )
                       .remove()
 
   }
@@ -472,8 +461,8 @@ export default class NodeHandler {
    */
   get _menuInViewport() {
 
-    let menu = $( this.selector ).find('.node-actions .context-menu'),
-        parent = $( this.selector ).find( '#d3 svg' );
+    let menu = $( this.editor.selector ).find('.node-actions .context-menu'),
+        parent = $( this.editor.selector ).find( '#d3 svg' );
 
     return isInViewport( parent, menu, 1 );
 
@@ -484,7 +473,7 @@ export default class NodeHandler {
    * @return {boolean} Returns true if context menu exists within node-actions
    */
   get _menuOpen() {
-    return $( this.selector ).find('.node-actions .context-menu').length > 0;
+    return $( this.editor.selector ).find('.node-actions .context-menu').length > 0;
   }
 
 
@@ -512,7 +501,7 @@ export default class NodeHandler {
         data = {}
 
     data[ param ] = {
-      form_id: this.formId
+      form_id: this.editor.formId
     }
 
     // Add children request data
@@ -542,7 +531,15 @@ export default class NodeHandler {
       id: 'node-add-child',
       types: [ rdfs.BC.param, rdfs.TH_CLI.param ],
       multiple: true,
-      description: 'Pick one or more items to be added into the selected node.'
+      description: 'Pick one or more items to be added into the selected node.',
+      onShow: () => this.editor.keysDisable(),
+      onHide: () => {
+
+        this.editor.keysEnable();
+        setTimeout( () =>
+            this.editor.selected.el.focus(), 300 ); // Restore focus
+
+      }
     });
 
   }
