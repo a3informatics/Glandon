@@ -11,6 +11,7 @@ import { D3Actions } from 'shared/helpers/d3/renderers/actions'
 import colors from 'shared/ui/colors'
 import { iconBtn } from 'shared/ui/buttons'
 import { cropText } from 'shared/helpers/strings'
+import { alerts } from 'shared/ui/alerts'
 
 import { renderIconsLabels } from 'shared/helpers/d3/renderers/nodes'
 
@@ -204,8 +205,6 @@ export default class FormEditor extends TreeGraph {
    */
   _preprocessData(rawData) {
 
-    console.log(rawData);
-
     let data = this.d3.hierarchy( rawData, d => [
         ...d.has_group||[],
         ...d.has_common||[],
@@ -361,7 +360,7 @@ export default class FormEditor extends TreeGraph {
    */
   _appendReferences(references) {
 
-    // Needs to expand all nodes to access all reference nodes 
+    // Needs to expand all nodes to access all reference nodes
     this._expandAll( new this.Node( this.graph.root ) );
 
     // Filter referenced nodes and append data
@@ -380,7 +379,7 @@ export default class FormEditor extends TreeGraph {
         // Merge reference data into Node data
         node.data.reference = data;
 
-        // Set default local label value if none is set
+        // Set default label & local label value if none is set
         if ( node.data.local_label === '' )
           node.data.local_label = data.label;
 
@@ -572,7 +571,10 @@ export default class FormEditor extends TreeGraph {
         this.selected.el.focus(); // Restore focus from the Editor back to Graph
         this.keysEnable();
       },
-      onUpdate: () => this._onUpdate()
+      onUpdate: () => {
+        this._onUpdate()
+        alerts.success( 'Node updated successfully.', this._alertDiv );
+      }
     });
 
     let NodeHandler = await import( /* webpackPrefetch: true */ 'shared/forms/edit/form_node_handler' );

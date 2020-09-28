@@ -799,6 +799,7 @@ export default class NodeEditor extends ModalView {
 
     let rules = {
       label: { value: 'not-empty' },
+      local_label: { value: 'not-empty' },
       mapping: { value: 'not-empty' },
       question_text: { value: 'not-empty' },
       placeholder_text: { value: 'not-empty' },

@@ -89,6 +89,10 @@ export default class TreeGraph {
 
     this._render();
 
+    // Trigger keyup event to re-apply search on re-rendered items 
+    $( this.selector ).find( '#d3-search' )
+                      .keyup();
+
     return this;
 
   }
