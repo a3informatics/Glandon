@@ -8,7 +8,6 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
 
   include DatatablesHelpers
   include ControllerHelpers
-  include DatatablesHelpers
   
   def update
     form = Form.find_full(update_params[:form_id])

@@ -2,11 +2,11 @@ require 'controller_helpers.rb'
 
 class Forms::Items::CommonsController < ManagedItemsController
 
+  include ControllerHelpers
+
   before_action :authenticate_and_authorized
 
   C_CLASS_NAME = "Forms::Items::CommonsController"
-
-  include ControllerHelpers
 
   def move_up
     form = Form.find_minimum(move_params[:form_id])
@@ -34,7 +34,7 @@ class Forms::Items::CommonsController < ManagedItemsController
     end
   end
 
-  def destroy
+  def restore
     common = Form::Item::Common.find(protect_from_bad_id(params))
     parent = Form::Group.find(the_params[:parent_id])
     form = Form.find_minimum(the_params[:form_id])
