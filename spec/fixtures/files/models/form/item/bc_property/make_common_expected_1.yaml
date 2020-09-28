@@ -42,6 +42,7 @@
       :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
       :context: 
     :has_coded_value: []
+    :is_common: true
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDQ=
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP4
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
@@ -91,6 +92,7 @@
         - http://www.assero.co.uk/SYN#2bdde86e2670dd41617c7be1092b5a671feb4c3b
       :context: http://www.cdisc.org/C66770/V59#C66770
       :local_label: ''
+    :is_common: false
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDM=
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP3
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
@@ -112,6 +114,7 @@
       :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPvalue
       :context: 
     :has_coded_value: []
+    :is_common: false
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDI=
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
@@ -211,6 +214,7 @@
         - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
       :context: http://www.cdisc.org/C71148/V62#C71148
       :local_label: ''
+    :is_common: true
   :has_biomedical_concept:
     :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9SMQ==
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_R1
@@ -281,6 +285,7 @@
         - http://www.assero.co.uk/SYN#2bdde86e2670dd41617c7be1092b5a671feb4c3b
       :context: http://www.cdisc.org/C66770/V59#C66770
       :local_label: ''
+    :is_common: false
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDM=
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP3
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
@@ -302,6 +307,7 @@
       :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPvalue
       :context: 
     :has_coded_value: []
+    :is_common: false
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDE=
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
@@ -323,6 +329,7 @@
       :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
       :context: 
     :has_coded_value: []
+    :is_common: true
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDI=
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
@@ -422,6 +429,7 @@
         - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
       :context: http://www.cdisc.org/C71148/V62#C71148
       :local_label: ''
+    :is_common: true
   :has_biomedical_concept:
     :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19SMQ==
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_R1
@@ -487,6 +495,7 @@
         :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
         :context: 
       :has_coded_value: []
+      :is_common: true
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDE=
       :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
@@ -508,6 +517,8 @@
         :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
         :context: 
       :has_coded_value: []
+      :is_common: true
+    :is_common: false
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMg==
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2
     :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
@@ -707,6 +718,7 @@
           - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
         :context: http://www.cdisc.org/C71148/V62#C71148
         :local_label: ''
+      :is_common: true
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDI=
       :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
@@ -806,6 +818,8 @@
           - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
         :context: http://www.cdisc.org/C71148/V62#C71148
         :local_label: ''
+      :is_common: true
+    :is_common: false
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMw==
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI3
     :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
@@ -1005,3 +1019,5 @@
           - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
         :context: http://www.cdisc.org/C71148/V62#C71148
         :local_label: ''
+      :is_common: true
+    :is_common: false
