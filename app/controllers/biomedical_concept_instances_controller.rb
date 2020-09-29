@@ -132,6 +132,8 @@ private
         return biomedical_concept_instance_path(object)
       when :edit
         return edit_biomedical_concept_instance_path(id: object.id)
+      when :destroy
+        return biomedical_concept_instance_path(object)
       else
         return ""
     end
