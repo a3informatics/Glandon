@@ -82,7 +82,8 @@ class Form::Group::Normal < Form::Group
       add_item(params)
     else
       self.errors.add(:base, "Attempting to add an invalid child type")
-    end 
+      []
+    end
   end
 
   def children_ordered(child)
@@ -323,9 +324,10 @@ class Form::Group::Normal < Form::Group
     def add_common_group
       unless common_group?
         ordinal = next_ordinal
-        child = Form::Group::Common.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
+        child = Form::Group::Common.create(label: "Not set", ordinal: 1, parent_uri: self.uri)
         #return child if child.errors.any? ##Merge error
         self.add_link(:has_common, child.uri)
+        reset_ordinals(self)
         child
       else
         #merge_errors(self, "Normal group already contains a Common Group")
