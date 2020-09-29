@@ -544,7 +544,7 @@ export default class FormEditor extends TreeGraph {
     let props = super._props;
 
     // Custom rightOffset
-    props.tree.rightOffset = 30;
+    props.tree.rightOffset = 50;
 
     // Custom zoom values
     props.zoom.min = 0.3;
@@ -562,7 +562,9 @@ export default class FormEditor extends TreeGraph {
    */
   async _importModules() {
 
-    let NodeEditor = await import( /* webpackPrefetch: true */ 'shared/forms/edit/form_node_editor' );
+    // Node Editor module
+    let NodeEditor = await import( /* webpackPrefetch: true */
+                                  'shared/forms/edit/form_node_editor' );
 
     this.nodeEditor = new NodeEditor.default({
       formId: this.formId,
@@ -582,7 +584,9 @@ export default class FormEditor extends TreeGraph {
       }
     });
 
-    let NodeHandler = await import( /* webpackPrefetch: true */ 'shared/forms/edit/form_node_handler' );
+    // Node Handler module
+    let NodeHandler = await import( /* webpackPrefetch: true */
+                                    'shared/forms/edit/form_node_handler' );
 
     this.nodeHandler = new NodeHandler.default( this );
 

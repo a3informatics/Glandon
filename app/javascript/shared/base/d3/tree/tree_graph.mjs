@@ -81,7 +81,7 @@ export default class TreeGraph {
   render() {
 
     // Initialize graph if not already
-    if ( !this.graph.tree )
+    // if ( !this.graph.tree )
       this._initGraph();
 
     // Map the node data to the tree
@@ -915,8 +915,8 @@ export default class TreeGraph {
           container: $(this.selector),
           tree: {
             get nodeWidth() {
-              return (props.svg.width / self.treeDepth) - this.rightOffset < this.minNodeWidth ?
-                        this.minNodeWidth : (props.svg.width / self.treeDepth) - this.rightOffset;
+              return (props.svg.width / (self.treeDepth + 1)) - this.rightOffset < this.minNodeWidth ?
+                        this.minNodeWidth : (props.svg.width / (self.treeDepth + 1)) - this.rightOffset;
             },
             nodeHeight: 28,
             minNodeWidth: 240,

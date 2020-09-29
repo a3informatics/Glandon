@@ -239,7 +239,15 @@ export default class NodeHandler {
       this.editor._preprocessData( data ),
       false
     );
+
+    // Ordinals update when Common Group added
+    if ( child.is('COMMON_GROUP') )
+      this.node.d.children.forEach( d => d.data.ordinal++ );
+
     this._merge( this.node, child.d );
+
+    // Reorder children
+    this.node.d.sort( (a, b) => (a.data.ordinal - b.data.ordinal));
 
     return child;
 
@@ -356,15 +364,11 @@ export default class NodeHandler {
       success: 'Node updated successfully.',
       done: d => {
 
-        console.log(d);
-
         // Merge new data into parent node
         let newData = this.editor._preprocessData(d),
             parent = this.node.parent.parent.parent;
 
         this._merge( parent, newData, true );
-
-        this.editor._onUpdate();
 
       }
     });
