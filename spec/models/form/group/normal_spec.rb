@@ -145,6 +145,21 @@ describe Form::Group::Normal do
       check_file_actual_expected(normal.to_h, sub_dir, "add_child_expected_10.yaml", equate_method: :hash_equal)
     end
 
+    it "add child IX, bc group, check bc property common" do
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      normal.add_child({type:"common_group"})
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      normal.add_child({type:"bc_group", id_set:[bci_1.id]})
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG6_BP3"))
+      bc_property.make_common
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
+      check_file_actual_expected(result, sub_dir, "add_child_expected_11.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "Delete" do

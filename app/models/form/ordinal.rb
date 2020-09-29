@@ -1,6 +1,6 @@
 # Form ordinal. Mixin to handle ordinal actions
 #
-# @author Claris Romero
+# @author Clarisa Romero
 # @since 3.2.0
 class Form
   

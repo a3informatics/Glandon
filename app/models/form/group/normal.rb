@@ -291,7 +291,10 @@ class Form::Group::Normal < Form::Group
       end
       self.add_link(:has_sub_group, bc_group.uri)
       transaction_execute
-      bc_group = bc_group.to_h
+      bc_group.has_item_objects.each do |bc_property|
+        check_if_common(bc_property)
+      end
+      bc_group = Form::Group::Bc.find_full(bc_group.uri).to_h
       bc_group[:has_item].each do |item|
         item[:has_coded_value].each do |cv|
           cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
@@ -323,14 +326,12 @@ class Form::Group::Normal < Form::Group
 
     def add_common_group
       unless common_group?
-        ordinal = next_ordinal
         child = Form::Group::Common.create(label: "Not set", ordinal: 1, parent_uri: self.uri)
         #return child if child.errors.any? ##Merge error
         self.add_link(:has_common, child.uri)
         reset_ordinals(self)
         child
       else
-        #merge_errors(self, "Normal group already contains a Common Group")
         self.errors.add(:base, "Normal group already contains a Common Group")
       end
     end
@@ -350,6 +351,23 @@ class Form::Group::Normal < Form::Group
       self.add_link(:has_item, child.uri)
       child
     end
+
+    def check_if_common(bc_property)
+      unless self.has_common.empty?
+        common_group = Form::Group::Common.find(self.has_common.first)
+        common_group.has_item_objects.each do |common_item|
+          next if common_item.has_property_objects.reference != bc_property.has_property_objects.reference
+          make_common(common_item, common_group, bc_property)
+        end
+      end 
+    end
+
+    def make_common(common_item, common_group, bc_property)
+      common_item.add_link(:has_common_item, bc_property.uri)
+      common_item.has_common_item_push(bc_property.uri)
+      common_group.save
+      common_item.save
+    end 
 
     def type_to_class
       {question: Form::Item::Question, text_label: Form::Item::TextLabel, placeholder: Form::Item::Placeholder, mapping: Form::Item::Mapping}
