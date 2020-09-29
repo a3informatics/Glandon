@@ -92,7 +92,9 @@ describe Form::Group::Normal do
     it "add child II, error" do
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = normal.add_child({type:"x_group"})
-      check_file_actual_expected(result, sub_dir, "add_child_error_expected.yaml", equate_method: :hash_equal)
+      expect(normal.errors.count).to eq(1)
+      expect(normal.errors.full_messages[0]).to eq("Attempting to add an invalid child type")
+      expect(result).to eq([])
     end
 
     it "add child III, bc groups" do
@@ -125,19 +127,22 @@ describe Form::Group::Normal do
 
     it "add child VI, common group" do
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG4"))
+      result = normal.add_child({type:"common_group"})
       check_file_actual_expected(result.to_h, sub_dir, "add_child_expected_8.yaml", equate_method: :hash_equal)
     end
 
     it "add child VII, common group, error" do
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1"))
       result = normal.add_child({type:"common_group"})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_9.yaml", equate_method: :hash_equal)
+      expect(normal.errors.count).to eq(1)
+      expect(normal.errors.full_messages[0]).to eq("Normal group already contains a Common Group")
     end
 
     it "Add child VIII, common_group, reset ordinals" do 
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG2"))
-      normal.add_child({type:"common_group"})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_10.yaml", equate_method: :hash_equal, write_file: true)
+      result = normal.add_child({type:"common_group"})
+      normal = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG2"))
+      check_file_actual_expected(normal.to_h, sub_dir, "add_child_expected_10.yaml", equate_method: :hash_equal)
     end
 
   end
