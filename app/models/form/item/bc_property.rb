@@ -79,6 +79,8 @@ class Form::Item::BcProperty < Form::Item
     x
   end
 
+  
+
   private
 
     def find_common_matches
@@ -91,24 +93,28 @@ class Form::Item::BcProperty < Form::Item
         }
       }     
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bc])
-      check_terminologies(query_results.by_object(:common_bcp))
+      query_results.by_object(:common_bcp)
+
+      #check_terminologies(query_results.by_object(:common_bcp))
     end
 
-    def check_terminologies(uris)
-      query_string = %Q{
-      SELECT DISTINCT ?s WHERE 
-        {
+    
+
+    # def check_terminologies(uris)
+    #   query_string = %Q{
+    #   SELECT DISTINCT ?s WHERE 
+    #     {
           
-          VALUES ?s {#{uris.map{|x| x.to_ref}.join(" ")}}
-          {
-          #{self.uri.to_ref} bf:hasCodedValue/bo:reference ?cli .
-          ?s bf:hasCodedValue/bo:reference ?cli
-          }
-        }
-      }
-      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo])
-      query_results.by_object(:s)
-    end
+    #       VALUES ?s {#{uris.map{|x| x.to_ref}.join(" ")}}
+    #       {
+    #       #{self.uri.to_ref} bf:hasCodedValue/bo:reference ?cli .
+    #       ?s bf:hasCodedValue/bo:reference ?cli
+    #       }
+    #     }
+    #   }
+    #   query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo])
+    #   query_results.by_object(:s)
+    # end
 
     def get_common_group
       query_string = %Q{         
