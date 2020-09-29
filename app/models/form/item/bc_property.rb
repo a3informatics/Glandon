@@ -45,7 +45,7 @@ class Form::Item::BcProperty < Form::Item
   end
 
   def make_common
-    if !get_common_group.empty? #Check if there is a common group
+    unless get_common_group.empty? #Check if there is a common group
       common_group = Form::Group::Common.find(get_common_group.first)
       common_bcp = find_common_matches
       property_ref = self.has_property_objects.reference
@@ -78,9 +78,7 @@ class Form::Item::BcProperty < Form::Item
     x[:is_common] = is_common?
     x
   end
-
   
-
   private
 
     def find_common_matches
@@ -94,11 +92,8 @@ class Form::Item::BcProperty < Form::Item
       }     
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bc])
       query_results.by_object(:common_bcp)
-
       #check_terminologies(query_results.by_object(:common_bcp))
     end
-
-    
 
     # def check_terminologies(uris)
     #   query_string = %Q{
@@ -162,7 +157,7 @@ class Form::Item::BcProperty < Form::Item
     # @return [Hash] Return the data of the whole parent Normal Group, all its children BC Groups, Common Group + any referenced item data.
     def normal_group_hash(normal_group)
       normal_group[:has_item].each do |item|
-        get_referenced_item(item)
+        get_referenced_item(item) unless item[:has_coded_value].nil?
       end
       normal_group[:has_common].first[:has_item].each do |item|
         get_referenced_item(item)
