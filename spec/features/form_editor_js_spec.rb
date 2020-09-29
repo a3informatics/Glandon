@@ -3,11 +3,11 @@ require 'rails_helper'
 describe "Forms", :type => :feature do
 
   include DataHelpers
-  include DownloadHelpers
   include UserAccountHelpers
   include UiHelpers
   include WaitForAjaxHelper
   include ItemsPickerHelpers
+  include FormHelpers
 
   def sub_dir
     return "features/forms"
@@ -40,34 +40,6 @@ describe "Forms", :type => :feature do
       ua_logoff
     end
 
-    def icon_type_map
-      {
-        form: 59676,
-        tuc_ref: 59736,
-        bc: 59659,
-        bc_property: 59659,
-        normal_group: 59760,
-        common_group: 59759,
-        common_item: 59758,
-        textlabel: 76,
-        placeholder: 80,
-        question: 81,
-        mapping: 77
-      }
-    end
-
-    def action_btn_map
-      {
-        edit: 'edit-node',
-        add_child: 'add-child',
-        move_up: 'move-up',
-        move_down: 'move-down',
-        common: 'common-node',
-        restore: 'restore-node',
-        remove: 'remove-node'
-      }
-    end
-
     def edit_form(identifier)
       click_navbar_forms
       wait_for_ajax 20
@@ -75,72 +47,12 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
       context_menu_element_v2 'history', identifier, :edit
 
-      # page.current_window.maximize
       find('#main_area').scroll_to(:center)
 
       wait_for_ajax 30
       expect(page).to have_content 'Form Editor'
     end
 
-    def check_node_count(count, selector = 'g.node')
-      expect( node_count(selector) ).to eq( count )
-    end
-
-    def node_count(selector = 'g.node')
-      Capybara.ignore_hidden_elements = false
-      count = page.all("#d3 #{selector} ").count
-      Capybara.ignore_hidden_elements = true
-      count
-    end
-
-    def check_node(text, type = nil, selected = false)
-      node = find_node(text)
-
-      if selected
-        expect(node[:class]).to include 'selected'
-      else
-        expect(node[:class]).not_to include 'selected'
-      end
-
-      return if type.nil?
-
-      within(node) do
-        icon = find('.icon').text.ord
-        expect( icon ).to eq icon_type_map[type]
-      end
-    end
-
-    def find_node(text)
-      page.all('g.node', text: text)[0]
-    end
-
-    def check_node_not_exists(text, selector = 'g.node')
-      expect( page.all( "#d3 #{selector} ", text: text ).count ).to eq( 0 )
-    end
-
-    def check_actions(types)
-      actions = find('#d3 .node-actions')
-
-      types.each do |type|
-          expect(actions).to have_selector( ".btn##{ action_btn_map[type] }", visible: true )
-      end
-    end
-
-    def check_actions_not_present(types)
-      actions = find('#d3 .node-actions')
-
-      types.each do |type|
-        expect(actions).to have_selector( ".btn##{ action_btn_map[type] }", visible: false )
-      end
-    end
-
-    def click_action(action)
-      find("#d3 .node-actions ##{ action_btn_map[action] }").click
-    end
-
-    def check_alert(text)
-      expect( find('#graph-alerts') ).to have_content( text )
-    end
 
     it "has correct initial state" do
       edit_form('FN000150')
@@ -673,7 +585,31 @@ describe "Forms", :type => :feature do
       check_node_not_exists 'Height Group'
     end
 
-    it "allows to make a node common and restore"
+    it "allows to make a node common and restore" do
+      # Create a new Form
+      click_navbar_forms
+      click_on 'New Form'
+
+      ui_in_modal do
+        fill_in 'label', with: 'Test Form Label'
+        fill_in 'identifier', with: 'TSTFORM'
+        click_on 'Submit'
+      end
+      wait_for_ajax 10
+
+      context_menu_element_v2('history', '0.1.0', :edit)
+      wait_for_ajax 10
+
+      expect(page).to have_content 'Form Editor'
+
+      find_node('Test Form').click
+      click_action :add_child
+      find(:xpath, '//div[@id="d3"]//a[@id="normal_group"]').click
+      wait_for_ajax 10
+
+      find_node('Not Set')
+
+    end
 
     it "token timers, warnings, extension and expiration" do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
@@ -700,11 +636,66 @@ describe "Forms", :type => :feature do
       Token.restore_timeout
     end
 
-    it "token timer, expires edit lock, prevents changes"
+    it "token timer, expires edit lock, prevents changes" do
+      Token.set_timeout(10)
+      edit_form('FN000120')
 
-    it "releases edit locks on page leave"
+      sleep 12
 
-    it "allows to show help dialog"
+      # Prevents to Add a child
+      find_node('Disability Assessment').click
+      click_action :add_child
+      find(:xpath, '//div[@id="d3"]//a[@id="normal_group"]').click
+      wait_for_ajax 10
+
+      check_alert 'The edit lock has timed out.'
+
+      # Prevents Updating a Node
+      ui_press_key :right
+      click_action :edit
+
+      ui_in_modal do
+        fill_in 'label', with: 'Expired lock'
+        click_on 'Save changes'
+        wait_for_ajax 10
+        expect(page).to have_content 'The edit lock has timed out.'
+
+        click_on 'Close'
+      end
+
+      # Prevents Moving a Node
+      click_action :move_up
+      wait_for_ajax 10
+      check_alert 'The edit lock has timed out.'
+
+      # Prevents Removing a Node
+      ui_press_key :right
+      ui_press_key :right
+      click_action :remove
+      ui_confirmation_dialog true
+      wait_for_ajax 10
+      check_alert 'The edit lock has timed out.'
+
+      Token.restore_timeout
+    end
+
+    it "releases edit lock on page leave" do
+      edit_form('FN000150')
+
+      expect(Token.all.count).to eq(1)
+      click_link 'Return'
+      wait_for_ajax 10
+      expect(Token.all.count).to eq(0)
+    end
+
+    it "allows to show help dialog" do
+      edit_form('FN000150')
+
+      find('#editor-help-btn').click
+      sleep 0.5
+      expect(page).to have_content 'How to use Form Editor'
+      click_on 'Dismiss'
+    end
 
   end
 
