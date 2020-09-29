@@ -91,7 +91,6 @@ class Form::Item::BcProperty < Form::Item
         }
       }     
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bc])
-      #query_results.by_object(:common_bcp)
       check_terminologies(query_results.by_object(:common_bcp))
     end
 
@@ -108,6 +107,7 @@ class Form::Item::BcProperty < Form::Item
         }
       }
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo])
+      return uris if query_results.empty?
       query_results.by_object(:s)
     end
 
