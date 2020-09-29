@@ -427,7 +427,7 @@ Rails.application.routes.draw do
   end
 
   namespace :operational_reference_v3 do
-    resources :tuc_references, :only => [:update] do
+    resources :tuc_references, :only => [:update, :destroy] do
       member do
           put :move_up
           put :move_down

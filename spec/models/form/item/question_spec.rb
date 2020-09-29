@@ -81,10 +81,29 @@ describe Form::Item::Question do
       check_file_actual_expected(result, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
     end
 
-    # it "add child II, error" do
-    #   normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
-    #   expect{normal.add_child({type:"x_item"})}.to raise_error(Errors::ApplicationLogicError, "Attempting to add an invalid child type")
-    # end
+  end
+
+
+  describe "Delete TUc Reference" do
+    
+    before :each do
+      data_files = ["forms/FN000150.ttl", "forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..15)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "Delete TUc Reference" do
+      cli_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66789/V4#C66789_C49484"))
+      context_1 = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66789/V13#C66789"))
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
+      question.add_child({type:"tuc_reference", id_set:[{id:cli_1.id, context_id: context_1.id}]})
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
+      tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1"))
+      tuc_reference.delete(question)
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
+      check_file_actual_expected(question.to_h, sub_dir, "delete_tuc_reference_expected_1.yaml", equate_method: :hash_equal)
+    end
 
   end
 
