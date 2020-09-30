@@ -498,7 +498,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Moved successfully'
 
       ui_press_key(:up, :shift) # Key shortcut
-      wait_for_ajax 10
+      check_alert 'Cannot move Node up'
       check_node('Question 3', :question, true)
 
       # Move Group
@@ -735,6 +735,9 @@ describe "Forms", :type => :feature do
 
       check_node_count( 3, 'g.node.disabled' ) # Common nodes have the disabled css class
     end
+
+    # Remove BC - remove prop, remove BC and more props are common - does not remove
+    it "allows to remove a bc and its common properties"
 
     it "token timers, warnings, extension and expiration" do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)

@@ -204,7 +204,6 @@ export default class FormEditor extends TreeGraph {
    * @param {Object} rawData Graph data fetched from the server
    */
   _preprocessData(rawData) {
-
     let data = this.d3.hierarchy( rawData, d => [
         ...d.has_group||[],
         ...d.has_common||[],
@@ -215,8 +214,7 @@ export default class FormEditor extends TreeGraph {
 
     data.descendants().forEach( n => {
 
-      // Sort all nodes by ordinals
-      n.sort( (a, b) => (a.data.ordinal - b.data.ordinal) )
+      new this.Node( n, false ).sortChildren();
 
       // Hide children of common BC Properties
       if ( n.data.is_common === true ) {
