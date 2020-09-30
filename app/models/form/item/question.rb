@@ -1,3 +1,8 @@
+# Form Question. Handles the question item specfic actions.
+# Based on earlier implementation.
+#
+# @author Clarisa Romero
+# @since 3.2.0
 class Form::Item::Question < Form::Item
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#Question",
@@ -10,7 +15,6 @@ class Form::Item::Question < Form::Item
   data_property :question_text 
 
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
-
 
   validates_with Validator::Field, attribute: :format, method: :valid_format?
   validates_with Validator::Field, attribute: :mapping, method: :valid_mapping?
@@ -30,15 +34,11 @@ class Form::Item::Question < Form::Item
   #
   # @return [String] An html string of Question Item
   def to_crf
-    html = ""
-    html += start_row(self.optional)
+    html = start_row(self.optional)
     html += question_cell(self.question_text)
-    if self.has_coded_value.count == 0
-      html += input_field(self)
-    else
-      html += terminology_cell
-    end
+    html += self.has_coded_value.count == 0 ? input_field(self) : terminology_cell
     html += end_row
+    html
   end
 
   # Add Child. Adds a child or children TUC references.
@@ -67,6 +67,10 @@ class Form::Item::Question < Form::Item
     end 
   end
 
+  # Children Ordered. Provides the childen ordered by ordinal
+  #
+  # @param [Object] child ???
+  # @return [Array] the set of children ordered by ordinal
   def children_ordered(child)
     self.has_coded_value_objects.sort_by {|x| x.ordinal}
   end

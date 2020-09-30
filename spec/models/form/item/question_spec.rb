@@ -13,7 +13,7 @@ describe Form::Item::Question do
   describe "Validations" do
     
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000150.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..15)
     end
@@ -52,11 +52,51 @@ describe Form::Item::Question do
       expect(result.errors.full_messages.to_sentence).to eq("Format contains invalid characters")
     end
 
-    it "get items" do
-      question = Form::Item::Question.find_children(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
-      check_file_actual_expected(question.get_item, sub_dir, "get_item_expected.yaml", equate_method: :hash_equal)
+  end
+
+  describe "Basic tests" do
+    
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..15)
+    end
+
+    it "returns the item hash" do
+      item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
+      result = item.get_item
+      check_file_actual_expected(result, sub_dir, "get_item_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "returns the CRF rendition" do
+      item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
+      result = item.to_crf
+      check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
     end
   
+    it "returns the children in ordinal order" do
+      item = Form::Item::Question.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
+      expect(item.children_ordered(nil)).to eq([])
+      ref_2 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R2"), ordinal: 2, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 2")
+      ref_2.save
+      item.has_coded_value_push(ref_2.uri)
+      item.save
+      result = item.children_ordered(nil)
+      check_file_actual_expected(result.map{|x| x.to_h}, sub_dir, "children_ordered_expected_1.yaml", equate_method: :hash_equal)
+      ref_1 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R1"), ordinal: 1, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 1")
+      ref_1.save
+      ref_4 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R4"), ordinal: 4, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 4")
+      ref_4.save
+      ref_3 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R3"), ordinal: 3, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 3")
+      ref_3.save
+      item.has_coded_value_push(ref_1)
+      item.has_coded_value_push(ref_4)
+      item.has_coded_value_push(ref_3)
+      item.save
+      result = item.children_ordered(nil)
+      check_file_actual_expected(result.map{|x| x.to_h}, sub_dir, "children_ordered_expected_2.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "Add child" do
@@ -75,10 +115,10 @@ describe Form::Item::Question do
       context_1 = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66789/V13#C66789"))
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
       result = question.add_child({type:"tuc_reference", id_set:[{id:cli_1.id, context_id: context_1.id}]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(result, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
       result = question.add_child({type:"tuc_reference", id_set:[{id: cli_2.id, context_id: context_1.id}, {id: cli_3.id, context_id: context_1.id}]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(result, sub_dir, "add_child_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end
