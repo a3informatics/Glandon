@@ -302,14 +302,6 @@ export default class TreeGraph {
 
 
   /**
-   * Get the maximum depth of the data tree
-   * @return {int} The maximum depth of the current data tree
-   */
-  get treeDepth() {
-    return this.graph.root.height;
-  }
-
-  /**
    * Get all nodes visible in the graph
    * @return {array} Collection of all nodes cast to TreeNode instances
    */
@@ -914,13 +906,8 @@ export default class TreeGraph {
         props = {
           container: $(this.selector),
           tree: {
-            get nodeWidth() {
-              return (props.svg.width / (self.treeDepth + 1)) - this.rightOffset < this.minNodeWidth ?
-                        this.minNodeWidth : (props.svg.width / (self.treeDepth + 1)) - this.rightOffset;
-            },
-            nodeHeight: 28,
-            minNodeWidth: 240,
-            rightOffset: 0
+            nodeWidth: 200,
+            nodeHeight: 28
           },
           svg: {
             margin: 20,
