@@ -538,7 +538,8 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
 
       check_alert 'Node removed successfully'
-      expect( node_count ).to eq( nodes - 1 )
+      nodes -= 1
+      expect( node_count ).to eq( nodes )
       check_node('Completion status', :question, true) # Check parent selected after deletion
 
       # Delete Question with 3 TUC Ref children
@@ -547,7 +548,8 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
 
       check_alert 'Node removed successfully'
-      expect( node_count ).to eq( nodes - 4 )
+      nodes -= 4
+      expect( node_count ).to eq( nodes )
       check_node('Height Group', :normal_group, true)
 
       # Delete question without children
@@ -557,7 +559,8 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
 
       check_alert 'Node removed successfully'
-      expect( node_count ).to eq( nodes - 5 )
+      nodes -= 1
+      expect( node_count ).to eq( nodes )
 
       # Delete BC (6 nodes)
       find_node('Weight').click
@@ -566,7 +569,8 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
 
       check_alert 'Node removed successfully'
-      expect( node_count ).to eq( nodes - 11 )
+      nodes -= 6
+      expect( node_count ).to eq( nodes )
 
       # Removes Normal Group with children
       click_action :remove
@@ -574,7 +578,8 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
 
       check_alert 'Node removed successfully'
-      expect( node_count ).to eq( nodes - 16 )
+      nodes -= 5
+      expect( node_count ).to eq( nodes )
 
       # Refresh
       page.driver.browser.navigate.refresh
