@@ -247,7 +247,7 @@ export default class NodeHandler {
     this._merge( this.node, child.d );
 
     // Reorder children
-    this.node.d.sort( (a, b) => (a.data.ordinal - b.data.ordinal));
+    this.node.sortChildren();
 
     return child;
 
@@ -369,6 +369,7 @@ export default class NodeHandler {
             parent = this.node.parent.parent.parent;
 
         this._merge( parent, newData, true );
+        this.editor._onUpdate( );
 
       }
     });

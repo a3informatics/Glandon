@@ -53,7 +53,6 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Form Editor'
     end
 
-
     it "has correct initial state" do
       edit_form('FN000150')
 
@@ -499,6 +498,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Moved successfully'
 
       ui_press_key(:up, :shift) # Key shortcut
+      wait_for_ajax 10
       check_node('Question 3', :question, true)
 
       # Move Group
@@ -602,13 +602,138 @@ describe "Forms", :type => :feature do
 
       expect(page).to have_content 'Form Editor'
 
+      # Add a Group and BCs
       find_node('Test Form').click
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="normal_group"]').click
       wait_for_ajax 10
 
-      find_node('Not Set')
+      click_action :add_child
+      find(:xpath, '//div[@id="d3"]//a[@id="bc_group"]').click
 
+      ip_pick_managed_items( :bci, [
+        { identifier: 'WEIGHT', version: '1' },
+        { identifier: 'HEIGHT', version: '1' },
+        { identifier: 'BMI', version: '1' }
+      ], 'node-add-child' )
+
+      click_action :add_child
+      find(:xpath, '//div[@id="d3"]//a[@id="common_group"]').click
+      wait_for_ajax 10
+      ui_press_key 'e'
+
+      ui_in_modal do
+        fill_in 'label', with: 'Common Group'
+        click_on 'Save changes'
+        wait_for_ajax 10
+      end
+
+      # Make common
+      ui_press_key :down
+      ui_press_key :right
+      click_action :common
+      wait_for_ajax 20
+      check_alert 'Node updated successfully'
+
+      page.driver.browser.navigate.refresh
+      wait_for_ajax 20
+
+      check_node_count 22
+      check_node_count( 1, 'g.node.disabled' ) # Common nodes have the disabled css class
+
+      find_node('Weight').click
+      click_button 'collapse-except-graph' # Collapse nodes except selected
+      sleep 0.5
+
+      check_node_count 9
+
+      click_button 'expand-graph' # Expand nodes again
+      sleep 0.5
+
+      find_node('Common Group').click
+      ui_press_key :right
+      ui_press_key :right
+      ui_press_key :down
+
+      check_node('Pound', :tuc_ref, true)
+      ui_press_key :left
+
+      click_button 'collapse-except-graph' # Collapse nodes except selected
+      sleep 0.5
+
+      check_node_count 9
+
+      click_button 'expand-graph' # Expand nodes again
+      sleep 0.5
+
+      # Make common
+      find_node('Height').click
+      ui_press_key :right
+      ui_press_key :up
+
+      click_action :common
+      wait_for_ajax 20
+      check_alert 'Node updated successfully'
+
+      check_node_count 23
+      check_node_count( 3, 'g.node.disabled' ) # Common nodes have the disabled css class
+      find_node('Common Group').click
+      click_button 'collapse-except-graph' # Collapse nodes except selected
+      sleep 0.5
+      check_node_count 10
+
+      # Restore
+      page.driver.browser.navigate.refresh
+      wait_for_ajax 20
+
+      find_node('Common Group').click
+      ui_press_key :right
+      click_action :restore
+      wait_for_ajax 20
+
+      check_node_count 22
+      check_node_count( 2, 'g.node.disabled' ) # Common nodes have the disabled css class
+
+      find_node('Weight').click
+      ui_press_key :right
+      ui_press_key :right
+      ui_press_key :down
+      check_node('Pound', :tuc_ref, true)
+
+      find_node('Common Group').click
+      ui_press_key :right
+      click_action :restore
+      wait_for_ajax 20
+
+      check_node_count 21
+      check_node_not_exists 'g.node.disabled'
+      find_node('Common Group').click
+      click_button 'collapse-except-graph' # Collapse nodes except selected
+      check_node_count 6
+    end
+
+    it "allows to add a bc and makes properties common automatically" do
+      edit_form('TSTFORM')
+
+      find_node('Weight').click
+      ui_press_key :right
+      ui_press_key :up
+      click_action :common
+      wait_for_ajax 20
+
+      check_node_count( 2, 'g.node.disabled' ) # Common nodes have the disabled css class
+
+      click_button 'center-graph' # Collapse nodes except selected
+
+      find_node('Not set').click
+      click_action :add_child
+      find(:xpath, '//div[@id="d3"]//a[@id="bc_group"]').click
+
+      ip_pick_managed_items( :bci, [
+        { identifier: 'SYSBP', version: '1' },
+      ], 'node-add-child' )
+
+      check_node_count( 3, 'g.node.disabled' ) # Common nodes have the disabled css class
     end
 
     it "token timers, warnings, extension and expiration" do
