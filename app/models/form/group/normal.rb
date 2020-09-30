@@ -8,7 +8,6 @@ class Form::Group::Normal < Form::Group
 
   object_property :has_sub_group, cardinality: :many, model_classes: [ "Form::Group::Normal", "Form::Group::Bc" ]
   object_property :has_common, cardinality: :many, model_class: "Form::Group::Common"
-
   object_property_class :has_item, model_classes: 
     [ 
       Form::Item::Mapping, Form::Item::Placeholder, Form::Item::Question, Form::Item::TextLabel 
@@ -87,11 +86,13 @@ class Form::Group::Normal < Form::Group
   end
 
   def children_ordered(child)
-    if child.class == Form::Group::Normal || child.class == Form::Group::Bc
-     self.has_sub_group_objects.sort_by {|x| x.ordinal}
-    else items_classes.include?(child.class)
-      self.has_item_objects.sort_by {|x| x.ordinal}
-    end  
+    # if child.class == Form::Group::Normal || child.class == Form::Group::Bc
+    #  self.has_sub_group_objects.sort_by {|x| x.ordinal}
+    # else items_classes.include?(child.class)
+    #   self.has_item_objects.sort_by {|x| x.ordinal}
+    # end  
+    set = self.has_sub_group_objects + self.has_item_objects
+    set.sort_by {|x| x.ordinal}
   end
 
   def items_classes

@@ -69,7 +69,7 @@ describe Form::Item do
     before :each do
       data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..15)
+      load_cdisc_term_versions(1..38)
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
@@ -103,9 +103,9 @@ describe Form::Item do
   describe "Move up/down" do
     
     before :each do
-      data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      data_files = ["forms/FN000150.ttl",]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..62)
+      #load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
@@ -135,6 +135,64 @@ describe Form::Item do
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = item.move_down(parent.id)
       check_file_actual_expected(result.to_h, sub_dir, "move_down_error_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows for move down, two items" do
+      parent = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/P1"), note: "OK", ordinal: 1, completion: "None")
+      item = Form::Item::Question.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
+      normal = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/G1"), note: "OK", ordinal: 2, completion: "None")
+      parent.has_item_push(item) 
+      parent.has_sub_group_push(normal)
+      parent.save
+      parent = Form::Group::Normal.find_full(parent.uri)
+      parent.has_item_objects
+      parent.has_sub_group_objects
+      check_file_actual_expected(parent.to_h, sub_dir, "move_down_expected_2a.yaml", equate_method: :hash_equal)       
+      result = item.move_down(parent.id)
+      parent = Form::Group::Normal.find_full(parent.uri)
+      check_file_actual_expected(parent.to_h, sub_dir, "move_down_expected_2b.yaml", equate_method: :hash_equal)       
+      result = item.move_down(parent.id)
+      expect(item.errors.count).to eq(1)
+      expect(item.errors.full_messages[0]).to eq("Attempting to move down past the last node")
+    end
+
+    it "allows for move up, two items" do
+      parent = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/P1"), note: "OK", ordinal: 1, completion: "None")
+      item = Form::Item::Question.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
+      normal = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/G1"), note: "OK", ordinal: 2, completion: "None")
+      parent.has_item_push(item) 
+      parent.has_sub_group_push(normal)
+      parent.save
+      parent = Form::Group::Normal.find_full(parent.uri)
+      parent.has_item_objects
+      parent.has_sub_group_objects
+      check_file_actual_expected(parent.to_h, sub_dir, "move_up_expected_2a.yaml", equate_method: :hash_equal)       
+      result = normal.move_up(parent.id)
+      parent = Form::Group::Normal.find_full(parent.uri)
+      check_file_actual_expected(parent.to_h, sub_dir, "move_up_expected_2b.yaml", equate_method: :hash_equal)       
+      result = normal.move_up(parent.id)
+      expect(normal.errors.count).to eq(1)
+      expect(normal.errors.full_messages[0]).to eq("Attempting to move up past the first node")
+    end
+
+    it "prevents move up and down, single item" do
+      parent = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/P1"), note: "OK", ordinal: 1, completion: "None")
+      item = Form::Item::Question.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
+      parent.has_item_push(item) 
+      parent.save
+      parent = Form::Group::Normal.find_full(parent.uri)
+      parent.has_item_objects
+      check_file_actual_expected(parent.to_h, sub_dir, "move_up_down_expected_3.yaml", equate_method: :hash_equal)       
+      result = item.move_up(parent.id)
+      expect(item.errors.count).to eq(1)
+      expect(item.errors.full_messages[0]).to eq("Attempting to move up past the first node")
+      item.errors.clear
+      result = item.move_down(parent.id)
+      expect(item.errors.count).to eq(1)
+      expect(item.errors.full_messages[0]).to eq("Attempting to move down past the last node")
+      parent = Form::Group::Normal.find_full(parent.uri)
+      parent.has_item_objects
+      check_file_actual_expected(parent.to_h, sub_dir, "move_up_down_expected_3.yaml", equate_method: :hash_equal)       
     end
 
   end

@@ -46,7 +46,7 @@ module Fuseki
         from_results_recurse(uri, results.by_subject)
       end
 
-      # Find Full. Full find of the managed item. Will find all children via paths that are not excluded.
+      # Find Full. Full find of the subject. Will find all children via paths that are not excluded.
       #
       # @param [Uri|String] uri_or_id the URI or the id
       # @param [Symbol] path_method the method to be used for the read paths. Defaults to read_paths
