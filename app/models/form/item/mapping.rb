@@ -1,3 +1,8 @@
+# Form Mapping. Handles the mapping item specfic actions.
+# Based on earlier implementation.
+#
+# @author Clarisa Romero
+# @since 3.2.0
 class Form::Item::Mapping < Form::Item
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#Mapping",
@@ -27,7 +32,7 @@ class Form::Item::Mapping < Form::Item
 private
   
   def mapping_row(mapping)
-    return "<tr><td>#{mapping}</td><td colspan=\"2\"></td></tr>"
+    "<tr><td>#{mapping}</td><td colspan=\"2\"></td></tr>"
   end
 
 end
