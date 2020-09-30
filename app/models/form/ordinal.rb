@@ -13,18 +13,21 @@ class Form
     def reset_ordinals(parent)
       local_uris = uris_by_ordinal(parent)
       return false if local_uris.empty?
-      string_uris = ""
+      string_uris = {delete: "", insert: "", where: ""}
       local_uris.each_with_index do |s, index|
-        string_uris += "#{s.to_ref} bf:ordinal #{index+1} . "
+        string_uris[:delete] += "#{s.to_ref} bf:ordinal ?x#{index} . "
+        string_uris[:insert] += "#{s.to_ref} bf:ordinal #{index+1} . "
+        string_uris[:where] += "#{s.to_ref} bf:ordinal ?x#{index} . "
       end
       query_string = %Q{
         DELETE 
-          { ?s bf:ordinal ?x . }
+          { #{string_uris[:delete]} }
         INSERT
-          { #{string_uris} }
+          { #{string_uris[:insert]} }
         WHERE 
-          { ?s bf:ordinal ?x . }
+          { #{string_uris[:where]} }
       }
+puts "Q: #{query_string}"
       results = Sparql::Update.new.sparql_update(query_string, "", [:bf])
       true
     end
@@ -35,20 +38,6 @@ class Form
     # @return [Object] the object updated. May contain errors if unsuccesful.
     def move_up(parent_id)
       move(parent_id, :up, "Attempting to move up past the first node")
-      # parent = IsoConceptV2.find(Uri.new(id:parent_id))#Find parent
-      # parent = parent.children_ordered(self) #Order items
-      # index_item = parent.each_index.select{|i| parent[i].uri == self.uri }.first
-      # unless index_item == 0
-      #   second_node = parent[index_item -1] 
-      #   transaction = transaction_begin
-      #   self.ordinal, second_node.ordinal = second_node.ordinal, self.ordinal #Swap ordinals
-      #   second_node.save
-      #   self.save
-      #   transaction_execute
-      # else
-      #   self.errors.add(:base, "Attempting to move up the first node")
-      # end
-      # self
     end
 
     # Move Down. Move a child node down
@@ -57,20 +46,6 @@ class Form
     # @return [Object] the object updated. May contain errors if unsuccesful.
     def move_down(parent_id)
       move(parent_id, :down, "Attempting to move down past the last node")
-      # parent = IsoConceptV2.find(Uri.new(id:parent_id))#Find parent
-      # parent = parent.children_ordered(self) #Order items
-      # index_item = parent.each_index.select{|i| parent[i].uri == self.uri }.first
-      # unless index_item == parent.length-1
-      #   second_node = parent[index_item +1] 
-      #   transaction = transaction_begin
-      #   self.ordinal, second_node.ordinal = second_node.ordinal, self.ordinal #Swap ordinals
-      #   second_node.save
-      #   self.save
-      #   transaction_execute
-      # else
-      #   self.errors.add(:base, "Attempting to move down the last node")
-      # end
-      # self
     end
 
   private

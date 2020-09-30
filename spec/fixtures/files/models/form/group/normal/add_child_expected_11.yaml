@@ -110,33 +110,6 @@
       :optional: false
       :ordinal: 2
       :reference:
-        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNzEyNTM=
-        :uri: http://www.cdisc.org/C71620/V6#C71620_C71253
-        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-        :label: International Foot
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        :identifier: C71253
-        :notation: ft
-        :definition: A unit of length defined by the U.S. National Bureau of Standards
-          as 30.48 centimeters. It is equal to 0.3048 meter, 12 inches, or to approximately
-          0.999998 survey foot.(NCI)
-        :extensible: false
-        :narrower: []
-        :preferred_term: http://www.assero.co.uk/PT#83503451d19c8ae02e0dc5f2bb30111e8d71c65d
-        :synonym:
-        - http://www.assero.co.uk/SYN#d88c8ea10f076325483be42bbe1abf9c709658f0
-      :context: http://www.cdisc.org/C71620/V62#C71620
-      :local_label: International Foot
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfQlAzX1RVQzM=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_BP3_TUC3
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 3
-      :reference:
         :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YzNCNDNjY3NzBfQzQ5NjY4
         :uri: http://www.cdisc.org/C66770/V34#C66770_C49668
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -155,14 +128,14 @@
         - http://www.assero.co.uk/SYN#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
       :context: http://www.cdisc.org/C66770/V59#C66770
       :local_label: Centimeter
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfQlAzX1RVQzQ=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_BP3_TUC4
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfQlAzX1RVQzM=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_BP3_TUC3
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
       :enabled: true
       :optional: false
-      :ordinal: 4
+      :ordinal: 3
       :reference:
         :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0MiNDNjY3NzBfQzQ4NTAw
         :uri: http://www.cdisc.org/C66770/V42#C66770_C48500
@@ -181,6 +154,33 @@
         - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
       :context: http://www.cdisc.org/C66770/V59#C66770
       :local_label: Inch
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfQlAzX1RVQzQ=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG7_BP3_TUC4
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 4
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNzEyNTM=
+        :uri: http://www.cdisc.org/C71620/V6#C71620_C71253
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: International Foot
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C71253
+        :notation: ft
+        :definition: A unit of length defined by the U.S. National Bureau of Standards
+          as 30.48 centimeters. It is equal to 0.3048 meter, 12 inches, or to approximately
+          0.999998 survey foot.(NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#83503451d19c8ae02e0dc5f2bb30111e8d71c65d
+        :synonym:
+        - http://www.assero.co.uk/SYN#d88c8ea10f076325483be42bbe1abf9c709658f0
+      :context: http://www.cdisc.org/C71620/V62#C71620
+      :local_label: International Foot
     :is_common: true
   :has_biomedical_concept:
     :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzdfUjE=

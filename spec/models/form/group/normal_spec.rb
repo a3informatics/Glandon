@@ -101,19 +101,20 @@ describe Form::Group::Normal do
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
       bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
       bci_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/RACE/V1#BCI"))
+byebug
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(result, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal, write_file: true)
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
-      result = normal.add_child({type:"bc_group", id_set:[bci_2.id, bci_3.id ]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
+      result = normal.add_child({type:"bc_group", id_set:[bci_2.id, bci_3.id]})
+      check_file_actual_expected(result, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "add child IV, bc groups" do
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_7.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(result, sub_dir, "add_child_expected_7.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "add child V, items" do
@@ -157,7 +158,7 @@ describe Form::Group::Normal do
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_11.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(result, sub_dir, "add_child_expected_11.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end
