@@ -38,4 +38,13 @@ class Form::Group::Common < Form::Group
     end  
   end
 
+  def get_normal_group
+    query_string = %Q{         
+      SELECT ?normal_group WHERE 
+      { #{self.uri.to_ref} ^bf:hasCommon ?normal_group. }
+    }     
+    query_results = Sparql::Query.new.query(query_string, "", [:bf])
+    query_results.by_object(:normal_group).first
+  end
+
 end

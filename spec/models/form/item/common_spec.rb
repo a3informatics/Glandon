@@ -42,7 +42,7 @@ describe Form::Item::Common do
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
-    it "Restore (delete) Common item" do
+    it "Restores (delete) Common item" do
       common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1"))
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1"))
       expect(parent.has_item.count).to eq(2)
@@ -53,7 +53,7 @@ describe Form::Item::Common do
       check_file_actual_expected(result, sub_dir, "restore_1.yaml", equate_method: :hash_equal)
     end
 
-    it "Restore (delete) Common item" do
+    it "Restores (delete) Common item II" do
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
       bc_property.make_common
       common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1_CI1"))

@@ -36,23 +36,9 @@ class Form::Item::Common < Form::Item::BcProperty
   end
 
   def delete(parent)
-    update_query = %Q{
-      DELETE DATA
-      {
-        #{parent.uri.to_ref} bf:hasItem #{self.uri.to_ref} 
-      };
-      DELETE {?s ?p ?o} WHERE 
-      { 
-        {  
-          BIND (#{self.uri.to_ref} as ?s) .
-          ?s ?p ?o .
-        }
-      }
-    }
-    partial_update(update_query, [:bf])
-    reset_ordinals(parent)
+    super
     common_group = Form::Group::Common.find(parent.uri)
-    normal_group_hash = Form::Group::Normal.find_full(get_normal_group(common_group).first).to_h
+    normal_group_hash = Form::Group::Normal.find_full(common_group.get_normal_group).to_h
     full_normal_group(normal_group_hash)
     normal_group_hash
   end
@@ -80,17 +66,6 @@ class Form::Item::Common < Form::Item::BcProperty
         end
       end
       normal_group
-    end
-
-    def get_normal_group(common_group)
-      query_string = %Q{         
-        SELECT ?normal_group WHERE 
-        {
-          #{common_group.uri.to_ref} ^bf:hasCommon ?normal_group. 
-        }
-      }     
-      query_results = Sparql::Query.new.query(query_string, "", [:bf])
-      query_results.by_object(:normal_group)
     end
 
     def terminology_cell(property)
