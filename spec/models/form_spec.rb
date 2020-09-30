@@ -236,33 +236,6 @@ describe Form do
   #   odm_fix_system_version(xml, expected)
   #   expect(xml).to eq(expected)
   # end
-
-  # it "checks if the form is valid?" do
-  #   item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #   result = item.valid?
-  #   expect(result).to eq(true)
-  #   item.label = "@@£±£±"
-  #   result = item.valid?
-  #   expect(result).to eq(false)
-  #   expect(item.errors.full_messages.to_sentence).to eq("Label contains invalid characters")
-  #   item.label = "addd"
-  #   result = item.valid?
-  #   expect(result).to eq(true)
-  #   item.completion = "±±±±±"
-  #   result = item.valid?
-  #   expect(result).to eq(false)
-  #   expect(item.errors.full_messages.to_sentence).to eq("Completion contains invalid markdown")
-  #   item.completion = ""
-  #   result = item.valid?
-  #   expect(result).to eq(true)
-  #   item.note = "§§§§§§"
-  #   result = item.valid?
-  #   expect(result).to eq(false)
-  #   expect(item.errors.full_messages.to_sentence).to eq("Note contains invalid markdown")
-  #   item.note = ""
-  #   result = item.valid?
-  #   expect(result).to eq(true)
-  # end
   
   # it "generates the form annotations" do
   #   item = Form.find("F-ACME_TEST1", "http://www.assero.co.uk/MDRForms/ACME/V1")
