@@ -48,23 +48,25 @@ class Form::Item::BcProperty < Form::Item
     unless get_common_group.empty? #Check if there is a common group
       common_group = Form::Group::Common.find(get_common_group.first)
       common_bcp = find_common_matches
-      property_ref = self.has_property_objects.reference
-      property = BiomedicalConcept::PropertyX.find(property_ref)
+      property = BiomedicalConcept::PropertyX.find(self.has_property_objects.reference)
       common_item = Form::Item::Common.create(label: property.alias, ordinal: common_group.next_ordinal, parent_uri: common_group.uri)
-      common_group.add_link(:has_item, common_item.uri)
       common_group.has_item_push(common_item.uri)
-      self.has_coded_value_objects
       common_item.has_coded_value = []
-      self.has_coded_value.each do |ref|
-        common_item.has_coded_value << ref
+      self.has_coded_value_objects.each do |ref|
+        new_reference = ref.clone
+        new_reference.uri = new_reference.create_uri(common_item.uri)
+        new_reference.save
+        common_item.has_coded_value << new_reference
       end
-      common_item.has_property = self.has_property
+      new_property = self.has_property_objects.clone
+      new_property.generate_uri(common_item.uri)
+      new_property.save 
+      common_item.has_property = new_property
       common_bcp.each do |common_uri|
-        common_item.add_link(:has_common_item, common_uri)
         common_item.has_common_item_push(common_uri)
-        common_group.save
-        common_item.save
       end
+      common_group.save
+      common_item.save
       normal_group = Form::Group::Normal.find_full(get_normal_group.first).to_h
       normal_group_hash(normal_group)
     else
