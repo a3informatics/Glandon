@@ -101,20 +101,19 @@ describe Form::Group::Normal do
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
       bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
       bci_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/RACE/V1#BCI"))
-byebug
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(result, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal)
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = normal.add_child({type:"bc_group", id_set:[bci_2.id, bci_3.id]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(result, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "add child IV, bc groups" do
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_7.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(result, sub_dir, "add_child_expected_7.yaml", equate_method: :hash_equal)
     end
 
     it "add child V, items" do
@@ -126,25 +125,26 @@ byebug
       check_file_actual_expected(result.to_h, sub_dir, "add_child_expected_6.yaml", equate_method: :hash_equal)
     end
 
-    it "add child VI, common group" do
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG4"))
-      result = normal.add_child({type:"common_group"})
-      check_file_actual_expected(result.to_h, sub_dir, "add_child_expected_8.yaml", equate_method: :hash_equal)
-    end
+    # Moved to tests below
+    # it "add child VI, common group" do
+    #   normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG4"))
+    #   result = normal.add_child({type:"common_group"})
+    #   check_file_actual_expected(result.to_h, sub_dir, "add_child_expected_8.yaml", equate_method: :hash_equal)
+    # end
 
-    it "add child VII, common group, error" do
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1"))
-      result = normal.add_child({type:"common_group"})
-      expect(normal.errors.count).to eq(1)
-      expect(normal.errors.full_messages[0]).to eq("Normal group already contains a Common Group")
-    end
+    # it "add child VII, common group, error" do
+    #   normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1"))
+    #   result = normal.add_child({type:"common_group"})
+    #   expect(normal.errors.count).to eq(1)
+    #   expect(normal.errors.full_messages[0]).to eq("Normal group already contains a Common Group")
+    # end
 
-    it "Add child VIII, common_group, reset ordinals" do 
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG2"))
-      result = normal.add_child({type:"common_group"})
-      normal = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG2"))
-      check_file_actual_expected(normal.to_h, sub_dir, "add_child_expected_10.yaml", equate_method: :hash_equal)
-    end
+    # it "Add child VIII, common_group, reset ordinals" do 
+    #   normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG2"))
+    #   result = normal.add_child({type:"common_group"})
+    #   normal = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG2"))
+    #   check_file_actual_expected(normal.to_h, sub_dir, "add_child_expected_10.yaml", equate_method: :hash_equal)
+    # end
 
     it "add child IX, bc group, check bc property common" do
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
@@ -158,7 +158,76 @@ byebug
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_11.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(result, sub_dir, "add_child_expected_11.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "Common Group Handling" do
+    
+    before :all do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("hackathon_thesaurus.ttl") 
+    end
+
+    it "add normal groups" do
+      normal = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X1"), note: "OK", ordinal: 1, completion: "None")
+      expect(normal.errors.count).to eq(0)
+      result = normal.add_child({type:"normal_group"})
+      normal = Form::Group::Normal.find_full(normal.uri)
+      check_file_actual_expected(normal.to_h, sub_dir, "add_child_normal_expected_1.yaml", equate_method: :hash_equal)
+      result = normal.add_child({type:"normal_group"})
+      normal = Form::Group::Normal.find_full(normal.uri)
+      check_file_actual_expected(normal.to_h, sub_dir, "add_child_normal_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "add normal groups and common" do
+      normal = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X2"), note: "OK", ordinal: 1, completion: "None")
+      expect(normal.errors.count).to eq(0)
+      result = normal.add_child({type:"normal_group"})
+      result = normal.add_child({type:"normal_group"})
+      result = normal.add_child({type:"common_group"})
+      normal = Form::Group::Normal.find_full(normal.uri)
+      check_file_actual_expected(normal.to_h, sub_dir, "add_child_common_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "add normal groups and common, error" do
+      normal = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X3"), note: "OK", ordinal: 1, completion: "None")
+      expect(normal.errors.count).to eq(0)
+      result = normal.add_child({type:"normal_group"})
+      result = normal.add_child({type:"normal_group"})
+      result = normal.add_child({type:"common_group"})
+      result = normal.add_child({type:"common_group"})
+      expect(normal.errors.count).to eq(1)
+      expect(normal.errors.full_messages[0]).to eq("Normal group already contains a Common Group")
+      normal = Form::Group::Normal.find_full(normal.uri)
+      check_file_actual_expected(normal.to_h, sub_dir, "add_child_common_expected_4.yaml", equate_method: :hash_equal)
+    end
+
+    it "add normal groups and common, check clash" do
+      normal_1 = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X4"), note: "OK", ordinal: 1, completion: "None")
+      expect(normal_1.errors.count).to eq(0)
+      result = normal_1.add_child({type:"normal_group"})
+      result = normal_1.add_child({type:"normal_group"})
+      result = normal_1.add_child({type:"normal_group"})
+      result = normal_1.add_child({type:"normal_group"})
+      result = normal_1.add_child({type:"common_group"})
+      normal_1 = Form::Group::Normal.find_full(normal_1.uri)
+      check_file_actual_expected(normal_1.to_h, sub_dir, "add_child_common_expected_2.yaml", equate_method: :hash_equal)
+
+      normal_2 = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X5"), note: "OK", ordinal: 1, completion: "None")
+      expect(normal_2.errors.count).to eq(0)
+      result = normal_2.add_child({type:"normal_group"})
+      result = normal_2.add_child({type:"normal_group"})
+      result = normal_2.add_child({type:"common_group"})
+      # Normal 1 should not have changed
+      normal_1 = Form::Group::Normal.find_full(normal_1.uri)
+      check_file_actual_expected(normal_1.to_h, sub_dir, "add_child_common_expected_2.yaml", equate_method: :hash_equal)
+      normal_2 = Form::Group::Normal.find_full(normal_2.uri)
+      check_file_actual_expected(normal_2.to_h, sub_dir, "add_child_common_expected_3.yaml", equate_method: :hash_equal)
     end
 
   end
