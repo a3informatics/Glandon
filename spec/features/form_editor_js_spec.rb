@@ -66,7 +66,7 @@ describe "Forms", :type => :feature do
 
       check_node('Height (Pilot)', :form)
       check_node('Completion status', :question)
-      check_node('Centimeter', :tuc_ref)
+      check_node('Placeholder 2', :placeholder)
     end
 
     it "allows to select and deselect nodes with mouse and keys" do
@@ -75,8 +75,11 @@ describe "Forms", :type => :feature do
       find_node('Height (Pilot)').click
       check_node('Height (Pilot)', :form, true)
 
-      find_node('Inch').click
+      find_node('Unit').click
+      check_node('Unit', :question, true)
       check_node('Height (Pilot)', :form, false)
+
+      ui_press_key :right
       check_node('Inch', :tuc_ref, true)
 
       ui_press_key :left
@@ -95,7 +98,7 @@ describe "Forms", :type => :feature do
       # Center Graph
       nodes = page.all('g.node').count
 
-      find_node('Height (Pilot)').drag_to find_node('Inch')
+      find_node('Height (Pilot)').drag_to find_node('Unit')
       expect( page.all('g.node').count ).to be < nodes
       click_button 'center-graph'
       check_node_count 9
@@ -122,7 +125,7 @@ describe "Forms", :type => :feature do
       # Center Graph with key
       nodes = page.all('g.node').count
 
-      find_node('Height (Pilot)').drag_to find_node('Inch')
+      find_node('Height (Pilot)').drag_to find_node('Unit')
       expect( page.all('g.node').count ).to be < nodes
       ui_press_key 'c'
       check_node_count 9
@@ -282,7 +285,8 @@ describe "Forms", :type => :feature do
         end
       end
 
-      find_node('Inch').click
+      find_node('Unit').click
+      ui_press_key :right
       click_action :edit
 
       # Field vali…dation
@@ -447,12 +451,11 @@ describe "Forms", :type => :feature do
       ui_press_key :down
       check_node( 'Pound', :tuc_ref, true )
 
-      ui_press_key 'c' # Center graph
-
       nodes = node_count
 
       # Add TUCs to a Question
-      find_node('Completion status').click
+      fill_in 'd3-search', with: 'Completion status'
+      ui_press_key :enter
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="tuc_reference"]').click
 
@@ -741,8 +744,34 @@ describe "Forms", :type => :feature do
       check_node_count( 3, 'g.node.disabled' ) # Common nodes have the disabled css class
     end
 
-    # Remove BC - remove prop, remove BC and more props are common - does not remove
-    it "allows to remove a bc and its common properties"
+    it "allows to remove a bc and its common properties" do
+      edit_form('TSTFORM')
+
+      find_node('Weight').click
+      click_action :remove
+      ui_confirmation_dialog true
+      wait_for_ajax 10
+
+      check_node_count( 2, 'g.node.disabled' ) # Common nodes have the disabled css class
+
+      find_node('Height').click
+      click_action :remove
+      ui_confirmation_dialog true
+      wait_for_ajax 10
+
+      find_node('BMI').click
+      click_action :remove
+      ui_confirmation_dialog true
+      wait_for_ajax 10
+
+      find_node('Systolic Blood').click
+      click_action :remove
+      ui_confirmation_dialog true
+      wait_for_ajax 10
+
+      # Check new node count 
+
+    end
 
     it "token timers, warnings, extension and expiration" do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)

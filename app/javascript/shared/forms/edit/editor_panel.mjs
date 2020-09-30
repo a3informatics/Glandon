@@ -541,8 +541,8 @@ export default class FormEditor extends TreeGraph {
 
     let props = super._props;
 
-    // Custom rightOffset
-    props.tree.rightOffset = 50;
+    // Custom node width
+    props.tree.nodeWidth = 250;
 
     // Custom zoom values
     props.zoom.min = 0.3;

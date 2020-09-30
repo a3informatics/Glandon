@@ -261,7 +261,6 @@ export default class NodeHandler {
    */
   _merge(node, data, replace = false) {
 
-    data.height = node.d.height;
     data.parent = node.d;
 
     // Replace Node child with data
