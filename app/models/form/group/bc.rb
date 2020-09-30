@@ -46,6 +46,38 @@ class Form::Group::Bc < Form::Group
     return html
   end
 
+  def delete(parent)
+    unless parent.has_common.empty?
+      common_group = Form::Group::Common.find(parent.has_common.first)
+      string_uris = ""
+      common_group.has_item_objects.each do |common_item|
+        self.has_item_objects.each do |item|
+          string_uris += "#{common_item.uri.to_ref} bf:hasCommonItem #{item.uri.to_ref} . "
+        end
+      end
+    end 
+    update_query = %Q{
+      DELETE DATA
+      {
+        #{string_uris} 
+      };
+      DELETE {?s ?p ?o} WHERE 
+      { 
+        { #{self.uri.to_ref} bf:hasItem/bf:hasProperty ?o1 . 
+          BIND (?o1 as ?s) . 
+          ?s ?p ?o .
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasItem/bf:hasCodedValue ?o2 . 
+          BIND (?o2 as ?s) . 
+          ?s ?p ?o .
+        }
+      }
+    }
+    partial_update(update_query, [:bf])
+    super
+  end
+
   def children_ordered(child)
     if child.class == Form::Group::Common
      self.has_common_objects.sort_by {|x| x.ordinal}

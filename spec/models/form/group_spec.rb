@@ -68,7 +68,7 @@ describe Form::Group do
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
-    it "Delete Normal group" do
+    it "Deletes Normal group I" do
       group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       parent = Form.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
       expect(parent.has_group.count).to eq(1)
@@ -78,13 +78,21 @@ describe Form::Group do
       expect{Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/FN000150/V1#F_NG1 in Form::Group::Normal.")
     end
 
-    it "Delete Normal group" do
+    it "Deletes Normal group II" do
       group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG3"))
       parent = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
       check_file_actual_expected(parent.to_h[:has_group], sub_dir, "delete_expected_1.yaml", equate_method: :hash_equal)
       result = group.delete(parent)
       parent = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
       check_file_actual_expected(parent.to_h[:has_group], sub_dir, "delete_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "Deletes BC group" do
+      group = Form::Group::Bc.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2"))
+      parent = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1"))
+      result = group.delete(parent)
+      parent = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1"))
+      check_file_actual_expected(parent.to_h, sub_dir, "delete_expected_3.yaml", equate_method: :hash_equal)
     end
 
   end
