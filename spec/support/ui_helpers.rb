@@ -617,13 +617,16 @@ module UiHelpers
     }
 	end
 
-  def context_menu_element (table_id, column_nr, text, action, row_nr = nil )
-  	context_menu_element_v2(table_id, text, action)
+  def context_menu_element (table_id, column_nr, identifier, action, row_nr = nil )
+  	context_menu_element_v2(table_id, identifier, action)
   end
 
-	def context_menu_element_v2 (table, text, action)
+	# Identifier is either a String (finds row that contains the text) or an Integer (finds row by its index nr)
+	def context_menu_element_v2 (table, identifier, action)
 		option = context_menu_actions_map[action]
-		row = find(:xpath, "//table[@id='#{ table }']//tr[contains(.,'#{ text }')]")
+
+		row = find(:xpath, "//table[@id='#{ table }']//tr[contains(.,'#{ identifier }')]") if identifier.is_a? String
+		row = find(:xpath, "//table[@id='#{ table }']//tbody/tr[#{ identifier }]") if identifier.is_a? Integer
 
 		within( row ) do
 			find(".icon-context-menu").click
@@ -695,6 +698,7 @@ module UiHelpers
 	    fill_in "thesauri_label", with: label
 	    click_button 'Submit'
 		end
+		wait_for_ajax 10
 		expect(page).to have_content 'Terminology was successfully created.' if success
   end
 
