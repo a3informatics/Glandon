@@ -2,7 +2,7 @@ class Form::Group::Bc < Form::Group
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#BcGroup",
             uri_suffix: "BCG",
-            uri_property: :ordinal
+            uri_unique: true
 
   object_property :has_biomedical_concept, cardinality: :one, model_class: "OperationalReferenceV3"
 

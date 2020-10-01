@@ -1,6 +1,104 @@
 ---
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzU=
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG5
+:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcx
+:uri: http://www.s-cubed.dk/FN000150/V1#F_NG1
+:rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+:label: Not Set
+:tagged: []
+:ordinal: 1
+:note: Not Set
+:completion: Not Set
+:optional: false
+:has_item:
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ex
+  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+  :label: Completion status
+  :tagged: []
+  :ordinal: 1
+  :note: ''
+  :completion: Not Set
+  :optional: true
+  :datatype: string
+  :format: '1'
+  :mapping: VSSTAT
+  :question_text: " Compltion Status"
+  :has_coded_value:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1ExX1RVQzE=
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66789/V4#C66789_C49484
+    :context: http://www.cdisc.org/C66789/V13#C66789
+    :local_label: ''
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ez
+  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q3
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+  :label: Height
+  :tagged: []
+  :ordinal: 3
+  :note: ''
+  :completion: Not Set
+  :optional: false
+  :datatype: float
+  :format: '5.1'
+  :mapping: VSORRES
+  :question_text: Height
+  :has_coded_value: []
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1BMMg==
+  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Placeholder
+  :label: Placeholder 2
+  :tagged: []
+  :ordinal: 2
+  :note: ''
+  :completion: Not Set
+  :optional: false
+  :free_text: Measure with shoes off. Round up or down to the nearest tenth inch or
+    tenth centimeter.
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0
+  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+  :label: Unit
+  :tagged: []
+  :ordinal: 4
+  :note: ''
+  :completion: Not Set
+  :optional: false
+  :datatype: string
+  :format: '20'
+  :mapping: VSORRESU
+  :question_text: Unit
+  :has_coded_value:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0X1RVQzE=
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4_TUC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66770/V2#C66770_C48500
+    :context: http://www.cdisc.org/C66770/V59#C66770
+    :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0X1RVQzI=
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4_TUC2
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 2
+    :reference: http://www.cdisc.org/C66770/V4#C66770_C49668
+    :context: http://www.cdisc.org/C66770/V59#C66770
+    :local_label: ''
+:repeating: false
+:has_sub_group:
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDR18xNzYwY2JiMS1hMzcwLTQxZjYtYTNiMy00OTNjMWQ5YzIyMzg=
+  :uri: http://www.s-cubed.dk/FN000150/V1#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Weight
   :tagged: []
@@ -9,8 +107,8 @@
   :completion: ''
   :optional: false
   :has_item:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzVfQlAx
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG5_BP1
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF80NjQ2YjQ3YS00YWU0LTRmMjEtYjVlMi01NjU4MTVjOGNkZWQ=
+    :uri: http://www.s-cubed.dk/FN000150/V1#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--DTC"
     :tagged: []
@@ -19,8 +117,8 @@
     :completion: ''
     :optional: false
     :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzVfQlAxX1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG5_BP1_R1
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF80NjQ2YjQ3YS00YWU0LTRmMjEtYjVlMi01NjU4MTVjOGNkZWRfUjE=
+      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
       :tagged: []
@@ -31,8 +129,8 @@
       :context: 
     :has_coded_value: []
     :is_common: false
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzVfQlAy
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG5_BP2
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF85MmJmOGI3NC1lYzc4LTQzNDgtOWExYi0xNTRhNmNjYjliOWY=
+    :uri: http://www.s-cubed.dk/FN000150/V1#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--ORRESU"
     :tagged: []
@@ -41,8 +139,8 @@
     :completion: ''
     :optional: false
     :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzVfQlAyX1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG5_BP2_R1
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF85MmJmOGI3NC1lYzc4LTQzNDgtOWExYi0xNTRhNmNjYjliOWZfUjE=
+      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
       :tagged: []
@@ -52,64 +150,31 @@
       :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode
       :context: 
     :has_coded_value:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzVfQlAyX1RVQzE=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG5_BP2_TUC1
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF85MmJmOGI3NC1lYzc4LTQzNDgtOWExYi0xNTRhNmNjYjliOWZfVFVDMQ==
+      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference:
-        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0OSNDNjY3NzBfQzI4MjUy
-        :uri: http://www.cdisc.org/C66770/V49#C66770_C28252
-        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-        :label: Kilogram
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
-        :identifier: C28252
-        :notation: kg
-        :definition: The base unit of mass in the International System of Units (SI)
-          equal to the mass of the international prototype kilogram, a platinum-iridium
-          cylinder in the custody of the International Bureau of Weights and Measures.
-        :extensible: false
-        :narrower: []
-        :preferred_term: http://www.assero.co.uk/PT#4bc17b82eb026aa064b71b05667b89d5d2d678bb
-        :synonym:
-        - http://www.assero.co.uk/SYN#4bc17b82eb026aa064b71b05667b89d5d2d678bb
+      :reference: http://www.cdisc.org/C66770/V49#C66770_C28252
       :context: http://www.cdisc.org/C66770/V59#C66770
       :local_label: Kilogram
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzVfQlAyX1RVQzI=
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG5_BP2_TUC2
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF85MmJmOGI3NC1lYzc4LTQzNDgtOWExYi0xNTRhNmNjYjliOWZfVFVDMg==
+      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 2
-      :reference:
-        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0I0M2Njc3MF9DNDg1MzE=
-        :uri: http://www.cdisc.org/C66770/V4#C66770_C48531
-        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-        :label: Pound
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        :identifier: C48531
-        :notation: LB
-        :definition: A traditional unit of mass. By international agreement, one avoirdupois
-          pound is equal to exactly 0.453 592 37 kilogram, 16 ounces, or 1.215 28
-          troy pounds. (NCI)
-        :extensible: false
-        :narrower: []
-        :preferred_term: http://www.assero.co.uk/PT#3470368ac24fd837c677bc8499cf6baf04005fb5
-        :synonym:
-        - http://www.assero.co.uk/SYN#3470368ac24fd837c677bc8499cf6baf04005fb5
+      :reference: http://www.cdisc.org/C66770/V4#C66770_C48531
       :context: http://www.cdisc.org/C66770/V59#C66770
       :local_label: Pound
     :is_common: false
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzVfQlAz
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG5_BP3
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9iNzY1OTdmNy05NzJmLTQwZjQtYmVkNy1lMTM0NzI1Y2YyOTY=
+    :uri: http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--ORRES"
     :tagged: []
@@ -118,8 +183,8 @@
     :completion: ''
     :optional: false
     :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzVfQlAzX1Ix
-      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG5_BP3_R1
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9iNzY1OTdmNy05NzJmLTQwZjQtYmVkNy1lMTM0NzI1Y2YyOTZfUjE=
+      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
       :tagged: []
@@ -131,68 +196,14 @@
     :has_coded_value: []
     :is_common: false
   :has_biomedical_concept:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0JDRzVfUjE=
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG5_R1
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDR18xNzYwY2JiMS1hMzcwLTQxZjYtYTNiMy00OTNjMWQ5YzIyMzhfUjE=
+    :uri: http://www.s-cubed.dk/FN000150/V1#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
     :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1dFSUdIVC9WMSNCQ0k=
-      :uri: http://www.s-cubed.dk/WEIGHT/V1#BCI
-      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
-      :label: Weight
-      :tagged: []
-      :has_state:
-        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1dFSUdIVC9WMSNCQ0lfUlM=
-        :uri: http://www.s-cubed.dk/WEIGHT/V1#BCI_RS
-        :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
-        :registration_status: Incomplete
-        :administrative_note: ''
-        :effective_date: '2016-01-01T00:00:00+00:00'
-        :until_date: '2016-01-01T00:00:00+00:00'
-        :unresolved_issue: ''
-        :administrative_status: ''
-        :previous_state: Incomplete
-        :multiple_edit: false
-        :by_authority:
-          :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
-          :uri: http://www.assero.co.uk/RA#DUNS123456789
-          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-          :organization_identifier: '123456789'
-          :international_code_designator: DUNS
-          :owner: true
-          :ra_namespace:
-            :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
-            :uri: http://www.assero.co.uk/NS#SCUBED
-            :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-            :short_name: S-cubed
-            :name: S-cubed Aps
-            :authority: www.s-cubed.dk
-      :has_identifier:
-        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1dFSUdIVC9WMSNCQ0lfU0k=
-        :uri: http://www.s-cubed.dk/WEIGHT/V1#BCI_SI
-        :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-        :identifier: WEIGHT
-        :version_label: ''
-        :version: 1
-        :semantic_version: 0.1.0
-        :has_scope:
-          :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
-          :uri: http://www.assero.co.uk/NS#SCUBED
-          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-          :short_name: S-cubed
-          :name: S-cubed Aps
-          :authority: www.s-cubed.dk
-      :has_previous_version: 
-      :origin: ''
-      :change_description: ''
-      :creation_date: '2016-01-01T00:00:00+00:00'
-      :last_change_date: '2020-09-10T10:45:33+02:00'
-      :explanatory_comment: ''
-      :has_item: []
-      :identified_by: 
-      :based_on: 
+    :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI
     :context: 
+:has_common: []

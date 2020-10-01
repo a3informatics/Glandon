@@ -6,8 +6,8 @@
 class Form::Item::BcProperty < Form::Item
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
-            uri_suffix: "BP",  
-            uri_property: :ordinal
+            uri_suffix: "BCP",  
+            uri_unique: true 
 
   object_property :has_property, cardinality: :one, model_class: "OperationalReferenceV3"
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
