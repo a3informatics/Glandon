@@ -305,6 +305,8 @@ class Form::Group::Normal < Form::Group
           cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
         end
       end
+      bci = BiomedicalConceptInstance.find_minimum(Uri.new(uri: bc_group[:has_biomedical_concept][:reference]))
+      bc_group[:has_biomedical_concept][:reference] = bci.to_h
       bc_group
     end
 
