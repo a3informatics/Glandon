@@ -33,7 +33,12 @@ export default class FormNode extends TreeNode {
    * @return {boolean} Value representing Node's enabled data flag equal to false
    */
   get disabled() {
+
+    if ( this.is('BC_PROPERTY') )
+      return this.data.has_property.enabled === false;
+
     return this.data.enabled === false;
+
   }
 
   /**
@@ -98,6 +103,14 @@ export default class FormNode extends TreeNode {
    */
   get editAllowed() {
     return !this.data.is_common && !this.is( 'COMMON_ITEM' );
+  }
+
+  /**
+   * Check if Node type is allowed to be moved
+   * @return {boolean} Value specifying if Node's type is a allowed to be moved
+   */
+  get moveAllowed() {
+    return !this.is( 'FORM' ) && !this.is( 'COMMON_GROUP' );
   }
 
   /**

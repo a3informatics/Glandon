@@ -375,7 +375,10 @@ export default class FormEditor extends TreeGraph {
           return;
 
         // Merge reference data into Node data
-        node.data.reference = data;
+        if ( node.data.has_biomedical_concept )
+          node.data.has_biomedical_concept.reference = data;
+        else
+          node.data.reference = data;
 
         // Set default label & local label value if none is set
         if ( node.data.local_label === '' )
@@ -464,7 +467,7 @@ export default class FormEditor extends TreeGraph {
 
     // Toggle Restore button depending on node type
     D3Actions.actions.find( '#restore-node' )
-                     .toggle( node.restoreAllowed );
+                     .toggle( node.restoreAllowed ); 
 
     D3Actions.show( node );
 

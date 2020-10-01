@@ -156,12 +156,27 @@ export default class NodeEditor extends ModalView {
   }
 
   /**
+   * On modal show complete callback, autofocus on input
+   * @override parent
+   */
+  _onShowComplete() {
+    this.content.find('textarea, input').first().focus();
+  }
+
+  /**
    * On node update success, append updated properties and call onSubmit
    */
   _onSuccess(data) {
 
     for ( let property of Object.keys( this.changedFields ) ) {
-      this.node.data[property] = data[property];
+
+      // Setting BC Property ref's enabled or optional value
+      if ( this.node.is( 'BC_PROPERTY' ) && property === 'enabled' || property === 'optional' )
+          this.node.data.has_property[property] = data.has_property[property];
+          
+      else
+        this.node.data[property] = data[property];
+
     }
 
     this.onUpdate();
@@ -184,12 +199,13 @@ export default class NodeEditor extends ModalView {
   }
 
   /**
-   * Render complete callback, adjust textarea heights to fit their contents
+   * Render complete callback, adjust textarea heights to fit their contents and set default focus
    */
   _onRenderComplete() {
 
     setTimeout( () => {
 
+      // Textarea scaling
       this.content.find('textarea')
                   .each( (i, ta) => {
                     let newHeight = ta.scrollHeight > ta.clientHeight ?
@@ -304,19 +320,14 @@ export default class NodeEditor extends ModalView {
    */
   _renderBC() {
 
-    // Show loading message if reference data not available
-    if ( typeof this.node.data.reference === 'string' ) {
-
-      this.content.append( 'Loading reference data...' );
-      return;
-
-    }
+    let bcRef = this.node.data.has_biomedical_concept.reference,
+        bcRefAvailable = typeof bcRef === 'object';
 
     let bcId =    [ 'BC Identifier', this._labelStyled(
-                    this.node.data.reference.has_identifier.identifier
+                    bcRefAvailable ? bcRef.has_identifier.identifier : 'N/A'
                   ) ],
         bcLabel = [ 'BC Label', this._labelStyled(
-                    this.node.data.reference.label
+                    bcRefAvailable ? bcRef.label : 'N/A'
                   ) ],
         label =   [ 'Label', this._textarea( 'label' ) ],
 
@@ -421,24 +432,17 @@ export default class NodeEditor extends ModalView {
    */
   _renderTUCRef() {
 
-    // Show loading message if reference data not available
-    if ( typeof this.node.data.reference === 'string' ) {
-
-      this.content.append( 'Loading reference data...' );
-      return;
-
-    }
-
-    let parentQuestion = this.node.parent.is( 'QUESTION' );
+    let cliRef = this.node.data.reference,
+        parentQuestion = this.node.parent.is( 'QUESTION' );
 
     let identifier = [ 'Identifier', this._labelStyled(
-                          this.node.data.reference.identifier
+                          cliRef.identifier || 'N/A'
                      ) ],
         dLabel =     [ 'Default Label', this._labelStyled(
-                          this.node.data.reference.label
+                          cliRef.label || 'N/A'
                      ) ],
         notation =   [ 'Submission Value', this._labelStyled(
-                          this.node.data.reference.notation
+                          cliRef.notation || 'N/A'
                      ) ],
         label =      [ 'Label', this._input( 'local_label' ) ],
         enable =     [ 'Enabled', this._checkbox( 'enabled', null, parentQuestion ) ],

@@ -197,6 +197,7 @@ export default class TreeNode {
 
   /** Actions **/
 
+
   /**
    * Remove a child Node from this instance
    * @param {TreeNode} node Node instance to be removed

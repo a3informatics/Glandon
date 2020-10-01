@@ -75,8 +75,17 @@ export default class NodeHandler {
    */
   move(node, dir) {
 
-    if ( dir !== 'up' && dir !== 'down' ) // Validate direction
+    // Validate direction
+    if ( dir !== 'up' && dir !== 'down' )
       return;
+
+    // Validate Node type can be moved
+    if ( !node.moveAllowed ) {
+
+      alerts.warning( `This Node cannot be moved.`, this.editor._alertDiv );
+      return;
+      
+    }
 
     this.node = node;
 
@@ -241,7 +250,7 @@ export default class NodeHandler {
     );
 
     // Ordinals update when Common Group added
-    if ( child.is('COMMON_GROUP') )
+    if ( child.is('COMMON_GROUP') && this.node.hasChildren )
       this.node.d.children.forEach( d => d.data.ordinal++ );
 
     this._merge( this.node, child.d );
