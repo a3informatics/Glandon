@@ -37,7 +37,7 @@ class Form::Item::Common < Form::Item::BcProperty
   end
 
   def children_ordered(child)
-    self.has_common_item_objects.sort_by {|x| x.ordinal} 
+    self.has_coded_value_objects.sort_by {|x| x.ordinal}
   end
 
   def delete(parent)
