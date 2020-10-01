@@ -9,10 +9,20 @@
   :note: note u
   :completion: completion u
   :optional: false
-  :is_common: false
-  :has_property: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_R1
+  :has_property:
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDNfUjE=
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: false
+    :optional: true
+    :ordinal: 1
+    :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode
+    :context: 
   :has_coded_value:
   - http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC4
   - http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC3
   - http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC2
   - http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC1
+  :is_common: false

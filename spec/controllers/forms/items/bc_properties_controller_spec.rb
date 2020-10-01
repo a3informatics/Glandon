@@ -32,17 +32,19 @@ describe Forms::Items::BcPropertiesController do
     end
 
     it "update" do
-      update_params = {form_id: @form.id, note:"note u", completion:"completion u"} 
+      update_params = {form_id: @form.id, note:"note u", completion:"completion u", enabled: false, optional: true} 
       request.env['HTTP_ACCEPT'] = "application/json"
+      request.content_type = 'application/json'
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
-      put :update, params:{id: @bc_property.id, bc_property: update_params}
+      bc_property = Form::Item::BcProperty.find_full(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3"))
+      check_file_actual_expected(bc_property.to_h, sub_dir, "update_bc_property_expected_1a.yaml", equate_method: :hash_equal)
+      put :update, params:{id: bc_property.id, bc_property: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
-      @bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3"))
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_bc_property_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "update_bc_property_expected_1b.yaml", equate_method: :hash_equal)
     end
 
     it 'update, second update so no audit' do

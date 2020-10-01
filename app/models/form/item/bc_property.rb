@@ -85,6 +85,12 @@ class Form::Item::BcProperty < Form::Item
     x[:is_common] = is_common?
     x
   end
+
+  def update(params)
+    ref = self.has_property_objects
+    ref.update(params)
+    super(params.except(:enabled, :optional))
+  end
   
   private
 
