@@ -7,6 +7,7 @@ describe Forms::Groups::NormalGroupsController do
   include UserAccountHelpers
   include IsoHelpers
   include ControllerHelpers
+  include SecureRandomHelpers
   
   describe "Update" do
   	
@@ -105,6 +106,7 @@ describe Forms::Groups::NormalGroupsController do
     end
 
     it 'Add normal group' do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
       token = Token.obtain(@form, @user)
@@ -119,6 +121,7 @@ describe Forms::Groups::NormalGroupsController do
     end
 
     it 'Add Bc group' do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F_NG2"))
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
       bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))

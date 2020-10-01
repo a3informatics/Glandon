@@ -90,12 +90,7 @@ class Form::Group::Normal < Form::Group
     end
   end
 
-  def children_ordered(child)
-    # if child.class == Form::Group::Normal || child.class == Form::Group::Bc
-    #  self.has_sub_group_objects.sort_by {|x| x.ordinal}
-    # else items_classes.include?(child.class)
-    #   self.has_item_objects.sort_by {|x| x.ordinal}
-    # end  
+  def children_ordered
     set = self.has_sub_group_objects + self.has_item_objects
     set.sort_by {|x| x.ordinal}
   end
@@ -333,7 +328,7 @@ class Form::Group::Normal < Form::Group
       unless common_group?
         child = Form::Group::Common.create(label: "Not set", ordinal: 1, parent_uri: self.uri)
         self.add_link(:has_common, child.uri)
-        reset_ordinals(self)
+        self.reset_ordinals
         child
       else
         self.errors.add(:base, "Normal group already contains a Common Group")

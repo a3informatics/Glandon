@@ -11,6 +11,9 @@ class Form < IsoManagedV2
 
   validates_with Validator::Field, attribute: :note, method: :valid_markdown?
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
+
+  include Form::Ordinal
+
   # Get Items. 
   #
   # @return [Array] Array of hashes, one per group, sub group and item. Ordered by ordinal.
@@ -71,7 +74,7 @@ class Form < IsoManagedV2
     child
   end
 
-  def children_ordered(child)
+  def children_ordered
     self.has_group_objects.sort_by {|x| x.ordinal}
   end
 

@@ -43,10 +43,8 @@ class Form::Item::BcProperty < Form::Item
     return html
   end
 
-  def children_ordered(child)
-    if child.class == OperationalReferenceV3::TucReference
-      self.has_coded_value_objects.sort_by {|x| x.ordinal}
-    end  
+  def children_ordered
+    self.has_coded_value_objects.sort_by {|x| x.ordinal}
   end
 
   def make_common

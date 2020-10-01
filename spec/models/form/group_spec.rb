@@ -100,37 +100,51 @@ describe Form::Group do
   describe "Move up/down" do
     
     before :each do
-      data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      data_files = ["forms/FN000120.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
-    it "move up III, normal group " do
-      parent = Form::find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+    it "move up I, normal group " do
+      parent = Form::find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
       item = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F_NG2"))
-      result = item.move_up(parent.id)
+      result = parent.move_up(item)
+      expect(result).to eq(true)
+      expect(parent.errors.count).to eq(0)
+      result = Form::find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
       check_file_actual_expected(result.to_h, sub_dir, "move_up_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "move up II, normal group error" do
       parent = Form::find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
       item = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F_NG1"))
-      result = item.move_up(parent.id)
+      result = parent.move_up(item)
+      expect(result).to eq(false)
+      expect(parent.errors.count).to eq(1)
+      expect(parent.errors.full_messages[0]).to eq("Attempting to move up past the first node")
+      result = Form::find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
       check_file_actual_expected(result.to_h, sub_dir, "move_up_error_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "move down I" do
       parent = Form::find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
       item = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F_NG11"))
-      result = item.move_down(parent.id)
+      result = parent.move_down(item)
+      expect(result).to eq(true)
+      expect(parent.errors.count).to eq(0)
+      result = Form::find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
       check_file_actual_expected(result.to_h, sub_dir, "move_down_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "move down II, error" do
       parent = Form::find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
       item = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F_NG12"))
-      result = item.move_down(parent.id)
+      result = parent.move_down(item)
+      expect(result).to eq(false)
+      expect(parent.errors.count).to eq(1)
+      expect(parent.errors.full_messages[0]).to eq("Attempting to move down past the last node")
+      result = Form::find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
       check_file_actual_expected(result.to_h, sub_dir, "move_down_error_expected_1.yaml", equate_method: :hash_equal)
     end
 

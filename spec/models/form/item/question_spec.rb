@@ -76,12 +76,12 @@ describe Form::Item::Question do
   
     it "returns the children in ordinal order" do
       item = Form::Item::Question.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
-      expect(item.children_ordered(nil)).to eq([])
+      expect(item.children_ordered).to eq([])
       ref_2 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R2"), ordinal: 2, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 2")
       ref_2.save
       item.has_coded_value_push(ref_2.uri)
       item.save
-      result = item.children_ordered(nil)
+      result = item.children_ordered
       check_file_actual_expected(result.map{|x| x.to_h}, sub_dir, "children_ordered_expected_1.yaml", equate_method: :hash_equal)
       ref_1 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R1"), ordinal: 1, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 1")
       ref_1.save
@@ -93,7 +93,7 @@ describe Form::Item::Question do
       item.has_coded_value_push(ref_4)
       item.has_coded_value_push(ref_3)
       item.save
-      result = item.children_ordered(nil)
+      result = item.children_ordered
       check_file_actual_expected(result.map{|x| x.to_h}, sub_dir, "children_ordered_expected_2.yaml", equate_method: :hash_equal)
     end
 
@@ -146,7 +146,7 @@ describe Form::Item::Question do
   describe "Delete TUc Reference" do
     
     before :each do
-      data_files = ["forms/FN000150.ttl", "forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      data_files = ["forms/FN000150.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..15)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -156,10 +156,10 @@ describe Form::Item::Question do
       cli_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66789/V4#C66789_C49484"))
       context_1 = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66789/V13#C66789"))
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
-      question.add_child({type:"tuc_reference", id_set:[{id:cli_1.id, context_id: context_1.id}]})
+      refs = question.add_child({type:"tuc_reference", id_set:[{id:cli_1.id, context_id: context_1.id}]})
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
       tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1"))
-      tuc_reference.delete(question)
+      question.delete_reference(tuc_reference)
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
       check_file_actual_expected(question.to_h, sub_dir, "delete_tuc_reference_expected_1.yaml", equate_method: :hash_equal)
     end

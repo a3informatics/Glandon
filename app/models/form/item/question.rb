@@ -68,10 +68,14 @@ class Form::Item::Question < Form::Item
 
   # Children Ordered. Provides the childen ordered by ordinal
   #
-  # @param [Object] child ???
   # @return [Array] the set of children ordered by ordinal
-  def children_ordered(child)
+  def children_ordered
     self.has_coded_value_objects.sort_by {|x| x.ordinal}
+  end
+
+  def delete_reference(reference)
+    reference.delete_with_links
+    self.reset_ordinals
   end
 
 end

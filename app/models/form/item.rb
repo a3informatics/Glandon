@@ -40,7 +40,7 @@ class Form::Item < IsoConceptV2
       }
     }
     partial_update(update_query, [:bf])
-    reset_ordinals(parent)
+    parent.reset_ordinals
     1
   end
 

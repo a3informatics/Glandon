@@ -78,12 +78,8 @@ class Form::Group::Bc < Form::Group
     super
   end
 
-  def children_ordered(child)
-    if child.class == Form::Group::Common
-     self.has_common_objects.sort_by {|x| x.ordinal}
-    else items_classes.include?(child.class)
-      self.has_item_objects.sort_by {|x| x.ordinal}
-    end  
+  def children_ordered
+    self.has_item_objects.sort_by {|x| x.ordinal}
   end
 
   def items_classes

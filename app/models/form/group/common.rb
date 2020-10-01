@@ -31,10 +31,8 @@ class Form::Group::Common < Form::Group
     return html
   end
 
-  def children_ordered(child)
-    if child.class == Form::Item::Common
-      self.has_item_objects.sort_by {|x| x.ordinal}
-    end  
+  def children_ordered
+    self.has_item_objects.sort_by {|x| x.ordinal}
   end
 
   def get_normal_group

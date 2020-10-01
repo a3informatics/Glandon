@@ -36,12 +36,13 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     normal = Form::Group::Normal.find(protect_from_bad_id(params))
-    normal = normal.move_up(the_params[:parent_id])
-    if normal.errors.empty?
+    parent = IsoConceptV2.find(the_params[:parent_id])
+    result = parent.move_up(normal)
+    if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
     else
-      render :json => {:errors => normal.errors.full_messages}, :status => 422
+      render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
   end
 
@@ -49,12 +50,13 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     normal = Form::Group::Normal.find(protect_from_bad_id(params))
-    normal = normal.move_down(the_params[:parent_id])
-    if normal.errors.empty?
+    parent = IsoConceptV2.find(the_params[:parent_id])
+    result = parent.move_down(normal)
+    if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
     else
-      render :json => {:errors => normal.errors.full_messages}, :status => 422
+      render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
   end
 

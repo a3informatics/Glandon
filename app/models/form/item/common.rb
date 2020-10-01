@@ -36,7 +36,7 @@ class Form::Item::Common < Form::Item::BcProperty
     html += end_row
   end
 
-  def children_ordered(child)
+  def children_ordered
     self.has_coded_value_objects.sort_by {|x| x.ordinal}
   end
 
