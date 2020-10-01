@@ -26,12 +26,13 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     tuc_reference = OperationalReferenceV3::TucReference.find(protect_from_bad_id(params))
-    tuc_reference = tuc_reference.move_up(the_params[:parent_id])
-    if tuc_reference.errors.empty?
+    parent = IsoConceptV2.find(the_params[:parent_id])
+    result = parent.move_up(tuc_reference)  
+    if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
     else
-      render :json => {:errors => tuc_reference.errors.full_messages}, :status => 422
+      render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
   end
 
@@ -39,12 +40,13 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     tuc_reference = OperationalReferenceV3::TucReference.find(protect_from_bad_id(params))
-    tuc_reference = tuc_reference.move_down(the_params[:parent_id])
-    if tuc_reference.errors.empty?
+    parent = IsoConceptV2.find(the_params[:parent_id])
+    result = parent.move_down(tuc_reference)  
+    if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
     else
-      render :json => {:errors => tuc_reference.errors.full_messages}, :status => 422
+      render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
   end
 
@@ -53,7 +55,7 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
     parent = Form::Item.find(the_params[:parent_id])
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
-    tuc_reference.delete(parent)
+    parent.delete_reference(tuc_reference)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, item #{tuc_reference.label} deleted.") if @lock.token.refresh == 1
     render json: {data: "" }, status: 200

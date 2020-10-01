@@ -8,6 +8,7 @@ describe FormsController do
   include IsoHelpers
   include ControllerHelpers
   include AuditTrailHelpers
+  include SecureRandomHelpers
 
   describe "Curator User" do
   	
@@ -18,7 +19,7 @@ describe FormsController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000150.ttl"]
+      data_files = ["forms/FN000150.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..65)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -233,6 +234,7 @@ describe FormsController do
     end
 
     it "update" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       update_params = {label:"label u", note:"note u", completion:"completion u"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
@@ -244,6 +246,7 @@ describe FormsController do
     end
 
     it 'update, second update so no audit' do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       update_params = {label:"label u", note:"note u", completion:"completion u"} 
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
@@ -302,6 +305,7 @@ describe FormsController do
     end
 
     it 'Add normal group' do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
       request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
