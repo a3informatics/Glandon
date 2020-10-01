@@ -270,6 +270,7 @@ describe "Forms", :type => :feature do
           fill_in 'label', with: 'Height Group'
           fill_in 'completion', with: 'Test Completion Instruction'
           click_on 'Save changes'
+          wait_for_ajax 10
         end
       end
 
@@ -304,6 +305,7 @@ describe "Forms", :type => :feature do
 
           fill_in 'local_label', with: 'New Inch'
           click_on 'Save changes'
+          wait_for_ajax 10
         end
       end
 
@@ -350,6 +352,7 @@ describe "Forms", :type => :feature do
           expect( find_field( 'format', disabled: true ).value ).to eq ''
 
           click_on 'Save changes'
+          wait_for_ajax 10
         end
       end
 
@@ -519,7 +522,7 @@ describe "Forms", :type => :feature do
       ui_press_key :up
       check_node('Q Repeating Group', :normal_group, true)
 
-      click_action :move_down
+      ui_press_key(:down, :shift)
       wait_for_ajax 10
       expect(page).to have_content 'Moved successfully'
 
@@ -769,7 +772,7 @@ describe "Forms", :type => :feature do
       ui_confirmation_dialog true
       wait_for_ajax 10
 
-      # Check new node count 
+      # Check new node count
 
     end
 

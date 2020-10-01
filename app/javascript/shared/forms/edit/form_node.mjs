@@ -126,7 +126,7 @@ export default class FormNode extends TreeNode {
    * @return {boolean} Value specifying if Node's type is a allowed to be Common
    */
    get commonAllowed() {
-    return this.is( 'BC_PROPERTY' ) && this.data.is_common === false;
+    return this.is( 'BC_PROPERTY' ) && !this.isCommon && !this.disabled;
   }
 
   /**

@@ -4,6 +4,7 @@ import Validator from 'shared/ui/validator'
 
 import { $put } from 'shared/helpers/ajax'
 import { isCharLetter } from 'shared/helpers/strings'
+import { alerts } from 'shared/ui/alerts'
 
 /**
  * Node Editor
@@ -168,14 +169,23 @@ export default class NodeEditor extends ModalView {
    */
   _onSuccess(data) {
 
-    for ( let property of Object.keys( this.changedFields ) ) {
+    try {
 
-      // Setting BC Property ref's enabled or optional value
-      if ( this.node.is( 'BC_PROPERTY' ) && property === 'enabled' || property === 'optional' )
-          this.node.data.has_property[property] = data.has_property[property];
-          
-      else
-        this.node.data[property] = data[property];
+      for ( let prop of Object.keys( this.changedFields ) ) {
+
+        // Setting BC Property ref's enabled or optional value
+        if ( this.node.is( 'BC_PROPERTY' ) && ( prop === 'enabled' || prop === 'optional' ) )
+            this.node.data.has_property[prop] = data.has_property[prop];
+        else
+          this.node.data[prop] = data[prop];
+
+      }
+
+    }
+    catch(e) {
+
+      alerts.error( 'Something went wrong while updating data.', this.$error );
+      return;
 
     }
 
