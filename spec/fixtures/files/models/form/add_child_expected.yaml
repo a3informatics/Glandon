@@ -1,14 +1,168 @@
 ---
-:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcy
-:uri: http://www.s-cubed.dk/FN000150/V1#F_NG2
-:rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
-:label: Not set
+:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=
+:uri: http://www.s-cubed.dk/FN000150/V1#F
+:rdf_type: http://www.assero.co.uk/BusinessForm#Form
+:label: Height (Pilot)
 :tagged: []
-:ordinal: 2
+:has_state:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfUlM=
+  :uri: http://www.s-cubed.dk/FN000150/V1#F_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+      :uri: http://www.assero.co.uk/NS#SCUBED
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: S-cubed
+      :name: S-cubed Aps
+      :authority: www.s-cubed.dk
+:has_identifier:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfU0k=
+  :uri: http://www.s-cubed.dk/FN000150/V1#F_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: FN000150
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+    :uri: http://www.assero.co.uk/NS#SCUBED
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: S-cubed
+    :name: S-cubed Aps
+    :authority: www.s-cubed.dk
+:has_previous_version: 
+:origin: ''
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2020-09-04T14:45:59+02:00'
+:explanatory_comment: ''
 :note: ''
 :completion: ''
-:optional: false
-:has_item: []
-:repeating: false
-:has_sub_group: []
-:has_common: []
+:has_group:
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcx
+  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :label: Not Set
+  :tagged: []
+  :ordinal: 1
+  :note: Not Set
+  :completion: Not Set
+  :optional: false
+  :has_item:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ex
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+    :label: Completion status
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: Not Set
+    :optional: true
+    :datatype: string
+    :format: '1'
+    :mapping: VSSTAT
+    :question_text: " Compltion Status"
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1ExX1RVQzE=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.cdisc.org/C66789/V4#C66789_C49484
+      :context: http://www.cdisc.org/C66789/V13#C66789
+      :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ez
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q3
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+    :label: Height
+    :tagged: []
+    :ordinal: 3
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :datatype: float
+    :format: '5.1'
+    :mapping: VSORRES
+    :question_text: Height
+    :has_coded_value: []
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1BMMg==
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Placeholder
+    :label: Placeholder 2
+    :tagged: []
+    :ordinal: 2
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :free_text: Measure with shoes off. Round up or down to the nearest tenth inch
+      or tenth centimeter.
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+    :label: Unit
+    :tagged: []
+    :ordinal: 4
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :datatype: string
+    :format: '20'
+    :mapping: VSORRESU
+    :question_text: Unit
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0X1RVQzE=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.cdisc.org/C66770/V2#C66770_C48500
+      :context: http://www.cdisc.org/C66770/V59#C66770
+      :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0X1RVQzI=
+      :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4_TUC2
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :reference: http://www.cdisc.org/C66770/V4#C66770_C49668
+      :context: http://www.cdisc.org/C66770/V59#C66770
+      :local_label: ''
+  :repeating: false
+  :has_sub_group: []
+  :has_common: []
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI05HXzE3NjBjYmIxLWEzNzAtNDFmNi1hM2IzLTQ5M2MxZDljMjIzOA==
+  :uri: http://www.s-cubed.dk/FN000150/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :label: Not set
+  :tagged: []
+  :ordinal: 2
+  :note: ''
+  :completion: ''
+  :optional: false
+  :has_item: []
+  :repeating: false
+  :has_sub_group: []
+  :has_common: []

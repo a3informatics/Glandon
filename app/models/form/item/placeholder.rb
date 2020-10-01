@@ -5,9 +5,9 @@
 # @since 3.2.0
 class Form::Item::Placeholder < Form::Item
 
-   configure rdf_type: "http://www.assero.co.uk/BusinessForm#Placeholder",
-             uri_suffix: "PL",  
-            uri_property: :ordinal
+  configure rdf_type: "http://www.assero.co.uk/BusinessForm#Placeholder",
+            uri_suffix: "PL",  
+            uri_unique: true 
 
    data_property :free_text
   

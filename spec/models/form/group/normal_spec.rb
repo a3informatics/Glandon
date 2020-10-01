@@ -4,6 +4,7 @@ describe Form::Group::Normal do
   
   include DataHelpers
   include SparqlHelpers
+  include SecureRandomHelpers
 
   def sub_dir
     return "models/form/group/normal"
@@ -72,6 +73,11 @@ describe Form::Group::Normal do
 
   describe "Add child" do
     
+    def check_normal_group(uri, filename, write_file=false)
+      normal = Form::Group::Normal.find_full(uri)
+      check_file_actual_expected(normal.to_h, sub_dir, filename, equate_method: :hash_equal, write_file: write_file)
+    end
+
     before :each do
       data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/MAKE_COMMON_TEST.ttl", "forms/CRF TEST 1.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
       load_files(schema_files, data_files)
@@ -81,12 +87,14 @@ describe Form::Group::Normal do
     end
 
     it "add child I, add normal groups" do
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"normal_group"})
-      check_file_actual_expected(result.to_h, sub_dir, "add_child_expected.yaml", equate_method: :hash_equal)
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      check_normal_group(uri, "add_child_expected_1.yaml")
+      normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"normal_group"})
-      check_file_actual_expected(result.to_h, sub_dir, "add_child_expected_2.yaml", equate_method: :hash_equal)
+      check_normal_group(uri, "add_child_expected_2.yaml")
     end
 
     it "add child II, error" do
@@ -98,46 +106,54 @@ describe Form::Group::Normal do
     end
 
     it "add child III, bc groups" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
       bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
       bci_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/RACE/V1#BCI"))
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal)
+      check_normal_group(uri, "add_child_expected_3.yaml")
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = normal.add_child({type:"bc_group", id_set:[bci_2.id, bci_3.id]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
+      check_normal_group(uri, "add_child_expected_4.yaml")
     end
 
     it "add child IV, bc groups" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_7.yaml", equate_method: :hash_equal)
+      check_normal_group(uri, "add_child_expected_7.yaml")
     end
 
     it "add child V, items" do
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"question"})
-      check_file_actual_expected(result.to_h, sub_dir, "add_child_expected_5.yaml", equate_method: :hash_equal)
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      check_normal_group(uri, "add_child_expected_5.yaml")
+      normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"placeholder"})
-      check_file_actual_expected(result.to_h, sub_dir, "add_child_expected_6.yaml", equate_method: :hash_equal)
+      check_normal_group(uri, "add_child_expected_6.yaml")
     end
 
     it "add child VI, bc group, check bc property common" do
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal = Form::Group::Normal.find(uri)
       normal.add_child({type:"common_group"})
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      normal = Form::Group::Normal.find(uri)
       normal.add_child({type:"bc_group", id_set:[bci_1.id]})
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
-      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_BCG6_BP3"))
+      normal = Form::Group::Normal.find(uri)
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296"))
       bc_property.make_common
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
-      check_file_actual_expected(result, sub_dir, "add_child_expected_11.yaml", equate_method: :hash_equal)
+      check_normal_group(uri, "add_child_expected_11.yaml")
     end
 
   end
@@ -153,6 +169,7 @@ describe Form::Group::Normal do
     end
 
     it "add normal groups" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X1"), note: "OK", ordinal: 1, completion: "None")
       expect(normal.errors.count).to eq(0)
       result = normal.add_child({type:"normal_group"})
@@ -164,6 +181,7 @@ describe Form::Group::Normal do
     end
 
     it "add normal groups and common" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X2"), note: "OK", ordinal: 1, completion: "None")
       expect(normal.errors.count).to eq(0)
       result = normal.add_child({type:"normal_group"})
@@ -174,6 +192,7 @@ describe Form::Group::Normal do
     end
 
     it "add normal groups and common, error" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X3"), note: "OK", ordinal: 1, completion: "None")
       expect(normal.errors.count).to eq(0)
       result = normal.add_child({type:"normal_group"})
@@ -187,6 +206,7 @@ describe Form::Group::Normal do
     end
 
     it "add normal groups and common, check clash" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal_1 = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X4"), note: "OK", ordinal: 1, completion: "None")
       expect(normal_1.errors.count).to eq(0)
       result = normal_1.add_child({type:"normal_group"})
@@ -196,7 +216,6 @@ describe Form::Group::Normal do
       result = normal_1.add_child({type:"common_group"})
       normal_1 = Form::Group::Normal.find_full(normal_1.uri)
       check_file_actual_expected(normal_1.to_h, sub_dir, "add_child_common_expected_2.yaml", equate_method: :hash_equal)
-
       normal_2 = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X5"), note: "OK", ordinal: 1, completion: "None")
       expect(normal_2.errors.count).to eq(0)
       result = normal_2.add_child({type:"normal_group"})
@@ -222,6 +241,7 @@ describe Form::Group::Normal do
     end
 
     it "delete I" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = normal.add_child({type:"question"})
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))

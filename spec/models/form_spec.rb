@@ -4,6 +4,7 @@ describe Form do
 
   include DataHelpers
   include SparqlHelpers
+  include SecureRandomHelpers
 
   def sub_dir
     return "models/form"
@@ -153,19 +154,23 @@ describe Form do
   describe "Add child" do
     
     before :all do
-      data_files = ["forms/FN000150.ttl", "forms/VSTADIABETES.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      data_files = ["forms/FN000150.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..15)
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
     it "add child I" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.find_minimum(uri)
+      result = form.add_child({type:"normal_group"})
+      form = Form.find_full(uri)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected.yaml", equate_method: :hash_equal)
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
       result = form.add_child({type:"normal_group"})
-      check_file_actual_expected(result.to_h, sub_dir, "add_child_expected.yaml", equate_method: :hash_equal)
-      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
-      result = form.add_child({type:"normal_group"})
-      check_file_actual_expected(result.to_h, sub_dir, "add_child_expected_2.yaml", equate_method: :hash_equal)
+      form = Form.find_full(uri)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_2.yaml", equate_method: :hash_equal)
     end
 
     # it "add child II, error" do

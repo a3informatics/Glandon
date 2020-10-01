@@ -5,7 +5,6 @@
 class Annotation < IsoConceptV2
   
   configure rdf_type: "http://www.assero.co.uk/Annotations#Annotation",
-            uri_suffix: "A",
             uri_unique: true
 
   data_property :reference

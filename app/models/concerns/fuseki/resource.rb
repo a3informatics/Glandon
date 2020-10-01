@@ -165,7 +165,12 @@ module Fuseki
         result = Uri.new(uri: parent.to_s) 
         if opts.key?(:uri_unique)
           if opts[:uri_unique].is_a?(TrueClass)
-            result = Uri.new(namespace: self.class.base_uri.namespace, fragment: SecureRandom.uuid)
+            if opts.key?(:uri_suffix)
+              result = Uri.new(namespace: parent.namespace, fragment: "#{opts[:uri_suffix]}")
+              result.extend_fragment("#{SecureRandom.uuid}")
+            else
+              result = Uri.new(namespace: self.class.base_uri.namespace, fragment: SecureRandom.uuid)
+            end
           else
             result = Uri.new(namespace: self.class.base_uri.namespace, fragment: Digest::SHA1.hexdigest(self.send(opts[:uri_unique])))
           end
