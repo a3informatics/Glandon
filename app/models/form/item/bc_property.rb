@@ -1,3 +1,8 @@
+# Form Bc Property. Handles the bc property item specfic actions.
+# Based on earlier implementation.
+#
+# @author Clarisa Romero
+# @since 3.2.0
 class Form::Item::BcProperty < Form::Item
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",

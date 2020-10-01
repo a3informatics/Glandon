@@ -1,3 +1,8 @@
+# Form Common. Handles the common item specfic actions.
+# Based on earlier implementation.
+#
+# @author Clarisa Romero
+# @since 3.2.0
 class Form::Item::Common < Form::Item::BcProperty
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#CommonItem",
