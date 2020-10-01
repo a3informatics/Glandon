@@ -77,11 +77,12 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       expect(page).to have_selector '.card.mini.selected .icon-edit', count: 1
       expect(page).to have_selector '.card.mini.selected .token-timeout', count: 1
       expect(page).to have_selector '.card.mini.selected .remove-bc.disabled', count: 1
-      ui_check_table_info 'editor', 1, 4, 4
-      ui_check_table_cell 'editor', 1, 5, 'Height'
-      ui_check_table_cell 'editor', 3, 8, 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
+      ui_check_table_info 'editor', 1, 10, 12
+      ui_check_table_cell 'editor', 6, 5, 'Unit'
+      ui_check_table_cell 'editor', 7, 5, 'Height'
+      ui_check_table_cell 'editor', 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
       ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
-      ui_check_table_cell_icon 'editor', 3, 2, 'times-circle'
+      ui_check_table_cell_icon 'editor', 3, 1, 'times-circle'
     end
 
     it "allows to edit a single BC, inline fields, field errors display" do
@@ -90,21 +91,21 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       # Inline text
       ui_editor_select_by_content 'Result'
       ui_editor_fill_inline "question_text", "Test Result\n"
-      ui_editor_check_value 1, 4, 'Test Result'
+      ui_editor_check_value 7, 4, 'Test Result'
 
       # Truefalse field
       ui_press_key :arrow_left
-      ui_editor_check_focus(1, 2)
-      ui_check_table_cell_icon 'editor', 1, 2, 'sel-filled'
-      ui_check_table_cell_icon 'editor', 2, 2, 'sel-filled'
+      ui_editor_check_focus(7, 2)
+      ui_check_table_cell_icon 'editor', 6, 2, 'sel-filled'
+      ui_check_table_cell_icon 'editor', 7, 2, 'sel-filled'
 
       ui_press_key :enter
       ui_press_key :arrow_right
       ui_press_key :enter
       wait_for_ajax 10
 
-      ui_check_table_cell_icon 'editor', 1, 2, 'times-circle'
-      ui_check_table_cell_icon 'editor', 3, 2, 'times-circle'
+      ui_check_table_cell_icon 'editor', 6, 2, 'times-circle'
+      ui_check_table_cell_icon 'editor', 7, 2, 'times-circle'
 
       ui_press_key :arrow_down
       ui_press_key :arrow_right
@@ -120,14 +121,14 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       # Inline Text
       ui_press_key :enter
       ui_editor_fill_inline 'format', "123\n"
-      ui_editor_check_value 2, 7, '123'
+      ui_editor_check_value 8, 7, '123'
 
     end
 
     it "allows to edit a single BC, terminology selection" do
       go_to_edit 'HEIGHT'
 
-      ui_editor_select_by_location 1, 8
+      ui_editor_select_by_location 7, 8
 
       # Add Terminology References
       ui_in_modal do
@@ -140,10 +141,10 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         ip_submit 'bc-term-ref'
       end
 
-      ui_editor_check_value 1, 8, 'UNCLE, BIOLOGICAL C96587 (RELSUB C100130 v62.0.0) SISTER, BIOLOGICAL C96586 (RELSUB C100130 v62.0.0)'
+      ui_editor_check_value 7, 8, 'UNCLE, BIOLOGICAL C96587 (RELSUB C100130 v62.0.0) SISTER, BIOLOGICAL C96586 (RELSUB C100130 v62.0.0)'
 
       # Remove Multiple Terminology References
-      ui_press_key :arrow_down
+      ui_press_key :arrow_up
       ui_press_key :enter
 
       ui_in_modal do
@@ -152,7 +153,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         ip_submit 'bc-term-ref'
       end
 
-      ui_editor_check_value 2, 8, 'm C41139 (UNIT C71620 v62.0.0) cm C49668 (VSRESU C66770 v59.0.0)'
+      ui_editor_check_value 6, 8, 'm C41139 (UNIT C71620 v62.0.0) cm C49668 (VSRESU C66770 v59.0.0)'
 
       # Remove All Terminology References
 
@@ -163,7 +164,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         ip_submit 'bc-term-ref'
       end
 
-      ui_editor_check_value 2, 8, ''
+      ui_editor_check_value 6, 8, ''
 
     end
 
@@ -171,7 +172,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       go_to_edit 'HEIGHT'
 
       expect(page).to have_selector '.card.mini', count: 1
-      ui_check_table_info 'editor', 1, 4, 4
+      ui_check_table_info 'editor', 1, 10, 12
 
       # Add BC
       find('#add-bc-edit-button').click
@@ -190,8 +191,8 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       expect(page).to have_selector '.card.mini .remove-bc', count: 2
 
       click_bc 'WEIGHT', :edit
-      ui_check_table_info 'editor', 1, 4, 4
-      ui_editor_check_value 2, 8, 'WEIGHT C25208 (VSTESTCD C66741 v61.0.0)'
+      ui_check_table_info 'editor', 1, 10, 12
+      ui_editor_check_value 1, 8, 'WEIGHT C25208 (VSTESTCD C66741 v61.0.0)'
 
       # Add BC
       find('#add-bc-edit-button').click
@@ -204,7 +205,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       expect(page).to have_selector '.card.mini .remove-bc', count: 3
 
       click_bc 'SYSBP', :edit
-      ui_check_table_info 'editor', 1, 6, 6
+      ui_check_table_info 'editor', 1, 10, 12
 
       # Prevent duplicate BC
       find('#add-bc-edit-button').click
@@ -213,7 +214,6 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
       expect(page).to have_selector '.card.mini', count: 3
     end
-
 
     it "allows to create a BC, gets added to Editor" do
       go_to_edit 'HEIGHT'
@@ -224,7 +224,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       ui_in_modal do
         fill_in 'identifier', with: 'BC Edit Test'
         fill_in 'label', with: 'BC Label'
-        find('#new-bc-template').click
+        find('#new-item-template').click
         ip_pick_managed_items(:bct, [ { identifier: 'BASIC OBS', version: '1' } ], 'new-bc')
 
         click_on 'Submit'
@@ -238,6 +238,9 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       expect(page).to have_content 'BC Edit Test'
 
       click_bc 'BC Edit Test', :edit
+
+      # Sort
+      find(:xpath, "//th[contains(.,'Alias')]").click
 
       ui_check_table_info 'editor', 1, 10, 13
       ui_editor_check_value 2, 6, 'DATETIME'
@@ -255,7 +258,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
       click_bc 'DIABP', :edit
 
-      ui_check_table_info 'editor', 1, 7, 7
+      ui_check_table_info 'editor', 1, 10, 12
 
       # Sort
       find(:xpath, "//th[contains(.,'Question Text')]").click
@@ -263,7 +266,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       # Inline text
       ui_editor_select_by_content 'Body Position', true
       ui_editor_fill_inline "question_text", "Patient Body Position\n"
-      ui_editor_check_value 5, 4, 'Patient Body Position'
+      ui_editor_check_value 10, 4, 'Patient Body Position'
 
       # Truefalse field
       ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
@@ -314,7 +317,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
           ], 'bc-term-ref'
       end
 
-      ui_editor_check_value 5, 8, 'ARM C32141 (LOC C74456 v62.0.0) LEG C32974 (LOC C74456 v62.0.0)'
+      ui_editor_check_value 10, 8, 'ARM C32141 (LOC C74456 v62.0.0) LEG C32974 (LOC C74456 v62.0.0)'
 
       # Remove Term Reference
 
@@ -325,7 +328,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         ip_submit 'bc-term-ref'
       end
 
-      ui_editor_check_value 3, 8, 'LEG C32974 (LOC C74456 v62.0.0)'
+      ui_editor_check_value 10, 8, 'LEG C32974 (LOC C74456 v62.0.0)'
 
       click_bc 'HEIGHT', :edit
 
@@ -392,13 +395,13 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
     it "allows to reload BC Editor data" do
       go_to_edit 'HR'
 
-      ui_check_table_info 'editor', 1, 6, 6
+      ui_check_table_info 'editor', 1, 10, 11
       click_on 'Reload'
 
       expect(page).to have_selector '.spinner-container', visible:true, count: 2
       wait_for_ajax 20
 
-      ui_check_table_info 'editor', 1, 6, 6
+      ui_check_table_info 'editor', 1, 10, 11
     end
 
     it "allows to view BC Edit help dialog" do

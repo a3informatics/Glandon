@@ -73,13 +73,13 @@ describe "Biomedical Concept Instances", :type => :feature do
       wait_for_ajax 10
       expect(page).to have_content 'Show: Biomedical Concept'
       expect(page).to have_content 'Incomplete'
-      ui_check_table_info("show", 1, 4, 4)
-      ui_check_table_cell("show", 1, 3, "value")
-      ui_check_table_cell("show", 1, 4, "Result")
-      ui_check_table_cell("show", 1, 5, "Height")
-      ui_check_table_cell("show", 1, 6, "PQR")
-      ui_check_table_cell("show", 1, 7, "5.2")
-      ui_check_table_cell("show", 3, 8, "HEIGHT C25347 (VSTESTCD C66741 v61.0.0)")
+      ui_check_table_info("show", 1, 10, 12)
+      ui_check_table_cell("show", 7, 3, "--ORRES")
+      ui_check_table_cell("show", 7, 4, "Result")
+      ui_check_table_cell("show", 7, 5, "Height")
+      ui_check_table_cell("show", 7, 6, "PQR")
+      ui_check_table_cell("show", 7, 7, "5.2")
+      ui_check_table_cell("show", 1, 8, "HEIGHT C25347 (VSTESTCD C66741 v61.0.0)")
     end
 
     it "show page has terminology reference links", js:true do
@@ -113,7 +113,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       context_menu_element_v2('history', 'DIABP', :show)
       wait_for_ajax 10
       expect(page).to have_content 'Show: Biomedical Concept'
-      ui_check_table_info("show", 1, 7, 7)
+      ui_check_table_info("show", 1, 10, 12)
       click_on 'CSV'
 
       file = download_content
@@ -131,7 +131,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       context_menu_element_v2('history', 'WEIGHT', :show)
       wait_for_ajax 10
       expect(page).to have_content 'Show: Biomedical Concept'
-      ui_check_table_info("show", 1, 4, 4)
+      ui_check_table_info("show", 1, 10, 12)
       click_on 'Excel'
 
       file = download_content
