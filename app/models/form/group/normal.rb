@@ -1,3 +1,8 @@
+# Form Normal. Handles the normal group specfic actions.
+# Based on earlier implementation.
+#
+# @author Clarisa Romero
+# @since 3.2.0
 class Form::Group::Normal < Form::Group
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
@@ -273,7 +278,6 @@ class Form::Group::Normal < Form::Group
       tx = transaction_begin
       bci = BiomedicalConceptInstance.find(id)
       bc_group = Form::Group::Bc.create(label: bci.label, ordinal: next_ordinal, parent_uri: self.uri, transaction: tx)
-      #return bc_group if bc_group.errors.any? #Merge error
       bc_reference = OperationalReferenceV3.create({reference: bci.uri, transaction: tx}, bc_group)
       bc_group.has_biomedical_concept = bc_reference
       bc_group.save
@@ -318,9 +322,7 @@ class Form::Group::Normal < Form::Group
     end
 
     def add_normal_group
-      ordinal = next_ordinal
-      child = Form::Group::Normal.create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
-      #return child if child.errors.any? ##Merge error
+      child = Form::Group::Normal.create(label: "Not set", ordinal: next_ordinal, parent_uri: self.uri)
       self.add_link(:has_sub_group, child.uri)
       child
     end
@@ -328,7 +330,6 @@ class Form::Group::Normal < Form::Group
     def add_common_group
       unless common_group?
         child = Form::Group::Common.create(label: "Not set", ordinal: 1, parent_uri: self.uri)
-        #return child if child.errors.any? ##Merge error
         self.add_link(:has_common, child.uri)
         reset_ordinals(self)
         child
@@ -346,9 +347,8 @@ class Form::Group::Normal < Form::Group
     end
 
     def add_item(params)
-      ordinal = next_ordinal
-      child = type_to_class[params[:type].to_sym].create(label: "Not set", ordinal: ordinal, parent_uri: self.uri)
-      #return child if child.errors.any? ##Merge error
+      child = type_to_class[params[:type].to_sym].create(label: "Not set", ordinal: next_ordinal, parent_uri: self.uri)
+      child.save
       self.add_link(:has_item, child.uri)
       child
     end

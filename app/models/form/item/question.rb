@@ -51,14 +51,13 @@ class Form::Item::Question < Form::Item
     if params[:type].to_sym == :tuc_reference
       results = []
       params[:id_set].each do |params|
-        transaction = transaction_begin
         ordinal = next_ordinal(:has_coded_value)
         cli = Thesaurus::UnmanagedConcept.find(params[:id])
         cl = Thesaurus::ManagedConcept.find_with_properties(params[:context_id])
-        child = OperationalReferenceV3::TucReference.create({local_label: cli.label, reference: cli, context: cl, ordinal: ordinal, transaction: transaction, parent_uri: self}, self)
-        return child if child.errors.any?
-        self.add_link(:has_coded_value, child.uri)
-        transaction_execute
+        child = OperationalReferenceV3::TucReference.create({local_label: cli.label, reference: cli, context: cl, ordinal: ordinal, parent_uri: self}, self)
+        child.save
+        self.has_coded_value_push(child.uri)
+        self.save
         results << child.to_h
       end
       results
