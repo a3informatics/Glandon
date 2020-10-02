@@ -40,15 +40,17 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
       find(:xpath, "//a[@href='/forms']").click
       expect(page).to have_content 'Index: Forms'
+      find(:xpath, "//th[contains(.,'Identifier')]").click #Order
       ui_check_table_info("index", 1, 2, 2)
-      ui_check_table_cell("index", 2, 2, "FN000120")
-      ui_check_table_cell("index", 2, 3, "Disability Assessment For Dementia (DAD) (Pilot)")
+      ui_check_table_cell("index", 1, 2, "FN000120")
+      ui_check_table_cell("index", 1, 3, "Disability Assessment For Dementia (DAD) (Pilot)")
     end
 
     it "allows the history page to be viewed", js:true do
       click_navbar_forms
       wait_for_ajax 10
       expect(page).to have_content 'Index: Forms'
+      ui_table_search('index', 'Height')
       find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'FN000150\''
@@ -61,6 +63,7 @@ describe "Forms", :type => :feature do
       click_navbar_forms
       wait_for_ajax 10
       expect(page).to have_content 'Index: Forms'
+      ui_table_search('index', 'Height')
       find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'FN000150\''
@@ -82,6 +85,7 @@ describe "Forms", :type => :feature do
       click_navbar_forms
       wait_for_ajax 10
       expect(page).to have_content 'Index: Forms'
+      ui_table_search('index', 'Height')
       find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'FN000150\''
@@ -94,6 +98,7 @@ describe "Forms", :type => :feature do
     it "show page has terminology reference links", js:true do
       click_navbar_forms
       wait_for_ajax 10
+      ui_table_search('index', 'Height')
       find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'FN000150\''
@@ -109,6 +114,7 @@ describe "Forms", :type => :feature do
     it "allows to download show Form table as a csv file", js:true do
       click_navbar_forms
       wait_for_ajax 10
+      ui_table_search('index', 'DAD')
       find(:xpath, "//tr[contains(.,'(DAD) (Pilot)')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'FN000120\''
@@ -125,6 +131,7 @@ describe "Forms", :type => :feature do
     it "allows to download show Form table as an excel file", js:true do
       click_navbar_forms
       wait_for_ajax 10
+      ui_table_search('index', 'Height')
       find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'FN000150\''

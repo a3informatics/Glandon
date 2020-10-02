@@ -12,6 +12,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
   include ScenarioHelpers
   include TagHelper
   include NameValueHelpers
+  include EditorHelpers
 
   def sub_dir
     return "features/scenarios"
@@ -193,11 +194,11 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       click_on 'New item'
       wait_for_ajax 10
       ui_editor_select_by_location(1,2)
-      ui_editor_fill_inline "DTE_Field_notation", "SPONSOR CL\t"
+      ui_editor_fill_inline "notation", "SPONSOR CL\t"
       ui_editor_select_by_location(1,3)
-      ui_editor_fill_inline "DTE_Field_preferred_term", "Some Sponsor Code List\n"
+      ui_editor_fill_inline "preferred_term", "Some Sponsor Code List\n"
       ui_editor_select_by_location(1,5)
-      ui_editor_fill_inline "DTE_Field_definition", "And of course, a definition\n"
+      ui_editor_fill_inline "definition", "And of course, a definition\n"
       wait_for_ajax 5
       click_link "Return"
       wait_for_ajax 10
@@ -350,6 +351,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       click_row_contains("changes-cdisc-table", "Epoch")
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'Subset')]/td/button").click
+      
       wait_for_ajax 10
       expect(page).to have_content "Cannot upgrade. You must first upgrade the referenced code list"
       find(:xpath, "//tr[contains(.,'Extension')]/td/button").click
