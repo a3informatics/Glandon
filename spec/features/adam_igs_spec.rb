@@ -41,6 +41,7 @@ describe "ADaM IGs", :type => :feature do
     it "allows the history page to be viewed", js:true do
       click_navbar_adam_ig
       wait_for_ajax 10
+      ui_table_search('index', 'ADAM IG')
       find(:xpath, "//tr[contains(.,'ADAM IG')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'ADAM IG\''
@@ -52,6 +53,7 @@ describe "ADaM IGs", :type => :feature do
     it "history allows the show page to be viewed (REQ-MDR-BC-010)", js:true do
       click_navbar_adam_ig
       wait_for_ajax 10
+      ui_table_search('index', 'ADAM IG')
       find(:xpath, "//tr[contains(.,'ADAM IG')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'ADAM IG\''

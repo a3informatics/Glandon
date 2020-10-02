@@ -41,6 +41,7 @@ describe "ADAM IG Datasets", :type => :feature do
     it "allows the history page to be viewed", js:true do
       click_navbar_adam_ig_dataset
       wait_for_ajax 10
+      ui_table_search('index', 'ADAMIG ADSL')
       find(:xpath, "//tr[contains(.,'ADAMIG ADSL')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'ADAMIG ADSL\''
@@ -52,6 +53,7 @@ describe "ADAM IG Datasets", :type => :feature do
     it "history allows the show page to be viewed (REQ-MDR-BC-010)", js:true do
       click_navbar_adam_ig_dataset
       wait_for_ajax 10
+      ui_table_search('index', 'ADAMIG ADSL')
       find(:xpath, "//tr[contains(.,'ADAMIG ADSL')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'ADAMIG ADSL\''
