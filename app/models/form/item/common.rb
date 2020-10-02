@@ -44,37 +44,36 @@ class Form::Item::Common < Form::Item::BcProperty
   end
 
   def delete(parent)
-    super
+    update_query = %Q{
+      DELETE DATA
+      {
+        #{parent.uri.to_ref} bf:hasItem #{self.uri.to_ref} 
+      };
+      DELETE {?s ?p ?o} WHERE 
+      { 
+        { BIND (#{self.uri.to_ref} as ?s). 
+          ?s ?p ?o
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasCodedValue ?o1 . 
+          BIND (?o1 as ?s) . 
+          ?s ?p ?o .
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasProperty ?o2 . 
+          BIND (?o2 as ?s) . 
+          ?s ?p ?o .
+        }
+      }
+    }
+    partial_update(update_query, [:bf])
+    parent.reset_ordinals
     common_group = Form::Group::Common.find(parent.uri)
-    normal_group_hash = Form::Group::Normal.find_full(common_group.get_normal_group).to_h
-    full_normal_group(normal_group_hash)
-    normal_group_hash
+    normal_group = Form::Group::Normal.find_full(common_group.get_normal_group)
+    normal_group = normal_group.full_data(normal_group.to_h)
   end
 
   private
-
-    # Normal group hash
-    #
-    # @return [Hash] Return the data of the whole parent Normal Group, all its children BC Groups, Common Group + any referenced item data.
-    def full_normal_group(normal_group)
-      normal_group[:has_item].each do |item|
-        get_referenced_item(item)
-      end
-      normal_group[:has_common].first[:has_item].each do |item|
-        get_referenced_item(item)
-      end
-      normal_group[:has_common].first[:has_item].each do |item|
-        item[:has_common_item].each do |ci|
-          get_referenced_item(ci)
-        end
-      end
-      normal_group[:has_sub_group].each do |sg|
-        sg[:has_item].each do |item|
-          get_referenced_item(item)
-        end
-      end
-      normal_group
-    end
 
     def terminology_cell(property)
       html = '<td>'

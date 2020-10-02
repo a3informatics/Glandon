@@ -41,7 +41,8 @@ class Form::Item < IsoConceptV2
     }
     partial_update(update_query, [:bf])
     parent.reset_ordinals
-    1
+    normal_group = Form::Group::Normal.find_full(parent.uri)
+    normal_group = normal_group.full_data(normal_group.to_h)
   end
 
   def start_row(optional)

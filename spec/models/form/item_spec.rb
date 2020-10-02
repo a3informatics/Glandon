@@ -79,6 +79,7 @@ describe Form::Item do
       result = question.delete(parent)
       expect{OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1 in OperationalReferenceV3::TucReference.")
       expect{Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1 in Form::Item::Question.")
+      check_file_actual_expected(result, sub_dir, "delete_item_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "Deletes placeholder" do
@@ -86,6 +87,7 @@ describe Form::Item do
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = placeholder.delete(parent)
       expect{Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2 in Form::Item::Placeholder.")
+      check_file_actual_expected(result, sub_dir, "delete_item_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "Deletes Common item" do
@@ -96,6 +98,31 @@ describe Form::Item do
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1"))
       expect(parent.has_item.count).to eq(1)
       expect{Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1 in Form::Item::Common.")
+      check_file_actual_expected(result, sub_dir, "delete_item_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "Deletes Mapping" do
+      parent = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/N1"), note: "OK", ordinal: 1, completion: "None")
+      item = Form::Item::Mapping.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, mapping: "string")
+      parent.has_item_push(item) 
+      parent.save
+      parent = Form::Group::Normal.find_full(parent.uri)
+      parent.has_item_objects
+      check_file_actual_expected(parent.to_h, sub_dir, "delete_item_expected_4a.yaml", equate_method: :hash_equal)
+      result = item.delete(parent)
+      check_file_actual_expected(result, sub_dir, "delete_item_expected_4b.yaml", equate_method: :hash_equal)      
+    end
+
+    it "Deletes Text Label" do
+      parent = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/N1"), note: "OK", ordinal: 1, completion: "None")
+      item = Form::Item::TextLabel.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, label_text: "string")
+      parent.has_item_push(item) 
+      parent.save
+      parent = Form::Group::Normal.find_full(parent.uri)
+      parent.has_item_objects
+      check_file_actual_expected(parent.to_h, sub_dir, "delete_item_expected_5a.yaml", equate_method: :hash_equal)
+      result = item.delete(parent)
+      check_file_actual_expected(result, sub_dir, "delete_item_expected_5b.yaml", equate_method: :hash_equal)      
     end
 
   end
