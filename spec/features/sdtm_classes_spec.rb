@@ -32,14 +32,16 @@ describe "SDTM Classes", :type => :feature do
       click_navbar_sdtm_class
       wait_for_ajax 20
       expect(page).to have_content 'Index: SDTM Classes'
+      find(:xpath, "//th[contains(.,'Identifier')]").click # Order
       ui_check_table_info("index", 1, 7, 7)
-      ui_check_table_cell("index", 1, 2, "SDTMMODEL FINDINGS ABOUT")
-      ui_check_table_cell("index", 1, 3, "Findings About")
+      ui_check_table_cell("index", 3, 2, "SDTMMODEL FINDINGS ABOUT")
+      ui_check_table_cell("index", 3, 3, "Findings About")
     end
 
     it "allows the history page to be viewed", js:true do
       click_navbar_sdtm_class
       wait_for_ajax 10
+      ui_table_search('index', 'SDTMMODEL EVENTS')
       find(:xpath, "//tr[contains(.,'SDTMMODEL EVENTS')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'SDTMMODEL EVENTS\''
@@ -51,6 +53,7 @@ describe "SDTM Classes", :type => :feature do
     it "history allows the show page to be viewed (REQ-MDR-BC-010)", js:true do
       click_navbar_sdtm_class
       wait_for_ajax 10
+      ui_table_search('index', 'SDTMMODEL EVENTS')
       find(:xpath, "//tr[contains(.,'SDTMMODEL EVENTS')]/td/a", :text => 'History').click
       wait_for_ajax 10
       context_menu_element('history', 4, 'SDTMMODEL EVENTS', :show)

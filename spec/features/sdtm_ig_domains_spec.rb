@@ -33,7 +33,7 @@ describe "SDTM IG Domains", :type => :feature do
       wait_for_ajax 20
       expect(page).to have_content 'Index: SDTM IG Domains'
       ui_check_table_info("index", 1, 10, 41)
-      find(:xpath, "//*[@id='index']/thead/tr/th[2]").click #Order data
+      find(:xpath, "//th[contains(.,'Identifier')]").click # Order
       ui_check_table_cell("index", 1, 2, "SDTM IG AE")
       ui_check_table_cell("index", 1, 3, "Adverse Events")
     end
@@ -41,6 +41,7 @@ describe "SDTM IG Domains", :type => :feature do
     it "allows the history page to be viewed", js:true do
       click_navbar_ig_domain
       wait_for_ajax 10
+      ui_table_search('index', 'SDTM IG AE')
       find(:xpath, "//tr[contains(.,'SDTM IG AE')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'SDTM IG AE\''
@@ -52,6 +53,7 @@ describe "SDTM IG Domains", :type => :feature do
     it "history allows the show page to be viewed (REQ-MDR-BC-010)", js:true do
       click_navbar_ig_domain
       wait_for_ajax 10
+      ui_table_search('index', 'SDTM IG AE')
       find(:xpath, "//tr[contains(.,'SDTM IG AE')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'SDTM IG AE\''
