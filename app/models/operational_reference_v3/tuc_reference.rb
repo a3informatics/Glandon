@@ -14,23 +14,4 @@ class OperationalReferenceV3::TucReference < OperationalReferenceV3
   
   validates_with Validator::Field, attribute: :local_label, method: :valid_label?
 
-  def delete(parent)
-    update_query = %Q{
-      DELETE DATA
-      {
-        #{parent.uri.to_ref} bf:hasCodedValue #{self.uri.to_ref} 
-      };
-      DELETE {?s ?p ?o} WHERE 
-      { 
-        {  
-          BIND (#{self.uri.to_ref} as ?s) .
-          ?s ?p ?o .
-        }
-      }
-    }
-    partial_update(update_query, [:bf])
-    reset_ordinals(parent)
-    1
-  end
-
 end
