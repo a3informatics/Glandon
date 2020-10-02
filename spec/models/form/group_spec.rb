@@ -87,12 +87,50 @@ describe Form::Group do
       check_file_actual_expected(parent.to_h[:has_group], sub_dir, "delete_expected_2.yaml", equate_method: :hash_equal)
     end
 
-    it "Deletes BC group" do
-      group = Form::Group::Bc.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2"))
-      parent = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1"))
-      result = group.delete(parent)
-      parent = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1"))
-      check_file_actual_expected(parent.to_h, sub_dir, "delete_expected_3.yaml", equate_method: :hash_equal)
+  end
+
+  describe "Destroy BC Group" do
+    
+    before :each do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "deletes BC group and common item" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal_1 = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X1"), note: "OK", ordinal: 1, completion: "None")
+      expect(normal_1.errors.count).to eq(0)
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/DIABP/V1#BCI"))
+      result = normal_1.add_child({type:"common_group"})
+      result = normal_1.add_child({type:"bc_group", id_set:[bci_1.id]})
+      normal_1 = Form::Group::Normal.find_full(normal_1.uri)
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.example.com/A#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      bc_property.make_common
+      normal_1 = Form::Group::Normal.find_full(normal_1.uri)
+      check_file_actual_expected(normal_1.to_h, sub_dir, "delete_bc_group_expected_1_a.yaml", equate_method: :hash_equal)
+      group = Form::Group::Bc.find(Uri.new(uri: "http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      result = group.delete(normal_1)
+      check_file_actual_expected(result, sub_dir, "delete_bc_group_expected_1_b.yaml", equate_method: :hash_equal)
+    end
+
+    it "deletes BC group, doesn't delete common item" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal_1 = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X2"), note: "OK", ordinal: 1, completion: "None")
+      expect(normal_1.errors.count).to eq(0)
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/DIABP/V1#BCI"))
+      bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/SYSBP/V1#BCI"))
+      result = normal_1.add_child({type:"common_group"})
+      result = normal_1.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id]})
+      normal_1 = Form::Group::Normal.find_full(normal_1.uri)
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.example.com/A#BCP_b76597f7-972f-40f4-bed7-e134725cf296"))
+      bc_property.make_common
+      normal_1 = Form::Group::Normal.find_full(normal_1.uri)
+      check_file_actual_expected(normal_1.to_h, sub_dir, "delete_bc_group_expected_2_a.yaml", equate_method: :hash_equal)
+      group = Form::Group::Bc.find(Uri.new(uri: "http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      result = group.delete(normal_1)
+      check_file_actual_expected(result, sub_dir, "delete_bc_group_expected_2_b.yaml", equate_method: :hash_equal)
     end
 
   end
