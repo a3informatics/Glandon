@@ -347,7 +347,7 @@
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF83OTQ4ZTYxNC1mZGJhLTQ4NGEtOWRmYy1jOThjZTM2OGQ0ZTc=
     :uri: http://www.s-cubed.dk/FN000150/V1#BCP_7948e614-fdba-484a-9dfc-c98ce368d4e7
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--ORRES"
+    :label: "--ORRESU"
     :tagged: []
     :ordinal: 2
     :note: ''
@@ -362,33 +362,11 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPvalue
-      :context: 
-    :has_coded_value: []
-    :is_common: false
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2Y=
-    :uri: http://www.s-cubed.dk/FN000150/V1#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--ORRESU"
-    :tagged: []
-    :ordinal: 1
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2ZfUjE=
-      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
       :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode
       :context: 
     :has_coded_value:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2ZfVFVDMQ==
-      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC1
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF83OTQ4ZTYxNC1mZGJhLTQ4NGEtOWRmYy1jOThjZTM2OGQ0ZTdfVFVDMQ==
+      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -413,6 +391,28 @@
         - http://www.assero.co.uk/SYN#2d2896805038f7d59edd0a6e072316d80d5df43a
       :context: http://www.cdisc.org/C66770/V59#C66770
       :local_label: Kilogram per Square Meter
+    :is_common: false
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2Y=
+    :uri: http://www.s-cubed.dk/FN000150/V1#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: "--ORRES"
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2ZfUjE=
+      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPvalue
+      :context: 
+    :has_coded_value: []
     :is_common: false
   :has_biomedical_concept:
     :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDR18zNmQwMWEwNC05N2ZhLTRhZTktOGY0MC05ZjI2NmE2Y2RjMDZfUjE=
