@@ -263,7 +263,7 @@
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9jOWY3ZjdkZS1kMjI3LTRlMTUtYjE3MS0wNmM0MzA2Yjc3ZjQ=
     :uri: http://www.s-cubed.dk/FN000150/V1#BCP_c9f7f7de-d227-4e15-b171-06c4306b77f4
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--ORRESU"
+    :label: "--ORRES"
     :tagged: []
     :ordinal: 2
     :note: ''
@@ -278,36 +278,14 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode
+      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue
       :context: 
-    :has_coded_value:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9jOWY3ZjdkZS1kMjI3LTRlMTUtYjE3MS0wNmM0MzA2Yjc3ZjRfVFVDMQ==
-      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.cdisc.org/C66770/V49#C66770_C28252
-      :context: http://www.cdisc.org/C66770/V59#C66770
-      :local_label: Kilogram
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9jOWY3ZjdkZS1kMjI3LTRlMTUtYjE3MS0wNmM0MzA2Yjc3ZjRfVFVDMg==
-      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC2
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 2
-      :reference: http://www.cdisc.org/C66770/V4#C66770_C48531
-      :context: http://www.cdisc.org/C66770/V59#C66770
-      :local_label: Pound
+    :has_coded_value: []
     :is_common: false
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9mOWZlNzEyOC00YjYzLTQ4MmQtOWExMS02MjI1MGUyNGZlMGM=
     :uri: http://www.s-cubed.dk/FN000150/V1#BCP_f9fe7128-4b63-482d-9a11-62250e24fe0c
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--ORRES"
+    :label: "--ORRESU"
     :tagged: []
     :ordinal: 3
     :note: ''
@@ -322,9 +300,31 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue
+      :reference: http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode
       :context: 
-    :has_coded_value: []
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9mOWZlNzEyOC00YjYzLTQ4MmQtOWExMS02MjI1MGUyNGZlMGNfVFVDMQ==
+      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.cdisc.org/C66770/V49#C66770_C28252
+      :context: http://www.cdisc.org/C66770/V59#C66770
+      :local_label: Kilogram
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9mOWZlNzEyOC00YjYzLTQ4MmQtOWExMS02MjI1MGUyNGZlMGNfVFVDMg==
+      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC2
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :reference: http://www.cdisc.org/C66770/V4#C66770_C48531
+      :context: http://www.cdisc.org/C66770/V59#C66770
+      :local_label: Pound
     :is_common: false
   :has_biomedical_concept:
     :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDR18wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2ZfUjE=

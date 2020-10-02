@@ -113,10 +113,10 @@ describe Form::Group::Normal do
       bci_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/RACE/V1#BCI"))
       normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
-      check_normal_group(uri, "add_child_expected_3.yaml")
+      check_normal_group(uri, "add_child_expected_3.yaml", write_file: true)
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       result = normal.add_child({type:"bc_group", id_set:[bci_2.id, bci_3.id]})
-      check_normal_group(uri, "add_child_expected_4.yaml")
+      check_normal_group(uri, "add_child_expected_4.yaml", write_file: true)
     end
 
     it "add child IV, bc groups" do
@@ -171,7 +171,7 @@ describe Form::Group::Normal do
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"bc_group", id_set:[bci_2.id]})
-      check_normal_group(uri, "add_child_expected_12.yaml")
+      check_normal_group(uri, "add_child_expected_12.yaml", write_file: true)
     end
 
   end

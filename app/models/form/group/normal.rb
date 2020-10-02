@@ -281,7 +281,7 @@ class Form::Group::Normal < Form::Group
       bci.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
         next unless item.enabled && item.collect
         item.has_complex_datatype_objects.each do |cdt|
-          cdt.has_property_objects.each do |property|
+          cdt.has_property_objects.sort_by {|x| x.label}.reverse.each do |property|
             bc_property = Form::Item::BcProperty.create(label: property.alias, parent_uri: bc_group.uri, ordinal: ordinal, transaction: tx)
             bc_group.has_item_push(bc_property)
             add_bc_property(property, bc_property)
