@@ -82,4 +82,41 @@ describe Forms::Items::PlaceholdersController do
 
   end
 
+  describe "Destroy" do
+    
+    login_curator
+
+    def sub_dir
+      return "controllers/forms/items"
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/CRF TEST 1.ttl", "forms/FN000150.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..15)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+      @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+    end
+
+    it "Destroy" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      request.content_type = 'application/json'
+      item = Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      token = Token.obtain(@form, @user)
+      audit_count = AuditTrail.count
+      delete :destroy, params:{id: item.id, placeholder: {parent_id: parent.id , form_id: @form.id}}
+      expect(AuditTrail.count).to eq(audit_count+1)
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "destroy_placeholder_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end
