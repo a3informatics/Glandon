@@ -95,6 +95,7 @@ describe "Token Locks", :type => :feature do
         ua_generic_login 'token_user_1@example.com'
         click_navbar_bc
         wait_for_ajax 20
+        ui_table_search('index', 'Height')
         find(:xpath, "//tr[contains(.,'HEIGHT')]/td/a").click
         expect(page).to have_content 'Version History of \'HEIGHT\''
         wait_for_ajax 10
@@ -107,6 +108,7 @@ describe "Token Locks", :type => :feature do
         ua_generic_login 'token_user_2@example.com'
         click_navbar_bc
         wait_for_ajax 20
+        ui_table_search('index', 'Height')
         find(:xpath, "//tr[contains(.,'HEIGHT')]/td/a").click
         expect(page).to have_content 'Version History of \'HEIGHT\''
         wait_for_ajax 10
@@ -123,6 +125,7 @@ describe "Token Locks", :type => :feature do
         ua_generic_login 'token_user_1@example.com'
         click_navbar_forms
         wait_for_ajax 20
+        ui_table_search('index', 'CRF TEST 1')
         find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a").click
         expect(page).to have_content 'Version History of \'CRF TEST 1\''
         wait_for_ajax 10
@@ -135,6 +138,7 @@ describe "Token Locks", :type => :feature do
         ua_generic_login 'token_user_2@example.com'
         click_navbar_forms
         wait_for_ajax 20
+        ui_table_search('index', 'CRF TEST 1')
         find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a").click
         expect(page).to have_content 'Version History of \'CRF TEST 1\''
         wait_for_ajax 10

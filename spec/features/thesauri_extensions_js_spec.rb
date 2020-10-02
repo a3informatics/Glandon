@@ -435,7 +435,7 @@ describe "Thesauri Extensions", :type => :feature do
       find(:xpath, "//*[@id='extension-children-table']/tbody/tr[1]/td[8]/span").click
       ui_confirmation_dialog true
       wait_for_ajax(10)
-      expect(page).to have_content("The edit lock timed out")
+      expect(page).to have_content("The edit lock has timed out")
     end
 
     it "search table with 'All' set as default", js:true do
