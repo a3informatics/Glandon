@@ -38,6 +38,7 @@ describe "Login Session Timeout - automatic logoff", :type => :feature do
     it "items index in modal", js:true do
       ua_content_admin_login
       click_navbar_terminology
+      wait_for_ajax 10
       expect(Devise).to receive(:timeout_in).twice.and_return(2.seconds)
       sleep 3
       click_link 'Search Terminologies'

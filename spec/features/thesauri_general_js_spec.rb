@@ -78,7 +78,7 @@ describe "Thesaurus", :type => :feature do
       ui_create_terminology('TEST ME', 'Test Multiple Edit Terminology')
       find(:xpath, "//tr[contains(.,'Test Multiple Edit Terminology')]/td/a").click
       wait_for_ajax_long
-      context_menu_element('history', 4, 'Test Multiple Edit Terminology', :document_control)
+      context_menu_element_v2('history', 'Test Multiple Edit Terminology', :document_control)
       wait_for_ajax_long
       expect(page).to have_content 'Manage Status'
       expect(page).to have_content("Current Status:")
@@ -91,21 +91,21 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content("Qualified")
       click_link 'Return'
       wait_for_ajax_long
-      find(:xpath, "//*[@id='history']/tbody/tr/td[7]/span/span").click
+      find('.registration-state').click
       wait_for_ajax_long
-      expect(page).to have_css ('.icon-lock-open')
+      expect(page).to have_selector ('.registration-state .icon-lock-open')
       ui_check_table_info("history", 1, 1, 1)
-      context_menu_element('history', 4, 'Test Multiple Edit Terminology', :edit)
+      context_menu_element_v2('history', 'Test Multiple Edit Terminology', :edit)
       wait_for_ajax_long
       click_link 'Return'
-      find(:xpath, "//*[@id='history']/tbody/tr[1]/td[7]/span/span").click
-      expect(page).to have_css ('.icon-lock')
+      find('.registration-state').click
+      expect(page).to have_selector ('.registration-state .icon-lock')
       wait_for_ajax_long
-      context_menu_element('history', 4, 'Test Multiple Edit Terminology', :edit)
+      context_menu_element_v2('history', 'Test Multiple Edit Terminology', :edit)
       wait_for_ajax_long
       click_link 'Return'
       ui_check_table_info("history", 1, 2, 2)
-      context_menu_element('history', 4, 'Test Multiple Edit Terminology', :document_control, 1)
+      context_menu_element_v2('history', 1, :document_control)
       wait_for_ajax_long
       expect(page).to have_content 'Version Control'
       find(:xpath, "//*[@id='version-edit']").click
@@ -238,7 +238,7 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       wait_for_ajax_long
       expect(page).to have_content 'Version History of \'CDISC EXT\''
-      context_menu_element("history", 4, 'CDISC Extensions', :edit)
+      context_menu_element_v2("history", '1.1.0', :edit)
       wait_for_ajax_long
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
