@@ -11,8 +11,13 @@ describe "ADaM IGs", :type => :feature do
   describe "Basic Operations, curator", :type => :feature, js:true do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ADAM_IG_1-0-0 Draft.ttl"]
+      data_files = []
       load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("cdisc/adam_ig/ADAM_IG_V1.ttl")
       ua_create
     end
 
@@ -61,7 +66,7 @@ describe "ADaM IGs", :type => :feature do
       wait_for_ajax 10
       expect(page).to have_content 'Show: ADaM IG'
       ui_check_table_info("show", 1, 2, 2)
-      ui_check_table_cell("show", 1, 1, "ADAMIG BDS")
+      ui_check_table_cell("show", 1, 1, "BDS")
       ui_check_table_cell("show", 1, 2, "Basic Data Structure")
     end
 
