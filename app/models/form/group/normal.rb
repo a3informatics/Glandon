@@ -310,7 +310,7 @@ class Form::Group::Normal < Form::Group
       bc_property_reference = OperationalReferenceV3.create({reference: property.uri}, bc_property)
       bc_property.has_property = bc_property_reference
       bc_property.add_link(:has_property, bc_property_reference.uri)
-      property.has_coded_value_objects.each_with_index do |cv_ref, indx|
+      property.has_coded_value_objects.sort_by {|x| x.ordinal}.each_with_index do |cv_ref, indx|
         cli = Thesaurus::UnmanagedConcept.find_full(cv_ref.reference)
         cl = Thesaurus::ManagedConcept.find_with_properties(cv_ref.context)
         coded_value_reference = OperationalReferenceV3::TucReference.create({local_label: cli.label, reference: cli.uri, context: cl.uri, ordinal: indx+1}, bc_property)
