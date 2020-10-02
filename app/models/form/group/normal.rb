@@ -267,6 +267,43 @@ class Form::Group::Normal < Form::Group
     return "</tr>"
   end
 
+  def delete(parent)
+    super(parent)
+    parent = Form.find_full(parent.uri)
+    parent = parent.full_data(parent.to_h)
+  end
+
+  # Full parent
+  #
+  # @return [Hash] Return the data of the whole parent Normal Group, all its children BC Groups, Common Group + any referenced item data.
+  def full_data(parent)
+    parent[:has_item].each do |item|
+      get_ref_item(item) unless item[:has_coded_value].nil?
+    end
+    parent[:has_sub_group].each do |sg|
+      sg[:has_item].each do |item|
+        get_ref_item(item)
+      end
+    end
+    if common_group?
+      parent[:has_common].first[:has_item].each do |item|
+        get_ref_item(item)
+      end
+      parent[:has_common].first[:has_item].each do |item|
+        item[:has_common_item].each do |ci|
+          get_ref_item(ci)
+        end
+      end
+    end
+    parent
+  end
+
+  def get_ref_item(node)
+    node[:has_coded_value].each do |cv|
+      cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
+    end
+  end
+
   private
     
     def add_bc_group(id)

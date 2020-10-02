@@ -76,15 +76,15 @@ describe Form::Group do
       parent = Form.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
       expect(parent.has_group.count).to eq(0)
       expect{Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/FN000150/V1#F_NG1 in Form::Group::Normal.")
+      check_file_actual_expected(result, sub_dir, "delete_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "Deletes Normal group II" do
       group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG3"))
       parent = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
-      check_file_actual_expected(parent.to_h[:has_group], sub_dir, "delete_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(parent.to_h, sub_dir, "delete_expected_2a.yaml", equate_method: :hash_equal)
       result = group.delete(parent)
-      parent = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
-      check_file_actual_expected(parent.to_h[:has_group], sub_dir, "delete_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(result, sub_dir, "delete_expected_2b.yaml", equate_method: :hash_equal)
     end
 
   end
