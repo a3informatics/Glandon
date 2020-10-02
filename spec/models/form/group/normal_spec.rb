@@ -156,6 +156,24 @@ describe Form::Group::Normal do
       check_normal_group(uri, "add_child_expected_11.yaml")
     end
 
+    it "add child VII, bc group, check bc property common" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal = Form::Group::Normal.find(uri)
+      normal.add_child({type:"common_group"})
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      normal = Form::Group::Normal.find(uri)
+      normal.add_child({type:"bc_group", id_set:[bci_1.id]})
+      normal = Form::Group::Normal.find(uri)
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      bc_property.make_common
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      normal = Form::Group::Normal.find(uri)
+      result = normal.add_child({type:"bc_group", id_set:[bci_2.id]})
+      check_normal_group(uri, "add_child_expected_12.yaml")
+    end
+
   end
 
   describe "Common Group Handling" do
