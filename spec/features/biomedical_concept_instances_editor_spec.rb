@@ -44,6 +44,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
     def go_to_edit(identifier)
       click_navbar_bc
       wait_for_ajax 20
+      ui_table_search('index', identifier)
       find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
       wait_for_ajax 10
       context_menu_element_v2 'history', identifier, :edit

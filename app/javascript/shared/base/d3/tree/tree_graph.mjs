@@ -910,7 +910,7 @@ export default class TreeGraph {
             nodeHeight: 28
           },
           svg: {
-            margin: 20,
+            margin: 25,
             get width() { return props.container.width() },
             get height() { return props.container.height() }
           },
