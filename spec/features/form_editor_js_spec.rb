@@ -290,7 +290,7 @@ describe "Forms", :type => :feature do
       ui_press_key :right
       click_action :edit
 
-      # Field vali…dation
+      # Field validation
       ui_in_modal do
         within( find('#node-editor') ) do
           fill_in 'local_label', with: ''
@@ -445,10 +445,12 @@ describe "Forms", :type => :feature do
       find_node('Weight').click
       check_node( 'Weight', :bc, true )
       ui_press_key :right
-      check_node( '--ORRESU', :bc_property, true )
+      check_node( '--ORRES', :bc_property, true )
       ui_press_key :up
       check_node( '--DTC', :bc_property, true )
       ui_press_key :down
+      ui_press_key :down
+      check_node( '--ORRESU', :bc_property, true )
       ui_press_key :right
       check_node( 'Kilogram', :tuc_ref, true )
       ui_press_key :down
@@ -596,7 +598,7 @@ describe "Forms", :type => :feature do
       check_node_not_exists 'Height Group'
     end
 
-    it "allows to make a node common and restore" do
+    it "allows to make a node common, move references, and restore" do
       # Create a new Form
       click_navbar_forms
       click_on 'New Form'
@@ -639,9 +641,12 @@ describe "Forms", :type => :feature do
         wait_for_ajax 10
       end
 
+      find_node('Common Group').click # Deselect
+      find_node('Weight').click
+
       # Make common
-      ui_press_key :down
       ui_press_key :right
+      ui_press_key :down
       click_action :common
       wait_for_ajax 20
       check_alert 'Node updated successfully'
@@ -667,6 +672,18 @@ describe "Forms", :type => :feature do
       ui_press_key :down
 
       check_node('Pound', :tuc_ref, true)
+
+      # Move common item reference
+      click_action :move_up
+      wait_for_ajax 10
+      check_alert 'Moved successfully'
+      ui_press_key :left
+      ui_press_key :right
+      check_node('Pound', :tuc_ref, true)
+      click_action :move_down
+      wait_for_ajax 10
+      check_alert 'Moved successfully'
+
       ui_press_key :left
 
       click_button 'collapse-except-graph' # Collapse nodes except selected
@@ -707,6 +724,7 @@ describe "Forms", :type => :feature do
 
       find_node('Weight').click
       ui_press_key :right
+      ui_press_key :down
       ui_press_key :right
       ui_press_key :down
       check_node('Pound', :tuc_ref, true)
@@ -774,6 +792,36 @@ describe "Forms", :type => :feature do
 
       # Check new node count
 
+    end
+
+    it "prevents making a BC Property common when it is disabled" do
+      edit_form('TSTFORM')
+
+      find_node('Test Form').click
+      ui_press_key :right
+
+      click_action :add_child
+      find(:xpath, '//div[@id="d3"]//a[@id="bc_group"]').click
+
+      ip_pick_managed_items( :bci, [
+        { identifier: 'WEIGHT', version: '1' }
+      ], 'node-add-child' )
+
+      find_node('Weight').click
+      ui_press_key :right
+
+      check_actions([:edit, :move_up, :move_down, :common])
+      click_action :edit
+
+      ui_in_modal do
+        find_field( 'enabled' ).find(:xpath, '..').click
+        click_on 'Save changes'
+        wait_for_ajax 10
+      end
+
+      check_alert 'Node updated successfully'
+      check_actions([:edit, :move_up])
+      check_actions_not_present([:remove, :common, :restore, :add_child])
     end
 
     it "token timers, warnings, extension and expiration" do
