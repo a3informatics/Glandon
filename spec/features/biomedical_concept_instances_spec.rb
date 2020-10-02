@@ -53,6 +53,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       click_navbar_bc
       wait_for_ajax 10
       expect(page).to have_content 'Index: Biomedical Concepts'
+      ui_table_search('index', 'Height')
       find(:xpath, "//tr[contains(.,'HEIGHT')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'HEIGHT\''
@@ -66,6 +67,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       click_navbar_bc
       wait_for_ajax 10
       expect(page).to have_content 'Index: Biomedical Concepts'
+      ui_table_search('index', 'Height')
       find(:xpath, "//tr[contains(.,'HEIGHT')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'HEIGHT\''
@@ -85,6 +87,7 @@ describe "Biomedical Concept Instances", :type => :feature do
     it "show page has terminology reference links", js:true do
       click_navbar_bc
       wait_for_ajax 10
+      ui_table_search('index', 'Heart Rate')
       find(:xpath, "//tr[contains(.,'Heart Rate')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'HR\''
@@ -106,7 +109,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       click_navbar_bc
       wait_for_ajax 10
       expect(page).to have_content 'Index: Biomedical Concepts'
-      ui_table_search("index", "DIABP")
+      ui_table_search('index', 'DIABP')
       find(:xpath, "//tr[contains(.,'DIABP')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'DIABP\''
