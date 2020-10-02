@@ -27,7 +27,7 @@ module EditorHelpers
   end
 
   def ui_editor_check_value(row, col, text)
-    expect(find(:xpath, "//table[@id='editor']//tr[#{row}]/td[#{col}]").text).to eq(text)
+    expect(find(:xpath, "//table[@id='editor']//tr[#{row}]/td[#{col}]").text).to include(text)
   end
 
   def ui_editor_check_focus(row, col)

@@ -318,7 +318,8 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
           ], 'bc-term-ref'
       end
 
-      ui_editor_check_value 9, 8, 'ARM C32141 (LOC C74456 v62.0.0) LEG C32974 (LOC C74456 v62.0.0)'
+      ui_editor_check_value 9, 8, 'ARM C32141 (LOC C74456 v62.0.0)'
+      ui_editor_check_value 9, 8, 'LEG C32974 (LOC C74456 v62.0.0)'
 
       # Remove Term Reference
 
