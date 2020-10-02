@@ -274,6 +274,7 @@ class Form::Group::Normal < Form::Group
       bci = BiomedicalConceptInstance.find(id)
       bc_group = Form::Group::Bc.create(label: bci.label, ordinal: next_ordinal, parent_uri: self.uri, transaction: tx)
       bc_reference = OperationalReferenceV3.create({reference: bci.uri, transaction: tx}, bc_group)
+      bc_reference.save
       bc_group.has_biomedical_concept = bc_reference
       bc_group.save
       ordinal = 1
@@ -354,8 +355,11 @@ class Form::Group::Normal < Form::Group
       unless self.has_common.empty?
         common_group = Form::Group::Common.find(self.has_common.first)
         common_group.has_item_objects.each do |common_item|
-          next if common_item.has_property_objects.reference != bc_property.has_property_objects.reference
-          make_common(common_item, common_group, bc_property)
+          if common_property?(bc_property, common_item) && bc_property.has_coded_value.empty?
+            make_common(common_item, common_group, bc_property)
+          elsif common_property?(bc_property, common_item) && common_terminologies?(bc_property, common_item)
+            make_common(common_item, common_group, bc_property) 
+          end
         end
       end 
     end
@@ -365,6 +369,26 @@ class Form::Group::Normal < Form::Group
       common_item.has_common_item_push(bc_property.uri)
       common_group.save
       common_item.save
+    end
+
+    def common_property?(bc_property,common_item)
+      query_string = %Q{         
+        SELECT ?result WHERE
+        {BIND ( EXISTS {#{bc_property.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref. 
+                        #{common_item.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref } as ?result )} 
+      }     
+      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bc])
+      query_results.by_object(:result).first.to_bool
+    end
+
+    def common_terminologies?(bc_property, common_item)
+      query_string = %Q{
+        SELECT ?result WHERE
+        {BIND ( EXISTS {#{bc_property.uri.to_ref} bf:hasCodedValue/bo:reference ?cli. 
+                        #{common_item.uri.to_ref} bf:hasCodedValue/bo:reference ?cli } as ?result )} 
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo])
+      query_results.by_object(:result).first.to_bool
     end 
 
     def type_to_class
