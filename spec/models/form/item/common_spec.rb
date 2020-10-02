@@ -34,6 +34,73 @@ describe Form::Item::Common do
 
   end
 
+  describe "Basic tests" do
+    
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..15)
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+    end
+
+    it "returns the item hash" do
+      item = Form::Item::Common.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1)
+      result = item.get_item
+      check_file_actual_expected(result, sub_dir, "get_item_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "returns the CRF rendition, non coded" do
+      bc_property = BiomedicalConcept::PropertyX.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), question_text: "Something", prompt_text: "Else", format: "13", alias: "Well", is_complex_datatype_property: Uri.new(uri: "http://www.s-cubed.dk/CDT#BL_value"))
+      ref = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/R1"), ordinal: 1, reference: bc_property}, bc_property)
+      item = Form::Item::Common.create(uri: Uri.new(uri: "http://www.s-cubed.dk/CI1"), ordinal: 1, has_property: ref.uri)
+      item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CI1"))
+      item.has_property_objects
+      result = item.to_crf
+      check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
+    end
+  
+    it "returns the CRF rendition, coded" do
+      bc_property = BiomedicalConcept::PropertyX.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), question_text: "Something", prompt_text: "Else", format: "13", alias: "Well", is_complex_datatype_property: Uri.new(uri: "http://www.s-cubed.dk/CDT#CD_code"))
+      ref = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/R1"), ordinal: 1, reference: bc_property}, bc_property)
+      uri1 = Uri.new(uri: "http://www.cdisc.org/C66769/V2#C66769_C41338")
+      uri2 = Uri.new(uri: "http://www.cdisc.org/C66769/V2#C66769_C41339")
+      item = Form::Item::Common.create(uri: Uri.new(uri: "http://www.s-cubed.dk/CI1"), ordinal: 1, has_property: ref.uri)
+      ref_cl1 = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/R2"), ordinal: 1, reference: uri1}, item)
+      ref_cl2 = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/R3"), ordinal: 2, reference: uri2}, item)
+      item.has_coded_value_push(ref_cl1)
+      item.has_coded_value_push(ref_cl2)
+      item.save
+      item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CI1"))
+      item.has_property_objects
+      result = item.to_crf
+      check_file_actual_expected(result, sub_dir, "to_crf_expected_2.yaml", equate_method: :hash_equal)
+    end
+  
+    it "returns the children in ordinal order" do
+      item = Form::Item::Common.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1)
+      expect(item.children_ordered).to eq([])
+      ref_2 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R2"), ordinal: 2, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 2")
+      ref_2.save
+      item.has_coded_value_push(ref_2.uri)
+      item.save
+      result = item.children_ordered
+      check_file_actual_expected(result.map{|x| x.to_h}, sub_dir, "children_ordered_expected_1.yaml", equate_method: :hash_equal)
+      ref_1 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R1"), ordinal: 1, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 1")
+      ref_1.save
+      ref_4 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R4"), ordinal: 4, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 4")
+      ref_4.save
+      ref_3 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R3"), ordinal: 3, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 3")
+      ref_3.save
+      item.has_coded_value_push(ref_1)
+      item.has_coded_value_push(ref_4)
+      item.has_coded_value_push(ref_3)
+      item.save
+      result = item.children_ordered
+      check_file_actual_expected(result.map{|x| x.to_h}, sub_dir, "children_ordered_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
   describe "Restore" do
     
     before :each do

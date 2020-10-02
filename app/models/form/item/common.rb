@@ -21,21 +21,24 @@ class Form::Item::Common < Form::Item::BcProperty
 
   # To CRF
   #
-  # @return [String] An html string of Common Item
+  # @return [String] An html string of the Common Item
   def to_crf
     html = ""
-    common_item = self.has_common_item.first
-    property = BiomedicalConcept::PropertyX.find(common_item.has_property.reference)
+    #common_item = self.has_common_item.first
+    property = BiomedicalConcept::PropertyX.find(self.has_property.reference)
     html += start_row(self.optional)
     html += question_cell(property.question_text)
-    if property.has_coded_value.length == 0
+    if self.has_coded_value.length == 0
       html += input_field(property)
     else
-      html += terminology_cell(property)
+      html += terminology_cell(self)
     end
     html += end_row
   end
 
+  # Children Ordered. Provides the childen ordered by ordinal
+  #
+  # @return [Array] the set of children ordered by ordinal
   def children_ordered
     self.has_coded_value_objects.sort_by {|x| x.ordinal}
   end
