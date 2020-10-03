@@ -51,14 +51,14 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
   end
 
   def destroy
-    parent = Form.find(the_params[:parent_id])
+    parent = Form::Group::Normal.find(the_params[:parent_id])
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     bc = Form::Group::Bc.find(protect_from_bad_id(params))
-    bc.delete(parent)
+    result = bc.delete(parent)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, group #{bc.label} deleted.") if @lock.token.refresh == 1
-    render json: {data: "" }, status: 200
+    render json: {data: result }, status: 200
   end
 
 private
