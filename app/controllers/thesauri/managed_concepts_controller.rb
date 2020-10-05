@@ -67,7 +67,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     authorize Thesaurus
     return true unless read_concept(protect_from_bad_id(params))
     @thesaurus_concept = @edit.item
-    @tc.synonyms_and_preferred_terms
+    @thesaurus_concept.synonyms_and_preferred_terms
     @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @thesaurus_concept.scoped_identifier, scope_id: @thesaurus_concept.scope}})
     @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
     @edit_tags_path = path_for(:edit_tags, @thesaurus_concept)
