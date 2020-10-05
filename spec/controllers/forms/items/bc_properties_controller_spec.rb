@@ -84,7 +84,7 @@ describe Forms::Items::BcPropertiesController do
 
   end
 
-  describe "Move up/down" do
+  describe "Move up" do
     
     login_curator
 
@@ -106,7 +106,7 @@ describe Forms::Items::BcPropertiesController do
       @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
     end
 
-    it "Move up I, Question" do
+    it "Move up I, BcProperty" do
       request.env['HTTP_ACCEPT'] = "application/json"
       request.content_type = 'application/json'
       item = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3"))
@@ -118,7 +118,7 @@ describe Forms::Items::BcPropertiesController do
       actual = check_good_json_response(response)
     end
 
-    it "Move up I, Question, Error" do
+    it "Move up I, BcProperty, Error" do
       request.env['HTTP_ACCEPT'] = "application/json"
       request.content_type = 'application/json'
       item = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP1"))
@@ -131,7 +131,7 @@ describe Forms::Items::BcPropertiesController do
       check_file_actual_expected(actual.to_h, sub_dir, "move_up_bc_property_error_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it 'Move up I, Question, Error locked by another user' do
+    it 'Move up I, BcProperty, Error locked by another user' do
       request.env['HTTP_ACCEPT'] = "application/json"
       request.content_type = 'application/json'
       item = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3"))
@@ -142,6 +142,68 @@ describe Forms::Items::BcPropertiesController do
       expect(AuditTrail.count).to eq(audit_count)
       actual = check_error_json_response(response)
       check_file_actual_expected(actual.to_h, sub_dir, "move_up_bc_property_error_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "Move down" do
+    
+    login_curator
+
+    def sub_dir
+      return "controllers/forms/items"
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    before :all do
+      data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+      @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+    end
+
+    it "Move down I, BcProperty" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      request.content_type = 'application/json'
+      item = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP1"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3"))
+      token = Token.obtain(@form, @user)
+      audit_count = AuditTrail.count
+      put :move_down, params:{id: item.id, bc_property: {parent_id: parent.id , form_id: @form.id}}
+      expect(AuditTrail.count).to eq(audit_count+1)
+      actual = check_good_json_response(response)
+    end
+
+    it "Move down I, BcProperty, Error" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      request.content_type = 'application/json'
+      item = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3"))
+      token = Token.obtain(@form, @user)
+      audit_count = AuditTrail.count
+      put :move_down, params:{id: item.id, bc_property: {parent_id: parent.id , form_id: @form.id}}
+      expect(AuditTrail.count).to eq(audit_count)
+      actual = check_error_json_response(response)
+      check_file_actual_expected(actual.to_h, sub_dir, "move_down_bc_property_error_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it 'Move down I, BcProperty, Error locked by another user' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      request.content_type = 'application/json'
+      item = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3"))
+      token = Token.obtain(@form, @lock_user)
+      audit_count = AuditTrail.count
+      put :move_down, params:{id: item.id, bc_property: {parent_id: parent.id , form_id: @form.id}}
+      expect(AuditTrail.count).to eq(audit_count)
+      actual = check_error_json_response(response)
+      check_file_actual_expected(actual.to_h, sub_dir, "move_down_bc_property_error_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end
