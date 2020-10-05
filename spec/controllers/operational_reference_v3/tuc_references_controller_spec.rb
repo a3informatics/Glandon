@@ -100,18 +100,19 @@ describe OperationalReferenceV3::TucReferencesController do
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
       @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
-      @tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1"))
     end
 
     it "Delete" do
       request.env['HTTP_ACCEPT'] = "application/json"
       request.content_type = 'application/json'
+      tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1"))
       parent = Form::Item.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
-      delete :destroy, params:{id: @tuc_reference.id, tuc_reference: {parent_id: parent.id , form_id: @form.id}}
+      delete :destroy, params:{id: tuc_reference.id, tuc_reference: {parent_id: parent.id , form_id: @form.id}}
       expect(AuditTrail.count).to eq(audit_count+1)
       actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "destroy_tuc_reference_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

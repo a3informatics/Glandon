@@ -76,6 +76,8 @@ class Form::Item::Question < Form::Item
   def delete_reference(reference)
     reference.delete_with_links
     self.reset_ordinals
+    question = Form::Item::Question.find(self.uri)
+    question.to_h
   end
 
 end
