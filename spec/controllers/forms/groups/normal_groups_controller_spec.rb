@@ -234,7 +234,7 @@ describe Forms::Groups::NormalGroupsController do
       delete :destroy, params:{id: item.id, normal_group: {parent_id: parent.id , form_id: @form.id}}
       expect(AuditTrail.count).to eq(audit_count+1)
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "destroy_normal_group_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "destroy_normal_group_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end
