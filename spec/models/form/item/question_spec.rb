@@ -159,17 +159,15 @@ describe Form::Item::Question do
       refs = question.add_child({type:"tuc_reference", id_set:[{id:cli_1.id, context_id: context_1.id}]})
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
       tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1"))
-      question.delete_reference(tuc_reference)
-      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
-      check_file_actual_expected(question.to_h, sub_dir, "delete_tuc_reference_expected_1.yaml", equate_method: :hash_equal)
+      result = question.delete_reference(tuc_reference)
+      check_file_actual_expected(result, sub_dir, "delete_tuc_reference_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "Delete TUc Reference II" do
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
       tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1"))
-      question.delete_reference(tuc_reference)
-      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
-      check_file_actual_expected(question.to_h, sub_dir, "delete_tuc_reference_expected_2.yaml", equate_method: :hash_equal)
+      result = question.delete_reference(tuc_reference)
+      check_file_actual_expected(result, sub_dir, "delete_tuc_reference_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end
