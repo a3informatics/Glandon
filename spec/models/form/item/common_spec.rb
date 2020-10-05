@@ -60,17 +60,17 @@ describe Form::Item::Common do
     end
   
     it "returns the CRF rendition, coded" do
-      bc_property = BiomedicalConcept::PropertyX.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), question_text: "Something", prompt_text: "Else", format: "13", alias: "Well", is_complex_datatype_property: Uri.new(uri: "http://www.s-cubed.dk/CDT#CD_code"))
-      ref = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/R1"), ordinal: 1, reference: bc_property}, bc_property)
+      bc_property = BiomedicalConcept::PropertyX.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q2"), question_text: "Something", prompt_text: "Else", format: "13", alias: "Well", is_complex_datatype_property: Uri.new(uri: "http://www.s-cubed.dk/CDT#CD_code"))
+      ref = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/Ref1"), ordinal: 1, reference: bc_property}, bc_property)
       uri1 = Uri.new(uri: "http://www.cdisc.org/C66769/V2#C66769_C41338")
       uri2 = Uri.new(uri: "http://www.cdisc.org/C66769/V2#C66769_C41339")
-      item = Form::Item::Common.create(uri: Uri.new(uri: "http://www.s-cubed.dk/CI1"), ordinal: 1, has_property: ref.uri)
-      ref_cl1 = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/R2"), ordinal: 1, reference: uri1}, item)
-      ref_cl2 = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/R3"), ordinal: 2, reference: uri2}, item)
+      item = Form::Item::Common.create(uri: Uri.new(uri: "http://www.s-cubed.dk/CI2"), ordinal: 1, has_property: ref.uri)
+      ref_cl1 = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/Ref2"), ordinal: 1, reference: uri1}, item)
+      ref_cl2 = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/Ref3"), ordinal: 2, reference: uri2}, item)
       item.has_coded_value_push(ref_cl1)
       item.has_coded_value_push(ref_cl2)
       item.save
-      item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CI1"))
+      item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CI2"))
       item.has_property_objects
       result = item.to_crf
       check_file_actual_expected(result, sub_dir, "to_crf_expected_2.yaml", equate_method: :hash_equal)
