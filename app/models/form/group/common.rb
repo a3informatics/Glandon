@@ -31,6 +31,12 @@ class Form::Group::Common < Form::Group
     return html
   end
 
+  def delete(parent)
+    super(parent)
+    normal_group = Form::Group::Normal.find_full(parent.uri)
+    normal_group = normal_group.full_data(normal_group.to_h)
+  end
+
   def children_ordered
     self.has_item_objects.sort_by {|x| x.ordinal}
   end
