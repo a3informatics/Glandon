@@ -90,6 +90,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     authorize Thesaurus, :edit?
     return true unless read_concept(protect_from_bad_id(params))
     @tc = @edit.item
+    @tc.synonyms_and_preferred_terms
     extension_of_uri = @tc.extension_of
     @is_extending = !extension_of_uri.nil?
     @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})

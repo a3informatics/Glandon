@@ -30,6 +30,7 @@ describe "Forms", :type => :feature do
     after :all do
       ua_destroy
       Token.restore_timeout
+      Token.delete_all
     end
 
     before :each do
