@@ -17,6 +17,11 @@ describe "SDTM IG Domains", :type => :feature do
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V2.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V3.ttl")
       ua_create
     end
@@ -62,7 +67,7 @@ describe "SDTM IG Domains", :type => :feature do
       find(:xpath, "//tr[contains(.,'SDTM IG AE')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'SDTM IG AE\''
-      context_menu_element('history', 4, 'SDTM IG AE', :show)
+      context_menu_element('history', 1, '3.2.0', :show)
       wait_for_ajax 10
       expect(page).to have_content 'Show: SDTM IG Domain'
       ui_check_table_info("show", 1, 10, 51)
