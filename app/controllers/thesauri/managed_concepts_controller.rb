@@ -63,24 +63,11 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     render :json => {data: results, offset: set_params[:offset].to_i, count: results.count}, :status => 200
   end
 
-  # def edit
-  #   authorize Thesaurus
-  #   @thesaurus_concept = read_concept(protect_from_bad_id(params))
-  #   if !@thesaurus_concept.nil?
-  #     @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @thesaurus_concept.scoped_identifier, scope_id: @thesaurus_concept.scope}})
-  #     @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
-  #     @edit_tags_path = path_for(:edit_tags, @thesaurus_concept)
-  #   else
-  #     redirect_to request.referrer
-  #   end
-  # end
-
   def edit
     authorize Thesaurus
     return true unless read_concept(protect_from_bad_id(params))
     @thesaurus_concept = @edit.item
-    # @thesaurus_concept.synonym_objects
-    # @thesaurus_concept.preferred_term_objects
+    @tc.synonyms_and_preferred_terms
     @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @thesaurus_concept.scoped_identifier, scope_id: @thesaurus_concept.scope}})
     @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
     @edit_tags_path = path_for(:edit_tags, @thesaurus_concept)
@@ -173,27 +160,6 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     render :json => {data: result}, :status => 200
   end
 
-  # def add_child
-  #   authorize Thesaurus, :create?
-  #   tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-  #   token = Token.find_token(tc, current_user)
-  #   if !token.nil?
-  #     new_tc = tc.add_child(the_params)
-  #     if new_tc.errors.empty?
-  #       AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if token.refresh == 1
-  #       result = new_tc.simple_to_h
-  #       edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})
-  #       delete_path = thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})
-  #       result.reverse_merge!({edit_path: edit_path, delete_path: delete_path })
-  #       render :json => {data: result}, :status => 200
-  #     else
-  #       render :json => {:errors => new_tc.errors.full_messages}, :status => 422
-  #     end
-  #   else
-  #     render :json => {:errors => [token_timeout_message]}, :status => 422
-  #   end
-  # end
-
   def add_children
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
@@ -203,23 +169,6 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if @lock.token.refresh == 1
     render :json => {data: "" }, :status => 200
   end
-
-  # def add_children
-  #   authorize Thesaurus, :edit?
-  #   tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
-  #   token = Token.find_token(tc, current_user)
-  #   if !token.nil?
-  #     tc.add_referenced_children(children_params[:set_ids])
-  #     if tc.errors.empty?
-  #       AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
-  #       render :json => {data: "" }, :status => 200
-  #     else
-  #       render :json => {:errors => tc.errors.full_messages}, :status => 422
-  #     end
-  #   else
-  #     render :json => {:errors => [token_timeout_message]}, :status => 422
-  #   end
-  # end
 
   def add_children_synonyms
     authorize Thesaurus, :create?
@@ -232,24 +181,6 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
     render :json => {data: "" }, :status => 200
   end
-
-  # def add_children_synonyms
-  #   authorize Thesaurus, :create?
-  #   tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-  #   token = Token.find_token(tc, current_user)
-  #   if !token.nil?
-  #     uc = Thesaurus::UnmanagedConcept.find(the_params[:reference_id])
-  #     children = tc.add_children_based_on(uc)
-  #     if children.first.errors.empty?
-  #       AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
-  #       render :json => {data: "" }, :status => 200
-  #     else
-  #       render :json => {:errors => children.first.errors.full_messages}, :status => 422
-  #     end
-  #   else
-  #     render :json => {:errors => [token_timeout_message]}, :status => 422
-  #   end
-  # end
 
   def destroy
     authorize Thesaurus
@@ -397,25 +328,6 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     @lock.release
   end
 
-  # def upgrade
-  #   authorize Thesaurus, :edit?
-  #   tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
-  #   tc.synonyms_and_preferred_terms
-  #   token = get_token(tc)
-  #   if !token.nil?
-  #     ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
-  #     item = tc.upgrade(ct)
-  #     if tc.errors.empty?
-  #       render json: {data: {}}
-  #     else
-  #       render json: {errors: tc.errors}
-  #     end
-  #     token.release
-  #   else
-  #     render json: {errors: [flash[:error]]}
-  #   end
-  # end
-
   def upgrade_data
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
@@ -479,23 +391,6 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     end
   end
 
-  # def add_extensions
-  #   authorize Thesaurus, :edit?
-  #   if Thesaurus::ManagedConcept.same_type(the_params[:extension_ids], Thesaurus::UnmanagedConcept.rdf_type)
-  #     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-  #     token = Token.find_token(tc, current_user)
-  #     if !token.nil?
-  #       tc.add_referenced_children(the_params[:extension_ids])
-  #       AuditTrail.create_item_event(current_user, tc, tc.audit_message(:updated))
-  #       render json: {data: {}, errors: []}
-  #     else
-  #       render :json => {:errors => [token_timeout_message]}, :status => 422
-  #     end
-  #   else
-  #     render :json => {:errors => ["Not all of the items were code list items."]}, :status => 422
-  #   end
-  # end
-
   def create_subset
     authorize Thesaurus, :create?
     tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
@@ -547,7 +442,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
   def children_ranked
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
-    results = [tc.children_pagination({offset: "0", count: "10000"})]
+    results = tc.children_pagination({offset: "0", count: "10000"})
     render json: {data: results, offset: params[:offset], count: results.count}, status: 200
   end
 
@@ -558,40 +453,6 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     rank.remove_all
     render json: { }, status: 200
   end
-
-  # def pair
-  #   authorize Thesaurus, :edit?
-  #   tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
-  #   token = Token.find_token(tc, current_user)
-  #   if !token.nil?
-  #     tc.validate_and_pair(pairs_params[:reference_id])
-  #     if tc.errors.empty?
-  #       AuditTrail.update_item_event(current_user, tc, tc.audit_message(:paired))
-  #       render json: {data: {}, errors: []}
-  #     else
-  #       render :json => {:errors => tc.errors}, :status => 422
-  #     end
-  #   else
-  #     render :json => {:errors => [token_timeout_message]}, :status => 422
-  #   end
-  # end
-
-  # def unpair
-  #   authorize Thesaurus, :edit?
-  #   tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
-  #   token = Token.find_token(tc, current_user)
-  #   if !token.nil?
-  #     tc.unpair if tc.paired?
-  #     if tc.errors.empty?
-  #       AuditTrail.update_item_event(current_user, tc, tc.audit_message(:unpaired))
-  #       render json: {data: {}, errors: []}
-  #     else
-  #       render :json => {:errors => tc.errors}, :status => 422
-  #     end
-  #   else
-  #     render :json => {:errors => [token_timeout_message]}, :status => 422
-  #   end
-  # end
 
   def pair
     authorize Thesaurus, :edit?
@@ -618,17 +479,6 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 private
 
   # Read a Thesaurus Concept
-  # def read_concept(id)
-  #   tc = Thesaurus::ManagedConcept.find_with_properties(id)
-  #   latest_uri = Thesaurus::ManagedConcept.latest_uri(identifier: tc.has_identifier.identifier, scope: tc.scope)
-  #   tc = Thesaurus::ManagedConcept.find_with_properties(latest_uri)
-  #   tc = edit_item(tc)
-  #   return nil if tc.nil?
-  #   tc.synonyms_and_preferred_terms
-  #   tc
-  # end
-
-  # Read a Thesaurus Concept
   def read_concept(id)
     tc = Thesaurus::ManagedConcept.find_with_properties(id)
     latest_uri = Thesaurus::ManagedConcept.latest_uri(identifier: tc.has_identifier.identifier, scope: tc.scope)
@@ -639,13 +489,6 @@ private
     tc
     true
   end
-
-  # def edit_lock(tc)
-  #   @edit = ManagedItemsController::Edit.new(tc, current_user, flash)
-  #   return true unless @edit.error?
-  #   redirect_to request.referrer
-  #   false
-  # end
 
   def path_for(action, object)
     case action
@@ -682,18 +525,6 @@ private
   def edit_lock_lost_link(object)
     return history_thesauri_managed_concepts_path({managed_concept: {identifier: object.scoped_identifier, scope_id: object.scope.id}})
   end
-
-  # # Audit and respond
-  # def audit_and_respond(thesaurus, thesaurus_concept, token)
-  #   if thesaurus_concept.errors.empty?
-  #     AuditTrail.update_item_event(current_user, thesaurus, audit_message(:updated)) if token.refresh == 1
-  #     results = []
-  #     results << thesaurus_concept.to_json
-  #     render :json => {:data => results}, :status => 200
-  #   else
-  #     render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
-  #   end
-  # end
 
   def the_params
     params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :reference_id, :extension_ids => [])
