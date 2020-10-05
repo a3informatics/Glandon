@@ -76,8 +76,11 @@ class Form::Item::Question < Form::Item
   def delete_reference(reference)
     reference.delete_with_links
     self.reset_ordinals
-    question = Form::Item::Question.find(self.uri)
-    question.to_h
+    question = Form::Item::Question.find_full(self.uri).to_h
+    question[:has_coded_value].each do |cv|
+      cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
+    end
+    question
   end
 
 end
