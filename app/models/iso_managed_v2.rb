@@ -1066,12 +1066,12 @@ private
       SELECT ?s ?p ?o ?e ?v WHERE
       {
         {
-          SELECT ?r WHERE
+          SELECT ?r ?v WHERE
           {
             #{self.uri.to_ref} #{self.class.children_predicate.to_ref} ?r .
-          } LIMIT #{count} OFFSET #{offset}
+            ?r bo:ordinal ?v . 
+          } ORDER BY (?v) LIMIT #{count} OFFSET #{offset}
         }    
-        ?r bo:ordinal ?v .
         ?r bo:reference ?e .
         {
           { 
@@ -1090,7 +1090,7 @@ private
             ?s ?p ?o 
           } 
         }   
-      } ORDER BY (?v)
+      } 
     }
   end
 
