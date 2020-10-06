@@ -300,8 +300,13 @@ export default class FormEditor extends TreeGraph {
     this.onEdited();
 
     if (node) {
+
       node.findElement();
       this.focusOn( node, false );
+
+      // Set element focus
+      setTimeout( () => node.$.focus(), 100 );
+
     }
 
   }
@@ -467,7 +472,7 @@ export default class FormEditor extends TreeGraph {
 
     // Toggle Restore button depending on node type
     D3Actions.actions.find( '#restore-node' )
-                     .toggle( node.restoreAllowed ); 
+                     .toggle( node.restoreAllowed );
 
     D3Actions.show( node );
 

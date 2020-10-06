@@ -84,7 +84,7 @@ export default class NodeHandler {
 
       alerts.warning( `This Node cannot be moved.`, this.editor._alertDiv );
       return;
-      
+
     }
 
     this.node = node;
@@ -292,8 +292,7 @@ export default class NodeHandler {
     }
 
     // Update depth of new node descendants offset by current Node depth
-    data.descendants()
-        .forEach( d => d.depth += node.d.depth + 1 );
+    this._offsetDepths( node.d.depth, data );
 
   }
 
@@ -344,8 +343,21 @@ export default class NodeHandler {
       success: 'Node removed successfully.',
       done: d => {
 
-        this.node.parent.removeChild( this.node );
-        this.editor._onUpdate( this.node.parent );
+        let parent = this.node.parent;
+
+        if ( this.node.is( 'BC_GROUP' ) && parent.hasCommonGroup ) { 
+
+          let newParent = this.editor._preprocessData(d);
+
+          parent.d.children = newParent.children;
+          parent.d.children.forEach( c => c.parent = parent.d );
+          this._offsetDepths( parent.d.depth, newParent );
+
+        }
+        else
+          parent.removeChild( this.node );
+
+        this.editor._onUpdate( parent );
 
       }
     });
@@ -377,7 +389,7 @@ export default class NodeHandler {
             parent = this.node.parent.parent.parent;
 
         this._merge( parent, newData, true );
-        this.editor._onUpdate( );
+        this.editor._onUpdate();
 
       }
     });
@@ -499,6 +511,18 @@ export default class NodeHandler {
    */
   get _nodeUrl() {
     return `${ this.node.rdfObject.url }/${ this.node.data.id }`
+  }
+
+  /**
+   * Update depth offsets of descendants of a node (including) relative to starting depth
+   * @param {int} startingDepth The starting depth to offset from
+   * @param {Object} node Node's d object
+   */
+  _offsetDepths(startingDepth, node) {
+
+    node.descendants()
+        .forEach( d => d.depth += startingDepth + 1 );
+
   }
 
   /**

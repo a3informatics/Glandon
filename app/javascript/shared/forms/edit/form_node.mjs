@@ -98,6 +98,14 @@ export default class FormNode extends TreeNode {
   }
 
   /**
+   * Check if Node has a first child that is a common group
+   * @return {boolean} Value specifying if Node instance has a Common Group as a direct child
+   */
+  get hasCommonGroup() {
+    return this.is( 'NORMAL_GROUP' ) && this.hasChildren && this.children[0].is( 'COMMON_GROUP' );
+  }
+
+  /**
    * Check if Node type is allowed to be edited
    * @return {boolean} Value specifying if Node's type is a allowed to be edited
    */
