@@ -216,16 +216,61 @@
       :local_label: ''
     :is_common: true
   :has_biomedical_concept:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL01BS0VfQ09NTU9OX1RFU1QvVjEjRl9ORzFfQkNHMl9SMQ==
-    :uri: http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_R1
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-    :label: BC Reference
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NZU0JQL1YxI0JDSQ==
+    :uri: http://www.s-cubed.dk/SYSBP/V1#BCI
+    :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+    :label: Systolic Blood Pressure
     :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :reference: http://www.s-cubed.dk/SYSBP/V1#BCI
-    :context: 
+    :has_state:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NZU0JQL1YxI0JDSV9SUw==
+      :uri: http://www.s-cubed.dk/SYSBP/V1#BCI_RS
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+      :registration_status: Incomplete
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00+00:00'
+      :until_date: '2016-01-01T00:00:00+00:00'
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Incomplete
+      :multiple_edit: false
+      :by_authority:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+        :uri: http://www.assero.co.uk/RA#DUNS123456789
+        :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+        :organization_identifier: '123456789'
+        :international_code_designator: DUNS
+        :owner: true
+        :ra_namespace:
+          :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+          :uri: http://www.assero.co.uk/NS#SCUBED
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: S-cubed
+          :name: S-cubed Aps
+          :authority: www.s-cubed.dk
+    :has_identifier:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NZU0JQL1YxI0JDSV9TSQ==
+      :uri: http://www.s-cubed.dk/SYSBP/V1#BCI_SI
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+      :identifier: SYSBP
+      :version_label: ''
+      :version: 1
+      :semantic_version: 0.1.0
+      :has_scope:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+        :uri: http://www.assero.co.uk/NS#SCUBED
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: S-cubed
+        :name: S-cubed Aps
+        :authority: www.s-cubed.dk
+    :has_previous_version: 
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2016-01-01T00:00:00+00:00'
+    :last_change_date: '2020-09-10T10:45:35+02:00'
+    :explanatory_comment: ''
+    :has_item: []
+    :identified_by: 
+    :based_on: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL01BS0VfQ09NTU9OX1RFU1QvVjEjRl9ORzFfQkNHMw==
   :uri: http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG3
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
@@ -431,16 +476,61 @@
     :has_coded_value: []
     :is_common: false
   :has_biomedical_concept:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL01BS0VfQ09NTU9OX1RFU1QvVjEjRl9ORzFfQkNHM19SMQ==
-    :uri: http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG3_R1
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-    :label: BC Reference
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0RJQUJQL1YxI0JDSQ==
+    :uri: http://www.s-cubed.dk/DIABP/V1#BCI
+    :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+    :label: Diastolic Blood Pressure
     :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :reference: http://www.s-cubed.dk/DIABP/V1#BCI
-    :context: 
+    :has_state:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0RJQUJQL1YxI0JDSV9SUw==
+      :uri: http://www.s-cubed.dk/DIABP/V1#BCI_RS
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+      :registration_status: Incomplete
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00+00:00'
+      :until_date: '2016-01-01T00:00:00+00:00'
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Incomplete
+      :multiple_edit: false
+      :by_authority:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+        :uri: http://www.assero.co.uk/RA#DUNS123456789
+        :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+        :organization_identifier: '123456789'
+        :international_code_designator: DUNS
+        :owner: true
+        :ra_namespace:
+          :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+          :uri: http://www.assero.co.uk/NS#SCUBED
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: S-cubed
+          :name: S-cubed Aps
+          :authority: www.s-cubed.dk
+    :has_identifier:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0RJQUJQL1YxI0JDSV9TSQ==
+      :uri: http://www.s-cubed.dk/DIABP/V1#BCI_SI
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+      :identifier: DIABP
+      :version_label: ''
+      :version: 1
+      :semantic_version: 0.1.0
+      :has_scope:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+        :uri: http://www.assero.co.uk/NS#SCUBED
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: S-cubed
+        :name: S-cubed Aps
+        :authority: www.s-cubed.dk
+    :has_previous_version: 
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2016-01-01T00:00:00+00:00'
+    :last_change_date: '2020-09-10T10:45:35+02:00'
+    :explanatory_comment: ''
+    :has_item: []
+    :identified_by: 
+    :based_on: 
 :has_common:
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL01BS0VfQ09NTU9OX1RFU1QvVjEjRl9ORzFfQ0cx
   :uri: http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1

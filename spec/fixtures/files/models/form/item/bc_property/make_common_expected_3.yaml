@@ -324,16 +324,61 @@
       :local_label: International Foot
     :is_common: false
   :has_biomedical_concept:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDR18xNzYwY2JiMS1hMzcwLTQxZjYtYTNiMy00OTNjMWQ5YzIyMzhfUjE=
-    :uri: http://www.s-cubed.dk/FN000150/V1#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238_R1
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-    :label: ''
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=
+    :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI
+    :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+    :label: Height
     :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI
-    :context: 
+    :has_state:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfUlM=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_RS
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+      :registration_status: Incomplete
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00+00:00'
+      :until_date: '2016-01-01T00:00:00+00:00'
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Incomplete
+      :multiple_edit: false
+      :by_authority:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+        :uri: http://www.assero.co.uk/RA#DUNS123456789
+        :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+        :organization_identifier: '123456789'
+        :international_code_designator: DUNS
+        :owner: true
+        :ra_namespace:
+          :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+          :uri: http://www.assero.co.uk/NS#SCUBED
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: S-cubed
+          :name: S-cubed Aps
+          :authority: www.s-cubed.dk
+    :has_identifier:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfU0k=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_SI
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+      :identifier: HEIGHT
+      :version_label: ''
+      :version: 1
+      :semantic_version: 0.1.0
+      :has_scope:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+        :uri: http://www.assero.co.uk/NS#SCUBED
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: S-cubed
+        :name: S-cubed Aps
+        :authority: www.s-cubed.dk
+    :has_previous_version: 
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2016-01-01T00:00:00+00:00'
+    :last_change_date: '2020-09-10T10:45:33+02:00'
+    :explanatory_comment: ''
+    :has_item: []
+    :identified_by: 
+    :based_on: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDR18zNmQwMWEwNC05N2ZhLTRhZTktOGY0MC05ZjI2NmE2Y2RjMDY=
   :uri: http://www.s-cubed.dk/FN000150/V1#BCG_36d01a04-97fa-4ae9-8f40-9f266a6cdc06
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
@@ -415,16 +460,61 @@
     :has_coded_value: []
     :is_common: false
   :has_biomedical_concept:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDR18zNmQwMWEwNC05N2ZhLTRhZTktOGY0MC05ZjI2NmE2Y2RjMDZfUjE=
-    :uri: http://www.s-cubed.dk/FN000150/V1#BCG_36d01a04-97fa-4ae9-8f40-9f266a6cdc06_R1
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-    :label: ''
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0k=
+    :uri: http://www.s-cubed.dk/BMI/V1#BCI
+    :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+    :label: BMI
     :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :reference: http://www.s-cubed.dk/BMI/V1#BCI
-    :context: 
+    :has_state:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfUlM=
+      :uri: http://www.s-cubed.dk/BMI/V1#BCI_RS
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+      :registration_status: Incomplete
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00+00:00'
+      :until_date: '2016-01-01T00:00:00+00:00'
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Incomplete
+      :multiple_edit: false
+      :by_authority:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+        :uri: http://www.assero.co.uk/RA#DUNS123456789
+        :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+        :organization_identifier: '123456789'
+        :international_code_designator: DUNS
+        :owner: true
+        :ra_namespace:
+          :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+          :uri: http://www.assero.co.uk/NS#SCUBED
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: S-cubed
+          :name: S-cubed Aps
+          :authority: www.s-cubed.dk
+    :has_identifier:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfU0k=
+      :uri: http://www.s-cubed.dk/BMI/V1#BCI_SI
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+      :identifier: BMI
+      :version_label: ''
+      :version: 1
+      :semantic_version: 0.1.0
+      :has_scope:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+        :uri: http://www.assero.co.uk/NS#SCUBED
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: S-cubed
+        :name: S-cubed Aps
+        :authority: www.s-cubed.dk
+    :has_previous_version: 
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2016-01-01T00:00:00+00:00'
+    :last_change_date: '2020-09-10T10:45:33+02:00'
+    :explanatory_comment: ''
+    :has_item: []
+    :identified_by: 
+    :based_on: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDR19jOWY3ZjdkZS1kMjI3LTRlMTUtYjE3MS0wNmM0MzA2Yjc3ZjQ=
   :uri: http://www.s-cubed.dk/FN000150/V1#BCG_c9f7f7de-d227-4e15-b171-06c4306b77f4
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
@@ -641,16 +731,61 @@
       :local_label: Not Reported
     :is_common: false
   :has_biomedical_concept:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDR19jOWY3ZjdkZS1kMjI3LTRlMTUtYjE3MS0wNmM0MzA2Yjc3ZjRfUjE=
-    :uri: http://www.s-cubed.dk/FN000150/V1#BCG_c9f7f7de-d227-4e15-b171-06c4306b77f4_R1
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-    :label: ''
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJ
+    :uri: http://www.s-cubed.dk/RACE/V1#BCI
+    :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+    :label: Race
     :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :reference: http://www.s-cubed.dk/RACE/V1#BCI
-    :context: 
+    :has_state:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX1JT
+      :uri: http://www.s-cubed.dk/RACE/V1#BCI_RS
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+      :registration_status: Incomplete
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00+00:00'
+      :until_date: '2016-01-01T00:00:00+00:00'
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Incomplete
+      :multiple_edit: false
+      :by_authority:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+        :uri: http://www.assero.co.uk/RA#DUNS123456789
+        :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+        :organization_identifier: '123456789'
+        :international_code_designator: DUNS
+        :owner: true
+        :ra_namespace:
+          :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+          :uri: http://www.assero.co.uk/NS#SCUBED
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: S-cubed
+          :name: S-cubed Aps
+          :authority: www.s-cubed.dk
+    :has_identifier:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX1NJ
+      :uri: http://www.s-cubed.dk/RACE/V1#BCI_SI
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+      :identifier: RACE
+      :version_label: ''
+      :version: 1
+      :semantic_version: 0.1.0
+      :has_scope:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+        :uri: http://www.assero.co.uk/NS#SCUBED
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: S-cubed
+        :name: S-cubed Aps
+        :authority: www.s-cubed.dk
+    :has_previous_version: 
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2016-01-01T00:00:00+00:00'
+    :last_change_date: '2020-09-10T10:45:34+02:00'
+    :explanatory_comment: ''
+    :has_item: []
+    :identified_by: 
+    :based_on: 
 :has_common:
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX0NH
   :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_CG

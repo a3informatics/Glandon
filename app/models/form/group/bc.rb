@@ -82,7 +82,7 @@ class Form::Group::Bc < Form::Group
     partial_update(update_query, [:bf])
     super(parent)
     normal_group = Form::Group::Normal.find_full(parent.uri)
-    normal_group = normal_group.full_data(normal_group.to_h)
+    normal_group = normal_group.full_data
   end
 
 
@@ -118,20 +118,18 @@ class Form::Group::Bc < Form::Group
     self.has_item_objects.sort_by {|x| x.ordinal}
   end
 
-  # Full parent
+  # Full data
   #
-  # @return [Hash] Return the data of the whole parent
-  def full_data(parent)
-    parent[:has_item].each do |item|
-      get_ref_item(item) unless item[:has_coded_value].nil?
+  # @return [Hash] Return the data of the whole node
+  def full_data
+    group = self.to_h
+    group[:has_item] = []
+    self.has_item_objects.each do |item|
+      group[:has_item] << item.full_data
     end
-    parent
-  end
-
-  def get_ref_item(node)
-    node[:has_coded_value].each do |cv|
-      cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
-    end
+    bci = BiomedicalConceptInstance.find_minimum(self.has_biomedical_concept_objects.reference)
+    group[:has_biomedical_concept] = bci.to_h
+    group
   end
 
 end

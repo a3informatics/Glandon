@@ -70,8 +70,8 @@ class Form::Item::BcProperty < Form::Item
       end
       common_group.save
       common_item.save
-      normal_group = Form::Group::Normal.find_full(get_normal_group.first).to_h
-      normal_group_hash(normal_group)
+      normal_group = Form::Group::Normal.find_full(get_normal_group.first)
+      normal_group = normal_group.full_data
     else
       self.errors.add(:base, "There is no Common group")
     end  
@@ -161,35 +161,6 @@ class Form::Item::BcProperty < Form::Item
       }     
       query_results = Sparql::Query.new.query(query_string, "", [:bf])
       query_results.by_object(:result).first.to_bool
-    end
-
-    # Normal group hash
-    #
-    # @return [Hash] Return the data of the whole parent Normal Group, all its children BC Groups, Common Group + any referenced item data.
-    def normal_group_hash(normal_group)
-      normal_group[:has_item].each do |item|
-        get_referenced_item(item) unless item[:has_coded_value].nil?
-      end
-      normal_group[:has_common].first[:has_item].each do |item|
-        get_referenced_item(item)
-      end
-      normal_group[:has_common].first[:has_item].each do |item|
-        item[:has_common_item].each do |ci|
-          get_referenced_item(ci)
-        end
-      end
-      normal_group[:has_sub_group].each do |sg|
-        sg[:has_item].each do |item|
-          get_referenced_item(item)
-        end
-      end
-      normal_group
-    end
-
-    def get_referenced_item(node)
-      node[:has_coded_value].each do |cv|
-        cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
-      end
     end
 
     def property_to_hash(property)

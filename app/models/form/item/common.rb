@@ -70,7 +70,7 @@ class Form::Item::Common < Form::Item::BcProperty
     parent.reset_ordinals
     common_group = Form::Group::Common.find(parent.uri)
     normal_group = Form::Group::Normal.find_full(common_group.get_normal_group)
-    normal_group = normal_group.full_data(normal_group.to_h)
+    normal_group = normal_group.full_data
   end
 
   private

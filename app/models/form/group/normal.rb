@@ -276,32 +276,21 @@ class Form::Group::Normal < Form::Group
   # Full parent
   #
   # @return [Hash] Return the data of the whole parent Normal Group, all its children BC Groups, Common Group + any referenced item data.
-  def full_data(parent)
-    parent[:has_item].each do |item|
-      get_ref_item(item) unless item[:has_coded_value].nil?
+  def full_data
+    result = self.to_h
+    result[:has_sub_group] = []
+    result[:has_item] = []
+    result[:has_common] = []
+    self.has_item_objects.each do |item|
+      result[:has_item] << item.full_data
     end
-    parent[:has_sub_group].each do |sg|
-      sg[:has_item].each do |item|
-        get_ref_item(item) unless item[:has_coded_value].nil?
-      end
+    self.has_sub_group_objects.each do |sg|
+      result[:has_sub_group] << sg.full_data
     end
-    if common_group?
-      parent[:has_common].first[:has_item].each do |item|
-        get_ref_item(item) unless item[:has_coded_value].nil?
-      end
-      parent[:has_common].first[:has_item].each do |item|
-        item[:has_common_item].each do |ci|
-          get_ref_item(ci) unless ci[:has_coded_value].nil?
-        end
-      end
+    self.has_common.each do |cg|
+      result[:has_common] << cg.full_data 
     end
-    parent
-  end
-
-  def get_ref_item(node)
-    node[:has_coded_value].each do |cv|
-      cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
-    end
+    result
   end
 
   private

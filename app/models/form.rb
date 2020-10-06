@@ -85,7 +85,7 @@ class Form < IsoManagedV2
     form = self.to_h
     form[:has_group] = []
     self.has_group.each do |group|
-      form[:has_group] << group.full_data(group.to_h)
+      form[:has_group] << group.full_data
     end
     form
   end

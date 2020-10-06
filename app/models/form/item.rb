@@ -42,7 +42,7 @@ class Form::Item < IsoConceptV2
     partial_update(update_query, [:bf])
     parent.reset_ordinals
     normal_group = Form::Group::Normal.find_full(parent.uri)
-    normal_group = normal_group.full_data(normal_group.to_h)
+    normal_group = normal_group.full_data
   end
 
   def start_row(optional)
@@ -136,6 +136,35 @@ class Form::Item < IsoConceptV2
       parent = Thesaurus::ManagedConcept.find_with_properties(cv.context)
       ref[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
       results << ref
+    end
+    results
+  end
+
+  # Full data
+  #
+  # @return [Hash] Return the data of the whole node
+  def full_data
+    item = self.to_h
+    item[:has_coded_value] = get_cv_ref(self.has_coded_value_objects) unless item[:has_coded_value].nil?
+    item[:has_property] = self.has_property_objects.to_h unless item[:has_property].nil?
+    item[:has_common_item] = get_ci_ref(self.has_common_item_objects) unless item[:has_common_item].nil?
+    item
+  end
+
+  def get_cv_ref(coded_values)
+    results = []
+    coded_values.each do |cv|
+      ref = cv.to_h
+      ref[:reference] = Thesaurus::UnmanagedConcept.find(cv.reference).to_h
+      results << ref
+    end
+    results
+  end
+
+  def get_ci_ref(common_items)
+    results = []
+    common_items.each do |ci|
+      results << ci.full_data
     end
     results
   end

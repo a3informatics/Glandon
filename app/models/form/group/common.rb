@@ -50,4 +50,16 @@ class Form::Group::Common < Form::Group
     query_results.by_object(:normal_group).first
   end
 
+  # Full data
+  #
+  # @return [Hash] Return the data of the whole node
+  def full_data
+    group = self.to_h
+    group[:has_item] = []
+    self.has_item_objects.each do |item|
+      group[:has_item] << item.full_data
+    end
+    group
+  end
+
 end
