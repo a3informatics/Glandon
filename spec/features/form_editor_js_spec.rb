@@ -258,6 +258,27 @@ describe "Forms", :type => :feature do
         end
       end
 
+      # Check loads TUC References in Common Items (was bug)
+      edit_form('CRF TEST 1')
+
+      fill_in 'd3-search', with: 'supine'
+      check_node_count 1, 'g.node.search-match'
+      ui_press_key :enter
+      click_action :edit
+
+      ui_in_modal do
+        within( find('#node-editor') ) do
+          expect(page).to have_content 'Supine Position'
+          expect(page).to have_content 'C62167'
+
+          click_on 'Close'
+        end
+      end
+
+      ui_press_key :left
+      ui_press_key :left
+      check_node('Common Group', :common_group, true)
+
     end
 
     it "allows to Edit a node, field validation" do
@@ -497,7 +518,7 @@ describe "Forms", :type => :feature do
 
       click_action :move_up
       wait_for_ajax 10
-      expect(page).to have_content 'Moved successfully'
+      check_alert 'Moved successfully'
 
       ui_press_key :up
       ui_press_key :down
@@ -505,7 +526,7 @@ describe "Forms", :type => :feature do
 
       ui_press_key(:up, :shift) # Key shortcut
       wait_for_ajax 10
-      expect(page).to have_content 'Moved successfully'
+      check_alert 'Moved successfully'
 
       ui_press_key(:up, :shift) # Key shortcut
       check_alert 'Cannot move Node up'
@@ -519,7 +540,7 @@ describe "Forms", :type => :feature do
 
       click_action :move_up
       wait_for_ajax 10
-      expect(page).to have_content 'Moved successfully'
+      check_alert 'Moved successfully'
 
       ui_press_key :down
       check_node('Q Group', :normal_group, true)
@@ -528,10 +549,40 @@ describe "Forms", :type => :feature do
 
       ui_press_key(:down, :shift)
       wait_for_ajax 10
-      expect(page).to have_content 'Moved successfully'
+      check_alert 'Moved successfully'
 
       click_action :move_down
       check_alert 'Cannot move Node down'
+
+      # Prevents moving Common Group
+      fill_in 'd3-search', with: 'common'
+      ui_press_key :enter
+
+      click_action :move_down
+      check_alert 'This Node cannot be moved'
+
+      ui_press_key :down
+      click_action :move_up
+      wait_for_ajax 10
+      check_alert 'Attempting to move up past the first node'
+
+      # Move TUC Ref
+      ui_press_key :up
+      ui_press_key :right
+      ui_press_key :down
+      ui_press_key :right
+
+      click_action :move_up
+      wait_for_ajax 10
+      check_alert 'Moved successfully'
+
+      click_action :move_up
+      wait_for_ajax 10
+      check_alert 'Cannot move Node up'
+
+      ui_press_key(:down, :shift)
+      wait_for_ajax 10
+      check_alert 'Moved successfully'
     end
 
     it "allows to remove a node and children" do
