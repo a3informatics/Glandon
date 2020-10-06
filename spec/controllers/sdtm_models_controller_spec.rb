@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'tabulation'
 
 describe SdtmModelsController do
 

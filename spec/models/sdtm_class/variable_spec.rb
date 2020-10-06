@@ -1,5 +1,4 @@
 require 'rails_helper'
-#require 'tabulation' # Prevents circular reference in test
 
 describe SdtmClass::Variable do
 

@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'biomedical_concept/complex_datatype'
 
 describe BiomedicalConcept::ComplexDatatype do
   
