@@ -34,7 +34,7 @@ class Form::Group::Common < Form::Group
   def delete(parent)
     super(parent)
     normal_group = Form::Group::Normal.find_full(parent.uri)
-    normal_group = normal_group.full_data(normal_group.to_h)
+    normal_group = normal_group.full_data
   end
 
   def children_ordered
