@@ -21,14 +21,6 @@
   rdfs:subClassOf owl:Thing ;
   skos:definition "A unit of knowledge created by a unique combination of characteristics."^^xsd:string ;
 .
-:extensionPropertyDefaultValue
-  rdf:type rdf:Property ;
-  rdfs:label "Default Value" ;
-  rdfs:domain :Concept ;
-  rdfs:range xsd:anySimpleType ;
-  skos:definition "The extension property default value." ;
-.
-# Deprecated
 :Extension
   rdf:type owl:Class ;
   rdfs:label "Extension"^^xsd:string ;
@@ -132,7 +124,6 @@
   rdfs:range xsd:string ;
   skos:definition "Concept system node description."^^xsd:string ;
 .
-# Deprecated
 :extended
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf :link ;
@@ -141,7 +132,6 @@
   rdfs:range :Extension ;
   skos:definition "Relationship to relate a concept to the extension properties."^^xsd:string ;
 .
-# Deprecated
 :extensionName
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Extension Name"^^xsd:string ;
@@ -149,7 +139,6 @@
   rdfs:range xsd:string ;
   skos:definition "The name of the extension property."^^xsd:string ;
 .
-# Deprecated
 :extensionDefault
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Extension Default Value"^^xsd:string ;
@@ -157,7 +146,6 @@
   rdfs:range xsd:anySimpleType ;
   skos:definition "The default value for the extension property."^^xsd:string ;
 .
-# Deprecated
 :extensionDatatype
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Extension Datatype"^^xsd:string ;
