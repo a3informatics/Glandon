@@ -57,7 +57,7 @@ describe Forms::Items::CommonsController do
       ua_remove_user("lock@example.com")
     end
 
-    before :each do
+    before :all do
       data_files = ["forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
