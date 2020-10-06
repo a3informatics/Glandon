@@ -287,7 +287,7 @@ class Form::Group::Normal < Form::Group
     self.has_sub_group_objects.each do |sg|
       result[:has_sub_group] << sg.full_data
     end
-    self.has_common.each do |cg|
+    self.has_common_objects.each do |cg|
       result[:has_common] << cg.full_data 
     end
     result
