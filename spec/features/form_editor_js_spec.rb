@@ -17,6 +17,7 @@ describe "Forms", :type => :feature do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
       load_cdisc_term_versions(1..65)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_test_file_into_triple_store("forms/FN000150.ttl")
@@ -571,7 +572,7 @@ describe "Forms", :type => :feature do
       nodes -= 1
       expect( node_count ).to eq( nodes )
 
-      # Delete BC (6 nodes)
+      # Delete BC
       find_node('Weight').click
       ui_press_key :delete
       ui_confirmation_dialog(true)
