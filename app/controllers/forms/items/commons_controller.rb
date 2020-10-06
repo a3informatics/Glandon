@@ -12,12 +12,13 @@ class Forms::Items::CommonsController < ManagedItemsController
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     common = Form::Item::Common.find(protect_from_bad_id(params))
-    common = common.move_up(the_params[:parent_id])
-    if common.errors.empty?
+    parent = IsoConceptV2.find(the_params[:parent_id])
+    result = parent.move_up(common)
+    if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
     else
-      render :json => {:errors => common.errors.full_messages}, :status => 422
+      render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
   end
 
@@ -25,12 +26,13 @@ class Forms::Items::CommonsController < ManagedItemsController
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     common = Form::Item::Common.find(protect_from_bad_id(params))
-    common = common.move_down(the_params[:parent_id])
-    if common.errors.empty?
+    parent = IsoConceptV2.find(the_params[:parent_id])
+    result = parent.move_down(common)
+    if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
     else
-      render :json => {:errors => common.errors.full_messages}, :status => 422
+      render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
   end
 
