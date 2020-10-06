@@ -270,7 +270,7 @@ class Form::Group::Normal < Form::Group
   def delete(parent)
     super(parent)
     parent = Form.find_full(parent.uri)
-    parent = parent.full_data(parent.to_h)
+    parent = parent.full_data
   end
 
   # Full parent
@@ -282,16 +282,16 @@ class Form::Group::Normal < Form::Group
     end
     parent[:has_sub_group].each do |sg|
       sg[:has_item].each do |item|
-        get_ref_item(item)
+        get_ref_item(item) unless item[:has_coded_value].nil?
       end
     end
     if common_group?
       parent[:has_common].first[:has_item].each do |item|
-        get_ref_item(item)
+        get_ref_item(item) unless item[:has_coded_value].nil?
       end
       parent[:has_common].first[:has_item].each do |item|
         item[:has_common_item].each do |ci|
-          get_ref_item(ci)
+          get_ref_item(ci) unless ci[:has_coded_value].nil?
         end
       end
     end
