@@ -78,22 +78,16 @@ class Form < IsoManagedV2
     self.has_group_objects.sort_by {|x| x.ordinal}
   end
 
-  # Full parent
+  # Full data
   #
-  # @return [Hash] Return the data of the whole parent Normal Group, all its children BC Groups, Common Group + any referenced item data.
-  def full_data(parent)
-    parent[:has_group].each do |group|
-      group[:has_item].each do |item|
-        get_ref_item(item)
-      end
+  # @return [Hash] Return the data of the whole Form, all its children + any referenced item data.
+  def full_data
+    form = self.to_h
+    form[:has_group] = []
+    self.has_group.each do |group|
+      form[:has_group] << group.full_data(group.to_h)
     end
-    parent
-  end
-
-  def get_ref_item(node)
-    node[:has_coded_value].each do |cv|
-      cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
-    end
+    form
   end
 
   private
