@@ -58,6 +58,13 @@ class Form < IsoManagedV2
         results[cv[:id]] = cv[:reference]
       end
       results[item[:has_biomedical_concept][:id]] = item[:has_biomedical_concept][:reference] unless item[:has_biomedical_concept].nil?
+      unless item[:has_common].nil? || item[:has_common].empty?
+        item[:has_common].first[:has_item].each do |ci|
+          ci[:has_coded_value].each do |cv|
+            results[cv[:id]] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
+          end
+        end
+      end
     end
     return results
   end
