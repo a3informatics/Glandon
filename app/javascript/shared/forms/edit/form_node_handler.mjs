@@ -292,7 +292,8 @@ export default class NodeHandler {
     }
 
     // Update depth of new node descendants offset by current Node depth
-    this._offsetDepths( node.d.depth, data );
+    data.descendants()
+        .forEach( d => d.depth += node.d.depth + 1 );
 
   }
 
@@ -347,11 +348,8 @@ export default class NodeHandler {
 
         if ( this.node.is( 'BC_GROUP' ) && parent.hasCommonGroup ) { 
 
-          let newParent = this.editor._preprocessData(d);
-
-          parent.d.children = newParent.children;
-          parent.d.children.forEach( c => c.parent = parent.d );
-          this._offsetDepths( parent.d.depth, newParent );
+          let newChildren = this.editor._preprocessData(d).children;
+          parent.replaceChildren( newChildren );
 
         }
         else
@@ -386,9 +384,9 @@ export default class NodeHandler {
 
         // Merge new data into parent node
         let newData = this.editor._preprocessData(d),
-            parent = this.node.parent.parent.parent;
+            target = this.node.parent.parent.parent;
 
-        this._merge( parent, newData, true );
+        this._merge( target, newData, true );
         this.editor._onUpdate();
 
       }
@@ -514,18 +512,6 @@ export default class NodeHandler {
   }
 
   /**
-   * Update depth offsets of descendants of a node (including) relative to starting depth
-   * @param {int} startingDepth The starting depth to offset from
-   * @param {Object} node Node's d object
-   */
-  _offsetDepths(startingDepth, node) {
-
-    node.descendants()
-        .forEach( d => d.depth += startingDepth + 1 );
-
-  }
-
-  /**
    * Get request data object for specific action and item type
    * @param {string} action Request action - add / remove / move
    * @param {string} type Item type (rdf param value) (only for 'add' action)
@@ -574,7 +560,7 @@ export default class NodeHandler {
 
         this.editor.keysEnable();
         setTimeout( () =>
-            this.editor.selected.el.focus(), 300 ); // Restore focus
+            this.editor.selected.el.focus(), 300 ); // Restore focus to selected node
 
       }
     });

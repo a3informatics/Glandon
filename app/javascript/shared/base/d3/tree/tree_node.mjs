@@ -217,6 +217,22 @@ export default class TreeNode {
   }
 
   /**
+   * Replace Node's children with a new set, set children's references and depths
+   * @param {array} children New children to replace the current ones
+   */
+  replaceChildren(children) {
+
+    // Set new children
+    this.d.children = children;
+    // Set children parent to this instance
+    this.d.children.forEach( child => child.parent = this.d );
+    // Offset descendants' depths relative to this instance
+    this.d.descendants().slice(1)
+                        .forEach( d => d.depth += this.d.depth );
+
+  }
+
+  /**
    * Select node (add respective styles and data)
    */
    select() {
