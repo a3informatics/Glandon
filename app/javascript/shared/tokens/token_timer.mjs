@@ -181,8 +181,10 @@ export default class TokenTimer {
 
         if (r.running)
           this._initCountdown(r.remaining);
-        else
+        else {
           this.expire();
+          this._render();
+        }
       }
     });
   }

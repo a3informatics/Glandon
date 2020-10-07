@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $(".show-more-btn").on("click", function(){
+  $(".show-more-btn").off("click").on("click", function(){
     $(this).parent().toggleClass("collapsed");
     $(this).find(".icon-arrow-d").toggleClass("arrow-rotate");
 
