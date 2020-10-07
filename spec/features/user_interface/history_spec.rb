@@ -32,6 +32,7 @@ describe "History", :type => :feature do
       wait_for_ajax 10
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'FN000150')]/td/a", :text => 'History').click
+      wait_for_ajax 10
       expect(page).to have_content 'Version History of \'FN000150\''
       ui_check_table_cell("history", 1, 1, "0.1.0")
       ui_check_table_cell("history", 1, 5, "Height (Pilot)")
@@ -45,6 +46,7 @@ describe "History", :type => :feature do
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'FN000150')]/td/a", :text => 'History').click
       expect(page).to have_content 'Version History of \'FN000150\''
+      wait_for_ajax 10
       ui_check_table_cell("history", 1, 1, "0.1.0")
       ui_check_table_cell("history", 1, 5, "Height (Pilot)")
       ui_check_table_cell("history", 1, 7, "Incomplete")
