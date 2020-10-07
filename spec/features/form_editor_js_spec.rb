@@ -54,7 +54,7 @@ describe "Forms", :type => :feature do
       wait_for_ajax 30
       expect(page).to have_content 'Form Editor'
     end
-
+    
     it "has correct initial state" do
       edit_form('FN000150')
 
@@ -821,6 +821,8 @@ describe "Forms", :type => :feature do
     it "allows to remove a bc and its common properties" do
       edit_form('TSTFORM')
 
+      find_node('Height').drag_to( find_node('BMI') )
+
       find_node('Weight').click
       click_action :remove
       ui_confirmation_dialog true
@@ -844,7 +846,9 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
 
       # Check new node count
-
+      check_node_count 3
+      check_node_count 0, 'g.node.disabled'
+      check_node('Not set', :normal_group, true)
     end
 
     it "prevents making a BC Property common when it is disabled" do

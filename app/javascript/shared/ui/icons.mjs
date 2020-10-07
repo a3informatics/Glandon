@@ -80,11 +80,13 @@ const iconTypes = { 
    * @return {Object} Object containing icon, char and color definitions for the type argument
    */
   typeIconMap(type, params = {}) {
-    const result = type in _typeIconMap ? _typeIconMap[type] : _typeIconMap['unknown'];
+    let result = type in _typeIconMap ?
+                  _typeIconMap[type] :
+                  _typeIconMap['unknown'];
 
-    // Override color if CDISC owned
+    // Make a copy of result and override its color if is CDISC owned
     if ( isCDISC(params) )
-      result.color = colors.accent1;
+      result = Object.assign( {}, result, { color: colors.accent1 } );
 
     return result;
   },
