@@ -1,6 +1,6 @@
 ---
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1ExX1RVQzM=
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC3
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1ExX1RVQzM=
+  :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1_TUC3
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
   :label: ''
   :tagged: []
@@ -8,30 +8,29 @@
   :optional: false
   :ordinal: 3
   :reference:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1Y0I0M2Njc5MF9DMTc5OTg=
-    :uri: http://www.cdisc.org/C66790/V4#C66790_C17998
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MV9DNDk1MDc=
+    :uri: http://www.cdisc.org/C25681/V1#C25681_C49507
     :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-    :label: Unknown
+    :label: Medium
     :tagged:
     - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-    :identifier: C17998
-    :notation: UNKNOWN
-    :definition: Not known, not observed, not recorded, or refused. (NCI)
+    :identifier: C49507
+    :notation: MEDIUM
+    :definition: Mid-way between small and large in number, quantity, magnitude or
+      extent. (NCI)
     :extensible: false
     :narrower: []
-    :preferred_term: http://www.assero.co.uk/PT#bc7819b34ff87570745fbe461e36a16f80e562ce
-    :synonym:
-    - http://www.assero.co.uk/SYN#bc7819b34ff87570745fbe461e36a16f80e562ce
-    - http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6
+    :preferred_term: http://www.assero.co.uk/PT#d404968ea90b07f16774ce75c7978d6ff60962f2
+    :synonym: []
   :context:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=
-    :uri: http://www.cdisc.org/C66789/V13#C66789
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MQ==
+    :uri: http://www.cdisc.org/C25681/V1#C25681
     :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
-    :label: Not Done
+    :label: Size
     :tagged: []
     :has_state:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODlfUlM=
-      :uri: http://www.cdisc.org/C66789/V13#C66789_RS
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MV9SUw==
+      :uri: http://www.cdisc.org/C25681/V1#C25681_RS
       :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
       :registration_status: Standard
       :administrative_note: ''
@@ -56,13 +55,13 @@
           :name: Clinical Data Interchange Standards Consortium
           :authority: www.cdisc.org
     :has_identifier:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODlfU0k=
-      :uri: http://www.cdisc.org/C66789/V13#C66789_SI
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MV9TSQ==
+      :uri: http://www.cdisc.org/C25681/V1#C25681_SI
       :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-      :identifier: C66789
-      :version_label: 2008-10-15 Release
-      :version: 13
-      :semantic_version: 13.0.0
+      :identifier: C25681
+      :version_label: 2007-03-06 Release
+      :version: 1
+      :semantic_version: 1.0.0
       :has_scope:
         :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
         :uri: http://www.assero.co.uk/NS#CDISC
@@ -73,14 +72,13 @@
     :has_previous_version: 
     :origin: ''
     :change_description: ''
-    :creation_date: '2008-10-15T00:00:00+00:00'
-    :last_change_date: '2008-10-15T00:00:00+00:00'
+    :creation_date: '2007-03-06T00:00:00+00:00'
+    :last_change_date: '2007-03-06T00:00:00+00:00'
     :explanatory_comment: ''
-    :identifier: C66789
-    :notation: ND
-    :definition: Indicates a task, process or examination that has either not been
-      initiated or completed. (NCI)
-    :extensible: false
+    :identifier: C25681
+    :notation: SIZE
+    :definition: The physical magnitude of something. (NCI)
+    :extensible: true
     :narrower: []
     :extends: 
     :subsets: 
@@ -90,9 +88,9 @@
     :synonym: []
     :is_ordered: 
     :is_ranked: 
-  :local_label: Unknown
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1ExX1RVQzQ=
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC4
+  :local_label: Medium
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1ExX1RVQzQ=
+  :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1_TUC4
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
   :label: ''
   :tagged: []
@@ -100,29 +98,28 @@
   :optional: false
   :ordinal: 4
   :reference:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1Y0I0M2Njc5MF9DNDMyMzQ=
-    :uri: http://www.cdisc.org/C66790/V4#C66790_C43234
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MV9DMjUzNzY=
+    :uri: http://www.cdisc.org/C25681/V1#C25681_C25376
     :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-    :label: Not Stated
+    :label: Small
     :tagged:
     - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-    :identifier: C43234
-    :notation: NOT REPORTED
-    :definition: Not provided or available
+    :identifier: C25376
+    :notation: SMALL
+    :definition: Limited in number, quantity, magnitude or extent. (NCI)
     :extensible: false
     :narrower: []
-    :preferred_term: http://www.assero.co.uk/PT#e12e9ad9ba495eb8dd2c63a445aa4fda3817fc17
-    :synonym:
-    - http://www.assero.co.uk/SYN#98e856820171b6204a73629df62a2fc4bcd78c01
+    :preferred_term: http://www.assero.co.uk/PT#c74fd9714e38b26dbf7f58d75f93cfc977a05ba6
+    :synonym: []
   :context:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=
-    :uri: http://www.cdisc.org/C66789/V13#C66789
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MQ==
+    :uri: http://www.cdisc.org/C25681/V1#C25681
     :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
-    :label: Not Done
+    :label: Size
     :tagged: []
     :has_state:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODlfUlM=
-      :uri: http://www.cdisc.org/C66789/V13#C66789_RS
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MV9SUw==
+      :uri: http://www.cdisc.org/C25681/V1#C25681_RS
       :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
       :registration_status: Standard
       :administrative_note: ''
@@ -147,13 +144,13 @@
           :name: Clinical Data Interchange Standards Consortium
           :authority: www.cdisc.org
     :has_identifier:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODlfU0k=
-      :uri: http://www.cdisc.org/C66789/V13#C66789_SI
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MV9TSQ==
+      :uri: http://www.cdisc.org/C25681/V1#C25681_SI
       :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-      :identifier: C66789
-      :version_label: 2008-10-15 Release
-      :version: 13
-      :semantic_version: 13.0.0
+      :identifier: C25681
+      :version_label: 2007-03-06 Release
+      :version: 1
+      :semantic_version: 1.0.0
       :has_scope:
         :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
         :uri: http://www.assero.co.uk/NS#CDISC
@@ -164,14 +161,13 @@
     :has_previous_version: 
     :origin: ''
     :change_description: ''
-    :creation_date: '2008-10-15T00:00:00+00:00'
-    :last_change_date: '2008-10-15T00:00:00+00:00'
+    :creation_date: '2007-03-06T00:00:00+00:00'
+    :last_change_date: '2007-03-06T00:00:00+00:00'
     :explanatory_comment: ''
-    :identifier: C66789
-    :notation: ND
-    :definition: Indicates a task, process or examination that has either not been
-      initiated or completed. (NCI)
-    :extensible: false
+    :identifier: C25681
+    :notation: SIZE
+    :definition: The physical magnitude of something. (NCI)
+    :extensible: true
     :narrower: []
     :extends: 
     :subsets: 
@@ -181,4 +177,4 @@
     :synonym: []
     :is_ordered: 
     :is_ranked: 
-  :local_label: Not Stated
+  :local_label: Small

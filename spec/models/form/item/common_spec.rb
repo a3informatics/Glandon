@@ -39,7 +39,7 @@ describe Form::Item::Common do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..15)
+      load_cdisc_term_versions(1..2)
       load_data_file_into_triple_store("complex_datatypes.ttl")
     end
 
@@ -106,7 +106,7 @@ describe Form::Item::Common do
     before :each do
       data_files = ["forms/MAKE_COMMON_TEST.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..62)
+      load_cdisc_term_versions(1..38)
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 

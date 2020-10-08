@@ -132,7 +132,6 @@ describe Form::Item do
     before :each do
       data_files = ["forms/FN000150.ttl",]
       load_files(schema_files, data_files)
-      #load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 

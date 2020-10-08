@@ -182,7 +182,6 @@ describe Form::Group do
     before :each do
       data_files = ["forms/FN000120.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 

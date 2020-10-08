@@ -79,15 +79,15 @@ describe Form::Group::Normal do
     end
 
     before :each do
-      data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/MAKE_COMMON_TEST.ttl", "forms/CRF TEST 1.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      data_files = ["forms/form_test_2.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..62)
+      load_cdisc_term_versions(1..1)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("hackathon_thesaurus.ttl") 
     end
 
     it "add child I, add normal groups" do
-      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
+      uri = Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1")
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"normal_group"})
@@ -98,11 +98,39 @@ describe Form::Group::Normal do
     end
 
     it "add child II, error" do
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1"))
       result = normal.add_child({type:"x_group"})
       expect(normal.errors.count).to eq(1)
       expect(normal.errors.full_messages[0]).to eq("Attempting to add an invalid child type")
       expect(result).to eq([])
+    end
+
+    it "add child V, items" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal = Form::Group::Normal.find(uri)
+      result = normal.add_child({type:"question"})
+      check_normal_group(uri, "add_child_expected_5.yaml")
+      normal = Form::Group::Normal.find(uri)
+      result = normal.add_child({type:"placeholder"})
+      check_normal_group(uri, "add_child_expected_6.yaml")
+    end
+
+  end
+
+  describe "Add child, BC Groups" do
+    
+    def check_normal_group(uri, filename, write_file=false)
+      normal = Form::Group::Normal.find_full(uri)
+      check_file_actual_expected(normal.to_h, sub_dir, filename, equate_method: :hash_equal, write_file: write_file)
+    end
+
+    before :each do
+      data_files = ["forms/FN000150.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("hackathon_thesaurus.ttl") 
     end
 
     it "add child III, bc groups" do
@@ -126,17 +154,6 @@ describe Form::Group::Normal do
       normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
       check_normal_group(uri, "add_child_expected_7.yaml")
-    end
-
-    it "add child V, items" do
-      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
-      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
-      normal = Form::Group::Normal.find(uri)
-      result = normal.add_child({type:"question"})
-      check_normal_group(uri, "add_child_expected_5.yaml")
-      normal = Form::Group::Normal.find(uri)
-      result = normal.add_child({type:"placeholder"})
-      check_normal_group(uri, "add_child_expected_6.yaml")
     end
 
     it "add child VI, bc group, check bc property common" do
@@ -181,7 +198,6 @@ describe Form::Group::Normal do
     before :all do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("hackathon_thesaurus.ttl") 
     end

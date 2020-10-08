@@ -1,6 +1,6 @@
 ---
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1ExX1RVQzI=
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC2
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1ExX1RVQzI=
+  :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1_TUC2
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
   :label: ''
   :tagged: []
@@ -8,29 +8,28 @@
   :optional: false
   :ordinal: 2
   :reference:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1Y0I0M2Njc4OV9DNDk0ODQ=
-    :uri: http://www.cdisc.org/C66789/V4#C66789_C49484
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MV9DNDk1MDg=
+    :uri: http://www.cdisc.org/C25681/V1#C25681_C49508
     :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-    :label: Not Done
+    :label: Large
     :tagged:
     - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-    :identifier: C49484
-    :notation: NOT DONE
-    :definition: Indicates a task, process or examination that has either not been
-      initiated or completed. (NCI)
+    :identifier: C49508
+    :notation: LARGE
+    :definition: Of considerable or relatively great size, extent, or capacity. (NCI)
     :extensible: false
     :narrower: []
-    :preferred_term: http://www.assero.co.uk/PT#80693856b066974cd21dac794f7adf4b3437ce78
+    :preferred_term: http://www.assero.co.uk/PT#738fd1d2452fc31a236c5ad511bfcc46b324365e
     :synonym: []
   :context:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=
-    :uri: http://www.cdisc.org/C66789/V13#C66789
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MQ==
+    :uri: http://www.cdisc.org/C25681/V1#C25681
     :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
-    :label: Not Done
+    :label: Size
     :tagged: []
     :has_state:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODlfUlM=
-      :uri: http://www.cdisc.org/C66789/V13#C66789_RS
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MV9SUw==
+      :uri: http://www.cdisc.org/C25681/V1#C25681_RS
       :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
       :registration_status: Standard
       :administrative_note: ''
@@ -55,13 +54,13 @@
           :name: Clinical Data Interchange Standards Consortium
           :authority: www.cdisc.org
     :has_identifier:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODlfU0k=
-      :uri: http://www.cdisc.org/C66789/V13#C66789_SI
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MV9TSQ==
+      :uri: http://www.cdisc.org/C25681/V1#C25681_SI
       :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-      :identifier: C66789
-      :version_label: 2008-10-15 Release
-      :version: 13
-      :semantic_version: 13.0.0
+      :identifier: C25681
+      :version_label: 2007-03-06 Release
+      :version: 1
+      :semantic_version: 1.0.0
       :has_scope:
         :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
         :uri: http://www.assero.co.uk/NS#CDISC
@@ -72,14 +71,13 @@
     :has_previous_version: 
     :origin: ''
     :change_description: ''
-    :creation_date: '2008-10-15T00:00:00+00:00'
-    :last_change_date: '2008-10-15T00:00:00+00:00'
+    :creation_date: '2007-03-06T00:00:00+00:00'
+    :last_change_date: '2007-03-06T00:00:00+00:00'
     :explanatory_comment: ''
-    :identifier: C66789
-    :notation: ND
-    :definition: Indicates a task, process or examination that has either not been
-      initiated or completed. (NCI)
-    :extensible: false
+    :identifier: C25681
+    :notation: SIZE
+    :definition: The physical magnitude of something. (NCI)
+    :extensible: true
     :narrower: []
     :extends: 
     :subsets: 
@@ -89,4 +87,4 @@
     :synonym: []
     :is_ordered: 
     :is_ranked: 
-  :local_label: Not Done
+  :local_label: Large
