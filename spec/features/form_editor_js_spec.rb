@@ -54,7 +54,7 @@ describe "Forms", :type => :feature do
       wait_for_ajax 30
       expect(page).to have_content 'Form Editor'
     end
-    
+
     it "has correct initial state" do
       edit_form('FN000150')
 
@@ -213,7 +213,10 @@ describe "Forms", :type => :feature do
       check_actions([:edit, :add_child, :move_up])
       check_actions_not_present([:remove, :common, :restore])
 
-      find_node('Question 1').click
+      fill_in 'd3-search', with: 'Question 1'
+      ui_press_key :enter
+      find('#d3-clear-search').click
+
       check_actions([:edit, :add_child, :move_up, :remove])
       check_actions_not_present([:common, :restore])
 
@@ -533,7 +536,9 @@ describe "Forms", :type => :feature do
       check_node('Question 3', :question, true)
 
       # Move Group
-      find_node('Q Repeating Group').click
+      fill_in 'd3-search', with: 'Q Repeating Group'
+      ui_press_key :enter
+      find('#d3-clear-search').click
 
       ui_press_key(:down, :shift) # Key shortcut
       check_alert 'Cannot move Node down'
@@ -667,9 +672,11 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
 
       expect(page).to have_content 'Form Editor'
+      find('#main_area').scroll_to(:bottom)
 
       # Add a Group and BCs
       find_node('Test Form').click
+
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="normal_group"]').click
       wait_for_ajax 10
@@ -706,6 +713,7 @@ describe "Forms", :type => :feature do
 
       page.driver.browser.navigate.refresh
       wait_for_ajax 20
+      find('#main_area').scroll_to(:bottom)
 
       check_node_count 22
       check_node_count( 1, 'g.node.disabled' ) # Common nodes have the disabled css class
@@ -758,7 +766,11 @@ describe "Forms", :type => :feature do
 
       check_node_count 23
       check_node_count( 3, 'g.node.disabled' ) # Common nodes have the disabled css class
-      find_node('Common Group').click
+
+      fill_in 'd3-search', with: 'Common Group'
+      ui_press_key :enter
+      find('#d3-clear-search').click
+
       click_button 'collapse-except-graph' # Collapse nodes except selected
       sleep 0.5
       check_node_count 10
@@ -766,8 +778,12 @@ describe "Forms", :type => :feature do
       # Restore
       page.driver.browser.navigate.refresh
       wait_for_ajax 20
+      find('#main_area').scroll_to(:bottom)
 
-      find_node('Common Group').click
+      fill_in 'd3-search', with: 'Common Group'
+      ui_press_key :enter
+      find('#d3-clear-search').click
+
       ui_press_key :right
       click_action :restore
       wait_for_ajax 20
@@ -775,14 +791,20 @@ describe "Forms", :type => :feature do
       check_node_count 22
       check_node_count( 2, 'g.node.disabled' ) # Common nodes have the disabled css class
 
-      find_node('Weight').click
+      fill_in 'd3-search', with: 'Weight'
+      ui_press_key :enter
+      find('#d3-clear-search').click
+
       ui_press_key :right
       ui_press_key :down
       ui_press_key :right
       ui_press_key :down
       check_node('Pound', :tuc_ref, true)
 
-      find_node('Common Group').click
+      fill_in 'd3-search', with: 'Common Group'
+      ui_press_key :enter
+      find('#d3-clear-search').click
+
       ui_press_key :right
       click_action :restore
       wait_for_ajax 20
@@ -830,17 +852,23 @@ describe "Forms", :type => :feature do
 
       check_node_count( 2, 'g.node.disabled' ) # Common nodes have the disabled css class
 
-      find_node('Height').click
+      fill_in 'd3-search', with: 'Height'
+      ui_press_key :enter
+      find('#d3-clear-search').click
       click_action :remove
       ui_confirmation_dialog true
       wait_for_ajax 10
 
-      find_node('BMI').click
+      fill_in 'd3-search', with: 'BMI'
+      ui_press_key :enter
+      find('#d3-clear-search').click
       click_action :remove
       ui_confirmation_dialog true
       wait_for_ajax 10
 
-      find_node('Systolic Blood').click
+      fill_in 'd3-search', with: 'Systolic'
+      ui_press_key :enter
+      find('#d3-clear-search').click
       click_action :remove
       ui_confirmation_dialog true
       wait_for_ajax 10
@@ -864,7 +892,9 @@ describe "Forms", :type => :feature do
         { identifier: 'WEIGHT', version: '1' }
       ], 'node-add-child' )
 
-      find_node('Weight').click
+      fill_in 'd3-search', with: 'Weight'
+      ui_press_key :enter
+      find('#d3-clear-search').click
       ui_press_key :right
 
       check_actions([:edit, :move_up, :move_down, :common])
