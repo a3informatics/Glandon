@@ -38,6 +38,7 @@ describe IsoRegistrationAuthoritiesController do
     it 'deletes registration authority' do
       expect(IsoRegistrationAuthority.all.count).to eq(2)
       delete :destroy, params:{:id => IsoRegistrationAuthority.all.first.id}
+      expect(response.code).to eq("200")
       expect(IsoRegistrationAuthority.all.count).to eq(1)
     end
 
@@ -50,7 +51,8 @@ describe IsoRegistrationAuthoritiesController do
       delete :destroy, params:{:id => ra.first.id}
       expect(IsoRegistrationAuthority.all.count).to eq(2)
       delete :destroy, params:{:id => ra.first.id}
-      expect(flash[:error]).to be_present
+      expect(response.code).to eq("422")
+      expect( JSON.parse(response.body).deep_symbolize_keys ).to eq(errors: ["Unable to delete Registration Authority."])
       expect(IsoRegistrationAuthority.all.count).to eq(2)
     end
 
@@ -60,7 +62,8 @@ describe IsoRegistrationAuthoritiesController do
       expect(IsoRegistrationAuthority.all.count).to eq(2)
       delete :destroy, params:{:id => ra.id}
       expect(IsoRegistrationAuthority.all.count).to eq(2)
-      expect(flash[:error]).to be_present
+      expect(response.code).to eq("422")
+      expect( JSON.parse(response.body).deep_symbolize_keys ).to eq(errors: ["Registration Authority is in use and cannot be deleted."])
     end
 
   end
