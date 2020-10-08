@@ -6,6 +6,7 @@ describe "Tokens", :type => :feature do
   include DataHelpers
   include UiHelpers
   include UserAccountHelpers
+  include WaitForAjaxHelper
 
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_example_vs_baseline.ttl"]
@@ -56,6 +57,8 @@ describe "Tokens", :type => :feature do
       expect(page.all('table#main tr').count).to eq(5)
       find(:xpath, "//tr[contains(.,'http://www.acme-pharma.com/TEST_2/V1#TH')]/td/button", :text => 'Release').click
       ui_confirmation_dialog true
+      wait_for_ajax 10
+
       expect(page.all('table#main tr').count).to eq(4)
       expect(page).to have_content "http://www.acme-pharma.com/TEST_1/V1#TH"
       expect(page).to have_content "http://www.acme-pharma.com/TEST_3/V1#TH"
