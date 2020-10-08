@@ -69,7 +69,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       ua_logoff
     end
 
-    it "Build Terminology Release, Clone and Upgrade, WILL CURRENTLY FAIL", scenario: true, js: true do
+    it "Build Terminology Release, Clone and Upgrade", scenario: true, js: true do
       ua_curator_login
 
       # Create Thesaurus
@@ -330,10 +330,9 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       click_row_contains("changes-cdisc-table", "Anatomical Location")
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'Subset')]/td/button").click
-      wait_for_ajax 10
+      wait_for_ajax 20
       expect(page).to have_content "Item was successfully upgraded"
       expect(find(:xpath, "//tr[contains(.,'Subset')]/td/button").text).to eq("Cannot upgrade")
-
 
       # Verify Upgrade Inclusion
       click_link "Return"
@@ -345,24 +344,24 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       context_menu_element_header :upgrade
       wait_for_ajax 20
 
-      # pause
-
       # Upgrade Extension and Subset of Extension
       click_row_contains("changes-cdisc-table", "Epoch")
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'Subset')]/td/button").click
-      
       wait_for_ajax 10
       expect(page).to have_content "Cannot upgrade. You must first upgrade the referenced code list"
       find(:xpath, "//tr[contains(.,'Extension')]/td/button").click
-      wait_for_ajax 10
+      wait_for_ajax 20
       expect(page).to have_content "Item was successfully upgraded"
+
       expect(find(:xpath, "//tr[contains(.,'Extension')]/td/button").text).to eq("Cannot upgrade")
+
+      sleep 5
+
       find(:xpath, "//tr[contains(.,'Subset')]/td/button").click
-      wait_for_ajax 10
+      wait_for_ajax 20
       expect(page).to have_content "Item was successfully upgraded"
       expect(find(:xpath, "//tr[contains(.,'Subset')]/td/button").text).to eq("Cannot upgrade")
-
 
       ua_logoff
     end
@@ -461,16 +460,19 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       wait_for_ajax 20
       click_row_contains("changes-cdisc-table", "Epoch")
       wait_for_ajax 10
-      # pause
+
       find(:xpath, "//tr[contains(.,'Subset')]/td/button").click
       wait_for_ajax 10
       expect(page).to have_content "Cannot upgrade. You must first upgrade the referenced code list"
       find(:xpath, "//tr[contains(.,'Extension')]/td/button").click
-      wait_for_ajax 10
+      wait_for_ajax 20
       expect(page).to have_content "Item was successfully upgraded"
       expect(find(:xpath, "//tr[contains(.,'Extension')]/td/button").text).to eq("Cannot upgrade")
+
+      sleep 5
+
       find(:xpath, "//tr[contains(.,'Subset')]/td/button").click
-      wait_for_ajax 10
+      wait_for_ajax 20
       expect(page).to have_content "Item was successfully upgraded"
       expect(find(:xpath, "//tr[contains(.,'Subset')]/td/button").text).to eq("Cannot upgrade")
 
