@@ -322,10 +322,9 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     tc.synonyms_and_preferred_terms
     ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
     item = tc.upgrade(ct)
-    return true if item_errors(item)
+    @lock.release
     return true if lock_item_errors
     render json: {data: {}}
-    @lock.release
   end
 
   def upgrade_data
