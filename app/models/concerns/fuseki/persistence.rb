@@ -119,13 +119,15 @@ module Fuseki
       #   being created. Some key names are reserved:
       # @option params [Uri] :parent_uri the parent uri object. Optional. 
       #   If not specified base_uri method will be used
+      # @option params [Transaction] :transaction the trnasction object. Optional.
+      #   If not specified then no transaction will be used.
       # @return [Object] the created object of the relevant class.
       def create(params={})
         # Extract parent URI if present.
         parent_uri = extract_parent_uri(params)
         params = clear_parent_uri(params)
         # New object
-        object = new(params)
+        object = new(params) # Base initialize method handles the transaction
         # Set the URI if no explicit URI set in params. NOTE: This is set after object creation, important!
         object.uri = object.create_uri(parent_uri) unless params.key?(:uri) 
         # Create if valid
