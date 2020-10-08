@@ -6,14 +6,24 @@
  * @param {string} params.subtitle Optional confirmation dialog title prompt
  * @param {boolean} params.dangerous Optional confirmation dialog title prompt
  */
-function $confirm({ callback, title, subtitle, withLoading = false, dangerous = false, confirmed = false }) {
+function $confirm({
+  callback,
+  title,
+  subtitle,
+  withLoading = false,
+  dangerous = false,
+  confirmed = false
+}) {
+
   if (!confirmed)
     new ConfirmationDialog(
-      () => $confirm({ callback, confirmed: true }),
-      { title, subtitle, dangerous })
-      .show();
+      () => $confirm( { callback, confirmed: true } ),
+      { title, subtitle, dangerous }
+    ).show();
+    
   else
     callback();
+
 }
 
 export { $confirm }
