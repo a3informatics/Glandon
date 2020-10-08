@@ -4,8 +4,8 @@
 <% first_level_breadcrumb (:iso_namespaces) %>
 
 <div class="row">
-	<%= render layout: "shared/headers/header_generic", :locals => { badge: "NS", header_title: "",
-		main_text: "Scope Namespaces", sub_texts: "View and manage Scope Namespaces in the system." } do %>
+	<%= render layout: "shared/headers/header_generic", :locals => { badge: "SN", header_title: "",
+		main_text: "Scope Namespaces", sub_texts: "View and manage Namespaces in the system." } do %>
 	<% end %>
 </div>
 
@@ -24,7 +24,7 @@
 			</div>
 
 			<div class="table-width-wrapper">
-	      <table id="main" class="table table-striped table-bordered table-condensed">
+	      <table id="main" class="table">
 	        <thead>
 	          <tr>
 	              <th>Name</th>
@@ -70,10 +70,8 @@
                 <%= f.text_field :authority, placeholder: "Authority" %>
               </div>
             </div>
-						
-            <div>
-              <%= f.submit "+ New Namespace", class: "btn medium green" %>
-            </div>
+
+            <%= f.submit "+ New Namespace", class: "btn medium green" %>
 
           <% end %>
         </div>
