@@ -59,8 +59,8 @@ describe "Audit Trail", :type => :feature do
       prepare_audit_trail
       click_navbar_at
       expect(page).to have_content 'Audit Trail'
-      expect(page).to have_content 'Filter Audit Trail Data'
-      expect(page).to have_button 'Filter results'
+      expect(page).to have_content 'View, search and export the User Audit Trail.'
+      expect(page).to have_button 'Apply Filter'
       expect(page).to have_link 'Export CSV'
     end
 
@@ -68,7 +68,6 @@ describe "Audit Trail", :type => :feature do
       prepare_audit_trail
       click_navbar_at
       expect(page).to have_content 'Audit Trail'
-      expect(page).to have_content 'Filter Audit Trail Data'
       ui_check_table_row("main", 1, ["#{@now1.utc.strftime("%F, %H:%M:%S.%L")}", "audit_trail_user_1@example.com", "CDISC", "I1", "1", "Create"])
       ui_check_table_row("main", 2, ["#{@now2.utc.strftime("%F, %H:%M:%S.%L")}", "audit_trail_user_1@example.com", "CDISC", "I2", "1", "Create"])
     end
@@ -77,9 +76,8 @@ describe "Audit Trail", :type => :feature do
       prepare_audit_trail
       click_navbar_at
       expect(page).to have_content 'Audit Trail'
-      expect(page).to have_content 'Filter Audit Trail Data'
       select 'User', from: "audit_trail_event"
-      click_button 'Filter results'
+      click_button 'Apply Filter'
       ui_check_table_info("main", 1, 4, 4)
     end
 
@@ -87,9 +85,8 @@ describe "Audit Trail", :type => :feature do
       prepare_audit_trail
       click_navbar_at
       expect(page).to have_content 'Audit Trail'
-      expect(page).to have_content 'Filter Audit Trail Data'
       select 'audit_trail_user_2@example.com', from: "audit_trail_user"
-      click_button 'Filter results'
+      click_button 'Apply Filter'
       ui_check_table_info("main", 1, 2, 2)
     end
 
@@ -97,7 +94,7 @@ describe "Audit Trail", :type => :feature do
       prepare_audit_trail
       click_navbar_at
       select 'ACME', from: "audit_trail_owner"
-      click_button 'Filter results'
+      click_button 'Apply Filter'
       ui_check_table_info("main", 1, 9, 9)
     end
 
@@ -105,7 +102,7 @@ describe "Audit Trail", :type => :feature do
       prepare_audit_trail
       click_navbar_at
       fill_in 'Identifier', with: 'T1'
-      click_button 'Filter results'
+      click_button 'Apply Filter'
       ui_check_table_info("main", 1, 3, 3)
     end
 
@@ -114,7 +111,7 @@ describe "Audit Trail", :type => :feature do
       click_navbar_at
       select 'CDISC', from: "audit_trail_owner"
       fill_in 'Identifier', with: 'I2'
-      click_button 'Filter results'
+      click_button 'Apply Filter'
       expect(page.all('table#main tr').count).to eq(2)
     end
 
@@ -124,7 +121,7 @@ describe "Audit Trail", :type => :feature do
       identifier = ui_new_code_list
       click_navbar_at
       fill_in 'Identifier', with: identifier
-      click_button 'Filter results'
+      click_button 'Apply Filter'
       ui_check_table_cell("main", 1, 6, "Create")
     end
 
@@ -143,8 +140,8 @@ describe "Audit Trail", :type => :feature do
     it "allows viewing", js:true do
       click_navbar_at
       expect(page).to have_content 'Audit Trail'
-      expect(page).to have_content 'Filter Audit Trail Data'
-      expect(page).to have_button 'Filter results'
+      expect(page).to have_content 'View, search and export the User Audit Trail.'
+      expect(page).to have_button 'Apply Filter'
       expect(page).to have_link 'Export CSV'
     end
 
@@ -163,8 +160,8 @@ describe "Audit Trail", :type => :feature do
     it "allows viewing", js:true do
       click_navbar_at
       expect(page).to have_content 'Audit Trail'
-      expect(page).to have_content 'Filter Audit Trail Data'
-      expect(page).to have_button 'Filter results'
+      expect(page).to have_content 'View, search and export the User Audit Trail.'
+      expect(page).to have_button 'Apply Filter'
       expect(page).to have_link 'Export CSV'
     end
 
