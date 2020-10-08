@@ -46,15 +46,16 @@ describe "Tokens", :type => :feature do
 
     it "allows the tokens to be viewed (REQ-MDR-EL-050)", js: true do
       click_navbar_el
-      expect(page).to have_content 'Edit Locks (Tokens)'
+      expect(page).to have_content 'Active Edit Locks'
+      expect(page).to have_content 'View and manage Edit Locks (Tokens)'
     end
 
     it "allows a lock to be released (REQ-MDR-EL-050)", js: true do
       click_navbar_el
-      expect(page).to have_content 'Edit Locks (Tokens)'
+      expect(page).to have_content 'Active Edit Locks'
       expect(page.all('table#main tr').count).to eq(5)
-      find(:xpath, "//tr[contains(.,'http://www.acme-pharma.com/TEST_2/V1#TH')]/td/a", :text => 'Release').click
-      ui_click_ok("Are you sure?")
+      find(:xpath, "//tr[contains(.,'http://www.acme-pharma.com/TEST_2/V1#TH')]/td/button", :text => 'Release').click
+      ui_confirmation_dialog true
       expect(page.all('table#main tr').count).to eq(4)
       expect(page).to have_content "http://www.acme-pharma.com/TEST_1/V1#TH"
       expect(page).to have_content "http://www.acme-pharma.com/TEST_3/V1#TH"
@@ -63,9 +64,9 @@ describe "Tokens", :type => :feature do
 
     it "allows a lock to be released, rejection (REQ-MDR-EL-050)", js: true do
       click_navbar_el
-      expect(page).to have_content 'Edit Locks (Tokens)'
-      find(:xpath, "//tr[contains(.,'http://www.acme-pharma.com/TEST_3/V1#TH')]/td/a", :text => 'Release').click
-      ui_click_cancel("Are you sure?")
+      expect(page).to have_content 'Active Edit Locks'
+      find(:xpath, "//tr[contains(.,'http://www.acme-pharma.com/TEST_3/V1#TH')]/td/button", :text => 'Release').click
+      ui_confirmation_dialog false
     end
 
   end
