@@ -25,7 +25,7 @@ end
     dashboard/dashboard_editor dashboard/dashboard_panel dashboard/dashboard dashboard/statistics_panel
     export/start_panel
     forms/form_utility forms/form_viewer
-    import/crfs/new import/terms/new import/index import/show
+    import/crfs/new import/terms/new import/show
     iso_concept_systems/edit_tags iso_concept_systems/index iso_concept_systems/managed_tags_panel_v2
     iso_managed/impact iso_managed/iso_managed_attributes iso_managed/iso_managed_comment_edit iso_managed/iso_managed_select_panel
     iso_managed/list_change_notes iso_managed/status
