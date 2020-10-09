@@ -56,7 +56,7 @@ class Form::Group::Common < Form::Group
   def full_data
     group = self.to_h
     group[:has_item] = []
-    self.has_item_objects.each do |item|
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
       group[:has_item] << item.full_data
     end
     group

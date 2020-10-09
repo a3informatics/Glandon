@@ -281,13 +281,13 @@ class Form::Group::Normal < Form::Group
     result[:has_sub_group] = []
     result[:has_item] = []
     result[:has_common] = []
-    self.has_item_objects.each do |item|
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
       result[:has_item] << item.full_data
     end
-    self.has_sub_group_objects.each do |sg|
+    self.has_sub_group_objects.sort_by {|x| x.ordinal}.each do |sg|
       result[:has_sub_group] << sg.full_data
     end
-    self.has_common_objects.each do |cg|
+    self.has_common_objects.sort_by {|x| x.ordinal}.each do |cg|
       result[:has_common] << cg.full_data 
     end
     result

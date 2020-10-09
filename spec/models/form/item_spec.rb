@@ -67,37 +67,37 @@ describe Form::Item do
   describe "Destroy" do
     
     before :each do
-      data_files = ["forms/FN000150.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      data_files = ["forms/form_test_2.ttl", "forms/form_test.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..38)
+      load_cdisc_term_versions(1..1)
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
     it "Deletes question" do
-      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
-      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1"))
       result = question.delete(parent)
-      expect{OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1 in OperationalReferenceV3::TucReference.")
-      expect{Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1 in Form::Item::Question.")
+      expect{OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1_TUC1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1_TUC1 in OperationalReferenceV3::TucReference.")
+      expect{Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1 in Form::Item::Question.")
       check_file_actual_expected(result, sub_dir, "delete_item_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "Deletes placeholder" do
-      placeholder = Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2"))
-      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      placeholder = Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1"))
       result = placeholder.delete(parent)
-      expect{Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2 in Form::Item::Placeholder.")
+      expect{Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2 in Form::Item::Placeholder.")
       check_file_actual_expected(result, sub_dir, "delete_item_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "Deletes Common item" do
-      common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1"))
-      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1"))
+      common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1"))
       expect(parent.has_item.count).to eq(2)
       result = common_item.delete(parent)
-      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1"))
       expect(parent.has_item.count).to eq(1)
-      expect{Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1 in Form::Item::Common.")
+      expect{Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1 in Form::Item::Common.")
       check_file_actual_expected(result, sub_dir, "delete_item_expected_3.yaml", equate_method: :hash_equal)
     end
 

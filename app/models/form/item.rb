@@ -153,7 +153,7 @@ class Form::Item < IsoConceptV2
 
   def get_cv_ref(coded_values)
     results = []
-    coded_values.each do |cv|
+    coded_values.sort_by {|x| x.ordinal}.each do |cv|
       ref = cv.to_h
       ref[:reference] = Thesaurus::UnmanagedConcept.find(cv.reference).to_h
       results << ref
@@ -163,7 +163,7 @@ class Form::Item < IsoConceptV2
 
   def get_ci_ref(common_items)
     results = []
-    common_items.each do |ci|
+    common_items.sort_by {|x| x.ordinal}.each do |ci|
       results << ci.full_data
     end
     results
