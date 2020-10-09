@@ -36,7 +36,6 @@ end
     thesauri/managed_concepts/changes thesauri/managed_concepts/edit_subset
     thesauri/managed_concepts/show
     thesauri/unmanaged_concepts/changes thesauri/unmanaged_concepts/show
-    uploads/index
 
     shared/annotation/change_instruction_edit shared/annotation/change_instructions_html shared/annotation/change_instruction_modal shared/annotation/change_notes_modal
     shared/cdisc_term/cdisc_selector_modal shared/cdisc_term/index_panel
