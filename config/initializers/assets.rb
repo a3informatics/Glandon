@@ -21,7 +21,6 @@ end
 
 %w(
     ad_hoc_reports/index ad_hoc_reports/results
-    backgrounds/index
     biomedical_concepts/bc_template_new
     dashboard/dashboard_editor dashboard/dashboard_panel dashboard/dashboard dashboard/statistics_panel
     export/start_panel
