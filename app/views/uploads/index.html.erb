@@ -1,9 +1,11 @@
 <%= javascript_tag 'setPageTitle("Upload")' %>
 
-<%= stylesheet_link_tag "shared/table_select_simple", "shared/datatables_loading"  %>
-<%= javascript_include_tag "uploads/index" %>
-<%= javascript_tag "var removeUploadsUrl = '#{destroy_multiple_uploads_path}',
-												removeAllUploadsUrl = '#{destroy_all_uploads_path}';" %>
+<%= stylesheet_link_tag "shared/table_select_simple", "shared/datatables_loading" %>
+<%= javascript_pack_tag "uploads/index" %>
+
+<%= javascript_tag "let uploadsRemoveUrl = '#{destroy_multiple_uploads_path}',
+												uploadsRemoveAllUrl = '#{destroy_all_uploads_path}';" %>
+
 <% first_level_breadcrumb (:uploads) %>
 
 <div class="row">
