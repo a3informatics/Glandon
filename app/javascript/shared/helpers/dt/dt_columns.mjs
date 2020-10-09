@@ -92,10 +92,11 @@ function dtContextMenuColumn(renderer) {
  * @param {string} name data property name
  * @return {object} DataTables true/false icon column definition
  */
-function dtTrueFalseColumn(name) {
+function dtTrueFalseColumn(name, opts = {}) {
   return {
     className: "text-center",
     data: name,
+    ...opts,
     render: (data, type, r, m) => type === "display" ? icons.checkMarkIcon(data) : data
   }
 };
