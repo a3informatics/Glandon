@@ -58,6 +58,7 @@ describe Form::Item::Question do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..1)
     end
 
     it "returns the item hash" do
@@ -70,6 +71,23 @@ describe Form::Item::Question do
       item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
       result = item.to_crf
       check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "returns the CRF rendition, CLI ordered" do
+      item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Question1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
+      ref_2 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Ref2"), ordinal: 2, reference: Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49507"), local_label: "Ordinal 2")
+      ref_2.save
+      ref_1 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Ref1"), ordinal: 1, reference: Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49508"), local_label: "Ordinal 1")
+      ref_1.save
+      ref_3 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Ref3"), ordinal: 3, reference: Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C25376"), local_label: "Ordinal 3")
+      ref_3.save
+      item.has_coded_value_push(ref_1)
+      item.has_coded_value_push(ref_3)
+      item.has_coded_value_push(ref_2)
+      item.save
+      check_file_actual_expected(item.to_h, sub_dir, "to_crf_expected_2a.yaml", equate_method: :hash_equal)
+      result = item.to_crf
+      check_file_actual_expected(result, sub_dir, "to_crf_expected_2b.yaml", equate_method: :hash_equal)
     end
   
     it "returns the children in ordinal order" do
