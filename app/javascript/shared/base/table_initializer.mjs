@@ -22,7 +22,10 @@ export default class TableInitializer {
       pageLength: pageLength,     // Global variable
       lengthMenu: pageSettings,   // Global variable
       autoWidth: false,
-      order: order
+      order: order,
+      language: {
+        emptyTable: 'No data available'
+      }
     });
 
   }
