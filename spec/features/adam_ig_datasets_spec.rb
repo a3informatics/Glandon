@@ -59,6 +59,7 @@ describe "ADAM IG Datasets", :type => :feature do
       click_navbar_adam_ig_dataset
       wait_for_ajax 10
       ui_table_search('index', 'ADSL')
+      wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'ADSL')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'ADSL\''
