@@ -9,6 +9,7 @@ describe "CDISC Term", :type => :feature do
   include WaitForAjaxHelper
   include DownloadHelpers
   include CdiscCtHelpers
+  include PauseHelpers
 
   def sub_dir
     return "features/cdisc_term"
@@ -394,11 +395,39 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Submission value changes'
     end
 
+  end
+
+  describe "CDISC Terminology. Community Reader Login ", :type => :feature do
+
+    before :all do
+      ua_create
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..65)
+      clear_iso_concept_object
+      clear_iso_namespace_object
+      clear_iso_registration_authority_object
+      clear_iso_registration_state_object
+      delete_all_public_test_files
+    end
+
+    after :all do
+      ua_destroy
+    end
+
+    before :each do
+      ua_comm_reader_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
     it "checks for deleted changes", js: true do
       clear_downloads
       click_see_changes_all_versions
       wait_for_ajax(15)
-      (63..CdiscCtHelpers.version_range.last).each do |index|
+      (63..65).each do |index|
         click_link 'fb_bs_button'
         wait_for_ajax(15)
       end
