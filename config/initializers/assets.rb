@@ -56,7 +56,7 @@ end
 
     ajax_requests colour field_validation
     locked_items panel_collapse rspec_helper sidebar_handler spinner standard_datatable thesauri_field_editor
-    title token_timer unload_v2 unload
+    token_timer unload_v2 unload
 
   ).each do |filename|
   Rails.application.config.assets.precompile += ["#{filename}.js"]
