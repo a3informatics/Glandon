@@ -23,7 +23,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
   end
 
   def change_cdisc_version(version)
-    page.find('.card-with-tabs .show-more-btn').click
+    page.find('.card-with-tabs .expandable-content-btn').click
     sleep 0.5
     ui_dashboard_single_slider version
     click_button 'Submit selected version'

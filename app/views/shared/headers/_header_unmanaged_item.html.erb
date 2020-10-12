@@ -17,7 +17,7 @@
           Definition: <span class="font-light"><%= item.definition %> </span>
         </div>
         <% if (local_assigns.fetch :with_tags, true) %>
-          <%= render layout: "shared/show_more", :locals => {:size => "tiny"} do %>
+          <%= render layout: "shared/expandable_content", :locals => { size: "tiny" } do %>
             <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Tags", :items => item.filtered_tag_labels(context)} %>
           <% end %>
         <% end %>
@@ -29,4 +29,4 @@
     </div>
   </div>
 </div>
-<%= javascript_tag 'colorCodeTagsOutline(".show-more-wrap", ".tags.bg-label");' %>
+<%= javascript_tag 'colorCodeTagsOutline(".expandable-content", ".tags.bg-label");' %>
