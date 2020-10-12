@@ -187,7 +187,7 @@ class Form::Group::Normal < Form::Group
           if property.has_coded_value.length == 0
             html += input_field(property)
           else
-            html += terminology_cell(property)
+            html += terminology_cell(item)
           end
         end
       end
@@ -246,12 +246,11 @@ class Form::Group::Normal < Form::Group
     html += "</tr></table>"
   end
 
-  def terminology_cell(property)
+  def terminology_cell(item)
     html = '<td>'
-    property.has_coded_value.each do |cv|
-      op_ref = OperationalReferenceV3.find(cv)
-      tc = Thesaurus::UnmanagedConcept.find(op_ref.reference)
-      if op_ref.enabled
+    item.has_coded_value.sort_by {|x| x.ordinal}.each do |cv|
+      tc = Thesaurus::UnmanagedConcept.find(cv.reference)
+      if cv.enabled
         html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
       end
     end

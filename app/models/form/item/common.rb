@@ -24,14 +24,13 @@ class Form::Item::Common < Form::Item::BcProperty
   # @return [String] An html string of the Common Item
   def to_crf
     html = ""
-    #common_item = self.has_common_item.first
     property = BiomedicalConcept::PropertyX.find(self.has_property.reference)
     html += start_row(self.optional)
     html += question_cell(property.question_text)
     if self.has_coded_value.length == 0
       html += input_field(property)
     else
-      html += terminology_cell(self)
+      html += terminology_cell
     end
     html += end_row
   end
@@ -72,19 +71,5 @@ class Form::Item::Common < Form::Item::BcProperty
     normal_group = Form::Group::Normal.find_full(common_group.get_normal_group)
     normal_group = normal_group.full_data
   end
-
-  private
-
-    def terminology_cell(property)
-      html = '<td>'
-      property.has_coded_value_objects.sort_by {|x| x.ordinal}.each do |cv|
-        op_ref = OperationalReferenceV3.find(cv.uri)
-        tc = Thesaurus::UnmanagedConcept.find(op_ref.reference)
-        if op_ref.enabled
-          html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
-        end
-      end
-      html += '</td>'
-    end
 
 end
