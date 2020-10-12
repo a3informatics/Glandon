@@ -6,9 +6,24 @@ describe AdHocReportsController do
   include PauseHelpers
   include PublicFileHelpers
   include ControllerHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "controllers/ad_hoc_reports"
+  end
+
+  def check_and_fix_report_times(report, *args)
+    args.each do |a|
+      expect( Timestamp.new(report[a]).time ).to be_within(5.seconds).of Time.now
+      report[a] = Time.new(0).to_s
+    end
+  end
+
+  def check_and_fix_report_paths(report, *args)
+    args.each do |a|
+      expect( report[a] ).to include "/ad_hoc_reports/#{report[:id]}"
+      report[a] = "/ad_hoc_reports/id"
+    end
   end
 
   describe "ad hoc reports as content admin" do
@@ -48,8 +63,16 @@ describe AdHocReportsController do
       get :index
       expect(response.code).to eq("200")
       actual = check_good_json_response(response)
-      expect(actual[:data].count).to eq(2)
-      # check_file_actual_expected(actual[:data], sub_dir, "index_expected_1.yaml", equate_method: :hash_equal)
+      actual = actual[:data]
+
+      expect( actual.count ).to eq 2
+      actual.each do |report|
+        check_and_fix_report_times(report, :created_at, :updated_at, :last_run)
+        check_and_fix_report_paths(report, :report_path, :run_path, :results_path)
+        report[:id] = 'id'
+      end
+
+      check_file_actual_expected(actual, sub_dir, "index_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "initiates creation of a new report" do

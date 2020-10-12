@@ -17,7 +17,6 @@ class AdHocReportsController < ApplicationController
         results = AdHocReport.all.map do |report|
           x = report.as_json
           x[:parameters] = report.parameters.as_json
-          x[:last_run] = Timestamp.new(report.last_run).to_datetime
           x[:report_path] = ad_hoc_report_path(report)
           x[:run_path] = run_start_ad_hoc_report_path(report)
           x[:results_path] = results_ad_hoc_report_path(report)
