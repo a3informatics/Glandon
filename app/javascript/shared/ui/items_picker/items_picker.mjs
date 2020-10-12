@@ -95,7 +95,7 @@ export default class ItemsPicker extends ModalView {
     if ( !types )
       return;
 
-    this.enableAll();
+    this.toggleAllTabs( true );
 
     for ( let type of types ) {
 
@@ -112,12 +112,38 @@ export default class ItemsPicker extends ModalView {
   }
 
   /**
+   * Disable all (already allowed) types tabs except the given ones
+   * @param {array} types Types to remain enabled (must be a subset of allowed types)
+   * @return {ItemsPicker} this instance (for method chaining)
+   */
+  disableTypesExcept(types) {
+
+    if ( !types )
+      return;
+
+    this.toggleAllTabs( false );
+
+    for ( let type of types ) {
+
+      if ( !this.types.includes( type ) )
+        continue;
+
+      let tabId = $( this._typeToTabSelector( type ) ).attr( 'data-tab' );
+      $(`#${ tabId }`).removeClass( 'disabled' );
+
+    }
+
+    return this;
+
+  }
+
+  /**
    * Enable all (already disabled) types tabs
    */
-  enableAll() {
+  toggleAllTabs(enable) {
 
     $(this.selector).find( '.tab-option.disabled' )
-                    .removeClass( 'disabled' );
+                    .toggleClass( 'disabled', !enable );
 
   }
 
