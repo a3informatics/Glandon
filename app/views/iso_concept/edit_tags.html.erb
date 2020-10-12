@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("Edit tags: '+@item.label+'")' %>
+<% content_for :page_title do %> Edit Tags: <%= @item.label %> <% end %>
 
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>

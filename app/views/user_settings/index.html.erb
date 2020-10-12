@@ -1,5 +1,7 @@
-<%= javascript_tag 'setPageTitle("Preferences: '+current_user.email+'")' %>
+<% content_for :page_title do %> Preferences: <%= current_user.email %> <% end %>
+
 <% first_level_breadcrumb (:user_settings) %>
+
 <style>
 	#user_settings .btn{
 		min-width: 50px;

@@ -7,16 +7,20 @@
 <!--<![endif]-->
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><%= "#{APP_CONFIG['application_name']}" %></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <%= favicon_link_tag %>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>
+    <%= yield :page_title %> - <%= APP_CONFIG['application_name'] %>
+  </title>
+
+  <%= favicon_link_tag %>
   <%= stylesheet_link_tag 'application', media: 'all', id: "maincss" %>
   <%= stylesheet_link_tag 'devise/devise', media: 'all'%>
-  <%= javascript_include_tag 'title' %>
   <%= csrf_meta_tags %>
+
 </head>
 	<body>
     <div id="alerts">

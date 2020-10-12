@@ -1,4 +1,5 @@
-<%= javascript_tag 'setPageTitle("Audit Trail")' %>
+<% content_for :page_title do %> Audit Trail <% end %>
+
 <%= javascript_pack_tag 'audit_trail/index' %>
 
 <% first_level_breadcrumb (:audit_trail) %>

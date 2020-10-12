@@ -1,6 +1,6 @@
-<%= javascript_tag 'setPageTitle("Edit Locks")' %>
-<%= javascript_pack_tag 'tokens/index' %>
+<% content_for :page_title do %> Edit Locks <% end %>
 
+<%= javascript_pack_tag 'tokens/index' %>
 <% first_level_breadcrumb (:tokens) %>
 
 <div class="row">

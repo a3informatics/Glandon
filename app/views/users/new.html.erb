@@ -1,4 +1,5 @@
-<%= javascript_tag 'setPageTitle("New User Account")' %>
+<% content_for :page_title do %> New User Account <% end %>
+
 <% breadcrumb ([id_to_type(:users), {link: "#", text: "New"}]) %>
 <div class="row centered">
   <div class="col-md-8 card wide">

@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("Markdown")' %>
+<% content_for :page_title do %> Markdown <% end %>
 
 <%= javascript_include_tag 'markdown_engines/markdown_editor', 'ajax_requests', 'field_validation' %>
 <% first_level_breadcrumb(:markdown_engines) %>

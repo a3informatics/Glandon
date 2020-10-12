@@ -1,4 +1,5 @@
-<%= javascript_tag 'setPageTitle("Ad-Hoc Reports")' %>
+<% content_for :page_title do %> Ad-Hoc Reports <% end %>
+
 <%= javascript_pack_tag 'ad_hoc_reports/index' %>
 
 <% first_level_breadcrumb (:ad_hoc_reports) %>

@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("Edit Subset: '+@subset_mc.notation+' ('+@subset_mc.has_identifier.identifier+')")' %>
+<% content_for :page_title do %> <%= "Edit Subset: #{@subset_mc.notation} (#{@subset_mc.has_identifier.identifier})" %> <% end %>
 <% third_level_breadcrumb(:thesauri, @subset_mc, history_thesauri_index_path({thesauri: {identifier: @subset_mc.scoped_identifier, scope_id: @subset_mc.scope.id}})) %>
 
 <%= javascript_include_tag 'thesauri/managed_concepts/edit_subset', 'shared/timer', 'unload',

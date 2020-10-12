@@ -1,4 +1,5 @@
-<%= javascript_tag 'setPageTitle("New Ad-Hoc Report")' %>
+<% content_for :page_title do %> New Ad-Hoc Report <% end %>
+
 <% breadcrumb ([id_to_type(:ad_hoc_reports), {link: "#", text: "New"}]) %>
 
 <div class="row">

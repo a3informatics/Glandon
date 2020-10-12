@@ -1,4 +1,5 @@
-<%= javascript_tag 'setPageTitle("Background jobs")' %>
+<% content_for :page_title do %> Background Jobs <% end %>
+
 <%= javascript_pack_tag 'backgrounds/index' %>
 
 <% first_level_breadcrumb (:backgrounds) %>

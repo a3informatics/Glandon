@@ -1,7 +1,7 @@
-<%= javascript_tag 'setPageTitle("Edit User: '+@user.email+'");' %>
+<% content_for :page_title do %> Edit User: <%= @user.email %> <% end %>
+
 <%= javascript_include_tag 'standard_datatable' %>
 <% breadcrumb ([id_to_type(:users), {link: "#", text: "Edit"}]) %>
-
 
 <style>
 
@@ -22,7 +22,7 @@
 </style>
 
 <div class="row">
-	<% 
+	<%
   last_si = @user.last_sign_in_at
   s_texts =
 	  [{:title => "Email", :value => @user.email},

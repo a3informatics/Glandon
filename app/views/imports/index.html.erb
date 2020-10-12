@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("Imports")' %>
+<% content_for :page_title do %> Imports <% end %>
 
 <%= javascript_pack_tag 'imports/index' %>
 <%= javascript_tag "let importsDataUrl = '#{imports_path}',

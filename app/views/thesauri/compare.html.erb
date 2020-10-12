@@ -1,4 +1,5 @@
-<%= javascript_tag 'setPageTitle("Terminology Compare")' %>
+<% content_for :page_title do %> Terminology Compare <% end %>
+
 <%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
 <%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/alphabetical_filter', 'thesauri/compare'%>
 <%= stylesheet_link_tag 'shared/alphabetical_filter','shared/timeline_cdisc', media: 'all' %>

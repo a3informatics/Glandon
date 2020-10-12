@@ -1,4 +1,5 @@
-<%= javascript_tag 'setPageTitle("Change password")' %>
+<% content_for :page_title do %> Change Password <% end %>
+
 <br>
 <div class="text-medium font-light text-large">Changing the password for <%= current_user.email %></div>
 <div class="p-justified font-light text-small text-medium">

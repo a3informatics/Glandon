@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("Index: SDTM IG Domain")' %>
+<% content_for :page_title do %> Index: SDTM IG Domains <% end %>
 
 <%= javascript_pack_tag 'sdtm_ig_domains/index' %>
 
@@ -20,7 +20,7 @@
   <% end %>
 
   <% content_for :actions do %>
-    
+
     <% if policy(SdtmIgDomain).new? %>
       <a href="#" class="btn medium green" id="new_form">
         <span class="icon-plus text-tiny"></span>&nbsp; New SDTM IG Domain

@@ -9,7 +9,9 @@
     <meta name="author" content="">
     <%= favicon_link_tag %>
 
-  	<title><%= "#{APP_CONFIG['application_name']}" %></title>
+  	<title>
+      <%= yield :page_title %> - <%= APP_CONFIG['application_name'] %>
+    </title>
 
     <% if !Rails.application.config.assets.precompile.include? "#{params[:controller]}.js" %>
       <%= stylesheet_link_tag    'application', media: 'all' %>
