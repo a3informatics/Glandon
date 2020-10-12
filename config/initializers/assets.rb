@@ -52,7 +52,7 @@ end
     shared/thesauri/managed_concepts/rank/edit_ranks shared/thesauri/managed_concepts/rank/enable_rank
 
     shared/alphabetical_filter shared/confirmation_dialog shared/context_menu shared/icons_tags_helpers shared/information_dialog
-    shared/list_change_notes_panel shared/show_more shared/tabs_layout shared/timer
+    shared/list_change_notes_panel shared/tabs_layout shared/timer
 
     ajax_requests colour field_validation
     locked_items panel_collapse rspec_helper sidebar_handler spinner standard_datatable thesauri_field_editor
