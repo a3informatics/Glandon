@@ -29,10 +29,11 @@ function dtButtonColumn(name) {
  * Returns column definition for the last change date column
  * @return {object} DataTables last change date column definition
  */
-function dtLastChangeDateColumn() {
+function dtDateTimeColumn(name) {
   return {
+    data: name,
     render(data, type, r, m) {
-      const date = new Date(r.last_change_date);
+      const date = new Date( data );
       return type === "display" ? dateTimeHTML(date) : date.getTime()
     }
   }
@@ -150,7 +151,7 @@ export {
   dtButtonColumn,
   dtIndicatorsColumn,
   dtTagsColumn,
-  dtLastChangeDateColumn,
+  dtDateTimeColumn,
   dtVersionColumn,
   dtContextMenuColumn,
   dtTrueFalseColumn,

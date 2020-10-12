@@ -1,6 +1,6 @@
 import TablePanel from 'shared/base/table_panel'
 
-import { dtTrueFalseColumn, dtContextMenuColumn } from 'shared/helpers/dt/dt_columns'
+import { dtTrueFalseColumn, dtContextMenuColumn, dtDateTimeColumn } from 'shared/helpers/dt/dt_columns'
 import { render as renderMenu } from 'shared/ui/context_menu'
 import { $confirm } from 'shared/helpers/confirmable'
 import { $delete } from 'shared/helpers/ajax'
@@ -83,7 +83,7 @@ export default class ReportsManager extends TablePanel {
     this.itemsPicker.disableTypesExcept( [type] )
                     .setDescription( description );
 
-    // On submit handler - redirect with parameters 
+    // On submit handler - redirect with parameters
     this.itemsPicker.onSubmit = s => {
 
       let ids = s.asIDsArray();
@@ -178,7 +178,7 @@ export default class ReportsManager extends TablePanel {
     return [
       { data: 'label' },
       { render: (data, t, r, m) => r.parameters.length ? r.parameters[0].name : 'None' },
-      { data: 'last_run' },
+      dtDateTimeColumn('last_run'),
       dtTrueFalseColumn( 'active', { orderable: false } ),
       dtContextMenuColumn( this._buildContextMenu.bind( this ) )
     ];
