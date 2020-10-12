@@ -9,6 +9,7 @@ describe "Ad Hoc Reports", :type => :feature do
   include PublicFileHelpers
   include WaitForAjaxHelper
   include DownloadHelpers
+  include ItemsPickerHelpers
 
   def sub_dir
     return "features/ad_hoc_report"
@@ -54,24 +55,22 @@ describe "Ad Hoc Reports", :type => :feature do
       Capybara.ignore_hidden_elements = true
     end
 
-    it "shoud allow a report to be run, parameters to be selected and results to be viewed(REQ-MDR-AR-020)", js:true do
+    it "shoud allow a report to be run, parameters to be selected and results to be viewed (REQ-MDR-AR-020)", js:true do
       # Run
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
-      context_menu_element("main", 5, "Terminology Code Lists", :run)
-      sleep 1
-      wait_for_ajax(10)
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
-      wait_for_ajax(10)
-      find(:xpath, "//*[@id='history']/tbody/tr[1]").click
-      click_button "Submit and proceed"
-      sleep 1
+      context_menu_element_v2("main", "Terminology Code Lists", :run)
+
+      ip_pick_managed_items(:thesauri, [
+        { identifier: 'CT', version: '2007-06-05' }
+        ], 'report-param')
+
+      # Results
       wait_for_ajax(10)
       expect(page).to have_content("Results of Terminology Code Lists")
-      # Results
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
-      context_menu_element("main", 5, "Terminology Code Lists", :results)
+      context_menu_element_v2("main", "Terminology Code Lists", :results)
       wait_for_ajax(10)
       expect(page).to have_content("Results of Terminology Code Lists")
       ui_check_table_info("results", 1, 10, 34)
@@ -127,8 +126,9 @@ describe "Ad Hoc Reports", :type => :feature do
       create_report "terminology_code_lists_sparql.yaml"
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
-      context_menu_element("main", 5, "Terminology Code Lists", :delete)
+      context_menu_element_v2("main", "Terminology Code Lists", :delete)
       ui_confirmation_dialog true
+      wait_for_ajax 10
       ui_check_table_info("main", 0, 0, 0)
     end
 
@@ -141,7 +141,7 @@ describe "Ad Hoc Reports", :type => :feature do
       click_link '+ Add New'
       expect(page).to have_content 'New Ad-Hoc Report'
       select Rails.root.join("public", "upload", "terminology_list_sparql.yaml").to_s, :from => "ad_hoc_report_files_"
-      click_button 'Create report'
+      click_button 'Create Report'
       expect(page).to have_content 'Ad-Hoc Reports'
       expect(page).to have_content 'Report was successfully created.'
     end
@@ -157,7 +157,7 @@ describe "Ad Hoc Reports", :type => :feature do
       # Results
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
-      context_menu_element("main", 5, "Terminology List", :results)
+      context_menu_element_v2("main", "Terminology List", :results)
       expect(page).to have_content("Results of Terminology List")
       wait_for_ajax(10)
       ui_check_table_info("results", 1, 5, 5)
@@ -168,7 +168,7 @@ describe "Ad Hoc Reports", :type => :feature do
       create_report "terminology_list_sparql.yaml"
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
-      context_menu_element("main", 5, "Terminology List", :run)
+      context_menu_element_v2("main", "Terminology List", :run)
       wait_for_ajax 10
       expect(page).to have_content("Results of Terminology List")
       click_link "Export CSV"
@@ -186,7 +186,7 @@ describe "Ad Hoc Reports", :type => :feature do
       click_link '+ Add New'
       expect(page).to have_content 'New Ad-Hoc Report'
       select Rails.root.join("public", "upload", "ad_hoc_report_test_err_6_sparql.yaml").to_s, :from => "ad_hoc_report_files_"
-      click_button 'Create report'
+      click_button 'Create Report'
       expect(page).to have_content 'Report was not created. The SPARQL file contained a syntax error.'
     end
 
