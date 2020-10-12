@@ -1,0 +1,15 @@
+<%= javascript_tag 'var pageHasExpandableContent = true;' %>
+
+<div class="expandable-content-wrap collapsed <%= "centered" if ( local_assigns.fetch :centered, false ) %>">
+  <div class="expandable-content">
+    <%= yield %>
+  </div>
+  <div class="expandable-content-btn">
+    <span class="icon-arrow-d"></span>
+    <span class="expandable-content-text text-<%= size %>"
+          data-expand-text="<%= local_assigns.fetch :expand_text, "Show more" %>"
+          data-collapse-text="<%= local_assigns.fetch :collapse_text, "Show less" %>" >
+      <%= local_assigns.fetch :expand_text, "Show more" %>
+    </span>
+  </div>
+</div>
