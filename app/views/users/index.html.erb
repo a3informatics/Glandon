@@ -44,7 +44,7 @@
 								</td>
 					    	<td class="no-break">
 
-									<%= link_to edit_user_path(user), :class => "btn icon-only white ttip" do %>
+									<%= link_to edit_user_path(user), :class => "btn icon-only white ttip edit-user" do %>
 										<span class="icon-edit"></span>
 										<span class="ttip-text ttip-top ttip-left shadow-small text-medium text-small">Edit User</span>
 									<% end %>
@@ -52,12 +52,12 @@
 									<% if @current_user.id != user.id %>
 
 										<% if user.is_active? %>
-											<%= link_to lock_user_path(user), method: :put, :class => "btn icon-only white ttip" do %>
+											<%= link_to lock_user_path(user), method: :put, :class => "btn icon-only white ttip lock-user" do %>
 												<span class="icon-lock"></span>
 												<span class="ttip-text ttip-top ttip-left shadow-small text-medium text-small">Lock User</span>
 											<% end %>
 										<% else %>
-											<%= link_to unlock_user_path(user), method: :put, :class => "btn icon-only white ttip" do %>
+											<%= link_to unlock_user_path(user), method: :put, :class => "btn icon-only white ttip unlock-user" do %>
 												<span class="icon-lock-open"></span>
 												<span class="ttip-text ttip-top ttip-left shadow-small text-medium text-small">Unlock User</span>
 											<% end %>
