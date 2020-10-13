@@ -86,31 +86,6 @@ describe FormsController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
     end
 
-    it "destroy" do
-      @request.env['HTTP_REFERER'] = '/path'
-      form = Form.create({ :identifier => "NEW FORM 2", :label => "New Form 2" })
-      audit_count = AuditTrail.count
-      count = Form.all.count
-      token_count = Token.all.count
-      delete :destroy, params:{id: form.id}
-      expect(Form.all.count).to eq(count - 1)
-      expect(AuditTrail.count).to eq(audit_count + 1)
-      expect(Token.count).to eq(token_count)
-      check_file_actual_expected(last_audit_event, sub_dir, "destroy_expected_1.yaml", equate_method: :hash_equal)
-      expect(response).to redirect_to("/path")
-    end
-
-    it 'delete, locked by another user' do
-      @request.env['HTTP_REFERER'] = '/path'
-      form = Form.create({ :identifier => "NEW FORM 2", :label => "New Form 2" })
-      token = Token.obtain(form, @lock_user)
-      audit_count = AuditTrail.count
-      delete :destroy, params:{id: form.id}
-      expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
-      expect(response).to redirect_to("/path")
-    end
-
     # it "edit, no next version" do
     #   get :edit, { :id => "F-ACME_NEWTH", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
     #   result = assigns(:form)
@@ -208,6 +183,57 @@ describe FormsController do
     #   get :crf, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
     #   expect(response).to render_template("crf")
     # end
+
+  end
+
+  describe "delete actions" do
+
+    login_curator
+
+    def sub_dir
+      return "controllers/forms"
+    end
+
+    before :all do
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+
+    it "destroy" do
+      @request.env['HTTP_REFERER'] = '/path'
+      form = Form.create({ :identifier => "NEW FORM 2", :label => "New Form 2" })
+      audit_count = AuditTrail.count
+      count = Form.all.count
+      token_count = Token.all.count
+      delete :destroy, params:{id: form.id}
+      expect(Form.all.count).to eq(count - 1)
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(Token.count).to eq(token_count)
+      check_file_actual_expected(last_audit_event, sub_dir, "destroy_expected_1.yaml", equate_method: :hash_equal)
+      actual = check_good_json_response(response)
+    end
+
+    it 'delete, locked by another user' do
+      @request.env['HTTP_REFERER'] = '/path'
+      form = Form.create({ :identifier => "NEW FORM 3", :label => "New Form 3" })
+      token = Token.obtain(form, @lock_user)
+      audit_count = AuditTrail.count
+      delete :destroy, params:{id: form.id}
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
+    end
 
   end
 

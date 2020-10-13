@@ -228,7 +228,8 @@ describe BiomedicalConceptInstancesController do
       delete :destroy, params:{id: bci.id}
       expect(AuditTrail.count).to eq(audit_count+1)
       check_file_actual_expected(last_audit_event, sub_dir, "destroy_expected_1.yaml", equate_method: :hash_equal)
-      expect(response).to redirect_to("/path")
+      #expect(response).to redirect_to("/path")
+      check_good_json_response(response)
     end
 
     it 'delete, locked by another user' do
@@ -239,7 +240,7 @@ describe BiomedicalConceptInstancesController do
       delete :destroy, params:{id: bci.id}
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
-      expect(response).to redirect_to("/path")
+      #expect(response).to redirect_to("/path")
     end
 
   end

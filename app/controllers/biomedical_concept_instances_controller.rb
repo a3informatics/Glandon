@@ -79,7 +79,9 @@ class BiomedicalConceptInstancesController < ManagedItemsController
     bc.delete
     AuditTrail.delete_item_event(current_user, bc, bc.audit_message(:deleted))
     @lock.release
-    redirect_to request.referer
+    #redirect_to request.referer
+    return true if lock_item_errors
+    render json: { data: "" }, status: 200
   end
 
 private
@@ -132,8 +134,8 @@ private
         return biomedical_concept_instance_path(object)
       when :edit
         return edit_biomedical_concept_instance_path(id: object.id)
-      # when :destroy
-      #   return biomedical_concept_instance_path(object)
+      when :destroy
+        return biomedical_concept_instance_path(object)
       else
         return ""
     end
