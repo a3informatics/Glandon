@@ -102,8 +102,8 @@ module ApplicationHelper
   # @return [String] returns the HTML for the setting
   def true_false_cell(data, alignment)
     span_class = "icon-" # Note space at end
-    span_class += data ? "ok text-secondary-clr" : "times text-accent-2"
-    return raw("<td class=\"text-#{alignment}\"><span class=\"#{span_class}\"/></td>")
+    span_class += data ? "sel-filled text-link" : "times-circle text-accent-2"
+    return raw("<td class=\"text-#{alignment}\"><span class=\"text-normal #{span_class}\"/></td>")
   end
 
 	# Return the datatable settings for column ordering
