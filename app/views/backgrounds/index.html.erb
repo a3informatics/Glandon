@@ -54,7 +54,7 @@
 			    		<%= true_false_glyphicon(job.complete) %>
 			    		<td><%= Timestamp.new(job.completed).to_datetime %></td>
 		          <td>
-								<button class="btn icon-only red btn-xs remove-job" data-url="<%= background_path(job) %>" data-method="DELETE">
+								<button class="btn icon-only red btn-xs remove-job" data-url="<%= background_path(job) %>" data-type="DELETE">
 									<span class="icon-trash"></span>
 								</button>
 		          </td>
@@ -63,11 +63,11 @@
 			  </tbody>
 			</table>
 
-			<button class="btn red medium remove-job" id="delete-completed-button" data-url="<%= destroy_multiple_backgrounds_path({backgrounds: {items: "completed"}}) %>" data-method="DELETE">
+			<button class="btn red medium remove-job" id="delete-completed-button" data-url="<%= destroy_multiple_backgrounds_path({backgrounds: {items: "completed"}}) %>" data-type="DELETE">
 				<span class="icon-trash"></span> Delete Completed
 			</button>
 
-			<button class="btn red medium remove-job" id="delete-all-button" data-url="<%= destroy_multiple_backgrounds_path({backgrounds: {items: "all"}}) %>" data-method="DELETE">
+			<button class="btn red medium remove-job" id="delete-all-button" data-url="<%= destroy_multiple_backgrounds_path({backgrounds: {items: "all"}}) %>" data-type="DELETE">
 				<span class="icon-trash"></span> Delete All
 			</button>
 		</div>

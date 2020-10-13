@@ -40,7 +40,7 @@
 	                <td><%= namespace.short_name %></td>
 	                <td>
 	                  <% if namespace.not_used? %>
-	                    <button class="btn icon-only red remove-namespace" data-url="<%= iso_namespace_path(namespace) %>" data-method="DELETE">
+	                    <button class="btn icon-only red remove-namespace" data-url="<%= iso_namespace_path(namespace) %>" data-type="DELETE">
 	                      <span class="icon-trash"></span>
 	                    </button>
 	                  <% end %>

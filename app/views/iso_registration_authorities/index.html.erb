@@ -54,7 +54,7 @@
       				    <%= true_false_glyphicon(ra.owner) %>
                   <td>
                     <% if ra.not_used? %>
-                      <button class="btn icon-only red remove-namespace" id="delete-ra-<%= ra.id %>" data-url="<%=  iso_registration_authority_path(ra) %>" data-method="DELETE">
+                      <button class="btn icon-only red remove-namespace" id="delete-ra-<%= ra.id %>" data-url="<%=  iso_registration_authority_path(ra) %>" data-type="DELETE">
                         <span class="icon-trash"></span>
                       </button>
                     <% end %>

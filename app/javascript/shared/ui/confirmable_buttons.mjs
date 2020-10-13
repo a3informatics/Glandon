@@ -4,7 +4,7 @@ import { $ajax } from 'shared/helpers/ajax'
 /**
  * Simple Confirmable Button
  * @description Initializes a click handler for a button that will redirect to a link / maje AJAX request
- * The buttons must have the following properties: 'data-url' and 'data-method'
+ * The buttons must have the following properties: 'data-url' and 'data-type'
  * @author Samuel Banas <sab@s-cubed.dk>
  */
 export default class ConfirmableButtons {
@@ -34,7 +34,7 @@ export default class ConfirmableButtons {
         dangerous,
         callback: () => {
 
-          let method = $( e.currentTarget ).attr( 'data-method' ),
+          let method = $( e.currentTarget ).attr( 'data-type' ),
               url = $( e.currentTarget ).attr( 'data-url' );
 
           if ( method.toUpperCase() === 'GET' )
