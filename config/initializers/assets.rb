@@ -20,7 +20,6 @@ Rails.application.config.assets.version = '1.0'
 end
 
 %w(
-    ad_hoc_reports/results
     biomedical_concepts/bc_template_new
     dashboard/dashboard_editor dashboard/dashboard_panel dashboard/dashboard dashboard/statistics_panel
     export/start_panel

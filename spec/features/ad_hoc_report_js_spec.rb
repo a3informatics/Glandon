@@ -67,12 +67,12 @@ describe "Ad Hoc Reports", :type => :feature do
 
       # Results
       wait_for_ajax(10)
-      expect(page).to have_content("Results of Terminology Code Lists")
+      expect(page).to have_content("Report: Terminology Code Lists")
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
       context_menu_element_v2("main", "Terminology Code Lists", :results)
       wait_for_ajax(10)
-      expect(page).to have_content("Results of Terminology Code Lists")
+      expect(page).to have_content("Report: Terminology Code Lists")
       ui_check_table_info("results", 1, 10, 34)
       ui_check_table_cell("results", 1, 1, "C65047")
     end
@@ -152,13 +152,13 @@ describe "Ad Hoc Reports", :type => :feature do
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
       wait_for_ajax 10
-      context_menu_element("main", 5, "Terminology List", :run)
+      context_menu_element_v2("main", "Terminology List", :run)
       wait_for_ajax 10
       # Results
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
       context_menu_element_v2("main", "Terminology List", :results)
-      expect(page).to have_content("Results of Terminology List")
+      expect(page).to have_content("Report: Terminology List")
       wait_for_ajax(10)
       ui_check_table_info("results", 1, 5, 5)
       ui_check_table_cell("results", 4, 4, "4.0.0")
@@ -170,7 +170,7 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(page).to have_content 'Ad-Hoc Reports'
       context_menu_element_v2("main", "Terminology List", :run)
       wait_for_ajax 10
-      expect(page).to have_content("Results of Terminology List")
+      expect(page).to have_content("Report: Terminology List")
       click_link "Export CSV"
       file = download_content
       # write_text_file_2(file, sub_dir, "ad_hoc_csv_report.csv")
