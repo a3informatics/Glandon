@@ -19,7 +19,6 @@ describe Forms::Items::BcPropertiesController do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/CRF TEST 1.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..15)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -97,9 +96,8 @@ describe Forms::Items::BcPropertiesController do
     end
 
     before :all do
-      data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      data_files = ["forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -159,9 +157,8 @@ describe Forms::Items::BcPropertiesController do
     end
 
     before :all do
-      data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      data_files = ["forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -221,19 +218,19 @@ describe Forms::Items::BcPropertiesController do
     end
 
     before :all do
-      data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      data_files = ["forms/form_test.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..62)
+      load_cdisc_term_versions(1..1)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
-      @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+      @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F"))
     end
 
     it "Make common I" do
       request.env['HTTP_ACCEPT'] = "application/json"
       request.content_type = 'application/json'
-      item = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2"))
+      item = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP2"))
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
       post :make_common, params:{id: item.id, bc_property: {form_id: @form.id}}
@@ -244,7 +241,7 @@ describe Forms::Items::BcPropertiesController do
     it "Make common I, Error" do
       request.env['HTTP_ACCEPT'] = "application/json"
       request.content_type = 'application/json'
-      item = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG1_BP3"))
+      item = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG2_BCG1_BP3"))
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
       post :make_common, params:{id: item.id, bc_property: {form_id: @form.id}}

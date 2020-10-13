@@ -77,7 +77,7 @@ class Form::Item::Common < Form::Item::BcProperty
 
     def terminology_cell(property)
       html = '<td>'
-      property.has_coded_value_objects.each do |cv|
+      property.has_coded_value_objects.sort_by {|x| x.ordinal}.each do |cv|
         op_ref = OperationalReferenceV3.find(cv.uri)
         tc = Thesaurus::UnmanagedConcept.find(op_ref.reference)
         if op_ref.enabled

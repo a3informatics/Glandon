@@ -91,7 +91,7 @@ class Form < IsoManagedV2
   def full_data
     form = self.to_h
     form[:has_group] = []
-    self.has_group.each do |group|
+    self.has_group.sort_by {|x| x.ordinal}.each do |group|
       form[:has_group] << group.full_data
     end
     form

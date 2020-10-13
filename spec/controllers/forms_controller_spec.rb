@@ -21,7 +21,7 @@ describe FormsController do
     before :all do
       data_files = ["forms/FN000150.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..65)
+      load_cdisc_term_versions(1..59)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -222,7 +222,6 @@ describe FormsController do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000150.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..15)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -292,9 +291,9 @@ describe FormsController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000150.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/form_test_2.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..15)
+      load_cdisc_term_versions(1..1)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -306,7 +305,7 @@ describe FormsController do
 
     it 'Add normal group' do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
-      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F"))
       request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
       token = Token.obtain(form, @user)
@@ -320,36 +319,5 @@ describe FormsController do
     end
 
   end
-
-  # describe "Unauthorized User" do
-    
-  #   login_reader
-
-  #   it "prevents access to a reader, placeholder new" do
-  #     get :placeholder_new
-  #     expect(response).to redirect_to("/")
-  #   end
-
-  #   it "prevents access to a reader, placeholder create" do
-  #     get :placeholder_create
-  #     expect(response).to redirect_to("/")
-  #   end
-
-  #   it "prevents access to a reader, edit" do
-  #     get :edit, id: 1
-  #     expect(response).to redirect_to("/")
-  #   end
-
-  #   it "prevents access to a reader, update" do
-  #     put :update, id: 1
-  #     expect(response).to redirect_to("/")
-  #   end
-
-  #   it "prevents access to a reader, destroy" do
-  #     delete :destroy, id: 1
-  #     expect(response).to redirect_to("/")
-  #   end
-
-  # end
 
 end

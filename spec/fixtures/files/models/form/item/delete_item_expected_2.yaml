@@ -1,6 +1,6 @@
 ---
-:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcx
-:uri: http://www.s-cubed.dk/FN000150/V1#F_NG1
+:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcx
+:uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1
 :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
 :label: Not Set
 :tagged: []
@@ -9,8 +9,8 @@
 :completion: Not Set
 :optional: false
 :has_item:
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ex
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1Ex
+  :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1
   :rdf_type: http://www.assero.co.uk/BusinessForm#Question
   :label: Completion status
   :tagged: []
@@ -23,8 +23,8 @@
   :mapping: VSSTAT
   :question_text: " Compltion Status"
   :has_coded_value:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1ExX1RVQzE=
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1ExX1RVQzE=
+    :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1_TUC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
     :tagged: []
@@ -32,24 +32,41 @@
     :optional: false
     :ordinal: 1
     :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1Y0I0M2Njc4OV9DNDk0ODQ=
-      :uri: http://www.cdisc.org/C66789/V4#C66789_C49484
-      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDg0L1YxI0M0OTQ4NA==
+      :uri: http://www.cdisc.org/C49484/V1#C49484
+      :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
       :label: Not Done
       :tagged:
       - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+      :has_state: http://www.cdisc.org/C49484/V1#C49484_RS
+      :has_identifier: http://www.cdisc.org/C49484/V1#C49484_SI
+      :has_previous_version: 
+      :origin: ''
+      :change_description: ''
+      :creation_date: '2007-03-06T00:00:00+00:00'
+      :last_change_date: '2007-03-06T00:00:00+00:00'
+      :explanatory_comment: ''
       :identifier: C49484
-      :notation: NOT DONE
+      :notation: ND
       :definition: Indicates a task, process or examination that has either not been
         initiated or completed. (NCI)
       :extensible: false
-      :narrower: []
+      :narrower:
+      - http://www.cdisc.org/C49484/V1#C49484_C49484
+      :extends: 
+      :subsets: 
+      :paired_with: 
+      :refers_to: []
       :preferred_term: http://www.assero.co.uk/PT#80693856b066974cd21dac794f7adf4b3437ce78
-      :synonym: []
-    :context: http://www.cdisc.org/C66789/V13#C66789
+      :synonym:
+      - http://www.assero.co.uk/SYN#80693856b066974cd21dac794f7adf4b3437ce78
+      - http://www.assero.co.uk/SYN#aef41842ab637007acc118fdd2f2e678f7a91efa
+      :is_ordered: 
+      :is_ranked: 
+    :context: http://www.cdisc.org/C49484/V1#C49484
     :local_label: ''
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ez
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q3
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1Ez
+  :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q3
   :rdf_type: http://www.assero.co.uk/BusinessForm#Question
   :label: Height
   :tagged: []
@@ -62,8 +79,8 @@
   :mapping: VSORRES
   :question_text: Height
   :has_coded_value: []
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1E0
+  :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q4
   :rdf_type: http://www.assero.co.uk/BusinessForm#Question
   :label: Unit
   :tagged: []
@@ -76,8 +93,8 @@
   :mapping: VSORRESU
   :question_text: Unit
   :has_coded_value:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0X1RVQzE=
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4_TUC1
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1E0X1RVQzE=
+    :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q4_TUC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
     :tagged: []
@@ -85,8 +102,8 @@
     :optional: false
     :ordinal: 1
     :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YyI0M2Njc3MF9DNDg1MDA=
-      :uri: http://www.cdisc.org/C66770/V2#C66770_C48500
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5Njc1L1YxI0M0OTY3NV9DNDg1MDA=
+      :uri: http://www.cdisc.org/C49675/V1#C49675_C48500
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Inch
       :tagged:
@@ -99,10 +116,10 @@
       :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
       :synonym:
       - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
-    :context: http://www.cdisc.org/C66770/V59#C66770
+    :context: http://www.cdisc.org/C49675/V1#C49675
     :local_label: ''
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0X1RVQzI=
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4_TUC2
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1E0X1RVQzI=
+    :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q4_TUC2
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
     :tagged: []
@@ -110,8 +127,8 @@
     :optional: false
     :ordinal: 2
     :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0I0M2Njc3MF9DNDk2Njg=
-      :uri: http://www.cdisc.org/C66770/V4#C66770_C49668
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5Njc1L1YxI0M0OTY3NV9DNDk2Njg=
+      :uri: http://www.cdisc.org/C49675/V1#C49675_C49668
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Centimeter
       :tagged:
@@ -125,7 +142,7 @@
       :preferred_term: http://www.assero.co.uk/PT#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
       :synonym:
       - http://www.assero.co.uk/SYN#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
-    :context: http://www.cdisc.org/C66770/V59#C66770
+    :context: http://www.cdisc.org/C49675/V1#C49675
     :local_label: ''
 :repeating: false
 :has_sub_group: []

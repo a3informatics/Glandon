@@ -23,7 +23,6 @@ describe Forms::Items::PlaceholdersController do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/CRF TEST 1.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..15)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -95,9 +94,9 @@ describe Forms::Items::PlaceholdersController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/CRF TEST 1.ttl", "forms/FN000150.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000150.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..15)
+      load_cdisc_term_versions(1..4)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -134,7 +133,6 @@ describe Forms::Items::PlaceholdersController do
     before :all do
       data_files = ["forms/FN000150.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -197,7 +195,6 @@ describe Forms::Items::PlaceholdersController do
     before :all do
       data_files = ["forms/FN000150.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all

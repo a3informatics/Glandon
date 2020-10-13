@@ -1,0 +1,158 @@
+
+== Brakeman Report ==
+
+Application Path: /Users/daveih/Documents/rails/Glandon
+Rails Version: 5.2.4.3
+Brakeman Version: 4.10.0
+Scan Date: 2020-10-10 12:59:32 +0200
+Duration: 8.038736 seconds
+Checks Run: BasicAuth, BasicAuthTimingAttack, CSRFTokenForgeryCVE, ContentTag, CookieSerialization, CreateWith, CrossSiteScripting, DefaultRoutes, Deserialize, DetailedExceptions, DigestDoS, DynamicFinders, EscapeFunction, Evaluation, Execute, FileAccess, FileDisclosure, FilterSkipping, ForgerySetting, HeaderDoS, I18nXSS, JRubyXML, JSONEncoding, JSONEntityEscape, JSONParsing, LinkTo, LinkToHref, MailTo, MassAssignment, MimeTypeDoS, ModelAttrAccessible, ModelAttributes, ModelSerialize, NestedAttributes, NestedAttributesBypass, NumberToCurrency, PageCachingCVE, PermitAttributes, QuoteTableName, Redirect, RegexDoS, Render, RenderDoS, RenderInline, ResponseSplitting, RouteDoS, SQL, SQLCVEs, SSLVerify, SafeBufferManipulation, SanitizeMethods, SelectTag, SelectVulnerability, Send, SendFile, SessionManipulation, SessionSettings, SimpleFormat, SingleQuotes, SkipBeforeFilter, SprocketsPathTraversal, StripTags, SymbolDoSCVE, TemplateInjection, TranslateBug, UnsafeReflection, ValidationRegex, WithoutProtection, XMLDoS, YAMLParsing
+
+== Overview ==
+
+Controllers: 61
+Models: 132
+Templates: 243
+Errors: 3
+Security Warnings: 15
+
+== Warning Types ==
+
+Cross-Site Scripting: 10
+Redirect: 1
+Remote Code Execution: 1
+SQL Injection: 3
+
+== Errors ==
+
+Error: /Users/daveih/Documents/rails/Glandon/app/views/shared/headers/_header_generic.html.erb:13 :: parse error on value "+" (tUPLUS)
+Location: Could not parse /Users/daveih/Documents/rails/Glandon/app/views/shared/headers/_header_generic.html.erb
+
+Error: /Users/daveih/Documents/rails/Glandon/app/views/shared/headers/_header_item_simple.html.erb:11 :: parse error on value "+" (tUPLUS)
+Location: Could not parse /Users/daveih/Documents/rails/Glandon/app/views/shared/headers/_header_item_simple.html.erb
+
+Error: /Users/daveih/Documents/rails/Glandon/app/views/shared/headers/_header_managed_item.html.erb:8 :: parse error on value "+" (tUPLUS)
+Location: Could not parse /Users/daveih/Documents/rails/Glandon/app/views/shared/headers/_header_managed_item.html.erb
+
+== Warnings ==
+
+Confidence: High
+Category: SQL Injection
+Check: SQL
+Message: Possible SQL injection
+Code: Token.exists?(params[:id])
+File: app/controllers/tokens_controller.rb
+Line: 31
+
+Confidence: High
+Category: SQL Injection
+Check: SQL
+Message: Possible SQL injection
+Code: Token.exists?(params[:id])
+File: app/controllers/tokens_controller.rb
+Line: 45
+
+Confidence: Medium
+Category: Cross-Site Scripting
+Check: CrossSiteScripting
+Message: Unescaped model attribute
+Code: Form.find_minimum(protect_from_bad_id(params)).to_crf
+File: app/views/forms/crf.html.erb
+Line: 18
+
+Confidence: Medium
+Category: Cross-Site Scripting
+Check: CrossSiteScripting
+Message: Unescaped model attribute
+Code: MarkdownEngine.render(@sdtm_user_domain.notes)
+File: app/views/sdtm_user_domains/show.html.erb
+Line: 33
+
+Confidence: Medium
+Category: Cross-Site Scripting
+Check: CrossSiteScripting
+Message: Unescaped model attribute
+Code: MarkdownEngine.render(item.notes)
+File: app/views/sdtm_user_domains/show.html.erb
+Line: 74
+
+Confidence: Medium
+Category: Cross-Site Scripting
+Check: CrossSiteScripting
+Message: Unescaped model attribute
+Code: MarkdownEngine.render(item.notes)
+File: app/views/sdtm_user_domains/show.html.erb
+Line: 118
+
+Confidence: Medium
+Category: Cross-Site Scripting
+Check: CrossSiteScripting
+Message: Unescaped model attribute
+Code: MarkdownEngine.render(item.changeDescription)
+File: app/views/shared/_comment_history_row.html.erb
+Line: 5
+
+Confidence: Medium
+Category: Cross-Site Scripting
+Check: CrossSiteScripting
+Message: Unescaped model attribute
+Code: MarkdownEngine.render(item.explanatoryComment)
+File: app/views/shared/_comment_history_row.html.erb
+Line: 6
+
+Confidence: Medium
+Category: Cross-Site Scripting
+Check: CrossSiteScripting
+Message: Unescaped model attribute
+Code: MarkdownEngine.render(item.origin)
+File: app/views/shared/_comment_history_row.html.erb
+Line: 7
+
+Confidence: Medium
+Category: Remote Code Execution
+Check: UnsafeReflection
+Message: Unsafe reflection method `constantize` called with model attribute
+Code: Sparql::Query.new.query(where_query_string(params, uris), "", [:bo, :th]).subject_map[subject.to_s].constantize
+File: app/models/thesaurus/where.rb
+Line: 34
+
+Confidence: Medium
+Category: SQL Injection
+Check: SQL
+Message: Possible SQL injection
+Code: NameValue.where("name='#{name}'")
+File: app/models/name_value.rb
+Line: 12
+
+Confidence: Weak
+Category: Cross-Site Scripting
+Check: CrossSiteScripting
+Message: Unescaped parameter value
+Code: find_item(params).scoped_identifier
+File: app/views/shared/headers/_header_minimal.html.erb
+Line: 12
+
+Confidence: Weak
+Category: Cross-Site Scripting
+Check: CrossSiteScripting
+Message: Unescaped model attribute
+Code: (Thesaurus.find_minimum(the_params[:thesaurus_id]) or Thesaurus.find_minimum(params[:id])).scoped_identifier
+File: app/views/shared/headers/_header_minimal.html.erb
+Line: 14
+
+Confidence: Weak
+Category: Cross-Site Scripting
+Check: CrossSiteScripting
+Message: Unescaped model attribute
+Code: (Thesaurus.find_minimum(params[:id]) or Thesaurus.find_minimum(the_params[:thesaurus_id])).scoped_identifier
+File: app/views/shared/headers/_header_minimal.html.erb
+Line: 14
+
+Confidence: Weak
+Category: Redirect
+Check: Redirect
+Message: Possible unprotected redirect
+Code: redirect_to(TypePathManagement.history_url_v2(IsoManagedV2.find_minimum(protect_from_bad_id(params))))
+File: app/controllers/iso_managed_v2_controller.rb
+Line: 77
+
