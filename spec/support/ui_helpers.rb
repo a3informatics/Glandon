@@ -711,6 +711,26 @@ module UiHelpers
 		expect(page).to have_content "Version History of '#{identifier}'" if success
 	end
 
+	def ui_create_bc(identifier, label, template, success = true)
+		click_navbar_bc
+		wait_for_ajax 20
+		expect(page).to have_content 'Index: Biomedical Concepts'
+		click_on 'New Biomedical Concept'
+
+		ui_in_modal do
+			fill_in 'identifier', with: identifier
+			fill_in 'label', with: label
+
+			find('#new-item-template').click
+			ip_pick_managed_items(:bct, [ { identifier: template[:identifier], version: template[:version] } ], 'new-bc')
+
+			click_on 'Submit'
+		end
+
+		wait_for_ajax 10
+		expect(page).to have_content "Version History of '#{identifier}'" if success
+	end
+
   # Return
   def ui_hit_return(id)
     # Amended to allow for spaces in id

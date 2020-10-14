@@ -152,7 +152,10 @@ describe "Forms", :type => :feature do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..65)
       load_data_file_into_triple_store("mdr_identification.ttl")
+      load_test_file_into_triple_store("forms/FN000150.ttl")
       ua_create
     end
 
@@ -194,6 +197,7 @@ describe "Forms", :type => :feature do
       ui_in_modal do
         click_on 'Submit'
 
+        # Empty fields validation
         expect(page).to have_content('Field cannot be empty', count: 2)
         expect(page).to have_selector('.form-group.has-error', count: 2)
 
@@ -209,6 +213,16 @@ describe "Forms", :type => :feature do
         expect(find_field('identifier').value).to eq('')
         expect(find_field('label').value).to eq('')
 
+        # Special characters validation
+        fill_in 'identifier', with: 'FØRM Test'
+        fill_in 'label', with: 'Test Label 2'
+
+        click_on 'Submit'
+        wait_for_ajax 10
+
+        expect(page).to have_content('contains invalid characters', count: 1)
+
+        # Duplicate identifier validation
         fill_in 'identifier', with: 'FORM Test'
         fill_in 'label', with: 'Test Label 2'
 
@@ -223,6 +237,25 @@ describe "Forms", :type => :feature do
 
     it "allows to delete a Form" do
       ui_create_form('FORM DELETE', 'Test Form')
+
+      form_count = Form.all.count
+
+      context_menu_element_v2('history', 'Incomplete', :delete)
+      ui_confirmation_dialog true
+      wait_for_ajax 10
+
+      expect(page).to have_content "Index: Forms"
+      expect( Form.all.count ).to eq form_count-1
+    end
+
+    it "allows to delete a Form with children nodes" do
+      click_navbar_forms
+      wait_for_ajax 10
+
+      ui_table_search('index', 'Height')
+      find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'FN000150\''
 
       form_count = Form.all.count
 
@@ -271,8 +304,8 @@ describe "Forms", :type => :feature do
       click_navbar_forms
       wait_for_ajax 20
 
-      ui_table_search('index', 'Height')
-      find(:xpath, "//tr[contains(.,'Height')]/td/a", :text => 'History').click
+      ui_table_search('index', 'Disability Assessment For Dementia')
+      find(:xpath, "//tr[contains(.,'DAD')]/td/a", :text => 'History').click
       wait_for_ajax 10
 
       context_menu_element_v2('history', '0.1.0', :document_control)
@@ -313,8 +346,8 @@ describe "Forms", :type => :feature do
       click_navbar_forms
       wait_for_ajax 20
 
-      ui_table_search('index', 'Disability Assessment For Dementia')
-      find(:xpath, "//tr[contains(.,'DAD')]/td/a", :text => 'History').click
+      ui_table_search('index', 'Height')
+      find(:xpath, "//tr[contains(.,'Height')]/td/a", :text => 'History').click
       wait_for_ajax 10
 
       context_menu_element_v2('history', '0.1.0', :document_control)
@@ -334,6 +367,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_css '.registration-state .icon-lock-open'
 
       context_menu_element_v2('history', '0.1.0', :edit)
+      wait_for_ajax 10
 
       click_on 'Return'
       wait_for_ajax 10
@@ -344,6 +378,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_css '.registration-state .icon-lock'
 
       context_menu_element_v2('history', '0.1.0', :edit)
+      wait_for_ajax 10
 
       click_on 'Return'
       wait_for_ajax 10
@@ -352,7 +387,37 @@ describe "Forms", :type => :feature do
       # Check data copied when new version created
       context_menu_element_v2('history', 1, :show)
       wait_for_ajax 30
-      ui_check_table_info('show', 1, 10, 225)
+      ui_check_table_info('show', 1, 5, 5)
+
+    end
+
+    it "allows to create a new version off Standard" do
+      ui_create_form('TST FORM 2', 'Test Form Label')
+
+      # Creates a new version off of Standard
+      context_menu_element_v2('history', '0.1.0', :document_control)
+
+      click_on 'Submit Status Change'
+      click_on 'Submit Status Change'
+
+      find('#version-edit').click
+      select 'Major: 1.0.0', from: 'select-release'
+      click_on 'Update Version'
+
+      click_on 'Submit Status Change'
+      click_on 'Submit Status Change'
+
+      click_on 'Return'
+      wait_for_ajax 10
+
+      context_menu_element_v2('history', '1.0.0', :edit)
+      wait_for_ajax 10
+      click_on 'Return'
+      wait_for_ajax 10
+
+      ui_check_table_info('history', 1, 2, 2)
+      ui_check_table_cell('history', 1, 7, 'Incomplete')
+      ui_check_table_cell('history', 1, 1, '1.1.0')
     end
 
   end
