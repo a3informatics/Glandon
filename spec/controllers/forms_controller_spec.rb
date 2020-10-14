@@ -65,6 +65,14 @@ describe FormsController do
       check_file_actual_expected(actual, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
     end
 
+    it "shows the history II, page" do
+      @request.env['HTTP_REFERER'] = '/path'
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      expect(Form).to receive(:latest).with({identifier: form.has_identifier.identifier, scope: an_instance_of(IsoNamespace)}).and_return(nil)
+      get :history, params:{form: {identifier: form.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 20}}
+      expect(response).to redirect_to("/forms")
+    end
+
     it "shows the history, initial view" do
       params = {}
       expect(Form).to receive(:latest).and_return(Form.new)
@@ -209,7 +217,6 @@ describe FormsController do
     after :all do
       ua_remove_user("lock@example.com")
     end
-
 
     it "destroy" do
       @request.env['HTTP_REFERER'] = '/path'

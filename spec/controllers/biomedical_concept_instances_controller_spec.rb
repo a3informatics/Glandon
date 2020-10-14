@@ -45,6 +45,14 @@ describe BiomedicalConceptInstancesController do
       expect(response).to render_template("history")
     end
 
+    it "history II, html" do
+      @request.env['HTTP_REFERER'] = '/path'
+      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      expect(BiomedicalConceptInstance).to receive(:latest).with({identifier: instance.has_identifier.identifier, scope: an_instance_of(IsoNamespace)}).and_return(nil)
+      get :history, params:{biomedical_concept_instance: {identifier: instance.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 20}}
+      expect(response).to redirect_to("/biomedical_concept_instances")
+    end
+
     it "history, json" do
       request.env['HTTP_ACCEPT'] = "application/json"
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
