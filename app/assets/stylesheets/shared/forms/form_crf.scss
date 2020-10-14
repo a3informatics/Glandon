@@ -5,7 +5,6 @@
   // First row of crf table
   #crf > tbody > tr:first-of-type > td {
     background: white;
-    font-family: $font-primary;
   }
 
   // Crf table tds
@@ -19,12 +18,8 @@
       background-color: transparent;
     }
 
-    table.crf-input-field{
+    table.crf-input-field, table.crf-input-field td{
       border-color: $grey-medium;
-    }
-
-    td {
-      border-color: $grey-light;
     }
 
   }
@@ -44,6 +39,10 @@
     margin: 0;
     padding: 0;
     color: $primary-color-light;
+  }
+
+  h4, h5 {
+    font-family: $font-primary;
   }
 
   strong {

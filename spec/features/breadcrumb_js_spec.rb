@@ -48,6 +48,12 @@ describe "Breadcrumb", :type => :feature do
     ui_check_breadcrumb(crumb_1, crumb_2, crumb_3, crumb_4)
   end
 
+  def next_link_table_css_class(row_content, row_link_class, title, crumb_1, crumb_2, crumb_3, crumb_4="")
+    find(:xpath, "//tr[contains(.,'#{row_content}')]/td/a", :class => "#{row_link_class}").click
+    expect(page).to have_content title
+    ui_check_breadcrumb(crumb_1, crumb_2, crumb_3, crumb_4)
+  end
+
   describe "check all breadcrumbs", :type => :feature do
 
     it "has dashboard breadcrumbs" , js:true do
@@ -236,9 +242,9 @@ describe "Breadcrumb", :type => :feature do
 
     it "has users breadcrumbs", js:true  do
       next_link("users_button", "Users", "", "", "")
-      next_link('New', 'New user account', "Users", "New", "")
+      next_link('New', 'New User Account', "Users", "New", "")
       next_link_crumb(1, 'Users', "Users", "", "")
-      next_link_table("sys_admin@example.com", "Edit", "Set user roles for", "Users", "Edit", "")
+      next_link_table_css_class("sys_admin@example.com", "edit-user", "Set User Roles", "Users", "Edit", "")
     end
 
   end
