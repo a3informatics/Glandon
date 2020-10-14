@@ -48,11 +48,15 @@ describe "Forms", :type => :feature do
       find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
       wait_for_ajax 10
       context_menu_element_v2 'history', identifier, :edit
-
-      find('#main_area').scroll_to(:center)
-
       wait_for_ajax 30
       expect(page).to have_content 'Form Editor'
+      find('#main_area').scroll_to(:bottom)
+    end
+
+    def refresh_editor
+      page.driver.browser.navigate.refresh
+      wait_for_ajax 20
+      find('#main_area').scroll_to(:bottom)
     end
 
     it "has correct initial state" do
@@ -647,9 +651,7 @@ describe "Forms", :type => :feature do
       nodes -= 5
       expect( node_count ).to eq( nodes )
 
-      # Refresh
-      page.driver.browser.navigate.refresh
-      wait_for_ajax 20
+      refresh_editor
 
       check_node_count 4
       check_node_not_exists 'Placeholder 2'
@@ -658,15 +660,7 @@ describe "Forms", :type => :feature do
 
     it "allows to make a node common, move references, and restore" do
       # Create a new Form
-      click_navbar_forms
-      click_on 'New Form'
-
-      ui_in_modal do
-        fill_in 'label', with: 'Test Form Label'
-        fill_in 'identifier', with: 'TSTFORM'
-        click_on 'Submit'
-      end
-      wait_for_ajax 10
+      ui_create_form('TSTFORM', 'Test Form Label')
 
       context_menu_element_v2('history', '0.1.0', :edit)
       wait_for_ajax 10
@@ -711,9 +705,7 @@ describe "Forms", :type => :feature do
       wait_for_ajax 20
       check_alert 'Node updated successfully'
 
-      page.driver.browser.navigate.refresh
-      wait_for_ajax 20
-      find('#main_area').scroll_to(:bottom)
+      refresh_editor
 
       check_node_count 22
       check_node_count( 1, 'g.node.disabled' ) # Common nodes have the disabled css class
@@ -776,9 +768,7 @@ describe "Forms", :type => :feature do
       check_node_count 10
 
       # Restore
-      page.driver.browser.navigate.refresh
-      wait_for_ajax 20
-      find('#main_area').scroll_to(:bottom)
+      refresh_editor
 
       fill_in 'd3-search', with: 'Common Group'
       ui_press_key :enter

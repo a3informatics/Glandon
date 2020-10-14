@@ -82,7 +82,7 @@ module TagHelper
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Update Tags').click
     expect(page).to have_content 'Edit Tags:'
     ui_click_node_name("#{tag}") #{tag}"
-    ui_click_tag_add
+    ui_click_by_id('tag_add')
   end
 
 end

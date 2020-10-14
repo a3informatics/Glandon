@@ -148,7 +148,7 @@ describe "Forms", :type => :feature do
 
   end
 
-  describe "Create a Form", :type => :feature, js:true do
+  describe "Create, Delete a Form", :type => :feature, js:true do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
@@ -219,6 +219,16 @@ describe "Forms", :type => :feature do
         click_on 'Close'
       end
 
+    end
+
+    it "allows to delete a Form" do
+      ui_create_form('FORM DELETE', 'Test Form')
+
+      context_menu_element_v2('history', 'Incomplete', :delete)
+      ui_confirmation_dialog true
+      wait_for_ajax 10
+
+      expect(page).to have_content "Index: Forms"
     end
 
   end
