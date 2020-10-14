@@ -15,7 +15,7 @@
   owl:imports <http://www.assero.co.uk/ISO11179Identification> ;
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
 .
-:InContextOf
+:ContextualRelationship
   rdf:type owl:Class ;
   rdfs:label "In Context Of"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
@@ -25,13 +25,13 @@
 :Classification
   rdf:type owl:Class ;
   rdfs:label "Classification"^^xsd:string ;
-  rdfs:subClassOf :InContextNode
+  rdfs:subClassOf :ContextualRelationship ;
   skos:definition "Node relating a classification to a concept."^^xsd:string ;
 .
 :Extension
   rdf:type owl:Class ;
   rdfs:label "Extension"^^xsd:string ;
-  rdfs:subClassOf :InContextOf
+  rdfs:subClassOf :ContextualRelationship ;
   skos:definition "Nodde relating an extension value to a concept."^^xsd:string ;
 .
 :Concept
@@ -76,14 +76,6 @@
   rdfs:range xsd:anySimpleType ;
   skos:definition "The property for a concept"^^xsd:string ;
 .
-:label
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf rdfs:label ; # To ensure seen as a RDFS lable as well.
-  rdfs:label "Label"^^xsd:string ;
-  rdfs:domain :Concept ;
-  rdfs:range xsd:string ;
-  skos:definition "The label for a concept"^^xsd:string ;
-.
 :hasTopConcept
   rdf:type owl:ObjectProperty ;
   rdfs:label "Has top concept relationship."^^xsd:string ;
@@ -100,10 +92,24 @@
   rdfs:range :ConceptSystemNode ;
   skos:definition "Relationship to relate the nodes within a concept system."^^xsd:string ;
 .
+:appliesTo
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Applies to relationship."^^xsd:string ;
+  rdfs:domain :ContextualRelationship ;
+  rdfs:range :Concept ;
+  skos:definition "Relationship to relate a contextual relationship node to the target concept."^^xsd:string ;
+.
+:context
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Context relationship."^^xsd:string ;
+  rdfs:domain :ContextualRelationship ;
+  rdfs:range :Concept ;
+  skos:definition "Relationship to relate a contextual relationship node to the context concept."^^xsd:string ;
+.
 :classifiedAs
   rdf:type owl:ObjectProperty ;
   rdfs:label "Classified as relationship."^^xsd:string ;
-  rdfs:domain :Concept ;
+  rdfs:domain :Classification ;
   rdfs:range :conceptSystemNode ;
   skos:definition "Relationship to relate a concept to a classification."^^xsd:string ;
 .
@@ -113,6 +119,14 @@
   rdfs:domain :Extension ;
   rdfs:range :ExtensionDefinition ;
   skos:definition "Relationship to relate an extension value to its definition."^^xsd:string ;
+.
+:label
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf rdfs:label ; # To ensure seen as a RDFS lable as well.
+  rdfs:label "Label"^^xsd:string ;
+  rdfs:domain :Concept ;
+  rdfs:range xsd:string ;
+  skos:definition "The label for a concept"^^xsd:string ;
 .
 :prefLabel
   rdf:type owl:DatatypeProperty ;

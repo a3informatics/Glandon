@@ -9,11 +9,11 @@ class IsoConceptV2 < Fuseki::Base
             uri_unique: :label
 
   data_property :label
-  object_property :tagged, cardinality: :many, model_class: "IsoConceptSystem::Node", delete_exclude: true
 
   validates_with Validator::Field, attribute: :label, method: :valid_label?
 
   include ManagedAncestors
+  include ClassifiedAs
   
   # Where Only Or Create
   #
@@ -21,59 +21,6 @@ class IsoConceptV2 < Fuseki::Base
   # @return [Thesaurus::Synonym] the found or new synonym object
   def self.where_only_or_create(label)
     super({label: label}, {label: label})
-  end
-
-  # Add Tags No Save. Add tags if not already present, dont save
-  #
-  # @param tags [Array] array of IsoConceptSystem::Node items
-  # @return [Void] no return
-  def add_tags_no_save(tags)
-    uris = self.tagged.map{|x| x.uri}
-    tags.each do |tag|
-      self.tagged << tag if !uris.include?(tag.uri)
-    end
-  end
-
-  # Add Tag No Save. Add a tag if not already present, dont dave
-  #
-  # @param tag [IsoConceptSystem] a single IsoConceptSystem::Node item
-  # @return [Void] no return
-  def add_tag_no_save(tag)
-    self.tagged << tag if !self.tagged.map{|x| x.uri}.include?(tag.uri)
-  end
-
-  # Add a tag
-  #
-  # @param uri_or_id [String|URI] The id or URI of the tag
-  # @return [Void] no return
-  def add_tag(uri_or_id)
-    uri = self.class.as_uri(uri_or_id)
-    update_string = %Q{
-      INSERT DATA
-      {
-        #{self.uri.to_ref} isoC:tagged #{uri.to_ref} . \n
-      }
-    }
-    Sparql::Update.new.sparql_update(update_string, self.uri.namespace, [:isoC])
-  end
-
-  # Remove a tag
-  #
-  # @param uri_or_id [String|URI] The id or URI of the tag
-  # @return [Void] no return
-  def remove_tag(uri_or_id)
-    uri = self.class.as_uri(uri_or_id)
-    update_string = %Q{
-      DELETE
-      {
-       #{self.uri.to_ref} isoC:tagged #{uri.to_ref}
-      }
-      WHERE
-      {
-       #{self.uri.to_ref} isoC:tagged #{uri.to_ref}
-      }
-    }
-    Sparql::Update.new.sparql_update(update_string, self.uri.namespace, [:isoC])
   end
 
   # Add Change Note
@@ -92,24 +39,6 @@ class IsoConceptV2 < Fuseki::Base
     cn.save
     transaction_execute
     cn
-  end
-
-  # Tags. Get the tags for the items
-  #
-  # @return [Array] set of IsoConceptSystem::Node items
-  def tags
-    result = []
-    query_string = %Q{
-      SELECT DISTINCT ?s ?p ?o WHERE {
-        #{self.uri.to_ref} isoC:tagged ?s .
-        ?s ?p ?o
-      }
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoC])
-    query_results.by_subject.each do |subject, triples|
-      result << IsoConceptSystem::Node.from_results(Uri.new(uri: subject), triples)
-    end
-    result
   end
 
   # Change Notes
@@ -204,35 +133,6 @@ class IsoConceptV2 < Fuseki::Base
     end
     results
   end
-
-  # Tag labels. Get the ordered tag labels for the items
-  #
-  # @return [Array] set of ordered String items
-  def tag_labels
-    tags = self.tags
-    tags.map{ |x| x.pref_label }.sort
-  end
-
-  # # Other Parents. Determine if this object is connected with other parents objects other than 
-  # #   the one specified. The other parents must be of the same type.
-  # #
-  # # @param [Object] parent the known parent item
-  # # @return [Array] the other uris
-  # def other_parents(parent, predicates)
-  #   path = "(#{predicates.map{|x| x.to_ref}.join("/")})"
-  #   query_string = %Q{
-  #     SELECT DISTINCT ?s WHERE
-  #     {
-  #       #{parent.uri.to_ref} #{path} #{self.uri.to_ref} .
-  #       #{parent.uri.to_ref} rdf:type ?t .
-  #       ?s rdf:type ?t .
-  #       FILTER (STR(?s) != STR(#{parent.uri.to_ref})) .
-  #       ?s #{path} #{self.uri.to_ref} .
-  #     }
-  #   }
-  #   query_results = Sparql::Query.new.query(query_string, "", [])
-  #   query_results.by_object(:s)
-  # end
 
   # Clone. Clone the object
   #
