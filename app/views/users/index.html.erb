@@ -18,7 +18,23 @@
 
 		<div class="card-content table-cardstyle">
 
-			<table id="main" class="table table-striped table-bordered table-condensed">
+
+			<div class="half-blocks-wrap">
+
+	      <div class="font-light half-block">
+	      	List of all Users in the system; allows to edit user roles, lock, unlock, and delete accounts. <br>
+					<i>Note: For traceability reasons, User who has logged in at least once cannot be deleted, only locked.</i>
+	      </div>
+
+	      <div class="actions-wrap half-block">
+	        <a href="<%= new_user_path %>" id="new-user-btn" class="btn medium green">+ New User</a>
+	      </div>
+
+	    </div>
+
+			<br>
+
+			<table id="main" class="table">
 				<thead>
 					<tr>
 			    	<th>User email</th>
@@ -75,10 +91,6 @@
 					<% end %>
 				</tbody>
 			</table>
-
-			<div class="btns-wrap">
-				<a href="<%= new_user_path %>" id="new-user-btn" class="btn medium green">+ New User</a>
-			</div>
 
 		</div>
 	</div>
