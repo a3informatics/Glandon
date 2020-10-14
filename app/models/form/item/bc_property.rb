@@ -29,7 +29,7 @@ class Form::Item::BcProperty < Form::Item
   def to_crf
     html = ""
     if !is_common?
-      property_ref = self.has_property.reference
+      property_ref = self.has_property_objects.reference
       property = BiomedicalConcept::PropertyX.find(property_ref)
       html += start_row(self.optional)
       html += question_cell(property.question_text)

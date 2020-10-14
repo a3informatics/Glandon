@@ -119,7 +119,7 @@ class Form::Item < IsoConceptV2
 
   def terminology_cell
     html = '<td>'
-    self.has_coded_value.sort_by {|x| x.ordinal}.each do |cv|
+    self.has_coded_value_objects.sort_by {|x| x.ordinal}.each do |cv|
       tc = Thesaurus::UnmanagedConcept.find(cv.reference)
       if cv.enabled
         html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"

@@ -28,7 +28,7 @@ class Form::Item::Common < Form::Item::BcProperty
   # @return [String] An html string of the Common Item
   def to_crf
     html = ""
-    property = BiomedicalConcept::PropertyX.find(self.has_property.reference)
+    property = BiomedicalConcept::PropertyX.find(self.has_property_objects.reference)
     html += start_row(self.optional)
     html += question_cell(property.question_text)
     if self.has_coded_value.length == 0
