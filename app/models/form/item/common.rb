@@ -13,10 +13,14 @@ class Form::Item::Common < Form::Item::BcProperty
 
   # Get Item
   #
-  # @return [Hash] A hash of Common Item
+  # @return [Array] An array of Common Item
   def get_item
-    blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: {}}
-    return self.to_h.merge!(blank_fields)
+    blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:""}
+    item = self.to_h.merge!(blank_fields)
+    item[:has_coded_value] = coded_values_to_hash(self.has_coded_value_objects)
+    item[:has_property] = self.has_property_objects.to_h
+    item[:has_common_item] = common_item_to_hash(self.has_common_item_objects)
+    [item]
   end
 
   # To CRF
@@ -70,6 +74,16 @@ class Form::Item::Common < Form::Item::BcProperty
     common_group = Form::Group::Common.find(parent.uri)
     normal_group = Form::Group::Normal.find_full(common_group.get_normal_group)
     normal_group = normal_group.full_data
+  end
+
+  def common_item_to_hash(common_items)
+    results = []
+    common_items.sort_by {|x| x.ordinal}.each do |ci|
+      ref = ci.to_h
+      ref[:has_property] = OperationalReferenceV3.find(Uri.new(uri:ref[:has_property])).to_h
+      results << ref
+    end
+    results
   end
 
 end

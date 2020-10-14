@@ -13,8 +13,8 @@ class Form::Group::Common < Form::Group
     group = self.to_h.merge!(blank_fields)
     group.delete(:has_item)
     results = [group]
-    self.has_item.sort_by {|x| x.ordinal}.each do |item|
-      results << item.get_item
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
+      results += item.get_item
     end
     results
   end

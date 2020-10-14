@@ -28,15 +28,13 @@ class Form::Group::Normal < Form::Group
     group = self.to_h.merge!(blank_fields)
     group.delete(:has_sub_group)
     group.delete(:has_item)
+    group[:has_common] = []
     results = [group]
-    self.has_item.sort_by {|x| x.ordinal}.each do |item|
-      results << item.get_item
-    end
-    self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-      results += sg.get_item
-    end
     self.has_common.sort_by {|x| x.ordinal}.each do |cm|
       results += cm.get_item
+    end
+    children_ordered.each do |node|
+      results += node.get_item
     end
     results
   end
@@ -52,14 +50,20 @@ class Form::Group::Normal < Form::Group
     elsif self.repeating && self.is_bc_only_group?
       html += repeating_bc_group
     else
+      # self.has_common.sort_by {|x| x.ordinal}.each do |cm|
+      #   html += cm.to_crf
+      # end 
+      # self.has_item.sort_by {|x| x.ordinal}.each do |item|
+      #   html += item.to_crf
+      # end
+      # self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
+      #   html += sg.to_crf
+      # end
       self.has_common.sort_by {|x| x.ordinal}.each do |cm|
         html += cm.to_crf
-      end 
-      self.has_item.sort_by {|x| x.ordinal}.each do |item|
-        html += item.to_crf
       end
-      self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-        html += sg.to_crf
+      children_ordered.each do |node|
+        html += node.to_crf
       end
     end
     return html
@@ -95,9 +99,9 @@ class Form::Group::Normal < Form::Group
     set.sort_by {|x| x.ordinal}
   end
 
-  def items_classes
-    items_classes = [Form::Item::Question, Form::Item::Placeholder, Form::Item::Mapping, Form::Item::TextLabel]
-  end
+  # def items_classes
+  #   items_classes = [Form::Item::Question, Form::Item::Placeholder, Form::Item::Mapping, Form::Item::TextLabel]
+  # end
 
   # Is a Question only group
   def is_question_only_group?

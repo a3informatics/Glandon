@@ -22,12 +22,12 @@ class Form::Item::Question < Form::Item
 
   # Get Item
   #
-  # @return [Hash] A hash of Question Item with CLI and CL references.
+  # @return [Array] An array of Question Item with CLI and CL references.
   def get_item
     blank_fields = {free_text:"", label_text:"", has_property: {}}
     item = self.to_h.merge!(blank_fields)
-    item[:has_coded_value] = coded_values_to_hash(self.has_coded_value)
-    return item
+    item[:has_coded_value] = coded_values_to_hash(self.has_coded_value_objects)
+    [item]
   end
 
   # To CRF

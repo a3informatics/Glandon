@@ -96,7 +96,7 @@ describe Form do
     
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", 
-                    "forms/FN000150.ttl", "forms/CRF TEST 1.ttl", "forms/VSTADIABETES.ttl","forms/FN000120.ttl" ]
+                    "forms/FN000150.ttl", "forms/CRF TEST 1.ttl","forms/FN000120.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")

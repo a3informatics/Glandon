@@ -15,10 +15,10 @@ class Form::Item::Placeholder < Form::Item
 
   # Get Item
   #
-  # @return [Hash] A hash of Placeholder
+  # @return [Array] An array of Placeholder
   def get_item
     blank_fields = {datatype:"", format:"", question_text:"", mapping:"", label_text:"", has_coded_value: [], has_property: {}}
-    self.to_h.merge!(blank_fields)
+    [self.to_h.merge!(blank_fields)]
   end
 
   # To CRF
