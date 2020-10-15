@@ -431,9 +431,9 @@ describe "Biomedical Concept Instances", :type => :feature do
       wait_for_ajax 10
 
       click_on 'Add a BC to Editor'
-      ip_pick_managed_items(:bc, {
-        identifier: 'TST BC 2', version: '1'
-      }, 'add-bc-edit' )
+      ui_in_modal do
+        ip_pick_managed_items :bci, [ { identifier: 'TST BC 2', version: '1' } ], 'add-bc-edit'
+      end
       wait_for_ajax 10
 
       click_on 'Return'
