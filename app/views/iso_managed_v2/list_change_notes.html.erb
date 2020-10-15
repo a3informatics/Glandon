@@ -1,4 +1,5 @@
-<%= javascript_tag 'setPageTitle("List Change notes: '+@managed_item.label+'")' %>
+<% content_for :page_title do %> List Change notes: <%= @managed_item.label %> <% end %>
+
 <% third_level_breadcrumb(:code_lists, @managed_item, @close_path) %>
 
 <%= stylesheet_link_tag 'shared/annotations', 'shared/datatables_loading' %>

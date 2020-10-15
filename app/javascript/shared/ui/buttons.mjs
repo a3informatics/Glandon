@@ -43,7 +43,7 @@ function historyBtn(url) {
  * @return {string} formatted button HTML
  */
 function showBtn(url) {
-  return `<a href='${url}' class='btn blue btn-xs'><span></span> Show </a>`;
+  return `<a href='${url}' class='btn light btn-xs'><span></span> Show </a>`;
 }
 
 /**

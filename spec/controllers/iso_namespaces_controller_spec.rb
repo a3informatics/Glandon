@@ -46,7 +46,8 @@ describe IsoNamespacesController do
     it 'deletes namespace, used, not deleted' do
       ns = IsoNamespace.find_by_short_name("AAA")
       delete :destroy, params:{:id => ns.id}
-      expect(flash[:error]).to be_present
+      expect(response.code).to eq("422")
+      expect( JSON.parse(response.body).deep_symbolize_keys ).to eq(errors: ["Scope Namespace is in use and cannot be deleted."])
       expect(IsoNamespace.all.count).to eq(2)
     end
 
@@ -58,7 +59,8 @@ describe IsoNamespacesController do
       delete :destroy, params:{:id => ns.id}
       expect(IsoNamespace.all.count).to eq(2)
       delete :destroy, params:{:id => ns.id} # Delete again! Should fail.
-      expect(flash[:error]).to be_present
+      expect(response.code).to eq("422")
+      expect( JSON.parse(response.body).deep_symbolize_keys ).to eq(errors: ["Unable to delete Scope Namespace."])
       expect(IsoNamespace.all.count).to eq(2)
     end
 
@@ -69,6 +71,7 @@ describe IsoNamespacesController do
       ns = IsoNamespace.find_by_short_name("XXX")
       delete :destroy, params:{:id => ns.id}
       expect(IsoNamespace.all.count).to eq(2)
+      expect(response.code).to eq("200")
     end
 
   end

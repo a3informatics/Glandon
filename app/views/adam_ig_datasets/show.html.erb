@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("Show ADaM IG Dataset: '+@adam_ig_dataset.has_identifier.identifier+' ('+@adam_ig_dataset.semantic_version+')")' %>
+<% content_for :page_title do %> <%= "Show ADaM IG Dataset: #{@adam_ig_dataset.has_identifier.identifier} (#{@adam_ig_dataset.semantic_version})" %> <% end %>
 
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'adam_ig_datasets/show' %>
@@ -7,7 +7,7 @@
 
 <div class="row">
   <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @adam_ig_dataset, :badge => "icon-adam"} do %>
-    <div class="abcions-wrap">
+    <div class="actions-wrap">
     <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
       icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>

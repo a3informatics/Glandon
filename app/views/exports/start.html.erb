@@ -1,4 +1,5 @@
-<%= javascript_tag 'setPageTitle("Export")' %>
+<% content_for :page_title do %> Export <% end %>
+
 <% first_level_breadcrumb (:exports) %>
 <%= javascript_tag "var url = \"#{@list_path}\";" %>
 <div class="row">

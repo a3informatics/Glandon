@@ -1,8 +1,6 @@
-<%= javascript_tag 'setPageTitle("Release select: '+@thesaurus.has_identifier.identifier+' ('+@thesaurus.semantic_version+')")' %>
-<% third_level_breadcrumb(:thesauri, @thesaurus, @close_path) %>
+<% content_for :page_title do %> <%= "Release select: #{@thesaurus.has_identifier.identifier} (#{@thesaurus.semantic_version})" %> <% end %>
 
-<% show_text, hide_text =  "Show CDISC version selector", "Hide CDISC version selector" %>
-<%= javascript_tag "var showHideTexts = ['#{show_text}', '#{hide_text}'];" %>
+<% third_level_breadcrumb(:thesauri, @thesaurus, @close_path) %>
 
 <%= javascript_tag "var cdiscCLUrl = '#{children_with_indicators_thesauri_path("th_id")}',
                         sponsorCLUrl = '#{set_with_indicators_thesauri_managed_concepts_path}',
@@ -14,10 +12,10 @@
                       deselectChildrenUrl: '#{deselect_children_thesauri_path(@thesaurus)}',
                       deselectAllChildrenUrl: '#{deselect_all_children_thesauri_path(@thesaurus)}' };" %>
 
-<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'shared/datatables_loading', 'shared/table_select', 'shared/show_more', 'shared/timeline_cdisc' %>
+<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'shared/datatables_loading', 'shared/table_select', 'shared/timeline_cdisc' %>
 <%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
 <%= javascript_include_tag 'shared/tabs_layout', 'shared/timeline_cdisc', 'shared/iso_managed/managed_children_select', 'shared/iso_managed/managed_children_overview',
-                           'shared/show_more', 'thesauri/release_select', 'shared/timer', 'unload' %>
+                           'thesauri/release_select', 'shared/timer', 'unload' %>
 
 <div class="row">
   <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @thesaurus, :badge => "icon-terminology"} do %>
@@ -65,11 +63,14 @@
             <div class="text-centered font-light"> CDISC version used:
               <span id="cdisc-version-label" class="bg-label"><%= @ref_thesaurus.nil? ? "None" : @ref_thesaurus.version_label.split(' ')[0]%></span>
             </div><br/>
-            <%= render layout: "shared/show_more", :locals => {:size => "small", :show_text => show_text, :centered => "centered"} do %>
+            <%= render layout: "shared/expandable_content", :locals => { size: "small", expand_text: "Show CDISC version selector",
+                          collapse_text: "Hide CDISC version selector", centered: true } do %>
+
               <%= render partial: "shared/cdisc_terms/timeline_slider", :locals => {
                 title_text: "Select CDISC Terminology version by dragging the slider (must be a later version):",
                 start_year: @versions_yr_span[0], end_year: @versions_yr_span[1], versions_normalized: @versions_normalized, versions: @versions, slider_pretexts: ["ver.", ""],
                 button: "<button id='select-cdisc-ver-button' class='btn medium red'>Submit selected version</button>".html_safe }%>
+
             <% end %>
           <% end %>
         </div>

@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("History: '+@identifier+'")' %>
+<% content_for :page_title do %> History: <%= @identifier %> <% end %>
 
 <%= javascript_pack_tag 'sdtm_models/history' %>
 

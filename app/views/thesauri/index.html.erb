@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("Terminology")' %>
+<% content_for :page_title do %> Index: Terminologies <% end %>
 
 <%= javascript_pack_tag 'thesauri/index' %>
 <%= javascript_tag "let searchMultiUrl = '#{search_multiple_thesauri_index_path}',

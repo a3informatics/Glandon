@@ -90,14 +90,14 @@ describe ApplicationHelper do
 		end
 
     it "true false glyphicon" do
-			expect(true_false_glyphicon(true)).to eq("<td class=\"text-center\"><span class=\"icon-ok text-secondary-clr\"/></td>")
-			expect(true_false_glyphicon(false)).to eq("<td class=\"text-center\"><span class=\"icon-times text-accent-2\"/></td>")
+			expect(true_false_glyphicon(true)).to eq("<td class=\"text-center\"><span class=\"text-normal icon-sel-filled text-link\"/></td>")
+			expect(true_false_glyphicon(false)).to eq("<td class=\"text-center\"><span class=\"text-normal icon-times-circle text-accent-2\"/></td>")
 		end
 
     it "true false cell" do
-      expect(true_false_cell(true, :left)).to eq("<td class=\"text-left\"><span class=\"icon-ok text-secondary-clr\"/></td>")
-      expect(true_false_cell(false, :right)).to eq("<td class=\"text-right\"><span class=\"icon-times text-accent-2\"/></td>")
-      expect(true_false_cell(false, :center)).to eq("<td class=\"text-center\"><span class=\"icon-times text-accent-2\"/></td>")
+      expect(true_false_cell(true, :left)).to eq("<td class=\"text-left\"><span class=\"text-normal icon-sel-filled text-link\"/></td>")
+      expect(true_false_cell(false, :right)).to eq("<td class=\"text-right\"><span class=\"text-normal icon-times-circle text-accent-2\"/></td>")
+      expect(true_false_cell(false, :center)).to eq("<td class=\"text-center\"><span class=\"text-normal icon-times-circle text-accent-2\"/></td>")
     end
 
 		it "column ordering" do

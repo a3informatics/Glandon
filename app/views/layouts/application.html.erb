@@ -9,7 +9,9 @@
     <meta name="author" content="">
     <%= favicon_link_tag %>
 
-  	<title><%= "#{APP_CONFIG['application_name']}" %></title>
+  	<title>
+      <%= yield :page_title %> - <%= APP_CONFIG['application_name'] %>
+    </title>
 
     <% if !Rails.application.config.assets.precompile.include? "#{params[:controller]}.js" %>
       <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -19,10 +21,12 @@
       <%= stylesheet_link_tag    'application', params[:controller], media: 'all' %>
       <%= javascript_include_tag 'application', params[:controller] %>
   	<% end %>
-    
+
     <%= stylesheet_link_tag 'print', :media => 'print'%>
 
     <%= javascript_include_tag 'locked_items' if Rails.env != "test" %>
+
+    <%= javascript_pack_tag 'application' %>
 
     <%= csrf_meta_tags %>
 

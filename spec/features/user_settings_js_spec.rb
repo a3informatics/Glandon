@@ -104,16 +104,6 @@ describe "User Settings", :type => :feature do
       check_options(title, description, options)
     end
 
-    it "displays Layout of the dashboard setting", js: true do
-      title = "Layout of the Dashboard"
-      description = "Customize this setting in the Dashboard page."
-      options = []
-      ua_reader_login
-      click_link 'settings_button'
-      expect(page).to have_content 'Email: reader@example.com'
-      check_options(title, description, options)
-    end
-
     it "settings are user specific", js: true do
       title = "Table Rows"
       description = "The number of rows to be used within table displays."
@@ -158,11 +148,11 @@ describe "User Settings", :type => :feature do
       ua_generic_login "amend@assero.co.uk", "Changeme1%"
       audit_count = AuditTrail.count
       click_link 'settings_button'
-      expect(page).to have_content "Account Settings"
+      expect(page).to have_content "Preferences"
       fill_in 'user_password', with: 'Changeme1@'
       fill_in 'user_password_confirmation', with: 'Changeme1@'
       fill_in 'user_current_password', with: 'Changeme1%'
-      click_button 'password_update_button'
+      click_button 'password-update-btn'
       expect(page).to have_content 'Your account has been updated successfully.'
       expect(AuditTrail.count).to eq(audit_count + 1)
     end
@@ -173,11 +163,11 @@ describe "User Settings", :type => :feature do
       ua_generic_login "amend@assero.co.uk", "Changeme1@"
       audit_count = AuditTrail.count
       click_link 'settings_button'
-      expect(page).to have_content "Account Settings"
+      expect(page).to have_content "Preferences"
       fill_in 'user_password', with: 'Changeme1^'
       fill_in 'user_password_confirmation', with: 'Changeme1^'
       fill_in 'user_current_password', with: 'Changeme1x'
-      click_button 'password_update_button'
+      click_button 'password-update-btn'
       expect(page).to have_content 'Current password is invalid'
       expect(AuditTrail.count).to eq(audit_count)
     end
@@ -188,20 +178,20 @@ describe "User Settings", :type => :feature do
       unforce_first_pass_change user
       ua_generic_login "amend@assero.co.uk", "Changeme1@"
       click_link 'settings_button'
-      expect(page).to have_content "Account Settings"
+      expect(page).to have_content "Preferences"
       expect(page).to have_content 'Email: amend@assero.co.uk'
       expect(page).to have_content 'A Amend'
       fill_in 'user_name', with: 'New Name for A Amend'
-      click_button 'name_update_button'
+      click_button 'name-update-btn'
       expect(page).to have_content 'New Name for A Amend'
     end
 
     it "prohibits the user from changing their display name to an empty string" do
       ua_sys_admin_login
       click_link 'settings_button'
-      expect(page).to have_content "Account Settings"
+      expect(page).to have_content "Preferences"
       fill_in 'user_name', with: ''
-      click_button 'name_update_button'
+      click_button 'name-update-btn'
       expect(page).to have_content 'Failed to update user display name. Name is too short (minimum is 1 character)'
     end
 
@@ -209,8 +199,9 @@ describe "User Settings", :type => :feature do
       ua_community_reader_login
       click_link 'settings_button'
       expect(page).to have_content 'Email: comm_reader@example.com'
-      expect(page).to have_content 'Application Settings'
-      expect(page).to have_content 'Account Settings'
+      expect(page).to have_content "Preferences" 
+      expect(page).to have_content 'Application'
+      expect(page).to have_content 'Account'
     end
 
   end

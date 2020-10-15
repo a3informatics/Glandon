@@ -197,7 +197,7 @@ describe "Thesauri Search", :type => :feature do
       sleep 0.7
       dialog = find "#information-dialog-search"
       expect(dialog).to have_content "How to use Search"
-      dialog.find(".show-more-btn").click
+      dialog.find(".expandable-content-btn").click
       expect(dialog).to have_content "Valid examples:"
       click_on "Dismiss"
       sleep 0.7

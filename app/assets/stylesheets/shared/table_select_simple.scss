@@ -23,7 +23,7 @@ table.table-row-clickable tbody tr td:last-of-type:not(.dataTables_empty)::after
   content: "\e962";
   color: $grey-light;
   right: 10px;
-  top: calc(50% - 7pt);
+  top: calc(50% - 8pt);
   font-size: 12pt;
 }
 
@@ -34,4 +34,12 @@ table.table-row-clickable tbody tr.selected td:last-of-type::after {
 
 .dataTables_scrollBody table thead tr th{
   border-bottom: none !important;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+  table.table-row-clickable tbody tr td:last-of-type:not(.dataTables_empty)::after {
+    top: calc(50% - 4px);
+  }
+
 }

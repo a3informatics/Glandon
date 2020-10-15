@@ -68,9 +68,9 @@ describe "Imports", :type => :feature do
 
   def check_import_table(row, file, complete, successful, auto_load)
     page.has_xpath?("//table[@id='main']/tbody/tr[#{row}]/td[contains(.,\"#{file}\")]")
-    page.has_xpath?("//table[@id='main']/tbody/tr[#{row}]/td[5]/span[@class=\"icon-#{complete ? "ok" : "times"}\"]")
-    page.has_xpath?("//table[@id='main']/tbody/tr[#{row}]/td[6]/span[@class=\"icon-#{successful ? "ok" : "times"}\"]")
-    page.has_xpath?("//table[@id='main']/tbody/tr[#{row}]/td[7]/span[@class=\"icon-#{auto_load ? "ok" : "times"}\"]")
+    page.has_xpath?("//table[@id='main']/tbody/tr[#{row}]/td[5]//span[@class=\"icon-#{complete ? "ok" : "times"}\"]")
+    page.has_xpath?("//table[@id='main']/tbody/tr[#{row}]/td[6]//span[@class=\"icon-#{successful ? "ok" : "times"}\"]")
+    page.has_xpath?("//table[@id='main']/tbody/tr[#{row}]/td[7]//span[@class=\"icon-#{auto_load ? "ok" : "times"}\"]")
   end
 
   # def get_excel_code_lists
@@ -187,20 +187,20 @@ describe "Imports", :type => :feature do
       check_import_table(1, "import_input_1a", true, true, false)
       check_import_table(2, "import_input_1a", true, true, true)
       check_import_table(3, "import_input_2", true, false, false)
-      find(:xpath, "//tr[contains(.,'import_input_2')]/td/a", :text => "Show").click
+      find(:xpath, "//tr[contains(.,'import_input_2')]/td//a", :text => "Show").click
       wait_for_ajax 10
       expect_page "Identifier: CT, Owner: CDISC"
       expect_page "Errors were detected during the processing of the import file. See the error table."
       click_on "Return"
       wait_for_ajax 10
-      find(:xpath, "//tr[contains(.,'import_input_2')]/td/a", :text => "Delete").click
+      find(:xpath, "//tr[contains(.,'import_input_2')]/td//a[2]").click
       ui_confirmation_dialog true
       wait_for_ajax 10
       expect(all(:xpath, "//table[@id='main']/tbody/tr").count).to eq(2)
-      click_on "Delete all"
+      click_on "Delete All"
       ui_confirmation_dialog true
       wait_for_ajax 10
-      expect_page "No Imports found."
+      expect_page "No data."
       expect(Import.all.count).to eq(0)
     end
 

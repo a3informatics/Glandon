@@ -16,7 +16,7 @@ function renderSpinner(size, text = '') {
                     `<div class='spinner-el ${size}'>` +
                       `<div></div><div></div><div><div></div></div><div><div></div></div>` +
                     `</div>` +
-                    (text == '' ? text : `<div class='spinner-text'>${text}</div>`) +
+                    (text == '' ? text : `<div class='spinner-txt'>${text}</div>`) +
                   `</div>` +
                `</div>`
 

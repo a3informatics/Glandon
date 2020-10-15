@@ -1,4 +1,5 @@
-<%= javascript_tag 'setPageTitle("Change password")' %>
+<% content_for :page_title do %> Change Password <% end %>
+
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
   <div class="text-xxlarge font-regular text-light">

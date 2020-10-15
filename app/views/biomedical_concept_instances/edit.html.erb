@@ -1,4 +1,4 @@
-<%= javascript_tag "setPageTitle('Edit: #{@bc.has_identifier.identifier} (#{@bc.semantic_version})')"%>
+<% content_for :page_title do %> <%= "Edit: #{@bc.has_identifier.identifier} (#{@bc.semantic_version})" %> <% end %>
 
 <%= javascript_pack_tag 'biomedical_concept_instances/edit' %>
 
@@ -19,7 +19,7 @@
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
-    
+
   <% end %>
 </div>
 

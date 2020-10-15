@@ -20,13 +20,11 @@ Rails.application.config.assets.version = '1.0'
 end
 
 %w(
-    ad_hoc_reports/index ad_hoc_reports/results
-    backgrounds/index
     biomedical_concepts/bc_template_new
     dashboard/dashboard_editor dashboard/dashboard_panel dashboard/dashboard dashboard/statistics_panel
     export/start_panel
     forms/form_utility forms/form_viewer
-    import/crfs/new import/terms/new import/index import/show
+    import/crfs/new import/terms/new import/show
     iso_concept_systems/edit_tags iso_concept_systems/index iso_concept_systems/managed_tags_panel_v2
     iso_managed/impact iso_managed/iso_managed_attributes iso_managed/iso_managed_comment_edit iso_managed/iso_managed_select_panel
     iso_managed/list_change_notes iso_managed/status
@@ -36,7 +34,6 @@ end
     thesauri/managed_concepts/changes thesauri/managed_concepts/edit_subset
     thesauri/managed_concepts/show
     thesauri/unmanaged_concepts/changes thesauri/unmanaged_concepts/show
-    uploads/index
 
     shared/annotation/change_instruction_edit shared/annotation/change_instructions_html shared/annotation/change_instruction_modal shared/annotation/change_notes_modal
     shared/cdisc_term/cdisc_selector_modal shared/cdisc_term/index_panel
@@ -54,11 +51,11 @@ end
     shared/thesauri/managed_concepts/rank/edit_ranks shared/thesauri/managed_concepts/rank/enable_rank
 
     shared/alphabetical_filter shared/confirmation_dialog shared/context_menu shared/icons_tags_helpers shared/information_dialog
-    shared/list_change_notes_panel shared/show_more shared/tabs_layout shared/timer
+    shared/list_change_notes_panel shared/tabs_layout shared/timer
 
     ajax_requests colour field_validation
     locked_items panel_collapse rspec_helper sidebar_handler spinner standard_datatable thesauri_field_editor
-    title token_timer unload_v2 unload
+    token_timer unload_v2 unload
 
   ).each do |filename|
   Rails.application.config.assets.precompile += ["#{filename}.js"]

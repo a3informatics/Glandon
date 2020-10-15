@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("Show: '+@tc.notation+' ('+@tc.identifier+')")' %>
+<% content_for :page_title do %> <%= "Show: #{@tc.notation} (#{@tc.identifier})" %> <% end %>
 
 <%= javascript_include_tag 'thesauri/unmanaged_concepts/show', 'shared/thesauri/links_panel' %>
 

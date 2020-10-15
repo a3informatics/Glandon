@@ -38,7 +38,8 @@
   <div class="font-regular text-link"> Nodes </div>
   A <span class="font-regular">Node</span> is a single vertex displayed on the graph and has a label and colored icon (representing its type). <br>
 
-  <%= render layout: "shared/show_more", :locals => {:size => "tiny", show_text: "Node type details"} do %>
+  <%= render layout: "shared/expandable_content", :locals => { size: "tiny",
+                expand_text: "Node type details", collapse_text: "Node type details" } do %>
     The following Nodes types are available in the Editor:
     <ul>
       <li>

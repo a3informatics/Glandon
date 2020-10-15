@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("Index: ADaM IG")' %>
+<% content_for :page_title do %> Index ADaM IGs <% end %>
 
 <%= javascript_pack_tag 'adam_igs/index' %>
 
@@ -20,7 +20,7 @@
   <% end %>
 
   <% content_for :actions do %>
-    
+
     <% if policy(AdamIg).new? %>
       <a href="#" class="btn medium green" id="new_sdtm_model">
         <span class="icon-plus text-tiny"></span>&nbsp; New ADaM IG
