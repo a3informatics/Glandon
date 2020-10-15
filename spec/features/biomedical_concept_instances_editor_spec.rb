@@ -53,11 +53,11 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
     end
 
     def click_bc(name, action)
-      card = page.find('.card.mini', text: name)
+      card = page.find('.biomedical-concept', text: name)
       within(card) do
         case action
           when :edit
-            find('.icon-edit').click
+            card.click
           when :token
             find('.token-timeout').click
           when :remove
@@ -74,10 +74,9 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       expect(page).to have_content 'Incomplete'
       expect(page).to have_content '0.1.0'
 
-      expect(page).to have_selector '.card.mini.selected', count: 1
-      expect(page).to have_selector '.card.mini.selected .icon-edit', count: 1
-      expect(page).to have_selector '.card.mini.selected .token-timeout', count: 1
-      expect(page).to have_selector '.card.mini.selected .remove-bc.disabled', count: 1
+      expect(page).to have_selector '.biomedical-concept.selected', count: 1
+      expect(page).to have_selector '.biomedical-concept.selected .token-timeout', count: 1
+      expect(page).to have_selector '.biomedical-concept.selected .remove-bc.disabled', count: 1
       ui_check_table_info 'editor', 1, 10, 12
       ui_check_table_cell 'editor', 6, 5, 'Unit'
       ui_check_table_cell 'editor', 7, 5, 'Height'
@@ -172,7 +171,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
     it "allows adding BCs to Editor, prevents duplicates" do
       go_to_edit 'HEIGHT'
 
-      expect(page).to have_selector '.card.mini', count: 1
+      expect(page).to have_selector '.biomedical-concept', count: 1
       ui_check_table_info 'editor', 1, 10, 12
 
       # Add BC
@@ -185,11 +184,10 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         ip_submit 'add-bc-edit'
       end
 
-      expect(page).to have_selector '.card.mini', count: 2
-      expect(page).to have_selector '.card.mini .icon-edit', count: 2
-      expect(page).to have_selector '.card.mini .token-timeout', count: 2
-      expect(page).to have_selector '.card.mini .remove-bc.disabled', count: 1
-      expect(page).to have_selector '.card.mini .remove-bc', count: 2
+      expect(page).to have_selector '.biomedical-concept', count: 2
+      expect(page).to have_selector '.biomedical-concept .token-timeout', count: 2
+      expect(page).to have_selector '.biomedical-concept .remove-bc.disabled', count: 1
+      expect(page).to have_selector '.biomedical-concept .remove-bc', count: 2
 
       click_bc 'WEIGHT', :edit
       ui_check_table_info 'editor', 1, 10, 12
@@ -202,8 +200,8 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         ip_pick_managed_items :bci, [ { identifier: 'SYSBP', version: '1' } ], 'add-bc-edit'
       end
 
-      expect(page).to have_selector '.card.mini', count: 3
-      expect(page).to have_selector '.card.mini .remove-bc', count: 3
+      expect(page).to have_selector '.biomedical-concept', count: 3
+      expect(page).to have_selector '.biomedical-concept .remove-bc', count: 3
 
       click_bc 'SYSBP', :edit
       ui_check_table_info 'editor', 1, 10, 12
@@ -213,7 +211,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       ip_pick_managed_items :bci, [ { identifier: 'SYSBP', version: '1' } ], 'add-bc-edit'
       expect(page).to have_content 'This BC has already been added.'
 
-      expect(page).to have_selector '.card.mini', count: 3
+      expect(page).to have_selector '.biomedical-concept', count: 3
     end
 
     it "allows to create a BC, gets added to Editor" do
@@ -234,8 +232,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       wait_for_ajax 10
 
       # Check added to page
-      expect(page).to have_selector '.card.mini', count: 2
-      expect(page).to have_selector '.card.mini .icon-edit', count: 2
+      expect(page).to have_selector '.biomedical-concept', count: 2
       expect(page).to have_content 'BC Edit Test'
 
       click_bc 'BC Edit Test', :edit
@@ -355,9 +352,8 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       end
 
       expect(Token.all.count).to eq(tokens_count + 2)
-      expect(page).to have_selector '.card.mini', count: 3
-      expect(page).to have_selector '.card.mini .icon-edit', count: 3
-      expect(page).to have_selector '.card.mini .remove-bc', count: 3
+      expect(page).to have_selector '.biomedical-concept', count: 3
+      expect(page).to have_selector '.biomedical-concept .remove-bc', count: 3
 
       click_bc 'SYSBP', :remove
       wait_for_ajax 10
@@ -368,7 +364,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       wait_for_ajax 10
 
       expect(Token.all.count).to eq(tokens_count)
-      expect(page).to have_selector '.card.mini .remove-bc.disabled', count: 1
+      expect(page).to have_selector '.biomedical-concept .remove-bc.disabled', count: 1
     end
 
     it "allows to Show terminology references in new window" do
@@ -431,32 +427,32 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       end
 
       # Warning
-      expect(find('.card.mini', text: 'WEIGHT')[:class].include? 'warning').to eq(false)
-      expect(find('.card.mini', text: 'HEIGHT')[:class].include? 'warning').to eq(true)
+      expect(find('.biomedical-concept', text: 'WEIGHT')[:class].include? 'warning').to eq(false)
+      expect(find('.biomedical-concept', text: 'HEIGHT')[:class].include? 'warning').to eq(true)
 
       sleep 5
 
-      expect(find('.card.mini', text: 'WEIGHT')[:class].include? 'warning').to eq(true)
+      expect(find('.biomedical-concept', text: 'WEIGHT')[:class].include? 'warning').to eq(true)
 
       # Extend Token by editing
       ui_editor_select_by_location 1, 4
       ui_editor_fill_inline 'question_text', "Extending Edit Lock\n"
 
-      expect(find('.card.mini', text: 'HEIGHT')[:class].include? 'warning').to eq(false)
-      expect(find('.card.mini', text: 'WEIGHT')[:class].include? 'warning').to eq(true)
+      expect(find('.biomedical-concept', text: 'HEIGHT')[:class].include? 'warning').to eq(false)
+      expect(find('.biomedical-concept', text: 'WEIGHT')[:class].include? 'warning').to eq(true)
 
       # Extend Token with button
       click_bc 'WEIGHT', :token
       wait_for_ajax 10
 
-      expect(find('.card.mini', text: 'HEIGHT')[:class].include? 'warning').to eq(false)
-      expect(find('.card.mini', text: 'WEIGHT')[:class].include? 'warning').to eq(false)
+      expect(find('.biomedical-concept', text: 'HEIGHT')[:class].include? 'warning').to eq(false)
+      expect(find('.biomedical-concept', text: 'WEIGHT')[:class].include? 'warning').to eq(false)
 
       # Danger
       sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
 
-      expect(find('.card.mini', text: 'HEIGHT')[:class].include? 'danger').to eq(true)
-      expect(find('.card.mini', text: 'WEIGHT')[:class].include? 'danger').to eq(true)
+      expect(find('.biomedical-concept', text: 'HEIGHT')[:class].include? 'danger').to eq(true)
+      expect(find('.biomedical-concept', text: 'WEIGHT')[:class].include? 'danger').to eq(true)
 
       sleep 28
 
