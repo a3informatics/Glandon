@@ -82,10 +82,10 @@ class Form::Item < IsoConceptV2
     end
       if datatype.datetime?
         html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
-      #elsif datatype.date?
-      #  html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
-      #elsif datatype.time?
-      #  html += field_table(["H", "H", ":", "M", "M"])
+      elsif datatype.date?
+       html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
+      elsif datatype.time?
+       html += field_table(["H", "H", ":", "M", "M"])
       elsif datatype.float?
         item.format = "5.1" if item.format.blank?
         parts = item.format.split('.')
