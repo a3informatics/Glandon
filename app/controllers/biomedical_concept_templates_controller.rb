@@ -16,37 +16,6 @@ class BiomedicalConceptTemplatesController < ManagedItemsController
     super
   end
   
-  # def list
-  #   authorize BiomedicalConceptTemplate
-  #   @bcts = BiomedicalConceptTemplate.list
-  #   respond_to do |format|
-  #     format.json do
-  #     	results = []
-  #     	@bcts.each { |x| results << x.to_json}
-  #       render json: { data: results }
-  #     end
-  #   end
-  # end
-  
-  # def all
-  #   authorize BiomedicalConceptTemplate
-  #   @bcts = BiomedicalConceptTemplate.all
-  #   respond_to do |format|
-  #     format.json do
-  #     	results = []
-  #     	@bcts.each { |x| results << x.to_json}
-  #       render json: { data: results }
-  #     end
-  #   end
-  # end
-  
-  # def history
-  #   authorize BiomedicalConceptTemplate
-  #   @identifier = the_params[:identifier] 
-  #   @bct = BiomedicalConceptTemplate.history({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
-		# redirect_to biomedical_concept_templates_path if @bct.count == 0
-  # end
-
   # def show 
   #   authorize BiomedicalConcept
   #   @bct = BiomedicalConceptTemplate.find(params[:id], the_params[:namespace])

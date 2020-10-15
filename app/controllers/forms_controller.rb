@@ -80,7 +80,9 @@ class FormsController < ManagedItemsController
       end
       format.json do
         @form = Form.find_full(@form.id)
+        return true unless check_lock_for_item(@form)
         render :json => { data: @form.to_h }, :status => 200
+        #render :json => {data: @bc.to_h, token_id: @lock.token.id}, :status => 200      
       end
     end
   end

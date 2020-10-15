@@ -191,6 +191,7 @@ describe BiomedicalConceptInstancesController do
     it "edit, json request" do
       request.env['HTTP_ACCEPT'] = "application/json"
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      token = Token.obtain(instance, @user)
       get :edit, params:{id: instance.id}
       actual = check_good_json_response(response)
       expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
@@ -198,7 +199,7 @@ describe BiomedicalConceptInstancesController do
       check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "edit, html, locked by another user" do
+    it "edit, json, locked by another user" do
       request.env['HTTP_ACCEPT'] = "application/json"
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       token = Token.obtain(instance, @lock_user)
