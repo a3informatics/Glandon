@@ -43,7 +43,7 @@ describe Form::Item::Common do
       load_data_file_into_triple_store("complex_datatypes.ttl")
     end
 
-    it "returns the item hash" do
+    it "returns the item array" do
       item = Form::Item::Common.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1)
       result = item.get_item
       check_file_actual_expected(result, sub_dir, "get_item_expected_1.yaml", equate_method: :hash_equal)

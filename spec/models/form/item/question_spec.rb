@@ -61,7 +61,7 @@ describe Form::Item::Question do
       load_cdisc_term_versions(1..1)
     end
 
-    it "returns the item hash" do
+    it "returns the item array" do
       item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
       result = item.get_item
       check_file_actual_expected(result, sub_dir, "get_item_expected_1.yaml", equate_method: :hash_equal)
