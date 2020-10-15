@@ -777,7 +777,9 @@ module UiHelpers
 
   # D3 Tree Functions
   def ui_click_node_name(text)
+    sleep 0.2
     page.evaluate_script("rhClickNodeByName(\"#{text}\")")
+    sleep 0.2
   end
 
   def ui_click_node_key(key)
