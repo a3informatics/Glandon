@@ -385,7 +385,7 @@ describe "Biomedical Concept Instances", :type => :feature do
 
       click_on 'Return'
       wait_for_ajax 10
-      ui_check_table_info('history', 1, 2, 2) 
+      ui_check_table_info('history', 1, 2, 2)
 
       # Check data copied when new version created
       context_menu_element_v2('history', 1, :show)
@@ -394,9 +394,23 @@ describe "Biomedical Concept Instances", :type => :feature do
 
     end
 
-    it "allows to create a new version off Standard" do
+    it "allows to create a new version off Standard BCs on Edit" do
       ui_create_bc('TST BC 2', 'Test BC Label', { identifier: 'BASIC OBS', version: '1' })
 
+      # Creates a new version off of Standard
+      context_menu_element_v2('history', '0.1.0', :document_control)
+
+      click_on 'Submit Status Change'
+      click_on 'Submit Status Change'
+
+      find('#version-edit').click
+      select 'Major: 1.0.0', from: 'select-release'
+      click_on 'Update Version'
+
+      click_on 'Submit Status Change'
+      click_on 'Submit Status Change'
+
+      ui_create_bc('TST BC 3', 'Test BC Label', { identifier: 'BASIC OBS', version: '1' })
       # Creates a new version off of Standard
       context_menu_element_v2('history', '0.1.0', :document_control)
 
@@ -415,12 +429,30 @@ describe "Biomedical Concept Instances", :type => :feature do
 
       context_menu_element_v2('history', '1.0.0', :edit)
       wait_for_ajax 10
+
+      click_on 'Add a BC to Editor'
+      ip_pick_managed_items(:bc, {
+        identifier: 'TST BC 2', version: '1'
+      }, 'add-bc-edit' )
+      wait_for_ajax 10
+
       click_on 'Return'
       wait_for_ajax 10
 
       ui_check_table_info('history', 1, 2, 2)
       ui_check_table_cell('history', 1, 7, 'Incomplete')
       ui_check_table_cell('history', 1, 1, '1.1.0')
+
+      click_navbar_bc
+      wait_for_ajax 10
+      ui_table_search('index', 'TST BC 2')
+      find(:xpath, "//tr[contains(.,'TST BC 2')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      ui_check_table_info('history', 1, 2, 2)
+      ui_check_table_cell('history', 1, 7, 'Incomplete')
+      ui_check_table_cell('history', 2, 7, 'Standard')
+      ui_check_table_cell('history', 1, 1, '1.1.0')
+      ui_check_table_cell('history', 2, 1, '1.0.0')
     end
 
   end
