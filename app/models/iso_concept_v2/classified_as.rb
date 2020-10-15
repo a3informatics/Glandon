@@ -17,25 +17,6 @@ class IsoConceptV2
     module ClassMethods
     end
 
-    # Add Tags No Save. Add tags if not already present, dont save
-    #
-    # @param tags [Array] array of IsoConceptSystem::Node items
-    # @return [Void] no return
-    def add_tags_no_save(tags)
-      uris = self.tags.map{|x| x.uri}
-      tags.each do |tag|
-        Classification.new(classified_as: uri, context: nil) unless uris.include?(tag.uri)
-      end
-    end
-
-    # # Add Tag No Save. Add a tag if not already present, dont dave
-    # #
-    # # @param tag [IsoConceptSystem] a single IsoConceptSystem::Node item
-    # # @return [Void] no return
-    # def add_tag_no_save(tag)
-    #   self.tagged << tag if !self.tagged.map{|x| x.uri}.include?(tag.uri)
-    # end
-
     # Add Tag
     #
     # @param uri_or_id [String|URI] The id or URI of the actual tag being linked to
