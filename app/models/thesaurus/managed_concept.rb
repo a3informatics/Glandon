@@ -45,7 +45,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   def replace_if_no_change(previous)
     return self if previous.nil?
     return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :origin, :change_description,
-      :creation_date, :last_change_date, :explanatory_comment, :tagged, :extends, :subsets]})
+      :creation_date, :last_change_date, :explanatory_comment, :extends, :subsets]})
     replace_children_if_no_change(previous)
     return self
   end

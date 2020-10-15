@@ -149,7 +149,7 @@ class IsoConceptV2 < Fuseki::Base
   # @return [Object] the new object if changes, otherwise the previous object
   def replace_if_no_change(previous, ignore_properties=[])
     return self if previous.nil?
-    return previous unless self.diff?(previous, {ignore: [:tagged] + ignore_properties})
+    return previous unless self.diff?(previous, {ignore: [] + ignore_properties})
     replace_children_if_no_change(previous) if self.class.children_predicate?
     return self
   end
