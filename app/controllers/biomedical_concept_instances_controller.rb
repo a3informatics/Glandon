@@ -48,9 +48,10 @@ class BiomedicalConceptInstancesController < ManagedItemsController
             { identifier: @bc.scoped_identifier, scope_id: @bc.scope } })
       end
       format.json do
-        return true unless check_lock_for_item(@bc)
-        @bc = @lock.item
-        render :json => {data: @bc.to_h, token_id: @lock.token.id}, :status => 200
+        # Might be for locked item but also a new edit (multiple BC edit by a single user)
+        return true unless edit_lock(@bc)
+        @bc = @edit.item
+        render :json => {data: @bc.to_h, token_id: @edit.token.id}, :status => 200
       end
     end
   end

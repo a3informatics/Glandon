@@ -41,6 +41,7 @@ class ManagedItemsController < ApplicationController
 
 private
 
+  # Lock for editing. Used for edit operations! :)
   def edit_lock(item)
     @edit = ManagedItemsController::Edit.new(item, current_user, flash)
     return true unless @edit.error?
@@ -49,6 +50,7 @@ private
     false
   end
 
+  # Lock item. Used for delete and similar operations
   def get_lock_for_item(item)
     @lock = ManagedItemsController::Lock.new(:get, item, current_user, flash)
     return true unless @lock.error?
@@ -57,6 +59,7 @@ private
     false
   end
 
+  # Check item locked. Used for updates and similar
   def check_lock_for_item(item)
     @lock = ManagedItemsController::Lock.new(:keep, item, current_user, flash)
     return true unless @lock.error?

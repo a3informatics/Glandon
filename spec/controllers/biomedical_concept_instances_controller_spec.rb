@@ -188,7 +188,17 @@ describe BiomedicalConceptInstancesController do
       expect(response).to redirect_to("/path")
     end
 
-    it "edit, json request" do
+    it "edit, json request, not locked" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      get :edit, params:{id: instance.id}
+      actual = check_good_json_response(response)
+      expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
+      actual[:token_id] = 9999                            # So, fix for file compare
+      check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "edit, json request, already locked" do
       request.env['HTTP_ACCEPT'] = "application/json"
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       token = Token.obtain(instance, @user)
@@ -196,7 +206,7 @@ describe BiomedicalConceptInstancesController do
       actual = check_good_json_response(response)
       expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
       actual[:token_id] = 9999                            # So, fix for file compare
-      check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal) # Note same result as above
     end
 
     it "edit, json, locked by another user" do

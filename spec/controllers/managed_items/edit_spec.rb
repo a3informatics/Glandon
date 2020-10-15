@@ -37,6 +37,16 @@ describe "ManagedItemsController::Edit" do
     expect(edit.lock.error).to eq ("The item is locked for editing by user: token_user_1@example.com.")
   end
 
+  it "edit item, success, already have lock" do
+    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+    flash = ActionDispatch::Flash::FlashHash.new
+    token = Token.obtain(item, @user2)
+    edit = ManagedItemsController::Edit.new(item, @user2, flash)
+    expect(edit.lock.token.id).to eq(token.id)
+    expect(edit.lock.error).to eq ("")
+    expect(edit.lock.item.uri).to eq (item.uri)
+  end
+
   it "edit item, success, no new version" do
     item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
     flash = ActionDispatch::Flash::FlashHash.new
