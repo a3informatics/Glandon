@@ -127,7 +127,7 @@ private
           @parent_set[k] = v
         end
       end
-      @tags += reader.engine.tags
+      @tags += reader.engine.sheet_tags
     end
     ConsoleLogger.info(self.class.name, __method__.to_s, "Duplicate identifier count #{dup_count}.")
   end

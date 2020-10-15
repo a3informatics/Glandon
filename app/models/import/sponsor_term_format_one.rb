@@ -97,7 +97,7 @@ private
   def merge_reader_data(readers)
     readers.each do |reader|
       reader.engine.parent_set.each do |k, v|
-        v.add_tags_no_save(reader.engine.tags) 
+        v.add_tags_no_save(reader.engine.sheet_tags) 
         @parent_set[k] = v
         merge_errors(@parent_set[k], self)
       end

@@ -861,7 +861,7 @@ private
 
   # Are children are the same
   def children_are_the_same?(this_child, other_child)
-    result = this_child.diff?(other_child, {ignore: [:tagged]})
+    result = this_child.diff?(other_child, {ignore: []})
     return false if result
     this_child.tagged = this_child.tagged | other_child.tagged
     return true
@@ -903,7 +903,7 @@ private
   # Different from self
   def diff_self?(other)
     return false if !diff?(other, {ignore: [:has_state, :has_identifier, :origin, :change_description, :creation_date, :last_change_date,
-      :explanatory_comment, :narrower, :extends, :subsets, :tagged]})
+      :explanatory_comment, :narrower, :extends, :subsets]})
     msg = "When merging #{self.identifier} a difference was detected in the item"
     self.errors.add(:base, msg)
     ConsoleLogger.info(self.class.name, __method__.to_s, msg)
