@@ -1487,8 +1487,9 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: parent
+                property: :tagged
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -1507,8 +1508,9 @@ defaults: &defaults
                   method: column_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: child
+                property: :tagged
                 condition:
                   method: column_blank?
                   column: 3
@@ -1699,8 +1701,9 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: parent
+                property: :tagged
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -1719,8 +1722,9 @@ defaults: &defaults
                   method: column_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: child
+                property: :tagged
                 condition:
                   method: column_blank?
                   column: 3
@@ -1917,8 +1921,9 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: parent
+                property: :tagged
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -1937,7 +1942,8 @@ defaults: &defaults
                   method: column_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
+                property: :tagged
                 object: child
                 condition:
                   method: column_blank?
@@ -2136,8 +2142,9 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: parent
+                property: :tagged
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -2156,8 +2163,9 @@ defaults: &defaults
                   method: column_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: child
+                property: :tagged
                 condition:
                   method: column_blank?
                   column: 3
@@ -2350,8 +2358,9 @@ defaults: &defaults
                   method: column_blank?
                   column: 2
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: parent
+                property: :tagged
                 condition:
                   method: column_blank?
                   column: 2
@@ -2370,8 +2379,9 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 2
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: child
+                property: :tagged
                 condition:
                   method: column_not_blank?
                   column: 2

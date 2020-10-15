@@ -57,7 +57,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   # @return [Void] no return
   def add_additional_tags(previous, set)
     return if previous.nil?
-    missing =  previous.tagged.map{|x| x.uri.to_s}  - self.tagged.map{|x| x.uri.to_s}
+    missing =  previous.tagged.map{|x| x.uri.to_s} - self.tagged.map{|x| x.uri.to_s}
     missing.each {|x| set << {subject: self.uri, object: Uri.new(uri: x)}}
     add_child_additional_tags(previous, set)
   end

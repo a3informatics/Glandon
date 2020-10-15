@@ -189,7 +189,7 @@ describe "Import::SponsorTermFormatOne" do
     text.gsub(/[\u201C\u201D]/, '"')
   end
 
-  # it "prepare comparison files", :speed => 'slow' do
+  # it "prepare comparison files", :import_data => 'slow' do
   #   # full_path = set_path(sub_dir, "v3-0.csv")
   #   # items = CSV.read(full_path)
   #   # results = []
@@ -216,7 +216,7 @@ describe "Import::SponsorTermFormatOne" do
   # Initial way of creating expected results files.
   # Hand modified after newr release from Sponsor
   # 
-  # it "prepare comparison files", :speed => 'slow' do
+  # it "prepare comparison files", :import_data => 'slow' do
   #   #actual = cl_target("import_global_study_results_raw_2-6.csv")
   #   actual = cl_target("import_global_results_raw_2-6.csv")
   #   check_file_actual_expected(actual, sub_dir, "import_results_expected_2-6.yaml", equate_method: :hash_equal)
@@ -224,7 +224,7 @@ describe "Import::SponsorTermFormatOne" do
   #   check_file_actual_expected(actual, sub_dir, "import_results_expected_3-0.yaml", equate_method: :hash_equal)
   # end
 
-  it "import version 2.6", :speed => 'slow'  do
+  it "import version 2.6", :import_data => 'slow'  do
     thesauri_identifiers("3000", "10000")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     full_path = db_load_file_path("sponsor_one/ct", "global_v2-6_CDISC_v43.xlsx")
@@ -252,7 +252,7 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
   end
  
-  it "import 2.6 QC", :speed => 'slow' do
+  it "import 2.6 QC", :import_data => 'slow' do
     load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
     th = Thesaurus.find_minimum(@uri_2_6)
     results = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
@@ -265,7 +265,7 @@ describe "Import::SponsorTermFormatOne" do
     end
   end
 
-  it "import version 3.0", :speed => 'slow' do
+  it "import version 3.0", :import_data => 'slow' do
     thesauri_identifiers("3500", "15000")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
     load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
@@ -294,7 +294,7 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import 3.0 QC", :speed => 'slow' do
+  it "import 3.0 QC", :import_data => 'slow' do
     load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
     th = Thesaurus.find_minimum(@uri_3_0)
@@ -308,7 +308,7 @@ describe "Import::SponsorTermFormatOne" do
     end
   end
 
-  it "2-6 versus 3.0 QC I", :speed => 'slow' do
+  it "2-6 versus 3.0 QC I", :import_data => 'slow' do
     load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
     th_2_6 = Thesaurus.find_minimum(@uri_2_6)
@@ -325,7 +325,7 @@ describe "Import::SponsorTermFormatOne" do
     expect(deleted).to match_array(prev - curr)
   end
 
-  it "2-6 versus 3.0 QC II", :speed => 'slow' do
+  it "2-6 versus 3.0 QC II", :import_data => 'slow' do
     results = {}
     load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
@@ -340,7 +340,7 @@ describe "Import::SponsorTermFormatOne" do
     check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal)
   end
 
-  # it "import 3.0 check new", :speed => 'slow' do
+  # it "import 3.0 check new", :import_data => 'slow' do
   #   load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
   #   load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
   #   th = Thesaurus.find_minimum(@uri_3_0)
@@ -348,7 +348,7 @@ describe "Import::SponsorTermFormatOne" do
   #   check_file_actual_expected(results, sub_dir, "import_new.yaml", equate_method: :hash_equal)
   # end
 
-  # it "import 3.0 check old", :speed => 'slow' do
+  # it "import 3.0 check old", :import_data => 'slow' do
   #   load_local_file_into_triple_store(sub_dir, "CT_V2-6_Old.ttl")
   #   load_local_file_into_triple_store(sub_dir, "CT_V3-0_Old.ttl")
   #   th = Thesaurus.find_minimum(@uri_3_0)

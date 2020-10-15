@@ -738,8 +738,8 @@ private
 
   # Set a temporary property
   def only_temporary?(object, name, value)
-    return false if object.respond_to?(name.to_sym)
-    set_temporary(object, name, value)
+    return false if object.respond_to?(:properties) # This checks if there is a properties method for the object defined
+    set_temporary(object, name, value)              # Method not defined, therefore must be non-schema variable
     true
   end
 
