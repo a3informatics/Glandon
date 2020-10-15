@@ -11,7 +11,6 @@ import { renderSpinnerIn$, removeSpinnerFrom$ } from 'shared/ui/spinners'
 import { tableInteraction } from 'shared/helpers/utils'
 import { alerts } from 'shared/ui/alerts'
 import { iconBtn, tokenTimeoutBtn } from 'shared/ui/buttons'
-import { iconTypes } from 'shared/ui/icons'
 
 /**
  * Biomedical Concept Edit Manager
@@ -349,9 +348,7 @@ export default class BCManager extends Cacheable {
 
     let bcCardHTML = `<div class="card mini clickable no-border biomedical-concept" data-id="${data.id}">
                         <div class="card-content">
-                          <div style="margin-right: 15px">
-                            ${ iconTypes.renderIcon( data.rdf_type, { size: 'text-xlarge' }) }
-                          </div>
+                          <div class="icon-biocon text-prim-light text-xlarge" style="margin-right: 15px"></div>
                           <div class="section primary">
                             <div>
                               <span class="font-regular">${data.has_identifier.identifier}</span>  v${data.has_identifier.semantic_version}
