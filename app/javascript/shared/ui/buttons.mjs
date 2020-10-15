@@ -11,6 +11,7 @@ import { renderIcon } from 'shared/ui/icons'
  * @param {string} params.icon Button icon name (without 'icon-' prefix)
  * @param {string} params.color Button color css class, optional
  * @param {string} params.ttip Button tooltip text, optional
+ * @param {boolean} params.disabled Button disabled state, optional
  * @return {string} formatted button HTML
  */
 function iconBtn({
@@ -18,14 +19,28 @@ function iconBtn({
   id,
   icon,
   color = '',
-  ttip
+  ttip,
+  disabled = false
   }) {
+  return `<a href='${url}' ${ id ? ` id='${ id }' ` : '' } class='btn icon-only ${ color } ${ disabled ? 'disabled' : '' } ${ ttip ? 'ttip' : '' }'>
+            ${ ttip ? `<span class='ttip-text ttip-top shadow-small text-medium text-small'>${ ttip }</span>` : ''}
+            ${ renderIcon({ iconName: icon }) }
+         </a>`;
 
-  return `<a href='${url}' ${ id ? ` id='${ id }' ` : '' } class='btn icon-only ${ color } ${ ttip ? 'ttip' : '' }'>` +
-            (ttip ? `<span class='ttip-text ttip-top shadow-small text-medium text-small'>${ ttip }</span>` : '') +
-            renderIcon({ iconName: icon }) +
-         `</a>`;
+}
 
+/**
+ * Returns HTML for a Token Timeout button
+ * @param {string} size Button size class [default='small']
+ * @return {string} formatted button HTML
+ */
+function tokenTimeoutBtn(size = 'small') {
+  return `<a href="#" class="ico-btn-sec small token-timeout">
+            <span class="circular-badge">
+              <span class="icon-lock"></span>
+            </span>
+            <span class="ico-btn-sec-text text-tiny"></span>
+          </a>`;
 }
 
 /**
@@ -63,5 +78,6 @@ export {
   historyBtn,
   termReferenceBtn,
   showBtn,
+  tokenTimeoutBtn,
   iconBtn
 }

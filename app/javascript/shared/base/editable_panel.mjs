@@ -1,6 +1,7 @@
 import TablePanel from 'shared/base/table_panel'
 
 import { $handleError } from 'shared/helpers/ajax'
+import { alerts } from 'shared/ui/alerts'
 
 /**
  * Base Editable Panel
@@ -126,9 +127,10 @@ export default class EditablePanel extends TablePanel {
     this.editor.on('submitError', (x, s, e) => $handleError(x, s, e));
     // Data submitted - Item Edited callback
     this.editor.on('submitSuccess submitUnsuccessful', (e, json) => {
+
       // Handle any errors thrown by the server
-      if (json.errors)
-        displayAlerts(alertError(json.errors.join(' & ')));
+      if ( json.errors )
+        alerts.error( json.errors.join(' & '), this.errorDiv );
 
       this._onEdited();
     });

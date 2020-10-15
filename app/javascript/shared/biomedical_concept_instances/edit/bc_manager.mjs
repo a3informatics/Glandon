@@ -10,6 +10,8 @@ import { $get, $post } from 'shared/helpers/ajax'
 import { renderSpinnerIn$, removeSpinnerFrom$ } from 'shared/ui/spinners'
 import { tableInteraction } from 'shared/helpers/utils'
 import { alerts } from 'shared/ui/alerts'
+import { iconBtn, tokenTimeoutBtn } from 'shared/ui/buttons'
+import { iconTypes } from 'shared/ui/icons'
 
 /**
  * Biomedical Concept Edit Manager
@@ -125,14 +127,15 @@ export default class BCManager extends Cacheable {
   _setListeners() {
 
     // BC card Edit click event
-    this._bcListView.on( 'click', '.edit-bc', (e) =>
+    this._bcListView.on( 'click', '.biomedical-concept', (e) => {
       this._onBCSelected( $(e.currentTarget).closest('.card.mini') )
-    );
+    });
 
     // BC Card Remove click event
-    this._bcListView.on('click', '.remove-bc', (e) =>
-      this._removeBCFromManager( $(e.currentTarget).closest('.card.mini') )
-    );
+    this._bcListView.on('click', '.remove-bc', (e) => {
+      this._removeBCFromManager( $(e.currentTarget).closest('.biomedical-concept') )
+      e.stopPropagation();
+    });
 
     // Add a BC to Edit button click event
     this._view.find('#add-bc-edit-button').on('click', () =>
@@ -169,7 +172,7 @@ export default class BCManager extends Cacheable {
         token: new TokenTimer({ 
           tokenId,
           warningTime: this.tokenWarningTime,
-          parentEl: `.card.mini[data-id='${bcData.id}']`,
+          parentEl: `.biomedical-concept[data-id='${bcData.id}']`,
           timerEl: '.token-timeout',
           reqInterval: 20000,
           handleUnload: false
@@ -256,7 +259,7 @@ export default class BCManager extends Cacheable {
    */
   _getBCByElement(e) {
 
-    let id = $(e).closest('.card.mini').attr('data-id');
+    let id = $(e).closest('.biomedical-concept').attr('data-id');
 
     return this.activeBCs[id]
 
@@ -271,7 +274,7 @@ export default class BCManager extends Cacheable {
     this.loadingActive = enable;
 
     // Enable / disable BC Manager buttons
-    this._view.find('.btn, .clickable, .card.mini')
+    this._view.find('.clickable, .btns-wrap .btn, .biomedical-concept')
               .toggleClass('disabled', enable);
 
     // Enable / disable spinner animation in the BCs view and interactivity of the Editor
@@ -290,7 +293,7 @@ export default class BCManager extends Cacheable {
    * Simulates edit button click on the first BC card in the scrollView
    */
   _selectFirstBC() {
-    this._bcListView.find('.card.mini .edit-bc')
+    this._bcListView.find('.biomedical-concept')
                     .get(0)
                     .click();
   }
@@ -328,11 +331,12 @@ export default class BCManager extends Cacheable {
   _updateCardsUI(bcCard) {
 
     // Unselect card
-    this._bcListView.find('.card.selected')
+    this._bcListView.find('.biomedical-concept.selected')
                     .removeClass('selected');
 
     // Select clicked card
-    bcCard.closest('.card.mini').addClass('selected');
+    bcCard.closest('.biomedical-concept')
+          .addClass('selected');
 
   }
 
@@ -343,29 +347,24 @@ export default class BCManager extends Cacheable {
    */
   _renderBCCard(data, isBase) {
 
-    let bcCardHTML = `<div class="card mini no-border" data-id="${data.id}">` +
-                        `<div class="card-content">` +
-                          `<div class="section primary">` +
-                            `<div>` +
-                              `<span class="font-regular">${data.has_identifier.identifier}</span>  v${data.has_identifier.semantic_version}` +
-                            `</div>` +
-                            `<div>${data.label}</div>` +
-                            `<div>${data.has_state.by_authority.ra_namespace.short_name}</div>` +
-                          `</div>` +
-                          `<div class="section secondary">` +
-                            `<a href="#" class="ico-btn-sec small edit-bc">` +
-                              `<span class="circular-badge blue"> <span class="icon-edit"></span> </span>` +
-                            `</a>` +
-                            `<a href="#" class="ico-btn-sec small token-timeout">` +
-                              `<span class="circular-badge"> <span class="icon-lock"></span></span>` +
-                              `<span class="ico-btn-sec-text text-tiny"></span>` +
-                            `</a>` +
-                            `<a href="#" class="ico-btn-sec small ${isBase ? 'disabled' : ''} remove-bc">` +
-                              `<span class="circular-badge"> <span class="icon-times"></span> </span>` +
-                            `</a>` +
-                          `</div>` +
-                        `</div>` +
-                      `</div>`
+    let bcCardHTML = `<div class="card mini clickable no-border biomedical-concept" data-id="${data.id}">
+                        <div class="card-content">
+                          <div style="margin-right: 15px">
+                            ${ iconTypes.renderIcon( data.rdf_type, { size: 'text-xlarge' }) }
+                          </div>
+                          <div class="section primary">
+                            <div>
+                              <span class="font-regular">${data.has_identifier.identifier}</span>  v${data.has_identifier.semantic_version}
+                            </div>
+                            <div>${data.label}</div>
+                            <div>${data.has_state.by_authority.ra_namespace.short_name}</div>
+                          </div>
+                          <div class="section secondary">
+                            ${ tokenTimeoutBtn() }
+                            ${ iconBtn({ icon: 'times', color: 'red remove-bc', disabled: isBase }) }
+                          </div>
+                        </div>
+                      </div>`;
 
     this._bcListView.append(bcCardHTML);
 
