@@ -84,24 +84,6 @@ export default class BCEditor extends EditablePanel {
     // Call super's _setListeners
     super._setListeners();
 
-    // Format the updated data before sending to the server
-    this.editor.on('preSubmit', (e, d, type) => {
-
-      if ( type === 'edit' )
-        this._formatUpdateData( d );
-
-    });
-
-    // Reset pickable cell data to empty state before repopulating with data
-    this.editor.on('postSubmit', (e, json, data) => {
-
-      let cell = this.table.cell( ".editable.inline.pickable", { focused: true } );
-
-      if (cell.length)
-        cell.data( [] );
-
-    });
-
     // Reload data button click event
     $('#refresh-bc-editor').on('click', () => this.refresh() );
 
@@ -111,7 +93,7 @@ export default class BCEditor extends EditablePanel {
    * Format the update data structure for server compatibility
    * @param {object} d DataTables Editor data object
    */
-  _formatUpdateData(d) {
+  _preformatUpdateData(d) {
 
     let id = Object.keys(d.data)[0],
         data = Object.values(d.data)[0],
@@ -129,6 +111,23 @@ export default class BCEditor extends EditablePanel {
 
     // Clear unused structures
     delete d.data;
+
+  }
+
+  /**
+   * Formats the updated data returned from the server before being added to Editor
+   * @override for custom behavior
+   * @param {object} oldData Data object sent to the server
+   * @param {object} newData Data returned from the server
+   */
+  _postformatUpdatedData(oldData, newData) {
+
+    // Copy the current focus index object
+    let focusCell = { ...this.table.cell( { focused: true } ).index() };
+
+    // Render new data and re-focus to the copied cell index
+    this._render( newData, true );
+    this.table.cell( focusCell ).focus();
 
   }
 

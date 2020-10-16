@@ -182,8 +182,10 @@ export default class BCManager extends Cacheable {
       }
 
       // Select and open default BC if isBase
-      if (isBase)
+      if (isBase) {
+        this.baseBCId = bcData.id;
         this._selectFirstBC()
+      }
 
   }
 
