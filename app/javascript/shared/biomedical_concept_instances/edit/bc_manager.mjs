@@ -247,7 +247,7 @@ export default class BCManager extends Cacheable {
   _cacheEditorData() {
 
     let cacheKey = this.bcEditor.bcInstance.id,
-        cacheData = this.bcEditor.table.rows().data().toArray();
+        cacheData = this.bcEditor.table.rows({ order: 'index' }).data().toArray();
 
     this._saveToCache( cacheKey, cacheData, true );
 
