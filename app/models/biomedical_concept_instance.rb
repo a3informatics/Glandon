@@ -43,6 +43,14 @@ class BiomedicalConceptInstance < BiomedicalConcept
     end
   end
 
+  # Clone. Clone the BC Instance
+  #
+  # @return [BiomedicalConcept] a clone of the object
+  def clone
+    self.based_on_links
+    super
+  end
+
 private
 
   # Split the params into the two parts, property and item

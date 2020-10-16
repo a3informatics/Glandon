@@ -31,4 +31,13 @@ class BiomedicalConcept < IsoManagedV2
     return results
   end
 
+  # Clone. Clone the BC 
+  #
+  # @return [BiomedicalConcept] a clone of the object
+  def clone
+    self.has_item_links
+    self.identified_by_links
+    super
+  end
+
 end

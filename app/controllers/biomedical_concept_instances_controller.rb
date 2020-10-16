@@ -42,13 +42,12 @@ class BiomedicalConceptInstancesController < ManagedItemsController
     @bc = BiomedicalConcept.find_minimum(protect_from_bad_id(params))
     respond_to do |format|
       format.html do
-        return true unless edit_lock(@bc)
-        @bc = @edit.item
+        # Note that there is no lock here. Performed in the JSON clause
         @close_path = history_biomedical_concept_instances_path({ biomedical_concept_instance:
             { identifier: @bc.scoped_identifier, scope_id: @bc.scope } })
       end
       format.json do
-        # Might be for locked item but also a new edit (multiple BC edit by a single user)
+        # Lock and creation of the new version for edit if required.
         return true unless edit_lock(@bc)
         @bc = @edit.item
         render :json => {data: @bc.to_h, token_id: @edit.token.id}, :status => 200
