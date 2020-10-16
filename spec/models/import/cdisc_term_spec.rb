@@ -91,6 +91,7 @@ describe "Import::CdiscTerm" do
       params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "CDASH Test", semantic_version: "1.1.1", job: @job}
       result = @object.import(params)
       filename = "cdisc_term_#{@object.id}_errors.yml"
+byebug
       expect(public_file_does_not_exist?("test", filename)).to eq(true)
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)

@@ -52,7 +52,7 @@ class Import::CdiscTerm < Import
   def configuration
     {
       description: "Import of CDISC Terminology",
-      parent_klass: ::CdiscTerm,
+      parent_klass: Import::CdiscClasses::CdiscThesaurus,
       reader_klass: self.api? ? CDISCLibraryAPIReader : Excel,
       import_type: :cdisc_term,
       format: self.api? ? :api_format : :excel_format,

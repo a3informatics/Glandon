@@ -1475,7 +1475,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: CdiscCl
+                klass: Import::CdiscClasses::CdiscCodeList
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -1496,7 +1496,7 @@ defaults: &defaults
               -
                 method: create_child
                 object: child
-                klass: CdiscCli
+                klass: Import::CdiscClasses::CdiscCodeListItem
                 condition:
                   method: column_blank?
                   column: 3
@@ -1689,7 +1689,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: CdiscCl
+                klass: Import::CdiscClasses::CdiscCodeList
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -1710,7 +1710,7 @@ defaults: &defaults
               -
                 method: create_child
                 object: child
-                klass: CdiscCli
+                klass: Import::CdiscClasses::CdiscCodeListItem
                 condition:
                   method: column_blank?
                   column: 3
@@ -1909,7 +1909,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: CdiscCl
+                klass: Import::CdiscClasses::CdiscCodeList
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -1930,7 +1930,7 @@ defaults: &defaults
               -
                 method: create_child
                 object: child
-                klass: CdiscCli
+                klass: Import::CdiscClasses::CdiscCodeListItem
                 condition:
                   method: column_blank?
                   column: 3
@@ -2130,7 +2130,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: CdiscCl
+                klass: Import::CdiscClasses::CdiscCodeList
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -2151,7 +2151,7 @@ defaults: &defaults
               -
                 method: create_child
                 object: child
-                klass: CdiscCli
+                klass: Import::CdiscClasses::CdiscCodeListItem
                 condition:
                   method: column_blank?
                   column: 3
@@ -2346,7 +2346,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: CdiscCl
+                klass: Import::CdiscClasses::CdiscCodeList
                 condition:
                   method: column_blank?
                   column: 2
@@ -2367,7 +2367,7 @@ defaults: &defaults
               -
                 method: create_child
                 object: child
-                klass: CdiscCli
+                klass: Import::CdiscClasses::CdiscCodeListItem
                 condition:
                   method: column_not_blank?
                   column: 2

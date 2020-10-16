@@ -215,17 +215,6 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
     return self
   end
 
-  # Add additional tags
-  #
-  # @param previous [Thesaurus::UnmanagedConcept] previous item
-  # @param set [Array] set of tags objects
-  # @return [Void] no return
-  def add_additional_tags(previous, set)
-    return if previous.nil?
-    missing =  previous.tagged.map{|x| x.uri.to_s} - self.tagged.map{|x| x.uri.to_s}
-    missing.each {|x| set << {subject: self.uri, object: Uri.new(uri: x)}}
-  end
-
   # To CSV No Header. A CSV record with no header
   #
   # @return [Array] array of items
