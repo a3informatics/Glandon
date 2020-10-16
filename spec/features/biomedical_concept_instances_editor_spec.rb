@@ -15,6 +15,33 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
     return "features/biomedical_concepts"
   end
 
+  def go_to_edit(identifier)
+    click_navbar_bc
+    wait_for_ajax 20
+    ui_table_search('index', identifier)
+    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
+    wait_for_ajax 10
+    context_menu_element_v2 'history', identifier, :edit
+    wait_for_ajax 10
+    expect(page).to have_content 'Biomedical Concept Editor'
+  end
+
+  def click_bc(name, action)
+    card = page.find('.biomedical-concept', text: name)
+    within(card) do
+      case action
+        when :edit
+          card.click
+        when :token
+          find('.token-timeout').click
+        when :remove
+          find('.remove-bc').click
+      end
+    end
+
+    wait_for_ajax 20
+  end
+
   describe "Edit BC", :type => :feature, js:true do
 
     before :all do
@@ -39,33 +66,6 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
     after :each do
       ua_logoff
-    end
-
-    def go_to_edit(identifier)
-      click_navbar_bc
-      wait_for_ajax 20
-      ui_table_search('index', identifier)
-      find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
-      wait_for_ajax 10
-      context_menu_element_v2 'history', identifier, :edit
-      wait_for_ajax 10
-      expect(page).to have_content 'Biomedical Concept Editor'
-    end
-
-    def click_bc(name, action)
-      card = page.find('.biomedical-concept', text: name)
-      within(card) do
-        case action
-          when :edit
-            card.click
-          when :token
-            find('.token-timeout').click
-          when :remove
-            find('.remove-bc').click
-        end
-      end
-
-      wait_for_ajax 20
     end
 
     it "allows access to edit page, initial state" do
@@ -258,13 +258,10 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
       ui_check_table_info 'editor', 1, 10, 12
 
-      # Sort
-      find(:xpath, "//th[contains(.,'Question Text')]").click
-
       # Inline text
       ui_editor_select_by_content 'Body Position', true
       ui_editor_fill_inline "question_text", "Patient Body Position\n"
-      ui_editor_check_value 10, 4, 'Patient Body Position'
+      ui_editor_check_value 5, 4, 'Patient Body Position'
 
       # Truefalse field
       ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
@@ -302,9 +299,6 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       end
 
       click_bc 'DIABP', :edit
-
-      # Sort
-      find(:xpath, "//th[contains(.,'Question Text')]").click
 
       # Add Term Reference
       ui_editor_select_by_content 'ARM C32141', true
@@ -516,6 +510,82 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       expect(Token.all.count).to eq(token_count)
     end
 
+
+  end
+
+  describe "Edit BC, Locked Status", :type => :feature, js:true do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      ua_create
+      Token.delete_all
+    end
+
+    after :all do
+      ua_destroy
+      Token.restore_timeout
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    it "allows to edit a BC in a locked state" do
+      go_to_edit 'HEIGHT'
+
+      # Put to Recorded - locked state
+      click_on 'Return'
+      wait_for_ajax 10
+
+      context_menu_element_v2('history', '0.1.0', :document_control)
+      click_on 'Submit Status Change'
+      click_on 'Submit Status Change'
+
+      click_on 'Return'
+      wait_for_ajax 10
+
+      context_menu_element_v2('history', '0.1.0', :edit)
+      wait_for_ajax 20
+
+      ui_check_table_info('editor', 1, 10, 12)
+      ui_editor_select_by_location 1, 4
+      ui_editor_fill_inline 'question_text', "Testing locked edits\n"
+      ui_check_table_info('editor', 1, 10, 12)
+      ui_editor_check_value 1, 4, 'Testing locked edits'
+
+      ui_check_table_cell_icon 'editor', 1, 2, 'times-circle'
+
+      ui_editor_select_by_location 1, 2
+      ui_press_key :arrow_left
+      ui_press_key :enter
+      wait_for_ajax 10
+
+      ui_check_table_cell_icon 'editor', 1, 2, 'sel-filled'
+
+      ui_editor_select_by_location 2, 8, true
+
+      ui_in_modal do
+          ip_pick_unmanaged_items :unmanaged_concept, [
+            { parent: 'C74456', version: '62', identifier: 'C32974' }
+          ], 'bc-term-ref'
+      end
+
+      ui_editor_check_value 2, 8, 'LEG C32974 (LOC C74456 v62.0.0)'
+
+      click_on 'Return'
+      wait_for_ajax 10
+
+      ui_check_table_info('history', 1, 2, 2)
+    end
 
   end
 
