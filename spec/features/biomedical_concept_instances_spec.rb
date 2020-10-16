@@ -14,6 +14,10 @@ describe "Biomedical Concept Instances", :type => :feature do
     return "features/biomedical_concepts"
   end
 
+  def total_bcs
+    14
+  end
+
   describe "BCs", :type => :feature, js: true do
 
     before :all do
@@ -43,7 +47,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       wait_for_ajax 20
       find(:xpath, "//a[@href='/biomedical_concept_instances']").click
       expect(page).to have_content 'Index: Biomedical Concepts'
-      ui_check_table_info("index", 1, 10, 14)
+      ui_check_table_info("index", 1, 10, total_bcs) # Update total BCs number if test fails 
       find(:xpath, "//table[@id='index']/thead/tr/th[contains(.,'Label')]").click #Order data
       ui_check_table_cell("index", 3, 2, "BMI")
       ui_check_table_cell("index", 3, 3, "BMI")
