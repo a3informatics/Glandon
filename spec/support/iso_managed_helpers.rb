@@ -17,6 +17,13 @@ module IsoManagedHelpers
     end
   end
 
+  def fix_dates_hash(actual_hash, sub_dir, filename, *args)
+    expected = read_yaml_file(sub_dir, filename)
+    args.each do |a|
+      actual_hash[a] = expected[a]
+    end
+  end
+
   def change_ownership(item, new_ra)
     item.has_identifier.replace_link(:has_scope, item.has_identifier.has_scope.uri, new_ra.ra_namespace.uri)
     item.has_state.replace_link(:by_authority, item.has_state.by_authority.uri, new_ra.uri)

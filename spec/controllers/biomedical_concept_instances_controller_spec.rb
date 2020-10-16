@@ -8,6 +8,7 @@ describe BiomedicalConceptInstancesController do
   include ControllerHelpers
   include UserAccountHelpers
   include AuditTrailHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "controllers/biomedical_concept_instances"
@@ -173,19 +174,8 @@ describe BiomedicalConceptInstancesController do
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       get :edit, params:{id: instance.id}
       expect(assigns(:bc).uri).to eq(instance.uri)
-      #expect(assigns(:data_path)).to eq("/biomedical_concept_instances/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=/show_data")
       expect(assigns(:close_path)).to eq("/biomedical_concept_instances/history?biomedical_concept_instance%5Bidentifier%5D=HEIGHT&biomedical_concept_instance%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
       expect(response).to render_template("edit")
-    end
-
-    it "edit, html, locked by another user" do
-      request.env["HTTP_REFERER"] = "/path"
-      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      token = Token.obtain(instance, @lock_user)
-      get :edit, params:{id: instance.id}
-      expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
-      expect(response).to redirect_to("/path")
     end
 
     it "edit, json request, not locked" do
@@ -207,6 +197,7 @@ describe BiomedicalConceptInstancesController do
       actual = check_good_json_response(response)
       expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
       actual[:token_id] = 9999                            # So, fix for file compare
+      fix_dates_hash(actual, sub_dir, "edit_json_expected_3.yaml", :last_change_date, :creation_date)
       check_file_actual_expected(actual, sub_dir, "edit_json_expected_3.yaml", equate_method: :hash_equal)
     end
 
