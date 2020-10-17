@@ -47,7 +47,7 @@ describe Form::Item::Placeholder do
     expect(result).to eq(false)
   end
 
-  it "returns the item hash" do
+  it "returns the item array" do
     item = Form::Item::Placeholder.new(uri: Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001"), free_text: "Draft 123", ordinal: 1)
     result = item.get_item
     check_file_actual_expected(result, sub_dir, "get_item_expected_1.yaml", equate_method: :hash_equal)

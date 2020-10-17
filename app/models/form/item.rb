@@ -82,10 +82,10 @@ class Form::Item < IsoConceptV2
     end
       if datatype.datetime?
         html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
-      #elsif datatype.date?
-      #  html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
-      #elsif datatype.time?
-      #  html += field_table(["H", "H", ":", "M", "M"])
+      elsif datatype.date?
+       html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
+      elsif datatype.time?
+       html += field_table(["H", "H", ":", "M", "M"])
       elsif datatype.float?
         item.format = "5.1" if item.format.blank?
         parts = item.format.split('.')
@@ -119,7 +119,7 @@ class Form::Item < IsoConceptV2
 
   def terminology_cell
     html = '<td>'
-    self.has_coded_value.each do |cv|
+    self.has_coded_value_objects.sort_by {|x| x.ordinal}.each do |cv|
       tc = Thesaurus::UnmanagedConcept.find(cv.reference)
       if cv.enabled
         html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
@@ -130,7 +130,7 @@ class Form::Item < IsoConceptV2
 
   def coded_values_to_hash(coded_values)
     results = []
-    coded_values.each do |cv|
+    coded_values.sort_by {|x| x.ordinal}.each do |cv|
       ref = cv.to_h
       ref[:reference] = Thesaurus::UnmanagedConcept.find(cv.reference).to_h
       parent = Thesaurus::ManagedConcept.find_with_properties(cv.context)
@@ -153,7 +153,7 @@ class Form::Item < IsoConceptV2
 
   def get_cv_ref(coded_values)
     results = []
-    coded_values.each do |cv|
+    coded_values.sort_by {|x| x.ordinal}.each do |cv|
       ref = cv.to_h
       ref[:reference] = Thesaurus::UnmanagedConcept.find(cv.reference).to_h
       results << ref
@@ -163,7 +163,7 @@ class Form::Item < IsoConceptV2
 
   def get_ci_ref(common_items)
     results = []
-    common_items.each do |ci|
+    common_items.sort_by {|x| x.ordinal}.each do |ci|
       results << ci.full_data
     end
     results

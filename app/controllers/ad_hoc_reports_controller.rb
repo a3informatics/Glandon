@@ -12,7 +12,20 @@ class AdHocReportsController < ApplicationController
 
   def index
     authorize AdHocReport
-    @items = AdHocReport.all
+    respond_to do |format|
+      format.json do
+        results = AdHocReport.all.map do |report|
+          x = report.as_json
+          x[:parameters] = report.parameters.as_json
+          x[:report_path] = ad_hoc_report_path(report)
+          x[:run_path] = run_start_ad_hoc_report_path(report)
+          x[:results_path] = results_ad_hoc_report_path(report)
+          x
+        end
+        render json: { data: results }
+      end
+      format.html
+    end
   end
 
   def create
@@ -64,7 +77,7 @@ class AdHocReportsController < ApplicationController
     report = AdHocReport.find(params[:id])
     report.destroy_report
     AuditTrail.delete_event(current_user, "Ad-hoc report '#{report.label}' deleted.")
-    redirect_to request.referer
+    render json: { }, status: 200
   end
 
   def export_csv

@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("Code Lists")' %>
+<% content_for :page_title do %> Index: Code Lists <% end %>
 
 <%= javascript_pack_tag 'thesauri/managed_concepts/index' %>
 <%= javascript_tag "let createCLUrl = '#{thesauri_managed_concepts_path}'" %>

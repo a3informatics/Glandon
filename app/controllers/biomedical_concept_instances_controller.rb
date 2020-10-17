@@ -42,12 +42,12 @@ class BiomedicalConceptInstancesController < ManagedItemsController
     @bc = BiomedicalConcept.find_minimum(protect_from_bad_id(params))
     respond_to do |format|
       format.html do
-        return true unless edit_lock(@bc)
-        @bc = @edit.item
+        # Note that there is no lock here. Performed in the JSON clause
         @close_path = history_biomedical_concept_instances_path({ biomedical_concept_instance:
             { identifier: @bc.scoped_identifier, scope_id: @bc.scope } })
       end
       format.json do
+        # Lock and creation of the new version for edit if required.
         return true unless edit_lock(@bc)
         @bc = @edit.item
         render :json => {data: @bc.to_h, token_id: @edit.token.id}, :status => 200
@@ -79,7 +79,7 @@ class BiomedicalConceptInstancesController < ManagedItemsController
     bc.delete
     AuditTrail.delete_item_event(current_user, bc, bc.audit_message(:deleted))
     @lock.release
-    redirect_to request.referer
+    render json: { data: "" }, status: 200
   end
 
 private
@@ -132,8 +132,8 @@ private
         return biomedical_concept_instance_path(object)
       when :edit
         return edit_biomedical_concept_instance_path(id: object.id)
-      # when :destroy
-      #   return biomedical_concept_instance_path(object)
+      when :destroy
+        return biomedical_concept_instance_path(object)
       else
         return ""
     end

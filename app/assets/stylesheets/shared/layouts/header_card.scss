@@ -38,8 +38,11 @@
   font-size: 13pt;
 }
 
-.definition-label{
+.long-label {
   max-width: 620px;
+}
+
+.justified {
   text-align: justify;
 }
 
@@ -82,14 +85,22 @@
 }
 
 // Mobile view fix
-@media (max-width: 768px){
-  .header-title{
+@media (max-width: 768px) {
+
+  .header-title {
     margin: 5px auto;
   }
 
-  .rb{
+  .rb {
     flex-direction: column !important;
   }
+
+  .h-outside-wrap .h-inner-wrap {
+    .actions-wrap, .btns-wrap {
+      width: 100%;
+    }
+  }
+
 }
 
 // Fix of icon positioning in the buttons in the header for IE and EDGE

@@ -68,6 +68,18 @@
   background: $secondary-color-dark !important;
 }
 
+.btn.light-green{
+  background: $secondary-color-light;
+}
+
+.btn.light-green:hover{
+  background: $secondary-color-bright;
+}
+
+.btn.light-green:active{
+  background: $secondary-color-medium !important;
+}
+
 .btn.light{
   background: $primary-color-light;
 }
@@ -350,10 +362,6 @@
   background: $secondary-color-bright;
 }
 
-// .ico-btn-sec.token-timeout:active .circular-badge {
-//   background: $secondary-color-medium !important;
-// }
-
 .ico-btn-sec.token-timeout.disabled .circular-badge {
   background: $grey-light;
 }
@@ -362,8 +370,16 @@
   background: $accent-color-1;
 }
 
+.card.warning .token-timeout.ico-btn-sec:hover .circular-badge {
+  background: $accent-color-1-light;
+}
+
 .card.danger .token-timeout.ico-btn-sec .circular-badge {
   background: $accent-color-2;
+}
+
+.card.danger .token-timeout.ico-btn-sec:hover .circular-badge {
+  background: $accent-color-2-light;
 }
 
 .card.danger .token-timeout.ico-btn-sec .ico-btn-sec-text {

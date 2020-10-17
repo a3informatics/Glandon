@@ -23,7 +23,6 @@ describe Forms::Groups::CommonGroupsController do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/CRF TEST 1.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..15)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -87,7 +86,7 @@ describe Forms::Groups::CommonGroupsController do
     login_curator
 
     def sub_dir
-      return "controllers/forms/items"
+      return "controllers/forms/groups"
     end
 
     after :all do

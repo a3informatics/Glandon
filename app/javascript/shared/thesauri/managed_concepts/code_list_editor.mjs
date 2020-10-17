@@ -111,43 +111,66 @@ export default class CLEditor extends EditablePanel {
    * Sets event listeners, handlers
    */
   _setListeners() {
+
     // Call super's _setListeners first
     super._setListeners();
 
-    // Format the updated data before sending to the server
-    this.editor.on('preSubmit', (e, d, type) => {
-      if (type === 'edit')
-        this._formatUpdateData(d);
-    });
-
     // Edit tags
     $(this.selector).on('click', 'tbody td.editable.edit-tags', (e) => {
+
       const editTagsUrl = this._getRowDataFrom$(e.target).edit_tags_path;
+
       if (editTagsUrl)
         window.open(editTagsUrl, '_blank').focus();
+
     })
 
     // Add New Child
     $('#new-item-button').on('click', () => this.newChild());
+
     // Add Existing Child
     $('#add-existing-button').on('click', () => this.itemSelector.show());
+
     // Refresh
     $('#refresh-button').on('click', () => this.refresh());
+
     // Remove item
     $(this.selector).on('click', 'tbody .remove', (e) => this.removeChild(this._getRowFrom$(e.target)));
+
     // Help dialog
-    $('#editor-help').on('click', () => new InformationDialog({div: $("#information-dialog-cl-edit")}).show() )
+    $('#editor-help').on('click', () => new InformationDialog({div: $("#information-dialog-cl-edit")}).show() );
+
   }
 
   /**
    * Formats the update data to be compatible with server
    * @param {object} d DataTables Editor data object
    */
-  _formatUpdateData(d) {
+  _preformatUpdateData(d) {
+
     const itemId = Object.keys(d.data)[0];
+
     d.edit = d.data[itemId];
     d.edit.parent_id = this.id;
+
     delete d.data;
+
+  }
+
+  /**
+   * Formats the updated data returned from the server before being added to Editor
+   * @override for custom behavior
+   * @param {object} oldData Data object sent to the server
+   * @param {object} newData Data returned from the server
+   */
+  _postformatUpdatedData(oldData, newData) {
+
+    // Merge and update edited row data 
+    let editedRow = this.table.row( this.editor.modifier().row );
+        newData = Object.assign( editedRow.data(), newData[0] );
+
+    editedRow.data( newData );
+
   }
 
   /**

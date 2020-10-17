@@ -14,7 +14,7 @@ class Form < IsoManagedV2
 
   include Form::Ordinal
 
-  # Get Items. 
+  # Get Items.
   #
   # @return [Array] Array of hashes, one per group, sub group and item. Ordered by ordinal.
   def get_items
@@ -26,14 +26,14 @@ class Form < IsoManagedV2
     return results
   end
 
-  # To CRF. 
+  # To CRF.
   #
   # @return [String] String of HTML form representation
   def to_crf
     form = self.class.find_full(self.uri)
     html = ''
     html += get_css
-    html += '<table class="table table-striped table-bordered table-condensed">'
+    html += '<table class="table table-striped table-bordered table-condensed" id="crf">'
     html += '<tr>'
     html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
     html += '</tr>'
@@ -43,9 +43,9 @@ class Form < IsoManagedV2
     html += '</table>'
   end
 
-  # Get Referenced Items. 
+  # Get Referenced Items.
   #
-  # @return [Hash] key: reference ID, value: item 
+  # @return [Hash] key: reference ID, value: item
   def get_referenced_items
     items = []
     results = {}
@@ -69,9 +69,9 @@ class Form < IsoManagedV2
     return results
   end
 
-  # Add child. 
+  # Add child.
   #
-  # @return 
+  # @return
   def add_child(params)
     self.errors.add(:base, "Attempting to add an invalid child type") if params[:type].to_sym != :normal_group
     ordinal = next_ordinal(:has_group)
@@ -91,7 +91,7 @@ class Form < IsoManagedV2
   def full_data
     form = self.to_h
     form[:has_group] = []
-    self.has_group.each do |group|
+    self.has_group.sort_by {|x| x.ordinal}.each do |group|
       form[:has_group] << group.full_data
     end
     form
@@ -120,7 +120,7 @@ class Form < IsoManagedV2
     def get_css
       html = "<style>"
       html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
-      html += "table.crf-input-field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; " 
+      html += "table.crf-input-field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; "
       html += "vertical-align: center; padding: 5px; }\n"
       html += "table.crf-input-field td:not(:last-child){border-right: 1px dashed}\n"
       html += "h4.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 5px; }\n"

@@ -9,250 +9,7 @@
   :completion: Not Set
   :optional: false
   :repeating: false
-  :has_common:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cx
-    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1
-    :rdf_type: http://www.assero.co.uk/BusinessForm#CommonGroup
-    :label: Common Group
-    :tagged: []
-    :ordinal: 1
-    :note: Not Set
-    :completion: Not Set
-    :optional: false
-    :has_item:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMQ==
-      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1
-      :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
-      :label: Date and Time (--DTC)
-      :tagged: []
-      :ordinal: 1
-      :note: ''
-      :completion: Not Set
-      :optional: false
-      :has_property:
-        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMV9SMQ==
-        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1_R1
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-        :label: ''
-        :tagged: []
-        :enabled: true
-        :optional: false
-        :ordinal: 1
-        :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
-        :context: 
-      :has_coded_value: []
-      :has_common_item:
-      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDE=
-        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP1
-        :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-        :label: Date and Time (--DTC)
-        :tagged: []
-        :ordinal: 1
-        :note: ''
-        :completion: Not Set
-        :optional: false
-        :has_property:
-          :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDFfUjE=
-          :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP1_R1
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 1
-          :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
-          :context: 
-        :has_coded_value: []
-        :is_common: true
-      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDE=
-        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1
-        :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-        :label: Date and Time (--DTC)
-        :tagged: []
-        :ordinal: 1
-        :note: ''
-        :completion: Not Set
-        :optional: false
-        :has_property:
-          :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDFfUjE=
-          :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1_R1
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 1
-          :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
-          :context: 
-        :has_coded_value: []
-        :is_common: true
-      :is_common: false
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMg==
-      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2
-      :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
-      :label: Body Position (--POS)
-      :tagged: []
-      :ordinal: 2
-      :note: ''
-      :completion: Not Set
-      :optional: false
-      :has_property:
-        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMl9SMQ==
-        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2_R1
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-        :label: ''
-        :tagged: []
-        :enabled: true
-        :optional: false
-        :ordinal: 1
-        :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode
-        :context: 
-      :has_coded_value:
-      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMl9UVUMz
-        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2_TUC3
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-        :label: ''
-        :tagged: []
-        :enabled: true
-        :optional: false
-        :ordinal: 3
-        :reference: http://www.cdisc.org/C71148/V6#C71148_C62166
-        :context: http://www.cdisc.org/C71148/V62#C71148
-        :local_label: ''
-      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMl9UVUMy
-        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2_TUC2
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-        :label: ''
-        :tagged: []
-        :enabled: true
-        :optional: false
-        :ordinal: 2
-        :reference: http://www.cdisc.org/C71148/V6#C71148_C62167
-        :context: http://www.cdisc.org/C71148/V62#C71148
-        :local_label: ''
-      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMl9UVUMx
-        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2_TUC1
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-        :label: ''
-        :tagged: []
-        :enabled: true
-        :optional: false
-        :ordinal: 1
-        :reference: http://www.cdisc.org/C71148/V6#C71148_C62122
-        :context: http://www.cdisc.org/C71148/V62#C71148
-        :local_label: ''
-      :has_common_item:
-      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDI=
-        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2
-        :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-        :label: Body Position (--POS)
-        :tagged: []
-        :ordinal: 2
-        :note: ''
-        :completion: Not Set
-        :optional: false
-        :has_property:
-          :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfUjE=
-          :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_R1
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 1
-          :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode
-          :context: 
-        :has_coded_value:
-        - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMQ==
-          :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC1
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 1
-          :reference: http://www.cdisc.org/C71148/V6#C71148_C62122
-          :context: http://www.cdisc.org/C71148/V62#C71148
-          :local_label: ''
-        - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMw==
-          :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC3
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 3
-          :reference: http://www.cdisc.org/C71148/V6#C71148_C62166
-          :context: http://www.cdisc.org/C71148/V62#C71148
-          :local_label: ''
-        - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMg==
-          :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC2
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 2
-          :reference: http://www.cdisc.org/C71148/V6#C71148_C62167
-          :context: http://www.cdisc.org/C71148/V62#C71148
-          :local_label: ''
-        :is_common: true
-      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDI=
-        :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2
-        :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-        :label: Body Position (--POS)
-        :tagged: []
-        :ordinal: 2
-        :note: ''
-        :completion: Not Set
-        :optional: false
-        :has_property:
-          :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfUjE=
-          :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_R1
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 1
-          :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode
-          :context: 
-        :has_coded_value:
-        - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMw==
-          :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC3
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 3
-          :reference: http://www.cdisc.org/C71148/V6#C71148_C62166
-          :context: http://www.cdisc.org/C71148/V62#C71148
-          :local_label: ''
-        - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMg==
-          :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC2
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 2
-          :reference: http://www.cdisc.org/C71148/V6#C71148_C62122
-          :context: http://www.cdisc.org/C71148/V62#C71148
-          :local_label: ''
-        - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMQ==
-          :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC1
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 1
-          :reference: http://www.cdisc.org/C71148/V6#C71148_C62167
-          :context: http://www.cdisc.org/C71148/V62#C71148
-          :local_label: ''
-        :is_common: true
-      :is_common: false
+  :has_common: []
   :datatype: ''
   :format: ''
   :question_text: ''
@@ -261,6 +18,267 @@
   :label_text: ''
   :has_coded_value: []
   :has_property: {}
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cx
+  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1
+  :rdf_type: http://www.assero.co.uk/BusinessForm#CommonGroup
+  :label: Common Group
+  :tagged: []
+  :ordinal: 1
+  :note: Not Set
+  :completion: Not Set
+  :optional: false
+  :datatype: ''
+  :format: ''
+  :question_text: ''
+  :mapping: ''
+  :free_text: ''
+  :label_text: ''
+  :has_coded_value: []
+  :has_property: {}
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMQ==
+  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1
+  :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
+  :label: Date and Time (--DTC)
+  :tagged: []
+  :ordinal: 1
+  :note: ''
+  :completion: Not Set
+  :optional: false
+  :has_property:
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMV9SMQ==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+    :context: 
+  :has_coded_value: []
+  :has_common_item:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDE=
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP1
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: Date and Time (--DTC)
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDFfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+      :context: 
+    :has_coded_value: []
+    :is_common: true
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDE=
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: Date and Time (--DTC)
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDFfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+      :context: 
+    :has_coded_value: []
+    :is_common: true
+  :is_common: false
+  :datatype: ''
+  :format: ''
+  :question_text: ''
+  :mapping: ''
+  :free_text: ''
+  :label_text: ''
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMg==
+  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2
+  :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
+  :label: Body Position (--POS)
+  :tagged: []
+  :ordinal: 2
+  :note: ''
+  :completion: Not Set
+  :optional: false
+  :has_property:
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMl9SMQ==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode
+    :context: 
+  :has_coded_value:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMl9UVUMx
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2_TUC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxMjI=
+      :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
+      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :label: Sitting
+      :tagged:
+      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+      :identifier: C62122
+      :notation: SITTING
+      :definition: The state or act of one who sits; the posture of one who occupies
+        a seat. (NCI)
+      :extensible: false
+      :narrower: []
+      :preferred_term: http://www.assero.co.uk/PT#d79919201623d71b31f2ac9d83bc18e08a779e8a
+      :synonym:
+      - http://www.assero.co.uk/SYN#d79919201623d71b31f2ac9d83bc18e08a779e8a
+    :context:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2MiNDNzExNDg=
+      :uri: http://www.cdisc.org/C71148/V62#C71148
+      :identifier: C71148
+      :notation: POSITION
+      :semantic_version: 62.0.0
+    :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMl9UVUMy
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2_TUC2
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 2
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjc=
+      :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
+      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :label: Supine Position
+      :tagged:
+      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+      :identifier: C62167
+      :notation: SUPINE
+      :definition: A posterior recumbent body position whereby the person lies on
+        its back and faces upward. (NCI)
+      :extensible: false
+      :narrower: []
+      :preferred_term: http://www.assero.co.uk/PT#120bf64d01680390ffcf00cc1bdce0d885791a9e
+      :synonym:
+      - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
+    :context:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2MiNDNzExNDg=
+      :uri: http://www.cdisc.org/C71148/V62#C71148
+      :identifier: C71148
+      :notation: POSITION
+      :semantic_version: 62.0.0
+    :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMl9UVUMz
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2_TUC3
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 3
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjY=
+      :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
+      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :label: Standing
+      :tagged:
+      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+      :identifier: C62166
+      :notation: STANDING
+      :definition: The act of assuming or maintaining an erect upright position. (NCI)
+      :extensible: false
+      :narrower: []
+      :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+      :synonym:
+      - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+    :context:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2MiNDNzExNDg=
+      :uri: http://www.cdisc.org/C71148/V62#C71148
+      :identifier: C71148
+      :notation: POSITION
+      :semantic_version: 62.0.0
+    :local_label: ''
+  :has_common_item:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDI=
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: Body Position (--POS)
+    :tagged: []
+    :ordinal: 2
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode
+      :context: 
+    :has_coded_value:
+    - http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC1
+    - http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC3
+    - http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC2
+    :is_common: true
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDI=
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: Body Position (--POS)
+    :tagged: []
+    :ordinal: 2
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfUjE=
+      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode
+      :context: 
+    :has_coded_value:
+    - http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC3
+    - http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC2
+    - http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC1
+    :is_common: true
+  :is_common: false
+  :datatype: ''
+  :format: ''
+  :question_text: ''
+  :mapping: ''
+  :free_text: ''
+  :label_text: ''
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMg==
   :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
@@ -444,36 +462,6 @@
       :notation: POSITION
       :semantic_version: 62.0.0
     :local_label: ''
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMw==
-    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC3
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-    :label: ''
-    :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjY=
-      :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
-      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Standing
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-      :identifier: C62166
-      :notation: STANDING
-      :definition: The act of assuming or maintaining an erect upright position. (NCI)
-      :extensible: false
-      :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
-      :synonym:
-      - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
-    :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2MiNDNzExNDg=
-      :uri: http://www.cdisc.org/C71148/V62#C71148
-      :identifier: C71148
-      :notation: POSITION
-      :semantic_version: 62.0.0
-    :local_label: ''
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMg==
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC2
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
@@ -498,6 +486,36 @@
       :preferred_term: http://www.assero.co.uk/PT#120bf64d01680390ffcf00cc1bdce0d885791a9e
       :synonym:
       - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
+    :context:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2MiNDNzExNDg=
+      :uri: http://www.cdisc.org/C71148/V62#C71148
+      :identifier: C71148
+      :notation: POSITION
+      :semantic_version: 62.0.0
+    :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMw==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC3
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 3
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjY=
+      :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
+      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :label: Standing
+      :tagged:
+      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+      :identifier: C62166
+      :notation: STANDING
+      :definition: The act of assuming or maintaining an erect upright position. (NCI)
+      :extensible: false
+      :narrower: []
+      :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+      :synonym:
+      - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
     :context:
       :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2MiNDNzExNDg=
       :uri: http://www.cdisc.org/C71148/V62#C71148
@@ -773,29 +791,30 @@
       :context: 
     :context: 
   :has_coded_value:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMw==
-    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC3
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMQ==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
     :tagged: []
     :enabled: true
     :optional: false
-    :ordinal: 3
+    :ordinal: 1
     :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjY=
-      :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjc=
+      :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Standing
+      :label: Supine Position
       :tagged:
       - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-      :identifier: C62166
-      :notation: STANDING
-      :definition: The act of assuming or maintaining an erect upright position. (NCI)
+      :identifier: C62167
+      :notation: SUPINE
+      :definition: A posterior recumbent body position whereby the person lies on
+        its back and faces upward. (NCI)
       :extensible: false
       :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+      :preferred_term: http://www.assero.co.uk/PT#120bf64d01680390ffcf00cc1bdce0d885791a9e
       :synonym:
-      - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
+      - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
     :context:
       :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2MiNDNzExNDg=
       :uri: http://www.cdisc.org/C71148/V62#C71148
@@ -834,30 +853,29 @@
       :notation: POSITION
       :semantic_version: 62.0.0
     :local_label: ''
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMQ==
-    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC1
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMw==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC3
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
     :tagged: []
     :enabled: true
     :optional: false
-    :ordinal: 1
+    :ordinal: 3
     :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjc=
-      :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjY=
+      :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Supine Position
+      :label: Standing
       :tagged:
       - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-      :identifier: C62167
-      :notation: SUPINE
-      :definition: A posterior recumbent body position whereby the person lies on
-        its back and faces upward. (NCI)
+      :identifier: C62166
+      :notation: STANDING
+      :definition: The act of assuming or maintaining an erect upright position. (NCI)
       :extensible: false
       :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#120bf64d01680390ffcf00cc1bdce0d885791a9e
+      :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
       :synonym:
-      - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
+      - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
     :context:
       :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2MiNDNzExNDg=
       :uri: http://www.cdisc.org/C71148/V62#C71148
@@ -974,215 +992,6 @@
       :notation: VSRESU
       :semantic_version: 59.0.0
     :local_label: ''
-  :is_common: false
-  :datatype: ''
-  :format: ''
-  :question_text: ''
-  :mapping: ''
-  :free_text: ''
-  :label_text: ''
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cx
-  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1
-  :rdf_type: http://www.assero.co.uk/BusinessForm#CommonGroup
-  :label: Common Group
-  :tagged: []
-  :ordinal: 1
-  :note: Not Set
-  :completion: Not Set
-  :optional: false
-  :datatype: ''
-  :format: ''
-  :question_text: ''
-  :mapping: ''
-  :free_text: ''
-  :label_text: ''
-  :has_coded_value: []
-  :has_property: {}
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMQ==
-  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1
-  :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
-  :label: Date and Time (--DTC)
-  :tagged: []
-  :ordinal: 1
-  :note: ''
-  :completion: Not Set
-  :optional: false
-  :has_property: {}
-  :has_coded_value: []
-  :has_common_item:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDE=
-    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP1
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: Date and Time (--DTC)
-    :tagged: []
-    :ordinal: 1
-    :note: ''
-    :completion: Not Set
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDFfUjE=
-      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP1_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
-      :context: 
-    :has_coded_value: []
-    :is_common: true
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDE=
-    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: Date and Time (--DTC)
-    :tagged: []
-    :ordinal: 1
-    :note: ''
-    :completion: Not Set
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDFfUjE=
-      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
-      :context: 
-    :has_coded_value: []
-    :is_common: true
-  :is_common: false
-  :datatype: ''
-  :format: ''
-  :question_text: ''
-  :mapping: ''
-  :free_text: ''
-  :label_text: ''
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQ0cxX0NJMg==
-  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2
-  :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
-  :label: Body Position (--POS)
-  :tagged: []
-  :ordinal: 2
-  :note: ''
-  :completion: Not Set
-  :optional: false
-  :has_property: {}
-  :has_coded_value: []
-  :has_common_item:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDI=
-    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: Body Position (--POS)
-    :tagged: []
-    :ordinal: 2
-    :note: ''
-    :completion: Not Set
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfUjE=
-      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMQ==
-      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.cdisc.org/C71148/V6#C71148_C62122
-      :context: http://www.cdisc.org/C71148/V62#C71148
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMw==
-      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC3
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 3
-      :reference: http://www.cdisc.org/C71148/V6#C71148_C62166
-      :context: http://www.cdisc.org/C71148/V62#C71148
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHMl9CUDJfVFVDMg==
-      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC2
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 2
-      :reference: http://www.cdisc.org/C71148/V6#C71148_C62167
-      :context: http://www.cdisc.org/C71148/V62#C71148
-      :local_label: ''
-    :is_common: true
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDI=
-    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: Body Position (--POS)
-    :tagged: []
-    :ordinal: 2
-    :note: ''
-    :completion: Not Set
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfUjE=
-      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode
-      :context: 
-    :has_coded_value:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMw==
-      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC3
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 3
-      :reference: http://www.cdisc.org/C71148/V6#C71148_C62166
-      :context: http://www.cdisc.org/C71148/V62#C71148
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMg==
-      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC2
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 2
-      :reference: http://www.cdisc.org/C71148/V6#C71148_C62122
-      :context: http://www.cdisc.org/C71148/V62#C71148
-      :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzFfQkNHM19CUDJfVFVDMQ==
-      :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.cdisc.org/C71148/V6#C71148_C62167
-      :context: http://www.cdisc.org/C71148/V62#C71148
-      :local_label: ''
-    :is_common: true
   :is_common: false
   :datatype: ''
   :format: ''
@@ -1664,32 +1473,32 @@
       :notation: VSRESU
       :semantic_version: 59.0.0
     :local_label: ''
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHMl9CUDNfVFVDNA==
-    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG2_BP3_TUC4
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHMl9CUDNfVFVDMg==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG2_BP3_TUC2
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
     :tagged: []
     :enabled: true
     :optional: false
-    :ordinal: 4
+    :ordinal: 2
     :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1NSNDNjY3NzBfQzQ4MTU1
-      :uri: http://www.cdisc.org/C66770/V55#C66770_C48155
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0OSNDNjY3NzBfQzI4MjUy
+      :uri: http://www.cdisc.org/C66770/V49#C66770_C28252
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Gram
+      :label: Kilogram
       :tagged:
       - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
-      :identifier: C48155
-      :notation: g
-      :definition: A unit of mass equal to one thousandth (1E-3) of a kilogram, the
-        kilogram being the base unit of mass in the International System of Units
-        (SI).
+      :identifier: C28252
+      :notation: kg
+      :definition: The base unit of mass in the International System of Units (SI)
+        equal to the mass of the international prototype kilogram, a platinum-iridium
+        cylinder in the custody of the International Bureau of Weights and Measures.
       :extensible: false
       :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#33d7fcc0b12d09962ff37557c0c268e32ba2eb8a
+      :preferred_term: http://www.assero.co.uk/PT#4bc17b82eb026aa064b71b05667b89d5d2d678bb
       :synonym:
-      - http://www.assero.co.uk/SYN#33d7fcc0b12d09962ff37557c0c268e32ba2eb8a
+      - http://www.assero.co.uk/SYN#4bc17b82eb026aa064b71b05667b89d5d2d678bb
     :context:
       :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
       :uri: http://www.cdisc.org/C66770/V59#C66770
@@ -1728,32 +1537,32 @@
       :notation: UNIT
       :semantic_version: 65.0.0
     :local_label: ''
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHMl9CUDNfVFVDMg==
-    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG2_BP3_TUC2
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHMl9CUDNfVFVDNA==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG2_BP3_TUC4
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
     :tagged: []
     :enabled: true
     :optional: false
-    :ordinal: 2
+    :ordinal: 4
     :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0OSNDNjY3NzBfQzI4MjUy
-      :uri: http://www.cdisc.org/C66770/V49#C66770_C28252
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1NSNDNjY3NzBfQzQ4MTU1
+      :uri: http://www.cdisc.org/C66770/V55#C66770_C48155
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Kilogram
+      :label: Gram
       :tagged:
       - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
-      :identifier: C28252
-      :notation: kg
-      :definition: The base unit of mass in the International System of Units (SI)
-        equal to the mass of the international prototype kilogram, a platinum-iridium
-        cylinder in the custody of the International Bureau of Weights and Measures.
+      :identifier: C48155
+      :notation: g
+      :definition: A unit of mass equal to one thousandth (1E-3) of a kilogram, the
+        kilogram being the base unit of mass in the International System of Units
+        (SI).
       :extensible: false
       :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#4bc17b82eb026aa064b71b05667b89d5d2d678bb
+      :preferred_term: http://www.assero.co.uk/PT#33d7fcc0b12d09962ff37557c0c268e32ba2eb8a
       :synonym:
-      - http://www.assero.co.uk/SYN#4bc17b82eb026aa064b71b05667b89d5d2d678bb
+      - http://www.assero.co.uk/SYN#33d7fcc0b12d09962ff37557c0c268e32ba2eb8a
     :context:
       :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
       :uri: http://www.cdisc.org/C66770/V59#C66770
@@ -1958,37 +1767,68 @@
       :context: 
     :context: 
   :has_coded_value:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDNfVFVDNA==
-    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC4
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDNfVFVDMQ==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
     :tagged: []
     :enabled: true
     :optional: false
-    :ordinal: 4
+    :ordinal: 1
     :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNzEyNTM=
-      :uri: http://www.cdisc.org/C71620/V6#C71620_C71253
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YzNCNDNjY3NzBfQzQ5NjY4
+      :uri: http://www.cdisc.org/C66770/V34#C66770_C49668
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: International Foot
+      :label: Centimeter
       :tagged:
       - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-      :identifier: C71253
-      :notation: ft
-      :definition: A unit of length defined by the U.S. National Bureau of Standards
-        as 30.48 centimeters. It is equal to 0.3048 meter, 12 inches, or to approximately
-        0.999998 survey foot.(NCI)
+      - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
+      :identifier: C49668
+      :notation: cm
+      :definition: A basic unit of length equal to one hundredth of a meter or approximately
+        0.393700787 inch.
       :extensible: false
       :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#83503451d19c8ae02e0dc5f2bb30111e8d71c65d
+      :preferred_term: http://www.assero.co.uk/PT#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
       :synonym:
-      - http://www.assero.co.uk/SYN#d88c8ea10f076325483be42bbe1abf9c709658f0
+      - http://www.assero.co.uk/SYN#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
     :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2NSNDNzE2MjA=
-      :uri: http://www.cdisc.org/C71620/V65#C71620
-      :identifier: C71620
-      :notation: UNIT
-      :semantic_version: 65.0.0
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
+      :uri: http://www.cdisc.org/C66770/V59#C66770
+      :identifier: C66770
+      :notation: VSRESU
+      :semantic_version: 59.0.0
+    :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDNfVFVDMg==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC2
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 2
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0MiNDNjY3NzBfQzQ4NTAw
+      :uri: http://www.cdisc.org/C66770/V42#C66770_C48500
+      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :label: Inch
+      :tagged:
+      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+      - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
+      :identifier: C48500
+      :notation: in
+      :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
+      :extensible: false
+      :narrower: []
+      :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+      :synonym:
+      - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+    :context:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
+      :uri: http://www.cdisc.org/C66770/V59#C66770
+      :identifier: C66770
+      :notation: VSRESU
+      :semantic_version: 59.0.0
     :local_label: ''
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDNfVFVDMw==
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC3
@@ -2022,68 +1862,37 @@
       :notation: UNIT
       :semantic_version: 65.0.0
     :local_label: ''
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDNfVFVDMg==
-    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC2
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDNfVFVDNA==
+    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC4
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
     :tagged: []
     :enabled: true
     :optional: false
-    :ordinal: 2
+    :ordinal: 4
     :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0MiNDNjY3NzBfQzQ4NTAw
-      :uri: http://www.cdisc.org/C66770/V42#C66770_C48500
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNzEyNTM=
+      :uri: http://www.cdisc.org/C71620/V6#C71620_C71253
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Inch
+      :label: International Foot
       :tagged:
       - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-      - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
-      :identifier: C48500
-      :notation: in
-      :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
+      :identifier: C71253
+      :notation: ft
+      :definition: A unit of length defined by the U.S. National Bureau of Standards
+        as 30.48 centimeters. It is equal to 0.3048 meter, 12 inches, or to approximately
+        0.999998 survey foot.(NCI)
       :extensible: false
       :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+      :preferred_term: http://www.assero.co.uk/PT#83503451d19c8ae02e0dc5f2bb30111e8d71c65d
       :synonym:
-      - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+      - http://www.assero.co.uk/SYN#d88c8ea10f076325483be42bbe1abf9c709658f0
     :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
-      :uri: http://www.cdisc.org/C66770/V59#C66770
-      :identifier: C66770
-      :notation: VSRESU
-      :semantic_version: 59.0.0
-    :local_label: ''
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDNfVFVDMQ==
-    :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC1
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-    :label: ''
-    :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YzNCNDNjY3NzBfQzQ5NjY4
-      :uri: http://www.cdisc.org/C66770/V34#C66770_C49668
-      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Centimeter
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-      - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
-      :identifier: C49668
-      :notation: cm
-      :definition: A basic unit of length equal to one hundredth of a meter or approximately
-        0.393700787 inch.
-      :extensible: false
-      :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
-      :synonym:
-      - http://www.assero.co.uk/SYN#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
-    :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
-      :uri: http://www.cdisc.org/C66770/V59#C66770
-      :identifier: C66770
-      :notation: VSRESU
-      :semantic_version: 59.0.0
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2NSNDNzE2MjA=
+      :uri: http://www.cdisc.org/C71620/V65#C71620
+      :identifier: C71620
+      :notation: UNIT
+      :semantic_version: 65.0.0
     :local_label: ''
   :is_common: false
   :datatype: ''

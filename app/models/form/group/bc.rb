@@ -18,18 +18,18 @@ class Form::Group::Bc < Form::Group
     blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: {}}
     group = self.to_h.merge!(blank_fields)
     begin
-      bci = BiomedicalConceptInstance.find_minimum(Uri.new(uri: group[:has_biomedical_concept][:reference]))
+      op_ref = OperationalReferenceV3.find(Uri.new(uri:group[:has_biomedical_concept])).to_h
+      bci = BiomedicalConceptInstance.find_minimum(Uri.new(uri: op_ref[:reference]))
+      op_ref[:reference] = bci.to_h
     rescue => e
       group.delete(:has_biomedical_concept)
     else
-      group[:has_biomedical_concept][:reference] = bci.to_h
+      group[:has_biomedical_concept]= op_ref
     end
-    #bci = BiomedicalConceptInstance.find(Uri.new(uri: group[:has_biomedical_concept][:reference]))
-    #group[:has_biomedical_concept][:reference] = bci.to_h
     group.delete(:has_item)
     results = [group]
-    self.has_item.sort_by {|x| x.ordinal}.each do |item|
-      results << item.get_item
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
+      results += item.get_item
     end
     results
   end
@@ -40,7 +40,7 @@ class Form::Group::Bc < Form::Group
   def to_crf
     html = ""
     html += text_row(self.label)
-    self.has_item.sort_by {|x| x.ordinal}.each do |item|
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
       html += item.to_crf
     end
     return html
@@ -124,7 +124,7 @@ class Form::Group::Bc < Form::Group
   def full_data
     group = self.to_h
     group[:has_item] = []
-    self.has_item_objects.each do |item|
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
       group[:has_item] << item.full_data
     end
     bci = BiomedicalConceptInstance.find_minimum(self.has_biomedical_concept_objects.reference)

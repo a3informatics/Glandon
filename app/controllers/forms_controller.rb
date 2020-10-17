@@ -54,7 +54,7 @@ class FormsController < ManagedItemsController
     form.delete
     AuditTrail.delete_item_event(current_user, form, form.audit_message(:deleted))
     @lock.release
-    redirect_to request.referer
+    render json: { data: "" }, status: 200
   end
 
   def create
@@ -80,6 +80,7 @@ class FormsController < ManagedItemsController
       end
       format.json do
         @form = Form.find_full(@form.id)
+        return true unless check_lock_for_item(@form)
         render :json => { data: @form.to_h }, :status => 200
       end
     end
@@ -263,8 +264,8 @@ private
         return edit_form_path(object)
       when :view
         return crf_form_path(object)
-      # when :destroy
-      #   return form_path(object)
+      when :destroy
+        return form_path(object)
       else
         return ""
     end

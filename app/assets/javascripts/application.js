@@ -20,7 +20,6 @@
 //= require spinner_helpers
 //= require jquery-dateformat.min
 //= require underscore-min
-//= require title
 //= require shared/icons_tags_helpers
 //= require shared/confirmation_dialog
 //= require shared/information_dialog
@@ -301,13 +300,6 @@ function toUri(namespace, id) {
   return namespace + "#" + id;
 }
 
-/**
-* Replaces the model instance id in a path with the actual id.
-*/
-function pathInsertId(path, id) {
-  return path.replace(":id", id);
-}
-
 /*
 * Utility functions
 */
@@ -315,26 +307,6 @@ function pad(n, width, z) {
   z = z || '0';
   n = n + '';
   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-}
-
-
-/*
-* Improved Path function for Strong parameters
-*/
-function getPathStrong(rdfType, id, namespace) {
-  if (rdfType == C_FORM) {
-    return "/forms/" + id + '?namespace=' + namespace;
-  } else if (rdfType == C_BC) {
-    return "/biomedical_concepts/" + id + '?biomedical_concept[namespace]=' + namespace;
-  } else if (rdfType == C_BCT) {
-    return "/biomedical_concept_templates/" + id + '?biomedical_concept_template[namespace]=' + namespace;
-  } else if (rdfType == C_USERDOMAIN) {
-    return "/sdtm_user_domains/" + id + '?sdtm_user_domain[namespace]=' + namespace;
-  } else if (rdfType == C_TH) {
-    return "/thesauri/" + id + '?namespace=' + namespace;
-  } else {
-    return ""
-  }
 }
 
 /*
@@ -392,16 +364,6 @@ jQuery.fn.dataTable.Api.register( 'processing()', function ( show ) {
     ctx.oApi._fnProcessingDisplay( ctx, show );
   });
 });
-
-/*
-* Toggles a string in an element with another without disturbing any other html
-* @param el [Object] jquery object - target
-* @param oTxt [String] original text
-* @param rTxt [String] replacement text
-*/
-function toggleText(el, oTxt, rTxt){
-  el.html(~el.html().indexOf(oTxt) ? el.html().replace(oTxt, rTxt) :  el.html().replace(rTxt, oTxt));
-}
 
 // Returns true if browser is IE
 function isIE() {

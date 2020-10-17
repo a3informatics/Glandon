@@ -15,10 +15,10 @@ class Form::Item::Mapping < Form::Item
 
   # Get Item
   #
-  # @return [Hash] A hash of Mapping Item
+  # @return [Array] An array of Mapping Item
   def get_item
     blank_fields = {datatype:"", format:"", question_text:"", free_text:"", label_text:"", has_coded_value: [], has_property: {}}
-    return self.to_h.merge!(blank_fields)
+    [self.to_h.merge!(blank_fields)]
   end
 
   # To CRF

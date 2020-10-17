@@ -82,10 +82,12 @@ class ManagedItemsController
 
   private
     
-    # Token Get. Get the token for a Managed Item.
+    # Token Get. Get the token for a Managed Item. Will check if token already held.
     #
     # @return [Boolean] true if successful, false otherwise
     def token_get
+      @token = Token.find_token(@item, @user)
+      return true unless @token.nil?
       @token = Token.obtain(@item, @user)
       return true unless @token.nil?
       token_error

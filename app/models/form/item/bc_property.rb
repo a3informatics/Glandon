@@ -14,13 +14,13 @@ class Form::Item::BcProperty < Form::Item
 
   # Get Item
   #
-  # @return [Hash] A hash of Bc Property Item with CLI and CL references.
+  # @return [Array] An array of Bc Property Item with CLI and CL references.
   def get_item
     blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:""}
     item = self.to_h.merge!(blank_fields)
-    item[:has_coded_value] = coded_values_to_hash(self.has_coded_value)
-    item[:has_property] = property_to_hash(self.has_property)
-    return item
+    item[:has_coded_value] = coded_values_to_hash(self.has_coded_value_objects)
+    item[:has_property] = property_to_hash(self.has_property_objects)
+    [item]
   end
 
   # To CRF
@@ -29,7 +29,7 @@ class Form::Item::BcProperty < Form::Item
   def to_crf
     html = ""
     if !is_common?
-      property_ref = self.has_property.reference
+      property_ref = self.has_property_objects.reference
       property = BiomedicalConcept::PropertyX.find(property_ref)
       html += start_row(self.optional)
       html += question_cell(property.question_text)

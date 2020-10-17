@@ -1,14 +1,5 @@
 module UiHelpers
 
-  # General Tag helpers
-	def ui_click_tag_add
-    ui_click_by_id('tag_add')
-  end
-
-  def ui_click_tag_delete
-    ui_click_by_id('tag_delete')
-  end
-
   # General UI helpers
   # ==================
 
@@ -380,14 +371,6 @@ module UiHelpers
 
   # Buttons etc
   # ===========
-  def ui_click_close
-    page.evaluate_script("rhClickClose()")
-  end
-
-  def ui_click_save
-    page.evaluate_script("rhClickSave()")
-  end
-
   def ui_click_by_id(id)
     page.evaluate_script("simulateClick($('##{id}')[0])")
   end
@@ -689,6 +672,7 @@ module UiHelpers
     page.execute_script(js_script)
   end
 
+	# Create new Items
 
   def ui_create_terminology(id, label, success = true)
     click_navbar_terminology
@@ -701,6 +685,51 @@ module UiHelpers
 		wait_for_ajax 10
 		expect(page).to have_content 'Terminology was successfully created.' if success
   end
+
+	def ui_new_code_list
+		identifier = ui_next_parent_identifier
+		click_link 'New Code List'
+		wait_for_ajax 30
+		expect(page).to have_content identifier
+		wait_for_ajax 30
+		identifier
+	end
+
+	def ui_create_form(identifier, label, success = true)
+		click_navbar_forms
+		wait_for_ajax 20
+		expect(page).to have_content 'Index: Forms'
+		click_on 'New Form'
+
+		ui_in_modal do
+			fill_in 'identifier', with: identifier
+			fill_in 'label', with: label
+			click_on 'Submit'
+		end
+
+		wait_for_ajax 10
+		expect(page).to have_content "Version History of '#{identifier}'" if success
+	end
+
+	def ui_create_bc(identifier, label, template, success = true)
+		click_navbar_bc
+		wait_for_ajax 20
+		expect(page).to have_content 'Index: Biomedical Concepts'
+		click_on 'New Biomedical Concept'
+
+		ui_in_modal do
+			fill_in 'identifier', with: identifier
+			fill_in 'label', with: label
+
+			find('#new-item-template').click
+			ip_pick_managed_items(:bct, [ { identifier: template[:identifier], version: template[:version] } ], 'new-bc')
+
+			click_on 'Submit'
+		end
+
+		wait_for_ajax 10
+		expect(page).to have_content "Version History of '#{identifier}'" if success
+	end
 
   # Return
   def ui_hit_return(id)
@@ -748,7 +777,9 @@ module UiHelpers
 
   # D3 Tree Functions
   def ui_click_node_name(text)
+    sleep 0.2
     page.evaluate_script("rhClickNodeByName(\"#{text}\")")
+    sleep 0.2
   end
 
   def ui_click_node_key(key)
@@ -806,16 +837,6 @@ module UiHelpers
     ui_click_node_key(to_key)
     #wait_for_ajax
     expect(ui_get_current_key).to eq(to_key)
-  end
-
-  # Thesaurus
-  def ui_new_code_list
-    identifier = ui_next_parent_identifier
-    click_link 'New Code List'
-		wait_for_ajax 30
-    expect(page).to have_content identifier
-    wait_for_ajax 30
-    identifier
   end
 
   # Status Page

@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("Index: ADaM IG Dataset")' %>
+<% content_for :page_title do %> Index: ADaM IG Datasets <% end %>
 
 <%= javascript_pack_tag 'adam_ig_datasets/index' %>
 
@@ -20,7 +20,7 @@
   <% end %>
 
   <% content_for :actions do %>
-    
+
     <% if policy(AdamIgDataset).new? %>
       <a href="#" class="btn medium green" id="new_form">
         <span class="icon-plus text-tiny"></span>&nbsp; New ADaM IG Dataset

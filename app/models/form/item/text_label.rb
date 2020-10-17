@@ -8,7 +8,7 @@ class Form::Item::TextLabel < Form::Item
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#TextLabel",
             uri_suffix: "TL", 
             uri_unique: true 
-#            uri_property: :ordinal
+#           uri_property: :ordinal
 
   data_property :label_text
   
@@ -16,10 +16,10 @@ class Form::Item::TextLabel < Form::Item
 
   # Get Item
   #
-  # @return [Hash] A hash of Text Label Item
+  # @return [Array] An array of Text Label Item
   def get_item
     blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", has_coded_value: [], has_property: {}}
-    self.to_h.merge!(blank_fields)
+    [self.to_h.merge!(blank_fields)]
   end
 
   # To CRF

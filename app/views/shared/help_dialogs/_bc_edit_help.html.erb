@@ -7,22 +7,28 @@
   <span class="font-regular text-link"> BC Manager </span> <br>
 
   This panel allows to manage one or more Biomedical Concepts that are being currently edited. <br>
-  To add an existing BC to the Manager, click on <button class="btn btn-xs white">Add a BC to Editor</button> and select the BC you wish to edit.
-  This will lock the selected BC for editing and a new card will appear in the Manager. <br>
-  To create a new BC, click on <button class="btn btn-xs green">Create a new BC</button> and fill out the required fields.
-  The newly created BC will be automatically added to the BC Manager.<br><br>
+  <ul>
+    <li>
+      To add an existing BC to the Manager, click on <button class="btn btn-xs white">Add a BC to Editor</button> and select the BC you wish to edit.
+      This will lock the selected BC for editing and a new card will appear in the Manager.
+    </li>
+    <li>
+      To create a new BC, click on <button class="btn btn-xs green">Create a new BC</button> and fill out the required fields.
+      The newly created BC will be automatically added to the BC Manager.
+    </li>
+    <li>
+      To edit a specific Biomedical Concept added to the Manager panel, click on its respective card.
+      It will load its contents into the BC Editor panel below.
+    </li>
+  </ul>
 
-  <a href="#" class="ico-btn-sec small token-timeout" style="margin-left: 5px;"> <span class="circular-badge"> <span class="icon-lock"></span></span> </a>
+  <button class="btn icon-only light-green"><span class="icon-lock"></span></button>
   Each BC in the Manager has its own Lock.
   The Lock is acquired for a certain amount of time.
   When the timeout is approached, the lock will turn yellow and then red along with a countdown being displayed.
   Clicking the Lock button or performing an edit action on the specific BC will reset the Lock's timeout. <br>
 
-  <a href="#" class="ico-btn-sec small" style="margin-left: 5px;"><span class="circular-badge blue"> <span class="icon-edit"></span> </span> </a>
-  To edit a specific Biomedical Concept added to the Manager panel, click this button.
-  It will load its contents into the BC Editor panel below. <br>
-
-  <a href="#" class="ico-btn-sec small" style="margin-left: 5px;"><span class="circular-badge red"> <span class="icon-times"></span> </span> </a>
+  <button class="btn icon-only red"><span class="icon-times"></span></button>
   To dismiss a BC from the Manager panel, click this button. Dismissing a BC will also release its edit Lock.
   It is not possible to remove the initial BC from the Manager panel.
 

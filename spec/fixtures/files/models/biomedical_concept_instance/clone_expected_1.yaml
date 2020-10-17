@@ -1,0 +1,67 @@
+---
+:id: 
+:uri: {}
+:rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+:label: Height
+:tagged: []
+:has_state:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfUlM=
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+      :uri: http://www.assero.co.uk/NS#SCUBED
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: S-cubed
+      :name: S-cubed Aps
+      :authority: www.s-cubed.dk
+:has_identifier:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfU0k=
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: HEIGHT
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+    :uri: http://www.assero.co.uk/NS#SCUBED
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: S-cubed
+    :name: S-cubed Aps
+    :authority: www.s-cubed.dk
+:has_previous_version: 
+:origin: ''
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2020-09-10T10:45:33+02:00'
+:explanatory_comment: ''
+:has_item:
+- http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI5
+- http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI6
+- http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1
+- http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI7
+- http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2
+- http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI8
+- http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI3
+- http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10
+- http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI9
+- http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI4
+- http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11
+:identified_by: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1
+:based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT

@@ -28,15 +28,13 @@ class Form::Group::Normal < Form::Group
     group = self.to_h.merge!(blank_fields)
     group.delete(:has_sub_group)
     group.delete(:has_item)
+    group[:has_common] = []
     results = [group]
-    self.has_item.sort_by {|x| x.ordinal}.each do |item|
-      results << item.get_item
-    end
-    self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-      results += sg.get_item
-    end
     self.has_common.sort_by {|x| x.ordinal}.each do |cm|
       results += cm.get_item
+    end
+    children_ordered.each do |node|
+      results += node.get_item
     end
     results
   end
@@ -52,14 +50,20 @@ class Form::Group::Normal < Form::Group
     elsif self.repeating && self.is_bc_only_group?
       html += repeating_bc_group
     else
+      # self.has_common.sort_by {|x| x.ordinal}.each do |cm|
+      #   html += cm.to_crf
+      # end 
+      # self.has_item.sort_by {|x| x.ordinal}.each do |item|
+      #   html += item.to_crf
+      # end
+      # self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
+      #   html += sg.to_crf
+      # end
       self.has_common.sort_by {|x| x.ordinal}.each do |cm|
         html += cm.to_crf
-      end 
-      self.has_item.sort_by {|x| x.ordinal}.each do |item|
-        html += item.to_crf
       end
-      self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-        html += sg.to_crf
+      children_ordered.each do |node|
+        html += node.to_crf
       end
     end
     return html
@@ -95,9 +99,9 @@ class Form::Group::Normal < Form::Group
     set.sort_by {|x| x.ordinal}
   end
 
-  def items_classes
-    items_classes = [Form::Item::Question, Form::Item::Placeholder, Form::Item::Mapping, Form::Item::TextLabel]
-  end
+  # def items_classes
+  #   items_classes = [Form::Item::Question, Form::Item::Placeholder, Form::Item::Mapping, Form::Item::TextLabel]
+  # end
 
   # Is a Question only group
   def is_question_only_group?
@@ -161,20 +165,18 @@ class Form::Group::Normal < Form::Group
       sg.has_item.sort_by {|x| x.ordinal}.each do |item|
         property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
         #if property.enabled && property.collect
-          if !columns.has_key?(property.uri.to_s)
-            columns[property.uri.to_s] = property.uri.to_s
+          if !columns.has_key?(property.is_a.to_s)
+            columns[property.is_a.to_s] = property.is_a.to_s
           end
         #end
       end
     end
     # Question text
     html += start_row(false)
-    self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-      sg.has_item.sort_by {|x| x.ordinal}.each do |item|
-        property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
-          if !columns.has_key?(property.uri.to_s)
-            html += question_cell(property.question_text)
-          end
+    self.has_sub_group.first.has_item.sort_by {|x| x.ordinal}.each do |item|
+      property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
+      if columns.has_key?(property.is_a.to_s)
+        html += item.question_cell(property.question_text)
       end
     end
     html += end_row
@@ -183,11 +185,11 @@ class Form::Group::Normal < Form::Group
       html += start_row(false)
       sg.has_item.sort_by {|x| x.ordinal}.each do |item|
         property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
-        if columns.has_key?(property.uri.to_s)
+        if columns.has_key?(property.is_a.to_s)
           if property.has_coded_value.length == 0
             html += input_field(property)
           else
-            html += terminology_cell(property)
+            html += terminology_cell(item)
           end
         end
       end
@@ -211,10 +213,10 @@ class Form::Group::Normal < Form::Group
     end
       if datatype.datetime?
         html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
-      #elsif datatype.date?
-      #  html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
-      #elsif datatype.time?
-      #  html += field_table(["H", "H", ":", "M", "M"])
+      elsif datatype.date?
+       html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
+      elsif datatype.time?
+       html += field_table(["H", "H", ":", "M", "M"])
       elsif datatype.float?
         item.format = "5.1" if item.format.blank?
         parts = item.format.split('.')
@@ -246,12 +248,11 @@ class Form::Group::Normal < Form::Group
     html += "</tr></table>"
   end
 
-  def terminology_cell(property)
+  def terminology_cell(item)
     html = '<td>'
-    property.has_coded_value.each do |cv|
-      op_ref = OperationalReferenceV3.find(cv)
-      tc = Thesaurus::UnmanagedConcept.find(op_ref.reference)
-      if op_ref.enabled
+    item.has_coded_value.sort_by {|x| x.ordinal}.each do |cv|
+      tc = Thesaurus::UnmanagedConcept.find(cv.reference)
+      if cv.enabled
         html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
       end
     end
@@ -281,13 +282,13 @@ class Form::Group::Normal < Form::Group
     result[:has_sub_group] = []
     result[:has_item] = []
     result[:has_common] = []
-    self.has_item_objects.each do |item|
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
       result[:has_item] << item.full_data
     end
-    self.has_sub_group_objects.each do |sg|
+    self.has_sub_group_objects.sort_by {|x| x.ordinal}.each do |sg|
       result[:has_sub_group] << sg.full_data
     end
-    self.has_common_objects.each do |cg|
+    self.has_common_objects.sort_by {|x| x.ordinal}.each do |cg|
       result[:has_common] << cg.full_data 
     end
     result

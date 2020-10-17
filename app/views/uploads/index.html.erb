@@ -1,9 +1,11 @@
-<%= javascript_tag 'setPageTitle("Upload")' %>
+<% content_for :page_title do %> Upload <% end %>
 
-<%= stylesheet_link_tag "shared/table_select_simple", "shared/datatables_loading"  %>
-<%= javascript_include_tag "uploads/index" %>
-<%= javascript_tag "var removeUploadsUrl = '#{destroy_multiple_uploads_path}',
-												removeAllUploadsUrl = '#{destroy_all_uploads_path}';" %>
+<%= stylesheet_link_tag "shared/table_select_simple", "shared/datatables_loading" %>
+<%= javascript_pack_tag "uploads/index" %>
+
+<%= javascript_tag "let uploadsRemoveUrl = '#{destroy_multiple_uploads_path}',
+												uploadsRemoveAllUrl = '#{destroy_all_uploads_path}';" %>
+
 <% first_level_breadcrumb (:uploads) %>
 
 <div class="row">
@@ -19,12 +21,12 @@
 		</div>
 		<div class="card-content">
 
-			<div class="text-xnormal text-link ci-card-title">
+			<div class="text-normal text-link ci-card-title">
 				Upload files from your computer
 			</div>
 
 			<center>
-				<img src="<%= asset_path 'icons/upload_graphic' %>" width="100px" />
+				<img src="<%= asset_path 'icons/upload_graphic' %>" width="100px" height="100px" />
 
 				<%= form_for @upload do |f| %>
 				  	<div class="form-wrap">
@@ -38,7 +40,7 @@
 				<% end %>
 			</center>
 
-			<div class="text-xnormal text-link ci-card-title">
+			<div class="text-normal text-link ci-card-title">
 				Files on the server
 			</div>
 

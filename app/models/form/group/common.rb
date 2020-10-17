@@ -13,8 +13,8 @@ class Form::Group::Common < Form::Group
     group = self.to_h.merge!(blank_fields)
     group.delete(:has_item)
     results = [group]
-    self.has_item.sort_by {|x| x.ordinal}.each do |item|
-      results << item.get_item
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
+      results += item.get_item
     end
     results
   end
@@ -25,7 +25,7 @@ class Form::Group::Common < Form::Group
   def to_crf
     html = ""
     html += text_row(self.label)
-    self.has_item.sort_by {|x| x.ordinal}.each do |item|
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
       html += item.to_crf
     end
     return html
@@ -56,7 +56,7 @@ class Form::Group::Common < Form::Group
   def full_data
     group = self.to_h
     group[:has_item] = []
-    self.has_item_objects.each do |item|
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
       group[:has_item] << item.full_data
     end
     group

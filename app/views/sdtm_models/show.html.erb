@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("Show CDISC SDTM Model: '+@sdtm_model.has_identifier.identifier+' ('+@sdtm_model.semantic_version+')")' %>
+<% content_for :page_title do %> <%= "Show CDISC SDTM Model: #{@sdtm_model.has_identifier.identifier} (#{@sdtm_model.semantic_version})" %> <% end %>
 
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'sdtm_models/show' %>
@@ -7,7 +7,7 @@
 
 <div class="row">
   <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @sdtm_model, :badge => "icon-sdtm"} do %>
-    <div class="abcions-wrap">
+    <div class="actions-wrap">
     <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
       icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>

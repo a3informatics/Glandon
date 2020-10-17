@@ -112,7 +112,12 @@ export default class TokenTimer {
       window.onbeforeunload = () => this.release();
 
     // Extend Token with click
-    $(`${this.parentEl} ${this.timerEl}`).on('click', () => this.extend());
+    $(`${this.parentEl} ${this.timerEl}`).on('click', e => {
+
+      this.extend();
+      e.stopPropagation(); // Stop event from getting carried to parent listeners
+
+    });
   }
 
   /**

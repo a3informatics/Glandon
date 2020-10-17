@@ -39,11 +39,11 @@ describe Form::Item::Common do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..15)
+      load_cdisc_term_versions(1..2)
       load_data_file_into_triple_store("complex_datatypes.ttl")
     end
 
-    it "returns the item hash" do
+    it "returns the item array" do
       item = Form::Item::Common.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1)
       result = item.get_item
       check_file_actual_expected(result, sub_dir, "get_item_expected_1.yaml", equate_method: :hash_equal)
@@ -106,7 +106,7 @@ describe Form::Item::Common do
     before :each do
       data_files = ["forms/MAKE_COMMON_TEST.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..62)
+      load_cdisc_term_versions(1..38)
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 

@@ -242,7 +242,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       { api: true, size: -1 }, { api: true, size: 24291 }, { api: true, size: -1 }, { api: true, size: -1 },                                          # 2017
       { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: -1 },                                             # 2018
       { api: true, size: 31267 }, { api: true, size: 31934 }, { api: true, size: -1 }, { api: true, size: 33397 },                                    # 2019
-      { api: true, size: 33765 }, { api: true, size: 33886 }, { api: true, size: 34182 }                                                                                                                      # 2020                      
+      { api: true, size: 33765 }, { api: true, size: 33886 }, { api: true, size: 34182 }, { api: true, size: 34417 }                                                                                                                      # 2020                      
     ]
   
     @version_to_tags_map =
@@ -308,6 +308,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},  # 59 - 2019
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},  # 60
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol, :"Define-XML"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol, :"Define-XML"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol, :"Define-XML"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol, :"Define-XML"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
@@ -1791,6 +1792,41 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     it "Create 2020-06-26", :import_data => 'slow' do
       release_date = "2020-06-26"
       results = execute_import(release_date, {sdtm: release_date, cdash: "2020-05-08", adam: release_date, send: release_date, protocol: release_date, define: release_date}, set_write_file, use_api)
+      expected = [
+        {cl: :C65047,  status: :updated},       # LBTESTCD
+        {cl: :C66741,  status: :updated},       # VSTESTCD
+        {cl: :C66737,  status: :no_change},     # TPHASE
+        {cl: :C66738,  status: :updated},       # TSPARMCD
+        {cl: :C66785,  status: :no_change},     # TCNTRL
+        {cl: :C66790,  status: :no_change},     # ETHNIC
+        {cl: :C67152,  status: :no_change},     # TSPARM
+        {cl: :C67153,  status: :updated},       # VSTEST
+        {cl: :C67154,  status: :updated},       # LBTEST
+        {cl: :C71153,  status: :no_change},     # EGTESTCD
+        {cl: :C71620,  status: :updated},       # UNIT
+        {cl: :C74456,  status: :no_change},     # LOC
+        {cl: :C74559,  status: :updated},       # SCTESTCD
+        {cl: :C76351,  status: :no_change},     # SKINCLAS
+        {cl: :C78431,  status: :no_change},     # VSPOS
+        {cl: :C78735,  status: :no_change},     # EVAL
+        {cl: :C85494,  status: :updated},       # PKUNIT
+        {cl: :C99079,  status: :no_change},     # EPOCH
+        {cl: :C118971, status: :no_change},     # CCCAT
+        {cl: :C128689, status: :no_change},     # RACEC
+        {cl: :C103330, status: :no_change},     # SCTEST
+        {cl: :C147069, status: :no_change},     # Randomization Type Response
+        {cl: :C160930, status: :no_change},     # CHAGNAMR
+        {cl: :C163026, status: :no_change},     # Study Monitoring Attribute Terminology
+        {cl: :C163028, status: :no_change}      # D1FATS
+      ]
+      check_cl_results(results, expected) 
+      check_count(release_date)
+      check_tags(release_date)
+    end
+
+    it "Create 2020-09-25", :speed => 'slow' do
+      release_date = "2020-09-25"
+      results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date, define: "2020-06-26"}, set_write_file, use_api)
       expected = [
         {cl: :C65047,  status: :updated},       # LBTESTCD
         {cl: :C66741,  status: :updated},       # VSTESTCD

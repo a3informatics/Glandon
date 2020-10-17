@@ -20,6 +20,16 @@ describe "Thesaurus", :type => :feature do
     wait_for_ajax(10)
   end
 
+  def go_to_cl_edit(identifier)
+    click_navbar_code_lists
+    wait_for_ajax 10
+    ui_table_search("index", identifier)
+    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
+    wait_for_ajax 10
+    context_menu_element_v2("history", identifier, :edit)
+    wait_for_ajax 10
+  end
+
   describe "Thesaurus, Curator User", :type => :feature do
 
     before :all do
@@ -277,17 +287,6 @@ describe "Thesaurus", :type => :feature do
     end
 
     # Code List Edit, Consecutive tests
-
-    def go_to_cl_edit(identifier)
-      click_navbar_code_lists
-      wait_for_ajax 10
-      ui_table_search("index", identifier)
-      find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
-      wait_for_ajax 10
-      context_menu_element_v2("history", identifier, :edit)
-      wait_for_ajax 10
-    end
-
     it "allows to create a new Code List, Edit page, initial state", js: true do
       click_navbar_code_lists
 
@@ -520,6 +519,83 @@ describe "Thesaurus", :type => :feature do
         expect(page).to have_content "Attach / Detach Tags"
       end
       w.close
+    end
+
+  end
+
+
+  describe "Code Lists, Curator User, Locked Status", :type => :feature do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_2.ttl", "CT_V43.ttl", "CT_ACME_TEST.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      ua_create
+      Token.delete_all
+      nv_destroy
+      nv_create(parent: "10", child: "999")
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    after :all do
+      ua_destroy
+      nv_destroy
+      Token.restore_timeout
+    end
+
+    it "allows to edit a Code List in a locked state", js:true do
+      click_navbar_code_lists
+      identifier = ui_new_code_list
+
+      # Prepare Data
+      context_menu_element_v2('history', identifier, :edit)
+      wait_for_ajax 10
+
+      click_on 'New item'
+      wait_for_ajax 10
+
+      ui_check_table_info('editor', 1, 1, 1)
+
+      ui_editor_select_by_location 1, 2
+      ui_editor_fill_inline 'notation', "TEST LOCKED STATE\t"
+      ui_editor_check_value 1, 2, 'TEST LOCKED STATE'
+      ui_press_key :enter
+      ui_editor_fill_inline 'preferred_term', "Locked value\n"
+      ui_editor_check_value 1, 3, 'Locked value'
+
+      click_on 'Return'
+      wait_for_ajax 10
+
+      # Set to Recorded - locked state
+      context_menu_element_v2('history', identifier, :document_control)
+      click_on 'Submit Status Change'
+      click_on 'Submit Status Change'
+      click_on 'Return'
+      wait_for_ajax 10
+
+      context_menu_element_v2('history', identifier, :edit)
+      wait_for_ajax 10
+
+      ui_editor_check_value 1, 2, 'TEST LOCKED STATE'
+      ui_editor_select_by_location 1, 2
+      ui_editor_fill_inline 'notation', "Changing Locked Value\t"
+      ui_editor_check_value 1, 2, 'Changing Locked Value'
+      ui_press_key :enter
+      ui_editor_fill_inline 'preferred_term', "Changing Another Locked Value\n"
+      ui_editor_check_value 1, 3, 'Changing Another Locked Value'
+
+      click_on 'New item'
+      wait_for_ajax 10
+      ui_check_table_info('editor', 1, 2, 2)
+
+      click_on 'Return'
     end
 
   end

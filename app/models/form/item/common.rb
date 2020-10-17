@@ -13,10 +13,14 @@ class Form::Item::Common < Form::Item::BcProperty
 
   # Get Item
   #
-  # @return [Hash] A hash of Common Item
+  # @return [Array] An array of Common Item
   def get_item
-    blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: {}}
-    return self.to_h.merge!(blank_fields)
+    blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:""}
+    item = self.to_h.merge!(blank_fields)
+    item[:has_coded_value] = coded_values_to_hash(self.has_coded_value_objects)
+    item[:has_property] = self.has_property_objects.to_h
+    item[:has_common_item] = common_item_to_hash(self.has_common_item_objects)
+    [item]
   end
 
   # To CRF
@@ -24,14 +28,13 @@ class Form::Item::Common < Form::Item::BcProperty
   # @return [String] An html string of the Common Item
   def to_crf
     html = ""
-    #common_item = self.has_common_item.first
-    property = BiomedicalConcept::PropertyX.find(self.has_property.reference)
+    property = BiomedicalConcept::PropertyX.find(self.has_property_objects.reference)
     html += start_row(self.optional)
     html += question_cell(property.question_text)
     if self.has_coded_value.length == 0
       html += input_field(property)
     else
-      html += terminology_cell(self)
+      html += terminology_cell
     end
     html += end_row
   end
@@ -73,18 +76,14 @@ class Form::Item::Common < Form::Item::BcProperty
     normal_group = normal_group.full_data
   end
 
-  private
-
-    def terminology_cell(property)
-      html = '<td>'
-      property.has_coded_value_objects.each do |cv|
-        op_ref = OperationalReferenceV3.find(cv.uri)
-        tc = Thesaurus::UnmanagedConcept.find(op_ref.reference)
-        if op_ref.enabled
-          html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
-        end
-      end
-      html += '</td>'
+  def common_item_to_hash(common_items)
+    results = []
+    common_items.sort_by {|x| x.ordinal}.each do |ci|
+      ref = ci.to_h
+      ref[:has_property] = OperationalReferenceV3.find(Uri.new(uri:ref[:has_property])).to_h
+      results << ref
     end
+    results
+  end
 
 end
