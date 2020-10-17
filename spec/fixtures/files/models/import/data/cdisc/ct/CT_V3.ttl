@@ -17,7 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2007-04-26.xlsx'"^^xsd:string ;
@@ -93,6 +92,7 @@
 	th:isTopConcept <http://www.cdisc.org/C66742/V2#C66742> ;
 	th:isTopConcept <http://www.cdisc.org/C65047/V2#C65047> ;
 	th:isTopConcept <http://www.cdisc.org/C67154/V2#C67154> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
 :TH_RS
 	rdf:type isoR:RegistrationState ;
@@ -389,7 +389,6 @@
 <http://www.cdisc.org/C66785/V3#C66785>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Control Type"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66785/V3#C66785_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66785/V3#C66785_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -408,6 +407,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#2f5ccb0f6cc2716042785ff16ec0f84627dd4fc4> ;
 	th:synonym <http://www.assero.co.uk/SYN#7bfc4602a82df6350c4b2b3873233cf88bb2a2a6> ;
 	th:synonym <http://www.assero.co.uk/SYN#0c3b97f6f08c47d4f9d5161456b655739fed1659> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
 <http://www.cdisc.org/C66785/V3#C66785_RS>
 	rdf:type isoR:RegistrationState ;
@@ -432,42 +432,42 @@
 <http://www.cdisc.org/C66785/V3#C66785_C49649>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Active Control"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49649"^^xsd:string ;
 	th:notation "ACTIVE"^^xsd:string ;
 	th:definition "A type of control, which has a demonstrated effect, administered as a comparator, to subjects in a clinical trial. [From ICH E10]."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#118199eb625b06ef8d34a79f66cfc90469c1d5fc> ;
 	th:synonym <http://www.assero.co.uk/SYN#c72633f673ef54769f56bbaf78d2baf4858bf7c3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
 <http://www.cdisc.org/C66785/V3#C66785_C41132>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "None"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C41132"^^xsd:string ;
 	th:notation "NONE"^^xsd:string ;
 	th:definition "No person or thing, nobody, not any. (NCI)"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#6eef6648406c333a4035cd5e60d0bf2ecf2606d7> ;
 	th:synonym <http://www.assero.co.uk/SYN#0654a028e5aea48c8fbb09871b8f397a186c883b> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
 <http://www.cdisc.org/C66785/V3#C66785_C49648>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Placebo Control"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49648"^^xsd:string ;
 	th:notation "PLACEBO"^^xsd:string ;
 	th:definition "Use of an inactive compound identical in appearance to drug or treatment being tested in experimental research, which may or may not be known to the physician and/or subject, administered to distinguish between drug action and suggestive effect of the drug or treatment under study. The effects of the active drug or treatment are compared to the effects of the placebo. (NCI)"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e8556f29b560772da6d9d0132686a204a9cbbefe> ;
 	th:synonym <http://www.assero.co.uk/SYN#16c1b96ed7efec406f0cd2ce6f34b3db4c33bc41> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
 <http://www.cdisc.org/C66737/V3#C66737>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Trial Phase"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66737/V3#C66737_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66737/V3#C66737_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C66737/V2#C66737> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2007-04-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -492,6 +492,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#ea316b4c8700efa4ad1f09c6a6565e2e8a8723c2> ;
 	th:synonym <http://www.assero.co.uk/SYN#cb7bae1ddf8ff7ccc82d4947b37034b05511af58> ;
 	th:synonym <http://www.assero.co.uk/SYN#73056984706139d0dc7464d5c079e1b1dca9efff> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
 <http://www.cdisc.org/C66737/V3#C66737_RS>
 	rdf:type isoR:RegistrationState ;
@@ -516,7 +517,6 @@
 <http://www.cdisc.org/C66737/V3#C66737_C49686>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phase IIa Trial"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49686"^^xsd:string ;
 	th:notation "Phase IIa Trial"^^xsd:string ;
 	th:definition "A clinical research protocol generally refered to as a pilot or feasibility trial that aims to prove the concept of the new intervention in question. (NCI)"^^xsd:string ;
@@ -525,6 +525,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#ed367e32825f2aeebaf19b5c410a6b180445bbc2> ;
 	th:synonym <http://www.assero.co.uk/SYN#5b9d7f02d036cf9e8721546f759f62b48f61ee80> ;
 	th:synonym <http://www.assero.co.uk/SYN#7ab9d5b8b437ba0cdb23a197af859be91b2031ee> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
 <http://www.assero.co.uk/PT#9335102d55a345596af6d27bec1f775e61dacce4>
 	rdf:type th:PreferredTerm ;
@@ -533,7 +534,6 @@
 <http://www.cdisc.org/C66737/V3#C66737_C49688>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phase IIb Trial"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49688"^^xsd:string ;
 	th:notation "Phase IIb Trial"^^xsd:string ;
 	th:definition "A clinical research protocol generally refered to as a well-controlled and pivotal trial that aims to prove the mechanism of action of the new intervention in question. A pivotal study will generally be well-controlled, randomized, of adequate size, and whenever possible, double-blind. (NCI)"^^xsd:string ;
@@ -542,6 +542,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#5454a94cd6cceb86ea6a04782ebb8558d8e2170e> ;
 	th:synonym <http://www.assero.co.uk/SYN#41616a8b2b71eaa8412956fe291c0a71a02cb15b> ;
 	th:synonym <http://www.assero.co.uk/SYN#249eb546bf81cd9fb26244b89dd68c076e8ebb17> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
 <http://www.assero.co.uk/PT#ed38a3230e265691f4fc5a2bf2c8399ab60272ec>
 	rdf:type th:PreferredTerm ;
@@ -550,7 +551,6 @@
 <http://www.cdisc.org/C66737/V3#C66737_C49687>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phase IIIa Trial"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49687"^^xsd:string ;
 	th:notation "Phase IIIaTrial"^^xsd:string ;
 	th:definition "A classification typically assigned retrospectively to a Phase III trial upon determination by regulatory authorities of a need for a Phase III B trial."^^xsd:string ;
@@ -559,6 +559,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#d29238c1cfb03a82f16e44b0ef0ef7831cdbd06a> ;
 	th:synonym <http://www.assero.co.uk/SYN#6f1e2f5adf0d08551fb4e9f0e3994b3aec2dec50> ;
 	th:synonym <http://www.assero.co.uk/SYN#9a8e2526511ebd4ef79cd83bdf8d9d72c0490471> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
 <http://www.assero.co.uk/PT#52c47090a3964f757a65b6a3d4fe52344adbbc6b>
 	rdf:type th:PreferredTerm ;
@@ -571,7 +572,6 @@
 <http://www.cdisc.org/C66737/V3#C66737_C49689>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phase IIIb Trial"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49689"^^xsd:string ;
 	th:notation "Phase IIIb Trial"^^xsd:string ;
 	th:definition "A subcategory of Phase III trials done near the time of approval to elicit additional findings. NOTE: Dossier review may continue while associated Phase IIIB trials are conducted. These trials may be required as a condition of regulatory authority approval."^^xsd:string ;
@@ -580,6 +580,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#48e0908c0cf693e54f81c03389c2de59cc8255c1> ;
 	th:synonym <http://www.assero.co.uk/SYN#746c33d13dd6e376e3ecd1f452ae8254958a666d> ;
 	th:synonym <http://www.assero.co.uk/SYN#4c04f3ce3c70d3efb34d28a989acb2a32cb26d65> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
 <http://www.assero.co.uk/PT#ba1e1cb83d0674aedf90a7d18603f0aca1029b4a>
 	rdf:type th:PreferredTerm ;

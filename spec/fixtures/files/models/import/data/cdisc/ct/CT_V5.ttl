@@ -17,7 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2007-06-05.xlsx'"^^xsd:string ;
@@ -93,6 +92,7 @@
 	th:isTopConcept <http://www.cdisc.org/C66742/V4#C66742> ;
 	th:isTopConcept <http://www.cdisc.org/C65047/V4#C65047> ;
 	th:isTopConcept <http://www.cdisc.org/C67154/V4#C67154> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
 :TH_RS
 	rdf:type isoR:RegistrationState ;
@@ -389,9 +389,9 @@
 <http://www.cdisc.org/C66738/V5#C66738>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Trial Summary Parameter Test Code"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66738/V5#C66738_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66738/V5#C66738_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C66738/V4#C66738> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2007-06-05T00:00:00+00:00"^^xsd:dateTime ;
@@ -425,6 +425,7 @@
 	th:narrower <http://www.cdisc.org/C66738/V4#C66738_C49660> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#cc722cbae9a4140acb702ca1972747772042477c> ;
 	th:synonym <http://www.assero.co.uk/SYN#26abc67f4fed51038c9442e36ded42214ed8131f> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
 <http://www.cdisc.org/C66738/V5#C66738_RS>
 	rdf:type isoR:RegistrationState ;
@@ -449,11 +450,11 @@
 <http://www.cdisc.org/C66738/V5#C66738_C20587>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Age Group"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C20587"^^xsd:string ;
 	th:notation "AGESPAN"^^xsd:string ;
 	th:definition "Subgroups of populations based on age. (NCI)"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#5a7cb7de29991170b34457d2fc7ff675d308842b> ;
 	th:synonym <http://www.assero.co.uk/SYN#f2544775a2ff25ab5c35882e525e78cb1bd47abc> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
