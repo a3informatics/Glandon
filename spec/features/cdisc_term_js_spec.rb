@@ -381,7 +381,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'C100129'
     end
 
-    it "allows for submission value changes to be dowloaded as PDF (REQ-GENERIC-E-010)", js: true do
+    it "allows for submission value changes to be dowloaded as PDF (REQ-GENERIC-E-010) - WILL CURRENTLY FAIL - Deleted and re-introduced Code List TANN02TN", js: true do
       clear_downloads
       click_submission_value_changes
       wait_for_ajax(30)

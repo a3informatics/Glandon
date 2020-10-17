@@ -21,8 +21,7 @@ describe "Biomedical Concept Instances", :type => :feature do
   describe "BCs", :type => :feature, js: true do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
@@ -152,7 +151,7 @@ describe "Biomedical Concept Instances", :type => :feature do
   describe "Create, Delete a BC", :type => :feature, js: true do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, [])
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_instances.ttl")
@@ -281,7 +280,7 @@ describe "Biomedical Concept Instances", :type => :feature do
   describe "BCs, Document Control", :type => :feature, js:true do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, [])
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_instances.ttl")
@@ -340,7 +339,6 @@ describe "Biomedical Concept Instances", :type => :feature do
       click_on 'Submit Status Change'
 
       check_version_info('Standard', '1.0.0', 'BC Version Label')
-
       click_on 'Return'
       wait_for_ajax 10
 

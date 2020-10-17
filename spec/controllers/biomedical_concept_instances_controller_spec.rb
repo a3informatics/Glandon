@@ -197,8 +197,8 @@ describe BiomedicalConceptInstancesController do
       actual = check_good_json_response(response)
       expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
       actual[:token_id] = 9999                            # So, fix for file compare
-      fix_dates_hash(actual, sub_dir, "edit_json_expected_3.yaml", :last_change_date, :creation_date)
-      check_file_actual_expected(actual, sub_dir, "edit_json_expected_3.yaml", equate_method: :hash_equal)
+      fix_dates_hash(actual[:data], sub_dir, "edit_json_expected_3.yaml", :last_change_date, :creation_date)
+      check_file_actual_expected(actual[:data], sub_dir, "edit_json_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "edit, json request, already locked" do
