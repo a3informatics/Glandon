@@ -39,7 +39,7 @@ describe "Import::CdiscTerm" do
       expected =
       {
         description: "Import of CDISC Terminology",
-        parent_klass: ::CdiscTerm,
+        parent_klass: Import::CdiscClasses::CdiscThesaurus,
         reader_klass: Excel,
         import_type: :cdisc_term,
         version_label: :date,
@@ -56,7 +56,7 @@ describe "Import::CdiscTerm" do
       expected =
       {
         description: "Import of CDISC Terminology",
-        parent_klass: ::CdiscTerm,
+        parent_klass: Import::CdiscClasses::CdiscThesaurus,
         reader_klass: CDISCLibraryAPIReader,
         import_type: :cdisc_term,
         version_label: :date,
@@ -91,13 +91,12 @@ describe "Import::CdiscTerm" do
       params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "CDASH Test", semantic_version: "1.1.1", job: @job}
       result = @object.import(params)
       filename = "cdisc_term_#{@object.id}_errors.yml"
-byebug
       expect(public_file_does_not_exist?("test", filename)).to eq(true)
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
     #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1a.ttl")
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_load_1b.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_1b.ttl")
       check_ttl_fix(filename, "import_expected_1a.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)

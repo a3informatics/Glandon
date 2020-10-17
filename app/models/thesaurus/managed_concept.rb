@@ -817,14 +817,6 @@ private
     1
   end
 
-  # Are children are the same
-  def children_are_the_same?(this_child, other_child)
-    result = this_child.diff?(other_child, {ignore: []})
-    return false if result
-    this_child.tagged = this_child.tagged | other_child.tagged
-    return true
-  end
-
   # Was the item deleted from CT version. Only used for CDISC CT
   def deleted_from_ct_version(last_item)
     return {deleted: false, ct: nil} if self.owned?

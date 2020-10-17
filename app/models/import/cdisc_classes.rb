@@ -4,18 +4,20 @@
 # @since 3.3.0
 module Import::CdiscClasses
 
-  class CdiscThesaurus < CdiscTerm
+  class CdiscThesaurus < ::CdiscTerm
 
     def self.child_klass
-      Import::CdiscClasses::CdiscCl
+      Import::CdiscClasses::CdiscCodeList
     end
 
-      def self.child_klass
-      Import::STFOClasses::STFOCodeList
+    def add_additional_tags(set)
+      tagged.each {|x| set << {subject: self.uri, object: x.uri}}
     end
 
-    def self.identifier
-      "CT"
+  private
+
+    def tagged
+      self.instance_variable_get("@tagged")
     end
 
   end
@@ -27,8 +29,12 @@ module Import::CdiscClasses
     end
     
     def self.owner
-      CdiscTerm.owner
+      ::CdiscTerm.owner
     end
+
+  end
+
+  class Thesaurus::ManagedConcept  
 
     # Add additional tags
     #
@@ -36,9 +42,11 @@ module Import::CdiscClasses
     # @param set [Array] set of tags objects
     # @return [Void] no return
     def add_additional_tags(previous, set)
-      return if previous.nil?
-      missing =  previous.tagged.map{|x| x.uri.to_s} - self.tagged.map{|x| x.uri.to_s}
+      #return if previous.nil?
+      #missing =  previous.tagged.map{|x| x.uri.to_s} - self.tagged.map{|x| x.uri.to_s}
+      missing = get_missing(previous)
       missing.each {|x| set << {subject: self.uri, object: Uri.new(uri: x)}}
+      #tagged.each {|x| set << {subject: self.uri, object: x.uri}}
       add_child_additional_tags(previous, set)
     end
 
@@ -68,28 +76,50 @@ module Import::CdiscClasses
         other_child = other.narrower.find{|x| x.identifier == identifier}
         self.narrower << other_child
       end
-      self.tagged = self.tagged | other.tagged
+      self.instance_variable_set("@tagged", self.tagged | other.tagged)
       self.errors.empty?
+    end
+
+    # Are children are the same
+    def children_are_the_same?(this_child, other_child)
+      result = this_child.diff?(other_child, {ignore: []})
+      return false if result
+      this_child.instance_variable_set("@tagged", this_child.tagged | other_child.tagged)
+      return true
+    end
+
+    def tagged
+      return [] unless instance_variable_defined?("@tagged")
+      self.instance_variable_get("@tagged")
     end
 
   private
 
-    # Add additional tags
-    def add_child_additional_tags(previous, set)
-      self.narrower.each_with_index do |child, index|
-        previous_child = previous.narrower.select {|x| x.identifier == child.identifier}
-        next if previous_child.empty?
-        child.add_additional_tags(previous_child.first, set)
-      end
+    def get_missing(previous)
+      missing = previous.nil? ? self.tagged.map{|x| x.uri.to_s} : self.tagged.map{|x| x.uri.to_s} - previous.tagged.map{|x| x.uri.to_s}
     end
 
-    def tagged
-      object.instance_variable_get("@tagged")
+    # Add additional tags
+    def add_child_additional_tags(previous, set)
+      if previous.nil?
+        self.narrower.each do |child|
+          child.add_additional_tags(nil, set)
+        end
+      else
+        self.narrower.each_with_index do |child, index|
+          previous_child = previous.narrower.select {|x| x.identifier == child.identifier}
+          next if previous_child.empty?
+          child.add_additional_tags(previous_child.first, set)
+        end
+      end
     end
 
   end
 
   class CdiscCodeListItem < Thesaurus::UnmanagedConcept  
+  end
+
+  class Thesaurus::UnmanagedConcept  
 
     # Add additional tags
     #
@@ -97,15 +127,22 @@ module Import::CdiscClasses
     # @param set [Array] set of tags objects
     # @return [Void] no return
     def add_additional_tags(previous, set)
-      return if previous.nil?
-      missing =  previous.tagged.map{|x| x.uri.to_s} - self.tagged.map{|x| x.uri.to_s}
+      #return if previous.nil?
+      #missing = self.tagged.map{|x| x.uri.to_s} - previous.tagged.map{|x| x.uri.to_s}
+      missing = get_missing(previous)
       missing.each {|x| set << {subject: self.uri, object: Uri.new(uri: x)}}
+      #tagged.each {|x| set << {subject: self.uri, object: x.uri}}
+    end
+
+    def tagged
+      return [] unless instance_variable_defined?("@tagged")
+      self.instance_variable_get("@tagged")
     end
 
   private
 
-    def tagged
-      object.instance_variable_get("@tagged")
+    def get_missing(previous)
+      missing = previous.nil? ? self.tagged.map{|x| x.uri.to_s} : self.tagged.map{|x| x.uri.to_s} - previous.tagged.map{|x| x.uri.to_s}
     end
 
   end

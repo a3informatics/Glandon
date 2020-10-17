@@ -140,6 +140,7 @@ private
     child_klass = klass.child_klass
     return results if !managed?(child_klass)
     parent = results[:parent]
+    parent.add_additional_tags(tag_set) 
     scope = klass.owner.ra_namespace
     results[:managed_children].each_with_index do |child, index| 
       previous_info = child_klass.latest({scope: scope, identifier: child.identifier})
