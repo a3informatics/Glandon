@@ -149,7 +149,7 @@ private
       parent.add(actual, index + 1) # Parent needs ref to child whatever new or previous
       actual.has_previous_version = previous.uri if !previous.nil? && actual.uri != previous.uri
       next if actual.uri != child.uri # No changes if actual = previous, so skip next
-      child.add_additional_tags(previous, tag_set) 
+      child.add_additional_tags(previous, tag_set, parent.uri) 
       filtered << child 
     end
     return {parent: parent, managed_children: filtered, tags: tag_set}

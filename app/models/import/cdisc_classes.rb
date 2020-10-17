@@ -11,7 +11,7 @@ module Import::CdiscClasses
     end
 
     def add_additional_tags(set)
-      tagged.each {|x| set << {subject: self.uri, object: x.uri}}
+      tagged.each {|x| set << {subject: self.uri, object: x.uri, context: [self.uri]}}
     end
 
   private
@@ -41,13 +41,9 @@ module Import::CdiscClasses
     # @param previous [Thesaurus::UnmanagedConcept] previous item
     # @param set [Array] set of tags objects
     # @return [Void] no return
-    def add_additional_tags(previous, set)
-      #return if previous.nil?
-      #missing =  previous.tagged.map{|x| x.uri.to_s} - self.tagged.map{|x| x.uri.to_s}
-      missing = get_missing(previous)
-      missing.each {|x| set << {subject: self.uri, object: Uri.new(uri: x)}}
-      #tagged.each {|x| set << {subject: self.uri, object: x.uri}}
-      add_child_additional_tags(previous, set)
+    def add_additional_tags(previous, set, context)
+      tagged.each {|x| set << {subject: self.uri, object: x.uri, context: [context]}}
+      add_child_additional_tags(previous, set, [self.uri, context])
     end
 
     # Merge. Merge two concepts. Concepts must be the same with common children being the same.
@@ -100,17 +96,9 @@ module Import::CdiscClasses
     end
 
     # Add additional tags
-    def add_child_additional_tags(previous, set)
-      if previous.nil?
-        self.narrower.each do |child|
-          child.add_additional_tags(nil, set)
-        end
-      else
-        self.narrower.each_with_index do |child, index|
-          previous_child = previous.narrower.select {|x| x.identifier == child.identifier}
-          next if previous_child.empty?
-          child.add_additional_tags(previous_child.first, set)
-        end
+    def add_child_additional_tags(previous, set, contexts)
+      self.narrower.each do |child|
+        child.add_additional_tags(nil, set, contexts)
       end
     end
 
@@ -126,12 +114,8 @@ module Import::CdiscClasses
     # @param previous [Thesaurus::UnmanagedConcept] previous item
     # @param set [Array] set of tags objects
     # @return [Void] no return
-    def add_additional_tags(previous, set)
-      #return if previous.nil?
-      #missing = self.tagged.map{|x| x.uri.to_s} - previous.tagged.map{|x| x.uri.to_s}
-      missing = get_missing(previous)
-      missing.each {|x| set << {subject: self.uri, object: Uri.new(uri: x)}}
-      #tagged.each {|x| set << {subject: self.uri, object: x.uri}}
+    def add_additional_tags(previous, set, contexts)
+      tagged.each {|x| set << {subject: self.uri, object: x.uri, context: contexts}}
     end
 
     def tagged
@@ -139,11 +123,11 @@ module Import::CdiscClasses
       self.instance_variable_get("@tagged")
     end
 
-  private
+  # private
 
-    def get_missing(previous)
-      missing = previous.nil? ? self.tagged.map{|x| x.uri.to_s} : self.tagged.map{|x| x.uri.to_s} - previous.tagged.map{|x| x.uri.to_s}
-    end
+  #   def get_missing(previous)
+  #     missing = previous.nil? ? self.tagged.map{|x| x.uri.to_s} : self.tagged.map{|x| x.uri.to_s} - previous.tagged.map{|x| x.uri.to_s}
+  #   end
 
   end
 

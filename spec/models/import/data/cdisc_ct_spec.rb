@@ -96,7 +96,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     uri_sting = "http://www.cdisc.org/CT/V#{version}#TH"
     query_string = %Q{
 SELECT DISTINCT ?s ?p ?o WHERE {            
-  #{Uri.new(uri: uri_sting).to_ref} isoC:tagged ?s .
+  #{Uri.new(uri: uri_sting).to_ref} ^isoC:appliesTo/isoC:classifiedAs ?s .
   ?s ?p ?o
 }}
     query_results = Sparql::Query.new.query(query_string, "", [:isoC])
