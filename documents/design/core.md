@@ -55,12 +55,34 @@ The core building block of the repository with all items being built from one or
 
 ## Managed
 
+### General
+
 A managed item is a concept with an attached:
 
-1. Scoped Identifier containing the identifier and version information for the item
-1. Registration Status containing the current state of the item
+1. Scoped Identifier (SI) containing the identifier and version information for the item
+1. Registration Status (RS) containing the current state of the item
 
 The combination results in item that has a unique identifier and state. The Managed Item is a combination of an Administered, Registered and Identifier item. These are not distinguished currently in the implementation.
+
+### Storage
+
+Managed items are stored as differences. 
+
+### Set Initial Version
+
+This creates the necessary SI and RS setting up the necessary versioning, identifier and status.
+
+### Set Import Version
+
+Sets the SI and RS to a state for an imported item
+
+### Create Next Version
+
+When a managed item is edited it may be necessary to create a new version (see Registration Status section) and thus copy the exisiting version. Given that items are stored as differences not everything needs to be copied, just the top level node pointing to the exisitng children nodes is sufficiebt. 
+
+A standard clone operation should be provided by each managed item type to perform this operation. This operation should inherit from super classes and should ensure that sufficient information is copied for the type.
+
+The creation of a new version should also handle the versioning etc.
 
 ## Scoped Identifier
 

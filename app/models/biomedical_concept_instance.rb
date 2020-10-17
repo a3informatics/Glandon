@@ -27,6 +27,10 @@ class BiomedicalConceptInstance < BiomedicalConcept
     object
   end
 
+  # Update Property. Updates a property handling the split between the item and properties
+  #
+  # @params [Hash] params a set of updated values for any attribute within the property or item
+  # @return [BiomedicalConceptInstance] the updated object
   def update_property(params)
     new_params = split_params(params)
     property = BiomedicalConceptInstance::PropertyX.find(params[:property_id])

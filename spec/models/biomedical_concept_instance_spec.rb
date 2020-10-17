@@ -113,7 +113,7 @@ describe BiomedicalConceptInstance do
 
   end
 
-  describe "update tests" do
+  describe "Update Tests" do
 
     before :each do
       load_files(schema_files, [])
@@ -223,7 +223,7 @@ describe BiomedicalConceptInstance do
 
   end
 
-  describe "update tests, coded values" do
+  describe "Update Tests, Coded" do
 
     before :each do
       load_files(schema_files, [])
@@ -258,6 +258,23 @@ describe BiomedicalConceptInstance do
     end
 
   end
+
+  describe "Clone Tests" do
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    end
+
+    it "clone" do
+      instance = BiomedicalConceptInstance.find_with_properties(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      result = instance.clone
+      check_file_actual_expected(result.to_h, sub_dir, "clone_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end 
 
   describe "Other Tests" do
 
