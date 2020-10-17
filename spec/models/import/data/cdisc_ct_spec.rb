@@ -1887,6 +1887,49 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       check_file_actual_expected(result, sub_dir, "ct_query_cl_count_2.yaml", equate_method: :hash_equal, write_file: false)
     end
 
+    def ct_set
+      query_string = %Q{
+        SELECT DISTINCT ?s ?v WHERE
+        {
+          ?s rdf:type #{Thesaurus.rdf_type.to_ref} .
+          ?s isoT:hasIdentifier/isoI:version ?v .
+        } ORDER BY ?v
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+      query_results.by_object_set([:s, :v]).map{|x| {uri: x[:s], version: x[:v]}}
+    end
+
+    def ct_tags(uri)
+      %Q{
+        SELECT DISTINCT ?v ?d ?clid ?cliid ?tag WHERE
+        {
+          #{uri.to_ref} isoT:creationDate ?d .
+          #{uri.to_ref} isoT:hasIdentifier/isoI:version ?v .
+          #{uri.to_ref} th:isTopConceptReference/bo:reference ?cl .
+          ?cl th:identifier ?clid . 
+          {               
+            ?cl isoC:tagged/isoC:prefLabel ?tag .
+            BIND ("" as ?cliid)
+          }
+          UNION
+          {
+            ?cl th:narrower ?cli .
+            ?cli th:identifier ?cliid .             
+            ?cli isoC:tagged/isoC:prefLabel ?tag .        
+          }
+        } ORDER BY ?v ?clid ?cliid ?tag
+      }
+    end
+
+    it "tag analysis" do
+      ct_set.each do |v|
+        puts "Processing: #{v[:uri]}, v#{v[:version]}"
+        query_results = Sparql::Query.new.query(ct_tags(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
+        results = query_results.by_object_set([:v, :d, :clid, :cliid, :tag]).map{|x| {version: x[:v], date: x[:d], code_list: x[:clid], code_list_item: x[:cliid], tag: x[:tag]}}
+        check_file_actual_expected(results, sub_dir, "ct_query_tag_#{v[:version]}.yaml", equate_method: :hash_equal)
+      end
+    end
+
   end
 
 end
