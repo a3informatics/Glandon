@@ -17,7 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2008-10-15.xlsx'"^^xsd:string ;
@@ -529,9 +528,9 @@
 <http://www.cdisc.org/C66780/V13#C66780>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Age Span"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66780/V13#C66780_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66780/V13#C66780_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C66780/V4#C66780> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2008-10-15T00:00:00+00:00"^^xsd:dateTime ;
@@ -579,9 +578,9 @@
 <http://www.cdisc.org/C66781/V13#C66781>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Age Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66781/V13#C66781_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66781/V13#C66781_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C66781/V4#C66781> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2008-10-15T00:00:00+00:00"^^xsd:dateTime ;
@@ -626,9 +625,9 @@
 <http://www.cdisc.org/C66797/V13#C66797>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Category for Inclusion/Exclusion"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66797/V13#C66797_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66797/V13#C66797_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C66797/V4#C66797> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2008-10-15T00:00:00+00:00"^^xsd:dateTime ;
@@ -670,9 +669,9 @@
 <http://www.cdisc.org/C66784/V13#C66784>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Common Terminology Criteria for Adverse Events"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66784/V13#C66784_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66784/V13#C66784_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C66784/V4#C66784> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2008-10-15T00:00:00+00:00"^^xsd:dateTime ;
@@ -717,9 +716,9 @@
 <http://www.cdisc.org/C66789/V13#C66789>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Not Done"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66789/V13#C66789_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66789/V13#C66789_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C66789/V4#C66789> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2008-10-15T00:00:00+00:00"^^xsd:dateTime ;
@@ -760,9 +759,9 @@
 <http://www.cdisc.org/C66790/V13#C66790>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Patient Ethnic Group"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66790/V13#C66790_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66790/V13#C66790_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C66790/V4#C66790> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2008-10-15T00:00:00+00:00"^^xsd:dateTime ;
@@ -806,9 +805,9 @@
 <http://www.cdisc.org/C66726/V13#C66726>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Pharmaceutical Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66726/V13#C66726_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66726/V13#C66726_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C66726/V8#C66726> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2008-10-15T00:00:00+00:00"^^xsd:dateTime ;
@@ -1013,4 +1012,52 @@
 <http://www.assero.co.uk/PT#7efc9f920be60aaa484d4cd4e89ef4d1d05f0f04>
 	rdf:type th:PreferredTerm ;
 	isoC:label "CDISC SDTM Pharmaceutical Dosage Form Terminology"^^xsd:string ;
+.
+<http://www.assero.co.uk/CLA#7f691e4e-53de-42c3-b523-d500304f5670>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#f37f953d-a4d9-4e89-b249-594529b26d19>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66780/V13#C66780> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#537345d1-675e-4cfb-a314-d3f4ac3fb56c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66781/V13#C66781> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#8f36915b-49ee-4695-a0cf-5c06c6f51aef>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66797/V13#C66797> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#d213d73f-dc12-4714-921f-69aaa3c392eb>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66784/V13#C66784> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#a6dd05ae-a038-4d48-a3f2-d25687113bdb>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66789/V13#C66789> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#fc8daf79-fe6a-4abb-a9cd-f0ec9a931386>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66790/V13#C66790> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#2af793d7-4043-40ad-9427-973ad3884a2f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66726/V13#C66726> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .

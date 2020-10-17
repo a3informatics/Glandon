@@ -17,7 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2008-01-25.xlsx'"^^xsd:string ;
@@ -459,9 +458,9 @@
 <http://www.cdisc.org/C71148/V7#C71148>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Position"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C71148/V7#C71148_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71148/V7#C71148_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C71148/V6#C71148> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2008-01-25T00:00:00+00:00"^^xsd:dateTime ;
@@ -507,4 +506,16 @@
 <http://www.assero.co.uk/PT#c0bdc28ed777df926276ba755a3b7466bcaac1fe>
 	rdf:type th:PreferredTerm ;
 	isoC:label "CDISC SDTM Body Position Terminology"^^xsd:string ;
+.
+<http://www.assero.co.uk/CLA#24aa765d-0ea1-4011-ac40-ff430a003cb5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#83ed6fff-00c0-48c6-8ec4-18a36d11aa73>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C71148/V7#C71148> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .

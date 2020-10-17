@@ -17,11 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#b77e8d97-e5d5-4536-b18a-352c5848d20d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#af95873c-6eee-44a2-9b85-f8360a6fea78> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2014-10-06.xlsx', 'QS-FT Terminology 2014-09-26.xlsx', 'CDASH Terminology 2014-09-26.xlsx', 'ADaM Terminology 2014-09-26.xlsx', 'SEND Terminology 2014-09-26.xlsx'"^^xsd:string ;
@@ -4513,9 +4508,9 @@
 <http://www.cdisc.org/C117739/V41#C117739>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Hepatic Findings About Test Code"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C117739/V41#C117739_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C117739/V41#C117739_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C117739/V40#C117739> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2014-10-06T00:00:00+00:00"^^xsd:dateTime ;
@@ -4552,9 +4547,9 @@
 <http://www.cdisc.org/C117738/V41#C117738>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Hepatic Findings About Test Name"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C117738/V41#C117738_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C117738/V41#C117738_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C117738/V40#C117738> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2014-10-06T00:00:00+00:00"^^xsd:dateTime ;
@@ -4591,9 +4586,9 @@
 <http://www.cdisc.org/C117741/V41#C117741>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Multiple Sclerosis Findings About Test Code"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C117741/V41#C117741_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C117741/V41#C117741_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C117741/V40#C117741> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2014-10-06T00:00:00+00:00"^^xsd:dateTime ;
@@ -4632,9 +4627,9 @@
 <http://www.cdisc.org/C117740/V41#C117740>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Multiple Sclerosis Findings About Test Name"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C117740/V41#C117740_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C117740/V41#C117740_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C117740/V40#C117740> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2014-10-06T00:00:00+00:00"^^xsd:dateTime ;
@@ -4673,9 +4668,9 @@
 <http://www.cdisc.org/C117743/V41#C117743>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Ophthalmic Exam Test Code"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C117743/V41#C117743_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C117743/V41#C117743_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C117743/V40#C117743> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2014-10-06T00:00:00+00:00"^^xsd:dateTime ;
@@ -4716,9 +4711,9 @@
 <http://www.cdisc.org/C66738/V41#C66738>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Trial Summary Parameter Test Code"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66738/V41#C66738_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66738/V41#C66738_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C66738/V40#C66738> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2014-10-06T00:00:00+00:00"^^xsd:dateTime ;
@@ -4804,7 +4799,6 @@
 <http://www.cdisc.org/C66738/V41#C66738_C117960>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Diagnostic Criteria"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C117960"^^xsd:string ;
 	th:notation "DXCRIT"^^xsd:string ;
 	th:definition "A standard from which a judgment concerning a medical diagnosis can be established."^^xsd:string ;
@@ -4819,7 +4813,6 @@
 <http://www.cdisc.org/C66738/V41#C66738_C117961>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Relapse Criteria"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C117961"^^xsd:string ;
 	th:notation "RLPSCRIT"^^xsd:string ;
 	th:definition "A standard from which a judgment concerning a disease relapse can be established."^^xsd:string ;
@@ -4834,7 +4827,6 @@
 <http://www.cdisc.org/C66738/V41#C66738_C117962>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Severity Criteria"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C117962"^^xsd:string ;
 	th:notation "SEVCRIT"^^xsd:string ;
 	th:definition "A standard from which a judgment concerning the severity of an event, disease or condition can be established."^^xsd:string ;
@@ -4849,9 +4841,9 @@
 <http://www.cdisc.org/C67152/V41#C67152>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Trial Summary Parameter Test Name"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C67152/V41#C67152_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C67152/V41#C67152_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C67152/V40#C67152> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2014-10-06T00:00:00+00:00"^^xsd:dateTime ;
@@ -4937,7 +4929,6 @@
 <http://www.cdisc.org/C67152/V41#C67152_C117960>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Diagnostic Criteria"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C117960"^^xsd:string ;
 	th:notation "Diagnostic Criteria"^^xsd:string ;
 	th:definition "A standard from which a judgment concerning a medical diagnosis can be established."^^xsd:string ;
@@ -4948,7 +4939,6 @@
 <http://www.cdisc.org/C67152/V41#C67152_C117961>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Relapse Criteria"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C117961"^^xsd:string ;
 	th:notation "Relapse Criteria"^^xsd:string ;
 	th:definition "A standard from which a judgment concerning a disease relapse can be established."^^xsd:string ;
@@ -4959,11 +4949,130 @@
 <http://www.cdisc.org/C67152/V41#C67152_C117962>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Severity Criteria"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C117962"^^xsd:string ;
 	th:notation "Severity Criteria"^^xsd:string ;
 	th:definition "A standard from which a judgment concerning the severity of an event, disease or condition can be established."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#010a2b4be4900cad6df8c2a1c19ee2611ea9492e> ;
 	th:synonym <http://www.assero.co.uk/SYN#010a2b4be4900cad6df8c2a1c19ee2611ea9492e> ;
+.
+<http://www.assero.co.uk/CLA#5f5a297c-cc8f-43c6-bd4a-377f2b5f464a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#834ecfad-1e5e-44a7-8cad-3c5875a1c6c7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#b77e8d97-e5d5-4536-b18a-352c5848d20d> ;
+.
+<http://www.assero.co.uk/CLA#53bf9478-d8ec-4094-aab0-8688dfe4c3dc>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#1c2e7134-cc97-46bc-9ee0-3c584c4ca963>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#af95873c-6eee-44a2-9b85-f8360a6fea78> ;
+.
+<http://www.assero.co.uk/CLA#eb8adfb0-8533-4799-af23-4440675aedd3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
+.
+<http://www.assero.co.uk/CLA#27c2b4d6-9256-43d4-8e17-7eb2e92e94f3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344> ;
+.
+<http://www.assero.co.uk/CLA#65b220f0-03f5-40fc-944c-e03ce03a1d15>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C117739/V41#C117739> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#1c149d46-c2b4-49bf-9434-1bb3a7ea2181>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C117738/V41#C117738> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#2e9724a3-a55a-4192-a693-e03691fe02dd>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C117741/V41#C117741> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#1c875f92-a09a-4f39-84ee-bb722929d672>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C117740/V41#C117740> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#27d79132-b54f-4abd-ad81-9e99b09090b7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C117743/V41#C117743> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#40ca73f7-ba41-4afa-831e-1798b50cdb95>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66738/V41#C66738> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#e454bea2-d2cd-422e-9a6f-b3ef3efcceee>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66738/V41#C66738_C117960> ;
+	isoC:context <http://www.cdisc.org/C66738/V41#C66738> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#fd4f7441-cd0a-44d8-98b2-5c9a26396dc1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66738/V41#C66738_C117961> ;
+	isoC:context <http://www.cdisc.org/C66738/V41#C66738> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#3599e691-7d82-4376-bbf5-13c581d3071e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66738/V41#C66738_C117962> ;
+	isoC:context <http://www.cdisc.org/C66738/V41#C66738> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#e8d0d813-30bc-4cda-9842-c84aab0c951c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C67152/V41#C67152> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#8c55ebbb-3ed9-48ba-b118-d43126e6b81d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C67152/V41#C67152_C117960> ;
+	isoC:context <http://www.cdisc.org/C67152/V41#C67152> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#16efdd3d-8cab-4eab-952b-b5ebc50831e3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C67152/V41#C67152_C117961> ;
+	isoC:context <http://www.cdisc.org/C67152/V41#C67152> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#fc66e214-fca7-472a-bb6b-f55ebf342406>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C67152/V41#C67152_C117962> ;
+	isoC:context <http://www.cdisc.org/C67152/V41#C67152> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .
