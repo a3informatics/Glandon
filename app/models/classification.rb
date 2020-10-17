@@ -4,6 +4,6 @@ class Classification < IsoContextualRelationship
             base_uri: "http://#{ENV["url_authority"]}/CLA",
             uri_unique: true
   
-  object_property :classified_as, cardinality: :one, model_class: "IsoConcept"
+  object_property :classified_as, cardinality: :one, model_class: "IsoConceptSystem::Node"
 
 end
