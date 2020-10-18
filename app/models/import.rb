@@ -110,10 +110,19 @@ class Import < ApplicationRecord
       c.to_sparql(sparql, true)
     end
     objects[:tags].each do |c|
-      classification = Classification.new(applies_to: c[:subject], classified_as: c[:object], context: c[:context])
-      classification.uri = classification.create_uri(Classification.base_uri)
-      classification.to_sparql(sparql)
-      #sparql.add({uri: c[:subject]}, {prefix: :isoC, fragment: "tagged"}, {uri: c[:object]})
+      existing = Classification.where(c[:subject], c[:object])
+      if existing.nil?
+        classification = Classification.new(applies_to: c[:subject], classified_as: c[:object], context: c[:context])
+        classification.uri = classification.create_uri(Classification.base_uri)
+        classification.to_sparql(sparql)
+      else
+        new_contexts = c[:context] - existing.context
+        new_contexts.each do |context|
+          sparql.add({uri: existing.uri}, {prefix: :isoC, fragment: "context"}, {uri: context})
+        end
+      end
+    rescue => e
+      byebug
     end
     filename = sparql.to_file
     response = CRUD.file(filename) if self.auto_load

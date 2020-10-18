@@ -36,7 +36,7 @@ describe "Import::CdiscTerm CT Data" do
   # ---------- IMPORTANT SWITCHES ----------
   
   def set_write_file
-    false
+    true
   end
 
   def use_api
@@ -1944,14 +1944,18 @@ SELECT DISTINCT ?s ?p ?o WHERE {
           #{uri.to_ref} th:isTopConceptReference/bo:reference ?cl .
           ?cl th:identifier ?clid . 
           {               
-            ?cl ^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel ?tag .
+            ?cl ^isoC:appliesTo ?x .
+            ?x isoC:context #{uri.to_ref} .
+            ?x isoC:classifiedAs/isoC:prefLabel ?tag .
             BIND ("" as ?cliid)
           }
           UNION
           {
             ?cl th:narrower ?cli .
             ?cli th:identifier ?cliid .             
-            ?cli ^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel ?tag .        
+            ?cli ^isoC:appliesTo ?y .
+            ?y isoC:context #{uri.to_ref} .
+            ?y isoC:classifiedAs/isoC:prefLabel ?tag .
           }
         } ORDER BY ?v ?clid ?cliid ?tag
       }

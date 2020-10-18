@@ -140,7 +140,7 @@ private
     child_klass = klass.child_klass
     return results if !managed?(child_klass)
     parent = results[:parent]
-    parent.add_additional_tags(tag_set) 
+    parent.add_context_tags(tag_set) 
     scope = klass.owner.ra_namespace
     results[:managed_children].each_with_index do |child, index| 
       previous_info = child_klass.latest({scope: scope, identifier: child.identifier})
@@ -148,8 +148,8 @@ private
       actual = child.replace_if_no_change(previous)
       parent.add(actual, index + 1) # Parent needs ref to child whatever new or previous
       actual.has_previous_version = previous.uri if !previous.nil? && actual.uri != previous.uri
+      child.add_context_tags(actual, tag_set, parent.uri) 
       next if actual.uri != child.uri # No changes if actual = previous, so skip next
-      child.add_additional_tags(previous, tag_set, parent.uri) 
       filtered << child 
     end
     return {parent: parent, managed_children: filtered, tags: tag_set}

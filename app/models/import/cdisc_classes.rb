@@ -10,7 +10,7 @@ module Import::CdiscClasses
       Import::CdiscClasses::CdiscCodeList
     end
 
-    def add_additional_tags(set)
+    def add_context_tags(set)
       tagged.each {|x| set << {subject: self.uri, object: x.uri, context: [self.uri]}}
     end
 
@@ -41,9 +41,9 @@ module Import::CdiscClasses
     # @param previous [Thesaurus::UnmanagedConcept] previous item
     # @param set [Array] set of tags objects
     # @return [Void] no return
-    def add_additional_tags(previous, set, context)
-      tagged.each {|x| set << {subject: self.uri, object: x.uri, context: [context]}}
-      add_child_additional_tags(previous, set, [self.uri, context])
+    def add_context_tags(actual, set, context)
+      tagged.each {|x| set << {subject: actual.uri, object: x.uri, context: [context]}}
+      add_child_context_tags(actual, set, [actual.uri, context])
     end
 
     # Merge. Merge two concepts. Concepts must be the same with common children being the same.
@@ -96,9 +96,16 @@ module Import::CdiscClasses
     end
 
     # Add additional tags
-    def add_child_additional_tags(previous, set, contexts)
-      self.narrower.each do |child|
-        child.add_additional_tags(nil, set, contexts)
+    def add_child_context_tags(actual, set, contexts)
+      if self.uri == actual.uri
+        self.narrower.each do |child|
+          child.add_context_tags(child, set, contexts)
+        end
+      else
+        self.narrower.each do |child|
+          actual_child = actual.narrower.select {|x| x.identifier == child.identifier}
+          child.add_context_tags(actual_child.first, set, contexts)
+        end
       end
     end
 
@@ -114,20 +121,14 @@ module Import::CdiscClasses
     # @param previous [Thesaurus::UnmanagedConcept] previous item
     # @param set [Array] set of tags objects
     # @return [Void] no return
-    def add_additional_tags(previous, set, contexts)
-      tagged.each {|x| set << {subject: self.uri, object: x.uri, context: contexts}}
+    def add_context_tags(subject, set, contexts)
+      tagged.each {|x| set << {subject: subject.uri, object: x.uri, context: contexts}}
     end
 
     def tagged
       return [] unless instance_variable_defined?("@tagged")
       self.instance_variable_get("@tagged")
     end
-
-  # private
-
-  #   def get_missing(previous)
-  #     missing = previous.nil? ? self.tagged.map{|x| x.uri.to_s} : self.tagged.map{|x| x.uri.to_s} - previous.tagged.map{|x| x.uri.to_s}
-  #   end
 
   end
 
