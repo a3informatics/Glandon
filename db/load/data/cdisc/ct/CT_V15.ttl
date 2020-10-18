@@ -17,7 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2009-02-18.xlsx'"^^xsd:string ;
@@ -609,9 +608,9 @@
 <http://www.cdisc.org/C65047/V15#C65047>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Laboratory Test Code"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C65047/V15#C65047_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C65047/V15#C65047_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C65047/V14#C65047> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2009-02-18T00:00:00+00:00"^^xsd:dateTime ;
@@ -1068,7 +1067,6 @@
 <http://www.cdisc.org/C65047/V15#C65047_C74634>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bite Cell To Erythrocyte Ratio Measurement"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C74634"^^xsd:string ;
 	th:notation "BTECERBC"^^xsd:string ;
 	th:definition "A relative measurement of the bite cells (erythrocytes with the appearance of a bite having been removed, due to oxidative hemolysis) to all erythrocytes in a biological specimen."^^xsd:string ;
@@ -1079,9 +1077,9 @@
 <http://www.cdisc.org/C67154/V15#C67154>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Laboratory Test Name"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C67154/V15#C67154_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C67154/V15#C67154_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C67154/V14#C67154> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2009-02-18T00:00:00+00:00"^^xsd:dateTime ;
@@ -1538,7 +1536,6 @@
 <http://www.cdisc.org/C67154/V15#C67154_C74634>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bite Cell To Erythrocyte Ratio Measurement"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C74634"^^xsd:string ;
 	th:notation "Bite Cells/Erythrocytes"^^xsd:string ;
 	th:definition "A relative measurement of the bite cells (erythrocytes with the appearance of a bite having been removed, due to oxidative hemolysis) to all erythrocytes in a biological specimen."^^xsd:string ;
@@ -1549,9 +1546,9 @@
 <http://www.cdisc.org/C71620/V15#C71620>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C71620/V15#C71620_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71620/V15#C71620_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C71620/V14#C71620> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2009-02-18T00:00:00+00:00"^^xsd:dateTime ;
@@ -1891,9 +1888,9 @@
 <http://www.cdisc.org/C78735/V15#C78735>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Evaluator"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C78735/V15#C78735_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78735/V15#C78735_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C78735/V14#C78735> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2009-02-18T00:00:00+00:00"^^xsd:dateTime ;
@@ -1943,7 +1940,6 @@
 <http://www.cdisc.org/C78735/V15#C78735_C42708>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Child"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C42708"^^xsd:string ;
 	th:notation "CHILD"^^xsd:string ;
 	th:definition "A son or a daughter."^^xsd:string ;
@@ -1953,4 +1949,62 @@
 	th:notation "PARENT"^^xsd:string ;
 	th:definition "A mother or a father."^^xsd:string ;
 	th:preferredTerm <http://www.assero.co.uk/PT#23d692f07a3fb646a8e54fcd2dc724f4ea2ed2c6> ;
+.
+<http://www.assero.co.uk/CLA#a0fcb529-43fe-4ebe-9913-84d72c642601>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#13832f8f-fd65-4301-8f24-9f504c9b5b73>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C65047/V15#C65047> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#da064b37-11ca-4a88-ab0b-6c548f19be90>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C65047/V15#C65047_C74634> ;
+	isoC:context <http://www.cdisc.org/C65047/V15#C65047> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#81726141-8a2c-4de2-a4b5-091bdef2a662>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C67154/V15#C67154> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#0381bbce-492f-4a6f-b693-758d53482f36>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C67154/V15#C67154_C74634> ;
+	isoC:context <http://www.cdisc.org/C67154/V15#C67154> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#929f2c91-e260-46f7-a4ed-bf8b6f201e39>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C71620/V15#C71620> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#6cecd1c7-47ac-4332-bef9-7cbaa0dfd068>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78735/V15#C78735> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#d4eb8ff4-76a4-4931-89be-d2a04d0330d2>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78735/V15#C78735_C42708> ;
+	isoC:context <http://www.cdisc.org/C78735/V15#C78735> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#1b936a7b-6e5c-40d8-a88a-102447c88c61>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78735/V15#C78735_C42708> ;
+	isoC:context <http://www.cdisc.org/C78735/V15#C78735> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .

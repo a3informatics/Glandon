@@ -17,7 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2008-09-24.xlsx'"^^xsd:string ;
@@ -529,7 +528,6 @@
 <http://www.cdisc.org/C76351/V10#C76351>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Skin Classification"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C76351/V10#C76351_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C76351/V10#C76351_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -573,7 +571,6 @@
 <http://www.cdisc.org/C76351/V10#C76351_C74569>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Fitzpatrick Skin Type I"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C74569"^^xsd:string ;
 	th:notation "TYPE1"^^xsd:string ;
 	th:definition "Individuals who never tan and always sunburn if exposed to any appreciable amount of sunlight, primarily red headed individuals and lightly complected blondes. (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)"^^xsd:string ;
@@ -583,7 +580,6 @@
 <http://www.cdisc.org/C76351/V10#C76351_C74570>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Fitzpatrick Skin Type II"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C74570"^^xsd:string ;
 	th:notation "TYPE2"^^xsd:string ;
 	th:definition "Individuals who frequently burn but are able to tan to a small degree after extended sun exposure. (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)"^^xsd:string ;
@@ -593,7 +589,6 @@
 <http://www.cdisc.org/C76351/V10#C76351_C74571>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Fitzpatrick Skin Type III"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C74571"^^xsd:string ;
 	th:notation "TYPE3"^^xsd:string ;
 	th:definition "Individuals who burn infrequently and tan readily. (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)"^^xsd:string ;
@@ -603,7 +598,6 @@
 <http://www.cdisc.org/C76351/V10#C76351_C74572>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Fitzpatrick Skin Type IV"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C74572"^^xsd:string ;
 	th:notation "TYPE4"^^xsd:string ;
 	th:definition "Individuals who rarely burn and tan heavily with moderate sun exposures, especially individuals of Asian, American Indian, Mediterranean and Latin American descent. (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)"^^xsd:string ;
@@ -613,7 +607,6 @@
 <http://www.cdisc.org/C76351/V10#C76351_C74573>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Fitzpatrick Skin Type V"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C74573"^^xsd:string ;
 	th:notation "TYPE5"^^xsd:string ;
 	th:definition "Individuals who have dark constitutive pigmentation but become noticeably darker with sun exposure, especially light complected black individuals, those of Indian descent. (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)"^^xsd:string ;
@@ -623,7 +616,6 @@
 <http://www.cdisc.org/C76351/V10#C76351_C74574>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Fitzpatrick Skin Type VI"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C74574"^^xsd:string ;
 	th:notation "TYPE6"^^xsd:string ;
 	th:definition "Individuals who have the heaviest constitutive pigmentation, especially dark skinned black individuals. (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)"^^xsd:string ;
@@ -633,9 +625,9 @@
 <http://www.cdisc.org/C74559/V10#C74559>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Subject Characteristic Code"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C74559/V10#C74559_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C74559/V10#C74559_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C74559/V8#C74559> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2008-09-24T00:00:00+00:00"^^xsd:dateTime ;
@@ -678,7 +670,6 @@
 <http://www.cdisc.org/C74559/V10#C74559_C74563>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Fitzpatrick Classification Scale"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C74563"^^xsd:string ;
 	th:notation "SKINCLAS"^^xsd:string ;
 	th:definition "A classification system used to categorize the sensitivity of a subject's skin to sunlight."^^xsd:string ;
@@ -693,7 +684,6 @@
 <http://www.cdisc.org/C74559/V10#C74559_C74580>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Skin Type"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C74580"^^xsd:string ;
 	th:notation "SKINTYP"^^xsd:string ;
 	th:definition "A distinctive characteristic of the skin marked by the amount of sebum secreted by sebaceous glands."^^xsd:string ;
@@ -708,7 +698,6 @@
 <http://www.cdisc.org/C76348/V10#C76348>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Marital Status"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C76348/V10#C76348_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C76348/V10#C76348_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -755,7 +744,6 @@
 <http://www.cdisc.org/C76348/V10#C76348_C76240>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Annulled"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C76240"^^xsd:string ;
 	th:notation "ANNULLED"^^xsd:string ;
 	th:definition "Marriage contract has been declared null and to not have existed. (HL7)"^^xsd:string ;
@@ -765,7 +753,6 @@
 <http://www.cdisc.org/C76348/V10#C76348_C51776>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Divorced"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C51776"^^xsd:string ;
 	th:notation "DIVORCED"^^xsd:string ;
 	th:definition "Marrige contract has been declared dissolved and inactive. (HL7)"^^xsd:string ;
@@ -775,7 +762,6 @@
 <http://www.cdisc.org/C76348/V10#C76348_C76241>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interlocutory"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C76241"^^xsd:string ;
 	th:notation "INTERLOCUTORY"^^xsd:string ;
 	th:definition "Temporary order issued during the course of litigation. (HL7)"^^xsd:string ;
@@ -785,7 +771,6 @@
 <http://www.cdisc.org/C76348/V10#C76348_C51777>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Separated"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C51777"^^xsd:string ;
 	th:notation "LEGALLY SEPARATED"^^xsd:string ;
 	th:definition "A person living apart from his/her spouse by legal arrangement. (HL7)"^^xsd:string ;
@@ -795,7 +780,6 @@
 <http://www.cdisc.org/C76348/V10#C76348_C51773>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Married"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C51773"^^xsd:string ;
 	th:notation "MARRIED"^^xsd:string ;
 	th:definition "A current marriage contract is active. (HL7)"^^xsd:string ;
@@ -805,7 +789,6 @@
 <http://www.cdisc.org/C76348/V10#C76348_C51774>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Never Married"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C51774"^^xsd:string ;
 	th:notation "NEVER MARRIED"^^xsd:string ;
 	th:definition "No marriage contract has ever been entered. (HL7)"^^xsd:string ;
@@ -815,7 +798,6 @@
 <http://www.cdisc.org/C76348/V10#C76348_C51775>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Widowed"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C51775"^^xsd:string ;
 	th:notation "WIDOWED"^^xsd:string ;
 	th:definition "The spouse has died. (HL7)"^^xsd:string ;
@@ -825,7 +807,6 @@
 <http://www.cdisc.org/C76348/V10#C76348_C76242>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Polygamous"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C76242"^^xsd:string ;
 	th:notation "POLYGAMOUS"^^xsd:string ;
 	th:definition "More than 1 current spouse. (HL7)"^^xsd:string ;
@@ -835,7 +816,6 @@
 <http://www.cdisc.org/C76348/V10#C76348_C53262>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Domestic Partnership"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C53262"^^xsd:string ;
 	th:notation "DOMESTIC PARTNER"^^xsd:string ;
 	th:definition "Person declares that a domestic partnership relationship exists. (HL7)"^^xsd:string ;
@@ -849,7 +829,6 @@
 <http://www.cdisc.org/C74457/V10#C74457>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Race"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C74457/V10#C74457_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C74457/V10#C74457_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -892,7 +871,6 @@
 <http://www.cdisc.org/C74457/V10#C74457_C16352>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "African American"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C16352"^^xsd:string ;
 	th:notation "BLACK OR AFRICAN AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in any of the black racial groups of Africa. Terms such as \"Haitian\" or \"Negro\" can be used in addition to \"Black or African American.\" (FDA)"^^xsd:string ;
@@ -906,7 +884,6 @@
 <http://www.cdisc.org/C74457/V10#C74457_C41259>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "American Indian or Alaska Native"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C41259"^^xsd:string ;
 	th:notation "AMERICAN INDIAN OR ALASKA NATIVE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of North and South America (including Central America), and who maintains tribal affiliation or community attachment. (FDA)"^^xsd:string ;
@@ -920,7 +897,6 @@
 <http://www.cdisc.org/C74457/V10#C74457_C41260>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Asian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C41260"^^xsd:string ;
 	th:notation "ASIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam. (FDA)"^^xsd:string ;
@@ -934,7 +910,6 @@
 <http://www.cdisc.org/C74457/V10#C74457_C41219>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Native Hawaiian or Other Pacific Islander"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C41219"^^xsd:string ;
 	th:notation "NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER"^^xsd:string ;
 	th:definition "Denotes a person having origins in any of the original peoples of Hawaii, Guam, Samoa, or other Pacific Islands. The term covers particularly people who identify themselves as part-Hawaiian, Native Hawaiian, Guamanian or Chamorro, Carolinian, Samoan, Chuu. (FDA)"^^xsd:string ;
@@ -948,7 +923,6 @@
 <http://www.cdisc.org/C74457/V10#C74457_C41261>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "White"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C41261"^^xsd:string ;
 	th:notation "WHITE"^^xsd:string ;
 	th:definition "Denotes a person with European, Middle Eastern, or North African ancestral origin who identifies, or is identified, as White. (FDA)"^^xsd:string ;
@@ -966,4 +940,188 @@
 <http://www.assero.co.uk/SYN#6643dce8e4d3c9b96317eee572d9ea0ae4d49e57>
 	rdf:type th:Synonym ;
 	isoC:label "Race"^^xsd:string ;
+.
+<http://www.assero.co.uk/CLA#4eec54f7-5faa-4f34-8ffc-29fee7ffeb48>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#ba411674-4c44-4943-9721-ae074c60bb60>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76351/V10#C76351> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#5b4f6d83-6bd7-4340-be49-a14d2ac835e0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76351/V10#C76351_C74569> ;
+	isoC:context <http://www.cdisc.org/C76351/V10#C76351> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#e84fc4f2-ef68-4d1c-9a49-581423f982f3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76351/V10#C76351_C74570> ;
+	isoC:context <http://www.cdisc.org/C76351/V10#C76351> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#8107062e-4faa-40a2-9d1c-5442c2282af4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76351/V10#C76351_C74571> ;
+	isoC:context <http://www.cdisc.org/C76351/V10#C76351> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#0a11b432-fdec-4fac-897f-837a1d3035ed>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76351/V10#C76351_C74572> ;
+	isoC:context <http://www.cdisc.org/C76351/V10#C76351> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#a54a059a-5c87-4d0a-9e35-3a5e53ea87a0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76351/V10#C76351_C74573> ;
+	isoC:context <http://www.cdisc.org/C76351/V10#C76351> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#382b7fa6-81da-4a28-903a-ad10c004dcd2>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76351/V10#C76351_C74574> ;
+	isoC:context <http://www.cdisc.org/C76351/V10#C76351> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#60fba2c5-00a5-44cd-a523-4460cba2c821>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C74559/V10#C74559> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#94a37829-7b60-4c5d-bc0e-742b1138ca2d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C74559/V10#C74559_C74563> ;
+	isoC:context <http://www.cdisc.org/C74559/V10#C74559> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#43c3f0c0-3b76-4d9e-90d1-9487ee29aeee>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C74559/V10#C74559_C74580> ;
+	isoC:context <http://www.cdisc.org/C74559/V10#C74559> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#3c4b57e2-6841-4e5e-84d4-fab4ce386c8c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76348/V10#C76348> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#66ad4671-6592-4aed-8fed-ecff04a620c8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76348/V10#C76348_C76240> ;
+	isoC:context <http://www.cdisc.org/C76348/V10#C76348> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#d6030757-0000-45d2-81d2-ab2a1bcaef5b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76348/V10#C76348_C51776> ;
+	isoC:context <http://www.cdisc.org/C76348/V10#C76348> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#b5f0525b-23dd-4faa-9623-10ce2061e153>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76348/V10#C76348_C76241> ;
+	isoC:context <http://www.cdisc.org/C76348/V10#C76348> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#0d315af5-fed8-4426-8e4c-e34e45cd086e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76348/V10#C76348_C51777> ;
+	isoC:context <http://www.cdisc.org/C76348/V10#C76348> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#6f30cfd8-cf23-48e3-aecf-92c93c639fc6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76348/V10#C76348_C51773> ;
+	isoC:context <http://www.cdisc.org/C76348/V10#C76348> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#93983224-3ed3-48b8-9c4c-323945e23f9a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76348/V10#C76348_C51774> ;
+	isoC:context <http://www.cdisc.org/C76348/V10#C76348> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#4c0d276a-65ad-4fc2-a2b1-af7cb0d55b45>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76348/V10#C76348_C51775> ;
+	isoC:context <http://www.cdisc.org/C76348/V10#C76348> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#27077a9e-b7ea-4620-8c27-5f5472a5ddcb>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76348/V10#C76348_C76242> ;
+	isoC:context <http://www.cdisc.org/C76348/V10#C76348> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#a609a20a-35c8-433a-af78-186a64397f97>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C76348/V10#C76348_C53262> ;
+	isoC:context <http://www.cdisc.org/C76348/V10#C76348> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#423c97ca-d260-4302-95bf-cfe4032ddd23>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C74457/V10#C74457> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#94f75b17-c3bc-4125-b894-38bc06969b78>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C74457/V10#C74457_C16352> ;
+	isoC:context <http://www.cdisc.org/C74457/V10#C74457> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#1f3a96e7-b19f-4fb8-a02e-b33417a6abce>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C74457/V10#C74457_C41259> ;
+	isoC:context <http://www.cdisc.org/C74457/V10#C74457> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#2ac7e7ac-297c-4ba1-9456-6007ebcd630d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C74457/V10#C74457_C41260> ;
+	isoC:context <http://www.cdisc.org/C74457/V10#C74457> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#98f92e03-408e-4f76-ade8-bbb8b8c5ad8f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C74457/V10#C74457_C41219> ;
+	isoC:context <http://www.cdisc.org/C74457/V10#C74457> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#9f81f90b-38e9-4465-8a20-691130a6a735>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C74457/V10#C74457_C41261> ;
+	isoC:context <http://www.cdisc.org/C74457/V10#C74457> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .

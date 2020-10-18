@@ -17,7 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2008-10-09.xlsx'"^^xsd:string ;
@@ -525,4 +524,10 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "48"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C74457/V10#C74457> ;
+.
+<http://www.assero.co.uk/CLA#9f7cd345-79b9-40d4-8880-9707dd96a0a7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .

@@ -1944,14 +1944,14 @@ SELECT DISTINCT ?s ?p ?o WHERE {
           #{uri.to_ref} th:isTopConceptReference/bo:reference ?cl .
           ?cl th:identifier ?clid . 
           {               
-            ?cl isoC:tagged/isoC:prefLabel ?tag .
+            ?cl ^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel ?tag .
             BIND ("" as ?cliid)
           }
           UNION
           {
             ?cl th:narrower ?cli .
             ?cli th:identifier ?cliid .             
-            ?cli isoC:tagged/isoC:prefLabel ?tag .        
+            ?cli ^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel ?tag .        
           }
         } ORDER BY ?v ?clid ?cliid ?tag
       }
