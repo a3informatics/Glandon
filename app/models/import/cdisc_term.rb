@@ -145,7 +145,7 @@ private
     results[:managed_children].each_with_index do |child, index| 
       previous_info = child_klass.latest({scope: scope, identifier: child.identifier})
       previous = previous_info.nil? ? nil : child_klass.find_full(previous_info.id) 
-      actual = child.replace_if_no_change(previous)
+      actual = child.replace_if_no_change(previous, [:tagged])
       parent.add(actual, index + 1) # Parent needs ref to child whatever new or previous
       actual.has_previous_version = previous.uri if !previous.nil? && actual.uri != previous.uri
       child.add_context_tags(actual, tag_set, parent.uri) 

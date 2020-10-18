@@ -208,11 +208,15 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
   #
   # @param previous [Thesaurus::UnmanagedConcept] previous item
   # @return [Thesaurus::UnmanagedConcept] the new object if changes, otherwise the previous object
-  def replace_if_no_change(previous)
+  def replace_if_no_change(previous, add_properties=[])
     return self if previous.nil?
-    return previous if !self.diff?(previous, {ignore: []})
-    replace_children_if_no_change(previous)
-    return self
+    if !self.diff?(previous, {ignore: []})
+      add_properties.each{|x| previous.instance_variable_set("@#{x}", self.instance_variable_get("@#{x}"))}
+      return previous 
+    else
+      replace_children_if_no_change(previous)
+      return self
+    end
   end
 
   # To CSV No Header. A CSV record with no header
@@ -320,7 +324,7 @@ private
   end
 
   # Replace the child if no change.
-  def replace_children_if_no_change(previous)
+  def replace_children_if_no_change(previous, add_properties=[])
     self.narrower.each_with_index do |child, index|
       previous_child = previous.narrower.select {|x| x.identifier == child.identifier}
       next if previous_child.empty?

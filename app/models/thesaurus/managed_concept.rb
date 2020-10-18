@@ -42,11 +42,11 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   #
   # @param previous [Thesaurus::UnmanagedConcept] previous item
   # @return [Thesaurus::UnmanagedConcept] the new object if changes, otherwise the previous object
-  def replace_if_no_change(previous)
+  def replace_if_no_change(previous, add_properties=[])
     return self if previous.nil?
     return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :has_previous_version, :origin, :change_description,
       :creation_date, :last_change_date, :explanatory_comment, :extends, :subsets]})
-    replace_children_if_no_change(previous)
+    replace_children_if_no_change(previous, add_properties)
     return self
   end
 
@@ -861,11 +861,11 @@ private
   end
 
   # Replace children if no change
-  def replace_children_if_no_change(previous)
+  def replace_children_if_no_change(previous, add_properties=[])
     self.narrower.each_with_index do |child, index|
       previous_child = previous.narrower.select {|x| x.identifier == child.identifier}
       next if previous_child.empty?
-      self.narrower[index] = child.replace_if_no_change(previous_child.first)
+      self.narrower[index] = child.replace_if_no_change(previous_child.first, add_properties)
     end
   end
 
