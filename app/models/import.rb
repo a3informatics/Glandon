@@ -116,9 +116,9 @@ class Import < ApplicationRecord
         classification.uri = classification.create_uri(Classification.base_uri)
         classification.to_sparql(sparql)
       else
-        new_contexts = c[:context] - existing.context
+        new_contexts = c[:context].map{|s| s.to_s} - existing.context.map{|s| s.to_s}
         new_contexts.each do |context|
-          sparql.add({uri: existing.uri}, {prefix: :isoC, fragment: "context"}, {uri: context})
+          sparql.add({uri: existing.uri}, {prefix: :isoC, fragment: "context"}, {uri: Uri.new(uri: context)})
         end
       end
     rescue => e
