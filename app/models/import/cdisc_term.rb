@@ -141,6 +141,7 @@ private
     return results if !managed?(child_klass)
     parent = results[:parent]
     parent.add_context_tags(tag_set) 
+    parent.has_previous_version = parent.history_previous unless parent.history_previous.nil?
     scope = klass.owner.ra_namespace
     results[:managed_children].each_with_index do |child, index| 
       previous_info = child_klass.latest({scope: scope, identifier: child.identifier})
