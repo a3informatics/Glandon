@@ -94,3 +94,27 @@
 - :label: "Clinical Significance"
   :bridg: PerformedClinicalInterpretation.clinicallySignificantIndicator
   :sdtm: "--CLSIG"
+- :label: "Fasting Status"
+  :bridg: PerformedActivity.fastingStatusIndicator
+  :sdtm: "--FAST"
+- :label: "Relatioship"
+  :bridg: EvaluatedActivityRelationship.probabilityCode
+  :sdtm: "--REL"
+- :label: "Relationship to Non-Study Treatment"
+  :bridg: EvaluatedActivityRelationship.uncertaintyCode
+  :sdtm: "--RELNST"
+- :label: "Concomitant or Additional Trtmnt Given"
+  #:bridg: EvaluatedActivityRelationship.uncertaintyCode
+  :sdtm: "--CONTRT"
+- :label: "Standard Toxicity Grade"
+  :bridg: AdverseEvent.gradeCode
+  :sdtm: "--TOXGR"
+- :label: "Start Date Time of Event"
+  :bridg: AdverseEvent.occurrenceDateRange
+  :sdtm: "--STDTC"
+- :label: "End Date Time of Event"
+  :bridg: AdverseEvent.occurrenceDateRange
+  :sdtm: "--ENDTC"
+- :label: "Location of Event"
+  :bridg: AdverseEvent.locationDescription
+  :sdtm: "--LOC"  
