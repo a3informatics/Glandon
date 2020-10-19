@@ -1965,12 +1965,22 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "tag analysis" do
       ct_set.each do |v|
+        next if v[:version] != "27"
 print "Processing: #{v[:uri]}, v#{v[:version]}  "
         query_results = Sparql::Query.new.query(ct_tags(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
 print ".."
         results = query_results.by_object_set([:v, :d, :clid, :cliid, :tag]).map{|x| {version: x[:v], date: x[:d], code_list: x[:clid], code_list_item: x[:cliid], tag: x[:tag]}}
 print ".."
-        check_file_actual_expected(results, sub_dir, "ct_query_tag_#{v[:version]}.yaml", equate_method: :hash_equal)
+        overall = {}
+        overall[:version] = results[0][:version]
+        overall[:date] = results[0][:date]
+        overall[:results] = {}
+        results.each do |x|
+          key = x[:code_list_item].empty? ? "#{x[:code_list]}" : "#{x[:code_list]}.#{x[:code_list_item]}"
+          overall[:results][key] = [] unless overall[:results].key?(key) 
+          overall[:results][key] << x[:tag]
+        end
+        check_file_actual_expected(overall, sub_dir, "ct_query_tag_#{v[:version]}.yaml", equate_method: :hash_equal, write_file: true)
 puts ".."
       end
     end
