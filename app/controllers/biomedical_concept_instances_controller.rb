@@ -43,6 +43,7 @@ class BiomedicalConceptInstancesController < ManagedItemsController
     respond_to do |format|
       format.html do
         return true unless edit_lock(@bc)
+        @bc = @edit.item
         @close_path = history_biomedical_concept_instances_path({ biomedical_concept_instance:
             { identifier: @bc.scoped_identifier, scope_id: @bc.scope } })
       end
@@ -54,9 +55,9 @@ class BiomedicalConceptInstancesController < ManagedItemsController
   end
 
   def edit_another
-    authorize BiomedicalConceptInstance, :edit? 
     @bc = BiomedicalConcept.find_minimum(protect_from_bad_id(params))
     return true unless edit_lock(@bc)
+    @bc = @edit.item
     render :json => {data: @bc.to_h, token_id: @edit.token.id}, :status => 200
   end
 
