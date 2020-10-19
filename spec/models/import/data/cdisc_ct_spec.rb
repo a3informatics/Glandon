@@ -1970,7 +1970,7 @@ print "Processing: #{v[:uri]}, v#{v[:version]}  "
 print ".."
         results = query_results.by_object_set([:v, :d, :clid, :cliid, :tag]).map{|x| {version: x[:v], date: x[:d], code_list: x[:clid], code_list_item: x[:cliid], tag: x[:tag]}}
 print ".."
-        check_file_actual_expected(results, sub_dir, "ct_query_tag_#{v[:version]}.yaml", equate_method: :hash_equal, write_file: true)
+        check_file_actual_expected(results, sub_dir, "ct_query_tag_#{v[:version]}.yaml", equate_method: :hash_equal)
 puts ".."
       end
     end
