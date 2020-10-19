@@ -36,7 +36,7 @@ describe "Import::CdiscTerm CT Data" do
   # ---------- IMPORTANT SWITCHES ----------
   
   def set_write_file
-    true
+    false
   end
 
   def use_api
@@ -165,7 +165,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       puts colourize("***** Warning! Copying result file to '#{target_filename}'. *****", "red")
       copy_file_from_public_files_rename("test", filename, sub_dir, target_filename) 
     end
-    check_ttl_fix(filename, target_filename, {last_change_date: true})
+    check_ttl_fix_v2(filename, target_filename, {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
@@ -1888,7 +1888,9 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
-      load_cdisc_term_versions(CdiscCtHelpers.version_range)
+      CdiscCtHelpers.version_range.each do |version|
+        load_local_file_into_triple_store(sub_dir, excel_filename(version))
+      end
     end
 
     it "code list count by version" do
@@ -1963,10 +1965,13 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "tag analysis" do
       ct_set.each do |v|
-        puts "Processing: #{v[:uri]}, v#{v[:version]}"
+print "Processing: #{v[:uri]}, v#{v[:version]}  "
         query_results = Sparql::Query.new.query(ct_tags(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
+print ".."
         results = query_results.by_object_set([:v, :d, :clid, :cliid, :tag]).map{|x| {version: x[:v], date: x[:d], code_list: x[:clid], code_list_item: x[:cliid], tag: x[:tag]}}
-        check_file_actual_expected(results, sub_dir, "ct_query_tag_#{v[:version]}.yaml", equate_method: :hash_equal)
+print ".."
+        check_file_actual_expected(results, sub_dir, "ct_query_tag_#{v[:version]}.yaml", equate_method: :hash_equal, write_file: true)
+puts ".."
       end
     end
 
