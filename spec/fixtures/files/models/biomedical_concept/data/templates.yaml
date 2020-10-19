@@ -18,7 +18,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--CAT"
@@ -28,7 +28,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--SCAT"
@@ -37,8 +37,8 @@
      :mandatory: false
      :enabled: true  
      :has_complex_datatype: 
-    - :short_name: CD
-      :has_property: 
+   - :short_name: CD
+     :has_property: 
       - 
         :label: "code"
         :alias: "--POS"
@@ -47,8 +47,8 @@
      :mandatory: false
      :enabled: true  
      :has_complex_datatype: 
-    - :short_name: CD
-      :has_property: 
+   - :short_name: CD
+     :has_property: 
       - 
         :label: "code"
         :alias: "--LOC"
@@ -57,8 +57,8 @@
      :mandatory: false
      :enabled: true  
      :has_complex_datatype: 
-    - :short_name: CD
-      :has_property: 
+   - :short_name: CD
+     :has_property: 
       - 
         :label: "code"
         :alias: "--LAT"
@@ -67,8 +67,8 @@
      :mandatory: false
      :enabled: true  
      :has_complex_datatype: 
-    - :short_name: CD
-      :has_property: 
+   - :short_name: CD
+     :has_property: 
       - 
         :label: "code"
         :alias: "--DIR"
@@ -77,8 +77,8 @@
      :mandatory: false
      :enabled: true  
      :has_complex_datatype: 
-    - :short_name: CD
-      :has_property: 
+   - :short_name: CD
+     :has_property: 
       - 
         :label: "code"
         :alias: "--METHOD"
@@ -87,8 +87,8 @@
      :mandatory: true
      :enabled: true  
      :has_complex_datatype: 
-    - :short_name: DATETIME
-      :has_property: 
+   - :short_name: DATETIME
+     :has_property: 
       - 
         :label: "value"
         :alias: "--DTC"
@@ -97,8 +97,8 @@
      :mandatory: true
      :enabled: true  
      :has_complex_datatype: 
-    - :short_name: BL
-      :has_property: 
+   - :short_name: BL
+     :has_property: 
       - 
         :label: "value"
         :alias: "--STAT"
@@ -107,111 +107,111 @@
      :mandatory: true
      :enabled: true  
      :has_complex_datatype: 
-    - :short_name: CD
-      :has_property: 
+   - :short_name: CD
+     :has_property: 
       - 
         :label: "value"
         :alias: "--REASND"
         :is_a: "Reason Not Done"
    - :label: "Result"
-      :mandatory: true
-      :enabled: true  
-      :has_complex_datatype: 
-    - :short_name: CD
-      :has_property: 
+     :mandatory: true
+     :enabled: true  
+     :has_complex_datatype: 
+   - :short_name: CD
+     :has_property: 
       - 
         :label: "code"
         :alias: "--ORRES"
         :is_a: "Result Value"
-    - :short_name: PQR
-      :has_property: 
+   - :short_name: PQR
+     :has_property: 
       - 
         :label: "value"
         :alias: "--ORRES"
         :is_a: "Result Value"
-       - 
+      - 
         :label: "code"
         :alias: "--ORRESU"
         :is_a: "Result Units"
-    - :short_name: PQR_INT
-      :has_property: 
+   - :short_name: PQR_INT
+     :has_property: 
       - 
         :label: "value"
         :alias: "--ORRES"
         :is_a: "Result Value"
-       - 
+      - 
         :label: "code"
         :alias: "--ORRESU"
         :is_a: "Result Units"
    - :label: "Specimen"
-      :mandatory: false
-      :enabled: true  
-      :has_complex_datatype: 
-    - :short_name: CD
-      :has_property: 
+     :mandatory: false
+     :enabled: true  
+     :has_complex_datatype: 
+   - :short_name: CD
+     :has_property: 
       - 
         :label: "code"
         :alias: "--SPEC"
         :is_a: "Specimen"
    - :label: "Clinically Significant"
-      :mandatory: false
-      :enabled: true  
-      :has_complex_datatype: 
-    - :short_name: CD
-      :has_property: 
+     :mandatory: false
+     :enabled: true  
+     :has_complex_datatype: 
+   - :short_name: CD
+     :has_property: 
       - 
         :label: "code"
         :alias: "--CLSIG"
         :is_a: "Clinical Significance"
    - :label: "Fasting Status"
-      :mandatory: false
-      :enabled: true  
-      :has_complex_datatype: 
-    - :short_name: CD
-      :has_property: 
+     :mandatory: false
+     :enabled: true  
+     :has_complex_datatype: 
+   - :short_name: CD
+     :has_property: 
       - 
         :label: "code"
         :alias: "--FAST"
         :is_a: "Fasting Status"
    - :label: "Evaluator"
-      :mandatory: false
-      :enabled: true  
-      :has_complex_datatype: 
-    - :short_name: CD
-      :has_property: 
+     :mandatory: false
+     :enabled: true  
+     :has_complex_datatype: 
+   - :short_name: CD
+     :has_property: 
       - 
         :label: "code"
         :alias: "--EVAL"
         :is_a: "Performer"
    - :label: "Evaluator Identifier"
-        :mandatory: false
-        :enabled: true  
-        :has_complex_datatype: 
-    - :short_name: CD
-      :has_property: 
+     :mandatory: false
+     :enabled: true  
+     :has_complex_datatype: 
+   - :short_name: CD
+     :has_property: 
       - 
         :label: "code"
         :alias: "---EVALID"
         :is_a: "Performer Alias"
 - :label: "Event Observation"
-    :identifier: "EVENT OBS"
-    :identified_by: 
-     :label: "Event"
-     :mandatory: true
-     :enabled: true  
-     :simple_datatype: "string"
-      :has_property: 
-      - 
+  :identifier: "EVENT OBS"
+  :identified_by: 
+    :label: "Event"
+    :mandatory: true
+    :enabled: true  
+    :simple_datatype: "string"
+    :has_property: 
+    - 
         :label: "value"
         :alias: "--TERM"
         :is_a: "AE Term"
-    :has_items:
+  :has_items:
    - :label: "Category Code"
-      :mandatory: false
-      :enabled: true  
-      :has_complex_datatype: 
+     :mandatory: false
+     :enabled: true  
+     :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--CAT"
@@ -221,7 +221,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--SCAT"
@@ -231,7 +231,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--SER"
@@ -241,7 +241,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--SEV"
@@ -251,7 +251,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--REL"
@@ -261,7 +261,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--RELNST"
@@ -271,7 +271,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--ACN"
@@ -281,7 +281,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--ACNOTH"
@@ -291,7 +291,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--CONTRT"
@@ -301,7 +301,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--OUT"
@@ -311,7 +311,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--PATT"
@@ -321,7 +321,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--SHOSP"
@@ -331,7 +331,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--SHOSP"
@@ -341,7 +341,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--SOD"
@@ -351,7 +351,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--SMIE"
@@ -361,18 +361,17 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--SCAN"
         :is_a: "Seriousness"             
-         ()
    - :label: "Results in Death"
      :mandatory: false
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--SDTH"
@@ -382,7 +381,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--TOXGR"
@@ -392,7 +391,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: DATETIME
-      :has_property: 
+     :has_property: 
       - 
         :label: "value"
         :alias: "--STDTC"
@@ -402,7 +401,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: DATETIME
-      :has_property: 
+     :has_property: 
       - 
         :label: "value"
         :alias: "--ENDTC"
@@ -412,7 +411,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--LOC"
@@ -422,7 +421,7 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--SCONG"
@@ -432,11 +431,8 @@
      :enabled: true  
      :has_complex_datatype: 
    - :short_name: CD
-      :has_property: 
+     :has_property: 
       - 
         :label: "code"
         :alias: "--DISAB"
         :is_a: "Seriousness"
-
-
-
