@@ -345,7 +345,7 @@ describe FormsController do
       put :update, params:{id: @form.id, form: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_form_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_form_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it 'update, second update so no audit' do
