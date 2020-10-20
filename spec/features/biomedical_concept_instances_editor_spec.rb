@@ -544,16 +544,16 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
       # Put to Recorded - locked state
       click_on 'Return'
-      wait_for_ajax 10
+      wait_for_ajax 20
 
-      context_menu_element_v2('history', '0.1.0', :document_control)
+      context_menu_element_v2('history', 'HEIGHT', :document_control)
       click_on 'Submit Status Change'
       click_on 'Submit Status Change'
 
       click_on 'Return'
-      wait_for_ajax 10
+      wait_for_ajax 20
 
-      context_menu_element_v2('history', '0.1.0', :edit)
+      context_menu_element_v2('history', 'HEIGHT', :edit)
       wait_for_ajax 20
 
       ui_check_table_info('editor', 1, 10, 12)
@@ -582,7 +582,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       ui_editor_check_value 2, 8, 'LEG C32974 (LOC C74456 v62.0.0)'
 
       click_on 'Return'
-      wait_for_ajax 10
+      wait_for_ajax 20
 
       ui_check_table_info('history', 1, 2, 2)
     end
