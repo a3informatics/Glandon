@@ -1987,8 +1987,6 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       }
     end
 
-#           FILTER NOT EXISTS {?y isoC:classifiedAs/isoC:prefLabel ?cltag}
-
     it "tag analysis" do
       ct_set.each do |v|
         #next if v[:version] != "26"
@@ -2007,7 +2005,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
           overall[:results][key] << x[:tag]
         end
         puts ".."
-        check_file_actual_expected(overall, sub_dir, "ct_query_tag_#{v[:version]}.yaml", equate_method: :hash_equal, write_file: true)
+        check_file_actual_expected(overall, sub_dir, "ct_query_tag_#{v[:version]}.yaml", equate_method: :hash_equal)
       end
     end
 
@@ -2029,7 +2027,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         end
         print ".."
         overall[:results] == {} ? puts("") : puts(" RESULTS ")
-        check_file_actual_expected(overall, sub_dir, "ct_query_tag_misaligned#{v[:version]}.yaml", equate_method: :hash_equal, write_file: true)
+        check_file_actual_expected(overall, sub_dir, "ct_query_tag_misaligned#{v[:version]}.yaml", equate_method: :hash_equal)
       end
     end
 
