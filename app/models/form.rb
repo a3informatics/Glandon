@@ -14,6 +14,11 @@ class Form < IsoManagedV2
 
   include Form::Ordinal
 
+  def clone
+    self.has_group_links
+    super
+  end
+
   # Get Items.
   #
   # @return [Array] Array of hashes, one per group, sub group and item. Ordered by ordinal.

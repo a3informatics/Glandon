@@ -13,7 +13,7 @@ class Forms::Items::TextLabelsController < ManagedItemsController
     form = Form.find_full(update_params[:form_id])
     return true unless check_lock_for_item(form)
     text_label = Form::Item::TextLabel.find(protect_from_bad_id(params))
-    text_label = text_label.update(update_params)
+    text_label = text_label.update_with_clone(update_params, form)
     if text_label.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: text_label.to_h}, :status => 200

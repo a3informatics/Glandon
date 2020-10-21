@@ -13,7 +13,7 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
     form = Form.find_full(update_params[:form_id])
     return true unless check_lock_for_item(form)
     normal = Form::Group::Normal.find(protect_from_bad_id(params))
-    normal = normal.update(update_params)
+    normal = normal.update_with_clone(update_params, form)
     if normal.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: normal.to_h}, :status => 200

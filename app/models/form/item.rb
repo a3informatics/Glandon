@@ -16,6 +16,23 @@ class Form::Item < IsoConceptV2
 
   include Form::Ordinal
 
+  # Managed Ancestors Path. Returns the path from the managed ancestor to this class
+  #
+  # @return [String] the path as an expanded set of predicates
+  def self.managed_ancestors_path
+    [
+      "<http://www.assero.co.uk/BusinessForm#hasGroup>",
+      "<http://www.assero.co.uk/BusinessForm#hasItem>"
+    ]
+  end
+
+  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  #
+  # @return [Symbol] the predicate property as a symbol
+  def self.managed_ancestors_predicate
+    :has_item
+  end
+
   def delete(parent)
     update_query = %Q{
       DELETE DATA

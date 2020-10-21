@@ -16,6 +16,20 @@ class Form::Group < IsoConceptV2
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
   validates :optional, inclusion: { in: [ true, false ] }
 
+  # Managed Ancestors Path. Returns the path from the managed ancestor to this class
+  #
+  # @return [String] the path as an expanded set of predicates
+  def self.managed_ancestors_path
+    ["<http://www.assero.co.uk/BusinessForm#hasGroup>"]
+  end
+
+  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  #
+  # @return [Symbol] the predicate property as a symbol
+  def self.managed_ancestors_predicate
+    :has_group
+  end
+
   include Form::Ordinal
 
   def delete(parent)

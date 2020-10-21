@@ -13,7 +13,7 @@ class Forms::Items::PlaceholdersController < ManagedItemsController
     form = Form.find_full(update_params[:form_id])
     return true unless check_lock_for_item(form)
     placeholder = Form::Item::Placeholder.find(protect_from_bad_id(params))
-    placeholder = placeholder.update(update_params)
+    placeholder = placeholder.update_with_clone(update_params, form)
     if placeholder.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: placeholder.to_h}, :status => 200
