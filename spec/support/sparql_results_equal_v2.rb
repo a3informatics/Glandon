@@ -21,10 +21,12 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
 
   def match?(actual, expected)
     processed = {}
-    a_subjects = Subjects.new
-    e_subjects = Subjects.new
+    @a_subjects = Subjects.new
+    @e_subjects = Subjects.new
     @actual_refs = {}
     @expected_refs = {}
+    @actual_classifications = Hash.new { |h,k| h[k] = [] }
+    @expected_classifications = Hash.new { |h,k| h[k] = [] }
     @mismatches = []
     return false if !actual[:checks]
     @mismatches << "***** Warning, prefix count mismatch. a=#{actual[:prefixes].count} versus e=#{expected[:prefixes].count}*****" if actual[:prefixes].count != expected[:prefixes].count
@@ -32,11 +34,13 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
     actual[:triples].each do |triple|
       processed[triple_key(triple)] = triple
       map_reference(@actual_refs, triple)
-      a_subjects.add(triple)
+      map_classifications(@actual_classifications, triple)
+      @a_subjects.add(triple)
     end
     expected[:triples].each do |triple|
       map_reference(@expected_refs, triple)
-      e_subjects.add(triple)
+      map_classifications(@expected_classifications, triple)
+      @e_subjects.add(triple)
     end
     expected[:prefixes].each do |prefix|
       found = actual[:prefixes].select {|r| r == prefix}
@@ -48,22 +52,24 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
       next if !triple.nil?
       next if triple.nil? && is_reference?(item)
       next if triple.nil? && is_origin?(item)
-      e_subject = e_subjects.subject(item)
+      next if triple.nil? && is_classification?(item)
+      e_subject = @e_subjects.subject(item)
       next if e_subject.ignore?
-      a_subject = a_subjects.subject(item)
-      next if subsets_equal?(a_subjects, e_subjects, a_subject, e_subject)
+      a_subject = @a_subjects.subject(item)
+      next if subsets_equal?(a_subject, e_subject)
       @mismatches << "***** Triple not matched: [#{item[:subject]}, #{item[:predicate]}, #{item[:object]}]. *****" if triple.nil?
     end
     check_references
+    check_classifications
     @mismatches.empty?
   end
 
-  def subsets_equal?(a_subjects, e_subjects, a_subject, e_subject)
-    return true if a_subject.is_subset? && e_subject.is_subset? && a_subjects.subset_items(a_subject) == e_subjects.subset_items(e_subject)
+  def subsets_equal?(a_subject, e_subject)
+    return true if a_subject.is_subset? && e_subject.is_subset? && @a_subjects.subset_items(a_subject) == @e_subjects.subset_items(e_subject)
     @mismatches << "***** Subset mismatch, actual subset?: #{a_subject.is_subset?}"
     @mismatches << "***** Subset mismatch, expected subset?: #{e_subject.is_subset?}"
-    @mismatches << "***** Subset mismatch, actual items:\n#{a_subjects.subset_items(a_subject)}"
-    @mismatches << "***** Subset mismatch, expected items:\n#{e_subjects.subset_items(e_subject)}"
+    @mismatches << "***** Subset mismatch, actual items:\n#{@a_subjects.subset_items(a_subject)}"
+    @mismatches << "***** Subset mismatch, expected items:\n#{@e_subjects.subset_items(e_subject)}"
     false
   end
 
@@ -76,6 +82,11 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
     collection[triple[:object]] = triple[:object]
   end
 
+  def map_classifications(collection, triple)
+    return if !is_classification?(triple)
+    collection[triple[:object]] << triple[:subject]
+  end
+
   def map_is_ordered(collection, triple)
     return if !is_ordered?(triple)
     collection[triple[:subject]] = triple[:object]
@@ -85,6 +96,10 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
     triple[:predicate] == "<http://www.assero.co.uk/BusinessOperational#reference>"
   end
 
+  def is_classification?(triple)
+    triple[:predicate] == "<http://www.assero.co.uk/ISO11179Concepts#appliesTo>"
+  end
+
   def is_origin?(triple)
     triple[:predicate] == "<http://www.assero.co.uk/ISO11179Types#origin>"
   end
@@ -92,6 +107,12 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
   def check_references
     reference_count
     reference_match
+  end
+
+  def check_classifications
+    classifications_count
+    classifications_keys_match
+    classifications_values_match
   end
 
   def reference_count    
@@ -105,6 +126,21 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
     add_mismatch(@expected_refs.keys - @actual_refs.keys)
   end
 
+  def classifications_count    
+    return if @actual_classifications.keys.count == @expected_classifications.keys.count
+    @mismatches << "***** Reference count mismatch [a: #{@actual_classifications.keys.count}, e: #{@expected_classifications.keys.count}] *****" 
+  end
+
+  def classifications_keys_match
+    return if classifications_keys_match?
+    add_mismatch(@actual_classifications.keys - @expected_classifications.keys)
+    add_mismatch(@expected_classifications.keys - @actual_classifications.keys)
+  end
+
+  def classifications_values_match
+    return if classifications_values_match?
+  end
+
   def add_mismatch(items)
     items.each do |item|
       @mismatches << "***** Reference mismatch for {item} *****"
@@ -113,13 +149,43 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
 
   def references_match?
     return false if !reference_keys_match?
-    puts colourize("Matching keys: #{@actual_refs.keys}", "blue") 
+    puts colourize("Matching reference keys", "blue") 
+    true
+  end
+
+  def classifications_keys_match?
+    return false unless classifications_keys_equal?
+    puts colourize("Matching classification keys", "blue") 
+    true
+  end
+
+  def classifications_values_match?
+    return false unless classifications_values_equal?
+    puts colourize("Matching classification values", "blue") 
     true
   end
 
   def reference_keys_match?
     @actual_refs.keys - @expected_refs.keys == [] && @expected_refs.keys - @actual_refs.keys == []
   end
+
+  def classifications_keys_equal?
+    @actual_classifications.keys - @expected_classifications.keys == [] && @expected_classifications.keys - @actual_classifications.keys == []
+  end
+
+  def classifications_values_equal?
+    result = true
+    @actual_classifications.each do |key, value|
+      a_results = @a_subjects.classification_items(value)
+      e_value = @expected_classifications[key]
+      e_results = @e_subjects.classification_items(e_value)
+      this_result = a_results == e_results
+      result = result && this_result 
+      @mismatches << "***** Classification mismatch #{key}" unless this_result
+    end
+    result
+  end
+
 
   class Subjects
 
@@ -143,6 +209,10 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
       subset_list(@subjects[uri].object_for("<http://www.assero.co.uk/Thesaurus#members>"))
     end
 
+    def classification_items(subject)
+      classifications(subject)
+    end
+
   private
 
     def subset_list(uri, depth=0)
@@ -151,6 +221,17 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
       object = subject.object_for("<http://www.assero.co.uk/Thesaurus#memberNext>")
       return [subject.object_for("<http://www.assero.co.uk/Thesaurus#item>")] if object.nil?
       [subject.object_for("<http://www.assero.co.uk/Thesaurus#item>")] + subset_list(object, depth + 1)  
+    end
+
+    def classifications(uris)
+      results = []
+      uris.each do |uri|
+        subject = @subjects[uri]
+        classified_as = subject.object_for("<http://www.assero.co.uk/ISO11179Concepts#classifiedAs>")
+        contexts = subject.objects_for("<http://www.assero.co.uk/ISO11179Concepts#context>")
+        results += contexts.map{|x| "#{classified_as}.#{x}"}
+      end
+      results
     end
 
   end
@@ -170,7 +251,10 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
     end
 
     def ignore?
-      rdf_type == "<http://www.assero.co.uk/Thesaurus#Subset>" || rdf_type == "<http://www.assero.co.uk/Thesaurus#SubsetMember>"
+      rdf_type == "<http://www.assero.co.uk/Thesaurus#Subset>" || 
+      rdf_type == "<http://www.assero.co.uk/Thesaurus#SubsetMember>" || 
+      rdf_type == "<http://www.assero.co.uk/Thesaurus#SubsetMember>" || 
+      rdf_type == "<http://www.assero.co.uk/ISO11179Concepts#Classification>"
     end
 
     def rdf_type
@@ -181,6 +265,10 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
       items = @triples.select{|x| x[:predicate] == predicate}
       return items.first[:object] if items.count == 1
       return nil
+    end
+
+    def objects_for(predicate)
+      @triples.select{|x| x[:predicate] == predicate}.map{|y| y[:object]}
     end
 
   private
