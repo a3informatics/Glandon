@@ -13,8 +13,7 @@ describe Form do
   describe "Validation Tests" do
     
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
@@ -220,35 +219,116 @@ describe Form do
 
   end
 
-  # it "allows a form to be updated" do
-  #   old_item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #   old_item.label = "New Label"
-  #   Form.update(old_item.to_operation)
-  #   item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  # #Xwrite_hash_to_yaml_file_2(item.to_json, sub_dir, "update.yaml")
-  #   expected = read_yaml_file_to_hash_2(sub_dir, "update.yaml")
-  #   expected[:last_changed_date] = date_check_now(item.lastChangeDate,5).iso8601
-  #   expected[:creation_date] = date_check_now(item.creationDate,5).iso8601
-  #   expect(item.errors.count).to eq(0)
-  #   expect(item.to_json).to eq(expected)
-  # end
+  describe "Update Tests" do
 
-  # it "allows a form to be updated, error" do
-  #   item = Form.create_placeholder({:identifier => "UPDATE ERRORS", :label => "Update Errors", :freeText => "Update Errors"})
-  #   expect(item.errors.full_messages.to_sentence).to eq("")
-  #   expect(item.errors.count).to eq(0)
-  #   old_item = Form.find("F-ACME_UPDATEERRORS", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #   new_item = read_yaml_file_to_hash_2(sub_dir, "update_error_1.yaml")
-  #   update_item = Form.update(new_item[:form])
-  #   expect(update_item.errors.full_messages.to_sentence).to eq("Group, ordinal=1, error: Group, ordinal=2, error: Item, ordinal=1, error: Optional contains an invalid boolean value")
-  #   expect(update_item.errors.count).to eq(1)
-  # end
+    def make_standard(item)
+      params = {}
+      params[:registration_status] = "Standard"
+      params[:previous_state] = "Incomplete"
+      item.update_status(params)
+    end
 
-  # it "allows a form to be destroyed" do
-  #   item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #   item.destroy
-  #   expect{Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")}.to raise_error(Exceptions::NotFoundError)
-  # end
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "update normal group, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_1a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.update_with_clone({label: "New label"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_file_actual_expected(new_form.to_h, sub_dir, "update_form_1b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_1a.yaml", equate_method: :hash_equal)
+    end
+
+    it "update question, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_2a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      question.update_with_clone({label: "New label"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_file_actual_expected(new_form.to_h, sub_dir, "update_form_2b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_2a.yaml", equate_method: :hash_equal)
+    end
+
+    it "update text label, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"text_label"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_3a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      text_label = Form::Item::TextLabel.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#TL_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      text_label.update_with_clone({label_text: "New label text"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_file_actual_expected(new_form.to_h, sub_dir, "update_form_3b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_3a.yaml", equate_method: :hash_equal)
+    end
+
+    it "update placeholder, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"placeholder"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_4a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      placeholder = Form::Item::TextLabel.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#PL_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      placeholder.update_with_clone({free_text: "New free text"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_file_actual_expected(new_form.to_h, sub_dir, "update_form_4b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_4a.yaml", equate_method: :hash_equal)
+    end
+
+    it "update mapping, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"mapping"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_5a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      mapping = Form::Item::TextLabel.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#MA_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      mapping.update_with_clone({mapping: "New mapping"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_file_actual_expected(new_form.to_h, sub_dir, "update_form_5b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_5a.yaml", equate_method: :hash_equal)
+    end
+
+  end
 
   # it "to_xml, I" do
   #   item = Form.find("F-ACME_DM101", "http://www.assero.co.uk/MDRForms/ACME/V1")
