@@ -45,7 +45,6 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
   describe "Edit BC", :type => :feature, js:true do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -516,7 +515,6 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
   describe "Edit BC, Locked Status", :type => :feature, js:true do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
