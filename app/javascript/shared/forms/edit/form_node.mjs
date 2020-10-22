@@ -186,36 +186,6 @@ export default class FormNode extends TreeNode {
 
 
   /**
-   * Select node (add respective styles and data)
-   */
-   select() {
-
-    super.select();
-
-    // Update node style
-    this.$.find( 'circle' ).css( 'fill', '#fff' );
-    this.$.find( '.label' ).css( 'fill', '#fff' );
-    this.$.find( '.label-border' ).css( 'fill', this.color )
-                                  .css( 'stroke', this.color );
-
-  }
-
-  /**
-   * Deselect node (clear respective styles and data)
-   */
-  deselect() {
-
-    super.deselect();
-
-    // Update node style
-    this.$.find( 'circle' ).css( 'fill', '#fff' );
-    this.$.find( '.label' ).css( 'fill', colors.greyMedium );
-    this.$.find( '.label-border' ).css( 'fill', '#fff')
-                                  .css( 'stroke', colors.greyLight );
-
-  }
-
-  /**
    * Remove a child Node from this instance and update sibling ordinals
    * @override parent implementation
    * @param {FormNode} node Node instance to be removed
@@ -257,6 +227,35 @@ export default class FormNode extends TreeNode {
 
     if ( this.hasChildren )
       this.d.children.sort( (a, b) => (a.data.ordinal - b.data.ordinal) );
+
+  }
+
+
+  /** Support **/
+
+
+  /**
+   * Toggle node selected styles depending on target selected state
+   * @param {boolean} selected Target selected state
+   * @override parent implementation
+   */
+  toggleSelectStyles(selected) {
+
+    if ( selected ) {
+
+      this.$.find( '.label' ).css( 'fill', '#fff' );
+      this.$.find( '.label-border' ).css( 'fill', this.color )
+                                    .css( 'stroke', this.color );
+
+    }
+
+    else {
+
+      this.$.find( '.label' ).css( 'fill', colors.greyMedium );
+      this.$.find( '.label-border' ).css( 'fill', '#fff')
+                                    .css( 'stroke', colors.greyLight );
+
+    }
 
   }
 

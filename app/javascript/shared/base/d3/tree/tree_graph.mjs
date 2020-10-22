@@ -532,6 +532,9 @@ export default class TreeGraph {
    */
   _onDataLoaded(rawData) {
 
+    // Save reference to the raw data structure
+    this.rawData = rawData;
+    
     // Convert raw data to d3 hierarchy
     this.graph.root = this._preprocessData( rawData );
     this.render().reCenter();

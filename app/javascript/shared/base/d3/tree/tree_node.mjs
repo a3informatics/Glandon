@@ -242,7 +242,7 @@ export default class TreeNode {
 
     // Update node CSS class and styles
     this.$.addClass( 'selected' );
-    this.$.find('circle').css( 'fill', colors.accent2 );
+    this.toggleSelectStyles( true );
 
   }
 
@@ -256,7 +256,7 @@ export default class TreeNode {
 
     // Update node CSS class and styles
     this.$.removeClass( 'selected' );
-    this.$.find('circle').css( 'fill', defaultProps.color );
+    this.toggleSelectStyles( false );
 
   }
 
@@ -293,6 +293,24 @@ export default class TreeNode {
       this.d.children = this.d._children;
       this.d._children = null;
     }
+
+  }
+
+
+  /** Support **/
+
+
+  /**
+   * Toggle node selected styles depending on target selected state
+   * @param {boolean} selected Target selected state
+   * @override for custom implementation
+   */
+  toggleSelectStyles(selected) {
+
+    if ( selected )
+      this.$.find('circle').css( 'fill', colors.accent2 );
+    else
+      this.$.find('circle').css( 'fill', defaultProps.color );
 
   }
 
