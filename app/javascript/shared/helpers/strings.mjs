@@ -22,7 +22,7 @@ function findInString(value, text) {
 function cropText(text, maxLength = 30) {
 
   if ( typeof text === 'string' )
-    return text.length > 30 ? `${ text.substring(0, 30) }...` : text;
+    return text.length > maxLength ? `${ text.substring(0, maxLength) }...` : text;
   else
     return text
 

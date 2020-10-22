@@ -15,7 +15,8 @@ const tagColorsMap = {
   'ADaM': colors.oliveGreen,
   'Protocol': colors.accentAquaDark,
   'SEND': colors.accentPurple,
-  'CDISC': colors.accent1Dark,
+  'CDISC': colors.accent1,
+  'Define-XML': colors.primaryBright,
   'default': colors.primaryLight
 }
 
