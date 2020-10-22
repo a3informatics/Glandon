@@ -114,7 +114,7 @@ class IsoConceptV2
           if old_object.multiple_managed_ancestors?
             cloned_object = clone_update_and_save(old_object, params, prev_object, tx)
             result = cloned_object if self.uri == old_object.uri
-            prev_object.replace_link(cloned_object.class.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+            prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
             prev_object = cloned_object
           else
             prev_object = old_object

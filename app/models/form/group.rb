@@ -16,21 +16,32 @@ class Form::Group < IsoConceptV2
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
   validates :optional, inclusion: { in: [ true, false ] }
 
+  include Form::Ordinal
+
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #
   # @return [String] the path as an expanded set of predicates
   def self.managed_ancestors_path
-    ["<http://www.assero.co.uk/BusinessForm#hasGroup>"]
+    [
+      "<http://www.assero.co.uk/BusinessForm#hasGroup>",
+      "<http://www.assero.co.uk/BusinessForm#hasSubGroup>*",
+      #{}"<http://www.assero.co.uk/BusinessForm#hasCommon>?"
+    ]
   end
 
   # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
   #
   # @return [Symbol] the predicate property as a symbol
-  def self.managed_ancestors_predicate
-    :has_group
+  def managed_ancestors_predicate
+    top_level_group? ? :has_group : :has_sub_group
   end
 
-  include Form::Ordinal
+  # Top Level Group? Is this item the top level group
+  #
+  # @result [Boolean] return true if this instance is a top level group or false if  it is a subGroup
+  def top_level_group?
+    Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bf:hasGroup ?o}", "", [:bf]).ask? 
+  end
 
   def delete(parent)
     update_query = %Q{

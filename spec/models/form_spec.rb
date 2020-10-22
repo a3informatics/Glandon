@@ -301,7 +301,7 @@ describe Form do
       check_file_actual_expected(form.to_h, sub_dir, "update_form_4a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
-      placeholder = Form::Item::TextLabel.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#PL_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      placeholder = Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#PL_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
       placeholder.update_with_clone({free_text: "New free text"}, new_form)
       new_form = Form.find_full(new_form.uri)
       check_file_actual_expected(new_form.to_h, sub_dir, "update_form_4b.yaml", equate_method: :hash_equal)
@@ -320,13 +320,51 @@ describe Form do
       check_file_actual_expected(form.to_h, sub_dir, "update_form_5a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
-      mapping = Form::Item::TextLabel.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#MA_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      mapping = Form::Item::Mapping.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#MA_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
       mapping.update_with_clone({mapping: "New mapping"}, new_form)
       new_form = Form.find_full(new_form.uri)
       check_file_actual_expected(new_form.to_h, sub_dir, "update_form_5b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
       check_file_actual_expected(form.to_h, sub_dir, "update_form_5a.yaml", equate_method: :hash_equal)
     end
+
+    it "update normal group, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"normal_group"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_6a.yaml", equate_method: :hash_equal, write_file: true)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      sub_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      sub_group.update_with_clone({label: "New label"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_file_actual_expected(new_form.to_h, sub_dir, "update_form_6b.yaml", equate_method: :hash_equal, write_file: true)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_6a.yaml", equate_method: :hash_equal)
+    end
+
+    # it "update common group, clone, no errors" do
+    #   allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    #   form = Form.create(label: "Form1", identifier: "XXX")
+    #   form.add_child({type:"normal_group"})
+    #   normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+    #   normal_group.add_child({type:"common_group"})
+    #   make_standard(form)
+    #   form = Form.find_full(form.uri)
+    #   check_file_actual_expected(form.to_h, sub_dir, "update_form_7a.yaml", equate_method: :hash_equal, write_file: true)
+    #   new_form = form.create_next_version
+    #   new_form = Form.find_full(new_form.uri)
+    #   common_group = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238_CG"))
+    #   common_group.update_with_clone({label: "New label"}, new_form)
+    #   new_form = Form.find_full(new_form.uri)
+    #   check_file_actual_expected(new_form.to_h, sub_dir, "update_form_7b.yaml", equate_method: :hash_equal, write_file: true)
+    #   form = Form.find_full(form.uri)
+    #   check_file_actual_expected(form.to_h, sub_dir, "update_form_7a.yaml", equate_method: :hash_equal)
+    # end
 
   end
 
