@@ -256,7 +256,7 @@ describe "Forms", :type => :feature do
       click_action :edit
 
       ui_in_modal do
-        within( find('#node-editor') ) do
+        within( find('#generic-editor') ) do
           expect(page).to have_content 'C48660'
           expect(page).to have_content 'NA'
           expect(page).to have_content 'Not Applicable'
@@ -274,7 +274,7 @@ describe "Forms", :type => :feature do
       click_action :edit
 
       ui_in_modal do
-        within( find('#node-editor') ) do
+        within( find('#generic-editor') ) do
           expect(page).to have_content 'Supine Position'
           expect(page).to have_content 'C62167'
 
@@ -296,7 +296,7 @@ describe "Forms", :type => :feature do
 
       # Edit Node data
       ui_in_modal do
-        within( find('#node-editor') ) do
+        within( find('#generic-editor') ) do
           fill_in 'label', with: 'Height Group'
           fill_in 'completion', with: 'Test Completion Instruction'
           click_on 'Save changes'
@@ -309,7 +309,7 @@ describe "Forms", :type => :feature do
       click_action(:edit)
 
       ui_in_modal do
-        within( find('#node-editor') ) do
+        within( find('#generic-editor') ) do
           expect( find_field( name: 'completion' ).value ).to eq 'Test Completion Instruction'
           expect( find_field( 'label' ).value ).to eq 'Height Group'
           click_on 'Close'
@@ -322,7 +322,7 @@ describe "Forms", :type => :feature do
 
       # Field validation
       ui_in_modal do
-        within( find('#node-editor') ) do
+        within( find('#generic-editor') ) do
           fill_in 'local_label', with: ''
           click_on 'Save changes'
 
@@ -347,7 +347,7 @@ describe "Forms", :type => :feature do
       click_action :edit
 
       ui_in_modal do
-        within( find('#node-editor') ) do
+        within( find('#generic-editor') ) do
           expect( all('textarea').count ).to eq 4
           expect( all('input[type="text"]').count ).to eq 2
           expect( all('input[type="checkbox"]').count ).to eq 1
@@ -362,7 +362,7 @@ describe "Forms", :type => :feature do
       ui_press_key 'e'
 
       ui_in_modal do
-        within( find('#node-editor') ) do
+        within( find('#generic-editor') ) do
           expect( find_field( 'datatype', disabled: false ) )
           expect( find_field( 'datatype' ).value ).to eq 'float'
           expect( find_field( 'format', disabled: false ) )
@@ -391,7 +391,7 @@ describe "Forms", :type => :feature do
       ui_press_key 'e'
 
       ui_in_modal do
-        within( find('#node-editor') ) do
+        within( find('#generic-editor') ) do
           expect( find_field( 'label' ).value ).to eq 'Height Q'
           expect( find_field( 'question_text' ).value ).to eq 'Height Question Text'
           expect(page).to have_checked_field 'optional'
