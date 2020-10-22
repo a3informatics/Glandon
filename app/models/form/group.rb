@@ -25,7 +25,7 @@ class Form::Group < IsoConceptV2
     [
       "<http://www.assero.co.uk/BusinessForm#hasGroup>",
       "<http://www.assero.co.uk/BusinessForm#hasSubGroup>*",
-      #"<http://www.assero.co.uk/BusinessForm#hasCommon>?"
+      "<http://www.assero.co.uk/BusinessForm#hasCommon>?"
     ]
   end
 

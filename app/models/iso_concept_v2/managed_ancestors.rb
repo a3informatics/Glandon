@@ -87,7 +87,7 @@ class IsoConceptV2
       objects = []
       parts = managed_ancestor_path_query(managed_ancestor)
       query_string = %Q{
-        SELECT ?s WHERE {
+        SELECT DISTINCT ?s WHERE {
           {#{parts.join("} UNION {")}}
         } ORDER BY ?index
       }
