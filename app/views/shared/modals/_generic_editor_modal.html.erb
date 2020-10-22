@@ -1,12 +1,14 @@
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="node-editor">
-  <div class="modal-dialog modal-lg medium-screen" role="document">
+<%= stylesheet_link_tag 'shared/layouts/generic_editor_modal' %>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="generic-editor">
+  <div class="modal-dialog modal-lg <%= local_assigns.fetch :width_class, "medium-screen" %>" role="document">
 
     <div class="modal-content">
 
       <div class="modal-header">
         <span class="modal-title text-normal text-medium" id="tableModalLabel">
-          <span class="icon-edit text-link text-small" style="margin-right: 5px;"></span>
-          Edit Node
+          <span id="title-icon" class="<%= local_assigns.fetch :title_icon, "icon-edit" %> text-link text-small" style="margin-right: 5px;"></span>
+          <span id="title"> <%= local_assigns.fetch :title, "Edit Item" %> </span>
         </span>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -17,7 +19,7 @@
 
         <div class="error" style="width: 100%"></div>
 
-        <div class="ne-content form-wrap"></div>
+        <div class="ge-content form-wrap"></div>
 
       </div>
 

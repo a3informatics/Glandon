@@ -1,6 +1,5 @@
 <% content_for :page_title do %> <%= "Edit: #{@form.has_identifier.identifier} (#{@form.semantic_version}) "%> <% end %>
 
-<%= stylesheet_link_tag 'shared/forms/form_editor' %>
 <%= javascript_pack_tag 'forms/edit' %>
 
 <% third_level_breadcrumb(:forms, @form, @close_path) %>
@@ -23,6 +22,6 @@
 
 <div class="row">
 
-  <%= render partial: "shared/forms/edit/editor_card", :locals => { form: @form } %>
+  <%= render partial: "shared/forms/editor_card", :locals => { form: @form } %>
 
 </div>

@@ -168,11 +168,11 @@ export default class FormEditor extends TreeGraph {
     $( this.selector ).on( 'click', '#edit-node',
                            () => this.editNode( this.selected ) );
 
-    // Node actions edit button click
+    // Node actions add-child button focus
     $( this.selector ).on( 'focus', '#add-child',
                            e => this.childrenMenu( 'show', e ) );
 
-    // Node actions edit button click
+    // Node actions add-child button focus-lost (blur)
     $( this.selector ).on( 'blur', '#add-child',
                            e => this.childrenMenu( 'hide', e ) );
 
