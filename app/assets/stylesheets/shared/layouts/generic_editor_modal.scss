@@ -1,96 +1,67 @@
 @import 'shared/vars';
 
-// Node actions
-
-.node-actions {
-  position: absolute;
-  background: white;
-  border-radius: 20px;
-  border: 2px solid;
-  display: none;
-}
-
-.node-actions .btns-wrap {
-  flex-wrap: nowrap;
-}
-
-.node-actions .btns-wrap .btn {
-  margin-left: 2px;
-  margin-right: 2px;
-}
-
-.node-actions .btns-wrap .btn {
-  .icon-arrow-u, .icon-arrow-d {
-    font-size: $font-small;
-  }
-}
-
-.node-actions .context-menu {
-  max-height: 162px;
-}
-
 // Node Editor
 
-.ne-content {
+.ge-content {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
-.ne-content .ne-title .ne-icon {
+.ge-content .ge-title .ge-icon {
   font-size: $font-xlarge;
 }
 
-.ne-content .ne-title {
+.ge-content .ge-title {
   font-size: $font-normal;
   width: 100%;
   text-align: center;
   margin-bottom: 10px;
 }
 
-.ne-content .field-table tr td {
+.ge-content .field-table tr td {
   padding-top: 6px;
   padding-bottom: 6px;
 }
 
-.ne-content .field-table tr td:first-of-type {
+.ge-content .field-table tr td:first-of-type {
   font-size: $font-xtiny;
   text-align: right;
 }
 
-.ne-content .field-table tr td:last-of-type {
+.ge-content .field-table tr td:last-of-type {
   padding-left: 10px;
 }
 
 // Node Editor inputs
 
-.ne-content .form-group {
+.ge-content .form-group {
   max-width: 80%;
   margin: 0px;
 }
 
-.ne-content .label-styled {
+.ge-content .label-styled {
   padding: 4px 6px;
   padding-right: 14px;
 }
 
-.ne-content .form-group {
+.ge-content .form-group {
   input, textarea {
     margin: 0px;
   }
 }
 
-.ne-content .form-group input[type='text'] {
+.ge-content .form-group input[type='text'] {
   min-width: 300px;
   padding-right: 20px;
   color: $grey-dark;
 }
 
-.ne-content .form-group input[type='text'].narrow {
+.ge-content .form-group input[type='text'].narrow {
   min-width: 100px;
 }
 
-.ne-content .form-group textarea {
+.ge-content .form-group textarea {
   min-width: 300px;
   max-width: 500px;
   min-height: 50px;
@@ -98,12 +69,12 @@
   color: $grey-dark;
 }
 
-.ne-content .form-group textarea.wide {
+.ge-content .form-group textarea.wide {
   min-width: 400px;
   min-height: 72px;
 }
 
-.ne-content .form-group select {
+.ge-content .form-group select {
   border: 1px solid $grey-bright;
   border-bottom-width: 2px;
   color: $grey-dark;
@@ -111,13 +82,13 @@
 
 // Disabled and error styling
 
-.ne-content .form-group.has-error {
+.ge-content .form-group.has-error {
   input, textarea {
     border-color: $accent-color-2 !important;
   }
 }
 
-.ne-content .form-group {
+.ge-content .form-group {
   input:disabled, textarea:disabled, select:disabled {
     background: $row-highlight-background;
     opacity: .8;
@@ -126,20 +97,20 @@
 
 // Loading
 
-.ne-content.loading {
+.ge-content.loading {
   opacity: 0.6;
   pointer-events: none;
 }
 
 // Fixes
 
-.ne-content .field-table label {
+.ge-content .field-table label {
   margin: 0px;
 }
 
 @media ( max-width: 1000px ) {
 
-  .ne-content .form-group {
+  .ge-content .form-group {
     textarea, input {
       min-width: 200px !important;
     }
