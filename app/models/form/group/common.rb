@@ -45,8 +45,8 @@ class Form::Group::Common < Form::Group
     return html
   end
 
-  def delete(parent)
-    super(parent)
+  def delete(parent, managed_ancestor)
+    super(parent, managed_ancestor)
     normal_group = Form::Group::Normal.find_full(parent.uri)
     normal_group = normal_group.full_data
   end

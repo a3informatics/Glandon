@@ -425,40 +425,117 @@ describe Form do
 
   end
 
-  # describe "Delete Tests" do
+  describe "Delete Tests" do
 
-  #   def make_standard(item)
-  #     params = {}
-  #     params[:registration_status] = "Standard"
-  #     params[:previous_state] = "Incomplete"
-  #     item.update_status(params)
-  #   end
+    def make_standard(item)
+      params = {}
+      params[:registration_status] = "Standard"
+      params[:previous_state] = "Incomplete"
+      item.update_status(params)
+    end
 
-  #   before :each do
-  #     load_files(schema_files, [])
-  #     load_data_file_into_triple_store("mdr_identification.ttl")
-  #   end
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
 
-  #   it "delete normal group, clone, no errors" do
-  #     allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
-  #     form = Form.create(label: "Form1", identifier: "XXX")
-  #     form.add_child({type:"normal_group"})
-  #     normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
-  #     make_standard(form)
-  #     form = Form.find_full(form.uri)
-  #     #check_dates(form, sub_dir, "update_form_1a.yaml", :creation_date, :last_change_date)
-  #     check_file_actual_expected(form.to_h, sub_dir, "delete_form_1a.yaml", equate_method: :hash_equal, write_file: true)
-  #     new_form = form.create_next_version
-  #     new_form = Form.find_full(new_form.uri)
-  #     normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
-  # byebug
-  #     normal_group.delete_with_clone(new_form, new_form)
-  #     new_form = Form.find_full(new_form.uri)
-  #     #check_dates(new_form, sub_dir, "update_form_1b.yaml", :creation_date, :last_change_date)
-  #     check_file_actual_expected(new_form.to_h, sub_dir, "update_form_1b.yaml", equate_method: :hash_equal, write_file: true)
-  #     form = Form.find_full(form.uri)
-  #     check_file_actual_expected(form.to_h, sub_dir, "update_form_1a.yaml", equate_method: :hash_equal)
-  #   end
+    it "delete normal group, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "delete_form_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_form_1a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      expect(new_form.has_group.count).to eq(1)
+      expect(form.has_group.count).to eq(1)
+      normal_group.delete(new_form, new_form)
+      new_form = Form.find_full(new_form.uri)
+      expect(new_form.has_group.count).to eq(0)
+      check_dates(new_form, sub_dir, "delete_form_1b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "delete_form_1b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      expect(form.has_group.count).to eq(1)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_form_1a.yaml", equate_method: :hash_equal)
+    end
+
+    it "delete normal group, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "delete_form_2a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_form_2a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      expect(new_form.has_group.count).to eq(1)
+      expect(form.has_group.count).to eq(1)
+      normal_group.delete(new_form, new_form)
+      new_form = Form.find_full(new_form.uri)
+      expect(new_form.has_group.count).to eq(0)
+      check_dates(new_form, sub_dir, "delete_form_2b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "delete_form_2b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      expect(form.has_group.count).to eq(1)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_form_2a.yaml", equate_method: :hash_equal)
+    end
+
+    it "delete normal group, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"normal_group"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "delete_form_3a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_form_3a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      sub_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      expect(new_form.has_group.count).to eq(1)
+      expect(form.has_group.count).to eq(1)
+      sub_group.delete(normal_group, new_form)
+      new_form = Form.find_full(new_form.uri)
+      expect(new_form.has_group.count).to eq(1)
+      check_dates(new_form, sub_dir, "delete_form_3b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "delete_form_3b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      expect(form.has_group.count).to eq(1)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_form_3a.yaml", equate_method: :hash_equal)
+    end
+
+    it "delete common group, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"common_group"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "delete_form_4a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_form_4a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      common_group = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238_CG"))
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      expect(normal_group.has_common.count).to eq(1)
+      common_group.delete(normal_group, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "delete_form_4b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "delete_form_4b.yaml", equate_method: :hash_equal)
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      expect(normal_group.has_common.count).to eq(1)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_form_4a.yaml", equate_method: :hash_equal)
+    end
 
     # it "delete normal group, clone, no errors" do
     #   allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
@@ -607,7 +684,7 @@ describe Form do
     #   check_file_actual_expected(form.to_h, sub_dir, "update_form_7a.yaml", equate_method: :hash_equal)
     # end
 
-  #end
+  end
 
   # it "to_xml, I" do
   #   item = Form.find("F-ACME_DM101", "http://www.assero.co.uk/MDRForms/ACME/V1")

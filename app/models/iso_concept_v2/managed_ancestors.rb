@@ -172,6 +172,20 @@ class IsoConceptV2
       object
     end
 
+    # Clone the item and create. Use Sparql approach in case of children also need creating
+    #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
+    #   The Children are normally references. Also note the setting of the transaction in the cloned object and
+    #   in the sparql generation, important both are done.
+    def clone_and_save(child, parent, tx)
+      object = child.clone
+      object.transaction_set(tx)
+      object.generate_uri(parent.uri) 
+      sparql = Sparql::Update.new(tx)
+      object.to_sparql(sparql, true)
+      sparql.create
+      object
+    end
+
   end
 
 end

@@ -43,7 +43,37 @@ class Form::Group < IsoConceptV2
     Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bf:hasGroup ?o}", "", [:bf]).ask? 
   end
 
-  def delete(parent)
+  # Delete With Clone. Delete the object. Clone if there are multiple parents.
+  #
+  # @param [Object] parent_object the parent object
+  # @return [Thesarus::UnmanagedConcept] the object, either new or the cloned new object with updates
+  def delete(parent, managed_ancestor)
+    if multiple_managed_ancestors?
+      tx = transaction_begin
+      uris = managed_ancestor_path_uris(managed_ancestor)
+      prev_object = managed_ancestor
+      prev_object.transaction_set(tx)
+      uris.each do |old_uri|
+        old_object = self.class.klass_for(old_uri).find_children(old_uri)
+        if old_object.multiple_managed_ancestors?
+          cloned_object = clone_and_save(old_object, prev_object, tx)
+          if self.uri == old_object.uri
+            prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
+          else
+            prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+          end
+          prev_object = cloned_object
+        else
+          prev_object = old_object
+        end
+      end
+      transaction_execute
+    else
+      delete_node(parent)
+    end
+  end
+
+  def delete_node(parent)
     update_query = %Q{
       DELETE DATA
       {

@@ -268,8 +268,8 @@ class Form::Group::Normal < Form::Group
     return "</tr>"
   end
 
-  def delete(parent)
-    super(parent)
+  def delete(parent, managed_ancestor)
+    super(parent, managed_ancestor)
     parent = Form.find_full(parent.uri)
     parent = parent.full_data
   end
