@@ -45,7 +45,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
   describe "Edit BC", :type => :feature, js:true do
 
     before :all do
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
@@ -515,7 +515,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
   describe "Edit BC, Locked Status", :type => :feature, js:true do
 
     before :all do
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
