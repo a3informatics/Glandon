@@ -336,13 +336,13 @@ describe Form do
       normal_group.add_child({type:"normal_group"})
       make_standard(form)
       form = Form.find_full(form.uri)
-      check_file_actual_expected(form.to_h, sub_dir, "update_form_6a.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_6a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
       sub_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
       sub_group.update_with_clone({label: "New label"}, new_form)
       new_form = Form.find_full(new_form.uri)
-      check_file_actual_expected(new_form.to_h, sub_dir, "update_form_6b.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(new_form.to_h, sub_dir, "update_form_6b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
       check_file_actual_expected(form.to_h, sub_dir, "update_form_6a.yaml", equate_method: :hash_equal)
     end
@@ -359,12 +359,53 @@ describe Form do
     #   new_form = form.create_next_version
     #   new_form = Form.find_full(new_form.uri)
     #   common_group = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238_CG"))
+    # byebug
     #   common_group.update_with_clone({label: "New label"}, new_form)
     #   new_form = Form.find_full(new_form.uri)
     #   check_file_actual_expected(new_form.to_h, sub_dir, "update_form_7b.yaml", equate_method: :hash_equal, write_file: true)
     #   form = Form.find_full(form.uri)
     #   check_file_actual_expected(form.to_h, sub_dir, "update_form_7a.yaml", equate_method: :hash_equal)
     # end
+
+  end
+
+  describe "Update Tests" do
+
+    def make_standard(item)
+      params = {}
+      params[:registration_status] = "Standard"
+      params[:previous_state] = "Incomplete"
+      item.update_status(params)
+    end
+
+    before :each do
+      load_files(schema_files, [])
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    end
+
+    
+    it "update bc group, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id]})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_8a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      bc_group = Form::Group::Bc.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      bc_group.update_with_clone({label: "New label"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_file_actual_expected(new_form.to_h, sub_dir, "update_form_8b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.to_h, sub_dir, "update_form_8a.yaml", equate_method: :hash_equal)
+    end
 
   end
 
