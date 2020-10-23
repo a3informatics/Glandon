@@ -64,7 +64,7 @@ export default class BCManager extends Cacheable {
 
     // Edit BC request
     $get({
-      url: this._buildUrl('edit', id),
+      url: this._buildUrl( 'editAnother', id, isBase ),
       done: (r) => {
         this._loading(false)
         this._addBCToManager(r.data, r.token_id, isBase)
@@ -182,10 +182,8 @@ export default class BCManager extends Cacheable {
       }
 
       // Select and open default BC if isBase
-      if (isBase) {
-        this.baseBCId = bcData.id;
+      if ( isBase )
         this._selectFirstBC()
-      }
 
   }
 
@@ -305,8 +303,13 @@ export default class BCManager extends Cacheable {
    * @param {string} id Id of the BC instance
    * @return {string} url of correct type pointing to the correct BC instance
    */
-  _buildUrl(action, id) {
-    return this.urls[action].replace('bcID', id)
+  _buildUrl(action, id, isBase = false) {
+
+    if ( isBase )
+      return this.urls.metadata;
+
+    return this.urls[action].replace('bcID', id);
+
   }
 
   /**

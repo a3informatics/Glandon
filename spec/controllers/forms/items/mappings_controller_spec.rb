@@ -21,7 +21,7 @@ describe Forms::Items::MappingsController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000120.ttl"]
+      data_files = ["forms/FN000120.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")

@@ -22,7 +22,7 @@ describe Forms::Groups::NormalGroupsController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000120.ttl"]
+      data_files = ["forms/FN000120.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
@@ -91,7 +91,7 @@ describe Forms::Groups::NormalGroupsController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000120.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      data_files = ["forms/FN000120.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..59)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -213,7 +213,7 @@ describe Forms::Groups::NormalGroupsController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/form_test_2.ttl"]
+      data_files = ["forms/form_test_2.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..1)
       load_data_file_into_triple_store("mdr_identification.ttl")

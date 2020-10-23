@@ -4,8 +4,8 @@
 Application Path: /Users/daveih/Documents/rails/Glandon
 Rails Version: 5.2.4.3
 Brakeman Version: 4.10.0
-Scan Date: 2020-10-10 12:59:32 +0200
-Duration: 8.038736 seconds
+Scan Date: 2020-10-18 19:18:18 +0200
+Duration: 7.812116 seconds
 Checks Run: BasicAuth, BasicAuthTimingAttack, CSRFTokenForgeryCVE, ContentTag, CookieSerialization, CreateWith, CrossSiteScripting, DefaultRoutes, Deserialize, DetailedExceptions, DigestDoS, DynamicFinders, EscapeFunction, Evaluation, Execute, FileAccess, FileDisclosure, FilterSkipping, ForgerySetting, HeaderDoS, I18nXSS, JRubyXML, JSONEncoding, JSONEntityEscape, JSONParsing, LinkTo, LinkToHref, MailTo, MassAssignment, MimeTypeDoS, ModelAttrAccessible, ModelAttributes, ModelSerialize, NestedAttributes, NestedAttributesBypass, NumberToCurrency, PageCachingCVE, PermitAttributes, QuoteTableName, Redirect, RegexDoS, Render, RenderDoS, RenderInline, ResponseSplitting, RouteDoS, SQL, SQLCVEs, SSLVerify, SafeBufferManipulation, SanitizeMethods, SelectTag, SelectVulnerability, Send, SendFile, SessionManipulation, SessionSettings, SimpleFormat, SingleQuotes, SkipBeforeFilter, SprocketsPathTraversal, StripTags, SymbolDoSCVE, TemplateInjection, TranslateBug, UnsafeReflection, ValidationRegex, WithoutProtection, XMLDoS, YAMLParsing
 
 == Overview ==
@@ -14,11 +14,11 @@ Controllers: 61
 Models: 132
 Templates: 243
 Errors: 3
-Security Warnings: 15
+Security Warnings: 16
 
 == Warning Types ==
 
-Cross-Site Scripting: 10
+Cross-Site Scripting: 11
 Redirect: 1
 Remote Code Execution: 1
 SQL Injection: 3
@@ -58,7 +58,7 @@ Check: CrossSiteScripting
 Message: Unescaped model attribute
 Code: Form.find_minimum(protect_from_bad_id(params)).to_crf
 File: app/views/forms/crf.html.erb
-Line: 18
+Line: 25
 
 Confidence: Medium
 Category: Cross-Site Scripting
@@ -107,6 +107,14 @@ Message: Unescaped model attribute
 Code: MarkdownEngine.render(item.origin)
 File: app/views/shared/_comment_history_row.html.erb
 Line: 7
+
+Confidence: Medium
+Category: Cross-Site Scripting
+Check: CrossSiteScripting
+Message: Unescaped model attribute
+Code: Thesaurus.find_minimum(params[:id]).scoped_identifier
+File: app/views/shared/headers/_header_minimal.html.erb
+Line: 12
 
 Confidence: Medium
 Category: Remote Code Execution

@@ -91,6 +91,10 @@ export default class TokenTimer {
    * @static
    */
   static releaseMultiple(ids) {
+
+    if ( !ids || ids.length === 0 )
+      return;
+
     $post({
       url: `/tokens/release_multiple`,
       data: {
@@ -98,7 +102,8 @@ export default class TokenTimer {
           id_set: ids 
         }
       }
-    })
+    });
+    
   }
 
   /** Private **/

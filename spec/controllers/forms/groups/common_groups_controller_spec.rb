@@ -21,7 +21,7 @@ describe Forms::Groups::CommonGroupsController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/CRF TEST 1.ttl"]
+      data_files = ["forms/CRF TEST 1.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
@@ -94,7 +94,7 @@ describe Forms::Groups::CommonGroupsController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/CRF TEST 1.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      data_files = ["forms/CRF TEST 1.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..38)
       load_data_file_into_triple_store("mdr_identification.ttl")
