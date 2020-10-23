@@ -202,6 +202,20 @@ export default class TagsManager extends TreeGraph {
   }
 
   /**
+   * Tag Node double click event, prevent graph zoom
+   * @extends _onNodeDblClick parent implementation
+   * @param {TagNode} tag Clicked Tag instance
+   */
+  _onNodeDblClick(tag) {
+
+    super._onNodeDblClick( tag );
+
+    if ( this.taggedItemsPanel )
+      this.taggedItemsPanel.show( tag );
+
+  }
+
+  /**
    * On graph data update; re-process data, re-draw the graph and show alert
    * @param {string} message Success message to display
    */
@@ -376,30 +390,37 @@ export default class TagsManager extends TreeGraph {
    */
   async _importModules() {
 
-    if ( !this.editable )
-      return;
+    // Tagged Items Panel module
+    let TaggedItemsPanel = await import( /* webpackPrefetch: true */
+                                  'shared/iso_concept_systems/tagged_items_panel' );
 
-    // Node Editor module
-    let TagEditor = await import( /* webpackPrefetch: true */
-                                  'shared/iso_concept_systems/tag_node_editor' );
-
-    this.tagEditor = new TagEditor.default({
-      urls: this.urls,
-      onLoading: enable => this._loading( enable ),
-      onUpdate: message => this._onUpdate( message ),
+    this.taggedItemsPanel = new TaggedItemsPanel.default({
+      dataUrl: taggedItemsUrl,
       onShow: () => this.keysDisable(),
       onHide: () => {
-
         this.keysEnable();
-
-        // Regain focus back to graph
-        setTimeout( () => {
-            if ( this.selected )
-              this.selected.el.focus()
-            }, 300 );
-
+        this.restoreFocus();
       }
     });
+
+    if ( this.editable ) {
+
+      // Tag Editor module
+      let TagEditor = await import( /* webpackPrefetch: true */
+                                    'shared/iso_concept_systems/tag_node_editor' );
+
+      this.tagEditor = new TagEditor.default({
+        urls: this.urls,
+        onLoading: enable => this._loading( enable ),
+        onUpdate: message => this._onUpdate( message ),
+        onShow: () => this.keysDisable(),
+        onHide: () => {
+          this.keysEnable();
+          this.restoreFocus();
+        }
+      });
+
+    }
 
   }
 
