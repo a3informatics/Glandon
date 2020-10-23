@@ -1,6 +1,6 @@
 import TablePanel from 'shared/base/table_panel'
 
-import rsHelper from 'shared/iso_registration_state/rs_history'
+import rsHelper from 'shared/custom/iso_registration_state/rs_history'
 import { render as renderMenu } from 'shared/ui/context_menu'
 import { $delete } from 'shared/helpers/ajax'
 import { $confirm } from 'shared/helpers/confirmable'

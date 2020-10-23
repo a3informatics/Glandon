@@ -1,4 +1,4 @@
-import TagsManager from 'shared/iso_concept_systems/tags_manager'
+import TagsManager from 'shared/custom/iso_concept_systems/tags_manager'
 
 $(document).ready( () => {
 

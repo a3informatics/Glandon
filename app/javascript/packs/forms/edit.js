@@ -1,5 +1,5 @@
-import FormEditor from 'shared/forms/edit/editor_panel'
-import TokenTimer from 'shared/tokens/token_timer'
+import FormEditor from 'shared/custom/forms/edit/editor_panel'
+import TokenTimer from 'shared/custom/tokens/token_timer'
 
 $(document).ready( () => {
 

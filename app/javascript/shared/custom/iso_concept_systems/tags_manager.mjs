@@ -1,5 +1,5 @@
 import TreeGraph from 'shared/base/d3/tree/tree_graph'
-import TagNode from 'shared/iso_concept_systems/d3/tag_node'
+import TagNode from 'shared/custom/iso_concept_systems/d3/tag_node'
 
 // import InformationDialog from 'shared/ui/dialogs/information_dialog'
 
@@ -392,7 +392,7 @@ export default class TagsManager extends TreeGraph {
 
     // Tagged Items Panel module
     let TaggedItemsPanel = await import( /* webpackPrefetch: true */
-                                  'shared/iso_concept_systems/tagged_items_panel' );
+                                  'shared/custom/iso_concept_systems/tagged_items_panel' );
 
     this.taggedItemsPanel = new TaggedItemsPanel.default({
       dataUrl: taggedItemsUrl,
@@ -407,7 +407,7 @@ export default class TagsManager extends TreeGraph {
 
       // Tag Editor module
       let TagEditor = await import( /* webpackPrefetch: true */
-                                    'shared/iso_concept_systems/tag_node_editor' );
+                                    'shared/custom/iso_concept_systems/tag_node_editor' );
 
       this.tagEditor = new TagEditor.default({
         urls: this.urls,

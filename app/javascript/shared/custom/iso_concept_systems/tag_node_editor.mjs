@@ -1,6 +1,6 @@
 import GenericEditor from 'shared/base/generic_editor_modal'
 
-import TagNode from 'shared/iso_concept_systems/d3/tag_node'
+import TagNode from 'shared/custom/iso_concept_systems/d3/tag_node'
 import Validator from 'shared/ui/validator'
 
 import { $ajax } from 'shared/helpers/ajax'

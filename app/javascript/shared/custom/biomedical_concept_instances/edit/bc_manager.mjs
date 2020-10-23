@@ -1,8 +1,8 @@
 import Cacheable from 'shared/base/cacheable'
 
-import TokenTimer from 'shared/tokens/token_timer'
-import CreateBCView from 'shared/biomedical_concept_instances/bc_create'
-import BCEditor from 'shared/biomedical_concept_instances/edit/bc_editor'
+import TokenTimer from 'shared/custom/tokens/token_timer'
+import CreateBCView from 'shared/custom/biomedical_concept_instances/bc_create'
+import BCEditor from 'shared/custom/biomedical_concept_instances/edit/bc_editor'
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
 import InformationDialog from 'shared/ui/dialogs/information_dialog'
 

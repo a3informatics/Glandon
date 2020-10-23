@@ -1,4 +1,4 @@
-import BCManager from 'shared/biomedical_concept_instances/edit/bc_manager'
+import BCManager from 'shared/custom/biomedical_concept_instances/edit/bc_manager'
 
 $(document).ready( () => {
 

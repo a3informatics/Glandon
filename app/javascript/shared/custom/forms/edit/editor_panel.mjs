@@ -1,5 +1,5 @@
 import TreeGraph from 'shared/base/d3/tree/tree_graph'
-import FormNode from 'shared/forms/edit/form_node'
+import FormNode from 'shared/custom/forms/edit/form_node'
 
 import InformationDialog from 'shared/ui/dialogs/information_dialog'
 
@@ -570,7 +570,7 @@ export default class FormEditor extends TreeGraph {
 
     // Node Editor module
     let NodeEditor = await import( /* webpackPrefetch: true */
-                                  'shared/forms/edit/form_node_editor' );
+                                  'shared/custom/forms/edit/form_node_editor' );
 
     this.nodeEditor = new NodeEditor.default({
       formId: this.formId,
@@ -591,7 +591,7 @@ export default class FormEditor extends TreeGraph {
 
     // Node Handler module
     let NodeHandler = await import( /* webpackPrefetch: true */
-                                    'shared/forms/edit/form_node_handler' );
+                                    'shared/custom/forms/edit/form_node_handler' );
 
     this.nodeHandler = new NodeHandler.default( this );
 

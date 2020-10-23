@@ -1,5 +1,5 @@
-import TokenTimer from 'shared/tokens/token_timer'
-import PairHandler from 'shared/thesauri/managed_concepts/pair_handler'
+import TokenTimer from 'shared/custom/tokens/token_timer'
+import PairHandler from 'shared/custom/thesauri/managed_concepts/pair_handler'
 //TODO: Convert dependencies to ES6 modules
 
 $(document).ready(() => {

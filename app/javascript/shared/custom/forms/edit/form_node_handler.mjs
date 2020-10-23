@@ -1,4 +1,4 @@
-import FormNode from 'shared/forms/edit/form_node'
+import FormNode from 'shared/custom/forms/edit/form_node'
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
 
 import { $ajax } from 'shared/helpers/ajax'
