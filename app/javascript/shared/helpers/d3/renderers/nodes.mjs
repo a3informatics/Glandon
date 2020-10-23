@@ -121,7 +121,7 @@ function renderIconsLabels({
         .style ( 'font-size', '9pt' )
         // Events
         .on( 'mouseover mousemove', onHover )
-        .on('mouseout', onHoverOut );
+        .on( 'mouseout', onHoverOut );
 
    // Render Label border
    nodes.insert( "rect", ".label" )
@@ -189,7 +189,7 @@ function renderLabels({
       .style ( 'font-size', '9pt' )
       // Events
       .on( 'mouseover mousemove', onHover )
-      .on('mouseout', onHoverOut );
+      .on( 'mouseout', onHoverOut );
 
    // Render Label border
    nodes.insert( "rect", ".label" )

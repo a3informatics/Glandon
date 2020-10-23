@@ -128,6 +128,20 @@ export default class TreeGraph {
   }
 
   /**
+   * Restore focus to the selected node element
+   */
+  restoreFocus() {
+
+    setTimeout( () => {
+
+        if ( this.selected )
+          this.selected.el.focus();
+
+    }, 300 );
+
+  }
+
+  /**
    * Clear the graph contents
    */
   clearGraph() {
@@ -534,7 +548,7 @@ export default class TreeGraph {
 
     // Save reference to the raw data structure
     this.rawData = rawData;
-    
+
     // Convert raw data to d3 hierarchy
     this.graph.root = this._preprocessData( rawData );
     this.render().reCenter();

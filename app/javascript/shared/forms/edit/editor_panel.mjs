@@ -578,8 +578,7 @@ export default class FormEditor extends TreeGraph {
       onHide: () => {
 
         this.keysEnable();
-        setTimeout( () =>
-            this.selected.el.focus(), 300 ); // Restore focus
+        this.restoreFocus();
 
       },
       onUpdate: () => {
