@@ -39,6 +39,7 @@ export default class ConceptTagsEditor {
 
     $get({
       url: this.urls.data,
+      errorDiv: this.$alert,
       done: tags => this._addTags( tags ),
       always: () => this._loading( false )
     })
@@ -54,8 +55,8 @@ export default class ConceptTagsEditor {
     if ( !tag )
       return;
 
-    if ( this._hasTag( tag ) ) {
-      alerts.error( 'This Tag is already used.', this.manager._alertDiv );
+    if ( this.tags[ tag.id ] ) {
+      alerts.error( 'This Tag is already used.', this.$alert );
       return;
     }
 
@@ -91,6 +92,7 @@ export default class ConceptTagsEditor {
     $put({
       url,
       data,
+      errorDiv: this.$alert,
       done: () => action === 'add' ?
           this._addTags( tag ) :
           this._removeTag( tag ),
@@ -126,7 +128,7 @@ export default class ConceptTagsEditor {
    */
   _initialize() {
 
-    this.tags = [];
+    this.tags = {};
     this._setListeners();
     this.loadData();
 
@@ -161,10 +163,11 @@ export default class ConceptTagsEditor {
    */
   _addTags(tags) {
 
-    if ( !Array.isArray( tags ) )
-      tags = [ tags ];
+    if ( Array.isArray( tags ) )
+      tags.forEach( tag => this.tags[ tag.id ] = tag );
 
-    tags.forEach( tag => this.tags.push( tag ) );
+    else
+      this.tags[ tags.id ] = tags;
 
     this._render();
 
@@ -176,30 +179,9 @@ export default class ConceptTagsEditor {
    */
   _removeTag(tag) {
 
-    this.tags.splice( this._tagIndex( tag ), 1 );
+    delete this.tags[ tag.id ],
 
     this._render();
-
-  }
-
-  /**
-   * Find the index of the tag in the local tag collection
-   * @return {integer} Tag index or -1 if not present
-   */
-  _tagIndex(tag) {
-
-    let result = -1;
-
-    this.tags.forEach( ( t, index ) => {
-
-      if ( t.id === tag.id ) {
-        result = index;
-        return;
-      }
-
-    });
-
-    return result;
 
   }
 
@@ -209,14 +191,7 @@ export default class ConceptTagsEditor {
    * @return {boolean} True if Tag is included in local collection
    */
   _hasTag(tag) {
-
-    for ( let t of this.tags ) {
-      if ( t.id === tag.id )
-        return true;
-    }
-
-    return false;
-
+    return this.tags[ tag.id ] != null;
   }
 
   /**
@@ -226,31 +201,26 @@ export default class ConceptTagsEditor {
 
     this.$tags.empty();
 
+    let tags = Object.values( this.tags );
+
     // No tags present, render empty message
-    if ( this.tags.length === 0 ) {
+    if ( tags.length === 0 ) {
 
       this.$tags.append( '<i> No tags </i>' );
       return;
 
     }
 
-    this._sort();
+    tags.sort( ( a, b ) => a.label.localeCompare( b.label ) );
 
     // Render
-    for ( let tag of this.tags ) {
+    for ( let tag of tags ) {
 
       let $tag = renderTag( tag.label, { cssClasses: 'removable', id: tag.id } );
       this.$tags.append( $tag );
 
     }
 
-  }
-
-  /**
-   * Sort the Tags (by label) in the local collection
-   */
-  _sort() {
-    this.tags.sort( ( a, b ) => a.label.localeCompare( b.label ) );
   }
 
   /**
@@ -275,6 +245,14 @@ export default class ConceptTagsEditor {
    */
   get $tags() {
     return this.content.find( '#tags' );
+  }
+
+  /**
+   * Get the alerts div from the TagsManager instance
+   * @return {JQuery Element} Alerts div
+   */
+  get $alert() {
+    return this.manager._alertDiv;
   }
 
 }
