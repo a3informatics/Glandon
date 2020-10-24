@@ -67,9 +67,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Vital Signs Test Name"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	isoT:hasState <http://www.s-cubed.dk/C67153/V1#C67153_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/C67153/V1#C67153_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -81,30 +78,30 @@
 	th:notation "VSTEST"^^xsd:string ;
 	th:definition "The test name given to the test that analyzes a particular set of vital signs including temperature, respiratory rate, heart rate, and blood pressure."^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C98785> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25206> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25347> ;
-	th:narrower <http://www.cdisc.org/C67153/V34#C67153_C12472> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49677> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49676> ;
-	th:narrower <http://www.cdisc.org/C67153/V16#C67153_C25157> ;
-	th:narrower <http://www.cdisc.org/C67153/V33#C67153_C103346> ;
-	th:narrower <http://www.cdisc.org/C67153/V34#C67153_C81298> ;
-	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100946> ;
-	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100945> ;
 	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25208> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49680> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49678> ;
-	th:narrower <http://www.cdisc.org/C67153/V20#C67153_C87054> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C16358> ;
 	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25299> ;
-	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100947> ;
-	th:narrower <http://www.cdisc.org/C67153/V33#C67153_C60832> ;
-	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C84372> ;
-	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C71258> ;
-	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100948> ;
-	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C98793> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49680> ;
 	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49679> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25206> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49678> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49677> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25347> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49676> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C16358> ;
+	th:narrower <http://www.cdisc.org/C67153/V16#C67153_C25157> ;
+	th:narrower <http://www.cdisc.org/C67153/V20#C67153_C87054> ;
+	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C98785> ;
+	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C84372> ;
+	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C98793> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100947> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100945> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100948> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100946> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C71258> ;
+	th:narrower <http://www.cdisc.org/C67153/V33#C67153_C103346> ;
+	th:narrower <http://www.cdisc.org/C67153/V33#C67153_C60832> ;
+	th:narrower <http://www.cdisc.org/C67153/V34#C67153_C12472> ;
+	th:narrower <http://www.cdisc.org/C67153/V34#C67153_C81298> ;
 	th:narrower <http://www.cdisc.org/C67153/V35#C67153_C81255> ;
 	th:narrower <http://www.cdisc.org/C67153/V35#C67153_C104622> ;
 	th:narrower <http://www.cdisc.org/C67153/V37#C67153_C25298> ;
@@ -154,9 +151,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S006622>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mean Heart Rate"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S006622"^^xsd:string ;
 	th:notation "Mean Heart Rate"^^xsd:string ;
 	th:definition "The average (mean) number of cycles of contraction and subsequent relaxation of the heart, usually expressed as beats per minute, obtained from a set of measurements of the heart rate."^^xsd:string ;
@@ -166,9 +160,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S006623>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mean Temperature"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S006623"^^xsd:string ;
 	th:notation "Mean Temperature"^^xsd:string ;
 	th:definition "The average (mean) measure of the kinetic energy of a system of particles. Temperature may be quantified, in the context of thermodynamics, as the potential of one system to transfer thermal energy to another system until both systems reach a state of thermal equilibrium."^^xsd:string ;
@@ -182,9 +173,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007258>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Food Energy"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007258"^^xsd:string ;
 	th:notation "Food Energy"^^xsd:string ;
 	th:definition "The amount of energy in food that is available to the body. The values for food energy are expressed in kilocalories (kcal) or kilojoules (kJ)."^^xsd:string ;
@@ -198,9 +186,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007259>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Measured Minutes"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007259"^^xsd:string ;
 	th:notation "Measured Minutes"^^xsd:string ;
 	th:definition "The time during the examination when measurements are taken."^^xsd:string ;
@@ -214,9 +199,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007260>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Energy Expenditure 24h"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007260"^^xsd:string ;
 	th:notation "Energy Expenditure 24h"^^xsd:string ;
 	th:definition "The amount of energy (or calories) that a person needs to carry out a physical function such as breathing, circulating blood, digesting food, or physical movement on 24 hours."^^xsd:string ;
@@ -230,9 +212,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007261>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Respiratory Quotient 24h"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007261"^^xsd:string ;
 	th:notation "Respiratory Quotient 24h"^^xsd:string ;
 	th:definition "Ratio of the volume of carbon dioxide (CO2) produced to the volume of oxygen (O2) used, or VCO2/VO2. Indicator of metabolic fuel or substrate use in tissues; it must be calculated under resting or steady-state exercise conditions."^^xsd:string ;
@@ -246,9 +225,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007262>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sleep Duration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007262"^^xsd:string ;
 	th:notation "Sleep Duration"^^xsd:string ;
 	th:definition "Time of natural and periodic state of rest during which consciousness of the world is suspended."^^xsd:string ;
@@ -262,9 +238,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007263>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sleep Energy Expenditure"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007263"^^xsd:string ;
 	th:notation "Sleep Energy Expenditure"^^xsd:string ;
 	th:definition "The amount of energy (or calories) that a person needs during the sleep period."^^xsd:string ;
@@ -278,9 +251,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007264>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sleep Respiratory Quotient"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007264"^^xsd:string ;
 	th:notation "Sleep Respiratory Quotient"^^xsd:string ;
 	th:definition "Not defined."^^xsd:string ;
@@ -294,9 +264,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007265>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Resting Energy Expenditure"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007265"^^xsd:string ;
 	th:notation "Resting Energy Expenditure"^^xsd:string ;
 	th:definition "Energy expenditure of a recumbent person who is not fasting and is the sum of BEE (Basal Energy expenditure) and DIT (Diet Induced Thermogenesis)."^^xsd:string ;
@@ -310,9 +277,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007266>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Resting Respiratory Quotient"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007266"^^xsd:string ;
 	th:notation "Resting Respiratory Quotient"^^xsd:string ;
 	th:definition "Not defined."^^xsd:string ;
@@ -326,9 +290,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007267>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Activity-Related Energy Expenditure"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007267"^^xsd:string ;
 	th:notation "Activity-Related Energy Expenditure"^^xsd:string ;
 	th:definition "Energy expended during unscripted physical activity, such as getting up to use the restroom during a period of prescribed rest."^^xsd:string ;
@@ -342,9 +303,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007268>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Diet Induced Thermogenesis"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007268"^^xsd:string ;
 	th:notation "Diet Induced Thermogenesis"^^xsd:string ;
 	th:definition "Process of energy production in the body caused directly by the metabolizing of food consumed."^^xsd:string ;
@@ -358,9 +316,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007269>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Basal Energy Expenditure"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007269"^^xsd:string ;
 	th:notation "Basal Energy Expenditure"^^xsd:string ;
 	th:definition "Not defined."^^xsd:string ;
@@ -374,9 +329,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007270>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Basal Respiratory Quotient"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007270"^^xsd:string ;
 	th:notation "Basal Respiratory Quotient"^^xsd:string ;
 	th:definition "Not defined."^^xsd:string ;
@@ -390,9 +342,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S007271>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Energy Balance"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S007271"^^xsd:string ;
 	th:notation "Energy Balance"^^xsd:string ;
 	th:definition "Not defined."^^xsd:string ;
@@ -406,7 +355,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S009925>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vital Signs All"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	th:identifier "S009925"^^xsd:string ;
 	th:notation "Vital Signs All"^^xsd:string ;
 	th:definition "Generic test derived in SDTM when all vital signs tests are not done."^^xsd:string ;
@@ -420,7 +368,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_S010959>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Maximum Temperature"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	th:identifier "S010959"^^xsd:string ;
 	th:notation "Maximum Temperature"^^xsd:string ;
 	th:definition "The maximum of the temperature observed during an event."^^xsd:string ;
@@ -434,9 +381,6 @@
 <http://www.s-cubed.dk/C67153/V1#C67153_SC122232>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Body Fat Measurement"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "SC122232"^^xsd:string ;
 	th:notation "Body Fat Measurement"^^xsd:string ;
 	th:definition "A measurement of the total fat mass within the subject's body. (NCI)"^^xsd:string ;
@@ -447,4 +391,393 @@
 <http://www.assero.co.uk/PT#d5d04d1a73f901f017edab020cc208d433611856>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Vital Signs Test Name"^^xsd:string ;
+.
+<http://www.assero.co.uk/CLA#6cc99cb6-ea10-4c40-9655-cae7b76f2330>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#209faed1-4825-460e-88a6-84b26b063647>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#1486bad7-b2cd-44fd-86cc-8bee171d6a98>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#1e8f1a9b-aaa3-4a16-99e6-b6aacd40b6ca>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S006622> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#18a27444-7f3f-4f58-a66c-bfbdf6f3b37b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S006622> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#1cb57ac6-e50a-42e5-9a1b-255dc2fe40e3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S006622> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#3319b258-bd84-4827-8326-83c5bc9a026f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S006623> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#d8036996-7694-4f65-b390-2f19523c6087>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S006623> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#9bd68bfa-41d4-4017-8805-284dad722494>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S006623> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#b6431281-f3e9-4c59-8222-6ea7f3b60723>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007258> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#a4a90316-9576-438a-bb4f-d0edf0684feb>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007258> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#c1a443f9-2fec-4202-a597-13c23f72314f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007258> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#cb9448be-43e4-4e35-bdc7-2d561b0a2bd5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007259> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#407964a5-852b-4afa-bf20-98a93f041fda>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007259> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#c0b6dabd-d80e-48a5-a6b4-fecef21f05af>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007259> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#46766116-d32e-4b16-88ad-f7a83aa199a6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007260> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#863b60dc-1606-40a0-87f8-384bea6667d8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007260> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#7f048a64-e149-485c-8778-be9ebb9c0f16>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007260> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#6617ce7e-878e-4e0b-a571-ab0bb6b47ed7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007261> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#02e2f9b7-ac5d-43a3-9c7a-03a0e198575c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007261> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#662893af-48d2-47e5-8825-58342788c0d1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007261> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#de29e7a0-783d-4842-ad5c-dea6eb5ab319>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007262> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#769cd393-6f07-4752-8e93-b88ba39a56de>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007262> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#29f04c87-e49e-4d2c-82d4-eb198e16e972>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007262> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#ac02df59-7179-406d-b8cd-9075afa85606>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007263> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#489fc7ae-7587-482e-9133-cc0987d9118a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007263> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#55f2fe40-7a9b-43c3-a4f3-97eac2206941>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007263> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#6fd4868a-73b9-45bc-a1eb-9434b6e68a23>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007264> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#3a865484-7441-4002-b117-08aa6c41e016>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007264> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#7b817af5-81a2-4601-8d81-4ea82560c8c4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007264> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#8c24cccd-b31d-433a-a5b8-b68fe636161b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007265> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#3d9a90ff-a1a4-4657-bf05-7986c8c55052>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007265> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#65f4de19-b028-47db-92e0-a6b267cf987b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007265> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#6184b32e-9fee-4fb0-8239-c615da9f229a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007266> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#66e97a1c-e8c4-416e-bbe3-9b82064da37d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007266> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#52b049e1-190c-4fa4-b068-651ccf7cca8a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007266> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#af926289-5c0a-43ac-bb19-b360db685d9e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007267> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#01368c35-1995-4bfd-a16a-66978db329d7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007267> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#00757d72-632f-4244-929c-43d6322915ad>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007267> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#4094f25c-0284-45b2-b788-085712e85e32>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007268> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#8261fabd-df8d-4db4-8b3b-fb1598d4070f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007268> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#257107d3-3eed-493a-9fd7-3cbaf1e5ba9b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007268> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#a5054fb4-0978-48d6-945b-a97eba6c75a0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007269> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#f1c706e1-5db9-46e4-a519-5a4416679218>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007269> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#65b54300-3db0-4b4d-b73c-24c1d6de0119>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007269> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#282bacd5-b963-47b9-8a5d-86527900d6f2>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007270> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#b662745b-b6ac-4e0c-8669-2966c7cc60b5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007270> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#12c795c3-d93e-40bf-9166-3721c0d61616>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007270> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#b4cd68d0-ffe1-42b2-9ae0-dc5e159a6a5f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007271> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#2701909b-c4a0-40aa-9aad-aa5f45def767>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007271> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#93e6ca41-fea3-429c-b0ab-a18f8fa4c31e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S007271> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#16fa7500-5093-42e9-afc0-30e8638b07f7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S009925> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#673c6a4b-8952-4ed4-b45a-374cc11f7f4e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_S010959> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#08770356-8977-4775-859f-7535c5194487>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_SC122232> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#e53446e7-2ed9-4db3-93da-7f09e07a1abd>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_SC122232> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#f8e1fd51-3aed-42c3-bcf2-6b818284c534>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C67153/V1#C67153_SC122232> ;
+	isoC:context <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 .

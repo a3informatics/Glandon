@@ -193,6 +193,7 @@ private
       item = check_for_change(ref, previous) 
       add_to_data(item, index, item.uri != previous.uri) # No changes if item = previous
       item.add_context_tags(previous, @tag_set, @parent.uri) 
+#item.has_previous_version = previous.uri if !previous.nil? && item.uri != previous.uri
       add_log("New item: #{item.uri}, previous item: #{previous.uri}")
     end
   end
