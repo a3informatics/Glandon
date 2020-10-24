@@ -2556,6 +2556,10 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: notation
+              -
+                method: set_property_to_sheet_tags
+                object: parent
+                property: :tagged
           -
             label: "CODELIST_CODE"
             actions:
@@ -2702,7 +2706,12 @@ defaults: &defaults
             actions:  []
           -
             label: "RANK"
-            actions: []
+            actions:
+              -
+                method: set_property
+                object: child
+                property: :rank
+                can_be_empty: true
           -
             label: "DC_STAGE"
             actions:

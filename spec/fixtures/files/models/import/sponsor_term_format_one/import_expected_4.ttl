@@ -77,10 +77,6 @@
 <http://www.s-cubed.dk/C118971/V1#C118971>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Category of Clinical Classification"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#b0d06e9f-ed91-4828-a918-e7c16fc027bf> ;
 	isoT:hasState <http://www.s-cubed.dk/C118971/V1#C118971_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/C118971/V1#C118971_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -172,8 +168,6 @@
 <http://www.s-cubed.dk/SN000631/V1#SN000631>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Subcategory of External Data Type"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#b0d06e9f-ed91-4828-a918-e7c16fc027bf> ;
 	isoT:hasState <http://www.s-cubed.dk/SN000631/V1#SN000631_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/SN000631/V1#SN000631_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -212,7 +206,6 @@
 <http://www.s-cubed.dk/SN000631/V1#SN000631_S003970>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Immunophenotyping"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	th:identifier "S003970"^^xsd:string ;
 	th:notation "IMMUNOPHENOTYPING"^^xsd:string ;
 	th:definition "(Synonym 1 NCI) The characterization of a set of cells according to the antigens expressed."^^xsd:string ;
@@ -226,4 +219,47 @@
 <http://www.assero.co.uk/PT#b5164b4b3fc066edd11912ddcb569d8118a6e634>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Subcategory of External Data Type"^^xsd:string ;
+.
+<http://www.assero.co.uk/CLA#822a0a77-7078-4218-b491-91e910717a62>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#b0d06e9f-ed91-4828-a918-e7c16fc027bf> ;
+.
+<http://www.assero.co.uk/CLA#d0cb97ef-8dbd-4642-92a4-94d876c7093b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#f463552d-6c2e-4aee-899f-0eab47ff27f5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#512a431b-cb89-409d-ab52-db4369a30149>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#8727c0b6-c6ac-4bfd-bc19-700b8110959b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#b0d06e9f-ed91-4828-a918-e7c16fc027bf> ;
+.
+<http://www.assero.co.uk/CLA#6f54f5ab-85ba-455d-9cee-cac0c3e524ab>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#899abff4-ba26-42de-8b66-7a2d941becf5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000631/V1#SN000631_S003970> ;
+	isoC:context <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 .

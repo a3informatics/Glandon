@@ -109,6 +109,31 @@ describe Import::STFOClasses do
     expect(object.extension?(ct)).to eq(true)
   end
 
+  it "ranked?" do
+    object = Import::STFOClasses::STFOCodeList.new
+    object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
+    ["C74571", "C12345", "C45678"].each do |x|
+      item = Import::STFOClasses::STFOCodeListItem.new(identifier: x)
+      item.instance_variable_set("@rank", "1")
+      object.narrower << item
+    end
+    expect(object.ranked?).to eq(true)
+  end
+
+  it "not ranked?" do
+    object = Import::STFOClasses::STFOCodeList.new
+    object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
+    ["C74571", "C12345", "C45678"].each do |x|
+      item = Import::STFOClasses::STFOCodeListItem.new(identifier: x)
+      object.narrower << item
+      next if x == "C12345"
+      item.instance_variable_set("@rank", "1")
+    end
+    expect(object.ranked?).to eq(false)
+  end
+
   it "not extension?" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
@@ -151,7 +176,7 @@ describe Import::STFOClasses do
     check_file_actual_expected(actual.to_h, sub_dir, "reference_expected_1.yaml", equate_method: :hash_equal)
   end
 
-  it "future referenced? - WILL CURRENTLY FAIL - needs update" do
+  it "future referenced?, success" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "SC71620"
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC48579")
@@ -159,6 +184,26 @@ describe Import::STFOClasses do
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC49668")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
     expect(object.future_referenced?(ct)).to eq(true)
+  end
+
+  it "future referenced?, fail" do
+    object = Import::STFOClasses::STFOCodeList.new
+    object.identifier = "SC716204"
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC48579")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC48590")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC49668")
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
+    expect(object.future_referenced?(ct)).to eq(false)
+  end
+
+  it "future referenced?, fail" do
+    object = Import::STFOClasses::STFOCodeList.new
+    object.identifier = "SC71620"
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC48579")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC4859044")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC49668")
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
+    expect(object.future_referenced?(ct)).to eq(false)
   end
 
   it "child identifiers" do

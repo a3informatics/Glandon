@@ -6,6 +6,7 @@ class Import::SponsorTermFormatOne < Import
 
   include Import::Utility
   include Import::STFOClasses
+  include Import::ThesaurusExtend
 
   C_V2 = "01/01/1900".to_datetime 
   C_V3 = "01/01/2100".to_datetime 
@@ -90,14 +91,13 @@ private
 
   # Set future  
   def set_thesarus(params)
-    @th = Thesaurus.find_minimum(params[:uri])
+    @th = ::Thesaurus.find_minimum(params[:uri])
   end
 
   # Merge the parent sets. Error if they dont match!
   def merge_reader_data(readers)
     readers.each do |reader|
       reader.engine.parent_set.each do |k, v|
-        v.add_tags_no_save(reader.engine.sheet_tags) 
         @parent_set[k] = v
         merge_errors(@parent_set[k], self)
       end
@@ -110,6 +110,7 @@ private
     ref = OperationalReferenceV3.new(reference: @th)
     ref.uri = ref.create_uri(@th.uri)
     @parent.reference = ref
+    @parent.add_context_tags(@tag_set) 
     results[:managed_children].each_with_index do |child, index| 
       # Order of the checks is important
       existing_ref = false
@@ -152,7 +153,7 @@ private
       next if ref.nil?
       check_and_add(ref, index, existing_ref)
     end
-    return {parent: @parent, managed_children: @filtered, tags: []}
+    return {parent: @parent, managed_children: @filtered, tags: @tag_set}
   end
 
   # Setup data for processing of results
@@ -163,6 +164,7 @@ private
     @scope = klass.owner.ra_namespace
     @filtered = []
     @extensions = {}
+    @tag_set = []
   end
 
   # Check for a change in an item
@@ -183,13 +185,15 @@ private
     previous_info = @child_klass.latest({scope: @scope, identifier: ref.identifier})
     if previous_info.nil?
       add_to_data(ref, index, true)
+      ref.add_context_tags(ref, @tag_set, @parent.uri) 
       add_log("No previous, new item: #{ref.uri}")
     else
       previous = @child_klass.find_full(previous_info.id) 
       update_version(ref, previous.version + 1)
       item = check_for_change(ref, previous) 
-      add_log("New item: #{item.uri}, previous item: #{previous.uri}")
       add_to_data(item, index, item.uri != previous.uri) # No changes if item = previous
+      item.add_context_tags(previous, @tag_set, @parent.uri) 
+      add_log("New item: #{item.uri}, previous item: #{previous.uri}")
     end
   end
 

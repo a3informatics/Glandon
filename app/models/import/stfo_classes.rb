@@ -37,7 +37,7 @@ module Import::STFOClasses
       STFOThesaurus.owner
     end
 
-    # Referenced?. Is the Code List actually referencing one from the quoted thesarus. The code list
+    # Referenced? Is the Code List actually referencing one from the quoted thesarus. The code list
     #   items must match the items in the referenced ManagedConcept or be a subset thereof.
     #
     # @param [Thesaurus] ct the reference thesaurus
@@ -53,13 +53,13 @@ module Import::STFOClasses
       false
     end
 
-    # Future Referenced?. Is the Code List actually referencing one from a future thesarus. The code list
+    # Future Referenced? Is the Code List actually referencing one from a future thesaurus. The code list
     #   items must match the items in the referenced ManagedConcept or be a subset thereof.
     #
     # @param [Thesaurus] ct the future reference thesaurus
     # @return [Thesaurus::ManagedConcept] either nil if not found or the Managed Concept found.
     def future_referenced?(ct)
-      return false if !STFOCodeListItem.sponsor_referenced_format?(self.identifier)
+      return false unless STFOCodeListItem.sponsor_referenced_format?(self.identifier)
       ref_ct = future_reference(ct, STFOCodeListItem.to_referenced(self.identifier))
       return false if ref_ct.nil?
       return true if self.to_referenced_child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
@@ -76,12 +76,12 @@ module Import::STFOClasses
       return false if !NciThesaurusUtility.c_code?(self.identifier)
       return false if subset?
       ref_ct = reference(ct)
-      if !ref_ct.nil?
-        ref_ct.narrower_objects
-        others = self.child_identifiers - ref_ct.child_identifiers
-        return true if STFOCodeListItem.sponsor_identifier_referenced_or_ncit_set?(others) and others.any?
-        add_log("Extension check failed, the item identifiers for code list #{self.identifier} not matching are: #{others.join(", ")}") 
-      end
+      return false if ref_ct.nil?
+      ref_ct.narrower_objects
+      others = self.child_identifiers - ref_ct.child_identifiers
+      return true if STFOCodeListItem.sponsor_identifier_referenced_or_ncit_set?(others) and others.any?
+      #return true if others.empty? && self.ranked?
+      add_log("Extension check failed, the item identifiers for code list #{self.identifier} not matching are: #{others.join(", ")}") 
       false
     end
 
@@ -109,6 +109,16 @@ module Import::STFOClasses
     rescue => e
       add_error("Exception in to_extension, #{e}, identifier '#{self.identifier}'.")
       self
+    end
+
+    # Subset? Is the entry a subset code list?
+    #
+    # @return [Boolean] true if a subset, false otherwise
+    def ranked?
+      self.narrower.each do |child|
+        return false if child.temporary_property(:rank).blank?
+      end
+      true
     end
 
     # Subset? Is the entry a subset code list?
@@ -320,8 +330,8 @@ module Import::STFOClasses
           return child # We return the imported child item, not the one found
         end
       elsif options.count == 1
-        if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
-          result = Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
+        if options.first[:rdf_type] == ::Thesaurus::UnmanagedConcept.rdf_type.to_s
+          result = ::Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
           add_warning("Fix notation mismatch, fix '#{result.notation}' '#{result.identifier}' versus reqd '#{child.notation}' '#{child.identifier}', identifier '#{self.identifier}'.") if result.notation != child.notation       
           return result 
         else
@@ -333,7 +343,7 @@ module Import::STFOClasses
         return option if !option.nil?
         uri = fixes.qualify(self.identifier, identifier)
         if !uri.nil?
-          result = Thesaurus::UnmanagedConcept.find_children(uri)
+          result = ::Thesaurus::UnmanagedConcept.find_children(uri)
           add_warning("Fix notation mismatch, fix '#{result.notation}' '#{result.identifier}' versus reqd '#{child.notation}' '#{child.identifier}', identifier '#{self.identifier}'.") if result.notation != child.notation       
           return result 
         else
@@ -419,6 +429,10 @@ module Import::STFOClasses
       self.class.find_full(ref_ct[self.identifier])
     end
 
+    # Future Reference. Obtain the Managed Concept from any future CT with the matching identifier (if present)
+    #
+    # @param [Thesaurus] ct the reference thesaurus
+    # @return [Thesaurus::ManagedConcept] either nil if not found or the Managed Concept found.
     def future_reference(ct, identifier)
       items = find_any_referenced(ct, identifier)
       return nil if items.empty?
@@ -447,7 +461,7 @@ module Import::STFOClasses
         SELECT ?s ?th ?v WHERE 
         {
           ?s th:identifier "#{identifier}" .
-          ?th th:isTopConceptReference/bo:reference/th:narrower ?s .
+          ?s ^th:narrower*/^bo:reference/^th:isTopConceptReference ?th .
           ?th isoT:hasIdentifier/isoI:version ?v .
           FILTER (?v > #{ct.version})
         } ORDER BY ?v
@@ -498,6 +512,11 @@ module Import::STFOClasses
   end
 
   class STFOCodeListItem < Thesaurus::UnmanagedConcept  
+
+    # Get temporary property
+    def temporary_property(name)
+      instance_variable_get("@#{name}")
+    end
 
     # Sponsor Identifier Set? Check set of identifiers match the sponsor format
     #
