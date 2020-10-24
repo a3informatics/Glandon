@@ -1,6 +1,6 @@
 import colors from 'shared/ui/colors'
 
-/*** Renderers for Tags ***/
+/*** Tags Helpers and Renderers ***/
 
 /**
  * Master Tag HEX color map
@@ -73,8 +73,24 @@ function renderTagsInline(tagsString) {
   return output;
 }
 
+/**
+ * Get HTML for a single styled Tag label
+ * @param {string} tagLabel Name of the Tag
+ * @return {string} Single Tag label HTML
+ */
+function renderTag(tagLabel, { cssClasses = '', id = '' } = {}) {
+
+  return `<span class='bg-label tag ${ cssClasses }'
+                style='border-color: ${ getColorByTag( tagLabel ) }'
+                data-id='${ id }'>
+            ${ tagLabel }
+          </span>`;
+
+}
+
 export { 
   getColorByTag,
   colorizeTagOutlines,
-  renderTagsInline
+  renderTagsInline,
+  renderTag
 }
