@@ -17,7 +17,8 @@ class IsoConceptController < ApplicationController
   def tags_full
     authorize IsoConcept, :show?
     concept = IsoConceptV2.find(params[:id])
-    render :json => concept.tags.map{|x| {id: x.id, label: x.pref_label}}, :status => 200
+    results = concept.tags.map{ |x| { id: x.id, label: x.pref_label } }
+    render :json => { data: results }, :status => 200
   end
 
   def add_tag
