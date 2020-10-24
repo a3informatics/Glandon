@@ -79,6 +79,7 @@
 	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
 	isoT:hasState <http://www.s-cubed.dk/C66767/V2#C66767_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/C66767/V2#C66767_SI> ;
+	isoT:hasPreviousVersion <http://www.s-cubed.dk/C66767/V1#C66767> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2100-01-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -124,6 +125,7 @@
 	isoC:label "Action Taken with Study Treatment Collected"^^xsd:string ;
 	isoT:hasState <http://www.s-cubed.dk/SN000730/V2#SN000730_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/SN000730/V2#SN000730_SI> ;
+	isoT:hasPreviousVersion <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2100-01-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -163,37 +165,37 @@
 	isoI:semanticVersion "2.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-<http://www.assero.co.uk/CLA#78ca62e7-948e-4fc7-a297-57b95e3d4af6>
+<http://www.assero.co.uk/CLA#b9945061-9082-4f17-8e76-ffa557853766>
 	rdf:type isoC:Classification ;
 	isoC:appliesTo <http://www.s-cubed.dk/C66767/V1#C66767> ;
 	isoC:context :TH ;
 	isoC:classifiedAs <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
 .
-<http://www.assero.co.uk/CLA#a5dfe60a-8c7f-4235-a161-cda3b072b99a>
+<http://www.assero.co.uk/CLA#9149d761-9968-4a2a-8c40-a45ea8602820>
 	rdf:type isoC:Classification ;
 	isoC:appliesTo <http://www.s-cubed.dk/C66767/V1#C66767> ;
 	isoC:context :TH ;
 	isoC:classifiedAs <http://www.assero.co.uk/CSN#28be7b0d-7c44-43bd-b41c-2191b6598eea> ;
 .
-<http://www.assero.co.uk/CLA#c039a138-6e24-422d-b7a2-3d088d362147>
+<http://www.assero.co.uk/CLA#60eab5a5-cf5f-4ce3-98f9-e32af2da1029>
 	rdf:type isoC:Classification ;
 	isoC:appliesTo <http://www.s-cubed.dk/C66767/V1#C66767> ;
 	isoC:context :TH ;
 	isoC:classifiedAs <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
 .
-<http://www.assero.co.uk/CLA#e52edb7a-a1b6-4d95-b8be-aa7f1b707b74>
+<http://www.assero.co.uk/CLA#01ba1483-cc57-4470-9b33-6d9bcec404a6>
 	rdf:type isoC:Classification ;
 	isoC:appliesTo <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
 	isoC:context :TH ;
 	isoC:classifiedAs <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
 .
-<http://www.assero.co.uk/CLA#dd93fc5d-9ed9-4a8e-863c-5a18374845cf>
+<http://www.assero.co.uk/CLA#77d6c9cc-23ad-407d-908d-f08820521494>
 	rdf:type isoC:Classification ;
 	isoC:appliesTo <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
 	isoC:context :TH ;
 	isoC:classifiedAs <http://www.assero.co.uk/CSN#28be7b0d-7c44-43bd-b41c-2191b6598eea> ;
 .
-<http://www.assero.co.uk/CLA#3908258e-04e0-4bf3-ade1-2e22185b0002>
+<http://www.assero.co.uk/CLA#3e210ac1-b757-4e65-b120-81913eb87843>
 	rdf:type isoC:Classification ;
 	isoC:appliesTo <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
 	isoC:context :TH ;
