@@ -27,7 +27,7 @@ export default class TagsManager extends TreeGraph {
    * @param {boolean} params.editable Specifies whether tags are editable or view-only [default=true]
    */
   constructor({
-    selector = '#tags-editor',
+    selector = '#tags-tree',
     urls,
     editable = true
   }) {
