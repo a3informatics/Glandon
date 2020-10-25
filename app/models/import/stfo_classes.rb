@@ -99,9 +99,11 @@ module Import::STFOClasses
           new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
           # If new_child is NOT nil then already in the CL being extended, nothing else to do.
           # Otherwise try and find it.
-          next if !new_child.nil?
+          new_child.rank = child.rank unless new_child.nil?
+          next unless new_child.nil?
           new_child = sponsor_or_referenced(ct, child, fixes)
           next if new_child.nil?
+          new_child.rank = child.rank unless new_child.nil?
           new_narrower << new_child 
         end
         self.narrower = new_narrower
@@ -547,16 +549,6 @@ module Import::STFOClasses
   end
 
   class STFOCodeListItem < Thesaurus::UnmanagedConcept  
-
-    # Get rank
-    def rank
-      temporary_property(:rank)
-    end
-
-    # Get temporary property
-    def temporary_property(name)
-      instance_variable_get("@#{name}")
-    end
 
     # Sponsor Identifier Set? Check set of identifiers match the sponsor format
     #

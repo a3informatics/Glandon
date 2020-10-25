@@ -88,6 +88,14 @@ module Import::ThesaurusExtend
       byebug
     end
 
+    def rank
+      instance_variable_get("@rank")
+    end
+
+    def rank=(value)
+      instance_variable_set("@rank", value)
+    end
+
   private
 
     def instance_variable_name
