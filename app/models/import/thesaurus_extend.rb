@@ -60,6 +60,7 @@ module Import::ThesaurusExtend
       else
         self.narrower.each do |child|
           actual_child = actual.narrower.select {|x| x.identifier == child.identifier}
+          next if actual_child.empty?
           child.add_context_tags(actual_child.first, set, contexts)
         end
       end
@@ -76,6 +77,8 @@ module Import::ThesaurusExtend
     # @return [Void] no return
     def add_context_tags(subject, set, contexts)
       tagged.each {|x| set << {subject: subject.uri, object: x.uri, context: contexts}}
+    rescue => e
+      byebug
     end
 
     def tagged
