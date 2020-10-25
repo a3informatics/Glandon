@@ -205,7 +205,9 @@ private
     ref.extends = stack.push(ref.extends)
     ref.subsets = stack.push(ref.subsets)
     ref.is_ordered = stack.push(ref.is_ordered)
+    ref.is_ranked = stack.push(ref.is_ranked)
     ref.update_version(new_version)
+    ref.is_ranked = stack.pop
     ref.is_ordered = stack.pop
     ref.subsets = stack.pop
     ref.extends = stack.pop
@@ -213,7 +215,8 @@ private
   end
 
   def check_for_change(current, previous)
-    return current if !subset_match?(current, previous)
+    return current unless subset_match?(current, previous)
+    return current unless rank_match?(current, previous)
     current.replace_if_no_change(previous)
   end
 
@@ -237,9 +240,16 @@ private
 
   # Check subset item sets match.
   def subset_match?(ref, previous)
-    return true if !ref.subset?
+    return true unless ref.subset?
     add_log("Checking subset detected: #{ref.identifier}, #{previous.identifier}")
     ref.subset_list_equal?(previous.is_ordered)
+  end
+
+  # Check rank item sets match.
+  def rank_match?(ref, previous)
+    return true unless ref.ranked?
+    add_log("Checking rank detected: #{ref.identifier}, #{previous.identifier}")
+    ref.rank_list_equal?(previous.is_ordered)
   end
 
   # Simple stack class

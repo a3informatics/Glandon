@@ -45,6 +45,7 @@ module Import::STFOClasses
     def referenced?(ct)
       return false if !NciThesaurusUtility.c_code?(self.identifier)
       return false if subset?
+      return false if ranked?
       ref_ct = reference(ct)
       return false if ref_ct.nil?
       return true if self.child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
@@ -106,6 +107,7 @@ module Import::STFOClasses
         self.narrower = new_narrower
       end
       self.update_identifier(self.identifier)
+      self.add_ranking if self.ranked?
       self
     rescue => e
       add_error("Exception in to_extension, #{e}, identifier '#{self.identifier}'.")
@@ -464,12 +466,26 @@ module Import::STFOClasses
       results
     end
 
+    def rank_list
+      results = []
+      save_next(results, self.is_ranked.members)
+      results
+    end
+
     def subset_list_equal?(subset)
       other = subset.list_uris.map {|x| x[:uri].to_s}
       this = subset_list.map {|x| x.to_s}
       return other - this == [] && this - other == []
     rescue => e
       add_error("Exception in subset_list_equal?")
+    end
+
+    def rank_list_equal?(rank)
+      other = rank.list_uris.map {|x| x[:uri].to_s}
+      this = rank_list.map {|x| x.to_s}
+      return other - this == [] && this - other == []
+    rescue => e
+      add_error("Exception in rank_list_equal?")
     end
 
   private
