@@ -81,7 +81,7 @@ module Import::STFOClasses
       ref_ct.narrower_objects
       others = self.child_identifiers - ref_ct.child_identifiers
       return true if STFOCodeListItem.sponsor_identifier_referenced_or_ncit_set?(others) and others.any?
-      #return true if others.empty? && self.ranked?
+      return true if others.empty? && self.ranked?
       add_log("Extension check failed, the item identifiers for code list #{self.identifier} not matching are: #{others.join(", ")}") 
       false
     end
@@ -117,9 +117,27 @@ module Import::STFOClasses
     # @return [Boolean] true if a subset, false otherwise
     def ranked?
       self.narrower.each do |child|
-        return false if child.temporary_property(:rank).blank?
+        return false unless child.respond_to?(:rank)
+        return false if child.rank.blank?
       end
       true
+    end
+
+    def add_ranking
+      list = Thesaurus::Rank.new
+      list.uri = list.create_uri(self.uri)  
+      previous = nil
+      self.narrower.sort_by{|x| x.rank}.each do |child| 
+        rank = Thesaurus::RankMember.new(item: child, rank: child.rank)
+        rank.uri = rank.create_uri(rank.uri)
+        previous.nil? ? list.members = rank : previous.member_next = rank
+        previous = rank
+      end
+      self.is_ranked = list
+      nil
+    rescue => e
+      add_error("Exception in add_ranking, #{e}, identifier '#{self.identifier}'.")
+      nil
     end
 
     # Subset? Is the entry a subset code list?
@@ -513,6 +531,11 @@ module Import::STFOClasses
   end
 
   class STFOCodeListItem < Thesaurus::UnmanagedConcept  
+
+    # Get rank
+    def rank
+      temporary_property(:rank)
+    end
 
     # Get temporary property
     def temporary_property(name)

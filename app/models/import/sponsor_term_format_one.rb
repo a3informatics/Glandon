@@ -151,6 +151,7 @@ private
         ref = nil
       end
       next if ref.nil?
+      add_log("***** RANKED #{ref.identifier} *****") if ref.ranked?
       check_and_add(ref, index, existing_ref)
     end
     return {parent: @parent, managed_children: @filtered, tags: @tag_set}
