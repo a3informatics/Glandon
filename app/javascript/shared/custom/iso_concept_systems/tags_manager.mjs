@@ -1,7 +1,7 @@
 import TreeGraph from 'shared/base/d3/tree/tree_graph'
 import TagNode from 'shared/custom/iso_concept_systems/d3/tag_node'
 
-// import InformationDialog from 'shared/ui/dialogs/information_dialog'
+import InformationDialog from 'shared/ui/dialogs/information_dialog'
 
 import { D3Tooltip } from 'shared/helpers/d3/renderers/tooltip'
 import { D3Actions } from 'shared/helpers/d3/renderers/actions'
@@ -130,8 +130,8 @@ export default class TagsManager extends TreeGraph {
     super._setListeners();
 
     // Tag Editor Help dialog
-  //   $( '#editor-help-btn' ).on( 'click',
-  //                               () => new InformationDialog({ div: '#id-form-editor' }).show() );
+    $( '#editor-help-btn' ).on( 'click',
+                           () => new InformationDialog({ div: '#id-tags-editor' }).show() );
 
     // Actions edit button click
     $( this.selector ).on( 'click', '#edit-node',

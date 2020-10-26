@@ -1,0 +1,27 @@
+<%= render layout: "shared/information_dialog", :locals => {id: "id-tags-editor", title: "How to use Tags Editor", wide: true} do %>
+
+  This panel is a tree-graph based editor for Tags. <br><br>
+
+  <%= render partial: "shared/help_dialogs/shared/d3_tree_help" %>
+
+  <div class="font-regular text-link"> Node actions </div>
+  When a Tag is selected, an <span class="font-regular">actions bar</span> appears under it. <br>
+
+  <ul>
+    <li>
+      <button class="btn icon-only light" style="margin:3px"><span class='icon-edit'></span></button> or press <i>E</i> 
+      to <span class="font-regular">Edit</span> a Tag. <br>
+      A Tag Editor panel will be opened, where data fields of the Tag instance can be viewed and modified.
+    </li>
+    <li>
+      <button class="btn icon-only light" style="margin:3px"><span class='icon-plus'></span></button> or press <i>A</i>
+      to <span class="font-regular">Add a child Tag</span> to a Tag. <br>
+      A Tag Editor panel will be opened, where data fields of the new Tag instance can be filled in.
+    </li>
+    <li>
+      <button class="btn icon-only red" style="margin:3px"><span class='icon-times'></span></button> or press <i>Delete / Backspace</i>
+      to <span class="font-regular">remove</span> a Tag. A Tag can only be removed if it does not have children and is not used in the system.
+    </li>
+  </ul>
+
+<% end %>
