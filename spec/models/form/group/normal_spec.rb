@@ -283,7 +283,7 @@ describe Form::Group::Normal do
       normal = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       check_file_actual_expected(normal.to_h, sub_dir, "delete_expected_1.yaml", equate_method: :hash_equal)
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4"))
-      result = question.delete(normal)
+      result = question.delete(normal, normal)
       normal = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       check_file_actual_expected(normal.to_h, sub_dir, "delete_expected_2.yaml", equate_method: :hash_equal)
     end

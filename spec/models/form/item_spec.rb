@@ -76,7 +76,7 @@ describe Form::Item do
     it "Deletes question" do
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1"))
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1"))
-      result = question.delete(parent)
+      result = question.delete(parent, parent)
       expect{OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1_TUC1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1_TUC1 in OperationalReferenceV3::TucReference.")
       expect{Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1 in Form::Item::Question.")
       check_file_actual_expected(result, sub_dir, "delete_item_expected_1.yaml", equate_method: :hash_equal)
@@ -85,7 +85,7 @@ describe Form::Item do
     it "Deletes placeholder" do
       placeholder = Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2"))
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1"))
-      result = placeholder.delete(parent)
+      result = placeholder.delete(parent, parent)
       expect{Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2 in Form::Item::Placeholder.")
       check_file_actual_expected(result, sub_dir, "delete_item_expected_2.yaml", equate_method: :hash_equal)
     end
@@ -109,7 +109,7 @@ describe Form::Item do
       parent = Form::Group::Normal.find_full(parent.uri)
       parent.has_item_objects
       check_file_actual_expected(parent.to_h, sub_dir, "delete_item_expected_4a.yaml", equate_method: :hash_equal)
-      result = item.delete(parent)
+      result = item.delete(parent, parent)
       check_file_actual_expected(result, sub_dir, "delete_item_expected_4b.yaml", equate_method: :hash_equal)      
     end
 
@@ -121,7 +121,7 @@ describe Form::Item do
       parent = Form::Group::Normal.find_full(parent.uri)
       parent.has_item_objects
       check_file_actual_expected(parent.to_h, sub_dir, "delete_item_expected_5a.yaml", equate_method: :hash_equal)
-      result = item.delete(parent)
+      result = item.delete(parent, parent)
       check_file_actual_expected(result, sub_dir, "delete_item_expected_5b.yaml", equate_method: :hash_equal)      
     end
 
