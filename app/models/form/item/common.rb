@@ -46,7 +46,24 @@ class Form::Item::Common < Form::Item::BcProperty
     self.has_coded_value_objects.sort_by {|x| x.ordinal}
   end
 
-  def delete(parent)
+  # Delete. Delete the object. Clone if there are multiple parents.
+  #
+  # @param [Object] parent_object the parent object
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Object] the parent object, either new or the cloned new object with updates
+  def delete(parent, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent = clone_and_unlink(managed_ancestor)
+    else
+      delete_node(parent)
+      parent
+    end    
+    common_group = Form::Group::Common.find(parent.uri)
+    normal_group = Form::Group::Normal.find_full(common_group.get_normal_group)
+    normal_group = normal_group.full_data
+  end
+
+  def delete_node(parent)
     update_query = %Q{
       DELETE DATA
       {
@@ -71,9 +88,7 @@ class Form::Item::Common < Form::Item::BcProperty
     }
     partial_update(update_query, [:bf])
     parent.reset_ordinals
-    common_group = Form::Group::Common.find(parent.uri)
-    normal_group = Form::Group::Normal.find_full(common_group.get_normal_group)
-    normal_group = normal_group.full_data
+    1
   end
 
   def common_item_to_hash(common_items)

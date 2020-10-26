@@ -23,7 +23,9 @@ class Form::Item < IsoConceptV2
     [
       "<http://www.assero.co.uk/BusinessForm#hasGroup>",
       "<http://www.assero.co.uk/BusinessForm#hasSubGroup>*",
-      "<http://www.assero.co.uk/BusinessForm#hasItem>"
+      "<http://www.assero.co.uk/BusinessForm#hasCommon>?",
+      "<http://www.assero.co.uk/BusinessForm#hasItem>",
+      "<http://www.assero.co.uk/BusinessForm#hasCommonItem>*"
     ]
   end
 
@@ -69,7 +71,7 @@ class Form::Item < IsoConceptV2
     end
     transaction_execute
     new_parent.reset_ordinals
-    new_parent
+    new_parent = Form::Group.find_full(new_parent.id)
   end
 
   def delete_node(parent)

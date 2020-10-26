@@ -4,6 +4,7 @@ describe Form::Item do
   
   include DataHelpers
   include OdmHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "models/form/item"
@@ -94,11 +95,31 @@ describe Form::Item do
       common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1"))
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1"))
       expect(parent.has_item.count).to eq(2)
-      result = common_item.delete(parent)
+      result = common_item.delete(parent, parent)
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1"))
       expect(parent.has_item.count).to eq(1)
       expect{Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1 in Form::Item::Common.")
       check_file_actual_expected(result, sub_dir, "delete_item_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "Deletes Common item" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F"))
+      params = {registration_status: "Standard", previous_state: "Incomplete"}
+      form.update_status(params)
+      #check_dates(form, sub_dir, "delete_item_expected_6a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_item_expected_6a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      parent = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1"))
+      common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1"))
+      common_item.delete(parent, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "delete_item_expected_6b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "delete_item_expected_6b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      #check_dates(form, sub_dir, "delete_item_expected_6a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_item_expected_6a.yaml", equate_method: :hash_equal)
     end
 
     it "Deletes Mapping" do
