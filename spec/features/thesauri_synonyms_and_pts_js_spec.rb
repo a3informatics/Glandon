@@ -392,7 +392,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '46.0.0'
       expect(page).to have_content 'Show more'
-      ui_show_more_tags_th
+      ui_header_show_more_tags
       expect(page).to have_content 'Tags: ADaM CDASH SDTM SEND'
       find(:xpath, "//tr[contains(.,'C99074')]/td/a", :text => 'Show').click
       wait_for_ajax_long
@@ -402,7 +402,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Show more'
       #find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
       #find(:xpath, '//*[@id="imh_header"]/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
-      ui_show_more_tags_cl
+      ui_header_show_more_tags
       expect(page).to have_content 'Tags: SDTM SEND'
       find(:xpath, "//tr[contains(.,'C90069')]/td/a", :text => 'Show').click
       wait_for_ajax_long
@@ -411,7 +411,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'C90069'
       expect(page).to have_content 'Show more'
       #find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
-      ui_show_more_tags_cli
+      ui_header_show_more_tags
       wait_for_ajax_long
       expect(page).to have_content 'Tags: SDTM SEND'
     end
@@ -464,15 +464,14 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
     context_menu_element('history', 5, "#{date} Release", :show)
     wait_for_ajax_long
     expect(page).to have_content "#{version}"
-    ui_show_more_tags_th
+    ui_header_show_more_tags
     expect(page).to have_content "Tags: #{ct_tags}"
     ui_table_search("children_table", "C100170")
     find(:xpath, "//tr[contains(.,'C100170')]/td/a", :text => 'Show').click
     wait_for_ajax_long
     expect(page).to have_content "C100170"
   sleep 1
-    ui_show_more_tags_cl
-  sleep 1
+    ui_header_show_more_tags
     expect(page).to have_content "Tags: #{cl_tags}"
   end
 
