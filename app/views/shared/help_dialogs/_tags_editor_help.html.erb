@@ -2,14 +2,20 @@
 
   This panel is a tree-graph based editor for Tags. <br><br>
 
-  <%= render partial: "shared/help_dialogs/shared/d3_tree_help" %>
+  <% content_for :extra_node_info do %>
+    <li>
+      <i>Double-click</i> on a Tag to view a list of Items in the system tagged with that Tag instance
+    </li>
+  <% end %>
+
+  <%= render partial: "shared/help_dialogs/shared/d3_tree_help" %>  
 
   <div class="font-regular text-link"> Node actions </div>
   When a Tag is selected, an <span class="font-regular">actions bar</span> appears under it. <br>
 
   <ul>
     <li>
-      <button class="btn icon-only light" style="margin:3px"><span class='icon-edit'></span></button> or press <i>E</i> 
+      <button class="btn icon-only light" style="margin:3px"><span class='icon-edit'></span></button> or press <i>E</i>
       to <span class="font-regular">Edit</span> a Tag. <br>
       A Tag Editor panel will be opened, where data fields of the Tag instance can be viewed and modified.
     </li>
@@ -22,6 +28,7 @@
       <button class="btn icon-only red" style="margin:3px"><span class='icon-times'></span></button> or press <i>Delete / Backspace</i>
       to <span class="font-regular">remove</span> a Tag. A Tag can only be removed if it does not have children and is not used in the system.
     </li>
+
   </ul>
 
 <% end %>
