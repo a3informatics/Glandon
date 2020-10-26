@@ -36,41 +36,65 @@ class Form::Group < IsoConceptV2
     top_level_group? ? :has_group : :has_sub_group
   end
 
-  # Top Level Group? Is this item the top level group
+  # Top Level Group? Is this group the top level group
   #
-  # @result [Boolean] return true if this instance is a top level group or false if  it is a subGroup
+  # @result [Boolean] return true if this instance is a top level group or false if it is a SubGroup
   def top_level_group?
     Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bf:hasGroup ?o}", "", [:bf]).ask? 
   end
 
-  # Delete With Clone. Delete the object. Clone if there are multiple parents.
+  # Delete. Delete the object. Clone if there are multiple parents.
   #
   # @param [Object] parent_object the parent object
-  # @return [Thesarus::UnmanagedConcept] the object, either new or the cloned new object with updates
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Object] the parent object, either new or the cloned new object with updates
   def delete(parent, managed_ancestor)
     if multiple_managed_ancestors?
-      tx = transaction_begin
-      uris = managed_ancestor_path_uris(managed_ancestor)
-      prev_object = managed_ancestor
-      prev_object.transaction_set(tx)
-      uris.each do |old_uri|
-        old_object = self.class.klass_for(old_uri).find_children(old_uri)
-        if old_object.multiple_managed_ancestors?
-          cloned_object = clone_and_save(old_object, prev_object, tx)
-          if self.uri == old_object.uri
-            prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
-          else
-            prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-          end
-          prev_object = cloned_object
-        else
-          prev_object = old_object
-        end
-      end
-      transaction_execute
+      clone_and_unlink(managed_ancestor)
     else
       delete_node(parent)
+      parent
     end
+  end
+
+  def clone_and_unlink(managed_ancestor)
+    tx = transaction_begin
+    new_parent = nil
+    uris = managed_ancestor_path_uris(managed_ancestor)
+    prev_object = managed_ancestor
+    prev_object.transaction_set(tx)
+    uris.each do |old_uri|
+      old_object = self.class.klass_for(old_uri).find_children(old_uri)
+      cloned_object = clone_and_save(old_object, prev_object, tx)
+      if self.uri == old_object.uri
+        prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
+        new_parent = prev_object
+        new_parent.clone_children_and_save(tx)
+      else
+        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+      end
+      prev_object = cloned_object
+    end
+    transaction_execute
+    new_parent.reset_ordinals
+    new_parent
+  end
+
+  # Clone the item and create. Use Sparql approach in case of children also need creating
+  #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
+  #   The Children are normally references. Also note the setting of the transaction in the cloned object and
+  #   in the sparql generation, important both are done.
+  def clone_children_and_save(tx)
+    sparql = Sparql::Update.new(tx)
+    set = self.has_item
+    set.each do |child|
+      object = child.clone
+      object.transaction_set(tx)
+      object.generate_uri(self.uri) 
+      object.to_sparql(sparql, true)
+      self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
+    end
+    sparql.create
   end
 
   def delete_node(parent)
@@ -131,7 +155,7 @@ class Form::Group < IsoConceptV2
     query_string = %Q{
       SELECT (MAX(?ordinal) AS ?max)
       {
-        #{self.uri.to_ref} bf:hasSubGroup|bf:hasItem ?s .
+        #{self.uri.to_ref} bf:hasSubGroup|bf:hasItem|bf:hasCommon ?s .
         ?s bf:ordinal ?ordinal
       }
     }

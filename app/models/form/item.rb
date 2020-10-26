@@ -34,7 +34,45 @@ class Form::Item < IsoConceptV2
     :has_item
   end
 
-  def delete(parent)
+  # Delete. Delete the object. Clone if there are multiple parents.
+  #
+  # @param [Object] parent_object the parent object
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Object] the parent object, either new or the cloned new object with updates
+  def delete(parent, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent = clone_and_unlink(managed_ancestor)
+    else
+      delete_node(parent)
+    end
+    normal_group = Form::Group::Normal.find_full(parent.uri)
+    normal_group = normal_group.full_data
+  end
+
+  def clone_and_unlink(managed_ancestor)
+    tx = transaction_begin
+    new_parent = nil
+    uris = managed_ancestor_path_uris(managed_ancestor)
+    prev_object = managed_ancestor
+    prev_object.transaction_set(tx)
+    uris.each do |old_uri|
+      old_object = self.class.klass_for(old_uri).find_children(old_uri)
+      cloned_object = clone_and_save(old_object, prev_object, tx)
+      if self.uri == old_object.uri  
+        prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
+        new_parent = prev_object
+        new_parent.clone_children_and_save(tx)
+      else 
+        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+      end
+      prev_object = cloned_object
+    end
+    transaction_execute
+    new_parent.reset_ordinals
+    new_parent
+  end
+
+  def delete_node(parent)
     update_query = %Q{
       DELETE DATA
       {
@@ -59,8 +97,7 @@ class Form::Item < IsoConceptV2
     }
     partial_update(update_query, [:bf])
     parent.reset_ordinals
-    normal_group = Form::Group::Normal.find_full(parent.uri)
-    normal_group = normal_group.full_data
+    1
   end
 
   def start_row(optional)
