@@ -7,9 +7,9 @@ describe Forms::Groups::BcGroupsController do
   include UserAccountHelpers
   include IsoHelpers
   include ControllerHelpers
-  
+
   describe "Update" do
-  	
+
     login_curator
 
     def sub_dir
@@ -21,7 +21,7 @@ describe Forms::Groups::BcGroupsController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/CRF TEST 1.ttl"]
+      data_files = ["forms/CRF TEST 1.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
@@ -31,7 +31,7 @@ describe Forms::Groups::BcGroupsController do
     end
 
     it "update" do
-      update_params = {form_id: @form.id, note:"note u", completion:"completion u"} 
+      update_params = {form_id: @form.id, note:"note u", completion:"completion u"}
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
@@ -45,7 +45,7 @@ describe Forms::Groups::BcGroupsController do
     end
 
     it 'update, second update so no audit' do
-      update_params = {form_id: @form.id, note:"note u", completion:"completion u"} 
+      update_params = {form_id: @form.id, note:"note u", completion:"completion u"}
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
@@ -58,7 +58,7 @@ describe Forms::Groups::BcGroupsController do
     end
 
     it 'update, locked by another user' do
-      update_params = {form_id: @form.id, note:"note u", completion:"completion u"} 
+      update_params = {form_id: @form.id, note:"note u", completion:"completion u"}
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @lock_user)
       audit_count = AuditTrail.count
@@ -69,7 +69,7 @@ describe Forms::Groups::BcGroupsController do
     end
 
     it 'update, errors' do
-      update_params = {form_id: @form.id, note:"note u", completion:"completion ±±±"} 
+      update_params = {form_id: @form.id, note:"note u", completion:"completion ±±±"}
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@form, @user)
       audit_count = AuditTrail.count
@@ -82,7 +82,7 @@ describe Forms::Groups::BcGroupsController do
   end
 
   describe "Move up/down" do
-    
+
     login_curator
 
     def sub_dir
@@ -143,7 +143,7 @@ describe Forms::Groups::BcGroupsController do
   end
 
   describe "Destroy" do
-    
+
     login_curator
 
     def sub_dir
@@ -155,7 +155,7 @@ describe Forms::Groups::BcGroupsController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/CRF TEST 1.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      data_files = ["forms/CRF TEST 1.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..38)
       load_data_file_into_triple_store("mdr_identification.ttl")

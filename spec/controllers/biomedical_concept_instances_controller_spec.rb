@@ -178,9 +178,19 @@ describe BiomedicalConceptInstancesController do
       expect(response).to render_template("edit")
     end
 
-    it "edit, json request, not locked" do
+    it "edit, html request, not locked, standard and creates new draft" do
+      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      instance.has_state.registration_status = "Standard"
+      instance.has_state.save
+      get :edit, params:{id: instance.id}
+      expect(assigns[:bc].uri).to eq(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V2#BCI"))
+      expect(assigns[:edit].lock.token.id).to eq(Token.all.last.id)
+    end
+
+    it "edit, json request" do
       request.env['HTTP_ACCEPT'] = "application/json"
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      token = Token.obtain(instance, @user)
       get :edit, params:{id: instance.id}
       actual = check_good_json_response(response)
       expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
@@ -188,12 +198,22 @@ describe BiomedicalConceptInstancesController do
       check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal)
     end
 
+    it "edit another, json request, not locked" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      get :edit_another, params:{id: instance.id}
+      actual = check_good_json_response(response)
+      expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
+      actual[:token_id] = 9999                            # So, fix for file compare
+      check_file_actual_expected(actual, sub_dir, "edit_json_expected_4.yaml", equate_method: :hash_equal)
+    end
+
     it "edit, json request, not locked, standard and creates new draft" do
       request.env['HTTP_ACCEPT'] = "application/json"
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       instance.has_state.registration_status = "Standard"
       instance.has_state.save
-      get :edit, params:{id: instance.id}
+      get :edit_another, params:{id: instance.id}
       actual = check_good_json_response(response)
       expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
       actual[:token_id] = 9999                            # So, fix for file compare
@@ -217,6 +237,15 @@ describe BiomedicalConceptInstancesController do
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       token = Token.obtain(instance, @lock_user)
       get :edit, params:{id: instance.id}
+      actual = check_error_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "edit_json_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "edit another, json request, locked by another user" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      token = Token.obtain(instance, @lock_user)
+      get :edit_another, params:{id: instance.id}
       actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "edit_json_expected_2.yaml", equate_method: :hash_equal)
     end

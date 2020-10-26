@@ -1,13 +1,13 @@
 ---
 :data:
-  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0Y=
-  :uri: http://www.s-cubed.dk/form_test_2/V1#F
-  :rdf_type: http://www.assero.co.uk/BusinessForm#Form
-  :label: Form test 2
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1dFSUdIVC9WMSNCQ0k=
+  :uri: http://www.s-cubed.dk/WEIGHT/V1#BCI
+  :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+  :label: Weight
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfUlM=
-    :uri: http://www.s-cubed.dk/form_test_2/V1#F_RS
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1dFSUdIVC9WMSNCQ0lfUlM=
+    :uri: http://www.s-cubed.dk/WEIGHT/V1#BCI_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Incomplete
     :administrative_note: ''
@@ -32,10 +32,10 @@
         :name: S-cubed Aps
         :authority: www.s-cubed.dk
   :has_identifier:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfU0k=
-    :uri: http://www.s-cubed.dk/form_test_2/V1#F_SI
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1dFSUdIVC9WMSNCQ0lfU0k=
+    :uri: http://www.s-cubed.dk/WEIGHT/V1#BCI_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: Form test 2
+    :identifier: WEIGHT
     :version_label: ''
     :version: 1
     :semantic_version: 0.1.0
@@ -50,8 +50,9 @@
   :origin: ''
   :change_description: ''
   :creation_date: '2016-01-01T00:00:00+00:00'
-  :last_change_date: '2020-09-04T14:45:59+02:00'
+  :last_change_date: '2020-09-10T10:45:33+02:00'
   :explanatory_comment: ''
-  :note: ''
-  :completion: ''
-  :has_group: []
+  :has_item: []
+  :identified_by: 
+  :based_on: 
+:token_id: 9999

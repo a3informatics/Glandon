@@ -2,9 +2,11 @@
 
 <%= javascript_pack_tag 'biomedical_concept_instances/edit' %>
 
-<%= javascript_tag "let bcEditDataUrl = '#{edit_data_biomedical_concept_instance_path(id: "bcID")}',
+<%= javascript_tag "let bcMetadataUrl = '#{edit_biomedical_concept_instance_path(@bc)}',
+                        bcEditFullDataUrl = '#{edit_data_biomedical_concept_instance_path(id: "bcID")}',
+                        bcEditAnotherUrl = '#{edit_another_biomedical_concept_instance_path(id: "bcID")}',
                         bcUpdateUrl = '#{update_property_biomedical_concept_instance_path(id: "bcID")}',
-                        bcEditUrl = '#{edit_biomedical_concept_instance_path(id: "bcID")}',
+
                         baseBCId = '#{@bc.id}',
                         tokenWarningTime = #{current_user.edit_lock_warning};" %>
 
