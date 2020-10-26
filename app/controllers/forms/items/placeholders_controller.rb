@@ -55,7 +55,7 @@ class Forms::Items::PlaceholdersController < ManagedItemsController
     parent = Form::Group.find(the_params[:parent_id])
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
-    result = placeholder.delete(parent)
+    result = placeholder.delete(parent, form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, item #{placeholder.label} deleted.") if @lock.token.refresh == 1
     render json: {data: result }, status: 200
