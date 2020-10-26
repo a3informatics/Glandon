@@ -7,11 +7,26 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-import ExpandableContent from 'shared/ui/expandable_content'
-
 $( () => {
 
-  // Handles updates of all Expandable Content elements on page
-  ExpandableContent.initialize();
+  ( async() => {
+
+    // Handles events of all Expandable Contents on page, if present
+    if ( window.pageHasExpandableContent ) {
+
+      let ExpandableContent = await import( 'shared/ui/expandable_content' );
+      ExpandableContent.default.initialize();
+
+    }
+
+    // Adds color to any Tags in page headers, if present
+    if ( window.pageHeaderHasTags ) {
+
+      let { tagOutlines } = await import( 'shared/ui/tags' );
+      tagOutlines();
+
+    }
+
+  } )()
 
 });

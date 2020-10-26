@@ -33,17 +33,16 @@ function getColorByTag(tag) {
  * Styles tag elements outline with assgined color
  * @param {string} selector Selector of target elements (with parent)
  */
-function colorizeTagOutlines(selector) {
+function tagOutlines(selector = ".labels-inline-wrap .tag") {
 
   // Iterate over tag elements
   $.each( $(selector), (i, el) => {
 
-    // Get color based on val / text of the tag
-    const tagColor = getColorByTag( $(el).val() || $(el).text() );
+    // Get color based on text of the tag
+    let tagColor = getColorByTag( $(el).text() );
 
-    // Apply CSS
-    $(el).css('background', 'transparent')
-         .css('box-shadow', `inset 0 0 0 2px ${tagColor}`);
+    $( el ).css( 'border-color', tagColor );
+
   });
 
 }
@@ -90,7 +89,7 @@ function renderTag(tagLabel, { cssClasses = '', id = '' } = {}) {
 
 export { 
   getColorByTag,
-  colorizeTagOutlines,
+  tagOutlines,
   renderTagsInline,
   renderTag
 }

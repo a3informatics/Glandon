@@ -361,6 +361,20 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:foc
   }
 }
 
+// Tags and labels
+
+.labels-inline-wrap {
+  margin-top: 5px;
+}
+
+.bg-label.tag {
+  background: white;
+  border: 2px solid $grey-light;
+  padding: 1px 10px;
+  font-size: $font-small;
+  margin-top: 5px;
+}
+
 // Indicators
 
 .indicators-wrap {
