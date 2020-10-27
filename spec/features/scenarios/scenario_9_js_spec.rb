@@ -10,7 +10,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
   include UserAccountHelpers
   include AuditTrailHelpers
   include ScenarioHelpers
-  include TagHelper
+  include TagHelpers
   include NameValueHelpers
   include EditorHelpers
 
@@ -61,11 +61,8 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
 
     it "Prepares a tag, system admin", scenario: true, js: true do
       ua_sys_and_content_admin_login
-      click_navbar_tags
-      fill_in 'add_label', with: 'TstTag'
-      fill_in 'add_description', with: 'Tag for Test'
-      click_on 'Create tag'
-      wait_for_ajax 10
+      go_to_tags
+      create_tag('Tags', 'TstTag', 'Tag for Test')
       ua_logoff
     end
 
