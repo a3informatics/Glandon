@@ -252,6 +252,7 @@ describe Form do
       check_dates(new_form, sub_dir, "update_form_1b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "update_form_1b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "update_form_1a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "update_form_1a.yaml", equate_method: :hash_equal)
     end
 
@@ -273,6 +274,7 @@ describe Form do
       check_dates(new_form, sub_dir, "update_form_2b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "update_form_2b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "update_form_2a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "update_form_2a.yaml", equate_method: :hash_equal)
     end
 
@@ -294,6 +296,7 @@ describe Form do
       check_dates(new_form, sub_dir, "update_form_3b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "update_form_3b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "update_form_3a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "update_form_3a.yaml", equate_method: :hash_equal)
     end
 
@@ -315,6 +318,7 @@ describe Form do
       check_dates(new_form, sub_dir, "update_form_4b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "update_form_4b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "update_form_4a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "update_form_4a.yaml", equate_method: :hash_equal)
     end
 
@@ -336,6 +340,7 @@ describe Form do
       check_dates(new_form, sub_dir, "update_form_5b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "update_form_5b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "update_form_5a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "update_form_5a.yaml", equate_method: :hash_equal)
     end
 
@@ -357,6 +362,7 @@ describe Form do
       check_dates(new_form, sub_dir, "update_form_6b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "update_form_6b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "update_form_6a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "update_form_6a.yaml", equate_method: :hash_equal)
     end
 
@@ -378,6 +384,7 @@ describe Form do
       check_dates(new_form, sub_dir, "update_form_7b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "update_form_7b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "update_form_7a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "update_form_7a.yaml", equate_method: :hash_equal)
     end
 
@@ -420,6 +427,7 @@ describe Form do
       check_dates(new_form, sub_dir, "update_form_8b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "update_form_8b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "update_form_8a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "update_form_8a.yaml", equate_method: :hash_equal)
     end
 
@@ -668,16 +676,14 @@ describe Form do
       item.update_status(params)
     end
     
-    before :all do
+    before :each do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
-    it "deletes BC group and common item" do
-      # expect{Form::Group::Bc.find(Uri.new(uri: "http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238 in Form::Group::Bc.")
-      # expect{Form::Item::Common.find(Uri.new(uri: "http://www.example.com/A#CI_f9fe7128-4b63-482d-9a11-62250e24fe0c"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.example.com/A#CI_f9fe7128-4b63-482d-9a11-62250e24fe0c in Form::Item::Common.")
+    it "deletes BC group and common item, clone" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
       form.add_child({type:"normal_group"})
@@ -691,83 +697,176 @@ describe Form do
       bc_property.make_common
       make_standard(form)
       form = Form.find_full(form.uri)
-      #check_dates(form, sub_dir, "delete_form_10a.yaml", :creation_date, :last_change_date)
+      check_dates(form, sub_dir, "delete_form_10a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_10a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
       bc_group = Form::Group::Bc.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
       bc_group.delete(normal_group, new_form)
       new_form = Form.find_full(new_form.uri)
-      #check_dates(new_form, sub_dir, "delete_form_10b.yaml", :creation_date, :last_change_date)
+      check_dates(new_form, sub_dir, "delete_form_10b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "delete_form_10b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "delete_form_10a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_10a.yaml", equate_method: :hash_equal)
     end
 
-    # it "deletes BC group, doesn't delete common item" do
-    #   allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
-    #   normal_1 = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X2"), note: "OK", ordinal: 1, completion: "None")
-    #   expect(normal_1.errors.count).to eq(0)
-    #   bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/DIABP/V1#BCI"))
-    #   bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/SYSBP/V1#BCI"))
-    #   result = normal_1.add_child({type:"common_group"})
-    #   result = normal_1.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id]})
-    #   normal_1.save
-    #   normal_1 = Form::Group::Normal.find_full(normal_1.uri)
-    #   bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.example.com/A#BCP_b76597f7-972f-40f4-bed7-e134725cf296"))
-    #   bc_property.make_common
-    #   normal_1 = Form::Group::Normal.find_full(normal_1.uri)
-    #   check_file_actual_expected(normal_1.to_h, sub_dir, "delete_bc_group_expected_2a.yaml", equate_method: :hash_equal)
-    #   common_item = Form::Item::Common.find(Uri.new(uri: "http://www.example.com/A#CI_9512d1d4-7f6c-4b3c-a330-ff3081f8de24"))
-    #   group = Form::Group::Bc.find(Uri.new(uri: "http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
-    #   result = group.delete(normal_1)
-    #   expect{Form::Group::Bc.find(Uri.new(uri: "http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238 in Form::Group::Bc.")
-    #   common_item = Form::Item::Common.find(Uri.new(uri: "http://www.example.com/A#CI_9512d1d4-7f6c-4b3c-a330-ff3081f8de24"))
-    #   check_file_actual_expected(result, sub_dir, "delete_bc_group_expected_2b.yaml", equate_method: :hash_equal)
-    # end
+    it "deletes BC group, doesn't delete common item" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/DIABP/V1#BCI"))
+      bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/SYSBP/V1#BCI"))
+      normal_group.add_child({type:"common_group"})
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id]})
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296"))
+      bc_property.make_common
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "delete_form_11a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_form_11a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      bc_group = Form::Group::Bc.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      bc_group.delete(normal_group, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "delete_form_11b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "delete_form_11b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "delete_form_11a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_form_11a.yaml", equate_method: :hash_equal)
+    end
+
   end
 
-  # it "to_xml, I" do
-  #   item = Form.find("F-ACME_DM101", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #   xml = item.to_xml
-  # #Xwrite_text_file_2(xml, sub_dir, "to_xml_1.xml")
-  #   expected = read_text_file_2(sub_dir, "to_xml_1.xml")
-  #   odm_fix_datetimes(xml, expected)
-  #   odm_fix_system_version(xml, expected)
-  #   expect(xml).to eq(expected)
-  # end
-  
-  # it "to_xml, II" do
-  #   item = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #   xml = item.to_xml
-  # #write_text_file_2(xml, sub_dir, "to_xml_2.xml")
-  #   expected = read_text_file_2(sub_dir, "to_xml_2.xml")
-  #   odm_fix_datetimes(xml, expected)
-  #   odm_fix_system_version(xml, expected)
-  #   expect(xml).to eq(expected)
-  # end
-  
-  # it "generates the form annotations" do
-  #   item = Form.find("F-ACME_TEST1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #   annotations = item.annotations
-  # #write_yaml_file(annotations, sub_dir, "annotations_1.yaml")
-  #   expected = read_yaml_file(sub_dir, "annotations_1.yaml")
-  #   expect(annotations).to eq(expected)
-  #   item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #   annotations = item.annotations
-  # #write_yaml_file(annotations, sub_dir, "annotations_2.yaml")
-  #   expected = read_yaml_file(sub_dir, "annotations_2.yaml")
-  #   expect(annotations).to eq(expected)
-  #   item = Form.find("F-ACME_DM101", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #   annotations = item.annotations
-  # #write_yaml_file(annotations, sub_dir, "annotations_3.yaml")
-  #   expected = read_yaml_file(sub_dir, "annotations_3.yaml")
-  #   expect(annotations).to eq(expected)
-  #   item = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #   annotations = item.annotations
-  # #write_yaml_file(annotations, sub_dir, "annotations_4.yaml")
-  #   expected = read_yaml_file(sub_dir, "annotations_4.yaml")
-  #   expect(annotations).to eq(expected)
-  # end
+  describe "Move up/down Tests" do
+
+    def make_standard(item)
+      params = {}
+      params[:registration_status] = "Standard"
+      params[:previous_state] = "Incomplete"
+      item.update_status(params)
+    end
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "move up normal group, clone, error: attempting to move up past the first node" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      form.add_child({type:"normal_group"})
+      form.add_child({type:"normal_group"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_up_form_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_up_form_1a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      result = new_form.move_up_with_clone(normal_group, new_form)
+      expect(result).to eq(false)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_up_form_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_up_form_1a.yaml", equate_method: :hash_equal)
+    end
+
+    it "move up normal group, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      form.add_child({type:"normal_group"})
+      form.add_child({type:"normal_group"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_up_form_2a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_up_form_2a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      result = new_form.move_up_with_clone(normal_group, new_form)
+      expect(result).to eq(true)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "move_up_form_2b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "move_up_form_2b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_up_form_2a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_up_form_2a.yaml", equate_method: :hash_equal)
+    end
+
+    it "move down normal group, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      form.add_child({type:"normal_group"})
+      form.add_child({type:"normal_group"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_down_form_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_down_form_1a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      new_form.move_down_with_clone(normal_group, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "move_down_form_1b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "move_down_form_1b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_down_form_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_down_form_1a.yaml", equate_method: :hash_equal)
+    end
+
+    it "move up question, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_up_form_3a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_up_form_3a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
+      normal_group.move_up_with_clone(question, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "move_up_form_3b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "move_up_form_3b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_up_form_3a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_up_form_3a.yaml", equate_method: :hash_equal)
+    end
+
+    it "move down question, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_down_form_2a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_down_form_2a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
+      normal_group.move_down_with_clone(question, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "move_down_form_2b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "move_down_form_2b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_down_form_2a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_down_form_2a.yaml", equate_method: :hash_equal)
+    end
+
+  end
   
 end

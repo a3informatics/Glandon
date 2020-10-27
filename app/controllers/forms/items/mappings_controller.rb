@@ -27,7 +27,7 @@ class Forms::Items::MappingsController < ManagedItemsController
     return true unless check_lock_for_item(form)
     mapping = Form::Item::Mapping.find(protect_from_bad_id(params))
     parent = IsoConceptV2.find(the_params[:parent_id])
-    result = parent.move_up(mapping)
+    result = parent.move_up_with_clone(mapping, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -41,7 +41,7 @@ class Forms::Items::MappingsController < ManagedItemsController
     return true unless check_lock_for_item(form)
     mapping = Form::Item::Mapping.find(protect_from_bad_id(params))
     parent = IsoConceptV2.find(the_params[:parent_id])
-    result = parent.move_down(mapping)
+    result = parent.move_down_with_clone(mapping, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
