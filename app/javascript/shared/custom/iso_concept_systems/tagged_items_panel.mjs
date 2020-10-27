@@ -68,7 +68,10 @@ export default class TaggedItemsPanel extends ModalView {
       tableOptions: {
         autoWidth: true,
         scrollY: '350px',
-        scrollCollapse: true
+        scrollCollapse: true,
+        language: {
+          emptyTable: 'No items with the selected tag were found.'
+        }
       }
     });
 
@@ -139,7 +142,7 @@ export default class TaggedItemsPanel extends ModalView {
 
   /**
    * Get the modal's error element
-   * @return {JQuery Element} Error div of the modal 
+   * @return {JQuery Element} Error div of the modal
    */
   get $error() {
     return this.modal.find('.error');

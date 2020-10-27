@@ -140,9 +140,9 @@ export default class ConceptTagsEditor {
   _setListeners() {
 
     // Tag node click, toggle Attach tag button's disbabled class
-    $( this.manager.selector ).on( 'click', '.node', e =>
+    $( this.manager.selector ).on( 'selectChanged', '.node', (e, selected) =>
           this.content.find( '#add-tag-btn' )
-                      .toggleClass( 'disabled', !this.selectedTag )
+                      .toggleClass( 'disabled', !selected )
     );
 
     // Attach Tag click

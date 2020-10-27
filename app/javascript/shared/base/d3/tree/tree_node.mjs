@@ -240,8 +240,10 @@ export default class TreeNode {
     // Update node data object
     this.data.selected = true;
 
-    // Update node CSS class and styles
-    this.$.addClass( 'selected' );
+    // Update node CSS class and styles, trigger selectChagned event
+    this.$.addClass( 'selected' )
+          .trigger( 'selectChanged', [true] );
+
     this.toggleSelectStyles( true );
 
   }
@@ -254,8 +256,10 @@ export default class TreeNode {
     // Update node data object
     this.data.selected = false;
 
-    // Update node CSS class and styles
-    this.$.removeClass( 'selected' );
+    // Update node CSS class and styles, trigger selectChanged event
+    this.$.removeClass( 'selected' )
+          .trigger( 'selectChanged', [false] );
+
     this.toggleSelectStyles( false );
 
   }
