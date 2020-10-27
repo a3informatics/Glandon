@@ -98,7 +98,10 @@ describe IsoConceptController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :tags_full, params:{id: item.id}
       actual = check_good_json_response(response)
-      expect(actual).to eq([{:id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzIwNzBlNzE0LTNmNWItNDVkNC1iMWEzLTVmZjVkNThjYmNlOQ==", :label=>"SDTM"}])
+      expect(actual[:data]).to eq([{
+        :id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzIwNzBlNzE0LTNmNWItNDVkNC1iMWEzLTVmZjVkNThjYmNlOQ==",
+        :label=>"SDTM"
+      }])
     end
 
     it "add change note" do
