@@ -21,6 +21,7 @@ class FormsController < ManagedItemsController
   def show
     @form = Form.find_minimum(protect_from_bad_id(params))
     @show_path = show_data_form_path(@form)
+    @edit_tags_path = path_for(:edit_tags, @form)
     @close_path = history_forms_path(:form => { identifier: @form.has_identifier.identifier, scope_id: @form.scope })
   end
 
@@ -77,6 +78,7 @@ class FormsController < ManagedItemsController
         @form = @edit.item
         @close_path = history_forms_path({ form:
             { identifier: @form.scoped_identifier, scope_id: @form.scope } })
+        @edit_tags_path = path_for(:edit_tags, @form)
       end
       format.json do
         @form = Form.find_full(@form.id)
@@ -266,6 +268,8 @@ private
         return crf_form_path(object)
       when :destroy
         return form_path(object)
+      when :edit_tags
+        return object.supporting_edit? ? edit_tags_iso_concept_path(id: object.id) : ""
       else
         return ""
     end
