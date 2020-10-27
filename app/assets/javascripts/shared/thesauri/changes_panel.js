@@ -20,7 +20,7 @@ function ChangesPanel(url, column_count) {
   var columns = [
     {"data" : "identifier", className: "fit"},
     {"data" : "label"},
-    {"data" : "notation", className: "fit"}];
+    {"data" : "notation"}];
   for (i=0; i<column_count; i++) {
     columns.push({className: "text-center", "render" : function (data, type, row, meta) {
       index = meta.col - 3;

@@ -246,7 +246,7 @@ module ApplicationHelper
 			biomedical_concept_templates: @category_biocon, biomedical_concept_instances: @category_biocon,
 			forms: @category_forms,
 			sdtm_models: @category_sdtm, sdtm_igs: @category_sdtm, sdtm_ig_domains: @category_sdtm, sdtm_classes: @category_sdtm,
-			adam_igs: @category_adam
+			adam_igs: @category_adam, adam_ig_datasets: @category_adam
 		}
 
 		@controller_map[controller_name.to_sym]

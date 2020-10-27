@@ -34,7 +34,7 @@
           <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#", id: "edit-properties-button",
             icon: "icon-edit", text: "Edit properties" } %>
           <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
-            icon: "icon-tag", text: "Edit tags" new_tab: true } %>
+            icon: "icon-tag", text: "Edit tags", new_tab: true } %>
 
           <% if @tc.ranked? %>
             <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#rank-items-modal", id: "edit-ranks-button",
