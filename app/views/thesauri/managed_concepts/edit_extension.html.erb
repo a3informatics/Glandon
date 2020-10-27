@@ -23,12 +23,11 @@
 <%= render partial: "shared/thesauri/managed_concepts/rank/edit_ranks", :locals => {item: @tc} %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_codelist", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
+  <%= render layout: "shared/headers/header_codelist", :locals => { item: @tc, context: @ct, badge: "CL" } do %>
+
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
-        icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
 
       <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
 
@@ -43,7 +42,7 @@
           <% else %>
             <%= render partial: "shared/thesauri/managed_concepts/rank/enable_rank", :locals => { item: @tc } %>
           <% end %>
-          
+
           <%= render partial: "shared/thesauri/managed_concepts/pair/pair_button", :locals => { item: @tc } %>
           <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-notes-modal", id: "change-notes-button",
             icon: "icon-note", text: "Change notes", toggle: "modal" } %>
@@ -51,6 +50,7 @@
       <% end %>
 
     </div>
+
   <% end %>
 </div>
 <div class="row">

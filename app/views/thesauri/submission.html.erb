@@ -8,15 +8,18 @@
                         errTimeoutMessage = 'Error occurred while generating the report.',
                         redirectPath = '"+submission_report_thesauri_path(@ct, format: :pdf)+"';" %>
 <% second_level_breadcrumb(:thesauri, @ct.scope.id, @ct.has_identifier.identifier, "Submission value changes: ") %>
+
 <div class="row">
-  <%= render layout: "shared/headers/header_item_simple", :locals => {badge: "icon-terminology", item: @ct, header_title: "Submission value changes"} do %>
+  <%= render layout: "shared/headers/header_item_simple", :locals => { badge: "icon-terminology", item: @ct, header_title: "Submission value changes" } do %>
     <div class="actions-wrap">
+
       <div onclick="showFullPageSpinnerWithRedirect(pdfLoadingDur, loadingMessage, errTimeoutMessage, redirectPath);">
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "report",
-        icon: "icon-file", btn_text: "PDF Report", dt_toggle: "", disabled: false } %>
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: "#", id: "report",
+            icon: "icon-file", text: "PDF Report" } %>
       </div>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
+      <%= render partial: "shared/buttons/return", :locals => { url: request.referrer } %>
+
     </div>
   <% end %>
 </div>

@@ -8,13 +8,14 @@
                         upgradeBaseUrl = '#{upgrade_thesauri_managed_concept_path(id: "clId", upgrade: {sponsor_th_id: @thesaurus.id})}';" %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-upgrade",
+  <%= render layout: "shared/headers/header_minimal", :locals => { badge: "icon-upgrade",
     main_text: "Upgrade Code Lists <span class='font-light text-medium'>#{@thesaurus.scoped_identifier} v#{@thesaurus.semantic_version}</span>".html_safe,
     sub_text: "Baseline CDISC CT: #{@base_cdisc_th.version_label}. New version: #{@ref_cdisc_th.version_label}." } do %>
+
       <div class="btns-wrap">
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-             icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+        <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
       </div>
+      
   <% end %>
 </div>
 

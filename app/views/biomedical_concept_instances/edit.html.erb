@@ -18,8 +18,7 @@
   <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @bc, :badge => "icon-biocon"} do %>
 
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { link_path: @close_path, id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
 
       <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left"} do %>
         <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",

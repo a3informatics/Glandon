@@ -6,10 +6,9 @@
 <% third_level_breadcrumb(:adam_ig_datasets, @adam_ig_dataset, @close_path) %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @adam_ig_dataset, :badge => "icon-adam"} do %>
+  <%= render layout: "shared/headers/header_managed_item", :locals => { :item => @adam_ig_dataset, :badge => "icon-adam" } do %>
     <div class="actions-wrap">
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
   <% end %>
 </div>

@@ -12,12 +12,11 @@
                         removeAllFromSubsetUrl = '#{remove_all_thesauri_subset_path(@subset)}',
                         moveAfterSubsetUrl = '#{move_after_thesauri_subset_path(@subset)}'; "%>
 <div class="row">
-  <%= render layout: "shared/headers/header_codelist", :locals => {:item => @subset_mc, :context => @ct, :badge => "CL"} do %>
+  <%= render layout: "shared/headers/header_codelist", :locals => { item: @subset_mc, context: @ct, badge: "CL" } do %>
+
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
-        icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
 
       <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
 
@@ -37,6 +36,7 @@
 
       <% end %>
     </div>
+    
   <% end %>
 
   <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: "subset", item: @subset_mc} %>

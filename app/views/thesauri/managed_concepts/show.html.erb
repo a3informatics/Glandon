@@ -29,12 +29,12 @@
 <%= render partial: "shared/annotation/change_instructions/change_instructions_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, can_edit: policy(Annotation).edit?} %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_codelist", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
+  <%= render layout: "shared/headers/header_codelist", :locals => { item: @tc, context: @ct, badge: "CL" } do %>
+
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), icon: "icon-history",
-        id: "btn-version-history", btn_text: "Changes", dt_toggle: "", disabled: false}  %>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: changes_thesauri_managed_concept_path(@tc), icon: "icon-history",
+          id: "btn-version-history", text: "Changes" }  %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
 
       <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
 
@@ -66,6 +66,7 @@
 
       <% end %>
     </div>
+
   <% end %>
 </div>
 

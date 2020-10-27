@@ -6,8 +6,7 @@
 	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-document", header_title: "",
 		main_text: "Ad-Hoc Reports", sub_texts: "Add a new Ad-Hoc Report." } do %>
 
-		<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: ad_hoc_reports_path, id: "close",
-			icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+		<%= render partial: "shared/buttons/return", :locals => { url: ad_hoc_reports_path } %> 
 
 	<% end %>
 </div>

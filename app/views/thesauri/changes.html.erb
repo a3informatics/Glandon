@@ -11,15 +11,18 @@
 <% second_level_breadcrumb(:thesauri, @ct.scope.id, @ct.has_identifier.identifier, "Changes: ") %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_item_simple", :locals => {badge: "icon-terminology", item: @ct, header_title: "Changes across versions"} do %>
+  <%= render layout: "shared/headers/header_item_simple", :locals => { badge: "icon-terminology", item: @ct, header_title: "Changes across versions" } do %>
+
     <div class="actions-wrap">
+
       <div onclick="showFullPageSpinnerWithRedirect(pdfLoadingDur, loadingMessage, errTimeoutMessage, redirectPath);">
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "report",
-        icon: "icon-file", btn_text: "PDF Report", dt_toggle: "", disabled: false } %>
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: "#", id: "report",
+        icon: "icon-file", text: "PDF Report" } %>
       </div>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      
+      <%= render partial: "shared/buttons/return", :locals => { url: request.referrer } %>
     </div>
+
   <% end %>
 </div>
 <div class="row">

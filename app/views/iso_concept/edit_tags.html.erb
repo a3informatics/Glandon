@@ -12,13 +12,12 @@
       parent: @parent, context_id: @context_id} %>
 
 <div class="row">
-    <%= render layout: "shared/headers/header_by_type", :locals => {item: @item, type: @concept_klass.to_s, with_tags: false} do %>
+    <%= render layout: "shared/headers/header_by_type", :locals => { item: @item, type: @concept_klass.to_s, with_tags: false } do %>
 
       <div class="actions-wrap">
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { link_path: iso_concept_systems_path, id: "manage_tags",
-          icon: "icon-tag", btn_text: "Manage all tags", dt_toggle: "", disabled: false } %>
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-          icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: iso_concept_systems_path, id: "manage-tags",
+          icon: "icon-tag", text: "Manage all tags" } %>
+        <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
       </div>
 
     <% end %>

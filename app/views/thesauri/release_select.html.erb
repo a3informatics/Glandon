@@ -18,12 +18,11 @@
                            'thesauri/release_select', 'shared/timer', 'unload' %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @thesaurus, :badge => "icon-terminology"} do %>
+  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @thesaurus, badge: "icon-terminology" } do %>
+
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
-        icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
 
       <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
 
@@ -40,6 +39,7 @@
       <% end %>
 
     </div>
+    
   <% end %>
 
   <%= render partial: "shared/iso_managed/managed_item_version_picker", :locals => {type: :code_lists, history_url: history_thesauri_managed_concepts_path(managed_concept: {identifier: "miHistoryId", scope_id: "miScopeId"}) } %>

@@ -5,12 +5,11 @@
 <%= javascript_pack_tag 'thesauri/managed_concepts/edit' %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_codelist", :locals => {:item => @thesaurus_concept, :context => @thesaurus, :badge => "CL"} do %>
+  <%= render layout: "shared/headers/header_codelist", :locals => { item: @thesaurus_concept, context: @thesaurus, badge: "CL" } do %>
+
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
-        icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
 
       <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
 
@@ -33,6 +32,7 @@
       <% end %>
 
     </div>
+
   <% end %>
 </div>
 
