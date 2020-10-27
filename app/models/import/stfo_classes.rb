@@ -215,12 +215,14 @@ module Import::STFOClasses
         if new_child.nil?
           add_error("CDISC Subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
+          new_child.rank = child.rank 
           new_narrower << new_child
         end
       end
       self.narrower = new_narrower
       self.subsets = ref_ct
       self.add_ordering
+      self.add_ranking if self.ranked?
       self
     rescue => e
       add_error("Exception in to_cdisc_subset, #{e}, identifier '#{self.identifier}'.")
@@ -241,12 +243,14 @@ module Import::STFOClasses
         if new_child.nil?
           add_error("Sponsor subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
+          new_child.rank = child.rank 
           new_narrower << new_child
         end
       end
       self.narrower = new_narrower
       self.subsets = ref_ct
       self.add_ordering
+      self.add_ranking if self.ranked?
       self
     rescue => e
       add_error("Exception in to_sponsor_subset, #{e}, identifier '#{self.identifier}'.")
@@ -269,12 +273,14 @@ module Import::STFOClasses
         if new_child.nil?
           add_error("Sponsor subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
+          new_child.rank = child.rank 
           new_narrower << new_child
         end
       end
       self.narrower = new_narrower
       self.subsets = ref_ct
       self.add_ordering
+      self.add_ranking if self.ranked?
       self
     rescue => e
       add_error("Exception in to_existing_subset, #{e}, identifier '#{self.identifier}'.")
@@ -305,15 +311,23 @@ module Import::STFOClasses
       STFOCodeListItem.sponsor_referenced_format?(self.identifier) && sponsor_child_or_referenced_identifiers?
     end
 
+    def to_sponsor
+      self.update_identifier(self.identifier)
+      self.add_ranking if self.ranked?
+      self
+    end
+    
     def to_hybrid_sponsor(ct, fixes)
       new_narrower = []
       self.narrower.each do |child|
         new_child = sponsor_or_referenced(ct, child, fixes)
         next if new_child.nil?
+        new_child.rank = child.rank 
         new_narrower << new_child 
       end
       self.narrower = new_narrower
       self.update_identifier(self.identifier)
+      self.add_ranking if self.ranked?
       self
     rescue => e
       add_error("Exception in to_hybrid_sponsor, identifier '#{self.identifier}'.")

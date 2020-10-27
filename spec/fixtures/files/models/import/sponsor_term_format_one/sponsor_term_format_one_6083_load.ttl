@@ -1,0 +1,292 @@
+@prefix : <http://www.s-cubed.dk/RANK/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/RANK/V1>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "Version 2 Test"^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin "Created from files: 'import_input_22.xlsx'"^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConceptReference :TH_TMC2 ;
+	th:isTopConcept <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	th:isTopConcept <http://www.s-cubed.dk/C66784/V1#C66784> ;
+	th:reference <http://www.cdisc.org/CT/V43#TH_R1> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "RANK"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:TH_TMC1
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/C66767/V1#C66767> ;
+.
+:TH_TMC2
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/C66784/V1#C66784> ;
+.
+<http://www.cdisc.org/CT/V43#TH_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/CT/V43#TH> ;
+.
+<http://www.s-cubed.dk/C66767/V1#C66767>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/C66767/V1#C66767_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/C66767/V1#C66767_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C66767"^^xsd:string ;
+	th:notation "ACN"^^xsd:string ;
+	th:definition "Terminology specifying changes to the study treatment as a result of an adverse event."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C17998> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
+	th:narrower <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
+	th:narrower <http://www.cdisc.org/C99075/V33#C99075_C78728> ;
+	th:extends <http://www.cdisc.org/C66767/V35#C66767> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c609e7f988d1d30435702c85bd1f5c852c3c91f3> ;
+	th:isRanked <http://www.assero.co.uk/TRC#53516722-b8c2-40db-a0c7-073f74a3befa> ;
+.
+<http://www.s-cubed.dk/C66767/V1#C66767_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/C66767/V1#C66767_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C66767"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.assero.co.uk/TRC#53516722-b8c2-40db-a0c7-073f74a3befa>
+	rdf:type th:RankedCollection ;
+	isoC:label ""^^xsd:string ;
+	th:members <http://www.assero.co.uk/TRM#6b10c405-0ab6-41ce-bc0a-316d0e4de367> ;
+.
+<http://www.assero.co.uk/TRM#6b10c405-0ab6-41ce-bc0a-316d0e4de367>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "1"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
+	th:memberNext <http://www.assero.co.uk/TRM#74c96e1d-b989-4e0d-b34d-8f8927ecd56a> ;
+.
+<http://www.assero.co.uk/TRM#74c96e1d-b989-4e0d-b34d-8f8927ecd56a>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "2"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
+	th:memberNext <http://www.assero.co.uk/TRM#de830233-c6c1-45fb-b7c9-bfcfe8ac46fb> ;
+.
+<http://www.assero.co.uk/TRM#de830233-c6c1-45fb-b7c9-bfcfe8ac46fb>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "3"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
+	th:memberNext <http://www.assero.co.uk/TRM#5aa58fdc-a57c-4e2b-8c81-a9122a7feaec> ;
+.
+<http://www.assero.co.uk/TRM#5aa58fdc-a57c-4e2b-8c81-a9122a7feaec>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "4"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
+	th:memberNext <http://www.assero.co.uk/TRM#ad5437c5-9996-47d1-ab73-1bb477fc2379> ;
+.
+<http://www.assero.co.uk/TRM#ad5437c5-9996-47d1-ab73-1bb477fc2379>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "5"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
+	th:memberNext <http://www.assero.co.uk/TRM#fd93cf84-30e4-4059-8108-a3a2a03aa99d> ;
+.
+<http://www.assero.co.uk/TRM#fd93cf84-30e4-4059-8108-a3a2a03aa99d>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "6"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C99075/V33#C99075_C78728> ;
+	th:memberNext <http://www.assero.co.uk/TRM#e2818e4e-62ac-4176-9301-755425e71280> ;
+.
+<http://www.assero.co.uk/TRM#e2818e4e-62ac-4176-9301-755425e71280>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "7"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C17998> ;
+	th:memberNext <http://www.assero.co.uk/TRM#b5386f81-d869-4df0-a5de-baf53d41dd2e> ;
+.
+<http://www.assero.co.uk/TRM#b5386f81-d869-4df0-a5de-baf53d41dd2e>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "8"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
+.
+<http://www.s-cubed.dk/C66784/V1#C66784>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Common Terminology Criteria for Adverse Events V3.0"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/C66784/V1#C66784_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/C66784/V1#C66784_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C66784"^^xsd:string ;
+	th:notation "TOXGRV3"^^xsd:string ;
+	th:definition "A standard terminology developed to report adverse events occurring in cancer clinical trials. Common terminology criteria for adverse events (CTCAE) are used in study adverse event summaries and Investigational New Drug reports to the Food and Drug Administration. The CTCAE contain a grading scale for each adverse event term representing the severity of the event. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C66784/V4#C66784_C41338> ;
+	th:narrower <http://www.cdisc.org/C66784/V4#C66784_C41339> ;
+	th:narrower <http://www.cdisc.org/C66784/V17#C66784_C41340> ;
+	th:narrower <http://www.cdisc.org/C66784/V28#C66784_C48275> ;
+	th:narrower <http://www.cdisc.org/C66784/V28#C66784_C41337> ;
+	th:extends <http://www.cdisc.org/C66784/V34#C66784> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#33add2386b696b597921a949e63aba2e2bfd945f> ;
+	th:isRanked <http://www.assero.co.uk/TRC#3aa8a812-6b34-4ac9-8a11-e4cc15f9d456> ;
+.
+<http://www.s-cubed.dk/C66784/V1#C66784_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/C66784/V1#C66784_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C66784"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.assero.co.uk/PT#33add2386b696b597921a949e63aba2e2bfd945f>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Common Terminology Criteria for Adverse Events V3.0"^^xsd:string ;
+.
+<http://www.assero.co.uk/TRC#3aa8a812-6b34-4ac9-8a11-e4cc15f9d456>
+	rdf:type th:RankedCollection ;
+	isoC:label ""^^xsd:string ;
+	th:members <http://www.assero.co.uk/TRM#8c91168c-4a6c-43d7-a625-9ec4d62f89dc> ;
+.
+<http://www.assero.co.uk/TRM#8c91168c-4a6c-43d7-a625-9ec4d62f89dc>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "1"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66784/V4#C66784_C41338> ;
+	th:memberNext <http://www.assero.co.uk/TRM#ecec814f-41cb-42e8-8a92-f37f5f42838e> ;
+.
+<http://www.assero.co.uk/TRM#ecec814f-41cb-42e8-8a92-f37f5f42838e>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "2"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66784/V4#C66784_C41339> ;
+	th:memberNext <http://www.assero.co.uk/TRM#cfa06645-f53d-4910-a27c-28dd1812d43a> ;
+.
+<http://www.assero.co.uk/TRM#cfa06645-f53d-4910-a27c-28dd1812d43a>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "3"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66784/V17#C66784_C41340> ;
+	th:memberNext <http://www.assero.co.uk/TRM#3c99f767-bb12-4673-850c-7fbe27b0e542> ;
+.
+<http://www.assero.co.uk/TRM#3c99f767-bb12-4673-850c-7fbe27b0e542>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "4"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66784/V28#C66784_C41337> ;
+	th:memberNext <http://www.assero.co.uk/TRM#bd6a38ec-3dae-409a-87c2-1289e5f46b8e> ;
+.
+<http://www.assero.co.uk/TRM#bd6a38ec-3dae-409a-87c2-1289e5f46b8e>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "5"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66784/V28#C66784_C48275> ;
+.
+<http://www.assero.co.uk/CLA#17ec51bb-5d51-4a94-aeb2-e974fd91d977>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#4e9364eb-c555-4ed0-b9c0-f69f896467ea>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#a059e6d3-3ade-48aa-b824-9d7eec35baef>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#1e82e2f6-272f-4695-82b2-97c0ddee3090>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/C66784/V1#C66784> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.

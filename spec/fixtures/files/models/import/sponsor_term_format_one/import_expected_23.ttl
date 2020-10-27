@@ -1,0 +1,365 @@
+@prefix : <http://www.s-cubed.dk/TEST_16/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/TEST_16/V1>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "Version 2-6 Test"^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin "Created from files: 'import_input_23.xlsx'"^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConcept <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	th:reference <http://www.cdisc.org/CT/V43#TH_R1> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "TEST 16"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:TH_TMC1
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+.
+<http://www.cdisc.org/CT/V43#TH_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/CT/V43#TH> ;
+.
+<http://www.s-cubed.dk/SN000005/V1#SN000005>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Action Taken with Study Treatment Numeric"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/SN000005/V1#SN000005_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/SN000005/V1#SN000005_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "SN000005"^^xsd:string ;
+	th:notation "ACNN"^^xsd:string ;
+	th:definition "Numeric - Terminology specifying changes to the study treatment as a result of an adverse event."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.s-cubed.dk/SN000005/V1#SN000005_S000029> ;
+	th:narrower <http://www.s-cubed.dk/SN000005/V1#SN000005_S000030> ;
+	th:narrower <http://www.s-cubed.dk/SN000005/V1#SN000005_S000031> ;
+	th:narrower <http://www.s-cubed.dk/SN000005/V1#SN000005_S000032> ;
+	th:narrower <http://www.s-cubed.dk/SN000005/V1#SN000005_S000033> ;
+	th:narrower <http://www.s-cubed.dk/SN000005/V1#SN000005_S000034> ;
+	th:narrower <http://www.s-cubed.dk/SN000005/V1#SN000005_S000035> ;
+	th:narrower <http://www.s-cubed.dk/SN000005/V1#SN000005_S000036> ;
+	th:narrower <http://www.s-cubed.dk/SN000005/V1#SN000005_S003958> ;
+	th:narrower <http://www.s-cubed.dk/SN000005/V1#SN000005_S000012> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#7d612812aa2f4b458d6c0e35f09c636e425137b2> ;
+	th:isRanked <http://www.assero.co.uk/TRC#85e6d00a-38dd-45d8-bcc3-a56ea32d3e62> ;
+.
+<http://www.s-cubed.dk/SN000005/V1#SN000005_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/SN000005/V1#SN000005_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SN000005"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/SN000005/V1#SN000005_S000029>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Dose Not Changed"^^xsd:string ;
+	th:identifier "S000029"^^xsd:string ;
+	th:notation "1"^^xsd:string ;
+	th:definition "A numeric, one, indication that a medication schedule was maintained."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#bf82840444a6d601eab6624724049c5c03206aa7> ;
+.
+<http://www.s-cubed.dk/SN000005/V1#SN000005_S000030>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Dose Reduced"^^xsd:string ;
+	th:identifier "S000030"^^xsd:string ;
+	th:notation "2"^^xsd:string ;
+	th:definition "A numeric, two, indication that a medication schedule was modified by subtraction, either by changing the frequency, strength or amount."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#2cc95400a35a5598ab1fd89c14433611f15fe5fd> ;
+.
+<http://www.s-cubed.dk/SN000005/V1#SN000005_S000031>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Drug Interrupted"^^xsd:string ;
+	th:identifier "S000031"^^xsd:string ;
+	th:notation "3"^^xsd:string ;
+	th:definition "A numeric,three, indication that a medication schedule was modified by temporarily terminating a prescribed regimen of medication."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#3247d7b8c23226d170cb0e4e51edcbcb3aea58df> ;
+.
+<http://www.s-cubed.dk/SN000005/V1#SN000005_S000032>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Drug Withdrawn"^^xsd:string ;
+	th:identifier "S000032"^^xsd:string ;
+	th:notation "4"^^xsd:string ;
+	th:definition "A numeric, four, indication that a medication schedule was modified through termination of a prescribed regimen of medication."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#3c301d2471810ac924d0abac8a7c2d1446f83ea1> ;
+.
+<http://www.s-cubed.dk/SN000005/V1#SN000005_S000033>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Dose Increased"^^xsd:string ;
+	th:identifier "S000033"^^xsd:string ;
+	th:notation "5"^^xsd:string ;
+	th:definition "A numeric, five,  indication that a medication schedule was modified by addition; either by changing the frequency, strength or amount."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#cdb61a440dff1686bc210a2eaabbee71b93aff35> ;
+.
+<http://www.s-cubed.dk/SN000005/V1#SN000005_S000034>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Dose Delayed"^^xsd:string ;
+	th:identifier "S000034"^^xsd:string ;
+	th:notation "6"^^xsd:string ;
+	th:definition "A numeric indication, six, that a medication schedule was postponed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ebb7dabd4eebf6d259c2672de088de0070552d78> ;
+.
+<http://www.assero.co.uk/PT#ebb7dabd4eebf6d259c2672de088de0070552d78>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Dose Delayed"^^xsd:string ;
+.
+<http://www.s-cubed.dk/SN000005/V1#SN000005_S000035>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Dose Delayed and Reduced"^^xsd:string ;
+	th:identifier "S000035"^^xsd:string ;
+	th:notation "7"^^xsd:string ;
+	th:definition "A numeric value, seven, that gives an indication that a medication schedule was postponed and modified by subtraction by strength or amount."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#890f6ab14907c97027bf4c5d97c46632a3caf7fb> ;
+.
+<http://www.assero.co.uk/PT#890f6ab14907c97027bf4c5d97c46632a3caf7fb>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Dose Delayed and Reduced"^^xsd:string ;
+.
+<http://www.s-cubed.dk/SN000005/V1#SN000005_S000036>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Multiple"^^xsd:string ;
+	th:identifier "S000036"^^xsd:string ;
+	th:notation "8"^^xsd:string ;
+	th:definition "A numeric, eight, that indicate more than one. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#740922ac20ba9136af0a0a62b3c2c734d9f20fc6> ;
+.
+<http://www.s-cubed.dk/SN000005/V1#SN000005_S003958>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Unknown"^^xsd:string ;
+	th:identifier "S003958"^^xsd:string ;
+	th:notation "9"^^xsd:string ;
+	th:definition "A numeric value, nine, that indicate not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
+.
+<http://www.s-cubed.dk/SN000005/V1#SN000005_S000012>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Not Applicable"^^xsd:string ;
+	th:identifier "S000012"^^xsd:string ;
+	th:notation "10"^^xsd:string ;
+	th:definition "A numeric value, ten, that indicate determination of a value is not relevant in the current context."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6672b815dc387b62d9d5ec8feba537d77cb2b20e> ;
+.
+<http://www.assero.co.uk/PT#7d612812aa2f4b458d6c0e35f09c636e425137b2>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Action Taken with Study Treatment Numeric"^^xsd:string ;
+.
+<http://www.assero.co.uk/TRC#85e6d00a-38dd-45d8-bcc3-a56ea32d3e62>
+	rdf:type th:RankedCollection ;
+	isoC:label ""^^xsd:string ;
+	th:members <http://www.assero.co.uk/TRM#178ede3d-0d44-42be-a09d-b7836d86b3ce> ;
+.
+<http://www.assero.co.uk/TRM#178ede3d-0d44-42be-a09d-b7836d86b3ce>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "1"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000029> ;
+	th:memberNext <http://www.assero.co.uk/TRM#0d0d7577-b76c-4ecb-8552-eb65bd814e5e> ;
+.
+<http://www.assero.co.uk/TRM#0d0d7577-b76c-4ecb-8552-eb65bd814e5e>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "10"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000012> ;
+	th:memberNext <http://www.assero.co.uk/TRM#5a480473-c04f-4ad8-90c9-dc3109e59609> ;
+.
+<http://www.assero.co.uk/TRM#5a480473-c04f-4ad8-90c9-dc3109e59609>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "2"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000030> ;
+	th:memberNext <http://www.assero.co.uk/TRM#75955d91-7643-4a80-8d50-19df03d44b38> ;
+.
+<http://www.assero.co.uk/TRM#75955d91-7643-4a80-8d50-19df03d44b38>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "3"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000031> ;
+	th:memberNext <http://www.assero.co.uk/TRM#41dd0ddc-3faa-40d5-9360-580edeec3c0f> ;
+.
+<http://www.assero.co.uk/TRM#41dd0ddc-3faa-40d5-9360-580edeec3c0f>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "4"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000032> ;
+	th:memberNext <http://www.assero.co.uk/TRM#9f39f340-0bc7-415a-bfc8-a418739c95f2> ;
+.
+<http://www.assero.co.uk/TRM#9f39f340-0bc7-415a-bfc8-a418739c95f2>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "5"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000033> ;
+	th:memberNext <http://www.assero.co.uk/TRM#7bf0c7f2-bab1-40eb-afa0-cb526b4217e7> ;
+.
+<http://www.assero.co.uk/TRM#7bf0c7f2-bab1-40eb-afa0-cb526b4217e7>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "6"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000034> ;
+	th:memberNext <http://www.assero.co.uk/TRM#9adc707e-454c-4044-8d5e-f4b58302d7ed> ;
+.
+<http://www.assero.co.uk/TRM#9adc707e-454c-4044-8d5e-f4b58302d7ed>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "7"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000035> ;
+	th:memberNext <http://www.assero.co.uk/TRM#bf9f3c89-c34f-441c-97c8-d80af311bb6d> ;
+.
+<http://www.assero.co.uk/TRM#bf9f3c89-c34f-441c-97c8-d80af311bb6d>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "8"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000036> ;
+	th:memberNext <http://www.assero.co.uk/TRM#a3bfdb78-6abd-4933-bb46-af09c6c00fe8> ;
+.
+<http://www.assero.co.uk/TRM#a3bfdb78-6abd-4933-bb46-af09c6c00fe8>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "9"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S003958> ;
+.
+<http://www.assero.co.uk/CLA#6c99fcbf-44e1-4dd1-bd01-f2155528d85b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#4f204cf6-57a4-44ca-966d-b6275feee8e9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000029> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#b080a894-54eb-4a1a-a209-086ce4ff52ca>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000030> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#c8ab2eba-1243-4b70-8f63-eb709f4c6cd4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000031> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#cad031ac-a7f6-4cd7-944c-17149becfa81>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000032> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#29bfbe76-8b58-4e72-b0bc-ae729aac5f37>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000033> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#0540c13b-27fb-4939-bf28-46a036c69a02>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000034> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#bdd80c71-b752-408d-89d5-125e7914f9fa>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000035> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#15cf18e7-ecdc-4d09-93fd-49374b27626f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000036> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#c1fcffbb-3678-439b-b886-feef05230551>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S003958> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#77a9d6ab-8e28-4820-b743-8bde79ec64f1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000012> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.

@@ -137,8 +137,8 @@ private
         @extensions[ref.identifier] = ref if !ref.nil?
       elsif child.sponsor?
         add_log("Sponsor detected: #{child.identifier}")
-        child.update_identifier(child.identifier)
-        ref = child
+        #child.update_identifier(child.identifier)
+        ref = child.to_sponsor
       elsif child.hybrid_sponsor?
         add_log("Hybrid Sponsor detected: #{child.identifier}")
         ref = child.to_hybrid_sponsor(@th, @fixes)
@@ -249,7 +249,7 @@ private
   def rank_match?(ref, previous)
     return true unless ref.ranked?
     add_log("Checking rank detected: #{ref.identifier}, #{previous.identifier}")
-    ref.rank_list_equal?(previous.is_ordered)
+    ref.rank_list_equal?(previous.is_ranked)
   end
 
   # Simple stack class
