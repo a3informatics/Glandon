@@ -16,10 +16,10 @@ module Fuseki
 
       # Find. Simple find for the subject. Will cache if indicated in class definition.
       #
-      # @param [Uri|id] the identifier, either a URI or the id
+      # @param [Uri|String] uri_or_id the URI or the id
       # @return [Object] a class object.
-      def find(id)
-        uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+      def find(uri_or_id)
+        uri = as_uri(uri_or_id)
         results = subject_cache(uri)
         raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
         from_results(uri, results.by_subject[uri.to_s])
@@ -27,11 +27,11 @@ module Fuseki
 
       # Find Children. Find object and one-level of child
       #
-      # @param [Uri|id] the identifier, either a URI or the id
+      # @param [Uri|String] uri_or_id the URI or the id
       # @return [Object] a class object.
-      def find_children(id)
+      def find_children(uri_or_id)
         parts = [0]
-        uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+        uri = as_uri(uri_or_id)
         properties = resources
         parts[0] = "  { #{uri.to_ref} ?p ?o .  BIND (#{uri.to_ref} as ?s) . BIND ('#{self.name}' as ?e) }" 
         properties.each do |name, value|
@@ -42,6 +42,22 @@ module Fuseki
         end
         query_string = "SELECT ?s ?p ?o ?e WHERE { #{parts.join(" UNION\n")} }"
         results = Sparql::Query.new.query(query_string, uri.namespace, [])
+        raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
+        from_results_recurse(uri, results.by_subject)
+      end
+
+      # Find Full. Full find of the subject. Will find all children via paths that are not excluded.
+      #
+      # @param [Uri|String] uri_or_id the URI or the id
+      # @param [Symbol] path_method the method to be used for the read paths. Defaults to read_paths
+      # @return [IsoManagedV2] The managed item object.
+      def find_full(uri_or_id, path_method=:read_paths)
+        parts = []
+        uri = as_uri(uri_or_id)
+        parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
+        self.send(path_method).each {|p| parts << "{ #{uri.to_ref} (#{p}) ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
+        query_string = "SELECT DISTINCT ?s ?p ?o WHERE {{ #{parts.join(" UNION\n")} }}"
+        results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
         raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
         from_results_recurse(uri, results.by_subject)
       end
@@ -88,6 +104,15 @@ module Fuseki
         where({})
       end
 
+      def find_single(query_string, prefixes=[], permit_empty=true)
+        query_results = Sparql::Query.new.query(query_string, "", prefixes)
+        results = query_results.by_object(:s)
+        return nil if results.empty? && permit_empty
+        Errors.application_error(self.name, "previous_version", "Failed to find single item.") if results.empty?
+        Errors.application_error(self.name, "previous_version", "Multiple items found when single required.") if results.count > 1
+        results.first
+      end
+
       # Create. Create an object setting attributes. 
       #
       # @param [Hash] params the parameters hash containing attribute values. Keys are determined by the object 
@@ -115,7 +140,6 @@ module Fuseki
       end
 
       def from_results(uri, triples)
-        #object = new
         object = rdf_type_klass(triples)
         object.instance_variable_set("@uri", uri)
         triples.each {|triple| property = object.properties.property_from_triple(triple)}
@@ -124,7 +148,6 @@ module Fuseki
       end
 
       def from_results_recurse(uri, triples)
-        #object = new
         object = rdf_type_klass(triples[uri.to_s])
         object.instance_variable_set("@uri", uri)
         triples[uri.to_s].each do |triple|
@@ -188,6 +211,26 @@ module Fuseki
         query_string = "SELECT ?p WHERE { #{the_uri.to_ref} ?p ?o }"
         query_results = Sparql::Query.new.query(query_string, "", [])
         query_results.empty?
+      end
+
+      # Klass For. Get the class (klass) for an id or URI
+      #
+      # @param [Uri|id] uri_or_id the identifier, either a URI or the id
+      # @raise [Errors::ApplicationLogicError] raised if no class (klass) found.
+      # @return [Class] The class
+      def klass_for(uri_or_id)
+        uri = as_uri(uri_or_id)
+        query_results = Sparql::Query.new.query("SELECT ?t WHERE { #{uri.to_ref} rdf:type ?t }", "", [])
+        Errors.application_error(self.class.name, __method__.to_s, "Unable to find class (klass) for #{uri}.") if query_results.empty?
+        rdf_type_to_klass(query_results.by_object(:t).first.to_s)
+      end
+
+      # As URI. Returns the parameter as a URI if it is one, otherwise attempts conversion to a URI.
+      #
+      # @param [Uri|String] uri_or_id the uri or id
+      # @return [Uri] the URI
+      def as_uri(uri_or_id)
+        uri_or_id.is_a?(Uri) ? uri_or_id : Uri.new(id: uri_or_id)
       end
 
       # -----------------
@@ -277,11 +320,11 @@ module Fuseki
     # @return [Stirng] the id string
     alias uuid id
 
-    # My Type. Get the type for the insance
+    # Find RDF Type. Get the type for the insance
     # 
     # @raise [Errors::ApplicationLogicError] raised if no type found.
     # @return [Uri] the RDF type
-    def true_type
+    def find_rdf_type
       results = []
       query_string = "SELECT ?t WHERE { #{self.uri.to_ref} rdf:type ?t }"
       query_results = Sparql::Query.new.query(query_string, "", [])
@@ -289,14 +332,19 @@ module Fuseki
       query_results.by_object(:t).first
     end
 
-    # Deprecate true_type
-    alias :my_type :true_type
+    # Deprecate true_type and my_type. Should no longer be used.
+    alias :my_type :find_rdf_type
+    alias :true_type :find_rdf_type
 
-    # Transaction Begin. Begin a transaction. if one already is in progress it will be used
+    # Transaction Begin. Begin a transaction. If one already is in progress it will be used or can be set
+    #   via the params parameter.
     #
+    # @params [Hash] params a hash of parameters
+    # @option transaction [Sparql::Transaction] a transaction object if already created. Need not be present.
     # @return [Sparql::Transaction] the transaction instance
-    def transaction_begin
-      @transaction ||= Sparql::Transaction.new
+    def transaction_begin(params={})
+      @transaction = Sparql::Transaction.new if !params.key?(:transaction) && @transaction.nil?
+      @transaction = params[:transaction] if params.key?(:transaction) && @transaction.nil?
       @transaction.register(self)
       @transaction
     end
@@ -343,25 +391,6 @@ module Fuseki
       nil
     end
 
-    # def where_child(params)
-    #   where_clauses = ""
-    #   params.each {|name, value| where_clauses += "  ?s :#{name} \"#{value}\" .\n" }
-    #   properties = properties_instance
-    #   unions = []
-    #   properties.object_relationships.map.each do |relationship|
-    #     unions << "{ #{uri.to_ref} #{relationship[:predicate].to_ref} ?s .\n#{where_clauses}?s ?p ?o .\nBIND ('#{relationship[:model_class]}' as ?e) . }"
-    #   end
-    #   query_string = "SELECT ?s ?p ?o ?e WHERE {#{unions.join(" UNION\n")}}"
-    #   results = Sparql::Query.new.query(query_string, self.rdf_type.namespace, [])
-    #   objects = []
-    #   map = results.subject_map
-    #   results.by_subject.each do |subject, triples|
-    #     klass = map[subject.to_s].constantize
-    #     objects << klass.from_results(Uri.new(uri: subject), triples)
-    #   end
-    #   objects
-    # end
-
     # Update. Update the object with the specified properties if valud
     #
     # @param [Hash] params a hash of properties to be updated
@@ -386,7 +415,7 @@ module Fuseki
     # @return [integer] the number of objects deleted (always 1 if no exception)
     def delete
       clear_cache
-      Sparql::Update.new.delete(self.uri)
+      Sparql::Update.new(@transaction).delete(self.uri)
       @destroyed = true
       return 1
     end
@@ -546,11 +575,22 @@ module Fuseki
     end
     
     def to_sparql(sparql, recurse=false)
+      serialize(sparql, recurse, false)
+    end      
+
+    def to_ttl
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@uri.namespace)
+      serialize(sparql, true, true)
+      sparql.to_file
+    end
+
+    def serialize(sparql, recurse=false, ignore_persistence=false)
       sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: self.class.rdf_type})
       self.properties.each do |property|
         next if object_empty?(property)
         property.to_triples(sparql, @uri)
-        object_to_triple(sparql, property) if recurse
+        serialize_object(sparql, property, ignore_persistence) if recurse
       end
     end      
 
@@ -568,6 +608,10 @@ module Fuseki
       results
     end      
 
+    # Generate URI. Generate URIs for the object and properties
+    #
+    # @param [URI] parent the parent object's uri.
+    # @return [Void] no return
     def generate_uri(parent)
       self.uri = create_uri(parent) # Dynamic method 
       properties.each do |property|
@@ -617,48 +661,39 @@ module Fuseki
       if property.array?
         return :empty if value.empty?
         return :uri if value.first.is_a?(Uri)
-        return :object if value.first.is_a?(property.klass)
+        return :object if value.first.class.ancestors.include?(Fuseki::Base)
       else
         return :empty if value.nil?
         return :uri if value.is_a?(Uri)
-        return :object if value.is_a?(property.klass)        
+        return :object if value.class.ancestors.include?(Fuseki::Base)
       end
     end
 
-    # # Set a simple typed value
-    # def self.to_typed(base_type, value)
-    #   if base_type == BaseDatatype.to_xsd(BaseDatatype::C_STRING)
-    #     "#{value}"
-    #   elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_BOOLEAN)
-    #     value.to_bool
-    #   elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME)
-    #     value.to_time_with_default
-    #   elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_INTEGER)
-    #     value.to_i
-    #   elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_POSITIVE_INTEGER)
-    #     value.to_i
-    #   else
-    #     "#{value}"
-    #   end
-    # rescue => e
-    # end
-
+    # Clear the cache
     def clear_cache
       return if !self.class.cache?
       Fuseki::Base.class_variable_set(:@@subjects, Hash.new {|h, k| h[k] = {}}) if !Fuseki::Base.class_variable_defined?(:@@subjects) || Fuseki::Base.class_variable_get(:@@subjects).nil?
       Fuseki::Base.class_variable_get(:@@subjects).delete(self.uri.to_s)
     end
 
-    def object_to_triple(sparql, property)
+    # Serialize an object
+    def serialize_object(sparql, property, ignore_persistence)
       return if !property.object?
       objects = property.get
       objects = [objects] if !objects.is_a? Array
       objects.each do |object|
-        next if object.respond_to?(:persisted?) ? object.persisted? : true
-        object.to_sparql(sparql, true)
+        next if object_persisted?(object) unless ignore_persistence
+        next if object.is_a? Uri
+        object.serialize(sparql, true, ignore_persistence)
       end
     end
 
+    # Determine if object persisted
+    def object_persisted?(object)
+      object.respond_to?(:persisted?) ? object.persisted? : true
+    end
+
+    # Create URI
     def object_create_uri(property)
       return if !property.object?
       objects = property.get
@@ -669,6 +704,7 @@ module Fuseki
       end
     end
 
+    # Object Empty
     def object_empty?(property)
       return false if !property.object? 
       value = property.get

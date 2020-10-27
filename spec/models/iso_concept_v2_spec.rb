@@ -8,7 +8,7 @@ describe "IsoConceptV2" do
   include IsoHelpers
 
 	def sub_dir
-    return "models/iso_concept"
+    return "models/iso_concept_v2"
   end
 
 	context "Main Tests" do
@@ -23,13 +23,14 @@ describe "IsoConceptV2" do
 	  end
 
 		it "validates a valid object" do
-	    result = IsoConcept.new
+	    result = IsoConceptV2.new
+      result.uri = Uri.new(uri: "http://www.assero.co.uk/Y/V1#F-T_G1")
 	    result.label = "123456789"
 	    expect(result.valid?).to eq(true)
 	  end
 
 	  it "does not validate an invalid object" do
-	    result = IsoConcept.new
+	    result = IsoConceptV2.new
 	    result.label = "123456789@£$%"
 	    expect(result.valid?).to eq(false)
 	  end
@@ -139,16 +140,16 @@ describe "IsoConceptV2" do
       check_uri(ct, [])
     end
 
-    it "other parents" do
-      uri_path_1 = Uri.new(uri: "http://www.assero.co.uk/Thesaurus#isTopConceptReference")
-      uri_path_2 = Uri.new(uri: "http://www.assero.co.uk/BusinessOperational#reference")
-      uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V5#TH")
-      uri_mc = Uri.new(uri: "http://www.cdisc.org/C66726/V4#C66726")
-      th = IsoConceptV2.find(uri_th)
-      mc = IsoConceptV2.find(uri_mc)
-      results = mc.other_parents(th, [uri_path_1, uri_path_2])
-      expect(results.map{|x| x.to_s}).to match_array(["http://www.cdisc.org/CT/V4#TH"])
-    end
+    # it "other parents" do
+    #   uri_path_1 = Uri.new(uri: "http://www.assero.co.uk/Thesaurus#isTopConceptReference")
+    #   uri_path_2 = Uri.new(uri: "http://www.assero.co.uk/BusinessOperational#reference")
+    #   uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V5#TH")
+    #   uri_mc = Uri.new(uri: "http://www.cdisc.org/C66726/V4#C66726")
+    #   th = IsoConceptV2.find(uri_th)
+    #   mc = IsoConceptV2.find(uri_mc)
+    #   results = mc.other_parents(th, [uri_path_1, uri_path_2])
+    #   expect(results.map{|x| x.to_s}).to match_array(["http://www.cdisc.org/CT/V4#TH"])
+    # end
 
   end
 
@@ -349,7 +350,6 @@ describe "IsoConceptV2" do
 
   end
 
-
   describe "Change Instructions" do
 
     before :all  do
@@ -398,7 +398,6 @@ describe "IsoConceptV2" do
 
   end
 
-
   describe "Clone" do
 
     before :all  do
@@ -420,6 +419,27 @@ describe "IsoConceptV2" do
       item_2 = item_1.clone
       expect(item_1.label).to eq(item_2.label)
       check_file_actual_expected(item_2.to_h, sub_dir, "clone_expected_1b.yaml")
+    end
+
+  end
+
+  describe "managed ancestors" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "raises exception unless path method overloaded" do
+      expect{IsoConceptV2.managed_ancestors_path}.to raise_error(Errors::ApplicationLogicError, "Method not implemented for class.")
+    end
+
+    it "raises exception unless predicate method overloaded" do
+      expect{IsoConceptV2.managed_ancestors_predicate}.to raise_error(Errors::ApplicationLogicError, "Method not implemented for class.")
     end
 
   end

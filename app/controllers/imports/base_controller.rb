@@ -51,9 +51,8 @@ private
     "Import::#{controller_name.classify}".constantize # They may be some better ways of doing this but it works.
   end
 
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize Import
+  def model_klass
+    Import
   end
 
   def check_params

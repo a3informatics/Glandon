@@ -27,8 +27,9 @@ describe Timestamp do
 
   it "supports multiple output formats" do
     timestamp = Timestamp.new()
-    timestamp.from_timestamp("2016-11-04 16:00:01")
+    timestamp.from_timestamp("2016-11-04 16:00:01.030")
     expect(timestamp.to_datetime).to eq("2016-Nov-04, 16:00")
+    expect(timestamp.to_audit_datetime).to eq("2016-11-04, 16:00:01.030")
     expect(timestamp.to_date).to eq("2016-Nov-04")
     expect(timestamp.to_8601).to eq("2016-11-04T16:00:01Z")
   end

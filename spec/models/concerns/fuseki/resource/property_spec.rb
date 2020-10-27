@@ -29,10 +29,10 @@ describe Fuseki::Resource::Property do
 
   it "allows for simple update" do
     ref_0 = TestFRP.new
-    item = Fuseki::Resource::Property.new(ref_0, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :property, default: "1", base_type: XSDDatatype.new("string")})
+    item = Fuseki::Resource::Property.new(ref_0, :fred, {model_classes: [], cardinality: :one, predicate: "XXX", type: :property, default: "1", base_type: XSDDatatype.new("string")})
     expect(item.name).to eq(:fred)
     expect(item.instance_name).to eq(:@fred)
-    expect(item.klass).to eq(TestFRP)
+    expect(item.klass).to eq(nil)
     expect(item.cardinality).to eq(:one)
     expect(item.predicate).to eq("XXX")
     expect(item.object?).to eq(false)
@@ -44,10 +44,12 @@ describe Fuseki::Resource::Property do
     expect(item.get).to eq("")
     
     ref_1 = TestFRP.new
-    item = Fuseki::Resource::Property.new(ref_1, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: true, base_type: nil})
+    item = Fuseki::Resource::Property.new(ref_1, :fred, {model_classes: [], cardinality: :one, predicate: "XXX", type: :object, default: true, base_type: nil})
     expect(item.name).to eq(:fred)
     expect(item.instance_name).to eq(:@fred)
-    expect(item.klass).to eq(TestFRP)
+    expect(item.klass).to eq(nil)
+    item.add_klasses(["Fuseki::Base"])
+    expect(item.klass).to eq(Fuseki::Base)
     expect(item.cardinality).to eq(:one)
     expect(item.predicate).to eq("XXX")
     expect(item.object?).to eq(true)

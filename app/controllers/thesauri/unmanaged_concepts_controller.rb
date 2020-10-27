@@ -1,10 +1,12 @@
-class Thesauri::UnmanagedConceptsController < ApplicationController
-
+class Thesauri::UnmanagedConceptsController < ManagedItemsController
+  
   before_action :authenticate_user!
+
+  include DatatablesHelpers
 
   def changes
     authorize Thesaurus, :show?
-    @tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    @tc = Thesaurus::UnmanagedConcept.find(protect_from_bad_id(params))
     @tc.synonym_objects
     @tc.preferred_term_objects
     @version_count = @tc.changes_count(current_user.max_term_display.to_i)
@@ -13,13 +15,13 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
 
   def changes_data
     authorize Thesaurus, :show?
-    tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    tc = Thesaurus::UnmanagedConcept.find(protect_from_bad_id(params))
     render json: {data: tc.changes(current_user.max_term_display.to_i)}
   end
 
   def differences
     authorize Thesaurus, :show?
-    tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    tc = Thesaurus::UnmanagedConcept.find(protect_from_bad_id(params))
     render json: {data: tc.differences}
   end
 
@@ -40,62 +42,42 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
 
   def update
     authorize Thesaurus
-    tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
+    tc = Thesaurus::UnmanagedConcept.find_children(protect_from_bad_id(params))
     parent = Thesaurus::ManagedConcept.find_minimum(edit_params[:parent_id])
-    token = Token.find_token(parent, current_user)
-    if !token.nil?
-      tc = tc.update_with_clone(edit_params, parent)
-      if tc.errors.empty?
-        AuditTrail.update_item_event(current_user, parent, "Code list updated.") if token.refresh == 1
-        result = tc.simple_to_h
-        edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: tc.id, unmanaged_concept: {parent_id: parent.id}})
-        delete_path = thesauri_unmanaged_concept_path({id: tc.id, unmanaged_concept: {parent_id: parent.id}})
-        result.reverse_merge!({edit_path: edit_path, delete_path: delete_path})
-        render :json => {:data => [result]}, :status => 200
-      else
-        errors = []
-        tc.errors.each do |name, msg|
-          errors << {name: name, status: msg}
-        end
-        render :json => {:fieldErrors => errors}, :status => 200
-      end
+    return true unless check_lock_for_item(parent)
+    tc = tc.update_with_clone(edit_params, parent)
+    if tc.errors.empty?
+      AuditTrail.update_item_event(current_user, parent, "Code list updated.") if @lock.token.refresh == 1
+      result = tc.simple_to_h
+      edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: tc.id, unmanaged_concept: {parent_id: parent.id}})
+      delete_path = thesauri_unmanaged_concept_path({id: tc.id, unmanaged_concept: {parent_id: parent.id}})
+      result.reverse_merge!({edit_path: edit_path, delete_path: delete_path})
+      render :json => {:data => [result]}, :status => 200
     else
-      render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
+      render :json => {:fieldErrors => format_editor_errors(tc.errors)}, :status => 200
     end
   end
 
   def update_properties
     authorize Thesaurus, :edit?
-    tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
+    tc = Thesaurus::UnmanagedConcept.find_children(protect_from_bad_id(params))
     parent = Thesaurus::ManagedConcept.find_minimum(edit_params[:parent_id])
-    token = Token.find_token(parent, current_user)
-    if !token.nil?
-      tc = tc.update_with_clone(edit_params, parent)
-      if tc.errors.empty?
-        AuditTrail.update_item_event(current_user, parent, "Code list updated.") if token.refresh == 1
-        result = tc.simple_to_h
-        render :json => {:data => [result]}, :status => 200
-      else
-        render :json => {:errors => tc.errors.full_messages}, :status => 422
-      end
-    else
-      render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
-    end
+    return true unless check_lock_for_item(parent)
+    tc = tc.update_with_clone(edit_params, parent)
+    return true if item_errors(tc)
+    return true if lock_item_errors 
+    AuditTrail.update_item_event(current_user, parent, "Code list updated.") if @lock.token.refresh == 1
+    render :json => {:data => [tc.simple_to_h]}, :status => 200
   end
-
 
   def destroy
     authorize Thesaurus
-    tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    tc = Thesaurus::UnmanagedConcept.find(protect_from_bad_id(params))
     parent = Thesaurus::ManagedConcept.find_minimum(the_params[:parent_id])
-    token = Token.find_token(parent, current_user)
-    if !token.nil?
-      tc.delete_or_unlink(parent)
-      AuditTrail.update_item_event(current_user, parent, "Code list updated, item #{tc.identifier} deleted.") if token.refresh == 1
-      render :json => {:data => []}, :status => 200
-    else
-      render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
-    end
+    return true unless check_lock_for_item(parent)
+    tc.delete_or_unlink(parent)
+    AuditTrail.update_item_event(current_user, parent, "Code list updated, item #{tc.identifier} deleted.") if @lock.token.refresh == 1
+    render :json => {data: []}, :status => 200
   end
 
   def show
@@ -104,7 +86,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     if !@context_id.blank?
       @ct = Thesaurus.find_minimum(@context_id)
     end
-    @tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    @tc = Thesaurus::UnmanagedConcept.find(protect_from_bad_id(params))
     @parent = Thesaurus::ManagedConcept.find_minimum(the_params[:parent_id])
     @tc.synonym_objects
     @tc.preferred_term_objects
@@ -122,7 +104,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     else
       params[:tags] = []
     end
-    tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    tc = Thesaurus::UnmanagedConcept.find(protect_from_bad_id(params))
     children = tc.children_pagination(params)
     results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {context_id: context_id}})})}
     render json: {data: results, offset: params[:offset], count: results.count}, status: 200
@@ -156,26 +138,26 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
 
   def synonym_links
     authorize Thesaurus, :show?
-    tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
+    tc = Thesaurus::UnmanagedConcept.find_children(protect_from_bad_id(params))
     results = tc.linked_by_synonym(link_params)
     add_link_paths(results)
-    render :json => {:data => results}, :status => 200
+    render :json => {data: results}, :status => 200
   end
 
   def preferred_term_links
     authorize Thesaurus, :show?
-    tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
+    tc = Thesaurus::UnmanagedConcept.find_children(protect_from_bad_id(params))
     results = tc.linked_by_preferred_term(link_params)
     add_link_paths(results)
-    render :json => {:data => results}, :status => 200
+    render :json => {data: results}, :status => 200
   end
 
   def change_instruction_links
     authorize Thesaurus, :show?
-    tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
+    tc = Thesaurus::UnmanagedConcept.find_children(protect_from_bad_id(params))
     results = tc.linked_change_instructions
     add_ci_link_paths(results)
-    render :json => {:data => results}, :status => 200
+    render :json => {data: results}, :status => 200
   end
 
 private

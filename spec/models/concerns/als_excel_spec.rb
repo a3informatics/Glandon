@@ -54,31 +54,31 @@ describe AlsExcel do
     expect(result).to hash_equal(expected)
   end
 
-  it "gets form, AE example" do
-    full_path = test_file_path(sub_dir, "als_1.xlsx")
-    object = AlsExcel.new(full_path)
-    item = object.form("AE")
-    expect(object.errors.count).to eq(0)
-    result = item.to_json
-  #Xwrite_yaml_file(result, sub_dir, "form_expected_2.yaml")
-    expected = read_yaml_file(sub_dir, "form_expected_2.yaml")
-    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
-    expected[:creation_date] = result[:creation_date]
-    expect(result).to eq(expected)
-  end
+  # it "gets form, AE example" do
+  #   full_path = test_file_path(sub_dir, "als_1.xlsx")
+  #   object = AlsExcel.new(full_path)
+  #   item = object.form("AE")
+  #   expect(object.errors.count).to eq(0)
+  #   result = item.to_json
+  # #Xwrite_yaml_file(result, sub_dir, "form_expected_2.yaml")
+  #   expected = read_yaml_file(sub_dir, "form_expected_2.yaml")
+  #   expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
+  #   expected[:creation_date] = result[:creation_date]
+  #   expect(result).to eq(expected)
+  # end
 
-  it "gets form, DMOG example" do
-    full_path = test_file_path(sub_dir, "als_2.xlsx")
-    object = AlsExcel.new(full_path)
-    item = object.form("DMOG")
-    expect(object.errors.count).to eq(0)
-    result = item.to_json
-  #Xwrite_yaml_file(result, sub_dir, "form_expected_3.yaml")
-    expected = read_yaml_file(sub_dir, "form_expected_3.yaml")
-    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
-    expected[:creation_date] = result[:creation_date]
-    expect(result).to eq(expected)
-  end
+  # it "gets form, DMOG example" do
+  #   full_path = test_file_path(sub_dir, "als_2.xlsx")
+  #   object = AlsExcel.new(full_path)
+  #   item = object.form("DMOG")
+  #   expect(object.errors.count).to eq(0)
+  #   result = item.to_json
+  # #Xwrite_yaml_file(result, sub_dir, "form_expected_3.yaml")
+  #   expected = read_yaml_file(sub_dir, "form_expected_3.yaml")
+  #   expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
+  #   expected[:creation_date] = result[:creation_date]
+  #   expect(result).to eq(expected)
+  # end
 
 	it "reads the excel fle, error 1" do
     full_path = test_file_path(sub_dir, "als_error_1.xlsx")
@@ -104,65 +104,65 @@ describe AlsExcel do
     expect(object.errors.full_messages.to_sentence).to eq("Blank line detected before row 81, row ignored and Blank line detected before row 82, row ignored") 
   end
 
-  it "reads the excel fle, error 4" do
-    full_path = test_file_path(sub_dir, "als_error_4.xlsx")
-    object = AlsExcel.new(full_path)
-    item = object.form("DM")
-    expect(object.errors.count).to eq(2)
-    expect(object.errors.full_messages.to_sentence).to eq("Blank line detected before row 1034, row ignored and Blank line detected before row 1035, row ignored") 
-  end
+  # it "reads the excel fle, error 4" do
+  #   full_path = test_file_path(sub_dir, "als_error_4.xlsx")
+  #   object = AlsExcel.new(full_path)
+  #   item = object.form("DM")
+  #   expect(object.errors.count).to eq(2)
+  #   expect(object.errors.full_messages.to_sentence).to eq("Blank line detected before row 1034, row ignored and Blank line detected before row 1035, row ignored") 
+  # end
 
-  it "gets form, AE example" do
-    full_path = test_file_path(sub_dir, "als_3.xlsx")
-    object = AlsExcel.new(full_path)
-    item = object.form("AE")
-    expect(object.errors.count).to eq(0)
-    result = item.to_json
-  #Xwrite_yaml_file(result, sub_dir, "form_expected_4.yaml")
-    expected = read_yaml_file(sub_dir, "form_expected_4.yaml")
-    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
-    expected[:creation_date] = result[:creation_date]
-    expect(result).to eq(expected)
-  end
+  # it "gets form, AE example" do
+  #   full_path = test_file_path(sub_dir, "als_3.xlsx")
+  #   object = AlsExcel.new(full_path)
+  #   item = object.form("AE")
+  #   expect(object.errors.count).to eq(0)
+  #   result = item.to_json
+  # #Xwrite_yaml_file(result, sub_dir, "form_expected_4.yaml")
+  #   expected = read_yaml_file(sub_dir, "form_expected_4.yaml")
+  #   expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
+  #   expected[:creation_date] = result[:creation_date]
+  #   expect(result).to eq(expected)
+  # end
 
-  it "gets form, HOSP example" do
-    full_path = test_file_path(sub_dir, "als_3.xlsx")
-    object = AlsExcel.new(full_path)
-    item = object.form("AE")
-    expect(object.errors.count).to eq(0)
-    result = item.to_json
-  #Xwrite_yaml_file(result, sub_dir, "form_expected_5.yaml")
-    expected = read_yaml_file(sub_dir, "form_expected_5.yaml")
-    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
-    expected[:creation_date] = result[:creation_date]
-    expect(result).to eq(expected)
-  end
+  # it "gets form, HOSP example" do
+  #   full_path = test_file_path(sub_dir, "als_3.xlsx")
+  #   object = AlsExcel.new(full_path)
+  #   item = object.form("AE")
+  #   expect(object.errors.count).to eq(0)
+  #   result = item.to_json
+  # #Xwrite_yaml_file(result, sub_dir, "form_expected_5.yaml")
+  #   expected = read_yaml_file(sub_dir, "form_expected_5.yaml")
+  #   expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
+  #   expected[:creation_date] = result[:creation_date]
+  #   expect(result).to eq(expected)
+  # end
   
-  it "gets form, DM example" do
-    full_path = test_file_path(sub_dir, "als_4.xlsx")
-    object = AlsExcel.new(full_path)
-    item = object.form("DM")
-    expect(object.errors.count).to eq(0)
-    result = item.to_json
-  #Xwrite_yaml_file(result, sub_dir, "form_expected_6.yaml")
-    expected = read_yaml_file(sub_dir, "form_expected_6.yaml")
-    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
-    expected[:creation_date] = result[:creation_date]
-    expect(result).to hash_equal(expected)
-  end
+  # it "gets form, DM example" do
+  #   full_path = test_file_path(sub_dir, "als_4.xlsx")
+  #   object = AlsExcel.new(full_path)
+  #   item = object.form("DM")
+  #   expect(object.errors.count).to eq(0)
+  #   result = item.to_json
+  # #Xwrite_yaml_file(result, sub_dir, "form_expected_6.yaml")
+  #   expected = read_yaml_file(sub_dir, "form_expected_6.yaml")
+  #   expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
+  #   expected[:creation_date] = result[:creation_date]
+  #   expect(result).to hash_equal(expected)
+  # end
   
-  it "gets form, DS3 example" do
-    full_path = test_file_path(sub_dir, "als_4.xlsx")
-    object = AlsExcel.new(full_path)
-    item = object.form("DS3")
-    expect(object.errors.count).to eq(0)
-    result = item.to_json
-  #Xwrite_yaml_file(result, sub_dir, "form_expected_7.yaml")
-    expected = read_yaml_file(sub_dir, "form_expected_7.yaml")
-    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
-    expected[:creation_date] = result[:creation_date]
-    expect(result).to eq(expected)
-  end
+  # it "gets form, DS3 example" do
+  #   full_path = test_file_path(sub_dir, "als_4.xlsx")
+  #   object = AlsExcel.new(full_path)
+  #   item = object.form("DS3")
+  #   expect(object.errors.count).to eq(0)
+  #   result = item.to_json
+  # #Xwrite_yaml_file(result, sub_dir, "form_expected_7.yaml")
+  #   expected = read_yaml_file(sub_dir, "form_expected_7.yaml")
+  #   expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
+  #   expected[:creation_date] = result[:creation_date]
+  #   expect(result).to eq(expected)
+  # end
   
   it "gets form, AE example" do
     full_path = test_file_path(sub_dir, "als_error_2.xlsx")

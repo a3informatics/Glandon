@@ -60,7 +60,7 @@ describe "Rank", :type => :feature do
     ui_table_search("index", identifier)
     find(:xpath, "//tr[contains(.,'Sanofi')]/td/a").click
     wait_for_ajax 20
-    context_menu_element("history", 5, version, :edit)
+    context_menu_element_v2("history", version, :edit)
     wait_for_ajax 20
   end
 
@@ -80,7 +80,7 @@ describe "Rank", :type => :feature do
       context_menu_element_header :enable_rank
       wait_for_ajax 10
       context_menu_element_header_present? :edit_ranks
-      ui_check_indicators(".indicators", ["ranked"])
+      ui_check_indicators(".indicators-wrap", ["ranked"])
 
       context_menu_element_header :edit_ranks
       ui_in_modal do
@@ -253,7 +253,7 @@ describe "Rank", :type => :feature do
       context_menu_element_header :enable_rank
       wait_for_ajax 10
       context_menu_element_header_present? :edit_ranks
-      ui_check_indicators(".indicators", ["extension", "ranked"])
+      ui_check_indicators(".indicators-wrap", ["extension", "ranked"])
 
       context_menu_element_header :edit_ranks
       ui_in_modal do
@@ -304,7 +304,7 @@ describe "Rank", :type => :feature do
       context_menu_element_header :enable_rank
       wait_for_ajax 10
       context_menu_element_header_present? :edit_ranks
-      ui_check_indicators(".indicators", ["a subset", "ranked"])
+      ui_check_indicators(".indicators-wrap", ["a subset", "ranked"])
 
       context_menu_element_header :edit_ranks
       ui_in_modal do

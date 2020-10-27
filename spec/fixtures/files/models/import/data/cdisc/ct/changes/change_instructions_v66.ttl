@@ -1,0 +1,3733 @@
+@prefix : <http://www.assero.co.uk/BusinessOperational#> .
+@prefix ba: <http://www.assero.co.uk/Annotations#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/BusinessOperational>
+	rdf:type owl:Ontology ;
+.
+<http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141850 is being removed from the codelist and replaced with C141849, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TUC2> ;
+	ba:ordinal "1"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V66#C141671_C141849> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V54#C141671_C141850> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141852 is being removed from the codelist and replaced with C141851, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC2> ;
+	ba:ordinal "2"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V66#C141671_C141851> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V54#C141671_C141852> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141855 is being removed from the codelist and replaced with C141854, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC2> ;
+	ba:ordinal "3"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V66#C141671_C141854> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V54#C141671_C141855> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#b76597f7-972f-40f4-bed7-e134725cf296>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141857 is being removed from the codelist and replaced with C141856, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#b76597f7-972f-40f4-bed7-e134725cf296_TUC2> ;
+	ba:ordinal "4"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#b76597f7-972f-40f4-bed7-e134725cf296_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#b76597f7-972f-40f4-bed7-e134725cf296_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V66#C141671_C141856> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#b76597f7-972f-40f4-bed7-e134725cf296_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V54#C141671_C141857> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#36d01a04-97fa-4ae9-8f40-9f266a6cdc06>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141860 is being removed from the codelist and replaced with C141859, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#36d01a04-97fa-4ae9-8f40-9f266a6cdc06_TUC2> ;
+	ba:ordinal "5"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#36d01a04-97fa-4ae9-8f40-9f266a6cdc06_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#36d01a04-97fa-4ae9-8f40-9f266a6cdc06_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V66#C141671_C141859> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#36d01a04-97fa-4ae9-8f40-9f266a6cdc06_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V54#C141671_C141860> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#0cda6f24-e54d-4724-af79-916d41d9bd7f>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141862 is being removed from the codelist and replaced with C141861, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC2> ;
+	ba:ordinal "6"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V66#C141671_C141861> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V54#C141671_C141862> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#7948e614-fdba-484a-9dfc-c98ce368d4e7>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141864 is being removed from the codelist and replaced with C141863, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC2> ;
+	ba:ordinal "7"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V66#C141671_C141863> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V54#C141671_C141864> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#c9f7f7de-d227-4e15-b171-06c4306b77f4>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141866 is being removed from the codelist and replaced with C141865, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC2> ;
+	ba:ordinal "8"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V66#C141671_C141865> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141671/V54#C141671_C141866> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f9fe7128-4b63-482d-9a11-62250e24fe0c>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141850 is being removed from the codelist and replaced with C141849, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC2> ;
+	ba:ordinal "9"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V66#C141670_C141849> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V54#C141670_C141850> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f03287d6-23ea-43bb-b3cf-f972761caabd>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141852 is being removed from the codelist and replaced with C141851, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#f03287d6-23ea-43bb-b3cf-f972761caabd_TUC2> ;
+	ba:ordinal "10"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#f03287d6-23ea-43bb-b3cf-f972761caabd_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#f03287d6-23ea-43bb-b3cf-f972761caabd_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V66#C141670_C141851> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f03287d6-23ea-43bb-b3cf-f972761caabd_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V54#C141670_C141852> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#4b981364-daf4-4c99-84f0-f7514bd092e7>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141855 is being removed from the codelist and replaced with C141854, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#4b981364-daf4-4c99-84f0-f7514bd092e7_TUC2> ;
+	ba:ordinal "11"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#4b981364-daf4-4c99-84f0-f7514bd092e7_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#4b981364-daf4-4c99-84f0-f7514bd092e7_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V66#C141670_C141854> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#4b981364-daf4-4c99-84f0-f7514bd092e7_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V54#C141670_C141855> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#8cd62d3c-bce2-4d1b-bc7e-cc6544551abb>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141857 is being removed from the codelist and replaced with C141856, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC2> ;
+	ba:ordinal "12"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V66#C141670_C141856> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V54#C141670_C141857> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#830fa72c-a59e-475b-9b2c-eb4b5ace264f>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141860 is being removed from the codelist and replaced with C141859, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#830fa72c-a59e-475b-9b2c-eb4b5ace264f_TUC2> ;
+	ba:ordinal "13"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#830fa72c-a59e-475b-9b2c-eb4b5ace264f_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#830fa72c-a59e-475b-9b2c-eb4b5ace264f_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V66#C141670_C141859> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#830fa72c-a59e-475b-9b2c-eb4b5ace264f_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V54#C141670_C141860> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#242c3d94-f47c-4477-9f51-afa4c18fa949>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141862 is being removed from the codelist and replaced with C141861, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#242c3d94-f47c-4477-9f51-afa4c18fa949_TUC2> ;
+	ba:ordinal "14"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#242c3d94-f47c-4477-9f51-afa4c18fa949_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#242c3d94-f47c-4477-9f51-afa4c18fa949_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V66#C141670_C141861> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#242c3d94-f47c-4477-9f51-afa4c18fa949_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V54#C141670_C141862> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#159a7d7f-1ef5-40f7-808b-d5d66ac7a06e>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141864 is being removed from the codelist and replaced with C141863, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_TUC2> ;
+	ba:ordinal "15"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V66#C141670_C141863> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V54#C141670_C141864> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#53dd87c3-1c29-4240-ba98-72341896b348>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141866 is being removed from the codelist and replaced with C141865, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#53dd87c3-1c29-4240-ba98-72341896b348_TUC2> ;
+	ba:ordinal "16"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#53dd87c3-1c29-4240-ba98-72341896b348_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#53dd87c3-1c29-4240-ba98-72341896b348_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V66#C141670_C141865> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#53dd87c3-1c29-4240-ba98-72341896b348_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141670/V54#C141670_C141866> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#9512d1d4-7f6c-4b3c-a330-ff3081f8de24>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141782 is being removed from the codelist and replaced with C141781, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#9512d1d4-7f6c-4b3c-a330-ff3081f8de24_TUC2> ;
+	ba:ordinal "17"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#9512d1d4-7f6c-4b3c-a330-ff3081f8de24_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#9512d1d4-7f6c-4b3c-a330-ff3081f8de24_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141781> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#9512d1d4-7f6c-4b3c-a330-ff3081f8de24_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141782> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#16815e87-0141-4de3-b575-f06a729bdf40>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141784 is being removed from the codelist and replaced with C141783, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#16815e87-0141-4de3-b575-f06a729bdf40_TUC2> ;
+	ba:ordinal "18"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#16815e87-0141-4de3-b575-f06a729bdf40_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#16815e87-0141-4de3-b575-f06a729bdf40_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141783> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#16815e87-0141-4de3-b575-f06a729bdf40_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141784> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f79069ba-85a0-4c75-a2b1-987b90fadd9d>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141787 is being removed from the codelist and replaced with C141786, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#f79069ba-85a0-4c75-a2b1-987b90fadd9d_TUC2> ;
+	ba:ordinal "19"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#f79069ba-85a0-4c75-a2b1-987b90fadd9d_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#f79069ba-85a0-4c75-a2b1-987b90fadd9d_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141786> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f79069ba-85a0-4c75-a2b1-987b90fadd9d_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141787> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#b40ce817-f549-40d0-ab47-88d4faeda520>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141789 is being removed from the codelist and replaced with C141788, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#b40ce817-f549-40d0-ab47-88d4faeda520_TUC2> ;
+	ba:ordinal "20"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#b40ce817-f549-40d0-ab47-88d4faeda520_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#b40ce817-f549-40d0-ab47-88d4faeda520_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141788> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#b40ce817-f549-40d0-ab47-88d4faeda520_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141789> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#46e0d9c5-c6c2-4331-9716-d82e3edfa837>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141792 is being removed from the codelist and replaced with C141791, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#46e0d9c5-c6c2-4331-9716-d82e3edfa837_TUC2> ;
+	ba:ordinal "21"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#46e0d9c5-c6c2-4331-9716-d82e3edfa837_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#46e0d9c5-c6c2-4331-9716-d82e3edfa837_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141791> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#46e0d9c5-c6c2-4331-9716-d82e3edfa837_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141792> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#75568830-cc5c-4fd3-b944-7d89b5a72c2c>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141794 is being removed from the codelist and replaced with C141793, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#75568830-cc5c-4fd3-b944-7d89b5a72c2c_TUC2> ;
+	ba:ordinal "22"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#75568830-cc5c-4fd3-b944-7d89b5a72c2c_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#75568830-cc5c-4fd3-b944-7d89b5a72c2c_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141793> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#75568830-cc5c-4fd3-b944-7d89b5a72c2c_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141794> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#cffd2e4b-6089-4cd7-9214-b240de957046>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141797 is being removed from the codelist and replaced with C141796, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#cffd2e4b-6089-4cd7-9214-b240de957046_TUC2> ;
+	ba:ordinal "23"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#cffd2e4b-6089-4cd7-9214-b240de957046_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#cffd2e4b-6089-4cd7-9214-b240de957046_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141796> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#cffd2e4b-6089-4cd7-9214-b240de957046_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141797> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#49df362a-e61a-4191-8537-2148baf12008>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141799 is being removed from the codelist and replaced with C141798, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#49df362a-e61a-4191-8537-2148baf12008_TUC2> ;
+	ba:ordinal "24"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#49df362a-e61a-4191-8537-2148baf12008_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#49df362a-e61a-4191-8537-2148baf12008_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141798> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#49df362a-e61a-4191-8537-2148baf12008_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141799> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#0d54bd68-b43e-499a-9dfc-55040dca1732>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141802 is being removed from the codelist and replaced with C141801, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#0d54bd68-b43e-499a-9dfc-55040dca1732_TUC2> ;
+	ba:ordinal "25"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#0d54bd68-b43e-499a-9dfc-55040dca1732_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#0d54bd68-b43e-499a-9dfc-55040dca1732_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141801> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#0d54bd68-b43e-499a-9dfc-55040dca1732_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141802> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#043597a3-c572-41fb-9715-f1f4be733a6e>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141804 is being removed from the codelist and replaced with C141803, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#043597a3-c572-41fb-9715-f1f4be733a6e_TUC2> ;
+	ba:ordinal "26"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#043597a3-c572-41fb-9715-f1f4be733a6e_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#043597a3-c572-41fb-9715-f1f4be733a6e_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141803> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#043597a3-c572-41fb-9715-f1f4be733a6e_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141804> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#70b46c7c-1b90-47b5-b0d2-6a9e2efcdcff>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141807 is being removed from the codelist and replaced with C141806, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#70b46c7c-1b90-47b5-b0d2-6a9e2efcdcff_TUC2> ;
+	ba:ordinal "27"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#70b46c7c-1b90-47b5-b0d2-6a9e2efcdcff_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#70b46c7c-1b90-47b5-b0d2-6a9e2efcdcff_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141806> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#70b46c7c-1b90-47b5-b0d2-6a9e2efcdcff_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141807> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#9da511e3-b0ed-44f6-8ce7-5141574afcb8>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141809 is being removed from the codelist and replaced with C141808, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#9da511e3-b0ed-44f6-8ce7-5141574afcb8_TUC2> ;
+	ba:ordinal "28"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#9da511e3-b0ed-44f6-8ce7-5141574afcb8_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#9da511e3-b0ed-44f6-8ce7-5141574afcb8_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141808> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#9da511e3-b0ed-44f6-8ce7-5141574afcb8_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141809> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#2fcc3a0a-0b4d-47d6-aa1b-a8372fb1cc52>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141812 is being removed from the codelist and replaced with C141811, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#2fcc3a0a-0b4d-47d6-aa1b-a8372fb1cc52_TUC2> ;
+	ba:ordinal "29"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#2fcc3a0a-0b4d-47d6-aa1b-a8372fb1cc52_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#2fcc3a0a-0b4d-47d6-aa1b-a8372fb1cc52_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141811> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#2fcc3a0a-0b4d-47d6-aa1b-a8372fb1cc52_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141812> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d4a2dad6-10fe-4843-bdd6-d86d115b7bc3>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141814 is being removed from the codelist and replaced with C141813, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#d4a2dad6-10fe-4843-bdd6-d86d115b7bc3_TUC2> ;
+	ba:ordinal "30"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#d4a2dad6-10fe-4843-bdd6-d86d115b7bc3_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#d4a2dad6-10fe-4843-bdd6-d86d115b7bc3_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141813> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d4a2dad6-10fe-4843-bdd6-d86d115b7bc3_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141814> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d8bc6601-f3e7-4a60-9f04-94fcbe5c0d88>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141817 is being removed from the codelist and replaced with C141816, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#d8bc6601-f3e7-4a60-9f04-94fcbe5c0d88_TUC2> ;
+	ba:ordinal "31"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#d8bc6601-f3e7-4a60-9f04-94fcbe5c0d88_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#d8bc6601-f3e7-4a60-9f04-94fcbe5c0d88_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141816> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d8bc6601-f3e7-4a60-9f04-94fcbe5c0d88_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141817> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#a23dfcda-43f3-4bbe-ba00-1c93909b5ef0>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141819 is being removed from the codelist and replaced with C141818, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#a23dfcda-43f3-4bbe-ba00-1c93909b5ef0_TUC2> ;
+	ba:ordinal "32"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#a23dfcda-43f3-4bbe-ba00-1c93909b5ef0_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#a23dfcda-43f3-4bbe-ba00-1c93909b5ef0_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141818> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#a23dfcda-43f3-4bbe-ba00-1c93909b5ef0_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141819> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#34b51c7f-f121-453b-a670-20376f6826a4>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141822 is being removed from the codelist and replaced with C141821, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#34b51c7f-f121-453b-a670-20376f6826a4_TUC2> ;
+	ba:ordinal "33"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#34b51c7f-f121-453b-a670-20376f6826a4_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#34b51c7f-f121-453b-a670-20376f6826a4_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141821> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#34b51c7f-f121-453b-a670-20376f6826a4_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141822> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#eef3cad0-67d0-4221-94af-4a13682016cc>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141824 is being removed from the codelist and replaced with C141823, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#eef3cad0-67d0-4221-94af-4a13682016cc_TUC2> ;
+	ba:ordinal "34"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#eef3cad0-67d0-4221-94af-4a13682016cc_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#eef3cad0-67d0-4221-94af-4a13682016cc_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141823> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#eef3cad0-67d0-4221-94af-4a13682016cc_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141824> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#73ee36eb-0aff-46e0-887a-28d0c48ac52d>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141827 is being removed from the codelist and replaced with C141826, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#73ee36eb-0aff-46e0-887a-28d0c48ac52d_TUC2> ;
+	ba:ordinal "35"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#73ee36eb-0aff-46e0-887a-28d0c48ac52d_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#73ee36eb-0aff-46e0-887a-28d0c48ac52d_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141826> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#73ee36eb-0aff-46e0-887a-28d0c48ac52d_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141827> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#a223d374-6d4f-412a-a7ab-0986a295a61c>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141829 is being removed from the codelist and replaced with C141828, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#a223d374-6d4f-412a-a7ab-0986a295a61c_TUC2> ;
+	ba:ordinal "36"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#a223d374-6d4f-412a-a7ab-0986a295a61c_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#a223d374-6d4f-412a-a7ab-0986a295a61c_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141828> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#a223d374-6d4f-412a-a7ab-0986a295a61c_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141829> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#41ec4753-95b2-4a9e-ae80-52d50d2f3898>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141832 is being removed from the codelist and replaced with C141831, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#41ec4753-95b2-4a9e-ae80-52d50d2f3898_TUC2> ;
+	ba:ordinal "37"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#41ec4753-95b2-4a9e-ae80-52d50d2f3898_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#41ec4753-95b2-4a9e-ae80-52d50d2f3898_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141831> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#41ec4753-95b2-4a9e-ae80-52d50d2f3898_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141832> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e0cf3fcf-c8c9-417f-9a18-6bf99dd67284>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141834 is being removed from the codelist and replaced with C141833, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#e0cf3fcf-c8c9-417f-9a18-6bf99dd67284_TUC2> ;
+	ba:ordinal "38"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#e0cf3fcf-c8c9-417f-9a18-6bf99dd67284_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#e0cf3fcf-c8c9-417f-9a18-6bf99dd67284_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141833> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e0cf3fcf-c8c9-417f-9a18-6bf99dd67284_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141834> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e0271994-ce46-45a0-ae29-ca3a0a8bae87>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141837 is being removed from the codelist and replaced with C141836, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#e0271994-ce46-45a0-ae29-ca3a0a8bae87_TUC2> ;
+	ba:ordinal "39"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#e0271994-ce46-45a0-ae29-ca3a0a8bae87_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#e0271994-ce46-45a0-ae29-ca3a0a8bae87_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141836> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e0271994-ce46-45a0-ae29-ca3a0a8bae87_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141837> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#effcf3f6-a54d-4858-a276-4b40c5dba6bc>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141839 is being removed from the codelist and replaced with C141838, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#effcf3f6-a54d-4858-a276-4b40c5dba6bc_TUC2> ;
+	ba:ordinal "40"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#effcf3f6-a54d-4858-a276-4b40c5dba6bc_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#effcf3f6-a54d-4858-a276-4b40c5dba6bc_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141838> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#effcf3f6-a54d-4858-a276-4b40c5dba6bc_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141839> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#302bb678-f72e-4017-9732-a69313fc69c5>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141841 is being removed from the codelist and replaced with C141840, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#302bb678-f72e-4017-9732-a69313fc69c5_TUC2> ;
+	ba:ordinal "41"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#302bb678-f72e-4017-9732-a69313fc69c5_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#302bb678-f72e-4017-9732-a69313fc69c5_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141840> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#302bb678-f72e-4017-9732-a69313fc69c5_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141841> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#96a828d9-0a51-4e5f-8fc5-748044f05432>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141843 is being removed from the codelist and replaced with C141842, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#96a828d9-0a51-4e5f-8fc5-748044f05432_TUC2> ;
+	ba:ordinal "42"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#96a828d9-0a51-4e5f-8fc5-748044f05432_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#96a828d9-0a51-4e5f-8fc5-748044f05432_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141842> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#96a828d9-0a51-4e5f-8fc5-748044f05432_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141843> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#94d99560-654c-43d4-b013-d0fef495d09b>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141845 is being removed from the codelist and replaced with C141844, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#94d99560-654c-43d4-b013-d0fef495d09b_TUC2> ;
+	ba:ordinal "43"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#94d99560-654c-43d4-b013-d0fef495d09b_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#94d99560-654c-43d4-b013-d0fef495d09b_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141844> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#94d99560-654c-43d4-b013-d0fef495d09b_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141845> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#c4811a62-6058-40db-a5d1-c9f3263b9728>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141847 is being removed from the codelist and replaced with C141846, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#c4811a62-6058-40db-a5d1-c9f3263b9728_TUC2> ;
+	ba:ordinal "44"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#c4811a62-6058-40db-a5d1-c9f3263b9728_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#c4811a62-6058-40db-a5d1-c9f3263b9728_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V66#C141669_C141846> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#c4811a62-6058-40db-a5d1-c9f3263b9728_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141669/V54#C141669_C141847> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#964c9e01-e867-438c-a72e-b9898e638252>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141782 is being removed from the codelist and replaced with C141781, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#964c9e01-e867-438c-a72e-b9898e638252_TUC2> ;
+	ba:ordinal "45"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#964c9e01-e867-438c-a72e-b9898e638252_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#964c9e01-e867-438c-a72e-b9898e638252_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141781> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#964c9e01-e867-438c-a72e-b9898e638252_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141782> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#237ff604-8ad1-4ef4-b1ca-8a37f92f340d>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141784 is being removed from the codelist and replaced with C141783, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#237ff604-8ad1-4ef4-b1ca-8a37f92f340d_TUC2> ;
+	ba:ordinal "46"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#237ff604-8ad1-4ef4-b1ca-8a37f92f340d_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#237ff604-8ad1-4ef4-b1ca-8a37f92f340d_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141783> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#237ff604-8ad1-4ef4-b1ca-8a37f92f340d_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141784> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#7c20c319-91c2-4aec-b772-45c6538cf829>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141787 is being removed from the codelist and replaced with C141786, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#7c20c319-91c2-4aec-b772-45c6538cf829_TUC2> ;
+	ba:ordinal "47"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#7c20c319-91c2-4aec-b772-45c6538cf829_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#7c20c319-91c2-4aec-b772-45c6538cf829_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141786> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#7c20c319-91c2-4aec-b772-45c6538cf829_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141787> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#b41fff63-c3b2-45fb-b518-c1790cb59c47>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141789 is being removed from the codelist and replaced with C141788, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#b41fff63-c3b2-45fb-b518-c1790cb59c47_TUC2> ;
+	ba:ordinal "48"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#b41fff63-c3b2-45fb-b518-c1790cb59c47_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#b41fff63-c3b2-45fb-b518-c1790cb59c47_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141788> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#b41fff63-c3b2-45fb-b518-c1790cb59c47_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141789> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#343f5ca5-0f1b-48d7-8ed2-d72a68248520>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141792 is being removed from the codelist and replaced with C141791, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#343f5ca5-0f1b-48d7-8ed2-d72a68248520_TUC2> ;
+	ba:ordinal "49"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#343f5ca5-0f1b-48d7-8ed2-d72a68248520_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#343f5ca5-0f1b-48d7-8ed2-d72a68248520_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141791> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#343f5ca5-0f1b-48d7-8ed2-d72a68248520_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141792> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d946e0d7-ab6f-4712-aeb9-892c32c1f3e1>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141794 is being removed from the codelist and replaced with C141793, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#d946e0d7-ab6f-4712-aeb9-892c32c1f3e1_TUC2> ;
+	ba:ordinal "50"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#d946e0d7-ab6f-4712-aeb9-892c32c1f3e1_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#d946e0d7-ab6f-4712-aeb9-892c32c1f3e1_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141793> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d946e0d7-ab6f-4712-aeb9-892c32c1f3e1_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141794> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#847d2410-9643-4364-821b-a005e9c1b094>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141797 is being removed from the codelist and replaced with C141796, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#847d2410-9643-4364-821b-a005e9c1b094_TUC2> ;
+	ba:ordinal "51"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#847d2410-9643-4364-821b-a005e9c1b094_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#847d2410-9643-4364-821b-a005e9c1b094_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141796> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#847d2410-9643-4364-821b-a005e9c1b094_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141797> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f905885d-0166-41dd-8f48-3019fc56e50f>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141799 is being removed from the codelist and replaced with C141798, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#f905885d-0166-41dd-8f48-3019fc56e50f_TUC2> ;
+	ba:ordinal "52"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#f905885d-0166-41dd-8f48-3019fc56e50f_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#f905885d-0166-41dd-8f48-3019fc56e50f_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141798> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f905885d-0166-41dd-8f48-3019fc56e50f_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141799> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#ceeaabf2-d8ca-442f-b45b-170b1fa8af5e>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141802 is being removed from the codelist and replaced with C141801, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#ceeaabf2-d8ca-442f-b45b-170b1fa8af5e_TUC2> ;
+	ba:ordinal "53"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#ceeaabf2-d8ca-442f-b45b-170b1fa8af5e_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#ceeaabf2-d8ca-442f-b45b-170b1fa8af5e_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141801> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#ceeaabf2-d8ca-442f-b45b-170b1fa8af5e_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141802> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#bc730dd7-8ccc-4e9d-adcd-baebdc98b66c>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141804 is being removed from the codelist and replaced with C141803, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#bc730dd7-8ccc-4e9d-adcd-baebdc98b66c_TUC2> ;
+	ba:ordinal "54"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#bc730dd7-8ccc-4e9d-adcd-baebdc98b66c_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#bc730dd7-8ccc-4e9d-adcd-baebdc98b66c_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141803> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#bc730dd7-8ccc-4e9d-adcd-baebdc98b66c_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141804> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e2da7188-fd38-4ac8-af7a-1766127b1ee1>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141807 is being removed from the codelist and replaced with C141806, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#e2da7188-fd38-4ac8-af7a-1766127b1ee1_TUC2> ;
+	ba:ordinal "55"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#e2da7188-fd38-4ac8-af7a-1766127b1ee1_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#e2da7188-fd38-4ac8-af7a-1766127b1ee1_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141806> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e2da7188-fd38-4ac8-af7a-1766127b1ee1_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141807> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#ff1c0bcd-688e-41d1-829e-1c5a8bd5b4ed>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141809 is being removed from the codelist and replaced with C141808, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#ff1c0bcd-688e-41d1-829e-1c5a8bd5b4ed_TUC2> ;
+	ba:ordinal "56"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#ff1c0bcd-688e-41d1-829e-1c5a8bd5b4ed_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#ff1c0bcd-688e-41d1-829e-1c5a8bd5b4ed_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141808> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#ff1c0bcd-688e-41d1-829e-1c5a8bd5b4ed_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141809> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#0590a473-3d32-4238-b0ed-d8bc32d12378>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141812 is being removed from the codelist and replaced with C141811, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#0590a473-3d32-4238-b0ed-d8bc32d12378_TUC2> ;
+	ba:ordinal "57"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#0590a473-3d32-4238-b0ed-d8bc32d12378_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#0590a473-3d32-4238-b0ed-d8bc32d12378_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141811> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#0590a473-3d32-4238-b0ed-d8bc32d12378_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141812> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#9d422208-0deb-4263-89ea-34f6964e4222>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141814 is being removed from the codelist and replaced with C141813, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#9d422208-0deb-4263-89ea-34f6964e4222_TUC2> ;
+	ba:ordinal "58"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#9d422208-0deb-4263-89ea-34f6964e4222_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#9d422208-0deb-4263-89ea-34f6964e4222_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141813> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#9d422208-0deb-4263-89ea-34f6964e4222_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141814> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#71877742-e961-426b-a7a5-1e956a1a09c4>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141817 is being removed from the codelist and replaced with C141816, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#71877742-e961-426b-a7a5-1e956a1a09c4_TUC2> ;
+	ba:ordinal "59"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#71877742-e961-426b-a7a5-1e956a1a09c4_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#71877742-e961-426b-a7a5-1e956a1a09c4_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141816> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#71877742-e961-426b-a7a5-1e956a1a09c4_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141817> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e20baa21-db28-41dd-9365-85a49a505bc3>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141819 is being removed from the codelist and replaced with C141818, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#e20baa21-db28-41dd-9365-85a49a505bc3_TUC2> ;
+	ba:ordinal "60"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#e20baa21-db28-41dd-9365-85a49a505bc3_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#e20baa21-db28-41dd-9365-85a49a505bc3_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141818> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e20baa21-db28-41dd-9365-85a49a505bc3_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141819> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#2d97a720-b1b0-486d-84ad-46da68547e58>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141822 is being removed from the codelist and replaced with C141821, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#2d97a720-b1b0-486d-84ad-46da68547e58_TUC2> ;
+	ba:ordinal "61"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#2d97a720-b1b0-486d-84ad-46da68547e58_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#2d97a720-b1b0-486d-84ad-46da68547e58_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141821> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#2d97a720-b1b0-486d-84ad-46da68547e58_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141822> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#4eee0d69-6aad-460c-b175-6c06b4d65fde>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141824 is being removed from the codelist and replaced with C141823, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#4eee0d69-6aad-460c-b175-6c06b4d65fde_TUC2> ;
+	ba:ordinal "62"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#4eee0d69-6aad-460c-b175-6c06b4d65fde_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#4eee0d69-6aad-460c-b175-6c06b4d65fde_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141823> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#4eee0d69-6aad-460c-b175-6c06b4d65fde_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141824> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#67687fd4-1fb7-4f20-8914-7987321c54ad>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141827 is being removed from the codelist and replaced with C141826, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#67687fd4-1fb7-4f20-8914-7987321c54ad_TUC2> ;
+	ba:ordinal "63"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#67687fd4-1fb7-4f20-8914-7987321c54ad_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#67687fd4-1fb7-4f20-8914-7987321c54ad_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141826> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#67687fd4-1fb7-4f20-8914-7987321c54ad_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141827> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f52f5273-9f3a-4303-a1cc-e7f597309b7d>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141829 is being removed from the codelist and replaced with C141828, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#f52f5273-9f3a-4303-a1cc-e7f597309b7d_TUC2> ;
+	ba:ordinal "64"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#f52f5273-9f3a-4303-a1cc-e7f597309b7d_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#f52f5273-9f3a-4303-a1cc-e7f597309b7d_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141828> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f52f5273-9f3a-4303-a1cc-e7f597309b7d_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141829> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#41d4cf47-499c-47f8-add0-b08e16e6050e>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141832 is being removed from the codelist and replaced with C141831, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#41d4cf47-499c-47f8-add0-b08e16e6050e_TUC2> ;
+	ba:ordinal "65"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#41d4cf47-499c-47f8-add0-b08e16e6050e_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#41d4cf47-499c-47f8-add0-b08e16e6050e_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141831> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#41d4cf47-499c-47f8-add0-b08e16e6050e_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141832> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f35baff1-4c9f-4869-9517-72fb52c3c732>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141834 is being removed from the codelist and replaced with C141833, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#f35baff1-4c9f-4869-9517-72fb52c3c732_TUC2> ;
+	ba:ordinal "66"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#f35baff1-4c9f-4869-9517-72fb52c3c732_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#f35baff1-4c9f-4869-9517-72fb52c3c732_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141833> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f35baff1-4c9f-4869-9517-72fb52c3c732_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141834> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#a1d1346b-8f1d-4546-9736-0eb052a2e78d>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141837 is being removed from the codelist and replaced with C141836, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#a1d1346b-8f1d-4546-9736-0eb052a2e78d_TUC2> ;
+	ba:ordinal "67"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#a1d1346b-8f1d-4546-9736-0eb052a2e78d_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#a1d1346b-8f1d-4546-9736-0eb052a2e78d_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141836> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#a1d1346b-8f1d-4546-9736-0eb052a2e78d_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141837> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#ac4eaf75-a98a-4b22-9cd1-37c4fe7c1490>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141839 is being removed from the codelist and replaced with C141838, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#ac4eaf75-a98a-4b22-9cd1-37c4fe7c1490_TUC2> ;
+	ba:ordinal "68"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#ac4eaf75-a98a-4b22-9cd1-37c4fe7c1490_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#ac4eaf75-a98a-4b22-9cd1-37c4fe7c1490_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141838> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#ac4eaf75-a98a-4b22-9cd1-37c4fe7c1490_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141839> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#7237a0d1-650b-403f-b980-07da60449482>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141841 is being removed from the codelist and replaced with C141840, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#7237a0d1-650b-403f-b980-07da60449482_TUC2> ;
+	ba:ordinal "69"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#7237a0d1-650b-403f-b980-07da60449482_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#7237a0d1-650b-403f-b980-07da60449482_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141840> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#7237a0d1-650b-403f-b980-07da60449482_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141841> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#48dd98f7-f71f-4503-b0ea-2360ca39e6c1>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141843 is being removed from the codelist and replaced with C141842, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#48dd98f7-f71f-4503-b0ea-2360ca39e6c1_TUC2> ;
+	ba:ordinal "70"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#48dd98f7-f71f-4503-b0ea-2360ca39e6c1_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#48dd98f7-f71f-4503-b0ea-2360ca39e6c1_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141842> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#48dd98f7-f71f-4503-b0ea-2360ca39e6c1_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141843> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#15f1f604-e877-4cfd-a809-499a5f337954>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141845 is being removed from the codelist and replaced with C141844, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#15f1f604-e877-4cfd-a809-499a5f337954_TUC2> ;
+	ba:ordinal "71"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#15f1f604-e877-4cfd-a809-499a5f337954_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#15f1f604-e877-4cfd-a809-499a5f337954_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141844> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#15f1f604-e877-4cfd-a809-499a5f337954_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141845> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#84f6ad49-5b57-4a4c-b2df-3abf7b220922>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141847 is being removed from the codelist and replaced with C141846, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#84f6ad49-5b57-4a4c-b2df-3abf7b220922_TUC2> ;
+	ba:ordinal "72"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#84f6ad49-5b57-4a4c-b2df-3abf7b220922_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#84f6ad49-5b57-4a4c-b2df-3abf7b220922_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V66#C141668_C141846> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#84f6ad49-5b57-4a4c-b2df-3abf7b220922_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141668/V54#C141668_C141847> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#3f2de397-56a5-411b-85bb-b576db891a82>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141730 is being removed from the codelist and replaced with C141729, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#3f2de397-56a5-411b-85bb-b576db891a82_TUC2> ;
+	ba:ordinal "73"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#3f2de397-56a5-411b-85bb-b576db891a82_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#3f2de397-56a5-411b-85bb-b576db891a82_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141729> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#3f2de397-56a5-411b-85bb-b576db891a82_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141730> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#86199f34-cc40-4d28-9cf7-efebc1614cc8>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141734 is being removed from the codelist and replaced with C141733, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#86199f34-cc40-4d28-9cf7-efebc1614cc8_TUC2> ;
+	ba:ordinal "74"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#86199f34-cc40-4d28-9cf7-efebc1614cc8_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#86199f34-cc40-4d28-9cf7-efebc1614cc8_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141733> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#86199f34-cc40-4d28-9cf7-efebc1614cc8_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141734> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#768e43a4-d6ba-4e99-8e26-e616f2c9a567>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141738 is being removed from the codelist and replaced with C141737, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#768e43a4-d6ba-4e99-8e26-e616f2c9a567_TUC2> ;
+	ba:ordinal "75"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#768e43a4-d6ba-4e99-8e26-e616f2c9a567_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#768e43a4-d6ba-4e99-8e26-e616f2c9a567_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141737> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#768e43a4-d6ba-4e99-8e26-e616f2c9a567_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141738> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#45e95882-9e7e-44f2-a8a6-98286aac1c79>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141742 is being removed from the codelist and replaced with C141741, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#45e95882-9e7e-44f2-a8a6-98286aac1c79_TUC2> ;
+	ba:ordinal "76"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#45e95882-9e7e-44f2-a8a6-98286aac1c79_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#45e95882-9e7e-44f2-a8a6-98286aac1c79_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141741> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#45e95882-9e7e-44f2-a8a6-98286aac1c79_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141742> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#da0a79b4-8d6a-4d42-b146-3200d72a44e2>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141746 is being removed from the codelist and replaced with C141745, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#da0a79b4-8d6a-4d42-b146-3200d72a44e2_TUC2> ;
+	ba:ordinal "77"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#da0a79b4-8d6a-4d42-b146-3200d72a44e2_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#da0a79b4-8d6a-4d42-b146-3200d72a44e2_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141745> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#da0a79b4-8d6a-4d42-b146-3200d72a44e2_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141746> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e82c3c81-8b63-489e-ab9a-8a10d72cb218>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141750 is being removed from the codelist and replaced with C141749, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#e82c3c81-8b63-489e-ab9a-8a10d72cb218_TUC2> ;
+	ba:ordinal "78"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#e82c3c81-8b63-489e-ab9a-8a10d72cb218_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#e82c3c81-8b63-489e-ab9a-8a10d72cb218_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141749> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e82c3c81-8b63-489e-ab9a-8a10d72cb218_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141750> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#7a0ddaba-0cf5-4ef7-87b9-569581264a6e>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141754 is being removed from the codelist and replaced with C141753, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#7a0ddaba-0cf5-4ef7-87b9-569581264a6e_TUC2> ;
+	ba:ordinal "79"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#7a0ddaba-0cf5-4ef7-87b9-569581264a6e_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#7a0ddaba-0cf5-4ef7-87b9-569581264a6e_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141753> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#7a0ddaba-0cf5-4ef7-87b9-569581264a6e_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141754> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#2cb7b5dc-3017-45f2-a9d5-ea9e7c9dfac4>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141758 is being removed from the codelist and replaced with C141757, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#2cb7b5dc-3017-45f2-a9d5-ea9e7c9dfac4_TUC2> ;
+	ba:ordinal "80"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#2cb7b5dc-3017-45f2-a9d5-ea9e7c9dfac4_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#2cb7b5dc-3017-45f2-a9d5-ea9e7c9dfac4_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141757> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#2cb7b5dc-3017-45f2-a9d5-ea9e7c9dfac4_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141758> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#fac5bb81-ff4a-4f4a-ad01-a9112b6454a9>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141762 is being removed from the codelist and replaced with C141761, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#fac5bb81-ff4a-4f4a-ad01-a9112b6454a9_TUC2> ;
+	ba:ordinal "81"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#fac5bb81-ff4a-4f4a-ad01-a9112b6454a9_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#fac5bb81-ff4a-4f4a-ad01-a9112b6454a9_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141761> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#fac5bb81-ff4a-4f4a-ad01-a9112b6454a9_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141762> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#895cda3f-d31d-4d3e-a167-24096a7d789a>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141766 is being removed from the codelist and replaced with C141765, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#895cda3f-d31d-4d3e-a167-24096a7d789a_TUC2> ;
+	ba:ordinal "82"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#895cda3f-d31d-4d3e-a167-24096a7d789a_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#895cda3f-d31d-4d3e-a167-24096a7d789a_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141765> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#895cda3f-d31d-4d3e-a167-24096a7d789a_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141766> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#111938ac-3b7c-4095-b022-6b457d9a66d7>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141770 is being removed from the codelist and replaced with C141769, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#111938ac-3b7c-4095-b022-6b457d9a66d7_TUC2> ;
+	ba:ordinal "83"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#111938ac-3b7c-4095-b022-6b457d9a66d7_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#111938ac-3b7c-4095-b022-6b457d9a66d7_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141769> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#111938ac-3b7c-4095-b022-6b457d9a66d7_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141770> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#c9bc0648-5c33-4943-9c0c-d9089b0a8e3d>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141774 is being removed from the codelist and replaced with C141773, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#c9bc0648-5c33-4943-9c0c-d9089b0a8e3d_TUC2> ;
+	ba:ordinal "84"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#c9bc0648-5c33-4943-9c0c-d9089b0a8e3d_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#c9bc0648-5c33-4943-9c0c-d9089b0a8e3d_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141773> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#c9bc0648-5c33-4943-9c0c-d9089b0a8e3d_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141774> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e72aeefb-952f-4bf3-b7f1-b7d6c2664727>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141776 is being removed from the codelist and replaced with C141775, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#e72aeefb-952f-4bf3-b7f1-b7d6c2664727_TUC2> ;
+	ba:ordinal "85"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#e72aeefb-952f-4bf3-b7f1-b7d6c2664727_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#e72aeefb-952f-4bf3-b7f1-b7d6c2664727_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141775> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e72aeefb-952f-4bf3-b7f1-b7d6c2664727_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141776> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#0e0ba40b-6e79-408f-8170-a990e1b61255>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141778 is being removed from the codelist and replaced with C141777, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#0e0ba40b-6e79-408f-8170-a990e1b61255_TUC2> ;
+	ba:ordinal "86"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#0e0ba40b-6e79-408f-8170-a990e1b61255_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#0e0ba40b-6e79-408f-8170-a990e1b61255_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V66#C141667_C141777> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#0e0ba40b-6e79-408f-8170-a990e1b61255_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141667/V54#C141667_C141778> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#b7325aed-0dfc-449f-ba8a-485e98e6a0cf>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141730 is being removed from the codelist and replaced with C141729, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#b7325aed-0dfc-449f-ba8a-485e98e6a0cf_TUC2> ;
+	ba:ordinal "87"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#b7325aed-0dfc-449f-ba8a-485e98e6a0cf_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#b7325aed-0dfc-449f-ba8a-485e98e6a0cf_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141729> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#b7325aed-0dfc-449f-ba8a-485e98e6a0cf_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141730> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#8cf1e086-e474-44a6-b8a1-3d2435d8699b>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141734 is being removed from the codelist and replaced with C141733, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#8cf1e086-e474-44a6-b8a1-3d2435d8699b_TUC2> ;
+	ba:ordinal "88"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#8cf1e086-e474-44a6-b8a1-3d2435d8699b_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#8cf1e086-e474-44a6-b8a1-3d2435d8699b_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141733> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#8cf1e086-e474-44a6-b8a1-3d2435d8699b_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141734> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#9da8783d-e787-4912-935a-9db8dc2f02c2>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141738 is being removed from the codelist and replaced with C141737, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#9da8783d-e787-4912-935a-9db8dc2f02c2_TUC2> ;
+	ba:ordinal "89"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#9da8783d-e787-4912-935a-9db8dc2f02c2_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#9da8783d-e787-4912-935a-9db8dc2f02c2_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141737> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#9da8783d-e787-4912-935a-9db8dc2f02c2_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141738> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#1c36ac53-ec59-41de-95cf-c26f97870336>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141742 is being removed from the codelist and replaced with C141741, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#1c36ac53-ec59-41de-95cf-c26f97870336_TUC2> ;
+	ba:ordinal "90"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#1c36ac53-ec59-41de-95cf-c26f97870336_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#1c36ac53-ec59-41de-95cf-c26f97870336_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141741> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#1c36ac53-ec59-41de-95cf-c26f97870336_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141742> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d8f35322-cfa7-4814-9b41-c515ec7cd8fa>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141746 is being removed from the codelist and replaced with C141745, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#d8f35322-cfa7-4814-9b41-c515ec7cd8fa_TUC2> ;
+	ba:ordinal "91"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#d8f35322-cfa7-4814-9b41-c515ec7cd8fa_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#d8f35322-cfa7-4814-9b41-c515ec7cd8fa_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141745> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d8f35322-cfa7-4814-9b41-c515ec7cd8fa_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141746> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#511302f3-92c6-4830-aab8-277d9f207021>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141750 is being removed from the codelist and replaced with C141749, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#511302f3-92c6-4830-aab8-277d9f207021_TUC2> ;
+	ba:ordinal "92"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#511302f3-92c6-4830-aab8-277d9f207021_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#511302f3-92c6-4830-aab8-277d9f207021_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141749> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#511302f3-92c6-4830-aab8-277d9f207021_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141750> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#a5b463e7-8a66-42c1-8354-54d998c340c5>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141754 is being removed from the codelist and replaced with C141753, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#a5b463e7-8a66-42c1-8354-54d998c340c5_TUC2> ;
+	ba:ordinal "93"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#a5b463e7-8a66-42c1-8354-54d998c340c5_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#a5b463e7-8a66-42c1-8354-54d998c340c5_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141753> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#a5b463e7-8a66-42c1-8354-54d998c340c5_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141754> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e2971931-e350-4165-a461-b45a563911ce>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141758 is being removed from the codelist and replaced with C141757, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#e2971931-e350-4165-a461-b45a563911ce_TUC2> ;
+	ba:ordinal "94"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#e2971931-e350-4165-a461-b45a563911ce_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#e2971931-e350-4165-a461-b45a563911ce_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141757> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e2971931-e350-4165-a461-b45a563911ce_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141758> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#58e5771d-b665-4c17-a35a-01dbd65d97eb>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141762 is being removed from the codelist and replaced with C141761, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#58e5771d-b665-4c17-a35a-01dbd65d97eb_TUC2> ;
+	ba:ordinal "95"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#58e5771d-b665-4c17-a35a-01dbd65d97eb_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#58e5771d-b665-4c17-a35a-01dbd65d97eb_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141761> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#58e5771d-b665-4c17-a35a-01dbd65d97eb_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141762> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d4449e70-be48-467e-bad6-fc7d07b548c4>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141766 is being removed from the codelist and replaced with C141765, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#d4449e70-be48-467e-bad6-fc7d07b548c4_TUC2> ;
+	ba:ordinal "96"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#d4449e70-be48-467e-bad6-fc7d07b548c4_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#d4449e70-be48-467e-bad6-fc7d07b548c4_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141765> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d4449e70-be48-467e-bad6-fc7d07b548c4_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141766> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#9a77b155-e562-4f5f-aa20-59286e6bb731>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141770 is being removed from the codelist and replaced with C141769, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#9a77b155-e562-4f5f-aa20-59286e6bb731_TUC2> ;
+	ba:ordinal "97"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#9a77b155-e562-4f5f-aa20-59286e6bb731_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#9a77b155-e562-4f5f-aa20-59286e6bb731_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141769> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#9a77b155-e562-4f5f-aa20-59286e6bb731_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141770> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#6b38276f-d008-4374-98d4-d2532fc36b3d>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141774 is being removed from the codelist and replaced with C141773, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#6b38276f-d008-4374-98d4-d2532fc36b3d_TUC2> ;
+	ba:ordinal "98"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#6b38276f-d008-4374-98d4-d2532fc36b3d_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#6b38276f-d008-4374-98d4-d2532fc36b3d_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141773> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#6b38276f-d008-4374-98d4-d2532fc36b3d_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141774> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#ab9601e8-9e83-4e3e-a074-375bdd2e9dec>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141776 is being removed from the codelist and replaced with C141775, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#ab9601e8-9e83-4e3e-a074-375bdd2e9dec_TUC2> ;
+	ba:ordinal "99"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#ab9601e8-9e83-4e3e-a074-375bdd2e9dec_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#ab9601e8-9e83-4e3e-a074-375bdd2e9dec_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141775> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#ab9601e8-9e83-4e3e-a074-375bdd2e9dec_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141776> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#7c53cc03-ee0e-466c-a480-244f519444e5>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141778 is being removed from the codelist and replaced with C141777, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#7c53cc03-ee0e-466c-a480-244f519444e5_TUC2> ;
+	ba:ordinal "100"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#7c53cc03-ee0e-466c-a480-244f519444e5_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#7c53cc03-ee0e-466c-a480-244f519444e5_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V66#C141666_C141777> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#7c53cc03-ee0e-466c-a480-244f519444e5_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141666/V54#C141666_C141778> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#628144f0-367f-4f40-a904-1532546d772a>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141711 is being removed from the codelist and replaced with C141710, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#628144f0-367f-4f40-a904-1532546d772a_TUC2> ;
+	ba:ordinal "101"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#628144f0-367f-4f40-a904-1532546d772a_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#628144f0-367f-4f40-a904-1532546d772a_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141665/V66#C141665_C141710> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#628144f0-367f-4f40-a904-1532546d772a_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141665/V54#C141665_C141711> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#96073f43-7d71-45bc-b324-c6f8b2fc58ec>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141716 is being removed from the codelist and replaced with C141715, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#96073f43-7d71-45bc-b324-c6f8b2fc58ec_TUC2> ;
+	ba:ordinal "102"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#96073f43-7d71-45bc-b324-c6f8b2fc58ec_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#96073f43-7d71-45bc-b324-c6f8b2fc58ec_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141665/V66#C141665_C141715> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#96073f43-7d71-45bc-b324-c6f8b2fc58ec_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141665/V54#C141665_C141716> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#a770ab63-8f38-481d-a0f5-553e17d0ecee>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141721 is being removed from the codelist and replaced with C141720, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#a770ab63-8f38-481d-a0f5-553e17d0ecee_TUC2> ;
+	ba:ordinal "103"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#a770ab63-8f38-481d-a0f5-553e17d0ecee_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#a770ab63-8f38-481d-a0f5-553e17d0ecee_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141665/V66#C141665_C141720> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#a770ab63-8f38-481d-a0f5-553e17d0ecee_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141665/V54#C141665_C141721> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d77049fb-c2f8-4808-ab48-f4e909409896>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141724 is being removed from the codelist and replaced with C141723, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#d77049fb-c2f8-4808-ab48-f4e909409896_TUC2> ;
+	ba:ordinal "104"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#d77049fb-c2f8-4808-ab48-f4e909409896_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#d77049fb-c2f8-4808-ab48-f4e909409896_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141665/V66#C141665_C141723> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d77049fb-c2f8-4808-ab48-f4e909409896_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141665/V54#C141665_C141724> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#a557120c-3575-4421-82f7-d5754f647903>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141711 is being removed from the codelist and replaced with C141710, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#a557120c-3575-4421-82f7-d5754f647903_TUC2> ;
+	ba:ordinal "105"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#a557120c-3575-4421-82f7-d5754f647903_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#a557120c-3575-4421-82f7-d5754f647903_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141664/V66#C141664_C141710> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#a557120c-3575-4421-82f7-d5754f647903_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141664/V54#C141664_C141711> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e58cc7fe-22bb-4f07-b5d6-625e57975ba1>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141716 is being removed from the codelist and replaced with C141715, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#e58cc7fe-22bb-4f07-b5d6-625e57975ba1_TUC2> ;
+	ba:ordinal "106"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#e58cc7fe-22bb-4f07-b5d6-625e57975ba1_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#e58cc7fe-22bb-4f07-b5d6-625e57975ba1_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141664/V66#C141664_C141715> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#e58cc7fe-22bb-4f07-b5d6-625e57975ba1_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141664/V54#C141664_C141716> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#518ab79c-dffa-4507-a62d-81f06e54bb07>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141721 is being removed from the codelist and replaced with C141720, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#518ab79c-dffa-4507-a62d-81f06e54bb07_TUC2> ;
+	ba:ordinal "107"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#518ab79c-dffa-4507-a62d-81f06e54bb07_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#518ab79c-dffa-4507-a62d-81f06e54bb07_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141664/V66#C141664_C141720> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#518ab79c-dffa-4507-a62d-81f06e54bb07_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141664/V54#C141664_C141721> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#954ca7ff-7f22-43be-b0f1-0763d1ae8ac2>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C141724 is being removed from the codelist and replaced with C141723, whose definition has been expanded to include both concepts."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#954ca7ff-7f22-43be-b0f1-0763d1ae8ac2_TUC2> ;
+	ba:ordinal "108"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#954ca7ff-7f22-43be-b0f1-0763d1ae8ac2_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#954ca7ff-7f22-43be-b0f1-0763d1ae8ac2_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141664/V66#C141664_C141723> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#954ca7ff-7f22-43be-b0f1-0763d1ae8ac2_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C141664/V54#C141664_C141724> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d3719cb4-b90c-4ba2-9992-2a84fc8be81e>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "Remove C100768 from QSCAT codelist and add C100768 into CCCAT codelist. This instrument has been reclassified as a Clinical Classification."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#d3719cb4-b90c-4ba2-9992-2a84fc8be81e_TUC2> ;
+	ba:ordinal "109"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#d3719cb4-b90c-4ba2-9992-2a84fc8be81e_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#d3719cb4-b90c-4ba2-9992-2a84fc8be81e_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C118971/V66#C118971_C100768> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d3719cb4-b90c-4ba2-9992-2a84fc8be81e_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C100129/V30#C100129_C100768> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#71587a94-2fc3-442e-9f30-98e08f69b2be>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "Remove C111381 from QSCAT codelist and add C111381 into CCCAT codelist. This instrument has been reclassified as a Clinical Classification."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#71587a94-2fc3-442e-9f30-98e08f69b2be_TUC2> ;
+	ba:ordinal "110"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#71587a94-2fc3-442e-9f30-98e08f69b2be_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#71587a94-2fc3-442e-9f30-98e08f69b2be_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C118971/V66#C118971_C111381> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#71587a94-2fc3-442e-9f30-98e08f69b2be_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C100129/V36#C100129_C111381> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#8e0a6351-4b6d-4ffe-96ff-8ba0458cc30d>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "Remove C112522 from QSCAT codelist and add C112522 into CCCAT codelist. This instrument has been reclassified as a Clinical Classification."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#8e0a6351-4b6d-4ffe-96ff-8ba0458cc30d_TUC2> ;
+	ba:ordinal "111"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#8e0a6351-4b6d-4ffe-96ff-8ba0458cc30d_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#8e0a6351-4b6d-4ffe-96ff-8ba0458cc30d_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C118971/V66#C118971_C112522> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#8e0a6351-4b6d-4ffe-96ff-8ba0458cc30d_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C100129/V37#C100129_C112522> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#5aec5055-7a9e-43a1-a4c0-b624388cf19b>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "Remove C124716 from RPTEST/CD. This concept will be remodeled using QRS terminology norms in the RS domain. The Tanner Scales were determined to be Clinical Classifications by the QRS team"^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#5aec5055-7a9e-43a1-a4c0-b624388cf19b_TUC2> ;
+	ba:ordinal "112"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#5aec5055-7a9e-43a1-a4c0-b624388cf19b_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#5aec5055-7a9e-43a1-a4c0-b624388cf19b_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C124661/V46#C124661_C124716> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#5aec5055-7a9e-43a1-a4c0-b624388cf19b_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C106478/V59#C106478_C124716> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#0613f840-65bb-480c-a203-5b2d6924917f>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "Remove C124717 from RPTEST/CD. This concept will be remodeled using QRS terminology norms in the RS domain. The Tanner Scales were determined to be Clinical Classifications by the QRS team"^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#0613f840-65bb-480c-a203-5b2d6924917f_TUC2> ;
+	ba:ordinal "113"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#0613f840-65bb-480c-a203-5b2d6924917f_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#0613f840-65bb-480c-a203-5b2d6924917f_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C124661/V46#C124661_C124717> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#0613f840-65bb-480c-a203-5b2d6924917f_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C106478/V59#C106478_C124717> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f3374129-1d97-4435-9845-d2fbc967be98>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "Remove C124718 from RPTEST/CD. This concept will be remodeled using QRS terminology norms in the RS domain. The Tanner Scales were determined to be Clinical Classifications by the QRS team"^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#f3374129-1d97-4435-9845-d2fbc967be98_TUC2> ;
+	ba:ordinal "114"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#f3374129-1d97-4435-9845-d2fbc967be98_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#f3374129-1d97-4435-9845-d2fbc967be98_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C124663/V46#C124663_C124718> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#f3374129-1d97-4435-9845-d2fbc967be98_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C106478/V59#C106478_C124718> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#c28dd505-bc25-41b7-9659-7c7f44fe57cd>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "Remove C124719 from RPTEST/CD. This concept will be remodeled using QRS terminology norms in the RS domain. The Tanner Scales were determined to be Clinical Classifications by the QRS team"^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#c28dd505-bc25-41b7-9659-7c7f44fe57cd_TUC2> ;
+	ba:ordinal "115"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#c28dd505-bc25-41b7-9659-7c7f44fe57cd_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#c28dd505-bc25-41b7-9659-7c7f44fe57cd_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C124663/V46#C124663_C124719> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#c28dd505-bc25-41b7-9659-7c7f44fe57cd_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C106478/V59#C106478_C124719> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#ea219dd7-072e-4655-92fa-3dd5c2957d79>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "Remove C124716 from RPTEST/CD. This concept will be remodeled using QRS terminology norms in the RS domain. The Tanner Scales were determined to be Clinical Classifications by the QRS team"^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#ea219dd7-072e-4655-92fa-3dd5c2957d79_TUC2> ;
+	ba:ordinal "116"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#ea219dd7-072e-4655-92fa-3dd5c2957d79_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#ea219dd7-072e-4655-92fa-3dd5c2957d79_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C124662/V46#C124662_C124716> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#ea219dd7-072e-4655-92fa-3dd5c2957d79_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C106479/V59#C106479_C124716> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#9969de99-7aea-4c33-a4f8-6c1fbfb13baf>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "Remove C124717 from RPTEST/CD. This concept will be remodeled using QRS terminology norms in the RS domain. The Tanner Scales were determined to be Clinical Classifications by the QRS team"^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#9969de99-7aea-4c33-a4f8-6c1fbfb13baf_TUC2> ;
+	ba:ordinal "117"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#9969de99-7aea-4c33-a4f8-6c1fbfb13baf_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#9969de99-7aea-4c33-a4f8-6c1fbfb13baf_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C124662/V46#C124662_C124717> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#9969de99-7aea-4c33-a4f8-6c1fbfb13baf_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C106479/V59#C106479_C124717> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d15e8a60-e824-4d95-8e21-60fa703d2448>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "Remove C124718 from RPTEST/CD. This concept will be remodeled using QRS terminology norms in the RS domain. The Tanner Scales were determined to be Clinical Classifications by the QRS team"^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#d15e8a60-e824-4d95-8e21-60fa703d2448_TUC2> ;
+	ba:ordinal "118"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#d15e8a60-e824-4d95-8e21-60fa703d2448_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#d15e8a60-e824-4d95-8e21-60fa703d2448_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C124664/V46#C124664_C124718> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#d15e8a60-e824-4d95-8e21-60fa703d2448_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C106479/V59#C106479_C124718> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#5f254430-b86b-4e1e-9b85-7e7dc29af5e7>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "Remove C124719 from RPTEST/CD. This concept will be remodeled using QRS terminology norms in the RS domain. The Tanner Scales were determined to be Clinical Classifications by the QRS team"^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#5f254430-b86b-4e1e-9b85-7e7dc29af5e7_TUC2> ;
+	ba:ordinal "119"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#5f254430-b86b-4e1e-9b85-7e7dc29af5e7_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#5f254430-b86b-4e1e-9b85-7e7dc29af5e7_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C124664/V46#C124664_C124719> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#5f254430-b86b-4e1e-9b85-7e7dc29af5e7_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C106479/V59#C106479_C124719> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#46584d25-67b8-4e61-a984-3a682b7357ff>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "Replace C25206 with C174446 in the VSTEST and VSTESTCD codelist. The original intent of 'Temperature' in the vitals signs codelist was for body temperature but the NCI c-code it was originally associated with coded to the generic 'Temperature' concept. Since there are multiple types of 'temperatures' that can be taken outside the context of the body, the coding was determined to be incorrect and not semantically precise enough. C174446 is coded to the concept of 'Body Temperature' in NCIt."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#46584d25-67b8-4e61-a984-3a682b7357ff_TUC2> ;
+	ba:ordinal "120"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#46584d25-67b8-4e61-a984-3a682b7357ff_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#46584d25-67b8-4e61-a984-3a682b7357ff_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C67153/V66#C67153_C174446> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#46584d25-67b8-4e61-a984-3a682b7357ff_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C67153/V4#C67153_C25206> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#8b5bc7c8-9278-4845-a871-532c865d4ba3>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "Replace C25206 with C174446 in the VSTEST and VSTESTCD codelist. The original intent of 'Temperature' in the vitals signs codelist was for body temperature but the NCI c-code it was originally associated with coded to the generic 'Temperature' concept. Since there are multiple types of 'temperatures' that can be taken outside the context of the body, the coding was determined to be incorrect and not semantically precise enough. C174446 is coded to the concept of 'Body Temperature' in NCIt."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#8b5bc7c8-9278-4845-a871-532c865d4ba3_TUC2> ;
+	ba:ordinal "121"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#8b5bc7c8-9278-4845-a871-532c865d4ba3_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#8b5bc7c8-9278-4845-a871-532c865d4ba3_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C66741/V66#C66741_C174446> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#8b5bc7c8-9278-4845-a871-532c865d4ba3_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C66741/V4#C66741_C25206> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#b352035f-9762-4db1-a165-e7e98137b6d7>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C158264 has been merged into C123598. It has been determined by Oncology SMEs that Minimal Response is synonymous with Minor response and so has been removed from ONCRSR codelist and merged into the existing term MINOR RESPONSE in the ONCRSR codelist."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#b352035f-9762-4db1-a165-e7e98137b6d7_TUC2> ;
+	ba:ordinal "122"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#b352035f-9762-4db1-a165-e7e98137b6d7_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#b352035f-9762-4db1-a165-e7e98137b6d7_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C96785/V66#C96785_C123598> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#b352035f-9762-4db1-a165-e7e98137b6d7_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C96785/V60#C96785_C158264> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#4b2e1344-af89-4786-b742-5d0b6774ef3b>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C15538, previously assigned to the concept 'Study Arm' is being re-assigned to the correct concept of 'Treatment Arm'; as not all arms in a study are treatment arms. This change is correcting a mis-coding."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#4b2e1344-af89-4786-b742-5d0b6774ef3b_TUC2> ;
+	ba:ordinal "123"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#4b2e1344-af89-4786-b742-5d0b6774ef3b_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#4b2e1344-af89-4786-b742-5d0b6774ef3b_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C174222/V66#C174222_C15538> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#4b2e1344-af89-4786-b742-5d0b6774ef3b_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C132310/V65#C132310_C15538> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#1f170d28-c020-4f42-9b07-89107f9bd62d>
+	rdf:type ba:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	ba:reference ""^^xsd:string ;
+	ba:description "C15538 is being replaced with C174447 in this codelist. 'Study Arm' was incorrectly assigned to C15538, which encompasses a more specific term 'Treatment Arm'."^^xsd:string ;
+	ba:current <http://www.assero.co.uk/CHIN#1f170d28-c020-4f42-9b07-89107f9bd62d_TUC2> ;
+	ba:ordinal "124"^^xsd:integer ;
+	ba:semantic "related terminology"^^xsd:string ;
+	ba:previous <http://www.assero.co.uk/CHIN#1f170d28-c020-4f42-9b07-89107f9bd62d_TUC1> ;
+.
+<http://www.assero.co.uk/CHIN#1f170d28-c020-4f42-9b07-89107f9bd62d_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C132310/V66#C132310_C174447> ;
+	:context <http://www.cdisc.org/CT/V66#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.assero.co.uk/CHIN#1f170d28-c020-4f42-9b07-89107f9bd62d_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C132310/V65#C132310_C15538> ;
+	:context <http://www.cdisc.org/CT/V65#TH> ;
+	:localLabel ""^^xsd:string ;
+.

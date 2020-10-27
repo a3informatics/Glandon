@@ -3,9 +3,10 @@ require 'rails_helper'
 describe AuditTrail do
 
 	include DataHelpers
+  include AuditTrailHelpers
 
 	def sub_dir
-    return "models"
+    return "models/audit_trail"
   end
 
 	def get_this_week_date(weekday)
@@ -20,18 +21,6 @@ describe AuditTrail do
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data.ttl", "iso_managed_data_2.ttl", "iso_managed_data_3.ttl"]
     load_files(schema_files, data_files)
-    # clear_triple_store
-    # load_schema_file_into_triple_store("ISO11179Types.ttl")
-    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    # load_schema_file_into_triple_store("BusinessForm.ttl")
-    # load_test_file_into_triple_store("iso_namespace_real.ttl")
-    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    # load_test_file_into_triple_store("iso_managed_data.ttl")
-    # load_test_file_into_triple_store("iso_managed_data_2.ttl")
-    # load_test_file_into_triple_store("iso_managed_data_3.ttl")
-    # clear_iso_concept_object
     load_cdisc_term_versions(1..2)
     AuditTrail.delete_all
   end
@@ -87,7 +76,7 @@ describe AuditTrail do
 	end
 
   it "allows a create item event to be added" do
-    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST"))
     user = User.new
     user.email = "UserName1@example.com"
     AuditTrail.create_item_event(user, item, "Any old text")
@@ -105,7 +94,7 @@ describe AuditTrail do
   end
 
   it "allows a update item event to be added" do
-    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST"))
     user = User.new
     user.email = "UserName2@example.com"
     AuditTrail.update_item_event(user, item, "Any old text")
@@ -114,7 +103,7 @@ describe AuditTrail do
   end
 
   it "allows a delete item event to be added" do
-    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    item = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST"))
     user = User.new
     user.email = "UserName3@example.com"
     AuditTrail.delete_item_event(user, item, "Any old text")
@@ -241,7 +230,7 @@ describe AuditTrail do
   end
 
 	it "allows filtering of events" do
-		item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+		item = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST"))
 		user = User.new
 		user.email = "UserName1@example.com"
   	20.times do |index|
@@ -287,7 +276,7 @@ describe AuditTrail do
   	expect(items.count).to eq(280)
   	items = AuditTrail.where({:user => "UserName1@example.com"})
     expect(items.count).to eq(90)
-  	items = AuditTrail.where({:identifier => item.identifier})
+  	items = AuditTrail.where({:identifier => item.scoped_identifier})
     expect(items.count).to eq(180)
   	items = AuditTrail.where({:owner => item.owner.ra_namespace.short_name})
     expect(items.count).to eq(180)
@@ -295,15 +284,15 @@ describe AuditTrail do
     expect(items.count).to eq(90)
     items = AuditTrail.where({:event => 4})
     expect(items.count).to eq(10)
-  	items = AuditTrail.where({:user => "UserName1@example.com", :identifier => item.identifier, :event => 2, :owner => item.owner.ra_namespace.short_name})
+  	items = AuditTrail.where({:user => "UserName1@example.com", :identifier => item.scoped_identifier, :event => 2, :owner => item.owner.ra_namespace.short_name})
     expect(items.count).to eq(20)
     items = AuditTrail.where({:user => "UserName4@example.com"})
     expect(items.count).to eq(10)
 	end
 
   it "allows CSV export of the audit trail" do
-    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    item.scopedIdentifier.semantic_version = "1.2.3"
+    item = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST"))
+    item.has_identifier.semantic_version = "1.2.3"
     user = User.new
     user.email = "UserName1@example.com"
     20.times do |index|
@@ -360,6 +349,37 @@ describe AuditTrail do
       expect(results[index + 1]["details"]).to eq(item.description)
     end
 
+  end
+
+  it "logs if error writing audit record" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    response = AuditTrail.new
+    response.errors.add(:base, "Failure!")
+    expect(AuditTrail).to receive(:create).and_return(response)
+    expect(ConsoleLogger).to receive(:log).with("AuditTrail", "add_entry", "Errors detected creating audit entry. Failure!")
+    AuditTrail.user_event(user, "User logged in.")
+  end
+
+  it "get latest records I" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    AuditTrail.create_event(user, "Any old text")
+    check_audit_trail(AuditTrail.latest(1), 1, sub_dir, "latest_expected_single_1.txt")
+  end
+
+  it "get latest records II" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    3000.times do |index|
+      AuditTrail.create_event(user, "Any old text#{index}")
+    end
+    check_audit_trail(AuditTrail.latest(1), 1, sub_dir, "latest_expected_1.txt")
+    check_audit_trail(AuditTrail.latest(10), 10, sub_dir, "latest_expected_2.txt")
+    check_audit_trail(AuditTrail.latest(100), 100, sub_dir, "latest_expected_3.txt")
+    check_audit_trail(AuditTrail.latest, 100, sub_dir, "latest_expected_3.txt")
+    check_audit_trail(AuditTrail.latest(1000), 1000, sub_dir, "latest_expected_4.txt")
+    check_audit_trail(AuditTrail.latest(4000), 4000, sub_dir, "latest_expected_5.txt")
   end
 
 end

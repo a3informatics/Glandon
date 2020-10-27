@@ -90,9 +90,8 @@ private
     params.require(:cdisc_term).permit(:other_id)
   end
 
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize CdiscTerm
+  def model_klass
+    CdiscTerm
   end
 
 end

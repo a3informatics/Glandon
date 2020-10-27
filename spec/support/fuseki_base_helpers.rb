@@ -2,7 +2,18 @@ module FusekiBaseHelpers
 
   def property_metadata(property)
     result = {}
-    property.each {|key, value| result[key] = value.respond_to?(:to_h) ? value.to_h : value}
+    property.each do |key, value| 
+      if value.is_a?(Array)
+        result[key] = []
+        value.each {|x| result[key] << x.to_s}
+      elsif value.nil?
+        result[key] = nil
+      elsif value.respond_to? :to_h 
+        result[key] = value.to_h
+      else
+        result[key] = value
+      end
+    end
     result
   end
 

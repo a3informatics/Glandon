@@ -1,0 +1,61 @@
+@import 'shared/vars';
+
+#crf-panel {
+
+  // First row of crf table
+  #crf > tbody > tr:first-of-type > td {
+    background: white;
+  }
+
+  // Crf table tds
+  #crf > tbody > tr > td {
+    padding: 10px 5px;
+  }
+
+  #crf {
+
+    table, table > tbody > tr, table > tbody > tr > td {
+      background-color: transparent;
+    }
+
+    table.crf-input-field, table.crf-input-field td{
+      border-color: $grey-medium;
+    }
+
+  }
+
+  // All tables tds
+  table > tbody > tr > td {
+    vertical-align: middle;
+    font-family: $font-light;
+  }
+
+  // All tables except crf-input-fields
+  table:not(.crf-input-field), table:not(.crf-input-field) > tbody > tr > td {
+    border: none;
+  }
+
+  h4 {
+    margin: 0;
+    padding: 0;
+    color: $primary-color-light;
+  }
+
+  h4, h5 {
+    font-family: $font-primary;
+  }
+
+  strong {
+    font-family: $font-primary;
+  }
+
+  p {
+    margin: 5px 0;
+  }
+
+  input {
+    margin-right: 6px;
+    pointer-events: none;
+  }
+
+}

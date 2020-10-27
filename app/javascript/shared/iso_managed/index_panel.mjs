@@ -1,6 +1,8 @@
-import TablePanel from 'shared/base/table_panel';
+import TablePanel from 'shared/base/table_panel'
 
-import { dtHistoryColumn } from 'shared/helpers/dt_columns';
+import { dtButtonColumn } from 'shared/helpers/dt/dt_columns'
+import { dtIndexColumns, dtCLIndexColumns } from 'shared/helpers/dt/dt_column_collections'
+import { isCDISC } from 'shared/helpers/utils'
 
 /**
  * Index Panel
@@ -29,47 +31,43 @@ export default class IndexPanel extends TablePanel {
     count = 5000,
     extraColumns = [],
     deferLoading = false,
-    cache = true
+    cache = true,
+    buttons = []
   }) {
-    super({ selector, url, param, count, extraColumns, cache });
+    super({ selector, url, param, count, extraColumns, cache, buttons });
   }
 
   /** Private **/
-
-  /**
-   * Get CSS class for the table row based on item owner
-   * @param {string} owner owner of the item
-   * @return {string} CSS class name for CDISC / sponsor row style
-   */
-  _rowClassByOwner(owner){
-    return owner.toLowerCase() === 'cdisc' ? 'row-cdisc' : 'row-sponsor';
-  }
 
   /**
    * Get default column definitions for IsoManaged items
    * @return {Array} Array of DataTable column definitions
    */
   get _defaultColumns() {
-    return [
-      {data : "owner"},
-      {data : "identifier"},
-      {data : "label"}
-    ];
+    switch (this.param) {
+      case 'managed_concept':
+        return dtCLIndexColumns();
+        break;
+      default:
+        return dtIndexColumns()
+        break;
+    }
   }
 
   /**
-   * Initialize a new DataTable
-   * @return {DataTable instance} An initialized Index panel
+   * Extend default DataTable init options
+   * @return {Object} DataTable options object
    */
-  _initTable() {
+  get _tableOpts() {
     const options = super._tableOpts;
-    options.columns = [...this._defaultColumns, ...this.extraColumns, dtHistoryColumn() ];
+
+    options.columns = [...this._defaultColumns, ...this.extraColumns, dtButtonColumn('history') ];
     options.language.emptyTable = "No items found.";
     options.createdRow = (row, data, idx) => {
-      $(row).addClass(this._rowClassByOwner(data.owner));
+      $(row).addClass( isCDISC(data) ? 'row-cdisc' : 'row-sponsor' );
     }
 
-    this.table = $(this.selector).DataTable(options);
+    return options;
   }
 
 }

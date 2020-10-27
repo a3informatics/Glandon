@@ -1,70 +1,26 @@
-<%= javascript_include_tag 'standard_datatable' %>
+<% content_for :page_title do %> <%= "Show ADaM IG Dataset: #{@adam_ig_dataset.has_identifier.identifier} (#{@adam_ig_dataset.semantic_version})" %> <% end %>
+
+<%= stylesheet_link_tag 'shared/datatables_loading' %>
+<%= javascript_pack_tag 'adam_ig_datasets/show' %>
+
+<% third_level_breadcrumb(:adam_ig_datasets, @adam_ig_dataset, @close_path) %>
+
 <div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <%= render partial: "shared/stdInstanceTitlePanel", :locals => {:title => "Show:", :item => @adam_ig_dataset} %>
-      </div>
-      <div class="panel-body">
-      	<h4>Details</h4>
-      	<table class="table table-striped table-bordered table-condensed">
-      		<thead>
-      	  		<tr>
-      	    		<th>Identifer</th>
-      	    		<th>Label</th>
-      	    		<th>Owner</th>
-      	    		<th>Version</th>
-      	    		<th>Version Label</th>
-      	  		</tr>
-      		</thead>
-      		<tbody>
-      	  		<tr>
-      	    		<td><%= @adam_ig_dataset.identifier %></td>
-      			    <td><%= @adam_ig_dataset.label %></td>
-      			    <td><%= @adam_ig_dataset.owner %></td>
-      			    <td><%= @adam_ig_dataset.semantic_version %></td>
-      			    <td><%= @adam_ig_dataset.versionLabel %></td>
-      	  		</tr>
-      		</tbody>
-      	</table>
-      	<h4>Variables</h4>
-      	<table id="main" class="table table-striped table-bordered table-condensed">
-      	  	<thead>
-      			<tr>
-      		  		<th>Ordinal</th>
-      		  		<th>Name</th>
-      		  		<th>Label</th>
-      		  		<th>Datatype</th>
-      		  		<th>CT</th>
-      		  		<th>CT Notes</th>
-                <th>Notes</th>
-      		  		<th>Core</th>
-      		  	</tr>
-      		</thead>
-      		<tbody>
-      			<% @adam_ig_dataset.children.each_with_index do |item, index| %>
-      		  	<tr>
-      		    	<td><%= item.ordinal %></td>
-      		    	<td><%= item.name %></td>
-      		  		<td><%= item.label %></td>
-      		  		<td><%= item.datatype.label %></td>
-      		  		<td>
-      			  		<% if item.ct? %>
-      			  			<%= link_to item.ct, find_submission_cdisc_terms_path(:notation => item.ct), :class => "btn  btn-xs" %><br/>
-      			  		<% end %>
-      		  		</td>
-      		  		<td><%= item.ct_notes %></td>
-                <td><%= item.notes %></td>
-                <td><%= item.compliance.label %></td>
-      		  	</tr>
-      			<% end %>
-      		</tbody>
-      	</table>
-        <%= link_to "Clone", clone_ig_sdtm_user_domains_path(:sdtm_user_domain => { :adam_ig_dataset_id => @adam_ig_dataset.id, :adam_ig_dataset_namespace => @adam_ig_dataset.namespace }), :class => "btn " %>
-      	<%= link_to "Export JSON", export_json_adam_ig_dataset_path(:id => @adam_ig_dataset.id, :adam_ig_dataset => { :namespace => @adam_ig_dataset.namespace }), :class => "btn btn-info" %>
-      	<%= link_to "Export Turtle", export_ttl_adam_ig_dataset_path(:id => @adam_ig_dataset.id, :adam_ig_dataset => { :namespace => @adam_ig_dataset.namespace }), :class => "btn btn-info" %>
-      	<br/><br/>
-      </div>
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @adam_ig_dataset, :badge => "icon-adam"} do %>
+    <div class="actions-wrap">
+    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div id="show-panel" class="col-md-12 card wide">
+    <div class="card-header">
+      Show: ADaM IG Dataset
+    </div>
+    <div class="card-content">
+      <%= render partial: "shared/adam_ig_datasets/show_panel", locals: { show_url: @show_path } %>
     </div>
   </div>
 </div>

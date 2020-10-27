@@ -55,7 +55,7 @@ module Sparql
 
       # Subject
       #
-      # @return [UriV2] the subject
+      # @return [Uri] the subject
       def subject
         return @item[0].uri
       end

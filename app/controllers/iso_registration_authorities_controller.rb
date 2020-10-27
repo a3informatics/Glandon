@@ -27,11 +27,15 @@ class IsoRegistrationAuthoritiesController < ApplicationController
   def destroy
     begin
       registration_authority = IsoRegistrationAuthority.find(params[:id])
-      registration_authority.not_used? ? registration_authority.delete : flash[:error] = "Registration Authority is in use and cannot be deleted."
+      if registration_authority.not_used?
+        registration_authority.delete
+        render :json => {}
+      else
+        render :json => { errors: [ "Registration Authority is in use and cannot be deleted." ] }, status: 422
+      end
     rescue => e
-      flash[:error] = "Unable to delete Scope Namespace."
+      render :json => { errors: [ "Unable to delete Registration Authority." ] }, status: 422
     end
-    redirect_to iso_registration_authorities_path
   end
 
 private
@@ -40,9 +44,8 @@ private
     params.require(:iso_registration_authority).permit(:namespace_id, :organization_identifier)
   end
 
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize IsoRegistrationAuthority
+  def model_klass
+    IsoRegistrationAuthority
   end
 
 end

@@ -1,5 +1,8 @@
 import TablePanel from 'shared/base/table_panel'
 
+import { $handleError } from 'shared/helpers/ajax'
+import { alerts } from 'shared/ui/alerts'
+
 /**
  * Base Editable Panel
  * @description Extensible Editable DataTable panel
@@ -20,7 +23,9 @@ export default class EditablePanel extends TablePanel {
    * @param {Array} params.fields Editor fields definitions
    * @param {string} params.idSrc Data ID source for the editor, default = "id"
    * @param {boolean} params.deferLoading Set to true if data load should be deferred. Load data has to be called manually in this case
+   * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {boolean} params.cache Specify if the panel data should be cached. Optional
+   * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
    */
   constructor({
     selector,
@@ -32,10 +37,12 @@ export default class EditablePanel extends TablePanel {
     fields = [],
     idSrc = "id",
     deferLoading = false,
-    cache = true
+    order = [[0, "desc"]],
+    cache = true,
+    loadCallback = () => {}
   }) {
-    super({ selector, url: dataUrl, param, count, extraColumns: columns, deferLoading, cache },
-          {updateUrl, fields, idSrc});
+    super({ selector, url: dataUrl, param, count, extraColumns: columns, deferLoading, cache, loadCallback, order },
+          { updateUrl, fields, idSrc });
   }
 
   /**
@@ -74,46 +81,130 @@ export default class EditablePanel extends TablePanel {
     this._onEdited();
   }
 
+  /**
+   * Set a new data url to the instance
+   * @param {string} newUrl new data url
+   */
+  setDataUrl(newUrl) {
+    this.url = newUrl;
+  }
+
+  /**
+   * Set a new update url to the instance, updates editor's ajax config
+   * @param {string} newUrl new update data url
+   */
+  setUpdateUrl(newUrl) {
+    this.updateUrl = newUrl;
+
+    let newOpts = this._editorAjaxOpts;
+    newOpts.url = this.updateUrl;
+
+    this.editor.ajax(newOpts);
+  }
+
+
   /** Private **/
+
 
   /**
    * Sets event listeners, handlers
    */
   _setListeners() {
+
     // Before editing - check _editable condition first
     this.editor.on('preOpen', () => {
-      if (this._editable(this.editor.modifier()))
+
+      if ( this._editable( this.editor.modifier() ) )
         this.editor.enable();
       else
         this.editor.disable();
+
     });
+
     // Editing started - update UI
     this.editor.on('open', () => this._updateUI('open') );
+
     // Editing finished/closed - update UI
-    this.editor.on('preClose', (e) => this._updateUI('close') );
+    this.editor.on('preClose', e => this._updateUI('close') );
+
     // Loading animation
     this.editor.on('processing', (ev, enable) => this._inlineProcessing(enable));
-    // Data submit server error
-    this.editor.on('submitError', (x, s, e) => handleAjaxError(x, s, e));
-    // Data submitted - Item Edited callback
-    this.editor.on('submitSuccess submitUnsuccessful', (e, json) => {
-      // Handle any errors thrown by the server
-      if (json.errors)
-        displayAlerts(alertError(json.errors.join(' & ')));
 
-      this._onEdited();
+    // Pre-data-submit, change data format
+    this.editor.on('preSubmit', (e, d, type) => {
+
+      if ( type === 'edit' )
+        this._preformatUpdateData(d);
+
     });
 
-    // Update UI on keypress in TA. Submit on pressing Enter.
+    // Post-data-submit, change data format before adding to Editor
+    this.editor.on('postSubmit', (e, json, data) => {
+
+      if ( json.data )
+        this._postformatUpdatedData( data, json.data );
+
+    });
+
+    // Data submit server error
+    this.editor.on('submitError', (x, s, e) => $handleError(x, s, e));
+
+    // Data submitted - Item Edited callback
+    this.editor.on('submitSuccess submitUnsuccessful', (e, json) => {
+
+      // Handle any errors thrown by the server
+      if ( json.errors )
+        alerts.error( json.errors.join(' & '), this.errorDiv );
+
+      this._onEdited();
+
+    });
+
+    // Update UI on keypress in TA. Handle Submit.
     $(this.selector).on('keydown', 'textarea', (e, dt, c) => {
+
       this._updateUI('input');
-      // Enter press
-      if(e.which == 13 && !e.shiftKey) {
+
+      // Submit on Enter key press
+      if( e.which == 13 && !e.shiftKey ) {
         this.editor.submit();
         e.preventDefault();
       }
+
     });
+
+    // Custom inline editing with no onBlur action event for Pickable fields, bugfix
+    this.table.on( 'click', 'td.editable.inline.pickable', (e) => {
+
+      if ( e.detail === 2 )
+        this.editor.inline( e.currentTarget, { onBlur: 'none' } );
+
+    });
+
+    this.table.on( 'key', ( e, dt, key, cell, oe) => {
+
+      if ( $( cell.node() ).hasClass('editable inline pickable') )
+        this.editor.close()
+                   .inline( cell.node(), { onBlur: 'none' } );
+
+    });
+
   }
+
+  /**
+   * Formats the update data to be compatible with server
+   * @override for custom behavior
+   * @param {object} d DataTables Editor data object
+   */
+  _preformatUpdateData(d) { }
+
+  /**
+   * Formats the updated data returned from the server before being added to Editor
+   * @override for custom behavior
+   * @param {object} oldData Data object sent to the server
+   * @param {object} newData Data returned from the server
+   */
+  _postformatUpdatedData(oldData, newData) { }
 
   /**
    * Override this to check for any condiditions that should not allow editing of the specific row
@@ -160,8 +251,10 @@ export default class EditablePanel extends TablePanel {
    * Resizes textarea to to fit its contents
    */
   _resizeTA() {
-    let newHeight = $(`${this.selector} td.editable textarea`)[0].scrollHeight + 4;
-    $(`${this.selector} td.editable textarea`).css('height', newHeight);
+    if ( $(`${this.selector} td.editable textarea`).length ) {
+      let newHeight = $(`${this.selector} td.editable textarea`)[0].scrollHeight + 4;
+      $(`${this.selector} td.editable textarea`).css('height', newHeight);
+    }
   }
 
   /**
@@ -169,16 +262,19 @@ export default class EditablePanel extends TablePanel {
    */
   _initEditor() {
     this.editor = new $.fn.dataTable.Editor({
-      ajax: {
-        edit: {
-          type: 'PUT',
-          url: this.updateUrl
-        }
-      },
+      ajax: this._editorAjaxOpts,
       table: this.selector,
       fields: this.fields,
       idSrc: this.idSrc
     });
+  }
+
+  /**
+   * Initializes Items Pickers to use in an Editable Panel (if any)
+   * Override to add custom pickers
+   */
+  _initPickers() {
+    this.editor.pickers = { }
   }
 
   /**
@@ -190,15 +286,24 @@ export default class EditablePanel extends TablePanel {
   }
 
   /**
-   * Initialize a new DataTable with options
-   * Override for custom changes
-   * @return {DataTable instance} An initialized table panel
+   * Initialize Editor and DataTable
    */
   _initTable() {
     // Initialize Editor first
     this._initEditor();
+    // Initialize DataTable after
+    this.table = $(this.selector).DataTable(this._tableOpts);
+    // Initialize Pickers last
+    this._initPickers();
+  }
 
-    let options = this._tableOpts;
+  /**
+   * Extend default DataTable init options
+   * @return {Object} DataTable options object
+   */
+  get _tableOpts() {
+    const options = super._tableOpts;
+
     options.columns = [...this.extraColumns];
     // Excel-like Keys navigation functionality
     options.keys = {
@@ -206,7 +311,22 @@ export default class EditablePanel extends TablePanel {
       editor: this.editor
     }
 
-    this.table = $(this.selector).DataTable(options);
+    return options;
+  }
+
+  /**
+   * Default Editor AJAX options
+   * @return {Object} DataTable Editor AJAX options object
+   */
+  get _editorAjaxOpts() {
+    return {
+      edit: {
+        type: 'PUT',
+        url: this.updateUrl,
+        contentType: 'application/json',
+        data: (d) => JSON.stringify(d)
+      }
+    }
   }
 
 }

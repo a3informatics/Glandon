@@ -16,14 +16,14 @@ describe Sparql::Update::Statement::Uri do
   end
 
   it "allows for the class to be created, uri" do
-    uri = UriV2.new(uri: "http://www.example.com/www#fragment")
+    uri = Uri.new(uri: "http://www.example.com/www#fragment")
 		result = Sparql::Update::Statement::Uri.new({uri: uri}, "", @prefixes)
     expect("#{result.to_ref}").to eq("<http://www.example.com/www#fragment>")
     expect(@prefixes).to eq({})
 	end
 
   it "allows for the uri to be obtained" do
-    uri = UriV2.new(uri: "http://www.example.com/www#fragment")
+    uri = Uri.new(uri: "http://www.example.com/www#fragment")
     result = Sparql::Update::Statement::Uri.new({uri: uri}, "", @prefixes)
     expect("#{result.uri.to_ref}").to eq("<http://www.example.com/www#fragment>")
   end
@@ -43,9 +43,9 @@ describe Sparql::Update::Statement::Uri do
   end
 
   it "allows for the class to be created, namespace and fragment, matches prefix, optional" do
-    result = Sparql::Update::Statement::Uri.new({namespace: "http://www.assero.co.uk/BusinessDomain", fragment: "fragment"}, "", @prefixes)
+    result = Sparql::Update::Statement::Uri.new({namespace: "http://www.assero.co.uk/Tabulation", fragment: "fragment"}, "", @prefixes)
     expect("#{result}").to eq("bd:fragment")
-    expect("#{result.to_ref}").to eq("<http://www.assero.co.uk/BusinessDomain#fragment>")
+    expect("#{result.to_ref}").to eq("<http://www.assero.co.uk/Tabulation#fragment>")
     expect("#{result.to_turtle}").to eq("bd:fragment")
     expect(@prefixes).to eq({bd: :bd})
   end
@@ -61,15 +61,15 @@ describe Sparql::Update::Statement::Uri do
   it "allows for the class to be created, namespace prefix and fragment" do
     result = Sparql::Update::Statement::Uri.new({prefix: :bd, fragment: "fragment"}, "", @prefixes)
     expect("#{result}").to eq("bd:fragment")
-    expect("#{result.to_ref}").to eq("<http://www.assero.co.uk/BusinessDomain#fragment>")
+    expect("#{result.to_ref}").to eq("<http://www.assero.co.uk/Tabulation#fragment>")
     expect("#{result.to_turtle}").to eq("bd:fragment")
     expect(@prefixes).to eq({bd: :bd})
   end
 
   it "allows for the class to be created, namespace prefix empty and fragment" do
-    result = Sparql::Update::Statement::Uri.new({prefix: "", fragment: "fragment"}, "http://www.assero.co.uk/BusinessDomain", @prefixes)
-    expect("#{result}").to eq("<http://www.assero.co.uk/BusinessDomain#fragment>")
-    expect("#{result.to_ref}").to eq("<http://www.assero.co.uk/BusinessDomain#fragment>")
+    result = Sparql::Update::Statement::Uri.new({prefix: "", fragment: "fragment"}, "http://www.assero.co.uk/Tabulation", @prefixes)
+    expect("#{result}").to eq("<http://www.assero.co.uk/Tabulation#fragment>")
+    expect("#{result.to_ref}").to eq("<http://www.assero.co.uk/Tabulation#fragment>")
     expect("#{result.to_turtle}").to eq(":fragment")
     expect(@prefixes).to eq({})
   end

@@ -68,7 +68,7 @@ describe "Thesauri Compare", :type => :feature do
       wait_for_ajax 10
       context_menu_element("history", 5, "0.1.0", :edit)
       wait_for_ajax 10
-      page.find('.card-with-tabs .show-more-btn').click
+      page.find('.card-with-tabs .expandable-content-btn').click
       sleep 0.2
       ui_dashboard_single_slider '2010-04-08'
       click_button 'Submit selected version'
@@ -109,7 +109,7 @@ describe "Thesauri Compare", :type => :feature do
       wait_for_ajax 10
       context_menu_element("history", 5, "0.1.0", :edit)
       wait_for_ajax 10
-      page.find('.card-with-tabs .show-more-btn').click
+      page.find('.card-with-tabs .expandable-content-btn').click
       sleep 0.2
       ui_dashboard_single_slider '2010-04-08'
       click_button 'Submit selected version'

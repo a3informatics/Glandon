@@ -1,8 +1,11 @@
-<%= javascript_tag 'setPageTitle("Imports")' %>
+<% content_for :page_title do %> Imports <% end %>
+
+<%= javascript_pack_tag 'imports/index' %>
+<%= javascript_tag "let importsDataUrl = '#{imports_path}',
+												importsDeleteAllUrl= '#{destroy_multiple_imports_path({ imports: { items: "all" } })}';" %>
 
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
-<%= javascript_include_tag 'import/index' %>
-<%= javascript_tag "var importsUrl = '#{imports_path}';" %>
+
 <% first_level_breadcrumb (:imports) %>
 
 <div class="row">
@@ -16,34 +19,37 @@
 </div>
 
 <div id="imports-index" class="row">
+
 	<div class="col-md-12 card wide">
-	<div class="card-header">
-		Index: Imports
-	</div>
-	<div class="card-content table-cardstyle">
-		<table id="main" style="width: 100%;" class="table">
-			<thead>
-		  	<tr>
-		    	<th class="fit">ID</th>
-	        <th class="fit">Owner</th>
-		    	<th class="fit">Identifier</th>
-	        <th>Input File</th>
-	        <th class="fit">Complete</th>
-		    	<th class="fit">Succesful</th>
-	        <th class="fit">Auto Load</th>
-	        <th class="fit ignore"></th>
-	        <th class="fit ignore"></th>
-		  	</tr>
-			</thead>
-			<tbody>
+		<div class="card-header">
+			Index: Imports
+		</div>
+		<div class="card-content table-cardstyle">
+			<table id="main" style="width: 100%;" class="table">
+				<thead>
+			  	<tr>
+			    	<th class="fit">ID</th>
+		        <th class="fit">Owner</th>
+			    	<th class="fit">Identifier</th>
+		        <th>Input File</th>
+		        <th class="fit">Complete</th>
+			    	<th class="fit">Succesful</th>
+		        <th class="fit">Auto Load</th>
+		        <th class="fit"></th>
+			  	</tr>
+				</thead>
+				<tbody>
 
-		  </tbody>
-		</table>
+			  </tbody>
+			</table>
 
-		<div class="btns-wrap">
-			<button id="clear_button" class="btn medium red" data-url="<%=destroy_multiple_imports_path({imports: {items: "all"}})%>">
-				<span class="icon-trash text-small"></span> Delete all
-			</button>
+			<div class="btns-wrap">
+				<button id="remove-all-imports" class="btn medium red remove-import">
+					<span class="icon-trash text-small"></span> Delete All
+				</button>
+			</div>
+
 		</div>
 	</div>
+
 </div>

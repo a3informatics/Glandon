@@ -1,3 +1,5 @@
+// *** DEPRECATED ***
+
 /**
  ****** Tags ******
 **/
@@ -126,14 +128,14 @@ function formatIndicatorsString(indicators){
   $.each(indicators, function(iName, iValue){
     switch (iName) {
       case "version_count":
-        output += iValue + " versions ";
+        output += iValue + " versions. ";
         break;
       case "annotations":
-        output += iValue.change_instructions > 0 ? iValue.change_instructions + " change instructions " : "";
-        output += iValue.change_notes > 0 ? iValue.change_notes + " change notes " : "";
+        output += iValue.change_instructions > 0 ? iValue.change_instructions + " change instructions. " : "";
+        output += iValue.change_notes > 0 ? iValue.change_notes + " change notes. " : "";
         break;
       default:
-        output += iValue ? indicatorMap(iName).ttip + " " : "";
+        output += iValue ? indicatorMap(iName).ttip + ". " : "";
         break;
     }
   });

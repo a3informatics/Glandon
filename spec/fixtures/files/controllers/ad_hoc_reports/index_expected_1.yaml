@@ -1,0 +1,30 @@
+---
+- :id: id
+  :label: Ad Hoc Report 1
+  :sparql_file: ad_hoc_report_1_sparql.yaml
+  :results_file: ad_hoc_report_1_results.yaml
+  :last_run: '0000-01-01 00:00:00 +0100'
+  :active: false
+  :background_id: 0
+  :created_at: '0000-01-01 00:00:00 +0100'
+  :updated_at: '0000-01-01 00:00:00 +0100'
+  :parameters: []
+  :report_path: "/ad_hoc_reports/id"
+  :run_path: "/ad_hoc_reports/id"
+  :results_path: "/ad_hoc_reports/id"
+- :id: id
+  :label: Terminology Code Lists
+  :sparql_file: terminology_code_lists_sparql.yaml
+  :results_file: terminology_code_lists_results.yaml
+  :last_run: '0000-01-01 00:00:00 +0100'
+  :active: false
+  :background_id: 0
+  :created_at: '0000-01-01 00:00:00 +0100'
+  :updated_at: '0000-01-01 00:00:00 +0100'
+  :parameters:
+  - :name: Terminology
+    :description: The terminology for which the code lists are required.
+    :type: thesauri
+  :report_path: "/ad_hoc_reports/id"
+  :run_path: "/ad_hoc_reports/id"
+  :results_path: "/ad_hoc_reports/id"

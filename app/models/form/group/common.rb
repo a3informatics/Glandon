@@ -1,111 +1,65 @@
 class Form::Group::Common < Form::Group
-  
-  # Constants
-  C_SCHEMA_PREFIX = Form::C_SCHEMA_PREFIX
-  C_CLASS_NAME = "Form::Group::Common"
-  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
-  C_RDF_TYPE = "CommonGroup"
-  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
-  
-  def repeating
-    return false
-  end
 
-  def groups
-    return []
-  end
-  
-  # Initialize
+  configure rdf_type: "http://www.assero.co.uk/BusinessForm#CommonGroup",
+            uri_suffix: "CG"
+            
+  object_property_class :has_item, model_class: Form::Item::Common
+
+  # Get Item
   #
-  # @param triples [hash] The raw triples keyed by subject
-  # @param id [string] The identifier for the concept being built from the triples
-  # @return [object] The new object
-  def initialize(triples=nil, id=nil)
-    if triples.nil?
-      super
-      self.rdf_type = C_RDF_TYPE_URI.to_s
-    else
-      super(triples, id)    
+  # @return [Array] Array of hashes, one per group, sub group and item.
+  def get_item
+    blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: {}}
+    group = self.to_h.merge!(blank_fields)
+    group.delete(:has_item)
+    results = [group]
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
+      results += item.get_item
     end
+    results
   end
-# Find the object
+
+  # To CRF
   #
-  # @param id [string] The id of the item to be found
-  # @param ns [string] The namespace of the item to be found
-  # @return [object] The new object
-  def self.find(id, ns, children=true)
-    object = super(id, ns)
-    if children
-      children_from_triples(object, object.triples, id)
+  # @return [String] An html string of Common group
+  def to_crf
+    html = ""
+    html += text_row(self.label)
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
+      html += item.to_crf
     end
-    return object
+    return html
   end
 
-  # Find an object from triples
-  #
-  # @param triples [hash] The raw triples keyed by subject
-  # @param id [string] The id of the item to be found
-  # @return [object] The new object
-  def self.find_from_triples(triples, id)
-    object = new(triples, id)
-    children_from_triples(object, triples, id)
-    return object
+  def delete(parent)
+    super(parent)
+    normal_group = Form::Group::Normal.find_full(parent.uri)
+    normal_group = normal_group.full_data
   end
 
-  # To JSON
+  def children_ordered
+    self.has_item_objects.sort_by {|x| x.ordinal}
+  end
+
+  def get_normal_group
+    query_string = %Q{         
+      SELECT ?normal_group WHERE 
+      { #{self.uri.to_ref} ^bf:hasCommon ?normal_group. }
+    }     
+    query_results = Sparql::Query.new.query(query_string, "", [:bf])
+    query_results.by_object(:normal_group).first
+  end
+
+  # Full data
   #
-  # @return [hash] The object hash 
-  def to_json
-    json = super
-    json[:children] = []
-    self.children.each do |child|
-      json[:children] << child.to_json
+  # @return [Hash] Return the data of the whole node
+  def full_data
+    group = self.to_h
+    group[:has_item] = []
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
+      group[:has_item] << item.full_data
     end
-    return json
-  end
-
-  # From JSON
-  #
-  # @param json [hash] The hash of values for the object 
-  # @return [object] The object
-  def self.from_json(json)
-    object = super(json)
-    if !json[:children].blank?
-      json[:children].each do |child|
-        object.children << Form::Item::Common.from_json(child)
-      end
-    end
-    return object
-  end
-
-  # To SPARQL
-  #
-  # @param parent_uri [object] URI object
-  # @param sparql [object] The SPARQL object
-  # @return [object] The URI
-  def to_sparql_v2(parent_id, sparql)
-    uri = super(parent_id, sparql)
-    return uri
-  end
-
-  # To XML
-  #
-  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
-  # @param [Nokogiri::Node] form_def the ODM FormDef node
-  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
-  # @return [void]
-  def to_xml(metadata_version, form_def)
-    super(metadata_version, form_def)
-  end
-
-private
-
-  def self.children_from_triples(object, triples, id)
-    super(object, triples, id)
-    links = object.get_links_v2(C_SCHEMA_PREFIX, "hasItem")
-    links.each do |link|
-      object.children << Form::Item::Common.find_from_triples(triples, link.id)
-    end  
+    group
   end
 
 end

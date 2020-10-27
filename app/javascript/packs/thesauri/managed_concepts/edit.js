@@ -1,6 +1,6 @@
-import CLEditor from "shared/thesauri/managed_concepts/code_list_editor"
-import TokenTimer from "shared/tokens/token_timer"
-import PairHandler from "shared/thesauri/managed_concepts/pair_handler"
+import CLEditor from 'shared/thesauri/managed_concepts/code_list_editor'
+import TokenTimer from 'shared/tokens/token_timer'
+import PairHandler from 'shared/thesauri/managed_concepts/pair_handler'
 
 $(document).ready( () => {
 
@@ -19,7 +19,7 @@ $(document).ready( () => {
       newChild: editorNewChildUrl,
       addChildren: editorAddChildrenUrl
     },
-    extendTimer: () => {tt.extend() }
+    extendTimer: () => tt.extend()
   });
 
   // Init Rank

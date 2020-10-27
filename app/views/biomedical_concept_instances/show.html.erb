@@ -1,0 +1,26 @@
+<% content_for :page_title do %> <%= "Show Biomedical Concept: #{@bc.has_identifier.identifier} (#{@bc.semantic_version})" %> <% end %>
+
+<%= stylesheet_link_tag 'shared/datatables_loading' %>
+<%= javascript_pack_tag 'biomedical_concept_instances/show' %>
+
+<% third_level_breadcrumb(:biomedical_concept_instances, @bc, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @bc, :badge => "icon-biocon"} do %>
+    <div class="actions-wrap">
+    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div id="show-panel" class="col-md-12 card wide">
+    <div class="card-header">
+      Show: Biomedical Concept
+    </div>
+    <div class="card-content">
+      <%= render partial: "shared/biomedical_concept_instances/show_panel", locals: { show_url: @show_path } %>
+    </div>
+  </div>
+</div>

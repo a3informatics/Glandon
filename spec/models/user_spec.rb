@@ -22,6 +22,19 @@ describe "User" do
   after :each do
   end
 
+  it "returns allocated roles" do
+    user = ua_add_user(email: C_EMAIL)
+    user.add_role :sys_admin
+    expect(user.allocated_roles).to match_array([:reader, :sys_admin])
+    user.remove_role :reader
+    expect(user.allocated_roles).to match_array([:sys_admin])
+    user.add_role :community_reader
+    expect(user.allocated_roles).to match_array([:sys_admin, :community_reader])
+    user.add_role :curator
+    expect(user.allocated_roles).to match_array([:sys_admin, :community_reader, :curator])
+    ua_remove_user(C_EMAIL)
+  end
+
   it "determines if user is only a system admin" do
   	user = ua_add_user(email: C_EMAIL)
   	user.add_role :sys_admin

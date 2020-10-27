@@ -1,0 +1,67 @@
+---
+:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDM=
+:uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3
+:rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+:label: Result Units (--ORRESU)
+:tagged: []
+:ordinal: 3
+:note: ''
+:completion: Not Set
+:optional: false
+:has_property:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDNfUjE=
+  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_R1
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 1
+  :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode
+  :context: 
+:has_coded_value:
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDNfVFVDNA==
+  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC4
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 4
+  :reference: http://www.cdisc.org/C71620/V6#C71620_C71253
+  :context: http://www.cdisc.org/C71620/V65#C71620
+  :local_label: ''
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDNfVFVDMw==
+  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC3
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 3
+  :reference: http://www.cdisc.org/C71620/V6#C71620_C41139
+  :context: http://www.cdisc.org/C71620/V65#C71620
+  :local_label: ''
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDNfVFVDMg==
+  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC2
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 2
+  :reference: http://www.cdisc.org/C66770/V42#C66770_C48500
+  :context: http://www.cdisc.org/C66770/V59#C66770
+  :local_label: ''
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NSRl9URVNUXzEvVjEjRl9ORzJfQkNHM19CUDNfVFVDMQ==
+  :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG3_BP3_TUC1
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 1
+  :reference: http://www.cdisc.org/C66770/V34#C66770_C49668
+  :context: http://www.cdisc.org/C66770/V59#C66770
+  :local_label: ''
+:is_common: false

@@ -1,115 +1,89 @@
-class Form::Item::Common < Form::Item
+# Form Common. Handles the common item specfic actions.
+# Based on earlier implementation.
+#
+# @author Clarisa Romero
+# @since 3.2.0
+class Form::Item::Common < Form::Item::BcProperty
 
-  attr_accessor :item_refs
-  
-  # Constants
-  C_SCHEMA_PREFIX = Form::C_SCHEMA_PREFIX
-  C_CLASS_NAME = "Form::Item::Common"
-  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
-  C_RDF_TYPE = "CommonItem"
-  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
-  
-  # Initialize
+  configure rdf_type: "http://www.assero.co.uk/BusinessForm#CommonItem",
+            uri_suffix: "CI",  
+            uri_unique: true 
+
+  object_property :has_common_item, cardinality: :many, model_class: "Form::Item::BcProperty"
+
+  # Get Item
   #
-  # @param triples [hash] The raw triples keyed by subject
-  # @param id [string] The identifier for the concept being built from the triples
-  # @return [object] The new object
-  def initialize(triples=nil, id=nil)
-    self.item_refs = []
-    if triples.nil?
-      super
-      self.rdf_type = C_RDF_TYPE_URI.to_s
+  # @return [Array] An array of Common Item
+  def get_item
+    blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:""}
+    item = self.to_h.merge!(blank_fields)
+    item[:has_coded_value] = coded_values_to_hash(self.has_coded_value_objects)
+    item[:has_property] = self.has_property_objects.to_h
+    item[:has_common_item] = common_item_to_hash(self.has_common_item_objects)
+    [item]
+  end
+
+  # To CRF
+  #
+  # @return [String] An html string of the Common Item
+  def to_crf
+    html = ""
+    property = BiomedicalConcept::PropertyX.find(self.has_property_objects.reference)
+    html += start_row(self.optional)
+    html += question_cell(property.question_text)
+    if self.has_coded_value.length == 0
+      html += input_field(property)
     else
-      super(triples, id)
-    end        
-  end
-
-  # Find the object
-  #
-  # @param id [string] The id of the item to be found
-  # @param ns [string] The namespace of the item to be found
-  # @return [object] The new object
-  def self.find(id, ns, children=true)
-    object = super(id, ns)
-    if children
-      children_from_triples(object, object.triples, id)
+      html += terminology_cell
     end
-    return object
+    html += end_row
   end
 
-  # Find an object from triples
+  # Children Ordered. Provides the childen ordered by ordinal
   #
-  # @param triples [hash] The raw triples keyed by subject
-  # @param id [string] The id of the item to be found
-  # @return [object] The new object
-  def self.find_from_triples(triples, id)
-    object = new(triples, id)
-    children_from_triples(object, triples, id)
-    return object
+  # @return [Array] the set of children ordered by ordinal
+  def children_ordered
+    self.has_coded_value_objects.sort_by {|x| x.ordinal}
   end
 
-  # To JSON
-  #
-  # @return [hash] The object hash 
-  def to_json
-    json = super
-    json[:item_refs] = []
-    self.item_refs.each do |ref|
-      json[:item_refs] << ref.to_json
+  def delete(parent)
+    update_query = %Q{
+      DELETE DATA
+      {
+        #{parent.uri.to_ref} bf:hasItem #{self.uri.to_ref} 
+      };
+      DELETE {?s ?p ?o} WHERE 
+      { 
+        { BIND (#{self.uri.to_ref} as ?s). 
+          ?s ?p ?o
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasCodedValue ?o1 . 
+          BIND (?o1 as ?s) . 
+          ?s ?p ?o .
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasProperty ?o2 . 
+          BIND (?o2 as ?s) . 
+          ?s ?p ?o .
+        }
+      }
+    }
+    partial_update(update_query, [:bf])
+    parent.reset_ordinals
+    common_group = Form::Group::Common.find(parent.uri)
+    normal_group = Form::Group::Normal.find_full(common_group.get_normal_group)
+    normal_group = normal_group.full_data
+  end
+
+  def common_item_to_hash(common_items)
+    results = []
+    common_items.sort_by {|x| x.ordinal}.each do |ci|
+      ref = ci.to_h
+      ref[:has_property] = OperationalReferenceV3.find(Uri.new(uri:ref[:has_property])).to_h
+      results << ref
     end
-    return json
-  end
-
-  # From JSON
-  #
-  # @param json [hash] The hash of values for the object 
-  # @return [object] The object
-  def self.from_json(json)
-    object = super(json)
-    if !json[:item_refs].blank?
-      json[:item_refs].each do |ref|
-        object.item_refs << UriV2.new(ref)  
-      end
-    end
-    return object
-  end
-
-  # To SPARQL
-  #
-  # @param parent_uri [object] URI object
-  # @param sparql [object] The SPARQL object
-  # @return [object] The URI
-  def to_sparql_v2(parent_uri, sparql)
-    uri = super(parent_uri, sparql)
-    subject = {:uri => uri}
-    self.item_refs.each do |ref|
-      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasCommonItem"}, {:uri => ref})
-    end
-    return uri
-  end
-  
-  # To XML
-  #
-  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
-  # @param [Nokogiri::Node] form_def the ODM FormDef node
-  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
-  # @return [void]
-  def to_xml(metadata_version, form_def, item_group_def)
-    # Do nothing currently
-  end
-
-  # Check Valid
-  #
-  # @return [boolean] Returns true if valid, false otherwise.
-  def valid?
-    result = super
-    return result
-  end
-
-private
-
-  def self.children_from_triples(object, triples, id)
-    object.item_refs = object.get_links(C_SCHEMA_PREFIX, "hasCommonItem")
+    results
   end
 
 end

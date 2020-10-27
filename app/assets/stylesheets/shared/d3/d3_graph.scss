@@ -1,0 +1,139 @@
+@import 'shared/vars';
+
+// General
+
+.d3 {
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+}
+
+.d3 #graph-controls {
+	position: absolute;
+	z-index: 4;
+	width: auto;
+	height: 50px;
+	left: 50%;
+	padding: 4px 14px;
+	transform: translateX(-50%);
+	align-items: baseline;
+	background: rgba(255,255,255,0.9);
+	border-radius: 10px;
+}
+
+.d3 #d3-search {
+	margin-left: 10px;
+	background: white;
+}
+
+// Custom styles
+
+.d3 .node:focus {
+	outline: none;
+}
+
+.d3 .node.disabled {
+	.label {
+  	opacity: .6;
+	}
+}
+
+.d3 .node.search-match {
+	.label-border, circle {
+		stroke: $accent-color-2-light !important;
+		stroke-width: 3px !important;
+	}
+}
+
+.d3 .node.search-match circle.with-icon {
+	stroke-width: 0px !important;
+}
+
+// Loading
+
+.d3.loading .btn, .d3.loading .clickable, .d3.loading svg {
+	pointer-events: none;
+}
+
+.d3.loading .spinner-container {
+	z-index: 30;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: rgba(255, 255, 255, .6);
+}
+
+.d3 #loading-extra {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	padding: 4px 6px;
+	background: white;
+	font-family: $font-light;
+	color: $grey-light;
+	display: none;
+}
+
+// Graph Alerts
+
+.d3 #graph-alerts {
+	position: absolute;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	top: 40px;
+}
+
+.d3 #graph-alerts {
+
+	.alert {
+		padding: 6px 12px;
+		margin: 2px 0;
+		font-size: $font-xtiny;
+		font-family: $font-primary;
+		border: none;
+		border-radius: 20px;
+		color: white;
+	}
+
+	.alert.alert-danger {
+		background: $accent-color-2;
+	}
+
+	.alert.alert-warning {
+		background-color: $grey-light;
+	}
+
+	.alert.alert-success {
+		background-color: $accent-aqua;
+	}
+
+}
+
+.d3 #graph-alerts:empty, .d3 #graph-alerts button {
+	display: none;
+}
+
+@media (max-width: 1280px) {
+
+	.d3 #graph-alerts {
+		top: 80px;
+	}
+
+}
+
+// Tooltip
+
+.graph-tooltip {
+	position: absolute;
+	max-width: 240px;
+	display: none;
+	background: white;
+	padding: 10px;
+	border-radius: 10px;
+	font-family: $font-light;
+	font-size: 10pt;
+	z-index: 6;
+}

@@ -68,6 +68,18 @@
   background: $secondary-color-dark !important;
 }
 
+.btn.light-green{
+  background: $secondary-color-light;
+}
+
+.btn.light-green:hover{
+  background: $secondary-color-bright;
+}
+
+.btn.light-green:active{
+  background: $secondary-color-medium !important;
+}
+
 .btn.light{
   background: $primary-color-light;
 }
@@ -119,7 +131,7 @@
   color: white;
 }
 
-.btn.disabled, .clickable.disabled{
+.btn.disabled, .clickable.disabled, .simple-icon-btn.disabled{
   opacity: .5;
   pointer-events: none;
 }
@@ -152,6 +164,18 @@
 
 .actions-wrap .btn, .btns-wrap .btn{
   margin-top: 6px;
+}
+
+// Icon button for non-text font-icon based simple buttons, note, different from ico-btn
+.btn.icon-only {
+  width: 23px;
+  height: 23px;
+  padding: 3px;
+}
+
+.btn.icon-only span[class^='icon-'] {
+  line-height: 18px;
+  font-size: $font-tiny;
 }
 
 // An icon button, inside of which is an icon symbol span element, and a ico-btn-text span element.
@@ -237,7 +261,7 @@
   border: 2px solid $primary-color-brightest;
 }
 
-// Ico btn secondary
+// Icon buton secondary
 
 .ico-btn-sec{
   display: inline-flex;
@@ -266,11 +290,11 @@
 }
 
 .ico-btn-sec .circular-badge.green{
-  background: $secondary-color-medium;
+  background: $secondary-color-light;
 }
 
 .ico-btn-sec:hover .circular-badge.green{
-  background: $secondary-color-light;
+  background: $secondary-color-medium;
 }
 
 .ico-btn-sec .circular-badge.blue{
@@ -281,9 +305,21 @@
   background: $primary-color-bright;
 }
 
+.ico-btn-sec .circular-badge.red{
+  background: $accent-color-2-light;
+}
+
+.ico-btn-sec:hover .circular-badge.red{
+  background: $accent-color-2;
+}
+
 .ico-btn-sec .ico-btn-sec-text{
   font-family: $font-light;
   margin-left: 6px;
+}
+
+.ico-btn-sec .ico-btn-sec-text:empty{
+  display: none;
 }
 
 .ico-btn-sec .circular-badge{
@@ -300,28 +336,54 @@
   color: $grey-medium;
 }
 
-#timeout .circular-badge{
+// Icon button secondary, small
+
+.ico-btn-sec.small {
+  margin: 0;
+  margin-right: 8px;
+}
+
+.ico-btn-sec.small .circular-badge {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  line-height: 26px;
+  font-size: $font-tiny;
+}
+
+// Token Timer button(s)
+
+.ico-btn-sec.token-timeout .circular-badge {
   background: $secondary-color-light;
 }
 
-#timeout.disabled .circular-badge{
+.ico-btn-sec.token-timeout:hover .circular-badge {
+  background: $secondary-color-bright;
+}
+
+.ico-btn-sec.token-timeout.disabled .circular-badge {
   background: $grey-light;
 }
 
-.card.warning #timeout .circular-badge{
+.card.warning .token-timeout.ico-btn-sec .circular-badge {
   background: $accent-color-1;
 }
 
-.card.danger #timeout .circular-badge{
+.card.warning .token-timeout.ico-btn-sec:hover .circular-badge {
+  background: $accent-color-1-light;
+}
+
+.card.danger .token-timeout.ico-btn-sec .circular-badge {
   background: $accent-color-2;
 }
 
-.card.danger #timeout .ico-btn-sec-text{
-  color: $accent-color-2;
+.card.danger .token-timeout.ico-btn-sec:hover .circular-badge {
+  background: $accent-color-2-light;
 }
 
-.checkbox-opt input[type=checkbox]{
-  margin-right: 8px;
+.card.danger .token-timeout.ico-btn-sec .ico-btn-sec-text {
+  color: $accent-color-2;
 }
 
 // ico-btn-sec processing
@@ -365,9 +427,13 @@
   color: $primary-color-medium !important;
 }
 
-button:focus, input[type="submit"]:focus, a.btn:focus, .ico-btn-sec:focus{
+button:focus, input[type="submit"]:focus, a.btn:focus, .ico-btn-sec:focus, .clickable:focus{
   outline: dotted grey 1px !important;
   outline-offset: 2px !important;
+}
+
+.checkbox-opt input[type=checkbox]{
+  margin-right: 8px;
 }
 
 a:focus{
@@ -386,4 +452,15 @@ a:focus{
   .actions-wrap{
     justify-content: center;
   }
+}
+
+// IE icon-only button line-height fix
+
+@media all and (-ms-high-contrast: none),
+    (-ms-high-contrast: active) {
+
+  .btn.icon-only span[class^='icon-'] {
+    line-height: 16px;
+  }
+
 }

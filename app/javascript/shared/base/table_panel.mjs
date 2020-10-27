@@ -1,4 +1,5 @@
 import { $getPaginated, $get } from 'shared/helpers/ajax';
+import { renderSpinner } from 'shared/ui/spinners'
 
 /**
  * Base Table Panel
@@ -19,7 +20,10 @@ export default class TablePanel {
    * @param {boolean} params.cache Specify if the panel data should be cached. Optional.
    * @param {boolean} params.paginated Specify if the loadData call should be paginated. Optional, default = true
    * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
-   * @param {Object} args Optional additional arguments
+   * @param {Array} params.buttons DT buttons definitions objects, empty by default
+   * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
+   * @param {element} params.errorDiv Custom element to display flash errors in, optional
+   * @param {Object} args Optional additional arguments for extending classes
    */
   constructor({
     selector,
@@ -30,9 +34,12 @@ export default class TablePanel {
     deferLoading,
     cache = true,
     paginated = true,
-    order = [[0, "desc"]]
+    order = [[0, "desc"]],
+    buttons = [],
+    loadCallback = () => {},
+    errorDiv
   }, args = {}) {
-    Object.assign(this, { selector, url, param, count, extraColumns, cache, paginated, order, ...args });
+    Object.assign(this, { selector, url, param, count, extraColumns, cache, paginated, order, buttons, loadCallback, errorDiv, ...args });
 
     this._initTable();
     this._setListeners();
@@ -43,27 +50,37 @@ export default class TablePanel {
 
   /**
    * Clears table, loads and draws data
+   * @param {string} url optional, specify data source url
    * @return {self} this instance
    */
-  loadData() {
-    this.table.clear().draw();
+  loadData(url) {
+    // Set new instance data url if specified
+    if (url)
+      this.url = url;
+
+    this.clear();
     this._loading(true);
 
     if (this.paginated)
-      $getPaginated(0, {
+      this.request = $getPaginated(0, {
         url: this.url,
         count: this.count,
         strictParam: this.param,
         cache: this.cache,
-        pageDone: (data) => this._renderPage(data),
-        done: () => {},
+        errorDiv: this.errorDiv,
+        pageDone: (data) => this._render(data),
+        done: (data) => this.loadCallback(this.table),
         always: () => this._loading(false)
       });
     else
-      $get({
+      this.request = $get({
         url: this.url,
         cache: this.cache,
-        done: (data) => this._renderPage(data),
+        errorDiv: this.errorDiv,
+        done: (data) => {
+          this._render(data)
+          this.loadCallback(this.table)
+        },
         always: () => this._loading(false)
       });
 
@@ -71,10 +88,27 @@ export default class TablePanel {
   }
 
   /**
-   * Refresh (reload) table data
+   * Clears table data and filters and kills any running requests
    */
-  refresh() {
-    this.loadData();
+  clear() {
+    this.table.search('').clear().draw();
+    this.kill();
+  }
+
+  /**
+   * Refresh (reload) table data
+   * @param {string} url optional, specify data source url
+   */
+  refresh(url) {
+    this.loadData(url);
+  }
+
+  /**
+   * Kill any ongoing loading process
+   */
+  kill() {
+    if ( this.request )
+      this.request.abort();
   }
 
   /** Private **/
@@ -86,18 +120,30 @@ export default class TablePanel {
 
   /**
    * Finds DT row data in which element is present
+   * @param {HTML Element} el html element that is contained in the table row
    * @return {Object} DT row data object
    */
-  _getRowData(el) {
-    return this._getRow(el).data();
+  _getRowDataFrom$(el) {
+    return this._getRowFrom$(el).data();
   }
 
   /**
    * Finds DT Row instance in which element is present
+   * @param {HTML Element} el html element that is contained in the table row
    * @return {Object} DT Row instance
    */
-  _getRow(el) {
+  _getRowFrom$(el) {
     return this.table.row($(el).closest("tr"));
+  }
+
+  /**
+   * Finds DT Row instance in which data property equals to the provided value
+   * @param {string} propertyName name of the property in row's data object to serach by (e.g. 'id')
+   * @param {?} value value to compare the data property by
+   * @return {Object} DT Row instance
+   */
+  _getRowFromData(propertyName, value) {
+    return this.table.row( (i, data) => data[propertyName] === value ? true : false );
   }
 
   /**
@@ -112,8 +158,13 @@ export default class TablePanel {
   /**
    * Add data into table and draw
    * @param {Array} data Sequence of items containing data to be added to the table
+   * @param {boolean} clear Enable clearing the table before rendering, optional, default = false
    */
-  _renderPage(data) {
+  _render(data, clear = false) {
+    // Clear data first if argument set to true
+    if (clear)
+      this.clear();
+
     for(let item of data) {
       this.table.row.add(item);
     }
@@ -144,6 +195,11 @@ export default class TablePanel {
    */
   _initTable() {
     this.table = $(this.selector).DataTable(this._tableOpts);
+
+    // Show buttons if exist
+    if (this.buttons.length)
+      this.table.buttons().container()
+        .appendTo( $('.col-sm-6:eq(0)', this.table.table().container()) );
   }
 
   /**
@@ -161,8 +217,9 @@ export default class TablePanel {
       language: {
         infoFiltered: "",
         emptyTable: "No data.",
-        processing: generateSpinner("small")
-      }
+        processing: renderSpinner('small')
+      },
+      buttons: this.buttons
     }
   }
 

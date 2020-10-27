@@ -3,179 +3,144 @@ require 'rails_helper'
 describe Form::Item::Common do
   
   include DataHelpers
+  include SecureRandomHelpers
 
   def sub_dir
     return "models/form/item/common"
   end
 
-  before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("business_operational.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
-    clear_iso_concept_object
-    clear_iso_namespace_object
-    clear_iso_registration_authority_object
-    clear_iso_registration_state_object
+  describe "Validations" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "validates a valid object" do
+      result = Form::Item::Common.new
+      result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
+      expect(result.valid?).to eq(true)
+    end
+
+    it "does not validate an invalid object, ordinal" do
+      item = Form::Item::Common.new
+      item.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
+      item.ordinal = 0
+      result = item.valid?
+      expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
+      expect(item.errors.count).to eq(1)
+      expect(result).to eq(false)
+    end
+
   end
 
-  it "validates a valid object" do
-    result = Form::Item::Common.new
-    result.ordinal = 1
-    expect(result.valid?).to eq(true)
-  end
+  describe "Basic tests" do
+    
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+    end
 
-  it "does not validate an invalid object, ordinal" do
-    item = Form::Item::Common.new
-    result = item.valid?
-    expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
-    expect(item.errors.count).to eq(1)
-    expect(result).to eq(false)
-  end
+    it "returns the item array" do
+      item = Form::Item::Common.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1)
+      result = item.get_item
+      check_file_actual_expected(result, sub_dir, "get_item_expected_1.yaml", equate_method: :hash_equal)
+    end
 
-  it "allows object to be initialized from triples" do
-    result = 
-      {
-        :id => "F-ACME_PLACEHOLDERTEST_G1_I1", 
-        :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
-        :completion => "",
-        :extension_properties => [],
-        :label => "Text Label",
-        :note => "xxxxx",
-        :optional => false,
-        :ordinal => 1,
-        :type => "http://www.assero.co.uk/BusinessForm#CommonItem",
-        :item_refs => []
-      }
-    triples = {}
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] = []
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#CommonItem" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "Text Label" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#note", object: "xxxxx" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#optional", object: "false" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#ordinal", object: "1" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#completion", object: "" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#hasCommonItem", object: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G2_I1" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#hasCommonItem", object: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G3_I1" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#hasCommonItem", object: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G4_I1" }
-    expect(Form::Item::Common.new(triples, "F-ACME_PLACEHOLDERTEST_G1_I1").to_json).to eq(result)    
-  end
-
-  it "allows an object to be found" do
-    item = Form::Item::Common.find("F-ACME_VSBASELINE1_G1_G1_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
-  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "find_expected.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "find_expected.yaml")
-    #expect(item.to_json).to eq(expected)
-    expect(item.to_json).to hash_equal(expected) # Better hash comparison, items refs are not ordered
-  end
-
-  it "allows an object to be found from triples"  do
-    result = 
-      {
-        :id => "F-ACME_PLACEHOLDERTEST_G1_I1", 
-        :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
-        :completion => "",
-        :extension_properties => [],
-        :label => "Text Label",
-        :note => "xxxxx",
-        :optional => false,
-        :ordinal => 1,
-        :type => "http://www.assero.co.uk/BusinessForm#CommonItem",
-        :item_refs => 
-        [ 
-          UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G2_I1"}).to_json,
-          UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G3_I1"}).to_json,
-          UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G4_I1"}).to_json
-        ]
-      }
-    triples = {}
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] = []
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1",
-    	predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#CommonItem" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "Text Label" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#note", object: "xxxxx" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#optional", object: "false" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#ordinal", object: "1" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#completion", object: "" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#hasCommonItem", object: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G2_I1" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#hasCommonItem", object: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G3_I1" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", 
-    	predicate: "http://www.assero.co.uk/BusinessForm#hasCommonItem", object: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G4_I1" }
-    expect(Form::Item::Common.find_from_triples(triples, "F-ACME_PLACEHOLDERTEST_G1_I1").to_json).to eq(result)    
-  end
-
-  it "allows an object to be created from JSON" do
-  	input = read_yaml_file(sub_dir, "from_json_input.yaml")
-  	item = Form::Item::Common.from_json(input)
-	  expected = read_yaml_file(sub_dir, "from_json_expected.yaml")
-  	expect(item.to_json).to eq(expected)
-	end
+    it "returns the CRF rendition, non coded" do
+      bc_property = BiomedicalConcept::PropertyX.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), question_text: "Something", prompt_text: "Else", format: "13", alias: "Well", is_complex_datatype_property: Uri.new(uri: "http://www.s-cubed.dk/CDT#BL_value"))
+      ref = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/R1"), ordinal: 1, reference: bc_property}, bc_property)
+      item = Form::Item::Common.create(uri: Uri.new(uri: "http://www.s-cubed.dk/CI1"), ordinal: 1, has_property: ref.uri)
+      item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CI1"))
+      item.has_property_objects
+      result = item.to_crf
+      check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
+    end
   
-  it "allows an object to be exported as JSON" do
-  	input = read_yaml_file(sub_dir, "to_json_input.yaml")
-  	item = Form::Item::Common.from_json(input)
-	#write_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
-    expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
-  	expect(item.to_json).to eq(expected)
-	end
-
-  it "allows an object to be exported as SPARQL" do
-    sparql = SparqlUpdateV2.new
-    result = 
-      "PREFIX bf: <http://www.assero.co.uk/BusinessForm#>\n" +
-      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-      "INSERT DATA \n" +
-      "{ \n" + 
-      "<http://www.example.com/path#parent_I1> rdf:type <http://www.example.com/path#rdf_test_type> . \n" +
-      "<http://www.example.com/path#parent_I1> rdfs:label \"label\"^^xsd:string . \n" +
-      "<http://www.example.com/path#parent_I1> bf:ordinal \"1\"^^xsd:positiveInteger . \n" +
-      "<http://www.example.com/path#parent_I1> bf:note \"\"^^xsd:string . \n" +
-      "<http://www.example.com/path#parent_I1> bf:completion \"\"^^xsd:string . \n" + 
-      "<http://www.example.com/path#parent_I1> bf:optional \"false\"^^xsd:boolean . \n" +
-      "<http://www.example.com/path#parent_I1> bf:hasCommonItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G2_I1> . \n" +
-      "<http://www.example.com/path#parent_I1> bf:hasCommonItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G3_I1> . \n" +
-      "<http://www.example.com/path#parent_I1> bf:hasCommonItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G4_I1> . \n" +
-      "<http://www.example.com/path#parent_I1> bf:hasCommonItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G5_I1> . \n" +
-      "}"
-    item = Form::Item::Common.new
-    item.rdf_type = "http://www.example.com/path#rdf_test_type"
-    item.label = "label"
-    item.ordinal = 1
-    item.item_refs[0] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G2_I1"})
-    item.item_refs[1] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G3_I1"})
-    item.item_refs[2] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G4_I1"})
-    item.item_refs[3] = UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G5_I1"})
-    item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
-    expect(sparql.to_s).to eq(result)
-  end
+    it "returns the CRF rendition, coded" do
+      bc_property = BiomedicalConcept::PropertyX.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q2"), question_text: "Something", prompt_text: "Else", format: "13", alias: "Well", is_complex_datatype_property: Uri.new(uri: "http://www.s-cubed.dk/CDT#CD_code"))
+      ref = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/Ref1"), ordinal: 1, reference: bc_property}, bc_property)
+      uri1 = Uri.new(uri: "http://www.cdisc.org/C66769/V2#C66769_C41338")
+      uri2 = Uri.new(uri: "http://www.cdisc.org/C66769/V2#C66769_C41339")
+      item = Form::Item::Common.create(uri: Uri.new(uri: "http://www.s-cubed.dk/CI2"), ordinal: 1, has_property: ref.uri)
+      ref_cl1 = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/Ref2"), ordinal: 1, reference: uri1}, item)
+      ref_cl2 = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/Ref3"), ordinal: 2, reference: uri2}, item)
+      item.has_coded_value_push(ref_cl1)
+      item.has_coded_value_push(ref_cl2)
+      item.save
+      item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CI2"))
+      item.has_property_objects
+      result = item.to_crf
+      check_file_actual_expected(result, sub_dir, "to_crf_expected_2.yaml", equate_method: :hash_equal)
+    end
   
-  it "allows an object to be exported as XML" do
-  	expect(true).to be(true) # No test required, noting in the code
+    it "returns the children in ordinal order" do
+      item = Form::Item::Common.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1)
+      expect(item.children_ordered).to eq([])
+      ref_2 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R2"), ordinal: 2, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 2")
+      ref_2.save
+      item.has_coded_value_push(ref_2.uri)
+      item.save
+      result = item.children_ordered
+      check_file_actual_expected(result.map{|x| x.to_h}, sub_dir, "children_ordered_expected_1.yaml", equate_method: :hash_equal)
+      ref_1 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R1"), ordinal: 1, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 1")
+      ref_1.save
+      ref_4 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R4"), ordinal: 4, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 4")
+      ref_4.save
+      ref_3 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R3"), ordinal: 3, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 3")
+      ref_3.save
+      item.has_coded_value_push(ref_1)
+      item.has_coded_value_push(ref_4)
+      item.has_coded_value_push(ref_3)
+      item.save
+      result = item.children_ordered
+      check_file_actual_expected(result.map{|x| x.to_h}, sub_dir, "children_ordered_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "Restore" do
+    
+    before :each do
+      data_files = ["forms/MAKE_COMMON_TEST.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..38)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "Restores (delete) Common item" do
+      common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1"))
+      expect(parent.has_item.count).to eq(2)
+      result = common_item.delete(parent)
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1"))
+      expect(parent.has_item.count).to eq(1)
+      expect{Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI1 in Form::Item::Common.")
+      check_file_actual_expected(result, sub_dir, "restore_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "Restores (delete) Common item II" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
+      result = bc_property.make_common
+      common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/MAKECOMMONTEST/V1#CI_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1"))
+      expect(parent.has_item.count).to eq(1)
+      result = common_item.delete(parent)
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1"))
+      expect(parent.has_item.count).to eq(0)
+      expect{Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1_CI1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1_CI1 in Form::Item::Common.")
+      check_file_actual_expected(result, sub_dir, "restore_2.yaml", equate_method: :hash_equal)
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
+      result = bc_property.make_common
+      common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/MAKECOMMONTEST/V1#CI_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1"))
+      expect(parent.has_item.count).to eq(1)
+      check_file_actual_expected(result, sub_dir, "restore_3.yaml", equate_method: :hash_equal)
+    end
+
   end
 
 end

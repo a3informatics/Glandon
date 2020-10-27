@@ -1,6 +1,7 @@
-<%= javascript_tag 'setPageTitle("Edit: '+@thesaurus_concept.notation+' ('+@thesaurus_concept.has_identifier.identifier+')")' %>
+<% content_for :page_title do %> <%= "Edit: #{@thesaurus_concept.notation} (#{@thesaurus_concept.has_identifier.identifier})" %> <% end %>
 
-<%= javascript_include_tag 'unload_v2' %>
+<% third_level_breadcrumb(:code_lists, @thesaurus_concept, @close_path) %>
+
 <%= javascript_pack_tag 'thesauri/managed_concepts/edit' %>
 
 <div class="row">

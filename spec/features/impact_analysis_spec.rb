@@ -44,7 +44,7 @@ describe "Impact Analysis", :type => :feature do
       wait_for_ajax_long
       context_menu_element('history', 4, 'SPONSORTHTEST2', :edit)
       wait_for_ajax_long
-      page.find('.card-with-tabs .show-more-btn').click
+      page.find('.card-with-tabs .expandable-content-btn').click
       sleep 0.2
       ui_dashboard_single_slider '2018-03-30'
       click_button 'Submit selected version'
@@ -82,6 +82,6 @@ describe "Impact Analysis", :type => :feature do
 
   end
 
-  
+
 
 end

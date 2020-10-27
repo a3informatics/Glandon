@@ -1,7 +1,7 @@
-<%= javascript_tag 'setPageTitle("History: '+@identifier+'")' %>
+<% content_for :page_title do %> History: <%= @identifier %> <% end %>
 
 <%= javascript_pack_tag 'thesauri/history' %>
-<%= javascript_tag "var commentsDataUrl = '#{comments_iso_managed_index_path({iso_managed: {identifier: @identifier, scope_id: @scope_id}})}';" %>
+<%= javascript_tag "var commentsDataUrl = '#{comments_iso_managed_v2_index_path({iso_managed: {identifier: @identifier, scope_id: @scope_id}})}';" %>
 
 <% second_level_breadcrumb(:thesauri, @scope_id, @identifier) %>
 

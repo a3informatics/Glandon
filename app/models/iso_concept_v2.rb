@@ -9,10 +9,12 @@ class IsoConceptV2 < Fuseki::Base
             uri_unique: :label
 
   data_property :label
-  object_property :tagged, cardinality: :many, model_class: "IsoConceptSystem::Node"
+  object_property :tagged, cardinality: :many, model_class: "IsoConceptSystem::Node", delete_exclude: true
 
   validates_with Validator::Field, attribute: :label, method: :valid_label?
 
+  include ManagedAncestors
+  
   # Where Only Or Create
   #
   # @param label [String] the label required or to be created
@@ -45,7 +47,7 @@ class IsoConceptV2 < Fuseki::Base
   # @param uri_or_id [String|URI] The id or URI of the tag
   # @return [Void] no return
   def add_tag(uri_or_id)
-    uri = uri_or_id.is_a?(Uri) ? uri_or_id : Uri.new(id: uri_or_id)
+    uri = self.class.as_uri(uri_or_id)
     update_string = %Q{
       INSERT DATA
       {
@@ -60,7 +62,7 @@ class IsoConceptV2 < Fuseki::Base
   # @param uri_or_id [String|URI] The id or URI of the tag
   # @return [Void] no return
   def remove_tag(uri_or_id)
-    uri = uri_or_id.is_a?(Uri) ? uri_or_id : Uri.new(id: uri_or_id)
+    uri = self.class.as_uri(uri_or_id)
     update_string = %Q{
       DELETE
       {
@@ -98,10 +100,11 @@ class IsoConceptV2 < Fuseki::Base
   def tags
     result = []
     query_string = %Q{
-SELECT DISTINCT ?s ?p ?o WHERE {
-  #{self.uri.to_ref} isoC:tagged ?s .
-  ?s ?p ?o
-}}
+      SELECT DISTINCT ?s ?p ?o WHERE {
+        #{self.uri.to_ref} isoC:tagged ?s .
+        ?s ?p ?o
+      }
+    }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC])
     query_results.by_subject.each do |subject, triples|
       result << IsoConceptSystem::Node.from_results(Uri.new(uri: subject), triples)
@@ -115,12 +118,13 @@ SELECT DISTINCT ?s ?p ?o WHERE {
   def change_notes
     result = []
     query_string = %Q{
-SELECT DISTINCT ?s ?p ?o WHERE {
-  #{self.uri.to_ref} ^bo:reference ?or .
-  ?or ^ba:current ?s .
-  ?s rdf:type ba:ChangeNote . 
-  ?s ?p ?o
-}}
+      SELECT DISTINCT ?s ?p ?o WHERE {
+        #{self.uri.to_ref} ^bo:reference ?or .
+        ?or ^ba:current ?s .
+        ?s rdf:type ba:ChangeNote . 
+        ?s ?p ?o
+      }
+    }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :ba])
     query_results.by_subject.each do |subject, triples|
       result << Annotation::ChangeNote.from_results(Uri.new(uri: subject), triples)
@@ -132,28 +136,26 @@ SELECT DISTINCT ?s ?p ?o WHERE {
   #
   # @return [Array] set of Annotation::ChangeInstructions items
   def change_instructions
-      results = []
-      query_string = %Q{SELECT DISTINCT ?ci WHERE {         
-          OPTIONAL{               
-            {             
-              ?ci (ba:previous/bo:reference) #{self.uri.to_ref} .
-              ?ci rdf:type ba:ChangeInstruction .                 
-            } UNION           
-            {             
-              ?ci (ba:current/bo:reference) #{self.uri.to_ref} .
-              ?ci rdf:type ba:ChangeInstruction .                   
-            }       
-          }       
-        }}
-      query_results = Sparql::Query.new.query(query_string, "", [:ba, :bo])
-      triples = query_results.by_object(:ci)
-        triples.each do |x|
-          results << Annotation::ChangeInstruction.find(x).get_data
-        end
-      results
-    end
-
-
+    results = []
+    query_string = %Q{SELECT DISTINCT ?ci WHERE {         
+      OPTIONAL{               
+        {             
+          ?ci (ba:previous/bo:reference) #{self.uri.to_ref} .
+          ?ci rdf:type ba:ChangeInstruction .                 
+        } UNION           
+        {             
+          ?ci (ba:current/bo:reference) #{self.uri.to_ref} .
+          ?ci rdf:type ba:ChangeInstruction .                   
+        }       
+      }       
+    }}
+    query_results = Sparql::Query.new.query(query_string, "", [:ba, :bo])
+    triples = query_results.by_object(:ci)
+      triples.each do |x|
+        results << Annotation::ChangeInstruction.find(x).get_data
+      end
+    results
+  end
 
   # Indicators. Get the indicators for the item.
   #
@@ -211,30 +213,56 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     tags.map{ |x| x.pref_label }.sort
   end
 
-  # Other Parents. Determine if this object is connected with other parents objects other than 
-  #   the one specified. The other parents must be of the same type.
-  #
-  # @param [Object] parent the known parent item
-  # @return [Array] the other uris
-  def other_parents(parent, predicates)
-    path = "(#{predicates.map{|x| x.to_ref}.join("/")})"
-    query_string = %Q{
-      SELECT DISTINCT ?s WHERE
-      {
-        #{parent.uri.to_ref} #{path} #{self.uri.to_ref} .
-        #{parent.uri.to_ref} rdf:type ?t .
-        ?s rdf:type ?t .
-        FILTER (STR(?s) != STR(#{parent.uri.to_ref})) .
-        ?s #{path} #{self.uri.to_ref} .
-      }
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [])
-    query_results.by_object(:s)
-  end
+  # # Other Parents. Determine if this object is connected with other parents objects other than 
+  # #   the one specified. The other parents must be of the same type.
+  # #
+  # # @param [Object] parent the known parent item
+  # # @return [Array] the other uris
+  # def other_parents(parent, predicates)
+  #   path = "(#{predicates.map{|x| x.to_ref}.join("/")})"
+  #   query_string = %Q{
+  #     SELECT DISTINCT ?s WHERE
+  #     {
+  #       #{parent.uri.to_ref} #{path} #{self.uri.to_ref} .
+  #       #{parent.uri.to_ref} rdf:type ?t .
+  #       ?s rdf:type ?t .
+  #       FILTER (STR(?s) != STR(#{parent.uri.to_ref})) .
+  #       ?s #{path} #{self.uri.to_ref} .
+  #     }
+  #   }
+  #   query_results = Sparql::Query.new.query(query_string, "", [])
+  #   query_results.by_object(:s)
+  # end
 
+  # Clone. Clone the object
+  #
+  # @return [Object] the cloned object.
   def clone
     self.tagged_links
     super
   end
   
+  # Replace If No Change. Replace the current item with the previous one if there are no differences.
+  #
+  # @param [Object] previous the previous item
+  # @param [Array] ignore_properties array of symbols of properties to be ignored in comparison
+  # @return [Object] the new object if changes, otherwise the previous object
+  def replace_if_no_change(previous, ignore_properties=[])
+    return self if previous.nil?
+    return previous unless self.diff?(previous, {ignore: [:tagged] + ignore_properties})
+    replace_children_if_no_change(previous) if self.class.children_predicate?
+    return self
+  end
+
+private
+
+  # Replace children if no change. Replaces current child with the previous one if there are no difference.
+  def replace_children_if_no_change(previous)
+    self.children.each_with_index do |child, index|
+      previous_child = previous.children.select {|x| x.key_property_value == child.key_property_value}
+      next if previous_child.empty?
+      self.children[index] = child.replace_if_no_change(previous_child)
+    end
+  end
+
 end

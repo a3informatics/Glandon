@@ -37,10 +37,17 @@ span.icon-context-menu, div.icon-context-menu{
   transform: translateX(-100%);
 }
 
+.context-menu.top{
+  top: 0px;
+  transform: translateY(-100%);
+}
+
 .context-menu .option{
+  text-align: left;
   padding: 10px 14px;
   min-width: 150px;
   font-family: $font-light;
+  font-size: $font-small;
   color: $grey-medium;
   display: block;
   white-space: nowrap;
@@ -55,15 +62,37 @@ span.icon-context-menu, div.icon-context-menu{
   margin-right: 10px;
 }
 
-.context-menu .option:hover{
-  background: $secondary-color-medium;
-  color: $grey-white;
-  text-decoration: none;
+// Colors
+
+.context-menu {
+  .option:hover, .option:focus {
+    outline: none;
+    background: $secondary-color-medium;
+    color: $grey-white;
+    text-decoration: none;
+  }
 }
 
-.context-menu.blue .option:hover{
-  background: $primary-color-medium;
+.context-menu.blue {
+  .option:hover, .option:focus {
+    background: $primary-color-medium;
+  }
 }
+
+.context-menu.light {
+  .option:hover, .option:focus {
+    background: $primary-color-bright;
+  }
+}
+
+// Size
+
+.context-menu.small .option {
+  padding: 7px 10px;
+  min-width: 120px;
+  font-size: $font-xtiny;
+}
+
 // FIXES
 
 #history_wrapper .row{

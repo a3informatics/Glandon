@@ -4,21 +4,21 @@
 @font-face {
   font-family: $font-light;
   src:font-url('Roboto-Light.ttf');
-  font-weight: normal;
+  font-weight: 300;
 	font-style: normal;
 }
 
 @font-face {
   font-family: $font-primary;
   src:font-url('Roboto-Regular.ttf');
-  font-weight: normal;
+  font-weight: 700;
 	font-style: normal;
 }
 
 @font-face {
   font-family: $font-bold;
   src:font-url('Roboto-Medium.ttf');
-  font-weight: bold;
+  font-weight: 800;
 	font-style: normal;
 }
 
@@ -83,8 +83,20 @@ body{
   background: $accent-color-2;
 }
 
-.bg-accent-3{
-  background: $accent-color-3;
+.bg-accent-purple{
+  background: $accent-purple;
+}
+
+.bg-accent-purple-dark{
+  background: $accent-purple-dark;
+}
+
+.bg-accent-purple-light{
+  background: $accent-purple-light;
+}
+
+.bg-accent-aqua{
+  background: $accent-aqua;
 }
 
 /* Text & grey colors */
@@ -136,10 +148,6 @@ body{
   color: $accent-color-2;
 }
 
-.text-accent-3{
-  color: $accent-color-3;
-}
-
 .text-link{
   color: $primary-color-light;
 }
@@ -155,6 +163,10 @@ body{
 /* SIZES */
 .text-tiny{
   font-size: $font-tiny;
+}
+
+.text-xtiny{
+  font-size: $font-xtiny;
 }
 
 .text-small{

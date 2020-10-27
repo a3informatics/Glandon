@@ -1,176 +1,86 @@
+# Form Question. Handles the question item specfic actions.
+# Based on earlier implementation.
+#
+# @author Clarisa Romero
+# @since 3.2.0
 class Form::Item::Question < Form::Item
 
-  attr_accessor :datatype, :format, :mapping, :question_text, :tc_refs
-  
-  # Constants
-  C_SCHEMA_PREFIX = Form::C_SCHEMA_PREFIX
-  C_CLASS_NAME = "Form::Item::Question"
-  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
-  C_RDF_TYPE = "Question"
-  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
-  
-  # Thesaurus Concepts
+  configure rdf_type: "http://www.assero.co.uk/BusinessForm#Question",
+            uri_suffix: "Q",  
+            uri_unique: true 
+
+  data_property :datatype 
+  data_property :format 
+  data_property :mapping
+  data_property :question_text 
+
+  object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
+
+  validates_with Validator::Field, attribute: :format, method: :valid_format?
+  validates_with Validator::Field, attribute: :mapping, method: :valid_mapping?
+  validates_with Validator::Field, attribute: :question_text, method: :valid_question?
+
+  # Get Item
   #
-  # @return [object] An array of Thesaurus Concepts
-  def thesaurus_concepts
-    results = Array.new
-    self.tc_refs.each do |ref|
-      results << ThesaurusConcept.find(ref.subject_ref.id, ref.subject_ref.namespace, false)
-    end
-    return results
+  # @return [Array] An array of Question Item with CLI and CL references.
+  def get_item
+    blank_fields = {free_text:"", label_text:"", has_property: {}}
+    item = self.to_h.merge!(blank_fields)
+    item[:has_coded_value] = coded_values_to_hash(self.has_coded_value_objects)
+    [item]
   end
 
-  # Initialize
+  # To CRF
   #
-  # @param triples [hash] The raw triples keyed by subject
-  # @param id [string] The identifier for the concept being built from the triples
-  # @return [object] The new object
-  def initialize(triples=nil, id=nil)
-    self.tc_refs = Array.new
-    self.datatype = ""
-    self.format = ""
-    self.mapping = ""
-    self.question_text = ""
-    if triples.nil?
-      super
-      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
+  # @return [String] An html string of Question Item
+  def to_crf
+    html = start_row(self.optional)
+    html += question_cell(self.question_text)
+    html += self.has_coded_value.count == 0 ? input_field(self) : terminology_cell
+    html += end_row
+    html
+  end
+
+  # Add Child. Adds a child or children TUC references.
+  #
+  # @params [Hash] params the parameters
+  # @option params [String] :type the param name of the new node
+  # @option params [Array] :id_set array of unmanaged concepts ids
+  # @return [Array] the created objects. May contain errors if unsuccesful. 
+  def add_child(params)
+    if params[:type].to_sym == :tuc_reference
+      results = []
+      params[:id_set].each do |params|
+        ordinal = next_ordinal(:has_coded_value)
+        cli = Thesaurus::UnmanagedConcept.find(params[:id])
+        cl = Thesaurus::ManagedConcept.find_with_properties(params[:context_id])
+        child = OperationalReferenceV3::TucReference.create({local_label: cli.label, reference: cli, context: cl, ordinal: ordinal, parent_uri: self}, self)
+        child.save
+        self.has_coded_value_push(child.uri)
+        self.save
+        results << child.to_h
+      end
+      results
     else
-      super(triples, id)
-      # Special. Update datatype if using old scheme
-      if !FieldValidation::valid_datatype?(:datatype, self.datatype, self)
-        self.datatype = BaseDatatype.from_short_label(self.datatype)
-      end
-    end        
-  end
-
-  # Find the object
-  #
-  # @param id [string] The id of the item to be found
-  # @param ns [string] The namespace of the item to be found
-  # @return [object] The new object
-  def self.find(id, ns, children=true)
-    object = super(id, ns)
-    if children
-      children_from_triples(object, object.triples, id)
-    end
-    object.triples = ""
-    return object
-  end
-
-  # Find an object from triples
-  #
-  # @param triples [hash] The raw triples keyed by subject
-  # @param id [string] The id of the item to be found
-  # @return [object] The new object
-  def self.find_from_triples(triples, id)
-    object = new(triples, id)
-    children_from_triples(object, triples, id)
-    return object
-  end
-  
-  # To JSON
-  #
-  # @return [hash] The object hash 
-  def to_json
-    json = super
-    json[:datatype] = self.datatype
-    json[:format] = self.format
-    json[:question_text] = self.question_text
-    json[:mapping] = self.mapping
-    json[:children] = Array.new
-    self.tc_refs.sort_by! {|u| u.ordinal}
-    self.tc_refs.each do |tc_ref|
-      json[:children] << tc_ref.to_json
+      self.errors.add(:base, "Attempting to add an invalid child type")
     end 
-    json[:children] = json[:children].sort_by {|item| item[:ordinal]}
-    return json
   end
 
-  # From JSON
+  # Children Ordered. Provides the childen ordered by ordinal
   #
-  # @param json [hash] The hash of values for the object 
-  # @return [object] The object
-  def self.from_json(json)
-    object = super(json)
-    object.datatype = json[:datatype]
-    object.format = json[:format]
-    object.question_text = json[:question_text]
-    object.mapping = json[:mapping]
-    if !json[:children].blank?
-      json[:children].each do |child|
-        object.tc_refs << OperationalReferenceV2.from_json(child)
-      end
+  # @return [Array] the set of children ordered by ordinal
+  def children_ordered
+    self.has_coded_value_objects.sort_by {|x| x.ordinal}
+  end
+
+  def delete_reference(reference)
+    reference.delete_with_links
+    self.reset_ordinals
+    question = Form::Item::Question.find_full(self.uri).to_h
+    question[:has_coded_value].each do |cv|
+      cv[:reference] = Thesaurus::UnmanagedConcept.find(Uri.new(uri:cv[:reference])).to_h
     end
-    return object
-  end
-
-  # To SPARQL
-  #
-  # @param parent_uri [object] URI object
-  # @param sparql [object] The SPARQL object
-  # @return [object] The URI
-  def to_sparql_v2(parent_uri, sparql)
-    uri = super(parent_uri, sparql)
-    subject = {:uri => uri}
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "datatype"}, {:literal => "#{self.datatype}", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "format"}, {:literal => "#{self.format}", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "question_text"}, {:literal => "#{self.question_text}", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "mapping"}, {:literal => "#{self.mapping}", :primitive_type => "string"})
-    self.tc_refs.sort_by! {|u| u.ordinal}
-    self.tc_refs.each do |tc_ref|
-      ref_uri = tc_ref.to_sparql_v2(uri, "hasThesaurusConcept", 'TCR', tc_ref.ordinal, sparql)
-      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasThesaurusConcept"}, {:uri => ref_uri})
-    end
-    return uri
-  end
-  
-  # To XML
-  #
-  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
-  # @param [Nokogiri::Node] form_def the ODM FormDef node
-  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
-  # @return [void]
-  def to_xml(metadata_version, form_def, item_group_def)
-    super(metadata_version, form_def, item_group_def)
-    xml_datatype = BaseDatatype.to_odm(self.datatype)
-    xml_length = to_xml_length(self.datatype, self.format)
-    xml_digits = to_xml_significant_digits(self.datatype, self.format)
-    item_def = metadata_version.add_item_def("#{self.id}", "#{self.label}", "#{xml_datatype}", "#{xml_length}", "#{xml_digits}", "", "", "", "")
-    question = item_def.add_question()
-    question.add_translated_text("#{self.question_text}")
-    if tc_refs.length > 0
-      self.tc_refs.sort_by! {|u| u.ordinal}
-      code_list_ref = item_def.add_code_list_ref("#{self.id}-CL")
-      code_list = metadata_version.add_code_list("#{self.id}-CL", "Code list for #{self.label}", "text", "")
-      self.tc_refs.each do |tc_ref|
-        tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: tc_ref.subject_ref.to_s))
-        code_list_item = code_list.add_code_list_item(tc.notation, "", "#{tc_ref.ordinal}")
-        decode = code_list_item.add_decode()
-        decode.add_translated_text(tc.label)
-      end
-    end
-  end
-
-  # Check Valid
-  #
-  # @return [boolean] Returns true if valid, false otherwise.
-  def valid?
-    result = super
-    result = result &&
-      FieldValidation::valid_mapping?(:mapping, self.mapping, self) &&
-      FieldValidation::valid_format?(:format, self.format, self) &&
-      FieldValidation::valid_question?(:question_text, self.question_text, self) &&
-      FieldValidation::valid_datatype?(:datatype, self.datatype, self)
-    return result
-  end
-
-private
-
-  def self.children_from_triples(object, triples, id)
-    links = object.get_links_v2(C_SCHEMA_PREFIX, "hasThesaurusConcept")
-    links.each do |link|
-      object.tc_refs << OperationalReferenceV2.find_from_triples(triples, link.id)
-    end      
+    question
   end
 
 end

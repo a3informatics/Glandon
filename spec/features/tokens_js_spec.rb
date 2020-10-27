@@ -6,6 +6,7 @@ describe "Tokens", :type => :feature do
   include DataHelpers
   include UiHelpers
   include UserAccountHelpers
+  include WaitForAjaxHelper
 
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_example_vs_baseline.ttl"]
@@ -17,14 +18,10 @@ describe "Tokens", :type => :feature do
     Token.delete_all
     Token.set_timeout(60)
     @user1 = ua_add_user email: "token@example.com", role: :reader
-    item1 = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    item1.id = "1"
-    item2 = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    item2.id = "2"
-    item3 = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    item3.id = "3"
-    item4 = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    item4.id = "4"
+    item1 = Thesaurus.create({:identifier => "TEST 1", :label => "Test Thesaurus 1"})
+    item2 = Thesaurus.create({:identifier => "TEST 2", :label => "Test Thesaurus 2"})
+    item3 = Thesaurus.create({:identifier => "TEST 3", :label => "Test Thesaurus 3"})
+    item4 = Thesaurus.create({:identifier => "TEST 4", :label => "Test Thesaurus 4"})
     token1 = Token.obtain(item1, @user1)
     token2 = Token.obtain(item2, @user1)
     token3 = Token.obtain(item3, @user1)
@@ -50,26 +47,29 @@ describe "Tokens", :type => :feature do
 
     it "allows the tokens to be viewed (REQ-MDR-EL-050)", js: true do
       click_navbar_el
-      expect(page).to have_content 'Edit Locks (Tokens)'
+      expect(page).to have_content 'Active Edit Locks'
+      expect(page).to have_content 'View and manage Edit Locks (Tokens)'
     end
 
     it "allows a lock to be released (REQ-MDR-EL-050)", js: true do
       click_navbar_el
-      expect(page).to have_content 'Edit Locks (Tokens)'
+      expect(page).to have_content 'Active Edit Locks'
       expect(page.all('table#main tr').count).to eq(5)
-      find(:xpath, "//tr[contains(.,'http://www.assero.co.uk/MDRForms/ACME/V1#2')]/td/a", :text => 'Release').click
-      ui_click_ok("Are you sure?")
+      find(:xpath, "//tr[contains(.,'http://www.acme-pharma.com/TEST_2/V1#TH')]/td/button", :text => 'Release').click
+      ui_confirmation_dialog true
+      wait_for_ajax 10
+
       expect(page.all('table#main tr').count).to eq(4)
-      expect(page).to have_content "http://www.assero.co.uk/MDRForms/ACME/V1#1"
-      expect(page).to have_content "http://www.assero.co.uk/MDRForms/ACME/V1#3"
-      expect(page).to have_content "http://www.assero.co.uk/MDRForms/ACME/V1#4"
+      expect(page).to have_content "http://www.acme-pharma.com/TEST_1/V1#TH"
+      expect(page).to have_content "http://www.acme-pharma.com/TEST_3/V1#TH"
+      expect(page).to have_content "http://www.acme-pharma.com/TEST_4/V1#TH"
     end
 
     it "allows a lock to be released, rejection (REQ-MDR-EL-050)", js: true do
       click_navbar_el
-      expect(page).to have_content 'Edit Locks (Tokens)'
-      find(:xpath, "//tr[contains(.,'http://www.assero.co.uk/MDRForms/ACME/V1#3')]/td/a", :text => 'Release').click
-      ui_click_cancel("Are you sure?")
+      expect(page).to have_content 'Active Edit Locks'
+      find(:xpath, "//tr[contains(.,'http://www.acme-pharma.com/TEST_3/V1#TH')]/td/button", :text => 'Release').click
+      ui_confirmation_dialog false
     end
 
   end

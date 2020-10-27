@@ -1,11 +1,23 @@
 defaults: &defaults
   imports: &default_imports
-    # cdisc_adam_ig:
-    #   title: CDISC ADaM IG Import - Excel
-    #   background: true
-    #   description: This facilty allows for the ADaM Implementation Guide to be imported from an MS Excel file.
-    #   link_text: "Import CDISC ADaM IG"
-    #   link_path: "/imports/adam_igs/new?imports[file_type]=0"
+    cdisc_adam_ig:
+      title: CDISC ADaM Implementation Guide Import - Excel
+      background: true
+      description: This facilty allows for the ADaM Implementation Guide to be imported from an MS Excel file.
+      link_text: "Import CDISC ADaM IG"
+      link_path: "/imports/adam_igs/new?imports[file_type]=0"
+    cdisc_sdtm_model:
+      title: CDISC SDTM Model Import - Excel
+      background: true
+      description: This facilty allows for the SDTM Model to be imported from an MS Excel file.
+      link_text: "Import CDISC SDTM Model"
+      link_path: "/imports/sdtm_model/new?imports[file_type]=0"
+    cdisc_sdtm_ig:
+      title: CDISC SDTM Implementation Guide Import - Excel
+      background: true
+      description: This facilty allows for the SDTM Implementation Guide to be imported from an MS Excel file.
+      link_text: "Import CDISC SDTM IG"
+      link_path: "/imports/sdtm_ig/new?imports[file_type]=0"
     cdisc_term:
       title: CDISC Terminology Import - Excel
       background: true
@@ -75,9 +87,11 @@ defaults: &defaults
               - "New Terms"
               - "Comment"
           row:
-            condition:
-              method: column_affirmative?
-              column: 12
+            conditions:
+              -
+                -
+                  method: column_affirmative?
+                  column: 12
           columns:
           -
             label: "Release Date"
@@ -122,14 +136,12 @@ defaults: &defaults
                 method: c_codes?
                 object: NA
                 klass: NA
-                map: {}
                 additional:
                   token: ","
               -
                 method: create_item
                 object: parent
                 klass: "Import::ChangeInstruction::Instruction"
-                map: {}
               -
                 method: tokenize_and_set_property
                 object: parent
@@ -145,7 +157,6 @@ defaults: &defaults
                 object: NA
                 klass: NA
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ","
               -
@@ -162,7 +173,6 @@ defaults: &defaults
                 method: c_codes?
                 object: NA
                 klass: NA
-                map: {}
                 additional:
                   token: ","
               -
@@ -179,7 +189,6 @@ defaults: &defaults
                 object: NA
                 klass: NA
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ","
               -
@@ -197,16 +206,997 @@ defaults: &defaults
                 object: parent
                 property: description
                 can_be_empty: false
-                map: {}
               -
                 method: check_valid
                 object: parent
-                map: {}
+    cdisc_sdtm_model:
+      sheets:
+        version_1:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Seq. For Order"  
+              - "Observation Class" 
+              - "Domain Prefix" 
+              - "Variable Name (minus domain prefix)"  
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms, Codelist or Format"  
+              - "Role"
+              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "Core"
+          row:
+            conditions:
+              -
+                -
+                  column: 2
+                  value_in_set: 
+                    - Special Purpose
+                    - Special-Purpose
+                    - Relationship
+                    - Trial Design
+                -
+                  column: 3
+                  method: column_not_blank?
+              -
+                -
+                  column: 2
+                  value_in_set: 
+                    - All Classes
+                    - Events
+                    - Events-General
+                    - Interventions
+                    - Interventions-General
+                    - Findings
+                    - Findings-General
+                -
+                  column: 3
+                  method: column_blank?
+          columns:
+          -
+            label: "Observation Class" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 3
+                  method: column_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 3
+                  method: column_blank?
+          -
+            label: "Domain Prefix" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                additional:
+                  prefix: SDTM MODEL
+                condition:
+                  column: 3
+                  method: column_not_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                condition:
+                  column: 3
+                  method: column_not_blank?
+          -
+            label: "Variable Name (minus domain prefix)"  
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmClass::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_regex
+                object: child
+                property: prefixed
+                additional:
+                  regex: '^--'
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                additional:
+                  search: sdtm
+          -
+            label: "Seq. For Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: 
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                mapping:
+                  map:
+                    Char: Character
+                    Num: Numeric
+          -
+            label: "Controlled Terms, Codelist or Format"  
+            actions: []
+          -
+            label: "Role"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    "": None
+                    Identifier: Identifier
+                    Topic: Topic
+                    Timing: Timing
+                    Rule: Rule
+                    Grouping Qualifier: Grouping
+                    Result Qualifier: Result
+                    Synonym Qualifier: Synonym
+                    Record Qualifier: Record
+                    Variable Qualifier: Variable
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                    - "Qualifier"
+                mapping:
+                  map:
+                    "": None
+                    Identifier: Identifier
+                    Topic: Topic
+                    Timing: Timing
+                    Rule: Rule
+                    Grouping Qualifier: Grouping
+                    Result Qualifier: Result
+                    Synonym Qualifier: Synonym
+                    Record Qualifier: Record
+                    Variable Qualifier: Variable
+          -
+            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                property: description
+          -
+            label: "Core"
+            actions: []
+        version_2:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Version"  
+              - "Seq. For Order"  
+              - "Observation Class" 
+              - "Domain Prefix" 
+              - "Variable Name (minus domain prefix)"  
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms or Format"  
+              - "Role"
+              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "Core"
+          row:
+            conditions:
+              -
+                -
+                  column: 3
+                  value_in_set: 
+                    - Special Purpose
+                    - Special-Purpose
+                    - Relationship
+                    - Trial Design
+                -
+                  column: 4
+                  method: column_not_blank?
+              -
+                -
+                  column: 3
+                  value_in_set: 
+                    - All Classes
+                    - Events
+                    - Events-General
+                    - Interventions
+                    - Interventions-General
+                    - Findings
+                    - Findings-General
+                -
+                  column: 4
+                  method: column_blank?
+          columns:
+          -
+            label: "Version" 
+            actions: []
+          -
+            label: "Observation Class" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 4
+                  method: column_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 4
+                  method: column_blank?
+          -
+            label: "Domain Prefix" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                additional:
+                  prefix: SDTM MODEL
+                condition:
+                  column: 4
+                  method: column_not_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                condition:
+                  column: 4
+                  method: column_not_blank?
+          -
+            label: "Variable Name (minus domain prefix)"  
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmClass::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_regex
+                object: child
+                property: prefixed
+                additional:
+                  regex: '^--'
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                additional:
+                  search: sdtm
+          -
+            label: "Seq. For Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: 
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                mapping:
+                  map:
+                    Char: Character
+                    Num: Numeric
+          -
+            label: "Controlled Terms or Format"  
+            actions: []
+          -
+            label: "Role"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    "": None
+                    Identifier: Identifier
+                    Topic: Topic
+                    Timing: Timing
+                    Rule: Rule
+                    Grouping Qualifier: Grouping
+                    Result Qualifier: Result
+                    Synonym Qualifier: Synonym
+                    Record Qualifier: Record
+                    Variable Qualifier: Variable
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                    - "Qualifier"
+                mapping:
+                  map:
+                    "": None
+                    Identifier: Identifier
+                    Topic: Topic
+                    Timing: Timing
+                    Rule: Rule
+                    Grouping Qualifier: Grouping
+                    Result Qualifier: Result
+                    Synonym Qualifier: Synonym
+                    Record Qualifier: Record
+                    Variable Qualifier: Variable
+          -
+            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                property: description
+          -
+            label: "Core"
+            actions: []
+        version_3:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Version"  
+              - "Variable Order"  
+              - "Class" 
+              - "Dataset Name" 
+              - "Variable Name"  
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms or Format"  
+              - "Role"
+              - "Role Description"
+              - "Description"  
+          row:
+            conditions:
+              -
+                -
+                  column: 3
+                  value_in_set: 
+                    - Special Purpose
+                    - Special-Purpose
+                    - Relationship
+                    - Trial Design
+                -
+                  column: 4
+                  method: column_not_blank?
+              -
+                -
+                  column: 3
+                  value_in_set: 
+                    - All Classes
+                    - General Observations
+                    - Events
+                    - Events-General
+                    - Interventions
+                    - Interventions-General
+                    - Findings
+                    - Findings-General
+                -
+                  column: 4
+                  method: column_blank?
+          columns:
+          -
+            label: "Version" 
+            actions: []
+          -
+            label: "Class" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    General Observations: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 4
+                  method: column_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    General Observations: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 4
+                  method: column_blank?
+          -
+            label: "Dataset Name" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                additional:
+                  prefix: SDTM MODEL
+                condition:
+                  column: 4
+                  method: column_not_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                condition:
+                  column: 4
+                  method: column_not_blank?
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmClass::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_regex
+                object: child
+                property: prefixed
+                additional:
+                  regex: '^--'
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                additional:
+                  search: sdtm
+          -
+            label: "Variable Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: 
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                mapping:
+                  map:
+                    Char: Character
+                    Num: Numeric
+          -
+            label: "Controlled Terms or Format"  
+            actions: []
+          -
+            label: "Role"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    "": None
+                    Identifier: Identifier
+                    Topic: Topic
+                    Timing: Timing
+                    Rule: Rule
+                    Grouping Qualifier: Grouping
+                    Result Qualifier: Result
+                    Synonym Qualifier: Synonym
+                    Record Qualifier: Record
+                    Variable Qualifier: Variable
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                    - "Qualifier"
+                mapping:
+                  map:
+                    "": None
+                    Identifier: Identifier
+                    Topic: Topic
+                    Timing: Timing
+                    Rule: Rule
+                    Grouping Qualifier: Grouping
+                    Result Qualifier: Result
+                    Synonym Qualifier: Synonym
+                    Record Qualifier: Record
+                    Variable Qualifier: Variable
+          -
+            label: "Role Description"
+            actions: []
+          -
+            label: "Description"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                property: description
+    cdisc_sdtm_ig:
+      sheets:
+        version_1:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Seq. For Order"  
+              - "Observation Class" 
+              - "Domain Prefix" 
+              - "Variable Name (minus domain prefix)"  
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms, Codelist or Format"  
+              - "Role"
+              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "Core"
+          row:
+            conditions:
+              -
+                -
+                  column: 3
+                  method: column_not_blank?
+          columns:
+          -
+            label: "Domain Prefix" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmIgDomain
+                additional:
+                  prefix: SDTM IG
+              -
+                method: set_property
+                object: parent
+                property: prefix
+              -
+                method: set_property_with_lookup
+                object: parent
+                property: label
+                additional:
+                  sheet_name: Extra
+                  key_column: Domain Name
+                  value_column: Domain Label
+              -
+                method: set_property_with_lookup
+                object: parent
+                property: structure
+                additional:
+                  sheet_name: Extra
+                  key_column: Domain Name
+                  value_column: Domain Structure
+          -
+            label: "Observation Class" 
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: referenced_class
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                    Special Purpose: SDTM SPECIAL PURPOSE
+                    Special-Purpose: SDTM SPECIAL PURPOSE
+                    Trial Design: SDTM TRIAL DESIGN
+                    Relationship: SDTM RELATIONSHIPS
+                    Relationships: SDTM RELATIONSHIPS
+                    Study Reference: SDTM STUDY REFERENCE
+                    Associated Persons: SDTM ASSOCIATED PERSONS
+          -
+            label: "Variable Name (minus domain prefix)"  
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmIgDomain::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                additional:
+                  search: sdtm
+          -
+            label: "Seq. For Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: []
+          -
+            label: "Controlled Terms, Codelist or Format"  
+            actions: 
+              -
+                method: set_property
+                object: child
+                can_be_empty: true
+                property: ct_and_format
+              -
+                method: ct_other
+                object: child
+                can_be_empty: true
+                property: format
+          -
+            label: "Role"
+            actions: []
+          -
+            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                can_be_empty: true
+                property: description
+          -
+            label: "Core"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: compliance
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    Req: Required
+                    Exp: Expected
+                    Perm: Permissible
+        version_2:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Version"  
+              - "Seq. For Order"  
+              - "Observation Class" 
+              - "Domain Prefix" 
+              - "Variable Name (minus domain prefix)"  
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms or Format"  
+              - "Role"
+              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "Core"
+          row:
+            conditions:
+              -
+                -
+                  column: 4
+                  method: column_not_blank?
+          columns:
+          -
+            label: "Domain Prefix" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmIgDomain
+                additional:
+                  prefix: SDTM IG
+              -
+                method: set_property
+                object: parent
+                property: prefix
+              -
+                method: set_property_with_lookup
+                object: parent
+                property: label
+                additional:
+                  sheet_name: Extra
+                  key_column: Domain Name
+                  value_column: Domain Label
+              -
+                method: set_property_with_lookup
+                object: parent
+                property: structure
+                additional:
+                  sheet_name: Extra
+                  key_column: Domain Name
+                  value_column: Domain Structure
+          -
+            label: "Version" 
+            actions: []
+          -
+            label: "Observation Class" 
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: referenced_class
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                    Special Purpose: SDTM SPECIAL PURPOSE
+                    Special-Purpose: SDTM SPECIAL PURPOSE
+                    Trial Design: SDTM TRIAL DESIGN
+                    Relationship: SDTM RELATIONSHIPS
+                    Relationships: SDTM RELATIONSHIPS
+                    Study Reference: SDTM STUDY REFERENCE
+                    Associated Persons: SDTM ASSOCIATED PERSONS
+          -
+            label: "Variable Name (minus domain prefix)"  
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmIgDomain::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                additional:
+                  search: sdtm
+          -
+            label: "Seq. For Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: []
+          -
+            label: "Controlled Terms or Format"  
+            actions:
+              -
+                method: set_property
+                object: child
+                can_be_empty: true
+                property: ct_and_format
+              -
+                method: ct_other
+                object: child
+                can_be_empty: true
+                property: format
+          -
+            label: "Role"
+            actions: []
+          -
+            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                property: description
+          -
+            label: "Core"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: compliance
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    Req: Required
+                    Exp: Expected
+                    Perm: Permissible        
     cdisc_adam_ig:
       sheets:
-        main:
+        version_1:
           selection:
-            label: ADaM-IG
+            label: ADaM IG
           sheet:
             actions: []
             header_row:
@@ -222,21 +1212,23 @@ defaults: &defaults
           columns:
           -
             label: "Data Structure Name"
-            actions:
+            actions: 
               -
                 method: create_parent
                 object: parent
                 klass: AdamIgDataset
-                map:
-                  SUBJECT LEVEL ANALYSIS DATASET: ADAMIG ADSL
-                  BASIC DATA STRUCTURE: ADAMIG BDS
+                mapping:
+                  map:
+                    SUBJECT LEVEL ANALYSIS DATASET: ADSL
+                    BASIC DATA STRUCTURE: BDS
               -
                 method: set_property
                 object: parent
                 property: label
-                map:
-                  SUBJECT LEVEL ANALYSIS DATASET: Subject Level Analysis Dataset
-                  BASIC DATA STRUCTURE: Basic Data Structure
+                mapping:
+                  map:
+                    SUBJECT LEVEL ANALYSIS DATASET: Subject-Level Analysis Dataset
+                    BASIC DATA STRUCTURE: Basic Data Structure
           -
             label: "Dataset Name"
             actions: []
@@ -250,17 +1242,14 @@ defaults: &defaults
                 method: create_child
                 object: child
                 klass: AdamIgDataset::Variable
-                map: {}
               -
                 method: ordinal
                 object: child
                 property: ordinal
-                map: {}
               -
                 method: set_property
                 object: child
                 property: name
-                map: {}
           -
             label: "Variable Label"
             actions:
@@ -268,41 +1257,50 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: label
-                map: {}
           -
             label: "Type"
             actions:
               -
-                method: create_classification
+                method: set_property_with_tag
                 object: child
-                property: datatype
-                map:
-                  Char: Character
-                  Num: Numeric
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                mapping:
+                  map:
+                    Char: Character
+                    Num: Numeric
           -
             label: "Codelist/Controlled Terms"
             actions:
               -
-                method: ct_reference
+                method: set_property
                 object: child
+                can_be_empty: true
                 property: ct
-                map: {}
-              -
-                method: ct_other
-                object: child
-                property: ct_notes
-                map: {}
           -
             label: "Core"
             actions:
               -
-                method: create_classification
+                method: set_property_with_tag
                 object: child
                 property: compliance
-                map:
-                  Req: Required
-                  Perm: Permissible
-                  Cond: Conditional
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "ADAM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    Req: Required
+                    Cond: Conditional
+                    Perm: Permissible
           -
             label: "CDISC Notes"
             actions:
@@ -310,7 +1308,116 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: notes
-                map: {}
+        version_2:
+          selection:
+            label: ADaM IG
+          sheet:
+            actions: []
+            header_row:
+              - "Version"
+              - "Data Structure Name"
+              - "Dataset Name"
+              - "Variable Group"
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Codelist/Controlled Terms"
+              - "Core"
+              - "CDISC Notes"
+          columns:
+          -
+            label: "Dataset Name"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: AdamIgDataset
+          -
+            label: "Data Structure Name"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+          -
+            label: "Version"
+            actions: []
+          -
+            label: "Variable Group"
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: AdamIgDataset::Variable
+              -
+                method: ordinal
+                object: child
+                property: ordinal
+              -
+                method: set_property
+                object: child
+                property: name
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                mapping:
+                  map:
+                    Char: Character
+                    Num: Numeric
+          -
+            label: "Codelist/Controlled Terms"
+            actions:
+              -
+                method: set_property
+                object: child
+                can_be_empty: true
+                property: ct
+          -
+            label: "Core"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: compliance
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "ADAM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    Req: Required
+                    Cond: Conditional
+                    Perm: Permissible
+          -
+            label: "CDISC Notes"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: notes
     cdisc_term:
       sheets:
         version_1:
@@ -323,29 +1430,30 @@ defaults: &defaults
                 additional:
                   path:
                     - "CDISC"
-                map:
-                  ADaM:
-                    - ADaM
-                  CDASH:
-                    - CDASH
-                  SDTM:
-                    - SDTM
-                  Protocol:
-                    - Protocol
-                  SEND:
-                    - SEND
-                  "QS T":
-                    - QS
-                    - SDTM
-                  "QS-FT T":
-                    - QS-FT
-                    - SDTM
-                  COA:
-                    - COA
-                    - SDTM
-                  QRS:
-                    - QRS
-                    - SDTM
+                mapping:
+                  map:
+                    ADaM:
+                      - ADaM
+                    CDASH:
+                      - CDASH
+                    SDTM:
+                      - SDTM
+                    Protocol:
+                      - Protocol
+                    SEND:
+                      - SEND
+                    "QS T":
+                      - QS
+                      - SDTM
+                    "QS-FT T":
+                      - QS-FT
+                      - SDTM
+                    COA:
+                      - COA
+                      - SDTM
+                    QRS:
+                      - QRS
+                      - SDTM
             header_row:
               - "Code"
               - "Codelist Code"
@@ -364,12 +1472,10 @@ defaults: &defaults
                 method: c_code?
                 object: NA
                 klass: NA
-                map: {}
               -
                 method: create_parent
                 object: parent
                 klass: CdiscCl
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -377,7 +1483,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: identifier
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -391,7 +1496,6 @@ defaults: &defaults
                 method: create_child
                 object: child
                 klass: CdiscCli
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -399,7 +1503,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: identifier
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -416,7 +1519,6 @@ defaults: &defaults
                 method: c_code?
                 object: NA
                 klass: NA
-                map: {}
           -
             label: "Codelist Extensible (Yes/No)"
             actions:
@@ -424,9 +1526,10 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: extensible
-                map:
-                  "Yes": true
-                  "No": false
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -437,7 +1540,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: label
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -448,7 +1550,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: notation
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -456,7 +1557,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: notation
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -468,7 +1568,6 @@ defaults: &defaults
                 object: parent
                 property: preferred_term
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -477,7 +1576,6 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -486,7 +1584,6 @@ defaults: &defaults
                 object: child
                 property: label
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -497,7 +1594,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: definition
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -505,7 +1601,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: definition
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -517,7 +1612,6 @@ defaults: &defaults
                 object: parent
                 property: synonym
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ";"
                 condition:
@@ -528,7 +1622,6 @@ defaults: &defaults
                 object: child
                 property: synonym
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ";"
                 condition:
@@ -547,29 +1640,30 @@ defaults: &defaults
                 additional:
                   path:
                     - "CDISC"
-                map:
-                  ADaM:
-                    - ADaM
-                  CDASH:
-                    - CDASH
-                  SDTM:
-                    - SDTM
-                  Protocol:
-                    - Protocol
-                  SEND:
-                    - SEND
-                  "QS T":
-                    - QS
-                    - SDTM
-                  "QS-FT T":
-                    - QS-FT
-                    - SDTM
-                  COA:
-                    - COA
-                    - SDTM
-                  QRS:
-                    - QRS
-                    - SDTM
+                mapping:
+                  map:
+                    ADaM:
+                      - ADaM
+                    CDASH:
+                      - CDASH
+                    SDTM:
+                      - SDTM
+                    Protocol:
+                      - Protocol
+                    SEND:
+                      - SEND
+                    "QS T":
+                      - QS
+                      - SDTM
+                    "QS-FT T":
+                      - QS-FT
+                      - SDTM
+                    COA:
+                      - COA
+                      - SDTM
+                    QRS:
+                      - QRS
+                      - SDTM
             header_row:
               - "Code"
               - "Codelist Code"
@@ -590,12 +1684,10 @@ defaults: &defaults
                 method: c_code?
                 object: NA
                 klass: NA
-                map: {}
               -
                 method: create_parent
                 object: parent
                 klass: CdiscCl
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -603,7 +1695,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: identifier
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -617,7 +1708,6 @@ defaults: &defaults
                 method: create_child
                 object: child
                 klass: CdiscCli
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -625,7 +1715,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: identifier
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -642,7 +1731,6 @@ defaults: &defaults
                 method: c_code?
                 object: NA
                 klass: NA
-                map: {}
           -
             label: "Codelist Extensible (Yes/No)"
             actions:
@@ -650,9 +1738,10 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: extensible
-                map:
-                  "Yes": true
-                  "No": false
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -663,7 +1752,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: label
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -674,7 +1762,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: notation
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -682,7 +1769,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: notation
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -697,7 +1783,6 @@ defaults: &defaults
                 object: parent
                 property: synonym
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ";"
                 condition:
@@ -708,7 +1793,6 @@ defaults: &defaults
                 object: child
                 property: synonym
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ";"
                 condition:
@@ -721,7 +1805,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: definition
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -729,7 +1812,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: definition
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -741,7 +1823,6 @@ defaults: &defaults
                 object: parent
                 property: preferred_term
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -750,7 +1831,6 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -759,7 +1839,6 @@ defaults: &defaults
                 object: child
                 property: label
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -779,29 +1858,30 @@ defaults: &defaults
                 additional:
                   path:
                     - "CDISC"
-                map:
-                  ADaM:
-                    - ADaM
-                  CDASH:
-                    - CDASH
-                  SDTM:
-                    - SDTM
-                  Protocol:
-                    - Protocol
-                  SEND:
-                    - SEND
-                  "QS T":
-                    - QS
-                    - SDTM
-                  "QS-FT T":
-                    - QS-FT
-                    - SDTM
-                  COA:
-                    - COA
-                    - SDTM
-                  QRS:
-                    - QRS
-                    - SDTM
+                mapping:
+                  map:
+                    ADaM:
+                      - ADaM
+                    CDASH:
+                      - CDASH
+                    SDTM:
+                      - SDTM
+                    Protocol:
+                      - Protocol
+                    SEND:
+                      - SEND
+                    "QS T":
+                      - QS
+                      - SDTM
+                    "QS-FT T":
+                      - QS-FT
+                      - SDTM
+                    COA:
+                      - COA
+                      - SDTM
+                    QRS:
+                      - QRS
+                      - SDTM
             header_row:
               - "Code"
               - "Codelist Code"
@@ -822,12 +1902,10 @@ defaults: &defaults
                 method: c_code?
                 object: NA
                 klass: NA
-                map: {}
               -
                 method: create_parent
                 object: parent
                 klass: CdiscCl
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -835,7 +1913,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: identifier
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -849,7 +1926,6 @@ defaults: &defaults
                 method: create_child
                 object: child
                 klass: CdiscCli
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -857,7 +1933,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: identifier
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -874,7 +1949,6 @@ defaults: &defaults
                 method: c_code?
                 object: NA
                 klass: NA
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -885,9 +1959,10 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: extensible
-                map:
-                  "Yes": true
-                  "No": false
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
                 condition:
                   method: column_blank?
                   column: 2
@@ -898,7 +1973,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: label
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -909,7 +1983,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: notation
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -917,7 +1990,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: notation
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -932,7 +2004,6 @@ defaults: &defaults
                 object: parent
                 property: synonym
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ";"
                 condition:
@@ -943,7 +2014,6 @@ defaults: &defaults
                 object: child
                 property: synonym
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ";"
                 condition:
@@ -956,7 +2026,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: definition
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -964,7 +2033,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: definition
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -976,7 +2044,6 @@ defaults: &defaults
                 object: parent
                 property: preferred_term
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -985,7 +2052,6 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -994,7 +2060,6 @@ defaults: &defaults
                 object: child
                 property: label
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -1014,29 +2079,30 @@ defaults: &defaults
                 additional:
                   path:
                     - "CDISC"
-                map:
-                  ADaM:
-                    - ADaM
-                  CDASH:
-                    - CDASH
-                  SDTM:
-                    - SDTM
-                  Protocol:
-                    - Protocol
-                  SEND:
-                    - SEND
-                  "QS T":
-                    - QS
-                    - SDTM
-                  "QS-FT T":
-                    - QS-FT
-                    - SDTM
-                  COA:
-                    - COA
-                    - SDTM
-                  QRS:
-                    - QRS
-                    - SDTM
+                mapping:
+                  map:
+                    ADaM:
+                      - ADaM
+                    CDASH:
+                      - CDASH
+                    SDTM:
+                      - SDTM
+                    Protocol:
+                      - Protocol
+                    SEND:
+                      - SEND
+                    "QS T":
+                      - QS
+                      - SDTM
+                    "QS-FT T":
+                      - QS-FT
+                      - SDTM
+                    COA:
+                      - COA
+                      - SDTM
+                    QRS:
+                      - QRS
+                      - SDTM
             header_row:
               - "Code"
               - "Codelist Code"
@@ -1055,12 +2121,10 @@ defaults: &defaults
                 method: c_code?
                 object: NA
                 klass: NA
-                map: {}
               -
                 method: create_parent
                 object: parent
                 klass: CdiscCl
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -1068,7 +2132,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: identifier
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -1082,7 +2145,6 @@ defaults: &defaults
                 method: create_child
                 object: child
                 klass: CdiscCli
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -1090,7 +2152,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: identifier
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -1107,7 +2168,6 @@ defaults: &defaults
                 method: c_code?
                 object: NA
                 klass: NA
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -1118,9 +2178,10 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: extensible
-                map:
-                  "Yes": true
-                  "No": false
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
                 condition:
                   method: column_blank?
                   column: 2
@@ -1131,7 +2192,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: label
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -1142,7 +2202,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: notation
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -1150,7 +2209,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: notation
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -1165,7 +2223,6 @@ defaults: &defaults
                 object: parent
                 property: synonym
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ";"
                 condition:
@@ -1176,7 +2233,6 @@ defaults: &defaults
                 object: child
                 property: synonym
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ";"
                 condition:
@@ -1189,7 +2245,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: definition
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -1197,7 +2252,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: definition
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -1209,7 +2263,6 @@ defaults: &defaults
                 object: parent
                 property: preferred_term
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -1218,7 +2271,6 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -1227,7 +2279,6 @@ defaults: &defaults
                 object: child
                 property: label
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -1241,31 +2292,32 @@ defaults: &defaults
                 additional:
                   path:
                     - "CDISC"
-                map:
-                  ADaM:
-                    - ADaM
-                  CDASH:
-                    - CDASH
-                  SDTM:
-                    - SDTM
-                  Protocol:
-                    - Protocol
-                  SEND:
-                    - SEND
-                  "QS T":
-                    - QS
-                    - SDTM
-                  "QS-FT T":
-                    - QS-FT
-                    - SDTM
-                  COA:
-                    - COA
-                    - SDTM
-                  QRS:
-                    - QRS
-                    - SDTM
-                  "Def-XML":
-                    - Define-XML
+                mapping:
+                  map:
+                    ADaM:
+                      - ADaM
+                    CDASH:
+                      - CDASH
+                    SDTM:
+                      - SDTM
+                    Protocol:
+                      - Protocol
+                    SEND:
+                      - SEND
+                    "QS T":
+                      - QS
+                      - SDTM
+                    "QS-FT T":
+                      - QS-FT
+                      - SDTM
+                    COA:
+                      - COA
+                      - SDTM
+                    QRS:
+                      - QRS
+                      - SDTM
+                    "Def-XML":
+                      - Define-XML
             header_row:
               - "Code"
               - "Codelist Code"
@@ -1283,12 +2335,10 @@ defaults: &defaults
                 method: c_code?
                 object: NA
                 klass: NA
-                map: {}
               -
                 method: create_parent
                 object: parent
                 klass: CdiscCl
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -1296,7 +2346,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: identifier
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -1310,7 +2359,6 @@ defaults: &defaults
                 method: create_child
                 object: child
                 klass: CdiscCli
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -1318,7 +2366,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: identifier
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -1335,7 +2382,6 @@ defaults: &defaults
                 method: c_code?
                 object: NA
                 klass: NA
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -1346,10 +2392,11 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: extensible
-                map:
-                  "Yes": true
-                  "No": false
-                  "NA": false
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
+                    "NA": false
                 condition:
                   method: column_blank?
                   column: 2
@@ -1360,7 +2407,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: label
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -1371,7 +2417,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: notation
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -1379,7 +2424,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: notation
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -1391,7 +2435,6 @@ defaults: &defaults
                 object: parent
                 property: synonym
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ";"
                 condition:
@@ -1402,7 +2445,6 @@ defaults: &defaults
                 object: child
                 property: synonym
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ";"
                 condition:
@@ -1415,7 +2457,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: definition
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -1423,7 +2464,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: definition
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -1435,7 +2475,6 @@ defaults: &defaults
                 object: parent
                 property: preferred_term
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_blank?
                   column: 2
@@ -1444,7 +2483,6 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -1453,7 +2491,6 @@ defaults: &defaults
                 object: child
                 property: label
                 can_be_empty: false
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -1470,11 +2507,12 @@ defaults: &defaults
                   path:
                     - "Process"
                     - "Scope"
-                map:
-                  Harmonized:
-                    - Global
-                  Study:
-                    - Study
+                mapping:
+                  map:
+                    Harmonized:
+                      - Global
+                    Study:
+                      - Study
             header_row:
               - "CODELIST_LONG_NAME"
               - "CODELIST_SHORT_NAME"
@@ -1504,12 +2542,10 @@ defaults: &defaults
                 method: create_parent
                 object: parent
                 klass: Import::STFOClasses::STFOCodeList
-                map: {}
               -
                 method: set_property
                 object: parent
                 property: notation
-                map: {}
           -
             label: "CODELIST_CODE"
             actions:
@@ -1522,7 +2558,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: identifier
-                map: {}
           -
             label: "CODELIST_LONG_NAME"
             actions:
@@ -1530,13 +2565,11 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: label
-                map: {}
               -
                 method: create_shared
                 object: parent
                 property: preferred_term
                 can_be_empty: false
-                map: {}
           -
             label: "CODELIST_EXTENSIBLE"
             actions:
@@ -1544,9 +2577,10 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: extensible
-                map:
-                  "Yes": true
-                  "No": false
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
           -
             label: "CODELIST_DEFINITION"
             actions:
@@ -1554,7 +2588,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: definition
-                map: {}
           -
             label: "CODE"
             actions:
@@ -1567,12 +2600,10 @@ defaults: &defaults
                 method: create_child
                 object: child
                 klass: Import::STFOClasses::STFOCodeListItem
-                map: {}
               -
                 method: set_property
                 object: child
                 property: identifier
-                map: {}
           -
             label: "SUBMISSION_VALUE"
             actions:
@@ -1580,12 +2611,10 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: notation
-                map: {}
               -
                 method: create_shared
                 object: child
                 property: preferred_term
-                map: {}
                 condition:
                   method: column_blank?
                   column:
@@ -1595,7 +2624,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: label
-                map: {}
                 condition:
                   method: column_blank?
                   column:
@@ -1609,13 +2637,11 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 can_be_empty: true
-                map: {}
               -
                 method: set_property
                 object: child
                 property: label
                 can_be_empty: true
-                map: {}
                 condition:
                   method: column_blank?
                   column:
@@ -1628,7 +2654,6 @@ defaults: &defaults
                 object: child
                 property: synonym
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ";"
           -
@@ -1638,7 +2663,6 @@ defaults: &defaults
                 method: set_property_with_default
                 object: child
                 property: definition
-                map: {}
                 additional:
                   default: "Not defined."
           -
@@ -1652,7 +2676,6 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 can_be_empty: true
-                map: {}
                 condition:
                   method: column_blank?
                   column: 8
@@ -1661,7 +2684,6 @@ defaults: &defaults
                 object: child
                 property: label
                 can_be_empty: true
-                map: {}
                 condition:
                   method: column_not_blank?
                   column: 12
@@ -1677,9 +2699,10 @@ defaults: &defaults
               -
                 method: set_column_tag
                 object: parent
-                map:
-                  "Y": "DC Stage"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "DC Stage"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -1687,9 +2710,10 @@ defaults: &defaults
               -
                 method: set_column_tag
                 object: child
-                map:
-                  "Y": "DC Stage"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "DC Stage"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -1700,9 +2724,10 @@ defaults: &defaults
               -
                 method: set_column_tag
                 object: parent
-                map:
-                  "Y": "SDTM Stage"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "SDTM Stage"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -1710,9 +2735,10 @@ defaults: &defaults
               -
                 method: set_column_tag
                 object: child
-                map:
-                  "Y": "SDTM Stage"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "SDTM Stage"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -1723,9 +2749,10 @@ defaults: &defaults
               -
                 method: set_column_tag
                 object: parent
-                map:
-                  "Y": "ADaM Stage"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "ADaM Stage"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -1733,9 +2760,10 @@ defaults: &defaults
               -
                 method: set_column_tag
                 object: child
-                map:
-                  "Y": "ADaM Stage"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "ADaM Stage"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -1750,7 +2778,7 @@ defaults: &defaults
           #       method: set_column_tag
           #       object: child
           #       can_be_empty: true
-          #       map:
+          #       mapping:
           #         "Y": "Study"
           #       additional:
           #         path:
@@ -1763,7 +2791,7 @@ defaults: &defaults
           #       method: set_column_tag
           #       object: child
           #       can_be_empty: true
-          #       map:
+          #       mapping:
           #         "Y": "Global"
           #         "N": ""
           #       additional:
@@ -1781,11 +2809,12 @@ defaults: &defaults
                   path:
                     - "Process"
                     - "Scope"
-                map:
-                  Harmonized:
-                    - Global
-                  Study:
-                    - Study
+                mapping:
+                  map:
+                    Harmonized:
+                      - Global
+                    Study:
+                      - Study
             header_row:
               - "CODELIST_LONG_NAME"
               - "CODELIST_SHORT_NAME"
@@ -1815,12 +2844,10 @@ defaults: &defaults
                 method: create_parent
                 object: parent
                 klass: Import::STFOClasses::STFOCodeList
-                map: {}
               -
                 method: set_property
                 object: parent
                 property: notation
-                map: {}
           -
             label: "CODELIST_CODE"
             actions:
@@ -1833,7 +2860,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: identifier
-                map: {}
           -
             label: "CODELIST_LONG_NAME"
             actions:
@@ -1841,12 +2867,10 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: label
-                map: {}
               -
                 method: create_shared
                 object: parent
                 property: preferred_term
-                map: {}
           -
             label: "CODELIST_EXTENSIBLE"
             actions:
@@ -1854,9 +2878,10 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: extensible
-                map:
-                  "Yes": true
-                  "No": false
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
           -
             label: "CODELIST_DEFINITION"
             actions:
@@ -1864,7 +2889,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: definition
-                map: {}
           -
             label: "CODE"
             actions:
@@ -1877,12 +2901,10 @@ defaults: &defaults
                 method: create_child
                 object: child
                 klass: Import::STFOClasses::STFOCodeListItem
-                map: {}
               -
                 method: set_property
                 object: child
                 property: identifier
-                map: {}
           -
             label: "SUBMISSION_VALUE"
             actions:
@@ -1890,12 +2912,10 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: notation
-                map: {}
               -
                 method: create_shared
                 object: child
                 property: preferred_term
-                map: {}
                 condition:
                   method: column_blank?
                   column:
@@ -1909,7 +2929,6 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 can_be_empty: true
-                map: {}
           -
             label: "SYNONYM"
             actions:
@@ -1918,7 +2937,6 @@ defaults: &defaults
                 object: child
                 property: synonym
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ";"
           -
@@ -1928,7 +2946,6 @@ defaults: &defaults
                 method: set_property_with_default
                 object: child
                 property: definition
-                map: {}
                 additional:
                   default: "Not defined."
           -
@@ -1942,7 +2959,6 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 can_be_empty: true
-                map: {}
                 condition:
                   method: column_blank?
                   column: 8
@@ -1958,9 +2974,10 @@ defaults: &defaults
               -
                 method: set_column_tag
                 object: parent
-                map:
-                  "Y": "CRF GL Use"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "CRF GL Use"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -1968,9 +2985,10 @@ defaults: &defaults
               -
                 method: set_column_tag
                 object: child
-                map:
-                  "Y": "CRF GL Use"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "CRF GL Use"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -1981,9 +2999,10 @@ defaults: &defaults
               -
                 method: set_column_tag
                 object: parent
-                map:
-                  "Y": "SDTM Use"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "SDTM Use"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -1991,9 +3010,10 @@ defaults: &defaults
               -
                 method: set_column_tag
                 object: child
-                map:
-                  "Y": "SDTM Use"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "SDTM Use"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -2004,9 +3024,10 @@ defaults: &defaults
               -
                 method: set_column_tag
                 object: parent
-                map:
-                  "Y": "ADaM Use"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "ADaM Use"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -2014,9 +3035,10 @@ defaults: &defaults
               -
                 method: set_column_tag
                 object: child
-                map:
-                  "Y": "ADaM Use"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "ADaM Use"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -2028,9 +3050,10 @@ defaults: &defaults
                 method: set_column_tag
                 object: parent
                 can_be_empty: true
-                map:
-                  "Y": "ED Use"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "ED Use"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -2039,9 +3062,10 @@ defaults: &defaults
                 method: set_column_tag
                 object: child
                 can_be_empty: true
-                map:
-                  "Y": "ED Use"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "ED Use"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -2053,9 +3077,10 @@ defaults: &defaults
                 method: set_column_tag
                 object: parent
                 can_be_empty: true
-                map:
-                  "Y": "Study Use"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "Study Use"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -2064,9 +3089,10 @@ defaults: &defaults
                 method: set_column_tag
                 object: child
                 can_be_empty: true
-                map:
-                  "Y": "Study Use"
-                  "N": ""
+                mapping:
+                  map:
+                    "Y": "Study Use"
+                    "N": ""
                 additional:
                   path:
                     - Process
@@ -2087,11 +3113,12 @@ defaults: &defaults
                   path:
                     - "Process"
                     - "Scope"
-                map:
-                  Harmonized:
-                    - Global
-                  Study:
-                    - Study
+                mapping:
+                  map:
+                    Harmonized:
+                      - Global
+                    Study:
+                      - Study
             header_row:
               - "CODELIST_LONG_NAME"
               - "CODELIST_SHORT_NAME"
@@ -2115,12 +3142,10 @@ defaults: &defaults
                 method: create_parent
                 object: parent
                 klass: Import::STFOClasses::STFOCodeList
-                map: {}
               -
                 method: set_property
                 object: parent
                 property: notation
-                map: {}
           -
             label: "CODELIST_CODE"
             actions: []
@@ -2131,12 +3156,10 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: label
-                map: {}
               -
                 method: create_shared
                 object: parent
                 property: preferred_term
-                map: {}
           -
             label: "CODELIST_EXTENSIBLE"
             actions:
@@ -2144,9 +3167,10 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: extensible
-                map:
-                  "Yes": true
-                  "No": false
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
           -
             label: "CODELIST_DEFINITION"
             actions:
@@ -2154,7 +3178,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: definition
-                map: {}
           -
             label: "CODE"
             actions:
@@ -2162,7 +3185,6 @@ defaults: &defaults
                 method: create_child
                 object: child
                 klass: Import::STFOClasses::STFOCodeListItem
-                map: {}
           -
             label: "SUBMISSION_VALUE"
             actions:
@@ -2170,12 +3192,10 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: notation
-                map: {}
               -
                 method: create_shared
                 object: child
                 property: preferred_term
-                map: {}
                 condition:
                   method: column_blank?
                   column:
@@ -2189,7 +3209,6 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 can_be_empty: true
-                map: {}
           -
             label: "SYNONYM"
             actions:
@@ -2198,7 +3217,6 @@ defaults: &defaults
                 object: child
                 property: synonym
                 can_be_empty: true
-                map: {}
                 additional:
                   token: ";"
           -
@@ -2208,7 +3226,6 @@ defaults: &defaults
                 method: set_property_with_default
                 object: child
                 property: definition
-                map: {}
                 additional:
                   default: "Not defined."
           -
@@ -2222,7 +3239,6 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 can_be_empty: true
-                map: {}
                 condition:
                   method: column_blank?
                   column: 8
@@ -2337,16 +3353,18 @@ test:
                 method: create_parent
                 object: parent
                 klass: ParentClass
-                map:
-                  P1: P1
-                  P2: P2
+                mapping:
+                  map:
+                    P1: P1
+                    P2: P2
               -
                 method: set_property
                 object: parent
                 property: label
-                map:
-                  P1: Parent One
-                  P2: Parent Two
+                mapping:
+                  map:
+                    P1: Parent One
+                    P2: Parent Two
           -
             label: CHILD
             actions:
@@ -2354,17 +3372,14 @@ test:
                 method: create_child
                 object: child
                 klass: ChildClass
-                map: {}
               -
                 method: ordinal
                 object: child
                 property: ordinal
-                map: {}
               -
                 method: set_property
                 object: child
                 property: label
-                map: {}
           -
             label: CT
             actions:
@@ -2372,12 +3387,10 @@ test:
                 method: ct_reference
                 object: child
                 property: ct
-                map: {}
               -
                 method: ct_other
                 object: child
                 property: ct_notes
-                map: {}
           -
             label: DATATYPE
             actions:
@@ -2385,9 +3398,10 @@ test:
                 method: create_classification
                 object: child
                 property: datatype
-                map:
-                  CHAR: Character
-                  NUM: Numeric
+                mapping:
+                  map:
+                    CHAR: Character
+                    NUM: Numeric
           -
             label: CORE
             actions:
@@ -2395,10 +3409,11 @@ test:
                 method: create_classification
                 object: child
                 property: compliance
-                map:
-                  R: Required
-                  P: Permissible
-                  E: Conditional
+                mapping:
+                  map:
+                    R: Required
+                    P: Permissible
+                    E: Conditional
     test_2:
       sheets:
         sheet_1:
@@ -2419,16 +3434,18 @@ test:
                 method: create_parent
                 object: parent
                 klass: ParentClass
-                map:
-                  X1: Parent One
-                  X2: Parent Two
+                mapping:
+                  map:
+                    X1: Parent One
+                    X2: Parent Two
               -
                 method: set_property
                 object: parent
                 property: label
-                map:
-                  X1: Parent One
-                  X2: Parent Two
+                mapping:
+                  map:
+                    X1: Parent One
+                    X2: Parent Two
           -
             label: CHILD
             actions:
@@ -2436,17 +3453,14 @@ test:
                 method: create_child
                 object: child
                 klass: ChildClass
-                map: {}
               -
                 method: ordinal
                 object: child
                 property: ordinal
-                map: {}
               -
                 method: set_property
                 object: child
                 property: label
-                map: {}
           -
             label: CT
             actions:
@@ -2454,12 +3468,10 @@ test:
                 method: ct_reference
                 object: child
                 property: ct
-                map: {}
               -
                 method: ct_other
                 object: child
                 property: ct_notes
-                map: {}
           -
             label: DATATYPE
             actions:
@@ -2467,9 +3479,10 @@ test:
                 method: create_classification
                 object: child
                 property: datatype
-                map:
-                  CHAR: Character
-                  NUM: Numeric
+                mapping:
+                  map:
+                    CHAR: Character
+                    NUM: Numeric
           -
             label: CORE
             actions:
@@ -2477,10 +3490,11 @@ test:
                 method: create_classification
                 object: child
                 property: compliance
-                map:
-                  R: Required
-                  P: Permissible
-                  E: Conditional
+                mapping:
+                  map:
+                    R: Required
+                    P: Permissible
+                    E: Conditional
     test_3:
       sheets:
         sheet_1:
@@ -2501,16 +3515,18 @@ test:
                 method: create_parent
                 object: parent
                 klass: ParentClass
-                map:
-                  P1: P1
-                  P2: P2
+                mapping:
+                  map:
+                    P1: P1
+                    P2: P2
               -
                 method: set_property
                 object: parent
                 property: label
-                map:
-                  P1: Parent One
-                  P2: Parent Two
+                mapping:
+                  map:
+                    P1: Parent One
+                    P2: Parent Two
           -
             label: CHILD
             actions:
@@ -2518,17 +3534,14 @@ test:
                 method: create_child
                 object: child
                 klass: ChildClass
-                map: {}
               -
                 method: ordinal
                 object: child
                 property: ordinal
-                map: {}
               -
                 method: set_property
                 object: child
                 property: label
-                map: {}
           -
             label: CT
             actions:
@@ -2536,12 +3549,11 @@ test:
                 method: ct_reference
                 object: child
                 property: ct
-                map: {}
+                can_be_empty: true
               -
                 method: ct_other
                 object: child
                 property: ct_notes
-                map: {}
                 condition:
                   method: column_blank?
                   column: 3
@@ -2552,9 +3564,10 @@ test:
                 method: create_classification
                 object: child
                 property: datatype
-                map:
-                  CHAR: Character
-                  NUM: Numeric
+                mapping:
+                  map:
+                    CHAR: Character
+                    NUM: Numeric
           -
             label: CORE
             actions:
@@ -2562,10 +3575,11 @@ test:
                 method: create_classification
                 object: child
                 property: compliance
-                map:
-                  R: Required
-                  P: Permissible
-                  E: Conditional
+                mapping:
+                  map:
+                    R: Required
+                    P: Permissible
+                    E: Conditional
     test_4:
       sheets:
         sheet_1:
@@ -2604,9 +3618,11 @@ test:
           selection:
             label: Sheet1
           row:
-            condition:
-              method: column_affirmative?
-              column: 3
+            conditions:
+              -
+                - 
+                  method: column_affirmative?
+                  column: 3
           sheet:
             header_row: []
           columns: []

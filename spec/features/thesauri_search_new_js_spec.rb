@@ -142,12 +142,12 @@ describe "Thesauri Search", :type => :feature do
       wait_for_ajax(10)
       context_menu_element("history", 1, "0.1.0", :make_current)
       wait_for_ajax(10)
-      ui_check_table_row_indicators("history", 1, 8, ["Current version"])
+      ui_check_table_row_indicators("history", 1, 8, ["Current version"], new_style: true)
       click_navbar_cdisc_terminology
       wait_for_ajax(30)
       context_menu_element("history", 1, "2009-10-06", :make_current)
       wait_for_ajax(10)
-      ui_check_table_row_indicators("history", 3, 8, ["Current version"])
+      ui_check_table_row_indicators("history", 3, 8, ["Current version"], new_style: true)
       click_navbar_terminology
       click_link 'Search Terminologies'
       sleep 0.6
@@ -197,7 +197,7 @@ describe "Thesauri Search", :type => :feature do
       sleep 0.7
       dialog = find "#information-dialog-search"
       expect(dialog).to have_content "How to use Search"
-      dialog.find(".show-more-btn").click
+      dialog.find(".expandable-content-btn").click
       expect(dialog).to have_content "Valid examples:"
       click_on "Dismiss"
       sleep 0.7

@@ -25,7 +25,7 @@ describe 'sdtm_igs/import.html.erb', :type => :view do
     assign(:sdtm_models, SdtmModel.all)
     assign(:sdtm_ig, SdtmIg.new)
     assign(:files, [ "a.xlsx", "b.xlsx", "c.xlsx" ])
-    assign(:next_version, SdtmIg.all.last.next_version)
+    assign(:next_version, SdtmIg.all.last.next_integer_version)
 
     render
 

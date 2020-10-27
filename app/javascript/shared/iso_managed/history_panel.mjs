@@ -1,10 +1,10 @@
-import TablePanel from 'shared/base/table_panel';
+import TablePanel from 'shared/base/table_panel'
 
-import rsHelper from 'shared/iso_registration_state/rs_history';
-import { render as renderMenu } from 'shared/ui/context_menu';
-import { $delete } from 'shared/helpers/ajax';
-import { $confirm } from 'shared/helpers/confirmable';
-import { dtLastChangeDateColumn, dtIndicatorsColumn, dtContextMenuColumn } from 'shared/helpers/dt_columns';
+import rsHelper from 'shared/iso_registration_state/rs_history'
+import { render as renderMenu } from 'shared/ui/context_menu'
+import { $delete } from 'shared/helpers/ajax'
+import { $confirm } from 'shared/helpers/confirmable'
+import { dtDateTimeColumn, dtIndicatorsColumn, dtContextMenuColumn, dtVersionColumn } from 'shared/helpers/dt/dt_columns'
 
 /**
  * History Panel
@@ -47,7 +47,7 @@ export default class HistoryPanel extends TablePanel {
     // Update RS
     this._clickListener({
       target: ".registration-state",
-      handler: (e) => rsHelper.updateRS(this._getRowData(e.target))
+      handler: (e) => rsHelper.updateRS(this._getRowDataFrom$(e.target))
     });
 
     // Delete
@@ -56,7 +56,7 @@ export default class HistoryPanel extends TablePanel {
       handler: (e) => $confirm({
         dangerous: true,
         callback: () => $delete({
-          url: this._getRowData(e.target).delete_path,
+          url: this._getRowDataFrom$(e.target).delete_path,
           done: () => location.reload()
         })
       })
@@ -66,7 +66,7 @@ export default class HistoryPanel extends TablePanel {
     this._clickListener({
       target: ".context-menu a:contains('Impact Analysis')",
       handler: (e) => {
-        let url = this._getRowData(e.target).impact_path;
+        let url = this._getRowDataFrom$(e.target).impact_path;
         new CdiscVersionSelect((date, id) => location.href = url.replace('thId', id), 'impact').open();
       }
     });
@@ -75,7 +75,7 @@ export default class HistoryPanel extends TablePanel {
     this._clickListener({
       target: ".context-menu a:contains('Clone')",
       handler: (e) => {
-        let url = this._getRowData(e.target).clone_path;
+        let url = this._getRowDataFrom$(e.target).clone_path;
         $("#newTerminologyModal form#new_thesaurus").attr("action", url);
       }
     });
@@ -84,7 +84,7 @@ export default class HistoryPanel extends TablePanel {
     this._clickListener({
       target: ".context-menu a:contains('Compare')",
       handler: (e) => {
-        let url = this._getRowData(e.target).compare_path;
+        let url = this._getRowDataFrom$(e.target).compare_path;
         this.itemSelector.setCallback((s) => location.href = `${url}?${$.param( { thesauri: { thesaurus_id: s.thesauri[0].id } } )}`) // TODO: Fix
         this.itemSelector.show();
       }
@@ -138,7 +138,8 @@ export default class HistoryPanel extends TablePanel {
       { url: data.list_cn_path, icon: "icon-note", text: "List Change notes", endOffset: 1, types: ["managed_concept"] },
       { url: data.current_path, icon: "icon-current", text: "Make current", disabled: (data.indicators.current), endOffset: 2, types: ["all"] },
       { url: data.clone_path, target: "#newTerminologyModal", icon: "icon-copy", text: "Clone", endOffset: 2, types: ["thesauri"], dataToggle: "modal" },
-      { url: data.compare_path, target: "#", icon: "icon-compare", text: "Compare", dataToggle: "modal", endOffset: 2, types: ["thesauri", "cdisc_term"] }
+      { url: data.compare_path, target: "#", icon: "icon-compare", text: "Compare", dataToggle: "modal", endOffset: 2, types: ["thesauri", "cdisc_term"] },
+      { url: data.view_path, icon: "icon-forms", text: "CRF", endOffset: 1, types: ["form"] }
     ]
   }
 
@@ -175,10 +176,8 @@ export default class HistoryPanel extends TablePanel {
    */
   get _defaultColumns() {
     return [
-      {
-        render: (data, type, r, m) => type === "display" ? r.has_identifier.semantic_version : r.has_identifier.version
-      },
-      dtLastChangeDateColumn(),
+      dtVersionColumn(),
+      dtDateTimeColumn('last_change_date'),
       { data: "has_identifier.has_scope.short_name" },
       { data: "has_identifier.identifier" },
       { data: "label" },
@@ -193,14 +192,16 @@ export default class HistoryPanel extends TablePanel {
   }
 
   /**
-   * Initialize a new DataTable
+   * Extend default DataTable init options
+   * @return {Object} DataTable options object
    */
-  _initTable() {
+  get _tableOpts() {
     const options = super._tableOpts;
+
     options.columns = [...this._defaultColumns];
     options.language.emptyTable = "No versions found.";
 
-    this.table = $(this.selector).DataTable(options);
+    return options;
   }
 
   /**

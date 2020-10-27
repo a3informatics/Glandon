@@ -10,15 +10,21 @@ describe "Token Locks", :type => :feature do
   include WaitForAjaxHelper
 
   before :all do
-    data_files =
-    ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_subsets_1.ttl", "thesaurus_subsets_2.ttl",
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl",
+      "thesaurus_new_airports.ttl", "thesaurus_subsets_1.ttl", "thesaurus_subsets_2.ttl",
       "thesaurus_extension.ttl"]
     load_files(schema_files, data_files)
-    load_cdisc_term_versions((1..59))
+    load_cdisc_term_versions(1..65)
     load_local_file_into_triple_store("features/thesaurus/subset", "subsets_input_4.ttl")
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    load_test_file_into_triple_store("forms/CRF TEST 1.ttl")
+
     Token.delete_all
+
     ua_add_user email: "token_user_1@example.com", role: :curator
     ua_add_user email: "token_user_2@example.com", role: :curator
+
     NameValue.destroy_all
     NameValue.create(name: "thesaurus_parent_identifier", value: "123")
     NameValue.create(name: "thesaurus_child_identifier", value: "456")
@@ -83,29 +89,64 @@ describe "Token Locks", :type => :feature do
 
     end
 
-    it "locks a biomedical concept"
+    it "locks a biomedical concept", js:true do
 
-    it "locks a form (REQ-MDR-EL-010)"#, js:true do
+      in_browser(:one) do
+        ua_generic_login 'token_user_1@example.com'
+        click_navbar_bc
+        wait_for_ajax 20
+        ui_table_search('index', 'Height')
+        find(:xpath, "//tr[contains(.,'HEIGHT')]/td/a").click
+        expect(page).to have_content 'Version History of \'HEIGHT\''
+        wait_for_ajax 10
+        context_menu_element_v2('history', '0.1.0', :edit)
+        wait_for_ajax 10
+        expect(page).to have_content 'Biomedical Concept Editor'
+      end
 
-    #   in_browser(:one) do
-    #     ua_generic_login 'token_user_1@example.com'
-    #     click_navbar_forms
-    #     find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'History').click
-    #     expect(page).to have_content 'History: CRF TEST 1'
-    #     find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'Edit').click
-    #     expect(page).to have_content 'Edit:'
-    #   end
+      in_browser(:two) do
+        ua_generic_login 'token_user_2@example.com'
+        click_navbar_bc
+        wait_for_ajax 20
+        ui_table_search('index', 'Height')
+        find(:xpath, "//tr[contains(.,'HEIGHT')]/td/a").click
+        expect(page).to have_content 'Version History of \'HEIGHT\''
+        wait_for_ajax 10
+        context_menu_element_v2('history', '0.1.0', :edit)
+        wait_for_ajax 10
+        expect(page).to have_content 'The item is locked for editing by user: token_user_1@example.com.'
+      end
 
-    #   in_browser(:two) do
-    #     ua_generic_login 'token_user_2@example.com'
-    #     click_navbar_forms
-    #     find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'History').click
-    #     expect(page).to have_content 'History: CRF TEST 1'
-    #     find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'Edit').click
-    #     expect(page).to have_content 'The item is locked for editing by another user.'
-    #   end
+    end
 
-    # end
+    it "locks a form (REQ-MDR-EL-010)", js:true do
+
+      in_browser(:one) do
+        ua_generic_login 'token_user_1@example.com'
+        click_navbar_forms
+        wait_for_ajax 20
+        ui_table_search('index', 'CRF TEST 1')
+        find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a").click
+        expect(page).to have_content 'Version History of \'CRF TEST 1\''
+        wait_for_ajax 10
+        context_menu_element_v2('history', '0.1.0', :edit)
+        wait_for_ajax 10
+        expect(page).to have_content 'Form Editor'
+      end
+
+      in_browser(:two) do
+        ua_generic_login 'token_user_2@example.com'
+        click_navbar_forms
+        wait_for_ajax 20
+        ui_table_search('index', 'CRF TEST 1')
+        find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a").click
+        expect(page).to have_content 'Version History of \'CRF TEST 1\''
+        wait_for_ajax 10
+        context_menu_element_v2('history', '0.1.0', :edit)
+        expect(page).to have_content 'The item is locked for editing by user: token_user_1@example.com.'
+      end
+
+    end
 
     it "locks a domain (REQ-MDR-EL-010)"#, js:true do
 

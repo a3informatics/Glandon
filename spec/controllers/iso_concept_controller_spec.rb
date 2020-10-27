@@ -28,14 +28,14 @@ describe IsoConceptController do
     #  expect(response).to render_template("show")
     #end
 
-    it "show concept as JSON" do
-      concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :show, params:{id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      expect(response.body).to eq(concept.to_json.to_json)
-    end
+    # it "show concept as JSON" do
+    #   concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :show, params:{id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")
+    #   expect(response.body).to eq(concept.to_json.to_json)
+    # end
 
     it "returns the graph links for a concept" # do
     #  get :graph_links, params:{id: "F-ACME_VSBASELINE1_G1_G2", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
@@ -239,7 +239,7 @@ describe IsoConceptController do
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
       item = IsoConceptV2.new(uri: Uri.new(uri: "http://www.s-cubed.dk/T/V1#TH"))
       expect(IsoConceptV2).to receive(:find).and_return(item)
-      expect(item).to receive(:true_type).and_return("http://www.assero.co.uk/Thesaurus#Thesaurus")
+      expect(item).to receive(:find_rdf_type).and_return("http://www.assero.co.uk/Thesaurus#Thesaurus")
       expect(Thesaurus).to receive(:find_with_properties).and_return(Thesaurus.new)
       get :edit_tags, params:{id: item.uri.to_id}
       expect(response).to render_template("edit_tags")
@@ -251,7 +251,7 @@ describe IsoConceptController do
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
       item = IsoConceptV2.new(uri: Uri.new(uri: "http://www.s-cubed.dk/SomeUnmanagedConcept"))
       expect(IsoConceptV2).to receive(:find).and_return(item)
-      expect_any_instance_of(IsoConceptV2).to receive(:true_type).and_return("http://www.assero.co.uk/Thesaurus#UnmanagedConcept")
+      expect_any_instance_of(IsoConceptV2).to receive(:find_rdf_type).and_return("http://www.assero.co.uk/Thesaurus#UnmanagedConcept")
       expect(IsoConceptV2).to receive(:rdf_type_to_klass).and_return(Thesaurus::UnmanagedConcept)
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
@@ -264,10 +264,10 @@ describe IsoConceptController do
 
   describe "Unauthorized User" do
 
-    it "show a concept" do
-      get :show, params:{id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
-      expect(response).to redirect_to("/users/sign_in")
-    end
+    # it "show a concept" do
+    #   get :show, params:{id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
+    #   expect(response).to redirect_to("/users/sign_in")
+    # end
 
     it "add a tag" do
       put :add_tag, params:{id: "AAA"}

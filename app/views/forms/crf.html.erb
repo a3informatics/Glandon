@@ -1,8 +1,29 @@
-<% fourth_level_managed_item_breadcrumb(@form, "Forms", forms_path, history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id), "View:", 
-  view_forms_path(id: @form.id, namespace: @form.namespace), "CRF") %>
-<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "CRF:", :item => @form} %>
-<div class="col-md-8">
-    <%= @html.html_safe %>
-    <%= link_to "Report", crf_forms_path(:id => @form.id, :namespace => @form.namespace, :format => 'pdf'), :class => "btn ", :target => "_blank" %>
-    <%= link_to "Close", @close_path, :class => "btn " %>
+<% content_for :page_title do %> <%= "CRF: #{@form.has_identifier.identifier} (#{@form.semantic_version})" %> <% end %>
+
+<%= stylesheet_link_tag 'shared/forms/form_crf' %>
+
+<% third_level_breadcrumb(:forms, @form, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @form, :badge => "icon-forms"} do %>
+    <div class="actions-wrap">
+    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+
+  <div id="crf-panel" class="card col-md-12">
+
+    <div class="card-header">
+      CRF View
+    </div>
+
+    <div class="card-content">
+      <%= raw @html %>
+    </div>
+
+  </div>
 </div>

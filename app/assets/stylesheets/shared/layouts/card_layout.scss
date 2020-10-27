@@ -55,18 +55,22 @@
   width: 100% !important;
 }
 
-// Card Colored Borders 
+// Card Colored Borders
 
-div.warning {
-  border: 5px solid $accent-color-1;
+div.warning:not(.no-border) {
+  border: 2px solid $accent-color-1 !important;
 }
 
-div.danger{
-  border: 5px solid $accent-color-2;
+div.danger:not(.no-border) {
+  border: 2px solid $accent-color-2 !important;
 }
 
-div.info{
-  border: 5px solid $primary-color-bright;
+div.info:not(.no-border) {
+  border: 2px solid $primary-color-bright !important;
+}
+
+.card.danger:not(.no-border), .card.warning:not(.no-border), .card.info:not(.no-border) {
+  border-width: 5px;
 }
 
 .card.danger .card-content, .card.warning .card-content,

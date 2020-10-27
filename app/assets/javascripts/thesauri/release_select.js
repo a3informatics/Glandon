@@ -113,7 +113,7 @@ ReleaseSelect.prototype.referenceThUpdate = function(){
     },
     error: function (xhr, status, error) {
       $("#select-cdisc-ver-button").removeClass("disabled");
-      $(".tab-wrap .show-more-btn").click();
+      $(".tab-wrap .expandable-content-btn").click();
 			handleAjaxError(xhr, status, error);
 			this.tabs.cdiscTab.processing(false);
 		}
@@ -129,7 +129,7 @@ ReleaseSelect.prototype.setEventListeners = function(){
   var _this = this;
 
   // Timeline Slider displayed event handler
-  $(".card-with-tabs .show-more-btn").one("change", function(){
+  $(".card-with-tabs .expandable-content-btn").one("change", function(){
     _this.timeline.moveToDate(_this.timeline.l_slider, _this.cdiscCT.version);
     $(".timeline-container").data(_this.timeline);
   });

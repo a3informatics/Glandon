@@ -1,15 +1,20 @@
-<%= javascript_tag 'setPageTitle("Edit Locks")' %>
-<%= javascript_include_tag 'standard_datatable' %>
+<% content_for :page_title do %> Edit Locks <% end %>
+
+<%= javascript_pack_tag 'tokens/index' %>
 <% first_level_breadcrumb (:tokens) %>
-<h3>Index: Edit Locks</h3>
+
+<div class="row">
+	<%= render layout: "shared/headers/header_generic", :locals => { badge: "icon-lock", header_title: "",
+		main_text: "Edit Locks", sub_texts: "View and manage Edit Locks (Tokens)." } do %>
+	<% end %>
+</div>
+
 <div class="row">
 	<div class="col-md-12 card wide">
 		<div class="card-header">
-			Edit Locks (Tokens)
+			Active Edit Locks
 		</div>
 		<div class="card-content table-cardstyle">
-			<h4><span class="icon-lock text-prim-light"></span> Active Edit Locks:</h4>
-			<br/>
 			<table id="main" class="table table-striped table-bordered table-condensed">
 					<thead>
 					<tr>
@@ -29,9 +34,15 @@
 								<td><%= Time.at(@timeout - (Time.now - token.locked_at).to_i.abs).utc.strftime "%M:%S" %></td>
 								<td><%= token.item_uri %></td>
 								<td><%= token.item_info %></td>
-								<td><a class="icon-users text-link" href="<%=user_path(token.user_id)%>" target="_blank"></a></td>
+								<td>
+									<a class="icon-users text-link" href="<%=user_path(token.user_id)%>" target="_blank"></a>
+								</td>
 								<td><%= token.refresh_count %></td>
-								<td><%= link_to "Release", release_token_path(token.id), method: :post, data: { confirm: "Are you sure?" }, :class => "btn medium red" %></td>
+								<td>
+									<button class="btn btn-xs red release-lock" data-url="<%= release_token_path(token.id) %>" data-type="POST">
+										Release
+									</button>
+								</td>
 							</tr>
 						<% end %>
 				</tbody>

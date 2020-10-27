@@ -9,7 +9,9 @@
     <meta name="author" content="">
     <%= favicon_link_tag %>
 
-  	<title><%= "#{APP_CONFIG['application_name']}" %></title>
+  	<title>
+      <%= yield :page_title %> - <%= APP_CONFIG['application_name'] %>
+    </title>
 
     <% if !Rails.application.config.assets.precompile.include? "#{params[:controller]}.js" %>
       <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -19,10 +21,12 @@
       <%= stylesheet_link_tag    'application', params[:controller], media: 'all' %>
       <%= javascript_include_tag 'application', params[:controller] %>
   	<% end %>
-    
+
     <%= stylesheet_link_tag 'print', :media => 'print'%>
 
     <%= javascript_include_tag 'locked_items' if Rails.env != "test" %>
+
+    <%= javascript_pack_tag 'application' %>
 
     <%= csrf_meta_tags %>
 
@@ -278,14 +282,14 @@
                 </ul>
               </div>
               <% end %>
-              <% if link_group_on_role([BiomedicalConceptTemplate, BiomedicalConcept]) %>
+              <% if link_group_on_role([BiomedicalConceptTemplate, BiomedicalConceptInstance]) %>
               <div id="main_nav_biocon" class="category-container <%= if c_biocon != menu_category_title then "collapsed" end %>">
                 <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-biocon", category_title: c_biocon} %>
                 <ul class="nav">
                   <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => BiomedicalConceptTemplate, link_id: "main_nav_bct",
            					link_path: biomedical_concept_templates_path, link_text: "Biomedical Concept Templates", current_link: controller_name.to_s} %>
-           				<%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => BiomedicalConcept, link_id: "main_nav_bc",
-           					link_path: biomedical_concepts_path, link_text: "Biomedical Concepts", current_link: controller_name.to_s} %>
+           				<%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => BiomedicalConceptInstance, link_id: "main_nav_bc",
+           					link_path: biomedical_concept_instances_path, link_text: "Biomedical Concepts", current_link: controller_name.to_s} %>
                 </ul>
               </div>
               <% end %>
@@ -298,25 +302,31 @@
                 </ul>
               </div>
               <% end %>
-              <% if link_group_on_role([SdtmModel, SdtmIg, SdtmUserDomain]) %>
+              <% if link_group_on_role([SdtmModel, SdtmIg, SdtmIgDomain, SdtmClass]) %>
               <div id="main_nav_sdtm" class="category-container <%= if c_sdtm != menu_category_title then "collapsed" end %>">
                 <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-sdtm", category_title: c_sdtm} %>
                 <ul class="nav">
                   <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmModel, link_id: "main_nav_sm",
-           					link_path: history_sdtm_models_path, link_text: "CDISC SDTM Model", current_link: controller_name.to_s} %>
+           					link_path: sdtm_models_path, link_text: "CDISC SDTM Model", current_link: controller_name.to_s} %>
                   <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmIg, link_id: "main_nav_sig",
-           					link_path: history_sdtm_igs_path, link_text: "CDISC SDTM IGs", current_link: controller_name.to_s} %>
-                  <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmUserDomain, link_id: "main_nav_sd",
-           					link_path: sdtm_user_domains_path, link_text: "Domains", current_link: controller_name.to_s} %>
+           					link_path: sdtm_igs_path, link_text: "CDISC SDTM IGs", current_link: controller_name.to_s} %>
+                  <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmIgDomain, link_id: "main_nav_sd",
+           					link_path: sdtm_ig_domains_path, link_text: "SDTM IG Domains", current_link: controller_name.to_s} %>
+                  <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmClass, link_id: "main_nav_c",
+                    link_path: sdtm_classes_path, link_text: "SDTM Classes", current_link: controller_name.to_s} %>
                 </ul>
               </div>
               <% end %>
-              <% if link_group_on_role([AdamIg]) %>
+              <% if link_group_on_role([AdamIg, AdamIgDataset]) %>
               <div id="main_nav_adam" class="category-container <%= if c_adam != menu_category_title then "collapsed" end %>">
                 <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-adam", category_title: c_adam} %>
                 <ul class="nav">
                   <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => AdamIg, link_id: "main_nav_aig",
-                    link_path: history_adam_igs_path, link_text: "CDISC ADaM IGs", current_link: controller_name.to_s} %>
+                    link_path: adam_igs_path, link_text: "CDISC ADaM IGs", current_link: controller_name.to_s} %>
+                </ul>
+                <ul class="nav">
+                  <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => AdamIgDataset, link_id: "main_nav_aigd",
+                    link_path: adam_ig_datasets_path, link_text: "CDISC ADaM IG Datasets", current_link: controller_name.to_s} %>
                 </ul>
               </div>
               <% end %>

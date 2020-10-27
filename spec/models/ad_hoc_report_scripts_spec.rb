@@ -252,7 +252,7 @@ RSpec.describe AdHocReport, type: :model do
   
   end
 
-  describe "Export Tests" do
+  describe "Export Subsets Tests" do
     
     before :all do
       load_files(schema_files, [])

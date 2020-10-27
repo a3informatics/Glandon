@@ -1,5 +1,6 @@
 @import "shared/vars";
 @import "shared/buttons";
+@import "shared/cards";
 
 @import "shared/layouts/navbar";
 @import "shared/layouts/sidebar";
@@ -9,8 +10,10 @@
 @import "shared/layouts/forms";
 
 @import "shared/tables";
+@import "shared/checkbox";
 @import "shared/scrollbar";
 @import "shared/ttip";
+@import "shared/expandable_content";
 @import "shared/confirmation_dialog";
 @import "shared/processing/spinner_animated";
 @import "shared/processing/element_loading";
@@ -28,11 +31,15 @@
   align-items: center;
 }
 
+.no-break {
+  white-space: nowrap;
+}
+
 // ALERTS
-.alert{
+.alert {
   margin: 10px 0;
   font-family: $font-light;
-  background-color: $grey-white !important;
+  background-color: $grey-white;
   -webkit-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
   -moz-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
   box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
@@ -98,6 +105,10 @@
   display: inline-block;
 }
 
+.bg-label.bordered{
+  border: 2px solid $primary-color-bright;
+}
+
 a.bg-label {
   text-decoration: none;
   color: $grey-medium;
@@ -155,7 +166,7 @@ a.bg-label {
 
 .bg-labels-wrap .bg-label {
   margin-top: 8px;
-  margin-right: 12px;
+  margin-right: 0px;
 }
 
 // ICO HEADERS used in the community version dashboard
@@ -208,77 +219,6 @@ a.bg-label {
 
 .list-wrap a:hover .text{
   transform: translateX(5px);
-}
-
-// LIST CARDS
-.list-card{
-  background: $grey-white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 8px;
-  padding: 8px 8px;
-  position: relative;
-  min-height: 50px;
-}
-
-.list-card .card-badge{
-  width: 10px;
-  height: 100%;
-  position: absolute;
-  display: block;
-  left: 0;
-}
-
-.list-card .text{
-  color: $grey-medium;
-  font-size: $font-small;
-  font-family: $font-normal;
-  margin-left: 15px;
-  white-space: normal;
-  transition: transform .3s;
-}
-
-.list-card .sub-text{
-  font-size: $font-small;
-  font-family: $font-light;
-}
-
-// ICON LIST CARD
-
-.list-card.i-lc{
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.list-card.i-lc .text-wrap{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.list-card.i-lc .icon{
-  margin: -5px 10px 0 20px;
-}
-
-.list-card.i-lc .icon:hover{
-  color: $grey-light;
-}
-
-.list-card.i-lc .text{
-  margin-left: 0 !important;
-}
-
-
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .list-card .card-badge{
-    margin-top: -8px;
-  }
-
-  .list-card.i-lc .card-badge{
-    margin-top: -26px;
-  }
 }
 
 // CIRCULAR BADGES
@@ -346,6 +286,8 @@ a.bg-label {
   display: block;
   margin: 5px auto;
 }
+
+// Inputs
 
 input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus,
  textarea:focus, select:focus {
@@ -420,6 +362,15 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:foc
 }
 
 // Indicators
+
+.indicators-wrap {
+  width: 50px;
+}
+
+.indicators-wrap.one-line {
+  width: auto;
+  white-space: nowrap;
+}
 
 .indicator{
   display: inline-block;

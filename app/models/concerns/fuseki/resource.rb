@@ -35,16 +35,16 @@ module Fuseki
 
     # Object Relationships
     # 
-    # @return [Array] array of hash each containing the predicate and class for the class' relationships
+    # @return [Array] array of hash each containing the predicate and class for the object relationships
     def object_relationships
-      resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class]}}
+      resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_classes: y[:model_classes]}}
     end
 
     # Property Relationships
     # 
-    # @return [Array] array of hash each containing the predicate and class for the class' relationships
+    # @return [Array] array of hash each containing the predicate and class for the property relationships
     def property_relationships
-      resources.select{|x,y| y[:type]!=:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class]}}
+      resources.select{|x,y| y[:type]!=:object}.map{|x,y| {predicate: y[:predicate], model_classes: y[:model_classes]}}
     end
 
     # Excluded Read Relationships
@@ -63,16 +63,49 @@ module Fuseki
 
     # Read Paths
     # 
+    # @param [Array] rdf_types set of leaf rdf_types. Defaults to empty array which does not restrict.
+    # @param [Array] namespaces set of valid namespaces. Defaults to empty array which permits any namespace.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def read_paths
-      managed_paths(:read_exclude)
+    def read_paths(rdf_types: [], namespaces: [])
+      managed_paths({type: :read_exclude, rdf_types: rdf_types, namespaces: namespaces})
+    end
+
+    # Read Property Paths
+    # 
+    # @param [Symbol] property the name of the property
+    # @param [Array] rdf_types set of leaf rdf_types. Defaults to empty array which does not restrict.
+    # @param [Array] namespaces set of valid namespaces. Defaults to empty array which permits any namespace.
+    # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
+    def read_property_paths(property:, rdf_types: [], namespaces: [])
+      property_paths({type: :read_exclude, rdf_types: rdf_types, namespaces: namespaces}, resources[property])
+    end
+
+    # Export Paths
+    # 
+    # @param [Array] rdf_types set of leaf rdf_types. Defaults to empty array which does not restrict.
+    # @param [Array] namespaces set of valid namespaces. Defaults to empty array which permits any namespace.
+    # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
+    def export_paths(rdf_types: [], namespaces: [])
+      managed_paths({type: :read_exclude, rdf_types: rdf_types, namespaces: namespaces})
     end
 
     # Delete Paths
     # 
-    # @return [Array] array of strings each being the path (SPARQL) from the class to delete a managed item
-    def delete_paths
-      managed_paths(:delete_exclude)
+    # @param [Array] rdf_types set of leaf rdf_types. Defaults to empty array which does not restrict.
+    # @param [Array] namespaces set of valid namespaces. Defaults to empty array which permits any namespace.
+    # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
+    def delete_paths(rdf_types: [], namespaces: [])
+      managed_paths({type: :delete_exclude, rdf_types: rdf_types, namespaces: namespaces})
+    end
+
+    # Delete Property Paths
+    # 
+    # @param [Symbol] property the name of the property
+    # @param [Array] rdf_types set of leaf rdf_types. Defaults to empty array which does not restrict.
+    # @param [Array] namespaces set of valid namespaces. Defaults to empty array which permits any namespace.
+    # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
+    def delete_property_paths(property:, rdf_types: [], namespaces: [])
+      property_paths({type: :delete_exclude, rdf_types: rdf_types, namespaces: namespaces}, resources[property])
     end
 
     # RDF Type To Klass
@@ -132,7 +165,12 @@ module Fuseki
         result = Uri.new(uri: parent.to_s) 
         if opts.key?(:uri_unique)
           if opts[:uri_unique].is_a?(TrueClass)
-            result = Uri.new(namespace: self.class.base_uri.namespace, fragment: SecureRandom.uuid)
+            if opts.key?(:uri_suffix)
+              result = Uri.new(namespace: parent.namespace, fragment: "#{opts[:uri_suffix]}")
+              result.extend_fragment("#{SecureRandom.uuid}")
+            else
+              result = Uri.new(namespace: self.class.base_uri.namespace, fragment: SecureRandom.uuid)
+            end
           else
             result = Uri.new(namespace: self.class.base_uri.namespace, fragment: Digest::SHA1.hexdigest(self.send(opts[:uri_unique])))
           end
@@ -157,8 +195,15 @@ module Fuseki
     # @return [Void] no return
     def object_property(name, opts = {})
       Errors.application_error(self.name, __method__.to_s, "No cardinality specified for object property.") if !opts.key?(:cardinality)
-      Errors.application_error(self.name, __method__.to_s, "No model class specified for object property.") if !opts.key?(:model_class)
-      opts[:model_class] = opts[:model_class].constantize
+      Errors.application_error(self.name, __method__.to_s, "No model class specified for object property.") unless opts.key?(:model_class) || opts.key?(:model_classes) 
+      if opts.key?(:model_classes)
+        opts[:model_classes].unshift(opts[:model_class]) if opts.key?(:model_class)
+        opts[:model_classes] = opts[:model_classes].map{|x| "#{x}".constantize}
+      else
+        opts[:model_classes] = [] 
+        opts[:model_classes] << "#{opts[:model_class]}".constantize
+      end
+      opts.except!(:model_class) # Remove the model_class key, use model_classes for all processing
       opts[:default] = opts[:cardinality] == :one ? nil : []
       opts[:type] = :object 
       opts[:read_exclude] = opts.key?(:read_exclude)
@@ -188,8 +233,14 @@ module Fuseki
         generic_objects?(name)
       end
 
+      # Children properties
       if opts.key?(:children)
         
+        # Define a class method to return if children predicate exists
+        define_singleton_method "children_predicate?" do
+          true
+        end
+
         # Define an instance method to return the children
         define_method "children" do
           instance_variable_get("@#{name}")
@@ -208,16 +259,37 @@ module Fuseki
         # Define a class method to get the children class
         define_singleton_method "children_klass" do
           #opts[:model_class]
-          @resources["#{name}".to_sym][:model_class]
+          @resources["#{name}".to_sym][:model_classes].first
         end
 
         # Define a class method to get the child predicate
         define_singleton_method "children_predicate" do
-          predicate_uri(name)
+          @resources["#{name}".to_sym][:predicate]
+        end
+
+      else
+
+        # Define a class method to return if children predicate exists
+        define_singleton_method "children_predicate?" do
+          false
         end
 
       end
 
+    end
+
+    # Object Property Class. Add a class to a relatinship
+    #
+    # @param name [Symbol] the property name
+    # @param opts [Hash] the option hash
+    # @option opts [Symbol] :model_class the model class handling the other end of the relationship
+    # @raise [Errors::ApplicationLogicError] raised if model_class not found.
+    # @return [Void] no return
+    def object_property_class(name, opts = {})
+      Errors.application_error(self.name, __method__.to_s, "No model class(es) specified for object property class.") unless opts.key?(:model_class) || opts.key?(:model_classes)
+      properties = Fuseki::Resource::Properties.new(self, self.resources)
+      properties.property(name).add_klasses(opts[:model_classes].map{|x| "#{x}".constantize}) if opts.key?(:model_classes)
+      properties.property(name).add_klasses(["#{opts[:model_class]}".constantize]) if opts.key?(:model_class)
     end
 
     # Data Property
@@ -231,7 +303,7 @@ module Fuseki
       options = 
       { 
         cardinality: :one, 
-        model_class: nil, 
+        model_classes: [], 
         type: :data, 
         base_type: simple_datatype, 
         read_exclude: false, 
@@ -241,27 +313,73 @@ module Fuseki
       add_to_resources(name, options)
     end
 
-    # Managed Paths. Form a managed path
+    # Managed Paths. Form the managed paths for the item. This is a set of paths for SPARQL operations
     # 
-    # @param type [Symbol] the path type
-    # @param stack [Array] the stack of klasses processed. Used to prevent circular paths
-    # @param parent_predicate [String] the set of predicates from the parent. Will be prepended to this predicate
+    # @param [Hash] options the options hash
+    # @option options [Symbol] :type the path type to be excluded
+    # @option options [Array] :rdf_types array of rdf_types at which path processing is to stop
+    # @option options [Array] :namespaces array of permitted namespaces 
+    # @param [Array] stack the stack of klasses processed. Used to prevent circular paths
+    # @param [String] parent_predicate the set of predicates from the parent. Will be prepended to this predicate
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def managed_paths(type, stack=[], parent_predicate="")
+    def managed_paths(options, stack=[], parent_predicate="")
+      paths = []
       top = true if stack.empty?
-      result = []
-      predicates = resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class], exclude: y[type]}}
+      predicates = resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_classes: y[:model_classes], exclude: y[options[:type]]}}
       predicates.each do |predicate| 
         stack = [] if top
         next if predicate[:exclude]
-        klass = predicate[:model_class]
-        next if stack.include?(klass)
-        stack.push(klass)
-        predicate_ref = "#{predicate[:predicate].to_ref}"
-        top ? result << "#{predicate_ref}" : result << "#{parent_predicate}/#{predicate_ref}"
-        result += klass.managed_paths(type, stack, top ? "#{predicate_ref}" : "#{parent_predicate}/#{predicate_ref}")
+        klasses = predicate[:model_classes]
+        klasses.each do |klass|
+          is_recursive = false
+          if klass == self
+            is_recursive = true
+            name = "#{klass}.#{predicate[:predicate].fragment}"
+          else
+            name = "#{klass}.#{predicate[:predicate].fragment}"
+          end
+          next if stack.include?(name)
+          stack.push(name)
+          predicate_ref = "#{predicate[:predicate].to_ref}#{is_recursive ? "*" : ""}"
+          path = top ? "#{predicate_ref}" : "#{parent_predicate}/#{predicate_ref}"
+          paths << path unless ignore_namespaces?(options, klass)
+          paths += klass.managed_paths(options, stack, path) unless ignore_types?(options, klass)
+          x = stack.pop
+        end
       end
-      result
+      paths = paths.uniq if top
+      paths
+    end
+
+    # Property Paths. Form the managed paths for the property. This is a set of paths for SPARQL operations
+    # 
+    # @param [Hash] options the options hash
+    # @option options [Symbol] :type the path type to be excluded
+    # @option options [Array] :rdf_types array of rdf_types at which path processing is to stop
+    # @option options [Array] :namespaces array of permitted namespaces 
+    # @param [Hash] property the property hash
+    # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
+    def property_paths(options, property)
+      paths = []
+      stack = []
+      klasses = property[:model_classes]
+      klasses.each do |klass|
+        is_recursive = false
+        if klass == self
+          is_recursive = true
+          name = "#{klass}.#{property[:predicate].fragment}"
+        else
+          name = "#{klass}.#{property[:predicate].fragment}"
+        end
+        next if stack.include?(name)
+        stack.push(name)
+        predicate_ref = "#{property[:predicate].to_ref}#{is_recursive ? "*" : ""}"
+        path = "#{predicate_ref}"
+        paths << path
+        paths += klass.managed_paths(options, stack, path)
+        x = stack.pop
+      end
+      paths
     end
 
     # Excluded Relationships
@@ -274,6 +392,16 @@ module Fuseki
 
   private
   
+    # Ignore rdf types? Used to check rdf type.
+    def ignore_types?(options, klass)
+      options[:rdf_types].any? && options[:rdf_types].include?(klass.rdf_type)
+    end
+
+    # Ignore Namespaces? Used to check permitted namespaces.
+    def ignore_namespaces?(options, klass)
+      options[:namespaces].any? && options[:namespaces].exclude?(klass.rdf_type.namespace)
+    end
+
     # Create the instance variable. Set the info for the instance variable.
     def add_to_resources(name, opts)
 

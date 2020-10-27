@@ -9,153 +9,228 @@ describe Form::Item do
     return "models/form/item"
   end
 
-  before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("business_operational.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    clear_iso_concept_object
-    clear_iso_namespace_object
-    clear_iso_registration_authority_object
-    clear_iso_registration_state_object
+  describe "Validations" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "validates a valid object" do
+      result = Form::Item.new
+      result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
+      result.note = "OK"
+      result.completion = "Draft 123"
+      result.ordinal = 1
+      expect(result.valid?).to eq(true)
+    end
+
+    it "does not validate an invalid object, completion" do
+      result = Form::Item.new
+      result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
+      result.note = "OK"
+      result.completion = "Draft 123§"
+      result.ordinal = 1
+      expect(result.valid?).to eq(false)
+    end
+
+    it "does not validate an invalid object, note" do
+      result = Form::Item.new
+      result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
+      result.note = "OK§"
+      result.completion = "Draft 123"
+      result.ordinal = 1
+      expect(result.valid?).to eq(false)
+    end
+
+    it "does not validate an invalid object, ordinal" do
+      result = Form::Item.new
+      result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
+      result.note = "OK"
+      result.completion = "Draft 123"
+      result.ordinal = ""
+      expect(result.valid?).to eq(false)
+    end
+
+    it "does not validate an invalid object, optional" do
+      result = Form::Item.new
+      result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
+      result.note = "OK"
+      result.completion = "Draft 123"
+      result.ordinal = 1
+      result.optional = ""
+      expect(result.valid?).to eq(false)
+    end
+    
   end
 
-  it "has a dummy TC return" do
-    result = Form::Item.new
-    expect(result.thesaurus_concepts).to eq(Array.new)
+  describe "Destroy" do
+    
+    before :each do
+      data_files = ["forms/form_test_2.ttl", "forms/form_test.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..1)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "Deletes question" do
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1"))
+      result = question.delete(parent)
+      expect{OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1_TUC1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1_TUC1 in OperationalReferenceV3::TucReference.")
+      expect{Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1 in Form::Item::Question.")
+      check_file_actual_expected(result, sub_dir, "delete_item_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "Deletes placeholder" do
+      placeholder = Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1"))
+      result = placeholder.delete(parent)
+      expect{Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2 in Form::Item::Placeholder.")
+      check_file_actual_expected(result, sub_dir, "delete_item_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "Deletes Common item" do
+      common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1"))
+      expect(parent.has_item.count).to eq(2)
+      result = common_item.delete(parent)
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1"))
+      expect(parent.has_item.count).to eq(1)
+      expect{Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1 in Form::Item::Common.")
+      check_file_actual_expected(result, sub_dir, "delete_item_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "Deletes Mapping" do
+      parent = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/N1"), note: "OK", ordinal: 1, completion: "None")
+      item = Form::Item::Mapping.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, mapping: "string")
+      parent.has_item_push(item) 
+      parent.save
+      parent = Form::Group::Normal.find_full(parent.uri)
+      parent.has_item_objects
+      check_file_actual_expected(parent.to_h, sub_dir, "delete_item_expected_4a.yaml", equate_method: :hash_equal)
+      result = item.delete(parent)
+      check_file_actual_expected(result, sub_dir, "delete_item_expected_4b.yaml", equate_method: :hash_equal)      
+    end
+
+    it "Deletes Text Label" do
+      parent = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/N1"), note: "OK", ordinal: 1, completion: "None")
+      item = Form::Item::TextLabel.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, label_text: "string")
+      parent.has_item_push(item) 
+      parent.save
+      parent = Form::Group::Normal.find_full(parent.uri)
+      parent.has_item_objects
+      check_file_actual_expected(parent.to_h, sub_dir, "delete_item_expected_5a.yaml", equate_method: :hash_equal)
+      result = item.delete(parent)
+      check_file_actual_expected(result, sub_dir, "delete_item_expected_5b.yaml", equate_method: :hash_equal)      
+    end
+
   end
 
-  it "has a dummy BC return" do
-    result = Form::Item.new
-    expect(result.bc_property).to eq(nil)
-  end
+  describe "Move up/down" do
+    
+    before :each do
+      data_files = ["forms/FN000150.ttl",]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
 
-  it "validates a valid object" do
-    result = Form::Item.new
-    result.note = "OK"
-    result.completion = "Draft 123"
-    result.ordinal = 1
-    expect(result.valid?).to eq(true)
-  end
+    it "move up I, question" do
+      item = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      result = parent.move_up(item)
+      expect(result).to eq(true)
+      result = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      check_file_actual_expected(result.to_h, sub_dir, "move_up_expected_1.yaml", equate_method: :hash_equal)
+    end
 
-  it "does not validate an invalid object, completion" do
-    result = Form::Item.new
-    result.note = "OK"
-    result.completion = "Draft 123§"
-    result.ordinal = 1
-    expect(result.valid?).to eq(false)
-  end
+    it "move up II, question, error" do
+      item = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      result = parent.move_up(item)
+      expect(result).to eq(false)
+      expect(parent.errors.count).to eq(1)
+      result = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      check_file_actual_expected(result.to_h, sub_dir, "move_up_error_expected_1.yaml", equate_method: :hash_equal)
+    end
 
-  it "does not validate an invalid object, note" do
-    result = Form::Item.new
-    result.note = "OK§"
-    result.completion = "Draft 123"
-    result.ordinal = 1
-    expect(result.valid?).to eq(false)
-  end
+    it "move down I, question" do
+      item = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q3"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      result = parent.move_down(item)
+      expect(result).to eq(true)
+      result = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      check_file_actual_expected(result.to_h, sub_dir, "move_down_expected_1.yaml", equate_method: :hash_equal)
+    end
 
-  it "does not validate an invalid object, ordinal" do
-    result = Form::Item.new
-    result.note = "OK"
-    result.completion = "Draft 123"
-    expect(result.valid?).to eq(false)
-  end
+    it "move down II, question, error" do
+      item = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4"))
+      parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      result = parent.move_down(item)
+      expect(result).to eq(false)
+      expect(parent.errors.count).to eq(1)
+      result = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      check_file_actual_expected(result.to_h, sub_dir, "move_down_error_expected_1.yaml", equate_method: :hash_equal)
+    end
 
-  it "does not validate an invalid object, optional" do
-    result = Form::Item.new
-    result.note = "OK"
-    result.completion = "Draft 123"
-    result.ordinal = 1
-    result.optional = ""
-    expect(result.valid?).to eq(false)
-  end
+    it "allows for move down, two items" do
+      parent = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/P1"), note: "OK", ordinal: 1, completion: "None")
+      item = Form::Item::Question.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
+      normal = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/G1"), note: "OK", ordinal: 2, completion: "None")
+      parent.has_item_push(item) 
+      parent.has_sub_group_push(normal)
+      parent.save
+      parent = Form::Group::Normal.find_full(parent.uri)
+      parent.has_item_objects
+      parent.has_sub_group_objects
+      check_file_actual_expected(parent.to_h, sub_dir, "move_down_expected_2a.yaml", equate_method: :hash_equal)       
+      result = parent.move_down(item)
+      parent = Form::Group::Normal.find_full(parent.uri)
+      check_file_actual_expected(parent.to_h, sub_dir, "move_down_expected_2b.yaml", equate_method: :hash_equal)       
+      result = parent.move_down(item)
+      expect(parent.errors.count).to eq(1)
+      expect(parent.errors.full_messages[0]).to eq("Attempting to move down past the last node")
+    end
 
-  it "allows object to be initialized from triples" do
-    result = 
-      {
-        :id => "F-ACME_PLACEHOLDERTEST_G1_I1", 
-        :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
-        :label => "Text Label",
-        :completion => "",
-        :extension_properties => [],
-        :note => "xxxxx",
-        :optional => false,
-        :ordinal => 1,
-        :type => "http://www.assero.co.uk/BusinessForm#TextLabel"
-      }
-    triples = {}
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] = []
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#TextLabel" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "Text Label" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#note", object: "xxxxx" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#optional", object: "false" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#label_text", object: "XXXXX" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#ordinal", object: "1" }
-    triples ["F-ACME_PLACEHOLDERTEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_PLACEHOLDERTEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#completion", object: "" }
-    expect(Form::Item.new(triples, "F-ACME_PLACEHOLDERTEST_G1_I1").to_json).to eq(result)   
-  end
+    it "allows for move up, two items" do
+      parent = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/P1"), note: "OK", ordinal: 1, completion: "None")
+      item = Form::Item::Question.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
+      normal = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/G1"), note: "OK", ordinal: 2, completion: "None")
+      parent.has_item_push(item) 
+      parent.has_sub_group_push(normal)
+      parent.save
+      parent = Form::Group::Normal.find_full(parent.uri)
+      parent.has_item_objects
+      parent.has_sub_group_objects
+      check_file_actual_expected(parent.to_h, sub_dir, "move_up_expected_2a.yaml", equate_method: :hash_equal)       
+      result = parent.move_up(normal)
+      parent = Form::Group::Normal.find_full(parent.uri)
+      check_file_actual_expected(parent.to_h, sub_dir, "move_up_expected_2b.yaml", equate_method: :hash_equal)       
+      result = parent.move_up(normal)
+      expect(parent.errors.count).to eq(1)
+      expect(parent.errors.full_messages[0]).to eq("Attempting to move up past the first node")
+    end
 
-  it "allows an object to be created from JSON" do
-    input = read_yaml_file(sub_dir, "from_json_input.yaml")
-    item = Form::Item.from_json(input)
-    expected = read_yaml_file(sub_dir, "from_json_expected.yaml")
-    expect(item.to_json).to eq(expected)
-  end	
-  
-  it "allows an object to be exported as JSON" do
-    input = read_yaml_file(sub_dir, "from_json_input.yaml")
-    item = Form::Item.from_json(input)
-    expected = read_yaml_file_to_hash_2(sub_dir, "to_json_expected.yaml")
-    expect(item.to_json).to eq(expected)
-  end	
+    it "prevents move up and down, single item" do
+      parent = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/P1"), note: "OK", ordinal: 1, completion: "None")
+      item = Form::Item::Question.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
+      parent.has_item_push(item) 
+      parent.save
+      parent = Form::Group::Normal.find_full(parent.uri)
+      parent.has_item_objects
+      check_file_actual_expected(parent.to_h, sub_dir, "move_up_down_expected_3.yaml", equate_method: :hash_equal)       
+      result = parent.move_up(item)
+      expect(parent.errors.count).to eq(1)
+      expect(parent.errors.full_messages[0]).to eq("Attempting to move up past the first node")
+      parent.errors.clear
+      result = parent.move_down(item)
+      expect(parent.errors.count).to eq(1)
+      expect(parent.errors.full_messages[0]).to eq("Attempting to move down past the last node")
+      parent = Form::Group::Normal.find_full(parent.uri)
+      parent.has_item_objects
+      check_file_actual_expected(parent.to_h, sub_dir, "move_up_down_expected_3.yaml", equate_method: :hash_equal)       
+    end
 
-  it "allows an object to be exported as SPARQL" do
-    sparql = SparqlUpdateV2.new
-    result = 
-      "PREFIX bf: <http://www.assero.co.uk/BusinessForm#>\n" +
-      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-      "INSERT DATA \n" +
-      "{ \n" + 
-      "<http://www.example.com/path#parent_I1> rdf:type <http://www.example.com/path#rdf_test_type> . \n" +
-      "<http://www.example.com/path#parent_I1> rdfs:label \"test label\"^^xsd:string . \n" +
-      "<http://www.example.com/path#parent_I1> bf:ordinal \"1\"^^xsd:positiveInteger . \n" +
-      "<http://www.example.com/path#parent_I1> bf:note \"Note\"^^xsd:string . \n" +
-      "<http://www.example.com/path#parent_I1> bf:completion \"Completion\"^^xsd:string . \n" + 
-      "<http://www.example.com/path#parent_I1> bf:optional \"false\"^^xsd:boolean . \n" +
-      "}"
-    item = Form::Item.new
-    item.rdf_type = "http://www.example.com/path#rdf_test_type"
-    item.label = "test label"
-    item.completion = "Completion"
-    item.note = "Note"
-    item.ordinal = 1
-    item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
-    expect(sparql.to_s).to eq(result)
-  end
-
-  it "allows an object to be exported as XML" do
-  	odm = add_root
-    study = add_study(odm.root)
-    mdv = add_mdv(study)
-    form = add_form(mdv)
-    form.add_item_group_ref("G-TEST", "1", "No", "")
-    item_group = mdv.add_item_group_def("G-TEST", "test group", "No", "", "", "", "", "", "")
-    item = Form::Item.new
-    item.id = "THE-ID"
-    item.ordinal = 14
-		item.to_xml(mdv, form, item_group)
-		xml = odm.to_xml
-  #write_text_file_2(xml, sub_dir, "to_xml_expected_1.xml")
-    expected = read_text_file_2(sub_dir, "to_xml_expected_1.xml")
-    odm_fix_datetimes(xml, expected)
-    odm_fix_system_version(xml, expected)
-    expect(xml).to eq(expected)
   end
   
 end

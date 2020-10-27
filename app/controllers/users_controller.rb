@@ -69,7 +69,7 @@ class UsersController < ApplicationController
     # you need to be admin to delete.
     user = User.find(params[:id])
     delete_email = user.email
-    if current_user.id == user.id 
+    if current_user.id == user.id
       flash[:error] = "You cannot delete your own user!"
     elsif user.logged_in?
       flash[:error] = "You cannot delete #{delete_email}. User has logged in!"
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
       AuditTrail.delete_event(current_user, "User #{delete_email} deleted.")
       flash[:success] = "User #{delete_email} was successfully deleted."
     end
-    redirect_to users_path
+    render :json => { }, status: 200
   end
 
   def lock

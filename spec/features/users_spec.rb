@@ -3,18 +3,15 @@ require 'rails_helper'
 describe "Users", :type => :feature do
 
   include UserAccountHelpers
+  include UiHelpers
+  include WaitForAjaxHelper
 
   def check_user_role(email, audit_count, roles)
-    expect(page).to have_content 'All user accounts'
-    edit_user(email)
+    expect(page).to have_content 'All User Accounts'
+    find(:xpath, "//tr[contains(.,'#{email}')]/td/a", :class => 'edit-user').click
     expect(page).to have_content "Email: #{email}"
     expect(AuditTrail.count).to eq(audit_count)
     expect(page).to have_content "Current Roles: #{roles}"
-  end
-
-  def edit_user(email)
-  	tr = page.find(:xpath, "//tr[td='#{email}']")
-    tr.find(:xpath, "td[5]/a").click
   end
 
   describe "Login and Logout", :type => :feature do
@@ -102,14 +99,14 @@ describe "Users", :type => :feature do
       ua_sys_admin_login
       # Manually create user
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      click_link 'New'
-      expect(page).to have_content 'New user account'
+      expect(page).to have_content 'All User Accounts'
+      click_link '+ New User'
+      expect(page).to have_content 'New User Account'
       fill_in :placeholder => 'Email', :with => 'usr3@example.com'
       fill_in :placeholder => 'Password', :with => 'Changeme1#'
       fill_in :placeholder => 'Display name', :with => 'Test User 3'
       fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
-      click_button 'Create'
+      click_button 'Create Account'
 
       ua_logoff
 
@@ -155,7 +152,7 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'God!'
       expect(page).to have_content 'System Admin'
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
+      expect(page).to have_content 'All User Accounts'
       expect(page).to have_content 'sys_admin@example.com'
       expect(page).to have_content 'reader@example.com'
       expect(page).to have_content 'curator@example.com'
@@ -167,14 +164,14 @@ describe "Users", :type => :feature do
       audit_count = AuditTrail.count
       user_count = User.all.count
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      click_link 'New'
-      expect(page).to have_content 'New user account'
+      expect(page).to have_content 'All User Accounts'
+      click_link '+ New User'
+      expect(page).to have_content 'New User Account'
       fill_in :placeholder => 'Email', :with => 'new_user@example.com'
       fill_in :placeholder => 'Display name', :with => 'New user'
       fill_in :placeholder => 'Password', :with => 'Changeme1#'
       fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
-      click_button 'Create'
+      click_button 'Create Account'
       expect(page).to have_content 'User was successfully created.'
       expect(page).to have_content 'new_user@example.com'
       expect(AuditTrail.count).to eq(audit_count + 1)
@@ -184,41 +181,41 @@ describe "Users", :type => :feature do
     it "prevents a new user with short password being created (REQ-GENERIC-PM-NONE)" do
       ua_sys_admin_login
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      click_link 'New'
-      expect(page).to have_content 'New user account'
+      expect(page).to have_content 'All User Accounts'
+      click_link '+ New User'
+      expect(page).to have_content 'New User Account'
       fill_in :placeholder => 'Email', :with => 'new_user_2@example.com'
       fill_in :placeholder => 'Display name', :with => 'New user'
       fill_in :placeholder => 'Password', :with => '12345'
       fill_in :placeholder => 'Confirm password', :with => '12345'
-      click_button 'Create'
+      click_button 'Create Account'
       expect(page).to have_content 'User was not created.'
     end
 
     it "prevents a two users with identical username being created (REQ-GENERIC-PM-030)", js:true do
       ua_sys_admin_login
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
+      expect(page).to have_content 'All User Accounts'
       if page.has_content?('new_user_4@example.com')
         find(:xpath, "//tr[contains(.,'new_user_4@example.com')]/td/a", :text => 'Delete').click
       end
-      click_link 'New'
-      expect(page).to have_content 'New user account'
+      click_link '+ New User'
+      expect(page).to have_content 'New User Account'
       fill_in :placeholder => 'Email', :with => 'new_user_4@example.com'
       fill_in :placeholder => 'Display name', :with => 'New user'
       fill_in :placeholder => 'Password', :with => 'Changeme1#'
       fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
-      click_button 'Create'
+      click_button 'Create Account'
       expect(page).to have_content 'User was successfully created.'
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      click_link 'New'
-      expect(page).to have_content 'New user account'
+      expect(page).to have_content 'All User Accounts'
+      click_link '+ New User'
+      expect(page).to have_content 'New User Account'
       fill_in :placeholder => 'Email', :with => 'new_user_4@example.com'
       fill_in :placeholder => 'Display name', :with => 'New user'
       fill_in :placeholder => 'Password', :with => 'Changeme1#'
       fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
-      click_button 'Create'
+      click_button 'Create Account'
       expect(page).to have_content 'User was not created. Email has already been taken.'
     end
 
@@ -226,32 +223,35 @@ describe "Users", :type => :feature do
       audit_count = AuditTrail.count
       ua_sys_admin_login
       click_link 'users_button'
-      check_user_role("reader@example.com", audit_count+1, "Reader")
+      check_user_role("comm_reader@example.com", audit_count+1, "Community Reader")
       click_link 'Set Curator Role'
-      check_user_role("reader@example.com", audit_count+2, "Curator")
+      check_user_role("comm_reader@example.com", audit_count+2, "Curator")
       click_link 'Set Content Admin Role'
-      check_user_role("reader@example.com", audit_count+3, "Content Admin")
+      check_user_role("comm_reader@example.com", audit_count+3, "Content Admin")
       click_link 'Set Curator Role'
-      check_user_role("reader@example.com", audit_count+4, "Curator")
+      check_user_role("comm_reader@example.com", audit_count+4, "Curator")
       click_link 'Set Content Admin & System Admin Role'
-      check_user_role("reader@example.com", audit_count+5, "Content Admin, System Admin")
+      check_user_role("comm_reader@example.com", audit_count+5, "Content Admin, System Admin")
       click_link 'Set Terminology Reader Role'
-      check_user_role("reader@example.com", audit_count+6, "Terminology Reader")
+      check_user_role("comm_reader@example.com", audit_count+6, "Terminology Reader")
       click_link 'Set Terminology Curator Role'
-      check_user_role("reader@example.com", audit_count+7, "Terminology Curator")
+      check_user_role("comm_reader@example.com", audit_count+7, "Terminology Curator")
       click_link 'Set Reader Role'
-      check_user_role("comm_reader@example.com", audit_count+8, "Community Reader")
+      check_user_role("comm_reader@example.com", audit_count+8, "Reader")
       click_link 'Set Community Reader Role'
+      check_user_role("comm_reader@example.com", audit_count+9, "Community Reader")
     end
 
-    it "allows a user to be deleted (REQ-GENERIC-UM-090)" do
+    it "allows a user to be deleted (REQ-GENERIC-UM-090)", js: true do
       ua_add_user email: 'delete@example.com', role: :reader
       ua_sys_admin_login
       audit_count = AuditTrail.count
       user_count = User.all.count
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      find(:xpath, "//tr[contains(.,'delete@example.com')]/td/a", :text => 'Delete').click
+      expect(page).to have_content 'All User Accounts'
+      find(:xpath, "//tr[contains(.,'delete@example.com')]/td/a", :class => 'delete-user').click
+      ui_confirmation_dialog true
+      wait_for_ajax 10
       expect(User.all.count).to eq(user_count - 1)
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(AuditTrail.last(1)[0].description).to eq("User delete@example.com deleted.")
@@ -262,12 +262,10 @@ describe "Users", :type => :feature do
       ua_generic_login 'edit@example.com'
       audit_count = AuditTrail.count
       click_link 'settings_button'
-      #click_link 'Password'
-      #expect(page).to have_content 'Edit: edit@example.com'
       fill_in 'user_password', with: 'Changeme2#'
       fill_in 'user_password_confirmation', with: 'Changeme2#'
       fill_in 'user_current_password', with: 'Changeme1#'
-      click_button 'password_update_button'
+      click_button 'password-update-btn'
       expect(page).to have_content 'Your account has been updated successfully.'
       expect(AuditTrail.count).to eq(audit_count + 1)
     end
@@ -277,12 +275,10 @@ describe "Users", :type => :feature do
       ua_generic_login 'edit2@example.com'
       audit_count = AuditTrail.count
       click_link 'settings_button'
-      #click_link 'Password'
-      #expect(page).to have_content 'Edit: edit@example.com'
       fill_in 'user_password', with: 'newpassword'
       fill_in 'user_password_confirmation', with: 'newpassword'
       fill_in 'user_current_password', with: 'newpassword'
-      click_button 'password_update_button'
+      click_button 'password-update-btn'
       expect(page).to have_content 'Changing the password for edit2@example.com'
       expect(AuditTrail.count).to eq(audit_count)
     end
@@ -291,25 +287,25 @@ describe "Users", :type => :feature do
       ua_sys_admin_login
       # Manually create user
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      click_link 'New'
-      expect(page).to have_content 'New user account'
+      expect(page).to have_content 'All User Accounts'
+      click_link '+ New User'
+      expect(page).to have_content 'New User Account'
       fill_in :placeholder => 'Email', :with => 'admin2@example.com'
       fill_in :placeholder => 'Display name', :with => 'New user'
       fill_in :placeholder => 'Password', :with => 'Changeme1#'
       fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
-      click_button 'Create'
+      click_button 'Create Account'
 
       admin_user = User.find_by(:email => "admin2@example.com")
       admin_user.add_role(:sys_admin)
 
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      find(:xpath, "//tr[contains(.,'admin2@example.com')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Set user roles for:'
+      expect(page).to have_content 'All User Accounts'
+      find(:xpath, "//tr[contains(.,'admin2@example.com')]/td/a", :class => 'edit-user').click
+      expect(page).to have_content 'Set User Roles'
       expect(page).to have_content 'Email: admin2@example.com'
       click_link 'Set Curator Role'
-      expect(page).to have_content 'All user accounts'
+      expect(page).to have_content 'All User Accounts'
       expect(find(:xpath, '//tr[contains(.,"admin2@example.com")]/td[2]').text).to eq("Curator")
     end
 
@@ -317,18 +313,18 @@ describe "Users", :type => :feature do
       ua_sys_admin_login
       # Manually create user
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      click_link 'New'
-      expect(page).to have_content 'New user account'
+      expect(page).to have_content 'All User Accounts'
+      click_link '+ New User'
+      expect(page).to have_content 'New User Account'
       fill_in :placeholder => 'Email', :with => 'usr@example.com'
       fill_in :placeholder => 'Password', :with => 'Changeme1#'
       fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
-      click_button 'Create'
+      click_button 'Create Account'
 
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      find(:xpath, "//tr[contains(.,'usr@example.com')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Set user roles for:'
+      expect(page).to have_content 'All User Accounts'
+      find(:xpath, "//tr[contains(.,'usr@example.com')]/td/a", :class => 'edit-user').click
+      expect(page).to have_content 'Set User Roles'
       expect(page).to have_content 'Email: usr@example.com'
       expect(page).to have_content 'Anonymous'
 
@@ -339,13 +335,13 @@ describe "Users", :type => :feature do
       ua_sys_admin_login
       # Manually create user
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      click_link 'New'
-      expect(page).to have_content 'New user account'
+      expect(page).to have_content 'All User Accounts'
+      click_link '+ New User'
+      expect(page).to have_content 'New User Account'
       fill_in :placeholder => 'Email', :with => 'usr@example.com'
       fill_in :placeholder => 'Password', :with => 'Changeme1#'
       fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
-      click_button 'Create'
+      click_button 'Create Account'
 
       ua_logoff
 
@@ -372,14 +368,14 @@ describe "Users", :type => :feature do
       ua_sys_admin_login
       # Manually create user
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      click_link 'New'
-      expect(page).to have_content 'New user account'
+      expect(page).to have_content 'All User Accounts'
+      click_link '+ New User'
+      expect(page).to have_content 'New User Account'
       fill_in :placeholder => 'Email', :with => 'usr2@example.com'
       fill_in :placeholder => 'Password', :with => 'Changeme1#'
       fill_in :placeholder => 'Display name', :with => 'Test User 2'
       fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
-      click_button 'Create'
+      click_button 'Create Account'
 
       ua_logoff
 
@@ -405,14 +401,14 @@ describe "Users", :type => :feature do
     it "prevents last sys admin to be deleted", js:true do
       ua_sys_admin_login
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      find(:xpath, "//tr[contains(.,'sys_content_admin@example.com')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'All User Accounts'
+      find(:xpath, "//tr[contains(.,'sys_content_admin@example.com')]/td/a", :class => 'edit-user').click
       expect(page).to have_content 'Email: sys_content_admin@example.com'
       click_link 'Set Curator Role'
       click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      find(:xpath, "//tr[contains(.,'sys_admin@example.com')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Set user roles for:'
+      expect(page).to have_content 'All User Accounts'
+      find(:xpath, "//tr[contains(.,'sys_admin@example.com')]/td/a", :class => 'edit-user').click
+      expect(page).to have_content 'Set User Roles'
       expect(page).to have_content 'Email: sys_admin@example.com'
       click_link 'Set Curator Role'
       expect(page).to have_content 'You cannot remove the last system administrator.'

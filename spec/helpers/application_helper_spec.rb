@@ -29,11 +29,17 @@ describe ApplicationHelper do
 
     it "build an instance title for a managed item" do
   		item = Form.new
-  		item.scopedIdentifier.version = 10
-  		item.scopedIdentifier.semantic_version = "2.3.1"
-  		item.registrationState.registrationStatus = "Standard"
+      item.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
+      item.has_state = IsoRegistrationStateV2.new
+      item.has_state.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#RS_A00001")
+      item.has_state.by_authority = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      item.has_state.registration_status = "Standard"
+      item.has_identifier = IsoScopedIdentifierV2.new
+      item.has_identifier.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#SI_A00001")
+      item.has_identifier.identifier = "IDENT"
+      item.has_identifier.semantic_version = "2.3.1"
+      item.has_identifier.version = 10
   		item.label = "Blah"
-  		item.scopedIdentifier.identifier = "IDENT"
 	  	expect(instance_title("Title", item)).to eq("Title Blah <span class='text-tiny'>IDENT (V2.3.1, 10, Standard)</span>")
 	  end
 
@@ -84,14 +90,14 @@ describe ApplicationHelper do
 		end
 
     it "true false glyphicon" do
-			expect(true_false_glyphicon(true)).to eq("<td class=\"text-center\"><span class=\"icon-ok text-secondary-clr\"/></td>")
-			expect(true_false_glyphicon(false)).to eq("<td class=\"text-center\"><span class=\"icon-times text-accent-2\"/></td>")
+			expect(true_false_glyphicon(true)).to eq("<td class=\"text-center\"><span class=\"text-normal icon-sel-filled text-link\"/></td>")
+			expect(true_false_glyphicon(false)).to eq("<td class=\"text-center\"><span class=\"text-normal icon-times-circle text-accent-2\"/></td>")
 		end
 
     it "true false cell" do
-      expect(true_false_cell(true, :left)).to eq("<td class=\"text-left\"><span class=\"icon-ok text-secondary-clr\"/></td>")
-      expect(true_false_cell(false, :right)).to eq("<td class=\"text-right\"><span class=\"icon-times text-accent-2\"/></td>")
-      expect(true_false_cell(false, :center)).to eq("<td class=\"text-center\"><span class=\"icon-times text-accent-2\"/></td>")
+      expect(true_false_cell(true, :left)).to eq("<td class=\"text-left\"><span class=\"text-normal icon-sel-filled text-link\"/></td>")
+      expect(true_false_cell(false, :right)).to eq("<td class=\"text-right\"><span class=\"text-normal icon-times-circle text-accent-2\"/></td>")
+      expect(true_false_cell(false, :center)).to eq("<td class=\"text-center\"><span class=\"text-normal icon-times-circle text-accent-2\"/></td>")
     end
 
 		it "column ordering" do

@@ -25,11 +25,15 @@ class IsoNamespacesController < ApplicationController
   def destroy
     begin
       namespace = IsoNamespace.find(params[:id])
-      namespace.not_used? ? namespace.delete : flash[:error] = "Scope Namespace is in use and cannot be deleted."
+      if namespace.not_used?
+        namespace.delete
+        render :json => {}
+      else
+        render :json => { errors: [ "Scope Namespace is in use and cannot be deleted." ] }, status: 422
+      end
     rescue => e
-      flash[:error] = "Unable to delete Scope Namespace."
+      render :json => { errors: [ "Unable to delete Scope Namespace." ] }, status: 422
     end
-    redirect_to iso_namespaces_path
   end
 
 private
@@ -38,9 +42,8 @@ private
     params.require(:iso_namespace).permit(:name, :short_name, :authority)
   end
 
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize IsoNamespace
+  def model_klass
+    IsoNamespace
   end
 
 end

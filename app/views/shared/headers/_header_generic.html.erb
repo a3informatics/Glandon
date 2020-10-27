@@ -14,17 +14,26 @@
             </span>
           </div>
           <div class="h-inner-wrap mid">
+
             <div class="text-large"> <%= main_text %> </div>
-            <div class="text-small font-light">
+
+            <div class="text-small font-light long-label">
               <% if sub_texts.is_a? Array %>
+
                 <% sub_texts.each_with_index do |item, index| %>
-                  <span class="font-regular"> <%= item[:title] %>: </span><%= item[:value] %>
-                  <%= "&nbsp;|&nbsp;".html_safe if (index != sub_texts.length - 1) %>
+                  <span class="no-break">
+                    <span class="font-regular"> <%= item[:title] %>: </span><%= item[:value] %>
+                    <% if (index != sub_texts.length - 1) %>
+                      <span style="margin: 0 5px">|</span>
+                    <% end %>
+                  </span>
                 <% end %>
+
               <% else %>
                 <span> <%= sub_texts %> </span>
               <% end %>
             </div>
+
           </div>
         </div>
       </div>

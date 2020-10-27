@@ -3,277 +3,291 @@ require 'rails_helper'
 describe Form::Group::Normal do
   
   include DataHelpers
-  include OdmHelpers
+  include SparqlHelpers
+  include SecureRandomHelpers
 
   def sub_dir
     return "models/form/group/normal"
   end
 
-  before :all do
-    data_files = 
-    [
-      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", 
-      "form_example_general.ttl"
-    ]
-    load_files(schema_files, data_files)
-    load_cdisc_term_versions((1..59))
-    # clear_triple_store
-    # load_schema_file_into_triple_store("ISO11179Types.ttl")
-    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    # load_schema_file_into_triple_store("business_operational.ttl")
-    # load_schema_file_into_triple_store("BusinessForm.ttl")
-    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    # load_test_file_into_triple_store("iso_namespace_real.ttl")
-    # load_test_file_into_triple_store("form_example_general.ttl")
-    clear_iso_concept_object
-    clear_iso_namespace_object
-    clear_iso_registration_authority_object
-    clear_iso_registration_state_object
+  describe "Validation tests" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/VSTADIABETES.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..65)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "get items" do
+      group = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1"))
+      check_file_actual_expected(group.get_item, sub_dir, "get_items_expected.yaml", equate_method: :hash_equal)
+    end
+
+    it "validates a valid object" do
+      item = Form::Group::Normal.new
+      item.uri = Uri.new(uri: "http://www.example.com/A#X")
+      item.note = "OK"
+      item.completion = "Draft 123"
+      item.ordinal = 1
+      result = item.valid?
+      expect(item.errors.full_messages.to_sentence).to eq("")
+      expect(result).to eq(true)
+    end
+
+    it "does not validate an invalid object, completion" do
+      item = Form::Group::Normal.new
+      item.uri = Uri.new(uri: "http://www.example.com/A#X")
+      item.note = "OK"
+      item.completion = "Draft 123£"
+      item.ordinal = 1
+      result = item.valid?
+      expect(item.errors.full_messages.to_sentence).to eq("Completion contains invalid markdown")
+      expect(result).to eq(false)
+    end
+
+    it "does not validate an invalid object, note" do
+      item = Form::Group::Normal.new
+      item.uri = Uri.new(uri: "http://www.example.com/A#X")
+      item.note = "OK±"
+      item.completion = "Draft 123"
+      item.ordinal = 1
+      result = item.valid?
+      expect(item.errors.full_messages.to_sentence).to eq("Note contains invalid markdown")
+      expect(result).to eq(false)
+    end
+
+    it "does not validate an invalid object, repeating" do
+      item = Form::Group::Normal.new
+      item.uri = Uri.new(uri: "http://www.example.com/A#X")
+      item.note = "OK"
+      item.completion = "Draft 123"
+      item.repeating = ""
+      item.ordinal = 1
+      result = item.valid?
+      expect(item.errors.full_messages.to_sentence).to eq("Repeating contains an invalid boolean value")
+      expect(result).to eq(false)
+    end
+
   end
 
-  it "validates a valid object" do
-    item = Form::Group::Normal.new
-    item.note = "OK"
-    item.completion = "Draft 123"
-    item.ordinal = 1
-    result = item.valid?
-    expect(item.errors.full_messages.to_sentence).to eq("")
-    expect(result).to eq(true)
+  describe "Add child" do
+    
+    def check_normal_group(uri, filename, write_file=false)
+      normal = Form::Group::Normal.find_full(uri)
+      check_file_actual_expected(normal.to_h, sub_dir, filename, equate_method: :hash_equal, write_file: write_file)
+    end
+
+    before :each do
+      data_files = ["forms/form_test_2.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..1)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("hackathon_thesaurus.ttl") 
+    end
+
+    it "add child I, add normal groups" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal = Form::Group::Normal.find(uri)
+      result = normal.add_child({type:"normal_group"})
+      check_normal_group(uri, "add_child_expected_1.yaml")
+      normal = Form::Group::Normal.find(uri)
+      result = normal.add_child({type:"normal_group"})
+      check_normal_group(uri, "add_child_expected_2.yaml")
+    end
+
+    it "add child II, error" do
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1"))
+      result = normal.add_child({type:"x_group"})
+      expect(normal.errors.count).to eq(1)
+      expect(normal.errors.full_messages[0]).to eq("Attempting to add an invalid child type")
+      expect(result).to eq([])
+    end
+
+    it "add child V, items" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal = Form::Group::Normal.find(uri)
+      result = normal.add_child({type:"question"})
+      check_normal_group(uri, "add_child_expected_5.yaml")
+      normal = Form::Group::Normal.find(uri)
+      result = normal.add_child({type:"placeholder"})
+      check_normal_group(uri, "add_child_expected_6.yaml")
+    end
+
   end
 
-  it "does not validate an invalid object, completion" do
-    item = Form::Group::Normal.new
-    item.note = "OK"
-    item.completion = "Draft 123£"
-    item.ordinal = 1
-    result = item.valid?
-    expect(item.errors.full_messages.to_sentence).to eq("Completion contains invalid markdown")
-    expect(result).to eq(false)
+  describe "Add child, BC Groups" do
+    
+    def check_normal_group(uri, filename, write_file=false)
+      normal = Form::Group::Normal.find_full(uri)
+      check_file_actual_expected(normal.to_h, sub_dir, filename, equate_method: :hash_equal, write_file: write_file)
+    end
+
+    before :each do
+      data_files = ["forms/FN000150.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("hackathon_thesaurus.ttl") 
+    end
+
+    it "add child III, bc groups" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
+      bci_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/RACE/V1#BCI"))
+      normal = Form::Group::Normal.find(uri)
+      result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
+      check_normal_group(uri, "add_child_expected_3.yaml")
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      result = normal.add_child({type:"bc_group", id_set:[bci_2.id, bci_3.id]})
+      check_normal_group(uri, "add_child_expected_4.yaml")
+    end
+
+    it "add child IV, bc groups" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      normal = Form::Group::Normal.find(uri)
+      result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
+      check_normal_group(uri, "add_child_expected_7.yaml")
+    end
+
+    it "add child VI, bc group, check bc property common" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal = Form::Group::Normal.find(uri)
+      normal.add_child({type:"common_group"})
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      normal = Form::Group::Normal.find(uri)
+      normal.add_child({type:"bc_group", id_set:[bci_1.id]})
+      normal = Form::Group::Normal.find(uri)
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296"))
+      bc_property.make_common
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      normal = Form::Group::Normal.find(uri)
+      result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
+      check_normal_group(uri, "add_child_expected_11.yaml")
+    end
+
+    it "add child VII, bc group, check bc property common" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal = Form::Group::Normal.find(uri)
+      normal.add_child({type:"common_group"})
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      normal = Form::Group::Normal.find(uri)
+      normal.add_child({type:"bc_group", id_set:[bci_1.id]})
+      normal = Form::Group::Normal.find(uri)
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      bc_property.make_common
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      normal = Form::Group::Normal.find(uri)
+      result = normal.add_child({type:"bc_group", id_set:[bci_2.id]})
+      check_normal_group(uri, "add_child_expected_12.yaml")
+    end
+
   end
 
-  it "does not validate an invalid object, note" do
-    item = Form::Group::Normal.new
-    item.note = "OK±"
-    item.completion = "Draft 123"
-    item.ordinal = 1
-    result = item.valid?
-    expect(item.errors.full_messages.to_sentence).to eq("Note contains invalid markdown")
-    expect(result).to eq(false)
+  describe "Common Group Handling" do
+    
+    before :all do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("hackathon_thesaurus.ttl") 
+    end
+
+    it "add normal groups" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X1"), note: "OK", ordinal: 1, completion: "None")
+      expect(normal.errors.count).to eq(0)
+      result = normal.add_child({type:"normal_group"})
+      normal = Form::Group::Normal.find_full(normal.uri)
+      check_file_actual_expected(normal.to_h, sub_dir, "add_child_normal_expected_1.yaml", equate_method: :hash_equal)
+      result = normal.add_child({type:"normal_group"})
+      normal = Form::Group::Normal.find_full(normal.uri)
+      check_file_actual_expected(normal.to_h, sub_dir, "add_child_normal_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "add normal groups and common" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X2"), note: "OK", ordinal: 1, completion: "None")
+      expect(normal.errors.count).to eq(0)
+      result = normal.add_child({type:"normal_group"})
+      result = normal.add_child({type:"normal_group"})
+      result = normal.add_child({type:"common_group"})
+      normal = Form::Group::Normal.find_full(normal.uri)
+      check_file_actual_expected(normal.to_h, sub_dir, "add_child_common_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "add normal groups and common, error" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X3"), note: "OK", ordinal: 1, completion: "None")
+      expect(normal.errors.count).to eq(0)
+      result = normal.add_child({type:"normal_group"})
+      result = normal.add_child({type:"normal_group"})
+      result = normal.add_child({type:"common_group"})
+      result = normal.add_child({type:"common_group"})
+      expect(normal.errors.count).to eq(1)
+      expect(normal.errors.full_messages[0]).to eq("Normal group already contains a Common Group")
+      normal = Form::Group::Normal.find_full(normal.uri)
+      check_file_actual_expected(normal.to_h, sub_dir, "add_child_common_expected_4.yaml", equate_method: :hash_equal)
+    end
+
+    it "add normal groups and common, check clash" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal_1 = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X4"), note: "OK", ordinal: 1, completion: "None")
+      expect(normal_1.errors.count).to eq(0)
+      result = normal_1.add_child({type:"normal_group"})
+      result = normal_1.add_child({type:"normal_group"})
+      result = normal_1.add_child({type:"normal_group"})
+      result = normal_1.add_child({type:"normal_group"})
+      result = normal_1.add_child({type:"common_group"})
+      normal_1 = Form::Group::Normal.find_full(normal_1.uri)
+      check_file_actual_expected(normal_1.to_h, sub_dir, "add_child_common_expected_2.yaml", equate_method: :hash_equal)
+      normal_2 = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X5"), note: "OK", ordinal: 1, completion: "None")
+      expect(normal_2.errors.count).to eq(0)
+      result = normal_2.add_child({type:"normal_group"})
+      result = normal_2.add_child({type:"normal_group"})
+      result = normal_2.add_child({type:"common_group"})
+      # Normal 1 should not have changed
+      normal_1 = Form::Group::Normal.find_full(normal_1.uri)
+      check_file_actual_expected(normal_1.to_h, sub_dir, "add_child_common_expected_2.yaml", equate_method: :hash_equal)
+      normal_2 = Form::Group::Normal.find_full(normal_2.uri)
+      check_file_actual_expected(normal_2.to_h, sub_dir, "add_child_common_expected_3.yaml", equate_method: :hash_equal)
+    end
+
   end
 
-  it "does not validate an invalid object, repeating" do
-    item = Form::Group::Normal.new
-    item.note = "OK"
-    item.completion = "Draft 123"
-    item.repeating = ""
-    item.ordinal = 1
-    result = item.valid?
-    expect(item.errors.full_messages.to_sentence).to eq("Repeating contains an invalid boolean value")
-    expect(result).to eq(false)
-  end
+  describe "Delete" do
+    
+    before :all do
+      data_files = ["forms/FN000150.ttl", "forms/CRF TEST 1.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..15)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("hackathon_thesaurus.ttl") 
+    end
 
-  it "does not validate an invalid object, group 1" do
-    item = Form::Group::Normal.new
-    item.note = "OK"
-    item.completion = "Draft 123"
-    item.repeating = false
-    item.ordinal = 1
-    item.groups << Form::Group::Normal.new
-    result = item.valid?
-    expect(item.errors.full_messages.to_sentence).to eq("Group, ordinal=0, error: Ordinal contains an invalid positive integer value")
-    expect(result).to eq(false)
-  end
+    it "delete I" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      result = normal.add_child({type:"question"})
+      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      result = normal.add_child({type:"placeholder"})
+      normal = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      check_file_actual_expected(normal.to_h, sub_dir, "delete_expected_1.yaml", equate_method: :hash_equal)
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4"))
+      result = question.delete(normal)
+      normal = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+      check_file_actual_expected(normal.to_h, sub_dir, "delete_expected_2.yaml", equate_method: :hash_equal)
+    end
 
-  it "does not validate an invalid object, group 2" do
-    item = Form::Group::Normal.new
-    item.note = "OK"
-    item.completion = "Draft 123"
-    item.repeating = false
-    item.ordinal = 1
-    group = Form::Group::Normal.new
-    group.optional = ""
-    item.groups << group
-    result = item.valid?
-    expect(item.errors.full_messages.to_sentence).to eq("Group, ordinal=0, error: Optional contains an invalid boolean value")
-    expect(result).to eq(false)
-  end
-
-  it "allows object to be initialized from triples" do
-    result = 
-      {
-        :id => "F-ACME_TEST_G1_I1", 
-        :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
-        :completion => "",
-        :extension_properties => [],
-        :label => "My Group",
-        :note => "xxxxx",
-        :optional => false,
-        :repeating => false,
-        :ordinal => 1,
-        :type => "http://www.assero.co.uk/BusinessForm#NormalGroup",
-        :children => [],
-        :bc_ref => {}
-      }
-    triples = {}
-    triples ["F-ACME_TEST_G1_I1"] = []
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#NormalGroup" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "My Group" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#isGroupOf", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1>" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#hasItem", object: "<http://www.assero.co.uk/MDRForms/UCB/V2#F-UCB_AEPI103_G1_I1>" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#note", object: "xxxxx" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#optional", object: "false" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#label_text", object: "XXXXX" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#ordinal", object: "1" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#completion", object: "" }
-    expect(Form::Group::Normal.new(triples, "F-ACME_TEST_G1_I1").to_json).to eq(result)    
-  end
-
-  it "allows an object to be found" do
-    item = Form::Group::Normal.find("F-ACME_T2_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
-  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "find_expected.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "find_expected.yaml")
-    expect(item.to_json).to eq(expected)
-  end
-
-  it "allows an object to be created from JSON" do
-    json = 
-    {
-      type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
-      label: "Group",
-      id: "",
-      namespace: "",
-      ordinal: 1,
-      optional: false,
-      repeating: false,
-      note: "",
-      completion: "",
-      bc_ref: {},
-      children: 
-      [
-        {
-          type: "http://www.assero.co.uk/BusinessForm#CommonGroup",
-          label: "Common New",
-          id: "",
-          namespace: "",
-          ordinal: 1,
-          optional: false,
-          repeating: false,
-          completion: "",
-          note: "",
-          children: []
-        }
-      ]
-    }
-    result = Form::Group::Normal.from_json(json)
-    #write_hash_to_yaml_file_2(result.to_json, sub_dir, "from_json_expected.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "from_json_expected.yaml")
-    expect(result.to_json).to eq(expected)
-  end
-  
-  it "allows an object to be exported as JSON" do
-    item = Form::Group::Normal.find("F-ACME_T2_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
-    result = item.to_json
-  #write_hash_to_yaml_file_2(result, sub_dir, "to_json_expected_1.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "to_json_expected_1.yaml")
-    expect(result).to eq(expected)
-  end
-
-  it "allows an object to be exported as JSON, ordering" do
-    group = Form::Group::Normal.new
-    item_1 = Form::Item::Question.new
-    item_1.ordinal = 1
-    sub_group_1 = Form::Group::Normal.new
-    sub_group_1.ordinal = 2
-    sub_group_2 = Form::Group::Normal.new
-    sub_group_2.ordinal = 3
-    label_1 = Form::Item::TextLabel.new
-    label_1.ordinal = 4
-    label_2 = Form::Item::TextLabel.new
-    label_2.ordinal = 5
-    sub_group_3 = Form::Group::Normal.new
-    sub_group_3.ordinal = 6
-    group.children << item_1
-    group.children << label_1
-    group.children << label_2
-    group.groups << sub_group_1
-    group.groups << sub_group_2
-    group.groups << sub_group_3
-    result = group.to_json
-  #write_yaml_file(result, sub_dir, "to_json_expected_2.yaml")
-    expected = read_yaml_file(sub_dir, "to_json_expected_2.yaml")
-    expect(result).to eq(expected)
-  end
-
-  it "allows an object to be exported as SPARQL" do
-    sparql = SparqlUpdateV2.new
-    result = 
-      "PREFIX bf: <http://www.assero.co.uk/BusinessForm#>\n" +
-      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-      "INSERT DATA \n" +
-      "{ \n" + 
-      "<http://www.example.com/path#parent_G1> rdf:type <http://www.example.com/path#rdf_test_type> . \n" +
-      "<http://www.example.com/path#parent_G1> rdfs:label \"test label\"^^xsd:string . \n" +
-      "<http://www.example.com/path#parent_G1> bf:ordinal \"1\"^^xsd:positiveInteger . \n" +
-      "<http://www.example.com/path#parent_G1> bf:optional \"false\"^^xsd:boolean . \n" +
-      "<http://www.example.com/path#parent_G1> bf:note \"Note\"^^xsd:string . \n" +
-      "<http://www.example.com/path#parent_G1> bf:completion \"Completion\"^^xsd:string . \n" + 
-      "<http://www.example.com/path#parent_G1> bf:repeating \"true\"^^xsd:boolean . \n" + 
-      "}"
-    item = Form::Group::Normal.new
-    item.rdf_type = "http://www.example.com/path#rdf_test_type"
-    item.label = "test label"
-    item.completion = "Completion"
-    item.note = "Note"
-    item.repeating = "true"
-    item.ordinal = 1
-    item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
-    expect(sparql.to_s).to eq(result)
-  end
-
-  it "allows an object to be exported as XML, no children" do
-  	odm = add_root
-    study = add_study(odm.root)
-    mdv = add_mdv(study)
-    form = add_form(mdv)
-    item = Form::Group::Normal.new
-    item.id = "G-TEST"
-    item.label = "test label"
-    item.ordinal = 119
-		item.to_xml(mdv, form)
-		xml = odm.to_xml
-  #write_text_file_2(xml, sub_dir, "to_xml_expected_1.xml")
-    expected = read_text_file_2(sub_dir, "to_xml_expected_1.xml")
-    odm_fix_datetimes(xml, expected)
-    odm_fix_system_version(xml, expected)
-    expect(xml).to eq(expected)
-  end
-  
-  it "allows an object to be exported as XML, children" do
-  	odm = add_root
-    study = add_study(odm.root)
-    mdv = add_mdv(study)
-    form = add_form(mdv)
-    item_c = Form::Group::Normal.new
-    item_c.id = "G-TEST-CHILD"
-    item_c.label = "test label child"
-    item_c.ordinal = 1
-		item = Form::Group::Normal.new
-    item.id = "G-TEST"
-    item.label = "test label"
-    item.ordinal = 119
-		item.groups << item_c
-		item.to_xml(mdv, form)
-		xml = odm.to_xml
-  #write_text_file_2(xml, sub_dir, "to_xml_expected_1.xml")
-    expected = read_text_file_2(sub_dir, "to_xml_expected_2.xml")
-    odm_fix_datetimes(xml, expected)
-    odm_fix_system_version(xml, expected)
-    expect(xml).to eq(expected)
   end
   
 end

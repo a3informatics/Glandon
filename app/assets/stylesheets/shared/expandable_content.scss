@@ -1,0 +1,30 @@
+@import "shared/vars.scss";
+
+.expandable-content-btn {
+  display: inline-block;
+  font-family: $font-light;
+  cursor: pointer;
+}
+
+.expandable-content-btn:hover {
+  color: $primary-color-light;
+}
+
+.expandable-content-wrap {
+  font-size: $font-small;
+  margin-top: 3px;
+}
+
+.expandable-content-wrap.collapsed .expandable-content {
+  display: none;
+}
+
+.expandable-content-btn .icon-arrow-d {
+  display: inline-block;
+  transition: transform .3s;
+}
+
+.expandable-content-wrap.centered .expandable-content-btn {
+  width: 100%;
+  text-align: center;
+}

@@ -67,14 +67,14 @@ Rails.application.routes.draw do
     end
   end
   resources :iso_concept, only: [:show] do
-    collection do
-      get :graph
-      get :graph_links
-      get :impact
-      get :impact_start
-      get :impact_next
-      get :changes
-    end
+    #collection do
+      # get :graph
+      # get :graph_links
+      # get :impact
+      # get :impact_start
+      # get :impact_next
+      # get :changes
+    #end
     member do
       get :tags
       put :add_tag
@@ -97,25 +97,28 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :iso_managed do
+  # resources :iso_managed do
+  #   collection do
+  #     get :status
+  #     get :find_by_tag
+  #     get :tags
+  #     get :graph
+  #     get :graph_links
+  #     get :impact
+  #     get :impact_start
+  #     get :impact_next
+  #     get :changes
+  #     get :comments
+  #   end
+  #   member do
+  #     get :branches
+  #   end
+  # end
+  resources :iso_managed_v2, only: [:edit, :update] do
     collection do
-      get :status
       get :find_by_tag
-      get :tags
-      get :graph
-      get :graph_links
-      get :impact
-      get :impact_start
-      get :impact_next
-      get :changes
       get :comments
     end
-    member do
-      get :branches
-      get :export
-    end
-  end
-  resources :iso_managed_v2, only: [] do
     member do
       get :status
       get :impact
@@ -125,9 +128,8 @@ Rails.application.routes.draw do
       get :list_change_notes
       get :list_change_notes_data
       get :export_change_notes_csv
-    end
-    collection do
-      get :find_by_tag
+      get :export_ttl
+      get :export_json
     end
   end
   resources :iso_registration_states_v2, only: [] do
@@ -137,9 +139,9 @@ Rails.application.routes.draw do
   end
   resources :dashboard, only: [:index] do
     collection do
-      get :view
-      get :database
-      get :admin
+      # get :view
+      # get :database
+      # get :admin
     end
   end
   resources :iso_concept_systems, only: [:index, :show, :destroy] do
@@ -170,6 +172,9 @@ Rails.application.routes.draw do
       post :release
       get :status
       get :extend_token
+    end
+    collection do
+      post :release_multiple
     end
   end
   resources :ad_hoc_reports, only: [:index, :show, :new, :create, :destroy] do
@@ -351,138 +356,160 @@ Rails.application.routes.draw do
   resources :biomedical_concept_templates do
     collection do
       get :history
-      get :list
-      get :all
     end
   end
-  namespace :biomedical_concepts do
-    resources :items
-    resources :datatypes
-    resources :properties do
-      member do
-        post 'term', to: 'properties#add', as: :add
-        delete 'term', to: 'properties#remove', as: :remove
-      end
-    end
-    resources :property_values
-  end
-  resources :biomedical_concepts do
+  resources :biomedical_concept_instances do
     member do
       get :show_data
-      get :export_json
-      get :export_ttl
-      get :clone
-      get :upgrade
-      get :show_full
-      get :edit_lock
+      get :edit_data
+      get :edit_another
+      put :update_property
     end
     collection do
-      get :editable
       get :history
-      post :clone_create
-      get :list
-      get :edit_multiple
+      post :create_from_template
     end
   end
+
+  #Forms
   resources :forms do
+    member do
+      get :show_data
+      get :crf
+      get :referenced_items
+      post :add_child
+    end
     collection do
       get :history
-      get :view
-      get :placeholder_new
-      post :placeholder_create
-      get :acrf
-      get :crf
-      get :markdown
-      get :clone
-      post :clone_create
-      get :branch
-      post :branch_create
-      get :export_json
-      get :export_ttl
-      get :export_odm
+      # get :view
+      # get :placeholder_new
+      # post :placeholder_create
+      # get :acrf
+      # get :crf
+      # get :markdown
+      # get :clone
+      # post :clone_create
+      # get :branch
+      # post :branch_create
+      # get :export_json
+      # get :export_ttl
+      # get :export_odm
     end
   end
   namespace :forms do
-    resources :groups
-    resources :items, :only => [:show]
+    namespace :items do
+      resources :questions, :text_labels, :placeholders, :mappings, :commons, :bc_properties, :only => [:update, :destroy] do
+        member do
+          put :move_up
+          put :move_down
+          post :add_child
+        end
+      end
+      resources :bc_properties do
+        member do
+          post :make_common
+        end
+      end
+      resources :commons do
+        member do
+          delete :restore
+        end
+      end
+    end
+    namespace :groups do
+      resources :bc_groups, :normal_groups, :common_groups, :only => [:update, :destroy] do
+        member do
+          put :move_up
+          put :move_down
+          post :add_child
+        end
+      end
+    end
   end
+
+  namespace :operational_reference_v3 do
+    resources :tuc_references, :only => [:update, :destroy] do
+      member do
+          put :move_up
+          put :move_down
+      end
+    end
+  end
+
   resources :backgrounds, :only => [:index, :destroy] do
     collection do
       delete :destroy_multiple
     end
   end
-  resources :sdtm_models do
+
+  #SDTM
+  resources :sdtm_models, :only => [:show, :index] do
     collection do
       get :history
-      get :import
-      post :create
+      # get :import
+      # post :create
     end
     member do
-      get :export_json
-      get :export_ttl
+      get :show_data
+      # get :export_json
+      # get :export_ttl
     end
   end
   namespace :sdtm_models do
     resources :variables
   end
-  resources :sdtm_model_domains, :only => [:show] do
-    collection do
-      #get :history
-    end
-    member do
-      get :export_json
-      get :export_ttl
-    end
-  end
-  resources :sdtm_igs do
-    collection do
-      get :history
-      get :import
-      post :create
-    end
-    member do
-      get :export_json
-      get :export_ttl
-    end
-  end
-  resources :sdtm_ig_domains, :only => [:show] do
-    member do
-      get :export_json
-      get :export_ttl
-    end
-  end
-  resources :sdtm_user_domains do
-    member do
-      get :export_json
-      get :export_ttl
-      get :full_report
-      get :export_xpt_metadata
-    end
-    collection do
-      get :history
-      get :clone_ig
-      post :clone_ig_create
-      get :list
-      get :add
-      get :remove
-      post :update_add
-      post :update_remove
-      get :sub_classifications
-    end
-  end
-  resources :adam_igs do
+  resources :sdtm_classes, :only => [:show, :index] do
     collection do
       get :history
     end
     member do
-      get :export_json
-      get :export_ttl
+      get :show_data
     end
   end
-    resources :adam_ig_datasets, :only => [:show] do
+  resources :sdtm_igs, :only => [:show, :index] do
+    collection do
+      get :history
+      # get :import
+      # post :create
+    end
     member do
-      get :export_json
-      get :export_ttl
+      get :show_data
+      # get :export_json
+      # get :export_ttl
+    end
+  end
+  resources :sdtm_ig_domains, :only => [:show, :index] do
+    collection do
+      get :history
+      # get :import
+      # post :create
+    end
+    member do
+      get :show_data
+      # get :export_json
+      # get :export_ttl
+    end
+  end
+
+  #ADAM
+  resources :adam_igs, :only => [:show, :index] do
+    collection do
+      get :history
+    end
+    member do
+      get :show_data
+      # get :export_json
+      # get :export_ttl
+    end
+  end
+  resources :adam_ig_datasets, :only => [:show, :index] do
+    collection do
+      get :history
+    end
+    member do
+      get :show_data
+      # get :export_json
+      # get :export_ttl
     end
   end
 

@@ -1,0 +1,21 @@
+# Form Migration
+#
+# Update domain, range and subClassOf
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+:CommonItem
+  rdfs:subClassOf :BcProperty ;
+.
+:hasCommon
+  rdfs:domain :NormalGroup ;
+.
+:hasBiomedicalConcept
+  rdfs:range bo:Reference ;
+.
+:hasProperty
+  rdfs:range bo:Reference;
+.

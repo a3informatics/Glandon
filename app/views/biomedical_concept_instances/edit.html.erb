@@ -1,0 +1,34 @@
+<% content_for :page_title do %> <%= "Edit: #{@bc.has_identifier.identifier} (#{@bc.semantic_version})" %> <% end %>
+
+<%= javascript_pack_tag 'biomedical_concept_instances/edit' %>
+
+<%= javascript_tag "let bcMetadataUrl = '#{edit_biomedical_concept_instance_path(@bc)}',
+                        bcEditFullDataUrl = '#{edit_data_biomedical_concept_instance_path(id: "bcID")}',
+                        bcEditAnotherUrl = '#{edit_another_biomedical_concept_instance_path(id: "bcID")}',
+                        bcUpdateUrl = '#{update_property_biomedical_concept_instance_path(id: "bcID")}',
+
+                        baseBCId = '#{@bc.id}',
+                        tokenWarningTime = #{current_user.edit_lock_warning};" %>
+
+<%= stylesheet_link_tag "shared/tables_editable" %>
+
+<% third_level_breadcrumb(:biomedical_concept_instances, @bc, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @bc, :badge => "icon-biocon"} do %>
+
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    </div>
+
+  <% end %>
+</div>
+
+<div class="row">
+  <%= render partial: "shared/biomedical_concept_instances/edit/manager_card" %>
+</div>
+
+<div class="row">
+	<%= render partial: "shared/biomedical_concept_instances/edit/editor_card" %>
+</div>

@@ -1,0 +1,33 @@
+<% content_for :page_title do %> Index: ADaM IG Datasets <% end %>
+
+<%= javascript_pack_tag 'adam_ig_datasets/index' %>
+
+<% first_level_breadcrumb (:adam_ig_datasets) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-adam",
+    main_text: "ADaM IG Datasets", sub_text: "Browse all ADaM IG Datasets in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+<div class="row">
+
+  <% content_for :description do %>
+    Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> ADaM IG Datasets.
+    Use the Search bar to find the ADaM IG Dataset you are looking for.
+    To see ADaM IG Dataset's respective History page, click on it.
+  <% end %>
+
+  <% content_for :actions do %>
+
+    <% if policy(AdamIgDataset).new? %>
+      <a href="#" class="btn medium green" id="new_form">
+        <span class="icon-plus text-tiny"></span>&nbsp; New ADaM IG Dataset
+      </a>
+    <% end %>
+  <% end %>
+
+  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "ADaM IG Dataset", url: adam_ig_datasets_path } %>
+
+</div>

@@ -1,4 +1,5 @@
 import { $post } from 'shared/helpers/ajax'
+import { alerts } from 'shared/ui/alerts'
 
 /**
  * Pair Handler
@@ -53,7 +54,7 @@ export default class PairHandler {
       url: this.pairUrl,
       data: data,
       done: () => {
-        displaySuccess("Paired successfully.")
+        alerts.success('Paired successfully.')
         setTimeout(() => location.reload(), 1000);
       },
       always: () => this._processing(false)
@@ -69,7 +70,7 @@ export default class PairHandler {
     $post({
       url: this.unpairUrl,
       done: () => {
-        displaySuccess("Unpaired successfully.")
+        alerts.success('Paired successfully.')
         setTimeout(() => location.reload(), 1000);
       },
       always: () => this._processing(false)

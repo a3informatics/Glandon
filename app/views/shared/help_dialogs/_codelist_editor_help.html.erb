@@ -10,20 +10,13 @@
   <span class="circular-badge tiny bg-accent-1"></span> - Item is owned by CDISC and cannot be edited. <br/>
   <span class="circular-badge tiny bg-grey-light"></span> - Item is owned by sponsor, but is referenced from another Code List. It can only be edited from its native parent. <br/>
 
-  When hovering mouse over a cell and the <span class="icon-edit text-prim-light"></span> icon appears, that means the field <span class="font-regular">is editable</span>.
+  When hovering mouse over a cell and the <span class="icon-edit text-prim-light"></span> icon appears, that means the field is <span class="font-regular">inline editable</span>.
   <br/><br/>
 
-  <i>The Code List Editor controls for text fields are similar to that of Excel.</i><br/>
-  Click on an editable cell once to <i>focus</i> on it. Once focused, you can move around the table with the keyboard <span class="font-regular">arrow keys</span>.<br/>
-  The <span class="font-regular">Tab</span> and <span class="font-regular">Shift + Tab</span> keys can be used to traverse the cells as well. <br/>
-  To start editing a cell, <span class="font-regular">double click</span> on it or hit <span class="font-regular">Enter</span> while focused, or
-  simply start writing (<i>this will clear its contents</i>). <br/>
-  Press <span class="font-regular">Esc</span> to stop editing and revert any changes.<br/>
-  Click away from the cell or hit <span class="font-regular">Enter</span> to <i>save</i> your changes. <br/>
-  It is also possible to use shortcuts such as <span class="font-regular">Cmd + Z</span> or <span class="font-regular">Cmd + A</span> while editing text fields.
-  <br/><br/>
+  <%= render "shared/help_dialogs/shared/text_edit_help" %>
 
+  Items with editable Tags are marked with <span class="icon-long-arrow text-prim-light" style="display: inline-block; transform: rotate(45deg)"></span> when hovered over. <br>
   To Edit tags of an item, click on its Tags cell (<i>keyboard navigation cannot be used</i>).
-  A new window will be opened. Use the <button class="btn white btn-xs">Refresh</button> button to see the changes you made.
+  A new window will be opened. Edit the tags, close the window and use the <button class="btn white btn-xs">Refresh</button> button to see the changes you made.
   <br/><br/>
 <% end %>

@@ -1,0 +1,317 @@
+@prefix : <http://www.assero.co.uk/Tabulation#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix cbc: <http://www.assero.co.uk/BiomedicalConcept#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/Tabulation>
+  rdf:type owl:Ontology ;
+  owl:versionInfo "v3.2.0"^^xsd:string ;
+  rdfs:label "Tabulation Schema"^^xsd:string ;
+.
+:Column
+  rdf:type owl:Class ;
+  rdfs:label "Column"^^xsd:string ;
+  rdfs:subClassOf isoC:Concept ;
+  skos:definition "Column within a tabulation."^^xsd:string ;
+.
+:Tabulation
+  rdf:type owl:Class ;
+  rdfs:label "Tabulation"^^xsd:string ;
+  rdfs:subClassOf bo:Component ;
+  skos:definition "A tabulation. A set of columns."^^xsd:string ;
+.
+:SdtmClass
+  rdf:type owl:Class ;
+  rdfs:label "SDTM Class"^^xsd:string ;
+  rdfs:subClassOf :Tabulation ;
+  skos:definition "A CDISC class. Building block for a SDTM IG domain."^^xsd:string ;
+.
+:SdtmClassVariable
+  rdf:type owl:Class ;
+  rdfs:label "SDTM Class variable"^^xsd:string ;
+  rdfs:subClassOf :Column ;
+  skos:definition "A SDTM CDISC domain class variable. Building block for a SDTM variable."^^xsd:string ;
+.
+:SdtmDomain
+  rdf:type owl:Class ;
+  rdfs:label "SDTM Domain"^^xsd:string ;
+  rdfs:subClassOf :Tabulation ;
+  skos:definition "A domain as defined within an implementation guide."^^xsd:string ;
+.
+:SdtmDomainVariable
+  rdf:type owl:Class ;
+  rdfs:label "SDTM Domain Variable"^^xsd:string ;
+  rdfs:subClassOf :Column ;
+  skos:definition "A variable as defined within an implementation guide."^^xsd:string ;
+.
+:ADaMDataset
+  rdf:type owl:Class ;
+  rdfs:label "SDTM Domain"^^xsd:string ;
+  rdfs:subClassOf :Tabulation ;
+  skos:definition "A domain as defined within an implementation guide."^^xsd:string ;
+.
+:ADaMDatasetVariable
+  rdf:type owl:Class ;
+  rdfs:label "SDTM Domain Variable"^^xsd:string ;
+  rdfs:subClassOf :Column ;
+  skos:definition "A variable as defined within an implementation guide."^^xsd:string ;
+.
+:Model
+  rdf:type owl:Class ;
+  rdfs:label "Model"^^xsd:string ;
+  rdfs:subClassOf bo:Collection ;
+  skos:definition "A document published detailing a model."^^xsd:string ;
+.
+:ImplementationGuide
+  rdf:type owl:Class ;
+  rdfs:label "Implementation Guide"^^xsd:string ;
+  rdfs:subClassOf bo:Collection ;
+  skos:definition "A document published as a implementation guide."^^xsd:string ;
+.
+:ADaMImplementationGuide
+  rdf:type owl:Class ;
+  rdfs:label "ADaM Implementation Guide"^^xsd:string ;
+  rdfs:subClassOf :ImplementationGuide ;
+  skos:definition "A document published as a ADaM implementation guide."^^xsd:string ;
+.
+:SDTMImplementationGuide
+  rdf:type owl:Class ;
+  rdfs:label "SDTM Implementation Guide"^^xsd:string ;
+  rdfs:subClassOf :ImplementationGuide ;
+  skos:definition "A document published as a SDTM implementation guide."^^xsd:string ;
+.
+:TAGuide
+  rdf:type owl:Class ;
+  rdfs:label "Therapuetic Area User Guide"^^xsd:string ;
+  rdfs:subClassOf bo:Collection ;
+  skos:definition "A document published as a therapuetic area user guide."^^xsd:string ;
+.
+:includesColumn
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Includes column relationship"^^xsd:string ;
+  rdfs:domain :Tabulation ;
+  rdfs:range :Column ;
+  skos:definition "Relates columns to tabulations."^^xsd:string ;
+.
+:basedOnClass
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Based on class relationship"^^xsd:string ;
+  rdfs:domain :SdtmDomain ;
+  rdfs:range :SdtmClass ;
+  skos:definition "Notes which domain class a domain is based on."^^xsd:string ;
+.
+:basedOnClassVariable
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Based on class variable relationship"^^xsd:string ;
+  rdfs:domain :SdtmDomainVariable ;
+  rdfs:range :SdtmClassVariable ;
+  skos:definition "Notes which domain class variable a variable is based on."^^xsd:string ;
+.
+:classifiedAs
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Classified as relationship"^^xsd:string ;
+  rdfs:domain  :SdtmClassVariable ;
+  rdfs:range isoC:Concept ;
+  skos:definition "The variable classification."^^xsd:string ;
+.
+:typedAs
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Type as relationship"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf (:SdtmDomainVariable :ADaMDatasetVariable)
+    ] ;
+  rdfs:range isoC:Concept ;
+  skos:definition "The variable datatype."^^xsd:string ;
+.
+:compliance
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Compliance relationship"^^xsd:string ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf (:SdtmDomainVariable :ADaMDatasetVariable)
+    ] ;
+  rdfs:range isoC:Concept ;
+  skos:definition "The variable compliance."^^xsd:string ;
+.
+:hasBiomedicalConcept
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Biomedical Concept relationship"^^xsd:string ;
+  rdfs:domain :SdtmDomain ;
+  rdfs:range bo:BcReference ;
+  skos:definition "Reference to a Biomedical Concept."^^xsd:string ;
+.
+:rule
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Rule"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf  ( :Tabulation :Column )
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "A rule applying to the Tabulation or Column in question."^^xsd:string ;
+.
+:ordinal
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Ordinal"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf  ( :Tabulation :Column )
+    ] ;
+  rdfs:range xsd:positiveInteger ;
+  skos:definition "The position of the Tabulation or Column within the set."^^xsd:string ;
+.
+:name
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Variable name"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf (:SdtmModelVariable :SdtmDomainVariable :ADaMDatasetVariable)
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "The variable name."^^xsd:string ;
+.
+:prefixed
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Variable prefixed."^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :SdtmClassVariable ;
+  rdfs:range xsd:boolean ;
+  skos:definition "Boolean indicating if the variable is prefixed with the domain code."^^xsd:string ;
+.
+:description
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Variable description."^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf (:SdtmClassVariable :SdtmDomainVariable)
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "Description of the variable."^^xsd:string ;
+.
+:notes
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Notes"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf (:SdtmDomainVariable :ADaMDatasetVariable)
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "Notes on the variable."^^xsd:string ;
+.
+:format
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Format"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :SdtmDomainVariable ;
+  rdfs:range xsd:string ;
+  skos:definition "Format of the variable."^^xsd:string ;
+.
+:ctReference
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "CT"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf (:SdtmDomainVariable :ADaMDatasetVariable)
+    ] ;
+  rdfs:range bo:TMcReference ;
+  skos:definition "Controlled terminology reference for the variable."^^xsd:string ;
+.
+:ct
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "CT"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :ADaMDatasetVariable ;
+  rdfs:range xsd:string ;
+  skos:definition "Raw Codelist and Controlled Terminology."^^xsd:string ;
+.
+:ctAndFormat
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Format"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :SdtmDomainVariable ;
+  rdfs:range xsd:string ;
+  skos:definition "Raw CT and Format of the variable."^^xsd:string ;
+.
+:length
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Variable length"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :SdtmDomainVariable ;
+  rdfs:range xsd:integer ;
+  skos:definition "Variable length."^^xsd:string ;
+.
+:comment
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Comments"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :SdtmDomainVariable ;
+  rdfs:range xsd:string ;
+  skos:definition "Comments regarding the variable."^^xsd:string ;
+.
+:non_standard
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Non standard / supplemental qualifier."^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :SdtmDomainVariable ;
+  rdfs:range xsd:boolean ;
+  skos:definition "The variable is a non-standard variable."^^xsd:string ;
+.
+:used
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Variable used"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :SdtmDomainVariable ;
+  rdfs:range xsd:boolean ;
+  skos:definition "Variable is used/not used."^^xsd:string ;
+.
+:key_ordinal
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Ordinal"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :SdtmDomainVariable ;
+  rdfs:range xsd:positiveInteger ;
+  skos:definition "The position of the item within the set."^^xsd:string ;
+.
+:prefix
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Domain prefix"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain  :SdtmDomain ;
+  rdfs:range xsd:string ;
+  skos:definition "Theprefix for the domain."^^xsd:string ;
+.
+:structure
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Domain structure"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain  :SdtmDomain ;
+  rdfs:range xsd:string ;
+  skos:definition "The structure of the domain."^^xsd:string ;
+.

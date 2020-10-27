@@ -1,19 +1,10 @@
 module UiHelpers
 
-  # General Tag helpers
-	def ui_click_tag_add
-    ui_click_by_id('tag_add')
-  end
-
-  def ui_click_tag_delete
-    ui_click_by_id('tag_delete')
-  end
-
   # General UI helpers
   # ==================
 
   def ui_check_page_has(text)
-  	expect(page).to have_content(text)
+    expect(page).to have_content(text)
   end
 
   def ui_click_ok(text="")
@@ -123,7 +114,7 @@ module UiHelpers
   end
 
   def ui_main_search(text)
-  	input = find(:xpath, '//*[@id="main_filter"]/label/input')
+    input = find(:xpath, '//*[@id="main_filter"]/label/input')
     input.set(text)
     input.native.send_keys(:return)
   end
@@ -153,6 +144,11 @@ module UiHelpers
   def ui_check_table_cell_create(table_id, row, col)
     td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
     expect(td.find('div span.icon-plus-circle', visible: :all)).to_not eq(nil)
+  end
+
+  def ui_check_table_cell_icon(table_id, row, col, icon)
+    td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+    expect(td.find("div .icon-#{icon}", visible: :all)).to_not eq(nil)
   end
 
   def ui_check_table_cell_delete(table_id, row, col)
@@ -189,7 +185,7 @@ module UiHelpers
   def check_table_cell_options(table_id, row, col, options)
     cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").text
     options.each do |text|
-    	return true if cell == text
+      return true if cell == text
     end
   puts "Cell: >#{cell}<"
     return false
@@ -231,33 +227,33 @@ module UiHelpers
     expect(page).to have_css("##{table_id}_info", text: "Showing #{first} to #{last} of #{total} entries")
   end
 
-	def ui_check_table_button_class(table_id, row, col, classname)
+  def ui_check_table_button_class(table_id, row, col, classname)
     find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]/span")[:class].include?(classname)
   end
 
 
-	# Indicators
-  def ui_check_table_row_indicators(table_id, row, col, indicators)
-		within("##{table_id}") do
-			Capybara.ignore_hidden_elements = false
-			indicators.each do |i|
-				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/span", count: indicators.length())
-				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/span", text: "#{i}", count: 1)
-			end
-			Capybara.ignore_hidden_elements = true
-		end
+  # Indicators
+  def ui_check_table_row_indicators(table_id, row, col, indicators, new_style: false)
+    within("##{table_id}") do
+      Capybara.ignore_hidden_elements = false
+      indicators.each do |i|
+        expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/#{ new_style ? 'div/' : '' }span", count: indicators.length)
+        expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/#{ new_style ? 'div/' : '' }span", text: "#{i}", count: 1)
+      end
+      Capybara.ignore_hidden_elements = true
+    end
   end
 
-	def ui_check_indicators(parent, indicators)
-		within(parent) do
-			Capybara.ignore_hidden_elements = false
-			indicators.each do |i|
-				expect(page).to have_xpath("./span", count: indicators.length())
-				expect(page).to have_xpath("./span", text: "#{i}", count: 1)
-			end
-			Capybara.ignore_hidden_elements = true
-		end
-	end
+  def ui_check_indicators(parent, indicators, new_style: false)
+    within(parent) do
+      Capybara.ignore_hidden_elements = false
+      indicators.each do |i|
+        expect(page).to have_xpath("./#{ new_style ? 'div/' : '' }span", count: indicators.length)
+        expect(page).to have_xpath("./#{ new_style ? 'div/' : '' }span", text: "#{i}", count: 1)
+      end
+      Capybara.ignore_hidden_elements = true
+    end
+  end
 
   # Flash
   def ui_check_no_flash_message_present
@@ -274,65 +270,65 @@ module UiHelpers
     input.set(text)
   end
 
-	def ui_term_overall_search(text)
-		input = find("#overall_search")
-		input.set(text)
-		input.native.send_keys(:return)
-		wait_for_ajax 120
-	end
+  def ui_term_overall_search(text)
+    input = find("#overall_search")
+    input.set(text)
+    input.native.send_keys(:return)
+    wait_for_ajax 120
+  end
 
-	def search_column_input_map(type)
-		{ code_list: "searchTable_c#{type.to_s}_parent_identifier",
-			code_list_name: "searchTable_c#{type.to_s}_parent_label",
-			item: "searchTable_c#{type.to_s}_identifier",
-			notation: "searchTable_c#{type.to_s}_notation",
-			preferred_term: "searchTable_c#{type.to_s}_preferred_term",
-			synonym: "searchTable_c#{type.to_s}_synonym",
-			definition: "searchTable_c#{type.to_s}_definition",
-			tags: "searchTable_c#{type.to_s}_tags",
-			thesaurus: "searchTable_c#{type.to_s}_tidentifier",
-			thesaurus_version: "searchTable_c#{type.to_s}_tversion" }
-	end
+  def search_column_input_map(type)
+    { code_list: "searchTable_c#{type.to_s}_parent_identifier",
+      code_list_name: "searchTable_c#{type.to_s}_parent_label",
+      item: "searchTable_c#{type.to_s}_identifier",
+      notation: "searchTable_c#{type.to_s}_notation",
+      preferred_term: "searchTable_c#{type.to_s}_preferred_term",
+      synonym: "searchTable_c#{type.to_s}_synonym",
+      definition: "searchTable_c#{type.to_s}_definition",
+      tags: "searchTable_c#{type.to_s}_tags",
+      thesaurus: "searchTable_c#{type.to_s}_tidentifier",
+      thesaurus_version: "searchTable_c#{type.to_s}_tversion" }
+  end
 
   def ui_term_column_search(column, text, wait = true)
     input = search_column_input_map(:search)[column]
-		begin
-			fill_in input, with: text
-			ui_hit_return(input)
-  	rescue Capybara::ElementNotFound => e
-			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(2000,0)
-			fill_in input, with: text
-			ui_hit_return(input)
-			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
+    begin
+      fill_in input, with: text
+      ui_hit_return(input)
+    rescue Capybara::ElementNotFound => e
+      find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(2000,0)
+      fill_in input, with: text
+      ui_hit_return(input)
+      find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
     end
     wait_for_ajax(120) if wait
   end
 
-	def ui_term_column_filter(column, text)
-		input = search_column_input_map(:filter)[column]
-		begin
-			fill_in input, with: text
-  	rescue Capybara::ElementNotFound => e
-			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(2000,0)
-			fill_in input, with: text
-			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
+  def ui_term_column_filter(column, text)
+    input = search_column_input_map(:filter)[column]
+    begin
+      fill_in input, with: text
+    rescue Capybara::ElementNotFound => e
+      find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(2000,0)
+      fill_in input, with: text
+      find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
     end
-	end
+  end
 
-	def ui_term_filter_visible
-		page.has_css?("#searchTable_wrapper .dataTables_scrollFoot")
-	end
+  def ui_term_filter_visible
+    page.has_css?("#searchTable_wrapper .dataTables_scrollFoot")
+  end
 
-	def ui_term_input_empty?(type, column)
-		begin
-			result = find("##{search_column_input_map(type)[column]}").text == ""
-  	rescue Capybara::ElementNotFound => e
-			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(2000,0)
-			result = find("##{search_column_input_map(type)[column]}").text == ""
-			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
+  def ui_term_input_empty?(type, column)
+    begin
+      result = find("##{search_column_input_map(type)[column]}").text == ""
+    rescue Capybara::ElementNotFound => e
+      find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(2000,0)
+      result = find("##{search_column_input_map(type)[column]}").text == ""
+      find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
     end
-		result
-	end
+    result
+  end
 
   def ui_show_more_tags_th
     find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
@@ -341,7 +337,7 @@ module UiHelpers
   def ui_show_more_tags_cl
     #find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
     find(:xpath, '//*[@id="imh_header"]/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
-		sleep 0.5
+    sleep 0.5
   end
 
   def ui_show_more_tags_cli
@@ -379,19 +375,11 @@ module UiHelpers
   def set_screen_size(width=1200, height=786)
     #page.driver.browser.manage.window.resize_to(width, height)
     window = Capybara.current_session.current_window
-  	window.resize_to(width, height)
+    window.resize_to(width, height)
   end
 
   # Buttons etc
   # ===========
-  def ui_click_close
-    page.evaluate_script("rhClickClose()")
-  end
-
-  def ui_click_save
-    page.evaluate_script("rhClickSave()")
-  end
-
   def ui_click_by_id(id)
     page.evaluate_script("simulateClick($('##{id}')[0])")
   end
@@ -406,26 +394,26 @@ module UiHelpers
 
   # Navigation
   # ==========
-	def id_to_section_map
-		{
-			main_nav_in: "main_nav_sysadmin", main_nav_ira: "main_nav_sysadmin", main_nav_im: "main_nav_sysadmin", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin",
-			main_nav_u: "main_nav_impexp", main_nav_i: "main_nav_impexp", main_nav_e: "main_nav_impexp", main_nav_bj: "main_nav_impexp",
-			main_nav_ics: "main_nav_util", main_nav_ma: "main_nav_util", main_nav_ahr: "main_nav_util",
-			main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_cl: "main_nav_term",
-			main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
-			main_nav_f: "main_nav_forms",
-			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm",
-			main_nav_aig: "main_nav_adam"
-		}
-	end
+  def id_to_section_map
+    {
+      main_nav_in: "main_nav_sysadmin", main_nav_ira: "main_nav_sysadmin", main_nav_im: "main_nav_sysadmin", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin",
+      main_nav_u: "main_nav_impexp", main_nav_i: "main_nav_impexp", main_nav_e: "main_nav_impexp", main_nav_bj: "main_nav_impexp",
+      main_nav_ics: "main_nav_util", main_nav_ma: "main_nav_util", main_nav_ahr: "main_nav_util",
+      main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_cl: "main_nav_term",
+      main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
+      main_nav_f: "main_nav_forms",
+      main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm", main_nav_c: "main_nav_sdtm",
+      main_nav_aig: "main_nav_adam", main_nav_aigd: "main_nav_adam"
+    }
+  end
 
-	def ui_check_item_locked(id)
-		section = id_to_section_map[id.to_sym]
-		ui_expand_section(section) if !ui_section_expanded?(section)
-		item = page.find('#'+id)
-		expect(item[:class]).to include('locked')
-		expect(item[:href]).to eq('')
-	end
+  def ui_check_item_locked(id)
+    section = id_to_section_map[id.to_sym]
+    ui_expand_section(section) if !ui_section_expanded?(section)
+    item = page.find('#'+id)
+    expect(item[:class]).to include('locked')
+    expect(item[:href]).to eq('')
+  end
 
   def ui_section_expanded?(section)
     x = page.execute_script("$('##{section}').hasClass('collapsed')")
@@ -455,55 +443,55 @@ module UiHelpers
     ui_navbar_click('main_nav_el')
   end
 
-	#Dashboard
-	def click_navbar_dashboard
-		visit 'dashboard'
-	end
+  #Dashboard
+  def click_navbar_dashboard
+    visit 'dashboard'
+  end
 
-	#System Admin
-	def click_navbar_namespaces
-		ui_navbar_click('main_nav_in')
-	end
+  #System Admin
+  def click_navbar_namespaces
+    ui_navbar_click('main_nav_in')
+  end
 
-	def click_navbar_regauthorities
-		ui_navbar_click('main_nav_ira')
-	end
+  def click_navbar_regauthorities
+    ui_navbar_click('main_nav_ira')
+  end
 
-	def click_navbar_at
-		ui_navbar_click('main_nav_at')
-	end
+  def click_navbar_at
+    ui_navbar_click('main_nav_at')
+  end
 
-	def click_navbar_el
-		ui_navbar_click('main_nav_el')
-	end
+  def click_navbar_el
+    ui_navbar_click('main_nav_el')
+  end
 
-	#Import/Export
-	def click_navbar_upload
-		ui_navbar_click('main_nav_u')
-	end
+  #Import/Export
+  def click_navbar_upload
+    ui_navbar_click('main_nav_u')
+  end
 
-	def click_navbar_import
-		ui_navbar_click('main_nav_i')
-	end
+  def click_navbar_import
+    ui_navbar_click('main_nav_i')
+  end
 
-	def click_navbar_export
-		ui_navbar_click('main_nav_e')
-	end
+  def click_navbar_export
+    ui_navbar_click('main_nav_e')
+  end
 
-	def click_navbar_background_jobs
-		ui_navbar_click('main_nav_bj')
-	end
+  def click_navbar_background_jobs
+    ui_navbar_click('main_nav_bj')
+  end
 
   #Utilities
   def click_navbar_tags
     ui_navbar_click('main_nav_ics')
   end
 
-	def click_navbar_ma
+  def click_navbar_ma
     ui_navbar_click('main_nav_ma')
   end
 
-	def click_navbar_ahr
+  def click_navbar_ahr
     ui_navbar_click('main_nav_ahr')
   end
 
@@ -521,7 +509,7 @@ module UiHelpers
   end
 
   #Biomedical Concepts
-	def click_navbar_bct
+  def click_navbar_bct
     ui_navbar_click('main_nav_bct')
   end
 
@@ -536,20 +524,28 @@ module UiHelpers
 
   #SDTM
   def click_navbar_ig_domain
-    ui_navbar_click('main_nav_sig')
-  end
-
-	def click_navbar_sdtm_model
-    ui_navbar_click('main_nav_sm')
-  end
-
-  def click_navbar_sponsor_domain
     ui_navbar_click('main_nav_sd')
   end
 
-	#ADaM
-	def click_navbar_adam_ig_domain
+  def click_navbar_sdtm_model
+    ui_navbar_click('main_nav_sm')
+  end
+
+  def click_navbar_ig
+    ui_navbar_click('main_nav_sig')
+  end
+
+  def click_navbar_sdtm_class
+    ui_navbar_click('main_nav_c')
+  end
+
+  #ADaM
+  def click_navbar_adam_ig
     ui_navbar_click('main_nav_aig')
+  end
+
+  def click_navbar_adam_ig_dataset
+    ui_navbar_click('main_nav_aigd')
   end
 
   #Community Version
@@ -569,9 +565,9 @@ module UiHelpers
     click_link 'btn-submission-changes'
   end
 
-	def click_show_latest_version
-		click_link 'btn-browse-latest'
-	end
+  def click_show_latest_version
+    click_link 'btn-browse-latest'
+  end
 
 
   def ui_check_table_cell_extensible(table_id, row, col, text)
@@ -579,91 +575,107 @@ module UiHelpers
     expect(cell).to eq(text)
   end
 
-	# Context Menu
-	def context_menu_actions_map
-	 {
+  # Context Menu
+  def context_menu_actions_map
+   {
       show: "Show",
       search: "Search",
       edit: "Edit",
       delete: "Delete",
       document_control: "Document control",
-			export_csv: "Export CSV",
-			subsets: "Subsets",
-			extend: "Extend",
-			extension: "Extension",
-			extending: "Extending",
-			change_notes: "Change notes",
-			change_instructions: "Change instructions",
-			edit_tags: "Edit tags",
+      export_csv: "Export CSV",
+      subsets: "Subsets",
+      extend: "Extend",
+      extension: "Extension",
+      extending: "Extending",
+      change_notes: "Change notes",
+      change_instructions: "Change instructions",
+      edit_tags: "Edit tags",
       list_change_notes: "List Change notes",
       edit_properties: "Edit properties",
       impact_analysis: "Impact Analysis",
-			make_current: "Make current",
-			clone: "Clone",
-			compare: "Compare",
-			run: "Run",
-			results: "Results",
+      make_current: "Make current",
+      clone: "Clone",
+      compare: "Compare",
+      run: "Run",
+      results: "Results",
       upgrade: "Upgrade Code Lists",
-			enable_rank: "Enable rank",
-			edit_ranks: "Edit ranks",
-			pair: "Pair",
-			unpair: "Unpair",
-			show_paired: "Show Paired"
+      enable_rank: "Enable rank",
+      edit_ranks: "Edit ranks",
+      pair: "Pair",
+      unpair: "Unpair",
+      show_paired: "Show Paired",
+      crf: "CRF"
     }
-	end
-
-  def context_menu_element (table_id, column_nr, text, action, row_nr = 'null' )
-    option = context_menu_actions_map[action]
-    js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}', #{row_nr}); "
-    js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
-    page.execute_script(js_code)
   end
 
-  def context_menu_element_v2 (table, text, action)
-      option = context_menu_actions_map[action]
-      find(:xpath, "//table[@id='#{table}']//tr[contains(.,'#{text}')]//span[contains(@class, 'icon-context-menu')]").click
-      find(:xpath, "//a[contains(.,'#{option}')]").click
+  def context_menu_element (table_id, column_nr, identifier, action, row_nr = nil )
+    context_menu_element_v2(table_id, identifier, action)
+  end
+
+  # Identifier is either a String (finds row that contains the text) or an Integer (finds row by its index nr)
+  def context_menu_element_v2 (table, identifier, action)
+    option = context_menu_actions_map[action]
+
+    row = find(:xpath, "//table[@id='#{ table }']//tr[contains(.,'#{ identifier }')]") if identifier.is_a? String
+    row = find(:xpath, "//table[@id='#{ table }']//tbody/tr[#{ identifier }]") if identifier.is_a? Integer
+
+    within( row ) do
+      find(".icon-context-menu").click
+      sleep 0.2
+      find( "a.option", text: option ).click
+    end
   end
 
   def context_menu_element_v3(table, text, option)
-      find(:xpath, "//table[@id='#{table}']//tr[contains(.,'#{text}')]//span[contains(@class, 'icon-context-menu')]").click
-      find(:xpath, "//a[contains(.,'#{option}')]").click
+    find(:xpath, "//table[@id='#{table}']//tr[contains(.,'#{text}')]//span[contains(@class, 'icon-context-menu')]").click
+    find(:xpath, "//a[contains(.,'#{option}')]").click
   end
 
-	def context_menu_element_header (action)
-		option = context_menu_actions_map[action]
-		js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
-    js_code += "if (el != null && !$(el).hasClass('disabled')) { el.click(); } else { console.log('No match found'); } "
-		page.execute_script(js_code)
-	end
+  def context_menu_element_header (action)
+    option = context_menu_actions_map[action]
+    menu = find( '#header-con-menu' )
+    menu.click
+    sleep 0.2
+
+    within( menu ) do
+      find( "a.option", text: option ).click
+    end
+  end
 
   def context_menu_element_header_v2 (option) 
     find(:xpath, "//*[@id='header-con-menu']").click
     find(:xpath, "//a[contains(.,'#{option}')]").click
   end
 
-	def context_menu_element_header_present?(action, state="enabled")
-		class_list = state == "enabled" ? "option" : "disabled" # Note the space, horrid but ....
-		option = context_menu_actions_map[action]
-		js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
-		js_code += "if (el != null && (el.className.indexOf('#{class_list}' !== -1) ) ) { return true; } else { return false; } "
-		page.execute_script(js_code)
-	end
+  def context_menu_element_header_present?(action, state="enabled")
+    option = context_menu_actions_map[action]
+    menu = find( '#header-con-menu' )
+    class_list = state == "enabled" ?
+                 ".option" :
+                 ".option.disabled"
+
+    Capybara.ignore_hidden_elements = false
+    result = menu.has_css?( class_list, text: option )
+    Capybara.ignore_hidden_elements = true
+
+    result
+  end
 
   def ui_dashboard_slider (start_date, end_date)
     slider = "var tl_slider = $('.timeline-container').data(); "
     slider += "tl_slider.moveToDate(tl_slider.l_slider, '#{start_date}'); "
     slider += "tl_slider.moveToDate(tl_slider.r_slider, '#{end_date}'); "
     page.execute_script(slider)
-		sleep 0.6
+    sleep 0.6
   end
 
-	def ui_dashboard_single_slider (date)
-		slider = "var tl_slider = $('.timeline-container').data(); "
-		slider += "tl_slider.moveToDate(tl_slider.l_slider, '#{date}'); "
-		page.execute_script(slider)
-		sleep 0.6
-	end
+  def ui_dashboard_single_slider (date)
+    slider = "var tl_slider = $('.timeline-container').data(); "
+    slider += "tl_slider.moveToDate(tl_slider.l_slider, '#{date}'); "
+    page.execute_script(slider)
+    sleep 0.6
+  end
 
   def ui_dashboard_alpha_filter (filter, filter_text)
     filter_control_map =
@@ -679,16 +691,63 @@ module UiHelpers
     page.execute_script(js_script)
   end
 
+  # Create new Items
 
   def ui_create_terminology(id, label, success = true)
     click_navbar_terminology
-		click_link 'New Terminology'
+    click_link 'New Terminology'
     ui_in_modal do
-	    fill_in "thesauri_identifier", with: id
-	    fill_in "thesauri_label", with: label
-	    click_button 'Submit'
-		end
-		expect(page).to have_content 'Terminology was successfully created.' if success
+      fill_in "thesauri_identifier", with: id
+      fill_in "thesauri_label", with: label
+      click_button 'Submit'
+    end
+    wait_for_ajax 10
+    expect(page).to have_content 'Terminology was successfully created.' if success
+  end
+
+  def ui_new_code_list
+    identifier = ui_next_parent_identifier
+    click_link 'New Code List'
+    wait_for_ajax 30
+    expect(page).to have_content identifier
+    wait_for_ajax 30
+    identifier
+  end
+
+  def ui_create_form(identifier, label, success = true)
+    click_navbar_forms
+    wait_for_ajax 20
+    expect(page).to have_content 'Index: Forms'
+    click_on 'New Form'
+
+    ui_in_modal do
+      fill_in 'identifier', with: identifier
+      fill_in 'label', with: label
+      click_on 'Submit'
+    end
+
+    wait_for_ajax 10
+    expect(page).to have_content "Version History of '#{identifier}'" if success
+  end
+
+  def ui_create_bc(identifier, label, template, success = true)
+    click_navbar_bc
+    wait_for_ajax 20
+    expect(page).to have_content 'Index: Biomedical Concepts'
+    click_on 'New Biomedical Concept'
+
+    ui_in_modal do
+      fill_in 'identifier', with: identifier
+      fill_in 'label', with: label
+
+      find('#new-item-template').click
+      ip_pick_managed_items(:bct, [ { identifier: template[:identifier], version: template[:version] } ], 'new-bc')
+
+      click_on 'Submit'
+    end
+
+    wait_for_ajax 10
+    expect(page).to have_content "Version History of '#{identifier}'" if success
   end
 
   # Return
@@ -710,34 +769,36 @@ module UiHelpers
     page.execute_script("document.getElementById(#{id}).scrollTop += 100")
   end
 
-	def ui_scroll_to_id_2(id)
-  	page.execute_script("document.getElementById('#{id}').scrollIntoView(false);")
+  def ui_scroll_to_id_2(id)
+    page.execute_script("document.getElementById('#{id}').scrollIntoView(false);")
   end
 
-	# Confirmation Dialog
-	def ui_confirmation_dialog(confirm)
-		ui_confirmation_dialog_with_message(confirm, "Are you sure you want to proceed?")
-	end
+  # Confirmation Dialog
+  def ui_confirmation_dialog(confirm)
+    ui_confirmation_dialog_with_message(confirm, "Are you sure you want to proceed?")
+  end
 
-	def ui_confirmation_dialog_with_message(confirm, message)
-		sleep 0.5
-		expect(page).to have_content(message)
-		if confirm
-			click_button "Yes"
-		else
-			click_button "No"
-		end
-		sleep 0.5
-	end
+  def ui_confirmation_dialog_with_message(confirm, message)
+    sleep 0.5
+    expect(page).to have_content(message)
+    if confirm
+      click_button "Yes"
+    else
+      click_button "No"
+    end
+    sleep 0.5
+  end
 
-	# Tabs
-	def ui_click_tab (name)
-		page.find(".tab-option", :text => "#{name}").click
-	end
+  # Tabs
+  def ui_click_tab (name)
+    page.find(".tab-option", :text => "#{name}").click
+  end
 
   # D3 Tree Functions
   def ui_click_node_name(text)
+    sleep 0.2
     page.evaluate_script("rhClickNodeByName(\"#{text}\")")
+    sleep 0.2
   end
 
   def ui_click_node_key(key)
@@ -797,16 +858,6 @@ module UiHelpers
     expect(ui_get_current_key).to eq(to_key)
   end
 
-  # Thesaurus
-  def ui_new_code_list
-    identifier = ui_next_parent_identifier
-    click_link 'New Code List'
-		wait_for_ajax 30
-    expect(page).to have_content identifier
-    wait_for_ajax 30
-    identifier
-  end
-
   # Status Page
   def ui_manage_status_page(old_state, new_state, owner, identifier, version)
     expect(page).to have_content 'Manage Status'
@@ -817,109 +868,87 @@ module UiHelpers
     expect(page).to have_content version
   end
 
+  # Keys
+  def ui_press_key(key, with_key = nil)
+    if with_key.nil?
+      page.driver.browser.action.send_keys(key).perform
+    else
+      page.driver.browser.action.key_down(with_key).send_keys(key).key_up(with_key).perform
+    end
+  end
 
-	# Items Selector
-	def ui_selector_check_tabs(tab_names)
-		tab_names.each do |name|
-			expect(find ".tabs-layout").to have_content(name)
-		end
-	end
 
-	def ui_selector_check_tabs_gone(tab_names)
-		tab_names.each do |name|
-			expect(find "#selector-type-tabs .tabs-sel").not_to have_content(name)
-		end
-	end
+  # Items Selector ### DEPRECATED
+  def ui_selector_check_tabs(tab_names)
+    tab_names.each do |name|
+      expect(find ".tabs-layout").to have_content(name)
+    end
+  end
 
-	def ui_selector_tab_click(tab_text)
-		find(:xpath, "//div[contains(concat(' ',normalize-space(@class), ' '),' tab-option') and contains(.,'#{tab_text}')]", visible: true).click
-	end
+  def ui_selector_check_tabs_gone(tab_names)
+    tab_names.each do |name|
+      expect(find "#selector-type-tabs .tabs-sel").not_to have_content(name)
+    end
+  end
 
-	def ui_selector_item_click(table, text)
-		find(:xpath, "//div[@id='selector-type-tabs']//table[@id='#{table}']//tr[contains(.,'#{text}')]", visible: true).click
-		wait_for_ajax 20
-	end
+  def ui_selector_tab_click(tab_text)
+    find(:xpath, "//div[contains(concat(' ',normalize-space(@class), ' '),' tab-option') and contains(.,'#{tab_text}')]", visible: true).click
+  end
 
-	def ui_selector_search(table, text)
-		find(:xpath, "//div[@id='selector-type-tabs']//div[@id='#{table}_filter']//input", visible: true).set(text)
-	end
+  def ui_selector_item_click(table, text)
+    find(:xpath, "//div[@id='selector-type-tabs']//table[@id='#{table}']//tr[contains(.,'#{text}')]", visible: true).click
+    wait_for_ajax 20
+  end
 
-	def ui_selector_pick_managed_items(type, items)
-		ui_in_modal do
-			ui_selector_tab_click(type)
-			wait_for_ajax 20
-			items.each do |i|
-				ui_selector_search("index", i[:identifier])
-				ui_selector_item_click("index", i[:identifier])
-				ui_selector_search("history", i[:version])
-				ui_selector_item_click("history", i[:version])
-				ui_selector_item_click("index", i[:identifier])
-			end
-			find("#selector-modal-submit").click
-			wait_for_ajax 10
-		end
-	end
+  def ui_selector_search(table, text)
+    find(:xpath, "//div[@id='selector-type-tabs']//div[@id='#{table}_filter']//input", visible: true).set(text)
+  end
 
-	def ui_selector_pick_unmanaged_items(type, items)
-		ui_in_modal do
-			ui_selector_tab_click(type)
-			wait_for_ajax 20
-			items.each do |i|
-				ui_selector_search("index", i[:parent])
-				ui_selector_item_click("index", i[:parent])
-				ui_selector_search("history", i[:version])
-				ui_selector_item_click("history", i[:version])
-				ui_selector_search("children", i[:identifier])
-				ui_selector_item_click("children", i[:identifier])
+  def ui_selector_pick_managed_items(type, items)
+    ui_in_modal do
+      ui_selector_tab_click(type)
+      wait_for_ajax 20
+      items.each do |i|
+        ui_selector_search("index", i[:identifier])
+        ui_selector_item_click("index", i[:identifier])
+        ui_selector_search("history", i[:version])
+        ui_selector_item_click("history", i[:version])
+        ui_selector_item_click("index", i[:identifier])
+      end
+      find("#selector-modal-submit").click
+      wait_for_ajax 10
+    end
+  end
 
-				ui_selector_item_click("history", i[:version])
-				ui_selector_item_click("index", i[:parent])
-			end
-			find("#selector-modal-submit").click
-			wait_for_ajax 10
-		end
-	end
+  def ui_selector_pick_unmanaged_items(type, items)
+    ui_in_modal do
+      ui_selector_tab_click(type)
+      wait_for_ajax 20
+      items.each do |i|
+        ui_selector_search("index", i[:parent])
+        ui_selector_item_click("index", i[:parent])
+        ui_selector_search("history", i[:version])
+        ui_selector_item_click("history", i[:version])
+        ui_selector_search("children", i[:identifier])
+        ui_selector_item_click("children", i[:identifier])
 
-	# Modals
+        ui_selector_item_click("history", i[:version])
+        ui_selector_item_click("index", i[:parent])
+      end
+      find("#selector-modal-submit").click
+      wait_for_ajax 10
+    end
+  end
 
-	def ui_in_modal
-		sleep 1
-		wait_for_ajax 20
-		yield
-		sleep 1
-	end
+  # Modals
 
-	# DT Editor
+  def ui_in_modal
+    sleep 1
+    wait_for_ajax 20
+    yield
+    sleep 1
+  end
 
-	def ui_editor_fill_inline(field, text)
-		sleep 0.5
-		fill_in "DTE_Field_#{field}", with: "#{text}"
-		wait_for_ajax 10
-	end
-
-	def ui_editor_select_by_location(row, col)
-		find(:xpath, "//table[@id='editor']//tr[#{row}]/td[#{col}]").double_click
-	end
-
-	def ui_editor_select_by_content(text)
-		find(:xpath, "//table[@id='editor']//tr/td[contains(.,'#{text}')]").double_click
-	end
-
-	def ui_editor_check_value(row, col, text)
-		expect(find(:xpath, "//table[@id='editor']//tr[#{row}]/td[#{col}]").text).to eq(text)
-	end
-
-	def ui_editor_check_error(field, error_text)
-		expect(find(".DTE_Inline_Field div[data-dte-e = 'msg-error']").text).to eq(error_text)
-	end
-
-	def ui_editor_check_disabled(field)
-		expect(find(".DTE_Field_Name_#{field}")[:class]).to include("disabled")
-	end
-
-	def ui_editor_press_key(key)
-		page.driver.browser.action.send_keys(key).perform
-	end
 
 private
 

@@ -8,7 +8,24 @@ class BiomedicalConcept::ComplexDatatype  < IsoConceptV2
             uri_property: :label,
             uri_suffix: 'BCCDT'
 
-  object_property :based_on, cardinality: :one, model_class: "ComplexDatatype"
+  object_property :is_complex_datatype, cardinality: :one, model_class: "ComplexDatatype", read_exclude: true, delete_exclude: true
   object_property :has_property, cardinality: :many, model_class: "BiomedicalConcept::PropertyX", children: true
+
+  # Managed Ancestors Path. Returns the path from the managed ancestor to this class
+  #
+  # @return [String] the path as an expanded set of predicates
+  def self.managed_ancestors_path
+    [
+      "<http://www.assero.co.uk/BiomedicalConcept#hasItem>",
+      "<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype>"
+    ]
+  end
+
+  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  #
+  # @return [Symbol] the predicate property as a symbol
+  def self.managed_ancestors_predicate
+    :has_complex_datatype
+  end
 
 end

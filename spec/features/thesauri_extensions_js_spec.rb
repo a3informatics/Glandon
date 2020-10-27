@@ -24,6 +24,7 @@ describe "Thesauri Extensions", :type => :feature do
       NameValue.create(name: "thesaurus_child_identifier", value: "999")
       Thesaurus.create({:identifier => "TEST", :label => "Test Label"})
       Token.delete_all
+      Token.restore_timeout
       set_transactional_tests false
     end
 
@@ -47,7 +48,7 @@ describe "Thesauri Extensions", :type => :feature do
       click_navbar_code_lists
       wait_for_ajax(120)
       ui_table_search("index", identifier)
-      ui_check_table_row_indicators("index", 1, 5, ["extension"])
+      ui_check_table_row_indicators("index", 1, 5, ["extension"], new_style: true)
       find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
       wait_for_ajax(10)
       context_menu_element("history", 8, identifier, :edit)
@@ -307,6 +308,7 @@ describe "Thesauri Extensions", :type => :feature do
       click_button 'Add items'
       wait_for_ajax(20)
       sleep 1
+      wait_for_ajax(20)
       ui_check_table_info("extension-children-table", 1, 10, 19)
     end
 
@@ -429,11 +431,11 @@ describe "Thesauri Extensions", :type => :feature do
       sleep 13
       find("#new-item-button").click
       wait_for_ajax(10)
-      expect(page).to have_content("The changes were not saved as the edit lock has timed out")
+      expect(page).to have_content("The edit lock has timed out")
       find(:xpath, "//*[@id='extension-children-table']/tbody/tr[1]/td[8]/span").click
       ui_confirmation_dialog true
       wait_for_ajax(10)
-      expect(page).to have_content("The changes were not saved as the edit lock timed out")
+      expect(page).to have_content("The edit lock has timed out")
     end
 
     it "search table with 'All' set as default", js:true do

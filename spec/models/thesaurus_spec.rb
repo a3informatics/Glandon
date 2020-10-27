@@ -58,7 +58,8 @@ describe Thesaurus do
           :is_top_concept_reference => [],
           :tagged => [],
           :reference => nil,
-          :baseline_reference => nil
+          :baseline_reference => nil,
+          :has_previous_version => nil
         }
       expect(th.to_h).to hash_equal(result)
     end
@@ -116,12 +117,9 @@ describe Thesaurus do
 
     it "allows a creation of a thesaurus" do
       th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
-    #Xwrite_yaml_file(th.to_h, sub_dir, "thesaurus_example_4.yaml")
-      expected = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_4.yaml")
-      expected[:creation_date] = date_check_now(th.creation_date).iso8601
-      expected[:last_change_date] = date_check_now(th.last_change_date).iso8601
       expect(th.errors.count).to eq(0)
-      expect(th.to_h).to eq(expected)
+      check_dates(th, sub_dir, "thesaurus_example_4.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(th.to_h, sub_dir, "thesaurus_example_4.yaml")
     end
 
     it "allows for a thesaurus to be destroyed" do
@@ -135,7 +133,7 @@ describe Thesaurus do
       th = Thesaurus.find(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
       sparql = Sparql::Update.new
       th.to_sparql(sparql, true)
-    #write_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
+    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
       check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
     end
 
@@ -340,7 +338,7 @@ describe Thesaurus do
     # it "calculates changes_cdu, Versions 2011-12-09 and 2014-09-26" do
     #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V28#TH"))
     #   actual = ct.changes_cdu(13)
-    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_12.yaml", equate_method: :hash_equal, write_file: true)
+    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_12.yaml", equate_method: :hash_equal)
     # end
 
   end

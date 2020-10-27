@@ -1,15 +1,16 @@
 require 'rails_helper'
+require 'tabulation'
 
 describe TypePathManagement do
 
   describe "original version" do
 
   	it "returns a valid path, SDTM Model" do
-  		expect(TypePathManagement.history_path(SdtmModel::C_RDF_TYPE_URI.to_s)).to eq(Rails.application.routes.url_helpers.history_sdtm_models_path)
+  		expect(TypePathManagement.history_path(SdtmModel.rdf_type.to_s)).to eq(Rails.application.routes.url_helpers.history_sdtm_models_path)
   	end
 
-    it "returns a valid path, SDTM User Domain" do
-      expect(TypePathManagement.history_path(SdtmUserDomain::C_RDF_TYPE_URI.to_s)).to eq(Rails.application.routes.url_helpers.history_sdtm_user_domains_path)
+    it "returns a valid path, SDTM IG Domain" do
+      expect(TypePathManagement.history_path(SdtmIgDomain.rdf_type.to_s)).to eq(Rails.application.routes.url_helpers.history_sdtm_ig_domains_path)
     end
 
     it "returns a empty path for an invalid type" do
@@ -18,22 +19,22 @@ describe TypePathManagement do
 
     it "returns a valid url, SDTM Model" do
       result = Rails.application.routes.url_helpers.history_sdtm_models_path + "/?sdtm_model[identifier]=XXX&sdtm_model[scope_id]=YYY"
-      expect(TypePathManagement.history_url(SdtmModel::C_RDF_TYPE_URI.to_s, "XXX", "YYY" )).to eq(result)
+      expect(TypePathManagement.history_url(SdtmModel.rdf_type.to_s, "XXX", "YYY" )).to eq(result)
     end
 
     it "returns a valid url, SDTM IG" do
       result = Rails.application.routes.url_helpers.history_sdtm_igs_path + "/?sdtm_ig[identifier]=XXX&sdtm_ig[scope_id]=YYY"
-      expect(TypePathManagement.history_url(SdtmIg::C_RDF_TYPE_URI.to_s, "XXX", "YYY" )).to eq(result)
+      expect(TypePathManagement.history_url(SdtmIg.rdf_type.to_s, "XXX", "YYY" )).to eq(result)
     end
 
     it "returns a valid url, ADaM IG" do
       result = Rails.application.routes.url_helpers.history_adam_igs_path + "/?adam_ig[identifier]=XXX&adam_ig[scope_id]=YYY"
-      expect(TypePathManagement.history_url(AdamIg::C_RDF_TYPE_URI.to_s, "XXX", "YYY" )).to eq(result)
+      expect(TypePathManagement.history_url(AdamIg.rdf_type.to_s, "XXX", "YYY" )).to eq(result)
     end
 
     it "returns a valid url, Form" do
-      result = Rails.application.routes.url_helpers.history_forms_path + "/?identifier=XXX&scope_id=YYY"
-      expect(TypePathManagement.history_url(Form::C_RDF_TYPE_URI.to_s, "XXX", "YYY" )).to eq(result)
+      result = Rails.application.routes.url_helpers.history_forms_path + "/?form[identifier]=XXX&form[scope_id]=YYY"
+      expect(TypePathManagement.history_url(Form.rdf_type.to_s, "XXX", "YYY" )).to eq(result)
     end
 
     it "returns a empty url for an invalid type" do

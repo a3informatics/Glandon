@@ -10,17 +10,19 @@
 
 <http://www.assero.co.uk/BiomedicalConcept>
   rdf:type owl:Ontology ;
+  owl:versionInfo "v3.2.0"^^xsd:string ;
+  rdfs:label "Biomedical Concept Schema"^^xsd:string ;
 .
 :Assessment
   rdf:type owl:Class ;
   rdfs:label "Assessment"^^xsd:string ;
-  rdfs:subClassOf bo:Collection ;
+  rdfs:subClassOf bo:Component ;
   skos:definition "A set of Biomedical Concepts forming a logical assessment."^^xsd:string ;
 .
 :BiomedicalConcept
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept"^^xsd:string ;
-  rdfs:subClassOf isoC:Concept ;
+  rdfs:subClassOf bo:Component ;
   skos:definition "A Biomedical Concept. An observation."^^xsd:string ;
 .
 :BiomedicalConceptInstance
@@ -93,13 +95,21 @@
   rdfs:range bo:TMcReference ;
   skos:definition "Reference to a coded value."^^xsd:string
 .
-:basedOn
+:isComplexDatatype
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Based On Relationship"^^xsd:string ;
+  rdfs:label "Is Complex Datatype Relationship"^^xsd:string ;
   rdfs:domain :ComplexDatatype ;
   rdfs:range cdt:ComplexDatatype ;
-  skos:definition "Reference to the class that defines this class."^^xsd:string
+  skos:definition "Reference to the Complex Datatype."^^xsd:string
+.
+:isComplexDatatypeProperty
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Is Complex Datatype Property Relationship"^^xsd:string ;
+  rdfs:domain :PropertyX ;
+  rdfs:range cdt:ComplexDatatype ;
+  skos:definition "Reference to the Complex Datatype Property."^^xsd:string
 .
 :ordinal
   rdf:type owl:DatatypeProperty ;
@@ -154,5 +164,12 @@
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :PropertyX ;
   rdfs:label "The format for the reponse"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
+:alias
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :PropertyX ;
+  rdfs:label "Meaningful alias for users for the property"^^xsd:string ;
   rdfs:range xsd:string ;
 .

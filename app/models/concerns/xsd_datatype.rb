@@ -23,9 +23,51 @@ class XSDDatatype
 
   # String?
   #
-  # @return [String] the fragment part of the datatype
+  # @return [Boolean] true if it is a string
   def string?
     @fragment == C_XSD_STRING
+  end
+
+  # Integer?
+  #
+  # @return [Boolean] true if it is an integer
+  def integer?
+    @fragment == "integer"
+  end
+
+  # Datetime?
+  #
+  # @return [Boolean] true if it is a datetime
+  def datetime?
+    @fragment == "dateTime"
+  end
+
+  # Date?
+  #
+  # @return [Boolean] true if it is a date
+  def date?
+    @fragment == "date"
+  end
+
+  # Time?
+  #
+  # @return [Boolean] true if it is a time
+  def time?
+    @fragment == "time"
+  end
+
+  # Boolean?
+  #
+  # @return [Boolean] true if it is a boolean
+  def boolean?
+    @fragment == "boolean"
+  end
+
+  # Float?
+  #
+  # @return [Boolean] true if it is a float
+  def float?
+    @fragment == "float"
   end
 
   # To Typed

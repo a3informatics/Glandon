@@ -67,6 +67,12 @@ describe Fuseki::Persistence do
       expect(result.name).to eq("BBB Pharma")
     end
 
+    it "find full" do
+      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      result = FusekiBaseHelpers::TestAdministeredItem.find_full(uri)
+      check_file_actual_expected(result.to_h, sub_dir, "find_full_expected_1.yaml", equate_method: :hash_equal)
+    end
+
     it "find children" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       result = FusekiBaseHelpers::TestAdministeredItem.find_children(uri)
@@ -111,6 +117,7 @@ describe Fuseki::Persistence do
     it "returns the true type" do
       uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
       item = IsoNamespace.find(uri)
+      expect(item.find_rdf_type.to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
       expect(item.true_type.to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
       expect(item.my_type.to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
       expect(Fuseki::Base.the_type(uri).to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
@@ -373,6 +380,51 @@ describe Fuseki::Persistence do
       expect(item.transaction_clear).to be(nil)
       expect(item.new_record?).to be(false)
       expect(item.properties.saved?).to be(true)
+    end
+
+  end
+
+  describe "simple tests" do
+
+    before :each do
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_managed_data_6.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "normalizes id or uri as uri" do
+      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      id = uri.to_id
+      expect(Fuseki::Base.as_uri(uri)).to eq(uri)
+      expect(Fuseki::Base.as_uri(id)).to eq(uri)
+    end
+
+    it "find the klass for a uri" do
+      uri_1 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri_2 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TESTxxxx")
+      expect(Fuseki::Base.klass_for(uri_1)).to eq(FusekiBaseHelpers::ValidateOneAdministeredItem)
+      expect{Fuseki::Base.klass_for(uri_2)}.to raise_error(Errors::ApplicationLogicError, "Unable to find class (klass) for http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TESTxxxx.")
+    end
+
+  end
+
+  describe "find single tests" do
+
+    before :each do
+      load_files(schema_files, [])
+    end
+
+    it "find single" do
+      uri_1 = Uri.new(uri: "http://www.assero.co.uk/TAI/V1#1")
+      uri_2 = Uri.new(uri: "http://www.assero.co.uk/TAI/V1#2")
+      uri_3 = Uri.new(uri: "http://www.assero.co.uk/TAI/V1#3")
+      item_1 = FusekiBaseHelpers::TestAdministeredItem.create(uri: uri_1, change_description: "find 1")
+      item_2 = FusekiBaseHelpers::TestAdministeredItem.create(uri: uri_2, change_description: "find")
+      item_3 = FusekiBaseHelpers::TestAdministeredItem.create(uri: uri_3, change_description: "find")
+      result = FusekiBaseHelpers::TestAdministeredItem.find_single("SELECT ?s WHERE {?s <http://www.assero.co.uk/Test#changeDescription> \"find 1\"}")
+      expect(result).to eq(uri_1)
+      expect{FusekiBaseHelpers::TestAdministeredItem.find_single("SELECT ?s WHERE {?s <http://www.assero.co.uk/Test#changeDescription> \"find\"}")}.to raise_error(Errors::ApplicationLogicError, "Multiple items found when single required.")
+      expect(FusekiBaseHelpers::TestAdministeredItem.find_single("SELECT ?s WHERE {?s <http://www.assero.co.uk/Test#changeDescription> \"find X\"}")).to be_nil
+      expect{FusekiBaseHelpers::TestAdministeredItem.find_single("SELECT ?s WHERE {?s <http://www.assero.co.uk/Test#changeDescription> \"find X\"}", [], false)}.to raise_error(Errors::ApplicationLogicError, "Failed to find single item.")
     end
 
   end

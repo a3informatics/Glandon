@@ -12,6 +12,8 @@
 
 <http://www.assero.co.uk/ISO11179Identification>
   rdf:type owl:Ontology ;
+  owl:versionInfo "v3.2.0"^^xsd:string ;
+  rdfs:label "ISO11179 Identification Schema"^^xsd:string ;
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
 .
 :Namespace
