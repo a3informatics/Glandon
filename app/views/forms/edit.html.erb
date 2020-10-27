@@ -11,15 +11,15 @@
   <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @form, :badge => "icon-forms"} do %>
 
     <div class="actions-wrap">
-      
+
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
 				icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
 
-      <%= render layout: "shared/context_menu/con_menu", :locals => { menu_id: "header-con-menu", color: "blue", side: "left"} do %>
-        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @edit_tags_path, id: "edit-tags-button",
-          icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: @edit_tags_path.empty?, target: "_blank" } %>
+      <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+          icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty?, new_tab: true } %>
       <% end %>
 
     </div>
