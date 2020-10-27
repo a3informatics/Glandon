@@ -3,6 +3,11 @@ module UiHelpers
   # General UI helpers
   # ==================
 
+  def ui_refresh_page(ajax_wait = false)
+    page.driver.browser.navigate.refresh
+    wait_for_ajax 20 if ajax_wait == true
+  end
+
   def ui_check_page_has(text)
   	expect(page).to have_content(text)
   end

@@ -1,5 +1,6 @@
-module FormHelpers
+module D3TreeHelpers
 
+  # Specific to Form Editor
   def icon_type_map
     {
       form: 59676,
