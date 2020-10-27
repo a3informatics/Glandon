@@ -55,6 +55,7 @@ export default class TagEditor extends GenericEditor {
       return;
 
     this.type = 'edit';
+    this.submitChangedOnly = true;
     this.setTitle('Edit Tag')
         .setTitleIcon('icon-edit')
         .setSubmitText( 'Save changes' );
@@ -70,6 +71,7 @@ export default class TagEditor extends GenericEditor {
   addTag(tag) {
 
     this.type = 'add';
+    this.submitChangedOnly = false;
     this.setTitle('Add Tag')
         .setTitleIcon('icon-tag')
         .setSubmitText( 'Submit' );

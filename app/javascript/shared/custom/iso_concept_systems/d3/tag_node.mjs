@@ -28,6 +28,27 @@ export default class TagNode extends TreeNode {
   }
 
   /**
+   * Get Node children property name
+   * @return {string} Property name to access children nodes
+   */
+  get childrenProp() {
+
+    if ( this.isRoot )
+      return 'is_top_concept'
+
+    return 'narrower';
+
+  }
+
+  /**
+   * Check if Node is root node
+   * @return {string} Node color code from its data RDF type
+   */
+  get isRoot() {
+    return this.d.parent == null && this.d.data.is_top_concept;
+  }
+
+  /**
    * Check if Node type is allowed to be edited
    * @return {boolean} Value specifying if Node's type is a allowed to be edited
    */
@@ -53,12 +74,12 @@ export default class TagNode extends TreeNode {
    */
   removeChild(node) {
 
-    if ( !this.data.narrower )
+    if ( !this.data[this.childrenProp] )
       return;
 
-    let nodeIndex = this.data.narrower.indexOf( node.d.data );
+    let nodeIndex = this.data[this.childrenProp].indexOf( node.d.data );
 
-    this.data.narrower.splice( nodeIndex, 1 );
+    this.data[this.childrenProp].splice( nodeIndex, 1 );
 
   }
 
@@ -68,11 +89,15 @@ export default class TagNode extends TreeNode {
    */
   addChild(data) {
 
-    if ( !this.data.narrower )
-      this.data.narrower = [];
+    if ( !this.data[this.childrenProp] )
+      this.data[this.childrenProp] = [];
 
-    if ( this.data.narrower.indexOf( data ) === -1 )
-      this.data.narrower.push( data );
+    if ( this.data[this.childrenProp].indexOf( data ) === -1 ) {
+
+      this.data[this.childrenProp].push( data );
+      this.sortChildren();
+
+    }
 
   }
 
@@ -82,8 +107,20 @@ export default class TagNode extends TreeNode {
    */
   update(data) {
 
-    data.narrower = this.data.narrower; // Copy children
+    data[this.childrenProp] = this.data[this.childrenProp]; // Copy children
     Object.assign( this.data, data ); // Override fields with new fields
+
+  }
+
+  /**
+   * Sort Node children by their label values (display only hence using 'children' property)
+   */
+  sortChildren() {
+
+    if ( this.d.children )
+      this.d.children.sort( (a, b) =>
+          a.data.pref_label.localeCompare( b.data.pref_label )
+      );
 
   }
 

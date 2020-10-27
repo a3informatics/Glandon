@@ -65,8 +65,10 @@ export default class GenericEditor extends ModalView {
     // Stop if no fields have been changed
     if ( !this.changedFields || _.isEmpty( this.changedFields ) ) {
 
-      this.hide();
-      return;
+      if ( this.submitChangedOnly ) {
+        this.hide();
+        return;
+      }
 
     }
 

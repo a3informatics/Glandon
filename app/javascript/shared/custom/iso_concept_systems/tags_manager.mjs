@@ -151,13 +151,21 @@ export default class TagsManager extends TreeGraph {
    * Preprocess data and convert it into a sorted D3 hierarchy
    * @override parent implementation
    * @param {Object} rawData Graph data fetched from the server
+   * @return {Object} Processed and sorted data hierarchy
    */
   _preprocessData(rawData) {
 
-    return this.d3.hierarchy( rawData, d => [
+    let data = this.d3.hierarchy( rawData, d => [
         ...d.is_top_concept||[],
         ...d.narrower||[]
       ]);
+
+    // Sort alphabetically
+    data.descendants().forEach( t =>
+      new this.Node( t, false ).sortChildren()
+    );
+
+    return data;
 
   }
 
