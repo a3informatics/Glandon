@@ -16,6 +16,8 @@ module TagHelpers
     tc = Thesaurus::ManagedConcept.create
     tc2 = Thesaurus::ManagedConcept.create
     uc = tc.add_child( { identifier: 'SRVR' } )
+    bc = BiomedicalConceptInstance.create ( { identifier: 'TESTBC', label: "Test BC" } ) 
+    form = Form.create( { identifier: 'TESTF', label: "Test Form" } )
 
     if tag_items == true
       ct.add_tag(tag1_1.id)
@@ -85,7 +87,7 @@ module TagHelpers
     expect(page).to have_content 'Edit Item Tags'
     find('#main_area').scroll_to :bottom
   end
-  
+
   def check_tags(tags)
     page.all('#tags .tag').each { |tag| expect(tags.include? tag) }
     expect(count_tags).to eq tags.count

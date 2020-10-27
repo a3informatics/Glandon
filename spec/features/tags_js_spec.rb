@@ -348,6 +348,36 @@ describe "Tags", :type => :feature do
 
     end
 
+    it "view and attach tags on a Biomedical Concept" do
+
+      view_attach_detach_tags do
+        click_navbar_bc
+        wait_for_ajax 20
+
+        find(:xpath, '//tr[contains(.,"Test BC")]/td/a').click
+        wait_for_ajax 20
+        context_menu_element_v2('history', 'TESTBC', :show)
+        edit_tags 'Test BC'
+
+      end
+
+    end
+
+    it "view and attach tags on a  Form" do
+
+      view_attach_detach_tags do
+        click_navbar_forms
+        wait_for_ajax 20
+
+        find(:xpath, '//tr[contains(.,"Test Form")]/td/a').click
+        wait_for_ajax 20
+        context_menu_element_v2('history', 'TESTF', :show)
+        edit_tags 'Test Form'
+
+      end
+
+    end
+
   end
 
 end

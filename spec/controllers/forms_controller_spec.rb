@@ -42,6 +42,7 @@ describe FormsController do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
       get :show, params: { :id => form.id}
       expect(response).to render_template("show")
+      expect(assigns(:edit_tags_path)).to eq("/iso_concept/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=/edit_tags")
     end
 
     it "show, json" do
@@ -138,6 +139,7 @@ describe FormsController do
       get :edit, params:{id: instance.id}
       expect(assigns(:form).uri).to eq(instance.uri)
       expect(assigns(:close_path)).to eq("/forms/history?form%5Bidentifier%5D=FN000150&form%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
+      expect(assigns(:edit_tags_path)).to eq("/iso_concept/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=/edit_tags")
       expect(response).to render_template("edit")
     end
 
