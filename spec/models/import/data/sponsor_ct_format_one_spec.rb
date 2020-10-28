@@ -296,8 +296,8 @@ describe "Import::SponsorTermFormatOne" do
         fixes = db_load_file_path("sponsor_one/ct", "fixes_v3-1.yaml")
         params = 
         {
-          identifier: @release_details[1][:identifier], version: "2", 
-          date: @release_details[1][:date], files: [full_path], fixes: fixes, 
+          identifier: @release_details[2][:identifier], version: "2", 
+          date: @release_details[2][:date], files: [full_path], fixes: fixes, 
           version_label: "2.0.0", label: @release_details[2][:label], 
           semantic_version: "2.0.0", job: @job, uri: ct.uri
         }
