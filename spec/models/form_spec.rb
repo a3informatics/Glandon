@@ -180,6 +180,13 @@ describe Form do
   end
 
   describe "Add child" do
+
+    def make_standard(item)
+      params = {}
+      params[:registration_status] = "Standard"
+      params[:previous_state] = "Incomplete"
+      item.update_status(params)
+    end
     
     before :all do
       data_files = ["forms/FN000150.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
@@ -201,10 +208,26 @@ describe Form do
       check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_2.yaml", equate_method: :hash_equal)
     end
 
-    # it "add child II, error" do
-    #   form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
-    #   expect{form.add_child({type:"x_group"})}.to raise_error(Errors::ApplicationLogicError, "Attempting to add an invalid child type")
-    # end
+    it "add child, create next version, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "add_child_expected_3a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_3a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      new_form.add_child({type:"normal_group"})
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "add_child_expected_3b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "add_child_expected_3b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "add_child_expected_3a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_3a.yaml", equate_method: :hash_equal)
+    end
 
   end
 
