@@ -41,6 +41,36 @@ class Form::Item::Question < Form::Item
     html
   end
 
+  def add_child_with_clone(params, managed_ancestor)
+    if multiple_managed_ancestors?
+      new_question = clone_nodes(managed_ancestor)
+      new_question.add_child(params)
+    else
+      add_child(params)
+    end
+  end
+
+  def clone_nodes(managed_ancestor)
+    result = nil
+    tx = transaction_begin
+    uris = managed_ancestor_path_uris(managed_ancestor)
+    prev_object = managed_ancestor
+    prev_object.transaction_set(tx)
+    uris.each do |old_uri|
+      old_object = self.class.klass_for(old_uri).find_children(old_uri)
+      if old_object.multiple_managed_ancestors?
+        cloned_object = clone_and_save(old_object, prev_object, tx)
+        result = cloned_object if self.uri == old_object.uri
+        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+        prev_object = cloned_object
+      else
+        prev_object = old_object
+      end
+    end
+    transaction_execute
+    result
+  end
+
   # Add Child. Adds a child or children TUC references.
   #
   # @params [Hash] params the parameters

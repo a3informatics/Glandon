@@ -26,7 +26,7 @@ class Forms::Items::QuestionsController < ManagedItemsController
     form = Form.find_minimum(add_child_params[:form_id])
     return true unless check_lock_for_item(form)
     question = Form::Item::Question.find(protect_from_bad_id(params))
-    new_child = question.add_child(add_child_params)
+    new_child = question.add_child_with_clone(add_child_params, form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
     render :json => {data: new_child}, :status => 200
