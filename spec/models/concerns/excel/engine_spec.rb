@@ -884,6 +884,22 @@ describe Excel::Engine do
     check_file_actual_expected(result, sub_dir, "sheet_info_expected_3.yaml", equate_method: :hash_equal)
   end
 
+  it "returns the sheet info, IV" do
+    full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect{object.sheet_info(:sponsor_term_format, :version_5)}.to raise_error(Errors::ApplicationLogicError, "Exception when finding sheet definition for import type: 'sponsor_term_format'' and sheet: 'version_5'.")
+  end
+
+  it "returns the sheet info, V" do
+    full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect{object.sheet_info(:sponsor_term_format_one, :version_5)}.to raise_error(Errors::ApplicationLogicError, "Exception when finding sheet definition for import type: 'sponsor_term_format_one'' and sheet: 'version_5'.")
+  end
+
   it "process engine, no errors" do
     full_path = test_file_path(sub_dir, "process_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 

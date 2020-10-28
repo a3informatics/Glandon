@@ -2855,11 +2855,10 @@ defaults: &defaults
               - "CRF_DISPLAY_VALUE"
               - "DISPLAY_ORDER"
               - "RANK"
-              - "CRFGL_USE"
-              - "SDTM_USE"
-              - "ADAM_USE"
+              - "DC_STAGE"
+              - "SDTM_STAGE"
+              - "ADAM_STAGE"
               - "ED_USE"
-              - "STUDY_USE"
               - "INACTIVE_F"
           columns:
           -
@@ -2873,6 +2872,10 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: notation
+              -
+                method: set_property_to_sheet_tags
+                object: parent
+                property: :tagged
           -
             label: "CODELIST_CODE"
             actions:
@@ -2896,6 +2899,7 @@ defaults: &defaults
                 method: create_shared
                 object: parent
                 property: preferred_term
+                can_be_empty: false
           -
             label: "CODELIST_EXTENSIBLE"
             actions:
@@ -2946,6 +2950,15 @@ defaults: &defaults
                   column:
                     - 8
                     - 12
+              -
+                method: set_property
+                object: child
+                property: label
+                condition:
+                  method: column_blank?
+                  column:
+                    - 8
+                    - 12
           -
             label: "DECODE"
             actions:
@@ -2954,6 +2967,15 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 can_be_empty: true
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: true
+                condition:
+                  method: column_blank?
+                  column:
+                    - 12
           -
             label: "SYNONYM"
             actions:
@@ -2987,14 +3009,27 @@ defaults: &defaults
                 condition:
                   method: column_blank?
                   column: 8
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: true
+                condition:
+                  method: column_not_blank?
+                  column: 12
           -
             label: "DISPLAY_ORDER"
-            actions: []
+            actions:  []
           -
             label: "RANK"
-            actions: []
+            actions:
+              -
+                method: set_property
+                object: child
+                property: :rank
+                can_be_empty: true
           -
-            label: "CRFGL_USE"
+            label: "DC_STAGE"
             actions:
               -
                 method: set_property_with_tag
@@ -3002,26 +3037,26 @@ defaults: &defaults
                 property: :tagged
                 mapping:
                   map:
-                    "Y": "CRF GL Use"
+                    "Y": "DC Stage"
                     "N": ""
                 additional:
                   path:
                     - Process
-                    - Use
+                    - Stage
               -
                 method: set_property_with_tag
                 object: child
                 property: :tagged
                 mapping:
                   map:
-                    "Y": "CRF GL Use"
+                    "Y": "DC Stage"
                     "N": ""
                 additional:
                   path:
                     - Process
-                    - Use
+                    - Stage
           -
-            label: "SDTM_USE"
+            label: "SDTM_STAGE"
             actions:
               -
                 method: set_property_with_tag
@@ -3029,26 +3064,26 @@ defaults: &defaults
                 property: :tagged
                 mapping:
                   map:
-                    "Y": "SDTM Use"
+                    "Y": "SDTM Stage"
                     "N": ""
                 additional:
                   path:
                     - Process
-                    - Use
+                    - Stage
               -
                 method: set_property_with_tag
                 object: child
                 property: :tagged
                 mapping:
                   map:
-                    "Y": "SDTM Use"
+                    "Y": "SDTM Stage"
                     "N": ""
                 additional:
                   path:
                     - Process
-                    - Use
+                    - Stage
           -
-            label: "ADAM_USE"
+            label: "ADAM_STAGE"
             actions:
               -
                 method: set_property_with_tag
@@ -3056,82 +3091,39 @@ defaults: &defaults
                 property: :tagged
                 mapping:
                   map:
-                    "Y": "ADaM Use"
+                    "Y": "ADaM Stage"
                     "N": ""
                 additional:
                   path:
                     - Process
-                    - Use
+                    - Stage
               -
                 method: set_property_with_tag
                 object: child
                 property: :tagged
                 mapping:
                   map:
-                    "Y": "ADaM Use"
+                    "Y": "ADaM Stage"
                     "N": ""
                 additional:
                   path:
                     - Process
-                    - Use
+                    - Stage
           -
             label: "ED_USE"
             actions:
               -
                 method: set_property_with_tag
-                object: parent
-                can_be_empty: true
-                property: :tagged
-                mapping:
-                  map:
-                    "Y": "ED Use"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Use
-              -
-                method: set_property_with_tag
-                object: child
-                can_be_empty: true
-                property: :tagged
-                mapping:
-                  map:
-                    "Y": "ED Use"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Use
-          -
-            label: "STUDY_USE"
-            actions:
-              -
-                method: set_property_with_tag
-                object: parent
-                can_be_empty: true
-                property: :tagged
-                mapping:
-                  map:
-                    "Y": "Study Use"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Use
-              -
-                method: set_property_with_tag
                 object: child
                 property: :tagged
-                can_be_empty: true
                 mapping:
                   map:
-                    "Y": "Study Use"
+                    "Y": "Ed Use"
                     "N": ""
                 additional:
                   path:
                     - Process
-                    - Use
+                    - Stage
           -
             label: "INACTIVE_F"
             actions: []

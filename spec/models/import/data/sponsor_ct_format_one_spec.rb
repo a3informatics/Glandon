@@ -1,4 +1,4 @@
-require 'rails_helper'
+ require 'rails_helper'
 require 'csv'
 
 describe "Import::SponsorTermFormatOne" do
@@ -25,10 +25,12 @@ describe "Import::SponsorTermFormatOne" do
       @release_details =
       [
         {identifier: "2019 R1", label: "2019 Release 1", date: "2019-08-08", uri: "http://www.sanofi.com/2019_R1/V1#TH"},
-        {identifier: "2020 R1", label: "2020 Release 1", date: "2020-03-26", uri: "http://www.sanofi.com/2020_R1/V1#TH"}
+        {identifier: "2020 R1", label: "2020 Release 1", date: "2020-03-26", uri: "http://www.sanofi.com/2020_R1/V1#TH"},
+        {identifier: "2020 R1", label: "2020 Release 1", date: "2020-09-26", uri: "http://www.sanofi.com/2020_R1/V2#TH"}
       ]
       @uri_2_6 = Uri.new(uri: "#{@release_details[0][:uri]}")
       @uri_3_0 = Uri.new(uri: "#{@release_details[1][:uri]}")
+      @uri_3_1 = Uri.new(uri: "#{@release_details[2][:uri]}")
     end
 
     def read_installation(installation)
@@ -272,6 +274,55 @@ describe "Import::SponsorTermFormatOne" do
         load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
         th = Thesaurus.find_minimum(@uri_3_0)
         results = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
+        expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
+        expect(count_cl(th)).to eq(results.count)
+        expect(count_cli(th)).to eq(31930)
+        expect(count_distinct_cli(th)).to eq(29514)
+        results.each do |x|
+          check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
+        end    
+      end
+
+    end
+
+    describe "Import 3.1" do
+
+      it "import version 3.1", :import_data => 'slow' do
+        thesauri_identifiers("4000","20000")
+        ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
+        load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
+        load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
+        full_path = db_load_file_path("sponsor_one/ct", "global_v3-1_CDISC_v53.xlsx")
+        fixes = db_load_file_path("sponsor_one/ct", "fixes_v3-1.yaml")
+        params = 
+        {
+          identifier: @release_details[1][:identifier], version: "2", 
+          date: @release_details[1][:date], files: [full_path], fixes: fixes, 
+          version_label: "2.0.0", label: @release_details[2][:label], 
+          semantic_version: "2.0.0", job: @job, uri: ct.uri
+        }
+        result = @object.import(params)
+        filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+        #expect(public_file_does_not_exist?("test", filename)).to eq(true)
+        actual = read_public_yaml_file("test", filename)
+      copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-1.yaml")
+        check_file_actual_expected(actual, sub_dir, "import_errors_expected_3-1.yaml", equate_method: :hash_equal)
+        #copy_file_from_public_files("test", filename, sub_dir)
+        filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+        #expect(public_file_exists?("test", filename)).to eq(true)
+        copy_file_from_public_files("test", filename, sub_dir)
+      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-1.ttl")
+        check_ttl_fix_v2(filename, "CT_V3-1.ttl", {last_change_date: true})
+        expect(@job.status).to eq("Complete")
+        delete_data_file(sub_dir, filename)
+      end
+
+      it "import 3.1 QC", :import_data => 'slow' do
+        load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
+        load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
+        load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
+        th = Thesaurus.find_minimum(@uri_3_1)
+        results = read_yaml_file(sub_dir, "import_results_expected_3-1.yaml")
         expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
         expect(count_cl(th)).to eq(results.count)
         expect(count_cli(th)).to eq(31930)

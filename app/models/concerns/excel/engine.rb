@@ -558,8 +558,9 @@ class Excel::Engine
   # @param [Symbol] sheet the import sheet
   # @return [Hash] the sheet info in a hash
   def sheet_info(import, sheet)
-    info = Rails.configuration.imports[:processing][import][:sheets][sheet]
-    {selection: info[:selection], columns: info[:sheet][:header_row]}
+    info = Rails.configuration.imports[:processing].dig(import, :sheets, sheet)
+    return {selection: info[:selection], columns: info[:sheet][:header_row]} unless info.nil?
+    raise Errors::ApplicationLogicError.new("Exception when finding sheet definition for import type: '#{import}'' and sheet: '#{sheet}'.") if info.nil?
   end
  
   #----------

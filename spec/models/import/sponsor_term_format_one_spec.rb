@@ -60,9 +60,11 @@ describe "Import::SponsorTermFormatOne" do
     expect(object.format({date: "01/01/2000"})).to eq(:version_2)
     expect(object.format({date: "30/05/2019"})).to eq(:version_2)
     expect(object.format({date: "01/09/2019"})).to eq(:version_2)
+    expect(object.format({date: "31/08/2020"})).to eq(:version_2)
+    expect(object.format({date: "01/09/2020"})).to eq(:version_3)
+    expect(object.format({date: DateTime.now.to_date})).to eq(:version_3)
+    expect(object.format({date: DateTime.now.to_date+100})).to eq(:version_3) # Future date
     expect(object.format({date: "01/01/2100"})).to eq(:version_3)
-    expect(object.format({date: DateTime.now.to_date})).to eq(:version_2)
-    expect(object.format({date: DateTime.now.to_date+100})).to eq(:version_2) # Future date
   end
 
   it "import, no errors, version 2, short I" do
@@ -149,7 +151,7 @@ describe "Import::SponsorTermFormatOne" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
     full_path_a = test_file_path(sub_dir, "import_input_9a.xlsx")
     full_path_b = test_file_path(sub_dir, "import_input_9b.xlsx")
-    params = {identifier: "V2 I", version: "1", date: "2100-01-01", files: [full_path_a, full_path_b], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    params = {identifier: "V2 I", version: "1", date: "2020-09-10", files: [full_path_a, full_path_b], version_label: "1.1.1", label: "Version 3 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     public_file_exists?("test", filename)
