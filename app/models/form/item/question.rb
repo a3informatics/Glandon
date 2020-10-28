@@ -73,6 +73,27 @@ class Form::Item::Question < Form::Item
     self.has_coded_value_objects.sort_by {|x| x.ordinal}
   end
 
+    # Clone the children and create.
+  #   The Children are normally references. Also note the setting of the transaction in the cloned object and
+  #   in the sparql generation, important both are done.
+  def clone_children_and_save(tx, uri = nil)
+    sparql = Sparql::Update.new(tx)
+    new_object = nil
+    set = self.has_coded_value
+    set.each do |child|
+      object = child.clone
+      object.transaction_set(tx)
+      object.generate_uri(self.uri) 
+      object.to_sparql(sparql, true)
+      self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
+      unless uri.nil? 
+        new_object = object if child.uri == uri 
+      end 
+    end
+    sparql.create
+    new_object
+  end
+
   def delete_reference(reference)
     reference.delete_with_links
     self.reset_ordinals

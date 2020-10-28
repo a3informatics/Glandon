@@ -3,8 +3,8 @@ require 'rails_helper'
 describe Form::Item do
   
   include DataHelpers
-  include OdmHelpers
   include IsoManagedHelpers
+  include SecureRandomHelpers
 
   def sub_dir
     return "models/form/item"
@@ -252,6 +252,83 @@ describe Form::Item do
       check_file_actual_expected(parent.to_h, sub_dir, "move_up_down_expected_3.yaml", equate_method: :hash_equal)       
     end
 
+  end
+
+  describe "Move up/down TUC References" do
+    
+    def make_standard(item)
+      params = {}
+      params[:registration_status] = "Standard"
+      params[:previous_state] = "Incomplete"
+      item.update_status(params)
+    end
+
+    before :each do
+      load_files(schema_files, [])
+      load_cdisc_term_versions(1..1)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "move up I, TUC Reference (Coded value)" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      cli_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49508"))
+      cli_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49507"))
+      cli_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C25376"))
+      context_1 = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681"))
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
+      question.add_child({type:"tuc_reference", id_set:[{id:cli_1.id, context_id: context_1.id}, {id: cli_2.id, context_id: context_1.id}, {id: cli_3.id, context_id: context_1.id}]})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_up_tuc_ref_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_up_tuc_ref_1a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      tuc_ref = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC2"))
+      question.move_up_with_clone(tuc_ref, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "move_up_tuc_ref_1b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "move_up_tuc_ref_1b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_up_tuc_ref_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_up_tuc_ref_1a.yaml", equate_method: :hash_equal)
+    end
+
+    it "move down I, TUC Reference (Coded value)" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      cli_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49508"))
+      cli_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49507"))
+      cli_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C25376"))
+      context_1 = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681"))
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
+      question.add_child({type:"tuc_reference", id_set:[{id:cli_1.id, context_id: context_1.id}, {id: cli_2.id, context_id: context_1.id}, {id: cli_3.id, context_id: context_1.id}]})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_down_tuc_ref_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_down_tuc_ref_1a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      tuc_ref = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC2"))
+      question.move_down_with_clone(tuc_ref, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "move_down_tuc_ref_1b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "move_down_tuc_ref_1b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_down_tuc_ref_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_down_tuc_ref_1a.yaml", equate_method: :hash_equal)
+    end
+    
   end
   
 end

@@ -102,6 +102,50 @@ class Form::Item < IsoConceptV2
     1
   end
 
+  def move_up_with_clone(child, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent_and_child = clone_nodes(child, managed_ancestor)
+      parent_and_child.first.move_up(parent_and_child.second)
+    else
+      move_up(child)
+    end
+  end
+
+  def move_down_with_clone(child, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent_and_child = clone_nodes(child, managed_ancestor)
+      parent_and_child.first.move_down(parent_and_child.second)
+    else
+      move_down(child)
+    end
+  end
+
+  def clone_nodes(child, managed_ancestor)
+    new_parent = nil
+    new_object = nil
+    tx = transaction_begin
+    uris = child.managed_ancestor_path_uris(managed_ancestor)
+    prev_object = managed_ancestor
+    prev_object.transaction_set(tx)
+    uris.each do |old_uri|
+      old_object = self.class.klass_for(old_uri).find_children(old_uri)
+      if old_object.multiple_managed_ancestors?
+        cloned_object = clone_and_save(old_object, prev_object, tx)
+        if child.uri == old_object.uri
+          new_parent = prev_object
+          new_object = new_parent.clone_children_and_save(tx, child.uri) 
+        end
+        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+        prev_object = cloned_object
+      else
+        prev_object = old_object
+      end
+    end
+    transaction_execute
+    new_parent = Form::Item.find_full(new_parent.id)
+    return new_parent, new_object
+  end
+
   def start_row(optional)
     return '<tr class="warning">' if optional
     return '<tr>'
