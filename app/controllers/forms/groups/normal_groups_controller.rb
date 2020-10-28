@@ -26,7 +26,7 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
     form = Form.find_minimum(add_child_params[:form_id])
     return true unless check_lock_for_item(form)
     normal = Form::Group::Normal.find(protect_from_bad_id(params))
-    new_child = normal.add_child(add_child_params)
+    new_child = normal.add_child_with_clone(add_child_params, form)
     return true if item_errors(normal)
     AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
     render :json => {data: format_data(new_child)}, :status => 200

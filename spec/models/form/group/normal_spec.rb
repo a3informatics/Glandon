@@ -5,6 +5,7 @@ describe Form::Group::Normal do
   include DataHelpers
   include SparqlHelpers
   include SecureRandomHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "models/form/group/normal"
@@ -72,6 +73,13 @@ describe Form::Group::Normal do
   end
 
   describe "Add child" do
+
+    def make_standard(item)
+      params = {}
+      params[:registration_status] = "Standard"
+      params[:previous_state] = "Incomplete"
+      item.update_status(params)
+    end
     
     def check_normal_group(uri, filename, write_file=false)
       normal = Form::Group::Normal.find_full(uri)
@@ -114,6 +122,31 @@ describe Form::Group::Normal do
       normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"placeholder"})
       check_normal_group(uri, "add_child_expected_6.yaml")
+    end
+
+    it "add child items, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "add_child_expected_6a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_6a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      normal_group.add_child_with_clone({type:"question"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "add_child_expected_6b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "add_child_expected_6b.yaml", equate_method: :hash_equal)
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V2#NG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      normal_group.add_child_with_clone({type:"placeholder"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "add_child_expected_6c.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "add_child_expected_6c.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "add_child_expected_6a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_6a.yaml", equate_method: :hash_equal)
     end
 
   end
