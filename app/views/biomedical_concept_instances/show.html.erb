@@ -1,6 +1,5 @@
 <% content_for :page_title do %> <%= "Show Biomedical Concept: #{@bc.has_identifier.identifier} (#{@bc.semantic_version})" %> <% end %>
 
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'biomedical_concept_instances/show' %>
 
 <% third_level_breadcrumb(:biomedical_concept_instances, @bc, @close_path) %>

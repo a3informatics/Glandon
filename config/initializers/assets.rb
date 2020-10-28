@@ -11,8 +11,6 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 %w(
   concerns/spinner-component
-  shared/datatables_loading
-  biomedical_concepts_editor
   shared/d3/d3_tree
   homes print spinner tags
  ).each do |filename|

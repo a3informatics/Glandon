@@ -1,7 +1,5 @@
 <% content_for :page_title do %> Ad-Hoc Report Results <% end %>
 
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
-
 <%= javascript_pack_tag 'ad_hoc_reports/results' %>
 <%= javascript_tag "let reportStatusUrl='#{run_progress_ad_hoc_report_path(@report)}',
 												reportResultsUrl='#{run_results_ad_hoc_report_path(@report)}';" %>

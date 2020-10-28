@@ -1,8 +1,6 @@
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
-
 <% if !local_assigns[:history_url].nil? %>
   <%= javascript_tag "let historyDataUrl = '#{history_url}',
-                        rsUpdateUrl = '#{iso_registration_states_v2_path("rsId")}'" %>
+                          rsUpdateUrl = '#{iso_registration_states_v2_path("rsId")}'" %>
 <% end %>
 
 <div class="table-cardstyle">

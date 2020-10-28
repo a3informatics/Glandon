@@ -1,6 +1,5 @@
 <% content_for :page_title do %> <%= "Show Form: #{@form.has_identifier.identifier} (#{@form.semantic_version})" %> <% end %>
 
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'forms/show' %>
 
 <% third_level_breadcrumb(:forms, @form, @close_path) %>

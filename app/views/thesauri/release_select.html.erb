@@ -12,7 +12,7 @@
                       deselectChildrenUrl: '#{deselect_children_thesauri_path(@thesaurus)}',
                       deselectAllChildrenUrl: '#{deselect_all_children_thesauri_path(@thesaurus)}' };" %>
 
-<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'shared/datatables_loading', 'shared/table_select', 'shared/timeline_cdisc' %>
+<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'shared/table_select', 'shared/timeline_cdisc' %>
 <%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
 <%= javascript_include_tag 'shared/tabs_layout', 'shared/timeline_cdisc', 'shared/iso_managed/managed_children_select', 'shared/iso_managed/managed_children_overview',
                            'thesauri/release_select', 'shared/timer', 'unload' %>
@@ -39,7 +39,7 @@
       <% end %>
 
     </div>
-    
+
   <% end %>
 
   <%= render partial: "shared/iso_managed/managed_item_version_picker", :locals => {type: :code_lists, history_url: history_thesauri_managed_concepts_path(managed_concept: {identifier: "miHistoryId", scope_id: "miScopeId"}) } %>

@@ -4,8 +4,6 @@
 <%= javascript_tag "let importsDataUrl = '#{imports_path}',
 												importsDeleteAllUrl= '#{destroy_multiple_imports_path({ imports: { items: "all" } })}';" %>
 
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
-
 <% first_level_breadcrumb (:imports) %>
 
 <div class="row">
