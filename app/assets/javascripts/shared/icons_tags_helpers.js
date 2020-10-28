@@ -52,11 +52,6 @@ function colorCodeTagsBadge(tags) {
   return html;
 }
 
-// Generic css setter, used in tags pages
-function colorCodeElement(selector, css, value) {
-  $(selector).css(css, value);
-}
-
 /**
  ****** Indicators ******
 **/

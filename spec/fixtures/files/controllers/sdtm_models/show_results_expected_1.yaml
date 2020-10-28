@@ -1,13 +1,13 @@
 ---
-- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRVZFTlRT"
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRVZFTlRT
-  :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS
+- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0w="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0w=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
-  :label: Events
+  :label: SDTM MODEL EVENTS
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQ0RJU0NfU0RUTU1PREVMRVZFTlRTLTM=
-    :uri: http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODELEVENTS-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfUlM=
+    :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Standard
     :administrative_note: ''
@@ -15,7 +15,7 @@
     :until_date: '2016-01-01T00:00:00+00:00'
     :unresolved_issue: ''
     :administrative_status: ''
-    :previous_state: Incomplete
+    :previous_state: Standard
     :multiple_edit: false
     :by_authority:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
@@ -32,13 +32,13 @@
         :name: Clinical Data Interchange Standards Consortium
         :authority: www.cdisc.org
   :has_identifier:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQ0RJU0NfU0RUTU1PREVMRVZFTlRTLTM=
-    :uri: http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODELEVENTS-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfU0k=
+    :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTMMODEL EVENTS
-    :version_label: '1.4'
-    :version: 3
-    :semantic_version: 1.4.0
+    :identifier: SDTM MODEL EVENTS
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 1.2.0
     :has_scope:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
       :uri: http://www.assero.co.uk/NS#CDISC
@@ -49,21 +49,21 @@
   :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2013-11-26T00:00:00+00:00'
-  :last_change_date: '2013-11-26T00:00:00+00:00'
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
   :explanatory_comment: ''
   :rule: ''
   :ordinal: 1
   :includes_column: []
-- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMSU5URVJWRU5USU9OUw=="
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMSU5URVJWRU5USU9OUw==
-  :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS
+- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9GSU5ESU5HUy9WMSNDTA=="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9GSU5ESU5HUy9WMSNDTA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
-  :label: Interventions
+  :label: SDTM MODEL FINDINGS
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQ0RJU0NfU0RUTU1PREVMSU5URVJWRU5USU9OUy0z
-    :uri: http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODELINTERVENTIONS-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9GSU5ESU5HUy9WMSNDTF9SUw==
+    :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Standard
     :administrative_note: ''
@@ -71,7 +71,7 @@
     :until_date: '2016-01-01T00:00:00+00:00'
     :unresolved_issue: ''
     :administrative_status: ''
-    :previous_state: Incomplete
+    :previous_state: Standard
     :multiple_edit: false
     :by_authority:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
@@ -88,13 +88,13 @@
         :name: Clinical Data Interchange Standards Consortium
         :authority: www.cdisc.org
   :has_identifier:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQ0RJU0NfU0RUTU1PREVMSU5URVJWRU5USU9OUy0z
-    :uri: http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODELINTERVENTIONS-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9GSU5ESU5HUy9WMSNDTF9TSQ==
+    :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTMMODEL INTERVENTIONS
-    :version_label: '1.4'
-    :version: 3
-    :semantic_version: 1.4.0
+    :identifier: SDTM MODEL FINDINGS
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 1.2.0
     :has_scope:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
       :uri: http://www.assero.co.uk/NS#CDISC
@@ -105,21 +105,21 @@
   :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2013-11-26T00:00:00+00:00'
-  :last_change_date: '2013-11-26T00:00:00+00:00'
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
   :explanatory_comment: ''
   :rule: ''
   :ordinal: 1
   :includes_column: []
-- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRklORElOR1M="
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRklORElOR1M=
-  :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS
+- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9JTlRFUlZFTlRJT05TL1YxI0NM"
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9JTlRFUlZFTlRJT05TL1YxI0NM
+  :uri: http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
-  :label: Findings
+  :label: SDTM MODEL INTERVENTIONS
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQ0RJU0NfU0RUTU1PREVMRklORElOR1MtMw==
-    :uri: http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODELFINDINGS-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9JTlRFUlZFTlRJT05TL1YxI0NMX1JT
+    :uri: http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Standard
     :administrative_note: ''
@@ -127,7 +127,7 @@
     :until_date: '2016-01-01T00:00:00+00:00'
     :unresolved_issue: ''
     :administrative_status: ''
-    :previous_state: Incomplete
+    :previous_state: Standard
     :multiple_edit: false
     :by_authority:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
@@ -144,13 +144,13 @@
         :name: Clinical Data Interchange Standards Consortium
         :authority: www.cdisc.org
   :has_identifier:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQ0RJU0NfU0RUTU1PREVMRklORElOR1MtMw==
-    :uri: http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODELFINDINGS-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9JTlRFUlZFTlRJT05TL1YxI0NMX1NJ
+    :uri: http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTMMODEL FINDINGS
-    :version_label: '1.4'
-    :version: 3
-    :semantic_version: 1.4.0
+    :identifier: SDTM MODEL INTERVENTIONS
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 1.2.0
     :has_scope:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
       :uri: http://www.assero.co.uk/NS#CDISC
@@ -161,21 +161,21 @@
   :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2013-11-26T00:00:00+00:00'
-  :last_change_date: '2013-11-26T00:00:00+00:00'
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
   :explanatory_comment: ''
   :rule: ''
   :ordinal: 1
   :includes_column: []
-- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMU1BFQ0lBTFBVUlBPU0U="
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMU1BFQ0lBTFBVUlBPU0U=
-  :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELSPECIALPURPOSE
+- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9SRUxSRUMvVjEjQ0w="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9SRUxSRUMvVjEjQ0w=
+  :uri: http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
-  :label: Special Purpose
+  :label: RELREC
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQ0RJU0NfU0RUTU1PREVMU1BFQ0lBTFBVUlBPU0UtMw==
-    :uri: http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODELSPECIALPURPOSE-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9SRUxSRUMvVjEjQ0xfUlM=
+    :uri: http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Standard
     :administrative_note: ''
@@ -183,7 +183,7 @@
     :until_date: '2016-01-01T00:00:00+00:00'
     :unresolved_issue: ''
     :administrative_status: ''
-    :previous_state: Incomplete
+    :previous_state: Standard
     :multiple_edit: false
     :by_authority:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
@@ -200,13 +200,13 @@
         :name: Clinical Data Interchange Standards Consortium
         :authority: www.cdisc.org
   :has_identifier:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQ0RJU0NfU0RUTU1PREVMU1BFQ0lBTFBVUlBPU0UtMw==
-    :uri: http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODELSPECIALPURPOSE-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9SRUxSRUMvVjEjQ0xfU0k=
+    :uri: http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTMMODEL SPECIAL PURPOSE
-    :version_label: '1.4'
-    :version: 3
-    :semantic_version: 1.4.0
+    :identifier: SDTM MODEL RELREC
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 1.2.0
     :has_scope:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
       :uri: http://www.assero.co.uk/NS#CDISC
@@ -217,21 +217,21 @@
   :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2013-11-26T00:00:00+00:00'
-  :last_change_date: '2013-11-26T00:00:00+00:00'
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
   :explanatory_comment: ''
   :rule: ''
   :ordinal: 1
   :includes_column: []
-- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMVFJJQUxERVNJR04="
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMVFJJQUxERVNJR04=
-  :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN
+- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTA=="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
-  :label: Trial Design
+  :label: SE
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQ0RJU0NfU0RUTU1PREVMVFJJQUxERVNJR04tMw==
-    :uri: http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODELTRIALDESIGN-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9SUw==
+    :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Standard
     :administrative_note: ''
@@ -239,7 +239,7 @@
     :until_date: '2016-01-01T00:00:00+00:00'
     :unresolved_issue: ''
     :administrative_status: ''
-    :previous_state: Incomplete
+    :previous_state: Standard
     :multiple_edit: false
     :by_authority:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
@@ -256,13 +256,13 @@
         :name: Clinical Data Interchange Standards Consortium
         :authority: www.cdisc.org
   :has_identifier:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQ0RJU0NfU0RUTU1PREVMVFJJQUxERVNJR04tMw==
-    :uri: http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODELTRIALDESIGN-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9TSQ==
+    :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTMMODEL TRIAL DESIGN
-    :version_label: '1.4'
-    :version: 3
-    :semantic_version: 1.4.0
+    :identifier: SDTM MODEL SE
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 1.2.0
     :has_scope:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
       :uri: http://www.assero.co.uk/NS#CDISC
@@ -273,21 +273,21 @@
   :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2013-11-26T00:00:00+00:00'
-  :last_change_date: '2013-11-26T00:00:00+00:00'
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
   :explanatory_comment: ''
   :rule: ''
   :ordinal: 1
   :includes_column: []
-- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMUkVMQVRJT05TSElQ"
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMUkVMQVRJT05TSElQ
-  :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELRELATIONSHIP
+- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9DTy9WMSNDTA=="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9DTy9WMSNDTA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_CO/V1#CL
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
-  :label: Relationship
+  :label: CO
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQ0RJU0NfU0RUTU1PREVMUkVMQVRJT05TSElQLTM=
-    :uri: http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODELRELATIONSHIP-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9DTy9WMSNDTF9SUw==
+    :uri: http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Standard
     :administrative_note: ''
@@ -295,7 +295,7 @@
     :until_date: '2016-01-01T00:00:00+00:00'
     :unresolved_issue: ''
     :administrative_status: ''
-    :previous_state: Incomplete
+    :previous_state: Standard
     :multiple_edit: false
     :by_authority:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
@@ -312,13 +312,13 @@
         :name: Clinical Data Interchange Standards Consortium
         :authority: www.cdisc.org
   :has_identifier:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQ0RJU0NfU0RUTU1PREVMUkVMQVRJT05TSElQLTM=
-    :uri: http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODELRELATIONSHIP-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9DTy9WMSNDTF9TSQ==
+    :uri: http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTMMODEL RELATIONSHIP
-    :version_label: '1.4'
-    :version: 3
-    :semantic_version: 1.4.0
+    :identifier: SDTM MODEL CO
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 1.2.0
     :has_scope:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
       :uri: http://www.assero.co.uk/NS#CDISC
@@ -329,21 +329,21 @@
   :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2013-11-26T00:00:00+00:00'
-  :last_change_date: '2013-11-26T00:00:00+00:00'
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
   :explanatory_comment: ''
   :rule: ''
   :ordinal: 1
   :includes_column: []
-- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRklORElOR1NBQk9VVA=="
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRklORElOR1NBQk9VVA==
-  :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGSABOUT
+- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9ETS9WMSNDTA=="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9ETS9WMSNDTA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_DM/V1#CL
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
-  :label: Findings About
+  :label: DM
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQ0RJU0NfU0RUTU1PREVMRklORElOR1NBQk9VVC0z
-    :uri: http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODELFINDINGSABOUT-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9ETS9WMSNDTF9SUw==
+    :uri: http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Standard
     :administrative_note: ''
@@ -351,7 +351,7 @@
     :until_date: '2016-01-01T00:00:00+00:00'
     :unresolved_issue: ''
     :administrative_status: ''
-    :previous_state: Incomplete
+    :previous_state: Standard
     :multiple_edit: false
     :by_authority:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
@@ -368,13 +368,13 @@
         :name: Clinical Data Interchange Standards Consortium
         :authority: www.cdisc.org
   :has_identifier:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQ0RJU0NfU0RUTU1PREVMRklORElOR1NBQk9VVC0z
-    :uri: http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODELFINDINGSABOUT-3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9ETS9WMSNDTF9TSQ==
+    :uri: http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTMMODEL FINDINGS ABOUT
-    :version_label: '1.4'
-    :version: 3
-    :semantic_version: 1.4.0
+    :identifier: SDTM MODEL DM
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 1.2.0
     :has_scope:
       :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
       :uri: http://www.assero.co.uk/NS#CDISC
@@ -385,8 +385,176 @@
   :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2013-11-26T00:00:00+00:00'
-  :last_change_date: '2013-11-26T00:00:00+00:00'
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
+  :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
+- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TVi9WMSNDTA=="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TVi9WMSNDTA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_SV/V1#CL
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
+  :label: SV
+  :tagged: []
+  :has_state:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TVi9WMSNDTF9SUw==
+    :uri: http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_RS
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :multiple_edit: false
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: CDISC
+        :name: Clinical Data Interchange Standards Consortium
+        :authority: www.cdisc.org
+  :has_identifier:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TVi9WMSNDTF9TSQ==
+    :uri: http://www.cdisc.org/SDTM_MODEL_SV/V1#CL_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SDTM MODEL SV
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 1.2.0
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+  :has_previous_version: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
+  :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
+- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TVVBQUVVBTC9WMSNDTA=="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TVVBQUVVBTC9WMSNDTA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
+  :label: SUPPQUAL
+  :tagged: []
+  :has_state:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TVVBQUVVBTC9WMSNDTF9SUw==
+    :uri: http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_RS
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :multiple_edit: false
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: CDISC
+        :name: Clinical Data Interchange Standards Consortium
+        :authority: www.cdisc.org
+  :has_identifier:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TVVBQUVVBTC9WMSNDTF9TSQ==
+    :uri: http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SDTM MODEL SUPPQUAL
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 1.2.0
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+  :has_previous_version: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
+  :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
+- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9UQS9WMSNDTA=="
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9UQS9WMSNDTA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_TA/V1#CL
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
+  :label: TA
+  :tagged: []
+  :has_state:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9UQS9WMSNDTF9SUw==
+    :uri: http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_RS
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :multiple_edit: false
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: CDISC
+        :name: Clinical Data Interchange Standards Consortium
+        :authority: www.cdisc.org
+  :has_identifier:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9UQS9WMSNDTF9TSQ==
+    :uri: http://www.cdisc.org/SDTM_MODEL_TA/V1#CL_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SDTM MODEL TA
+    :version_label: 2008-11-12 Release
+    :version: 1
+    :semantic_version: 1.2.0
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+  :has_previous_version: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2008-11-12T00:00:00+00:00'
+  :last_change_date: '2008-11-12T00:00:00+00:00'
   :explanatory_comment: ''
   :rule: ''
   :ordinal: 1

@@ -340,11 +340,18 @@ defaults: &defaults
     alias:
       create_from_template: create
       edit_data: edit
+      edit_another: edit
       update_property: update
   FormPolicy:
     policies: {}
     alias:
       crf: show
+      referenced_items: show
+      add_child: update
+      move_up: update
+      move_down: update
+      make_common: update
+      restore: update
   CdiscTermPolicy:
     policies:
       index:

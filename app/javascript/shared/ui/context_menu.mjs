@@ -1,9 +1,9 @@
 /**
- * Render a whole Context Menu with items
+ * Render a whole Context Menu with wrapping icon
  * @param {Object} params Context Menu parameters
  * @param {string} params.menuId ID of the menu. Preferably unique.
  * @param {Array} params.menuItems Objects containing item data (see _renderMenuItem for required fields)
- * @param {Object} params.menuStyle Specify color and side classes
+ * @param {Object} params.menuStyle Specify color, size and side classes
  * @returns {string} Formatted HTML of a Context Menu
  */
 function render({
@@ -11,15 +11,34 @@ function render({
   menuItems = [],
   menuStyle = {
     color: "",
-    side: ""
+    side: "",
+    size: ""
   }
 }) {
   return `<span id="${menuId}" class="icon-context-menu text-normal" tabindex="1">` +
-            `<div class="context-menu scroll-styled ${menuStyle.color || ""} ${menuStyle.side || ""} shadow-small collapsed scroll-styled">` +
-              _renderItems(menuItems) +
-            `</div>` +
+            renderMenuOnly({ menuItems, menuStyle }) +
           `</span>`;
 }
+
+/**
+ * Render a Context Menu without the wrapping icon
+ * @param {Object} params Context Menu parameters
+ * @param {Array} params.menuItems Objects containing item data (see _renderMenuItem for required fields)
+ * @param {Object} params.menuStyle Specify color, size and side classes
+ * @returns {string} Formatted HTML of a Context Menu (without icon)
+ */
+function renderMenuOnly({
+  menuItems = [],
+  menuStyle = {
+    color: "",
+    side: "",
+    size: ""
+  }
+}) {
+      return `<div class="context-menu ${menuStyle.color || ""} ${menuStyle.side || ""} ${menuStyle.size || ""} shadow-small scroll-styled collapsed">` +
+                _renderItems(menuItems) +
+             `</div>`;
+  }
 
 /**
  * Render child items within the menu
@@ -64,8 +83,8 @@ function _renderMenuItem({
             `class = "option ${(disabled ? "disabled" : "") || ''}"` +
             `data-toggle = "${dataToggle}" >` +
               `<span class="${icon} text-small"></span>` +
-              `<span class="text-small">${text}</span>` +
+              `<span>${text}</span>` +
          `</a>`;
 }
 
-export { render }
+export { render, renderMenuOnly }

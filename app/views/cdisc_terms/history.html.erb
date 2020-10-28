@@ -1,19 +1,20 @@
-<%= javascript_tag 'setPageTitle("History: CDISC CT")' %>
+<% content_for :page_title do %> History: CDISC CT <% end %>
 
 <%= javascript_pack_tag 'cdisc_term/history' %>
 
 <% second_level_breadcrumb(:thesauri, @scope_id, @identifier) %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_item_simple", :locals => {badge: "icon-terminology", item: @ct, header_title: "Item History"} do %>
+  <%= render layout: "shared/headers/header_item_simple", :locals => { badge: "icon-terminology", item: @ct, header_title: "Item History" } do %>
+
     <div class="actions-wrap">
-			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_path(@cdisc_term_id), id: "changes_btn",
-				icon: "icon-changes", btn_text: "View Changes", dt_toggle: "", disabled: false } %>
-			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: submission_thesauri_path(@cdisc_term_id), id: "sub_changes_btn",
-				icon: "icon-sub-value-changes", btn_text: "View Submission value changes", dt_toggle: "", disabled: false } %>
-			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: changes_thesauri_path(@cdisc_term_id), id: "changes_btn",
+				icon: "icon-changes", text: "View Changes" } %>
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: submission_thesauri_path(@cdisc_term_id), id: "sub_changes_btn",
+				icon: "icon-sub-value-changes", text: "View Submission value changes" } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
+
   <% end %>
 </div>
 
@@ -22,4 +23,4 @@
 				identifier: @identifier, url: history_cdisc_terms_path } %>
 </div>
 
-<%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "1"} %>
+<%= render partial: "shared/items_selector/items_selector_modal", :locals => { id: "1" } %>

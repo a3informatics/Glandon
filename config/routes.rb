@@ -114,9 +114,10 @@ Rails.application.routes.draw do
   #     get :branches
   #   end
   # end
-  resources :iso_managed_v2, only: [] do
+  resources :iso_managed_v2, only: [:edit, :update] do
     collection do
       get :find_by_tag
+      get :comments
     end
     member do
       get :status
@@ -361,6 +362,7 @@ Rails.application.routes.draw do
     member do
       get :show_data
       get :edit_data
+      get :edit_another
       put :update_property
     end
     collection do
@@ -374,6 +376,8 @@ Rails.application.routes.draw do
     member do
       get :show_data
       get :crf
+      get :referenced_items
+      post :add_child
     end
     collection do
       get :history
@@ -393,9 +397,45 @@ Rails.application.routes.draw do
     end
   end
   namespace :forms do
-    resources :groups
-    resources :items, :only => [:show]
+    namespace :items do
+      resources :questions, :text_labels, :placeholders, :mappings, :commons, :bc_properties, :only => [:update, :destroy] do
+        member do
+          put :move_up
+          put :move_down
+          post :add_child
+        end
+      end
+      resources :bc_properties do
+        member do
+          post :make_common
+        end
+      end
+      resources :commons do
+        member do
+          delete :restore
+        end
+      end
+    end
+    namespace :groups do
+      resources :bc_groups, :normal_groups, :common_groups, :only => [:update, :destroy] do
+        member do
+          put :move_up
+          put :move_down
+          post :add_child
+        end
+      end
+    end
   end
+
+  namespace :operational_reference_v3 do
+    resources :tuc_references, :only => [:update, :destroy] do
+      member do
+          put :move_up
+          put :move_down
+      end
+    end
+  end
+
   resources :backgrounds, :only => [:index, :destroy] do
     collection do
       delete :destroy_multiple

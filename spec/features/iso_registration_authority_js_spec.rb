@@ -6,6 +6,7 @@ describe "ISO Registration Authority JS", :type => :feature do
   include DataHelpers
   include UserAccountHelpers
   include UiHelpers
+  include WaitForAjaxHelper
 
   before :all do
     data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
@@ -27,12 +28,35 @@ describe "ISO Registration Authority JS", :type => :feature do
 
   describe "valid user", :type => :feature, js: true do
 
+    it "allows all registration authorities to be viewed (REQ-MDR-RA-010)" do
+      click_navbar_regauthorities
+      expect(page).to have_content 'Index of Registration Authorities'
+      expect(page).to have_content 'Add a New Registration Authority'
+      expect(page).to have_content 'This repository is owned by BBB.'
+
+      expect(page).to have_content '123456789'
+      expect(page).to have_content '111111111'
+      expect(page).to have_content 'New Registration Authority'
+      expect(page).to have_button '+ New Registration Authority'
+    end
+
+    it "allows a new registration authority to be added (REQ-MDR-RA-010)" do
+      click_navbar_regauthorities
+      expect(page).to have_content 'Registration Authorities'
+      fill_in 'iso_registration_authority_organization_identifier', with: '111122223'
+      select 'AAA Long', from: "iso_registration_authority_namespace_id"
+      click_button '+ New Registration Authority'
+      expect(page).to have_content 'Registration Authorities'
+      expect(page).to have_content '111122223'
+    end
+
     it "deletes registration authority (REQ-MDR-RA-020)" do
       click_navbar_regauthorities
       expect(page).to have_content 'Registration Authorities'
-      find(:xpath, "//tr[contains(.,'111111111')]/td/a", :text => 'Delete').click
-      page.accept_alert
-      sleep(1)
+      find(:xpath, "//tr[contains(.,'111111111')]/td/button").click
+      ui_confirmation_dialog true
+      wait_for_ajax 10
+
       expect(page).to have_content '123456789'
       expect(page).to have_no_content '111111111'
     end

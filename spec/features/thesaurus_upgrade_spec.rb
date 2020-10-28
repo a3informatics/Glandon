@@ -1,6 +1,7 @@
 require 'rails_helper'
+require 'thesauri/managed_concepts_controller'
 
-describe "Upgrade", :type => :feature do
+describe "Thesauri Upgrade", :type => :feature do
 
   include PauseHelpers
   include DataHelpers
@@ -18,7 +19,8 @@ describe "Upgrade", :type => :feature do
   end
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    #data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    data_files = []
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..58)
     load_data_file_into_triple_store("mdr_identification.ttl")

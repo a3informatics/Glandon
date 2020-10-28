@@ -5,9 +5,25 @@ describe AdHocReportsController do
   include DataHelpers
   include PauseHelpers
   include PublicFileHelpers
+  include ControllerHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "controllers/ad_hoc_reports"
+  end
+
+  def check_and_fix_report_times(report, *args)
+    args.each do |a|
+      expect( Timestamp.new(report[a]).time ).to be_within(5.seconds).of Time.now
+      report[a] = Time.new(0).to_s
+    end
+  end
+
+  def check_and_fix_report_paths(report, *args)
+    args.each do |a|
+      expect( report[a] ).to include "/ad_hoc_reports/#{report[:id]}"
+      report[a] = "/ad_hoc_reports/id"
+    end
   end
 
   describe "ad hoc reports as content admin" do
@@ -33,8 +49,30 @@ describe AdHocReportsController do
 
     it "lists all the reports" do
       get :index
-      expect(assigns(:items).count).to eq(3)
       expect(response).to render_template("index")
+    end
+
+    it "lists all the reports, json" do
+      AdHocReport.delete_all
+      copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
+      copy_file_to_public_files(sub_dir, "terminology_code_lists_sparql.yaml", "upload")
+      @ahr1 = AdHocReport.create_report(files: [ public_path("upload", "ad_hoc_report_test_1_sparql.yaml") ])
+      @ahr2 = AdHocReport.create_report(files: [ public_path("upload", "terminology_code_lists_sparql.yaml") ])
+
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :index
+      expect(response.code).to eq("200")
+      actual = check_good_json_response(response)
+      actual = actual[:data]
+
+      expect( actual.count ).to eq 2
+      actual.each do |report|
+        check_and_fix_report_times(report, :created_at, :updated_at, :last_run)
+        check_and_fix_report_paths(report, :report_path, :run_path, :results_path)
+        report[:id] = 'id'
+      end
+
+      check_file_actual_expected(actual, sub_dir, "index_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "initiates creation of a new report" do
@@ -132,7 +170,7 @@ describe AdHocReportsController do
       post :destroy, params:{ id: @ahr2.id }
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(AdHocReport.all.count).to eq(count - 1)
-      expect(response).to redirect_to("http://test.host/ad_hoc_reports")
+      expect(response.code).to eq("200")
     end
 
   end
@@ -158,7 +196,6 @@ describe AdHocReportsController do
 
     it "lists all the reports" do
       get :index
-      expect(assigns(:items).count).to eq(3)
       expect(response).to render_template("index")
     end
 
@@ -224,7 +261,7 @@ describe AdHocReportsController do
       columns = assigns(:columns)
       expect(found_report.id).to eq(report.id)
       expect(columns).to eq({:"?a"=>{:label=>"URI", :type=>"uri"}, :"?b" => {:label=>"Identifier", :type=>"literal"}, :"?c" => {:label=>"Label", :type=>"literal"}})
-      expect(response).to render_template("results")
+      expect(response.code).to eq("200")
     end
 
      it "prevents a report to be deleted" do

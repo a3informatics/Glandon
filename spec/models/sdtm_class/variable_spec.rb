@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'tabulation' # Prevents circular reference in test
 
 describe SdtmClass::Variable do
 
@@ -11,8 +10,13 @@ describe SdtmClass::Variable do
   end
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "sdtm/SDTM_Model_1-4.ttl"]
+    data_files = []
     load_files(schema_files, data_files)
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
   end
 
   it "validates a valid object" do
@@ -35,7 +39,7 @@ describe SdtmClass::Variable do
   end
 
   it "allows an object to be found" do
-    item = SdtmClass::Variable.find(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxSCAT"))
+    item = SdtmClass::Variable.find(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCAT"))
     check_file_actual_expected(item.to_h, sub_dir, "find_input.yaml", equate_method: :hash_equal)
   end
 

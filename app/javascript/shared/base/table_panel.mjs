@@ -21,6 +21,7 @@ export default class TablePanel {
    * @param {boolean} params.paginated Specify if the loadData call should be paginated. Optional, default = true
    * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {Array} params.buttons DT buttons definitions objects, empty by default
+   * @param {Object} params.tableOptions Custom DT options object, will be merged with this instance's _tableOpts, optional
    * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
    * @param {element} params.errorDiv Custom element to display flash errors in, optional
    * @param {Object} args Optional additional arguments for extending classes
@@ -36,16 +37,22 @@ export default class TablePanel {
     paginated = true,
     order = [[0, "desc"]],
     buttons = [],
+    tableOptions = {},
     loadCallback = () => {},
     errorDiv
   }, args = {}) {
-    Object.assign(this, { selector, url, param, count, extraColumns, cache, paginated, order, buttons, loadCallback, errorDiv, ...args });
+
+    Object.assign(this, {
+      selector, url, param, count, extraColumns, cache,
+      paginated, order, buttons, tableOptions, loadCallback,
+      errorDiv, ...args });
 
     this._initTable();
     this._setListeners();
 
     if (!deferLoading)
       this.loadData();
+
   }
 
   /**
@@ -62,7 +69,7 @@ export default class TablePanel {
     this._loading(true);
 
     if (this.paginated)
-      $getPaginated(0, {
+      this.request = $getPaginated(0, {
         url: this.url,
         count: this.count,
         strictParam: this.param,
@@ -73,7 +80,7 @@ export default class TablePanel {
         always: () => this._loading(false)
       });
     else
-      $get({
+      this.request = $get({
         url: this.url,
         cache: this.cache,
         errorDiv: this.errorDiv,
@@ -88,10 +95,11 @@ export default class TablePanel {
   }
 
   /**
-   * Clears table data
+   * Clears table data and filters and kills any running requests
    */
   clear() {
-    this.table.clear().draw();
+    this.table.search('').clear().draw();
+    this.kill();
   }
 
   /**
@@ -100,6 +108,14 @@ export default class TablePanel {
    */
   refresh(url) {
     this.loadData(url);
+  }
+
+  /**
+   * Kill any ongoing loading process
+   */
+  kill() {
+    if ( this.request )
+      this.request.abort();
   }
 
   /** Private **/
@@ -198,7 +214,8 @@ export default class TablePanel {
    * @return {Object} DataTable initialization options object
    */
   get _tableOpts() {
-    return {
+
+    let opts =  {
       order: this.order,
       columns: [...this._defaultColumns, ...this.extraColumns],
       pageLength: pageLength,
@@ -212,6 +229,12 @@ export default class TablePanel {
       },
       buttons: this.buttons
     }
+
+    if ( this.tableOptions ) // Merge with custom options
+      Object.assign( opts, this.tableOptions );
+
+    return opts;
+
   }
 
 }

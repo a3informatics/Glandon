@@ -64,6 +64,7 @@ export default class ItemsPicker extends ModalView {
 
     // Clear selection view
     this.selectionView.clear();
+    this._errorDiv.empty();
   }
 
   /**
@@ -84,6 +85,67 @@ export default class ItemsPicker extends ModalView {
       this.modal.find('#items-picker-submit').html(submitText);
   }
 
+  /**
+   * Disable a set of (already allowed) types tabs
+   * @param {array} types Types to become disabled (must be a subset of allowed types )
+   * @return {ItemsPicker} this instance (for method chaining)
+   */
+  disableTypes(types) {
+
+    if ( !types )
+      return;
+
+    this.toggleAllTabs( true );
+
+    for ( let type of types ) {
+
+      if ( !this.types.includes( type ) )
+        continue;
+
+      let tabId = $( this._typeToTabSelector( type ) ).attr( 'data-tab' );
+      $(`#${ tabId }`).addClass( 'disabled' );
+
+    }
+
+    return this;
+
+  }
+
+  /**
+   * Disable all (already allowed) types tabs except the given ones
+   * @param {array} types Types to remain enabled (must be a subset of allowed types)
+   * @return {ItemsPicker} this instance (for method chaining)
+   */
+  disableTypesExcept(types) {
+
+    if ( !types )
+      return;
+
+    this.toggleAllTabs( false );
+
+    for ( let type of types ) {
+
+      if ( !this.types.includes( type ) )
+        continue;
+
+      let tabId = $( this._typeToTabSelector( type ) ).attr( 'data-tab' );
+      $(`#${ tabId }`).removeClass( 'disabled' );
+
+    }
+
+    return this;
+
+  }
+
+  /**
+   * Enable all (already disabled) types tabs
+   */
+  toggleAllTabs(enable) {
+
+    $(this.selector).find( '.tab-option.disabled' )
+                    .toggleClass( 'disabled', !enable );
+
+  }
 
 
   /** Private **/
@@ -134,23 +196,28 @@ export default class ItemsPicker extends ModalView {
    * Called on modal show, open the first available Tab, render selectionView
    */
   _onShow() {
+    this.isOpen = true;
+
     // Execute onShow callback
     if ( this.onShow )
       this.onShow();
 
-    $(`${this.selector} #items-picker-tabs .tab-option`)[0].click();
     this.selectionView._render();
+
+    $(`${this.selector} #items-picker-tabs .tab-option:not(.disabled)`)[0].click();
   }
 
   /**
    * Called on modal hide, reset Items Picker to initial state, call onHide callback
    */
   _onHide() {
-    this.reset();
-
     // Execute onHide callback
     if (this.onHide)
       this.onHide();
+
+    this.reset();
+
+    this.isOpen = false;
   }
 
   /**

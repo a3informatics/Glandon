@@ -8,6 +8,7 @@ describe BiomedicalConceptInstancesController do
   include ControllerHelpers
   include UserAccountHelpers
   include AuditTrailHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "controllers/biomedical_concept_instances"
@@ -35,6 +36,7 @@ describe BiomedicalConceptInstancesController do
       bci = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       get :show, params: { :id => bci.id}
       expect(response).to render_template("show")
+      expect(assigns(:edit_tags_path)).to eq("/iso_concept/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=/edit_tags")
     end
 
     it "history, html" do
@@ -43,6 +45,14 @@ describe BiomedicalConceptInstancesController do
       expect(assigns(:identifier)).to eq("HEIGHT")
       expect(assigns(:scope_id)).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
       expect(response).to render_template("history")
+    end
+
+    it "history II, html" do
+      @request.env['HTTP_REFERER'] = '/path'
+      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      expect(BiomedicalConceptInstance).to receive(:latest).with({identifier: instance.has_identifier.identifier, scope: an_instance_of(IsoNamespace)}).and_return(nil)
+      get :history, params:{biomedical_concept_instance: {identifier: instance.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 20}}
+      expect(response).to redirect_to("/biomedical_concept_instances")
     end
 
     it "history, json" do
@@ -165,24 +175,24 @@ describe BiomedicalConceptInstancesController do
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       get :edit, params:{id: instance.id}
       expect(assigns(:bc).uri).to eq(instance.uri)
-      #expect(assigns(:data_path)).to eq("/biomedical_concept_instances/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=/show_data")
       expect(assigns(:close_path)).to eq("/biomedical_concept_instances/history?biomedical_concept_instance%5Bidentifier%5D=HEIGHT&biomedical_concept_instance%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
+      expect(assigns(:edit_tags_path)).to eq("/iso_concept/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=/edit_tags")
       expect(response).to render_template("edit")
     end
 
-    it "edit, html, locked by another user" do
-      request.env["HTTP_REFERER"] = "/path"
+    it "edit, html request, not locked, standard and creates new draft" do
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      token = Token.obtain(instance, @lock_user)
+      instance.has_state.registration_status = "Standard"
+      instance.has_state.save
       get :edit, params:{id: instance.id}
-      expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
-      expect(response).to redirect_to("/path")
+      expect(assigns[:bc].uri).to eq(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V2#BCI"))
+      expect(assigns[:edit].lock.token.id).to eq(Token.all.last.id)
     end
 
     it "edit, json request" do
       request.env['HTTP_ACCEPT'] = "application/json"
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      token = Token.obtain(instance, @user)
       get :edit, params:{id: instance.id}
       actual = check_good_json_response(response)
       expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
@@ -190,11 +200,54 @@ describe BiomedicalConceptInstancesController do
       check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "edit, html, locked by another user" do
+    it "edit another, json request, not locked" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      get :edit_another, params:{id: instance.id}
+      actual = check_good_json_response(response)
+      expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
+      actual[:token_id] = 9999                            # So, fix for file compare
+      check_file_actual_expected(actual, sub_dir, "edit_json_expected_4.yaml", equate_method: :hash_equal)
+    end
+
+    it "edit, json request, not locked, standard and creates new draft" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      instance.has_state.registration_status = "Standard"
+      instance.has_state.save
+      get :edit_another, params:{id: instance.id}
+      actual = check_good_json_response(response)
+      expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
+      actual[:token_id] = 9999                            # So, fix for file compare
+      fix_dates_hash(actual[:data], sub_dir, "edit_json_expected_3.yaml", :last_change_date, :creation_date)
+      check_file_actual_expected(actual[:data], sub_dir, "edit_json_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "edit, json request, already locked" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      token = Token.obtain(instance, @user)
+      get :edit, params:{id: instance.id}
+      actual = check_good_json_response(response)
+      expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
+      actual[:token_id] = 9999                            # So, fix for file compare
+      check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal) # Note same result as above
+    end
+
+    it "edit, json, locked by another user" do
       request.env['HTTP_ACCEPT'] = "application/json"
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       token = Token.obtain(instance, @lock_user)
       get :edit, params:{id: instance.id}
+      actual = check_error_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "edit_json_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "edit another, json request, locked by another user" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      token = Token.obtain(instance, @lock_user)
+      get :edit_another, params:{id: instance.id}
       actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "edit_json_expected_2.yaml", equate_method: :hash_equal)
     end
@@ -228,7 +281,8 @@ describe BiomedicalConceptInstancesController do
       delete :destroy, params:{id: bci.id}
       expect(AuditTrail.count).to eq(audit_count+1)
       check_file_actual_expected(last_audit_event, sub_dir, "destroy_expected_1.yaml", equate_method: :hash_equal)
-      expect(response).to redirect_to("/path")
+      #expect(response).to redirect_to("/path")
+      check_good_json_response(response)
     end
 
     it 'delete, locked by another user' do
@@ -239,7 +293,7 @@ describe BiomedicalConceptInstancesController do
       delete :destroy, params:{id: bci.id}
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
-      expect(response).to redirect_to("/path")
+      #expect(response).to redirect_to("/path")
     end
 
   end

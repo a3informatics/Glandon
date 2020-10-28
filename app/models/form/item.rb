@@ -2,7 +2,7 @@ class Form::Item < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#Item",
             uri_suffix: "I",
-            uri_property: :ordinal
+            uri_unique: true
 
   data_property :ordinal, default: 1
   data_property :note
@@ -14,11 +14,36 @@ class Form::Item < IsoConceptV2
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
   validates :optional, inclusion: { in: [ true, false ] }
 
-  # def build_common_map
-  #   if self.class == Form::Item::BcProperty
-  #     self.build_common_map
-  #   end
-  # end
+  include Form::Ordinal
+
+  def delete(parent)
+    update_query = %Q{
+      DELETE DATA
+      {
+        #{parent.uri.to_ref} bf:hasItem #{self.uri.to_ref} 
+      };
+      DELETE {?s ?p ?o} WHERE 
+      { 
+        { BIND (#{self.uri.to_ref} as ?s). 
+          ?s ?p ?o
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasCodedValue ?o1 . 
+          BIND (?o1 as ?s) . 
+          ?s ?p ?o .
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasProperty ?o2 . 
+          BIND (?o2 as ?s) . 
+          ?s ?p ?o .
+        }
+      }
+    }
+    partial_update(update_query, [:bf])
+    parent.reset_ordinals
+    normal_group = Form::Group::Normal.find_full(parent.uri)
+    normal_group = normal_group.full_data
+  end
 
   def start_row(optional)
     return '<tr class="warning">' if optional
@@ -47,35 +72,40 @@ class Form::Item < IsoConceptV2
   end
 
   # Format input field
-  def input_field
+  def input_field(item)
     html = '<td>'
-    datatype = XSDDatatype.new(self.datatype)
-    if datatype.datetime?
-      html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
-    #elsif datatype.date?
-    #  html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
-    #elsif datatype.time?
-    #  html += field_table(["H", "H", ":", "M", "M"])
-    elsif datatype.float?
-      self.format = "5.1" if self.format.blank?
-      parts = self.format.split('.')
-      major = parts[0].to_i
-      minor = parts[1].to_i
-      pattern = ["#"] * major
-      pattern[major-minor-1] = "."
-      html += field_table(pattern)
-    elsif datatype.integer?
-      count = self.format.to_i
-      html += field_table(["#"]*count)
-    elsif datatype.string?
-      length = self.format.scan /\w/
-      html += field_table([" "]*5 + ["S"] + length + [""]*5)
-    elsif datatype.boolean?
-      html += '<input type="checkbox">'
+    if item.class == BiomedicalConcept::PropertyX
+      prop = ComplexDatatype::PropertyX.find(item.is_complex_datatype_property)
+      datatype = XSDDatatype.new(prop.simple_datatype)
     else
-      html += field_table(["?", "?", "?"])
+      datatype = XSDDatatype.new(item.datatype)
     end
-    html += '</td>'
+      if datatype.datetime?
+        html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
+      elsif datatype.date?
+       html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
+      elsif datatype.time?
+       html += field_table(["H", "H", ":", "M", "M"])
+      elsif datatype.float?
+        item.format = "5.1" if item.format.blank?
+        parts = item.format.split('.')
+        major = parts[0].to_i
+        minor = parts[1].to_i
+        pattern = ["#"] * major
+        pattern[major-minor-1] = "."
+        html += field_table(pattern)
+      elsif datatype.integer?
+        count = item.format.to_i
+        html += field_table(["#"]*count)
+      elsif datatype.string?
+        length = item.format.scan /\w/
+        html += field_table([" "]*5 + ["S"] + length + [""]*5)
+      elsif datatype.boolean?
+        html += '<input type="checkbox">'
+      else
+        html += field_table(["?", "?", "?"])
+      end
+      html += '</td>'
   end
 
   # Format a field
@@ -89,7 +119,7 @@ class Form::Item < IsoConceptV2
 
   def terminology_cell
     html = '<td>'
-    self.has_coded_value.each do |cv|
+    self.has_coded_value_objects.sort_by {|x| x.ordinal}.each do |cv|
       tc = Thesaurus::UnmanagedConcept.find(cv.reference)
       if cv.enabled
         html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
@@ -100,7 +130,7 @@ class Form::Item < IsoConceptV2
 
   def coded_values_to_hash(coded_values)
     results = []
-    coded_values.each do |cv|
+    coded_values.sort_by {|x| x.ordinal}.each do |cv|
       ref = cv.to_h
       ref[:reference] = Thesaurus::UnmanagedConcept.find(cv.reference).to_h
       parent = Thesaurus::ManagedConcept.find_with_properties(cv.context)
@@ -108,6 +138,53 @@ class Form::Item < IsoConceptV2
       results << ref
     end
     results
+  end
+
+  # Full data
+  #
+  # @return [Hash] Return the data of the whole node
+  def full_data
+    item = self.to_h
+    item[:has_coded_value] = get_cv_ref(self.has_coded_value_objects) unless item[:has_coded_value].nil?
+    item[:has_property] = self.has_property_objects.to_h unless item[:has_property].nil?
+    item[:has_common_item] = get_ci_ref(self.has_common_item_objects) unless item[:has_common_item].nil?
+    item
+  end
+
+  def get_cv_ref(coded_values)
+    results = []
+    coded_values.sort_by {|x| x.ordinal}.each do |cv|
+      ref = cv.to_h
+      ref[:reference] = Thesaurus::UnmanagedConcept.find(cv.reference).to_h
+      results << ref
+    end
+    results
+  end
+
+  def get_ci_ref(common_items)
+    results = []
+    common_items.sort_by {|x| x.ordinal}.each do |ci|
+      results << ci.full_data
+    end
+    results
+  end
+
+  # Next Ordinal. Get the next ordinal for a managed item collection
+  #
+  # @param [String] name the name of the property holding the collection
+  # @return [Integer] the next ordinal
+  def next_ordinal(name)
+    predicate = self.properties.property(name).predicate
+    query_string = %Q{
+      SELECT (MAX(?ordinal) AS ?max)
+      {
+        #{self.uri.to_ref} #{predicate.to_ref} ?s .
+        ?s bo:ordinal ?ordinal
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:bo])
+    return 1 if query_results.empty?
+    query_results.by_object(:max).first.to_i + 1
   end
 
 end

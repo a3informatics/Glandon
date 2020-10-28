@@ -35,7 +35,7 @@ describe IsoConceptSystems::NodesController do
       request.env['HTTP_ACCEPT'] = "application/json"
       post :add, params:{:id => Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2").to_id, :iso_concept_systems_node => {:label => "New Label", :description => "New Description±±"}}
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("400")
+      expect(response.code).to eq("422")
       expect(response.body).to eq("{\"errors\":[\"Description contains invalid characters or is empty\"]}")
     end
 
@@ -43,7 +43,7 @@ describe IsoConceptSystems::NodesController do
       request.env['HTTP_ACCEPT'] = "application/json"
       post :add, params:{:id => Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2").to_id, :iso_concept_systems_node => {:label => "", :description => ""}}
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("400")
+      expect(response.code).to eq("422")
       expect(response.body).to eq("{\"errors\":[\"Pref label is empty\",\"Description contains invalid characters or is empty\"]}")
     end
 
@@ -61,7 +61,7 @@ describe IsoConceptSystems::NodesController do
       node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
       delete :destroy, params:{:id => node.id}
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("500")
+      expect(response.code).to eq("422")
       expect(response.body).to eq("{\"errors\":[\"Cannot destroy tag as it has children tags or the tag or a child tag is currently in use.\"]}")
     end
 
@@ -70,7 +70,7 @@ describe IsoConceptSystems::NodesController do
       node = IsoConceptSystem.root
       delete :destroy, params:{:id => node.id}
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("500")
+      expect(response.code).to eq("422")
       expect(response.body).to eq("{\"errors\":[\"You are not permitted to delete the root tag\"]}")
     end
 
@@ -87,7 +87,7 @@ describe IsoConceptSystems::NodesController do
       node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
       post :update, params:{:id => node.id, :iso_concept_systems_node => {:label => "Updated Label±±", :description => "Updated Description"}}
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("400")
+      expect(response.code).to eq("422")
       expect(response.body).to eq("{\"errors\":[\"Pref label contains invalid characters\"]}")
     end
 

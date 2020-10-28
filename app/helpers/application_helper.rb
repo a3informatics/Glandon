@@ -102,8 +102,8 @@ module ApplicationHelper
   # @return [String] returns the HTML for the setting
   def true_false_cell(data, alignment)
     span_class = "icon-" # Note space at end
-    span_class += data ? "ok text-secondary-clr" : "times text-accent-2"
-    return raw("<td class=\"text-#{alignment}\"><span class=\"#{span_class}\"/></td>")
+    span_class += data ? "sel-filled text-link" : "times-circle text-accent-2"
+    return raw("<td class=\"text-#{alignment}\"><span class=\"text-normal #{span_class}\"/></td>")
   end
 
 	# Return the datatable settings for column ordering
@@ -245,8 +245,8 @@ module ApplicationHelper
 			thesauri: @category_term, cdisc_terms: @category_term, managed_concepts: @category_term,
 			biomedical_concept_templates: @category_biocon, biomedical_concept_instances: @category_biocon,
 			forms: @category_forms,
-			sdtm_models: @category_sdtm, sdtm_igs: @category_sdtm, sdtm_user_domains: @category_sdtm,
-			adam_igs: @category_adam
+			sdtm_models: @category_sdtm, sdtm_igs: @category_sdtm, sdtm_ig_domains: @category_sdtm, sdtm_classes: @category_sdtm,
+			adam_igs: @category_adam, adam_ig_datasets: @category_adam
 		}
 
 		@controller_map[controller_name.to_sym]

@@ -6,23 +6,23 @@ class ExportsController < ApplicationController
   end
 
   def start
-    @list_path = the_params[:export_list_path]
+    #@list_path = the_params[:export_list_path]
   end
 
   def terminologies
-    render :json => { :data => Export.new.terminologies}, :status => 200
+    #render :json => { :data => Export.new.terminologies}, :status => 200
   end
 
   def biomedical_concepts
-    render :json => { :data => Export.new.biomedical_concepts}, :status => 200
+    #render :json => { :data => Export.new.biomedical_concepts}, :status => 200
   end
 
   def forms
-    render :json => { :data => Export.new.forms}, :status => 200
+    #render :json => { :data => Export.new.forms}, :status => 200
   end
 
   def download
-    send_data PublicFile.read(the_params[:file_path]), filename: File.basename(the_params[:file_path]), type: 'application/x-turtle', disposition: 'inline'
+    #send_data PublicFile.read(the_params[:file_path]), filename: File.basename(the_params[:file_path]), type: 'application/x-turtle', disposition: 'inline'
   end
 
 private

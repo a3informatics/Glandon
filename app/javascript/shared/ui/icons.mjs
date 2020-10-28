@@ -1,5 +1,7 @@
 import { getRdfType, getRdfName } from 'shared/helpers/rdf_types'
 import { isCDISC } from 'shared/helpers/utils'
+import colors from 'shared/ui/colors'
+import { isCharLetter } from 'shared/helpers/strings'
 
 /*** Icon Renderers ***/
 
@@ -8,18 +10,18 @@ const icons = {
    * Returns HTML for an true/false icon
    * @param {boolean} value type of icon to be returned
    * @param {string} cssClasses custom css classes, optional
-   * @param {boolean} focusable set to true to include tabindex in icon  
+   * @param {boolean} focusable set to true to include tabindex in icon
    * @return {string} formatted icon HTML
    */
   checkMarkIcon(value, cssClasses = '', focusable = false ) {
     if (value)
-      return _renderIcon({
+      return renderIcon({
         iconName: 'sel-filled text-normal',
         cssClasses: cssClasses || 'text-link',
         focusable
       });
     else
-      return _renderIcon({
+      return renderIcon({
         iconName: 'times-circle text-normal',
         cssClasses: cssClasses || 'text-accent-2',
        focusable
@@ -40,7 +42,7 @@ const iconsInline = { 
   removeIcon({ disabled = false, ttip = false, ttipText = "" } = {}) {
     let cssClasses = `remove in-line clickable text-accent-2 ${disabled ? 'disabled' : ''}`;
 
-    return _renderIcon({
+    return renderIcon({
       iconName: 'times',
       ttip,
       ttipText,
@@ -58,7 +60,7 @@ const iconsInline = { 
   editIcon({ disabled = false, ttip = false, ttipText = "" } = {}) {
     let cssClasses = `edit in-line clickable text-link ${disabled ? 'disabled' : ''}`;
 
-    return _renderIcon({
+    return renderIcon({
       iconName: 'edit',
       ttip,
       ttipText,
@@ -72,65 +74,19 @@ const iconsInline = { 
 
 const iconTypes = { 
   /**
-   * Defines an RDF Type - Icon, Char & Color map, and fetches these values based on type argument
+   * Fetches mapped Icon, Char and Color object based on type argument
    * @param {string} type Item RDF type to get the icon & color details for
    * @param {Object} params optional ownership specifying parameter (for CDISC color override)
    * @return {Object} Object containing icon, char and color definitions for the type argument
    */
-  typeIconsColorsMap(type, params = {}) {
-    const typeDefsMap = {}
+  typeIconMap(type, params = {}) {
+    let result = type in _typeIconMap ?
+                  _typeIconMap[type] :
+                  _typeIconMap['unknown'];
 
-    iconTypeMap[getRdfType('C_TH')] = {
-      icon: 'icon-terminology',
-      char: '\ue909',
-      color: '#6d91a1'
-    }
-    iconTypeMap[getRdfType('C_TH_CL')] = {
-      icon: 'icon-codelist',
-      char: '\ue952',
-      color: '#9dc0cf'
-    }
-    iconTypeMap[getRdfType('C_TH_SUBSET')] = {
-      icon: 'icon-subset',
-      char: '\ue941',
-      color: '#9dc0cf'
-    }
-    iconTypeMap[getRdfType('C_TH_EXT')] = {
-      icon: 'icon-extension',
-      char: '\ue945',
-      color: '#9dc0cf'
-    }
-    iconTypeMap[getRdfType('C_TH_CLI')] = {
-      icon: 'icon-codelist-item',
-      char: '\ue958',
-      color: '#9dc0cf'
-    }
-    iconTypeMap[getRdfType('FORM')] = {
-      icon: 'icon-forms',
-      char: '\ue91c',
-      color: '#96d6bc'
-    }
-    iconTypeMap[getRdfType('BC')] = {
-      icon: 'icon-biocon',
-      char: '\ue90b',
-      color: '#989df1'
-    }
-    iconTypeMap[getRdfType('BCT')] = {
-      icon: 'icon-biocon-template',
-      char: '\ue969',
-      color: '#adb2f6'
-    }
-    iconTypeMap['unknown'] = {
-      icon: 'icon-help',
-      char: '\ue94e',
-      color: '#c4c4c4'
-    }
-
-    const result = type in iconTypeMap ? iconTypeMap[type] : iconTypeMap['unknown'];
-
-    // Override color if CDISC owned
-    if(isCDISC(params))
-      result.color = '#f5d684';
+    // Make a copy of result and override its color if is CDISC owned
+    if ( isCDISC(params) )
+      result = Object.assign( {}, result, { color: colors.accent1 } );
 
     return result;
   },
@@ -145,7 +101,7 @@ const iconTypes = { 
    */
   renderIcon(type, params) {
     let size = params.size || "text-xnormal",
-        iconParams = this.typeIconsColorsMap(type, params),
+        iconParams = this.typeIconMap(type, params),
         output = '';
 
     output += `<span class="${iconParams.icon} ${size} ${params.ttip ? 'ttip' : ''}" style="color: ${iconParams.color}">`
@@ -166,7 +122,7 @@ const iconTypes = { 
    */
   renderIconBadge(type, params) {
     let size = params.size || "small",
-        iconParams = this.typeIconsColorsMap(type, params),
+        iconParams = this.typeIconMap(type, params),
         output = '';
 
     output += `<span class="circular-badge text-white ${size} ${params.ttip ? 'ttip' : ''}" style="background: ${iconParams.color}">`
@@ -179,13 +135,13 @@ const iconTypes = { 
   }
 }
 
-/*** Private ***/
+/*** Generic Renderer ***/
 
 /**
  * Returns HTML for a generic inline icon button based on parameters
  * @return {string} formatted button HTML
  */
-function _renderIcon({
+function renderIcon({
   iconName,
   cssClasses = "",
   ttip = false,
@@ -194,13 +150,127 @@ function _renderIcon({
   style = "",
   focusable = false
 }) {
+
+  if ( isCharLetter(iconName) )
+    return `<span class='font-bold ${cssClasses} ${ttip ? 'ttip' : ''}'> ` +
+            (ttip ? `<span class='ttip-text shadow-small text-medium ${ttipClasses}'> ${ttipText} </span>` : '') +
+            `${ iconName }`+
+            `</span>`;
+
   return `<span class='icon-${iconName} ${cssClasses} ${ttip ? 'ttip' : ''}' style='${style}' ${focusable ? "tabindex='1'" : ""}>` +
             (ttip ? `<span class='ttip-text shadow-small text-medium ${ttipClasses}'> ${ttipText} </span>` : '') +
          `</span>`;
 }
 
+/**
+ * Defines an RDF Type - Icon, Char & Color map
+ */
+const _typeIconMap = {}
+
+_typeIconMap[getRdfType('TH')] = {
+  icon: 'icon-terminology',
+  char: '\ue909',
+  color: colors.primaryLight
+}
+_typeIconMap[getRdfType('TH_CL')] = {
+  icon: 'icon-codelist',
+  char: '\ue952',
+  color: colors.primaryBright
+}
+_typeIconMap[getRdfType('TH_SUBSET')] = {
+  icon: 'icon-subset',
+  char: '\ue941',
+  color: colors.primaryBright
+}
+_typeIconMap[getRdfType('TH_EXT')] = {
+  icon: 'icon-extension',
+  char: '\ue945',
+  color: colors.primaryBright
+}
+_typeIconMap[getRdfType('TH_CLI')] = {
+  icon: 'icon-codelist-item',
+  char: '\ue958',
+  color: colors.primaryBright
+}
+_typeIconMap[getRdfType('FORM')] = {
+  icon: 'icon-forms',
+  char: '\ue91c',
+  color: colors.accentAqua
+}
+_typeIconMap[getRdfType('BC')] = {
+  icon: 'icon-biocon',
+  char: '\ue90b',
+  color: colors.accentPurple
+}
+_typeIconMap[getRdfType('BCT')] = {
+  icon: 'icon-biocon-template',
+  char: '\ue969',
+  color: colors.accentPurpleLight
+}
+_typeIconMap[getRdfType('NORMAL_GROUP')] = {
+  icon: 'icon-group',
+  char: '\ue970',
+  color: colors.primaryBright
+}
+_typeIconMap[getRdfType('COMMON_GROUP')] = {
+  icon: 'icon-common-group',
+  char: '\ue96f',
+  color: colors.primaryBrightest
+}
+_typeIconMap[getRdfType('BC_GROUP')] = {
+  icon: 'icon-biocon',
+  char: '\ue90b',
+  color: colors.accentPurple
+}
+_typeIconMap[getRdfType('COMMON_ITEM')] = {
+  icon: 'icon-common-biocon',
+  char: '\ue96e',
+  color: colors.primaryBrightest
+}
+_typeIconMap[getRdfType('TEXTLABEL')] = {
+  icon: '',
+  char: 'L',
+  color: colors.greyLight
+}
+_typeIconMap[getRdfType('PLACEHOLDER')] = {
+  icon: '',
+  char: 'P',
+  color: colors.greyLight
+}
+_typeIconMap[getRdfType('QUESTION')] = {
+  icon: '',
+  char: 'Q',
+  color: colors.accentAquaDark
+}
+_typeIconMap[getRdfType('MAPPING')] = {
+  icon: '',
+  char: 'M',
+  color: colors.oliveGreen
+}
+_typeIconMap[getRdfType('BC_PROPERTY')] = {
+  icon: 'icon-biocon',
+  char: '\ue90b',
+  color: colors.accentPurpleLight
+}
+_typeIconMap[getRdfType('TC_REF')] = {
+  icon: 'icon-codelist',
+  char: '\ue952',
+  color: colors.primaryBright
+}
+_typeIconMap[getRdfType('TUC_REF')] = {
+  icon: 'icon-codelist-item',
+  char: '\ue958',
+  color: colors.primaryBright
+}
+_typeIconMap['unknown'] = {
+  icon: 'icon-help',
+  char: '\ue94e',
+  color: colors.greyLight
+}
+
 export {
   icons,
   iconsInline,
-  iconTypes
+  iconTypes,
+  renderIcon
 }

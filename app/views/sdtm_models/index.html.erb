@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("Index: SDTM Model")' %>
+<% content_for :page_title do %> Index: SDTM Models <% end %>
 
 <%= javascript_pack_tag 'sdtm_models/index' %>
 
@@ -20,7 +20,7 @@
   <% end %>
 
   <% content_for :actions do %>
-    
+
     <% if policy(SdtmModel).new? %>
       <a href="#" class="btn medium green" id="new_sdtm_model">
         <span class="icon-plus text-tiny"></span>&nbsp; New SDTM Model

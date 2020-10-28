@@ -4,6 +4,7 @@ describe Form do
 
   include DataHelpers
   include SparqlHelpers
+  include SecureRandomHelpers
 
   def sub_dir
     return "models/form"
@@ -48,7 +49,7 @@ describe Form do
   describe "Find Tests" do
     
     before :all do
-      data_files = ["forms/FN000150.ttl", "forms/VSTADIABETES.ttl","forms/FN000120.ttl" ]
+      data_files = ["forms/FN000150.ttl", "forms/VSTADIABETES.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..65)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -84,13 +85,18 @@ describe Form do
       check_file_actual_expected(form.get_items, sub_dir, "get_items_with_references_expected_3.yaml", equate_method: :hash_equal)
     end
 
+    it "get items IV" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+      check_file_actual_expected(form.get_items, sub_dir, "get_items_with_references_expected_4.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "CRF Tests" do
     
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", 
-                    "forms/FN000150.ttl", "forms/CRF TEST 1.ttl", "forms/VSTADIABETES.ttl","forms/FN000120.ttl" ]
+                    "forms/FN000150.ttl", "forms/CRF TEST 1.ttl","forms/FN000120.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -112,6 +118,94 @@ describe Form do
       check_file_actual_expected(form.to_crf, sub_dir, "to_crf_3.yaml", equate_method: :hash_equal)
     end
 
+    it "to crf IV, bc repeating group, disable property" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+      coded_value_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG1_BP3_TUC1"))
+      coded_value_reference.enabled = false
+      coded_value_reference.save
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+      check_file_actual_expected(form.to_crf, sub_dir, "to_crf_4.yaml", equate_method: :hash_equal)
+    end
+
+    it "to crf V, common group, disable property" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+      coded_value_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2_TUC1"))
+      coded_value_reference.enabled = false
+      coded_value_reference.save
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+      check_file_actual_expected(form.to_crf, sub_dir, "to_crf_5.yaml", equate_method: :hash_equal)
+    end
+
+    it "to crf VI, move node" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+      check_file_actual_expected(form.to_crf, sub_dir, "to_crf_6_a.yaml", equate_method: :hash_equal)
+      parent = Form::find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+      item = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F_NG3"))
+      result = parent.move_down(item)
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+      check_file_actual_expected(form.to_crf, sub_dir, "to_crf_6_b.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "Get referenced items Tests" do
+    
+    before :all do
+      data_files = ["forms/FN000150.ttl", "forms/VSTADIABETES.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..65)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "get referenced items" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      check_file_actual_expected(form.get_referenced_items, sub_dir, "get_referenced_items_expected.yaml", equate_method: :hash_equal)
+    end
+
+    it "get referenced items II" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/VSTADIABETES/V1#F"))
+      check_file_actual_expected(form.get_referenced_items, sub_dir, "get_referenced_items_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "get referenced items III" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+      check_file_actual_expected(form.get_referenced_items, sub_dir, "get_referenced_items_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "get referenced items IV" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+      check_file_actual_expected(form.get_referenced_items, sub_dir, "get_referenced_items_expected_4.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "Add child" do
+    
+    before :all do
+      data_files = ["forms/FN000150.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..15)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "add child I" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.find_minimum(uri)
+      result = form.add_child({type:"normal_group"})
+      form = Form.find_full(uri)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected.yaml", equate_method: :hash_equal)
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      result = form.add_child({type:"normal_group"})
+      form = Form.find_full(uri)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    # it "add child II, error" do
+    #   form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+    #   expect{form.add_child({type:"x_group"})}.to raise_error(Errors::ApplicationLogicError, "Attempting to add an invalid child type")
+    # end
+
   end
 
   describe "Path Tests" do
@@ -125,12 +219,6 @@ describe Form do
     end
 
   end
-
-  # it "allows a placeholder form to be created from parameters" do
-  #   item = Form.create_placeholder({:identifier => "PLACE NEW", :label => "Placeholder New", :freeText => "Placeholder Test Form"})
-  #   expect(item.errors.full_messages.to_sentence).to eq("")
-  #   expect(item.errors.count).to eq(0)
-  # end
 
   # it "allows a form to be updated" do
   #   old_item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
@@ -180,33 +268,6 @@ describe Form do
   #   odm_fix_datetimes(xml, expected)
   #   odm_fix_system_version(xml, expected)
   #   expect(xml).to eq(expected)
-  # end
-
-  # it "checks if the form is valid?" do
-  #   item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #   result = item.valid?
-  #   expect(result).to eq(true)
-  #   item.label = "@@£±£±"
-  #   result = item.valid?
-  #   expect(result).to eq(false)
-  #   expect(item.errors.full_messages.to_sentence).to eq("Label contains invalid characters")
-  #   item.label = "addd"
-  #   result = item.valid?
-  #   expect(result).to eq(true)
-  #   item.completion = "±±±±±"
-  #   result = item.valid?
-  #   expect(result).to eq(false)
-  #   expect(item.errors.full_messages.to_sentence).to eq("Completion contains invalid markdown")
-  #   item.completion = ""
-  #   result = item.valid?
-  #   expect(result).to eq(true)
-  #   item.note = "§§§§§§"
-  #   result = item.valid?
-  #   expect(result).to eq(false)
-  #   expect(item.errors.full_messages.to_sentence).to eq("Note contains invalid markdown")
-  #   item.note = ""
-  #   result = item.valid?
-  #   expect(result).to eq(true)
   # end
   
   # it "generates the form annotations" do

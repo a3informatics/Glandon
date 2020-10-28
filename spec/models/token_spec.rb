@@ -107,16 +107,16 @@ describe "Token" do
 
   it "allows tokens to be expired" do
     Token.set_timeout(5)
-    item1 = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"))
-    item2 = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"))
-    item3 = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"))
-    item4 = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"))
+    item1 = IsoManagedV2.create(identifier: "ITEM1", label: "Item 1")
+    item2 = IsoManagedV2.create(identifier: "ITEM2", label: "Item 2")
+    item3 = IsoManagedV2.create(identifier: "ITEM3", label: "Item 3")
+    item4 = IsoManagedV2.create(identifier: "ITEM4", label: "Item 4")
     token1 = Token.obtain(item1, @user)
     token2 = Token.obtain(item2, @user)
     sleep 3
     token3 = Token.obtain(item3, @user)
     token4 = Token.obtain(item4, @user)
-    sleep 3
+    sleep 4
     expect(Token.find_token(item1, @user)).to eq(nil)
     expect(Token.find_token(item2, @user)).to eq(nil)
     expect(Token.find_token(item3, @user).to_json).to eq(token3.to_json)

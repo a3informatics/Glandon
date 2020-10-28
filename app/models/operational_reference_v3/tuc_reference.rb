@@ -12,6 +12,6 @@ class OperationalReferenceV3::TucReference < OperationalReferenceV3
   object_property :reference, cardinality: :one, model_class: "Thesaurus::UnmanagedConcept", delete_exclude: true, read_exclude: true
   object_property :context, cardinality: :one, model_class: "Thesaurus", delete_exclude: true, read_exclude: true
   
-  validates_with Validator::Field, attribute: :local_label, method: :valid_label?  
-  
+  validates_with Validator::Field, attribute: :local_label, method: :valid_label?
+
 end

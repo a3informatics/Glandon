@@ -1,4 +1,5 @@
-<%= javascript_tag 'setPageTitle("Import CDISC Terminology")' %>
+<% content_for :page_title do %> Import CDISC Terminology <% end %>
+
 <% first_level_breadcrumb (:imports) %>
 <% type = @file_type == 0 ? "Excel" : "API" %>
 
@@ -6,8 +7,7 @@
 	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-import", header_title: "",
 		main_text: "Import Centre", sub_texts: "CDISC Terminology Import" } do %>
 
-			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: list_imports_path, id: "close",
-  			icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+			<%= render partial: "shared/buttons/return", :locals => { url: list_imports_path } %>
 
 	<% end %>
 </div>

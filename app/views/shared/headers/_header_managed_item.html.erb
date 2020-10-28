@@ -1,4 +1,6 @@
-<%= stylesheet_link_tag 'shared/layouts/header_card', media: 'all' %>
+<%= stylesheet_link_tag 'shared/layouts/header_card' %>
+
+<%= javascript_tag 'var pageHeaderHasTags = true' %>
 
 <div id="imh_header" class="col-md-12 card">
   <div class="card-content">
@@ -16,11 +18,15 @@
             <%= render partial: "shared/headers/icon_tooltip", :locals => {:title => item.semantic_version, :icon => "icon-version-circle", :description => "Version"} %>
             <%= render partial: "shared/headers/icon_tooltip", :locals => {:title => item.version_label, :icon => "icon-tag-circle", :description => "Version label"} %>
         </div>
-        <% if (local_assigns.fetch :with_tags, true) %>
-          <%= render layout: "shared/show_more", :locals => {:size => "tiny"} do %>
-            <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Tags", :items => item.tag_labels} %>
+
+        <% if local_assigns.fetch :with_tags, true %>
+
+          <%= render layout: "shared/expandable_content", :locals => { size: "tiny" } do %>
+            <%= render partial: "shared/labels_inline", :locals => { name: "Tags", css_class: 'tag', items: item.tag_labels} %>
           <% end %>
+
         <% end %>
+
       </div>
       <div class="h-inner-wrap">
         <%= yield %>
@@ -28,4 +34,3 @@
     </div>
   </div>
 </div>
-<%= javascript_tag 'colorCodeTagsOutline(".show-more-wrap", ".tags.bg-label");' %>

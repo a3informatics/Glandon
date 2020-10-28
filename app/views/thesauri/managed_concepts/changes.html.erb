@@ -1,4 +1,5 @@
-<%= javascript_tag 'setPageTitle("Changes: '+@tc.notation+' ('+@tc.has_identifier.identifier+')")' %>
+<% content_for :page_title do %> <%= "Changes: #{@tc.notation} (#{@tc.has_identifier.identifier})" %> <% end %>
+
 <%= javascript_include_tag 'thesauri/managed_concepts/changes' %>
 <%= javascript_tag "var differences_url_path = '#{differences_thesauri_managed_concept_path(@tc)}';" %>
 <%= javascript_tag "var changes_url_path = '#{changes_data_thesauri_managed_concept_path(@tc)}';" %>
@@ -8,15 +9,18 @@
                         errTimeoutMessage = 'Error occurred while generating the report.',
                         redirectPath = '"+changes_report_thesauri_managed_concept_path(@tc, format: :pdf)+"';" %>
 <% third_level_breadcrumb(:thesauri, @tc, history_thesauri_index_path({thesauri: {identifier: @tc.scoped_identifier, scope_id: @tc.scope.id}})) %>
+
 <div class="row">
-  <%= render layout: "shared/headers/header_codelist", :locals => {:item => @tc, :context => nil, :badge => "CL"} do %>
+  <%= render layout: "shared/headers/header_codelist", :locals => { item: @tc, context: nil, badge: "CL" } do %>
     <div class="actions-wrap">
+
       <div onclick="showFullPageSpinnerWithRedirect(pdfLoadingDur, loadingMessage, errTimeoutMessage, redirectPath);">
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "report",
-        icon: "icon-file", btn_text: "PDF Report", dt_toggle: "", disabled: false } %>
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: "#", id: "report",
+            icon: "icon-file", text: "PDF Report" } %>
       </div>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
+      <%= render partial: "shared/buttons/return", :locals => { url: 'javascript: history.back()' } %>
+
     </div>
   <% end %>
 </div>

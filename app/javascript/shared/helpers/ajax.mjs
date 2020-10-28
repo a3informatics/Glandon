@@ -1,54 +1,51 @@
+import { alerts } from 'shared/ui/alerts'
+
 /**
  * Fetches data from server
- * @param {Object} params Request parameters
- * @param {string} params.url Url of source data
- * @param {Object} params.data Optional request data object
- * @param {function} params.done Callback when all data is loaded
- * @param {function} params.always Callback which should be invoked after all is done / if anything fails. Usually for disabling loading animation.
- * @param {boolean} params.cache False if cache should be disabled. Default true
+ * @param {Object} params Request parameters identical to $ajax
+ * @return {jqXHR} XHR Request (abortable)
  */
 function $get(params = {}) {
-  params.type = "GET";
-  _simpleAjax(params);
+
+  params.type = 'GET';
+  return $ajax( params );
+
 }
 
 /**
  * Removes data from server
- * @param {Object} params Request parameters
- * @param {string} params.url Target url
- * @param {Object} params.data Optional request data object
- * @param {function} params.done Callback when all data is loaded
- * @param {function} params.always Callback which should be invoked after all is done / if anything fails. Usually for disabling loading animation.
+ * @param {Object} params Request parameters identical to $ajax
+ * @return {jqXHR} XHR Request (abortable)
  */
 function $delete(params = {}) {
-  params.type = "DELETE";
-  _simpleAjax(params);
+
+  params.type = 'DELETE';
+  return $ajax( params );
+
 }
 
 /**
  * PUTs data to server
- * @param {Object} params Request parameters
- * @param {string} params.url Target url
- * @param {Object} params.data Optional request data object
- * @param {function} params.done Callback when all data is loaded
- * @param {function} params.always Callback which should be invoked after all is done / if anything fails. Usually for disabling loading animation.
+ * @param {Object} params Request parameters identical to $ajax
+ * @return {jqXHR} XHR Request (abortable)
  */
 function $put(params = {}) {
-  params.type = "PUT";
-  _simpleAjax(params);
+
+  params.type = 'PUT';
+  return $ajax( params );
+
 }
 
 /**
  * POSTs data to server
- * @param {Object} params Request parameters
- * @param {string} params.url Target url
- * @param {Object} params.data Optional request data object
- * @param {function} params.done Callback when all data is loaded
- * @param {function} params.always Callback which should be invoked after all is done / if anything fails. Usually for disabling loading animation.
+ * @param {Object} params Request parameters identical to $ajax
+ * @return {jqXHR} XHR Request (abortable)
  */
 function $post(params = {}) {
-  params.type = "POST";
-  _simpleAjax(params);
+
+  params.type = 'POST';
+  return $ajax( params );
+
 }
 
 
@@ -67,28 +64,34 @@ function $post(params = {}) {
  * @param {boolean} params.cache False if cache should be disabled. Default true
  */
 function $getPaginated(offset = 0, params = {}) {
-  $.get({
-    url: _jsonizeUrl(params.url),
-    dataType: "json",
-    data: _getPaginationParams(offset, params),
-    cache: (params.cache != null ? params.cache : true)
-  })
-  .done((result) => {
-    // One 'page' of data loaded
-    params.pageDone(result.data);
 
-    if (_.isNumber(result.count) && _.isNumber(result.offset) && result.count >= params.count)
-      $getPaginated(result.offset + params.count, params);
-    else
-      // Data loaded
-      params.done();
+  return $.get({
+    url: _jsonizeUrl( params.url ),
+    dataType: 'json',
+    data: _getPaginationParams( offset, params ),
+    cache: ( params.cache != null ? params.cache : true )
   })
-  .fail((x, s, e) => handleAjaxError(x, s, e, params.errorDiv))
-  .always(() => params.always());
+  .done( (r) => {
+
+    // One 'page' of data loaded
+    params.pageDone( r.data );
+
+    if ( _.isNumber( r.count ) && _.isNumber( r.offset ) && r.count >= params.count )
+      $getPaginated( r.offset + params.count, params );
+    else
+      params.done(); // All data loaded
+
+  })
+  .fail( (x, s, e) => {
+
+    if ( e !== 'abort' )
+      $handleError( x, s, e, params.errorDiv )
+
+  } )
+  .always( () => params.always() );
+
 }
 
-
-/** Support **/
 
 /**
  * Generic call to server with error handling
@@ -101,19 +104,44 @@ function $getPaginated(offset = 0, params = {}) {
  * @param {boolean} params.cache Optional cache option
  * @param {JQuery Element} params.errorDiv Div to display errors in, optional
  * @param {boolean} params.rawResult Set to true to return the raw result to the done callback. Otherwise result.data will be returned. Optional [default=false]
+ * @param {string | undefined} params.contentType Specify contentType. Optional [default=undefined]
+ * @return {jqXHR} XHR Request (abortable)
  */
-function _simpleAjax({ url, type, data = {}, done = () => {}, always = () => {}, error = handleAjaxError, cache = true, errorDiv = null, rawResult = false }) {
-  $.ajax({
-    url: _jsonizeUrl(url),
+function $ajax({
+  url,
+  type,
+  data = {},
+  done = () => {},
+  always = () => {},
+  error = $handleError,
+  cache = true,
+  errorDiv = null,
+  rawResult = false,
+  contentType = undefined
+}) {
+
+  return $.ajax({
+    url: _jsonizeUrl( url ),
     type: type,
-    dataType: "json",
-    data: data,
-    cache: cache,
+    dataType: 'json',
+    contentType,
+    data,
+    cache,
   })
-  .done((result) => done( rawResult ? result : (result.data || result) ))
-  .fail((x, s, e) => error(x, s, e, errorDiv))
-  .always(() => always());
+  .done( (result) => done( rawResult ? result : ( result.data || result ) ) )
+  .fail( (x, s, e) => {
+
+    if ( e !== 'abort' )
+      error( x, s, e, errorDiv )
+
+  } )
+  .always( () => always() );
+
 }
+
+
+/** Support **/
+
 
 /**
  * Generates data parameters for paginated data request. Merges additional data from params.
@@ -122,17 +150,19 @@ function _simpleAjax({ url, type, data = {}, done = () => {}, always = () => {},
  * @return {object} Paginated request parameters
  */
 function _getPaginationParams(offset, params) {
+
   let parameters = {}
 
-  parameters[params.strictParam] = {
+  parameters[ params.strictParam ] = {
     offset: offset,
     count: params.count
   }
 
-  if(params.data !== null)
-    Object.assign(parameters[params.strictParam], params.data)
+  if( params.data !== null )
+    Object.assign( parameters[ params.strictParam ], params.data )
 
   return parameters;
+
 }
 
 /**
@@ -141,15 +171,52 @@ function _getPaginationParams(offset, params) {
  * @return {string} Url with .json prepended to '?' or appended to the end of url
  */
 function _jsonizeUrl(url) {
+
   // Prepends ? with .json
-  if (url.includes('?') && !url.includes('.json'))
-    return url.replace('?', '.json?')
+  if ( url.includes( '?' ) && !url.includes( '.json' ) )
+    return url.replace( '?', '.json?' )
+
   // Appends .json to the end of url
-  else if (!url.includes('?') && !url.includes('.json'))
+  else if ( !url.includes( '?' ) && !url.includes( '.json' ) )
     return `${url}.json`
-  // No change, .json already included
-  else
-    return url;
+
+  // No change
+  return url;
+
 }
 
-export { $get, $put, $post, $delete, $getPaginated }
+/**
+ * Generic AJAX error-handling function, shows alerts with errors
+ */
+function $handleError(xhr, status, error, target) {
+
+  // Force refresh when request unauthorized
+  if ( xhr.status === 401 ) {
+    location.reload(true);
+    return;
+  }
+
+  let errors = [];
+
+  try {
+
+    let json = JSON.parse( xhr.responseText );
+    errors.push( json.error || json.errors || 'Error communicating with the server.' );
+
+  } catch( err ) {
+    errors.push( 'Error communicating with the server.' );
+  }
+
+  alerts.error( errors, target );
+
+}
+
+export {
+  $ajax,
+  $get,
+  $put,
+  $post,
+  $delete,
+  $getPaginated,
+  $handleError
+}

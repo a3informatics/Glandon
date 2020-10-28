@@ -22,6 +22,8 @@
           Click on a version to show Code List Items.<br/> Click again (deselect) to return to Browsing Code Lists.
         </span>
       </span>
+
+      <span class="text-xtiny text-medium item-placeholder"></span>
     </div>
       <%= render layout: "shared/iso_managed/history/simple_history_panel", locals: { table_classes: "table-row-clickable table-minimal table-invisible no-mark" } do %>
       <% (local_assigns.fetch :extra_history_columns, []).each do |column| %>

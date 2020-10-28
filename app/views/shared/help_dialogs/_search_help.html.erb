@@ -1,5 +1,4 @@
 <%= render layout: "shared/information_dialog", :locals => {id: "information-dialog-search", title: "How to use Search", wide: true} do %>
-  <%= javascript_tag "var showHideTexts = ['Show syntax examples', 'Hide syntax examples'];" %>
   The feature has two uses: Searching (database) and Filtering (local results). <br/><br/>
 
   <span class="font-bold">Searching</span><br/>
@@ -15,7 +14,8 @@
     <li><span class="font-regular">x y</span> (Exact match) same as "x y". Default.</li>
   </ul>
 
-  <%= render layout: "shared/show_more", :locals => {:size => "tiny", show_text: "Show syntax examples"} do %>
+  <%= render layout: "shared/expandable_content", :locals => { size: "tiny", expand_text: "Show syntax examples",
+                collapse_text: "Hide syntax examples" } do %>
     Valid examples:
     <ul>
       <li>Fred AND Harry</li>

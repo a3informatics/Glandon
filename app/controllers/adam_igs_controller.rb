@@ -32,21 +32,8 @@ class AdamIgsController < ManagedItemsController
       adam_ig_dataset = AdamIgDataset.find_minimum(item.id).to_h
       results << adam_ig_dataset.reverse_merge!({show_path: adam_ig_dataset_path({id: adam_ig_dataset[:id]})})
     end
-    render json: {data: results}, status: 200
+    render json: {data: results, offset: the_params[:offset].to_i, count: results.count}, status: 200
   end
-
-  
-  # def history
-  #   @history = AdamIg.history
-  # end
-  
-  # def show
-  #   @adam_ig_tabulations = []
-  #   @adam_ig = AdamIg.find(params[:id]) # New id method
-  #   @adam_ig.references.each do |ref|
-  #     @adam_ig_tabulations << IsoManaged.find(ref.subject_ref.id, ref.subject_ref.namespace, false)
-  #   end
-  # end
   
   # def export_ttl
   #   @adam_ig = IsoManaged::find(params[:id], the_params[:namespace])

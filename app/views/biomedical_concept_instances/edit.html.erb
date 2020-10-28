@@ -1,10 +1,12 @@
-<%= javascript_tag "setPageTitle('Edit: #{@bc.has_identifier.identifier} (#{@bc.semantic_version})')"%>
+<% content_for :page_title do %> <%= "Edit: #{@bc.has_identifier.identifier} (#{@bc.semantic_version})" %> <% end %>
 
 <%= javascript_pack_tag 'biomedical_concept_instances/edit' %>
 
-<%= javascript_tag "let bcEditDataUrl = '#{edit_data_biomedical_concept_instance_path(id: "bcID")}',
+<%= javascript_tag "let bcMetadataUrl = '#{edit_biomedical_concept_instance_path(@bc)}',
+                        bcEditFullDataUrl = '#{edit_data_biomedical_concept_instance_path(id: "bcID")}',
+                        bcEditAnotherUrl = '#{edit_another_biomedical_concept_instance_path(id: "bcID")}',
                         bcUpdateUrl = '#{update_property_biomedical_concept_instance_path(id: "bcID")}',
-                        bcEditUrl = '#{edit_biomedical_concept_instance_path(id: "bcID")}',
+
                         baseBCId = '#{@bc.id}',
                         tokenWarningTime = #{current_user.edit_lock_warning};" %>
 
@@ -16,10 +18,15 @@
   <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @bc, :badge => "icon-biocon"} do %>
 
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+      <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left"} do %>
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+          icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty?, new_tab: true } %>
+      <% end %>
+
     </div>
-    
+
   <% end %>
 </div>
 

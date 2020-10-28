@@ -95,7 +95,17 @@ describe Fuseki::Resource do
       expect(result.to_s).to start_with("http://www.example.com/X")
     end
 
-    it "URI generation configured, prefix" do
+    it "URI generation configured, unique & suffix" do
+      parent = Uri.new(uri: "http://www.example.com/A#XXX")
+      TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_unique: true, uri_suffix: "YYY"})
+      item = TestR1.new
+      expect(item.respond_to?(:create_uri)).to eq(true)
+      result = item.create_uri(parent)
+      expect(result.to_s.length > parent.to_s.length).to eq(true)
+      expect(result.to_s).to start_with("http://www.example.com/A#")
+    end
+
+    it "URI generation configured, suffix" do
       parent = Uri.new(uri: "http://www.example.com/A#XXX")
       expected = "#{parent.to_s}_AAA"
       TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_suffix: "AAA"})

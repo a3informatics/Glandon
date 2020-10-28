@@ -1,7 +1,7 @@
-<%= javascript_tag 'setPageTitle("Edit User: '+@user.email+'");' %>
+<% content_for :page_title do %> Edit User: <%= @user.email %> <% end %>
+
 <%= javascript_include_tag 'standard_datatable' %>
 <% breadcrumb ([id_to_type(:users), {link: "#", text: "Edit"}]) %>
-
 
 <style>
 
@@ -22,7 +22,7 @@
 </style>
 
 <div class="row">
-	<% 
+	<%
   last_si = @user.last_sign_in_at
   s_texts =
 	  [{:title => "Email", :value => @user.email},
@@ -32,11 +32,12 @@
      {:title => "Days ago", :value => last_si.nil? ? "Not logged in yet!" : time_ago_in_words(last_si.strftime("%F"))}]%>
 
 
-	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-users", header_title: "Set user roles for:",
-		main_text: @user.name, sub_texts: s_texts} do %>
+	<%= render layout: "shared/headers/header_generic", :locals => { badge: "icon-users", header_title: "",
+		main_text: @user.name, sub_texts: s_texts } do %>
 
-		<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: users_path, id: "close",
-			icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: users_path } %>
+    </div>
 
 	<% end %>
 
@@ -44,45 +45,53 @@
 <div class="row centered">
 	<% roles = Role.list %>
 	<% roles_bar = roles.except(:sys_admin) %>
-	<div class="card col-md-6">
-		<div class="card-content">
-			<div class="list-wrap">
-				<% roles_bar.each do |role, info| %>
-					<% display_text = info[:display_text] %>
-					<div class="user-role-wrap">
-						<div class="text-normal"><%= display_text %> Role</div>
-			  		<div class="text-small font-light">
-			    		<p><%= Role.description(role) %></p>
-			    		<%= link_to "Set #{display_text} Role", user_path(@user, :user => { :role_ids => [info[:id]] }), method: :put, :class => "btn medium green"%>
-			  		</div>
-					</div>
-				<% end %>
-			</div>
-		</div>
-	</div>
-	<div class="card col-md-6">
-		<div class="card-content">
-			<div class="list-wrap">
-				<% roles_bar.each do |role, info| %>
-					<% display_text = info[:display_text] %>
-					<% if Role.with_sys_admin(role) %>
-						<div class="user-role-wrap">
-							<div class="text-normal"><%= display_text %> & System Admin Role</div>
-				  		<div class="text-small font-light">
-				    		<p><%= Role.description(role) %></p>
-				    		<%= link_to "Set #{display_text} & System Admin Role", user_path(@user, :user => { :role_ids => [roles[:sys_admin][:id], info[:id]] }), method: :put, :class => "btn medium red" %>
-				  		</div>
-						</div>
-					<% end %>
-				<% end %>
-				<div class="user-role-wrap">
-					<div class="text-normal">System Admin Role</div>
-					<div class="text-small font-light">
-		    		<p>This access sets only system administration rights.</p>
-		    		<%= link_to "Set System Admin Role", user_path(@user, :user => { :role_ids => [roles[:sys_admin][:id]] }), method: :put, :class => "btn medium red" %>
-		  		</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+  <div class="card col-md-12">
+
+    <div class="card-header">
+      Set User Roles
+    </div>
+
+    <div class="card-content">
+
+      <div class="col-md-6">
+        <div class="list-wrap">
+  				<% roles_bar.each do |role, info| %>
+  					<% display_text = info[:display_text] %>
+  					<div class="user-role-wrap">
+  						<div class="text-normal"><%= display_text %> Role</div>
+  			  		<div class="text-small font-light">
+  			    		<p><%= Role.description(role) %></p>
+  			    		<%= link_to "Set #{display_text} Role", user_path(@user, :user => { :role_ids => [info[:id]] }), method: :put, :class => "btn medium green"%>
+  			  		</div>
+  					</div>
+  				<% end %>
+  			</div>
+      </div>
+      <div class="col-md-6">
+        <div class="list-wrap">
+  				<% roles_bar.each do |role, info| %>
+  					<% display_text = info[:display_text] %>
+  					<% if Role.with_sys_admin(role) %>
+  						<div class="user-role-wrap">
+  							<div class="text-normal text-accent-2"><%= display_text %> & System Admin Role</div>
+  				  		<div class="text-small font-light">
+  				    		<p><%= Role.description(role) %></p>
+  				    		<%= link_to "Set #{display_text} & System Admin Role", user_path(@user, :user => { :role_ids => [roles[:sys_admin][:id], info[:id]] }), method: :put, :class => "btn medium red" %>
+  				  		</div>
+  						</div>
+  					<% end %>
+  				<% end %>
+  				<div class="user-role-wrap">
+  					<div class="text-normal text-accent-2">System Admin Role</div>
+  					<div class="text-small font-light">
+  		    		<p>This access sets only system administration rights.</p>
+  		    		<%= link_to "Set System Admin Role", user_path(@user, :user => { :role_ids => [roles[:sys_admin][:id]] }), method: :put, :class => "btn medium red" %>
+  		  		</div>
+  				</div>
+  			</div>
+      </div>
+
+    </div>
+  </div>
 </div>

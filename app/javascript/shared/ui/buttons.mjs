@@ -1,6 +1,47 @@
 import { managedConceptRef, unmanagedConceptRef } from 'shared/ui/strings'
+import { renderIcon } from 'shared/ui/icons'
 
 /*** Renderers for Buttons ***/
+
+/**
+ * Returns HTML for a button linking to item's history
+ * @param {Object} params Button parameters
+ * @param {string} params.url Path to the item's history
+ * @param {string} params.id Button id, optional
+ * @param {string} params.icon Button icon name (without 'icon-' prefix)
+ * @param {string} params.color Button color css class, optional
+ * @param {string} params.ttip Button tooltip text, optional
+ * @param {boolean} params.disabled Button disabled state, optional
+ * @return {string} formatted button HTML
+ */
+function iconBtn({
+  url = '#',
+  id,
+  icon,
+  color = '',
+  ttip,
+  disabled = false
+  }) {
+  return `<a href='${url}' ${ id ? ` id='${ id }' ` : '' } class='btn icon-only ${ color } ${ disabled ? 'disabled' : '' } ${ ttip ? 'ttip' : '' }'>
+            ${ ttip ? `<span class='ttip-text ttip-top shadow-small text-medium text-small'>${ ttip }</span>` : ''}
+            ${ renderIcon({ iconName: icon }) }
+         </a>`;
+
+}
+
+/**
+ * Returns HTML for a Token Timeout button
+ * @param {string} size Button size class [default='small']
+ * @return {string} formatted button HTML
+ */
+function tokenTimeoutBtn(size = 'small') {
+  return `<a href="#" class="ico-btn-sec small token-timeout">
+            <span class="circular-badge">
+              <span class="icon-lock"></span>
+            </span>
+            <span class="ico-btn-sec-text text-tiny"></span>
+          </a>`;
+}
 
 /**
  * Returns HTML for a button linking to item's history
@@ -17,7 +58,7 @@ function historyBtn(url) {
  * @return {string} formatted button HTML
  */
 function showBtn(url) {
-  return `<a href='${url}' class='btn blue btn-xs'><span></span> Show </a>`;
+  return `<a href='${url}' class='btn light btn-xs'><span></span> Show </a>`;
 }
 
 /**
@@ -36,5 +77,7 @@ function termReferenceBtn(url, item, parent, newTab = false) {
 export {
   historyBtn,
   termReferenceBtn,
-  showBtn
+  showBtn,
+  tokenTimeoutBtn,
+  iconBtn
 }

@@ -10,6 +10,7 @@ describe "Thesaurus", :type => :feature do
   include DownloadHelpers
   include SparqlHelpers
   include NameValueHelpers
+  include TagHelpers
   include EditorHelpers
 
   def sub_dir
@@ -18,6 +19,16 @@ describe "Thesaurus", :type => :feature do
 
   def wait_for_ajax_long
     wait_for_ajax(10)
+  end
+
+  def go_to_cl_edit(identifier)
+    click_navbar_code_lists
+    wait_for_ajax 10
+    ui_table_search("index", identifier)
+    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
+    wait_for_ajax 10
+    context_menu_element_v2("history", identifier, :edit)
+    wait_for_ajax 10
   end
 
   describe "Thesaurus, Curator User", :type => :feature do
@@ -78,7 +89,7 @@ describe "Thesaurus", :type => :feature do
       ui_create_terminology('TEST ME', 'Test Multiple Edit Terminology')
       find(:xpath, "//tr[contains(.,'Test Multiple Edit Terminology')]/td/a").click
       wait_for_ajax_long
-      context_menu_element('history', 4, 'Test Multiple Edit Terminology', :document_control)
+      context_menu_element_v2('history', 'Test Multiple Edit Terminology', :document_control)
       wait_for_ajax_long
       expect(page).to have_content 'Manage Status'
       expect(page).to have_content("Current Status:")
@@ -91,21 +102,21 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content("Qualified")
       click_link 'Return'
       wait_for_ajax_long
-      find(:xpath, "//*[@id='history']/tbody/tr/td[7]/span/span").click
+      find('.registration-state').click
       wait_for_ajax_long
-      expect(page).to have_css ('.icon-lock-open')
+      expect(page).to have_selector ('.registration-state .icon-lock-open')
       ui_check_table_info("history", 1, 1, 1)
-      context_menu_element('history', 4, 'Test Multiple Edit Terminology', :edit)
+      context_menu_element_v2('history', 'Test Multiple Edit Terminology', :edit)
       wait_for_ajax_long
       click_link 'Return'
-      find(:xpath, "//*[@id='history']/tbody/tr[1]/td[7]/span/span").click
-      expect(page).to have_css ('.icon-lock')
+      find('.registration-state').click
+      expect(page).to have_selector ('.registration-state .icon-lock')
       wait_for_ajax_long
-      context_menu_element('history', 4, 'Test Multiple Edit Terminology', :edit)
+      context_menu_element_v2('history', 'Test Multiple Edit Terminology', :edit)
       wait_for_ajax_long
       click_link 'Return'
       ui_check_table_info("history", 1, 2, 2)
-      context_menu_element('history', 4, 'Test Multiple Edit Terminology', :document_control, 1)
+      context_menu_element_v2('history', 1, :document_control)
       wait_for_ajax_long
       expect(page).to have_content 'Version Control'
       find(:xpath, "//*[@id='version-edit']").click
@@ -238,7 +249,7 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       wait_for_ajax_long
       expect(page).to have_content 'Version History of \'CDISC EXT\''
-      context_menu_element("history", 4, 'CDISC Extensions', :edit)
+      context_menu_element_v2("history", '1.1.0', :edit)
       wait_for_ajax_long
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
@@ -277,17 +288,6 @@ describe "Thesaurus", :type => :feature do
     end
 
     # Code List Edit, Consecutive tests
-
-    def go_to_cl_edit(identifier)
-      click_navbar_code_lists
-      wait_for_ajax 10
-      ui_table_search("index", identifier)
-      find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
-      wait_for_ajax 10
-      context_menu_element_v2("history", identifier, :edit)
-      wait_for_ajax 10
-    end
-
     it "allows to create a new Code List, Edit page, initial state", js: true do
       click_navbar_code_lists
 
@@ -348,13 +348,13 @@ describe "Thesaurus", :type => :feature do
       ui_editor_fill_inline "notation", "SUBMISSION 999C\n"
       ui_editor_check_value 1, 2, "SUBMISSION 999C"
 
-      ui_editor_press_key :arrow_right
-      ui_editor_press_key :enter
+      ui_press_key :arrow_right
+      ui_press_key :enter
 
       ui_editor_fill_inline "preferred_term", "The PT 999C\t"
       ui_editor_check_value 1, 3, "The PT 999C"
 
-      ui_editor_press_key :enter
+      ui_press_key :enter
 
       ui_editor_fill_inline "synonym", "Same as 999C\n"
       ui_editor_check_value 1, 4, "Same as 999C"
@@ -366,7 +366,7 @@ describe "Thesaurus", :type => :feature do
       # Cancel edit
       ui_editor_select_by_location 1, 2
       ui_editor_fill_inline "notation", "This should not be saved"
-      ui_editor_press_key :escape
+      ui_press_key :escape
       ui_editor_check_value 1, 2, "SUBMISSION 999C"
 
       # Field validation
@@ -416,9 +416,9 @@ describe "Thesaurus", :type => :feature do
       ui_editor_select_by_content "OTHER OR MIXED"
       ui_editor_check_disabled "notation"
 
-      ui_editor_press_key :escape
-      ui_editor_press_key :arrow_right
-      ui_editor_press_key :enter
+      ui_press_key :escape
+      ui_press_key :arrow_right
+      ui_press_key :enter
       ui_editor_check_disabled "preferred_term"
 
     end
@@ -446,9 +446,8 @@ describe "Thesaurus", :type => :feature do
       w = window_opened_by { edit_tags_cell.click }
       within_window w do
         wait_for_ajax 10
-        expect(page).to have_content "Attach / Detach Tags"
-        ui_click_node_name "SDTM"
-        click_button "Add Tag"
+        expect(page).to have_content "Edit Item Tags"
+        attach_tag('SDTM')
         wait_for_ajax 10
       end
 
@@ -517,9 +516,86 @@ describe "Thesaurus", :type => :feature do
       within_window w do
         wait_for_ajax(10)
         expect(page).to have_content cl_identifier
-        expect(page).to have_content "Attach / Detach Tags"
+        expect(page).to have_content "Edit Item Tags"
       end
       w.close
+    end
+
+  end
+
+
+  describe "Code Lists, Curator User, Locked Status", :type => :feature do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_2.ttl", "CT_V43.ttl", "CT_ACME_TEST.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      ua_create
+      Token.delete_all
+      nv_destroy
+      nv_create(parent: "10", child: "999")
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    after :all do
+      ua_destroy
+      nv_destroy
+      Token.restore_timeout
+    end
+
+    it "allows to edit a Code List in a locked state", js:true do
+      click_navbar_code_lists
+      identifier = ui_new_code_list
+
+      # Prepare Data
+      context_menu_element_v2('history', identifier, :edit)
+      wait_for_ajax 10
+
+      click_on 'New item'
+      wait_for_ajax 10
+
+      ui_check_table_info('editor', 1, 1, 1)
+
+      ui_editor_select_by_location 1, 2
+      ui_editor_fill_inline 'notation', "TEST LOCKED STATE\t"
+      ui_editor_check_value 1, 2, 'TEST LOCKED STATE'
+      ui_press_key :enter
+      ui_editor_fill_inline 'preferred_term', "Locked value\n"
+      ui_editor_check_value 1, 3, 'Locked value'
+
+      click_on 'Return'
+      wait_for_ajax 10
+
+      # Set to Recorded - locked state
+      context_menu_element_v2('history', identifier, :document_control)
+      click_on 'Submit Status Change'
+      click_on 'Submit Status Change'
+      click_on 'Return'
+      wait_for_ajax 10
+
+      context_menu_element_v2('history', identifier, :edit)
+      wait_for_ajax 10
+
+      ui_editor_check_value 1, 2, 'TEST LOCKED STATE'
+      ui_editor_select_by_location 1, 2
+      ui_editor_fill_inline 'notation', "Changing Locked Value\t"
+      ui_editor_check_value 1, 2, 'Changing Locked Value'
+      ui_press_key :enter
+      ui_editor_fill_inline 'preferred_term', "Changing Another Locked Value\n"
+      ui_editor_check_value 1, 3, 'Changing Another Locked Value'
+
+      click_on 'New item'
+      wait_for_ajax 10
+      ui_check_table_info('editor', 1, 2, 2)
+
+      click_on 'Return'
     end
 
   end

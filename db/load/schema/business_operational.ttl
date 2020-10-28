@@ -223,7 +223,7 @@
 :localLabel
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :TcReference ;
+  rdfs:domain :TUcReference ;
   rdfs:label "Local Label"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "The local label. Used to overwrite the referenced item's label."^^xsd:string ;

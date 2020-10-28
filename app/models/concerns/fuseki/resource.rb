@@ -165,7 +165,12 @@ module Fuseki
         result = Uri.new(uri: parent.to_s) 
         if opts.key?(:uri_unique)
           if opts[:uri_unique].is_a?(TrueClass)
-            result = Uri.new(namespace: self.class.base_uri.namespace, fragment: SecureRandom.uuid)
+            if opts.key?(:uri_suffix)
+              result = Uri.new(namespace: parent.namespace, fragment: "#{opts[:uri_suffix]}")
+              result.extend_fragment("#{SecureRandom.uuid}")
+            else
+              result = Uri.new(namespace: self.class.base_uri.namespace, fragment: SecureRandom.uuid)
+            end
           else
             result = Uri.new(namespace: self.class.base_uri.namespace, fragment: Digest::SHA1.hexdigest(self.send(opts[:uri_unique])))
           end
@@ -190,7 +195,7 @@ module Fuseki
     # @return [Void] no return
     def object_property(name, opts = {})
       Errors.application_error(self.name, __method__.to_s, "No cardinality specified for object property.") if !opts.key?(:cardinality)
-      Errors.application_error(self.name, __method__.to_s, "No model class specified for object property.") if !opts.key?(:model_class)
+      Errors.application_error(self.name, __method__.to_s, "No model class specified for object property.") unless opts.key?(:model_class) || opts.key?(:model_classes) 
       if opts.key?(:model_classes)
         opts[:model_classes].unshift(opts[:model_class]) if opts.key?(:model_class)
         opts[:model_classes] = opts[:model_classes].map{|x| "#{x}".constantize}
@@ -260,7 +265,7 @@ module Fuseki
 
         # Define a class method to get the child predicate
         define_singleton_method "children_predicate" do
-          predicate_uri(name)
+          @resources["#{name}".to_sym][:predicate]
         end
 
       else

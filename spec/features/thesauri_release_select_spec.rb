@@ -53,21 +53,21 @@ describe "Thesauri Release Select", :type => :feature do
       within_window w do
         wait_for_ajax(10)
         expect(page).to have_content "TST"
-        expect(page).to have_content "Attach / Detach Tags"
+        expect(page).to have_content "Edit Item Tags"
       end
       w.close
     end
 
     it "select a CDISC version", :type => :feature do
       navigate_to_release_sel
-      page.find('.card-with-tabs .show-more-btn').click
+      page.find('.card-with-tabs .expandable-content-btn').click
       sleep 0.5
       ui_dashboard_single_slider '2013-12-20'
       click_button 'Submit selected version'
       wait_for_ajax 50
       ui_check_table_info("table-cdisc-cls", 1, 10, 372)
       ui_check_table_cell("table-cdisc-cls", 3, 1, "C99077")
-      page.find('.card-with-tabs .show-more-btn').click
+      page.find('.card-with-tabs .expandable-content-btn').click
       sleep 0.5
       ui_dashboard_single_slider '2019-09-27'
       click_button 'Submit selected version'
@@ -77,7 +77,7 @@ describe "Thesauri Release Select", :type => :feature do
       ui_check_table_cell("table-cdisc-cls", 2, 1, "C99078")
       ui_check_table_row_indicators("table-cdisc-cls", 1, 7, ["9 versions", "subsetted"])
       ui_check_table_row_indicators("table-cdisc-cls", 4, 7, ["3 versions", "extended"])
-      page.find('.card-with-tabs .show-more-btn').click
+      page.find('.card-with-tabs .expandable-content-btn').click
       sleep 0.5
       ui_dashboard_single_slider '2013-12-20'
       click_button 'Submit selected version'
@@ -281,7 +281,7 @@ describe "Thesauri Release Select", :type => :feature do
       wait_for_ajax 10
       context_menu_element_v2("history", "0.1.0", :edit)
       wait_for_ajax 10
-      page.find('.card-with-tabs .show-more-btn').click
+      page.find('.card-with-tabs .expandable-content-btn').click
       sleep 0.5
       ui_dashboard_single_slider '2016-12-16'
       click_button 'Submit selected version'
@@ -290,7 +290,7 @@ describe "Thesauri Release Select", :type => :feature do
       ui_check_table_info("table-cdisc-cls", 1, 10, 656)
       page.find("#table-cdisc-cls-bulk-select").click
       wait_for_ajax 30
-      page.find('.card-with-tabs .show-more-btn').click
+      page.find('.card-with-tabs .expandable-content-btn').click
       sleep 0.5
       ui_dashboard_single_slider '2018-09-28'
       click_button 'Submit selected version'
@@ -298,7 +298,7 @@ describe "Thesauri Release Select", :type => :feature do
       wait_for_ajax 50
       ui_check_table_info("table-cdisc-cls", 1, 10, 856)
       expect(page).to have_content("654 rows selected")
-      page.find('.card-with-tabs .show-more-btn').click
+      page.find('.card-with-tabs .expandable-content-btn').click
       sleep 0.5
       ui_dashboard_single_slider '2019-09-27'
       click_button 'Submit selected version'
@@ -347,7 +347,7 @@ describe "Thesauri Release Select", :type => :feature do
       expect(page).to have_content("CDISC version used: None")
       expect(page).to have_content("No items were found.")
       expect(page).to have_css(".tab-option.disabled", count: 4)
-      page.find(".card-with-tabs .show-more-btn").click
+      page.find(".card-with-tabs .expandable-content-btn").click
       expect(page).to have_content("Select CDISC Terminology version by dragging the slider")
       expect(page).to have_content("ver. 2015-12-18")
     end

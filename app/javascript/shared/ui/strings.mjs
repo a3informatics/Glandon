@@ -1,6 +1,15 @@
 /*** Renderers for shared Strings ***/
 
 /**
+ * Returns String representation of a Concept
+ * @param {Object} c Concept data object, fields: (label, identifier)
+ * @return {string} Concept as a string reference
+ */
+function conceptRef(c) {
+  return `${c.label} (${c.identifier})`;
+}
+
+/**
  * Returns String representation of an UnmangedConcept
  * @param {Object} uc UnmanagedConcept data object, fields: (notation || label, identifier)
  * @param {Object} mc ManagedConcept data object, fields: (notation || label, identifier, semantic_version)
@@ -41,5 +50,6 @@ function _handleNestedProperties(data) {
 
 export {
   unmanagedConceptRef,
-  managedConceptRef
+  managedConceptRef,
+  conceptRef
 }

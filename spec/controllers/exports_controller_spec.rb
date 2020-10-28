@@ -26,18 +26,18 @@ describe ExportsController do
       clear_cdisc_term_object
     end
 
-    it "index" do
-      get :index
-      expect(response).to render_template("index")
-    end
+    it "index" #do
+    #   get :index
+    #   expect(response).to render_template("index")
+    # end
 
-    it "start" do
-      file = Hash.new
-      file['datafile'] = fixture_file_upload(upload_path(sub_dir, "upload.txt"), 'text/html')
-      get :start, params:{ export: { export_list_path: "XXX" } }
-      expect(assigns(:list_path)).to eq("XXX")
-      expect(response).to render_template("start")
-    end
+    it "start" # do
+    #   file = Hash.new
+    #   file['datafile'] = fixture_file_upload(upload_path(sub_dir, "upload.txt"), 'text/html')
+    #   get :start, params:{ export: { export_list_path: "XXX" } }
+    #   expect(assigns(:list_path)).to eq("XXX")
+    #   expect(response).to render_template("start")
+    # end
 
     it "terminologies" #do
     #   request.env['HTTP_ACCEPT'] = "application/json"
@@ -47,26 +47,26 @@ describe ExportsController do
     #   expect(response.body.empty?).to eq(false)  
     # end
 
-    it "biomedical_concepts" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :biomedical_concepts
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")   
-      expect(response.body.empty?).to eq(false)  
-    end
+    it "biomedical_concepts" # do
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :biomedical_concepts
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")   
+    #   expect(response.body.empty?).to eq(false)  
+    # end
 
-    it "forms" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :forms
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")   
-      expect(response.body.empty?).to eq(false)  
-    end
+    it "forms" # do
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :forms
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")   
+    #   expect(response.body.empty?).to eq(false)  
+    # end
 
-    it "download" do
-      get :download, params:{ export: { file_path: test_file_path(sub_dir, "download.ttl") } }
-      allow_any_instance_of(ExportsController).to receive(:send_data).and_return(:success)
-    end
+    it "download" #do
+    #   get :download, params:{ export: { file_path: test_file_path(sub_dir, "download.ttl") } }
+    #   allow_any_instance_of(ExportsController).to receive(:send_data).and_return(:success)
+    # end
 
   end
 

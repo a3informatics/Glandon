@@ -2,6 +2,8 @@ require 'controller_helpers.rb'
 
 class FormsController < ManagedItemsController
 
+  include DatatablesHelpers
+
   before_action :authenticate_and_authorized
 
   C_CLASS_NAME = "FormsController"
@@ -19,6 +21,7 @@ class FormsController < ManagedItemsController
   def show
     @form = Form.find_minimum(protect_from_bad_id(params))
     @show_path = show_data_form_path(@form)
+    @edit_tags_path = path_for(:edit_tags, @form)
     @close_path = history_forms_path(:form => { identifier: @form.has_identifier.identifier, scope_id: @form.scope })
   end
 
@@ -37,56 +40,75 @@ class FormsController < ManagedItemsController
   def crf
     @form = Form.find_minimum(protect_from_bad_id(params))
     @close_path = history_forms_path(:form => { identifier: @form.has_identifier.identifier, scope_id: @form.scope })
-    #respond_to do |format|
-      #format.html do
-        @html = @form.to_crf
-      #end
-      # format.pdf do
-      #   @html = Reports::CrfReport.new.create(@form, {:annotate => false, :full => true}, current_user)
-      #   @render_args = {pdf: "#{@form.owner_short_name}_#{@form.identifier}_CRF", page_size: current_user.paper_size, lowquality: true}
-      #   render @render_args
-      # end
-    #end
+    @html = @form.to_crf
   end
 
-  # def new
-  #   authorize Form
-  #   @form = Form.new
-  # end
+  def referenced_items
+    form = Form.find_minimum(protect_from_bad_id(params))
+    items = form.get_referenced_items
+    render json: { data: items }, status: 200
+  end
 
-  # def placeholder_new
-  #   authorize Form, :new?
-  #   @form = Form.new
-  # end
+  def destroy
+    form = Form.find_minimum(protect_from_bad_id(params))
+    return true unless get_lock_for_item(form)
+    form.delete
+    AuditTrail.delete_item_event(current_user, form, form.audit_message(:deleted))
+    @lock.release
+    render json: { data: "" }, status: 200
+  end
 
-  # def placeholder_create
-  #   authorize Form, :create?
-  #   @form = Form.create_placeholder(the_params)
-  #   if @form.errors.empty?
-  #     flash[:success] = 'Form was successfully created.'
-  #     AuditTrail.create_item_event(current_user, @form, "Form created.")
-  #     redirect_to forms_path
-  #   else
-  #     flash[:error] = @form.errors.full_messages.to_sentence
-  #     redirect_to placeholder_new_forms_path
-  #   end
-  # end
+  def create
+    instance = Form.create(the_params)
+    return true if item_errors(instance)
+    AuditTrail.create_item_event(current_user, instance, instance.audit_message(:created))
+    result = instance.to_h
+    result[:history_path] = history_forms_path({form: {identifier: instance.scoped_identifier, scope_id: instance.scope}})
+    render :json => {data: result}, :status => 200
+    rescue => e
+      render :json => {errors: instance.errors.full_messages}, :status => 422
+  end
 
-  # def edit
-  #   authorize Form
-  #   @form = Form.find(params[:id], params[:namespace])
-  #   @token = get_token(@form)
-  #   if @form.new_version?
-  #     new_form = Form.create(@form.to_operation)
-  #     @form = Form.find(new_form.id, new_form.namespace)
-  #     @token.release
-  #     @token = get_token(@form)
-  #     @operation = @form.update_operation
-  #   else
-  #     @operation = @form.to_operation
-  #   end
-  #   @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id)
-  # end
+  def edit
+    authorize Form
+    @form = Form.find_minimum(protect_from_bad_id(params))
+    respond_to do |format|
+      format.html do
+        return true unless edit_lock(@form)
+        @form = @edit.item
+        @close_path = history_forms_path({ form:
+            { identifier: @form.scoped_identifier, scope_id: @form.scope } })
+        @edit_tags_path = path_for(:edit_tags, @form)
+      end
+      format.json do
+        @form = Form.find_full(@form.id)
+        return true unless check_lock_for_item(@form)
+        render :json => { data: @form.to_h }, :status => 200
+      end
+    end
+  end
+
+  def update
+    form = Form.find_full(protect_from_bad_id(params))
+    return true unless check_lock_for_item(form)
+    form = form.update(update_params)
+    if form.errors.empty?
+      AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
+      render :json => {data: form.to_h}, :status => 200
+    else
+      render :json => {:fieldErrors => format_editor_errors(form.errors)}, :status => 200
+    end
+  end
+
+  def add_child
+    form = Form.find_minimum(protect_from_bad_id(params))
+    return true unless check_lock_for_item(form)
+    new_child = form.add_child(add_child_params)
+    return true if item_errors(new_child)
+    return true if lock_item_errors
+    AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
+    render :json => {data: new_child.to_h}, :status => 200
+  end
 
   # def clone
   #   authorize Form
@@ -224,7 +246,15 @@ class FormsController < ManagedItemsController
 private
 
   def the_params
-    params.require(:form).permit(:namespace, :freeText, :offset, :count, :identifier, :label, :scope_id, :children => {}, :bcs => [])
+    params.require(:form).permit(:offset, :count, :identifier, :label, :scope_id)
+  end
+
+  def add_child_params
+    params.require(:form).permit(:type)
+  end
+
+  def update_params
+    params.require(:form).permit(:label, :completion, :note)
   end
 
   # Path for given action
@@ -233,9 +263,13 @@ private
       when :show
         return form_path(object)
       when :edit
-        return ""
+        return edit_form_path(object)
       when :view
         return crf_form_path(object)
+      when :destroy
+        return form_path(object)
+      when :edit_tags
+        return object.supporting_edit? ? edit_tags_iso_concept_path(id: object.id) : ""
       else
         return ""
     end
@@ -246,11 +280,11 @@ private
   end
 
   def history_path_for(identifier, scope_id)
-    return {history_path: history_forms_path({form:{identifier: identifier, scope_id: scope_id}})} 
+    return {history_path: history_forms_path({form:{identifier: identifier, scope_id: scope_id}})}
   end
 
   def close_path_for
     forms_path
-  end   
+  end
 
 end

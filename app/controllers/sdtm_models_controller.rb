@@ -30,7 +30,7 @@ class SdtmModelsController < ManagedItemsController
       sdtm_class = SdtmClass.find_minimum(item.id).to_h
       results << sdtm_class.reverse_merge!({show_path: sdtm_class_path({id: sdtm_class[:id]})})
     end
-    render json: {data: results}, status: 200
+    render json: {data: results, offset: the_params[:offset].to_i, count: results.count}, status: 200
   end
   
   # def import

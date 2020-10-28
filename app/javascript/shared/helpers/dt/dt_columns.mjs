@@ -29,10 +29,11 @@ function dtButtonColumn(name) {
  * Returns column definition for the last change date column
  * @return {object} DataTables last change date column definition
  */
-function dtLastChangeDateColumn() {
+function dtDateTimeColumn(name) {
   return {
+    data: name,
     render(data, type, r, m) {
-      const date = new Date(r.last_change_date);
+      const date = new Date( data );
       return type === "display" ? dateTimeHTML(date) : date.getTime()
     }
   }
@@ -92,10 +93,11 @@ function dtContextMenuColumn(renderer) {
  * @param {string} name data property name
  * @return {object} DataTables true/false icon column definition
  */
-function dtTrueFalseColumn(name) {
+function dtTrueFalseColumn(name, opts = {}) {
   return {
     className: "text-center",
     data: name,
+    ...opts,
     render: (data, type, r, m) => type === "display" ? icons.checkMarkIcon(data) : data
   }
 };
@@ -149,7 +151,7 @@ export {
   dtButtonColumn,
   dtIndicatorsColumn,
   dtTagsColumn,
-  dtLastChangeDateColumn,
+  dtDateTimeColumn,
   dtVersionColumn,
   dtContextMenuColumn,
   dtTrueFalseColumn,

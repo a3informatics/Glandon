@@ -1,0 +1,113 @@
+---
+:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcx
+:uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1
+:rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+:label: Not Set
+:tagged: []
+:ordinal: 1
+:note: Not Set
+:completion: Not Set
+:optional: false
+:has_item:
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1E0
+  :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q4
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+  :label: Unit
+  :tagged: []
+  :ordinal: 4
+  :note: ''
+  :completion: Not Set
+  :optional: false
+  :datatype: string
+  :format: '20'
+  :mapping: VSORRESU
+  :question_text: Unit
+  :has_coded_value:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1E0X1RVQzE=
+    :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q4_TUC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C49675/V1#C49675_C48500
+    :context: http://www.cdisc.org/C49675/V1#C49675
+    :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1E0X1RVQzI=
+    :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q4_TUC2
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 2
+    :reference: http://www.cdisc.org/C49675/V1#C49675_C49668
+    :context: http://www.cdisc.org/C49675/V1#C49675
+    :local_label: ''
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1Ez
+  :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q3
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+  :label: Height
+  :tagged: []
+  :ordinal: 3
+  :note: ''
+  :completion: Not Set
+  :optional: false
+  :datatype: float
+  :format: '5.1'
+  :mapping: VSORRES
+  :question_text: Height
+  :has_coded_value: []
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1BMMg==
+  :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Placeholder
+  :label: Placeholder 2
+  :tagged: []
+  :ordinal: 2
+  :note: ''
+  :completion: Not Set
+  :optional: false
+  :free_text: Measure with shoes off. Round up or down to the nearest tenth inch or
+    tenth centimeter.
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1Ex
+  :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+  :label: Completion status
+  :tagged: []
+  :ordinal: 1
+  :note: ''
+  :completion: Not Set
+  :optional: true
+  :datatype: string
+  :format: '1'
+  :mapping: VSSTAT
+  :question_text: " Compltion Status"
+  :has_coded_value:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm1fdGVzdF8yL1YxI0ZfTkcxX1ExX1RVQzE=
+    :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1_TUC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C49484/V1#C49484
+    :context: http://www.cdisc.org/C49484/V1#C49484
+    :local_label: ''
+:repeating: false
+:has_sub_group:
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL2Zvcm10ZXN0Mi9WMSNOR18xNzYwY2JiMS1hMzcwLTQxZjYtYTNiMy00OTNjMWQ5YzIyMzg=
+  :uri: http://www.s-cubed.dk/formtest2/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :label: Not set
+  :tagged: []
+  :ordinal: 5
+  :note: ''
+  :completion: ''
+  :optional: false
+  :has_item: []
+  :repeating: false
+  :has_sub_group: []
+  :has_common: []
+:has_common: []

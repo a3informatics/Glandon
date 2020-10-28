@@ -570,15 +570,15 @@ describe "IsoManagedV2" do
     end
 
     it "unique speed - WILL CURRENTLY FAIL - fails when run as set." do
+      sparql = Sparql::Update.new
       (1..500).each do |index|
         item = CdiscTerm.new
         item.uri = Uri.new(uri: "http://www.assero.co.uk/ITEM#{index}/V1")
         item.label = "Item"
         item.set_import(identifier: "ITEM #{index}", version_label: "#{index}", semantic_version: "#{index}.0.0", version: "#{index}", date: "2019-01-01", ordinal: index)
-        sparql = Sparql::Update.new
         item.to_sparql(sparql, true)
-        sparql.upload
       end
+      sparql.upload
       timer_start
       index = CdiscTerm.unique
       timer_stop("Unique")

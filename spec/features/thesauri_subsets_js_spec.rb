@@ -164,7 +164,7 @@ describe "Thesauri Subsets", :type => :feature do
       expect(page).to have_content("MSRESCAT")
       context_menu_element_header(:subsets)
       sleep 1
-      context_menu_element("subsets-index-table", 3, "NP", :edit)
+      context_menu_element_v2("subsets-index-table", 1, :edit)
       wait_for_ajax(120)
       page.find("#deselect-all-button").click
       wait_for_ajax(120)
@@ -186,7 +186,8 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:subsets)
-      context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
+      sleep 1
+      context_menu_element_v2("subsets-index-table", "PK Parameter Units of Measure", :edit)
       wait_for_ajax(10)
       sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
       page.find("#imh_header")[:class].include?("warning")
@@ -211,7 +212,8 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:subsets)
-      context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
+      sleep 1
+      context_menu_element_v2("subsets-index-table", "PK Parameter Units of Measure", :edit)
       sleep 13
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
       expect(page).to have_content("The edit lock has timed out.")
@@ -285,7 +287,7 @@ describe "Thesauri Subsets", :type => :feature do
       w = window_opened_by { context_menu_element_header(:edit_tags) }
       within_window w do
         wait_for_ajax(10)
-        expect(page).to have_content "Attach / Detach Tags"
+        expect(page).to have_content "Edit Item Tags"
       end
       w.close
     end

@@ -1,4 +1,4 @@
-import BCManager from 'shared/biomedical_concept_instances/edit/bc_manager'
+import BCManager from 'shared/custom/biomedical_concept_instances/edit/bc_manager'
 
 $(document).ready( () => {
 
@@ -6,9 +6,10 @@ $(document).ready( () => {
     baseBCId: baseBCId,
     tokenWarningTime: tokenWarningTime,
     urls: {
-      data: bcEditDataUrl,
-      update: bcUpdateUrl,
-      edit: bcEditUrl
+      metadata: bcMetadataUrl,
+      editAnother: bcEditAnotherUrl,
+      data: bcEditFullDataUrl,
+      update: bcUpdateUrl
     }
   })
 

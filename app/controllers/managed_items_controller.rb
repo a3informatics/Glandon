@@ -17,6 +17,17 @@ class ManagedItemsController < ApplicationController
 
   def history
     respond_to do |format|
+      format.html do
+        result = model_klass.latest({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
+        if result.nil?
+          redirect_to close_path_for
+        else
+          @item = result
+          @identifier = the_params[:identifier]
+          @scope_id = the_params[:scope_id]
+          @close_path = close_path_for
+        end
+      end
       format.json do
         results = []
         history_results = model_klass.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
@@ -25,17 +36,12 @@ class ManagedItemsController < ApplicationController
         results = add_history_paths(model_klass, history_results, current, latest)
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
-      format.html do
-        @item = model_klass.latest({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
-        @identifier = the_params[:identifier]
-        @scope_id = the_params[:scope_id]
-        @close_path = close_path_for
-      end
     end
   end
 
 private
 
+  # Lock for editing. Used for edit operations! :)
   def edit_lock(item)
     @edit = ManagedItemsController::Edit.new(item, current_user, flash)
     return true unless @edit.error?
@@ -44,6 +50,7 @@ private
     false
   end
 
+  # Lock item. Used for delete and similar operations
   def get_lock_for_item(item)
     @lock = ManagedItemsController::Lock.new(:get, item, current_user, flash)
     return true unless @lock.error?
@@ -52,6 +59,7 @@ private
     false
   end
 
+  # Check item locked. Used for updates and similar
   def check_lock_for_item(item)
     @lock = ManagedItemsController::Lock.new(:keep, item, current_user, flash)
     return true unless @lock.error?

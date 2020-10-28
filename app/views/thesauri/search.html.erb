@@ -1,5 +1,6 @@
-<%= javascript_tag 'setPageTitle("Search Terminology: '+@thesaurus.has_identifier.identifier+' ('+@thesaurus.semantic_version+')")' %>
-<%= javascript_include_tag 'shared/show_more', 'thesauri/search' %>
+<% content_for :page_title do %> <%= "Search Terminology: #{@thesaurus.has_identifier.identifier} (#{@thesaurus.semantic_version})" %> <% end %>
+
+<%= javascript_include_tag 'thesauri/search' %>
 <%= javascript_tag "var url_path = '#{search_thesauri_path(@thesaurus)}';" %>
 <% third_level_breadcrumb(:thesauri, @thesaurus, @close_path) %>
 <% if Rails.env == "test" || Rails.env == "development" %>
@@ -7,10 +8,9 @@
 <% end %>
 
 <div class="row">
-	<%= render layout: "shared/headers/header_managed_item", :locals => {:item => @thesaurus, :badge => "icon-terminology"} do %>
+	<%= render layout: "shared/headers/header_managed_item", :locals => { item: @thesaurus, badge: "icon-terminology" } do %>
 		<div class="actions-wrap">
-			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+			<%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
 		</div>
 	<% end %>
 </div>

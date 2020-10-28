@@ -121,6 +121,20 @@ describe Thesauri::ManagedConceptsController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({})
     end
 
+    it "upgrade, errors" do
+      errors = ActiveModel::Errors.new(nil)
+      errors.add(:base, "Error")
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/U00001/V1#U00001"))
+      ct = Thesaurus.create({:identifier => "TESTUpgradeErr", :label => "Test Thesaurus"})
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:upgrade).and_return(nil)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:errors).twice.and_return(errors)
+      put :upgrade, params:{id: tc.id, upgrade: {sponsor_th_id: ct.id}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Error"])
+    end
+
     it "upgrade data" do
       request.env['HTTP_ACCEPT'] = "application/json"
       s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })

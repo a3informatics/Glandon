@@ -1,4 +1,5 @@
-<%= javascript_tag 'setPageTitle("Impact Analysis: '+@managed_item.scoped_identifier+' ('+@managed_item.semantic_version+')")' %>
+<% content_for :page_title do %> <%= "Impact Analysis: #{@managed_item.scoped_identifier} (#{@managed_item.semantic_version})" %> <% end %>
+
 <% third_level_breadcrumb(:thesauri, @managed_item, @close_path) %>
 <%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'iso_managed/impact', 'shared/datatables_loading' %>
 <%= javascript_include_tag  'd3', 'iso_managed/impact', 'shared/tabs_layout' %>
@@ -6,15 +7,16 @@
 <%= javascript_tag "var cdiscChangesUrl = '#{changes_impact_thesauri_path(@ref_cdisc_th, thesauri: {thesaurus_id: @new_cdisc_th.id, sponsor_th_id: @managed_item.id})}'" %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-impact",
+  <%= render layout: "shared/headers/header_minimal", :locals => { badge: "icon-impact",
     main_text: "Impact Analysis <span class='font-light text-medium'>#{@managed_item.scoped_identifier} v#{@managed_item.semantic_version}</span>".html_safe,
     sub_text: "CDISC CT update from: #{@ref_cdisc_th.version_label} - to: #{@new_cdisc_th.version_label}." } do %>
+
       <div class="btns-wrap">
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_thesauri_path(@ref_cdisc_th, thesauri: {sponsor_th_id: @managed_item.id, thesaurus_id: @new_cdisc_th.id}), id: "report",
-             icon: "icon-file", btn_text: "CSV Report", dt_toggle: "", disabled: false } %>
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-             icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
-      </div>
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: export_csv_thesauri_path(@ref_cdisc_th, thesauri: {sponsor_th_id: @managed_item.id, thesaurus_id: @new_cdisc_th.id}),
+            id: "report", icon: "icon-file", text: "CSV Report" } %>
+        <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+      </div
+      >
   <% end %>
 </div>
 

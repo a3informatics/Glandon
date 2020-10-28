@@ -68,6 +68,18 @@
   background: $secondary-color-dark !important;
 }
 
+.btn.light-green{
+  background: $secondary-color-light;
+}
+
+.btn.light-green:hover{
+  background: $secondary-color-bright;
+}
+
+.btn.light-green:active{
+  background: $secondary-color-medium !important;
+}
+
 .btn.light{
   background: $primary-color-light;
 }
@@ -152,6 +164,18 @@
 
 .actions-wrap .btn, .btns-wrap .btn{
   margin-top: 6px;
+}
+
+// Icon button for non-text font-icon based simple buttons, note, different from ico-btn
+.btn.icon-only {
+  width: 23px;
+  height: 23px;
+  padding: 3px;
+}
+
+.btn.icon-only span[class^='icon-'] {
+  line-height: 18px;
+  font-size: $font-tiny;
 }
 
 // An icon button, inside of which is an icon symbol span element, and a ico-btn-text span element.
@@ -338,10 +362,6 @@
   background: $secondary-color-bright;
 }
 
-// .ico-btn-sec.token-timeout:active .circular-badge {
-//   background: $secondary-color-medium !important;
-// }
-
 .ico-btn-sec.token-timeout.disabled .circular-badge {
   background: $grey-light;
 }
@@ -350,8 +370,16 @@
   background: $accent-color-1;
 }
 
+.card.warning .token-timeout.ico-btn-sec:hover .circular-badge {
+  background: $accent-color-1-light;
+}
+
 .card.danger .token-timeout.ico-btn-sec .circular-badge {
   background: $accent-color-2;
+}
+
+.card.danger .token-timeout.ico-btn-sec:hover .circular-badge {
+  background: $accent-color-2-light;
 }
 
 .card.danger .token-timeout.ico-btn-sec .ico-btn-sec-text {
@@ -424,4 +452,15 @@ a:focus{
   .actions-wrap{
     justify-content: center;
   }
+}
+
+// IE icon-only button line-height fix
+
+@media all and (-ms-high-contrast: none),
+    (-ms-high-contrast: active) {
+
+  .btn.icon-only span[class^='icon-'] {
+    line-height: 16px;
+  }
+
 }

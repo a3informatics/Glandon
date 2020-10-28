@@ -11,8 +11,13 @@ describe "SDTM Models", :type => :feature do
   describe "Basic Operations, curator", :type => :feature, js:true do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "sdtm/SDTM_Model_1-4.ttl"]
+      data_files = []
       load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V3.ttl")
       ua_create
     end
 
@@ -35,7 +40,7 @@ describe "SDTM Models", :type => :feature do
       expect(page).to have_content 'Index: SDTM Models'
       ui_check_table_info("index", 1, 1, 1)
       ui_check_table_cell("index", 1, 2, "SDTM MODEL")
-      ui_check_table_cell("index", 1, 3, "SDTM Model 2013-11-26")
+      ui_check_table_cell("index", 1, 3, "SDTM Model")
     end
 
     it "allows the history page to be viewed", js:true do
@@ -45,7 +50,7 @@ describe "SDTM Models", :type => :feature do
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'SDTM MODEL\''
       ui_check_table_cell("history", 1, 1, "1.4.0")
-      ui_check_table_cell("history", 1, 5, "SDTM Model 2013-11-26")
+      ui_check_table_cell("history", 1, 5, "SDTM Model")
       ui_check_table_cell("history", 1, 7, "Standard")
     end
 
@@ -58,9 +63,9 @@ describe "SDTM Models", :type => :feature do
       context_menu_element('history', 4, 'SDTM MODEL', :show)
       wait_for_ajax 10
       expect(page).to have_content 'Show: CDISC SDTM Model'
-      ui_check_table_info("show", 1, 7, 7)
-      ui_check_table_cell("show", 5, 2, "Findings About")
-      ui_check_table_cell("show", 5, 1, "SDTMMODEL FINDINGS ABOUT")
+      ui_check_table_info("show", 1, 10, 18)
+      ui_check_table_cell("show", 5, 2, "TE")
+      ui_check_table_cell("show", 5, 1, "SDTM MODEL TE")
     end
 
   end

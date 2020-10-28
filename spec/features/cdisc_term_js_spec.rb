@@ -394,7 +394,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Submission value changes'
     end
 
-    it "checks for deleted changes", js: true do
+    it "checks for deleted changes - WILL CURRENTLY FAIL - Deleted and re-introduced Code List TANN02TN", js: true do
       clear_downloads
       click_see_changes_all_versions
       wait_for_ajax(15)

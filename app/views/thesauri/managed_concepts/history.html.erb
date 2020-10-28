@@ -1,14 +1,13 @@
-<%= javascript_tag 'setPageTitle("History: '+@identifier+'")' %>
+<% content_for :page_title do %> History: <%= @identifier %> <% end %>
 
 <%= javascript_pack_tag 'thesauri/managed_concepts/history' %>
 
 <% second_level_breadcrumb(:thesauri, @scope_id, @identifier) %>
 
 <div class="row">
-	<%= render layout: "shared/headers/header_item_simple", :locals => {badge: "icon-terminology", item: @tc, header_title: "Item History"} do %>
+	<%= render layout: "shared/headers/header_item_simple", :locals => { badge: "icon-terminology", item: @tc, header_title: "Item History" } do %>
     <div class="actions-wrap">
-			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+			<%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
   <% end %>
 </div>

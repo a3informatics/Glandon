@@ -27,7 +27,7 @@ module EditorHelpers
   end
 
   def ui_editor_check_value(row, col, text)
-    expect(find(:xpath, "//table[@id='editor']//tr[#{row}]/td[#{col}]").text).to eq(text)
+    expect(find(:xpath, "//table[@id='editor']//tr[#{row}]/td[#{col}]").text).to include(text)
   end
 
   def ui_editor_check_focus(row, col)
@@ -40,10 +40,6 @@ module EditorHelpers
 
   def ui_editor_check_disabled(field)
     expect(find(".DTE_Field_Name_#{field}")[:class]).to include("disabled")
-  end
-
-  def ui_editor_press_key(key)
-    page.driver.browser.action.send_keys(key).perform
   end
 
 end

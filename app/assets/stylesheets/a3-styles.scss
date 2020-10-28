@@ -10,8 +10,10 @@
 @import "shared/layouts/forms";
 
 @import "shared/tables";
+@import "shared/checkbox";
 @import "shared/scrollbar";
 @import "shared/ttip";
+@import "shared/expandable_content";
 @import "shared/confirmation_dialog";
 @import "shared/processing/spinner_animated";
 @import "shared/processing/element_loading";
@@ -29,11 +31,15 @@
   align-items: center;
 }
 
+.no-break {
+  white-space: nowrap;
+}
+
 // ALERTS
-.alert{
+.alert {
   margin: 10px 0;
   font-family: $font-light;
-  background-color: $grey-white !important;
+  background-color: $grey-white;
   -webkit-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
   -moz-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
   box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
@@ -267,6 +273,7 @@ a.bg-label {
   display: inline-flex;
   align-items: center;
   margin-right: 8px;
+  white-space: nowrap;
 }
 
 .min-badge-item .circular-badge{
@@ -353,6 +360,20 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:foc
   .half-blocks-wrap .half-block {
     width: 100%;
   }
+}
+
+// Tags and labels
+
+.labels-inline-wrap {
+  margin-top: 5px;
+}
+
+.bg-label.tag {
+  background: white;
+  border: 2px solid $grey-light;
+  padding: 1px 10px;
+  font-size: $font-small;
+  margin-top: 5px;
 }
 
 // Indicators

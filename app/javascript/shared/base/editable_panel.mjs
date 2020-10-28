@@ -1,5 +1,8 @@
 import TablePanel from 'shared/base/table_panel'
 
+import { $handleError } from 'shared/helpers/ajax'
+import { alerts } from 'shared/ui/alerts'
+
 /**
  * Base Editable Panel
  * @description Extensible Editable DataTable panel
@@ -107,41 +110,101 @@ export default class EditablePanel extends TablePanel {
    * Sets event listeners, handlers
    */
   _setListeners() {
+
     // Before editing - check _editable condition first
     this.editor.on('preOpen', () => {
-      if (this._editable(this.editor.modifier()))
+
+      if ( this._editable( this.editor.modifier() ) )
         this.editor.enable();
       else
         this.editor.disable();
+
     });
+
     // Editing started - update UI
     this.editor.on('open', () => this._updateUI('open') );
+
     // Editing finished/closed - update UI
-    this.editor.on('preClose', (e) => this._updateUI('close') );
+    this.editor.on('preClose', e => this._updateUI('close') );
+
     // Loading animation
     this.editor.on('processing', (ev, enable) => this._inlineProcessing(enable));
+
+    // Pre-data-submit, change data format
+    this.editor.on('preSubmit', (e, d, type) => {
+
+      if ( type === 'edit' )
+        this._preformatUpdateData(d);
+
+    });
+
+    // Post-data-submit, change data format before adding to Editor
+    this.editor.on('postSubmit', (e, json, data) => {
+
+      if ( json.data )
+        this._postformatUpdatedData( data, json.data );
+
+    });
+
     // Data submit server error
-    this.editor.on('submitError', (x, s, e) => handleAjaxError(x, s, e));
+    this.editor.on('submitError', (x, s, e) => $handleError(x, s, e));
+
     // Data submitted - Item Edited callback
     this.editor.on('submitSuccess submitUnsuccessful', (e, json) => {
+
       // Handle any errors thrown by the server
-      if (json.errors)
-        displayAlerts(alertError(json.errors.join(' & ')));
+      if ( json.errors )
+        alerts.error( json.errors.join(' & '), this.errorDiv );
 
       this._onEdited();
+
     });
 
     // Update UI on keypress in TA. Handle Submit.
     $(this.selector).on('keydown', 'textarea', (e, dt, c) => {
+
       this._updateUI('input');
 
       // Submit on Enter key press
-      if(e.which == 13 && !e.shiftKey) {
+      if( e.which == 13 && !e.shiftKey ) {
         this.editor.submit();
         e.preventDefault();
       }
+
     });
+
+    // Custom inline editing with no onBlur action event for Pickable fields, bugfix
+    this.table.on( 'click', 'td.editable.inline.pickable', (e) => {
+
+      if ( e.detail === 2 )
+        this.editor.inline( e.currentTarget, { onBlur: 'none' } );
+
+    });
+
+    this.table.on( 'key', ( e, dt, key, cell, oe) => {
+
+      if ( $( cell.node() ).hasClass('editable inline pickable') )
+        this.editor.close()
+                   .inline( cell.node(), { onBlur: 'none' } );
+
+    });
+
   }
+
+  /**
+   * Formats the update data to be compatible with server
+   * @override for custom behavior
+   * @param {object} d DataTables Editor data object
+   */
+  _preformatUpdateData(d) { }
+
+  /**
+   * Formats the updated data returned from the server before being added to Editor
+   * @override for custom behavior
+   * @param {object} oldData Data object sent to the server
+   * @param {object} newData Data returned from the server
+   */
+  _postformatUpdatedData(oldData, newData) { }
 
   /**
    * Override this to check for any condiditions that should not allow editing of the specific row

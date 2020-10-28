@@ -1,20 +1,23 @@
-/*** Renderers for Tags ***/
+import colors from 'shared/ui/colors'
+
+/*** Tags Helpers and Renderers ***/
 
 /**
  * Master Tag HEX color map
  */
 const tagColorsMap = {
-  'SDTM': '#f29c8c',
-  'QS': '#e4aca1',
-    'QS-FT': '#e4aca1',
-    'COA': '#e4aca1',
-    'QRS': '#e4aca1',
-  'CDASH': '#eec293',
-  'ADaM': '#b6d58f',
-  'Protocol': '#93c9b5',
-  'SEND': '#a9aee0',
-  'CDISC': '#9dc0cf',
-  'default': '#6d91a1'
+  'SDTM': colors.lightRed,
+  'QS': colors.fadedRed,
+    'QS-FT': colors.fadedRed,
+    'COA': colors.fadedRed,
+    'QRS': colors.fadedRed,
+  'CDASH': colors.lightOrange,
+  'ADaM': colors.oliveGreen,
+  'Protocol': colors.accentAquaDark,
+  'SEND': colors.accentPurple,
+  'CDISC': colors.accent1,
+  'Define-XML': colors.primaryBright,
+  'default': colors.primaryLight
 }
 
 /**
@@ -30,17 +33,16 @@ function getColorByTag(tag) {
  * Styles tag elements outline with assgined color
  * @param {string} selector Selector of target elements (with parent)
  */
-function colorizeTagOutlines(selector) {
+function tagOutlines(selector = ".labels-inline-wrap .tag") {
 
   // Iterate over tag elements
   $.each( $(selector), (i, el) => {
 
-    // Get color based on val / text of the tag
-    const tagColor = getColorByTag( $(el).val() || $(el).text() );
+    // Get color based on text of the tag
+    let tagColor = getColorByTag( $(el).text() );
 
-    // Apply CSS
-    $(el).css('background', 'transparent')
-         .css('box-shadow', `inset 0 0 0 2px ${tagColor}`);
+    $( el ).css( 'border-color', tagColor );
+
   });
 
 }
@@ -70,8 +72,24 @@ function renderTagsInline(tagsString) {
   return output;
 }
 
+/**
+ * Get HTML for a single styled Tag label
+ * @param {string} tagLabel Name of the Tag
+ * @return {string} Single Tag label HTML
+ */
+function renderTag(tagLabel, { cssClasses = '', id = '' } = {}) {
+
+  return `<span class='bg-label tag ${ cssClasses }'
+                style='border-color: ${ getColorByTag( tagLabel ) }'
+                data-id='${ id }'>
+            ${ tagLabel }
+          </span>`;
+
+}
+
 export { 
   getColorByTag,
-  colorizeTagOutlines,
-  renderTagsInline
+  tagOutlines,
+  renderTagsInline,
+  renderTag
 }

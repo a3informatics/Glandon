@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("History: '+@identifier+'")' %>
+<% content_for :page_title do %> History: <%= @identifier %> <% end %>
 
 <%= javascript_pack_tag 'adam_igs/history' %>
 
@@ -7,8 +7,7 @@
 <div class="row">
   <%= render layout: "shared/headers/header_item_simple", :locals => {badge: "icon-adam", item: @item, header_title: "Item History"} do %>
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
   <% end %>
 </div>

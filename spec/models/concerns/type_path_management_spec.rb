@@ -33,7 +33,7 @@ describe TypePathManagement do
     end
 
     it "returns a valid url, Form" do
-      result = Rails.application.routes.url_helpers.history_forms_path + "/?identifier=XXX&scope_id=YYY"
+      result = Rails.application.routes.url_helpers.history_forms_path + "/?form[identifier]=XXX&form[scope_id]=YYY"
       expect(TypePathManagement.history_url(Form.rdf_type.to_s, "XXX", "YYY" )).to eq(result)
     end
 

@@ -25,7 +25,7 @@ module TypePathManagement
       Thesaurus::ManagedConcept.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_thesauri_managed_concepts_path, strong: "managed_concept" },
       BiomedicalConceptTemplate.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_biomedical_concept_templates_path, strong: "biomedical_concept_template" },
       BiomedicalConceptInstance.rdf_type.to_s =>  { path: Rails.application.routes.url_helpers.history_biomedical_concept_instances_path, strong: "biomedical_concept_instance" },
-      Form.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_forms_path, strong: "" },
+      Form.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_forms_path, strong: "form" },
       SdtmModel.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_models_path, strong: "sdtm_model" },
       SdtmIg.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_igs_path, strong: "sdtm_ig" },
       SdtmIgDomain.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_ig_domains_path, strong: "sdtm_ig_domain" },

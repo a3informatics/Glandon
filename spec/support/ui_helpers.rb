@@ -1,16 +1,12 @@
 module UiHelpers
 
-  # General Tag helpers
-	def ui_click_tag_add
-    ui_click_by_id('tag_add')
-  end
-
-  def ui_click_tag_delete
-    ui_click_by_id('tag_delete')
-  end
-
   # General UI helpers
   # ==================
+
+  def ui_refresh_page(ajax_wait = false)
+    page.driver.browser.navigate.refresh
+    wait_for_ajax 20 if ajax_wait == true
+  end
 
   def ui_check_page_has(text)
   	expect(page).to have_content(text)
@@ -330,18 +326,10 @@ module UiHelpers
 		result
 	end
 
-  def ui_show_more_tags_th
-    find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
-  end
-
-  def ui_show_more_tags_cl
-    #find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
-    find(:xpath, '//*[@id="imh_header"]/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
-		sleep 0.5
-  end
-
-  def ui_show_more_tags_cli
-    find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]", :text => 'Show more').click
+  def ui_header_show_more_tags
+    sleep 0.3
+    find( '.h-outside-wrap .expandable-content-btn', text: 'Show more' ).click
+		sleep 0.3
   end
 
   # Breadcrumb
@@ -380,14 +368,6 @@ module UiHelpers
 
   # Buttons etc
   # ===========
-  def ui_click_close
-    page.evaluate_script("rhClickClose()")
-  end
-
-  def ui_click_save
-    page.evaluate_script("rhClickSave()")
-  end
-
   def ui_click_by_id(id)
     page.evaluate_script("simulateClick($('##{id}')[0])")
   end
@@ -617,33 +597,47 @@ module UiHelpers
     }
 	end
 
-  def context_menu_element (table_id, column_nr, text, action, row_nr = 'null' )
-    option = context_menu_actions_map[action]
-    js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}', #{row_nr}); "
-    js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
-    page.execute_script(js_code)
+  def context_menu_element (table_id, column_nr, identifier, action, row_nr = nil )
+  	context_menu_element_v2(table_id, identifier, action)
   end
 
-	def context_menu_element_v2 (table, text, action)
+	# Identifier is either a String (finds row that contains the text) or an Integer (finds row by its index nr)
+	def context_menu_element_v2 (table, identifier, action)
 		option = context_menu_actions_map[action]
-		js_code = "var el = contextMenuElementV2('#{table}', '#{text}', '#{option}'); "
-		js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
-		page.execute_script(js_code)
+
+		row = find(:xpath, "//table[@id='#{ table }']//tr[contains(.,'#{ identifier }')]") if identifier.is_a? String
+		row = find(:xpath, "//table[@id='#{ table }']//tbody/tr[#{ identifier }]") if identifier.is_a? Integer
+
+		within( row ) do
+			find(".icon-context-menu").click
+			sleep 0.2
+			find( "a.option", text: option ).click
+		end
 	end
 
 	def context_menu_element_header (action)
 		option = context_menu_actions_map[action]
-		js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
-    js_code += "if (el != null && !$(el).hasClass('disabled')) { el.click(); } else { console.log('No match found'); } "
-		page.execute_script(js_code)
+		menu = find( '#header-con-menu' )
+		menu.click
+		sleep 0.2
+
+		within( menu ) do
+			find( "a.option", text: option ).click
+		end
 	end
 
 	def context_menu_element_header_present?(action, state="enabled")
-		class_list = state == "enabled" ? "option" : "disabled" # Note the space, horrid but ....
 		option = context_menu_actions_map[action]
-		js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
-		js_code += "if (el != null && (el.className.indexOf('#{class_list}' !== -1) ) ) { return true; } else { return false; } "
-		page.execute_script(js_code)
+		menu = find( '#header-con-menu' )
+		class_list = state == "enabled" ?
+								 ".option" :
+								 ".option.disabled"
+
+		Capybara.ignore_hidden_elements = false
+		result = menu.has_css?( class_list, text: option )
+		Capybara.ignore_hidden_elements = true
+
+		result
 	end
 
   def ui_dashboard_slider (start_date, end_date)
@@ -675,6 +669,7 @@ module UiHelpers
     page.execute_script(js_script)
   end
 
+	# Create new Items
 
   def ui_create_terminology(id, label, success = true)
     click_navbar_terminology
@@ -684,8 +679,54 @@ module UiHelpers
 	    fill_in "thesauri_label", with: label
 	    click_button 'Submit'
 		end
+		wait_for_ajax 10
 		expect(page).to have_content 'Terminology was successfully created.' if success
   end
+
+	def ui_new_code_list
+		identifier = ui_next_parent_identifier
+		click_link 'New Code List'
+		wait_for_ajax 30
+		expect(page).to have_content identifier
+		wait_for_ajax 30
+		identifier
+	end
+
+	def ui_create_form(identifier, label, success = true)
+		click_navbar_forms
+		wait_for_ajax 20
+		expect(page).to have_content 'Index: Forms'
+		click_on 'New Form'
+
+		ui_in_modal do
+			fill_in 'identifier', with: identifier
+			fill_in 'label', with: label
+			click_on 'Submit'
+		end
+
+		wait_for_ajax 10
+		expect(page).to have_content "Version History of '#{identifier}'" if success
+	end
+
+	def ui_create_bc(identifier, label, template, success = true)
+		click_navbar_bc
+		wait_for_ajax 20
+		expect(page).to have_content 'Index: Biomedical Concepts'
+		click_on 'New Biomedical Concept'
+
+		ui_in_modal do
+			fill_in 'identifier', with: identifier
+			fill_in 'label', with: label
+
+			find('#new-item-template').click
+			ip_pick_managed_items(:bct, [ { identifier: template[:identifier], version: template[:version] } ], 'new-bc')
+
+			click_on 'Submit'
+		end
+
+		wait_for_ajax 10
+		expect(page).to have_content "Version History of '#{identifier}'" if success
+	end
 
   # Return
   def ui_hit_return(id)
@@ -733,7 +774,9 @@ module UiHelpers
 
   # D3 Tree Functions
   def ui_click_node_name(text)
+    sleep 0.2
     page.evaluate_script("rhClickNodeByName(\"#{text}\")")
+    sleep 0.2
   end
 
   def ui_click_node_key(key)
@@ -793,16 +836,6 @@ module UiHelpers
     expect(ui_get_current_key).to eq(to_key)
   end
 
-  # Thesaurus
-  def ui_new_code_list
-    identifier = ui_next_parent_identifier
-    click_link 'New Code List'
-		wait_for_ajax 30
-    expect(page).to have_content identifier
-    wait_for_ajax 30
-    identifier
-  end
-
   # Status Page
   def ui_manage_status_page(old_state, new_state, owner, identifier, version)
     expect(page).to have_content 'Manage Status'
@@ -812,6 +845,15 @@ module UiHelpers
     expect(page).to have_content "Identifier: #{identifier}"
     expect(page).to have_content version
   end
+
+	# Keys
+	def ui_press_key(key, with_key = nil)
+		if with_key.nil?
+			page.driver.browser.action.send_keys(key).perform
+		else
+			page.driver.browser.action.key_down(with_key).send_keys(key).key_up(with_key).perform
+		end
+	end
 
 
 	# Items Selector ### DEPRECATED
