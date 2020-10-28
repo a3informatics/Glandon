@@ -57,6 +57,7 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
       next if e_subject.ignore?
       a_subject = @a_subjects.subject(item)
       next if subsets_equal?(a_subject, e_subject)
+      next if ranks_equal?(a_subject, e_subject)
       @mismatches << "***** Triple not matched: [#{item[:subject]}, #{item[:predicate]}, #{item[:object]}]. *****" if triple.nil?
     end
     check_references
@@ -66,10 +67,17 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
 
   def subsets_equal?(a_subject, e_subject)
     return true if a_subject.is_subset? && e_subject.is_subset? && @a_subjects.subset_items(a_subject) == @e_subjects.subset_items(e_subject)
-    @mismatches << "***** Subset mismatch, actual subset?: #{a_subject.is_subset?}"
-    @mismatches << "***** Subset mismatch, expected subset?: #{e_subject.is_subset?}"
-    @mismatches << "***** Subset mismatch, actual items:\n#{@a_subjects.subset_items(a_subject)}"
-    @mismatches << "***** Subset mismatch, expected items:\n#{@e_subjects.subset_items(e_subject)}"
+    #@mismatches << "***** Subset mismatch, actual subset?: #{a_subject.is_subset?}"
+    #@mismatches << "***** Subset mismatch, expected subset?: #{e_subject.is_subset?}"
+    #@mismatches << "***** Subset mismatch, actual items:\n#{@a_subjects.subset_items(a_subject)}"
+    #@mismatches << "***** Subset mismatch, expected items:\n#{@e_subjects.subset_items(e_subject)}"
+    false
+  end
+
+  def ranks_equal?(a_subject, e_subject)
+    return true if a_subject.is_ranked? && e_subject.is_ranked? && @a_subjects.rank_items(a_subject) == @e_subjects.rank_items(e_subject)
+    #@mismatches << "***** Subset mismatch, actual subset?: #{a_subject.is_subset?}"
+    #@mismatches << "***** Subset mismatch, expected subset?: #{e_subject.is_subset?}"
     false
   end
 
@@ -87,10 +95,15 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
     collection[triple[:object]] << triple[:subject]
   end
 
-  def map_is_ordered(collection, triple)
-    return if !is_ordered?(triple)
-    collection[triple[:subject]] = triple[:object]
-  end
+  # def map_is_ordered(collection, triple)
+  #   return if !is_ordered?(triple)
+  #   collection[triple[:subject]] = triple[:object]
+  # end
+
+  # def map_is_ranked(collection, triple)
+  #   return if !is_ranked?(triple)
+  #   collection[triple[:subject]] = triple[:object]
+  # end
 
   def is_reference?(triple)
     triple[:predicate] == "<http://www.assero.co.uk/BusinessOperational#reference>"
@@ -186,7 +199,6 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
     result
   end
 
-
   class Subjects
 
     def initialize 
@@ -209,6 +221,11 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
       subset_list(@subjects[uri].object_for("<http://www.assero.co.uk/Thesaurus#members>"))
     end
 
+    def rank_items(subject)
+      uri = subject.object_for("<http://www.assero.co.uk/Thesaurus#isRanked>")
+      subset_list(@subjects[uri].object_for("<http://www.assero.co.uk/Thesaurus#members>"))
+    end
+
     def classification_items(subject)
       classifications(subject)
     end
@@ -217,6 +234,14 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
 
     def subset_list(uri, depth=0)
     puts colourize("Subset List: #{uri}, Depth: #{depth}", "blue") 
+      subject = @subjects[uri]
+      object = subject.object_for("<http://www.assero.co.uk/Thesaurus#memberNext>")
+      return [subject.object_for("<http://www.assero.co.uk/Thesaurus#item>")] if object.nil?
+      [subject.object_for("<http://www.assero.co.uk/Thesaurus#item>")] + subset_list(object, depth + 1)  
+    end
+
+    def rank_list(uri, depth=0)
+    puts colourize("Rank List: #{uri}, Depth: #{depth}", "blue") 
       subject = @subjects[uri]
       object = subject.object_for("<http://www.assero.co.uk/Thesaurus#memberNext>")
       return [subject.object_for("<http://www.assero.co.uk/Thesaurus#item>")] if object.nil?
@@ -250,10 +275,15 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
       has_predicate?("<http://www.assero.co.uk/Thesaurus#isOrdered>")
     end
 
+    def is_ranked?
+      has_predicate?("<http://www.assero.co.uk/Thesaurus#isRanked>")
+    end
+
     def ignore?
       rdf_type == "<http://www.assero.co.uk/Thesaurus#Subset>" || 
       rdf_type == "<http://www.assero.co.uk/Thesaurus#SubsetMember>" || 
-      rdf_type == "<http://www.assero.co.uk/Thesaurus#SubsetMember>" || 
+      rdf_type == "<http://www.assero.co.uk/Thesaurus#RankedCollection>" || 
+      rdf_type == "<http://www.assero.co.uk/Thesaurus#RankedMember>" || 
       rdf_type == "<http://www.assero.co.uk/ISO11179Concepts#Classification>"
     end
 
