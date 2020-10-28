@@ -55,7 +55,7 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
     parent = Form::Item.find(the_params[:parent_id])
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
-    result = parent.delete_reference(tuc_reference)
+    result = parent.delete_reference(tuc_reference, form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, item #{tuc_reference.label} deleted.") if @lock.token.refresh == 1
     render json: {data: result }, status: 200

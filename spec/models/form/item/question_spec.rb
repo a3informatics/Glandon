@@ -226,6 +226,13 @@ describe Form::Item::Question do
 
 
   describe "Delete TUc Reference" do
+
+    def make_standard(item)
+      params = {}
+      params[:registration_status] = "Standard"
+      params[:previous_state] = "Incomplete"
+      item.update_status(params)
+    end
     
     before :each do
       data_files = ["forms/FN000150.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
@@ -241,15 +248,45 @@ describe Form::Item::Question do
       refs = question.add_child({type:"tuc_reference", id_set:[{id:cli_1.id, context_id: context_1.id}]})
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
       tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1"))
-      result = question.delete_reference(tuc_reference)
+      result = question.delete_reference(tuc_reference, question)
       check_file_actual_expected(result, sub_dir, "delete_tuc_reference_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "Delete TUc Reference II" do
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
       tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1"))
-      result = question.delete_reference(tuc_reference)
+      result = question.delete_reference(tuc_reference, question)
       check_file_actual_expected(result, sub_dir, "delete_tuc_reference_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "Delete TUc Reference with clone" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      cli_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49508"))
+      cli_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49507"))
+      cli_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C25376"))
+      context_1 = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681"))
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      question.add_child({type:"tuc_reference", id_set:[{id:cli_1.id, context_id: context_1.id}, {id:cli_2.id, context_id: context_1.id}, {id:cli_3.id, context_id: context_1.id}]})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "delete_tuc_reference_expected_3a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_tuc_reference_expected_3a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC2"))
+      question.delete_reference(tuc_reference, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "delete_tuc_reference_expected_3b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "delete_tuc_reference_expected_3b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "delete_tuc_reference_expected_3a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_tuc_reference_expected_3a.yaml", equate_method: :hash_equal)
     end
 
   end
