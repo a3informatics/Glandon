@@ -13,7 +13,7 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
     form = Form.find_full(update_params[:form_id])
     return true unless check_lock_for_item(form)
     bc_property = Form::Item::BcProperty.find(protect_from_bad_id(params))
-    bc_property = bc_property.update(update_params)
+    bc_property = bc_property.update_with_clone(update_params, form)
     if bc_property.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: bc_property.to_h}, :status => 200

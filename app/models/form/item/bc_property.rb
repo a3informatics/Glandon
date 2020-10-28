@@ -84,10 +84,15 @@ class Form::Item::BcProperty < Form::Item
     x
   end
 
-  def update(params)
-    ref = self.has_property_objects
-    ref.update(params)
-    super(params.except(:enabled, :optional))
+  def update_with_clone(params, managed_ancestor)
+    if multiple_managed_ancestors?
+      new_bc_property = clone_nodes(self.has_property_objects, managed_ancestor)
+      new_bc_property.first.has_property_objects.update(params)
+      new_bc_property.first.update(params.except(:enabled, :optional))
+    else
+      self.has_property_objects.update(params)
+      self.update(params.except(:enabled, :optional))
+    end
   end
   
   private
