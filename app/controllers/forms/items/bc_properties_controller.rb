@@ -54,7 +54,7 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
     form = Form.find_full(the_params[:form_id])
     return true unless check_lock_for_item(form)
     bc_property = Form::Item::BcProperty.find(protect_from_bad_id(params))
-    common_item = bc_property.make_common
+    common_item = bc_property.make_common_with_clone(form)
     return true if item_errors(bc_property)
     AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
     render :json => {data: common_item}, :status => 200

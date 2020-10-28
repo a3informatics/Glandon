@@ -80,18 +80,26 @@ class Form::Group::Bc < Form::Group
     transaction_execute
     new_parent.reset_ordinals
     new_parent = Form::Group.find_full(new_parent.id)
-    unlink_common(new_parent)
+    clone_and_unlink_common(new_parent)
+    new_parent = Form::Group.find_full(new_parent.id)
     normal_group = Form::Group::Normal.find_full(new_parent.uri)
     normal_group = normal_group.full_data
   end
 
-  def unlink_common(parent)
+  def clone_and_unlink_common(parent)
     unless parent.has_common.empty? #Check if there is a common group
-      common_group = Form::Group::Common.find(parent.has_common_objects.first.uri)
+      common_group = Form::Group::Common.find_children(parent.has_common_objects.first.uri)
+      ty = transaction_begin
+      common_group.clone_children_and_save(ty)
+      transaction_execute
+      common_group = Form::Group::Common.find_children(parent.has_common_objects.first.uri)
       common_group.has_item_objects.each do |common_item|
         self.has_item_objects.each do |bc_property|
           if common_items_with_terminologies?(bc_property, common_item) || common_items_without_terminologies?(bc_property, common_item)
-            common_group.delete_link(:has_item, common_item.uri)
+            if common_item.has_common_item_objects.count == 1
+              common_group.delete_link(:has_item, common_item.uri)
+            end
+            common_item.delete_link(:has_common_item, bc_property.uri)
           end
         end
       end
@@ -107,7 +115,7 @@ class Form::Group::Bc < Form::Group
           if common_items_with_terminologies?(bc_property, common_item) || common_items_without_terminologies?(bc_property, common_item)
             delete_data += "#{common_item.uri.to_ref} bf:hasCommonItem #{bc_property.uri.to_ref} . "  
             if common_item.has_common_item_objects.count == 1
-              common_item.delete(common_group)
+              common_item.delete(common_group, common_group)
             end
           end
         end

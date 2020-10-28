@@ -413,7 +413,7 @@ describe Form do
 
   end
 
-  describe "Update Tests" do
+  describe "Update BC Group Tests" do
 
     def make_standard(item)
       params = {}
