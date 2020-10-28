@@ -6,11 +6,10 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
   include DataHelpers
   include UiHelpers
   include WaitForAjaxHelper
-  include DownloadHelpers
   include UserAccountHelpers
-  include AuditTrailHelpers
   include ScenarioHelpers
   include TagHelpers
+  include D3TreeHelpers
   include NameValueHelpers
   include EditorHelpers
 
@@ -118,11 +117,8 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       # Edit Extension, Add a tag
       w = window_opened_by { context_menu_element_header(:edit_tags) }
       within_window w do
-        wait_for_ajax 5
-        ui_click_node_name ("TstTag")
-        wait_for_ajax 5
-        click_button "Add Tag"
         wait_for_ajax 10
+        attach_tag "TstTag"
       end
       w.close
       click_link "Return"

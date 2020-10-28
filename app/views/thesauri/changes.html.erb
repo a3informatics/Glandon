@@ -19,8 +19,8 @@
         <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: "#", id: "report",
         icon: "icon-file", text: "PDF Report" } %>
       </div>
-      
-      <%= render partial: "shared/buttons/return", :locals => { url: request.referrer } %>
+
+      <%= render partial: "shared/buttons/return", :locals => { url: 'javascript: history.back()'} %>
     </div>
 
   <% end %>

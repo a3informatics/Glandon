@@ -10,7 +10,7 @@
   <%= render layout: "shared/headers/header_unmanaged_item", :locals => { item: @tc, context: nil, badge: "CI" } do %>
 
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/return", :locals => { url: request.referrer  } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: 'javascript: history.back()'  } %>
     </div>
 
   <% end %>
