@@ -1,0 +1,18 @@
+<div class="col-md-12 card wide">
+  <div class="card-header">
+    <%= local_assigns.fetch :title, "Children" %>
+  </div>
+  <div class="card-content">
+
+    <div id="children-panel" class="table-cardstyle">
+      <%= render layout: "shared/iso_managed/children/children_panel", locals: {
+          children_url: url, has_show_btn?: true, include_extensible?: include_extensible } do %>
+
+        <%# Extra columns %>
+        <%= yield %>
+
+      <% end %>
+    </div>
+
+  </div>
+</div>
