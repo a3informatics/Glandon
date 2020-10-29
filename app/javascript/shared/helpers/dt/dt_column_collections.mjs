@@ -4,6 +4,10 @@ import { termReferences } from 'shared/ui/collections'
 import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn,
          dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn } from 'shared/helpers/dt/dt_columns'
 
+
+/*** Index ***/
+
+
 /**
  * Column definitions for an Index panel
  * @return {Array} DataTables Index panel column definitions collection
@@ -28,6 +32,10 @@ function dtCLIndexColumns() {
   return indexColumns;
 };
 
+
+/*** History ***/
+
+
 /**
  * Column definitions for a simplified History panel with indicators
  * @return {Array} DataTables simplified History panel column definitions collection
@@ -40,6 +48,29 @@ function dtSimpleHistoryColumns() {
     dtIndicatorsColumn()
   ];
 };
+
+
+/*** Children ***/
+
+
+/**
+ * Column definitions for a Children panel
+ * @return {Array} DataTables Children panel column definitions collection
+ */
+function dtChildrenColumns() {
+  return [
+    { data: 'identifier' },
+    { data: 'notation' },
+    { data: 'preferred_term' },
+    { data: 'synonym' },
+    { data: 'definition' },
+    dtTagsColumn()
+  ];
+};
+
+
+/*** Edit ***/
+
 
 /**
  * Column definitions for a Code List Editor table
@@ -77,7 +108,7 @@ function dtBCEditColumns() {
     dtTrueFalseEditColumn('collect'),
     {
       data: 'has_complex_datatype.has_property.alias',
-      width: '18%' 
+      width: '18%'
     },
     dtInlineEditColumn('has_complex_datatype.has_property.question_text', 'question_text', '25%'),
     dtInlineEditColumn('has_complex_datatype.has_property.prompt_text', 'prompt_text', '25%'),
@@ -94,6 +125,10 @@ function dtBCEditColumns() {
     }
   ];
 };
+
+
+/*** Show ***/
+
 
 /**
  * Column definitions for Biomedical Concept Instance show
@@ -208,6 +243,7 @@ export {
   dtIndexColumns,
   dtSimpleHistoryColumns,
   dtCLIndexColumns,
+  dtChildrenColumns,
   dtCLEditColumns,
   dtBCShowColumns,
   dtBCEditColumns,

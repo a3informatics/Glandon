@@ -1,5 +1,5 @@
 import { historyBtn, showBtn } from 'shared/ui/buttons'
-import { icons } from 'shared/ui/icons'
+import { icons, renderIcon } from 'shared/ui/icons'
 import { renderIndicators } from 'shared/ui/indicators'
 import { renderTagsInline } from 'shared/ui/tags'
 
@@ -66,13 +66,36 @@ function dtTagsColumn(width = '', className = '') {
 
 /**
  * Returns column definition for the indicators column
+ * @param {object} filter Filters to be applied to indicator data, optional
  * @return {object} DataTables indicators column definition
  */
-function dtIndicatorsColumn() {
+function dtIndicatorsColumn(filter) {
   return {
     data: "indicators",
     // width: "90px",
-    render: (data, type, r, m) => renderIndicators(data, type)
+    render: (data, type, r, m) => renderIndicators(data, type, filter)
+  }
+};
+
+/**
+ * Returns column definition for an extensible / not-extensible CL icon column
+ * @return {object} DataTables extensible / not-extensible icon column definition
+ */
+function dtCLExtensibleColumn() {
+  return {
+    className: "text-center",
+    data: 'extensible',
+    render: (data, type, row, meta) => {
+
+      if ( type === 'display' )
+        return renderIcon({
+          iconName: data ? 'extend' : 'extend-disabled',
+          cssClasses: data ? 'text-secondary-clr' : 'text-accent-2'
+        });
+      else
+        return data ? 'is-extensible' : 'not-extensible';
+
+    }
   }
 };
 
@@ -151,6 +174,7 @@ export {
   dtButtonColumn,
   dtIndicatorsColumn,
   dtTagsColumn,
+  dtCLExtensibleColumn,
   dtDateTimeColumn,
   dtVersionColumn,
   dtContextMenuColumn,
