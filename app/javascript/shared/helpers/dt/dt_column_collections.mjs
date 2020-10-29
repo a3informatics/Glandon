@@ -63,7 +63,10 @@ function dtChildrenColumns() {
     { data: 'notation' },
     { data: 'preferred_term' },
     { data: 'synonym' },
-    { data: 'definition' },
+    {
+      width: '50%',
+      data: 'definition'
+    },
     dtTagsColumn()
   ];
 };
