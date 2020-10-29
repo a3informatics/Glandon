@@ -21,12 +21,17 @@ const indicatorDefinitions = {
  * Renders Indicators as HTML icons or raw strings
  * @param {Object} data Server-fetched indicator data
  * @param {string} type Render type. 'display' for HTML, anything else for raw strings
+ * @param {object} filter Filters to be applied to indicator data, optional
  * @return {string} formatted HTML / text
  */
-function renderIndicators(data, type) {
+function renderIndicators(data, type, filter) {
+  
   // Return empty if no indicator data
   if ( _.isEmpty(data) || _.isNull(data) )
     return ''
+
+  if ( filter )
+    data = filterIndicators( data, filter );
 
   // Otherwise render indicator HTML / text
   let output = type === 'display' ? '<div class="indicators-wrap">' : '';
