@@ -497,7 +497,7 @@ module Import::STFOClasses
     end
 
     def rank_list_equal?(rank)
-      return false if not_ranked(rank)
+      return false if not_ranked?(rank)
       other = rank.list_uris.map {|x| x[:uri].to_s}
       this = rank_list.map {|x| x.to_s}
       return other - this == [] && this - other == []
@@ -534,6 +534,8 @@ module Import::STFOClasses
       if results.empty?
         Thesaurus::ManagedConcept.new_identifier
       elsif results.count == 1
+        return results.first.identifier
+      elsif results.count >= 1 && results.map{|x| x.identifier}.uniq.count == 1
         return results.first.identifier
       else
         add_error("Found multiple matching labels/notation for new identifier, identifier #{self.identifier}")

@@ -9,6 +9,7 @@ describe "Import::SponsorTermFormatOne" do
   include SparqlHelpers
   include ThesauriHelpers
   include InstallationHelpers
+  include NameValueHelpers
   
   def sub_dir
     return "models/import/data/sponsor_one/ct"
@@ -39,9 +40,8 @@ describe "Import::SponsorTermFormatOne" do
     end
 
     def thesauri_identifiers(parent, child)
-      NameValue.destroy_all
-      NameValue.create(name: "thesaurus_parent_identifier", value: "#{parent}")
-      NameValue.create(name: "thesaurus_child_identifier", value: "#{child}")    
+      nv_destroy
+      nv_create(parent: "#{parent}", child: "#{child}")    
     end
       
     def current_thesauri_identifiers
@@ -269,7 +269,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
+      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
         check_ttl_fix_v2(filename, "CT_V3-0.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -295,7 +295,7 @@ describe "Import::SponsorTermFormatOne" do
     describe "Import 3.1" do
 
       it "import version 3.1", :import_data => 'slow' do
-        thesauri_identifiers("4000","20000")
+        thesauri_identifiers("3600","16000")
         ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
         load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
         load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
