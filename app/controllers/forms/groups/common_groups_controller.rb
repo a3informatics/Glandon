@@ -13,7 +13,7 @@ class Forms::Groups::CommonGroupsController < ManagedItemsController
     form = Form.find_full(update_params[:form_id])
     return true unless check_lock_for_item(form)
     common = Form::Group::Common.find(protect_from_bad_id(params))
-    common = common.update(update_params)
+    common = common.update_with_clone(update_params, form)
     if common.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: common.to_h}, :status => 200
@@ -27,7 +27,7 @@ class Forms::Groups::CommonGroupsController < ManagedItemsController
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     common = Form::Group::Common.find(protect_from_bad_id(params))
-    result = common.delete(parent)
+    result = common.delete(parent, form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, group #{common.label} deleted.") if @lock.token.refresh == 1
     render json: {data: result }, status: 200

@@ -13,7 +13,7 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
     form = Form.find_full(update_params[:form_id])
     return true unless check_lock_for_item(form)
     bc = Form::Group::Bc.find(protect_from_bad_id(params))
-    bc = bc.update(update_params)
+    bc = bc.update_with_clone(update_params, form)
     if bc.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: bc.to_h}, :status => 200
@@ -27,7 +27,7 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
     return true unless check_lock_for_item(form)
     bc = Form::Group::Bc.find(protect_from_bad_id(params))
     parent = IsoConceptV2.find(the_params[:parent_id])
-    result = parent.move_up(bc)
+    result = parent.move_up_with_clone(bc, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -41,7 +41,7 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
     return true unless check_lock_for_item(form)
     bc = Form::Group::Bc.find(protect_from_bad_id(params))
     parent = IsoConceptV2.find(the_params[:parent_id])
-    result = parent.move_down(bc)
+    result = parent.move_down_with_clone(bc, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -55,7 +55,7 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
     bc = Form::Group::Bc.find(protect_from_bad_id(params))
-    result = bc.delete(parent)
+    result = bc.delete(parent, form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, group #{bc.label} deleted.") if @lock.token.refresh == 1
     render json: {data: result }, status: 200

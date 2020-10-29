@@ -58,7 +58,7 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
   # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
   #
   # @return [Symbol] the predicate property as a symbol
-  def self.managed_ancestors_predicate
+  def managed_ancestors_predicate
     :has_property
   end
 

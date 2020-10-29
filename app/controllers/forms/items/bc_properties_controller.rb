@@ -13,7 +13,7 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
     form = Form.find_full(update_params[:form_id])
     return true unless check_lock_for_item(form)
     bc_property = Form::Item::BcProperty.find(protect_from_bad_id(params))
-    bc_property = bc_property.update(update_params)
+    bc_property = bc_property.update_with_clone(update_params, form)
     if bc_property.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: bc_property.to_h}, :status => 200
@@ -27,7 +27,7 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
     return true unless check_lock_for_item(form)
     bc_property = Form::Item::BcProperty.find(protect_from_bad_id(params))
     parent = IsoConceptV2.find(the_params[:parent_id])
-    result = parent.move_up(bc_property)
+    result = parent.move_up_with_clone(bc_property, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -41,7 +41,7 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
     return true unless check_lock_for_item(form)
     bc_property = Form::Item::BcProperty.find(protect_from_bad_id(params))
     parent = IsoConceptV2.find(the_params[:parent_id])
-    result = parent.move_down(bc_property)
+    result = parent.move_down_with_clone(bc_property, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -54,7 +54,7 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
     form = Form.find_full(the_params[:form_id])
     return true unless check_lock_for_item(form)
     bc_property = Form::Item::BcProperty.find(protect_from_bad_id(params))
-    common_item = bc_property.make_common
+    common_item = bc_property.make_common_with_clone(form)
     return true if item_errors(bc_property)
     AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
     render :json => {data: common_item}, :status => 200
