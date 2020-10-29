@@ -497,6 +497,7 @@ module Import::STFOClasses
     end
 
     def rank_list_equal?(rank)
+      return false if not_ranked(rank)
       other = rank.list_uris.map {|x| x[:uri].to_s}
       this = rank_list.map {|x| x.to_s}
       return other - this == [] && this - other == []
@@ -505,6 +506,12 @@ module Import::STFOClasses
     end
 
   private
+
+    def not_ranked?(rank)
+      return true unless rank.nil?
+      add_log("Previous version not ranked")
+      false
+    end
 
     def find_any_referenced(ct, identifier)
       results = {}
