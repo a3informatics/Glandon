@@ -196,38 +196,45 @@ class Form::Item < IsoConceptV2
   # Format input field
   def input_field(item)
     html = '<td>'
+    datatype = nil
     if item.class == BiomedicalConcept::PropertyX
-      prop = ComplexDatatype::PropertyX.find(item.is_complex_datatype_property)
-      datatype = XSDDatatype.new(prop.simple_datatype)
+      if item.is_complex_datatype_property.nil?
+        datatype = nil
+      else
+        prop = ComplexDatatype::PropertyX.find(item.is_complex_datatype_property)
+        datatype = XSDDatatype.new(prop.simple_datatype)
+      end
     else
       datatype = XSDDatatype.new(item.datatype)
     end
-      if datatype.datetime?
-        html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
-      elsif datatype.date?
-       html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
-      elsif datatype.time?
-       html += field_table(["H", "H", ":", "M", "M"])
-      elsif datatype.float?
-        item.format = "5.1" if item.format.blank?
-        parts = item.format.split('.')
-        major = parts[0].to_i
-        minor = parts[1].to_i
-        pattern = ["#"] * major
-        pattern[major-minor-1] = "."
-        html += field_table(pattern)
-      elsif datatype.integer?
-        count = item.format.to_i
-        html += field_table(["#"]*count)
-      elsif datatype.string?
-        length = item.format.scan /\w/
-        html += field_table([" "]*5 + ["S"] + length + [""]*5)
-      elsif datatype.boolean?
-        html += '<input type="checkbox">'
-      else
-        html += field_table(["?", "?", "?"])
-      end
-      html += '</td>'
+    if datatype.nil?
+      html += field_table(["?", "?", "?"])
+    elsif datatype.datetime?
+      html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
+    elsif datatype.date?
+     html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
+    elsif datatype.time?
+     html += field_table(["H", "H", ":", "M", "M"])
+    elsif datatype.float?
+      item.format = "5.1" if item.format.blank?
+      parts = item.format.split('.')
+      major = parts[0].to_i
+      minor = parts[1].to_i
+      pattern = ["#"] * major
+      pattern[major-minor-1] = "."
+      html += field_table(pattern)
+    elsif datatype.integer?
+      count = item.format.to_i
+      html += field_table(["#"]*count)
+    elsif datatype.string?
+      length = item.format.scan /\w/
+      html += field_table([" "]*5 + ["S"] + length + [""]*5)
+    elsif datatype.boolean?
+      html += '<input type="checkbox">'
+    else
+      html += field_table(["?", "?", "?"])
+    end
+    html += '</td>'
   end
 
   # Format a field

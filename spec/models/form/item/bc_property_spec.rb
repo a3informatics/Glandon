@@ -38,6 +38,33 @@ describe Form::Item::BcProperty do
 
   end
 
+  describe "To CRF tests" do
+
+    before :all do
+      data_files = ["forms/MAKE_COMMON_TEST.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "to CRF I" do
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
+      result = bc_property.to_crf
+      check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "returns the input_field result, nil datatype" do
+       bcp_x = BiomedicalConcept::PropertyX.new(uri: Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCI_BCI11_BCCDTPQR_BCPvalue"), ordinal: 1)
+       ref = OperationalReferenceV3.new(uri: Uri.new(uri: "http://www.s-cubed.dk/V1#R1"), ordinal: 1, reference: bcp_x.uri)
+       item = Form::Item::BcProperty.new(uri: Uri.new(uri: "http://www.s-cubed.dk/V1#BCP1"), ordinal: 1, has_coded_value: [])
+       item.has_property = ref.uri
+       item.save
+       result = item.input_field(bcp_x)
+       check_file_actual_expected(result, sub_dir, "to_crf_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
   describe "Make common tests" do
 
     def make_standard(item)
