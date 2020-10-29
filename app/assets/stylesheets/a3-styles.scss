@@ -273,6 +273,7 @@ a.bg-label {
   display: inline-flex;
   align-items: center;
   margin-right: 8px;
+  white-space: nowrap;
 }
 
 .min-badge-item .circular-badge{
@@ -359,6 +360,20 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:foc
   .half-blocks-wrap .half-block {
     width: 100%;
   }
+}
+
+// Tags and labels
+
+.labels-inline-wrap {
+  margin-top: 5px;
+}
+
+.bg-label.tag {
+  background: white;
+  border: 2px solid $grey-light;
+  padding: 1px 10px;
+  font-size: $font-small;
+  margin-top: 5px;
 }
 
 // Indicators

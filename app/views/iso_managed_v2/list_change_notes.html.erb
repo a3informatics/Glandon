@@ -8,14 +8,15 @@
 <%= javascript_tag "var dataUrl = '#{list_change_notes_data_iso_managed_v2_path(@managed_item)}'" %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @managed_item, :badge => get_iso_managed_icon(@managed_item),
-    :header_title => "List Change notes" } do %>
+  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @managed_item, badge: get_iso_managed_icon(@managed_item),
+    header_title: "List Change notes" } do %>
+
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_change_notes_csv_iso_managed_v2_path(@managed_item), id: "export-csv",
-        icon: "icon-file", btn_text: "Export List (CSV)", dt_toggle: "", disabled: false } %>
-			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: export_change_notes_csv_iso_managed_v2_path(@managed_item),
+          id: "export-csv", icon: "icon-file", text: "Export List (CSV)" } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
+
   <% end %>
 </div>
 <div class="row">

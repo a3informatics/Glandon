@@ -3,12 +3,12 @@
 <% first_level_breadcrumb (:imports) %>
 
 <div class="row">
-	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-import", header_title: "",
+	<%= render layout: "shared/headers/header_generic", :locals => { badge: "icon-import", header_title: "",
 		main_text: "Import Centre", sub_texts: "Load data into the MDR." } do %>
 
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: imports_path, id: "imports_button",
-        icon: "icon-list-ul", btn_text: "Current Imports", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: imports_path, id: "imports-button",
+        icon: "icon-list-ul", text: "Current Imports" } %>
     </div>
 
 	<% end %>

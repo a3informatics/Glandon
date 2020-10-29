@@ -287,7 +287,7 @@ describe "Thesauri Subsets", :type => :feature do
       w = window_opened_by { context_menu_element_header(:edit_tags) }
       within_window w do
         wait_for_ajax(10)
-        expect(page).to have_content "Attach / Detach Tags"
+        expect(page).to have_content "Edit Item Tags"
       end
       w.close
     end

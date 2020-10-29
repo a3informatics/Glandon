@@ -36,6 +36,7 @@ describe BiomedicalConceptInstancesController do
       bci = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       get :show, params: { :id => bci.id}
       expect(response).to render_template("show")
+      expect(assigns(:edit_tags_path)).to eq("/iso_concept/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=/edit_tags")
     end
 
     it "history, html" do
@@ -175,6 +176,7 @@ describe BiomedicalConceptInstancesController do
       get :edit, params:{id: instance.id}
       expect(assigns(:bc).uri).to eq(instance.uri)
       expect(assigns(:close_path)).to eq("/biomedical_concept_instances/history?biomedical_concept_instance%5Bidentifier%5D=HEIGHT&biomedical_concept_instance%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
+      expect(assigns(:edit_tags_path)).to eq("/iso_concept/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=/edit_tags")
       expect(response).to render_template("edit")
     end
 

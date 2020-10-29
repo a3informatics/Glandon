@@ -1,4 +1,4 @@
-import ReportsManager from 'shared/ad_hoc_reports/reports_manager'
+import ReportsManager from 'shared/custom/ad_hoc_reports/reports_manager'
 
 $(document).ready( () => {
 

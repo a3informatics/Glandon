@@ -1,88 +1,121 @@
-module TagHelper
+# Requires D3TreeHelpers, UiHelpers and WaitForAjaxHelper to be included
+module TagHelpers
 
-  def create_classification
-      click_navbar_dashboard
-      expect(page).to have_content 'Registration Status Counts'
-      click_navbar_tags
-      expect(page).to have_content 'Classifications'
-      click_link 'New'
-      fill_in 'iso_concept_system_label', with: 'Root'
-      fill_in 'iso_concept_system_description', with: 'Tag Classification'
-      click_button 'Create'
-      expect(page).to have_content 'Concept system was successfully created.'
+  # Data
+  def load_test_tags
+    load_test_file_into_triple_store("tag_test_data.ttl")
+  end
+
+  def make_tagged_item_data(tag_items = true)
+    root = IsoConceptSystem.root
+    tag1 = root.add( label: "Tag1", description: "Tag1" )
+    tag2 = root.add( label: "Tag2", description: "Tag2" )
+    tag1_1 = tag1.add( label: "Tag1_1", description: "Tag1_1" )
+
+    ct = Thesaurus.create( { identifier: "TEST", label: "Test Thesaurus"} )
+    tc = Thesaurus::ManagedConcept.create
+    tc2 = Thesaurus::ManagedConcept.create
+    uc = tc.add_child( { identifier: 'SRVR' } )
+    bc = BiomedicalConceptInstance.create ( { identifier: 'TESTBC', label: "Test BC" } ) 
+    form = Form.create( { identifier: 'TESTF', label: "Test Form" } )
+
+    if tag_items == true
+      ct.add_tag(tag1_1.id)
+      ct.add_tag(tag2.id)
+      tc.add_tag(tag2.id)
+      tc2.add_tag(tag2.id)
     end
-
-  def create_tag_first_level(label, description)
-      click_navbar_tags
-      expect(page).to have_content 'Tag Viewer'
-      sleep 1
-      ui_check_input("edit_label", 'Tags')
-      fill_in 'add_label', with: "#{label}"
-      fill_in 'add_description', with: "#{description}"
-      click_on 'Create tag'
-      wait_for_ajax(10)
-      expect(page).to have_content("#{label}")
-      #click_link 'Close'
   end
 
-  def create_tag_child(parent, label, description)
-      click_navbar_tags
-      expect(page).to have_content 'Tag Viewer'
-      ui_click_node_name ("#{parent}")
-      ui_check_input("edit_label", "#{parent}")
-      fill_in 'add_label', with: "#{label}"
-      fill_in 'add_description', with: "#{description}"
-      click_on 'Create tag'
-      wait_for_ajax(10)
-      expect(page).to have_content "#{label}"
+  # Edit Tags in the system
+
+  def go_to_tags
+    click_navbar_tags
+    expect(page).to have_content 'Tags Editor'
+    wait_for_ajax 10
+    find('#main_area').scroll_to :bottom
   end
 
-  def create_tag_form(identifier, label)
-    # click_navbar_dashboard
-    click_navbar_forms
-    expect(page).to have_content 'Index: Forms'
-    click_link 'New'
-    fill_in 'form_identifier', with: "#{identifier}"
-    fill_in 'form_label', with: "#{label}"
-    click_button 'Create'
-    expect(page).to have_content 'Form was successfully created.'
-  end
+  def create_tag(parent, label, description, success = true, error_msg = '')
+    tag_count = node_count
 
-  def create_tag_bc(identifier, label, template)
-    # click_navbar_dashboard
-    click_navbar_bc
-    wait_for_ajax
-    expect(page).to have_content 'Index: Biomedical Concepts'
-    click_link 'New'
-    fill_in "biomedical_concept_identifier", with: "#{identifier}"
-    fill_in "biomedical_concept_label", with: "#{label}"
-    ui_table_row_click("ims_list_table", "#{template}")
-    ui_click_by_id("ims_add_button")
-    click_button 'Create'
-    expect(page).to have_content 'Biomedical Concept was successfully created.'
-  end
+    find_node(parent).click if !find_node(parent)[:class].include? 'selected'
+    click_action :add_child
 
-  def create_tag_term(identifier, label)
-      # click_navbar_dashboard
-      click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: "#{identifier}"
-      fill_in 'thesauri_label', with: "#{label}"
-      click_button 'Submit'
-      expect(page).to have_content 'Terminology was successfully created.'
+    ui_in_modal do
+      within( find('#generic-editor') ) do
+        fill_in 'label', with: label
+        fill_in 'description', with: description
+
+        click_on 'Submit'
+      end
     end
+    wait_for_ajax 10
 
-  def add_tags_term(identifier, tag)
-    # click_navbar_dashboard
-    click_navbar_terminology
-    expect(page).to have_content 'Index: Terminology'
-    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
-    expect(page).to have_content 'Version history'
-    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Update Tags').click
-    expect(page).to have_content 'Edit Tags:'
-    ui_click_node_name("#{tag}") #{tag}"
-    ui_click_by_id('tag_add')
+    if success == true
+      check_alert 'Tag created successfully'
+      expect( node_count ).to eq( tag_count + 1 )
+    else
+      expect(page).to have_content error_msg
+      click_on 'Close'
+    end
+  end
+
+  def delete_tag(tag, success = true, error_msg = '')
+    tag_count = node_count
+
+    find_node(tag).click if !find_node(tag)[:class].include? 'selected'
+    click_action :remove
+    ui_confirmation_dialog true
+    wait_for_ajax 20
+
+    if success == true
+      check_alert 'Tag deleted successfully'
+      expect( node_count ).to eq( tag_count - 1 )
+    else
+      check_alert error_msg
+    end
+  end
+
+  # Edit Tags of an Item
+
+  def edit_tags(identifier)
+    context_menu_element_header(:edit_tags)
+    wait_for_ajax 20
+
+    expect(page).to have_content identifier if !identifier.empty?
+    expect(page).to have_content 'Edit Item Tags'
+    find('#main_area').scroll_to :bottom
+  end
+
+  def check_tags(tags)
+    page.all('#tags .tag').each { |tag| expect(tags.include? tag) }
+    expect(count_tags).to eq tags.count
+  end
+
+  def count_tags
+    page.all('#tags .tag').count
+  end
+
+  def attach_tag(tag)
+    tag_count = count_tags
+
+    fill_in 'd3-search', with: tag
+    ui_press_key :enter
+    find('#d3-clear-search').click
+
+    click_on '+ Attach Tag'
+    wait_for_ajax 10
+    expect( count_tags ).to eq tag_count + 1
+  end
+
+  def detach_tag(tag)
+    tag_count = count_tags
+
+    find('#tags .tag', text: tag).click
+    wait_for_ajax 10
+
+    expect( count_tags ).to eq tag_count - 1
   end
 
 end

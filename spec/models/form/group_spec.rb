@@ -72,7 +72,7 @@ describe Form::Group do
       group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1"))
       parent = Form.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F"))
       expect(parent.has_group.count).to eq(1)
-      result = group.delete(parent)
+      result = group.delete(parent, parent)
       parent = Form.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F"))
       expect(parent.has_group.count).to eq(0)
       expect{Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test_2/V1#F_NG1 in Form::Group::Normal.")
@@ -83,7 +83,7 @@ describe Form::Group do
       group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG3"))
       parent = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F"))
       check_file_actual_expected(parent.to_h, sub_dir, "delete_expected_2a.yaml", equate_method: :hash_equal)
-      result = group.delete(parent)
+      result = group.delete(parent, parent)
       check_file_actual_expected(result, sub_dir, "delete_expected_2b.yaml", equate_method: :hash_equal)
     end
 
@@ -96,13 +96,13 @@ describe Form::Group do
       normal_1 = Form::Group::Normal.find_full(normal_1.uri)
       check_file_actual_expected(normal_1.to_h, sub_dir, "delete_normal_group_expected_1a.yaml", equate_method: :hash_equal)
       group = Form::Group::Normal.find(Uri.new(uri: "http://www.example.com/A#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
-      result = group.delete(normal_1)
+      result = group.delete(normal_1, normal_1)
       normal_1 = Form::Group::Normal.find_full(normal_1.uri)
       expect{Form::Group::Normal.find(Uri.new(uri: "http://www.example.com/A#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.example.com/A#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238 in Form::Group::Normal.")
       check_file_actual_expected(result, sub_dir, "delete_normal_group_expected_1b.yaml", equate_method: :hash_equal)
     end
 
-    it "deletes Normal group III" do
+    it "deletes Normal group IV" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal_2 = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#NG2"), note: "OK", ordinal: 1, completion: "None")
       expect(normal_2.errors.count).to eq(0)
@@ -112,12 +112,12 @@ describe Form::Group do
       normal_2 = Form::Group::Normal.find_full(normal_2.uri)
       check_file_actual_expected(normal_2.to_h, sub_dir, "delete_normal_group_expected_2a.yaml", equate_method: :hash_equal)
       group = Form::Group::Normal.find(Uri.new(uri: "http://www.example.com/A#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
-      result = group.delete(normal_2)
+      result = group.delete(normal_2, normal_2)
       normal_2 = Form::Group::Normal.find_full(normal_2.uri)
       expect{Form::Group::Normal.find(Uri.new(uri: "http://www.example.com/A#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.example.com/A#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238 in Form::Group::Normal.")
       check_file_actual_expected(result, sub_dir, "delete_normal_group_expected_2b.yaml", equate_method: :hash_equal)
       common_group = Form::Group::Common.find(Uri.new(uri: "http://www.example.com/A#NG2_CG"))
-      result = common_group.delete(normal_2)
+      result = common_group.delete(normal_2, normal_2)
       check_file_actual_expected(result, sub_dir, "delete_normal_group_expected_3b.yaml", equate_method: :hash_equal)
     end
 
@@ -147,7 +147,7 @@ describe Form::Group do
       normal_1 = Form::Group::Normal.find_full(normal_1.uri)
       check_file_actual_expected(normal_1.to_h, sub_dir, "delete_bc_group_expected_1a.yaml", equate_method: :hash_equal)
       group = Form::Group::Bc.find(Uri.new(uri: "http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
-      result = group.delete(normal_1)
+      result = group.delete(normal_1, normal_1)
       normal_1 = Form::Group::Normal.find_full(normal_1.uri)
       expect{Form::Group::Bc.find(Uri.new(uri: "http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238 in Form::Group::Bc.")
       expect{Form::Item::Common.find(Uri.new(uri: "http://www.example.com/A#CI_f9fe7128-4b63-482d-9a11-62250e24fe0c"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.example.com/A#CI_f9fe7128-4b63-482d-9a11-62250e24fe0c in Form::Item::Common.")
@@ -170,7 +170,7 @@ describe Form::Group do
       check_file_actual_expected(normal_1.to_h, sub_dir, "delete_bc_group_expected_2a.yaml", equate_method: :hash_equal)
       common_item = Form::Item::Common.find(Uri.new(uri: "http://www.example.com/A#CI_9512d1d4-7f6c-4b3c-a330-ff3081f8de24"))
       group = Form::Group::Bc.find(Uri.new(uri: "http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
-      result = group.delete(normal_1)
+      result = group.delete(normal_1, normal_1)
       expect{Form::Group::Bc.find(Uri.new(uri: "http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238 in Form::Group::Bc.")
       common_item = Form::Item::Common.find(Uri.new(uri: "http://www.example.com/A#CI_9512d1d4-7f6c-4b3c-a330-ff3081f8de24"))
       check_file_actual_expected(result, sub_dir, "delete_bc_group_expected_2b.yaml", equate_method: :hash_equal)

@@ -18,24 +18,28 @@
                            'thesauri/release_select', 'shared/timer', 'unload' %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @thesaurus, :badge => "icon-terminology"} do %>
-    <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
-        icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @thesaurus, badge: "icon-terminology" } do %>
 
-      <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
-        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @edit_tags_path, id: "edit-tags-button",
-          icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: @edit_tags_path.empty?, target: "_blank" } %>
-        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
-          icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: false } %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+      <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
+
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+          icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty?, new_tab: true } %>
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-notes-modal", id: "change-notes-button",
+          icon: "icon-note", text: "Change notes", toggle: "modal" } %>
+
         <% if !@ref_thesaurus.nil? && !@base_cdisc_th.nil? %>
-          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: upgrade_thesauri_path(@thesaurus), id: "upgrade",
-            icon: "icon-upgrade", text: "Upgrade Code Lists", dt_toggle: "", disabled: false } %>
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: upgrade_thesauri_path(@thesaurus), id: "upgrade",
+            icon: "icon-upgrade", text: "Upgrade Code Lists" } %>
         <% end %>
+
       <% end %>
+
     </div>
+    
   <% end %>
 
   <%= render partial: "shared/iso_managed/managed_item_version_picker", :locals => {type: :code_lists, history_url: history_thesauri_managed_concepts_path(managed_concept: {identifier: "miHistoryId", scope_id: "miScopeId"}) } %>

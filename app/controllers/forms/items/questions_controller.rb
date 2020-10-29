@@ -13,7 +13,7 @@ class Forms::Items::QuestionsController < ManagedItemsController
     form = Form.find_full(update_params[:form_id])
     return true unless check_lock_for_item(form)
     question = Form::Item::Question.find(protect_from_bad_id(params))
-    question = question.update(update_params)
+    question = question.update_with_clone(update_params, form)
     if question.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: question.to_h}, :status => 200
@@ -26,7 +26,7 @@ class Forms::Items::QuestionsController < ManagedItemsController
     form = Form.find_minimum(add_child_params[:form_id])
     return true unless check_lock_for_item(form)
     question = Form::Item::Question.find(protect_from_bad_id(params))
-    new_child = question.add_child(add_child_params)
+    new_child = question.add_child_with_clone(add_child_params, form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
     render :json => {data: new_child}, :status => 200
@@ -37,7 +37,7 @@ class Forms::Items::QuestionsController < ManagedItemsController
     return true unless check_lock_for_item(form)
     question = Form::Item::Question.find(protect_from_bad_id(params))
     parent = IsoConceptV2.find(the_params[:parent_id])
-    result = parent.move_up(question)    
+    result = parent.move_up_with_clone(question, form)    
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -51,7 +51,7 @@ class Forms::Items::QuestionsController < ManagedItemsController
     return true unless check_lock_for_item(form)
     question = Form::Item::Question.find(protect_from_bad_id(params))
     parent = IsoConceptV2.find(the_params[:parent_id])
-    result = parent.move_down(question)    
+    result = parent.move_down_with_clone(question, form)    
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -65,7 +65,7 @@ class Forms::Items::QuestionsController < ManagedItemsController
     parent = Form::Group.find(the_params[:parent_id])
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
-    result = question.delete(parent)
+    result = question.delete(parent, form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, item #{question.label} deleted.") if @lock.token.refresh == 1
     render json: {data: result }, status: 200

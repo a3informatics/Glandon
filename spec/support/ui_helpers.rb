@@ -3,6 +3,11 @@ module UiHelpers
   # General UI helpers
   # ==================
 
+  def ui_refresh_page(ajax_wait = false)
+    page.driver.browser.navigate.refresh
+    wait_for_ajax 20 if ajax_wait == true
+  end
+
   def ui_check_page_has(text)
   	expect(page).to have_content(text)
   end
@@ -321,18 +326,10 @@ module UiHelpers
 		result
 	end
 
-  def ui_show_more_tags_th
-    find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
-  end
-
-  def ui_show_more_tags_cl
-    #find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
-    find(:xpath, '//*[@id="imh_header"]/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
-		sleep 0.5
-  end
-
-  def ui_show_more_tags_cli
-    find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]", :text => 'Show more').click
+  def ui_header_show_more_tags
+    sleep 0.3
+    find( '.h-outside-wrap .expandable-content-btn', text: 'Show more' ).click
+		sleep 0.3
   end
 
   # Breadcrumb

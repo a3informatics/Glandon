@@ -50,15 +50,6 @@ class Form::Group::Normal < Form::Group
     elsif self.repeating && self.is_bc_only_group?
       html += repeating_bc_group
     else
-      # self.has_common.sort_by {|x| x.ordinal}.each do |cm|
-      #   html += cm.to_crf
-      # end 
-      # self.has_item.sort_by {|x| x.ordinal}.each do |item|
-      #   html += item.to_crf
-      # end
-      # self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-      #   html += sg.to_crf
-      # end
       self.has_common.sort_by {|x| x.ordinal}.each do |cm|
         html += cm.to_crf
       end
@@ -67,6 +58,36 @@ class Form::Group::Normal < Form::Group
       end
     end
     return html
+  end
+
+  def add_child_with_clone(params, managed_ancestor)
+    if multiple_managed_ancestors?
+      new_normal = clone_nodes_and_get_new_normal(managed_ancestor)
+      new_normal.add_child(params)
+    else
+      add_child(params)
+    end
+  end
+
+  def clone_nodes_and_get_new_normal(managed_ancestor)
+    result = nil
+    tx = transaction_begin
+    uris = managed_ancestor_path_uris(managed_ancestor)
+    prev_object = managed_ancestor
+    prev_object.transaction_set(tx)
+    uris.each do |old_uri|
+      old_object = self.class.klass_for(old_uri).find_children(old_uri)
+      if old_object.multiple_managed_ancestors?
+        cloned_object = clone_and_save(old_object, prev_object, tx)
+        result = cloned_object if self.uri == old_object.uri
+        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+        prev_object = cloned_object
+      else
+        prev_object = old_object
+      end
+    end
+    transaction_execute
+    result
   end
 
   # Add Child.
@@ -98,10 +119,6 @@ class Form::Group::Normal < Form::Group
     set = self.has_sub_group_objects + self.has_item_objects
     set.sort_by {|x| x.ordinal}
   end
-
-  # def items_classes
-  #   items_classes = [Form::Item::Question, Form::Item::Placeholder, Form::Item::Mapping, Form::Item::TextLabel]
-  # end
 
   # Is a Question only group
   def is_question_only_group?
@@ -268,10 +285,32 @@ class Form::Group::Normal < Form::Group
     return "</tr>"
   end
 
-  def delete(parent)
-    super(parent)
+  def delete(parent, managed_ancestor)
+    parent = super(parent, managed_ancestor)
     parent = Form.find_full(parent.uri)
     parent = parent.full_data
+  end
+
+  # Clone the item and create. Use Sparql approach in case of children also need creating
+  #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
+  #   The Children are normally references. Also note the setting of the transaction in the cloned object and
+  #   in the sparql generation, important both are done.
+  def clone_children_and_save(tx, uri = nil)
+    sparql = Sparql::Update.new(tx)
+    new_object = nil
+    set = self.has_sub_group + self.has_item + self.has_common
+    set.each do |child|
+      object = child.clone
+      object.transaction_set(tx)
+      object.generate_uri(self.uri) 
+      object.to_sparql(sparql, true)
+      self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
+      unless uri.nil? 
+        new_object = object if child.uri == uri 
+      end 
+    end
+    sparql.create
+    new_object
   end
 
   # Full parent

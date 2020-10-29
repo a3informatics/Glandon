@@ -87,7 +87,7 @@ class IsoConceptV2
       objects = []
       parts = managed_ancestor_path_query(managed_ancestor)
       query_string = %Q{
-        SELECT ?s WHERE {
+        SELECT DISTINCT ?s WHERE {
           {#{parts.join("} UNION {")}}
         } ORDER BY ?index
       }
@@ -114,7 +114,7 @@ class IsoConceptV2
           if old_object.multiple_managed_ancestors?
             cloned_object = clone_update_and_save(old_object, params, prev_object, tx)
             result = cloned_object if self.uri == old_object.uri
-            prev_object.replace_link(cloned_object.class.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+            prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
             prev_object = cloned_object
           else
             prev_object = old_object
@@ -166,6 +166,20 @@ class IsoConceptV2
       object.transaction_set(tx)
       object.generate_uri(parent.uri) 
       object.update(params) if self.uri == child.uri
+      sparql = Sparql::Update.new(tx)
+      object.to_sparql(sparql, true)
+      sparql.create
+      object
+    end
+
+    # Clone the item and create. Use Sparql approach in case of children also need creating
+    #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
+    #   The Children are normally references. Also note the setting of the transaction in the cloned object and
+    #   in the sparql generation, important both are done.
+    def clone_and_save(child, parent, tx)
+      object = child.clone
+      object.transaction_set(tx)
+      object.generate_uri(parent.uri) 
       sparql = Sparql::Update.new(tx)
       object.to_sparql(sparql, true)
       sparql.create

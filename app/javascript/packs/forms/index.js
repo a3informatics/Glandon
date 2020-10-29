@@ -1,4 +1,4 @@
-import IndexPanel from 'shared/iso_managed/index_panel'
+import IndexPanel from 'shared/custom/iso_managed/index_panel'
 import CreateItemView from 'shared/base/create_item_view'
 import { expandColumn } from 'shared/helpers/dt/utils'
 

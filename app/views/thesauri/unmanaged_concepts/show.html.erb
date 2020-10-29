@@ -12,22 +12,27 @@
     thesauri_managed_concept_path({id: @parent, managed_concept: {context_id: @context_id}}), "Show") %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_unmanaged_item", :locals => {:item => @tc, :context => @ct, :badge => "CI"} do %>
-    <div class="actions-wrap">
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+  <%= render layout: "shared/headers/header_unmanaged_item", :locals => { item: @tc, context: @ct, badge: "CI" } do %>
 
-    <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
-      <% if policy(Thesaurus).edit? %>
-        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @edit_tags_path, id: "edit-tags-button",
-          icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: @edit_tags_path.empty? } %>
-        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
-          icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: !item_editable } %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+      <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
+
+        <% if policy(Thesaurus).edit? %>
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+            icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty? } %>
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-notes-modal", id: "change-notes-button",
+            icon: "icon-note", text: "Change notes", toggle: "modal", disabled: !item_editable } %>
+        <% end %>
+
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-instructions-modal", id: "ci-modal-button",
+          icon: "icon-instruction", text: "Change instructions", toggle: "modal" } %>
+
       <% end %>
-      <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-instructions-modal", id: "ci-modal-button",
-        icon: "icon-instruction", text: "Change instructions", dt_toggle: "modal", disabled: false } %>
-    <% end %>
+
     </div>
+
   <% end %>
 </div>
 
@@ -43,6 +48,6 @@
 <% end %>
 
 <div class="row">
-  <%= render partial: "shared/thesauri/links_panel", locals: {panelId: "pts-panel"} %>
-  <%= render partial: "shared/thesauri/links_panel", locals: {panelId: "synonyms-panel"} %>
+  <%= render partial: "shared/thesauri/links_panel", locals: { panelId: "pts-panel" } %>
+  <%= render partial: "shared/thesauri/links_panel", locals: { panelId: "synonyms-panel" } %>
 </div>

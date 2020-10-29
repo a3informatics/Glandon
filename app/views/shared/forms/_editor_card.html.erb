@@ -1,0 +1,27 @@
+<%= javascript_tag "let editorFormId = '#{form.id}',
+                        editorDataUrl = '#{edit_form_path(form)}',
+                        editorRefDataUrl = '#{referenced_items_form_path(form)}';"%>
+
+<div class="col-md-12 card">
+
+  <div class="card-header">
+    Form Editor
+    <span id="editor-help-btn" class="icon-help text-white text-xtiny clickable ttip" style="margin-left: 10px">
+      <span class="ttip-text shadow-small text-medium"> Editor Help </span>
+    </span>
+  </div>
+
+  <div class="card-content">
+
+    <div id="form-editor" style="min-height: 400px">
+
+      <%= render partial: "shared/d3/tree_graph" %>
+
+    </div>
+
+  </div>
+</div>
+
+<%= render partial: "shared/modals/generic_editor_modal", locals: { title: "Edit Node" } %>
+<%= render partial: "shared/items_picker/items_picker", locals: { id: "node-add-child" } %>
+<%= render partial: "shared/help_dialogs/form_editor_help" %>

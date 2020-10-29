@@ -1,5 +1,5 @@
-import IndexPanel from 'shared/iso_managed/index_panel'
-import CreateBCView from 'shared/biomedical_concept_instances/bc_create'
+import IndexPanel from 'shared/custom/iso_managed/index_panel'
+import CreateBCView from 'shared/custom/biomedical_concept_instances/bc_create'
 
 $(document).ready( () => {
 

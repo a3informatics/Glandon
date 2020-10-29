@@ -4,20 +4,25 @@
 <%= javascript_tag "var url_path = '#{children_with_indicators_thesauri_path(@ct)}';" %>
 <% third_level_breadcrumb(:thesauri, @ct, @close_path) %>
 <div class="row">
-  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @ct, :badge => "icon-terminology"} do %>
-    <div class="actions-wrap">
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @ct, badge: "icon-terminology" } do %>
 
-    <% if policy(Thesaurus).edit? %>
-      <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
-        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @edit_tags_path, id: "edit-tags-button",
-          icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: @edit_tags_path.empty? } %>
-        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
-          icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: !@ct.supporting_edit? } %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+      <% if policy(Thesaurus).edit? %>
+
+        <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
+
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+            icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty? } %>
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-notes-modal", id: "change-notes-button",
+            icon: "icon-note", text: "Change notes", toggle: "modal", disabled: !@ct.supporting_edit? } %>
+
+        <% end %>
+
       <% end %>
-    <% end %>
     </div>
+
   <% end %>
 
   <% if policy(Thesaurus).edit? && @ct.supporting_edit? %>

@@ -10,6 +10,7 @@ describe "Thesaurus", :type => :feature do
   include DownloadHelpers
   include SparqlHelpers
   include NameValueHelpers
+  include TagHelpers
   include EditorHelpers
 
   def sub_dir
@@ -445,9 +446,8 @@ describe "Thesaurus", :type => :feature do
       w = window_opened_by { edit_tags_cell.click }
       within_window w do
         wait_for_ajax 10
-        expect(page).to have_content "Attach / Detach Tags"
-        ui_click_node_name "SDTM"
-        click_button "Add Tag"
+        expect(page).to have_content "Edit Item Tags"
+        attach_tag('SDTM')
         wait_for_ajax 10
       end
 
@@ -516,7 +516,7 @@ describe "Thesaurus", :type => :feature do
       within_window w do
         wait_for_ajax(10)
         expect(page).to have_content cl_identifier
-        expect(page).to have_content "Attach / Detach Tags"
+        expect(page).to have_content "Edit Item Tags"
       end
       w.close
     end

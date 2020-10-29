@@ -53,7 +53,7 @@ describe "Thesauri Release Select", :type => :feature do
       within_window w do
         wait_for_ajax(10)
         expect(page).to have_content "TST"
-        expect(page).to have_content "Attach / Detach Tags"
+        expect(page).to have_content "Edit Item Tags"
       end
       w.close
     end

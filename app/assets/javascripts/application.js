@@ -190,11 +190,6 @@ function dismissAlerts(){
   alerts.innerHTML = "";
 }
 
-function notImplementedYet() {
-  var html = alertWarning("Function not implemented yet.");
-  displayAlerts(html);
-}
-
 function displayWarning(text) {
   var html = alertWarning(text);
   displayAlerts(html);
@@ -307,25 +302,6 @@ function pad(n, width, z) {
   z = z || '0';
   n = n + '';
   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-}
-
-/*
-* Improved Path function for Strong parameters
-*/
-function getPathStrongV2(rdfType, id, namespace) {
-  if (rdfType == C_FORM) {
-    return "/forms/" + id;
-  } else if (rdfType == C_BC) {
-    return "/biomedical_concepts/" + id;
-  } else if (rdfType == C_BCT) {
-    return "/biomedical_concept_templates/" + id;
-  } else if (rdfType == C_USERDOMAIN) {
-    return "/sdtm_user_domains/" + id;
-  } else if (rdfType == C_TH) {
-    return "/thesauri/" + id;
-  } else {
-    return ""
-  }
 }
 
 /*

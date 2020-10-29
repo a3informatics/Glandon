@@ -12,6 +12,24 @@ class Form::Item::BcProperty < Form::Item
   object_property :has_property, cardinality: :one, model_class: "OperationalReferenceV3"
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
 
+  # Managed Ancestors Path. Returns the path from the managed ancestor to this class
+  #
+  # @return [String] the path as an expanded set of predicates
+  def self.managed_ancestors_path
+    [
+      "<http://www.assero.co.uk/BusinessForm#hasGroup>",
+      "<http://www.assero.co.uk/BusinessForm#hasSubGroup>*",
+      "<http://www.assero.co.uk/BusinessForm#hasItem>"
+    ]
+  end
+
+  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  #
+  # @return [Symbol] the predicate property as a symbol
+  def managed_ancestors_predicate
+    :has_item
+  end
+
   # Get Item
   #
   # @return [Array] An array of Bc Property Item with CLI and CL references.
@@ -47,6 +65,16 @@ class Form::Item::BcProperty < Form::Item
     self.has_coded_value_objects.sort_by {|x| x.ordinal}
   end
 
+  def make_common_with_clone(managed_ancestor)
+    if multiple_managed_ancestors?
+      new_bc_property = clone_nodes_and_children(self, managed_ancestor)
+      new_bc_property.second.make_common
+    else
+      make_common
+    end
+
+  end
+
   def make_common
     unless get_common_group.empty? #Check if there is a common group
       common_group = Form::Group::Common.find(get_common_group.first)
@@ -75,7 +103,33 @@ class Form::Item::BcProperty < Form::Item
     else
       self.errors.add(:base, "There is no Common group")
     end  
-    
+  end
+
+  def clone_nodes_and_children(child, managed_ancestor)
+    new_parent = nil
+    new_object = nil
+    new_normal_group = nil
+    tx = transaction_begin
+    uris = child.managed_ancestor_path_uris(managed_ancestor)
+    prev_object = managed_ancestor
+    prev_object.transaction_set(tx)
+    uris.each do |old_uri|
+      old_object = self.class.klass_for(old_uri).find_children(old_uri)
+      cloned_object = clone_and_save(old_object, prev_object, tx)
+       if child.uri == old_object.uri
+         new_parent = prev_object
+         new_object = new_parent.clone_children_and_save(tx, child.uri)
+         new_normal_group = new_normal_group.clone_children_and_save(tx) 
+       end
+      if old_object.class == Form::Group::Normal 
+        new_normal_group = cloned_object unless old_object.has_common.empty?
+      end
+      prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+      prev_object = cloned_object
+    end
+    transaction_execute
+    new_parent = Form::Item.find_full(new_parent.id)
+    return new_parent, new_object
   end
 
   def to_h
@@ -84,10 +138,15 @@ class Form::Item::BcProperty < Form::Item
     x
   end
 
-  def update(params)
-    ref = self.has_property_objects
-    ref.update(params)
-    super(params.except(:enabled, :optional))
+  def update_with_clone(params, managed_ancestor)
+    if multiple_managed_ancestors?
+      new_bc_property = clone_nodes(self.has_property_objects, managed_ancestor)
+      new_bc_property.first.has_property_objects.update(params)
+      new_bc_property.first.update(params.except(:enabled, :optional))
+    else
+      self.has_property_objects.update(params)
+      self.update(params.except(:enabled, :optional))
+    end
   end
   
   private
