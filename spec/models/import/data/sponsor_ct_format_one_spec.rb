@@ -44,6 +44,11 @@ describe "Import::SponsorTermFormatOne" do
       NameValue.create(name: "thesaurus_child_identifier", value: "#{child}")    
     end
       
+    def current_thesauri_identifiers
+      puts "Parent next value #{nv_predict_parent}"
+      puts "Child next value #{nv_predict_child}"
+    end
+
     before :all do
       select_installation(:thesauri, :sanofi)
     end
@@ -217,10 +222,11 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
+      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
         check_ttl_fix_v2(filename, "CT_V2-6.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
+        current_thesauri_identifiers
       end
      
       it "import 2.6 QC", :import_data => 'slow' do
@@ -267,6 +273,7 @@ describe "Import::SponsorTermFormatOne" do
         check_ttl_fix_v2(filename, "CT_V3-0.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
+        current_thesauri_identifiers
       end
 
       it "import 3.0 QC", :import_data => 'slow' do
@@ -315,6 +322,7 @@ describe "Import::SponsorTermFormatOne" do
         check_ttl_fix_v2(filename, "CT_V3-1.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
+        current_thesauri_identifiers
       end
 
       it "import 3.1 QC", :import_data => 'slow' do
@@ -325,7 +333,7 @@ describe "Import::SponsorTermFormatOne" do
         results = read_yaml_file(sub_dir, "import_results_expected_3-1.yaml")
         expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
         expect(count_cl(th)).to eq(results.count)
-        expect(count_cli(th)).to eq(31930)
+        expect(count_cli(th)).to eq(32802)
         expect(count_distinct_cli(th)).to eq(29514)
         results.each do |x|
           check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
@@ -381,11 +389,9 @@ describe "Import::SponsorTermFormatOne" do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_cdisc_term_versions(1..62)
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6_migrated.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0_migrated.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/ranks_V2-6.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/ranks_V3-0.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/rank_extensions_V2-6.ttl")
+      load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
+      load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
+      load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
       delete_all_public_test_files
     end
 
@@ -393,12 +399,32 @@ describe "Import::SponsorTermFormatOne" do
       delete_all_public_test_files
     end
 
-    it "QC check IV, new load files" do
+    def check_cls(code_lists, uri)
+      puts colourize("\n\nCT: #{uri}\n", "blue")
+      results = []
+      ct = Thesaurus.find_minimum(uri)
+      code_lists.each do |identifier|
+        cls = ct.find_by_identifiers([identifier])
+        cl = Thesaurus::ManagedConcept.find_minimum(cls[identifier])
+        results << cl.uri if cl.owned? 
+        puts colourize("CL: #{cl.uri}", cl.owned? ? "blue" : "red")
+      end
+      results
+    end
+
+    it "counts and ranks" do
       uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
       uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
-      {"2-6" => {uri: uri_26, count: 334824}, "3-0" => {uri: uri_30, count: 479363}}.each do |version, data|
+      uri_31 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH")
+      {"2-6" => {uri: uri_26, count: 334824}, "3-0" => {uri: uri_30, count: 479363}, "3-1" => {uri: uri_31, count: 479363}}.each do |version, data|
         triples = triple_store.subject_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
+      end
+      {"rank_V2-6.yaml" => uri_26, "rank_V3-0.yaml" => uri_30, "rank_V3-1.yaml" => uri_31}.each do |file, uri|
+        config = read_yaml_file(sub_dir, file)
+        code_lists = config[:codelists].map{|x| x[:codelist_code]}
+        results[uri.to_s] = check_cls(code_lists, uri).map{|x| x.to_s}
+        expect(code_lists.count).to eq(results[uri.to_s].count)
       end
     end
 
