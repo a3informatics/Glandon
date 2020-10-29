@@ -1,9 +1,9 @@
 <% content_for :page_title do %> <%= "Show: #{@tc.notation} (#{@tc.has_identifier.identifier})" %> <% end %>
 
-<%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/thesauri/managed_concepts/extension_create' %>
+<%= javascript_pack_tag 'thesauri/managed_concepts/show' %>
+<%= javascript_include_tag 'shared/thesauri/thesauri_select', 'shared/thesauri/managed_concepts/extension_create' %>
 
-<%= javascript_tag "var dataUrl = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}',
-                        tcId = '#{@tc.id}',
+<%= javascript_tag "let tcId = '#{@tc.id}',
                         contextId = '#{@context_id}',
                         isExtended = #{@is_extended},
                         isExtending = #{@is_extending},
@@ -71,7 +71,6 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12 card wide">
-    <%= render partial: "shared/iso_managed/children_panel", :locals => {:title => "Code Lists Items"} %>
-  </div>
+  <%= render partial: "shared/iso_managed/children/children_card", :locals => { title: "Code List Items",
+      url: show_data_thesauri_managed_concept_path(@tc, { managed_concept: { context_id: @context_id } }) } %>
 </div>

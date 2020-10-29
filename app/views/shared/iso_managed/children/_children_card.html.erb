@@ -6,7 +6,7 @@
 
     <div id="children-panel" class="table-cardstyle">
       <%= render layout: "shared/iso_managed/children/children_panel", locals: {
-          children_url: url, has_show_btn?: true, include_extensible?: include_extensible } do %>
+          children_url: url, has_show_btn?: true, include_extensible?: (local_assigns.fetch :include_extensible?, false) } do %>
 
         <%# Extra columns %>
         <%= yield %>

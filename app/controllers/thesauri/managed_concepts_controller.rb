@@ -237,7 +237,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     else
       params[:tags] = []
     end
-    children = tc.children_pagination(params)
+    children = tc.children_pagination(the_params)
     children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {parent_id: tc.id, context_id: context_id}})})}
     results = children.map{|x| x.reverse_merge!({delete_path: x[:delete] ? thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {parent_id: tc.id}}) : "" })}
     results = children.map{|x| x.reverse_merge!({single_parent: x[:single_parent]})}
