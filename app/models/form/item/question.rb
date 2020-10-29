@@ -43,14 +43,14 @@ class Form::Item::Question < Form::Item
 
   def add_child_with_clone(params, managed_ancestor)
     if multiple_managed_ancestors?
-      new_question = clone_nodes(managed_ancestor)
+      new_question = clone_nodes_and_get_new_question(managed_ancestor)
       new_question.add_child(params)
     else
       add_child(params)
     end
   end
 
-  def clone_nodes(managed_ancestor)
+  def clone_nodes_and_get_new_question(managed_ancestor)
     result = nil
     tx = transaction_begin
     uris = managed_ancestor_path_uris(managed_ancestor)
@@ -105,7 +105,7 @@ class Form::Item::Question < Form::Item
 
   def delete_reference(reference, managed_ancestor)
     if multiple_managed_ancestors?
-      parent = clone_nodes(reference,managed_ancestor)
+      parent = clone_nodes_and_get_new_parent(reference,managed_ancestor)
     else
       reference.delete_with_links
       self.reset_ordinals
@@ -117,7 +117,7 @@ class Form::Item::Question < Form::Item
     end
   end
 
-  def clone_nodes(child, managed_ancestor)
+  def clone_nodes_and_get_new_parent(child, managed_ancestor)
     new_parent = nil
     new_object = nil
     tx = transaction_begin

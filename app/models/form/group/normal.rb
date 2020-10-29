@@ -62,14 +62,14 @@ class Form::Group::Normal < Form::Group
 
   def add_child_with_clone(params, managed_ancestor)
     if multiple_managed_ancestors?
-      new_normal = clone_nodes(managed_ancestor)
+      new_normal = clone_nodes_and_get_new_normal(managed_ancestor)
       new_normal.add_child(params)
     else
       add_child(params)
     end
   end
 
-  def clone_nodes(managed_ancestor)
+  def clone_nodes_and_get_new_normal(managed_ancestor)
     result = nil
     tx = transaction_begin
     uris = managed_ancestor_path_uris(managed_ancestor)

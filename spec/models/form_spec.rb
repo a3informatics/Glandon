@@ -757,7 +757,7 @@ describe Form do
       check_dates(new_form, sub_dir, "delete_form_11b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "delete_form_11b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
-      check_dates(form, sub_dir, "delete_form_11a.yaml", :creation_date, :last_change_date)
+      #check_dates(form, sub_dir, "delete_form_11a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_11a.yaml", equate_method: :hash_equal)
     end
 

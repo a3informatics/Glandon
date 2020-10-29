@@ -47,7 +47,7 @@ class Form::Group < IsoConceptV2
   #
   # @param [Object] parent_object the parent object
   # @param [Object] managed_ancestor the managed ancestor object
-  # @return [Object] the parent object, either new or the cloned new object with updates
+  # @return [Object] the parent object, either new or the cloned new parent
   def delete(parent, managed_ancestor)
     if multiple_managed_ancestors?
       clone_and_unlink(managed_ancestor)
@@ -58,8 +58,8 @@ class Form::Group < IsoConceptV2
   end
 
   def clone_and_unlink(managed_ancestor)
-    tx = transaction_begin
     new_parent = nil
+    tx = transaction_begin
     uris = managed_ancestor_path_uris(managed_ancestor)
     prev_object = managed_ancestor
     prev_object.transaction_set(tx)

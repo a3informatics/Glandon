@@ -46,61 +46,30 @@ class Form::Group::Bc < Form::Group
     return html
   end
 
-  # Delete. Delete the object. Clone if there are multiple parents.
-  #
-  # @param [Object] parent_object the parent object
-  # @param [Object] managed_ancestor the managed ancestor object
-  # @return [Object] the parent object, either new or the cloned new object with updates
   def delete(parent, managed_ancestor)
-    if multiple_managed_ancestors?
-      clone_and_unlink(managed_ancestor)
-    else
-      delete_node(parent)
-    end
+    parent = super(parent, managed_ancestor)
+    parent = Form::Group::Normal.find_full(parent.uri)
+    parent = parent.full_data
   end
 
   def clone_and_unlink(managed_ancestor)
-    tx = transaction_begin
-    new_parent = nil
-    uris = managed_ancestor_path_uris(managed_ancestor)
-    prev_object = managed_ancestor
-    prev_object.transaction_set(tx)
-    uris.each do |old_uri|
-      old_object = self.class.klass_for(old_uri).find_children(old_uri)
-      cloned_object = clone_and_save(old_object, prev_object, tx)
-      if self.uri == old_object.uri
-        prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
-        new_parent = prev_object
-        new_parent.clone_children_and_save(tx)
-      else
-        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-      end
-      prev_object = cloned_object
-    end
-    transaction_execute
-    new_parent.reset_ordinals
+    new_parent = super
     new_parent = Form::Group.find_full(new_parent.id)
-    clone_and_unlink_common(new_parent)
+    clone_and_unlink_common(new_parent) unless new_parent.has_common.empty?
     new_parent = Form::Group.find_full(new_parent.id)
-    normal_group = Form::Group::Normal.find_full(new_parent.uri)
-    normal_group = normal_group.full_data
   end
 
   def clone_and_unlink_common(parent)
-    unless parent.has_common.empty? #Check if there is a common group
-      common_group = Form::Group::Common.find_children(parent.has_common_objects.first.uri)
-      ty = transaction_begin
-      common_group.clone_children_and_save(ty)
-      transaction_execute
-      common_group = Form::Group::Common.find_children(parent.has_common_objects.first.uri)
-      common_group.has_item_objects.each do |common_item|
-        self.has_item_objects.each do |bc_property|
-          if common_items_with_terminologies?(bc_property, common_item) || common_items_without_terminologies?(bc_property, common_item)
-            if common_item.has_common_item_objects.count == 1
-              common_group.delete_link(:has_item, common_item.uri)
-            end
-            common_item.delete_link(:has_common_item, bc_property.uri)
-          end
+    common_group = Form::Group::Common.find_children(parent.has_common_objects.first.uri)
+    ty = transaction_begin
+    common_group.clone_children_and_save(ty)
+    transaction_execute
+    common_group = Form::Group::Common.find_children(parent.has_common_objects.first.uri)
+    common_group.has_item_objects.each do |common_item|
+      self.has_item_objects.each do |bc_property|
+        if common_items_with_terminologies?(bc_property, common_item) || common_items_without_terminologies?(bc_property, common_item)
+          common_group.delete_link(:has_item, common_item.uri) if common_item.has_common_item_objects.count == 1
+          common_item.delete_link(:has_common_item, bc_property.uri)
         end
       end
     end 
@@ -114,9 +83,7 @@ class Form::Group::Bc < Form::Group
         self.has_item_objects.each do |bc_property|
           if common_items_with_terminologies?(bc_property, common_item) || common_items_without_terminologies?(bc_property, common_item)
             delete_data += "#{common_item.uri.to_ref} bf:hasCommonItem #{bc_property.uri.to_ref} . "  
-            if common_item.has_common_item_objects.count == 1
-              common_item.delete(common_group, common_group)
-            end
+            common_item.delete(common_group, common_group) if common_item.has_common_item_objects.count == 1
           end
         end
       end
@@ -141,8 +108,7 @@ class Form::Group::Bc < Form::Group
     }
     partial_update(update_query, [:bf])
     super(parent)
-    normal_group = Form::Group::Normal.find_full(parent.uri)
-    normal_group = normal_group.full_data
+    parent
   end
 
 

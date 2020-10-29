@@ -56,7 +56,6 @@ class Form::Item::Common < Form::Item::BcProperty
       parent = clone_and_unlink(managed_ancestor)
     else
       delete_node(parent)
-      parent
     end    
     common_group = Form::Group::Common.find(parent.uri)
     normal_group = Form::Group::Normal.find_full(common_group.get_normal_group)
