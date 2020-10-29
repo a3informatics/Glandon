@@ -107,7 +107,8 @@ describe Form::Item do
       form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F"))
       params = {registration_status: "Standard", previous_state: "Incomplete"}
       form.update_status(params)
-      #check_dates(form, sub_dir, "delete_item_expected_6a.yaml", :creation_date, :last_change_date)
+      form = Form.find_full(form.uri)
+      fix_dates(form, sub_dir, "delete_item_expected_6a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_item_expected_6a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
@@ -118,7 +119,7 @@ describe Form::Item do
       check_dates(new_form, sub_dir, "delete_item_expected_6b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "delete_item_expected_6b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
-      #check_dates(form, sub_dir, "delete_item_expected_6a.yaml", :creation_date, :last_change_date)
+      fix_dates(form, sub_dir, "delete_item_expected_6a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_item_expected_6a.yaml", equate_method: :hash_equal)
     end
 
@@ -269,7 +270,7 @@ describe Form::Item do
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
-    it "move up I, TUC Reference (Coded value)" do
+    it "move up I, TUC Reference (Coded value), clone" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
       form.add_child({type:"normal_group"})
@@ -299,7 +300,7 @@ describe Form::Item do
       check_file_actual_expected(form.to_h, sub_dir, "move_up_tuc_ref_1a.yaml", equate_method: :hash_equal)
     end
 
-    it "move down I, TUC Reference (Coded value)" do
+    it "move down I, TUC Reference (Coded value), clone" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
       form.add_child({type:"normal_group"})

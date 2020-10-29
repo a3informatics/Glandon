@@ -11,6 +11,26 @@ class Form::Item::Common < Form::Item::BcProperty
 
   object_property :has_common_item, cardinality: :many, model_class: "Form::Item::BcProperty"
 
+  # Managed Ancestors Path. Returns the path from the managed ancestor to this class
+  #
+  # @return [String] the path as an expanded set of predicates
+  def self.managed_ancestors_path
+    [
+      "<http://www.assero.co.uk/BusinessForm#hasGroup>",
+      "<http://www.assero.co.uk/BusinessForm#hasSubGroup>*",
+      "<http://www.assero.co.uk/BusinessForm#hasCommon>?",
+      "<http://www.assero.co.uk/BusinessForm#hasItem>",
+      "<http://www.assero.co.uk/BusinessForm#hasCommonItem>*"
+    ]
+  end
+
+  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  #
+  # @return [Symbol] the predicate property as a symbol
+  def managed_ancestors_predicate
+    :has_item
+  end
+
   # Get Item
   #
   # @return [Array] An array of Common Item
