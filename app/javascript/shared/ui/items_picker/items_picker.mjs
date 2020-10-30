@@ -320,6 +320,26 @@ export default class ItemsPicker extends ModalView {
   }
 
   /**
+   * Enable or disable the loading state of the Items Picker
+   * @param {boolean} enable Specifies the target loading state of the IP
+   */
+  _loading(enable) {
+
+    // Enable / Disable all panels
+    Object.values( this.selectors )
+          .forEach( tab => tab._toggleInteractivity( !enable ) );
+
+    // Enable / Disable buttons and tabs
+    this.modal.find('.btn, .tab-option')
+              .toggleClass( 'disabled', enable )
+
+              // Add loading state animation to the Submit button
+              .filter( '#items-picker-submit' )
+              .toggleClass( 'el-loading', enable );
+
+  }
+
+  /**
    * Map of item types (param names) and their rdf type map references supported available in Items Picker
    * Add more when needed
    * @return {Object} item types (param names) - rdf types map

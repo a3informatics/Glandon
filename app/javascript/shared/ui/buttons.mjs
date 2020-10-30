@@ -11,6 +11,7 @@ import { renderIcon } from 'shared/ui/icons'
  * @param {string} params.icon Button icon name (without 'icon-' prefix)
  * @param {string} params.color Button color css class, optional
  * @param {string} params.ttip Button tooltip text, optional
+ * @param {string} params.ttipClasses Tooltip CSS classes, optional
  * @param {boolean} params.disabled Button disabled state, optional
  * @return {string} formatted button HTML
  */
@@ -20,10 +21,11 @@ function iconBtn({
   icon,
   color = '',
   ttip,
+  ttipClasses = 'ttip-top',
   disabled = false
   }) {
   return `<a href='${url}' ${ id ? ` id='${ id }' ` : '' } class='btn icon-only ${ color } ${ disabled ? 'disabled' : '' } ${ ttip ? 'ttip' : '' }'>
-            ${ ttip ? `<span class='ttip-text ttip-top shadow-small text-medium text-small'>${ ttip }</span>` : ''}
+            ${ ttip ? `<span class='ttip-text ${ ttipClasses } shadow-small text-medium text-small'>${ ttip }</span>` : ''}
             ${ renderIcon({ iconName: icon }) }
          </a>`;
 
