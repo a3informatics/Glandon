@@ -497,7 +497,7 @@ module Import::STFOClasses
     end
 
     def rank_list_equal?(rank)
-      return false if not_ranked?(rank)
+      return false unless has_rank?(rank)
       other = rank.list_uris.map {|x| x[:uri].to_s}
       this = rank_list.map {|x| x.to_s}
       return other - this == [] && this - other == []
@@ -507,7 +507,7 @@ module Import::STFOClasses
 
   private
 
-    def not_ranked?(rank)
+    def has_rank?(rank)
       return true unless rank.nil?
       add_log("Previous version not ranked")
       false
