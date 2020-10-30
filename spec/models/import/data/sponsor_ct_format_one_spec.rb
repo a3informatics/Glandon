@@ -312,7 +312,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
         #expect(public_file_does_not_exist?("test", filename)).to eq(true)
         actual = read_public_yaml_file("test", filename)
-      copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-1.yaml")
+      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-1.yaml")
         check_file_actual_expected(actual, sub_dir, "import_errors_expected_3-1.yaml", equate_method: :hash_equal)
         #copy_file_from_public_files("test", filename, sub_dir)
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
