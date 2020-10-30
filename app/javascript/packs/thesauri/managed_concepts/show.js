@@ -1,7 +1,9 @@
 import ChildrenPanel from 'shared/custom/iso_managed/children_panel'
+import SubsetsManager from 'shared/custom/thesauri/managed_concepts/subsets/manager'
 
 $(document).ready( () => {
 
+  // Code List Children show panel
   let cp = new ChildrenPanel({
     url: childrenDataUrl,
     param: "managed_concept",
@@ -9,36 +11,41 @@ $(document).ready( () => {
     cache: false
   });
 
-  // // TODO: Needs redoing
-  // if ( canEdit ) {
-  //
-  //   let extensionCreate = new ExtensionCreate( isExtended, isExtending ),
-  //       thesauriSelect = new ThesauriSelect( tcId, extensionCreate.createExtensionCallback.bind(extensionCreate) ),
-  //       subsetsIndex = new IndexSubsets( tcId );
-  //
-  //   let startExtend = () => {
-  //
-  //     thesauriSelect.setCallback( extensionCreate.createExtensionCallback.bind(extensionCreate) );
-  //     thesauriSelect.resetUi();
-  //     $("#th-select-modal").modal("show");
-  //
-  //   };
-  //
-  //   $("#extend").click( () => {
-  //     if ( canExtendUnextensible && !canBeExtended )
-  //         new ConfirmationDialog(function(){ startExtend() },{subtitle: "Are you sure you want to extend an Non-Extensible code list?", dangerous: true}).show();
-  //     else
-  //       startExtend();
-  //   });
-  //
-  //   $("#new_subset").click( () => {
-  //
-  //     thesauriSelect.setCallback( subsetsIndex.createSubsetCallback.bind(subsetsIndex) );
-  //     thesauriSelect.resetUi();
-  //
-  //   });
-  //
-  // }
+  // Subsets Index and Create manager
+  let sm = new SubsetsManager({
+    conceptId,
+    userEditPolicy
+  });
 
+  /**
+   * Asynchronously load additional required for Edit actions
+   */
+  if ( userEditPolicy )
+    ( async () => {
+
+      // Import and init ItemsPicker for Thesaurus selection (create Subset, Extension actions)
+      let ItemsPicker = await import('shared/ui/items_picker/items_picker'),
+
+          thPicker = new ItemsPicker.default({
+            id: 'thesaurus',
+            multiple: false,
+            types: [ 'thesauri' ],
+            emptyEnabled: true
+          });
+
+      // Import and init ExtensionManager
+      let ExtensionManager = await import('shared/custom/thesauri/managed_concepts/extensions/manager'),
+
+          em = new ExtensionManager.default({
+            conceptId,
+            userEditPolicy,
+            options: JSON.parse( extendOpts ),
+          });
+
+      // Set ItemsPicker reference to Subset & Extension Managers
+      sm.thPicker = thPicker;
+      em.thPicker = thPicker;
+
+  }) ();
 
 });
