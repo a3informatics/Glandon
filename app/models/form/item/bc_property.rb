@@ -147,7 +147,7 @@ class Form::Item::BcProperty < Form::Item
 
   def update_with_clone(params, managed_ancestor)
     if multiple_managed_ancestors?
-      new_bc_property = clone_nodes(self.has_property_objects, managed_ancestor)
+      new_bc_property = replicate_with_clone(self.has_property_objects, managed_ancestor)
       new_bc_property.first.has_property_objects.update(params)
       new_bc_property.first.update(params.except(:enabled, :optional))
     else

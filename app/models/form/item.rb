@@ -43,7 +43,8 @@ class Form::Item < IsoConceptV2
   # @return [Object] the parent object, either new or the cloned new object with updates
   def delete(parent, managed_ancestor)
     if multiple_managed_ancestors?
-      parent = clone_and_unlink(managed_ancestor)
+      parent = delete_with_clone(managed_ancestor)
+      parent.reset_ordinals
     else
       delete_node(parent)
     end
@@ -51,60 +52,32 @@ class Form::Item < IsoConceptV2
     normal_group = normal_group.full_data
   end
 
-  def clone_and_unlink(managed_ancestor)
-    tx = transaction_begin
-    new_parent = nil
-    uris = managed_ancestor_path_uris(managed_ancestor)
-    prev_object = managed_ancestor
-    prev_object.transaction_set(tx)
-    uris.each do |old_uri|
-      old_object = self.class.klass_for(old_uri).find_children(old_uri)
-      cloned_object = clone_and_save(old_object, prev_object, tx)
-      if self.uri == old_object.uri  
-        prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
-        new_parent = prev_object
-        new_parent.clone_children_and_save_no_tx(tx)
-      else 
-        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-      end
-      prev_object = cloned_object
-    end
-    transaction_execute
-    new_parent.reset_ordinals
-    new_parent = Form::Group.find_full(new_parent.id)
-  end
-
-  def delete_node(parent)
-    update_query = %Q{
-      DELETE DATA
-      {
-        #{parent.uri.to_ref} bf:hasItem #{self.uri.to_ref} 
-      };
-      DELETE {?s ?p ?o} WHERE 
-      { 
-        { BIND (#{self.uri.to_ref} as ?s). 
-          ?s ?p ?o
-        }
-        UNION
-        { #{self.uri.to_ref} bf:hasCodedValue ?o1 . 
-          BIND (?o1 as ?s) . 
-          ?s ?p ?o .
-        }
-        UNION
-        { #{self.uri.to_ref} bf:hasProperty ?o2 . 
-          BIND (?o2 as ?s) . 
-          ?s ?p ?o .
-        }
-      }
-    }
-    partial_update(update_query, [:bf])
-    parent.reset_ordinals
-    1
-  end
+  # def clone_and_unlink(managed_ancestor)
+  #   tx = transaction_begin
+  #   new_parent = nil
+  #   uris = managed_ancestor_path_uris(managed_ancestor)
+  #   prev_object = managed_ancestor
+  #   prev_object.transaction_set(tx)
+  #   uris.each do |old_uri|
+  #     old_object = self.class.klass_for(old_uri).find_children(old_uri)
+  #     cloned_object = clone_and_save(old_object, prev_object, tx)
+  #     if self.uri == old_object.uri  
+  #       prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
+  #       new_parent = prev_object
+  #       new_parent.clone_children_and_save_no_tx(tx)
+  #     else 
+  #       prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+  #     end
+  #     prev_object = cloned_object
+  #   end
+  #   transaction_execute
+  #   new_parent.reset_ordinals
+  #   new_parent = Form::Group.find_full(new_parent.id)
+  # end
 
   def move_up_with_clone(child, managed_ancestor)
     if multiple_managed_ancestors?
-      parent_and_child = clone_nodes(child, managed_ancestor)
+      parent_and_child = replicate_with_clone(child, managed_ancestor)
       parent_and_child.first.move_up(parent_and_child.second)
     else
       move_up(child)
@@ -113,38 +86,38 @@ class Form::Item < IsoConceptV2
 
   def move_down_with_clone(child, managed_ancestor)
     if multiple_managed_ancestors?
-      parent_and_child = clone_nodes(child, managed_ancestor)
+      parent_and_child = replicate_with_clone(child, managed_ancestor)
       parent_and_child.first.move_down(parent_and_child.second)
     else
       move_down(child)
     end
   end
 
-  def clone_nodes(child, managed_ancestor)
-    new_parent = nil
-    new_object = nil
-    tx = transaction_begin
-    uris = child.managed_ancestor_path_uris(managed_ancestor)
-    prev_object = managed_ancestor
-    prev_object.transaction_set(tx)
-    uris.each do |old_uri|
-      old_object = self.class.klass_for(old_uri).find_children(old_uri)
-      if old_object.multiple_managed_ancestors?
-        cloned_object = clone_and_save(old_object, prev_object, tx)
-        if child.uri == old_object.uri
-          new_parent = prev_object
-          new_object = new_parent.clone_children_and_save_no_tx(tx, child.uri) 
-        end
-        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-        prev_object = cloned_object
-      else
-        prev_object = old_object
-      end
-    end
-    transaction_execute
-    new_parent = Form::Item.find_full(new_parent.id)
-    return new_parent, new_object
-  end
+  # def clone_nodes(child, managed_ancestor)
+  #   new_parent = nil
+  #   new_object = nil
+  #   tx = transaction_begin
+  #   uris = child.managed_ancestor_path_uris(managed_ancestor)
+  #   prev_object = managed_ancestor
+  #   prev_object.transaction_set(tx)
+  #   uris.each do |old_uri|
+  #     old_object = self.class.klass_for(old_uri).find_children(old_uri)
+  #     if old_object.multiple_managed_ancestors?
+  #       cloned_object = clone_and_save(old_object, prev_object, tx)
+  #       if child.uri == old_object.uri
+  #         new_parent = prev_object
+  #         new_object = new_parent.clone_children_and_save_no_tx(tx, child.uri) 
+  #       end
+  #       prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+  #       prev_object = cloned_object
+  #     else
+  #       prev_object = old_object
+  #     end
+  #   end
+  #   transaction_execute
+  #   new_parent = Form::Item.find_full(new_parent.id)
+  #   return new_parent, new_object
+  # end
 
   # # Clone the children and create.
   # #   The Children are normally references. Also note the setting of the transaction in the cloned object and
@@ -314,6 +287,37 @@ class Form::Item < IsoConceptV2
     query_results = Sparql::Query.new.query(query_string, "", [:bo])
     return 1 if query_results.empty?
     query_results.by_object(:max).first.to_i + 1
+  end
+
+private
+
+  # Delete the node
+  def delete_node(parent)
+    update_query = %Q{
+      DELETE DATA
+      {
+        #{parent.uri.to_ref} bf:hasItem #{self.uri.to_ref} 
+      };
+      DELETE {?s ?p ?o} WHERE 
+      { 
+        { BIND (#{self.uri.to_ref} as ?s). 
+          ?s ?p ?o
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasCodedValue ?o1 . 
+          BIND (?o1 as ?s) . 
+          ?s ?p ?o .
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasProperty ?o2 . 
+          BIND (?o2 as ?s) . 
+          ?s ?p ?o .
+        }
+      }
+    }
+    partial_update(update_query, [:bf])
+    parent.reset_ordinals
+    1
   end
 
 end

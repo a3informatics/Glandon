@@ -140,10 +140,10 @@ class IsoConceptV2
       end
     end
 
-    # Clone Children And Save. Clone all the children and save. Return the URI of referenced item
+    # Clone Children And Save No Tx. Clone all the children and save. Return the URI of referenced item
     #
     # @param [Transaction] tx the current transaction
-    # @uri [Uri] uri the uri for which the new uri is to be returned, defulat to nil
+    # @param [Uri] uri the uri for which the new uri is to be returned, defulat to nil
     # @return [Object] the new object if uri not nil, otherwise nil
     def clone_children_and_save_no_tx(tx, uri=nil)
       sparql = Sparql::Update.new(tx)
@@ -161,7 +161,64 @@ class IsoConceptV2
       sparql.create
       new_object
     end
-    
+
+    # Replicate With Clone. Clone all the ancestor chain.
+    #
+    # @param [Object] child the target object
+    # @param [Object] managed_ancestor the managed ancestor
+    # @return [Object, Object] the new parent and target objects
+    def replicate_with_clone(child, managed_ancestor)
+      new_parent = nil
+      new_object = nil
+      tx = transaction_begin
+      uris = child.managed_ancestor_path_uris(managed_ancestor)
+      prev_object = managed_ancestor
+      prev_object.transaction_set(tx)
+      uris.each do |old_uri|
+        old_object = self.class.klass_for(old_uri).find_children(old_uri)
+        if old_object.multiple_managed_ancestors?
+          cloned_object = clone_and_save(old_object, prev_object, tx)
+          if child.uri == old_object.uri
+            new_parent = prev_object
+            new_object = new_parent.clone_children_and_save_no_tx(tx, child.uri) 
+          end
+          prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+          prev_object = cloned_object
+        else
+          prev_object = old_object
+        end
+      end
+      transaction_execute
+      new_parent = Form::Group.find_full(new_parent.id)
+      return new_parent, new_object
+    end
+
+    # Delete With Clone. Clone all the ancestor chain and delete the node
+    #
+    # @param [Object] managed_ancestor the managed ancestor
+    # @return [Object, Object] the new parent
+    def delete_with_clone(managed_ancestor)
+      new_parent = nil
+      tx = transaction_begin
+      uris = managed_ancestor_path_uris(managed_ancestor)
+      prev_object = managed_ancestor
+      prev_object.transaction_set(tx)
+      uris.each do |old_uri|
+        old_object = self.class.klass_for(old_uri).find_children(old_uri)
+        cloned_object = clone_and_save(old_object, prev_object, tx)
+        if self.uri == old_object.uri
+          prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
+          new_parent = prev_object
+          new_parent.clone_children_and_save_no_tx(tx)
+        else
+          prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+        end
+        prev_object = cloned_object
+      end
+      transaction_execute
+      new_parent
+    end
+
   private
 
     # Form path query

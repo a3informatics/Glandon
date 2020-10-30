@@ -64,35 +64,37 @@ class Form::Group < IsoConceptV2
   # @return [Object] the parent object, either new or the cloned new parent
   def delete(parent, managed_ancestor)
     if multiple_managed_ancestors?
-      clone_and_unlink(managed_ancestor)
+      parent = delete_with_clone(managed_ancestor)
+      parent.reset_ordinals
+      parent
     else
       delete_node(parent)
       parent
     end
   end
 
-  def clone_and_unlink(managed_ancestor)
-    new_parent = nil
-    tx = transaction_begin
-    uris = managed_ancestor_path_uris(managed_ancestor)
-    prev_object = managed_ancestor
-    prev_object.transaction_set(tx)
-    uris.each do |old_uri|
-      old_object = self.class.klass_for(old_uri).find_children(old_uri)
-      cloned_object = clone_and_save(old_object, prev_object, tx)
-      if self.uri == old_object.uri
-        prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
-        new_parent = prev_object
-        new_parent.clone_children_and_save_no_tx(tx)
-      else
-        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-      end
-      prev_object = cloned_object
-    end
-    transaction_execute
-    new_parent.reset_ordinals
-    new_parent
-  end
+  # def clone_and_unlink(managed_ancestor)
+  #   new_parent = nil
+  #   tx = transaction_begin
+  #   uris = managed_ancestor_path_uris(managed_ancestor)
+  #   prev_object = managed_ancestor
+  #   prev_object.transaction_set(tx)
+  #   uris.each do |old_uri|
+  #     old_object = self.class.klass_for(old_uri).find_children(old_uri)
+  #     cloned_object = clone_and_save(old_object, prev_object, tx)
+  #     if self.uri == old_object.uri
+  #       prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
+  #       new_parent = prev_object
+  #       new_parent.clone_children_and_save_no_tx(tx)
+  #     else
+  #       prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+  #     end
+  #     prev_object = cloned_object
+  #   end
+  #   transaction_execute
+  #   new_parent.reset_ordinals
+  #   new_parent
+  # end
 
   # # Clone the item and create. Use Sparql approach in case of children also need creating
   # #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
@@ -116,6 +118,74 @@ class Form::Group < IsoConceptV2
   #   new_object
   # end
 
+  def move_up_with_clone(child, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent_and_child = replicate_with_clone(child, managed_ancestor)
+      parent_and_child.first.move_up(parent_and_child.second)
+    else
+      move_up(child)
+    end
+  end
+
+  def move_down_with_clone(child, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent_and_child = replicate_with_clone(child, managed_ancestor)
+      parent_and_child.first.move_down(parent_and_child.second)
+    else
+      move_down(child)
+    end
+  end
+
+  # def clone_nodes(child, managed_ancestor)
+  #   new_parent = nil
+  #   new_object = nil
+  #   tx = transaction_begin
+  #   uris = child.managed_ancestor_path_uris(managed_ancestor)
+  #   prev_object = managed_ancestor
+  #   prev_object.transaction_set(tx)
+  #   uris.each do |old_uri|
+  #     old_object = self.class.klass_for(old_uri).find_children(old_uri)
+  #     if old_object.multiple_managed_ancestors?
+  #       cloned_object = clone_and_save(old_object, prev_object, tx)
+  #       if child.uri == old_object.uri
+  #         new_parent = prev_object
+  #         new_object = new_parent.clone_children_and_save_no_tx(tx, child.uri) 
+  #       end
+  #       prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+  #       prev_object = cloned_object
+  #     else
+  #       prev_object = old_object
+  #     end
+  #   end
+  #   transaction_execute
+  #   new_parent = Form::Group.find_full(new_parent.id)
+  #   return new_parent, new_object
+  # end
+  
+  def text_row(text)
+    return "<tr><td colspan=\"3\"><h5>#{text}</h5></td></tr>"
+  end
+
+  # Next Ordinal. Get the next ordinal for a managed item collection
+  #
+  # @param [String] name the name of the property holding the collection
+  # @return [Integer] the next ordinal
+  def next_ordinal
+    query_string = %Q{
+      SELECT (MAX(?ordinal) AS ?max)
+      {
+        #{self.uri.to_ref} bf:hasSubGroup|bf:hasItem|bf:hasCommon ?s .
+        ?s bf:ordinal ?ordinal
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:bf])
+    return 1 if query_results.empty?
+    query_results.by_object(:max).first.to_i + 1
+  end
+
+private
+
+  # Query to delete a node
   def delete_node(parent)
     update_query = %Q{
       DELETE DATA
@@ -160,71 +230,6 @@ class Form::Group < IsoConceptV2
     partial_update(update_query, [:bf])
     parent.reset_ordinals
     1
-  end
-
-  def move_up_with_clone(child, managed_ancestor)
-    if multiple_managed_ancestors?
-      parent_and_child = clone_nodes(child, managed_ancestor)
-      parent_and_child.first.move_up(parent_and_child.second)
-    else
-      move_up(child)
-    end
-  end
-
-  def move_down_with_clone(child, managed_ancestor)
-    if multiple_managed_ancestors?
-      parent_and_child = clone_nodes(child, managed_ancestor)
-      parent_and_child.first.move_down(parent_and_child.second)
-    else
-      move_down(child)
-    end
-  end
-
-  def clone_nodes(child, managed_ancestor)
-    new_parent = nil
-    new_object = nil
-    tx = transaction_begin
-    uris = child.managed_ancestor_path_uris(managed_ancestor)
-    prev_object = managed_ancestor
-    prev_object.transaction_set(tx)
-    uris.each do |old_uri|
-      old_object = self.class.klass_for(old_uri).find_children(old_uri)
-      if old_object.multiple_managed_ancestors?
-        cloned_object = clone_and_save(old_object, prev_object, tx)
-        if child.uri == old_object.uri
-          new_parent = prev_object
-          new_object = new_parent.clone_children_and_save_no_tx(tx, child.uri) 
-        end
-        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-        prev_object = cloned_object
-      else
-        prev_object = old_object
-      end
-    end
-    transaction_execute
-    new_parent = Form::Group.find_full(new_parent.id)
-    return new_parent, new_object
-  end
-  
-  def text_row(text)
-    return "<tr><td colspan=\"3\"><h5>#{text}</h5></td></tr>"
-  end
-
-  # Next Ordinal. Get the next ordinal for a managed item collection
-  #
-  # @param [String] name the name of the property holding the collection
-  # @return [Integer] the next ordinal
-  def next_ordinal
-    query_string = %Q{
-      SELECT (MAX(?ordinal) AS ?max)
-      {
-        #{self.uri.to_ref} bf:hasSubGroup|bf:hasItem|bf:hasCommon ?s .
-        ?s bf:ordinal ?ordinal
-      }
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:bf])
-    return 1 if query_results.empty?
-    query_results.by_object(:max).first.to_i + 1
   end
 
 end
