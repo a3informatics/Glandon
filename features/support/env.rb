@@ -21,16 +21,15 @@ require 'selenium-webdriver'
 #load_files(schema_files, [])
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-
+#include NameValueHelpers
 #Latest version settings for CDISC terminology
-LST_VERSION = 65
-LATEST_VERSION='2020-06'
-LOAD_DATA ='Y'
-#LOAD_DATA ='N'  
 
-if LOAD_DATA == 'Y' 
-#Load in the CDISC Terminology and recreate users
-puts('loading terminology and users')
+
+Cucumber::Rails::Database.autorun_database_cleaner = false
+DatabaseCleaner.strategy = :truncation
+Cucumber::Rails::Database.javascript_strategy = :truncation
+
+  include NameValueHelpers
   include PauseHelpers
   include DataHelpers
   include UiHelpers
@@ -39,6 +38,18 @@ puts('loading terminology and users')
   include AuditTrailHelpers
   include ScenarioHelpers
   include QualificationUserHelpers
+  include EditorHelpers
+  
+Before do
+  log('Clean databse')
+  DatabaseCleaner.clean
+  nv_destroy
+  nv_create(parent: "10", child: "999")
+ 
+  LST_VERSION = 65
+  LATEST_VERSION='2020-06'
+  #Load in the CDISC Terminology and recreate users
+  log('loading terminology and users')
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..LST_VERSION)
@@ -46,13 +57,18 @@ puts('loading terminology and users')
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
-    quh_destroy
+    #quh_destroy
     quh_create
     Token.destroy_all
     AuditTrail.destroy_all
     clear_downloads
-  puts('Data and users loaded')
- end
+  log('Data and users loaded')
+end
+
+After do |scenario|
+  nv_destroy
+end
+
 
  #TURN_ON_SCREEN_SHOT=false
  TURN_ON_SCREEN_SHOT=true
@@ -103,6 +119,8 @@ def save_screen(e_or_a,screen_shot_enabled=TURN_ON_SCREEN_SHOT)
      zoom_in
     end
 end
+
+
 
 # module Capybara
 #   module DSL
@@ -183,11 +201,11 @@ ActionController::Base.allow_rescue = false
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
-begin
-DatabaseCleaner.strategy = :transaction
-rescue NameError
-raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
-end
+# begin
+# DatabaseCleaner.strategy = :transaction
+# rescue NameError
+# raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+# end
 
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
 # See the DatabaseCleaner documentation for details. Example:

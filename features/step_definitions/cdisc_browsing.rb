@@ -1,85 +1,3 @@
-Then('I see Code Lists Index page is displayed') do
-  expect(page).to have_content "Index: Code Lists"
-  save_screen(TYPE)
-end
-
-When('I click {string} button') do |string|
-  if string.include? 'New Item'
-    click_link 'New Item'
-    #click_button ui_button_label(new-item-button, "New Item") 
-  end
-  if string.include? 'New Code List'
-    click_link 'New Code List'
-    #click_button ui_button_label(tnb_new_button, "New Code List")  
-    pause
-  end
-  wait_for_ajax(20)
-end
-
-Then('I see a new code lists: {string}') do |string|
-  expect(page).to have_content string
-  save_screen(TYPE)
-end
-
-Then('I see a new code list item {string}') do |string|
-  expect(page).to have_content string
-end
-
-Then /I fill in the details for the code list ?(?:\(?(\w+)\)?.*)/ do |table|
-  table.hashes.each do |hash|
-    ui_check_table_cell("children_table", hash['No'], 1,"#{hash['CodeListItem']}")
-    ui_check_table_cell("children_table", hash['No'], 4,"#{hash['Synonym']}")
-    ui_editor_select_by_location(1,2)
-      ui_editor_fill_inline "notation", "#{hash['SV']}\n"
-      ui_editor_select_by_location(1,3)
-      ui_editor_fill_inline "preferred_term", "#{hash['PT']}\n"
-      ui_editor_select_by_location(1,4)
-      ui_editor_fill_inline "synonym", "#{hash['SY']}\n"
-      expect(page).to have_content "#{hash['SY']}"
-      ui_editor_select_by_location(1,5)
-      ui_editor_fill_inline "definition", "#{hash['DEF']}\n"
-  end
-end
-
-When('I update Synonyms to {string}') do |string|
-   ui_editor_fill_inline "synonym", "#{string}\n"
-   wait_for_ajax(20)
-end
-
-Then('I see Synonyms is {string}') do |string|
- # expect(page).to have_content "#{string}"
-  ui_check_table_cell("children_table", 1, 3,string)
-  save_screen(TYPE)
-end
-
-When('I delete Synonym {string}') do |string|
-  ui_editor_fill_inline "synonym", "\n"
-  wait_for_ajax(20)
-end
-
-Then('I see Synonyms is empty') do
-  ui_check_table_cell("children_table", 1, 3,"\n")
-  save_screen(TYPE)
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ##################### Pre-conditions - Given statements
 
@@ -119,6 +37,17 @@ When('I click Context menu for {string}') do |string|
         wait_for_ajax(20)
   end
 
+When('I click {string} in context menu for {string}') do |string, string2|
+  row = find("table#history tr", text: string2)
+        within(row) do
+        ui_table_search("history", string2)
+        find(".icon-context-menu").click
+        if string == 'edit'
+        context_menu_element('history', 4, string2, :edit)
+        end
+        end
+        wait_for_ajax(20)
+end
 
 When('I click {string} in context menu for {string} on the History page') do |string, string2|
        ui_table_search("history", string2)
@@ -237,7 +166,22 @@ When('I enter {string} in the search area') do |string|
          ui_child_search(string)
 end
 
+When('I click {string} button') do |string|
+  click_link string
+  wait_for_ajax(20)
+end
 
+When('I update Synonyms to {string}') do |string|
+  ui_editor_select_by_location(1,4)
+   ui_editor_fill_inline "synonym", "#{string}\n"
+   wait_for_ajax(20)
+end
+
+When('I delete Synonym {string}') do |string|
+  ui_editor_select_by_location(1,4)
+  ui_editor_fill_inline "synonym", "\n"
+  wait_for_ajax(20)
+end
 
 ##################### Then statements
 
@@ -476,6 +420,45 @@ Then('I see synonym {string} being shared with {string} codelist for the {string
   expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/a/div/div", :text => string2)
   expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/a/div/div", :text => string3)
    wait_for_ajax(20)
+  save_screen(TYPE)
+end
+
+Then('I see Code Lists Index page is displayed') do
+  expect(page).to have_content "Index: Code Lists"
+  save_screen(TYPE)
+end
+
+Then('I see a new code lists: {string}') do |string|
+  expect(page).to have_content string
+  save_screen(TYPE)
+end
+
+Then('I see a new code list item {string}') do |string|
+  expect(page).to have_content string
+end
+
+Then /I fill in the details for the code list ?(?:\(?(\w+)\)?.*)/ do |string, table|
+
+  table.hashes.each do |hash|
+      ui_editor_select_by_location(1,2)
+      ui_editor_fill_inline "notation", "#{hash['SV']}\n"
+      ui_editor_select_by_location(1,3)
+      ui_editor_fill_inline "preferred_term", "#{hash['PT']}\n"
+      ui_editor_select_by_location(1,4)
+      ui_editor_fill_inline "synonym", "#{hash['SY']}\n"
+      ui_editor_check_value 1, 4, "#{hash['SY']}"
+      ui_editor_select_by_location(1,5)
+      ui_editor_fill_inline "definition", "#{hash['DEF']}\n"
+  end
+  end
+
+Then('I see Synonyms is {string}') do |string|
+  ui_editor_check_value 1, 4, string
+  save_screen(TYPE)
+end
+
+Then('I see Synonyms is empty') do
+  ui_editor_check_value 1, 4, ""
   save_screen(TYPE)
 end
        
