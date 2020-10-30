@@ -9,9 +9,9 @@
 
     <div class="actions-wrap">
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: changes_thesauri_path(@cdisc_term_id), id: "changes_btn",
-				icon: "icon-changes", text: "View Changes" } %>
+				icon: "icon-changes", text: "Changes" } %>
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: submission_thesauri_path(@cdisc_term_id), id: "sub_changes_btn",
-				icon: "icon-sub-value-changes", text: "View Submission value changes" } %>
+				icon: "icon-sub-value-changes", text: "Submission value changes" } %>
       <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
 

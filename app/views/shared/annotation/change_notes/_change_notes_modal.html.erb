@@ -24,7 +24,9 @@
             </table>
           </div>
           <center>
-            <button class="btn medium green" id="add-cn-button">+ Add new</button>
+            <% if policy(Annotation).edit? %>
+              <button class="btn medium green" id="add-cn-button">+ Add new</button>
+            <% end %>
           </center>
         </div>
       </div>

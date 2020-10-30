@@ -1,6 +1,6 @@
 <a href="<%= url %>"
    class="ico-btn-sec
-     <%= local_assigns.fetch :color, 'blue' if !id.eql? 'timeout' %>
+     <%= local_assigns.fetch :color, 'white' if !id.eql? 'timeout' %>
      <%= "disabled" if (local_assigns.fetch :disabled, false) %>
      <%= "token-timeout" if id.eql? "timeout" %>"
    id="<%= id %>"
