@@ -15,7 +15,44 @@ require 'rspec'
 require 'base64'
 require 'selenium-webdriver'
 
+# Load the schema. This is so it is available at class load/elaboration
+#require Rails.root.join('spec/support/data_helpers.rb')
+#include DataHelpers
+#load_files(schema_files, [])
+
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+#Latest version settings for CDISC terminology
+LST_VERSION = 65
+LATEST_VERSION='2020-06'
+LOAD_DATA ='Y'
+#LOAD_DATA ='N'  
+
+if LOAD_DATA == 'Y' 
+#Load in the CDISC Terminology and recreate users
+puts('loading terminology and users')
+  include PauseHelpers
+  include DataHelpers
+  include UiHelpers
+  include WaitForAjaxHelper
+  include DownloadHelpers
+  include AuditTrailHelpers
+  include ScenarioHelpers
+  include QualificationUserHelpers
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..LST_VERSION)
+    clear_iso_concept_object
+    clear_iso_namespace_object
+    clear_iso_registration_authority_object
+    clear_iso_registration_state_object
+    quh_destroy
+    quh_create
+    Token.destroy_all
+    AuditTrail.destroy_all
+    clear_downloads
+  puts('Data and users loaded')
+ end
 
  #TURN_ON_SCREEN_SHOT=false
  TURN_ON_SCREEN_SHOT=true
@@ -34,8 +71,6 @@ Capybara.default_driver = :selenium_chrome
 
 # Keep up to the number of screenshots specified in the hash
 #Capybara::Screenshot.prune_strategy = { keep: 2}
-
-#root='/Users/Kirsten/Documents/rails/Glandon'
 
 if TYPE == 'Actual' 
   Capybara::save_path = "./cucumber-report/screenshots/actual/"
@@ -68,7 +103,6 @@ def save_screen(e_or_a,screen_shot_enabled=TURN_ON_SCREEN_SHOT)
      zoom_in
     end
 end
-
 
 # module Capybara
 #   module DSL
