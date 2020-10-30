@@ -207,24 +207,16 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
   def show
     authorize Thesaurus
     @tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
-    @tc.synonym_objects
-    @tc.preferred_term_objects
-    @can_extend_unextensible = Thesaurus::ManagedConcept.can_extend_unextensible?
-    @can_be_extended = @tc.extensible && !@tc.extended?
-    extended_by_uri = @tc.extended_by
-    @is_extended = !extended_by_uri.nil?
-    extension_of_uri = @tc.extension_of
-    @is_extending = !extension_of_uri.nil?
+    @tc.synonyms_and_preferred_terms
     @context_id = the_params[:context_id]
+    @extend_opts = extension_opts(@tc, @context_id)
+    @edit_tags_path = path_for(:edit_tags, @tc)
     if @context_id.blank?
       @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})
     else
       @ct = Thesaurus.find_minimum(@context_id)
       @close_path = thesauri_path(@ct)
     end
-    @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
-    @is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id}})
-    @edit_tags_path = path_for(:edit_tags, @tc)
   end
 
   def show_data
@@ -518,6 +510,20 @@ private
     object.current_and_latest_parent.last[:uri].to_id
   rescue => e
     return ""
+  end
+
+  def extension_opts(object, context_id)
+    extension = object.extended_by
+    extending = object.extension_of
+    can_extend_unextensible = Thesaurus::ManagedConcept.can_extend_unextensible?
+    {
+      allowed: object.extensible && !object.extended?,
+      override: can_extend_unextensible && (extension.nil? && extending.nil?),
+      extended: !extension.nil?,
+      extension: !extending.nil?,
+      extending_path: extending.nil? ? "" : thesauri_managed_concept_path(extending.to_id, { managed_concept: { context_id: context_id } }),
+      extension_path: extension.nil? ? "" : thesauri_managed_concept_path(extension.to_id, { managed_concept: { context_id: context_id } })
+    }
   end
 
   # Set the history path

@@ -418,18 +418,21 @@ class ThesauriController < ApplicationController
 
   def extension
     authorize Thesaurus, :edit?
-    results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-    th = Thesaurus.find_minimum(results.first)
-    th = edit_item(th)
-    if !th.nil?
+    th = Thesaurus.find_minimum(params[:id])
+    if th.owned?
+      th = edit_item(th)
       new_object = th.add_extension(the_params[:concept_id])
-      AuditTrail.create_item_event(current_user, th, th.audit_message(:updated))
-      AuditTrail.create_item_event(current_user, new_object, new_object.audit_message(:created, "extension"))
-      show_path = thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: th.id}})
-      edit_path = edit_extension_thesauri_managed_concept_path(new_object)
-      render json: {show_path: show_path, edit_path: edit_path}, :status => 200
+      if new_object.errors.empty?
+        AuditTrail.create_item_event(current_user, th, th.audit_message(:updated))
+        AuditTrail.create_item_event(current_user, new_object, new_object.audit_message(:created, "extension"))
+        show_path = thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: th.id}})
+        edit_path = edit_extension_thesauri_managed_concept_path(new_object)
+        render json: { show_path: show_path, edit_path: edit_path }, :status => 200
+      else
+        render json: { errors: new_object.errors.full_messages }, :status => 422
+      end
     else
-      render json: {errors: [flash[:error]]}, :status => 422
+      render json: { errors: ["Cannot use Thesaurus as it is not owned by your organization."], }, :status => 422
     end
   end
 
@@ -467,13 +470,20 @@ class ThesauriController < ApplicationController
 
   def add_subset
     authorize Thesaurus, :edit?
-    results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-    thesaurus = Thesaurus.find_minimum(results.first)
-    thesaurus = edit_item(thesaurus)
-    new_mc = thesaurus.add_subset(the_params[:concept_id])
-    AuditTrail.create_item_event(current_user, new_mc, new_mc.audit_message(:updated, "subset"))
-    path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: the_params[:concept_id], context_id: thesaurus.id)
-    render json: { edit_path: path, }, :status => 200
+    thesaurus = Thesaurus.find_minimum(params[:id])
+    if thesaurus.owned?
+      thesaurus = edit_item(thesaurus)
+      new_mc = thesaurus.add_subset(the_params[:concept_id])
+      if new_mc.errors.empty?
+        AuditTrail.create_item_event(current_user, new_mc, new_mc.audit_message(:updated, "subset"))
+        path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: the_params[:concept_id], context_id: thesaurus.id)
+        render json: { edit_path: path, }, :status => 200
+      else
+        render json: { errors: new_mc.errors.full_messages }, :status => 422
+      end
+    else
+      render json: { errors: ["Cannot use Thesaurus as it is not owned by your organization."], }, :status => 422
+    end
   end
 
   def set_reference
