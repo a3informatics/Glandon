@@ -20,6 +20,21 @@ class Form::Group::Normal < Form::Group
 
   validates_with Validator::Field, attribute: :repeating, method: :valid_boolean?
 
+  # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
+  #
+  # @return [Form::Group::Normal] array of objects
+  def managed_ancestors_children_set
+    self.has_sub_group + self.has_item + self.has_common
+  end
+
+  # Children Ordered. Returns the set of children nodes ordered by ordinal. 
+  #
+  # @return [Form::Group::Normal] array of objects
+  def children_ordered
+    set = self.has_sub_group_objects + self.has_item_objects
+    set.sort_by {|x| x.ordinal}
+  end
+
   # Get Item
   #
   # @return [Array] Array of hashes, one per group, sub group and item.
@@ -113,11 +128,6 @@ class Form::Group::Normal < Form::Group
       self.errors.add(:base, "Attempting to add an invalid child type")
       []
     end
-  end
-
-  def children_ordered
-    set = self.has_sub_group_objects + self.has_item_objects
-    set.sort_by {|x| x.ordinal}
   end
 
   # Is a Question only group
@@ -291,29 +301,29 @@ class Form::Group::Normal < Form::Group
     parent = parent.full_data
   end
 
-  # Clone the item and create. Use Sparql approach in case of children also need creating
-  #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
-  #   The Children are normally references. Also note the setting of the transaction in the cloned object and
-  #   in the sparql generation, important both are done.
-  def clone_children_and_save(tx, uri = nil)
-    sparql = Sparql::Update.new(tx)
-    new_object = nil
-    set = self.has_sub_group + self.has_item + self.has_common
-    set.each do |child|
-      object = child.clone
-      object.transaction_set(tx)
-      object.generate_uri(self.uri) 
-      object.to_sparql(sparql, true)
-      self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
-      unless uri.nil? 
-        new_object = object if child.uri == uri 
-      end 
-    end
-    sparql.create
-    new_object
-  end
+  # # Clone the item and create. Use Sparql approach in case of children also need creating
+  # #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
+  # #   The Children are normally references. Also note the setting of the transaction in the cloned object and
+  # #   in the sparql generation, important both are done.
+  # def clone_children_and_save(tx, uri = nil)
+  #   sparql = Sparql::Update.new(tx)
+  #   new_object = nil
+  #   set = self.has_sub_group + self.has_item + self.has_common
+  #   set.each do |child|
+  #     object = child.clone
+  #     object.transaction_set(tx)
+  #     object.generate_uri(self.uri) 
+  #     object.to_sparql(sparql, true)
+  #     self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
+  #     unless uri.nil? 
+  #       new_object = object if child.uri == uri 
+  #     end 
+  #   end
+  #   sparql.create
+  #   new_object
+  # end
 
-  # Full parent
+  # Full Data
   #
   # @return [Hash] Return the data of the whole parent Normal Group, all its children BC Groups, Common Group + any referenced item data.
   def full_data

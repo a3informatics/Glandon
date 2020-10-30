@@ -21,7 +21,7 @@ class IsoConceptV2
       # @raise [Errors::ApplicationLogicError] raised to indicate the class has not configured the method
       # @return [Void] exception always raised
       def managed_ancestors_path
-        Errors.application_error(self.name, __method__.to_s, "Method not implemented for class.")
+        not_implemented(__method__.to_s)      
       end
 
       # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
@@ -29,9 +29,22 @@ class IsoConceptV2
       # @raise [Errors::ApplicationLogicError] raised to indicate the class has not configured the method
       # @return [Void] exception always raised
       def managed_ancestors_predicate
-        Errors.application_error(self.name, __method__.to_s, "Method not implemented for class.")
+        not_implemented(__method__.to_s)      
       end
 
+      # Managed Ancestors Children Set. Returns the set of clidren nodes. Normally this is children but can be a combination.
+      #
+      # @raise [Errors::ApplicationLogicError] raised to indicate the class has not configured the method
+      # @return [Void] exception always raised
+      def managed_ancestors_children_set
+        not_implemented(__method__.to_s)      
+      end
+
+    private
+
+      def not_implemented(the_method)
+        Errors.application_error(self.name, the_method, "Method not implemented for class.")
+      end
     end
 
     # ----------------
@@ -127,6 +140,28 @@ class IsoConceptV2
       end
     end
 
+    # Clone Children And Save. Clone all the children and save. Return the URI of referenced item
+    #
+    # @param [Transaction] tx the current transaction
+    # @uri [Uri] uri the uri for which the new uri is to be returned, defulat to nil
+    # @return [Object] the new object if uri not nil, otherwise nil
+    def clone_children_and_save_no_tx(tx, uri=nil)
+      sparql = Sparql::Update.new(tx)
+      new_object = nil
+      self.managed_ancestors_children_set.each do |child|
+        object = child.clone
+        object.transaction_set(tx)
+        object.generate_uri(self.uri) 
+        object.to_sparql(sparql, true)
+        self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
+        unless uri.nil? 
+          new_object = object if child.uri == uri 
+        end 
+      end
+      sparql.create
+      new_object
+    end
+    
   private
 
     # Form path query

@@ -12,6 +12,13 @@ class Form::Item::BcProperty < Form::Item
   object_property :has_property, cardinality: :one, model_class: "OperationalReferenceV3"
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
 
+  # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
+  #
+  # @return [Form::Group::Normal] array of objects
+  def managed_ancestors_children_set
+    self.has_coded_value
+  end
+
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #
   # @return [String] the path as an expanded set of predicates
@@ -118,8 +125,8 @@ class Form::Item::BcProperty < Form::Item
       cloned_object = clone_and_save(old_object, prev_object, tx)
        if child.uri == old_object.uri
          new_parent = prev_object
-         new_object = new_parent.clone_children_and_save(tx, child.uri)
-         new_normal_group = new_normal_group.clone_children_and_save(tx) 
+         new_object = new_parent.clone_children_and_save_no_tx(tx, child.uri)
+         new_normal_group = new_normal_group.clone_children_and_save_no_tx(tx) 
        end
       if old_object.class == Form::Group::Normal 
         new_normal_group = cloned_object unless old_object.has_common.empty?

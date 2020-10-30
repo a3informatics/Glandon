@@ -12,6 +12,20 @@ class Form::Group::Common < Form::Group
     common_group? ? :has_common : :has_sub_group
   end
 
+  # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
+  #
+  # @return [Form::Group::Normal] array of objects
+  def managed_ancestors_children_set
+    self.has_item
+  end
+
+  # Children Ordered. Returns the set of children nodes ordered by ordinal. 
+  #
+  # @return [Form::Group::Normal] array of objects
+  def children_ordered
+    self.children_objects.sort_by {|x| x.ordinal}
+  end
+
   # Top Level Group? Is this item the top level group
   #
   # @result [Boolean] return true if this instance is a top level group or false if  it is a subGroup

@@ -29,6 +29,20 @@ class Form::Group < IsoConceptV2
     ]
   end
 
+  # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
+  #
+  # @return [Form::Group::Normal] array of objects
+  def managed_ancestors_children_set
+    self.has_item
+  end
+
+  # Children Ordered. Returns the set of children nodes ordered by ordinal. 
+  #
+  # @return [Form::Group::Normal] array of objects
+  def children_ordered
+    self.children_objects.sort_by {|x| x.ordinal}
+  end
+
   # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
   #
   # @return [Symbol] the predicate property as a symbol
@@ -69,7 +83,7 @@ class Form::Group < IsoConceptV2
       if self.uri == old_object.uri
         prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
         new_parent = prev_object
-        new_parent.clone_children_and_save(tx)
+        new_parent.clone_children_and_save_no_tx(tx)
       else
         prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
       end
@@ -80,27 +94,27 @@ class Form::Group < IsoConceptV2
     new_parent
   end
 
-  # Clone the item and create. Use Sparql approach in case of children also need creating
-  #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
-  #   The Children are normally references. Also note the setting of the transaction in the cloned object and
-  #   in the sparql generation, important both are done.
-  def clone_children_and_save(tx, uri = nil)
-    sparql = Sparql::Update.new(tx)
-    new_object = nil
-    set = self.has_item
-    set.each do |child|
-      object = child.clone
-      object.transaction_set(tx)
-      object.generate_uri(self.uri) 
-      object.to_sparql(sparql, true)
-      self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
-      unless uri.nil? 
-        new_object = object if child.uri == uri 
-      end 
-    end
-    sparql.create
-    new_object
-  end
+  # # Clone the item and create. Use Sparql approach in case of children also need creating
+  # #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
+  # #   The Children are normally references. Also note the setting of the transaction in the cloned object and
+  # #   in the sparql generation, important both are done.
+  # def clone_children_and_save(tx, uri = nil)
+  #   sparql = Sparql::Update.new(tx)
+  #   new_object = nil
+  #   set = self.has_item
+  #   set.each do |child|
+  #     object = child.clone
+  #     object.transaction_set(tx)
+  #     object.generate_uri(self.uri) 
+  #     object.to_sparql(sparql, true)
+  #     self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
+  #     unless uri.nil? 
+  #       new_object = object if child.uri == uri 
+  #     end 
+  #   end
+  #   sparql.create
+  #   new_object
+  # end
 
   def delete_node(parent)
     update_query = %Q{
@@ -179,7 +193,7 @@ class Form::Group < IsoConceptV2
         cloned_object = clone_and_save(old_object, prev_object, tx)
         if child.uri == old_object.uri
           new_parent = prev_object
-          new_object = new_parent.clone_children_and_save(tx, child.uri) 
+          new_object = new_parent.clone_children_and_save_no_tx(tx, child.uri) 
         end
         prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
         prev_object = cloned_object

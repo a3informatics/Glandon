@@ -20,6 +20,20 @@ class Form::Item::Question < Form::Item
   validates_with Validator::Field, attribute: :mapping, method: :valid_mapping?
   validates_with Validator::Field, attribute: :question_text, method: :valid_question?
 
+  # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
+  #
+  # @return [Form::Group::Normal] array of objects
+  def managed_ancestors_children_set
+    self.has_coded_value
+  end
+
+  # Children Ordered. Provides the childen ordered by ordinal
+  #
+  # @return [Array] the set of children ordered by ordinal
+  def children_ordered
+    self.has_coded_value_objects.sort_by {|x| x.ordinal}
+  end
+
   # Get Item
   #
   # @return [Array] An array of Question Item with CLI and CL references.
@@ -96,13 +110,6 @@ class Form::Item::Question < Form::Item
     end 
   end
 
-  # Children Ordered. Provides the childen ordered by ordinal
-  #
-  # @return [Array] the set of children ordered by ordinal
-  def children_ordered
-    self.has_coded_value_objects.sort_by {|x| x.ordinal}
-  end
-
   def delete_reference(reference, managed_ancestor)
     if multiple_managed_ancestors?
       parent = clone_nodes_and_get_new_parent(reference,managed_ancestor)
@@ -131,7 +138,7 @@ class Form::Item::Question < Form::Item
         if child.uri == old_object.uri
           prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
           new_parent = prev_object
-          new_parent.clone_children_and_save(tx) 
+          new_parent.clone_children_and_save_no_tx(tx) 
         else
           prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
         end

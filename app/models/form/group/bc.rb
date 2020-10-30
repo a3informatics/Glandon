@@ -62,7 +62,7 @@ class Form::Group::Bc < Form::Group
   def clone_and_unlink_common(parent)
     common_group = Form::Group::Common.find_children(parent.has_common_objects.first.uri)
     ty = transaction_begin
-    common_group.clone_children_and_save(ty)
+    common_group.clone_children_and_save_no_tx(ty)
     transaction_execute
     common_group = Form::Group::Common.find_children(parent.has_common_objects.first.uri)
     common_group.has_item_objects.each do |common_item|

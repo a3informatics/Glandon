@@ -63,7 +63,7 @@ class Form::Item < IsoConceptV2
       if self.uri == old_object.uri  
         prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
         new_parent = prev_object
-        new_parent.clone_children_and_save(tx)
+        new_parent.clone_children_and_save_no_tx(tx)
       else 
         prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
       end
@@ -133,7 +133,7 @@ class Form::Item < IsoConceptV2
         cloned_object = clone_and_save(old_object, prev_object, tx)
         if child.uri == old_object.uri
           new_parent = prev_object
-          new_object = new_parent.clone_children_and_save(tx, child.uri) 
+          new_object = new_parent.clone_children_and_save_no_tx(tx, child.uri) 
         end
         prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
         prev_object = cloned_object
@@ -146,26 +146,26 @@ class Form::Item < IsoConceptV2
     return new_parent, new_object
   end
 
-  # Clone the children and create.
-  #   The Children are normally references. Also note the setting of the transaction in the cloned object and
-  #   in the sparql generation, important both are done.
-  def clone_children_and_save(tx, uri = nil)
-    sparql = Sparql::Update.new(tx)
-    new_object = nil
-    set = self.has_coded_value
-    set.each do |child|
-      object = child.clone
-      object.transaction_set(tx)
-      object.generate_uri(self.uri) 
-      object.to_sparql(sparql, true)
-      self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
-      unless uri.nil? 
-        new_object = object if child.uri == uri 
-      end 
-    end
-    sparql.create
-    new_object
-  end
+  # # Clone the children and create.
+  # #   The Children are normally references. Also note the setting of the transaction in the cloned object and
+  # #   in the sparql generation, important both are done.
+  # def clone_children_and_save(tx, uri = nil)
+  #   sparql = Sparql::Update.new(tx)
+  #   new_object = nil
+  #   set = self.has_coded_value
+  #   set.each do |child|
+  #     object = child.clone
+  #     object.transaction_set(tx)
+  #     object.generate_uri(self.uri) 
+  #     object.to_sparql(sparql, true)
+  #     self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
+  #     unless uri.nil? 
+  #       new_object = object if child.uri == uri 
+  #     end 
+  #   end
+  #   sparql.create
+  #   new_object
+  # end
 
   def start_row(optional)
     return '<tr class="warning">' if optional
