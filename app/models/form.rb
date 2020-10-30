@@ -33,28 +33,6 @@ class Form < IsoManagedV2
     super
   end
 
-  # # Clone the item and create. Use Sparql approach in case of children also need creating
-  # #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
-  # #   The Children are normally references. Also note the setting of the transaction in the cloned object and
-  # #   in the sparql generation, important both are done.
-  # def clone_children_and_save(tx, uri = nil)
-  #   sparql = Sparql::Update.new(tx)
-  #   new_object = nil
-  #   set = self.has_group
-  #   set.each do |child|
-  #     object = child.clone
-  #     object.transaction_set(tx)
-  #     object.generate_uri(self.uri) 
-  #     object.to_sparql(sparql, true)
-  #     self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
-  #     unless uri.nil? 
-  #       new_object = object if child.uri == uri 
-  #     end 
-  #   end
-  #   sparql.create
-  #   new_object
-  # end
-
   def move_up_with_clone(child, managed_ancestor)
     if child.multiple_managed_ancestors?
       parent_and_child = clone_children_and_save(child, managed_ancestor)
