@@ -6,10 +6,7 @@ class Form::Group::Bc < Form::Group
 
   object_property :has_biomedical_concept, cardinality: :one, model_class: "OperationalReferenceV3"
 
-  object_property_class :has_item, model_classes: 
-    [ 
-      Form::Item::BcProperty, Form::Item::Common
-    ]
+  object_property_class :has_item, model_classes: [Form::Item::BcProperty, Form::Item::Common]
 
   # Get Item
   #
@@ -52,14 +49,14 @@ class Form::Group::Bc < Form::Group
     parent = parent.full_data
   end
 
-  def clone_and_unlink(managed_ancestor)
+  def delete_with_clone(managed_ancestor)
     new_parent = super
     new_parent = Form::Group.find_full(new_parent.id)
-    clone_and_unlink_common(new_parent) unless new_parent.has_common.empty?
+    delete_with_clone_common(new_parent) unless new_parent.has_common.empty?
     new_parent = Form::Group.find_full(new_parent.id)
   end
 
-  def clone_and_unlink_common(parent)
+  def delete_with_clone_common(parent)
     common_group = Form::Group::Common.find_children(parent.has_common_objects.first.uri)
     ty = transaction_begin
     common_group.clone_children_and_save_no_tx(ty)

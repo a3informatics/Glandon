@@ -65,9 +65,9 @@ class Form::Group::Common < Form::Group
     parent = parent.full_data
   end
 
-  def children_ordered
-    self.has_item_objects.sort_by {|x| x.ordinal}
-  end
+  # def children_ordered
+  #   self.has_item_objects.sort_by {|x| x.ordinal}
+  # end
 
   def get_normal_group
     query_string = %Q{         
