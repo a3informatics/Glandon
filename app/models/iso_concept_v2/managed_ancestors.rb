@@ -261,6 +261,7 @@ class IsoConceptV2
       sparql = Sparql::Update.new(tx)
       object.to_sparql(sparql, true)
       sparql.create
+      uri_updated(managed_ancestor, child.uri, object.uri)
       object
     end
 
@@ -275,7 +276,15 @@ class IsoConceptV2
       sparql = Sparql::Update.new(tx)
       object.to_sparql(sparql, true)
       sparql.create
+      uri_updated(managed_ancestor, child.uri, object.uri)
       object
+    end
+
+  private
+
+    # Log the change in a URI
+    def uri_updated(managed_ancestor, old_uri, new_uri)
+      managed_ancestor.add_modified_uri(old_uri, new_uri)
     end
 
   end
