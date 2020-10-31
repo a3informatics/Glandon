@@ -122,7 +122,7 @@ class Form::Item::BcProperty < Form::Item
     prev_object.transaction_set(tx)
     uris.each do |old_uri|
       old_object = self.class.klass_for(old_uri).find_children(old_uri)
-      cloned_object = clone_and_save(old_object, prev_object, tx)
+      cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
        if child.uri == old_object.uri
          new_parent = prev_object
          new_object = new_parent.clone_children_and_save_no_tx(tx, child.uri)

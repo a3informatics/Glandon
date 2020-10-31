@@ -125,7 +125,7 @@ class IsoConceptV2
         uris.each do |old_uri|
           old_object = self.class.klass_for(old_uri).find_children(old_uri)
           if old_object.multiple_managed_ancestors?
-            cloned_object = clone_update_and_save(old_object, params, prev_object, tx)
+            cloned_object = clone_update_and_save(managed_ancestor, old_object, params, prev_object, tx)
             result = cloned_object if self.uri == old_object.uri
             prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
             prev_object = cloned_object
@@ -177,7 +177,7 @@ class IsoConceptV2
       uris.each do |old_uri|
         old_object = self.class.klass_for(old_uri).find_children(old_uri)
         if old_object.multiple_managed_ancestors?
-          cloned_object = clone_and_save(old_object, prev_object, tx)
+          cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
           if child.uri == old_object.uri
             new_parent = prev_object
             new_object = new_parent.clone_children_and_save_no_tx(tx, child.uri) 
@@ -205,7 +205,7 @@ class IsoConceptV2
       prev_object.transaction_set(tx)
       uris.each do |old_uri|
         old_object = self.class.klass_for(old_uri).find_children(old_uri)
-        cloned_object = clone_and_save(old_object, prev_object, tx)
+        cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
         if self.uri == old_object.uri
           prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
           new_parent = prev_object
@@ -253,7 +253,7 @@ class IsoConceptV2
     #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
     #   The Children are normally references. Also note the setting of the transaction in the cloned object and
     #   in the sparql generation, important both are done.
-    def clone_update_and_save(child, params, parent, tx)
+    def clone_update_and_save(managed_ancestor, child, params, parent, tx)
       object = child.clone
       object.transaction_set(tx)
       object.generate_uri(parent.uri) 
@@ -268,7 +268,7 @@ class IsoConceptV2
     #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
     #   The Children are normally references. Also note the setting of the transaction in the cloned object and
     #   in the sparql generation, important both are done.
-    def clone_and_save(child, parent, tx)
+    def clone_and_save(managed_ancestor, child, parent, tx)
       object = child.clone
       object.transaction_set(tx)
       object.generate_uri(parent.uri) 

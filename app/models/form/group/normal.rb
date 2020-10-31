@@ -93,7 +93,7 @@ class Form::Group::Normal < Form::Group
     uris.each do |old_uri|
       old_object = self.class.klass_for(old_uri).find_children(old_uri)
       if old_object.multiple_managed_ancestors?
-        cloned_object = clone_and_save(old_object, prev_object, tx)
+        cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
         result = cloned_object if self.uri == old_object.uri
         prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
         prev_object = cloned_object
