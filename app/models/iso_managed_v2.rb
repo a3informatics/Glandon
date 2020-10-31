@@ -30,7 +30,7 @@ class IsoManagedV2 < IsoConceptV2
   # @return [IsoManagedV2] return the object
   def initialize(params={})
     super
-    @uri_managed = IsoManagedV2::UriManager.new
+    @uri_managed = IsoManagedV2::UriManager.new(self)
   end
 
   # Version

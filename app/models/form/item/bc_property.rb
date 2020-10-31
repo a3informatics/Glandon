@@ -125,8 +125,8 @@ class Form::Item::BcProperty < Form::Item
       cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
        if child.uri == old_object.uri
          new_parent = prev_object
-         new_object = new_parent.clone_children_and_save_no_tx(tx, child.uri)
-         new_normal_group = new_normal_group.clone_children_and_save_no_tx(tx) 
+         new_object = new_parent.clone_children_and_save_no_tx(managed_ancestor, tx, child.uri)
+         new_normal_group = new_normal_group.clone_children_and_save_no_tx(managed_ancestor, tx) 
        end
       if old_object.class == Form::Group::Normal 
         new_normal_group = cloned_object unless old_object.has_common.empty?

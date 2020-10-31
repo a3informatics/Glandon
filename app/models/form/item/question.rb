@@ -138,7 +138,7 @@ class Form::Item::Question < Form::Item
         if child.uri == old_object.uri
           prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
           new_parent = prev_object
-          new_parent.clone_children_and_save_no_tx(tx) 
+          new_parent.clone_children_and_save_no_tx(managed_ancestor, tx) 
         else
           prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
         end

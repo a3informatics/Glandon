@@ -136,7 +136,7 @@ private
   def clone_children_and_save(child, managed_ancestor)
     tx = transaction_begin
     managed_ancestor.transaction_set(tx)
-    new_object = managed_ancestor.clone_children_and_save_no_tx(tx, child.uri)
+    new_object = managed_ancestor.clone_children_and_save_no_tx(managed_ancestor, tx, child.uri)
     transaction_execute
     new_parent = Form.find_full(managed_ancestor.id)
     return new_parent, new_object

@@ -8,9 +8,11 @@ class IsoManagedV2
 
     # Initialize
     #
+    # @param [Object] parent the parent object 
     # @return [Hash] empty hash
-    def initialize
+    def initialize(parent)
       @uris = {}
+      @parent = parent
     end
 
     # Add. 
@@ -29,6 +31,18 @@ class IsoManagedV2
       ids = {}
       @uris.each{|key, value| ids[key.to_id] = value.to_id}
       ids
+    end
+
+    # ---------
+    # Test Only  
+    # ---------
+
+    if Rails.env.test?
+
+      def to_uris
+        @uris
+      end
+
     end
 
   end

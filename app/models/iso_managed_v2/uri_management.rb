@@ -22,6 +22,22 @@ class IsoManagedV2
       @uri_managed.add(old_uri, new_uri)
     end
 
+    # ---------
+    # Test Only  
+    # ---------
+    
+    if Rails.env.test?
+
+      def modified_uris
+        @uri_managed.to_uris
+      end
+
+      def the_uri_manager
+        @uri_managed
+      end
+
+    end
+
   end
 
 end
