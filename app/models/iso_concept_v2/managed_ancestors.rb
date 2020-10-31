@@ -179,13 +179,14 @@ class IsoConceptV2
       uris.each do |old_uri|
         old_object = self.class.klass_for(old_uri).find_children(old_uri)
         if old_object.multiple_managed_ancestors?
-          cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
           if child.uri == old_object.uri
             new_parent = prev_object
             new_object = new_parent.clone_children_and_save_no_tx(managed_ancestor, tx, child.uri) 
+          else
+            cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
+            prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+            prev_object = cloned_object
           end
-          prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-          prev_object = cloned_object
         else
           prev_object = old_object
         end

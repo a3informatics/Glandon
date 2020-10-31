@@ -39,7 +39,8 @@ describe Form do
     diff = new_result.map{|x| x.to_s} - old_result.map{|x| x.to_s}
 puts "Recorded: #{uri_result.sort}"
 puts "Actual:   #{diff.sort}"
-puts "Diff:     #{diff.sort - uri_result.sort}"
+puts "Missing:  #{diff.sort - uri_result.sort}"
+puts "Extra:    #{uri_result.sort - diff.sort}"
     expect(uri_result.sort == diff.sort).to eq(true)
     mapped_result = {}
     result = new_form.modified_uris.dup.each do |key, value| 
@@ -855,9 +856,15 @@ check_modified_uris(form, saved_form, "updated_uri_expected_19.yaml")
     it "move up normal group, clone, error: attempting to move up past the first node" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
-      form.add_child({type:"normal_group"})
-      form.add_child({type:"normal_group"})
-      form.add_child({type:"normal_group"})
+      node = form.add_child({type:"normal_group"})
+      node.label ="Node 1"
+      node.save
+      node = form.add_child({type:"normal_group"})
+      node.label ="Node 2"
+      node.save
+      node = form.add_child({type:"normal_group"})
+      node.label ="Node 3"
+      node.save
       make_standard(form)
       form = Form.find_full(form.uri)
       check_dates(form, sub_dir, "move_up_form_1a.yaml", :creation_date, :last_change_date)
@@ -877,9 +884,15 @@ check_modified_uris(form, saved_form, "updated_uri_expected_20.yaml")
     it "move up normal group, clone, no errors" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
-      form.add_child({type:"normal_group"})
-      form.add_child({type:"normal_group"})
-      form.add_child({type:"normal_group"})
+      node = form.add_child({type:"normal_group"})
+      node.label ="Node 1"
+      node.save
+      node = form.add_child({type:"normal_group"})
+      node.label ="Node 2"
+      node.save
+      node = form.add_child({type:"normal_group"})
+      node.label ="Node 3"
+      node.save
       make_standard(form)
       form = Form.find_full(form.uri)
       check_dates(form, sub_dir, "move_up_form_2a.yaml", :creation_date, :last_change_date)
@@ -902,9 +915,15 @@ check_modified_uris(form, saved_form, "updated_uri_expected_21.yaml")
     it "move down normal group, clone, no errors" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
-      form.add_child({type:"normal_group"})
-      form.add_child({type:"normal_group"})
-      form.add_child({type:"normal_group"})
+      node = form.add_child({type:"normal_group"})
+      node.label ="Node 1"
+      node.save
+      node = form.add_child({type:"normal_group"})
+      node.label ="Node 2"
+      node.save
+      node = form.add_child({type:"normal_group"})
+      node.label ="Node 3"
+      node.save
       make_standard(form)
       form = Form.find_full(form.uri)
       check_dates(form, sub_dir, "move_down_form_1a.yaml", :creation_date, :last_change_date)
@@ -928,9 +947,15 @@ check_modified_uris(form, saved_form, "updated_uri_expected_22.yaml")
       form = Form.create(label: "Form1", identifier: "XXX")
       form.add_child({type:"normal_group"})
       normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
-      normal_group.add_child({type:"question"})
-      normal_group.add_child({type:"question"})
-      normal_group.add_child({type:"question"})
+      node = normal_group.add_child({type:"question"})
+      node.label ="Node 1"
+      node.save
+      node = normal_group.add_child({type:"question"})
+      node.label ="Node 2"
+      node.save
+      node = normal_group.add_child({type:"question"})
+      node.label ="Node 3"
+      node.save
       make_standard(form)
       form = Form.find_full(form.uri)
       check_dates(form, sub_dir, "move_up_form_3a.yaml", :creation_date, :last_change_date)
@@ -954,9 +979,15 @@ check_modified_uris(form, saved_form, "updated_uri_expected_23.yaml")
       form = Form.create(label: "Form1", identifier: "XXX")
       form.add_child({type:"normal_group"})
       normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
-      normal_group.add_child({type:"question"})
-      normal_group.add_child({type:"question"})
-      normal_group.add_child({type:"question"})
+      node = normal_group.add_child({type:"question"})
+      node.label ="Node 1"
+      node.save
+      node = normal_group.add_child({type:"question"})
+      node.label ="Node 2"
+      node.save
+      node = normal_group.add_child({type:"question"})
+      node.label ="Node 3"
+      node.save
       make_standard(form)
       form = Form.find_full(form.uri)
       check_dates(form, sub_dir, "move_down_form_2a.yaml", :creation_date, :last_change_date)
