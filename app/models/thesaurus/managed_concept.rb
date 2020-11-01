@@ -479,7 +479,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
           ?s th:preferredTerm/isoC:label ?pt .
           ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
           OPTIONAL {?s th:synonym/isoC:label ?sy }
-          OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t }
+          OPTIONAL {?s ^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel ?t }
         } ORDER BY ?i ?sy ?t
       } GROUP BY ?i ?n ?d ?l ?pt ?e ?s ?eo ?ei ?so ?si ?ranked ?o ?v ?sci ?ns ?count ?countci ?countcn ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
     }
@@ -820,7 +820,7 @@ private
   # Was the item deleted from CT version. Only used for CDISC CT
   def deleted_from_ct_version(last_item)
     return {deleted: false, ct: nil} if self.owned?
-    ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
+    ct_history = Thesaurus.history_uris(identifier: CdiscTerm.identifier, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
     item_was_deleted = used_in.first != ct_history.first
     return {deleted: item_was_deleted, ct: nil} if !item_was_deleted
@@ -832,7 +832,7 @@ private
   # Deleted from CT. Only used for CDISC CT
   def deleted_from_ct?(last_item)
     return false if self.owned?
-    ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
+    ct_history = Thesaurus.history_uris(identifier: CdiscTerm.identifier, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
     used_in.first != ct_history.first
   end
