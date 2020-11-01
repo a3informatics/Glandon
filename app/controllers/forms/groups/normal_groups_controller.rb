@@ -40,7 +40,7 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
     result = parent.move_up_with_clone(normal, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: ""}, :status => 200
+      render :json => {data: "", ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
@@ -54,7 +54,7 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
     result = parent.move_down_with_clone(normal, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: ""}, :status => 200
+      render :json => {data: "", ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
