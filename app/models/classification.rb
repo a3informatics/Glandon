@@ -22,8 +22,6 @@ class Classification < IsoContextualRelationship
     end
     Errors.application_error(self.class.name, "where", "Multiple classifications found for #{applies_to} and #{classified_as}.") if objects.count > 1
     objects.first
-  rescue => e
-byebug
   end
 
 end
