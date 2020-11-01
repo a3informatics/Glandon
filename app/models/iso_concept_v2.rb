@@ -138,7 +138,7 @@ class IsoConceptV2 < Fuseki::Base
   #
   # @return [Object] the cloned object.
   def clone
-    self.tagged_links
+    #self.tagged_links 
     super
   end
   

@@ -193,43 +193,6 @@ describe "IsoConceptV2" do
       expect(results.map{|x| x.pref_label}).to match_array([])
     end
 
-    it "add tags with no save" do
-      item_1 = IsoConceptV2.new
-      item_1.uri = Uri.new(uri: "http://www.assero.co.uk/C1")
-      item_2 = IsoConceptV2.new
-      item_2.uri = Uri.new(uri: "http://www.assero.co.uk/C2")
-      cs_1 = IsoConceptSystem.new
-      cs_1.uri = Uri.new(uri: "http://www.assero.co.uk/TAG1")
-      cs_2 = IsoConceptSystem.new
-      cs_2.uri = Uri.new(uri: "http://www.assero.co.uk/TAG2")
-      cs_3 = IsoConceptSystem.new
-      cs_3.uri = Uri.new(uri: "http://www.assero.co.uk/TAG3")
-      expect(item_1.tagged.count).to eq(0)
-      expect(item_2.tagged.count).to eq(0)
-      item_1.add_tag_no_save(cs_1)
-      expect(item_1.tagged.count).to eq(1)
-      expect(item_2.tagged.count).to eq(0)
-      item_1.add_tag_no_save(cs_2)
-      expect(item_1.tagged.count).to eq(2)
-      expect(item_2.tagged.count).to eq(0)
-      item_1.add_tag_no_save(cs_2)
-      expect(item_1.tagged.count).to eq(2)
-      expect(item_2.tagged.count).to eq(0)
-      item_1.add_tags_no_save([cs_1, cs_2])
-      item_2.add_tags_no_save([cs_1, cs_2])
-      expect(item_1.tagged.count).to eq(2)
-      expect(item_2.tagged.count).to eq(2)
-      item_2.add_tags_no_save([cs_1, cs_2])
-      expect(item_1.tagged.count).to eq(2)
-      expect(item_2.tagged.count).to eq(2)
-      item_1.add_tag_no_save(cs_3)
-      item_2.add_tags_no_save([cs_3])
-      expect(item_1.tagged.count).to eq(3)
-      expect(item_2.tagged.count).to eq(3)
-      expect(item_1.tagged.map{|x| x.uri}).to match_array([cs_1.uri, cs_2.uri, cs_3.uri])
-      expect(item_2.tagged.map{|x| x.uri}).to match_array([cs_1.uri, cs_2.uri, cs_3.uri])
-    end
-
     it "Gets tags" do
       uri = Uri.new(uri: "http://www.assero.co.uk/C1")
       item_1 = IsoConceptV2.new
