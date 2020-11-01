@@ -59,6 +59,29 @@ describe "Forms", :type => :feature do
       find('#main_area').scroll_to(:bottom)
     end
 
+    it "RECREATING BUG" do
+      click_navbar_forms
+      wait_for_ajax 20
+      find(:xpath, "//tr[contains(.,'FN000120')]/td/a").click
+      wait_for_ajax 10
+
+      context_menu_element_v2('history', 'FN000120', :document_control)
+      click_on 'Submit Status Change'
+      click_on 'Submit Status Change'
+      click_on 'Return'
+
+      wait_for_ajax 10
+      context_menu_element_v2('history', 'FN000120', :edit)
+
+      wait_for_ajax 50
+
+      find_node('MEAL PREPARATION').click
+      click_action :move_up
+      wait_for_ajax 10
+
+      check_alert 'Node moved successfully'
+    end
+
     it "has correct initial state" do
       edit_form('FN000150')
 
