@@ -179,13 +179,14 @@ export default class GenericEditor extends ModalView {
   /**
    * Submit data to the server, handle response
    * @param {String} type Request type
+   * @param {boolean} rawResult Specifies whether the request should pass raw result from the server to the callback, optional
    */
-  _submit(type) { 
+  _submit(type, rawResult = false) { 
 
     this._loading( true );
 
     $ajax({
-      type,
+      type, rawResult,
       url: this._requestSpec.url,
       data: this._requestSpec.data,
       contentType: 'application/json',
