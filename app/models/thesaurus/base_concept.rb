@@ -101,7 +101,6 @@ class Thesaurus
           preferred_term: Thesaurus::PreferredTerm.where_only_or_create(syn.label),
           synonym: synonyms,
           definition: object.definition,
-          tagged: object.tagged,
           transaction: tx
         }, self)
         self.valid_child?(child) # Errors placed into child.
@@ -156,7 +155,7 @@ class Thesaurus
               BIND(EXISTS {#{self.uri.to_ref} th:refersTo ?s} as ?sp)
               OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
               OPTIONAL {?s th:synonym/isoC:label ?sy .}
-              OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
+              OPTIONAL {?s ^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel ?t . #{tag_clause}}
             }
           } ORDER BY ?i ?sy ?t
         } GROUP BY ?i ?n ?d ?pt ?e ?type ?s ?del ?sp ?countci ?countcn ?rank ORDER BY ?i
