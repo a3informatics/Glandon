@@ -119,11 +119,11 @@ describe ThesauriController do
     it "shows the history, initial view" do
       params = {}
       thesaurus = Thesaurus.new
-      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1")])
+      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm.identifier, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1")])
       expect(Thesaurus).to receive(:find_minimum).and_return(thesaurus)
-      get :history, params:{thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
+      get :history, params:{thesauri: {identifier: CdiscTerm.identifier, scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
       expect(assigns(:thesaurus)).to eq(thesaurus)
-      expect(assigns(:identifier)).to eq(CdiscTerm::C_IDENTIFIER)
+      expect(assigns(:identifier)).to eq(CdiscTerm.identifier)
       expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
       expect(response).to render_template("history")
     end
@@ -132,8 +132,8 @@ describe ThesauriController do
       ct_1 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       ct_2 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])
-      get :history, params:{thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 20, offset: 20}}
+      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])
+      get :history, params:{thesauri: {identifier: CdiscTerm.identifier, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 20, offset: 20}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
@@ -863,7 +863,7 @@ describe ThesauriController do
 
     it "history" do
       params = {}
-      get :history, params:{thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
+      get :history, params:{thesauri: {identifier: CdiscTerm.identifier, scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
       expect(response).to redirect_to("/cdisc_terms/history")
     end
 
@@ -871,7 +871,7 @@ describe ThesauriController do
 
       # No current
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :history, params:{thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
+      get :history, params:{thesauri: {identifier: CdiscTerm.identifier, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "history_paths_comm_reader_expected_1.yaml", equate_method: :hash_equal)
 
@@ -879,7 +879,7 @@ describe ThesauriController do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
       ct.has_state.make_current
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :history, params:{thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
+      get :history, params:{thesauri: {identifier: CdiscTerm.identifier, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = map_results(JSON.parse(response.body).deep_symbolize_keys[:data])
       check_file_actual_expected(actual, sub_dir, "history_paths_comm_reader_expected_2.yaml", equate_method: :hash_equal)
 
@@ -923,7 +923,7 @@ describe ThesauriController do
 
       # No current
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :history, params:{thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
+      get :history, params:{thesauri: {identifier: CdiscTerm.identifier, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_1.yaml", equate_method: :hash_equal)
 
@@ -931,7 +931,7 @@ describe ThesauriController do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
       ct.has_state.make_current
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :history, params:{thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
+      get :history, params:{thesauri: {identifier: CdiscTerm.identifier, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = map_results(JSON.parse(response.body).deep_symbolize_keys[:data])
       check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_2.yaml", equate_method: :hash_equal)
 
@@ -962,7 +962,7 @@ describe ThesauriController do
 
       # No current
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :history, params:{thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
+      get :history, params:{thesauri: {identifier: CdiscTerm.identifier, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "history_paths_expected_1.yaml", equate_method: :hash_equal)
 
@@ -970,7 +970,7 @@ describe ThesauriController do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
       ct.has_state.make_current
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :history, params:{thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
+      get :history, params:{thesauri: {identifier: CdiscTerm.identifier, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = map_results(JSON.parse(response.body).deep_symbolize_keys[:data])
       check_file_actual_expected(actual, sub_dir, "history_paths_expected_2.yaml", equate_method: :hash_equal)
 
