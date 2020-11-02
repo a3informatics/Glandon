@@ -24,35 +24,37 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 #include NameValueHelpers
 #Latest version settings for CDISC terminology
 
+include NameValueHelpers
+include PauseHelpers
+include DataHelpers
+include UiHelpers
+include WaitForAjaxHelper
+include DownloadHelpers
+include AuditTrailHelpers
+include ScenarioHelpers
+include QualificationUserHelpers
+include EditorHelpers
+include ItemsPickerHelpers
 
 Cucumber::Rails::Database.autorun_database_cleaner = false
-DatabaseCleaner.strategy = :truncation
-Cucumber::Rails::Database.javascript_strategy = :truncation
-
-  include NameValueHelpers
-  include PauseHelpers
-  include DataHelpers
-  include UiHelpers
-  include WaitForAjaxHelper
-  include DownloadHelpers
-  include AuditTrailHelpers
-  include ScenarioHelpers
-  include QualificationUserHelpers
-  include EditorHelpers
+#DatabaseCleaner.strategy = :truncation
+#Cucumber::Rails::Database.javascript_strategy = :truncation
   
 Before do
   log('Clean databse')
-  DatabaseCleaner.clean
+ # DatabaseCleaner.clean
   nv_destroy
   nv_create(parent: "10", child: "999")
- 
+
   LST_VERSION = 65
   LATEST_VERSION='2020-06'
   #Load in the CDISC Terminology and recreate users
-  log('loading terminology and users')
+    log('loading terminology and users')
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
-    load_cdisc_term_versions(1..LST_VERSION)
+    #full_path = Rails.root.join("db/load/biomedical_concept_templates.ttl")
+    #load_file_into_triple_store(full_path)
+    #load_cdisc_term_versions(1..LST_VERSION)
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -62,12 +64,13 @@ Before do
     Token.destroy_all
     AuditTrail.destroy_all
     clear_downloads
-  log('Data and users loaded')
+
+    log('Data and users loaded')
 end
 
-After do |scenario|
-  nv_destroy
-end
+# After do |scenario|
+#   nv_destroy
+# end
 
 
  #TURN_ON_SCREEN_SHOT=false
@@ -225,7 +228,10 @@ ActionController::Base.allow_rescue = false
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
- Cucumber::Rails::Database.javascript_strategy = :truncation
+ #Cucumber::Rails::Database.javascript_strategy = :truncation
+ Cucumber::Rails::Database.javascript_strategy = :transaction
+
+
 
 
 
