@@ -1,7 +1,6 @@
 <% content_for :page_title do %> <%= "Show: #{@tc.notation} (#{@tc.has_identifier.identifier})" %> <% end %>
 
 <%= javascript_pack_tag 'thesauri/managed_concepts/show' %>
-<%= javascript_include_tag 'shared/thesauri/managed_concepts/extension_create' %>
 
 <%= javascript_tag "let conceptId = '#{@tc.id}',
                         contextId = '#{@context_id}',

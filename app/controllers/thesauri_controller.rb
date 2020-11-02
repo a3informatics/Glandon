@@ -484,7 +484,7 @@ class ThesauriController < ApplicationController
         render json: { errors: new_mc.errors.full_messages }, :status => 422
       end
     else
-      render json: { errors: ["Cannot use Thesaurus as it is not owned by your organization."], }, :status => 422
+      render json: { errors: ["Cannot use Thesaurus as it is not owned by your organization."] }, :status => 422
     end
   end
 
