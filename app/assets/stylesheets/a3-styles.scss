@@ -9,6 +9,7 @@
 @import "shared/layouts/modal";
 @import "shared/layouts/forms";
 
+@import "shared/alerts";
 @import "shared/tables";
 @import "shared/checkbox";
 @import "shared/scrollbar";
@@ -34,16 +35,6 @@
 
 .no-break {
   white-space: nowrap;
-}
-
-// ALERTS
-.alert {
-  margin: 10px 0;
-  font-family: $font-light;
-  background-color: $grey-white;
-  -webkit-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
-  -moz-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
-  box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
 }
 
 // TEXT

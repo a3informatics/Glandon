@@ -196,15 +196,15 @@ function $handleError(xhr, status, error, target) {
     return;
   }
 
-  let errors = [];
+  let errors;
 
   try {
 
     let json = JSON.parse( xhr.responseText );
-    errors.push( json.error || json.errors || 'Error communicating with the server.' );
+    errors = json.error || json.errors || 'Error communicating with the server.';
 
   } catch( err ) {
-    errors.push( 'Error communicating with the server.' );
+    errors = 'Error communicating with the server.';
   }
 
   alerts.error( errors, target );
