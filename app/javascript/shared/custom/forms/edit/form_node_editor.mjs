@@ -72,7 +72,7 @@ export default class NodeEditor extends GenericEditor {
     }
     catch(e) {
 
-      alerts.error( 'Something went wrong while updating data.', this.$error );
+      alerts.error( 'Something went wrong while updating data.' );
       return;
 
     }
