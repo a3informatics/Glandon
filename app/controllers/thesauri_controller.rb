@@ -421,6 +421,7 @@ class ThesauriController < ApplicationController
     th = Thesaurus.find_minimum(params[:id])
     if th.owned?
       th = edit_item(th)
+      render json: { errors: [ flash[:error] ] }, :status => 422 and return if th.nil?
       new_object = th.add_extension(the_params[:concept_id])
       if new_object.errors.empty?
         AuditTrail.create_item_event(current_user, th, th.audit_message(:updated))
@@ -473,6 +474,7 @@ class ThesauriController < ApplicationController
     thesaurus = Thesaurus.find_minimum(params[:id])
     if thesaurus.owned?
       thesaurus = edit_item(thesaurus)
+      render json: { errors: [ flash[:error] ] }, :status => 422 and return if thesaurus.nil?
       new_mc = thesaurus.add_subset(the_params[:concept_id])
       if new_mc.errors.empty?
         AuditTrail.create_item_event(current_user, new_mc, new_mc.audit_message(:updated, "subset"))

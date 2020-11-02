@@ -194,15 +194,18 @@ describe Thesauri::ManagedConceptsController do
       tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66767/V2#C66767")
       get :show, params:{id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
       expect(assigns(:context_id)).to eq(th_uri.to_id)
-      expect(assigns(:can_be_extended)).to eq(false)
-      expect(assigns(:is_extended)).to eq(false)
-      expect(assigns(:is_extended_path)).to eq("")
-      expect(assigns(:is_extending)).to eq(false)
-      expect(assigns(:is_extending_path)).to eq("")
+      expect(assigns(:extend_opts)).to eq({
+        allowed: false,
+        override: true,
+        extended: false,
+        extension: false,
+        extending_path: "",
+        extension_path: ""
+      })
       expect(response).to render_template("show")
       tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66780/V2#C66780")
       get :show, params:{id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
-      expect(assigns(:can_be_extended)).to eq(true)
+      expect(assigns(:extend_opts)[:allowed]).to eq(true)
     end
 
     it "show, non extensible code list" do
@@ -211,12 +214,14 @@ describe Thesauri::ManagedConceptsController do
       expect(Thesaurus::ManagedConcept).to receive(:can_extend_unextensible?).and_return(true)
       get :show, params:{id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
       expect(assigns(:context_id)).to eq(th_uri.to_id)
-      expect(assigns(:can_be_extended)).to eq(false)
-      expect(assigns(:can_extend_unextensible)).to eq(true)
-      expect(assigns(:is_extended)).to eq(false)
-      expect(assigns(:is_extended_path)).to eq("")
-      expect(assigns(:is_extending)).to eq(false)
-      expect(assigns(:is_extending_path)).to eq("")
+      expect(assigns(:extend_opts)).to eq({
+        allowed: false,
+        override: true,
+        extended: false,
+        extension: false,
+        extending_path: "",
+        extension_path: ""
+      })
       expect(response).to render_template("show")
     end
 
@@ -226,12 +231,14 @@ describe Thesauri::ManagedConceptsController do
       expect(Thesaurus::ManagedConcept).to receive(:can_extend_unextensible?).and_return(false)
       get :show, params:{id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
       expect(assigns(:context_id)).to eq(th_uri.to_id)
-      expect(assigns(:can_be_extended)).to eq(false)
-      expect(assigns(:can_extend_unextensible)).to eq(false)
-      expect(assigns(:is_extended)).to eq(false)
-      expect(assigns(:is_extended_path)).to eq("")
-      expect(assigns(:is_extending)).to eq(false)
-      expect(assigns(:is_extending_path)).to eq("")
+      expect(assigns(:extend_opts)).to eq({
+        allowed: false,
+        override: false,
+        extended: false,
+        extension: false,
+        extending_path: "",
+        extension_path: ""
+      })
       expect(response).to render_template("show")
     end
 
@@ -243,11 +250,14 @@ describe Thesauri::ManagedConceptsController do
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extended_by).and_return(ext_uri)
       get :show, params:{id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
       expect(assigns(:context_id)).to eq(th_uri.to_id)
-      expect(assigns(:can_be_extended)).to eq(false)
-      expect(assigns(:is_extended)).to eq(true)
-      expect(assigns(:is_extended_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th_uri.to_id)}")
-      expect(assigns(:is_extending)).to eq(false)
-      expect(assigns(:is_extending_path)).to eq("")
+      expect(assigns(:extend_opts)).to eq({
+        allowed: false,
+        override: false,
+        extended: true,
+        extension: false,
+        extending_path: "",
+        extension_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th_uri.to_id)}"
+      })
       expect(response).to render_template("show")
     end
 
@@ -259,11 +269,14 @@ describe Thesauri::ManagedConceptsController do
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extension_of).and_return(ext_uri)
       get :show, params:{id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
       expect(assigns(:context_id)).to eq(th_uri.to_id)
-      expect(assigns(:can_be_extended)).to eq(true)
-      expect(assigns(:is_extended)).to eq(false)
-      expect(assigns(:is_extended_path)).to eq("")
-      expect(assigns(:is_extending)).to eq(true)
-      expect(assigns(:is_extending_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th_uri.to_id)}")
+      expect(assigns(:extend_opts)).to eq({
+        allowed: true,
+        override: false,
+        extended: false,
+        extension: true,
+        extending_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th_uri.to_id)}",
+        extension_path: ""
+      })
       expect(response).to render_template("show")
     end
 

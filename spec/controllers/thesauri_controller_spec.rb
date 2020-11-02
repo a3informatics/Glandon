@@ -721,11 +721,11 @@ describe ThesauriController do
     it "extension" do
       th = Thesaurus.create(identifier: "XXX", label: "xxxx term")
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :extension, params:{thesauri: { scope_id: IsoRegistrationAuthority.repository_scope.id,
-                                    identifier: th.scoped_identifier,
-                                    concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YyI0M2NzE1NA=="
-                                  }
-                        }
+      post :extension, params: { id: th.id,
+        thesauri: {
+          concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YyI0M2NzE1NA=="
+        }
+      }
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       x = JSON.parse(response.body).deep_symbolize_keys
@@ -736,11 +736,11 @@ describe ThesauriController do
       th = Thesaurus.create(identifier: "XXX", label: "xxxx term")
       token = Token.obtain(th, @lock_user)
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :extension, params:{thesauri: { scope_id: IsoRegistrationAuthority.repository_scope.id,
-                                    identifier: th.scoped_identifier,
-                                    concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YyI0M2NzE1NA=="
-                                  }
-                        }
+      post :extension, params: { id: th.id,
+        thesauri: {
+          concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YyI0M2NzE1NA=="
+        }
+      }
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The item is locked for editing by user: lock@example.com."])
@@ -749,8 +749,8 @@ describe ThesauriController do
 
     it "add subset" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :add_subset, params:{id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==",
-        thesauri: {concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ==", identifier:"AIRPORTS", scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ=="}}
+      post :add_subset, params: { id: "aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQUlSUE9SVFMvVjEjVEg=",
+        thesauri: { concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ==" } }
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       x = JSON.parse(response.body).deep_symbolize_keys
