@@ -19,7 +19,6 @@ export default class IPPanel extends SelectablePanel {
    * @param {boolean} params.paginated Specify if the loadData call should be paginated. Optional, default = true
    * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {function} params.loadCallback Callback to data fully loaded, optional
-   * @param {element} params.errorDiv Custom element to display flash errors in, optional
    * @param {boolean} params.multiple Enable / disable selection of multiple rows [default = false]
    * @param {boolean} params.showSelectionInfo Enable / disable selection info on the table
    * @param {boolean} params.ownershipColorBadge Enable / disable showing a color-coded ownership badge
@@ -35,14 +34,13 @@ export default class IPPanel extends SelectablePanel {
     paginated = true,
     order = [[0, "desc"]],
     loadCallback = () => {},
-    errorDiv,
     multiple = false,
     showSelectionInfo = true,
     ownershipColorBadge = false,
     onSelect = () => { },
     onDeselect = () => { },
   }) {
-    super({ selector, url, param, count, extraColumns, deferLoading: true, paginated, order, loadCallback, errorDiv,
+    super({ selector, url, param, count, extraColumns, deferLoading: true, paginated, order, loadCallback, 
       multiple, showSelectionInfo, ownershipColorBadge, onSelect, onDeselect });
   }
 

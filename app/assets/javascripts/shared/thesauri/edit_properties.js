@@ -87,7 +87,7 @@ EditProperties.prototype.save = function() {
       },
       error: function(xhr,status,error){
         this.loading(false);
-        handleAjaxError(xhr, status, error, $(this.els.modal).find(".errors"));
+        handleAjaxError(xhr, status, error);
       }
     })
   }

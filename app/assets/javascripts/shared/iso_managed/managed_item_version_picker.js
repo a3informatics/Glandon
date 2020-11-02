@@ -68,7 +68,7 @@ ManagedItemVersionPicker.prototype.setListeners = function () {
   $(this.modalId + ' ' + this.submitId).on('click', function() {
     var rowSelected = this.historyTable.row({selected: true});
     if (rowSelected.count() == 0) {
-      displayAlertsInElement(alertError("You must select a version."), $("#im-version-picker-error"));
+      displayAlerts(alertError("You must select a version."));
     }
     else {
       $(this.modalId).modal("hide");

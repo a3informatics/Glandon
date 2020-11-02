@@ -22,7 +22,6 @@ export default class ManagedItemSelector extends Cacheable {
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {boolean} params.multiple Enable / disable selection of multiple rows [default = false]
    * @param {SelectionView} params.selectionView Selection View instance reference of the Item Picker
-   * @param {element} params.errorDiv Custom element to display flash errors in, optional
    */
   constructor({
     selector,
@@ -30,11 +29,10 @@ export default class ManagedItemSelector extends Cacheable {
     param,
     multiple = false,
     selectionView,
-    errorDiv
   }) {
     super();
 
-    Object.assign(this, { selector, param, multiple, selectionView, errorDiv });
+    Object.assign(this, { selector, param, multiple, selectionView });
     this.urls = urls[this._realParam];
 
     this._initialize();
@@ -86,7 +84,6 @@ export default class ManagedItemSelector extends Cacheable {
       extraColumns: this._indexColumns,
       showSelectionInfo: false,
       ownershipColorBadge: true,
-      errorDiv: this.errorDiv,
       onSelect: () => this._loadHistoryData(),
       onDeselect: () => this.historyPanel.clear(),
       loadCallback: () => this._toggleInteractivity(true)
@@ -99,7 +96,6 @@ export default class ManagedItemSelector extends Cacheable {
       count: 100,
       extraColumns: this._historyColumns,
       multiple: this.multiple,
-      errorDiv: this.errorDiv,
       onSelect: (dtRows) => this._onItemSelect(dtRows),
       onDeselect: (dtRows) => this._onItemDeselect(dtRows),
       loadCallback: (t) => {

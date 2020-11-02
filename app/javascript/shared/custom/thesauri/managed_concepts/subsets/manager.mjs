@@ -77,7 +77,6 @@ export default class SubsetsManager extends ModalView {
       extraColumns: this.columns,
       deferLoading: true,
       paginated: false,
-      errorDiv: this.$error,
       tableOptions: {
         language: { emptyTable: 'No subsets found.' }
       }
@@ -105,7 +104,6 @@ export default class SubsetsManager extends ModalView {
 
     $post({
       url, data,
-      errorDiv: this.$error,
       done: r => location.href = r.edit_path
     });
 
@@ -194,19 +192,6 @@ export default class SubsetsManager extends ModalView {
       },
       dtContextMenuColumn( this._renderMenu.bind(this) )
     ];
-
-  }
-
-  /**
-   * Get the modal's error element
-   * @return {JQuery Element} Error div of the modal
-   */
-  get $error() {
-
-    if ( this.modal.is(':visible') )
-      return this.modal.find('.error');
-    else
-      return;
 
   }
 

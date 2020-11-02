@@ -64,7 +64,6 @@ export default class ItemsPicker extends ModalView {
 
     // Clear selection view
     this.selectionView.clear();
-    this._errorDiv.empty();
   }
 
   /**
@@ -273,8 +272,7 @@ export default class ItemsPicker extends ModalView {
           multiple: this.multiple,
           selectionView: this.selectionView,
           urls: _globalIHUrls,
-          param: type,
-          errorDiv: this._errorDiv
+          param: type
         });
         break;
       default:
@@ -283,8 +281,7 @@ export default class ItemsPicker extends ModalView {
           multiple: this.multiple,
           selectionView: this.selectionView,
           urls: _globalIHUrls,
-          param: type,
-          errorDiv: this._errorDiv
+          param: type
         });
         break;
     }
@@ -353,14 +350,6 @@ export default class ItemsPicker extends ModalView {
       biomedical_concept_template: rdfTypesMap.BCT,
       form: rdfTypesMap.FORM
     }
-  }
-
-  /**
-   * Get the error div of the Items Picker modal
-   * @return {JQuery Element} Items Picker's unique error div
-   */
-  get _errorDiv() {
-    return $(`${this.selector} #items-picker-error`)
   }
 
 }

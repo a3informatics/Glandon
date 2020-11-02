@@ -189,7 +189,6 @@ export default class GenericEditor extends ModalView {
       url: this._requestSpec.url,
       data: this._requestSpec.data,
       contentType: 'application/json',
-      errorDiv: this.$error,
       done: d => d.fieldErrors ?
                   this._onError( d.fieldErrors ) :
                   this._onSuccess( d ),
@@ -522,14 +521,6 @@ export default class GenericEditor extends ModalView {
    */
   get _requestSpec() {
     return { }
-  }
-
-  /**
-   * Get the Editor's error div
-   * @return {JQuery Element} Editor modal error div
-   */
-  get $error() {
-    return this.modal.find( '.error' );
   }
 
   /**

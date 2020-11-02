@@ -24,7 +24,6 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {boolean} params.multiple Enable / disable selection of multiple rows [default = false]
    * @param {SelectionView} params.selectionView Selection View instance reference of the Item Picker
-   * @param {element} params.errorDiv Custom element to display flash errors in, optional
    */
   constructor({
     selector,
@@ -32,7 +31,6 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
     param,
     multiple = false,
     selectionView,
-    errorDiv,
   }) {
     super({ selector, urls, param, multiple, selectionView });
   }
@@ -90,7 +88,6 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
       extraColumns: this._childrenColumns,
       showSelectionInfo: false,
       multiple: this.multiple,
-      errorDiv: this.errorDiv,
       onSelect: (dtRows) => this._onItemSelect(dtRows),
       onDeselect: (dtRows) => this._onItemDeselect(dtRows),
       loadCallback: (t) => {

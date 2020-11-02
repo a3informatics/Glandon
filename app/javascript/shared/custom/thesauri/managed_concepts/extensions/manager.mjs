@@ -95,7 +95,6 @@ export default class ExtensionsManager {
 
     $post({
       url, data,
-      errorDiv: this.$error,
       done: r => location.href = r.edit_path
     });
 

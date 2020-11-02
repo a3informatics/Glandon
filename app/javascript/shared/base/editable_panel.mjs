@@ -154,7 +154,7 @@ export default class EditablePanel extends TablePanel {
 
       // Handle any errors thrown by the server
       if ( json.errors )
-        alerts.error( json.errors.join(' & '), this.errorDiv );
+        alerts.error( json.errors.join(' & ') );
 
       this._onEdited();
 
