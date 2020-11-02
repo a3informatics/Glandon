@@ -333,8 +333,8 @@ describe "Import::SponsorTermFormatOne" do
         results = read_yaml_file(sub_dir, "import_results_expected_3-1.yaml")
         expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
         expect(count_cl(th)).to eq(results.count)
-        expect(count_cli(th)).to eq(32802)
-        expect(count_distinct_cli(th)).to eq(29514)
+        expect(count_cli(th)).to eq(32800)
+        expect(count_distinct_cli(th)).to eq(30224)
         results.each do |x|
           check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
         end    
@@ -502,32 +502,6 @@ describe "Import::SponsorTermFormatOne" do
       }
     end
 
-    def ct_misaligned_tags(uri)
-      %Q{
-        SELECT DISTINCT ?l ?v ?d ?clid ?cliid ?cltag ?clitag WHERE
-        {
-          #{uri.to_ref} isoC:label ?l .
-          #{uri.to_ref} isoT:creationDate ?d .
-          #{uri.to_ref} isoT:hasIdentifier/isoI:version ?v .
-          #{uri.to_ref} th:isTopConceptReference/bo:reference ?cl .
-          ?cl th:identifier ?clid . 
-          # ?cl ^isoC:appliesTo ?x .
-          # ?x isoC:context #{uri.to_ref} .
-          ?cl th:narrower ?cli .
-          ?cli th:identifier ?cliid .             
-          # ?cli ^isoC:appliesTo ?y .
-          # ?y isoC:context #{uri.to_ref} .
-          # ?x isoC:classifiedAs/isoC:prefLabel ?cltag .
-          ?cl isoC:tagged/isoC:prefLabel ?cltag .
-          FILTER NOT EXISTS {
-            # ?y isoC:classifiedAs/isoC:prefLabel ?clitag .
-            ?cli isoC:tagged/isoC:prefLabel ?clitag .
-            FILTER(?cltag = ?clitag)
-          }
-        } ORDER BY ?v ?clid ?cliid ?cltag ?clitag
-      }
-    end
-
     it "tag analysis" do
       ct_set.each_with_index do |v, index|
         print "Processing: #{v[:uri]}, v#{v[:version]}  "
@@ -547,28 +521,6 @@ describe "Import::SponsorTermFormatOne" do
         end
         puts ".."
         check_file_actual_expected(overall, sub_dir, "ct_query_tag_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
-      end
-    end
-
-    it "misaligned tag analysis" do
-      ct_set.each_with_index do |v, index|
-        print "Processing: #{v[:uri]}, v#{v[:version]}  "
-        query_results = Sparql::Query.new.query(ct_misaligned_tags(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
-        print ".."
-        results = query_results.by_object_set([:l, :v, :d, :clid, :cliid, :cltag, :clitag]).map{|x| {label: x[:l], version: x[:v], date: x[:d], code_list: x[:clid], code_list_item: x[:cliid], cl_tag: x[:cltag], cli_tag: x[:clitag]}}
-        print ".."
-        overall = {}
-        overall[:label] = results[0][:label]
-        overall[:version] = v[:version]
-        overall[:results] = {}
-        results.each do |x|
-          key = x[:code_list_item].empty? ? "#{x[:code_list]}" : "#{x[:code_list]}.#{x[:code_list_item]}"
-          overall[:results][key] = [] unless overall[:results].key?(key) 
-          overall[:results][key] << "CL: '#{x[:cl_tag]}' v CLI: '#{x[:cli_tag]}'" 
-        end
-        print ".."
-        overall[:results] == {} ? puts("") : puts(" RESULTS ")
-        check_file_actual_expected(overall, sub_dir, "ct_query_tag_misaligned_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
       end
   
     end
