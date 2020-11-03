@@ -127,6 +127,15 @@ table th.th-xsmall{
 
 .table-cardstyle.table-minimal .dataTables_wrapper div:nth-of-type(odd) div[class^="col-sm"]{
   font-size: 9pt;
+}
+
+.table-cardstyle.table-minimal.stack-all .dataTables_wrapper div:nth-of-type(odd) div[class^="col-sm"]{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.table-cardstyle.table-minimal.stack-bottom .dataTables_wrapper div:nth-of-type(3) div[class^="col-sm"]{
   width: 100%;
   display: flex;
   justify-content: center;
