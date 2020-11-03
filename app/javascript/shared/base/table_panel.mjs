@@ -198,7 +198,7 @@ export default class TablePanel {
   }
 
   /**
-   * Change panel's loading state and update the isProcessing instance variable 
+   * Change panel's loading state and update the isProcessing instance variable
    * @param {boolean} enable value corresponding to the desired loading state on/off
    */
   _loading(enable) {
@@ -222,7 +222,7 @@ export default class TablePanel {
     this.table = $(this.selector).DataTable(this._tableOpts);
 
     // Show buttons if exist
-    if (this.buttons.length)
+    if (this._tableOpts.buttons.length)
       this.table.buttons().container()
         .appendTo( $('.col-sm-6:eq(0)', this.table.table().container()) );
   }

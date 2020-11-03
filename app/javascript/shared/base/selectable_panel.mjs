@@ -32,9 +32,6 @@ export default class SelectablePanel extends TablePanel {
     onDeselect = () => { }
   }) {
 
-    if ( allowAll )
-      Object.assign( tablePanelOptions, { buttons: [ selectAllBtn(), deselectAllBtn() ] });
-
     super(
       { ...tablePanelOptions },
       { multiple, showSelectionInfo, ownershipColorBadge, onSelect,
@@ -134,11 +131,17 @@ export default class SelectablePanel extends TablePanel {
   }
 
   /**
-   * Button definitions for select & deselect all rows
-   * @return {Array} select & deselect all rows button definitions
+   * Select all rows in panel, override for custom behavior
    */
-  get _allButtons() {
-    return [ selectAllBtn() ];
+  _selectAll() {
+    this.table.rows({ selected: false }).select();
+  }
+
+  /**
+   * Deselect all rows in panel, override for custom behavior
+   */
+  _deselectAll() {
+    this.table.rows({ selected: true }).deselect();
   }
 
   /**
@@ -150,6 +153,7 @@ export default class SelectablePanel extends TablePanel {
 
     options.columns = [...this.extraColumns];
     options.language.emptyTable = "No items found.";
+
     // Selection settings
     options.select = {
       style: this.multiple ? 'multi' : 'single',
@@ -157,10 +161,17 @@ export default class SelectablePanel extends TablePanel {
     }
 
     // Row owner styling
-    if (this.ownershipColorBadge)
-      options.createdRow = (row, data, idx) => {
-        $(row).addClass( isCDISC(data) ? 'row-cdisc y' : 'row-sponsor b' );
-      }
+    if ( this.ownershipColorBadge )
+      options.createdRow = (row, data, idx) =>
+        $( row ).addClass( isCDISC( data ) ? 'row-cdisc y' : 'row-sponsor b' );
+
+    // Add select all and deselect all buttons if option allowAll enabled
+    if ( this.allowAll )
+      options.buttons = [
+        ...this.buttons,
+        selectAllBtn( () => this._selectAll() ),
+        deselectAllBtn( () => this._deselectAll() )
+      ];
 
     return options;
   }
