@@ -57,10 +57,11 @@ function dtVersionColumn() {
  */
 function dtTagsColumn(width = '', className = '') {
   return {
-    data: "tags",
+    data: 'tags',
+    defaultContent: 'None',
     className,
     width: width,
-    render: (data, type, r, m) => type === "display" ? renderTagsInline(data) : data
+    render: (data, type, r, m) => type === 'display' ? renderTagsInline(data) : data
   }
 };
 

@@ -50,9 +50,37 @@ function fitColumn(name, tableId) {
   }
 }
 
+/**
+ * DataTable Select All button definition
+ * @param {function} action Custom action to execute on button click, optional
+ * @return {Object} Custom Select All button options
+ */
+ function selectAllBtn(action) {
+  return {
+    text: 'Select All',
+    className: 'btn-xs white',
+    action: action ? action : (e, dt, node, conf) => dt.rows({ selected: false }).select()
+  }
+}
+
+/**
+ * DataTable Select All button definition
+ * @param {function} action Custom action to execute on button click, optional
+ * @return {Object} Custom Select All button options
+ */
+ function deselectAllBtn(action) {
+  return {
+    text: 'Deselect All',
+    className: 'btn-xs white',
+    action: action ? action : (e, dt, node, conf) => dt.rows({ selected: true }).deselect()
+  }
+}
+
 export {
+  expandColumn,
+  fitColumn,
   csvExportBtn,
   excelExportBtn,
-  expandColumn,
-  fitColumn
+  selectAllBtn,
+  deselectAllBtn
 }
