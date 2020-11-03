@@ -65,6 +65,26 @@ class Form::Group::Common < Form::Group
     parent = parent.full_data
   end
 
+  def clone_children_common(managed_ancestor, tx, bc_properties)
+    sparql = Sparql::Update.new(tx)
+    items = []
+    keep_links = []
+    self.managed_ancestors_children_set.each do |child|
+      links = child.has_common_item.map{|x| x.to_s}
+      keep_links = links - bc_properties
+      next if keep_links.empty?
+      object = child.clone
+      object.has_common_item = keep_links.map{|x| Uri.new(uri:x) }
+      object.transaction_set(tx)
+      object.generate_uri(self.uri) 
+      object.to_sparql(sparql, true)
+      uri_updated(managed_ancestor, child.uri, object.uri)
+      items << object
+    end
+    self.has_item = items
+    sparql.create
+  end
+
   # def children_ordered
   #   self.has_item_objects.sort_by {|x| x.ordinal}
   # end

@@ -44,7 +44,7 @@ class Form::Group::Bc < Form::Group
   end
 
   def delete(parent, managed_ancestor)
-    parent = super(parent, managed_ancestor)
+    parent = delete_with_clone(managed_ancestor)
     parent = Form::Group::Normal.find_full(parent.uri)
     parent = parent.full_data
   end
@@ -52,24 +52,17 @@ class Form::Group::Bc < Form::Group
   def delete_with_clone(managed_ancestor)
     new_parent = super
     new_parent = Form::Group.find_full(new_parent.id)
+    new_parent.reset_ordinals
     delete_with_clone_common(managed_ancestor, new_parent) unless new_parent.has_common.empty?
     new_parent = Form::Group.find_full(new_parent.id)
   end
 
   def delete_with_clone_common(managed_ancestor, parent)
-    common_group = Form::Group::Common.find_children(parent.has_common_objects.first.uri)
     ty = transaction_begin
-    common_group.clone_children_and_save_no_tx(managed_ancestor, ty)
-    transaction_execute
+    bc_properties = bc_properties_uris.map{|x| x.to_s}
     common_group = Form::Group::Common.find_children(parent.has_common_objects.first.uri)
-    common_group.has_item_objects.each do |common_item|
-      self.has_item_objects.each do |bc_property|
-        if common_items_with_terminologies?(bc_property, common_item) || common_items_without_terminologies?(bc_property, common_item)
-          common_group.delete_link(:has_item, common_item.uri) if common_item.has_common_item_objects.count == 1
-          common_item.delete_link(:has_common_item, bc_property.uri)
-        end
-      end
-    end 
+    common_group.clone_children_common(managed_ancestor, ty, bc_properties)
+    transaction_execute
   end
 
   def delete_node(parent)
@@ -135,6 +128,14 @@ class Form::Group::Bc < Form::Group
     }
     query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo])
     query_results.by_object(:result).first.to_bool
+  end
+
+  def bc_properties_uris
+    bc_properties = []
+    self.has_item_objects.each do |bc_property|
+      bc_properties << bc_property.uri
+    end
+    bc_properties
   end 
 
   def children_ordered

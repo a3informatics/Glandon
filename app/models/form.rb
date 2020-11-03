@@ -138,8 +138,8 @@ private
     managed_ancestor.transaction_set(tx)
     new_object = managed_ancestor.clone_children_and_save_no_tx(managed_ancestor, tx, child.uri)
     transaction_execute
-    new_parent = Form.find_full(managed_ancestor.id)
-    return new_parent, new_object
+    #new_parent = Form.find_full(managed_ancestor.id)
+    return managed_ancestor, new_object
   end
 
   # Next Ordinal. Get the next ordinal for a managed item collection

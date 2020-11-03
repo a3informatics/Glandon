@@ -188,7 +188,7 @@ class IsoConceptV2
         end
       end
       transaction_execute
-      new_parent = Form::Group.find_full(new_parent.id)
+      #new_parent = Form::Group.find_full(new_parent.id)
       return new_parent, new_object
     end
 
@@ -283,18 +283,25 @@ class IsoConceptV2
     def clone_children_save_and_ignore_no_tx(managed_ancestor, tx, save_uri=nil, ignore_uri=nil)
       sparql = Sparql::Update.new(tx)
       new_object = nil
+      items = Hash.new {|h,k| h[k] = []}
       self.managed_ancestors_children_set.each do |child|
-          next if !ignore_uri.nil? && ignore_uri == child.uri
-          object = child.clone
-          object.transaction_set(tx)
-          object.generate_uri(self.uri) 
-          object.to_sparql(sparql, true)
-          self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
-          unless save_uri.nil? 
-            new_object = object if child.uri == save_uri 
-          end 
-          uri_updated(managed_ancestor, child.uri, object.uri)
+        next if !ignore_uri.nil? && ignore_uri == child.uri
+        object = child.clone
+        object.transaction_set(tx)
+        object.generate_uri(self.uri) 
+        object.to_sparql(sparql, true)
+        #self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
+        predicate = child.managed_ancestors_predicate
+        items[predicate] << object
+        unless save_uri.nil? 
+          new_object = object if child.uri == save_uri 
+        end 
+        uri_updated(managed_ancestor, child.uri, object.uri)
       end
+      items.each do |predicate, object_array|
+        self.send("#{predicate}=".to_sym, object_array)
+      end
+      self.save
       sparql.create
       new_object
     end
