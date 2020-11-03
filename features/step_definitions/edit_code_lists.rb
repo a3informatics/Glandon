@@ -23,3 +23,15 @@ When('I delete Preferred Term {string}') do |string|
   wait_for_ajax(20)
 end
 
+When('I click {string} in context menu for the new code list') do |string|
+  row = find("table#history tr", text: "Not Set")
+        within(row) do
+        ui_table_search("history", "Not Set")
+        find(".icon-context-menu").click
+        if string == 'edit'
+        context_menu_element('history', 4, 'Not Set', :edit)
+        end
+        end
+        wait_for_ajax(20)
+end
+
