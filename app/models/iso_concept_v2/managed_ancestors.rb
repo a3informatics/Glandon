@@ -180,7 +180,8 @@ class IsoConceptV2
             new_object = new_parent.clone_children_and_save_no_tx(managed_ancestor, tx, child.uri) 
           else
             cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
-            prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+            #prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+            replace_predicate(prev_object, old_object.managed_ancestors_predicate, old_object, cloned_object )
             prev_object = cloned_object
           end
         else
@@ -219,6 +220,14 @@ class IsoConceptV2
     end
 
   private
+
+    def replace_predicate(object, predicate, old_object, new_object)
+      object_array = object.send(predicate)
+      object_array.delete_if {|x| x.uri == old_object.uri}
+      object_array << new_object
+      object.send("#{predicate}=".to_sym, object_array)
+      object.save
+    end
 
     # Form path query
     def managed_ancestor_path_query(managed_ancestor)
