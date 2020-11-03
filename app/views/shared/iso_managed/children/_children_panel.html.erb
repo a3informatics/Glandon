@@ -20,8 +20,9 @@
       <%# Extra Columns %>
       <%= yield  %>
 
-      <%# Indicators %>
-      <th class="ignore fit"></th>
+      <% if local_assigns.fetch :indicators?, true %>
+        <th class="ignore fit"></th>
+      <% end %>
 
       <%# Show Button %>
       <% if local_assigns.fetch :has_show_btn?, false %>
