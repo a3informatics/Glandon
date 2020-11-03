@@ -1,6 +1,7 @@
 import TablePanel from 'shared/base/table_panel'
 
 import { isCDISC } from 'shared/helpers/utils'
+import { selectAllBtn, deselectAllBtn } from 'shared/helpers/dt/utils'
 
 /**
  * Base Selectable Panel (Table)
@@ -13,48 +14,33 @@ export default class SelectablePanel extends TablePanel {
   /**
    * Create a Selectable Panel
    * @param {Object} params Instance parameters
-   * @param {string} params.selector JQuery selector of the target table
-   * @param {string} params.url Url of source data
-   * @param {string} params.param Strict parameter name required for the controller params
-   * @param {int} params.count Count of items fetched in one request
-   * @param {Array} params.extraColumns Additional column definitions
-   * @param {boolean} params.deferLoading Set to true if data load should be deferred. Load data has to be called manually in this case
-   * @param {boolean} params.cache Specify if the panel data should be cached. Optional.
-   * @param {boolean} params.paginated Specify if the loadData call should be paginated. Optional, default = true
-   * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
-   * @param {Array} params.buttons DT buttons definitions objects, empty by default
-   * @param {function} params.loadCallback Callback to data fully loaded, optional
-   * @param {element} params.errorDiv Custom element to display flash errors in, optional
-   * @param {boolean} params.multiple Enable / disable selection of multiple rows [default = false]
+   * @param {string} params.tablePanelOptions Options for the base table panel, required
    * @param {boolean} params.showSelectionInfo Enable / disable selection info on the table
    * @param {boolean} params.ownershipColorBadge Enable / disable showing a color-coded ownership badge
+   * @param {boolean} params.allowAll Specifies whether buttons to select / deselect all rows should be rendered
    * @param {function} params.onSelect Callback on row(s) selected, passes selected row instances as argument, optional
    * @param {function} params.onDeselect Callback on row(s) deselected, passes deselected row instances as argument, optional
    * @param {Object} args Optional additional arguments
    */
   constructor({
-    selector,
-    url,
-    param,
-    count,
-    extraColumns = [],
-    deferLoading,
-    cache = true,
-    paginated = true,
-    order = [[0, "desc"]],
-    buttons = [],
-    loadCallback = () => {},
-    errorDiv,
+    tablePanelOptions = {},
     multiple = false,
     showSelectionInfo = true,
     ownershipColorBadge = false,
+    allowAll = false,
     onSelect = () => { },
     onDeselect = () => { }
   }) {
-    super({ selector, url, param, count, extraColumns, deferLoading, cache, paginated, order, buttons, loadCallback, errorDiv },
-          { multiple, showSelectionInfo, ownershipColorBadge, onSelect, onDeselect });
 
-    Object.assign(this, { skipSelectCallback: false })
+    if ( allowAll )
+      Object.assign( tablePanelOptions, { buttons: [ selectAllBtn(), deselectAllBtn() ] });
+
+    super(
+      { ...tablePanelOptions },
+      { multiple, showSelectionInfo, ownershipColorBadge, onSelect,
+        onDeselect, allowAll }
+    );
+
   }
 
   /**
@@ -145,6 +131,14 @@ export default class SelectablePanel extends TablePanel {
   _onDeselect(indexes) {
     if (!this.skipSelectCallback)
       this.onDeselect(this.table.rows(indexes));
+  }
+
+  /**
+   * Button definitions for select & deselect all rows
+   * @return {Array} select & deselect all rows button definitions
+   */
+  get _allButtons() {
+    return [ selectAllBtn() ];
   }
 
   /**

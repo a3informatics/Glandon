@@ -82,21 +82,24 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
 
     // Initializes Selectable Children Panel
     this.childrenPanel = new IPPanel({
-      selector: `${this.selector} table#children`,
-      param: this._realParam,
-      count: 10000,
-      extraColumns: this._childrenColumns,
+      tablePanelOptions: {
+        selector: `${this.selector} table#children`,
+        param: this._realParam,
+        count: 10000,
+        extraColumns: this._childrenColumns,
+        loadCallback: (t) => {
+          this._cacheItemChildren( t.rows().data().toArray() );
+          this._toggleInteractivity(true);
+        }
+      },
       showSelectionInfo: false,
       multiple: this.multiple,
       onSelect: (dtRows) => this._onItemSelect(dtRows),
       onDeselect: (dtRows) => this._onItemDeselect(dtRows),
-      loadCallback: (t) => {
-        this._cacheItemChildren( t.rows().data().toArray() );
-        this._toggleInteractivity(true);
-      }
+      allowAll: true
     });
 
-    this._renderBtns();
+    // this._renderBtns();
 
   }
 

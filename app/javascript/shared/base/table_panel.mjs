@@ -61,6 +61,7 @@ export default class TablePanel {
    * @return {self} this instance
    */
   loadData(url) {
+
     // Set new instance data url if specified
     if (url)
       this.url = url;
@@ -75,30 +76,36 @@ export default class TablePanel {
         strictParam: this.param,
         cache: this.cache,
         errorDiv: this.errorDiv,
-        pageDone: (data) => this._render(data),
-        done: (data) => this.loadCallback(this.table),
-        always: () => this._loading(false)
+        pageDone: data => this._render( data ),
+        done: data => this.loadCallback( this.table ),
+        always: () => this._loading( false )
       });
+
     else
       this.request = $get({
         url: this.url,
         cache: this.cache,
         errorDiv: this.errorDiv,
-        done: (data) => {
-          this._render(data)
-          this.loadCallback(this.table)
+        done: data => {
+
+          this._render( data );
+          this.loadCallback( this.table );
+
         },
-        always: () => this._loading(false)
+        always: () => this._loading( false )
       });
 
     return this;
+
   }
 
   /**
    * Clears table data and filters and kills any running requests
    */
   clear() {
-    this.table.search('').clear().draw();
+    this.table.search('')
+              .clear()
+              .draw();
     this.kill();
   }
 
@@ -118,7 +125,17 @@ export default class TablePanel {
       this.request.abort();
   }
 
+  /**
+   * Get current table rows data as an Array
+   * @return {array} Array of all row data objects
+   */
+  get rowDataToArray() {
+    return this.table.rows().data().toArray();
+  }
+
+
   /** Private **/
+
 
   /**
    * Sets event listeners, handlers
@@ -181,10 +198,11 @@ export default class TablePanel {
   }
 
   /**
-   * Change panel's loading state
+   * Change panel's loading state and update the isProcessing instance variable 
    * @param {boolean} enable value corresponding to the desired loading state on/off
    */
   _loading(enable) {
+    this.isProcessing = enable;
     this.table.processing(enable);
   }
 

@@ -77,31 +77,35 @@ export default class ManagedItemSelector extends Cacheable {
 
     // Initializes Selectable Index Panel
     this.indexPanel = new IPPanel({
-      url: this.urls.index,
-      selector: `${this.selector} table#index`,
-      param: this._realParam,
-      count: 500,
-      extraColumns: this._indexColumns,
+      tablePanelOptions: {
+        url: this.urls.index,
+        selector: `${this.selector} table#index`,
+        param: this._realParam,
+        count: 500,
+        extraColumns: this._indexColumns,
+        loadCallback: () => this._toggleInteractivity(true)
+      },
       showSelectionInfo: false,
       ownershipColorBadge: true,
       onSelect: () => this._loadHistoryData(),
       onDeselect: () => this.historyPanel.clear(),
-      loadCallback: () => this._toggleInteractivity(true)
     });
 
     // Initializes Selectable History Panel
     this.historyPanel = new IPPanel({
-      selector: `${this.selector} table#history`,
-      param: this._realParam,
-      count: 100,
-      extraColumns: this._historyColumns,
+      tablePanelOptions: {
+        selector: `${this.selector} table#history`,
+        param: this._realParam,
+        count: 100,
+        extraColumns: this._historyColumns,
+        loadCallback: (t) => {
+          this._cacheItemHistory( t.rows().data().toArray() );
+          this._toggleInteractivity(true);
+        }
+      },
       multiple: this.multiple,
       onSelect: (dtRows) => this._onItemSelect(dtRows),
-      onDeselect: (dtRows) => this._onItemDeselect(dtRows),
-      loadCallback: (t) => {
-        this._cacheItemHistory( t.rows().data().toArray() );
-        this._toggleInteractivity(true);
-      },
+      onDeselect: (dtRows) => this._onItemDeselect(dtRows),  
     });
   }
 
