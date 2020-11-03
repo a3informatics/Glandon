@@ -66,7 +66,7 @@ describe Thesauri::SubsetsController do
       subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79"))
       expect(subset.last.item.to_id).to eq("aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1YyI0M2Njc5MF9DMTc0NTk=")
     end
-    
+
     it "remove" do
       request.env['HTTP_ACCEPT'] = "application/json"
       subset = init_subset(Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")))
@@ -146,7 +146,7 @@ describe Thesauri::SubsetsController do
                     id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MV9DMjk4NDY=",
                     ordinal: 3,
                     member_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFNNI2MyYzcwN2IxLWM3YTItNGVlNS1hOWFlLWJkNjNhNWFhYWFhNA=="}]
-      get :list_children, params:{id: subset.uri.to_id, offset: "1" , count: "2" }
+      get :list_children, params: { id: subset.uri.to_id, subset: { offset: "1" , count: "2" } }
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
