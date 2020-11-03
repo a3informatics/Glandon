@@ -342,40 +342,84 @@ describe "Import::SponsorTermFormatOne" do
 
     end
 
-    describe "2.6 v 3.0 QC" do
+  end
 
-      it "2-6 versus 3.0 QC I", :import_data => 'slow' do
-        load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
-        load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
-        th_2_6 = Thesaurus.find_minimum(@uri_2_6)
-        th_3_0 = Thesaurus.find_minimum(@uri_3_0)
-        results = th_2_6.differences(th_3_0)
-        check_file_actual_expected(results, sub_dir, "import_differences_expected_1.yaml", equate_method: :hash_equal)
-        r_2_6 = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
-        r_3_0 = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
-        prev = r_2_6.map{|x| x[:identifier].to_sym}.uniq
-        curr = r_3_0.map{|x| x[:identifier].to_sym}.uniq
-        created = results[:created].map{|x| x[:identifier]}
-        deleted = results[:deleted].map{|x| x[:identifier]}
-        expect(created).to match_array(curr - prev) # New now accounted for
-        expect(deleted).to match_array(prev - curr)
+  describe "Differences" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_cdisc_term_versions(1..62)
+      load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
+      load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
+      load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
+      delete_all_public_test_files
+      @uri_2_6 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
+      @uri_3_0 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
+      @uri_3_1 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH")
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "2.6 versus 3.0 QC I", :import_data => 'slow' do
+      th_2_6 = Thesaurus.find_minimum(@uri_2_6)
+      th_3_0 = Thesaurus.find_minimum(@uri_3_0)
+      results = th_2_6.differences(th_3_0)
+      check_file_actual_expected(results, sub_dir, "import_differences_expected_1.yaml", equate_method: :hash_equal)
+      r_2_6 = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
+      r_3_0 = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
+      prev = r_2_6.map{|x| x[:identifier].to_sym}.uniq
+      curr = r_3_0.map{|x| x[:identifier].to_sym}.uniq
+      created = results[:created].map{|x| x[:identifier]}
+      deleted = results[:deleted].map{|x| x[:identifier]}
+      expect(created).to match_array(curr - prev) # New now accounted for
+      expect(deleted).to match_array(prev - curr)
+    end
+
+    it "3.0 versus 3.1 QC I", :import_data => 'slow' do
+      th_2_6 = Thesaurus.find_minimum(@uri_3_0)
+      th_3_0 = Thesaurus.find_minimum(@uri_3_1)
+      results = th_3_0.differences(th_3_1)
+      check_file_actual_expected(results, sub_dir, "import_differences_expected_2.yaml", equate_method: :hash_equal)
+      r_3_0 = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
+      r_3_1 = read_yaml_file(sub_dir, "import_results_expected_3-1.yaml")
+      prev = r_3_0.map{|x| x[:identifier].to_sym}.uniq
+      curr = r_3_1.map{|x| x[:identifier].to_sym}.uniq
+      created = results[:created].map{|x| x[:identifier]}
+      deleted = results[:deleted].map{|x| x[:identifier]}
+      expect(created).to match_array(curr - prev) # New now accounted for
+      expect(deleted).to match_array(prev - curr)
+    end
+
+    it "2.6 versus 3.0 QC II", :import_data => 'slow' do
+      results = {}
+      th_2_6 = Thesaurus.find_minimum(@uri_2_6)
+      th_3_0 = Thesaurus.find_minimum(@uri_3_0)
+      diffs = th_2_6.differences(th_3_0)
+      diffs[:updated].each do |cl|
+        item = Thesaurus::ManagedConcept.find_minimum(cl[:id])
+        next if item.owner_short_name != "Sanofi"
+        results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
       end
+      check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal)
+    end
 
-      it "2-6 versus 3.0 QC II", :import_data => 'slow' do
-        results = {}
-        load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
-        load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
-        th_2_6 = Thesaurus.find_minimum(@uri_2_6)
-        th_3_0 = Thesaurus.find_minimum(@uri_3_0)
-        diffs = th_2_6.differences(th_3_0)
-        diffs[:updated].each do |cl|
-          item = Thesaurus::ManagedConcept.find_minimum(cl[:id])
-          next if item.owner_short_name != "Sanofi"
-          results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
-        end
-        check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal)
+    it "3.0 versus 3.1 QC II", :import_data => 'slow' do
+      results = {}
+      th_3_0 = Thesaurus.find_minimum(@uri_3_0)
+      th_3_1 = Thesaurus.find_minimum(@uri_3_1)
+      diffs = th_3_0.differences(th_3_1)
+      diffs[:updated].each do |cl|
+        item = Thesaurus::ManagedConcept.find_minimum(cl[:id])
+        next if item.owner_short_name != "Sanofi"
+        results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
       end
-
+      check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end
@@ -482,22 +526,11 @@ describe "Import::SponsorTermFormatOne" do
           #{uri.to_ref} isoT:hasIdentifier/isoI:version ?v .
           #{uri.to_ref} th:isTopConceptReference/bo:reference ?cl .
           ?cl th:identifier ?clid . 
-          {               
-            # ?cl ^isoC:appliesTo ?x .
-            # ?x isoC:context #{uri.to_ref} .
-            # ?x isoC:classifiedAs/isoC:prefLabel ?tag .
-            ?cl isoC:tagged/isoC:prefLabel ?tag .
-            BIND ("" as ?cliid)
-          }
-          UNION
-          {
-            ?cl th:narrower ?cli .
-            ?cli th:identifier ?cliid .             
-            # ?cli ^isoC:appliesTo ?y .
-            # ?y isoC:context #{uri.to_ref} .
-            # ?y isoC:classifiedAs/isoC:prefLabel ?tag .
-            ?cli isoC:tagged/isoC:prefLabel ?tag .
-          }
+          ?cl th:narrower ?cli .
+          ?cli th:identifier ?cliid .             
+          ?cli ^isoC:appliesTo ?y .
+          ?y isoC:context ?cl .
+          ?y isoC:classifiedAs/isoC:prefLabel ?tag .
         } ORDER BY ?v ?clid ?cliid ?tag
       }
     end
@@ -515,12 +548,12 @@ describe "Import::SponsorTermFormatOne" do
         overall[:date] = results[0][:date]
         overall[:results] = {}
         results.each do |x|
-          key = x[:code_list_item].empty? ? "#{x[:code_list]}" : "#{x[:code_list]}.#{x[:code_list_item]}"
+          key = "#{x[:code_list]}.#{x[:code_list_item]}"
           overall[:results][key] = [] unless overall[:results].key?(key) 
           overall[:results][key] << x[:tag]
         end
         puts ".."
-        check_file_actual_expected(overall, sub_dir, "ct_query_tag_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
+        check_file_actual_expected(overall, sub_dir, "ct_query_tag_#{index+1}.yaml", equate_method: :hash_equal, write_file: true)
       end
   
     end
