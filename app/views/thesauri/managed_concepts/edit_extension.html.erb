@@ -1,7 +1,7 @@
 <% content_for :page_title do %> <%= "Edit Extension: #{@tc.notation} (#{@tc.has_identifier.identifier})" %> <% end %>
 
 <%= stylesheet_link_tag 'homes' %>
-<%= javascript_pack_tag 'thesauri/managed_concepts/edit_extension' %>
+<%= javascript_pack_tag 'thesauri/managed_concepts/extensions/edit' %>
 <%= javascript_tag "let showDataUrl = '#{show_data_thesauri_managed_concept_path(@tc, managed_concept: {context_id: @context_id})}',
                         extensionUrl = '#{extensions_thesauri_managed_concept_path(@tc)}',
                         searchUrl = '#{search_multiple_thesauri_index_path(thesauri: {filter: "current"})}',
