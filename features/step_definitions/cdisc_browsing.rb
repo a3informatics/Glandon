@@ -1,7 +1,7 @@
 
 ##################### Pre-conditions - Given statements
 
-Given /[dD]ashboard/ do
+Given /Community [dD]ashboard/ do
    expect(page).to have_content 'Changes between two CDISC Terminology versions'
 end
 
@@ -28,112 +28,9 @@ When /[Ss]ee the changes across versions/ do
  wait_for_ajax(20)
 end
 
-When('I click Context menu for {string}') do |string|
-        row = find("table#history tr", text: string)
-        within(row) do
-        ui_table_search("history", string)
-        find(".icon-context-menu").click
-        end
-        wait_for_ajax(20)
-  end
-
-When('I click {string} in context menu for {string}') do |string, string2|
-  row = find("table#history tr", text: string2)
-        within(row) do
-        ui_table_search("history", string2)
-        find(".icon-context-menu").click
-        if string == 'edit'
-        context_menu_element('history', 4, string2, :edit)
-        end
-        end
-        wait_for_ajax(20)
-end
-
-When('I click {string} in context menu for {string} on the History page') do |string, string2|
-       ui_table_search("history", string2)
-       find(".icon-context-menu").click
-       context_menu_element_v3("history", string2, string)
-       wait_for_ajax(20)
-
-end
-
-When('I click {string} in the context menu \(on top left corner of the page)') do |string|
-      context_menu_element_header_v2(string)
-end
-
-
-When(/^I click {string} in the top of the page/) do |string|
-  click_button fb_s_button
-  wait_for_ajax(20)
- end
-
-When('I enter {string} in the Code lists search area and click {string} to display the {string} code list') do |string, string2, string3|
-      ui_child_search(string)
-      find(:xpath, "//tr[contains(.,'#{string}')]/td/a", :text => string2).click
-      wait_for_ajax(20)
-end
-
-When('I enter {string} in the Code List Items search area and click {string} to display the {string} code list item') do |string, string2, string3|
-      ui_child_search(string)
-      find(:xpath, "//tr[contains(.,'#{string}')]/td/a", :text => string2).click
-      wait_for_ajax(20)
-end
-
-When('I enter {string} in the search area click {string} to display the {string} code list') do |string, string2, string3|
-  ui_table_search("changes", string)
-  find(:xpath, "//tr[contains(.,'#{string2}')]/td/a", :text => string2).click
-  wait_for_ajax(20)
-end
 
 When('I sort on version {string} in the Difference table') do |string|
   ui_table_sort(Difference,string)
-  wait_for_ajax(20)
-end
-
-When('I click Changes for the {string}, c-code: {string}') do |string, string2|
-   ui_table_row_click(string, 'Changes')
-   wait_for_ajax(20)
-end
-
-When('I access the created {string}, c-code:{string} by right-clicking and open in new tab') do |string, string2|
-  new_window = window_opened_by {click_link find(:xpath, "//div[@id='created_div']/a", :text => string) } 
-  switch_to_window new_window
-  wait_for_ajax(20)    
-end
-
-When('I access the updated {string}, c-code:{string} by right-clicking and open in new tab') do |string, string2|
-  new_window = window_opened_by {click_link find(:xpath, "//div[@id='updated_div']/a", :text => string) }
-  switch_to_window new_window    
-end
-
-When('I access the deleted {string}, c-code:{string} by right-clicking and open in new tab') do |string, string2|
-  new_window = window_opened_by { click_link find(:xpath, "//div[@id='deleted_div']/a", :text => string) }
-  switch_to_window new_window 
-  wait_for_ajax(20) 
-  end
-
-When('I click {string} at the item {string}') do |string, string2|
-    find(:xpath, "//tr[contains(.,'#{string2}')]/td/a", :text => string).click
-    wait_for_ajax(20)
-end
-
-When('I return on Dashbaord \(previous tab)') do
-  switch_to_window "CDISC Terminology Changes - A3"
-  wait_for_ajax(20)
-end
-  
-  When /[cC]lose/ do
-  click_button "Close"
-  wait_for_ajax(20)
-end
-                
-When /[hH]ome/ do
- click_link 'Home'
- wait_for_ajax(20)
-end
-
-When('I click Return') do
-  click_link 'Return'
   wait_for_ajax(20)
 end
 
@@ -143,47 +40,22 @@ When('I select CDISC version {string} and CDISC version {string} by dragging the
       wait_for_ajax(10)
 end
 
-When('I access the {string} in the navigation bar') do |string|
-  if string == 'CDISC Terminology'
-  click_navbar_cdisc_terminology
-  wait_for_ajax(20)
-  end
-  if string == 'Code Lists'
-  click_navbar_code_lists
-  wait_for_ajax(20)
-  end
-  if string == 'Terminology'
-  click_navbar_terminology
-  wait_for_ajax(20)
-  end
-  if string == 'Biomedical Concepts'
-  click_navbar_bc
-  wait_for_ajax(20)
-  end
-end
+##################### Then statements #####################
 
-When('I enter {string} in the search area') do |string|
-         ui_child_search(string)
-end
-
-When('I click {string} button') do |string|
-  click_link string
+Then /latest (?:release\s)*version is/ do 
+ expect(page).to have_content LATEST_VERSION
+ ui_check_table_info("history", 1, 10, LVERSION)
+ save_screen(TYPE)
   wait_for_ajax(20)
 end
 
-When('I update Synonyms to {string}') do |string|
-  ui_editor_select_by_location(1,4)
-   ui_editor_fill_inline "synonym", "#{string}\n"
-   wait_for_ajax(20)
-end
-
-When('I delete Synonym {string}') do |string|
-  ui_editor_select_by_location(1,4)
-  ui_editor_fill_inline "synonym", "\n"
+ Then /the Community Dashbaord is displayed/ do 
+  expect(page).to have_content 'Changes between two CDISC Terminology versions'
   wait_for_ajax(20)
+  save_screen(TYPE)
 end
 
-##################### Then statements
+### Context menu ###
 
 Then('I verify that Show and Search are enabled and all other menus are disabled for {string}') do |string|
         row = find("table#history tr", text: string)
@@ -195,82 +67,6 @@ Then('I verify that Show and Search are enabled and all other menus are disabled
         save_screen(TYPE)
         end
 
-Then /latest (?:release\s)*version is/ do 
- expect(page).to have_content LATEST_VERSION
- ui_check_table_info("history", 1, 10, LVERSION)
- save_screen(TYPE)
-  wait_for_ajax(20)
-end
-
-Then /History page is displayed/ do
- expect_page('Version History of')
- wait_for_ajax(20)
- save_screen(TYPE)
-end
-
-Then('I see the list of code lists for the {string}') do |string|
-  expect(page).to have_content string
-  save_screen(TYPE)
-  wait_for_ajax(20)
-end
-
-
-Then('I see the list of code lists included in the latest release version as specified in pre-condition') do
-  expect(page).to have_content LATEST_VERSION_LABEL
-  save_screen(TYPE)
-  wait_for_ajax(20)
-end
-
-Then('the release has {int} entries\/code lists') do |int|
-  ui_check_table_info("children_table", 1, 10, int)
-  wait_for_ajax(20)
-  save_screen(TYPE)
-end
-
-
-Then('I see the items in the {string} code list is displayed') do |string|
-       expect(page).to have_content string
-       wait_for_ajax(20)
-       save_screen(TYPE)
-end
-
-Then('the list has {int} entries') do |int|
- ui_check_table_info("children_table", 1, 10, int)
- wait_for_ajax(20)
- save_screen(TYPE)
-end
-
-
-Then('I see the {string} code list item') do |string|
-  expect(page).to have_selector("#pts-panel .card-content", text: string)
-  wait_for_ajax(20)
-  save_screen(TYPE)
-end
-
-Then('I see that the shared Preferred terms are displayed as {string} and {string}') do |string, string2|
-      expect(page).to have_selector("#pts-panel .card-content", text: string)
-      expect(page).to have_selector("#pts-panel .card-content", text: string2)
-      save_screen(TYPE)
-end
-
-Then('I see that the shared Synonyms are displayed as {string} and {string}') do |string, string2|
-      expect(page).to have_selector("#synonyms-panel .card-content", text: string)
-      expect(page).to have_selector("#synonyms-panel .card-content", text: string2)
-      save_screen(TYPE)
-end
-
-
-Then('I see that {string}') do |string|
-  expect(page).to have_content string
-  wait_for_ajax(20)
-  save_screen(TYPE)
-end
-
-Then('that it is not possible to add any {string}') do |string|
-  expect(page).not_to have_content string
-  wait_for_ajax(20)
-  save_screen(TYPE)
-end
 
 Then('I see Controlled Terminology Changes Across versions displayed') do
   expect(page).to have_content 'Changes'
@@ -280,13 +76,6 @@ end
 
 Then('I see the differences in the {string} code list is displayed') do |string|
       expect(page).to have_content 'Differences'
-      expect(page).to have_content string
-      wait_for_ajax(20)
-      save_screen(TYPE) 
-end
-
-Then('the changes to the {string} code list items') do |string|
-      expect(page).to have_content 'Changes'
       expect(page).to have_content string
       wait_for_ajax(20)
       save_screen(TYPE) 
@@ -331,19 +120,6 @@ Then('{int} changes are displayed') do |int|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-
-Then('I see {int} code lists created, {int} code lists updated, {int} code list deleted') do |int, int2, int3|
-  expect(page).to have_content 'Created Code List'
-  expect(page).to have_content int
-  expect(page).to have_content 'Updated Code List'
-  expect(page).to have_content int2
-  expect(page).to have_content 'Deleted Code List'
-  expect(page).to have_content int3
-  wait_for_ajax(20)
-  save_screen(TYPE)
-end
-
-
 Then('I see the Differences and Changes for the {string} code list for CDISC version {string} and CDISC version {string}') do |string, string2, string3|
   pending # Write code here that turns the phrase above into concrete actions
 end
@@ -369,96 +145,5 @@ Then('a PDF report is generated and contains the {int} entires in the Changes pa
   end
 end
 
- Then /the Dashbaord is displayed/ do 
-  expect(page).to have_content 'Changes between two CDISC Terminology versions'
-  wait_for_ajax(20)
-  save_screen(TYPE)
-end
 
-
-Then('I see {int} code lists with following synonyms') do |int, table|
-  if int < 10
-  ui_check_table_info("children_table", 1, int, int)
-  else
-   ui_check_table_info("children_table", 1, 10, int)
-  end
-    table.hashes.each do |hash|
-    ui_check_table_cell("children_table", hash['No'], 1,"#{hash['CodeList']}")
-    ui_check_table_cell("children_table", hash['No'], 3,"#{hash['Synonym']}")
-  end
-  wait_for_ajax(20)
-    save_screen(TYPE)
-end
-
-Then('I see {int} code list items with following synonyms') do |int, table|
-  if int < 10
-  ui_check_table_info("children_table", 1, int, int)
-  else
-   ui_check_table_info("children_table", 1, 10, int)
-  end
-    table.hashes.each do |hash|
-    ui_check_table_cell("children_table", hash['No'], 1,"#{hash['CodeListItem']}")
-    ui_check_table_cell("children_table", hash['No'], 4,"#{hash['Synonym']}")
-  end
-  wait_for_ajax(20)
-    save_screen(TYPE)
-end
-
-Then('I see {int} code list items') do |int|
-if int < 10
-  ui_check_table_info("children_table", 1, int, int)
-  else
-   ui_check_table_info("children_table", 1, 10, int)
-  end
-   wait_for_ajax(20)
-  save_screen(TYPE)
-end
-
-Then('I see synonym {string} being shared with {string} codelist for the {string} item') do |string, string2, string3|
-  expect(page).to have_content 'Shared Synonyms'
-  expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/div", :text => string)
-  expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/a/div/div", :text => string2)
-  expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/a/div/div", :text => string3)
-   wait_for_ajax(20)
-  save_screen(TYPE)
-end
-
-Then('I see Code Lists Index page is displayed') do
-  expect(page).to have_content "Index: Code Lists"
-  save_screen(TYPE)
-end
-
-Then('I see a new code lists: {string}') do |string|
-  expect(page).to have_content string
-  save_screen(TYPE)
-end
-
-Then('I see a new code list item {string}') do |string|
-  expect(page).to have_content string
-end
-
-Then /I fill in the details for the code list ?(?:\(?(\w+)\)?.*)/ do |string, table|
-
-  table.hashes.each do |hash|
-      ui_editor_select_by_location(1,2)
-      ui_editor_fill_inline "notation", "#{hash['SV']}\n"
-      ui_editor_select_by_location(1,3)
-      ui_editor_fill_inline "preferred_term", "#{hash['PT']}\n"
-      ui_editor_select_by_location(1,4)
-      ui_editor_fill_inline "synonym", "#{hash['SY']}\n"
-      ui_editor_check_value 1, 4, "#{hash['SY']}"
-      ui_editor_select_by_location(1,5)
-      ui_editor_fill_inline "definition", "#{hash['DEF']}\n"
-  end
-  end
-
-Then('I see Synonyms is {string}') do |string|
-  ui_editor_check_value 1, 4, string
-  save_screen(TYPE)
-end
-
-Then('I see Synonyms is empty') do
-  ui_editor_check_value 1, 4, ""
-  save_screen(TYPE)
-end
        

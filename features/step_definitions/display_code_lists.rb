@@ -1,45 +1,65 @@
+##################### Then statements #####################
 
-##################### When statements 
-
-When('I update Synonyms to {string}') do |string|
-  ui_editor_select_by_location(1,4)
-   ui_editor_fill_inline "synonym", "#{string}\n"
-   wait_for_ajax(20)
-end
-
-When('I delete Synonym {string}') do |string|
-  ui_editor_select_by_location(1,4)
-  ui_editor_fill_inline "synonym", "\n"
+Then('I see {int} code lists created, {int} code lists updated, {int} code list deleted') do |int, int2, int3|
+  expect(page).to have_content 'Created Code List'
+  expect(page).to have_content int
+  expect(page).to have_content 'Updated Code List'
+  expect(page).to have_content int2
+  expect(page).to have_content 'Deleted Code List'
+  expect(page).to have_content int3
   wait_for_ajax(20)
-end
-When('I update Preferred Term to {string}') do |string|
-  ui_editor_select_by_location(1,3)
-   ui_editor_fill_inline 'preferred_term', "#{string}\n"
-   wait_for_ajax(20)
+  save_screen(TYPE)
 end
 
-When('I delete Preferred Term {string}') do |string|
-  ui_editor_select_by_location(1,3)
-  ui_editor_fill_inline 'preferred_term', "\n"
+Then('I see the list of code lists for the {string}') do |string|
+  expect(page).to have_content string
+  save_screen(TYPE)
   wait_for_ajax(20)
 end
 
-When('I click {string} in context menu for the new code list') do |string|
-  # today = Date.today
-  # log(today)
-  row = find("table#history tr", text: "Not Set")
-        within(row) do
-        ui_table_search("history", "Not Set")
-        find(".icon-context-menu").click
-        if string == 'edit'
-        context_menu_element('history', 4, 'Not Set', :edit)
-        end
-        end
-        wait_for_ajax(20)
+Then('I see the list of code lists included in the latest release version as specified in pre-condition') do
+  expect(page).to have_content LATEST_VERSION_LABEL
+  save_screen(TYPE)
+  wait_for_ajax(20)
+end
+
+Then('the release has {int} entries\/code lists') do |int|
+  ui_check_table_info("children_table", 1, 10, int)
+  wait_for_ajax(20)
+  save_screen(TYPE)
+end
+
+Then('I see the items in the {string} code list is displayed') do |string|
+       expect(page).to have_content string
+       wait_for_ajax(20)
+       save_screen(TYPE)
 end
 
 
-##################### Then statements 
+Then('I see the {string} code list item') do |string|
+  expect(page).to have_selector("#pts-panel .card-content", text: string)
+  wait_for_ajax(20)
+  save_screen(TYPE)
+end
+
+Then('I see that the shared Preferred terms are displayed as {string} and {string}') do |string, string2|
+      expect(page).to have_selector("#pts-panel .card-content", text: string)
+      expect(page).to have_selector("#pts-panel .card-content", text: string2)
+      save_screen(TYPE)
+end
+
+Then('I see that the shared Synonyms are displayed as {string} and {string}') do |string, string2|
+      expect(page).to have_selector("#synonyms-panel .card-content", text: string)
+      expect(page).to have_selector("#synonyms-panel .card-content", text: string2)
+      save_screen(TYPE)
+end
+
+Then('the changes to the {string} code list items') do |string|
+      expect(page).to have_content 'Changes'
+      expect(page).to have_content string
+      wait_for_ajax(20)
+      save_screen(TYPE) 
+end
 
 Then('I see {int} code lists with following synonyms') do |int, table|
   if int < 10
