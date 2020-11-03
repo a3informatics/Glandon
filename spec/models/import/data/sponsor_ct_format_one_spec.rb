@@ -519,19 +519,21 @@ describe "Import::SponsorTermFormatOne" do
 
     def ct_tags(uri)
       %Q{
-        SELECT DISTINCT ?l ?v ?d ?clid ?cliid ?tag WHERE
+        SELECT DISTINCT ?l ?v ?d ?clid ?cln ?cll ?cliid ?tag WHERE
         {
           #{uri.to_ref} isoC:label ?l .
           #{uri.to_ref} isoT:creationDate ?d .
           #{uri.to_ref} isoT:hasIdentifier/isoI:version ?v .
           #{uri.to_ref} th:isTopConceptReference/bo:reference ?cl .
           ?cl th:identifier ?clid . 
+          ?cl th:notation ?cln . 
+          ?cl isoC:label ?cll . 
           ?cl th:narrower ?cli .
           ?cli th:identifier ?cliid .             
           ?cli ^isoC:appliesTo ?y .
           ?y isoC:context ?cl .
           ?y isoC:classifiedAs/isoC:prefLabel ?tag .
-        } ORDER BY ?v ?clid ?cliid ?tag
+        } ORDER BY ?cll ?cliid ?tag
       }
     end
 
@@ -540,20 +542,28 @@ describe "Import::SponsorTermFormatOne" do
         print "Processing: #{v[:uri]}, v#{v[:version]}  "
         query_results = Sparql::Query.new.query(ct_tags(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
         print ".."
-        results = query_results.by_object_set([:l, :v, :d, :clid, :cliid, :tag]).map{|x| {label: x[:l], version: x[:v], date: x[:d], code_list: x[:clid], code_list_item: x[:cliid], tag: x[:tag]}}
+        results = query_results.by_object_set([:l, :v, :d, :clid, :cliid, :tag]).map{|x| {label: x[:l], version: x[:v], date: x[:d], code_list: x[:clid], code_list_notation: x[:cln], code_list_label: x[:cll], code_list_item: x[:cliid], tag: x[:tag]}}
         print ".."
         overall = {}
-        overall[:label] = results[0][:label]
-        overall[:version] = results[0][:version]
-        overall[:date] = results[0][:date]
-        overall[:results] = {}
+        #overall[:label] = results[0][:label]
+        #overall[:version] = results[0][:version]
+        #overall[:date] = results[0][:date]
         results.each do |x|
-          key = "#{x[:code_list]}.#{x[:code_list_item]}"
-          overall[:results][key] = [] unless overall[:results].key?(key) 
-          overall[:results][key] << x[:tag]
+          key = "#{x[:code_list_notation]}"
+          if overall.key?(key) 
+            overall[key][:items][x[:code_list_item]] = [] unless overall[key][:items].key?(x[:code_list_item]) 
+            overall[key][:items][x[:code_list_item]] << x[:tag]
+          else
+            overall[key] = {}
+            overall[key][:name] = x[:code_list_label]
+            overall[key][:short_name] = x[:code_list_notation]
+            overall[key][:identifier] = x[:code_list]
+            overall[key][:items] = {}
+          end
         end
         puts ".."
-        check_file_actual_expected(overall, sub_dir, "ct_query_tag_#{index+1}.yaml", equate_method: :hash_equal, write_file: true)
+        check_file_actual_expected(overall, sub_dir, "tags_actual_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
+        check_file_actual_expected(overall, sub_dir, "tags_expected_#{index+1}.yaml", equate_method: :hash_equal)
       end
   
     end

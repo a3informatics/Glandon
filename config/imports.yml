@@ -2510,19 +2510,7 @@ defaults: &defaults
           selection:
             first: true
           sheet:
-            actions:
-              -
-                method: tag_from_sheet_name
-                additional:
-                  path:
-                    - "Process"
-                    - "Scope"
-                mapping:
-                  map:
-                    Harmonized:
-                      - Global
-                    Study:
-                      - Study
+            actions: []
             header_row:
               - "CODELIST_LONG_NAME"
               - "CODELIST_SHORT_NAME"
@@ -2717,18 +2705,6 @@ defaults: &defaults
             actions:
               -
                 method: set_property_with_tag
-                object: parent
-                property: :tagged
-                mapping:
-                  map:
-                    "Y": "DC Stage"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Stage
-              -
-                method: set_property_with_tag
                 object: child
                 property: :tagged
                 mapping:
@@ -2742,18 +2718,6 @@ defaults: &defaults
           -
             label: "SDTM_STAGE"
             actions:
-              -
-                method: set_property_with_tag
-                object: parent
-                property: :tagged
-                mapping:
-                  map:
-                    "Y": "SDTM Stage"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Stage
               -
                 method: set_property_with_tag
                 object: child
@@ -2771,18 +2735,6 @@ defaults: &defaults
             actions:
               -
                 method: set_property_with_tag
-                object: parent
-                property: :tagged
-                mapping:
-                  map:
-                    "Y": "ADaM Stage"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Stage
-              -
-                method: set_property_with_tag
                 object: child
                 property: :tagged
                 mapping:
@@ -2796,50 +2748,11 @@ defaults: &defaults
           -
             label: "INACTIVE_F"
             actions: []
-          # -
-          #   label: "STUDY_USE"
-          #   actions:
-          #     -
-          #       method: set_property_with_tag
-          #       object: child
-          #       can_be_empty: true
-          #       mapping:
-          #         "Y": "Study"
-          #       additional:
-          #         path:
-          #           - Process
-          #           - Scope
-          # -
-          #   label: "GLOBAL_USE"
-          #   actions:
-          #     -
-          #       method: set_property_with_tag
-          #       object: child
-          #       can_be_empty: true
-          #       mapping:
-          #         "Y": "Global"
-          #         "N": ""
-          #       additional:
-          #         path:
-          #           - Process
-          #           - Scope
         version_3:
           selection:
             first: true
           sheet:
-            actions:
-              -
-                method: tag_from_sheet_name
-                additional:
-                  path:
-                    - "Process"
-                    - "Scope"
-                mapping:
-                  map:
-                    Harmonized:
-                      - Global
-                    Study:
-                      - Study
+            actions: []
             header_row:
               - "CODELIST_LONG_NAME"
               - "CODELIST_SHORT_NAME"
@@ -3033,18 +2946,6 @@ defaults: &defaults
             actions:
               -
                 method: set_property_with_tag
-                object: parent
-                property: :tagged
-                mapping:
-                  map:
-                    "Y": "DC Stage"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Stage
-              -
-                method: set_property_with_tag
                 object: child
                 property: :tagged
                 mapping:
@@ -3060,18 +2961,6 @@ defaults: &defaults
             actions:
               -
                 method: set_property_with_tag
-                object: parent
-                property: :tagged
-                mapping:
-                  map:
-                    "Y": "SDTM Stage"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Stage
-              -
-                method: set_property_with_tag
                 object: child
                 property: :tagged
                 mapping:
@@ -3085,18 +2974,6 @@ defaults: &defaults
           -
             label: "ADAM_STAGE"
             actions:
-              -
-                method: set_property_with_tag
-                object: parent
-                property: :tagged
-                mapping:
-                  map:
-                    "Y": "ADaM Stage"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Stage
               -
                 method: set_property_with_tag
                 object: child
