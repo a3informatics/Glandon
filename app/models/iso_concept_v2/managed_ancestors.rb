@@ -144,24 +144,20 @@ class IsoConceptV2
     #
     # @param [Object] managed_ancestor the managed ancestor
     # @param [Transaction] tx the current transaction
-    # @param [Uri] uri the uri for which the new uri is to be returned, defulat to nil
+    # @param [Uri] uri the uri for which the new uri is to be returned, default to nil
     # @return [Object] the new object if uri not nil, otherwise nil
-    def clone_children_and_save_no_tx(managed_ancestor, tx, uri=nil)
-      sparql = Sparql::Update.new(tx)
-      new_object = nil
-      self.managed_ancestors_children_set.each do |child|
-        object = child.clone
-        object.transaction_set(tx)
-        object.generate_uri(self.uri) 
-        object.to_sparql(sparql, true)
-        self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
-        unless uri.nil? 
-          new_object = object if child.uri == uri 
-        end 
-        uri_updated(managed_ancestor, child.uri, object.uri)
-      end
-      sparql.create
-      new_object
+    def clone_children_and_save_no_tx(managed_ancestor, tx, save_uri)
+      clone_children_save_and_ignore_no_tx(managed_ancestor, tx, save_uri, nil)
+    end
+
+    # Clone Children And Ignore No Tx. Clone all the children except the target node.
+    #
+    # @param [Object] managed_ancestor the managed ancestor
+    # @param [Transaction] tx the current transaction
+    # @param [Uri] uri the uri for which the new uri is to be returned, default to nil
+    # @return [Object] children cloned
+    def clone_children_and_ignore_no_tx(managed_ancestor, tx, ignore_uri)
+      clone_children_save_and_ignore_no_tx(managed_ancestor, tx, nil, ignore_uri)
     end
 
     # Replicate With Clone. Clone all the ancestor chain.
@@ -199,7 +195,7 @@ class IsoConceptV2
     # Delete With Clone. Clone all the ancestor chain and delete the node
     #
     # @param [Object] managed_ancestor the managed ancestor
-    # @return [Object, Object] the new parent
+    # @return [Object] the new parent
     def delete_with_clone(managed_ancestor)
       new_parent = nil
       tx = transaction_begin
@@ -208,12 +204,12 @@ class IsoConceptV2
       prev_object.transaction_set(tx)
       uris.each do |old_uri|
         old_object = self.class.klass_for(old_uri).find_children(old_uri)
-        cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
         if self.uri == old_object.uri
           prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
           new_parent = prev_object
-          new_parent.clone_children_and_save_no_tx(managed_ancestor, tx)
+          new_parent.clone_children_and_ignore_no_tx(managed_ancestor, tx, self.uri)
         else
+          cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
           prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
         end
         prev_object = cloned_object
@@ -283,7 +279,25 @@ class IsoConceptV2
       object
     end
 
-  private
+    # Clone all children. It will ignore the object (it won't be cloned) if ignore_uri is not nil and it'll save it if save_uri is passed.
+    def clone_children_save_and_ignore_no_tx(managed_ancestor, tx, save_uri=nil, ignore_uri=nil)
+      sparql = Sparql::Update.new(tx)
+      new_object = nil
+      self.managed_ancestors_children_set.each do |child|
+          next if !ignore_uri.nil? && ignore_uri == child.uri
+          object = child.clone
+          object.transaction_set(tx)
+          object.generate_uri(self.uri) 
+          object.to_sparql(sparql, true)
+          self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
+          unless save_uri.nil? 
+            new_object = object if child.uri == save_uri 
+          end 
+          uri_updated(managed_ancestor, child.uri, object.uri)
+      end
+      sparql.create
+      new_object
+    end
 
     # Log the change in a URI
     def uri_updated(managed_ancestor, old_uri, new_uri)
