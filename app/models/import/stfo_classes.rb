@@ -100,10 +100,12 @@ module Import::STFOClasses
           # If new_child is NOT nil then already in the CL being extended, nothing else to do.
           # Otherwise try and find it.
           new_child.rank = child.rank unless new_child.nil?
+          new_child.tagged = child.tagged unless new_child.nil?
           next unless new_child.nil?
           new_child = sponsor_or_referenced(ct, child, fixes)
           next if new_child.nil?
           new_child.rank = child.rank unless new_child.nil?
+          new_child.tagged = child.tagged unless new_child.nil?
           new_narrower << new_child 
         end
         self.narrower = new_narrower
@@ -216,6 +218,7 @@ module Import::STFOClasses
           add_error("CDISC Subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
           new_child.rank = child.rank 
+          new_child.tagged = child.tagged
           new_narrower << new_child
         end
       end
@@ -244,6 +247,7 @@ module Import::STFOClasses
           add_error("Sponsor subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
           new_child.rank = child.rank 
+          new_child.tagged = child.tagged
           new_narrower << new_child
         end
       end
@@ -274,6 +278,7 @@ module Import::STFOClasses
           add_error("Sponsor subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
           new_child.rank = child.rank 
+          new_child.tagged = child.tagged
           new_narrower << new_child
         end
       end
@@ -323,6 +328,7 @@ module Import::STFOClasses
         new_child = sponsor_or_referenced(ct, child, fixes)
         next if new_child.nil?
         new_child.rank = child.rank 
+        new_child.tagged = child.tagged
         new_narrower << new_child 
       end
       self.narrower = new_narrower

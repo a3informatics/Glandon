@@ -96,6 +96,10 @@ module Import::ThesaurusExtend
       instance_variable_set("@rank", value)
     end
 
+    def tagged=(value)
+      instance_variable_set(instance_variable_name, value)
+    end
+
   private
 
     def instance_variable_name
