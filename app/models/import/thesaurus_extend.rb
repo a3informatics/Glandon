@@ -34,8 +34,8 @@ module Import::ThesaurusExtend
     # @param set [Array] set of tags objects
     # @return [Void] no return
     def add_context_tags(actual, set, context)
-      tagged.each {|x| set << {subject: actual.uri, object: x.uri, context: [context]}}
-      add_child_context_tags(actual, set, [actual.uri, context])
+      tagged.each {|x| set << {subject: actual.uri, object: x.uri, context: context}}
+      add_child_context_tags(actual, set, context + [actual.uri])
     end
 
     def tagged

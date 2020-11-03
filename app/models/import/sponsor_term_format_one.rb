@@ -111,7 +111,7 @@ private
     ref = OperationalReferenceV3.new(reference: @th)
     ref.uri = ref.create_uri(@th.uri)
     @parent.reference = ref
-    @parent.add_context_tags(@tag_set) 
+    #@parent.add_context_tags(@tag_set) 
     results[:managed_children].each_with_index do |child, index| 
       # Order of the checks is important
       existing_ref = false
@@ -187,14 +187,14 @@ private
     previous_info = @child_klass.latest({scope: @scope, identifier: ref.identifier})
     if previous_info.nil?
       add_to_data(ref, index, true)
-      ref.add_context_tags(ref, @tag_set, @parent.uri) 
+      ref.add_context_tags(ref, @tag_set, []) 
       add_log("No previous, new item: #{ref.uri}")
     else
       previous = @child_klass.find_full(previous_info.id) 
       update_version(ref, previous.version + 1)
       item = check_for_change(ref, previous) 
       add_to_data(item, index, item.uri != previous.uri) # No changes if item = previous
-      item.add_context_tags(previous, @tag_set, @parent.uri) 
+      item.add_context_tags(previous, @tag_set, []) 
       item.has_previous_version = previous.uri if !previous.nil? && item.uri != previous.uri
       add_log("New item: #{item.uri}, previous item: #{previous.uri}")
     end
