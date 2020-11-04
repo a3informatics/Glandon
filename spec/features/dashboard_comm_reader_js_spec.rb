@@ -89,7 +89,7 @@ describe "Community Dashboard JS", :type => :feature do
       count = CdiscCtHelpers.cl_count_by_version(dates.count)
       expect(page).to have_content "Controlled Terminology"
       expect(page).to have_content "#{dates.count}.0.0"
-      ui_check_table_info("children_table", 1, 10, count)
+      ui_check_table_info("children", 1, 10, count)
       click_link 'Home'
       check_on_commumity_dashboard
     end
@@ -120,8 +120,8 @@ describe "Community Dashboard JS", :type => :feature do
       click_link 'Display'
       wait_for_ajax(10)
       expect(page).to have_xpath("//div[@id='created_div']/a", count: 309)
-      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item V']", count: 3) 
-      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 3) 
+      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item V']", count: 3)
+      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 3)
       ui_dashboard_alpha_filter(:created, "C")
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item Y']", count: 0)
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 0)

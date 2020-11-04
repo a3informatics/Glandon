@@ -187,7 +187,7 @@ describe "Token Locks", :type => :feature do
         sleep 0.5
         context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
         wait_for_ajax(10)
-        expect(page).to have_content("Edit Subset")
+        expect(page).to have_content("Subset Editor")
       end
 
       in_browser(:two) do

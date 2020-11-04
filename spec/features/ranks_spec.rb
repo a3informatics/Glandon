@@ -80,7 +80,7 @@ describe "Rank", :type => :feature do
       context_menu_element_header :enable_rank
       wait_for_ajax 10
       context_menu_element_header_present? :edit_ranks
-      ui_check_indicators(".indicators-wrap", ["ranked"])
+      ui_check_indicators("#header-indicators .indicators-wrap", ["ranked"])
 
       context_menu_element_header :edit_ranks
       ui_in_modal do
@@ -253,7 +253,7 @@ describe "Rank", :type => :feature do
       context_menu_element_header :enable_rank
       wait_for_ajax 10
       context_menu_element_header_present? :edit_ranks
-      ui_check_indicators(".indicators-wrap", ["extension", "ranked"])
+      ui_check_indicators("#header-indicators .indicators-wrap", ["extension", "ranked"])
 
       context_menu_element_header :edit_ranks
       ui_in_modal do
@@ -304,7 +304,7 @@ describe "Rank", :type => :feature do
       context_menu_element_header :enable_rank
       wait_for_ajax 10
       context_menu_element_header_present? :edit_ranks
-      ui_check_indicators(".indicators-wrap", ["a subset", "ranked"])
+      ui_check_indicators("#header-indicators .indicators-wrap", ["a subset", "ranked"])
 
       context_menu_element_header :edit_ranks
       ui_in_modal do

@@ -452,6 +452,8 @@ describe "Thesaurus", :type => :feature do
       end
 
       click_on "Refresh"
+      wait_for_ajax 10
+      
       ui_check_table_cell "editor", 1, 6, "SDTM"
     end
 

@@ -64,14 +64,14 @@ describe "Thesauri Extensions", :type => :feature do
       context_menu_element("history", 5, "2015-06-26 Release", :show)
       wait_for_ajax(10)
       expect(page).to have_content '2015-06-26 Release'
-      ui_check_table_info("children_table", 1, 10, 504)
+      ui_check_table_info("children", 1, 10, 504)
       expect(page).to have_content 'Extensible'
       ui_child_search("C99079")
       wait_for_ajax(10)
-      ui_check_table_cell_extensible('children_table', 1, 5, true)
+      ui_check_table_cell_extensible('children', 1, 5, true)
       ui_child_search("C99078")
       wait_for_ajax(10)
-      ui_check_table_cell_extensible('children_table', 1, 5, false)
+      ui_check_table_cell_extensible('children', 1, 5, false)
     end
 
     it "if a CDISC code list is extensible, extend button enabled (REQ-MDR-EXT-010)", js:true do
@@ -81,11 +81,11 @@ describe "Thesauri Extensions", :type => :feature do
       context_menu_element("history", 5, "2015-03-27 Release", :show)
       wait_for_ajax(10)
       expect(page).to have_content '2015-03-27 Release'
-      ui_check_table_info("children_table", 1, 10, 504)
+      ui_check_table_info("children", 1, 10, 504)
       expect(page).to have_content 'Extensible'
       ui_child_search("C96783")
       #wait_for_ajax(10)
-      ui_check_table_cell_extensible('children_table', 1, 5, true)
+      ui_check_table_cell_extensible('children', 1, 5, true)
       find(:xpath, "//tr[contains(.,'C96783')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:extend)
@@ -103,11 +103,11 @@ describe "Thesauri Extensions", :type => :feature do
       context_menu_element("history", 5, "2014-12-19 Release", :show)
       wait_for_ajax(10)
       expect(page).to have_content '2014-12-19 Release'
-      ui_check_table_info("children_table", 1, 10, 477)
+      ui_check_table_info("children", 1, 10, 477)
       expect(page).to have_content 'Extensible'
       ui_child_search("C78737")
       wait_for_ajax(10)
-      ui_check_table_cell_extensible('children_table', 1, 5, false)
+      ui_check_table_cell_extensible('children', 1, 5, false)
       find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       expect(page).to have_content("CDISC SDTM Relationship Type Terminology")
@@ -122,11 +122,11 @@ describe "Thesauri Extensions", :type => :feature do
       context_menu_element("history", 5, "2014-12-19 Release", :show)
       wait_for_ajax(10)
       expect(page).to have_content '2014-12-19 Release'
-      ui_check_table_info("children_table", 1, 10, 477)
+      ui_check_table_info("children", 1, 10, 477)
       expect(page).to have_content 'Extensible'
       ui_child_search("C78737")
       wait_for_ajax(10)
-      ui_check_table_cell_extensible('children_table', 1, 5, false)
+      ui_check_table_cell_extensible('children', 1, 5, false)
       find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:extend)
@@ -144,10 +144,10 @@ describe "Thesauri Extensions", :type => :feature do
       context_menu_element("history", 5, "2014-10-06 Release", :show)
       wait_for_ajax(10)
       expect(page).to have_content '2014-10-06 Release'
-      ui_check_table_info("children_table", 1, 10, 446)
+      ui_check_table_info("children", 1, 10, 446)
       ui_child_search("C66770")
       wait_for_ajax(10)
-      ui_check_table_cell_extensible('children_table', 1, 5, true)
+      ui_check_table_cell_extensible('children', 1, 5, true)
       find(:xpath, "//tr[contains(.,'C66770')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:extend)
@@ -169,10 +169,10 @@ describe "Thesauri Extensions", :type => :feature do
       context_menu_element("history", 5, "2014-10-06 Release", :show)
       wait_for_ajax(10)
       expect(page).to have_content '2014-10-06 Release'
-      ui_check_table_info("children_table", 1, 10, 446)
+      ui_check_table_info("children", 1, 10, 446)
       ui_child_search("C66770")
       wait_for_ajax(10)
-      ui_check_table_cell_extensible('children_table', 1, 5, true)
+      ui_check_table_cell_extensible('children', 1, 5, true)
       find(:xpath, "//tr[contains(.,'C66770')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:extension)
@@ -192,8 +192,8 @@ describe "Thesauri Extensions", :type => :feature do
       context_menu_element("history", 5, "2014-10-06 Release", :show)
       wait_for_ajax(10)
       expect(page).to have_content '2014-10-06 Release'
-      ui_check_table_info("children_table", 1, 10, 446)
-      ui_check_table_cell_extensible('children_table', 8, 5, true)
+      ui_check_table_info("children", 1, 10, 446)
+      ui_check_table_cell_extensible('children', 8, 5, true)
       find(:xpath, "//tr[contains(.,'C96785')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:extend)
@@ -212,11 +212,11 @@ describe "Thesauri Extensions", :type => :feature do
       context_menu_element("history", 5, "2014-12-19 Release", :show)
       wait_for_ajax(10)
       expect(page).to have_content '2014-12-19 Release'
-      ui_check_table_info("children_table", 1, 10, 477)
+      ui_check_table_info("children", 1, 10, 477)
       expect(page).to have_content 'Extensible'
       ui_child_search("C78737")
       wait_for_ajax(10)
-      ui_check_table_cell_extensible('children_table', 1, 5, false)
+      ui_check_table_cell_extensible('children', 1, 5, false)
       find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:extend)
@@ -239,11 +239,11 @@ describe "Thesauri Extensions", :type => :feature do
       context_menu_element("history", 5, "2014-12-19 Release", :show)
       wait_for_ajax(10)
       expect(page).to have_content '2014-12-19 Release'
-      ui_check_table_info("children_table", 1, 10, 477)
+      ui_check_table_info("children", 1, 10, 477)
       expect(page).to have_content 'Extensible'
       ui_child_search("C99077")
       wait_for_ajax(10)
-      ui_check_table_cell_extensible('children_table', 1, 5, false)
+      ui_check_table_cell_extensible('children', 1, 5, false)
       find(:xpath, "//tr[contains(.,'C99077')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:extend)
