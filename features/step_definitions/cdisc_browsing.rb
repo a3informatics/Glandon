@@ -13,7 +13,7 @@ Given('the latest version of CDISC has Version Label: {string} and Version Numbe
 
 ##################### When statements 
 
-When /[bB]rowse every version of CDISC CT/ do
+When('I click "Browse every version of CDISC CT"') do
  click_browse_every_version
  wait_for_ajax(20)
  end
@@ -82,14 +82,22 @@ Then('I see the differences in the {string} code list is displayed') do |string|
 end
 
 Then('the Differences panel has {int} entries and no updates to Submission Value, Preferred Term, Synonym or Definition') do |int|
+      if int < 10
+    ui_check_table_info("differences_table", 1, int, int)
+     else
       ui_check_table_info("differences_table", 1, 10, int)
+     end
       wait_for_ajax(20)
       save_screen(TYPE)
  #Pending checking          
 end
 
 Then('the Changes panel displays {int} entries') do |int|
+  if int < 10
+    ui_check_table_info("changes", 1, int, int)
+  else
     ui_check_table_info("changes", 1, 10, int)
+  end
       wait_for_ajax(20)
       save_screen(TYPE)
 end
@@ -144,6 +152,7 @@ Then('a PDF report is generated and contains the {int} entires in the Changes pa
     page.execute_script "window.close();"
   end
 end
+
 
 
        

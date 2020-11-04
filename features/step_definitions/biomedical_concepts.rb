@@ -11,8 +11,9 @@ end
 
 When('I enter\/select the values that defines the BC') do |table|
     i = 1
-      table.hashes.each do |hash|
-        log(table.row)
+    select 'All', from: 'editor_length'
+    table.hashes.each do |hash|
+    
         ui_editor_select_by_location(i,1)
         if "#{hash['Enable']}" == 'true' 
         ui_check_table_cell_icon 'editor', i, 1, 'sel-filled'
@@ -35,25 +36,24 @@ When('I enter\/select the values that defines the BC') do |table|
           wait_for_ajax 10
           ui_check_table_cell_icon 'editor', i, 2, 'times-circle'
         end
-      ui_editor_select_by_location(i,4)
-       ui_editor_fill_inline "question_text", "#{hash['Question']}\n"
-      ui_editor_select_by_location(i,5)
-       ui_editor_fill_inline "prompt_text", "#{hash['Prompt']}\n"
-      ui_editor_select_by_location(i,7)
-       ui_editor_fill_inline "format", hash['Format']
-      if !hash['Codelist'].blank?
-      ui_editor_select_by_location(i,8)
-        ui_press_key :enter
-        ui_in_modal do
-        ip_check_tabs [:unmanaged_concept], 'bc-term-ref'
-        ip_pick_unmanaged_items :unmanaged_concept, [
-          { parent: "#{hash['Codelist']}", version: hash['Version'], identifier: "#{hash['Terminology']}" }
-        ], 'bc-term-ref', false
-        ip_submit 'bc-term-ref'
-         end
-       end
+        ui_editor_select_by_location(i,4)
+        ui_editor_fill_inline "question_text", "#{hash['Question']}\n"
+        ui_editor_select_by_location(i,5)
+        ui_editor_fill_inline "prompt_text", "#{hash['Prompt']}\n"
+        ui_editor_select_by_location(i,7)
+        ui_editor_fill_inline "format", hash['Format']
+        if !hash['Codelist'].blank?
+          ui_editor_select_by_location(i,8)
+          ui_press_key :enter
+          ui_in_modal do
+          ip_check_tabs [:unmanaged_concept], 'bc-term-ref'
+          ip_pick_unmanaged_items :unmanaged_concept, [
+          { parent: "#{hash['Codelist']}", version: hash['Version'], identifier: "#{hash['Terminology']}" }], 'bc-term-ref', false
+          ip_submit 'bc-term-ref'
+          end
+        end
       i = i + 1
-   end
+    end
   wait_for_ajax(20)
 end
 
@@ -76,4 +76,6 @@ end
 Then('the BC {string} gets created') do |string|
   expect(page).to have_content string
   expect(page).to have_content 'Biomedical Concept Editor'
+  wait_for_ajax(20)
+  save_screen(TYPE)
 end

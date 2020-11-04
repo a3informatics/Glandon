@@ -26,10 +26,17 @@ When('I access the {string} in the navigation bar') do |string|
   end
 end
 
-When(/^I click {string} in the top of the page/) do |string|
-  click_button fb_s_button
-  wait_for_ajax(20)
+When('I click {string} in/at the top/bottom of the page') do |string|
+  if string == 'PDF Report'
+  click_button string
+  
  end
+  if string =='Start'
+    find('#fb_s_button').click 
+    end
+ wait_for_ajax(20)
+end
+
 
 ### Context menu ###
 
@@ -92,6 +99,11 @@ When('I click {string} button') do |string|
   wait_for_ajax(20)
 end
 
+When('I click "Submit and proceed/Proceed"') do
+  click_button "Submit and proceed"
+end
+
+
 When('I click Changes for the {string}, c-code: {string}') do |string, string2|
    ui_table_row_click(string, 'Changes')
    wait_for_ajax(20)
@@ -127,6 +139,12 @@ Then /History page is displayed/ do
  expect_page('Version History of')
  wait_for_ajax(20)
  save_screen(TYPE)
+end
+
+Then('I see {string} Index page is displayed') do |string|
+  expect(page).to have_content "Index: #{string}"
+  wait_for_ajax(20)
+  save_screen(TYPE)
 end
 
 Then('the list has {int} entries') do |int|
