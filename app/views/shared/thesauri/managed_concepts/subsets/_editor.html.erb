@@ -1,0 +1,40 @@
+<%= javascript_tag "let subsetEditorUrls = {
+                          sourceData: '#{ children_thesauri_managed_concept_path(source) }',
+                          subsetData: '#{ list_children_thesauri_subset_path(subset) }',
+                          add: '#{ add_thesauri_subset_path(subset) }',
+                          remove: '#{ remove_thesauri_subset_path(subset) }',
+                          moveAfter: '#{ move_after_thesauri_subset_path(subset) }',
+                          removeAll: '#{ remove_all_thesauri_subset_path(subset) }',
+                        } " %>
+
+<div class="tabs-layout text-small" id="subset-editor">
+
+  <div class="tabs-sel">
+
+    <div class="tab-option with-icon active" id="tab-source">
+      <span class="icon-subsetted bg-prim-bright"></span>
+      <span>Source Code List (<%= @source_mc.has_identifier.identifier %>)</span>
+    </div>
+
+    <div class="tab-option with-icon" id="tab-subset">
+      <span class="icon-subset bg-prim-bright"></span>
+      <span>Ordered Subset (<%= @subset_mc.has_identifier.identifier %>)</span>
+    </div>
+
+  </div>
+
+  <div class="tab-wrap" data-tab="tab-source" id="source-codelist">
+    <div class="table-cardstyle loading-with-btns">
+      <%= render partial: "shared/iso_managed/children/children_panel", locals: { id: "source-table",
+          table_classes: "striped table-row-clickable" } %>
+    </div>
+  </div>
+
+  <div class="tab-wrap closed" data-tab="tab-subset" id="subset-codelist">
+    <div class="table-cardstyle all-columns">
+      <%= render partial: "shared/iso_managed/children/children_panel", locals: { id: "subset-table",
+          table_classes: "striped", indicators?: false, first_column: 'Ordinal' } %>
+    </div>
+  </div>
+
+</div>
