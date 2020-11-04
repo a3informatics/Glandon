@@ -83,9 +83,11 @@ describe BiomedicalConcept do
     property = BiomedicalConcept::PropertyX.new(label: params[:label], question_text: params[:question_text], prompt_text: params[:prompt_text], format: params[:format], alias: params[:alias])
     if template
       ref = CanonicalReference.where(label: params[:is_a])
-      property.is_a = ref.first.uri
+      property.is_a = ref.first.uri unless ref.empty?
+      puts colourize("***** Error finding Canonical ref: #{params[:alias]} #{params[:is_a]} *****", "red") if ref.empty?
       cdt_property = t_cdt.has_property.find{|x| x.label == params[:label]} 
       property.is_complex_datatype_property = cdt_property
+      puts colourize("***** Error finding CDT property: #{params[:alias]} #{params[:label]} *****", "red") if cdt_property.nil?
     else
       t_cdt.has_property_objects
       t_property = t_cdt.has_property.find{|x| x.label == params[:label]} 
@@ -129,7 +131,7 @@ describe BiomedicalConcept do
     sparql.default_namespace(results.first.uri.namespace)
     results.each{|x| x.to_sparql(sparql, true)}
     full_path = sparql.to_file
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
+  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
 	end
 
   it "create instances" do
