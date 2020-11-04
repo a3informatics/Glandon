@@ -66,7 +66,7 @@ export default class TablePanel {
     if (url)
       this.url = url;
 
-    this.clear();
+    this.clear(false);
     this._loading(true);
 
     if (this.paginated)
@@ -101,12 +101,16 @@ export default class TablePanel {
 
   /**
    * Clears table data and filters and kills any running requests
+   * @param {boolean} draw Specifies whether the table should redraw on clear, optional [default=true]
    */
-  clear() {
+  clear(draw = true) {
     this.table.search('')
               .clear()
-              .draw();
+
     this.kill();
+
+    if ( draw )
+      this.table.draw();
   }
 
   /**
@@ -187,7 +191,7 @@ export default class TablePanel {
   _render(data, clear = false) {
     // Clear data first if argument set to true
     if (clear)
-      this.clear();
+      this.clear(false);
 
     for(let item of data) {
       this.table.row.add(item);
