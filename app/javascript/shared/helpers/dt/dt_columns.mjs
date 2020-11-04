@@ -51,16 +51,14 @@ function dtVersionColumn() {
 
 /**
  * Returns column definition for the tags column
- * @param {string} width Column width string, optional
- * @param {string} className Custom classname, optional
+ * @param {object} opts Additional column options
  * @return {object} DataTables indicators column definition
  */
-function dtTagsColumn(width = '', className = '') {
+function dtTagsColumn(opts = {}) {
   return {
     data: 'tags',
     defaultContent: 'None',
-    className,
-    width: width,
+    ...opts,
     render: (data, type, r, m) => type === 'display' ? renderTagsInline(data) : data
   }
 };

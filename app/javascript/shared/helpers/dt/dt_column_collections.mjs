@@ -55,19 +55,21 @@ function dtSimpleHistoryColumns() {
 
 /**
  * Column definitions for a Children panel
+ * @param {object} opts Additional column options
  * @return {Array} DataTables Children panel column definitions collection
  */
-function dtChildrenColumns() {
+function dtChildrenColumns(opts = {}) {
   return [
-    { data: 'identifier' },
-    { data: 'notation' },
-    { data: 'preferred_term' },
-    { data: 'synonym' },
+    { data: 'identifier', ...opts },
+    { data: 'notation', ...opts },
+    { data: 'preferred_term', ...opts },
+    { data: 'synonym', ...opts },
     {
       width: '50%',
-      data: 'definition'
+      data: 'definition',
+      ...opts
     },
-    dtTagsColumn()
+    dtTagsColumn(opts)
   ];
 };
 
@@ -86,7 +88,7 @@ function dtCLEditColumns() {
     dtInlineEditColumn('preferred_term', '', '18%'),
     dtInlineEditColumn('synonym', '', '18%'),
     dtInlineEditColumn('definition', '', '40%'),
-    dtTagsColumn('8%', 'editable external edit-tags'),
+    dtTagsColumn({ width: '8%', className: 'editable external edit-tags'}),
     dtIndicatorsColumn(),
     {
       className: 'fit',
