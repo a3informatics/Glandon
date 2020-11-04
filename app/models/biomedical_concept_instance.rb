@@ -23,6 +23,7 @@ class BiomedicalConceptInstance < BiomedicalConcept
     object.based_on = template.uri
     object.set_initial(params[:identifier])
     object.creation_date = object.last_change_date # Will have been set by set_initial, ensures the same one used.
+    object.set_question_text
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
     object
   end
@@ -53,6 +54,19 @@ class BiomedicalConceptInstance < BiomedicalConcept
   def clone
     self.based_on_links
     super
+  end
+
+  # Set question text to Not set as default
+  def set_question_text
+    self.has_item.each do |item|
+      if item.collect
+        item.has_complex_datatype.each do |cdt|
+          cdt.has_property.each do |property|
+            property.question_text = "Not set" 
+          end
+        end
+      end
+    end
   end
 
 private
