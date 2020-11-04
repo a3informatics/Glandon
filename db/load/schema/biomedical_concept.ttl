@@ -92,7 +92,7 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Has Coded Value Realtionship"^^xsd:string ;
   rdfs:domain :PropertyX ;
-  rdfs:range bo:TMcReference ;
+  rdfs:range bo:TUcReference ;
   skos:definition "Reference to a coded value."^^xsd:string
 .
 :isComplexDatatype
@@ -108,7 +108,7 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Is Complex Datatype Property Relationship"^^xsd:string ;
   rdfs:domain :PropertyX ;
-  rdfs:range cdt:ComplexDatatype ;
+  rdfs:range cdt:PropertyX ;
   skos:definition "Reference to the Complex Datatype Property."^^xsd:string
 .
 :ordinal
