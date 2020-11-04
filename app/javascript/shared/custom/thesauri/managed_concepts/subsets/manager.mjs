@@ -75,6 +75,7 @@ export default class SubsetsManager extends ModalView {
     this.tp = new TablePanel({
       selector: `${ this.selector } #subsets-index-table`,
       extraColumns: this.columns,
+      order: [[ 0, 'asc' ]],
       deferLoading: true,
       paginated: false,
       tableOptions: {
