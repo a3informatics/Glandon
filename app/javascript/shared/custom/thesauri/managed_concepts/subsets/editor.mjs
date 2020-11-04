@@ -65,7 +65,7 @@ export default class SubsetEditor {
       url: this.urls.remove,
       type: 'DELETE',
       data: { member_id: itemRow.data().member_id },
-      callback: () => itemRow.remove().draw()
+      callback: () => this.subset.refresh()
      });
 
   }
@@ -203,12 +203,17 @@ export default class SubsetEditor {
       selector: `${this.selector} #subset-table`,
       url: this.urls.subsetData,
       param: 'subset',
-      extraColumns: dtChildrenColumns(),
+      order: [[ 0,'asc' ]],
+      extraColumns: [
+        { data: 'ordinal', orderable: false },
+        ...dtChildrenColumns({ orderable: false })
+      ],
       count: 1000,
       tableOptions: {
         rowReorder: {
           dataSrc: 'ordinal',
-          selector: 'tr'
+          selector: 'tr',
+          snapX: true
         },
         scrollX: true,
         autoWidth: true
