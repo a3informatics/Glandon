@@ -24,6 +24,7 @@ class BiomedicalConceptInstance < BiomedicalConcept
     object.set_initial(params[:identifier])
     object.creation_date = object.last_change_date # Will have been set by set_initial, ensures the same one used.
     object.set_question_text
+    object.set_format
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
     object
   end
@@ -63,6 +64,18 @@ class BiomedicalConceptInstance < BiomedicalConcept
         item.has_complex_datatype.each do |cdt|
           cdt.has_property.each do |property|
             property.question_text = "Not set" 
+          end
+        end
+      end
+    end
+  end
+
+  def set_format
+    self.has_item.each do |item|
+      if item.enabled
+        item.has_complex_datatype.each do |cdt|
+          cdt.has_property.each do |property|
+            property.format = XSDDatatype.new(property.is_complex_datatype_property.simple_datatype).default_format
           end
         end
       end
