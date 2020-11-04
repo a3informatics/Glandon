@@ -28,7 +28,7 @@ end
     markdown_engines/markdown_editor
     sdtm_user_domains/editor
     thesauri/changes thesauri/release_select thesauri/search_multiple thesauri/search thesauri/upgrade
-    thesauri/managed_concepts/changes thesauri/managed_concepts/edit_subset
+    thesauri/managed_concepts/changes 
     thesauri/unmanaged_concepts/changes thesauri/unmanaged_concepts/show
 
     shared/annotation/change_instruction_edit shared/annotation/change_instructions_html shared/annotation/change_instruction_modal shared/annotation/change_notes_modal
@@ -42,7 +42,6 @@ end
     shared/thesauri/changes_panel shared/thesauri/differences_panel shared/thesauri/edit_properties shared/thesauri/links_panel shared/thesauri/new_panel
     shared/thesauri/search_panel shared/thesauri/term_search_modal shared/thesauri/upgrade_panel
     shared/thesauri/managed_concepts/edit_extension_panel
-    shared/thesauri/managed_concepts/subset_edit_children_panel shared/thesauri/managed_concepts/subset_source_children_panel
     shared/thesauri/managed_concepts/rank/edit_ranks shared/thesauri/managed_concepts/rank/enable_rank
 
     shared/alphabetical_filter shared/confirmation_dialog shared/context_menu shared/icons_tags_helpers shared/information_dialog
