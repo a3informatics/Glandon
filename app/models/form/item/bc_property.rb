@@ -47,16 +47,18 @@ class Form::Item::BcProperty < Form::Item
   def to_crf
     html = ""
     if !is_common?
-      property_ref = self.has_property_objects.reference
-      property = BiomedicalConcept::PropertyX.find(property_ref)
-      html += start_row(self.optional)
-      html += question_cell(property.question_text)
-      if property.has_coded_value.length == 0
-        html += input_field(property)
-      else
-        html += terminology_cell
+      if self.has_property_objects.enabled
+        property_ref = self.has_property_objects.reference
+        property = BiomedicalConcept::PropertyX.find(property_ref)
+        html += start_row(self.has_property_objects.optional)
+        html += question_cell(property.question_text)
+        if property.has_coded_value.length == 0
+          html += input_field(property)
+        else
+          html += terminology_cell
+        end
+        html += end_row
       end
-      html += end_row
     end
     return html
   end
