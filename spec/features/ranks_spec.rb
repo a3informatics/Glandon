@@ -321,9 +321,9 @@ describe "Rank", :type => :feature do
       context_menu_element_header :enable_rank
       wait_for_ajax 10
 
-      find(:xpath, "//*[@id='source_children_table']/tbody/tr[contains(.,'C49501')]").click
+      find(:xpath, "//tr[contains(.,'C49501')]").click
       wait_for_ajax 10
-      find(:xpath, "//*[@id='source_children_table']/tbody/tr[contains(.,'C17998')]").click
+      find(:xpath, "//tr[contains(.,'C17998')]").click
       wait_for_ajax 10
 
       context_menu_element_header :edit_ranks
