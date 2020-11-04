@@ -222,7 +222,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
         check_ttl_fix_v2(filename, "CT_V2-6.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -269,7 +269,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
         check_ttl_fix_v2(filename, "CT_V3-0.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -312,13 +312,13 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
         #expect(public_file_does_not_exist?("test", filename)).to eq(true)
         actual = read_public_yaml_file("test", filename)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-1.yaml")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-1.yaml")
         check_file_actual_expected(actual, sub_dir, "import_errors_expected_3-1.yaml", equate_method: :hash_equal)
         #copy_file_from_public_files("test", filename, sub_dir)
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-1.ttl")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-1.ttl")
         check_ttl_fix_v2(filename, "CT_V3-1.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -460,7 +460,7 @@ describe "Import::SponsorTermFormatOne" do
       uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
       uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
       uri_31 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH")
-      {"2-6" => {uri: uri_26, count: 334824}, "3-0" => {uri: uri_30, count: 479363}, "3-1" => {uri: uri_31, count: 479363}}.each do |version, data|
+      {"2-6" => {uri: uri_26, count: 334824}, "3-0" => {uri: uri_30, count: 479363}, "3-1" => {uri: uri_31, count: 514969}}.each do |version, data|
         triples = triple_store.subject_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
@@ -562,8 +562,8 @@ describe "Import::SponsorTermFormatOne" do
           end
         end
         puts ".."
-        check_file_actual_expected(overall, sub_dir, "tags_actual_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
-        check_file_actual_expected(overall, sub_dir, "tags_expected_#{index+1}.yaml", equate_method: :hash_equal)
+        check_file_actual_expected(overall, sub_dir, "tags_actual_#{index+1}.yaml", equate_method: :hash_equal, write_file: true)
+        #check_file_actual_expected(overall, sub_dir, "tags_expected_#{index+1}.yaml", equate_method: :hash_equal)
       end
   
     end
