@@ -59,7 +59,7 @@
         <% end %>
 
         <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-notes-modal", id: "change-notes-button",
-            icon: "icon-note", text: "Change notes", toggle: "modal" } %>
+            icon: "icon-note", text: "Change notes", toggle: "modal", disabled: !@tc.supporting_edit? } %>
 
         <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-instructions-modal", id: "ci-modal-button",
           icon: "icon-instruction", text: "Change instructions", toggle: "modal" } %>
@@ -81,5 +81,8 @@
 </div>
 
 <%= render partial: "shared/thesauri/managed_concepts/subsets/manager", :locals => { item: @tc, edit_allowed: policy(Thesaurus).edit? } %>
-<%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => { item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id) } %>
 <%= render partial: "shared/annotation/change_instructions/change_instructions_modal", :locals => { item_name: @tc.identifier, item_id: @tc.id, can_edit: policy(Annotation).edit? } %>
+
+<% if @tc.supporting_edit? %>
+  <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => { item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id) } %>
+<% end %>

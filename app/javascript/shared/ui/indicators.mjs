@@ -12,7 +12,7 @@ const indicatorDefinitions = {
   version_count: { icon: 'icon-multi', ttip: '%n% versions' },
   subset: { icon: 'icon-subset', ttip: 'Item is a subset' },
   subsetted: { icon: 'icon-subsetted', ttip: 'Item is subsetted' },
-  annotations: { icon: 'icon-note-filled', ttip: '%n% change notes and<br/> %i% change instructions' },
+  annotations: { icon: 'icon-note-filled', ttip: '%n% change notes and %i% change instructions' },
   ranked: { icon: 'icon-rank', ttip: 'Item is ranked' },
   paired: { icon: 'icon-pair', ttip: 'Item is paired' }
 }
@@ -25,7 +25,7 @@ const indicatorDefinitions = {
  * @return {string} formatted HTML / text
  */
 function renderIndicators(data, type, filter) {
-  
+
   // Return empty if no indicator data
   if ( _.isEmpty(data) || _.isNull(data) )
     return ''
