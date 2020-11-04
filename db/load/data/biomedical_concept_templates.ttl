@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-04T11:24:23+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-04T12:12:21+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCT_BCI1 ;
 	bc:hasItem :BCT_BCI2 ;
@@ -294,16 +294,17 @@
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
 	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
-	bc:hasProperty :BCT_BCI10_BCCDTCD_BCPvalue ;
+	bc:hasProperty :BCT_BCI10_BCCDTCD_BCPcode ;
 .
-:BCT_BCI10_BCCDTCD_BCPvalue
+:BCT_BCI10_BCCDTCD_BCPcode
 	rdf:type bc:PropertyX ;
-	isoC:label "value"^^xsd:string ;
+	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
 	bc:alias "--REASND"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
 .
 :BCT_BCI11
 	rdf:type bc:Item ;
