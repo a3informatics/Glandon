@@ -312,7 +312,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
         #expect(public_file_does_not_exist?("test", filename)).to eq(true)
         actual = read_public_yaml_file("test", filename)
-      copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-1.yaml")
+      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-1.yaml")
         check_file_actual_expected(actual, sub_dir, "import_errors_expected_3-1.yaml", equate_method: :hash_equal)
         #copy_file_from_public_files("test", filename, sub_dir)
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
@@ -334,7 +334,7 @@ describe "Import::SponsorTermFormatOne" do
         expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
         expect(count_cl(th)).to eq(results.count)
         expect(count_cli(th)).to eq(32800)
-        expect(count_distinct_cli(th)).to eq(30224)
+        expect(count_distinct_cli(th)).to eq(30226)
         results.each do |x|
           check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
         end    
@@ -370,7 +370,7 @@ describe "Import::SponsorTermFormatOne" do
       th_2_6 = Thesaurus.find_minimum(@uri_2_6)
       th_3_0 = Thesaurus.find_minimum(@uri_3_0)
       results = th_2_6.differences(th_3_0)
-      check_file_actual_expected(results, sub_dir, "import_differences_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "import_differences_expected_1.yaml", equate_method: :hash_equal, write_file: false)
       r_2_6 = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
       r_3_0 = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
       prev = r_2_6.map{|x| x[:identifier].to_sym}.uniq
@@ -382,10 +382,10 @@ describe "Import::SponsorTermFormatOne" do
     end
 
     it "3.0 versus 3.1 QC I", :import_data => 'slow' do
-      th_2_6 = Thesaurus.find_minimum(@uri_3_0)
-      th_3_0 = Thesaurus.find_minimum(@uri_3_1)
+      th_3_0 = Thesaurus.find_minimum(@uri_3_0)
+      th_3_1 = Thesaurus.find_minimum(@uri_3_1)
       results = th_3_0.differences(th_3_1)
-      check_file_actual_expected(results, sub_dir, "import_differences_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "import_differences_expected_2.yaml", equate_method: :hash_equal, write_file: false)
       r_3_0 = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
       r_3_1 = read_yaml_file(sub_dir, "import_results_expected_3-1.yaml")
       prev = r_3_0.map{|x| x[:identifier].to_sym}.uniq
@@ -406,7 +406,7 @@ describe "Import::SponsorTermFormatOne" do
         next if item.owner_short_name != "Sanofi"
         results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
       end
-      check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal, write_file: false)
     end
 
     it "3.0 versus 3.1 QC II", :import_data => 'slow' do
@@ -419,7 +419,7 @@ describe "Import::SponsorTermFormatOne" do
         next if item.owner_short_name != "Sanofi"
         results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
       end
-      check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_2.yaml", equate_method: :hash_equal, write_file: false)
     end
 
   end
@@ -456,12 +456,33 @@ describe "Import::SponsorTermFormatOne" do
       results
     end
 
+    def th_triples_tree(subject)
+      query_string = %Q{
+        SELECT DISTINCT?s ?p ?o WHERE
+        {
+          {
+            #{subject.to_ref} th:isTopConceptReference*/bo:reference*/th:narrower* ?s .
+            ?s ?p ?o 
+          }
+          UNION
+          {
+            #{subject.to_ref} ?p ?o
+            BIND (#{subject.to_ref} as ?s)
+          }
+        }
+      }
+      query_results = Sparql::Query.new.query(query_string, subject.namespace, [:th, :bo]) 
+      results = query_results.by_object_set([:s, :p, :o])
+      puts colourize("Subject #{subject}, count=#{results.count}", "blue")
+      results
+    end
+
     it "counts and ranks" do
       uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
       uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
       uri_31 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH")
-      {"2-6" => {uri: uri_26, count: 334824}, "3-0" => {uri: uri_30, count: 479363}, "3-1" => {uri: uri_31, count: 514969}}.each do |version, data|
-        triples = triple_store.subject_triples_tree(data[:uri]) # Reading all triples as a test.
+      {"2-6" => {uri: uri_26, count: 197256}, "3-0" => {uri: uri_30, count: 291186}, "3-1" => {uri: uri_31, count: 299689}}.each do |version, data|
+        triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
       {"rank_V2-6.yaml" => uri_26, "rank_V3-0.yaml" => uri_30, "rank_V3-1.yaml" => uri_31}.each do |file, uri|
@@ -537,6 +558,18 @@ describe "Import::SponsorTermFormatOne" do
       }
     end
 
+    def empty_code_lists(expected)
+      results = []
+      expected.each do |cl_id, cl|
+        cl_result = true
+        cl[:items].each do |cli_id, tags|
+          cl_result = cl_result && tags.empty?
+        end
+        results << cl_id if cl_result
+      end
+      results
+    end
+
     it "tag analysis" do
       ct_set.each_with_index do |v, index|
         print "Processing: #{v[:uri]}, v#{v[:version]}  "
@@ -545,25 +578,28 @@ describe "Import::SponsorTermFormatOne" do
         results = query_results.by_object_set([:l, :v, :d, :clid, :cliid, :tag]).map{|x| {label: x[:l], version: x[:v], date: x[:d], code_list: x[:clid], code_list_notation: x[:cln], code_list_label: x[:cll], code_list_item: x[:cliid], tag: x[:tag]}}
         print ".."
         overall = {}
-        #overall[:label] = results[0][:label]
-        #overall[:version] = results[0][:version]
-        #overall[:date] = results[0][:date]
         results.each do |x|
           key = "#{x[:code_list_notation]}"
-          if overall.key?(key) 
-            overall[key][:items][x[:code_list_item]] = [] unless overall[key][:items].key?(x[:code_list_item]) 
-            overall[key][:items][x[:code_list_item]] << x[:tag]
-          else
+          if !overall.key?(key) 
             overall[key] = {}
             overall[key][:name] = x[:code_list_label]
             overall[key][:short_name] = x[:code_list_notation]
             overall[key][:identifier] = x[:code_list]
             overall[key][:items] = {}
           end
+          overall[key][:items][x[:code_list_item]] = [] unless overall[key][:items].key?(x[:code_list_item]) 
+          overall[key][:items][x[:code_list_item]] << x[:tag]
         end
         puts ".."
-        check_file_actual_expected(overall, sub_dir, "tags_actual_#{index+1}.yaml", equate_method: :hash_equal, write_file: true)
+        check_file_actual_expected(overall, sub_dir, "tags_actual_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
         #check_file_actual_expected(overall, sub_dir, "tags_expected_#{index+1}.yaml", equate_method: :hash_equal)
+actual = read_yaml_file(sub_dir, "tags_actual_#{index+1}.yaml")
+expected = read_yaml_file(sub_dir, "tags_expected_#{index+1}.yaml")
+expected_minus_empty = expected.keys - empty_code_lists(expected)
+missing = expected_minus_empty - actual.keys
+extra = actual.keys - expected_minus_empty
+puts "Missing: #{missing}"
+puts "Extra:   #{extra}"
       end
   
     end

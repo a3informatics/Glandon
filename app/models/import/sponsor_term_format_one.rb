@@ -117,8 +117,9 @@ private
       existing_ref = false
       if child.referenced?(@th)
         add_log("Reference Sponsor detected: #{child.identifier}")
-        ref = child.reference(@th)
-        existing_ref = true
+        #ref = child.reference(@th)
+        #existing_ref = true
+        ref = child.to_extension(@th, @fixes)
       elsif child.future_referenced?(@th)
         add_log("Future Reference Sponsor detected: #{child.identifier}")
         child.update_identifier(child.identifier)
