@@ -270,7 +270,7 @@ export default class SubsetEditor {
       tableOptions: {
         rowReorder: {
           dataSrc: 'ordinal',
-          selector: 'tr',
+          selector: 'td:first-child',
           snapX: true
         },
         scrollX: true,
