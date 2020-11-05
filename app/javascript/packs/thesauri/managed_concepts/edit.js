@@ -12,13 +12,8 @@ $(document).ready( () => {
 
   // Init Code List Editor
   let ep = new CLEditor({
-    id: codeListId,
-    urls: {
-      data: editorSrcDataUrl,
-      update: editorUpdateDataUrl,
-      newChild: editorNewChildUrl,
-      addChildren: editorAddChildrenUrl
-    },
+    id: codelistId,
+    urls: codelistEditorUrls,
     extendTimer: () => tt.extend()
   });
 

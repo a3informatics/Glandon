@@ -1,5 +1,6 @@
 import EditablePanel from 'shared/base/editable_panel'
 
+import ItemsPicker from 'shared/ui/items_picker/items_picker'
 import { $post, $delete } from 'shared/helpers/ajax'
 import { $confirm } from 'shared/helpers/confirmable'
 
@@ -165,7 +166,7 @@ export default class CLEditor extends EditablePanel {
    */
   _postformatUpdatedData(oldData, newData) {
 
-    // Merge and update edited row data 
+    // Merge and update edited row data
     let editedRow = this.table.row( this.editor.modifier().row );
         newData = Object.assign( editedRow.data(), newData[0] );
 
@@ -177,16 +178,11 @@ export default class CLEditor extends EditablePanel {
    * Initialize Items Selector for adding Code List Items to the Code List
    */
   _initSelector() {
-    this.itemSelector = new ItemsSelector({
+    this.itemSelector = new ItemsPicker({
       id: "add-children",
-      types: { clitems: true },
-      description: "Select one or more Code List Items to add to the Code List.",
       multiple: true,
-      callback: (s) => {
-        // Format selection into an array of ids
-        const childIds = s.clitems.map((item) => item.id);
-        this.addChildren(childIds);
-      }
+      types: ['unmanaged_concept'],
+      onSubmit: s => this.addChildren( s.asIDsArray() )
     });
   }
 
