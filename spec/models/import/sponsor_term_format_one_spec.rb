@@ -188,23 +188,126 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, no errors, 2nd AGEU version" do
-    load_local_file_into_triple_store(sub_dir, "import_load_24a.ttl")
-    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
-    full_path = test_file_path(sub_dir, "import_input_24b.xlsx")
-    params = {identifier: "AGEUTEST", version: "2", date: "2018-12-01", files: [full_path], version_label: "1.1.2", label: "Version 3 Test", semantic_version: "1.1.2", job: @job, uri: ct.uri}
+  it "import, no errors, 1st AGEU version" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
+    full_path = test_file_path(sub_dir, "import_input_24a.xlsx")
+    params = {identifier: "AGEUTEST", version: "1", date: "2018-11-01", files: [full_path], version_label: "1", label: "AGEU TEST", semantic_version: "0.0.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     public_file_exists?("test", filename)
     #public_file_does_not_exist?("test", filename)
     actual = read_public_yaml_file("test", filename)
-  copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_24b.yaml")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_24a.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_24a.yaml")
+    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+    public_file_exists?("test", filename)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_24a.ttl")
+    check_ttl_fix_v2(filename, "import_expected_24a.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import, no errors, 2nd AGEU version" do
+    load_local_file_into_triple_store(sub_dir, "import_load_24a.ttl")
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
+    full_path = test_file_path(sub_dir, "import_input_24b.xlsx")
+    params = {identifier: "AGEUTEST", version: "2", date: "2018-12-01", files: [full_path], version_label: "2", label: "AGEU TEST", semantic_version: "0.0.2", job: @job, uri: ct.uri}
+    result = @object.import(params)
+    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+    public_file_exists?("test", filename)
+    #public_file_does_not_exist?("test", filename)
+    actual = read_public_yaml_file("test", filename)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_24b.yaml")
     check_file_actual_expected(actual, sub_dir, "import_errors_expected_24b.yaml")
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     public_file_exists?("test", filename)
     copy_file_from_public_files("test", filename, sub_dir)
-  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_24b.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_24b.ttl")
     check_ttl_fix_v2(filename, "import_expected_24b.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import, no errors, 1st ABTESTCD version" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
+    full_path = test_file_path(sub_dir, "import_input_25a.xlsx")
+    params = {identifier: "ABTESTCDTEST", version: "1", date: "2018-11-01", files: [full_path], version_label: "1", label: "ABTESTCD TEST", semantic_version: "0.0.1", job: @job, uri: ct.uri}
+    result = @object.import(params)
+    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+    public_file_exists?("test", filename)
+    #public_file_does_not_exist?("test", filename)
+    actual = read_public_yaml_file("test", filename)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_25a.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_25a.yaml")
+    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+    public_file_exists?("test", filename)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_25a.ttl")
+    check_ttl_fix_v2(filename, "import_expected_25a.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import, no errors, 2nd ABTESTCD version" do
+    load_local_file_into_triple_store(sub_dir, "import_load_25a.ttl")
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
+    full_path = test_file_path(sub_dir, "import_input_25b.xlsx")
+    params = {identifier: "ABTESTCDTEST", version: "2", date: "2018-12-01", files: [full_path], version_label: "2", label: "ABTESTCD TEST", semantic_version: "0.0.2", job: @job, uri: ct.uri}
+    result = @object.import(params)
+    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+    public_file_exists?("test", filename)
+    #public_file_does_not_exist?("test", filename)
+    actual = read_public_yaml_file("test", filename)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_25b.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_25b.yaml")
+    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+    public_file_exists?("test", filename)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_25b.ttl")
+    check_ttl_fix_v2(filename, "import_expected_25b.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import, no errors, 1st EDUCATE version" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
+    full_path = test_file_path(sub_dir, "import_input_26a.xlsx")
+    params = {identifier: "ABTESTCDTEST", version: "1", date: "2018-11-01", files: [full_path], version_label: "1", label: "ABTESTCD TEST", semantic_version: "0.0.1", job: @job, uri: ct.uri}
+    result = @object.import(params)
+    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+    public_file_exists?("test", filename)
+    #public_file_does_not_exist?("test", filename)
+    actual = read_public_yaml_file("test", filename)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_26a.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_26a.yaml")
+    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+    public_file_exists?("test", filename)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_26a.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_26a.ttl")
+    check_ttl_fix_v2(filename, "import_expected_26a.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import, no errors, 2nd EDUCATE version" do
+    load_local_file_into_triple_store(sub_dir, "import_load_26a.ttl")
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
+    full_path = test_file_path(sub_dir, "import_input_26b.xlsx")
+    params = {identifier: "ABTESTCDTEST", version: "2", date: "2018-12-01", files: [full_path], version_label: "2", label: "ABTESTCD TEST", semantic_version: "0.0.2", job: @job, uri: ct.uri}
+    result = @object.import(params)
+    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+    public_file_exists?("test", filename)
+    #public_file_does_not_exist?("test", filename)
+    actual = read_public_yaml_file("test", filename)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_26b.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_26b.yaml")
+    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+    public_file_exists?("test", filename)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_26b.ttl")
+    check_ttl_fix_v2(filename, "import_expected_26b.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end

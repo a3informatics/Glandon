@@ -222,7 +222,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
+      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
         check_ttl_fix_v2(filename, "CT_V2-6.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -269,7 +269,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
+      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
         check_ttl_fix_v2(filename, "CT_V3-0.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -318,7 +318,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-1.ttl")
+      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-1.ttl")
         check_ttl_fix_v2(filename, "CT_V3-1.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -591,11 +591,12 @@ describe "Import::SponsorTermFormatOne" do
           overall[key][:items][x[:code_list_item]] << x[:tag]
         end
         puts ".."
-        check_file_actual_expected(overall, sub_dir, "tags_actual_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
+        check_file_actual_expected(overall, sub_dir, "tags_actual_#{index+1}.yaml", equate_method: :hash_equal, write_file: true)
         #check_file_actual_expected(overall, sub_dir, "tags_expected_#{index+1}.yaml", equate_method: :hash_equal)
 actual = read_yaml_file(sub_dir, "tags_actual_#{index+1}.yaml")
 expected = read_yaml_file(sub_dir, "tags_expected_#{index+1}.yaml")
 expected_minus_empty = expected.keys - empty_code_lists(expected)
+byebug
 missing = expected_minus_empty - actual.keys
 extra = actual.keys - expected_minus_empty
 puts "Missing: #{missing}"

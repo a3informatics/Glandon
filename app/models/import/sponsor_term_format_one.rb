@@ -119,7 +119,6 @@ private
         add_log("Reference Sponsor detected: #{child.identifier}")
         #ref = child.reference(@th)
         #existing_ref = true
-byebug
         ref = child.to_extension(@th, @fixes)
       elsif child.future_referenced?(@th)
         add_log("Future Reference Sponsor detected: #{child.identifier}")
@@ -155,7 +154,6 @@ byebug
       end
       next if ref.nil?
       add_log("***** RANKED #{ref.identifier} *****") if ref.ranked?
-byebug
       check_and_add(ref, index, existing_ref)
     end
     return {parent: @parent, managed_children: @filtered, tags: @tag_set}
@@ -197,7 +195,7 @@ byebug
       update_version(ref, previous.version + 1)
       item = check_for_change(ref, previous) 
       add_to_data(item, index, item.uri != previous.uri) # No changes if item = previous
-      item.add_context_tags(previous, @tag_set, []) 
+      item.add_context_tags(item, @tag_set, []) 
       item.has_previous_version = previous.uri if !previous.nil? && item.uri != previous.uri
       add_log("New item: #{item.uri}, previous item: #{previous.uri}")
     end

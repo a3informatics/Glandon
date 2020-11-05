@@ -12,7 +12,8 @@ module Import::ThesaurusExtend
 
     def tagged
       return [] unless instance_variable_defined?(instance_variable_name)
-      self.instance_variable_get(instance_variable_name)
+      value = self.instance_variable_get(instance_variable_name)
+      value.nil? ? [] : value
     rescue => e
       byebug
     end
@@ -40,7 +41,8 @@ module Import::ThesaurusExtend
 
     def tagged
       return [] unless instance_variable_defined?(instance_variable_name)
-      self.instance_variable_get(instance_variable_name)
+      value = self.instance_variable_get(instance_variable_name)
+      value.nil? ? [] : value
     rescue => e
       byebug
     end
@@ -83,7 +85,8 @@ module Import::ThesaurusExtend
 
     def tagged
       return [] unless instance_variable_defined?(instance_variable_name)
-      self.instance_variable_get(instance_variable_name)
+      value = self.instance_variable_get(instance_variable_name)
+      value.nil? ? [] : value
     rescue => e
       byebug
     end
