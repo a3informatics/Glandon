@@ -92,13 +92,11 @@ function dtCLEditColumns() {
     dtIndicatorsColumn(),
     {
       className: 'fit',
-      render: (data, type, r, m) => {
-        // const editingDisabled = _.isEmpty(r.edit_path);
-        // iconsInline.editIcon({ disabled: editingDisabled })
-        const actionIcons = iconsInline.removeIcon({ ttip: true, ttipText: 'Remove / unlink item' });
-
-        return type === 'display' ? actionIcons : '';
-      }
+      render: (data, type, r, m) => type === 'display' ?
+          iconsInline.removeIcon({
+            ttip: true,
+            ttipText: 'Remove / unlink item'
+          }) : ''
     }
   ];
 };
