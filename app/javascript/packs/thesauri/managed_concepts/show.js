@@ -29,8 +29,7 @@ $(document).ready( () => {
           thPicker = new ItemsPicker.default({
             id: 'thesaurus',
             multiple: false,
-            types: [ 'thesauri' ],
-            emptyEnabled: true
+            types: [ 'thesauri' ]
           });
 
       // Import and init ExtensionManager

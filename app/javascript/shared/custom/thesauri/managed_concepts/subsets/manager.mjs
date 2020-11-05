@@ -48,7 +48,19 @@ export default class SubsetsManager extends ModalView {
       return;
 
     this.hide();
+
     this.thPicker.onSubmit = s => this._createNew( s.asIDsArray()[0] );
+    this.thPicker.setButtons( [{
+      id: 'skip-selection-btn',
+      css: 'light',
+      text: 'Do not select',
+      onClick: () => {
+
+        this.thPicker.hide();
+        this._createNew();
+
+      }
+      }] );
     this.thPicker.show();
 
   }
