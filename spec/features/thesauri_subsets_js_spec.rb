@@ -108,7 +108,7 @@ describe "Thesauri Subsets", :type => :feature do
       end
 
       ui_in_modal do
-        click_on 'Submit and proceed'
+        click_on 'Do not select'
       end
 
       wait_for_ajax 10
@@ -152,7 +152,7 @@ describe "Thesauri Subsets", :type => :feature do
       end
 
       ui_in_modal do
-        click_on 'Submit and proceed'
+        click_on 'Do not select'
       end
       wait_for_ajax 10
 
@@ -310,7 +310,7 @@ describe "Thesauri Subsets", :type => :feature do
       end
 
       ui_in_modal do
-        click_on 'Submit and proceed'
+        click_on 'Do not select'
       end
 
       w = window_opened_by { context_menu_element_header(:edit_tags) }
@@ -331,7 +331,7 @@ describe "Thesauri Subsets", :type => :feature do
       end
 
       ui_in_modal do
-        click_on 'Submit and proceed'
+        click_on 'Do not select'
       end
 
       click_on 'Return'
@@ -394,7 +394,7 @@ describe "Thesauri Subsets", :type => :feature do
       end
 
       ui_in_modal do
-        click_on 'Submit and proceed'
+        click_on 'Do not select'
       end
       wait_for_ajax 10
 

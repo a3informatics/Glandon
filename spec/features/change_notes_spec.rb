@@ -356,7 +356,7 @@ describe "Change Notes", :type => :feature do
       ua_logoff
     end
 
-    it "allows viewing change notes modalm edit page", js:true do
+    it "allows viewing change notes modal edit page", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax(20)
       context_menu_element("history", 5, "2007-04-20 Release", :show)
@@ -365,7 +365,7 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(20)
       context_menu_element_header(:extend)
       sleep 0.5
-      click_button "Submit and proceed"
+      click_button "Do not select"
       wait_for_ajax(20)
       expect(page).to have_content("Edit Extension")
       expect(context_menu_element_header_present?(:change_notes)).to eq(true)
@@ -433,7 +433,7 @@ describe "Change Notes", :type => :feature do
         click_on '+ New Subset'
       end
       ui_in_modal do
-        click_on 'Submit and proceed'
+        click_on 'Do not select'
       end
       wait_for_ajax(20)
       expect(page).to have_content("Subset Editor")
