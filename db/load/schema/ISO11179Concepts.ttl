@@ -28,11 +28,11 @@
   rdfs:subClassOf :ContextualRelationship ;
   skos:definition "Node relating a classification to a concept."^^xsd:string ;
 .
-:Extension
+:CustomProperty
   rdf:type owl:Class ;
   rdfs:label "Extension"^^xsd:string ;
   rdfs:subClassOf :ContextualRelationship ;
-  skos:definition "Nodde relating an extension value to a concept."^^xsd:string ;
+  skos:definition "Node relating a custom property value to a concept."^^xsd:string ;
 .
 :Concept
   rdf:type owl:Class ;
@@ -40,11 +40,11 @@
   rdfs:subClassOf owl:Thing ;
   skos:definition "A unit of knowledge created by a unique combination of characteristics."^^xsd:string ;
 .
-:ExtensionDefinition
+:CustomPropertyDefinition
   rdf:type owl:Class ;
   rdfs:label "Extension Definition"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
-  skos:definition "Definiton of an extension to a concept defining the characteristics of the property."^^xsd:string ;
+  skos:definition "Definiton of an custom proerty defining the characteristics of the property."^^xsd:string ;
 .
 :ConceptSystem
   rdf:type owl:Class ;
@@ -113,12 +113,12 @@
   rdfs:range :conceptSystemNode ;
   skos:definition "Relationship to relate a concept to a classification."^^xsd:string ;
 .
-:extensionDefinedBy
+:customDefinedBy
   rdf:type owl:ObjectProperty ;
   rdfs:label "Defined By"^^xsd:string ;
-  rdfs:domain :Extension ;
-  rdfs:range :ExtensionDefinition ;
-  skos:definition "Relationship to relate an extension value to its definition."^^xsd:string ;
+  rdfs:domain :CustomProperty ;
+  rdfs:range :CustomPropertyDefinition ;
+  skos:definition "Relationship to relate an custom property value to its definition."^^xsd:string ;
 .
 :label
   rdf:type owl:DatatypeProperty ;
@@ -150,31 +150,31 @@
   rdfs:range xsd:string ;
   skos:definition "Concept system node description."^^xsd:string ;
 .
-:extensionName
+:customPropertyName
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Extension Name"^^xsd:string ;
-  rdfs:domain :ExtensionDefinition ;
+  rdfs:domain :CustomPropertyDefinition ;
   rdfs:range xsd:string ;
-  skos:definition "The name of the extension property."^^xsd:string ;
+  skos:definition "The name of the custom property."^^xsd:string ;
 .
-:extensionValue
+:customPropertyValue
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Extension Value"^^xsd:string ;
-  rdfs:domain :Extension ;
+  rdfs:domain :CustomProperty ;
   rdfs:range xsd:anySimpleType ;
-  skos:definition "The name of the extension property."^^xsd:string ;
+  skos:definition "The name of the custom property."^^xsd:string ;
 .
-:extensionDefault
+:customPropertyDefault
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Extension Default Value"^^xsd:string ;
-  rdfs:domain :ExtensionDefinition ;
+  rdfs:domain :CustomPropertyDefinition ;
   rdfs:range xsd:anySimpleType ;
-  skos:definition "The default value for the extension property."^^xsd:string ;
+  skos:definition "The default value for the custom property."^^xsd:string ;
 .
-:extensionDatatype
+:customPropertyDatatype
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Extension Datatype"^^xsd:string ;
-  rdfs:domain :ExtensionDefinition ;
+  rdfs:domain :CustomPropertyDefinition ;
   rdfs:range xsd:anySimpleType ;
-  skos:definition "The datatype of the extension property."^^xsd:string ;
+  skos:definition "The datatype of the custom property."^^xsd:string ;
 .
