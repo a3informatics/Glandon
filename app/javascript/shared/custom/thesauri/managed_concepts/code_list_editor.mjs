@@ -1,8 +1,9 @@
 import EditablePanel from 'shared/base/editable_panel'
 
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
-import { $post, $delete } from 'shared/helpers/ajax'
+import { $ajax } from 'shared/helpers/ajax'
 import { $confirm } from 'shared/helpers/confirmable'
+import { isCDISC } from 'shared/helpers/utils'
 
 import { dtCLEditColumns } from 'shared/helpers/dt/dt_column_collections'
 import { dtCLEditFields } from 'shared/helpers/dt/dt_field_collections'
@@ -21,91 +22,116 @@ export default class CLEditor extends EditablePanel {
    * @param {string} params.id ID of the currently edited item
    * @param {object} params.urls Must contain urls for 'data', 'update', 'newChild' and 'addChildren'
    * @param {string} params.selector JQuery selector of the target table
-   * @param {function} params.extendTimer Callback for Timer extend called on any Edit action
+   * @param {string} params.helpDialogId ID of the information dialog containing help
+   * @param {function} params.onEdited Callback for Timer extend called on any Edit action
    */
   constructor({
     id,
     urls,
     selector = "#editor-panel table#editor",
-    extendTimer
+    helpDialogId = 'cl-edit',
+    onEdited = () => {}
   }) {
-    super({ selector, dataUrl: urls.data, updateUrl: urls.update, param: "managed_concept", columns: dtCLEditColumns(), fields: dtCLEditFields() });
 
-    Object.assign(this, { id, newChildUrl: urls.newChild, addChildrenUrl: urls.addChildren, extendTimer });
+    super({
+      selector,
+      dataUrl: urls.data,
+      updateUrl: urls.update,
+      param: "managed_concept",
+      columns: dtCLEditColumns(),
+      fields: dtCLEditFields()
+    });
+
+    Object.assign(this, {
+      id, urls, helpDialogId, onEdited
+    });
+
     this._initSelector();
+
   }
 
   /**
-   * Server request to create a new Code List Item, add to table
+   * Create a new child in Code List
    */
   newChild() {
-    this._loading(true);
 
-    $post({
-      url: this.newChildUrl,
-      data: { "managed_concept": { identifier: "SERVERIDENTIFIER" } },
-      done: (data) => this.refresh(),
-      always: () => this._loading(false)
-    });
-  }
-
-  /**
-   * Server request to add one or more existing Code List Items to this Code List
-   */
-  addChildren(childrenIds) {
-    this._loading(true);
-
-    $post({
-      url: this.addChildrenUrl,
-      data: { "managed_concept": { set_ids: childrenIds } },
-      done: (data) => {
-        this.refresh();
-        this._onEdited(); // Item edited callback
+    this._executeRequest({
+      url: this.urls.newChild,
+      type: 'POST',
+      data: {
+        identifier: 'SERVERIDENTIFIER'
       },
-      always: () => {}
+      callback: () => this.refresh()
     });
+
   }
 
   /**
-   * Server request to remove item (row) from the Code List
-   * @param {DataTable Row} tr Reference to the DT Row instance to be removed
+   * Add one or more existing Code List Items to Code List
+   * @param {Array} childrenIds Set of Unmanaged Concept IDs to be added to Code List
+   * @param {string} param Name of the UC IDs parameter
    */
-  removeChild(tr) {
-    // Require user confirmation
-    $confirm({
-      subtitle: "This action will remove the Code List Item reference from this Code List. If it is its only parent, the item will be removed from the system.",
-      dangerous: true,
-      callback: () => {
-        this._loading(true);
+  addChildren(childrenIds, param = 'set_ids') {
 
-        // Make DELETE request
-        $delete({
-          url: tr.data().delete_path,
-          done: (r) => this.removeItems(tr),
-          always: () => this._loading(false)
-        });
-      }
+    let data = {}
+    data[param] = childrenIds;
+
+    this._executeRequest({
+      url: this.urls.addChildren,
+      type: 'POST',
+      data,
+      callback: () => this.refresh()
     });
+
   }
+
+  /**
+   * Remove or unlink item from the Code List
+   * @param {DataTable Row} childRow Reference to the DT Row instance to be removed
+   * @requires $confirm user confirmation
+   */
+  removeChild(childRow) {
+
+    $confirm({
+      subtitle: `This action will remove the Code List Item reference from this Code List.
+                 If it is its only parent, the item will be removed from the system.`,
+      dangerous: true,
+      callback: () => this._executeRequest({
+                        url: childRow.data().delete_path,
+                        type: 'DELETE',
+                        callback: () => this.removeItems( childRow )
+                      })
+    });
+
+  }
+
 
   /** Private **/
 
-  /**
-   * Check if item editable - must have referenced data property set to true
-   * @override super's _editable
-   * @param {object} modifier Contains the reference to the cell being edited
-   * @returns {boolean} true/false ~~ enable/disable editing for the cell
-   */
-  _editable(modifier) {
-    return !this.table.row(modifier.row).data().referenced;
-  }
 
   /**
-   * Extends the Token Timer on any edit action
-   * @override super's _onEdited
+   * Perform a server request based on given parameters
+   * @param {string} url Url of the request
+   * @param {string} type Type of the request
+   * @param {objet} data Request data object (without strong parameter), optional
+   * @param {function} callback Function to execute on request success
    */
-  _onEdited(e, json) {
-    this.extendTimer();
+  _executeRequest({ url, type, data = {}, callback }) {
+
+    this._loading( true );
+
+    $ajax({
+      url, type,
+      data: { managed_concept: data },
+      done: d => {
+
+        callback( d );
+        this.onEdited();
+
+      },
+      always: () => this._loading( false )
+    });
+
   }
 
   /**
@@ -117,29 +143,35 @@ export default class CLEditor extends EditablePanel {
     super._setListeners();
 
     // Edit tags
-    $(this.selector).on('click', 'tbody td.editable.edit-tags', (e) => {
+    $( this.selector ).on( 'click', 'tbody td.editable.edit-tags', e => {
 
-      const editTagsUrl = this._getRowDataFrom$(e.target).edit_tags_path;
+      const editTagsUrl = this._getRowDataFrom$( e.target ).edit_tags_path;
 
-      if (editTagsUrl)
-        window.open(editTagsUrl, '_blank').focus();
+      if ( editTagsUrl )
+        window.open( editTagsUrl, '_blank' ).focus();
 
     })
 
     // Add New Child
-    $('#new-item-button').on('click', () => this.newChild());
+    $( '#new-item-button' ).on( 'click', () => this.newChild() );
 
     // Add Existing Child
-    $('#add-existing-button').on('click', () => this.itemSelector.show());
+    $( '#add-existing-button' ).on( 'click', () => this.itemSelector.show() );
 
     // Refresh
-    $('#refresh-button').on('click', () => this.refresh());
+    $( '#refresh-button' ).on( 'click', () => this.refresh() );
 
     // Remove item
-    $(this.selector).on('click', 'tbody .remove', (e) => this.removeChild(this._getRowFrom$(e.target)));
+    $( this.selector ).on( 'click', 'tbody .remove', e =>
+          this.removeChild( this._getRowFrom$( e.target ) )
+    );
 
     // Help dialog
-    $('#editor-help').on('click', () => new InformationDialog({div: $("#information-dialog-cl-edit")}).show() );
+    $('#editor-help').on('click', () =>
+          new InformationDialog({
+            div: $( `#information-dialog-${ this.helpDialogId }` )
+          }).show()
+    );
 
   }
 
@@ -149,7 +181,7 @@ export default class CLEditor extends EditablePanel {
    */
   _preformatUpdateData(d) {
 
-    const itemId = Object.keys(d.data)[0];
+    const itemId = Object.keys( d.data )[0];
 
     d.edit = d.data[itemId];
     d.edit.parent_id = this.id;
@@ -178,28 +210,53 @@ export default class CLEditor extends EditablePanel {
    * Initialize Items Selector for adding Code List Items to the Code List
    */
   _initSelector() {
+
     this.itemSelector = new ItemsPicker({
       id: "add-children",
       multiple: true,
       types: ['unmanaged_concept'],
       onSubmit: s => this.addChildren( s.asIDsArray() )
     });
+
   }
+
+  /**
+   * Check if item editable - must have referenced data property set to true
+   * @override super's _editable
+   * @param {object} modifier Contains the reference to the cell being edited
+   * @returns {boolean} true/false ~~ enable/disable editing for the cell
+   */
+  _editable(modifier) {
+    return !this.table.row( modifier.row ).data().referenced;
+  }
+
 
   /**
    * Extend default Editable Panel options
    * @return {Object} DataTable options object
    */
   get _tableOpts() {
+
     let options = super._tableOpts;
 
+    options.scrollX = true;
+    options.autoWidth = true;
+
     // CSS Styling for editable rows
-    options.createdRow = (row, data, idx) => {
-      let rowClass = (!data.referenced ? 'row-sponsor' : data.uri.includes('cdisc') ? 'row-cdisc' : 'row-disabled');
-      $(row).addClass(rowClass);
+    options.createdRow = (row, data) => {
+
+      let rowClass = data.referenced ?
+                        isCDISC( data.uri ) ?
+                          'row-cdisc' :
+                          'row-disabled' :
+                          'row-sponsor';
+
+      $( row ).addClass( rowClass );
+
     }
 
     return options;
+
   }
 
 }
