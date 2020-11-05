@@ -28,7 +28,7 @@ end
     markdown_engines/markdown_editor
     sdtm_user_domains/editor
     thesauri/changes thesauri/release_select thesauri/search_multiple thesauri/search thesauri/upgrade
-    thesauri/managed_concepts/changes 
+    thesauri/managed_concepts/changes
     thesauri/unmanaged_concepts/changes thesauri/unmanaged_concepts/show
 
     shared/annotation/change_instruction_edit shared/annotation/change_instructions_html shared/annotation/change_instruction_modal shared/annotation/change_notes_modal
@@ -40,15 +40,14 @@ end
     shared/iso_managed/managed_children_select shared/iso_managed/managed_item_ico_list shared/iso_managed/managed_item_version_picker shared/iso_managed/managed_item_select_modal
     shared/items_selector/items_selector_modal shared/items_selector/managed_item_selector shared/items_selector/unmanaged_item_selector
     shared/thesauri/changes_panel shared/thesauri/differences_panel shared/thesauri/edit_properties shared/thesauri/links_panel shared/thesauri/new_panel
-    shared/thesauri/search_panel shared/thesauri/term_search_modal shared/thesauri/upgrade_panel
-    shared/thesauri/managed_concepts/edit_extension_panel
+    shared/thesauri/search_panel shared/thesauri/upgrade_panel
     shared/thesauri/managed_concepts/rank/edit_ranks shared/thesauri/managed_concepts/rank/enable_rank
 
-    shared/alphabetical_filter shared/confirmation_dialog shared/context_menu shared/icons_tags_helpers shared/information_dialog
+    shared/alphabetical_filter shared/confirmation_dialog shared/icons_tags_helpers shared/information_dialog
     shared/list_change_notes_panel shared/tabs_layout shared/timer
 
     ajax_requests colour field_validation
-    locked_items rspec_helper sidebar_handler spinner standard_datatable thesauri_field_editor
+    locked_items rspec_helper sidebar_handler spinner standard_datatable
     token_timer unload_v2 unload
 
   ).each do |filename|
