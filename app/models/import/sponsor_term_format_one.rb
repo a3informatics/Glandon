@@ -119,6 +119,7 @@ private
         add_log("Reference Sponsor detected: #{child.identifier}")
         #ref = child.reference(@th)
         #existing_ref = true
+byebug
         ref = child.to_extension(@th, @fixes)
       elsif child.future_referenced?(@th)
         add_log("Future Reference Sponsor detected: #{child.identifier}")
@@ -154,6 +155,7 @@ private
       end
       next if ref.nil?
       add_log("***** RANKED #{ref.identifier} *****") if ref.ranked?
+byebug
       check_and_add(ref, index, existing_ref)
     end
     return {parent: @parent, managed_children: @filtered, tags: @tag_set}
@@ -219,7 +221,7 @@ private
   def check_for_change(current, previous)
     return current unless subset_match?(current, previous)
     return current unless rank_match?(current, previous)
-    current.replace_if_no_change(previous)
+    current.replace_if_no_change(previous, [:tagged])
   end
 
   def add_to_data(item, index, new_item)
