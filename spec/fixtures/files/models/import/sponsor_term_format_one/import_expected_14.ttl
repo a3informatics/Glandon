@@ -67,8 +67,6 @@
 <http://www.s-cubed.dk/SC132314/V1#SC132314>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Specimen Collection Method"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	isoT:hasState <http://www.s-cubed.dk/SC132314/V1#SC132314_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/SC132314/V1#SC132314_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -112,8 +110,6 @@
 <http://www.s-cubed.dk/SC132314/V1#SC132314_S000902>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Surgery"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "S000902"^^xsd:string ;
 	th:notation "SURGERY"^^xsd:string ;
 	th:definition "The branch of medical science that treats disease or injury by operative procedures."^^xsd:string ;
@@ -127,8 +123,6 @@
 <http://www.s-cubed.dk/SC132314/V1#SC132314_SC113747>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Swab"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "SC113747"^^xsd:string ;
 	th:notation "SWAB"^^xsd:string ;
 	th:definition "A technique in which a tufted material on the end of a stick is rubbed against a surface."^^xsd:string ;
@@ -138,8 +132,6 @@
 <http://www.s-cubed.dk/SC132314/V1#SC132314_SC132353>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Induced Expectoration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "SC132353"^^xsd:string ;
 	th:notation "INDUCED EXPECTORATION"^^xsd:string ;
 	th:definition "A technique in which hypotonic saline is inhaled, followed by expectoration."^^xsd:string ;
@@ -153,8 +145,6 @@
 <http://www.s-cubed.dk/SC132314/V1#SC132314_SC15189>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Biopsy"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "SC15189"^^xsd:string ;
 	th:notation "BIOPSY"^^xsd:string ;
 	th:definition "The removal of tissue specimens or fluid from the living body for microscopic examination, performed to establish a diagnosis."^^xsd:string ;
@@ -164,8 +154,6 @@
 <http://www.s-cubed.dk/SC132314/V1#SC132314_SC15361>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Fine Needle Aspiration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "SC15361"^^xsd:string ;
 	th:notation "FINE NEEDLE ASPIRATION"^^xsd:string ;
 	th:definition "The removal of tissue specimens or fluid from the living body with a thin needle."^^xsd:string ;
@@ -179,8 +167,6 @@
 <http://www.s-cubed.dk/SC132314/V1#SC132314_SC51913>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lavage"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "SC51913"^^xsd:string ;
 	th:notation "LAVAGE"^^xsd:string ;
 	th:definition "A technique in which a cavity or organ is flushed with a fluid, which is then collected."^^xsd:string ;
@@ -190,8 +176,6 @@
 <http://www.s-cubed.dk/SC132314/V1#SC132314_SC85859>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Expectoration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 	th:identifier "SC85859"^^xsd:string ;
 	th:notation "EXPECTORATION"^^xsd:string ;
 	th:definition "A technique in which material is cleared from the throat or lungs by coughing it up and spitting it out."^^xsd:string ;
@@ -205,4 +189,88 @@
 <http://www.assero.co.uk/PT#95fafb5d42a72289a734b8ddfeb96cb87cbbd864>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Specimen Collection Method"^^xsd:string ;
+.
+<http://www.assero.co.uk/CLA#1df599e3-6989-4307-bd0d-adc12afd9485>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_S000902> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#384d152c-a9fc-4890-96c3-3027f1bb0cf4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_S000902> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#9505bf31-03e3-4912-9f6d-04c9682b72c4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_SC113747> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#3fca082b-1909-447c-a3d3-546fe1eaf423>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_SC113747> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#6024bc07-995b-4652-a803-5ec26f8558b3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_SC132353> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#6c0a6d18-ef7f-4520-bef0-6bbbfac39d92>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_SC132353> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#44474e03-f8a6-4750-bdc3-663a598a0665>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_SC15189> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#4c5d1383-b403-45a0-9300-758ef2eb9f12>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_SC15189> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#33a8441e-94ed-440c-94fd-667d5a96150c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_SC15361> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#c31eb1a0-1a01-4837-bc6c-d265c9a38227>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_SC15361> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#d6c57b9d-6d16-4d23-8953-616d6607ca08>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_SC51913> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#93ddc5e0-8922-4b7b-85fe-d18e47f83911>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_SC51913> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#842c35ba-c53b-42ca-a1ba-caa198a8b2d2>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_SC85859> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#5f44a346-97d6-45c5-b7ff-a492baf6b97c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC132314/V1#SC132314_SC85859> ;
+	isoC:context <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
 .

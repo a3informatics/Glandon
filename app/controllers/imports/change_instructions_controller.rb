@@ -4,7 +4,7 @@ class Imports::ChangeInstructionsController < Imports::BaseController
   
   def new
     super
-    @history = Thesaurus.history(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
+    @history = Thesaurus.history(identifier: CdiscTerm.identifier, scope: IsoRegistrationAuthority.cdisc_scope)
   end
 
   def create

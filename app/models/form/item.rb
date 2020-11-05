@@ -16,7 +16,65 @@ class Form::Item < IsoConceptV2
 
   include Form::Ordinal
 
-  def delete(parent)
+  # Managed Ancestors Path. Returns the path from the managed ancestor to this class
+  #
+  # @return [String] the path as an expanded set of predicates
+  def self.managed_ancestors_path
+    [
+      "<http://www.assero.co.uk/BusinessForm#hasGroup>",
+      "<http://www.assero.co.uk/BusinessForm#hasSubGroup>*",
+      "<http://www.assero.co.uk/BusinessForm#hasCommon>?",
+      "<http://www.assero.co.uk/BusinessForm#hasItem>",
+      "<http://www.assero.co.uk/BusinessForm#hasCommonItem>*"
+    ]
+  end
+
+  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  #
+  # @return [Symbol] the predicate property as a symbol
+  def managed_ancestors_predicate
+    :has_item
+  end
+
+  # Delete. Delete the object. Clone if there are multiple parents.
+  #
+  # @param [Object] parent_object the parent object
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Object] the parent object, either new or the cloned new object with updates
+  def delete(parent, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent = clone_and_unlink(managed_ancestor)
+    else
+      delete_node(parent)
+    end
+    normal_group = Form::Group::Normal.find_full(parent.uri)
+    normal_group = normal_group.full_data
+  end
+
+  def clone_and_unlink(managed_ancestor)
+    tx = transaction_begin
+    new_parent = nil
+    uris = managed_ancestor_path_uris(managed_ancestor)
+    prev_object = managed_ancestor
+    prev_object.transaction_set(tx)
+    uris.each do |old_uri|
+      old_object = self.class.klass_for(old_uri).find_children(old_uri)
+      cloned_object = clone_and_save(old_object, prev_object, tx)
+      if self.uri == old_object.uri  
+        prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
+        new_parent = prev_object
+        new_parent.clone_children_and_save(tx)
+      else 
+        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+      end
+      prev_object = cloned_object
+    end
+    transaction_execute
+    new_parent.reset_ordinals
+    new_parent = Form::Group.find_full(new_parent.id)
+  end
+
+  def delete_node(parent)
     update_query = %Q{
       DELETE DATA
       {
@@ -41,8 +99,72 @@ class Form::Item < IsoConceptV2
     }
     partial_update(update_query, [:bf])
     parent.reset_ordinals
-    normal_group = Form::Group::Normal.find_full(parent.uri)
-    normal_group = normal_group.full_data
+    1
+  end
+
+  def move_up_with_clone(child, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent_and_child = clone_nodes(child, managed_ancestor)
+      parent_and_child.first.move_up(parent_and_child.second)
+    else
+      move_up(child)
+    end
+  end
+
+  def move_down_with_clone(child, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent_and_child = clone_nodes(child, managed_ancestor)
+      parent_and_child.first.move_down(parent_and_child.second)
+    else
+      move_down(child)
+    end
+  end
+
+  def clone_nodes(child, managed_ancestor)
+    new_parent = nil
+    new_object = nil
+    tx = transaction_begin
+    uris = child.managed_ancestor_path_uris(managed_ancestor)
+    prev_object = managed_ancestor
+    prev_object.transaction_set(tx)
+    uris.each do |old_uri|
+      old_object = self.class.klass_for(old_uri).find_children(old_uri)
+      if old_object.multiple_managed_ancestors?
+        cloned_object = clone_and_save(old_object, prev_object, tx)
+        if child.uri == old_object.uri
+          new_parent = prev_object
+          new_object = new_parent.clone_children_and_save(tx, child.uri) 
+        end
+        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+        prev_object = cloned_object
+      else
+        prev_object = old_object
+      end
+    end
+    transaction_execute
+    new_parent = Form::Item.find_full(new_parent.id)
+    return new_parent, new_object
+  end
+
+  # Clone the children and create.
+  #   The Children are normally references. Also note the setting of the transaction in the cloned object and
+  #   in the sparql generation, important both are done.
+  def clone_children_and_save(tx, uri = nil)
+    sparql = Sparql::Update.new(tx)
+    new_object = nil
+    set = self.has_coded_value
+    set.each do |child|
+      object = child.clone
+      object.transaction_set(tx)
+      object.generate_uri(self.uri) 
+      object.to_sparql(sparql, true)
+      self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
+      unless uri.nil? 
+        new_object = object if child.uri == uri 
+      end 
+    end
+    sparql.create
+    new_object
   end
 
   def start_row(optional)
@@ -74,38 +196,45 @@ class Form::Item < IsoConceptV2
   # Format input field
   def input_field(item)
     html = '<td>'
+    datatype = nil
     if item.class == BiomedicalConcept::PropertyX
-      prop = ComplexDatatype::PropertyX.find(item.is_complex_datatype_property)
-      datatype = XSDDatatype.new(prop.simple_datatype)
+      if item.is_complex_datatype_property.nil?
+        datatype = nil
+      else
+        prop = ComplexDatatype::PropertyX.find(item.is_complex_datatype_property)
+        datatype = XSDDatatype.new(prop.simple_datatype)
+      end
     else
       datatype = XSDDatatype.new(item.datatype)
     end
-      if datatype.datetime?
-        html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
-      elsif datatype.date?
-       html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
-      elsif datatype.time?
-       html += field_table(["H", "H", ":", "M", "M"])
-      elsif datatype.float?
-        item.format = "5.1" if item.format.blank?
-        parts = item.format.split('.')
-        major = parts[0].to_i
-        minor = parts[1].to_i
-        pattern = ["#"] * major
-        pattern[major-minor-1] = "."
-        html += field_table(pattern)
-      elsif datatype.integer?
-        count = item.format.to_i
-        html += field_table(["#"]*count)
-      elsif datatype.string?
-        length = item.format.scan /\w/
-        html += field_table([" "]*5 + ["S"] + length + [""]*5)
-      elsif datatype.boolean?
-        html += '<input type="checkbox">'
-      else
-        html += field_table(["?", "?", "?"])
-      end
-      html += '</td>'
+    if datatype.nil?
+      html += field_table(["?", "?", "?"])
+    elsif datatype.datetime?
+      html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
+    elsif datatype.date?
+     html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
+    elsif datatype.time?
+     html += field_table(["H", "H", ":", "M", "M"])
+    elsif datatype.float?
+      item.format = "5.1" if item.format.blank?
+      parts = item.format.split('.')
+      major = parts[0].to_i
+      minor = parts[1].to_i
+      pattern = ["#"] * major
+      pattern[major-minor-1] = "."
+      html += field_table(pattern)
+    elsif datatype.integer?
+      count = item.format.to_i
+      html += field_table(["#"]*count)
+    elsif datatype.string?
+      length = item.format.scan /\w/
+      html += field_table([" "]*5 + ["S"] + length + [""]*5)
+    elsif datatype.boolean?
+      html += '<input type="checkbox">'
+    else
+      html += field_table(["?", "?", "?"])
+    end
+    html += '</td>'
   end
 
   # Format a field

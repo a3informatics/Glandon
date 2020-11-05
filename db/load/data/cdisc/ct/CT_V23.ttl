@@ -17,9 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#af95873c-6eee-44a2-9b85-f8360a6fea78> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2010-10-22.xlsx', 'CDASH Terminology 2010-04-08.xlsx', 'ADaM Terminology 2010-10-06.xlsx'"^^xsd:string ;
@@ -881,9 +878,9 @@
 <http://www.cdisc.org/C71150/V23#C71150>
 	rdf:type th:ManagedConcept ;
 	isoC:label "ECG Result"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C71150/V23#C71150_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71150/V23#C71150_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C71150/V22#C71150> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2010-10-22T00:00:00+00:00"^^xsd:dateTime ;
@@ -1038,7 +1035,6 @@
 <http://www.cdisc.org/C71150/V23#C71150_C92227>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "RSR'"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C92227"^^xsd:string ;
 	th:notation "RSR PRIME"^^xsd:string ;
 	th:definition "An electrocardiographic finding in which there are two R waves, which are two deflections above the baseline resulting from a single ventricular depolarization. The first upward deflection in the complex is the R wave. The S is the first downward deflection. A second upward deflection is called the R-prime wave."^^xsd:string ;
@@ -1049,9 +1045,9 @@
 <http://www.cdisc.org/C78733/V23#C78733>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Specimen Condition"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C78733/V23#C78733_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78733/V23#C78733_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C78733/V14#C78733> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2010-10-22T00:00:00+00:00"^^xsd:dateTime ;
@@ -1095,7 +1091,6 @@
 <http://www.cdisc.org/C78733/V23#C78733_C70719>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Specimen at Room Temperature"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C70719"^^xsd:string ;
 	th:notation "ROOM TEMPERATURE"^^xsd:string ;
 	th:definition "A specimen that has been subjected to and adjusted to the average ambient temperature of a room, usually considered to be around 20 degrees C (68 degrees F). (NCI)"^^xsd:string ;
@@ -1106,9 +1101,9 @@
 <http://www.cdisc.org/C85495/V23#C85495>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Microbiology Susceptibility Testing Result Category"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C85495/V23#C85495_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C85495/V23#C85495_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C85495/V19#C85495> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2010-10-22T00:00:00+00:00"^^xsd:dateTime ;
@@ -1151,7 +1146,6 @@
 <http://www.cdisc.org/C85495/V23#C85495_C85560>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Antimicrobial Intermediate Susceptibility Result"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C85560"^^xsd:string ;
 	th:notation "INTERMEDIATE"^^xsd:string ;
 	th:definition "The growth of microorganisms may be inhibited by antimicrobials that approach usually attainable blood and tissue concentrations. The response rates may be lower than for susceptible isolates. This category also includes a buffer zone, which should prevent small, uncontrolled, technical factors from causing major discrepancies in interpretations, especially for drugs with narrow pharmacotoxicity margins."^^xsd:string ;
@@ -1162,7 +1156,6 @@
 <http://www.cdisc.org/C85495/V23#C85495_C85561>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Antimicrobial Nonsusceptibility Result"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C85561"^^xsd:string ;
 	th:notation "NONSUSCEPTIBLE"^^xsd:string ;
 	th:definition "A category used for microorganisms that have only a susceptible interpretive criteria, but not an intermediate or resistant interpretive category (i.e., susceptible-only interpretive category). This category may be applied to new antimicrobial agents for which no resistant microorganisms have been encountered at the time the initial interpretive criteria are determined. Microorganisms that test with an MIC above or a zone measurement below the susceptible interpretive criteria are designated as nonsusceptible. A designation of nonsusceptible does not necessarily mean that a resistance mechanism(s) exists in the microorganism."^^xsd:string ;
@@ -1173,7 +1166,6 @@
 <http://www.cdisc.org/C85495/V23#C85495_C85562>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Antimicrobial Resistance Result"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C85562"^^xsd:string ;
 	th:notation "RESISTANT"^^xsd:string ;
 	th:definition "The growth of microorganisms are not inhibited by the usually achievable concentrations of the antimicrobial agent with normal dosages, and/or microorganisms demonstrate MICs or zone diameters that fall in the range where specific microbial resistance mechanisms (e.g. Beta-lactamases) are likely, and clinical efficacy of the agent against the microorganism has not been reliably shown in treatment studies."^^xsd:string ;
@@ -1184,9 +1176,9 @@
 <http://www.cdisc.org/C85491/V23#C85491>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Microorganism"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C85491/V23#C85491_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C85491/V23#C85491_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C85491/V22#C85491> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2010-10-22T00:00:00+00:00"^^xsd:dateTime ;
@@ -2089,4 +2081,81 @@
 	isoI:version "23"^^xsd:positiveInteger ;
 	isoI:semanticVersion "23.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.assero.co.uk/CLA#bcf58dfe-ae2c-4a23-85cc-5e86b0e2aba2>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#6a086418-607b-4834-91a2-b9da4bdfc14d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#af95873c-6eee-44a2-9b85-f8360a6fea78> ;
+.
+<http://www.assero.co.uk/CLA#e0622418-9faa-4807-b1d4-e42827104f77>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
+.
+<http://www.assero.co.uk/CLA#44daae3e-9551-4991-9909-d80b06a008b9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C71150/V23#C71150> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#ead98dc1-ebb2-445f-95e6-bf1a556dc9be>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C71150/V23#C71150_C92227> ;
+	isoC:context <http://www.cdisc.org/C71150/V23#C71150> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#19b8c2be-b688-443b-9ea9-7f98cb3258f7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78733/V23#C78733> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#f41fb86e-221a-4d5a-b2c2-cd5fbc07f53d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78733/V23#C78733_C70719> ;
+	isoC:context <http://www.cdisc.org/C78733/V23#C78733> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#f9bd72bd-2d27-4f6b-abd9-112d8ec3643d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C85495/V23#C85495> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#993450f7-f6db-46b1-81fd-d1387ee31884>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C85495/V23#C85495_C85560> ;
+	isoC:context <http://www.cdisc.org/C85495/V23#C85495> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#1f816f23-e75e-4d65-8584-b673f6fb765f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C85495/V23#C85495_C85561> ;
+	isoC:context <http://www.cdisc.org/C85495/V23#C85495> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#49542ffc-16bc-4860-9c0d-6481698a6d2f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C85495/V23#C85495_C85562> ;
+	isoC:context <http://www.cdisc.org/C85495/V23#C85495> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#1f6df655-78d9-43a7-8965-c835f3e70cd6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C85491/V23#C85491> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .

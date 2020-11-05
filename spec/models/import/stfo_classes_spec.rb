@@ -109,6 +109,64 @@ describe Import::STFOClasses do
     expect(object.extension?(ct)).to eq(true)
   end
 
+  it "extension? III, CDISC with rank" do
+    object = Import::STFOClasses::STFOCodeList.new
+    object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
+    ["C74569", "C74570", "C74571", "C74572", "C74573", "C74574"].each_with_index do |x, index|
+      item = Import::STFOClasses::STFOCodeListItem.new(identifier: x)
+      item.instance_variable_set("@rank", index+1)
+      object.narrower << item
+    end
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
+    expect(object.extension?(ct)).to eq(true)
+  end
+
+  it "ranked?" do
+    object = Import::STFOClasses::STFOCodeList.new
+    object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
+    ["C74571", "C12345", "C45678"].each do |x|
+      item = Import::STFOClasses::STFOCodeListItem.new(identifier: x)
+      item.instance_variable_set("@rank", "1")
+      object.narrower << item
+    end
+    expect(object.ranked?).to eq(true)
+  end
+
+  it "add_ranking" do
+    object = Import::STFOClasses::STFOCodeList.new
+    object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
+    ["C74571", "C12345", "C45678"].each_with_index do |x, index|
+      item = Import::STFOClasses::STFOCodeListItem.new(identifier: x)
+      item.instance_variable_set("@rank", index+1)
+      object.narrower << item
+    end
+    object.add_ranking
+    expect(object.is_ranked).to_not be(nil)
+    list = object.is_ranked
+    list_first = list.members
+    list_second = list_first.member_next
+    list_third = list_second.member_next
+    expect(list_first.rank).to eq(1)
+    expect(list_second.rank).to eq(2)
+    expect(list_third.rank).to eq(3)
+  end
+
+  it "not ranked?" do
+    object = Import::STFOClasses::STFOCodeList.new
+    object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
+    ["C74571", "C12345", "C45678"].each do |x|
+      item = Import::STFOClasses::STFOCodeListItem.new(identifier: x)
+      object.narrower << item
+      next if x == "C12345"
+      item.instance_variable_set("@rank", "1")
+    end
+    expect(object.ranked?).to eq(false)
+  end
+
   it "not extension?" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
@@ -151,14 +209,48 @@ describe Import::STFOClasses do
     check_file_actual_expected(actual.to_h, sub_dir, "reference_expected_1.yaml", equate_method: :hash_equal)
   end
 
-  it "future referenced? - WILL CURRENTLY FAIL - needs update" do
+  it "future referenced?, success" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "SC71620"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC48579")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC48590")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC49668")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
     expect(object.future_referenced?(ct)).to eq(true)
+  end
+
+  it "future referenced?, fail" do
+    object = Import::STFOClasses::STFOCodeList.new
+    object.identifier = "SC716204"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC48579")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC48590")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC49668")
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
+    expect(object.future_referenced?(ct)).to eq(false)
+  end
+
+  it "future referenced?, fail" do
+    object = Import::STFOClasses::STFOCodeList.new
+    object.identifier = "SC71620"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC48579")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC4859044")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC49668")
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
+    expect(object.future_referenced?(ct)).to eq(false)
+  end
+
+  it "future referenced?, fail" do
+    object = Import::STFOClasses::STFOCodeList.new
+    object.identifier = "SC71620"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "subset")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC48579")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC48590")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC49668")
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
+    expect(object.future_referenced?(ct)).to eq(false)
   end
 
   it "child identifiers" do

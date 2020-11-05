@@ -109,8 +109,29 @@ class Import < ApplicationRecord
     objects[:managed_children].each do |c|
       c.to_sparql(sparql, true)
     end
+    classification_map = {}
     objects[:tags].each do |c|
-      sparql.add({uri: c[:subject]}, {prefix: :isoC, fragment: "tagged"}, {uri: c[:object]})
+      key = "#{c[:subject]}.#{c[:object]}"
+      existing = Classification.where(c[:subject], c[:object])
+      if existing.nil? && classification_map.key?(key)
+        existing = classification_map[key]
+        new_contexts = c[:context].map{|s| s.to_s} - existing.context.map{|s| s.to_s}
+        new_contexts.each do |context|
+          sparql.add({uri: existing.uri}, {prefix: :isoC, fragment: "context"}, {uri: Uri.new(uri: context)})
+        end
+      elsif existing.nil?
+        classification = Classification.new(applies_to: c[:subject], classified_as: c[:object], context: c[:context])
+        classification.uri = classification.create_uri(Classification.base_uri)
+        classification.to_sparql(sparql)
+        classification_map[key] = classification
+      else
+        new_contexts = c[:context].map{|s| s.to_s} - existing.context.map{|s| s.to_s}
+        new_contexts.each do |context|
+          sparql.add({uri: existing.uri}, {prefix: :isoC, fragment: "context"}, {uri: Uri.new(uri: context)})
+        end
+      end
+    rescue => e
+      byebug
     end
     filename = sparql.to_file
     response = CRUD.file(filename) if self.auto_load

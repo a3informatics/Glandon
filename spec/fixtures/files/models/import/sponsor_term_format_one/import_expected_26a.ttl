@@ -1,0 +1,186 @@
+@prefix : <http://www.s-cubed.dk/ABTESTCDTEST/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/ABTESTCDTEST/V1>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "ABTESTCD TEST"^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin "Created from files: 'import_input_26a.xlsx'"^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConcept <http://www.s-cubed.dk/SN000205/V1#SN000205> ;
+	th:reference <http://www.cdisc.org/CT/V43#TH_R1> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "ABTESTCDTEST"^^xsd:string ;
+	isoI:versionLabel "1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:TH_TMC1
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/SN000205/V1#SN000205> ;
+.
+<http://www.cdisc.org/CT/V43#TH_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/CT/V43#TH> ;
+.
+<http://www.s-cubed.dk/SN000205/V1#SN000205>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Subject Characteristic Education Level"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/SN000205/V1#SN000205_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/SN000205/V1#SN000205_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "SN000205"^^xsd:string ;
+	th:notation "EDUCATE"^^xsd:string ;
+	th:definition "Education level."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.s-cubed.dk/SN000205/V1#SN000205_S002090> ;
+	th:narrower <http://www.s-cubed.dk/SN000205/V1#SN000205_S002092> ;
+	th:narrower <http://www.s-cubed.dk/SN000205/V1#SN000205_S002093> ;
+	th:narrower <http://www.s-cubed.dk/SN000205/V1#SN000205_S003894> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#3505fbe934b0f816e793d52a7113e31772c93762> ;
+.
+<http://www.s-cubed.dk/SN000205/V1#SN000205_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/SN000205/V1#SN000205_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SN000205"^^xsd:string ;
+	isoI:versionLabel "1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/SN000205/V1#SN000205_S002090>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "College Degree"^^xsd:string ;
+	th:identifier "S002090"^^xsd:string ;
+	th:notation "COLLEGE DEGREE"^^xsd:string ;
+	th:definition "Not defined."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#f4132ef2b883e0f57a4bf5835e8ba75eed48ed81> ;
+.
+<http://www.assero.co.uk/PT#f4132ef2b883e0f57a4bf5835e8ba75eed48ed81>
+	rdf:type th:PreferredTerm ;
+	isoC:label "College Degree"^^xsd:string ;
+.
+<http://www.s-cubed.dk/SN000205/V1#SN000205_S002092>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Junior High"^^xsd:string ;
+	th:identifier "S002092"^^xsd:string ;
+	th:notation "JUNIOR HIGH"^^xsd:string ;
+	th:definition "Not defined."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6f06a78fe9b247d15b078473697c4d65dc9c039e> ;
+.
+<http://www.assero.co.uk/PT#6f06a78fe9b247d15b078473697c4d65dc9c039e>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Junior High"^^xsd:string ;
+.
+<http://www.s-cubed.dk/SN000205/V1#SN000205_S002093>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Post-Graduate"^^xsd:string ;
+	th:identifier "S002093"^^xsd:string ;
+	th:notation "POST-GRADUATE"^^xsd:string ;
+	th:definition "Not defined."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0cc0f0248832795e46ed61d11870792249989fc3> ;
+.
+<http://www.assero.co.uk/PT#0cc0f0248832795e46ed61d11870792249989fc3>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Post-Graduate"^^xsd:string ;
+.
+<http://www.s-cubed.dk/SN000205/V1#SN000205_S003894>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "High School"^^xsd:string ;
+	th:identifier "S003894"^^xsd:string ;
+	th:notation "HIGH SCHOOL"^^xsd:string ;
+	th:definition "A secondary school that usually includes grades 9 through 12."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#a800aa60b83d1211c662510e8ba18d07e5891235> ;
+.
+<http://www.assero.co.uk/PT#a800aa60b83d1211c662510e8ba18d07e5891235>
+	rdf:type th:PreferredTerm ;
+	isoC:label "High School"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#3505fbe934b0f816e793d52a7113e31772c93762>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Subject Characteristic Education Level"^^xsd:string ;
+.
+<http://www.assero.co.uk/CLA#c0c4ad7c-3133-41f7-bbff-d0af75bd97c3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000205/V1#SN000205_S002090> ;
+	isoC:context <http://www.s-cubed.dk/SN000205/V1#SN000205> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#0afdf52b-8e5f-4165-9391-737e94cee7da>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000205/V1#SN000205_S002092> ;
+	isoC:context <http://www.s-cubed.dk/SN000205/V1#SN000205> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#92ab23d2-516d-4555-9f6b-1a62e167a64a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000205/V1#SN000205_S002093> ;
+	isoC:context <http://www.s-cubed.dk/SN000205/V1#SN000205> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#8792b31d-5d98-4f26-bc33-8f180cf778dc>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000205/V1#SN000205_S003894> ;
+	isoC:context <http://www.s-cubed.dk/SN000205/V1#SN000205> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.

@@ -101,8 +101,7 @@ describe "IsoManagedV2" do
           :last_change_date => "2016-01-01T00:00:00+00:00",
           :explanatory_comment => "",
           :has_previous_version => nil,
-          :id => nil,
-          tagged: []
+          :id => nil
         }
       item = IsoManagedV2.new
       expect(item.to_h).to eq(result)
@@ -284,13 +283,13 @@ describe "IsoManagedV2" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       new_item = IsoManagedV2.from_h(item.to_h)
-      check_file_actual_expected(new_item.to_h, sub_dir, "from_h_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(new_item.to_h, sub_dir, "from_h_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "permits the item to be exported as JSON" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
-      check_file_actual_expected(item.to_h, sub_dir, "to_json_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(item.to_h, sub_dir, "to_json_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "gets all" do
@@ -367,13 +366,13 @@ describe "IsoManagedV2" do
     it "find full, I" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       results = IsoManagedV2.find_full(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_full_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results.to_h, sub_dir, "find_full_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "find full, II" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       results = CdiscTerm.find_full(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_full_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results.to_h, sub_dir, "find_full_expected_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "find full, III, speed" do
@@ -386,7 +385,7 @@ describe "IsoManagedV2" do
     it "find minimum I" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       results = IsoManagedV2.find_minimum(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_minimum_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results.to_h, sub_dir, "find_minimum_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "find minimum II, speed" do
@@ -399,7 +398,7 @@ describe "IsoManagedV2" do
     it "find properties I" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       results = IsoManagedV2.find_with_properties(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_properties_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results.to_h, sub_dir, "find_properties_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "find properties II, speed" do
@@ -418,7 +417,7 @@ describe "IsoManagedV2" do
     it "where, II" do
       results = []
       IsoManagedV2.where({label: "Iso Concept Test Form"}).each { |x| results << x.to_h }
-      check_file_actual_expected(results, sub_dir, "where_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "where_expected_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "where full, I" do
@@ -451,7 +450,7 @@ describe "IsoManagedV2" do
       results = []
       actual = CdiscTerm.history(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
       actual.each {|x| results << x.to_h}
-      check_file_actual_expected(results, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "creation_date" do
@@ -467,12 +466,12 @@ describe "IsoManagedV2" do
       actual = CdiscTerm.history_pagination(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, count: 10, offset: 10)
       expect(actual.count).to eq(10)
       actual.each {|x| results << x.to_h}
-      check_file_actual_expected(results, sub_dir, "history_pagination_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "history_pagination_expected_1.yaml", equate_method: :hash_equal, write_file: true)
       results = []
       actual = CdiscTerm.history_pagination(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, count: 10, offset: 20)
       expect(actual.count).to eq(10)
       actual.each {|x| results << x.to_h}
-      check_file_actual_expected(results, sub_dir, "history_pagination_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "history_pagination_expected_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "history uris" do
@@ -607,10 +606,10 @@ describe "IsoManagedV2" do
       object = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
       expect(object.errors.count).to eq(0)
       check_dates(object, sub_dir, "create_expected_1a.yaml", :last_change_date, :creation_date)
-      check_file_actual_expected(object.to_h, sub_dir, "create_expected_1a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(object.to_h, sub_dir, "create_expected_1a.yaml", equate_method: :hash_equal, write_file: true)
       object = Thesaurus.find_full(object.uri)
       check_dates(object, sub_dir, "create_expected_1b.yaml", :last_change_date, :creation_date)
-      check_file_actual_expected(object.to_h, sub_dir, "create_expected_1b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(object.to_h, sub_dir, "create_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "create, not valid, label" do
@@ -637,7 +636,7 @@ describe "IsoManagedV2" do
       expect(actual.errors.count).to eq(0)
       file = "create_next_version_1.yaml"
       check_dates(actual, sub_dir, file, :creation_date, :last_change_date)
-      check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal, write_file: true)
 
       object = Thesaurus.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/NEW1/V1#TH"))
       object.has_state.registration_status = IsoRegistrationStateV2.released_state
@@ -648,7 +647,7 @@ describe "IsoManagedV2" do
       expect(object.uri).to_not eq(actual.uri) # New item
       file = "create_next_version_2.yaml"
       check_dates(actual, sub_dir, file, :creation_date, :last_change_date)
-      check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal, write_file: true)
 
       object = Thesaurus.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/NEW1/V2#TH"))
       object.has_state.registration_status = "Qualified"
@@ -657,7 +656,7 @@ describe "IsoManagedV2" do
       expect(object.uri).to_not eq(actual.uri) # New item
       file = "create_next_version_3.yaml"
       check_dates(actual, sub_dir, file, :creation_date, :last_change_date)
-      check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal, write_file: true)
 
       object = Thesaurus.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/NEW1/V3#TH"))
       object.has_state.multiple_edit = true
@@ -665,7 +664,7 @@ describe "IsoManagedV2" do
       expect(object.uri).to eq(actual.uri) # Same item, multiple edit
       file = "create_next_version_4.yaml"
       check_dates(actual, sub_dir, file, :creation_date, :last_change_date)
-      check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal, write_file: true)
 
       object = Thesaurus.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/NEW1/V3#TH"))
       object.has_state.multiple_edit = false
@@ -673,7 +672,7 @@ describe "IsoManagedV2" do
       expect(object.uri).to_not eq(actual.uri) # New item, no multiple edit
       file = "create_next_version_5.yaml"
       check_dates(actual, sub_dir, file, :creation_date, :last_change_date)
-      check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal, write_file: true)
     end
 
   end
@@ -699,10 +698,10 @@ describe "IsoManagedV2" do
       expect(object.errors.count).to eq(0)
       object.reset_cloned(identifier: "CLONED AIRPORTS", label: "We have changed it")
       check_dates(object, sub_dir, "reset_clone_expected_1a.yaml", :last_change_date, :creation_date)
-      check_file_actual_expected(object.to_h, sub_dir, "reset_clone_expected_1a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(object.to_h, sub_dir, "reset_clone_expected_1a.yaml", equate_method: :hash_equal, write_file: true)
       object = Thesaurus.find_full(object.uri)
       check_dates(object, sub_dir, "reset_clone_expected_1b.yaml", :last_change_date, :creation_date)
-      check_file_actual_expected(object.to_h, sub_dir, "reset_clone_expected_1b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(object.to_h, sub_dir, "reset_clone_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "reset clone, not valid, label" do
@@ -999,7 +998,7 @@ describe "IsoManagedV2" do
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
       actual = IsoManagedV2.find_minimum(uri)
-      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows the item status to be updated, error" do
@@ -1015,7 +1014,7 @@ describe "IsoManagedV2" do
       expect(item.errors.full_messages.to_sentence).to eq("Registration Status: Registration status is invalid and Registration Status: Previous state is invalid")
       expect(item.errors.count).to eq(2)
       actual = IsoManagedV2.find_minimum(uri)
-      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows the item status to be updated, standard" do
@@ -1028,7 +1027,7 @@ describe "IsoManagedV2" do
       params[:unresolved_issue] = "Unresolved issues"
       item.update_status(params)
       actual = IsoManagedV2.find_minimum(uri)
-      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_3.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_3.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "generates the audit message for Status update" do

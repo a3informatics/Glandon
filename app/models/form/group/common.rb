@@ -5,6 +5,20 @@ class Form::Group::Common < Form::Group
             
   object_property_class :has_item, model_class: Form::Item::Common
 
+  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  #
+  # @return [Symbol] the predicate property as a symbol
+  def managed_ancestors_predicate
+    common_group? ? :has_common : :has_sub_group
+  end
+
+  # Top Level Group? Is this item the top level group
+  #
+  # @result [Boolean] return true if this instance is a top level group or false if  it is a subGroup
+  def common_group?
+    Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bf:hasCommon ?o}", "", [:bf]).ask? 
+  end
+
   # Get Item
   #
   # @return [Array] Array of hashes, one per group, sub group and item.
@@ -31,10 +45,10 @@ class Form::Group::Common < Form::Group
     return html
   end
 
-  def delete(parent)
-    super(parent)
-    normal_group = Form::Group::Normal.find_full(parent.uri)
-    normal_group = normal_group.full_data
+  def delete(parent, managed_ancestor)
+    parent = super(parent, managed_ancestor)
+    parent = Form::Group::Normal.find_full(parent.uri)
+    parent = parent.full_data
   end
 
   def children_ordered

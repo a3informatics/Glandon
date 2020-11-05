@@ -13,7 +13,7 @@ class Forms::Items::CommonsController < ManagedItemsController
     return true unless check_lock_for_item(form)
     common = Form::Item::Common.find(protect_from_bad_id(params))
     parent = IsoConceptV2.find(the_params[:parent_id])
-    result = parent.move_up(common)
+    result = parent.move_up_with_clone(common, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -27,7 +27,7 @@ class Forms::Items::CommonsController < ManagedItemsController
     return true unless check_lock_for_item(form)
     common = Form::Item::Common.find(protect_from_bad_id(params))
     parent = IsoConceptV2.find(the_params[:parent_id])
-    result = parent.move_down(common)
+    result = parent.move_down_with_clone(common, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: ""}, :status => 200
@@ -41,7 +41,7 @@ class Forms::Items::CommonsController < ManagedItemsController
     parent = Form::Group.find(the_params[:parent_id])
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
-    result = common.delete(parent)
+    result = common.delete(parent, form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, item #{common.label} deleted.") if @lock.token.refresh == 1
     render json: {data: result }, status: 200

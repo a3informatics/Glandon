@@ -17,9 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#af95873c-6eee-44a2-9b85-f8360a6fea78> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2011-01-07.xlsx', 'ADaM Terminology 2011-01-07.xlsx', 'CDASH Terminology 2011-01-07.xlsx'"^^xsd:string ;
@@ -881,9 +878,9 @@
 <http://www.cdisc.org/C85494/V24#C85494>
 	rdf:type th:ManagedConcept ;
 	isoC:label "PK Parameter Units of Measure"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C85494/V24#C85494_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C85494/V24#C85494_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C85494/V20#C85494> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2011-01-07T00:00:00+00:00"^^xsd:dateTime ;
@@ -1126,7 +1123,6 @@
 <http://www.cdisc.org/C85494/V24#C85494_C85659>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Liter per Gram per Minute"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C85659"^^xsd:string ;
 	th:notation "L/g/min"^^xsd:string ;
 	th:definition "Liters per gram per minute."^^xsd:string ;
@@ -1144,7 +1140,6 @@
 <http://www.cdisc.org/C85494/V24#C85494_C73755>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Liter per Kilogram per Day"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C73755"^^xsd:string ;
 	th:notation "L/kg/day"^^xsd:string ;
 	th:definition "Liters per kilogram per day."^^xsd:string ;
@@ -1156,4 +1151,42 @@
 	th:synonym <http://www.assero.co.uk/SYN#eab0db669a9b642e7f72a6445b8e04db5c909647> ;
 	th:synonym <http://www.assero.co.uk/SYN#2cd7dc8706ecc13a7645b7fc20699b785ecc8a9e> ;
 	th:synonym <http://www.assero.co.uk/SYN#feafd23a5331d0b2b6cf3ab062d61467b8862774> ;
+.
+<http://www.assero.co.uk/CLA#2b0d2c28-ca85-4bb3-8fcb-ba3a2b4feba0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#6a21306a-04e3-4672-92c4-69c0dd74c3a8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
+.
+<http://www.assero.co.uk/CLA#c74314fc-62d8-43b5-a8a4-01760dd8b544>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#af95873c-6eee-44a2-9b85-f8360a6fea78> ;
+.
+<http://www.assero.co.uk/CLA#16a73a56-8baf-4c55-909e-3c990ea1c852>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C85494/V24#C85494> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#5202224d-0a2e-47fa-b7f4-8c2b65f2ea02>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C85494/V24#C85494_C85659> ;
+	isoC:context <http://www.cdisc.org/C85494/V24#C85494> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#136ff8ae-ce9b-4591-baa0-2dec8fb55391>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C85494/V24#C85494_C73755> ;
+	isoC:context <http://www.cdisc.org/C85494/V24#C85494> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .

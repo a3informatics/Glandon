@@ -39,7 +39,7 @@ describe "Import::CdiscTerm" do
       expected =
       {
         description: "Import of CDISC Terminology",
-        parent_klass: ::CdiscTerm,
+        parent_klass: Import::CdiscClasses::CdiscThesaurus,
         reader_klass: Excel,
         import_type: :cdisc_term,
         version_label: :date,
@@ -56,7 +56,7 @@ describe "Import::CdiscTerm" do
       expected =
       {
         description: "Import of CDISC Terminology",
-        parent_klass: ::CdiscTerm,
+        parent_klass: Import::CdiscClasses::CdiscThesaurus,
         reader_klass: CDISCLibraryAPIReader,
         import_type: :cdisc_term,
         version_label: :date,
@@ -160,7 +160,7 @@ describe "Import::CdiscTerm" do
       expect(@job.status).to include("An exception was detected during the import processes.\nDetails: error.\nBacktrace: ")
     end
 
-    it "excel import, CDISC Version 1 Format, errors detected" do
+    it "excel import, CDISC Version 1 Format, errors detected", :import_test => 'slow' do
       full_path = test_file_path(sub_dir, "SDTM Terminology 2007-03-06.xlsx")
       params = 
       {
@@ -178,7 +178,7 @@ describe "Import::CdiscTerm" do
       delete_data_file(sub_dir, filename)
     end
 
-    it "excel import, CDISC Version 2 Format, errors detected" do
+    it "excel import, CDISC Version 2 Format, errors detected", :import_test => 'slow' do
       full_path = test_file_path(sub_dir, "SDTM Terminology 2007-05-31.xlsx")
       params = 
       {
@@ -196,7 +196,7 @@ describe "Import::CdiscTerm" do
       delete_data_file(sub_dir, filename)
     end
 
-    it "excel import, CDISC Version 3 Format, errors detected" do
+    it "excel import, CDISC Version 3 Format, errors detected", :import_test => 'slow' do
       full_path = test_file_path(sub_dir, "SDTM Terminology 2008-09-22.xlsx")
       params = 
       {
@@ -214,7 +214,7 @@ describe "Import::CdiscTerm" do
       delete_data_file(sub_dir, filename)
     end
 
-    it "excel import, CDISC Version 4 Format, errors detected" do
+    it "excel import, CDISC Version 4 Format, errors detected", :import_test => 'slow' do
       full_path = test_file_path(sub_dir, "SDTM Terminology 2010-04-08.xlsx")
       params = 
       {
@@ -232,7 +232,7 @@ describe "Import::CdiscTerm" do
       delete_data_file(sub_dir, filename)
     end
 
-    it "excel import, CDISC Version 4 Format, no errors" do
+    it "excel import, CDISC Version 4 Format, no errors", :import_test => 'slow' do
       full_path = test_file_path(sub_dir, "SDTM Terminology 2012-06-29.xlsx")
       params = 
       {
@@ -250,7 +250,7 @@ describe "Import::CdiscTerm" do
       delete_data_file(sub_dir, filename)
     end
 
-    it "excel import, Multiple Version 4 Format, errors" do
+    it "excel import, Multiple Version 4 Format, errors", :import_test => 'slow' do
       full_path_1 = test_file_path(sub_dir, "SDTM Terminology 2011-06-10.xlsx")
       full_path_2 = test_file_path(sub_dir, "CDASH Terminology 2011-04-08.xlsx")
       full_path_3 = test_file_path(sub_dir, "ADaM Terminology 2011-01-07.xlsx")

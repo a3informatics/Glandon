@@ -43,20 +43,20 @@ class CdiscTermsController < ApplicationController
   def history
     respond_to do |format|
       format.html do
-        results = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
+        results = Thesaurus.history_uris(identifier: CdiscTerm.identifier, scope: IsoRegistrationAuthority.cdisc_scope)
         width = current_user.max_term_display.to_i
         current_index = results.length < width ? (results.length - 1) : (width - 1)
         @cdisc_term_id = results[current_index].to_id
-        @identifier = CdiscTerm::C_IDENTIFIER
+        @identifier = CdiscTerm.identifier
         @scope_id = IsoRegistrationAuthority.cdisc_scope.id
         @close_path = dashboard_index_path
         @ct = Thesaurus.find_minimum(@cdisc_term_id)
       end
       format.json do
         results = []
-        history_results = Thesaurus.history_pagination(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope, count: the_params[:count], offset: the_params[:offset])
-        current = Thesaurus.current_uri(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
-        latest = Thesaurus.latest_uri(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
+        history_results = Thesaurus.history_pagination(identifier: CdiscTerm.identifier, scope: IsoRegistrationAuthority.cdisc_scope, count: the_params[:count], offset: the_params[:offset])
+        current = Thesaurus.current_uri(identifier: CdiscTerm.identifier, scope: IsoRegistrationAuthority.cdisc_scope)
+        latest = Thesaurus.latest_uri(identifier: CdiscTerm.identifier, scope: IsoRegistrationAuthority.cdisc_scope)
         results = add_history_paths(CdiscTerm, history_results, current, latest)
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end

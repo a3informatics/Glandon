@@ -714,39 +714,7 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(result.uri).to eq(tc_1.uri)
     end
 
-    it "Add additional tags" do
-      tc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66788/V2#C66788_C43820"))
-      tc_1.tagged_objects
-      tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66788/V2#C66788_C53489"))
-      tc_2.tagged_objects
-      tag_a = IsoConceptSystem::Node.new(pref_label: "SDTM TAG", uri: Uri.new(uri: "http://www.example.com/path#a"))
-      set = []
-      expect(tc_1.tagged.count).to eq(1)
-      expect(tc_2.tagged.count).to eq(1)
-      expect(set.count).to eq(0)
-      # Add nil
-      tc_1.add_additional_tags(nil, set)
-      expect(tc_1.tagged.count).to eq(1)
-      expect(tc_2.tagged.count).to eq(1)
-      expect(set.count).to eq(0)
-      # Add tag
-      tc_2.tagged << tag_a
-      tc_1.add_additional_tags(tc_2, set)
-      expect(tc_1.tagged.count).to eq(1)
-      expect(tc_2.tagged.count).to eq(2)
-      expect(set.count).to eq(1)
-      expect(set.first[:subject].to_s).to eq("http://www.cdisc.org/C66788/V2#C66788_C43820")
-      expect(set.first[:object].to_s).to eq("http://www.example.com/path#a")
-      # Add again
-      tc_1.add_additional_tags(tc_2, set)
-      expect(tc_1.tagged.count).to eq(1)
-      expect(tc_2.tagged.count).to eq(2)
-      expect(set.count).to eq(2)
-      expect(set.last[:subject].to_s).to eq("http://www.cdisc.org/C66788/V2#C66788_C43820")
-      expect(set.last[:object].to_s).to eq("http://www.example.com/path#a")
     end
-
-  end
 
   describe "update tests" do
 
