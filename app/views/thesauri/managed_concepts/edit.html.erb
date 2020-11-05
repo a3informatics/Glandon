@@ -46,6 +46,8 @@
 <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'codelist', item: @thesaurus_concept} %>
 <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @thesaurus_concept.identifier, item_id: @thesaurus_concept.id, item_notes_url: change_notes_iso_concept_path(@thesaurus_concept.id)} %>
 <%= render partial: "shared/thesauri/managed_concepts/rank/edit_ranks", :locals => {item: @thesaurus_concept} %>
+
 <% if !@thesaurus_concept.paired? %>
-  <%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "pair"} %>
+  <%= render partial: "shared/items_picker/items_picker", :locals => { id: "pair",
+      description: "Select another Code List to pair this Code List with." } %>
 <% end %>
