@@ -7,6 +7,7 @@ describe "Pairs", :type => :feature do
   include WaitForAjaxHelper
   include NameValueHelpers
   include UiHelpers
+  include ItemsPickerHelpers
 
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
@@ -61,7 +62,7 @@ describe "Pairs", :type => :feature do
 
       expect(context_menu_element_header_present?(:pair)).to eq(true)
       context_menu_element_header(:pair)
-      ui_selector_pick_managed_items("Code Lists", [{identifier: "NP000011P", version: "1"}])
+      ip_pick_managed_items(:managed_concept, [{identifier: "NP000011P", version: "1"}], 'pair')
       wait_for_ajax 10
       expect(context_menu_element_header_present?(:unpair)).to eq(true)
 
@@ -74,7 +75,7 @@ describe "Pairs", :type => :feature do
       go_to_cl(cl.has_identifier.identifier, :edit)
 
       context_menu_element_header(:pair)
-      ui_selector_pick_managed_items("Code Lists", [{identifier: "C25464", version: "1"}])
+      ip_pick_managed_items(:managed_concept, [{identifier: "C25464", version: "1"}], 'pair')
 
       expect(context_menu_element_header_present?(:pair)).to eq(true)
       expect(page).to have_content "Pairing not permitted, trying to pair Not Set with COUNTRY."
@@ -116,7 +117,7 @@ describe "Pairs", :type => :feature do
 
       sleep 7
       context_menu_element_header(:pair)
-      ui_selector_pick_managed_items("Code Lists", [{identifier: "NP000011P", version: "1"}])
+      ip_pick_managed_items(:managed_concept, [{identifier: "NP000011P", version: "1"}], 'pair')
       expect(page).to have_content "The edit lock has timed out."
     end
 
@@ -149,7 +150,7 @@ describe "Pairs", :type => :feature do
 
       expect(context_menu_element_header_present?(:pair)).to eq(true)
       context_menu_element_header(:pair)
-      ui_selector_pick_managed_items("Code Lists", [{identifier: "C67154E", version: "1"}])
+      ip_pick_managed_items(:managed_concept, [{identifier: "C67154E", version: "1"}], 'pair')
       wait_for_ajax 10
       expect(context_menu_element_header_present?(:unpair)).to eq(true)
 
@@ -192,7 +193,7 @@ describe "Pairs", :type => :feature do
 
       sleep 7
       context_menu_element_header(:pair)
-      ui_selector_pick_managed_items("Code Lists", [{identifier: "C67154E", version: "1"}])
+      ip_pick_managed_items(:managed_concept, [{identifier: "C67154E", version: "1"}], 'pair')
       expect(page).to have_content "The edit lock has timed out."
     end
 

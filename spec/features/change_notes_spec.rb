@@ -364,10 +364,10 @@ describe "Change Notes", :type => :feature do
       find(:xpath, "//tr[contains(.,'C66790')]/td/a", :text => 'Show').click
       wait_for_ajax(20)
       context_menu_element_header(:extend)
-      sleep 0.5
-      click_button "Do not select"
-      wait_for_ajax(20)
-      expect(page).to have_content("Edit Extension")
+      ui_in_modal do
+        click_on 'Do not select'
+      end
+      expect(page).to have_content("Extension Editor")
       expect(context_menu_element_header_present?(:change_notes)).to eq(true)
       context_menu_element_header(:change_notes)
       sleep 1
@@ -386,7 +386,7 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(10)
       context_menu_element("history", 8, 'C66790E', :edit)
       wait_for_ajax(20)
-      expect(page).to have_content("Edit Extension")
+      expect(page).to have_content("Extension Editor")
       expect(page).to have_content("C66790E")
       context_menu_element_header(:change_notes)
       sleep 1
