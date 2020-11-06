@@ -312,7 +312,7 @@ class Excel::Engine
   # @option params [Hash] :mapping the mapping from spreadsheet values to internal values
   # @option params [String] :property the name of the property holding the set of custom values
   # @option params [Boolean] :can_be_empty if true property can be blank.
-  # @option params [Hash] :additonal hash containing the tag path and custom name
+  # @option params [Hash] :additonal hash containing the tag path, custom name and label
   # @return [Void] no return
   def set_property_with_custom(params)
     check_params(__method__.to_s, params, [:row, :col, :object, :mapping, :property, :can_be_empty, :additional])
@@ -320,7 +320,9 @@ class Excel::Engine
     return if value.blank? && params[:can_be_empty]
     value = check_mapped(params[:row], params[:col], params[:mapping][:map])
     return if value.blank?
-    add_custom(params[:object], params[:property], params[:additional][:name], value)
+    definition = find_custom(params[:additional][:definition])
+    return if definition.blank?
+    add_custom(params[:object], params[:property], params[:additional][:name], value, definition)
   end
 
   # Set Property With Tag. Set a property to a tag
@@ -608,6 +610,14 @@ private
     return nil
   end
 
+  # Find Custom From Label
+  def find_custom(label)
+    result = CustomPropertyDefinition.find(label: label)
+    return result unless result.nil?
+    raise Errors::ApplicationLogicError.new("Failed to find custom property definition for #{label}.")
+    nil
+  end
+
   # Find Columns
   def find_column(column, sheet)
     header_row = sheet.dig(:sheet, :header_row)
@@ -752,10 +762,10 @@ private
   end
 
   # Add custom
-  def add_custom(object, property, name, value)
+  def add_custom(object, property, name, value, definition)
     custom_set = get_temporary(object, property)
     custom_set ||= {}
-    custom_set[name] = value
+    custom_set[name] = {value: value, definition: definition.uri}
     property_set_value(object, property, custom_set)
   end
 

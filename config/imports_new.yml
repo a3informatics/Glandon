@@ -2687,6 +2687,14 @@ defaults: &defaults
                 condition:
                   method: column_not_blank?
                   column: 12
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom
+                can_be_empty: true
+                additional:
+                  name: crf_display_value
+                  label: CRF Display Value
           -
             label: "DISPLAY_ORDER"
             actions:  []
@@ -2711,6 +2719,7 @@ defaults: &defaults
                     "N": "false"
                 additional:
                   name: dc_stage
+                  definitionl: DC Stage
           -
             label: "SDTM_STAGE"
             actions:
@@ -2724,6 +2733,7 @@ defaults: &defaults
                     "N": "false"
                 additional:
                   name: sdtm_stage
+                  definition: SDTM Stage
           -
             label: "ADAM_STAGE"
             actions:
@@ -2737,6 +2747,7 @@ defaults: &defaults
                     "N": "false"
                 additional:
                   name: adam_stage
+                  definition: ADaM Stage
           -
             label: "INACTIVE_F"
             actions: []
@@ -2922,6 +2933,14 @@ defaults: &defaults
                 condition:
                   method: column_not_blank?
                   column: 12
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom
+                can_be_empty: true
+                additional:
+                  name: crf_display_value
+                  label: CRF Display Value
           -
             label: "DISPLAY_ORDER"
             actions:  []
@@ -2946,6 +2965,7 @@ defaults: &defaults
                     "N": "false"
                 additional:
                   name: dc_stage
+                  definition: DC Stage
           -
             label: "SDTM_STAGE"
             actions:
@@ -2959,6 +2979,7 @@ defaults: &defaults
                     "N": "false"
                 additional:
                   name: sdtm_stage
+                  definition: SDTM Stage
           -
             label: "ADAM_STAGE"
             actions:
@@ -2972,6 +2993,7 @@ defaults: &defaults
                     "N": "false"
                 additional:
                   name: adam_stage
+                  definition: ADaM Stage
           -
             label: "ED_USE"
             actions:
@@ -2985,6 +3007,7 @@ defaults: &defaults
                     "N": "false"
                 additional:
                   name: ed_use
+                  definition: ED Use
           -
             label: "INACTIVE_F"
             actions: []
