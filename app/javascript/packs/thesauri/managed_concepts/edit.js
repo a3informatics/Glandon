@@ -21,7 +21,7 @@ $(document).ready( () => {
   // Init Rank
   let rm = new RankModal(tt.extend.bind(tt));
 
-  // Extension Properties Editor
+  // Code list Properties Editor
   let pe = new PropertiesEditor({
     data: JSON.parse( editItemPropertiesData )
   });
