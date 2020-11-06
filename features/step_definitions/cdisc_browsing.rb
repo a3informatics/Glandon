@@ -74,6 +74,14 @@ Then('I see Controlled Terminology Changes Across versions displayed') do
   save_screen(TYPE)
 end
 
+Then('I see Submission value changes displayed') do
+  expect(page).to have_content 'Submission value changes'
+  expect(page).to have_content 'Submission value changes: CDISC, CT'
+  wait_for_ajax(20)
+  save_screen(TYPE)
+end
+
+
 Then('I see the differences in the {string} code list is displayed') do |string|
       expect(page).to have_content 'Differences'
       expect(page).to have_content string
@@ -148,6 +156,17 @@ Then('a PDF report is generated and contains the {int} entires in the Changes pa
     expect(current_path).to include("changes_report.pdf")
     expect(current_path).to include("thesauri/managed_concepts")
     wait_for_ajax(20)
+    save_screen(TYPE)
+    page.execute_script "window.close();"
+  end
+end
+
+Then('a PDF report is generated and contains the {int} entries in the Submission value changes panel') do |int|
+  new_window = window_opened_by { click_link 'PDF Report' }
+  within_window new_window do
+    sleep 10
+    expect(current_path).to include("submission_report.pdf")
+    expect(current_path).to include("thesauri/")
     save_screen(TYPE)
     page.execute_script "window.close();"
   end

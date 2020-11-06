@@ -28,13 +28,13 @@ end
 
 When('I click {string} in/at the top/bottom of the page') do |string|
   if string == 'PDF Report'
-  click_button string
-  
- end
+	# Ignore. All PDF handling is in the THEN-statement
+	# click_button string
+  end
   if string =='Start'
     find('#fb_s_button').click 
-    end
- wait_for_ajax(20)
+	wait_for_ajax(20)
+  end
 end
 
 
@@ -139,6 +139,14 @@ Then /History page is displayed/ do
  expect_page('Version History of')
  wait_for_ajax(20)
  save_screen(TYPE)
+end
+
+Then('code list item {string} differences is displayed') do |string|
+  expect_page('Preferred term: EPIC-CP - Pain or Burning With Urination')
+  expect(page).to have_content string
+  expect(page).to have_content "Differences"
+  wait_for_ajax(20)
+  save_screen(TYPE)
 end
 
 Then('I see {string} Index page is displayed') do |string|
