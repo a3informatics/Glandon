@@ -151,4 +151,37 @@ describe BiomedicalConcept::PropertyX do
 
   end
 
+  describe "Validation" do
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      #load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      #load_cdisc_term_versions(1..10)
+    end
+
+    it "identifier required and not multiple, multiple cv" do
+      bc = BiomedicalConceptInstance.new
+      bc.uri = bc.create_uri(bc.class.base_uri)
+      item = BiomedicalConcept::Item.new
+      item.uri = item.create_uri(item.class.base_uri)
+      bc.has_item = [item]
+      bc.identified_by = item
+      cdt = BiomedicalConcept::ComplexDatatype.new
+      cdt.uri = cdt.create_uri(cdt.class.base_uri)
+      item.has_complex_datatype = [cdt]
+      property = BiomedicalConcept::PropertyX.new
+      property.uri = property.create_uri(property.class.base_uri)
+      cdt.has_property = [property]
+      property.instance_variable_set(:@parent_for_validation, bc)
+      expect(property.valid?).to eq(true) #Has_coded_value empty
+      property.has_coded_value_push(1) 
+      expect(property.valid?).to eq(true) #Has_coded_value == 1
+      property.has_coded_value_push(2) 
+      expect(property.valid?).to eq(false) #Has_coded_value == 2
+    end
+
+  end
+
 end

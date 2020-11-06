@@ -48,6 +48,15 @@ class BiomedicalConceptInstance < BiomedicalConcept
     end
   end
 
+  # Identifier required and not multiple. 
+  # @result [Boolean] return true if it required and it has zero or one coded value.
+  def identifier_required_and_not_multiple?
+    property_x = self.identified_by.has_complex_datatype.first.has_property.first
+    property_x.has_coded_value.count <= 1 
+  rescue => e
+    return false
+  end
+
   # Clone. Clone the BC Instance
   #
   # @return [BiomedicalConcept] a clone of the object

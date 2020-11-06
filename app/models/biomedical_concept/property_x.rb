@@ -19,6 +19,8 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
   validates_with Validator::Field, attribute: :question_text, method: :valid_question?
   validates_with Validator::Field, attribute: :prompt_text, method: :valid_question?
   validates_with Validator::Field, attribute: :format, method: :valid_format?
+  validates_with Validator::BcIdentifier
+  #validate :valid_parent?
 
   # Clone. Clone the property taking care over the reference objects
   #
@@ -60,6 +62,15 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
   # @return [Symbol] the predicate property as a symbol
   def managed_ancestors_predicate
     :has_property
+  end
+
+
+  # Valid Parent? Check if the property is required and it has zero or one coded value in the context of the parent
+  #
+  # @return [Boolean] true if valid, false otherwise
+  def valid_parent?
+    return true if @parent_for_validation.nil?
+    @parent_for_validation.identifier_required_and_not_multiple?
   end
 
 end

@@ -101,6 +101,7 @@ class IsoConceptV2
     # @param [Object] parent_object the parent object
     # @return [Thesarus::UnmanagedConcept] the object, either new or the cloned new object with updates
     def update_with_clone(params, managed_ancestor)
+      @parent_for_validation = managed_ancestor
       if multiple_managed_ancestors?
         result = nil
         tx = transaction_begin
