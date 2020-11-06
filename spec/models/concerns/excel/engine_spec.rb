@@ -440,6 +440,28 @@ describe Excel::Engine do
     expect(child.instance_variable_get("@tagged")).to eq([])
   end
 
+  it "set property to custom" do
+    full_path = test_file_path(sub_dir, "set_column_tag_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    child = ChildClass.new
+    result = object.set_property_with_custom({row: 2, col: 1, object: child, property: :custom, mapping: {map: {Y: "TRUE", N: "FALSE"}}, can_be_empty: false, additional: {name: :tag}})
+    expect(parent.errors.count).to eq(0)
+    expect(child.instance_variable_get("@custom")).to eq({tag: "TRUE"})
+    child = ChildClass.new
+    result = object.set_property_with_custom({row: 3, col: 1, object: child, property: :custom, mapping: {map: {W: "TRUE", Z: "FALSE"}}, can_be_empty: false, additional: {name: :tag}})
+    expect(parent.errors.count).to eq(1)
+    expect(parent.errors.full_messages.to_sentence).to eq("Error mapping 'Yes' using map {:W=>\"TRUE\", :Z=>\"FALSE\"} detected in row 3 column 1.")
+    expect(child.instance_variable_get("@custom")).to eq(nil)
+    parent.errors.clear
+    child = ChildClass.new
+    result = object.set_property_with_custom({row: 4, col: 1, object: child, property: :custom, mapping: {map: {Y: "TRUE", N: "FALSE"}}, can_be_empty: false, additional: {name: :tag}})
+    expect(parent.errors.count).to eq(2)
+    expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 4 column 1. and Error mapping '' using map {:Y=>\"TRUE\", :N=>\"FALSE\"} detected in row 4 column 1.")
+    expect(child.instance_variable_get("@custom")).to eq(nil)
+  end
+
   it "creates parent" do
     the_result = nil
     full_path = test_file_path(sub_dir, "create_parent_input_1.xlsx")

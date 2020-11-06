@@ -303,6 +303,26 @@ class Excel::Engine
     property_set_value(params[:object], params[:property], x)
   end
 
+  # Set Property With Custom. Set a property to a custom value
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :mapping the mapping from spreadsheet values to internal values
+  # @option params [String] :property the name of the property holding the set of custom values
+  # @option params [Boolean] :can_be_empty if true property can be blank.
+  # @option params [Hash] :additonal hash containing the tag path and custom name
+  # @return [Void] no return
+  def set_property_with_custom(params)
+    check_params(__method__.to_s, params, [:row, :col, :object, :mapping, :property, :can_be_empty, :additional])
+    value = check_value(params[:row], params[:col], params[:can_be_empty])
+    return if value.blank? && params[:can_be_empty]
+    value = check_mapped(params[:row], params[:col], params[:mapping][:map])
+    return if value.blank?
+    add_custom(params[:object], params[:property], params[:additional][:name], value)
+  end
+
   # Set Property With Tag. Set a property to a tag
   #
   # @param [Hash] params the parameters hash
@@ -729,6 +749,14 @@ private
     current_tags ||= []
     tags.each {|tag| current_tags << tag unless current_tags.map{|x| x.uri}.include?(tag.uri)}
     property_set_value(object, name, current_tags)
+  end
+
+  # Add custom
+  def add_custom(object, property, name, value)
+    custom_set = get_temporary(object, property)
+    custom_set ||= {}
+    custom_set[name] = value
+    property_set_value(object, property, custom_set)
   end
 
   # Set a property value
