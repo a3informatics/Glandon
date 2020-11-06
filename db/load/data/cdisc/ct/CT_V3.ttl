@@ -17,7 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2007-04-26.xlsx'"^^xsd:string ;
@@ -389,7 +388,6 @@
 <http://www.cdisc.org/C66785/V3#C66785>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Control Type"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66785/V3#C66785_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66785/V3#C66785_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -432,7 +430,6 @@
 <http://www.cdisc.org/C66785/V3#C66785_C49649>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Active Control"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49649"^^xsd:string ;
 	th:notation "ACTIVE"^^xsd:string ;
 	th:definition "A type of control, which has a demonstrated effect, administered as a comparator, to subjects in a clinical trial. [From ICH E10]."^^xsd:string ;
@@ -443,7 +440,6 @@
 <http://www.cdisc.org/C66785/V3#C66785_C41132>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "None"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C41132"^^xsd:string ;
 	th:notation "NONE"^^xsd:string ;
 	th:definition "No person or thing, nobody, not any. (NCI)"^^xsd:string ;
@@ -454,7 +450,6 @@
 <http://www.cdisc.org/C66785/V3#C66785_C49648>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Placebo Control"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49648"^^xsd:string ;
 	th:notation "PLACEBO"^^xsd:string ;
 	th:definition "Use of an inactive compound identical in appearance to drug or treatment being tested in experimental research, which may or may not be known to the physician and/or subject, administered to distinguish between drug action and suggestive effect of the drug or treatment under study. The effects of the active drug or treatment are compared to the effects of the placebo. (NCI)"^^xsd:string ;
@@ -465,9 +460,9 @@
 <http://www.cdisc.org/C66737/V3#C66737>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Trial Phase"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66737/V3#C66737_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66737/V3#C66737_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C66737/V2#C66737> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2007-04-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -516,7 +511,6 @@
 <http://www.cdisc.org/C66737/V3#C66737_C49686>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phase IIa Trial"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49686"^^xsd:string ;
 	th:notation "Phase IIa Trial"^^xsd:string ;
 	th:definition "A clinical research protocol generally refered to as a pilot or feasibility trial that aims to prove the concept of the new intervention in question. (NCI)"^^xsd:string ;
@@ -533,7 +527,6 @@
 <http://www.cdisc.org/C66737/V3#C66737_C49688>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phase IIb Trial"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49688"^^xsd:string ;
 	th:notation "Phase IIb Trial"^^xsd:string ;
 	th:definition "A clinical research protocol generally refered to as a well-controlled and pivotal trial that aims to prove the mechanism of action of the new intervention in question. A pivotal study will generally be well-controlled, randomized, of adequate size, and whenever possible, double-blind. (NCI)"^^xsd:string ;
@@ -550,7 +543,6 @@
 <http://www.cdisc.org/C66737/V3#C66737_C49687>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phase IIIa Trial"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49687"^^xsd:string ;
 	th:notation "Phase IIIaTrial"^^xsd:string ;
 	th:definition "A classification typically assigned retrospectively to a Phase III trial upon determination by regulatory authorities of a need for a Phase III B trial."^^xsd:string ;
@@ -571,7 +563,6 @@
 <http://www.cdisc.org/C66737/V3#C66737_C49689>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phase IIIb Trial"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49689"^^xsd:string ;
 	th:notation "Phase IIIb Trial"^^xsd:string ;
 	th:definition "A subcategory of Phase III trials done near the time of approval to elicit additional findings. NOTE: Dossier review may continue while associated Phase IIIB trials are conducted. These trials may be required as a condition of regulatory authority approval."^^xsd:string ;
@@ -584,4 +575,71 @@
 <http://www.assero.co.uk/PT#ba1e1cb83d0674aedf90a7d18603f0aca1029b4a>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Phase IIIb Trial"^^xsd:string ;
+.
+<http://www.assero.co.uk/CLA#febcf1c6-ccab-4bf0-b390-9bf7c1c2debd>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#6d3ae7a2-a352-4f09-9a95-ffa3d4b1defa>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66785/V3#C66785> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#e7478fa4-5e38-4c71-8459-e50e7e77961c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66785/V3#C66785_C49649> ;
+	isoC:context <http://www.cdisc.org/C66785/V3#C66785> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#78690986-18a1-4b7d-a714-e75057126f70>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66785/V3#C66785_C41132> ;
+	isoC:context <http://www.cdisc.org/C66785/V3#C66785> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#b51eb74e-6fae-4322-8b1f-3d484ee88f59>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66785/V3#C66785_C49648> ;
+	isoC:context <http://www.cdisc.org/C66785/V3#C66785> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#90f2c4a1-b0ba-4d71-a31f-dd3c76d1ffed>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#4d65607c-b0e9-4367-8799-247815d85976>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66737/V3#C66737_C49686> ;
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#8e7f4833-cb21-4f76-a17d-248cf7849a81>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66737/V3#C66737_C49688> ;
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#7c9a956d-ec22-461c-9035-6570ccd86002>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66737/V3#C66737_C49687> ;
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#6f3e3f76-8303-42b0-9d20-6374a4bc912f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66737/V3#C66737_C49689> ;
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .

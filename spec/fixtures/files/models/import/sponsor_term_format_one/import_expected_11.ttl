@@ -77,11 +77,9 @@
 <http://www.s-cubed.dk/SN000710/V2#SN000710>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Code Breaker"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#28be7b0d-7c44-43bd-b41c-2191b6598eea> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#b0d06e9f-ed91-4828-a918-e7c16fc027bf> ;
 	isoT:hasState <http://www.s-cubed.dk/SN000710/V2#SN000710_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/SN000710/V2#SN000710_SI> ;
+	isoT:hasPreviousVersion <http://www.s-cubed.dk/SN000710/V1#SN000710> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2100-01-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -91,9 +89,9 @@
 	th:notation "DSCBWHOR"^^xsd:string ;
 	th:definition "Used to collect who performed the code breaking."^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.s-cubed.dk/SN000710/V1#SN000710_S001997> ;
+	th:narrower <http://www.s-cubed.dk/SN000710/V2#SN000710_S001997> ;
 	th:narrower <http://www.cdisc.org/C78735/V14#C78735_C25936> ;
-	th:narrower <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
+	th:narrower <http://www.s-cubed.dk/NP001016P/V2#NP001016P_S001998> ;
 	th:narrower <http://www.s-cubed.dk/NP001016P/V2#NP001016P_S001999> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9071ffa4c86f3803eb1a941d2619da1855ad1310> ;
 .
@@ -117,11 +115,27 @@
 	isoI:semanticVersion "2.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
+<http://www.s-cubed.dk/SN000710/V2#SN000710_S001997>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "ESMS"^^xsd:string ;
+	th:identifier "S001997"^^xsd:string ;
+	th:notation "ESMS"^^xsd:string ;
+	th:definition "Not defined."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#62418266a942bb9ecb57ed7629e4dc7d8d0daa23> ;
+.
+<http://www.s-cubed.dk/NP001016P/V2#NP001016P_S001998>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Pharmacist"^^xsd:string ;
+	th:identifier "S001998"^^xsd:string ;
+	th:notation "PHARMACIST"^^xsd:string ;
+	th:definition "A person trained in pharmacy that prepares and dispenses drugs prescribed by physicians and health practitioners. The responsibilities include instructing patients on the use, hazards, interactions, and side effects of any drug dispensed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#869aa56da85a0fd5a03f299096a8ef16a37918c3> ;
+.
 <http://www.s-cubed.dk/NP001016P/V2#NP001016P_S001999>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#28be7b0d-7c44-43bd-b41c-2191b6598eea> ;
+	isoC:label "Study Nurse"^^xsd:string ;
 	th:identifier "S001999"^^xsd:string ;
 	th:notation "STUDY NURSE"^^xsd:string ;
 	th:definition "A professional healthcare provider who has graduated from a nursing program, and who is involved in the study."^^xsd:string ;
@@ -131,10 +145,9 @@
 <http://www.s-cubed.dk/NP001016P/V2#NP001016P>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Code Breaker Subset 01"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#b0d06e9f-ed91-4828-a918-e7c16fc027bf> ;
 	isoT:hasState <http://www.s-cubed.dk/NP001016P/V2#NP001016P_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/NP001016P/V2#NP001016P_SI> ;
+	isoT:hasPreviousVersion <http://www.s-cubed.dk/NP001016P/V1#NP001016P> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2100-01-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -145,11 +158,11 @@
 	th:definition "Used to collect who performed the code breaking."^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
 	th:narrower <http://www.cdisc.org/C78735/V14#C78735_C25936> ;
-	th:narrower <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
+	th:narrower <http://www.s-cubed.dk/NP001016P/V2#NP001016P_S001998> ;
 	th:narrower <http://www.s-cubed.dk/NP001016P/V2#NP001016P_S001999> ;
 	th:subsets <http://www.s-cubed.dk/SN000710/V2#SN000710> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#da4a09f60b8be877afdf06c17c8ae6fdf0acf821> ;
-	th:isOrdered <http://www.assero.co.uk/TS#49d3559f-eba0-4f04-ae99-3b27dddbfbd6> ;
+	th:isOrdered <http://www.assero.co.uk/TS#a4eed945-591f-4a8f-81dc-49a7db4dc669> ;
 .
 <http://www.s-cubed.dk/NP001016P/V2#NP001016P_RS>
 	rdf:type isoR:RegistrationState ;
@@ -171,25 +184,63 @@
 	isoI:semanticVersion "2.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-<http://www.assero.co.uk/TS#49d3559f-eba0-4f04-ae99-3b27dddbfbd6>
+<http://www.assero.co.uk/TS#a4eed945-591f-4a8f-81dc-49a7db4dc669>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#6da03dcb-0cd8-4cac-bd93-cdcd5f773d2a> ;
+	th:members <http://www.assero.co.uk/TSM#a700db8d-d99c-4213-8c39-c9e1c6dc359d> ;
 .
-<http://www.assero.co.uk/TSM#6da03dcb-0cd8-4cac-bd93-cdcd5f773d2a>
+<http://www.assero.co.uk/TSM#a700db8d-d99c-4213-8c39-c9e1c6dc359d>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C78735/V14#C78735_C25936> ;
-	th:memberNext <http://www.assero.co.uk/TSM#8800201f-f159-4469-83f5-8a6ddf545281> ;
+	th:memberNext <http://www.assero.co.uk/TSM#5ffeff5a-b478-4356-a569-2590f1997baa> ;
 .
-<http://www.assero.co.uk/TSM#8800201f-f159-4469-83f5-8a6ddf545281>
+<http://www.assero.co.uk/TSM#5ffeff5a-b478-4356-a569-2590f1997baa>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
-	th:item <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
-	th:memberNext <http://www.assero.co.uk/TSM#9524d9b8-de6b-4853-9e69-7108c94d7bc5> ;
+	th:item <http://www.s-cubed.dk/NP001016P/V2#NP001016P_S001998> ;
+	th:memberNext <http://www.assero.co.uk/TSM#2bfed1e6-f7e3-42a1-8a1c-f38f9fd4bac0> ;
 .
-<http://www.assero.co.uk/TSM#9524d9b8-de6b-4853-9e69-7108c94d7bc5>
+<http://www.assero.co.uk/TSM#2bfed1e6-f7e3-42a1-8a1c-f38f9fd4bac0>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/NP001016P/V2#NP001016P_S001999> ;
+.
+<http://www.assero.co.uk/CLA#686d2de5-2d22-450f-97f3-b908f689c368>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000710/V1#SN000710_S001997> ;
+	isoC:context <http://www.s-cubed.dk/SN000710/V1#SN000710> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#876bbbc2-3360-41b9-af81-12e74316b7f6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000710/V1#SN000710_S001997> ;
+	isoC:context <http://www.s-cubed.dk/SN000710/V1#SN000710> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#e31e7d4c-86a4-43f8-b88c-efb7696e62f9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
+	isoC:context <http://www.s-cubed.dk/SN000710/V1#SN000710> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:context <http://www.s-cubed.dk/NP001016P/V1#NP001016P> ;
+.
+<http://www.assero.co.uk/CLA#93cea880-6057-4379-b095-18283678ec76>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
+	isoC:context <http://www.s-cubed.dk/SN000710/V1#SN000710> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#53ef4e55-434c-44e9-bac2-f6eb6435b966>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000710/V1#SN000710_S001999> ;
+	isoC:context <http://www.s-cubed.dk/SN000710/V1#SN000710> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:context <http://www.s-cubed.dk/NP001016P/V1#NP001016P> ;
+.
+<http://www.assero.co.uk/CLA#bebb7464-71d8-49f4-bbe4-50938e520697>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000710/V1#SN000710_S001999> ;
+	isoC:context <http://www.s-cubed.dk/SN000710/V1#SN000710> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 .

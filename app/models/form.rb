@@ -14,6 +14,62 @@ class Form < IsoManagedV2
 
   include Form::Ordinal
 
+  def clone
+    self.has_group_links
+    super
+  end
+
+  # Clone the item and create. Use Sparql approach in case of children also need creating
+  #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
+  #   The Children are normally references. Also note the setting of the transaction in the cloned object and
+  #   in the sparql generation, important both are done.
+  def clone_children_and_save(tx, uri = nil)
+    sparql = Sparql::Update.new(tx)
+    new_object = nil
+    set = self.has_group
+    set.each do |child|
+      object = child.clone
+      object.transaction_set(tx)
+      object.generate_uri(self.uri) 
+      object.to_sparql(sparql, true)
+      self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
+      unless uri.nil? 
+        new_object = object if child.uri == uri 
+      end 
+    end
+    sparql.create
+    new_object
+  end
+
+  def move_up_with_clone(child, managed_ancestor)
+    if child.multiple_managed_ancestors?
+      parent_and_child = clone_nodes(child, managed_ancestor)
+      parent_and_child.first.move_up(parent_and_child.second)
+    else
+      move_up(child)
+    end
+  end
+
+  def move_down_with_clone(child, managed_ancestor)
+    if child.multiple_managed_ancestors?
+      parent_and_child = clone_nodes(child, managed_ancestor)
+      parent_and_child.first.move_down(parent_and_child.second)
+    else
+      move_down(child)
+    end
+  end
+
+  def clone_nodes(child, managed_ancestor)
+    new_parent = nil
+    new_object = nil
+    tx = transaction_begin
+    managed_ancestor.transaction_set(tx)
+    new_object = managed_ancestor.clone_children_and_save(tx, child.uri)
+    transaction_execute
+    new_parent = Form.find_full(managed_ancestor.id)
+    return new_parent, new_object
+  end
+
   # Get Items.
   #
   # @return [Array] Array of hashes, one per group, sub group and item. Ordered by ordinal.

@@ -1,0 +1,269 @@
+@prefix : <http://www.s-cubed.dk/TEST_16/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/TEST_16/V1>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "Version 2-6 Test"^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin "Created from files: 'import_input_20.xlsx'"^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConceptReference :TH_TMC2 ;
+	th:isTopConcept <http://www.s-cubed.dk/SC124304/V1#SC124304> ;
+	th:isTopConcept <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+	th:reference <http://www.cdisc.org/CT/V43#TH_R1> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "TEST 16"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:TH_TMC1
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/SC124304/V1#SC124304> ;
+.
+:TH_TMC2
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+.
+<http://www.cdisc.org/CT/V43#TH_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/CT/V43#TH> ;
+.
+<http://www.s-cubed.dk/SC124304/V1#SC124304>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Subject Status Response"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/SC124304/V1#SC124304_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/SC124304/V1#SC124304_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "SC124304"^^xsd:string ;
+	th:notation "SSTATRS"^^xsd:string ;
+	th:definition "Terminology relevant to subject status responses."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.s-cubed.dk/SC124304/V1#SC124304_SC17998> ;
+	th:narrower <http://www.s-cubed.dk/SC124304/V1#SC124304_SC28554> ;
+	th:narrower <http://www.s-cubed.dk/SC124304/V1#SC124304_SC37987> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e5f8447eab29c455f35951372bdddaac25ba431c> ;
+.
+<http://www.s-cubed.dk/SC124304/V1#SC124304_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/SC124304/V1#SC124304_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SC124304"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/SC124304/V1#SC124304_SC17998>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Unknown"^^xsd:string ;
+	th:identifier "SC17998"^^xsd:string ;
+	th:notation "UNKNOWN"^^xsd:string ;
+	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
+	th:synonym <http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6> ;
+	th:synonym <http://www.assero.co.uk/SYN#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
+.
+<http://www.s-cubed.dk/SC124304/V1#SC124304_SC28554>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Dead"^^xsd:string ;
+	th:identifier "SC28554"^^xsd:string ;
+	th:notation "DEAD"^^xsd:string ;
+	th:definition "The absence of life or state of being dead. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#9f8a73ef1399d06aed0e56075cf200d4f5eed2af> ;
+	th:synonym <http://www.assero.co.uk/SYN#68316444b99c6ba68313bede5aa8603526904561> ;
+.
+<http://www.s-cubed.dk/SC124304/V1#SC124304_SC37987>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Life"^^xsd:string ;
+	th:identifier "SC37987"^^xsd:string ;
+	th:notation "ALIVE"^^xsd:string ;
+	th:definition "Living; showing characteristics of life."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d438aa800a209736a5087381ac2b6c3684244e04> ;
+.
+<http://www.assero.co.uk/PT#e5f8447eab29c455f35951372bdddaac25ba431c>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Subject Status Response"^^xsd:string ;
+.
+<http://www.s-cubed.dk/NP001000P/V1#NP001000P>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Subject Status Response Subset 01"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/NP001000P/V1#NP001000P_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/NP001000P/V1#NP001000P_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "NP001000P"^^xsd:string ;
+	th:notation "SSTATRS_01"^^xsd:string ;
+	th:definition "Terminology relevant to subject status responses."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.s-cubed.dk/SC124304/V1#SC124304_SC28554> ;
+	th:narrower <http://www.s-cubed.dk/SC124304/V1#SC124304_SC37987> ;
+	th:subsets <http://www.s-cubed.dk/SC124304/V1#SC124304> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#b7a08a39a82f492297628b32a3b80dc3647c1eba> ;
+	th:isOrdered <http://www.assero.co.uk/TS#04233b01-cd74-4f43-86a6-aba9aef25b44> ;
+.
+<http://www.s-cubed.dk/NP001000P/V1#NP001000P_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/NP001000P/V1#NP001000P_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "NP001000P"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.assero.co.uk/PT#b7a08a39a82f492297628b32a3b80dc3647c1eba>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Subject Status Response Subset 01"^^xsd:string ;
+.
+<http://www.assero.co.uk/TS#04233b01-cd74-4f43-86a6-aba9aef25b44>
+	rdf:type th:Subset ;
+	isoC:label ""^^xsd:string ;
+	th:members <http://www.assero.co.uk/TSM#e2a4f7ee-4516-43c4-889d-0f06e5820478> ;
+.
+<http://www.assero.co.uk/TSM#e2a4f7ee-4516-43c4-889d-0f06e5820478>
+	rdf:type th:SubsetMember ;
+	isoC:label ""^^xsd:string ;
+	th:item <http://www.s-cubed.dk/SC124304/V1#SC124304_SC28554> ;
+	th:memberNext <http://www.assero.co.uk/TSM#bc471a00-78c9-4204-8902-44539ef52116> ;
+.
+<http://www.assero.co.uk/TSM#bc471a00-78c9-4204-8902-44539ef52116>
+	rdf:type th:SubsetMember ;
+	isoC:label ""^^xsd:string ;
+	th:item <http://www.s-cubed.dk/SC124304/V1#SC124304_SC37987> ;
+.
+<http://www.assero.co.uk/CLA#1d2517e5-9e68-43dd-8b83-20096f130d03>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC124304/V1#SC124304_SC17998> ;
+	isoC:context <http://www.s-cubed.dk/SC124304/V1#SC124304> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#c3bd1621-54c7-4000-afb8-69a1c12334aa>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC124304/V1#SC124304_SC17998> ;
+	isoC:context <http://www.s-cubed.dk/SC124304/V1#SC124304> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#bb3a9db0-76ef-4a0b-97e8-22ca5af6e548>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC124304/V1#SC124304_SC17998> ;
+	isoC:context <http://www.s-cubed.dk/SC124304/V1#SC124304> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#6d295734-0413-4d32-966b-8f7bd54accf9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC124304/V1#SC124304_SC28554> ;
+	isoC:context <http://www.s-cubed.dk/SC124304/V1#SC124304> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+.
+<http://www.assero.co.uk/CLA#d9c3e160-1240-4068-ace9-e25f92526b34>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC124304/V1#SC124304_SC28554> ;
+	isoC:context <http://www.s-cubed.dk/SC124304/V1#SC124304> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+.
+<http://www.assero.co.uk/CLA#d3b76954-f41f-442f-bd39-609b2a24aecd>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC124304/V1#SC124304_SC28554> ;
+	isoC:context <http://www.s-cubed.dk/SC124304/V1#SC124304> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+.
+<http://www.assero.co.uk/CLA#3a8cebba-df2d-4c0d-96d0-495d9ed56afe>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC124304/V1#SC124304_SC37987> ;
+	isoC:context <http://www.s-cubed.dk/SC124304/V1#SC124304> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+.
+<http://www.assero.co.uk/CLA#5c608f07-6fe3-4905-884c-b276ce38f05f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC124304/V1#SC124304_SC37987> ;
+	isoC:context <http://www.s-cubed.dk/SC124304/V1#SC124304> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+.
+<http://www.assero.co.uk/CLA#4d99448c-c206-4586-927b-2bce5fcbe39f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SC124304/V1#SC124304_SC37987> ;
+	isoC:context <http://www.s-cubed.dk/SC124304/V1#SC124304> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+.

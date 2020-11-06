@@ -1,0 +1,172 @@
+@prefix : <http://www.s-cubed.dk/AGEUTEST/V2#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/AGEUTEST/V2>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "AGEU TEST"^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin "Created from files: 'import_input_24b.xlsx'"^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-12-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConcept <http://www.s-cubed.dk/C66781/V2#C66781> ;
+	th:reference <http://www.cdisc.org/CT/V53#TH_R1> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "AGEUTEST"^^xsd:string ;
+	isoI:versionLabel "2"^^xsd:string ;
+	isoI:version "2"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.2"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:TH_TMC1
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/C66781/V2#C66781> ;
+.
+<http://www.cdisc.org/CT/V53#TH_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/CT/V53#TH> ;
+.
+<http://www.s-cubed.dk/C66781/V2#C66781>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Age Unit"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/C66781/V2#C66781_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/C66781/V2#C66781_SI> ;
+	isoT:hasPreviousVersion <http://www.s-cubed.dk/C66781/V1#C66781> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-12-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C66781"^^xsd:string ;
+	th:notation "AGEU"^^xsd:string ;
+	th:definition "Those units of time that are routinely used to express the age of a subject."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C66781/V34#C66781_C29848> ;
+	th:narrower <http://www.cdisc.org/C66781/V36#C66781_C29846> ;
+	th:narrower <http://www.cdisc.org/C66781/V36#C66781_C29844> ;
+	th:narrower <http://www.cdisc.org/C66781/V49#C66781_C25529> ;
+	th:narrower <http://www.cdisc.org/C66781/V49#C66781_C25301> ;
+	th:extends <http://www.cdisc.org/C66781/V49#C66781> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#cc0411774eaabbb88d35f6a0aec4e358ead56ffa> ;
+.
+<http://www.s-cubed.dk/C66781/V2#C66781_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/C66781/V2#C66781_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C66781"^^xsd:string ;
+	isoI:versionLabel "2"^^xsd:string ;
+	isoI:version "2"^^xsd:positiveInteger ;
+	isoI:semanticVersion "2.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.assero.co.uk/CLA#7ac800c3-9435-411b-a086-e349eb9386da>
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+.
+<http://www.assero.co.uk/CLA#32001c98-fe40-400c-bfa1-b6b1f2ba9dbb>
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+.
+<http://www.assero.co.uk/CLA#e8d17374-249b-4079-8c54-36cd90b19cea>
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+.
+<http://www.assero.co.uk/CLA#ad324071-4003-44b4-be38-9f523312e1ae>
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+.
+<http://www.assero.co.uk/CLA#37e501c7-5162-4524-b83b-ecd2f6778fa8>
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+.
+<http://www.assero.co.uk/CLA#8631fff5-5e0b-40d2-9dcd-191c3bb1fde5>
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+.
+<http://www.assero.co.uk/CLA#6a88e71d-9982-4881-8a0d-646bd9ef73ae>
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+.
+<http://www.assero.co.uk/CLA#e56fba1b-0890-49d3-8e9b-5489cd98b18a>
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+.
+<http://www.assero.co.uk/CLA#7221edcf-35bc-469d-b1d0-ce1554c30ac2>
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+.
+<http://www.assero.co.uk/CLA#ec1ba927-cafb-4f5a-aee6-c621db5248a1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66781/V49#C66781_C25529> ;
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#af438dc3-bc79-452a-b132-614022d7d1a4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66781/V49#C66781_C25529> ;
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#703cd20d-7c51-4fec-b853-b82f81649a56>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66781/V49#C66781_C25529> ;
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#9673ae22-45e4-4c28-a094-c7437aa11c62>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66781/V49#C66781_C25301> ;
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#cfbcb9bc-a064-461f-ac12-d8d114e5c0f6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66781/V49#C66781_C25301> ;
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#3b5a5044-d3e0-42df-a3ca-c6b5ba055a68>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66781/V49#C66781_C25301> ;
+	isoC:context <http://www.s-cubed.dk/C66781/V2#C66781> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.

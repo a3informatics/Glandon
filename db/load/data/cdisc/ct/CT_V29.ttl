@@ -17,10 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#af95873c-6eee-44a2-9b85-f8360a6fea78> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2011-12-09.xlsx', 'ADaM Terminology 2011-07-22.xlsx', 'CDASH Terminology 2011-12-09.xlsx', 'SEND Terminology 2012-01-02.xlsx'"^^xsd:string ;
@@ -1438,4 +1434,28 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "139"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C90005/V26#C90005> ;
+.
+<http://www.assero.co.uk/CLA#cf943551-1f8f-4150-930f-2189525dfd10>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#eb11cc65-7a65-4812-aa4a-1ad215fbc7b1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
+.
+<http://www.assero.co.uk/CLA#42ae275d-2339-42c5-a0b4-0f94a809be3c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#af95873c-6eee-44a2-9b85-f8360a6fea78> ;
+.
+<http://www.assero.co.uk/CLA#d6cfcfde-4212-4ac9-ac50-a0f93e34cc11>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344> ;
 .

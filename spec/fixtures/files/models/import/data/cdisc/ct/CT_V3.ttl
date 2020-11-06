@@ -17,9 +17,9 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/CT/V2#TH> ;
 	isoT:origin "Created from files: 'SDTM Terminology 2007-04-26.xlsx'"^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2007-04-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -389,7 +389,6 @@
 <http://www.cdisc.org/C66785/V3#C66785>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Control Type"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66785/V3#C66785_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66785/V3#C66785_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -432,7 +431,6 @@
 <http://www.cdisc.org/C66785/V3#C66785_C49649>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Active Control"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49649"^^xsd:string ;
 	th:notation "ACTIVE"^^xsd:string ;
 	th:definition "A type of control, which has a demonstrated effect, administered as a comparator, to subjects in a clinical trial. [From ICH E10]."^^xsd:string ;
@@ -443,7 +441,6 @@
 <http://www.cdisc.org/C66785/V3#C66785_C41132>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "None"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C41132"^^xsd:string ;
 	th:notation "NONE"^^xsd:string ;
 	th:definition "No person or thing, nobody, not any. (NCI)"^^xsd:string ;
@@ -454,7 +451,6 @@
 <http://www.cdisc.org/C66785/V3#C66785_C49648>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Placebo Control"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49648"^^xsd:string ;
 	th:notation "PLACEBO"^^xsd:string ;
 	th:definition "Use of an inactive compound identical in appearance to drug or treatment being tested in experimental research, which may or may not be known to the physician and/or subject, administered to distinguish between drug action and suggestive effect of the drug or treatment under study. The effects of the active drug or treatment are compared to the effects of the placebo. (NCI)"^^xsd:string ;
@@ -465,9 +461,9 @@
 <http://www.cdisc.org/C66737/V3#C66737>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Trial Phase"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66737/V3#C66737_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66737/V3#C66737_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C66737/V2#C66737> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2007-04-26T00:00:00+00:00"^^xsd:dateTime ;
@@ -516,7 +512,6 @@
 <http://www.cdisc.org/C66737/V3#C66737_C49686>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phase IIa Trial"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49686"^^xsd:string ;
 	th:notation "Phase IIa Trial"^^xsd:string ;
 	th:definition "A clinical research protocol generally refered to as a pilot or feasibility trial that aims to prove the concept of the new intervention in question. (NCI)"^^xsd:string ;
@@ -533,7 +528,6 @@
 <http://www.cdisc.org/C66737/V3#C66737_C49688>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phase IIb Trial"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49688"^^xsd:string ;
 	th:notation "Phase IIb Trial"^^xsd:string ;
 	th:definition "A clinical research protocol generally refered to as a well-controlled and pivotal trial that aims to prove the mechanism of action of the new intervention in question. A pivotal study will generally be well-controlled, randomized, of adequate size, and whenever possible, double-blind. (NCI)"^^xsd:string ;
@@ -550,7 +544,6 @@
 <http://www.cdisc.org/C66737/V3#C66737_C49687>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phase IIIa Trial"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49687"^^xsd:string ;
 	th:notation "Phase IIIaTrial"^^xsd:string ;
 	th:definition "A classification typically assigned retrospectively to a Phase III trial upon determination by regulatory authorities of a need for a Phase III B trial."^^xsd:string ;
@@ -571,7 +564,6 @@
 <http://www.cdisc.org/C66737/V3#C66737_C49689>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phase IIIb Trial"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C49689"^^xsd:string ;
 	th:notation "Phase IIIb Trial"^^xsd:string ;
 	th:definition "A subcategory of Phase III trials done near the time of approval to elicit additional findings. NOTE: Dossier review may continue while associated Phase IIIB trials are conducted. These trials may be required as a condition of regulatory authority approval."^^xsd:string ;
@@ -584,4 +576,3061 @@
 <http://www.assero.co.uk/PT#ba1e1cb83d0674aedf90a7d18603f0aca1029b4a>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Phase IIIb Trial"^^xsd:string ;
+.
+<http://www.assero.co.uk/CLA#2a293c98-edc4-47a2-8104-5ebc7ce63262>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#8ed01d1b-d30b-47bf-b8ff-e49bbae62ef5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#78e395e1-1c7d-4e17-ba94-e9710474b1ef>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#31a90f0f-0208-4368-9e13-fb7f60324a56>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bb6adadb-c4b0-4ebc-8f56-0f51643ee91c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#be445d42-b429-44e9-8f2a-15474c8adb78>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#eedef14d-eb06-48f0-9ec0-d64851dea155>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bf6cccf8-2cc1-45e1-9495-7171a61ac8d6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f4c10204-10d1-4ba1-95c3-25dbf18567a8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#271c04b2-4bd8-4a28-a83f-0ad5fcb24600>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d655ecdd-c752-4aa9-a114-003e963063ea>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bc50d5a9-55f3-495f-8877-c0cb9f915aaa>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2ad86e32-b23d-4358-8d81-2a24bd2e5e00>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2c547496-670b-479e-b40c-50008805d685>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fed0eaa8-7a32-4705-85c9-02f4d8b68120>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#139a76b6-1097-4e45-aeb8-b6c1a68e4108>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8a769bb3-6760-4f69-a513-04e56df1903d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#49886c09-5d3b-41ca-9daf-56de6964e6ec>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#50005a39-557a-45d9-b419-6be27931fa50>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fcf0562f-ff3a-4fdc-b140-4d81a7cbcf51>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4e6694b0-e3ca-484d-8b83-5ffb41cded3b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9322855a-d81b-4220-b70d-b73efa185414>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dde69e41-c5a0-4ca0-bb15-53edc65cd969>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e9e321c5-a231-4673-a447-58a0380d98f7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#759111c7-5466-4db2-89ab-787a4fd66752>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#cd08449e-56bb-4898-8b69-2fd1515bc08f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7eca1db0-8897-4c0d-8b56-24bc2cbdb3ba>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8da8d344-6e01-4141-b81f-4e750a7e2a4e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3a050b27-c7b6-4bdb-96c7-eae0e4d86bd9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e7843912-b109-4cea-b045-ee9c35cc3aa7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8c9fdaf2-3d71-4715-9cec-e4ffe3f3cda7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#51d6fe35-082e-446c-bb03-f74dee450497>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5f13be03-c408-40ac-b10f-6f6ea8854309>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f172699c-cfc5-4a40-8768-9626ccc8737a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#cfc279f2-997f-4693-ae8c-e3195db8fd4e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6764dee6-3b1c-4a42-814a-925b334cc0d8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#302a8507-b0e4-41f1-b876-892855ff2974>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#eb1551fe-a198-4dc6-8e65-2443bfbcd37b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#815dbfc1-d567-4f16-bc7b-e17753c0c1a5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7527ce97-4ec5-4376-961d-90320e9c510f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4c06875d-9f7f-4566-8097-7d887d6cae62>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4c31de6e-fcd0-4bd3-a788-f6a00e5c17e1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#67b63a0d-e2b6-4a3c-a79a-478a1d1a6786>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c2f10365-707c-464a-81b2-1214c39e6ba0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#126b8529-00bf-4fb9-aef9-4027e28e763a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fc6a30c8-8dae-4e79-a608-545a83dd6e06>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bcaf4346-81fc-4f45-8c75-9706b382c75b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3b240417-284f-4504-9ce0-c95d9ea4fb78>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f79d3a48-0a7f-4219-974f-8a1feb7a82e9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e1ff0e4c-b4bb-4187-b5e0-e8c02994c095>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7a8bc180-922e-4832-9e66-ba3560e0cd09>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#abd2c75d-be76-491d-8839-26376e8e6889>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ab6b3ebb-f6bf-46ac-b3c9-6fd274cc0a90>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#eb5585ca-737b-494d-88c3-d5857fdd76ba>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2e563b52-5063-4ea0-b0c5-397616beec19>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#33813b13-45ca-4211-97fa-4feb4e0bb959>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3585875b-18dc-40d3-a97e-441418e73740>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c9360411-5145-46da-a5fd-8315e88f1b7d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2cd616b8-f64b-4d61-8a09-b8734adf4f08>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3dbf37c1-a8b0-430e-821c-5a12e0fa5f0e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7b5fd50e-a8b3-4d95-9f2a-57db2d91d367>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#927c8241-67ec-458a-a587-37d0db0915fe>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#02401fc6-012e-4cdb-9ecb-8e2f2a68089e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f3ba29c8-1978-408f-9c85-d0fccf4a9fcd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ffe905e7-b5e2-44ab-ba68-0490efde99d1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ae902f3b-ec4a-4927-9f33-6fbc9f3e4015>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#62d9f7b0-7c7e-460a-ad5f-367e6bc778ad>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#723c01f9-289a-4db7-94d0-8f7c47e92224>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66785/V3#C66785> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#688e2fb0-0f55-4acd-a413-82e37f2e6e36>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66785/V3#C66785_C49649> ;
+	isoC:context <http://www.cdisc.org/C66785/V3#C66785> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#16b56712-8814-4d1a-ba95-c9991774f27a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66785/V3#C66785_C41132> ;
+	isoC:context <http://www.cdisc.org/C66785/V3#C66785> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#9b5c6f21-9ec7-47d8-a371-09c7c23294c7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66785/V3#C66785_C49648> ;
+	isoC:context <http://www.cdisc.org/C66785/V3#C66785> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#76ed9b07-7d79-4460-a273-c5b9196c0b09>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e9ff0cb2-a879-4c73-863a-b3d86001b3f3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#02289228-6471-4bfa-bedf-46617ca87f61>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4288c7a6-0cd5-4d3d-9973-ec073dbdf481>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#cf88153a-b94c-42ee-9a7a-27da6040ad84>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#98717dc9-63f6-428a-9b40-e32de1fd3987>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3a8161c2-a7e6-48d0-bd38-de086b03e4da>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#cf52d586-9b67-462a-aa6e-a8964596ff84>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#32940dd2-854f-43ab-9962-d6e21eac8268>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#659ad560-54ef-4140-88cf-bb3eb3f18872>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#de60a399-4585-4e4a-8080-c83ff6f65013>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e8c4d544-4073-456b-9a30-68a1ac481968>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#eda919c8-e782-4a20-9633-89db3bcbce3c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b27af703-d55f-4445-a40b-2e2d226c2367>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e6527bc3-b59a-479e-8629-18e786fb536d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c16cc305-76e2-46ad-b65a-0385b778decc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#319dff43-c7b7-4f6d-a7ec-e141f6ce0434>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c7834f06-b34d-4708-bebd-64affa17ab48>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fdd9ab5f-6637-457d-ad86-eb286de608a4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d373692f-34d6-43a7-b3cf-7a59374e2fe9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#393f5b40-2b29-4d61-bdae-8c2c0fc28435>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dceddeb3-a846-48a6-9012-30de4cff4de1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1c1b8f89-0665-4bc6-afd5-bfed7cbd6cf4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#39ddc5aa-4929-43cd-98e6-eb47d00a2789>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#02279bd3-5f3e-4511-9aa8-8da52e6e911c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f5bab648-4513-4a6c-b531-cec90fce48e9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fcd64a1d-803d-4388-8c0e-308b53a4ba15>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#431d4ea1-b94c-4245-b6ef-5125e1d6dfe4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4f0dce8e-ec7f-44f3-89f8-9420a4791970>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#653b3de9-ecff-46d8-825f-9b2f7e2a2508>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7aa7328b-8cfc-459f-868c-e914604433f0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c8348de5-7f81-496f-a620-7f17f4c6524a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4ded0880-8286-4c9e-98c8-0f25971fc982>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ea34f98d-4014-4ead-99a5-e7eda073e73e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#08d6c667-c4a4-4896-b6c4-4f428d56074c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#80d86ee1-636f-419d-b80a-a728db96ea97>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5065b5a2-c72e-43cc-a491-0626d4f6feb1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8332aece-9332-4102-8f62-e444e2a66a83>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#08e7565c-f8a3-4e34-a83b-aeb3bddcf321>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1d4f3517-94fe-42fb-ae55-516b57811fe9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9ae421ab-8e7d-4cce-9c8c-2a39e663b8fe>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9de23ef3-3f57-4aad-935f-051dd2ce0b29>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1c975293-c895-4247-9970-92bdc6e416fb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6cd62fe1-e64d-4a85-9de2-69155e9301bf>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#990adc78-d3d1-4eaa-b734-1cc461b7ad6d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8c677995-4cf9-48c8-8105-a824bfee53ab>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3ab29586-49d7-40c0-9420-2bbceb9ff691>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3030505e-7682-4f45-bf35-7aa34f72d887>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c6cd1faf-9c81-4416-842d-8c1119ce80ca>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fce3ec97-fb78-4249-8a43-c239d707b047>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#996fd6c6-5371-4d03-a456-f2d6c21019a9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#532b6a5d-b09f-40c2-b4b8-9c629bba1f14>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a4995a2c-4fd6-4fc7-94db-25de12264bfb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#cd2c70e7-c7ab-4198-af4a-e97ec31d8cb3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#25db3a07-9945-4cc8-b4ba-41b7df5d3a30>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c84edf93-9123-4898-95c7-6d25d749478b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#cd1e55cb-0104-493b-b59a-66de9db622b8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a7ca62e1-058f-40a0-aa0a-80233ede831b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2348a23e-fdb2-410d-819a-36838f9d2728>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c7b40c37-6d55-43a3-8b70-179838da09a2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4995c0f2-16a2-4a57-a55d-401a747c312e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a81c1595-cd22-4b51-9821-a62ccfd449a1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8e7827d2-5b87-4bfd-967b-5a60e74024d1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#acfd523b-87d7-4e8b-825c-54be61131ff7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#03783d88-3292-4ce1-9d39-c8268e24c961>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#227de36b-c7a1-44ef-bf66-a51746a84080>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#413c5c1c-6321-4fe5-8141-3960307092dc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b4c7f88c-3af7-4017-b0d9-aa7e03e50476>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7b3bed68-1f75-42bb-a0b2-23a24517d290>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0b8592ab-af30-4c44-ab0f-e034de08673a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ec252106-a648-406e-8ba7-0e1b1e7e77fd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1363c4d2-0877-4dd7-97d2-f0057c6d0c9b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c46dd79a-0d39-477c-b604-d6d3dfdbdb94>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ac3d2d77-1599-4ecd-9878-a0655ab355f9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d6f58548-d906-4281-9d03-481511cdede9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d9555c66-81db-4940-948c-44d07dd1fbc6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4e2b60ef-2cc0-4f25-a61d-b2e6c2df9550>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8f04c587-cbfc-4433-9497-af6273c7335a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ef28ef40-fad4-4159-b296-b79d0c7ff54a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9912c942-5d32-478a-a247-b10e2401e813>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ec6bfa82-f47c-41d5-b0d6-bb526f5953a2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ebb08397-8832-4979-88d3-a3df6e83d99d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3a773bb0-70f0-4562-9d62-68ef54f76a1d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#065a63d7-a275-4a11-be35-8e510484cdb7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#00feabf9-351b-4a05-a782-38cdafdd7754>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#731868b6-8b41-459d-82ad-85614cb45bb2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4b7ef020-7f00-42cb-a512-774dffb13a9b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6cc77dc4-4405-4770-af69-5a7d54857577>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6cc0f736-6824-407d-9b2e-6988e3d7f765>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#11e7ead7-1c28-44ee-89f7-f148aba89091>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b2653e44-2f84-4429-9aa9-83c166ec65fa>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#372dac10-5860-458d-9d2d-0b6e4e6ce6ae>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#14be2f19-27f0-4fba-b8af-878c954e2a41>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a40f1c72-b281-4513-bd88-ee40cf0e7097>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c039cf5f-396c-4b57-9aad-b58cf624e338>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#893006a2-13eb-486c-b475-0ba9b2cf3c98>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0fe91355-9115-47d4-a592-2c6e0f3e9c88>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bde9f2d3-728c-4ac7-8e75-5fa4c9ec404c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#eb9413d9-3314-4d0b-81d1-3af825669d8f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fde0addc-3ee3-4966-b3af-6feadf43f06e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9ac8360a-0377-49d1-88f3-3bb53af6a942>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f059cfd6-78a2-45c1-a9b2-2f5bd76c7536>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a801c92d-2bb6-484b-9977-dd50fda0a535>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7894473d-4fef-4fd6-b7a7-846822369973>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#55774b17-28f3-4f79-b50d-a6c726c7e085>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#be5b5e3c-60d8-4150-9cc5-07c2d3eb63ca>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3657f58c-196b-4426-b95f-2ebf3ccba35e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6bf15bf3-ecd7-43c7-8bac-e45b68aeefde>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a0b9e48a-68c4-4461-8b09-12bfa8807db5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2455ba32-eff6-4e92-9d43-ad133b0616fd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a3ad70eb-e5b1-4650-bfae-8ced32ebf576>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e7f53c97-c235-44db-ac51-3e9efc6817fd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#50bf3bfd-2d62-402d-ab3e-161f77eb282c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#13b7e5d5-6e84-424d-a9fd-47615edce857>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f166f1db-1211-4915-8599-4d0f806679fe>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6f4113d8-2d2c-40d4-a856-138b930eb339>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#77ccc748-77ad-4379-9af2-9dfb5c9d351b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8c6dfa31-fea2-46a2-99b5-89858af6b838>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2c67e503-e6fd-4f8d-8fdb-127b5343e485>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#866f64d6-d3ed-4048-8acc-e2173b2da432>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#96b30a7a-5540-4dc4-8f1f-00770d4bcb6b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#85ef2d3f-0b20-4088-b4cd-307cb5326ec8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#31411008-eed4-4917-8761-c0d45a43aec6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#86877f33-b5d8-47f2-859c-1e9d718277e0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5c056114-09f6-4cc8-bbce-8d13e7593a8d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#92b30a73-525c-43ac-92a6-6f246d166873>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9a961208-30f3-43c4-ac86-79260641fcb2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#62ecfa41-ec1b-4d05-b839-6957d2b51975>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8c6ac915-9744-47bf-a8e6-5d38105d3a9c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ad2134a3-2659-4c9f-a1fe-8dba2b1ac190>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#98bd90cb-ef3f-4d3b-8019-f4e298dd43ac>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e007b08b-138a-481f-a78c-c312d7e5c5d6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#71b4e63a-b767-434b-b863-3bf3c141ccb8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ebe86f13-5e2d-4df9-a5de-5f656718ab74>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#208b985d-e013-4bb7-9064-e55093d4a42c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ec8a2a2b-ae1d-4d85-a7c5-87614932cd32>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#35a99ea4-a664-407d-bd71-aae54071fa6e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#31bfb816-c928-47c5-9276-55fa3d04fe06>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3292c3a7-0853-427e-aafe-608892df9272>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#daecf774-cdde-4ff8-8d17-868d04de7f1a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1ccd01f4-aa9b-4705-990a-5c6057903cc0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e567fe31-ee88-4013-b49d-5353285ef0d0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ad6b40c1-f8d7-4606-ab74-3278336abb89>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4529f095-aba4-4274-8ace-c278d57c81d2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1ed0d793-4bef-4d9a-a9c8-b14bd69df5f4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#650675ff-5849-4437-85fb-22c9da2f1c8d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#39a90c66-7aeb-4092-bdfd-3c0b86e7232f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d712439f-0095-415f-967a-c18e04bce369>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f996a337-943c-4667-acec-5fdd23954ecc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b069b536-b4e2-4d57-b638-d63baf65612e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e6f19fdc-0a12-4a9c-b38b-3ce63e0353ab>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#28c14ebb-6f26-41f8-a106-4118369ebb1b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#36ed3403-2856-4fa2-8783-201040ac9cb7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#cf37add0-698f-4042-bb20-e3510ab7a7e0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#abc22029-cbaa-4512-bde3-99594b8a71b5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#efa29e1a-7830-48c3-a612-4cae295d319e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#af6ec3e7-f254-493f-872b-5343289c7c0b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ffb46437-b0bc-4c73-b8a0-703359331739>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#850a7f6c-a3af-4973-abbf-b52f6aa86172>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#91a85adf-acf6-4a4f-82bc-2c5133ec930a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6a1f43b3-3996-4aeb-904a-ea0d371794f4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8bb28049-4192-4ee7-8b27-ecb27032d056>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ca726443-ff9b-4a48-8693-5eca2e990155>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b69f12c7-0dc8-4096-886b-0298baf93d82>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c51dd8e0-36fa-45c3-9c30-e490e94e9e07>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bf9f90a4-c322-4395-a495-9e9dcfe4e30e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6afe5d49-0ce9-49ea-bfa5-2e9179980609>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#94a2e71e-273d-4cea-9c7d-6ed47ddbf1bb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1393d207-dca4-44e9-be49-e5e96d4b2642>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5233fc20-a88a-4535-9205-ddab518a43c8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#378945a7-2ef0-46f9-831a-ac6feb8b5293>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#650a2556-e2c5-4b51-9180-c7b3a20b5a15>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#04dae9a5-fc1d-4d1b-a60f-84fbd2587aac>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#19bfd29b-93e5-483d-9a56-0fa4a6128105>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fb104a94-f78e-4191-ab03-f21b49b1cdb9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#acdb2a23-a386-4142-ab96-5dcf208cf931>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d9f0ad58-07fb-4110-bfcd-270d6b899922>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2905eedc-4b2b-4c41-a3d5-c1aab1800ad3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5c75ca05-e74c-45b7-b649-2ad34675aecc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#467a45ef-edf1-48ab-8bd2-887d642b1a27>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c32e11bb-d2b7-4b36-8398-64ac09867163>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bbe6dcf2-3489-49f2-b90a-0ae6642e7a56>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#580bd30f-d1d4-4f2e-93e1-f4ecf5ddc88f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0d072bdc-4164-4657-8d63-f333296288da>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#61219038-d801-43cf-b85c-b8fbcab86037>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7ceceaa9-9a92-4490-a6a1-ed036b42a20a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2500cee2-ad29-4279-be05-6cdf59e63b9f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ea3607e4-0c61-4ce5-a1f2-abc1eccfb9b9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#269b0919-01b5-4440-8af1-24dce22f76fb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ebdc53c6-f872-4390-a82f-083c14083b15>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6a4519b7-8068-4cc1-9ead-cae85f5a5420>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#30f8dfa5-6042-4aa4-bbef-f1df1891fe32>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d915ecef-cc50-4ba1-a5eb-72ddccaa0738>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#219ccabe-2873-41f7-a33f-ac10733191c9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b50280a5-bc3c-409a-b0a7-2e93f763ff10>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6da083e4-e98f-45c2-9eea-49b80464d674>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8f1438a5-bfa0-4b7a-8bbf-628f0a152f60>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5fdaa5a1-5ccc-466a-b6bd-df2589e0d7de>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6e28cf34-5a62-4f00-8b47-d23dd7e018c0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#881b0667-83cb-4eaa-a2cb-abbfef6e22cb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9f9d6466-a12e-4f10-83a9-3f96899eafc5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0a3fe12b-6d51-4566-9c55-8ff664790f48>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#aa7d5592-5a16-4e3e-b3db-0b1cd4525038>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ce9533cd-c8e7-4304-901e-28c5564c1b76>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#80461ac7-0331-4d6b-9ccb-2b0fa94514ea>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#446defe6-6a0b-4781-81c9-efa0e4c925ae>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0147d745-ff63-4bec-939b-7cfc6398ba7a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#247c56da-89d7-4a38-9aae-04704311c093>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#39e66070-421e-4f34-9e68-ed5c4c85da7e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e36db3eb-8305-4c27-a0a1-78d400a962d7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e5a41b06-8585-4e34-94ca-00eb02d64322>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b47bc11d-0933-4467-a5fb-681846441231>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8773e1b7-56cc-443e-b4c9-c53f322a7684>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#08be1e95-04a8-4993-b35f-43ae7616a8f5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1c21abe7-0623-494b-b786-65f3a0fdc0d1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d0652826-cefc-41c0-9ce8-e3494dc3771f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a1ae80b9-2fe8-4a76-be03-5c719503461e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#38ae3184-aec3-439a-bdce-86b17c96557e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dc2af1d5-29ce-4f7a-9889-94c882c49208>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#04d4537b-a6b5-408a-bd9f-a42bc2275115>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#71ebbcd9-e428-48bc-9774-fcbcd09f572c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b9039e22-eafe-4619-a0b9-b65b43941138>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a0bda23d-88fb-49bb-9b80-ae98a0f2ba9f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#52717ab3-1b11-4cec-be89-64981240702c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a3964824-4893-4584-aa17-41e8577f74bd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4009f4f3-8cc7-4489-af0a-251853c23450>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5f7be194-59d3-44f9-a66f-690be0357012>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e5ffc80e-e9cf-48c5-a059-00f663f2bf3f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#10ee72bc-5717-4bc4-9000-0c1721fe7cca>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0fa5159d-3676-4b45-9109-16800fa569f7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ba319970-5084-4b69-b394-28c01da9187d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#405d08bd-fadb-4453-a7b8-de4df24ccd04>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5f61df69-7015-4b67-a2c3-66c0bf395fde>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#eed0325f-80c9-4f03-81e1-70e8ae5dee61>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6a02d3d3-03e6-45df-a91c-f9a9ea3264d1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#30896a22-8237-41b0-88dc-bf204dcd569f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2c3b4541-08a0-40ff-b7fc-f8c22e123436>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#27a6a387-1f8e-4d27-aeb5-8ad9b5cc449f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d70ef591-5e68-494f-9c5e-761d53d22d49>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dd7ff6ef-98dc-4654-8772-95b2ca5e1d1f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c4be4ace-dd4b-4fa3-93a2-b9a126b54e29>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8fbb2495-a2e6-496a-92e9-d406e317010c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#63b4daa9-e526-49b3-8ba1-d0bc4b5a0f24>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#502375cd-5745-48c6-88ba-118d49071bf6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4c50b288-33c8-46c1-8959-cf6e57ecbe64>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#12ea6d18-30a1-415a-8413-94b6cdc28399>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8caed124-422c-4239-be5d-6d0a0c79a0cd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#73a50eb4-b13c-4ff5-83f0-50e75b9b3154>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#481fb376-c607-4a8d-bc08-397cb5370b86>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8608b8d8-67d0-42ca-ba42-d6bf846ca25b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#54b04846-eebd-4b67-8ab9-620670fcf42a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f348309b-6eee-4c86-a148-3dbf471702ef>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#279ebf8d-0a37-4846-befa-2db065389780>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#11d88db9-208e-4c03-b382-21e73a739818>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5a58907d-2cb4-454e-ad51-761d6f3213b9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#71d755c8-5638-4025-bfb1-4899d77c5ef2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#454eb8bb-1930-473c-bc1b-c5e286f3fde3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#66d26cbc-938c-4b5d-92af-a1b719748df7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dc28e8f1-c1ba-45d8-a7c8-dca9787045de>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b5ba9a63-24c9-45af-9e00-ab9e7c4b5b9b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#73594ef0-3d06-4151-8330-9c4d79778d41>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#da676db6-9ca8-4b2f-ba26-27dd334f672d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ff506678-5f67-4031-81c4-8968f46b1497>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e0220052-ee4b-4d9f-97df-7604b33b2ce9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e82d0e46-18f9-4bd2-85b7-ce36af611855>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6b79831a-4fe9-490d-838a-d579f9b011c1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b755a987-01e7-4dfe-8f6f-697b0a2c24a5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#caa13a01-1c9d-4226-aa6b-3268e37e2049>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dc5ad6c3-fa56-4a85-aeef-267ee0c0177d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3001ff7b-d841-4d1f-b8ec-b332f851eb9f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#df80a708-e1dd-4d87-be84-e790682b782e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5a6f999d-f6bb-45fa-aee9-9cbfd06e9b21>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c1589760-8a04-4459-ade0-6d84f4740533>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e26e7db0-3c8f-4fb1-8c4c-268f2ffb4ed8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1aaf1d4a-b51f-4ade-ae2c-6728c67fdb5c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7d4e11ca-26ab-45e7-929b-359c4cff6648>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b6e4e6e5-e80b-44d2-9d30-03b55cb4691f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a0bc8f71-e06d-45ae-a648-0ec10ee117d4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d26a96f7-1083-49e3-9863-6d7b22ac6358>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e9ca7237-d3e1-4fd8-ab9a-394556565898>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3925d821-c1f7-4c78-9109-8735be1f451a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#215a4fc3-13c4-444e-b159-dde6918975ed>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5df5c9b2-33aa-46a5-afc0-2205861548a1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4b2d34b4-ce89-4cf3-89b8-4025a770ceb9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0699a577-7011-4bd3-b5f2-908dbc14583d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ff169ecc-1c21-4931-88c6-d012abd452a8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#582173a2-5aa2-4c5a-ad28-dd9c324aef17>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3ac5fbfd-3582-4781-9958-5bc52c85e592>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0eaca798-6bd9-4222-96ee-dbc6e810c03d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#48660cd4-56d7-46ab-9853-7104292e4adc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#50607a64-090d-4aae-8423-278fe523f089>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0cc0b7b7-4b6d-4f17-88f5-8fa854294709>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5ede593e-64dc-4b64-be8d-966ef3e8b05f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d58b81fb-4076-413b-ae8d-93820b7e87de>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#53fb06eb-6750-4ba7-8f0a-ff18bbdbd4dd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#08b8df7e-8882-445d-9eca-8d80264b84fb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#56aec163-65d0-4f20-ae49-d1400b3f5f3a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e897d605-8fe0-4eca-b98b-93bb0ce4bdff>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#23d97fff-c0b0-4a03-94e8-5532a54c9e59>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#021a4552-3085-4532-825c-88098423e6e5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fcc86bc0-92b8-4977-a8d8-c2ae06b2aa63>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#036d7d5c-dfb6-473d-97c8-afe72eb32d13>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#69170445-051c-4d7c-8105-6dda2feec20a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f0ef7234-9348-406b-bfca-1f7fb90bbc9c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dab2842d-6600-4596-9d3a-998d709cc143>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f4e966d7-dfb7-4ad7-bd3b-aa360721ec2c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b91d8aa3-d54f-4933-892c-ea12c9ebbfda>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#161c4508-9cd0-42d5-bca5-492c79af7005>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#051f3097-9674-4c84-b748-aaf1b673e715>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#345d82b4-675f-48ce-9654-100709ebd25a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b3381649-449f-4310-9b89-87a94dc7d407>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3f105dfe-6572-425f-b0f4-5c99cf0ac521>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2ec1346d-067d-4087-9359-8c2cc0ed4b39>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bb4d5be3-4d73-4584-a431-998459effbf9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c9d547ba-83c0-4051-9ac6-5fe490eca5eb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1fbc1bf5-dc44-4044-80fd-ae9e9872a29b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e56f4f9a-1793-4a35-9f14-41ba5bc7f08c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#57de763a-d55c-4029-a97f-cd63ec2f7509>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#cc1d08b7-7e62-4728-8f6c-bdec5b97fe86>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8af6c6e5-6823-4c9b-8fbc-415c9705ae2e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c94ee88a-3fae-4359-ab38-f14889e4ff6b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1ee65fdd-9012-4b62-82c1-44e8754be116>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#20c5d225-9ad1-4cfa-9615-435810a5f1ad>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#30a791c5-402c-483b-a457-b583a4550106>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6dd6761d-166f-480a-949c-6d4bcc4e002d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d3b196f1-4c63-4c94-8522-d6d79940a394>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#38e7199c-cbd3-4d70-9e2f-5bc506f7fe45>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a83d2a28-092e-441f-aeeb-7ec1ff93afdd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d6044bce-b853-456d-a0ec-d546282c49c3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5695b887-e84c-441d-995b-b92ed159adce>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#abd162a0-5616-4a0a-8756-5a2d657d3143>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a9522b70-0ba8-4e83-9156-351da9935c0a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#293c6e68-0e58-452f-a921-f832b4c79fe6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8d2d0d01-3e12-4877-af52-935821b6025b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#61dfd839-01ba-497e-8e68-f8adc82af540>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#838f136e-7081-4e02-8dbf-1eb6cb52ab89>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#08235285-e5a3-48f3-926b-90e644920e6b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#16dfc9c4-407c-42d3-b7a1-11a3bd4abfcd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#81d07365-53e5-4548-977c-8588bdffaa2a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c1d07cf3-79e2-46e5-b1c9-4e632168f53d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2d79668d-85df-4562-827b-162365a3ed40>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8656e11e-1b01-47d8-a232-c5dcf772622a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7144be38-34de-4198-bd98-8ab9f61ef7bc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9aacc479-91d8-45cb-9feb-62b75f439ef3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0c3ef6d2-fcf2-4ab0-8a6d-194ff0904866>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e10f248d-bf2f-4b48-9b54-6aede78ee23b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0e3ce84f-9c01-4bb4-8b7e-0ffe35b48538>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#102d8825-e1e2-43ca-a3f7-50f38ba91aaa>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#995a190c-73fa-4309-9e55-57687343df82>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f240dbda-4196-45c1-a7af-d047b10bdff6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#55a727d1-61d2-47c7-a6c7-77aff52ac2ca>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5e9c667b-631a-4e6a-ab4c-2fef4cd29a12>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9069da63-99c9-4c67-82fd-652ed8a7603b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a83c8d18-ca2c-46a4-8898-8609c0c897f6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fa99a705-99a9-45e9-ad82-59a5a456ec5a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1b282491-88a8-4c6d-a68c-886543a74779>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bdab5f69-67a2-4c99-a37b-e549a4cf0ee1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e04378ed-ea3e-4ffa-86b6-0f9831f41ef4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1ee824d6-3ee4-4cf3-bbf8-df6f8c906682>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a3789edc-5005-4ca3-883b-26fc3a6ed58a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#afa971c9-0dff-4e16-9b63-7f1a0a048f8d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#761149bf-c2dd-40b0-9e1d-aacf4647f5ba>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#22e2aebf-705b-4562-b2ca-43d293645bd8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b8caf08c-ab19-400b-a412-df19cad9c4d8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f7d9b380-6071-4a2c-b4fd-d3760de9ec4a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6d700f67-2ca1-425f-a937-e7654dd221c8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#170c5f01-9e61-4ee5-8406-5d1bc4b6d083>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#78e4d154-ca55-4b0f-b7f7-e8b0058d146f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8b9ce595-b9e2-4902-a9b7-d6b3626133c9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#87fc0dae-3f73-4c05-bb4e-8275a115b15d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1ff3722d-03fe-4f5d-abca-fcf2fab790c6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d1523d1c-e5c0-4130-b64f-9150f4e2839f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b8ae71f0-ea98-40ee-9f24-c5988c9aad60>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0c4546f1-cf67-4de9-ab1f-512383454047>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7382b984-e2a9-46d6-b150-ed6c2ea7556e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ae3258be-e2f9-474b-978a-ca28cc1e585c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d232c477-d28c-4ee5-94f6-1ca228a1e8d5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d2e53f67-ef7d-49c1-8262-ffa8e4d32b20>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ad47f54a-fe28-4810-8dd1-5be5e796a739>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#95297ef6-9bf0-42f2-b438-3b7587029a2c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#71d9fa46-3b76-46b8-aafa-046f0d90296d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a559a1a7-a480-4303-bbaa-e89e78e0bb15>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d1949268-cf18-4f55-83c5-a419c4492412>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#73cecc42-c2de-4b7d-907b-ad2e95ddf417>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b7dabf79-4428-4c25-acc4-9ccd8db8dd92>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a173b955-798c-4c69-b604-22a96c9fb2e3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#029e6a4d-a621-44c3-8357-b811b9028b12>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7591bc7e-0c40-434a-8e3e-fe591a904ede>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#00608809-d008-4a3b-9f84-f539b1ee7c3f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8baee439-0d22-4d72-a0e4-3816544ecf9a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7bd0c024-4c9f-4cc8-b82d-9e2989d5cda6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d769f206-1d22-40e4-b4a4-060177887860>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#427a83e7-7f74-4bc5-9d2f-1845e3016841>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#71258069-8fd6-454e-807e-47e9cc831a44>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e941f998-eb68-4aba-8b8d-3e3fbe102cfd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#487cd773-f55e-4674-8cce-84bdf2febe94>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#acf24923-8925-4d6f-bdd0-93c1ae9e87fc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#80130a6c-c11c-405f-98ee-2ddeef031bf6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#34fddf34-8998-4cb5-9a9e-c35208c1a577>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ac4e3ded-04c2-423b-b8ea-7e57f6c70e11>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#71b52624-8d92-4d4c-806c-aac872344921>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#05b5dc7f-f2f1-4282-97fb-ab9b17102561>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9780974e-df9f-49f5-ab62-5ab12dec3b1c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1b85c995-8cc6-4b5e-8d5a-16b1220a56df>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#33df0f92-4432-4399-b552-1b0de9ccbf7b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6b47ecfd-6379-4009-8b10-9da8d2c80bfc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#65f5cd3c-3369-411c-a1d7-c53a44499297>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bbcf8b60-d48f-4f5a-9dc0-a072c59f1868>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6a63e456-e9de-403c-836d-a7920b52dd78>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3a020216-1137-40ff-8cf6-c67daee4b79c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a016d076-d1dc-41c1-ab70-95567d01eea1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0b3460ed-dcf3-4cb5-bc1f-af32a202fe32>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#eb291c1f-95de-42bc-bbba-6666359030b8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#07d273ea-071a-4228-a5ce-49bbe0fd156b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9e8f296e-96a8-4c23-aa13-382fc35607b2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#157a1d2e-e54d-455f-82a4-7774d5285820>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c06d2a74-d833-4c3f-8e0a-a67b70183180>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a92443a1-1c2a-483f-ac11-f9437312e34e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6a34171e-92c6-404b-9b37-571ef3510e97>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#485a0680-6bf0-4d15-a4cf-343adc898351>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3bb8939a-7c3b-478a-b2cd-339bb1c37eac>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9ce5ec50-809e-4f89-9879-5594326ef897>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#64b50989-9302-4206-ac65-3e1c261240aa>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#40e7c81c-d3f2-452d-84a6-dbcba3829d0f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9da6f230-f6fb-4cd7-a6e2-813778dd6231>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#66bd0acc-0ec0-4895-bdd0-4bb5082b302c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5b11dcc5-219a-4d36-88ab-faab1b60c24f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#be0606f5-5f79-4db3-a943-150fa7a74b43>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#09be2208-b9b0-4c21-b720-f746f01cf247>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#54c8a663-6374-4150-a8d7-42c360d41c81>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d5769957-169e-45dc-8b3d-913ac1f4f82e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#cec13319-f8de-443c-9cb8-e6ad305fa36a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1a3c95b7-a0f0-4c1a-81fb-891ffed5c760>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#89ab34a9-e8d0-4160-823c-7f511b1f5d77>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3ee38dc2-e0ae-4cae-9146-8ac5474d5088>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5e81b236-b71d-4604-a03c-ae2e14dbd76e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#84821568-0425-4be0-aec1-4d8afd464d85>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#54387a2a-e1fb-40d6-b61d-cec91f2f12e1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ab6d7d3e-9b55-4f3d-927b-1f687e227eed>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#27cd1912-56de-4d8f-9553-2d4de268eabd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#251d2fc9-6fdc-4066-950a-6e125918547f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e21f4c84-089b-48f5-b821-a79be02d6cd0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e692d53d-f7b1-4f8a-893e-2eea834d5dd3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a776a4a8-df87-432f-9189-54218318b84a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f5b3ec46-42fe-46f2-ab3b-0ce0d85ea1d7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#38edf95a-c4d6-42e1-97cb-afe350653565>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ac9dc083-43d4-4162-a872-b9b0ea7793c3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#41298f90-c4f4-487e-bfcd-f931d98325a7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7a35e5c9-5b2c-49b8-92b7-7cedb74b918f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2cf835b8-2102-4f86-8525-53d77d9ec693>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#235df3d5-0e16-46e1-b7dc-68f194d38c09>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7877b729-b993-4cf7-a932-17c191ea77df>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#68590b94-b42b-4c62-a8a5-8dea4a6ce650>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#91aba496-2b2a-454b-856e-3065ec11616a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#aeeeb5a2-a360-4c0a-8c09-001fa514914a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7a75baef-5c8a-421b-a3a6-8b04997d7e1c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8fc9caa6-9b23-47d2-afa2-b156b9aed6cc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f4085f52-e4d7-423a-9bd0-7925505659a6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8d061a77-5624-4a47-85f4-dfb310722168>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#868ad249-6bbb-4347-8f41-9035bab5ed86>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c7dd58a4-363a-4c93-8c9a-e00137ac9043>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#83001241-b1a1-465b-949f-30abc8a8ce04>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3d91e68d-d362-48d7-ba7f-895b71173ea4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d6f82f9d-8738-46a7-8f9e-128f1d529728>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9c11bd72-cde9-442b-a7e8-0119d0e835ca>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8450933e-4710-4d8e-a57a-8c6b07b0bcbc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9d90feb6-84ff-4918-b846-24e131ea16f7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ec1c7985-d015-4fcb-92df-97f9ce0311e2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3bbf52b4-5add-480a-8938-d6fb88229ac5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1459248c-5794-4249-9e6f-c9bc1c8b67dd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#21546958-a30b-41bb-8630-63873dc2bddb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4f32c44d-ad3b-4312-82cc-a18045882d67>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dc1671dc-e024-4947-a176-e1d07920d3f9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ea89eeeb-2299-4d0c-9b92-042a6f70ba7d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#231dfcec-60b9-4ecb-ac67-bce550c0d515>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c0fe7abd-a0b8-4ca7-a547-7eb7cac56ce3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#cbd07876-e1e2-42f6-b592-7de8bd161751>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6f6aef5c-2466-4f90-ac4d-51016f385e84>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b7b7ccc7-fbd6-4389-86be-2c43174069f2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#48ecb77b-2bb1-4ba5-9edf-fa3dbd3a3210>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b809f934-b3bb-472c-9f24-4d89f14f6bd5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ae15878f-262e-4efd-88d5-89a11d664cfc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6b35ba5e-fbda-424f-8246-bb1d2836345e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fa1d62c0-0fb5-4d89-b4d7-a18db5769b83>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#58117b3f-b283-4f4d-82be-99d2d43d8f42>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e9c45329-3b2c-493d-ade1-e0472b004411>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e6c69fbb-9a47-4dd3-9b8a-0477782dd1a4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1820e7e2-3c62-41a8-bb38-1f3f96f89094>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1b33916f-b6e1-4499-827c-1c66b76b1e13>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#eefa973d-1d7d-46f9-8836-cac2c5c4d908>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#386a1b71-c889-417e-881e-2755e7c66f1d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5f65d9f9-0b9e-42e3-af8d-ab83294dcff3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#75a5a64b-9a18-4a37-91b7-5d16ffa75b32>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6b36915f-4eb7-496e-a84e-ee9ee188b9a9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dfd5ba13-59ef-4469-b870-7caf32577b78>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3bea84e6-646e-4db7-b9e1-25c39240fdfb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ba957b71-84c8-4df2-b88b-044562ace412>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6737b9ee-4e45-4695-8b70-b6b66d89993d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#265045f8-77fa-4756-9c79-ff606aca5ccd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#852108fe-50b7-45c9-9bc4-85a68f01845d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3bd75082-95bb-4d97-9617-ef411e02f303>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#103e2306-edd0-4497-810b-89c71b2cca83>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ace5e9ad-efae-4a42-a039-3812e7b1b5da>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6016da9d-f81a-434c-b2ab-b007e42834b6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4c5f505f-acdf-4a85-9315-0c5969ec346d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3f1e39d9-448e-4bbd-97e6-df4881a4c9e7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#85c20b55-80c7-45f2-8c51-4eeb2de78bb7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ff4b03d1-83ca-4818-8e77-5b1b00a74825>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dcb1841f-1b72-4d2b-8399-70652cd3ae49>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8991f689-8533-4094-bc90-c7c39d181be4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1cc81cb8-f595-4a1d-9a9b-8cae52fe6e6b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fff3cd62-1d48-4d51-aeee-e9f42d0cc2b8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2649f34b-ca4a-4207-9d27-379cb66d579a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f07b43e2-7254-458c-8016-b886af4e8f84>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5b1c9048-cecb-4719-8faf-4e6e380bed2e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3214721a-5bf1-4e21-a431-446719014530>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#307e4aa8-96c0-46d5-a4ed-611790556c94>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2b0b0070-70f7-4230-a417-269e411fda4a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#da7394e1-9af4-4916-ae46-265c775010a6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4523f739-7bf1-4199-a355-48e6cd738c7e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f4ba8cf8-1aa2-4660-b583-b7258c1e082c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2384c401-6288-4247-b310-1fb097fb14c3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#931f076d-5008-4930-a583-72f04d93672e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#feb67fc8-8b23-4903-8389-d05144d23092>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3757a059-1ab4-4458-ac59-dce0c361b0c0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6dd8e5dc-4bbc-47db-b1ef-b3cf985b2b95>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3f55a18f-ad3d-4ab6-b380-d8cef592ecf5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0cbe9273-9ec5-476a-849b-4cc6b6d60742>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4d100230-84f6-494e-9011-203779507f91>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fe780589-aa34-4aeb-ab38-7ece13bc4124>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a97461d6-3fdf-45a3-af5d-01b660b9143f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c7c69d85-8e9d-41a6-a8a7-7597e45c7707>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bce43e37-389f-4322-9e5d-5ef0d05ace62>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e75cc480-4ed6-40a3-998d-bc8da20f2c70>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#209a37e8-4f64-4d07-8d3f-871ac25aa61c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#74d4d192-e685-486c-994b-8bcfc53c19ec>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#516f0430-dd4f-4166-bb0c-eb5da176bf54>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5c95065e-ad19-43aa-ac47-2d64ec0db3a2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#57b3bc45-b6ba-416d-80e4-1e5874fbe966>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e9081cb9-a89b-47df-ba29-9e85d49f5cd3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7d8201d1-aa00-4ad6-b633-d9a16f26e36f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#930f7290-4ae6-47d1-bce4-c915a1438755>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8344ca1d-aef6-4d7a-a6e5-4aee110e2bb0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ec57853c-6397-4805-9f64-d61112190a66>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5fc11a97-ba1f-4f6d-871b-d861386a8811>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#07971d62-dbfe-4b33-9ee2-24a1bc9afa1b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8728607c-410a-40f6-97ae-e2bd1275eb1c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c28c1bd7-ddbd-41d0-bff5-6a3b222f310d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c885726a-7930-4541-9190-bf2188584ced>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#edc636a9-b385-4689-bc30-0d5b08bcb86b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#701b2d05-4599-4077-b6e1-efdedfad1bea>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6b7503ac-3337-45b3-ac12-472ae37ca63d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#cf3bf02f-dcc9-4e06-8b6c-d2f719505444>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9cefde13-c224-476d-b322-e40c2294eb07>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#af47c4d7-bbc4-4c81-a5e8-c380600e59a9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1732a971-52f9-42d0-8d4d-0077c4a59d42>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#afe876d4-3d6d-45f8-9f01-fef45df789e7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#34bbde08-9485-4ada-a565-8426ec56b490>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#28f7d633-93fa-492f-9c1a-fd68fc9f2482>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3593e3ce-545d-44b7-8c3b-22b46fe46832>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#be44cecc-b52a-428c-8738-9d761facc389>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#349fc60c-4eae-4abc-ab91-8313a8692ddc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#572aeefa-7eae-4dce-b7d0-8f1ccd3a9491>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bb9c39b1-f361-498f-a8b1-5e1de3764965>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#431a79bc-db09-49dc-8159-f02b26129d23>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#89a82c36-7344-4893-9cbf-3d2c7f3e6de6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5d78e9cf-7d28-45ef-b1b9-40726a04f779>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8e1c51c1-641f-4b86-9ecc-81c38be4d649>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#874c1c40-f6e9-4514-8902-dfed2398122d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#57c63852-6cca-46cb-b34f-bffcf1bd46ec>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5d87f2a9-59af-473f-b5d6-a6c8b3c48dc1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#480d08de-652d-4c68-b597-02b76bdb11ab>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5c0d7c3b-d32d-481b-8803-578824839f06>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2cbc5734-bd2b-48b3-8aba-c0b3df4a8646>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7a6a4e88-2545-453e-9f7a-17b464fa95b3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#42b287b0-0766-4cff-828b-c8dd22867072>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#676de8bc-84ce-4a5d-88bd-4416fb509dff>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#74c5b593-0a20-4b4c-bc19-6e797c9b64e9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7f2c33f9-b450-4b48-9046-4435f1245931>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#03200952-2857-4ce9-b9de-047807e5228d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3fb72b8d-1a4c-4f64-a189-cd2058e3ab1d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#58bdcafe-850c-46ea-b71a-a39831133d71>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#113257b9-c951-4844-9410-facdfd529387>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#57a9e6d6-1ec8-4f1b-bf4f-f80a9ec93097>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d1b637ce-fe69-4ab1-a738-d62b3e596c39>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2909b26e-20ed-4b18-8ee7-15753ee5ff34>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#38a2e42f-da66-4776-8334-1ee595990afb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#480e0736-ea17-4d27-98ad-7e8e68bce429>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#87ba7b02-c3e8-4b80-b64d-f28236d06b70>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#762631cd-2cb4-47a1-8f3e-097128d9947c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7bb8f815-bce2-4748-a396-8d3b07296fd7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d2311fa0-25e8-4ad6-b40c-9e9b74f1a3c9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#63aed5c3-826d-41f3-b3e4-93bf6af16287>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3980b1e0-adbb-44c5-b339-504c37d81415>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#40db6a8c-afff-42e5-a45f-30ba533ce6e4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d4ef44f3-6aa0-4bec-8618-c7305147f00f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2ab86d6f-4713-4779-89e1-a3f70586f38b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c19d61c6-9a63-4396-bc99-c7b49e3e4876>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0e325851-8cfb-4026-b01a-b74c95ff2485>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#25ffa928-7804-4f3d-a78b-732f8fb10b9c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f3399d8f-3766-4832-8a38-dee81912ab08>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1d722eee-a0da-4695-b5f7-7ea524e21160>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#92e1019e-cbc8-4cb1-b7c3-1e3f36758cdb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f2424e25-3b74-435d-b055-1c94001ab992>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a562dabe-2f25-48df-951c-04b942223c89>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5167d104-322f-429b-9ee6-0c764ab84fd6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7cd91c5d-b70f-4f03-b825-df25ed99e76f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7297af71-5c2d-43ec-aed9-aa45428f6a50>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3831aa75-e11f-4f9b-83c7-e74ea74454f3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#17b478f1-823e-4901-a4a6-1ec45ff94ea0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#df03bba7-681c-4d17-a7ce-40fe88d98051>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#04be3f7c-fc45-4212-8ced-744f62e7d977>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5830224e-fdb8-4473-801f-53b8e3c61741>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5a49544d-eed2-40a7-a01b-a2a1dfd28555>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a4bee8e5-c931-40d4-8a45-2fa6264d363b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b0e9fe53-9c94-4bbe-a46a-4c93f4d4788f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#11839066-2cda-47ee-b0e5-3f57b21f94fe>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8bcb7fca-9695-4672-84ab-932a23ccdec8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#519902e4-3791-4e1b-8665-32da96914434>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#009b5305-eab7-43f0-92dd-f778f8f70109>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f6c897ec-5639-46f7-b4b2-0d8a3959cf40>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5e13f8ed-c667-418b-937a-7edfcb0a14e9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6f134111-c30a-4dfd-a713-0e4070218f46>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#eb85db0e-5bb3-45de-945f-194264963917>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d181ff95-7c9d-42b7-9acd-6f273a09249a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5a146af9-e9ec-4fc6-bcbe-06b4b09a69e6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2fb617f9-96c3-4ace-920b-180e2fafbf99>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#550e68b1-f0d5-4bf2-a30a-672f0858924e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3f2d7282-71b6-49a0-aba6-f0bfb42ded52>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#08f43fb0-a455-493c-8ac4-a9570fc9ea79>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5c89142d-1199-41da-8a6e-61296fe8f157>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6895b16c-e299-412c-8dc7-867d967628be>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#77852553-bc51-4be4-a5af-ceb8eecd5baf>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#19a98597-0149-43e6-90de-7ebea7f77516>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b1eb9f21-dac5-42e7-b7bc-5e729d71ef10>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9fbe2191-0532-43f8-9cbe-84e08c30b6e5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#778a16df-d5b8-4ad7-ad65-194ffe1337eb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4757ea54-34b9-4178-9310-b2599e3b67e5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#493f2f70-3b93-46a7-b995-8ad014e36ea8>
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#96103c43-5148-4a5b-a8a6-7b924113ee3b>
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4c546d59-fb4d-4a08-b013-2549c5c8b2d9>
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#604f0d4e-82e6-486b-853a-b4af56d97354>
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7004ec5b-d234-4a5c-90e5-926411494a36>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66737/V3#C66737_C49686> ;
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#964f4d78-9787-472f-b235-15830576d9ca>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66737/V3#C66737_C49688> ;
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#886120aa-bed1-4576-a19d-c37d0366fc52>
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a3c37c32-846a-42d7-8d05-74a4fb8008c2>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66737/V3#C66737_C49687> ;
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#7fe36801-a234-4298-a46d-33a948184532>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66737/V3#C66737_C49689> ;
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#1cd7d38a-c745-40f1-aac3-19e30f2bbbbf>
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e205b8a5-793d-4b34-92d9-1823549cb5be>
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e82fa32c-f360-4209-9338-6b8261ebb9f1>
+	isoC:context <http://www.cdisc.org/C66737/V3#C66737> ;
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3b0e2b29-c559-449c-a9e7-98d481f9d97c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9a9b1ecd-5cf9-49fe-8bf7-7a96baff2f5e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f97f6970-0826-495c-b04e-1320cc66bbfa>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#65d23290-afe0-4c63-9929-fd2b732867be>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#47e95b9e-6362-4d10-a70b-035b2b367276>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9d6cbca2-7160-4e04-b90e-12134a4ca43a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d74d7a18-b4da-4102-8288-4e19da5d4c47>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#31fff5f3-c95b-4e2d-86bd-d910129e48cd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e77e186b-d43c-4e73-858e-f38d357b3623>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#50136b2f-8671-4851-91c0-54a75cd9638b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#05beca6a-3903-4f1c-8444-f832b1d7343b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#50cdcf88-13ef-40e3-af81-de4d5ca6c498>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e68f6a9e-8734-4900-80f6-8267bac16793>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e164d0ac-43bc-4106-8cde-1929b9ff7e93>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#874c3e03-0ab5-425e-858e-2fe9c55bbfa9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#918a4fd9-081e-488f-bbb2-5b668746ea2f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#da9a66af-0c30-46d2-9cb0-97ac9173414a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6d26d8c8-cb43-408c-a883-12b9cc62b48a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#cca918d9-d975-4c92-81b0-35c8c9ed6f94>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#071e7ebc-5f54-4de8-a962-c9f761f5b2bf>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fbb2ac8f-37a7-46c8-a982-e6c47c7dc124>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6ab604ad-ff3b-4024-9d41-44f066fc1304>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#69c8ee37-4c35-406a-91ea-74c279cfb032>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#117c9ff8-3a68-4b04-9a06-2760bc4728ef>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6736a162-d48c-4e36-a420-24b3dd318e57>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d4bfa924-ed1e-458b-8e0a-8eb6663a8c97>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0347578a-bee6-4b39-ac09-e76c87ab5f79>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#eb311768-b550-4b60-81d3-2d6c47593798>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4e1379e3-7dd5-484d-bc30-570c0c14bd2a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bb495193-6682-46a2-b60e-8ce91054f16d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d6af66de-5d85-4b0b-a325-6b5d32f1a8cf>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6383756d-2c73-4f2c-bee8-59ed30dc80bf>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c9629dc6-5732-4f86-9876-2d6c4667a456>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#660a85d4-a911-43e4-93c3-562871e04df9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d1e254dd-7174-4fd5-b749-381f64269106>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#97ea6a12-218e-460f-b787-9bfbf3ea8b21>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3e7a59c7-64a7-4968-8a11-0f7eb6b6dd07>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#524cf5d6-a88e-43cb-99f0-b5888052d3b0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#787f4490-62ba-4bcf-a319-0bba9ce088bc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a0b126bf-03bb-4488-b7b5-753b9f38112a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#29084509-39e0-4a21-8b8f-591ac3f613cc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#db86e6a7-8049-49d9-9aff-9feec753c1b8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3d0f008f-6c2e-4296-945a-28d2f332bb87>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c888fd9c-c2b8-4eef-87a8-8d07b34c3ef5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#abee5fba-8c4f-4367-8958-9dcb7484bfc7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7e9cfc3c-cbe1-4d51-834c-bc7fbc75f9b0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7921bc45-a8f7-4a75-94a4-f2d30a3642ab>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#753cd424-dcaa-4875-8a70-cac80fe77b74>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#22d0ca31-dab3-4184-93fe-1184f0e50a66>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ce0b0181-9550-45b0-9565-572304b830e0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e477e42a-f31b-4a8b-beed-f6f524425904>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c8c6429a-fe10-4893-ab6b-50328f72b7f7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2bc1ee38-44bb-47dd-a627-d4cfec5e978d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8073e17d-5408-40bc-ba7e-63e3a16ae65e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#437afa2c-1818-4888-81b7-254bf853818c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#628966f1-1e2b-4e69-baf0-9fa2f1fa3c32>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e98832ba-f89a-45e9-8a4e-cd0cf6215a6e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d3549aef-2004-4060-9cb2-1e39102cea80>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fafb605b-3ddb-487d-8045-b8b308ab925d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#27388e2c-9fc0-4fda-9255-f33d4df210f2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#403f9c8b-6289-4ed9-b7bc-3bfb95922ea0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#27d44278-f31e-40a1-91db-1cb91f6f9d21>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5414510c-f18a-4191-8a20-fc2cd6f40e91>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a27c0df8-f56f-4b9d-8187-2a358dd6d86c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fdf4a3b5-456b-4733-afc6-3c794c54e329>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#63903b7b-4a7c-48b5-88a8-55a244193e87>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7a00cb98-ad16-4549-ad4b-81ca371a201c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0d33777d-cc50-401f-ab98-9c7d913a0b2f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f7e6f752-ea7d-4e85-9982-e719b13fe003>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#408f9607-a43a-42e3-be97-017bd4948525>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b2735980-562b-4f8c-a2d0-6935999780e4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7523a41f-3f76-4165-afe2-0f05f56daef7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#47337b21-fbd2-405b-b85e-22cf787bda9e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7fcd52e0-0662-4a75-8509-2526e6edbf7d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2eba1a01-927d-4539-bf37-edcab42a0c25>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#67caaddf-6ce0-4169-9dcd-7ea9cb719e81>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#467fe848-3750-4639-8fe6-9b1abadcd2aa>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b3cf9453-9613-4cc9-b940-97b492410c40>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0e5c4e7d-7bb2-4562-b3d1-0e6f1e8919c7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8d8091b1-6aa8-4cfc-af22-02fb8bf11447>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bdaea11c-0a78-4773-8273-99d5c0b18255>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8bb256a0-6147-4f20-95ec-45c78057a2cc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7afedefa-0617-4492-a83c-61ffdd006ce7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bbf07e24-a6d8-4f96-84f3-60c9ecf0688c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b9051666-85e5-4e85-9e41-71b644bc3913>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#44b03319-9ce7-49e4-b6cd-eb9041c87861>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d6cd65dd-2043-485e-82c5-caf4d4efe979>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f453caf4-5593-48cc-b2a8-08ecc615d0a3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2f1889b7-3993-445a-945a-0df8221dc063>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0edd460d-0d7c-4cd4-9fcc-cd532c80117d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f1a2f334-86d8-4752-93bc-77e4e8c2ddf3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#836fd400-910e-4fe4-a6d5-edb7f88f5193>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#93f0682f-9e60-4bdd-b25d-583866089ad5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ea31e88f-8ff7-4900-82de-330dba2c784e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#416e199e-b3a2-42c0-8be5-7bfcb45e1ed8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dc60dc3c-ca19-47df-9ea1-70b158580fe5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e7e27234-b8cc-4a36-8cd0-da0a7ba5425e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2f3dd0cc-1551-4d9d-a7a1-ce0b9aaf863c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#32edbae7-230a-4d07-9ad1-88741c059fc8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ef6f79fe-e0d6-444f-a4c4-7b25f1bf2e12>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5affb0bc-2e1f-40d8-ab64-9e1b380e7124>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1fd6848f-9e56-4858-8575-fe1757a382ef>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a4861850-1df7-4cf0-b70f-e250c14f87a6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e2de7dd7-2562-43fb-bae2-bdb52ca6d832>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1fb6d45a-5df0-43cc-99ee-752d3c91eba5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#51d228c7-f952-4172-ae6e-338c45dea020>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#895c5f1f-e784-4588-95f4-23c3ecdf4d52>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#21f8fba2-86e2-4f53-b4fc-250c0f67f58e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#344e7b27-17a5-4264-9689-c6e53ed0edf3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c9af5032-6059-423f-8ff6-78d351de3369>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bbefebc4-a173-4e8f-8521-9901514dfb0e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c18d7413-e544-4f03-8e72-dd1ebf7b8771>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#442ebf61-d0aa-40fe-898a-a688e6601d85>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9116f2be-4da9-4098-9b39-e82fbf2c25d9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9ac7de3e-952f-48ec-8a0f-94d76ab8a9a9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ba0f62f6-7ac7-4570-8102-175732ed90b0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#da76fcf4-2cbd-4ada-bead-0487112ce7b3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#15546f81-c511-4135-ab4a-1e8db5afa0bb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#768e0bfc-bf73-483b-911a-21082b382a95>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#61d67540-2ddc-4eb8-8868-5fdd43765437>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c79ea3ae-00fc-4099-a498-cc64ba519809>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#351bd516-df21-40ac-b48a-8e1ba729e0ee>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9cc858ce-d13a-4459-819c-1a87af968bf1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0cc238a9-4ede-4257-b546-65d002e16e95>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c7914861-fb0d-427a-8ce2-cc6cc0cb4a5e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#91d2f1d8-a1bc-40fc-9b16-64f9023e76ae>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#aedcde92-3922-4ed1-86a2-ef3e144eee0a>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9ab4d9ba-096e-4d06-9eba-1bb455e99411>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#880b6173-8f8a-497b-b4f5-008849db7cb2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4a09332b-5448-43ee-a0b9-0f4a6184661d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a3b7c37f-714d-4b22-a9bb-62492471656b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c898e53d-bffe-4014-be17-bc2b8879c7c1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#db189ad2-e2bd-41d0-a95c-b9868103d1a2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0f93d328-cc74-4e24-b2bf-8bdaa2c7e605>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#18817b14-3e59-4da5-b7ee-4a3fa38a0990>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8c425871-90d8-4ec9-9777-01b162f4913b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a75f1bbf-ae9b-4727-b812-f7fd1addcdf4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#141e71d4-18ec-4b79-b87b-c32b856cef41>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f9ca62f5-ed13-4e7a-9218-12b76b814baf>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8f04df8c-d342-419a-ab47-e4bc909839f4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#89cd93bf-c719-4ca3-aa18-6b7f38c4e50f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e92d8ac0-a8b8-4034-b432-bc46a68911c3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#69160649-6515-4ceb-93cd-411bef4e2301>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9b920ba5-7fbb-4f32-ac67-6d5082a64657>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#90ba09c9-6ba0-49b5-ad85-f54e600154de>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4e904913-6a0a-43cb-abe3-c89ff351f717>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4cc498ea-822d-4a5a-806c-9b696b89771c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d33f9bee-4736-4cf5-b6ac-8bcffe54a35b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7439ea88-849b-461d-8b90-c0d81d5cb93d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b356d5bb-f6ae-4c6b-b1aa-34b34cc68ed1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a9cfe605-11b9-4b5b-ae46-c9a7d57c20d6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a27d6a3e-11b4-4c72-b626-ee4fd04163a7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ecb68a95-37fa-4c1b-9b47-e3a3c45f839f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c9765453-b331-4dc3-a26e-f8eb02206354>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4e3ad94d-7127-48ba-b9b8-6ee8b6db8998>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b50ec015-f00a-4e71-adf3-b40a0330cc84>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a7248ea0-3140-42ef-9116-3ff996e102cc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ec7dc0eb-6355-413a-a4e5-5b6b85b3c76b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#72e868ab-791a-448b-b13a-29697a77c52c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9d49e541-e6d3-4006-a367-a817e47ab428>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6c682956-ea39-4eb4-861c-71cd201c79f1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4e194662-a62e-49c7-ac6b-e2811c5b8bf4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#50dce430-e4df-45a8-bfdb-1ba1c99b1491>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f684afc0-5b2e-4489-90ae-ce4bcf3ebc96>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3255fa4d-8e8e-4be6-a58a-7cdbd7be03ec>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a2b52501-4a13-4c77-a846-3ea59b647c6f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#54ffb580-54db-4d0b-b580-9edea96902f0>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4d91135f-d3c4-4aa5-ae12-d43bb568ef11>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0021ffdc-9fbb-4e24-aed8-c4891695daf1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1f4fd7d6-2daf-44c5-8200-862e46403124>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7c7fd358-cafd-49db-a73d-8e4552605eb4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#09f254ea-b145-4122-a7c2-62639cd5bec4>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5b6c8796-2bec-477e-aa5b-24da5943b4c1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#83915829-1559-4083-bef6-b370fce361f3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#447368e7-3e92-4870-9ed8-d6722c2fad05>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9cdcffec-98ae-4987-b910-055e3b0d26f6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#aa651861-fdfd-49c7-a35c-4518e70c4750>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#35f9938e-44c6-4008-a566-68f90cb306df>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ac81b980-c050-4b5f-95d1-bab30ebb6acd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#78a36060-b736-43e0-bc13-dbe2ae6e94be>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9d6f2b98-2abc-4f47-8e9f-d95a01486410>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#cd78dd0e-0aed-4f93-b972-bd9cdcf092ae>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6aedf8ba-2435-442e-878b-b67d13cc790e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4eabdff7-c70c-4919-92ff-32f1d4695817>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8c7f1617-93b3-4d6c-b354-d90bf6d5d512>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#425b76d7-ab05-4242-9aac-2ac7dc7bf902>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b2d137b6-547f-407a-8294-61e7a148db00>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e96aa0ad-f59c-42ae-a528-6daa4312e2ce>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c7240726-7ac9-47cf-bcad-952778b0380b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#874111d5-d1f0-44f2-bfad-071d73d59835>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b636b203-27f1-4b55-9ed6-47fe901efd58>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#eb71b2af-4e3a-4e03-bc4c-3d2b4698b3f5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8d4c4cf0-fbf2-4cea-ba8c-5b3d86d2ec55>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bf7cfb01-4491-4c71-9055-bffdc8cba307>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2eed28de-92c5-44cd-8bbb-37150ebd20f1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b62dbd33-26b2-4c0d-b9c0-72667859b21c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3a5625b8-1836-4c33-9507-3e1ced071a49>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b6a26c2f-eea8-4afb-83dc-274e5a5c6b04>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c9ed3451-7533-444a-a565-69c612ea7b5e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#9d50b4b7-7752-48ca-9286-6d5fd5efc203>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7a773be4-cbd1-40a9-8887-1cdf44740e58>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3e12d315-213b-4ee9-a342-ea9ca0400347>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#71f2bbb3-e29a-4ded-b5a9-58133696a20d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0c34040a-f334-418a-ae01-883a280aaf7c>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7216e3a8-8e56-4d7a-81f2-9c031fb30976>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#51809d41-c071-4b3d-8150-369f7e726b74>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0d2ac342-e8db-49a3-9296-a2f678d07b5f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c233b5a1-576b-43df-9664-512e77ee95bc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#65bdbb91-6735-400d-9f2e-646d4ac7cbb8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dafc32e5-2330-4ad9-9cea-746d9c518124>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#d3459e53-6c16-4762-a108-d414610838ea>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fab9fd08-9242-463e-83f6-4776274e722d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#af2ae6d2-5748-415d-bafa-511ea814e2e5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1f58f143-909e-44b7-99e7-dca6a16b1b9e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5f769874-1176-40b5-a562-63360a826510>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bce128b2-56d9-4825-bb3f-4d6d04690442>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ef7fe093-2b4c-425d-85a0-71cbd1181371>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#58e06cb7-d65c-415e-8399-562a10085528>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ff90e479-149c-4389-892e-c8f01e765ef5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3556f496-9b4f-4520-be21-6ccfab8e7249>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8183acf6-711a-4f5a-a3df-384b28f52f65>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#082931ad-1124-4e87-b208-fcddf6becf63>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f59e696c-df91-45ac-a194-a9462a7aec1f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8f9c6f49-d704-4ddc-86e7-feb95ffa4fa9>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5ee960ab-1921-4986-9ec8-2f9fa0b87bed>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#32c0ac8b-8624-4bae-b91d-8791f9f96dc5>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fc132541-add3-42be-9d10-8f32655d83c8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#12d66444-e416-4178-9eef-3fbd7ca57496>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#54049821-4e5a-4c7c-b4f6-f70a5709c447>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6b5e1700-1429-4f88-a6c1-4a4e0614664d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a664f9c7-3897-4b22-87e5-7f977df7b3bc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#2dbb4b2d-5da1-4c1f-91f0-d20eff74de29>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#04708760-f784-4c2b-a572-646246f2845e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#346453b9-e53d-4235-b709-0803bdb2b294>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#141cd739-abeb-437d-8f71-ee2236efea08>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a2f46c94-e325-4c6a-87f4-b6605d22ecef>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#3d3640a0-a257-464e-83d8-709d52f0977e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b487071f-93d7-47c4-a736-ce892547ffb2>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#fe91928a-dbd3-4875-8d54-7039f265f9ce>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0c7b321f-5064-4aa3-a489-c9032548eb5b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#abff5087-64b3-4501-855f-688cc53b2844>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b33aa1d9-9b7e-4b51-9363-c4e8ccd1341d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0fa3f2ee-6823-4567-a82d-6d197d5ad2a3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a6bf7bc4-70c4-480b-9db9-aead0a68adbd>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#04543cb6-2bc9-43a8-bf13-509828007353>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1254b908-371e-4be2-8d4f-b4ccc6650240>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#55a6fb5e-08fb-4114-a2ff-1460a2080435>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e10d0acd-d310-495b-8a45-e559c0d7c155>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#41a66469-36ac-4c22-a8c7-af12662b5c64>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dbd27ca3-6eab-47ab-a860-a4e9fdffcd6d>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7bb67726-3ea7-4264-8290-83c07e006bc7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#7b775428-44a1-4574-894c-617134a58ee1>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#644a16f5-b42c-482e-8bce-ee819ffc5462>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#82826265-ea7f-4f89-a419-8afac98d4f8b>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#f69365f6-90fb-4b5b-b09b-945a847091c7>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#adf0f18a-c30a-4be3-a2b3-8384fb6e1560>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b73fb716-2d0e-4ed7-a273-a23d34af9f46>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b2e8fec8-86a8-4ca8-9c47-2f6a67779b41>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1a9e87b9-dcae-47d3-a2a6-c8b6ed6be563>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5407ceb2-5001-4852-a35b-30527e780534>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0ba883bc-17a4-46cb-926f-74531a024bfc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#12876aa1-2929-48db-8cad-95a295d5fe95>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#882405cb-0946-4660-9d15-7caed7170acc>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b79ca4da-ba1e-4f51-b8eb-3532b4b20d10>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4c26dc6e-86e1-4c72-bceb-19862f93e1db>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#bcbdaf56-ebe5-4fbe-bdde-3a2a45810031>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#5c8dad8f-d8b2-4b8d-b31b-3ad676b839b6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#4662f930-6980-47d2-b574-7158688eacb3>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#b781f15d-c353-44b6-94cf-5fc1ae7f69e6>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8691d09c-13b8-4d66-865c-5e27dac2c348>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#a7f6695c-e5ae-4904-9a1e-33bd470d8dbf>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#0569c131-ab1a-4c93-89f0-fba1e523c1b8>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1b52843b-c070-46a1-81ea-7596d4b6b66f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#1b59abc4-8486-49cd-8453-6996377c1f4e>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#65f43c84-c24d-4b8b-a960-89ea7e5796ba>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#e21cbba8-516c-4553-a7c3-aff4708cef8f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#c8caa19a-c8ee-4422-81e2-1cdb1f50b292>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#8ef74b02-2efd-4ec1-a872-beba5e2d5f58>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#60561f88-2d62-4d9f-9fb3-a735fd1aeb3f>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#dc7488aa-98c0-45f6-b390-a98f59970500>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#6f7c44cd-1a73-48f1-a999-77b12af95122>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#ff009ecd-2ae3-41ed-ac9c-2046e681e1cb>
+	isoC:context :TH ;
+.
+<http://www.assero.co.uk/CLA#450d7ca5-1a1b-4ae4-a646-33013bdef624>
+	isoC:context :TH ;
 .

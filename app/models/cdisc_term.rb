@@ -4,8 +4,6 @@
 # @since 2.22.0
 class CdiscTerm < Thesaurus
   
-  C_IDENTIFIER = "CT"
-
   @@cdisc_ra = nil
 
   # Owner
@@ -17,18 +15,11 @@ class CdiscTerm < Thesaurus
     @@cdisc_ra.freeze
   end
 
-  # Child Klass. Return the child class
-  #
-  # @return [Class] the child class
-  def self.child_klass
-    ::CdiscCl
-  end
-
   # Identifier
   #
   # @return [Hash] the configuration hash
   def self.identifier
-    C_IDENTIFIER
+    "CT"
   end
 
   # Version Dates. Get set of version dates

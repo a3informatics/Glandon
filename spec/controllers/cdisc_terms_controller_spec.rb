@@ -59,11 +59,11 @@ describe CdiscTermsController do
     it "shows the history, initial view" do
       ct = Thesaurus.new
       ct.uri = Uri.new(uri: "http://www.example.com/th#th")
-      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1"),Uri.new(uri: "http://www.example.com/a#2")])
+      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm.identifier, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1"),Uri.new(uri: "http://www.example.com/a#2")])
       expect(Thesaurus).to receive(:find_minimum).with(Uri.new(uri: "http://www.example.com/a#2").to_id).and_return(ct)
       get :history
       expect(assigns(:cdisc_term_id)).to eq("aHR0cDovL3d3dy5leGFtcGxlLmNvbS9hIzI=")
-      expect(assigns(:identifier)).to eq(CdiscTerm::C_IDENTIFIER)
+      expect(assigns(:identifier)).to eq(CdiscTerm.identifier)
       expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
       expect(assigns(:ct).uri).to eq(ct.uri)
       expect(response).to render_template("history")
@@ -73,7 +73,7 @@ describe CdiscTermsController do
       ct_1 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       ct_2 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])
+      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])
       get :history, params:{cdisc_term: {count: 20, offset: 20}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -90,11 +90,11 @@ describe CdiscTermsController do
     it "shows the history, initial view" do
       ct = Thesaurus.new
       ct.uri = Uri.new(uri: "http://www.example.com/th#th")
-      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1"),Uri.new(uri: "http://www.example.com/a#2")])
+      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm.identifier, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1"),Uri.new(uri: "http://www.example.com/a#2")])
       expect(Thesaurus).to receive(:find_minimum).with(Uri.new(uri: "http://www.example.com/a#2").to_id).and_return(ct)
       get :history
       expect(assigns(:cdisc_term_id)).to eq("aHR0cDovL3d3dy5leGFtcGxlLmNvbS9hIzI=")
-      expect(assigns(:identifier)).to eq(CdiscTerm::C_IDENTIFIER)
+      expect(assigns(:identifier)).to eq(CdiscTerm.identifier)
       expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
       expect(assigns(:ct).uri).to eq(ct.uri)
       expect(response).to render_template("history")
@@ -117,7 +117,7 @@ describe CdiscTermsController do
       ct_1 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       ct_2 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])
+      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])
       get :history, params:{cdisc_term: {count: 20, offset: 20}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -134,11 +134,11 @@ describe CdiscTermsController do
     it "shows the history, initial view" do
       ct = Thesaurus.new
       ct.uri = Uri.new(uri: "http://www.example.com/th#th")
-      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1"),Uri.new(uri: "http://www.example.com/a#2")])
+      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm.identifier, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1"),Uri.new(uri: "http://www.example.com/a#2")])
       expect(Thesaurus).to receive(:find_minimum).with(Uri.new(uri: "http://www.example.com/a#2").to_id).and_return(ct)
       get :history
       expect(assigns(:cdisc_term_id)).to eq("aHR0cDovL3d3dy5leGFtcGxlLmNvbS9hIzI=")
-      expect(assigns(:identifier)).to eq(CdiscTerm::C_IDENTIFIER)
+      expect(assigns(:identifier)).to eq(CdiscTerm.identifier)
       expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
       expect(assigns(:ct).uri).to eq(ct.uri)
       expect(response).to render_template("history")

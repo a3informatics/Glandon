@@ -397,9 +397,6 @@
 <http://www.s-cubed.dk/SN000116/V1#SN000116>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Subcategory of Antibodies"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#28be7b0d-7c44-43bd-b41c-2191b6598eea> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
 	isoT:hasState <http://www.s-cubed.dk/SN000116/V1#SN000116_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/SN000116/V1#SN000116_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -438,10 +435,7 @@
 .
 <http://www.s-cubed.dk/SN000116/V1#SN000116_S003908>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#28be7b0d-7c44-43bd-b41c-2191b6598eea> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S003908"^^xsd:string ;
 	th:notation "ANTI-DRUG ANTIBODIES"^^xsd:string ;
 	th:definition "Category used to retrieve information regarding antibodies that binds to an administered drug."^^xsd:string ;
@@ -454,10 +448,7 @@
 .
 <http://www.s-cubed.dk/SN000116/V1#SN000116_S003909>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#28be7b0d-7c44-43bd-b41c-2191b6598eea> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Cross-Reactivity"^^xsd:string ;
 	th:identifier "S003909"^^xsd:string ;
 	th:notation "CROSS-REACTIVITY"^^xsd:string ;
 	th:definition "Measurement of Cross-Reactivity of Anti-Drug Antibodies interacting with other drug or biological target."^^xsd:string ;
@@ -470,9 +461,7 @@
 .
 <http://www.s-cubed.dk/SN000116/V1#SN000116_S006884>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#28be7b0d-7c44-43bd-b41c-2191b6598eea> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Neutralizing Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S006884"^^xsd:string ;
 	th:notation "NEUTRALIZING ANTI-DRUG ANTIBODIES"^^xsd:string ;
 	th:definition "Category used to retrieve information regarding antibodies that binds to an administered drug and inhibits the biological activity of that drug."^^xsd:string ;
@@ -490,7 +479,6 @@
 <http://www.s-cubed.dk/SN000003/V1#SN000003>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Antibody Test Name"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
 	isoT:hasState <http://www.s-cubed.dk/SN000003/V1#SN000003_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/SN000003/V1#SN000003_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -574,8 +562,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000016>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA Activity Inhibition Endpoint Titer"^^xsd:string ;
 	th:identifier "S000016"^^xsd:string ;
 	th:notation "ANGAA Activity Inhibition Endpoint Titer"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA activity Inhibition Titer Endpoint in a biological specimen."^^xsd:string ;
@@ -588,8 +575,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000027>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase Inhibition IgE Antibody Status"^^xsd:string ;
 	th:identifier "S000027"^^xsd:string ;
 	th:notation "Anti-AGlcsidase Inhibition IgE AB Status"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa Inhibition IgE Antibody Status in a biological specimen."^^xsd:string ;
@@ -602,8 +588,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000024>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase Activity Uptake Inhibition Titer"^^xsd:string ;
 	th:identifier "S000024"^^xsd:string ;
 	th:notation "Anti-AGlcsidase Uptake Inhibition Titer"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa Uptake Inhibition Titer in a biological specimen."^^xsd:string ;
@@ -616,8 +601,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000021>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase Activity Inhibition"^^xsd:string ;
 	th:identifier "S000021"^^xsd:string ;
 	th:notation "Anti-AGlucosidase Activity Inhibition"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa Inhibition Status in a biological specimen."^^xsd:string ;
@@ -630,8 +614,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000019>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase IgG Antibody Status"^^xsd:string ;
 	th:identifier "S000019"^^xsd:string ;
 	th:notation "Anti-AGlucosidase IgG Antibody Status"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa IgG Antibody Status in a biological specimen."^^xsd:string ;
@@ -644,8 +627,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000020>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase IgG Antibody Titer"^^xsd:string ;
 	th:identifier "S000020"^^xsd:string ;
 	th:notation "Anti-AGlucosidase IgG Antibody Titer"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa IgG Antibody Titer in a biological specimen."^^xsd:string ;
@@ -658,8 +640,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000028>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase Inhibition IgE Antibody"^^xsd:string ;
 	th:identifier "S000028"^^xsd:string ;
 	th:notation "Anti-AGlucosidase Inhibition IgE AB"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa Inhibition IgE Antibody in a biological specimen."^^xsd:string ;
@@ -672,8 +653,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000022>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase Inhibition Titer"^^xsd:string ;
 	th:identifier "S000022"^^xsd:string ;
 	th:notation "Anti-Alpha Glucosidase Inhibition Titer"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa Inhibition Titer in a biological specimen."^^xsd:string ;
@@ -686,8 +666,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000023>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase Inhibition Uptake"^^xsd:string ;
 	th:identifier "S000023"^^xsd:string ;
 	th:notation "Anti-Alpha Glucosidase Inhibition Uptake"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa Inhibition Uptake in a biological specimen."^^xsd:string ;
@@ -700,8 +679,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000015>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA Activity Inhibition"^^xsd:string ;
 	th:identifier "S000015"^^xsd:string ;
 	th:notation "Anti-NeoGAA Activity Inhibition"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA activity Inhibition Status in a biological specimen."^^xsd:string ;
@@ -714,8 +692,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000017>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA Activity Uptake Inhibition"^^xsd:string ;
 	th:identifier "S000017"^^xsd:string ;
 	th:notation "Anti-NeoGAA Activity Uptake Inhibition"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA activity Uptake Inhibition Status in a biological specimen."^^xsd:string ;
@@ -728,8 +705,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000013>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA Antibody"^^xsd:string ;
 	th:identifier "S000013"^^xsd:string ;
 	th:notation "Anti-NeoGAA Antibody"^^xsd:string ;
 	th:definition "The measurement of anti-neoGAA antibody status in a biological specimen."^^xsd:string ;
@@ -742,8 +718,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000014>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA Antibody Titer"^^xsd:string ;
 	th:identifier "S000014"^^xsd:string ;
 	th:notation "Anti-NeoGAA Antibody Titer"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA antibody titer in a biological specimen."^^xsd:string ;
@@ -756,8 +731,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000026>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA IgE Antibody"^^xsd:string ;
 	th:identifier "S000026"^^xsd:string ;
 	th:notation "Anti-NeoGAA IgE Antibody"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA IgE Antibody in a biological specimen."^^xsd:string ;
@@ -770,8 +744,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000025>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA IgE Antibody Status"^^xsd:string ;
 	th:identifier "S000025"^^xsd:string ;
 	th:notation "Anti-NeoGAA IgE Antibody Status"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA IgE Antibody Status in a biological specimen."^^xsd:string ;
@@ -784,8 +757,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000018>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA Uptake Inhibition Titer"^^xsd:string ;
 	th:identifier "S000018"^^xsd:string ;
 	th:notation "Anti-NeoGAA Uptake Inhibition Titer"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA activity Uptake Inhibition Titer in a biological specimen."^^xsd:string ;
@@ -798,8 +770,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000119>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "AVE0010 Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S000119"^^xsd:string ;
 	th:notation "AVE0010 Anti-Drug Antibodies"^^xsd:string ;
 	th:definition "A measurement of the AVE0010 /Lixisenatide Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -812,8 +783,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S007074>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "AVE0010 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S007074"^^xsd:string ;
 	th:notation "AVE0010 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:definition "A qualitative measurement of the AVE0010 /Lixisenatide Anti-Drug Antibodies in a biological specimen."^^xsd:string ;
@@ -826,8 +796,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S000121>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "AVE0010 Cross-Reactivity"^^xsd:string ;
 	th:identifier "S000121"^^xsd:string ;
 	th:notation "AVE0010 Cross-Reactivity"^^xsd:string ;
 	th:definition "A measurement of the AVE0010/Lixisenatide Cross-Reactivity in a biological specimen."^^xsd:string ;
@@ -840,8 +809,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S005230>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "AVE0010 Cross-Reactivity to GLP-1"^^xsd:string ;
 	th:identifier "S005230"^^xsd:string ;
 	th:notation "AVE0010 Cross-Reactivity to GLP-1"^^xsd:string ;
 	th:definition "The measurement of Cross-reactivity of Lixisenatide antibodies to GLP-1 in a biological specimen."^^xsd:string ;
@@ -854,8 +822,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S005231>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "AVE0010 Cross-Reactivity to Glucagon"^^xsd:string ;
 	th:identifier "S005231"^^xsd:string ;
 	th:notation "AVE0010 Cross-Reactivity to Glucagon"^^xsd:string ;
 	th:definition "The measurement of Cross-reactivity of Lixisenatide antibodies to GLucagon in a biological specimen."^^xsd:string ;
@@ -868,8 +835,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S004101>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "AVE0010 Neutralizing Antibodies"^^xsd:string ;
 	th:identifier "S004101"^^xsd:string ;
 	th:notation "AVE0010 Neutraliz Anti-Drug Antibodies"^^xsd:string ;
 	th:definition "The measurement of AVE0010/Lixisenatide neutralizing antibody in a biological specimen."^^xsd:string ;
@@ -882,8 +848,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S006895>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "GLP-1 Neutralizing Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S006895"^^xsd:string ;
 	th:notation "GLP-1 Neutraliz Anti-Drug Antibodies"^^xsd:string ;
 	th:definition "The measurement of GLP-1 neutralizing anti-drug antibodies in a biological specimen."^^xsd:string ;
@@ -896,8 +861,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S005234>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Glucagon Cross Reactivity"^^xsd:string ;
 	th:identifier "S005234"^^xsd:string ;
 	th:notation "Glucagon Cross Reactivity"^^xsd:string ;
 	th:definition "A measurement of the Glucagon Cross-Reactivity in a biological specimen."^^xsd:string ;
@@ -910,8 +874,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S006893>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Glucagon Neutralizing Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S006893"^^xsd:string ;
 	th:notation "Glucagon Neutraliz Anti-Drug Antibodies"^^xsd:string ;
 	th:definition "The measurement of Glucagon neutralizing antibodies in a biological specimen."^^xsd:string ;
@@ -924,8 +887,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S007075>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "HOE901 Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S007075"^^xsd:string ;
 	th:notation "HOE901 Anti-Drug Antibodies"^^xsd:string ;
 	th:definition "A measurement of the HOE901/insulin glargine anti-drug antibodies in a biological specimen."^^xsd:string ;
@@ -938,8 +900,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S006896>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "HOE901 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S006896"^^xsd:string ;
 	th:notation "HOE901 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:definition "A qualitative measurement of the HOE901/insulin glargine anti-drug antibody in a biological specimen."^^xsd:string ;
@@ -952,8 +913,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S007083>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "HOE901 Cross-Reactivity"^^xsd:string ;
 	th:identifier "S007083"^^xsd:string ;
 	th:notation "HOE901 Cross-Reactivity"^^xsd:string ;
 	th:definition "The measurement of the cross-reactivity of HOE901/insulin glargine in a biological specimen."^^xsd:string ;
@@ -966,8 +926,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S007199>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR156597 Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S007199"^^xsd:string ;
 	th:notation "SAR156597 Anti-Drug Antibodies"^^xsd:string ;
 	th:definition "A measurement of the SAR156597 anti-drug antibody in a biological specimen."^^xsd:string ;
@@ -980,8 +939,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S007196>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR156597 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S007196"^^xsd:string ;
 	th:notation "SAR156597 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:definition "A qualitative measurement of the SAR156597 anti-drug antibody in a biological specimen."^^xsd:string ;
@@ -994,8 +952,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S007197>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR156597 Neutralizing Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S007197"^^xsd:string ;
 	th:notation "SAR156597 Neutraliz Anti-Drug Antibodies"^^xsd:string ;
 	th:definition "A measurement of the SAR156597 neutralizing Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -1008,8 +965,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S007081>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR231893 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S007081"^^xsd:string ;
 	th:notation "SAR231893 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:definition "A qualitative measurement of the SAR231893 Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -1022,8 +978,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S004335>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR231893 Presence of Nabs"^^xsd:string ;
 	th:identifier "S004335"^^xsd:string ;
 	th:notation "SAR231893 Presence of Nabs"^^xsd:string ;
 	th:definition "A measurement of the SAR231893 neutralizing Anti-Drug Antibodies in a biological specimen."^^xsd:string ;
@@ -1036,8 +991,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S004098>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR236553 Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S004098"^^xsd:string ;
 	th:notation "SAR236553 Anti-Drug Antibodies"^^xsd:string ;
 	th:definition "A measurement of the SAR236553 Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -1050,8 +1004,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S007085>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR236553 Neutralizing Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S007085"^^xsd:string ;
 	th:notation "SAR236553 Neutraliz Anti-Drug Antibodies"^^xsd:string ;
 	th:definition "A measurement of the SAR236553 neutralizing Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -1064,8 +1017,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S005228>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR341402 Antibodies Titer"^^xsd:string ;
 	th:identifier "S005228"^^xsd:string ;
 	th:notation "SAR341402 Antibodies Titer"^^xsd:string ;
 	th:definition "The measurement of Aspart antibodies as a titer in a biological specimen."^^xsd:string ;
@@ -1078,8 +1030,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S007084>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR341402 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S007084"^^xsd:string ;
 	th:notation "SAR341402 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:definition "The qualitative measurement of Aspart antibody in a biological specimen."^^xsd:string ;
@@ -1092,8 +1043,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S005229>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR341402 Cross-Reactivity"^^xsd:string ;
 	th:identifier "S005229"^^xsd:string ;
 	th:notation "SAR341402 Cross-Reactivity"^^xsd:string ;
 	th:definition "The cross reactivity measurement of Aspart antibodies to human insulin in a biological specimen."^^xsd:string ;
@@ -1106,8 +1056,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S010167>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR425899 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S010167"^^xsd:string ;
 	th:notation "SAR425899 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:definition "A qualitative measurement of the SAR425899 Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -1120,8 +1069,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S004223>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR425899 Anti-Drug Antibodies Titer"^^xsd:string ;
 	th:identifier "S004223"^^xsd:string ;
 	th:notation "SAR425899 Anti-Drug Antibodies Titer"^^xsd:string ;
 	th:definition "A titration of the SAR425899 Anti-Drug Antibodies Titer in a biological specimen."^^xsd:string ;
@@ -1134,8 +1082,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S004224>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR425899 Cross-Reactivity"^^xsd:string ;
 	th:identifier "S004224"^^xsd:string ;
 	th:notation "SAR425899 Cross-Reactivity"^^xsd:string ;
 	th:definition "A measurement of the SAR425899 Cross-Reactivity in a biological specimen."^^xsd:string ;
@@ -1148,8 +1095,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S006892>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR425899 Neutralizing Antibodies"^^xsd:string ;
 	th:identifier "S006892"^^xsd:string ;
 	th:notation "SAR425899 Neutraliz Anti-Drug Antibodies"^^xsd:string ;
 	th:definition "A measurement of the SAR425899 Neutralizing Antibodies in a biological specimen."^^xsd:string ;
@@ -1162,8 +1108,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S007076>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR428926 Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S007076"^^xsd:string ;
 	th:notation "SAR428926 Anti-Drug Antibodies"^^xsd:string ;
 	th:definition "A measurement of the SAR428926/Maytansin Loaded Anti-Lamp1 Anti-Drug Antibodies in a biological specimen."^^xsd:string ;
@@ -1176,8 +1121,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S009274>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR428926 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S009274"^^xsd:string ;
 	th:notation "SAR428926 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:definition "A qualitative measurement of the SAR428926/Maytansin Loaded Anti-Lamp1 Anti-Drug Antibodies in a biological specimen."^^xsd:string ;
@@ -1190,8 +1134,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S004324>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR439459 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S004324"^^xsd:string ;
 	th:notation "SAR439459 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:definition "A qualitative measurement of the SAR439459 Anti-Drug Antibodies in a biological specimen."^^xsd:string ;
@@ -1204,8 +1147,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S004325>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR439459 Anti-Drug Antibodies Titer"^^xsd:string ;
 	th:identifier "S004325"^^xsd:string ;
 	th:notation "SAR439459 Anti-Drug Antibodies Titer"^^xsd:string ;
 	th:definition "A titration of the SAR439459 Anti-Drug Antibodies Titer in a biological specimen."^^xsd:string ;
@@ -1218,8 +1160,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S007077>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR650984 Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S007077"^^xsd:string ;
 	th:notation "SAR650984 Anti-Drug Antibodies"^^xsd:string ;
 	th:definition "A measurement of the SAR650984 Anti-Drug Antibodies in a biological specimen."^^xsd:string ;
@@ -1232,8 +1173,7 @@
 .
 <http://www.s-cubed.dk/SN000003/V1#SN000003_S007079>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR650984 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S007079"^^xsd:string ;
 	th:notation "SAR650984 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:definition "A qualitative measurement of the SAR650984 Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -1251,7 +1191,6 @@
 <http://www.s-cubed.dk/SN000004/V1#SN000004>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Antibody Test Code"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
 	isoT:hasState <http://www.s-cubed.dk/SN000004/V1#SN000004_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/SN000004/V1#SN000004_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1335,8 +1274,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000119>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "AVE0010 Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S000119"^^xsd:string ;
 	th:notation "A0010AB"^^xsd:string ;
 	th:definition "A measurement of the AVE0010 /Lixisenatide Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -1345,8 +1283,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S007074>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "AVE0010 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S007074"^^xsd:string ;
 	th:notation "A0010ABQ"^^xsd:string ;
 	th:definition "A qualitative measurement of the AVE0010 /Lixisenatide Anti-Drug Antibodies in a biological specimen."^^xsd:string ;
@@ -1355,8 +1292,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000121>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "AVE0010 Cross-Reactivity"^^xsd:string ;
 	th:identifier "S000121"^^xsd:string ;
 	th:notation "A0010C"^^xsd:string ;
 	th:definition "A measurement of the AVE0010/Lixisenatide Cross-Reactivity in a biological specimen."^^xsd:string ;
@@ -1365,8 +1301,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S004101>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "AVE0010 Neutralizing Antibodies"^^xsd:string ;
 	th:identifier "S004101"^^xsd:string ;
 	th:notation "A0010NAB"^^xsd:string ;
 	th:definition "The measurement of AVE0010/Lixisenatide neutralizing antibody in a biological specimen."^^xsd:string ;
@@ -1379,8 +1314,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S005231>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "AVE0010 Cross-Reactivity to Glucagon"^^xsd:string ;
 	th:identifier "S005231"^^xsd:string ;
 	th:notation "A010GCGC"^^xsd:string ;
 	th:definition "The measurement of Cross-reactivity of Lixisenatide antibodies to GLucagon in a biological specimen."^^xsd:string ;
@@ -1389,8 +1323,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S005230>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "AVE0010 Cross-Reactivity to GLP-1"^^xsd:string ;
 	th:identifier "S005230"^^xsd:string ;
 	th:notation "A010GP1C"^^xsd:string ;
 	th:definition "The measurement of Cross-reactivity of Lixisenatide antibodies to GLP-1 in a biological specimen."^^xsd:string ;
@@ -1399,8 +1332,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000024>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase Activity Uptake Inhibition Titer"^^xsd:string ;
 	th:identifier "S000024"^^xsd:string ;
 	th:notation "AAGAUIT"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa Uptake Inhibition Titer in a biological specimen."^^xsd:string ;
@@ -1413,8 +1345,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000027>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase Inhibition IgE Antibody Status"^^xsd:string ;
 	th:identifier "S000027"^^xsd:string ;
 	th:notation "AAGIEABS"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa Inhibition IgE Antibody Status in a biological specimen."^^xsd:string ;
@@ -1427,8 +1358,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000028>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase Inhibition IgE Antibody"^^xsd:string ;
 	th:identifier "S000028"^^xsd:string ;
 	th:notation "AAGIGEAB"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa Inhibition IgE Antibody in a biological specimen."^^xsd:string ;
@@ -1441,8 +1371,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000019>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase IgG Antibody Status"^^xsd:string ;
 	th:identifier "S000019"^^xsd:string ;
 	th:notation "AAGIGGAS"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa IgG Antibody Status in a biological specimen."^^xsd:string ;
@@ -1455,8 +1384,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000020>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase IgG Antibody Titer"^^xsd:string ;
 	th:identifier "S000020"^^xsd:string ;
 	th:notation "AAGIGGAT"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa IgG Antibody Titer in a biological specimen."^^xsd:string ;
@@ -1469,8 +1397,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000021>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase Activity Inhibition"^^xsd:string ;
 	th:identifier "S000021"^^xsd:string ;
 	th:notation "AAGLCAI"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa Inhibition Status in a biological specimen."^^xsd:string ;
@@ -1483,8 +1410,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000022>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase Inhibition Titer"^^xsd:string ;
 	th:identifier "S000022"^^xsd:string ;
 	th:notation "AAGLCIT"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa Inhibition Titer in a biological specimen."^^xsd:string ;
@@ -1493,8 +1419,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000023>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-Alpha Glucosidase Inhibition Uptake"^^xsd:string ;
 	th:identifier "S000023"^^xsd:string ;
 	th:notation "AAGLCUI"^^xsd:string ;
 	th:definition "The measurement of Anti-alglucosidase alfa Inhibition Uptake in a biological specimen."^^xsd:string ;
@@ -1503,8 +1428,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000013>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA Antibody"^^xsd:string ;
 	th:identifier "S000013"^^xsd:string ;
 	th:notation "ANGAAAB"^^xsd:string ;
 	th:definition "The measurement of anti-neoGAA antibody status in a biological specimen."^^xsd:string ;
@@ -1513,8 +1437,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000014>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA Antibody Titer"^^xsd:string ;
 	th:identifier "S000014"^^xsd:string ;
 	th:notation "ANGAAABT"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA antibody titer in a biological specimen."^^xsd:string ;
@@ -1523,8 +1446,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000015>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA Activity Inhibition"^^xsd:string ;
 	th:identifier "S000015"^^xsd:string ;
 	th:notation "ANGAAAI"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA activity Inhibition Status in a biological specimen."^^xsd:string ;
@@ -1533,8 +1455,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000017>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA Activity Uptake Inhibition"^^xsd:string ;
 	th:identifier "S000017"^^xsd:string ;
 	th:notation "ANGAAAUI"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA activity Uptake Inhibition Status in a biological specimen."^^xsd:string ;
@@ -1543,8 +1464,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000026>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA IgE Antibody"^^xsd:string ;
 	th:identifier "S000026"^^xsd:string ;
 	th:notation "ANGAAEAB"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA IgE Antibody in a biological specimen."^^xsd:string ;
@@ -1553,8 +1473,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000025>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA IgE Antibody Status"^^xsd:string ;
 	th:identifier "S000025"^^xsd:string ;
 	th:notation "ANGAAEAS"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA IgE Antibody Status in a biological specimen."^^xsd:string ;
@@ -1563,8 +1482,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000016>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA Activity Inhibition Endpoint Titer"^^xsd:string ;
 	th:identifier "S000016"^^xsd:string ;
 	th:notation "ANGAAIET"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA activity Inhibition Titer Endpoint in a biological specimen."^^xsd:string ;
@@ -1577,8 +1495,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S000018>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Anti-NeoGAA Uptake Inhibition Titer"^^xsd:string ;
 	th:identifier "S000018"^^xsd:string ;
 	th:notation "ANGAAUIT"^^xsd:string ;
 	th:definition "The measurement of Anti-neoGAA activity Uptake Inhibition Titer in a biological specimen."^^xsd:string ;
@@ -1587,8 +1504,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S005234>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Glucagon Cross Reactivity"^^xsd:string ;
 	th:identifier "S005234"^^xsd:string ;
 	th:notation "GCGC"^^xsd:string ;
 	th:definition "A measurement of the Glucagon Cross-Reactivity in a biological specimen."^^xsd:string ;
@@ -1597,8 +1513,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S006893>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "Glucagon Neutralizing Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S006893"^^xsd:string ;
 	th:notation "GCGNAB"^^xsd:string ;
 	th:definition "The measurement of Glucagon neutralizing antibodies in a biological specimen."^^xsd:string ;
@@ -1611,8 +1526,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S006895>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "GLP-1 Neutralizing Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S006895"^^xsd:string ;
 	th:notation "GLP1NAB"^^xsd:string ;
 	th:definition "The measurement of GLP-1 neutralizing anti-drug antibodies in a biological specimen."^^xsd:string ;
@@ -1625,8 +1539,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S007075>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "HOE901 Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S007075"^^xsd:string ;
 	th:notation "HE901AB"^^xsd:string ;
 	th:definition "A measurement of the HOE901/insulin glargine anti-drug antibodies in a biological specimen."^^xsd:string ;
@@ -1635,8 +1548,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S006896>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "HOE901 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S006896"^^xsd:string ;
 	th:notation "HE901ABQ"^^xsd:string ;
 	th:definition "A qualitative measurement of the HOE901/insulin glargine anti-drug antibody in a biological specimen."^^xsd:string ;
@@ -1645,8 +1557,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S007083>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "HOE901 Cross-Reactivity"^^xsd:string ;
 	th:identifier "S007083"^^xsd:string ;
 	th:notation "HE901C"^^xsd:string ;
 	th:definition "The measurement of the cross-reactivity of HOE901/insulin glargine in a biological specimen."^^xsd:string ;
@@ -1655,8 +1566,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S007077>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR650984 Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S007077"^^xsd:string ;
 	th:notation "S0984AB"^^xsd:string ;
 	th:definition "A measurement of the SAR650984 Anti-Drug Antibodies in a biological specimen."^^xsd:string ;
@@ -1665,8 +1575,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S007079>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR650984 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S007079"^^xsd:string ;
 	th:notation "S0984ABQ"^^xsd:string ;
 	th:definition "A qualitative measurement of the SAR650984 Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -1675,8 +1584,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S007084>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR341402 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S007084"^^xsd:string ;
 	th:notation "S1402ABQ"^^xsd:string ;
 	th:definition "The qualitative measurement of Aspart antibody in a biological specimen."^^xsd:string ;
@@ -1685,8 +1593,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S005228>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR341402 Antibodies Titer"^^xsd:string ;
 	th:identifier "S005228"^^xsd:string ;
 	th:notation "S1402ABT"^^xsd:string ;
 	th:definition "The measurement of Aspart antibodies as a titer in a biological specimen."^^xsd:string ;
@@ -1695,8 +1602,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S005229>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR341402 Cross-Reactivity"^^xsd:string ;
 	th:identifier "S005229"^^xsd:string ;
 	th:notation "S1402C"^^xsd:string ;
 	th:definition "The cross reactivity measurement of Aspart antibodies to human insulin in a biological specimen."^^xsd:string ;
@@ -1705,8 +1611,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S007081>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR231893 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S007081"^^xsd:string ;
 	th:notation "S1893ABQ"^^xsd:string ;
 	th:definition "A qualitative measurement of the SAR231893 Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -1715,8 +1620,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S010167>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR425899 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S010167"^^xsd:string ;
 	th:notation "S5899ABQ"^^xsd:string ;
 	th:definition "A qualitative measurement of the SAR425899 Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -1725,8 +1629,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S004223>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR425899 Anti-Drug Antibodies Titer"^^xsd:string ;
 	th:identifier "S004223"^^xsd:string ;
 	th:notation "S5899ABT"^^xsd:string ;
 	th:definition "A titration of the SAR425899 Anti-Drug Antibodies Titer in a biological specimen."^^xsd:string ;
@@ -1735,8 +1638,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S004224>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR425899 Cross-Reactivity"^^xsd:string ;
 	th:identifier "S004224"^^xsd:string ;
 	th:notation "S5899C"^^xsd:string ;
 	th:definition "A measurement of the SAR425899 Cross-Reactivity in a biological specimen."^^xsd:string ;
@@ -1745,8 +1647,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S006892>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR425899 Neutralizing Antibodies"^^xsd:string ;
 	th:identifier "S006892"^^xsd:string ;
 	th:notation "S5899NAB"^^xsd:string ;
 	th:definition "A measurement of the SAR425899 Neutralizing Antibodies in a biological specimen."^^xsd:string ;
@@ -1759,8 +1660,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S004098>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR236553 Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S004098"^^xsd:string ;
 	th:notation "S6553AB"^^xsd:string ;
 	th:definition "A measurement of the SAR236553 Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -1769,8 +1669,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S007085>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR236553 Neutralizing Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S007085"^^xsd:string ;
 	th:notation "S6553NAB"^^xsd:string ;
 	th:definition "A measurement of the SAR236553 neutralizing Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -1783,8 +1682,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S007199>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR156597 Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S007199"^^xsd:string ;
 	th:notation "S6597AB"^^xsd:string ;
 	th:definition "A measurement of the SAR156597 anti-drug antibody in a biological specimen."^^xsd:string ;
@@ -1793,8 +1691,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S007196>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR156597 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S007196"^^xsd:string ;
 	th:notation "S6597ABQ"^^xsd:string ;
 	th:definition "A qualitative measurement of the SAR156597 anti-drug antibody in a biological specimen."^^xsd:string ;
@@ -1803,8 +1700,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S007197>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR156597 Neutralizing Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S007197"^^xsd:string ;
 	th:notation "S6597NAB"^^xsd:string ;
 	th:definition "A measurement of the SAR156597 neutralizing Anti-Drug Antibody in a biological specimen."^^xsd:string ;
@@ -1817,8 +1713,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S007076>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR428926 Anti-Drug Antibodies"^^xsd:string ;
 	th:identifier "S007076"^^xsd:string ;
 	th:notation "S8926AB"^^xsd:string ;
 	th:definition "A measurement of the SAR428926/Maytansin Loaded Anti-Lamp1 Anti-Drug Antibodies in a biological specimen."^^xsd:string ;
@@ -1827,8 +1722,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S009274>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR428926 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S009274"^^xsd:string ;
 	th:notation "S8926ABQ"^^xsd:string ;
 	th:definition "A qualitative measurement of the SAR428926/Maytansin Loaded Anti-Lamp1 Anti-Drug Antibodies in a biological specimen."^^xsd:string ;
@@ -1837,8 +1731,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S004335>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR231893 Presence of Nabs"^^xsd:string ;
 	th:identifier "S004335"^^xsd:string ;
 	th:notation "S893NABS"^^xsd:string ;
 	th:definition "A measurement of the SAR231893 neutralizing Anti-Drug Antibodies in a biological specimen."^^xsd:string ;
@@ -1847,8 +1740,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S004324>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR439459 Anti-Drug Antibodies (Qual)"^^xsd:string ;
 	th:identifier "S004324"^^xsd:string ;
 	th:notation "S9459ABQ"^^xsd:string ;
 	th:definition "A qualitative measurement of the SAR439459 Anti-Drug Antibodies in a biological specimen."^^xsd:string ;
@@ -1857,8 +1749,7 @@
 .
 <http://www.s-cubed.dk/SN000004/V1#SN000004_S004325>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#18ced098-4dbc-4aca-8298-3fa0a4f08aac> ;
+	isoC:label "SAR439459 Anti-Drug Antibodies Titer"^^xsd:string ;
 	th:identifier "S004325"^^xsd:string ;
 	th:notation "S9459ABT"^^xsd:string ;
 	th:definition "A titration of the SAR439459 Anti-Drug Antibodies Titer in a biological specimen."^^xsd:string ;
@@ -1872,8 +1763,6 @@
 <http://www.s-cubed.dk/C66767/V1#C66767>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
 	isoT:hasState <http://www.s-cubed.dk/C66767/V1#C66767_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/C66767/V1#C66767_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1885,16 +1774,17 @@
 	th:notation "ACN"^^xsd:string ;
 	th:definition "Terminology specifying changes to the study treatment as a result of an adverse event."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
-	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C17998> ;
 	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
-	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
-	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
 	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C17998> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
 	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
+	th:narrower <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
 	th:narrower <http://www.cdisc.org/C99075/V33#C99075_C78728> ;
 	th:extends <http://www.cdisc.org/C66767/V35#C66767> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#c609e7f988d1d30435702c85bd1f5c852c3c91f3> ;
+	th:isRanked <http://www.assero.co.uk/TRC#82d4a81d-ffad-4ebd-b088-935dec7da41f> ;
 .
 <http://www.s-cubed.dk/C66767/V1#C66767_RS>
 	rdf:type isoR:RegistrationState ;
@@ -1916,10 +1806,69 @@
 	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
+<http://www.assero.co.uk/TRC#82d4a81d-ffad-4ebd-b088-935dec7da41f>
+	rdf:type th:RankedCollection ;
+	isoC:label ""^^xsd:string ;
+	th:members <http://www.assero.co.uk/TRM#bd72a4ec-420f-4779-bf5d-de676790ce8c> ;
+.
+<http://www.assero.co.uk/TRM#bd72a4ec-420f-4779-bf5d-de676790ce8c>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "1"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
+	th:memberNext <http://www.assero.co.uk/TRM#f740eea6-bdd2-4426-a201-c9fe359a59fe> ;
+.
+<http://www.assero.co.uk/TRM#f740eea6-bdd2-4426-a201-c9fe359a59fe>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "2"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
+	th:memberNext <http://www.assero.co.uk/TRM#3ea16df5-22b7-4883-8c54-126be43aa9d2> ;
+.
+<http://www.assero.co.uk/TRM#3ea16df5-22b7-4883-8c54-126be43aa9d2>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "3"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
+	th:memberNext <http://www.assero.co.uk/TRM#f2a1d1eb-a7bf-40d3-a8a4-0f1ed131b6f7> ;
+.
+<http://www.assero.co.uk/TRM#f2a1d1eb-a7bf-40d3-a8a4-0f1ed131b6f7>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "4"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
+	th:memberNext <http://www.assero.co.uk/TRM#97e65e6a-6c9c-4587-8b33-d23bf519832f> ;
+.
+<http://www.assero.co.uk/TRM#97e65e6a-6c9c-4587-8b33-d23bf519832f>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "5"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
+	th:memberNext <http://www.assero.co.uk/TRM#6c0b2462-f5ab-4fd5-a75d-3b961e47c659> ;
+.
+<http://www.assero.co.uk/TRM#6c0b2462-f5ab-4fd5-a75d-3b961e47c659>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "6"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C99075/V33#C99075_C78728> ;
+	th:memberNext <http://www.assero.co.uk/TRM#67d548bb-609d-4a62-8598-200134b62127> ;
+.
+<http://www.assero.co.uk/TRM#67d548bb-609d-4a62-8598-200134b62127>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "7"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C17998> ;
+	th:memberNext <http://www.assero.co.uk/TRM#ad6ce22a-c181-4efd-9168-a92c1463894c> ;
+.
+<http://www.assero.co.uk/TRM#ad6ce22a-c181-4efd-9168-a92c1463894c>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "8"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
+.
 <http://www.s-cubed.dk/NP001000P/V1#NP001000P>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Action Taken with Study Treatment Subset 01"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
 	isoT:hasState <http://www.s-cubed.dk/NP001000P/V1#NP001000P_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/NP001000P/V1#NP001000P_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1939,7 +1888,7 @@
 	th:narrower <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
 	th:subsets <http://www.s-cubed.dk/C66767/V1#C66767> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#2b0b8c89e6a04cba5ba5c450d9b8ee964270379f> ;
-	th:isOrdered <http://www.assero.co.uk/TS#3fa14266-5c55-4f31-b3de-d2cb7b219a15> ;
+	th:isOrdered <http://www.assero.co.uk/TS#beceb2a6-0744-4802-a6c9-3a1e75709e52> ;
 .
 <http://www.s-cubed.dk/NP001000P/V1#NP001000P_RS>
 	rdf:type isoR:RegistrationState ;
@@ -1965,42 +1914,42 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Action Taken with Study Treatment Subset 01"^^xsd:string ;
 .
-<http://www.assero.co.uk/TS#3fa14266-5c55-4f31-b3de-d2cb7b219a15>
+<http://www.assero.co.uk/TS#beceb2a6-0744-4802-a6c9-3a1e75709e52>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#6cab5ac4-1fff-4952-8e60-0e8b72500c5a> ;
+	th:members <http://www.assero.co.uk/TSM#b143d935-613d-4a95-8f25-579f372fc7c4> ;
 .
-<http://www.assero.co.uk/TSM#6cab5ac4-1fff-4952-8e60-0e8b72500c5a>
+<http://www.assero.co.uk/TSM#b143d935-613d-4a95-8f25-579f372fc7c4>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
-	th:memberNext <http://www.assero.co.uk/TSM#63d79bec-195f-4749-916e-10abb73397e5> ;
+	th:memberNext <http://www.assero.co.uk/TSM#f0978b08-2af9-4ba9-8f46-236ee0bb91c6> ;
 .
-<http://www.assero.co.uk/TSM#63d79bec-195f-4749-916e-10abb73397e5>
+<http://www.assero.co.uk/TSM#f0978b08-2af9-4ba9-8f46-236ee0bb91c6>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
-	th:memberNext <http://www.assero.co.uk/TSM#b74192aa-7fb8-42dc-8bce-0d7c636654e8> ;
+	th:memberNext <http://www.assero.co.uk/TSM#65f419a2-0643-4591-addb-72526fe75bc9> ;
 .
-<http://www.assero.co.uk/TSM#b74192aa-7fb8-42dc-8bce-0d7c636654e8>
+<http://www.assero.co.uk/TSM#65f419a2-0643-4591-addb-72526fe75bc9>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
-	th:memberNext <http://www.assero.co.uk/TSM#39a6a2ac-4693-42ba-b4db-153e14993cba> ;
+	th:memberNext <http://www.assero.co.uk/TSM#947ff3bb-8937-409f-9704-9bea70e51477> ;
 .
-<http://www.assero.co.uk/TSM#39a6a2ac-4693-42ba-b4db-153e14993cba>
+<http://www.assero.co.uk/TSM#947ff3bb-8937-409f-9704-9bea70e51477>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
-	th:memberNext <http://www.assero.co.uk/TSM#746aa39d-1c50-4e1e-97b8-1eb722afcc9e> ;
+	th:memberNext <http://www.assero.co.uk/TSM#420cd0e9-558c-4072-aa21-e0dcf932da0f> ;
 .
-<http://www.assero.co.uk/TSM#746aa39d-1c50-4e1e-97b8-1eb722afcc9e>
+<http://www.assero.co.uk/TSM#420cd0e9-558c-4072-aa21-e0dcf932da0f>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
-	th:memberNext <http://www.assero.co.uk/TSM#5bee0807-caeb-489c-9d66-d0c03f33adae> ;
+	th:memberNext <http://www.assero.co.uk/TSM#e7dd231d-4a81-4914-9aaa-fe599698c47b> ;
 .
-<http://www.assero.co.uk/TSM#5bee0807-caeb-489c-9d66-d0c03f33adae>
+<http://www.assero.co.uk/TSM#e7dd231d-4a81-4914-9aaa-fe599698c47b>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
@@ -2008,7 +1957,6 @@
 <http://www.s-cubed.dk/NP001001P/V1#NP001001P>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Action Taken with Study Treatment Subset 03"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
 	isoT:hasState <http://www.s-cubed.dk/NP001001P/V1#NP001001P_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/NP001001P/V1#NP001001P_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2024,7 +1972,7 @@
 	th:narrower <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
 	th:subsets <http://www.s-cubed.dk/C66767/V1#C66767> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#1f9e38372c5992bf3fe241a09f78726c3864181e> ;
-	th:isOrdered <http://www.assero.co.uk/TS#3547370d-91b6-4120-af5f-5c4302c9988e> ;
+	th:isOrdered <http://www.assero.co.uk/TS#1a9e01de-d521-4915-9f75-fc64130f502b> ;
 .
 <http://www.s-cubed.dk/NP001001P/V1#NP001001P_RS>
 	rdf:type isoR:RegistrationState ;
@@ -2050,18 +1998,18 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Action Taken with Study Treatment Subset 03"^^xsd:string ;
 .
-<http://www.assero.co.uk/TS#3547370d-91b6-4120-af5f-5c4302c9988e>
+<http://www.assero.co.uk/TS#1a9e01de-d521-4915-9f75-fc64130f502b>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#9caf3e7b-bdb9-4737-9084-6a6e81a9b606> ;
+	th:members <http://www.assero.co.uk/TSM#0370735c-2bef-4684-84b0-5b8ae868d96f> ;
 .
-<http://www.assero.co.uk/TSM#9caf3e7b-bdb9-4737-9084-6a6e81a9b606>
+<http://www.assero.co.uk/TSM#0370735c-2bef-4684-84b0-5b8ae868d96f>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
-	th:memberNext <http://www.assero.co.uk/TSM#7e2dc707-cc9a-4e6b-b1f5-dcbb9ab97346> ;
+	th:memberNext <http://www.assero.co.uk/TSM#e1bc4a1a-79cb-4f45-9797-837d10bf75f1> ;
 .
-<http://www.assero.co.uk/TSM#7e2dc707-cc9a-4e6b-b1f5-dcbb9ab97346>
+<http://www.assero.co.uk/TSM#e1bc4a1a-79cb-4f45-9797-837d10bf75f1>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
@@ -2069,8 +2017,6 @@
 <http://www.s-cubed.dk/SN000730/V1#SN000730>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Action Taken with Study Treatment Collected"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
 	isoT:hasState <http://www.s-cubed.dk/SN000730/V1#SN000730_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/SN000730/V1#SN000730_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2092,6 +2038,7 @@
 	th:narrower <http://www.s-cubed.dk/SN000730/V1#SN000730_S011612> ;
 	th:narrower <http://www.s-cubed.dk/SN000730/V1#SN000730_SC48660> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#692cfd0f929ec68117010f87b4788fe3ebe3ec50> ;
+	th:isRanked <http://www.assero.co.uk/TRC#0c34ceaa-5d18-4c78-bfc0-59b22bd73f73> ;
 .
 <http://www.s-cubed.dk/SN000730/V1#SN000730_RS>
 	rdf:type isoR:RegistrationState ;
@@ -2115,9 +2062,7 @@
 .
 <http://www.s-cubed.dk/SN000730/V1#SN000730_SC49501>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Drug Interrupted"^^xsd:string ;
 	th:identifier "SC49501"^^xsd:string ;
 	th:notation "DRUG INTERRUPTED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was modified by temporarily terminating a prescribed regimen of medication. (NCI)"^^xsd:string ;
@@ -2126,9 +2071,7 @@
 .
 <http://www.s-cubed.dk/SN000730/V1#SN000730_S000010>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Dose Delayed"^^xsd:string ;
 	th:identifier "S000010"^^xsd:string ;
 	th:notation "DOSE DELAYED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was postponed."^^xsd:string ;
@@ -2141,9 +2084,7 @@
 .
 <http://www.s-cubed.dk/SN000730/V1#SN000730_S000011>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Dose Delayed and Reduced"^^xsd:string ;
 	th:identifier "S000011"^^xsd:string ;
 	th:notation "DOSE DELAYED AND REDUCED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was postponed and modified by subtraction by strength or amount."^^xsd:string ;
@@ -2156,9 +2097,7 @@
 .
 <http://www.s-cubed.dk/SN000730/V1#SN000730_S011612>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Discontinuation of Study Vaccination"^^xsd:string ;
 	th:identifier "S011612"^^xsd:string ;
 	th:notation "DISCONTINUATION OF STUDY VACCINATION"^^xsd:string ;
 	th:definition "An indication that a study vaccination was discontinued."^^xsd:string ;
@@ -2171,8 +2110,7 @@
 .
 <http://www.s-cubed.dk/SN000730/V1#SN000730_SC48660>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Not Applicable"^^xsd:string ;
 	th:identifier "SC48660"^^xsd:string ;
 	th:notation "NOT APPLICABLE"^^xsd:string ;
 	th:definition "Determination of a value is not relevant in the current context. (NCI)"^^xsd:string ;
@@ -2185,10 +2123,76 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Action Taken with Study Treatment Collected"^^xsd:string ;
 .
+<http://www.assero.co.uk/TRC#0c34ceaa-5d18-4c78-bfc0-59b22bd73f73>
+	rdf:type th:RankedCollection ;
+	isoC:label ""^^xsd:string ;
+	th:members <http://www.assero.co.uk/TRM#943b4d54-214a-437d-92dc-63595ed22696> ;
+.
+<http://www.assero.co.uk/TRM#943b4d54-214a-437d-92dc-63595ed22696>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "1"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
+	th:memberNext <http://www.assero.co.uk/TRM#4223d70f-f267-42e0-9308-08c2fd273ada> ;
+.
+<http://www.assero.co.uk/TRM#4223d70f-f267-42e0-9308-08c2fd273ada>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "2"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
+	th:memberNext <http://www.assero.co.uk/TRM#6af6f726-a0fe-49e9-a689-f35b4aec3a63> ;
+.
+<http://www.assero.co.uk/TRM#6af6f726-a0fe-49e9-a689-f35b4aec3a63>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "3"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000730/V1#SN000730_SC49501> ;
+	th:memberNext <http://www.assero.co.uk/TRM#d2bc5e52-6fef-4611-a34b-dd8de36f0167> ;
+.
+<http://www.assero.co.uk/TRM#d2bc5e52-6fef-4611-a34b-dd8de36f0167>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "4"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
+	th:memberNext <http://www.assero.co.uk/TRM#f8f31427-28c1-41f7-8df0-102e7c7a3bdb> ;
+.
+<http://www.assero.co.uk/TRM#f8f31427-28c1-41f7-8df0-102e7c7a3bdb>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "5"^^xsd:integer ;
+	th:item <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
+	th:memberNext <http://www.assero.co.uk/TRM#8b3475ec-9573-4445-b679-1cebe446fbed> ;
+.
+<http://www.assero.co.uk/TRM#8b3475ec-9573-4445-b679-1cebe446fbed>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "6"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000730/V1#SN000730_S000010> ;
+	th:memberNext <http://www.assero.co.uk/TRM#2d4e4352-777a-4714-b834-abeab9b5fda0> ;
+.
+<http://www.assero.co.uk/TRM#2d4e4352-777a-4714-b834-abeab9b5fda0>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "7"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000730/V1#SN000730_S000011> ;
+	th:memberNext <http://www.assero.co.uk/TRM#432ff7ad-dba6-4439-854b-511f3761d0e6> ;
+.
+<http://www.assero.co.uk/TRM#432ff7ad-dba6-4439-854b-511f3761d0e6>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "8"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000730/V1#SN000730_S011612> ;
+	th:memberNext <http://www.assero.co.uk/TRM#53215ce1-6221-4d50-bd97-60c8df932129> ;
+.
+<http://www.assero.co.uk/TRM#53215ce1-6221-4d50-bd97-60c8df932129>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "9"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000730/V1#SN000730_SC48660> ;
+.
 <http://www.s-cubed.dk/SN000005/V1#SN000005>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Action Taken with Study Treatment Numeric"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
 	isoT:hasState <http://www.s-cubed.dk/SN000005/V1#SN000005_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/SN000005/V1#SN000005_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2211,6 +2215,7 @@
 	th:narrower <http://www.s-cubed.dk/SN000005/V1#SN000005_S003958> ;
 	th:narrower <http://www.s-cubed.dk/SN000005/V1#SN000005_S000012> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#7d612812aa2f4b458d6c0e35f09c636e425137b2> ;
+	th:isRanked <http://www.assero.co.uk/TRC#7dfc146f-320b-4b1b-8c97-fb867c1282ca> ;
 .
 <http://www.s-cubed.dk/SN000005/V1#SN000005_RS>
 	rdf:type isoR:RegistrationState ;
@@ -2234,8 +2239,7 @@
 .
 <http://www.s-cubed.dk/SN000005/V1#SN000005_S000029>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Dose Not Changed"^^xsd:string ;
 	th:identifier "S000029"^^xsd:string ;
 	th:notation "1"^^xsd:string ;
 	th:definition "A numeric, one, indication that a medication schedule was maintained."^^xsd:string ;
@@ -2244,8 +2248,7 @@
 .
 <http://www.s-cubed.dk/SN000005/V1#SN000005_S000030>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Dose Reduced"^^xsd:string ;
 	th:identifier "S000030"^^xsd:string ;
 	th:notation "2"^^xsd:string ;
 	th:definition "A numeric, two, indication that a medication schedule was modified by subtraction, either by changing the frequency, strength or amount."^^xsd:string ;
@@ -2254,8 +2257,7 @@
 .
 <http://www.s-cubed.dk/SN000005/V1#SN000005_S000031>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Drug Interrupted"^^xsd:string ;
 	th:identifier "S000031"^^xsd:string ;
 	th:notation "3"^^xsd:string ;
 	th:definition "A numeric,three, indication that a medication schedule was modified by temporarily terminating a prescribed regimen of medication."^^xsd:string ;
@@ -2264,8 +2266,7 @@
 .
 <http://www.s-cubed.dk/SN000005/V1#SN000005_S000032>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Drug Withdrawn"^^xsd:string ;
 	th:identifier "S000032"^^xsd:string ;
 	th:notation "4"^^xsd:string ;
 	th:definition "A numeric, four, indication that a medication schedule was modified through termination of a prescribed regimen of medication."^^xsd:string ;
@@ -2274,8 +2275,7 @@
 .
 <http://www.s-cubed.dk/SN000005/V1#SN000005_S000033>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Dose Increased"^^xsd:string ;
 	th:identifier "S000033"^^xsd:string ;
 	th:notation "5"^^xsd:string ;
 	th:definition "A numeric, five, indication that a medication schedule was modified by addition; either by changing the frequency, strength or amount."^^xsd:string ;
@@ -2284,8 +2284,7 @@
 .
 <http://www.s-cubed.dk/SN000005/V1#SN000005_S000034>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Dose Delayed"^^xsd:string ;
 	th:identifier "S000034"^^xsd:string ;
 	th:notation "6"^^xsd:string ;
 	th:definition "A numeric indication, six, that a medication schedule was postponed."^^xsd:string ;
@@ -2294,8 +2293,7 @@
 .
 <http://www.s-cubed.dk/SN000005/V1#SN000005_S000035>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Dose Delayed and Reduced"^^xsd:string ;
 	th:identifier "S000035"^^xsd:string ;
 	th:notation "7"^^xsd:string ;
 	th:definition "A numeric value, seven, that gives an indication that a medication schedule was postponed and modified by subtraction by strength or amount."^^xsd:string ;
@@ -2304,8 +2302,7 @@
 .
 <http://www.s-cubed.dk/SN000005/V1#SN000005_S000036>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Multiple"^^xsd:string ;
 	th:identifier "S000036"^^xsd:string ;
 	th:notation "8"^^xsd:string ;
 	th:definition "A numeric, eight, that indicate more than one. (NCI)"^^xsd:string ;
@@ -2314,8 +2311,7 @@
 .
 <http://www.s-cubed.dk/SN000005/V1#SN000005_S003958>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Unknown"^^xsd:string ;
 	th:identifier "S003958"^^xsd:string ;
 	th:notation "9"^^xsd:string ;
 	th:definition "A numeric value, nine, that indicate not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
@@ -2324,8 +2320,7 @@
 .
 <http://www.s-cubed.dk/SN000005/V1#SN000005_S000012>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Not Applicable"^^xsd:string ;
 	th:identifier "S000012"^^xsd:string ;
 	th:notation "10"^^xsd:string ;
 	th:definition "A numeric value, ten, that indicate determination of a value is not relevant in the current context."^^xsd:string ;
@@ -2335,6 +2330,80 @@
 <http://www.assero.co.uk/PT#7d612812aa2f4b458d6c0e35f09c636e425137b2>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Action Taken with Study Treatment Numeric"^^xsd:string ;
+.
+<http://www.assero.co.uk/TRC#7dfc146f-320b-4b1b-8c97-fb867c1282ca>
+	rdf:type th:RankedCollection ;
+	isoC:label ""^^xsd:string ;
+	th:members <http://www.assero.co.uk/TRM#d255803c-0b5b-4448-be18-b2e919919fe0> ;
+.
+<http://www.assero.co.uk/TRM#d255803c-0b5b-4448-be18-b2e919919fe0>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "1"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000029> ;
+	th:memberNext <http://www.assero.co.uk/TRM#b97e8d51-6cff-496e-83b6-eef2df16cd67> ;
+.
+<http://www.assero.co.uk/TRM#b97e8d51-6cff-496e-83b6-eef2df16cd67>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "10"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000012> ;
+	th:memberNext <http://www.assero.co.uk/TRM#0f33e82a-c452-42f0-8c49-b214fffaff08> ;
+.
+<http://www.assero.co.uk/TRM#0f33e82a-c452-42f0-8c49-b214fffaff08>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "2"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000030> ;
+	th:memberNext <http://www.assero.co.uk/TRM#c747043c-f5f0-45fe-8273-31e9c365650f> ;
+.
+<http://www.assero.co.uk/TRM#c747043c-f5f0-45fe-8273-31e9c365650f>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "3"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000031> ;
+	th:memberNext <http://www.assero.co.uk/TRM#b98885d4-4d40-4c43-8dd9-d68b7470f9e2> ;
+.
+<http://www.assero.co.uk/TRM#b98885d4-4d40-4c43-8dd9-d68b7470f9e2>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "4"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000032> ;
+	th:memberNext <http://www.assero.co.uk/TRM#19344340-8dff-4c6b-8713-12a0fea2674e> ;
+.
+<http://www.assero.co.uk/TRM#19344340-8dff-4c6b-8713-12a0fea2674e>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "5"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000033> ;
+	th:memberNext <http://www.assero.co.uk/TRM#c1360f31-92f1-43e8-a29e-0f2117fbc4f9> ;
+.
+<http://www.assero.co.uk/TRM#c1360f31-92f1-43e8-a29e-0f2117fbc4f9>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "6"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000034> ;
+	th:memberNext <http://www.assero.co.uk/TRM#9e9610eb-3c7a-446b-a407-222f66f34eb6> ;
+.
+<http://www.assero.co.uk/TRM#9e9610eb-3c7a-446b-a407-222f66f34eb6>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "7"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000035> ;
+	th:memberNext <http://www.assero.co.uk/TRM#016c45e7-c285-4638-8148-159f7cda9ea5> ;
+.
+<http://www.assero.co.uk/TRM#016c45e7-c285-4638-8148-159f7cda9ea5>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "8"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S000036> ;
+	th:memberNext <http://www.assero.co.uk/TRM#5fff63cc-0140-46a2-a61c-f96b606e0dcd> ;
+.
+<http://www.assero.co.uk/TRM#5fff63cc-0140-46a2-a61c-f96b606e0dcd>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "9"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000005/V1#SN000005_S003958> ;
 .
 <http://www.s-cubed.dk/SN000187/V1#SN000187>
 	rdf:type th:ManagedConcept ;
@@ -2381,7 +2450,7 @@
 .
 <http://www.s-cubed.dk/SN000187/V1#SN000187_S005288>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "0-Never"^^xsd:string ;
 	th:identifier "S005288"^^xsd:string ;
 	th:notation "0"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that something Not ever; at no time in the past occured."^^xsd:string ;
@@ -2390,7 +2459,7 @@
 .
 <http://www.s-cubed.dk/SN000187/V1#SN000187_S030294>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "1-Hardly ever"^^xsd:string ;
 	th:identifier "S030294"^^xsd:string ;
 	th:notation "1"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating something happen Seldom; rarely; almost never."^^xsd:string ;
@@ -2403,7 +2472,7 @@
 .
 <http://www.s-cubed.dk/SN000187/V1#SN000187_S030295>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "2-A few times"^^xsd:string ;
 	th:identifier "S030295"^^xsd:string ;
 	th:notation "2"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that something happened less than half the time."^^xsd:string ;
@@ -2416,7 +2485,7 @@
 .
 <http://www.s-cubed.dk/SN000187/V1#SN000187_S030296>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "3-Several times"^^xsd:string ;
 	th:identifier "S030296"^^xsd:string ;
 	th:notation "3"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that something Scheduled or occurring at a frequency of several times."^^xsd:string ;
@@ -2429,7 +2498,7 @@
 .
 <http://www.s-cubed.dk/SN000187/V1#SN000187_S030297>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "4-Many times"^^xsd:string ;
 	th:identifier "S030297"^^xsd:string ;
 	th:notation "4"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that something occurring at many times."^^xsd:string ;
@@ -2442,7 +2511,7 @@
 .
 <http://www.s-cubed.dk/SN000187/V1#SN000187_S030298>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "5-A great many times"^^xsd:string ;
 	th:identifier "S030298"^^xsd:string ;
 	th:notation "5"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that something occurring at great many times."^^xsd:string ;
@@ -2455,7 +2524,7 @@
 .
 <http://www.s-cubed.dk/SN000187/V1#SN000187_S030299>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "6-Unable to sleep because of asthma"^^xsd:string ;
 	th:identifier "S030299"^^xsd:string ;
 	th:notation "6"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that it is unable to sleep because of asthma."^^xsd:string ;
@@ -2515,7 +2584,7 @@
 .
 <http://www.s-cubed.dk/SN000721/V1#SN000721_S003697>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "0-No symptoms"^^xsd:string ;
 	th:identifier "S003697"^^xsd:string ;
 	th:notation "0"^^xsd:string ;
 	th:definition "Numerical result corresponding to the finding of no indications of a particular disease or injury."^^xsd:string ;
@@ -2528,7 +2597,7 @@
 .
 <http://www.s-cubed.dk/SN000721/V1#SN000721_S030300>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "1-Very mild symptoms"^^xsd:string ;
 	th:identifier "S030300"^^xsd:string ;
 	th:notation "1"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that the symptoms are very mild."^^xsd:string ;
@@ -2541,7 +2610,7 @@
 .
 <http://www.s-cubed.dk/SN000721/V1#SN000721_S030301>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "2-Mild symptoms"^^xsd:string ;
 	th:identifier "S030301"^^xsd:string ;
 	th:notation "2"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that the symptoms are mild."^^xsd:string ;
@@ -2554,7 +2623,7 @@
 .
 <http://www.s-cubed.dk/SN000721/V1#SN000721_S030302>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "3-Moderate symptoms"^^xsd:string ;
 	th:identifier "S030302"^^xsd:string ;
 	th:notation "3"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that the symptoms are moderate."^^xsd:string ;
@@ -2567,7 +2636,7 @@
 .
 <http://www.s-cubed.dk/SN000721/V1#SN000721_S030303>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "4-Quite severe symptoms"^^xsd:string ;
 	th:identifier "S030303"^^xsd:string ;
 	th:notation "4"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that the symptoms are quite severe."^^xsd:string ;
@@ -2580,7 +2649,7 @@
 .
 <http://www.s-cubed.dk/SN000721/V1#SN000721_S030304>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "5-Severe symptoms"^^xsd:string ;
 	th:identifier "S030304"^^xsd:string ;
 	th:notation "5"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that the symptoms are severe."^^xsd:string ;
@@ -2593,7 +2662,7 @@
 .
 <http://www.s-cubed.dk/SN000721/V1#SN000721_S030305>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "6-Very severe symptoms"^^xsd:string ;
 	th:identifier "S030305"^^xsd:string ;
 	th:notation "6"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that the symptoms are very severe."^^xsd:string ;
@@ -2653,7 +2722,7 @@
 .
 <http://www.s-cubed.dk/SN001890/V1#SN001890_S005181>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "0-Not limited at all"^^xsd:string ;
 	th:identifier "S005181"^^xsd:string ;
 	th:notation "0"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that there is No, not limited at all."^^xsd:string ;
@@ -2666,7 +2735,7 @@
 .
 <http://www.s-cubed.dk/SN001890/V1#SN001890_S030306>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "1-Very slightly limited"^^xsd:string ;
 	th:identifier "S030306"^^xsd:string ;
 	th:notation "1"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that there is a very slightly limited."^^xsd:string ;
@@ -2679,7 +2748,7 @@
 .
 <http://www.s-cubed.dk/SN001890/V1#SN001890_S030307>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "2-Slightly limited"^^xsd:string ;
 	th:identifier "S030307"^^xsd:string ;
 	th:notation "2"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that there is a slightly limited."^^xsd:string ;
@@ -2692,7 +2761,7 @@
 .
 <http://www.s-cubed.dk/SN001890/V1#SN001890_S030308>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "3-Moderately limited"^^xsd:string ;
 	th:identifier "S030308"^^xsd:string ;
 	th:notation "3"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that there is a moderately limited."^^xsd:string ;
@@ -2705,7 +2774,7 @@
 .
 <http://www.s-cubed.dk/SN001890/V1#SN001890_S030309>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "4-Very limited"^^xsd:string ;
 	th:identifier "S030309"^^xsd:string ;
 	th:notation "4"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that there is a very limited."^^xsd:string ;
@@ -2718,7 +2787,7 @@
 .
 <http://www.s-cubed.dk/SN001890/V1#SN001890_S030310>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "5-Extremely limited"^^xsd:string ;
 	th:identifier "S030310"^^xsd:string ;
 	th:notation "5"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that there is an extremely limited."^^xsd:string ;
@@ -2731,7 +2800,7 @@
 .
 <http://www.s-cubed.dk/SN001890/V1#SN001890_S030311>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "6-Totally limited"^^xsd:string ;
 	th:identifier "S030311"^^xsd:string ;
 	th:notation "6"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that there is a totally limited."^^xsd:string ;
@@ -2791,7 +2860,7 @@
 .
 <http://www.s-cubed.dk/SN000190/V1#SN000190_S030348>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "0-None"^^xsd:string ;
 	th:identifier "S030348"^^xsd:string ;
 	th:notation "0"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that it is no person or thing, nobody, not any. (NCI)"^^xsd:string ;
@@ -2800,7 +2869,7 @@
 .
 <http://www.s-cubed.dk/SN000190/V1#SN000190_S030312>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "1-A very little"^^xsd:string ;
 	th:identifier "S030312"^^xsd:string ;
 	th:notation "1"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that it is a very little."^^xsd:string ;
@@ -2813,7 +2882,7 @@
 .
 <http://www.s-cubed.dk/SN000190/V1#SN000190_S030313>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "2-A little"^^xsd:string ;
 	th:identifier "S030313"^^xsd:string ;
 	th:notation "2"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that it is a little."^^xsd:string ;
@@ -2826,7 +2895,7 @@
 .
 <http://www.s-cubed.dk/SN000190/V1#SN000190_S030314>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "3-A moderate amount"^^xsd:string ;
 	th:identifier "S030314"^^xsd:string ;
 	th:notation "3"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that it is a moderate amount."^^xsd:string ;
@@ -2839,7 +2908,7 @@
 .
 <http://www.s-cubed.dk/SN000190/V1#SN000190_S030315>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "4-Quite a lot"^^xsd:string ;
 	th:identifier "S030315"^^xsd:string ;
 	th:notation "4"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that it is a quite a lot."^^xsd:string ;
@@ -2852,7 +2921,7 @@
 .
 <http://www.s-cubed.dk/SN000190/V1#SN000190_S013088>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "5-A great deal"^^xsd:string ;
 	th:identifier "S013088"^^xsd:string ;
 	th:notation "5"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that it is a great deal."^^xsd:string ;
@@ -2865,7 +2934,7 @@
 .
 <http://www.s-cubed.dk/SN000190/V1#SN000190_S003810>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "6-A very great deal"^^xsd:string ;
 	th:identifier "S003810"^^xsd:string ;
 	th:notation "6"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that it is a very great deal."^^xsd:string ;
@@ -2925,7 +2994,7 @@
 .
 <http://www.s-cubed.dk/SN000192/V1#SN000192_S030348>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "0-None"^^xsd:string ;
 	th:identifier "S030348"^^xsd:string ;
 	th:notation "0"^^xsd:string ;
 	th:definition "Numerical result corresponding to a subjective response indicating that it is no person or thing, nobody, not any. (NCI)"^^xsd:string ;
@@ -2934,7 +3003,7 @@
 .
 <http://www.s-cubed.dk/SN000192/V1#SN000192_S005210>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "1-1 - 2 puffs/inhalations most days"^^xsd:string ;
 	th:identifier "S005210"^^xsd:string ;
 	th:notation "1"^^xsd:string ;
 	th:definition "Numerical response corresponding to 1 - 2 puffs/inhalations most days."^^xsd:string ;
@@ -2947,7 +3016,7 @@
 .
 <http://www.s-cubed.dk/SN000192/V1#SN000192_S030321>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "2-3 - 4 puffs/inhalations most days"^^xsd:string ;
 	th:identifier "S030321"^^xsd:string ;
 	th:notation "2"^^xsd:string ;
 	th:definition "Numerical response corresponding to 3 - 4 puffs/inhalations most days."^^xsd:string ;
@@ -2960,7 +3029,7 @@
 .
 <http://www.s-cubed.dk/SN000192/V1#SN000192_S030322>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "3-5 - 8 puffs/inhalations most days"^^xsd:string ;
 	th:identifier "S030322"^^xsd:string ;
 	th:notation "3"^^xsd:string ;
 	th:definition "Numerical response corresponding to 5 - 8 puffs/inhalations most days."^^xsd:string ;
@@ -2973,7 +3042,7 @@
 .
 <http://www.s-cubed.dk/SN000192/V1#SN000192_S030323>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "4-9 - 12 puffs/inhalations most days"^^xsd:string ;
 	th:identifier "S030323"^^xsd:string ;
 	th:notation "4"^^xsd:string ;
 	th:definition "Numerical response corresponding to 9 - 12 puffs/inhalations most days."^^xsd:string ;
@@ -2986,7 +3055,7 @@
 .
 <http://www.s-cubed.dk/SN000192/V1#SN000192_S030324>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "5-13 - 16 puffs/inhalations most days"^^xsd:string ;
 	th:identifier "S030324"^^xsd:string ;
 	th:notation "5"^^xsd:string ;
 	th:definition "Numerical response corresponding to 13 - 16 puffs/inhalations most days."^^xsd:string ;
@@ -2999,7 +3068,7 @@
 .
 <http://www.s-cubed.dk/SN000192/V1#SN000192_S030325>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "6-More than 16 puffs/inhalations most days"^^xsd:string ;
 	th:identifier "S030325"^^xsd:string ;
 	th:notation "6"^^xsd:string ;
 	th:definition "Numerical response corresponding to more than 16 puffs/inhalations most days."^^xsd:string ;
@@ -3058,7 +3127,7 @@
 .
 <http://www.s-cubed.dk/SN000186/V1#SN000186_S030412>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "On average, during the past week, how often were you woken by your asthma during the night?"^^xsd:string ;
 	th:identifier "S030412"^^xsd:string ;
 	th:notation "ACQ60901"^^xsd:string ;
 	th:definition "Asthma Control Questionnaire - 6 Item - Woken by Your Asthma During Night."^^xsd:string ;
@@ -3071,7 +3140,7 @@
 .
 <http://www.s-cubed.dk/SN000186/V1#SN000186_S030413>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "On average, during the past week, how bad were your asthma symptoms when you woke up in the morning?"^^xsd:string ;
 	th:identifier "S030413"^^xsd:string ;
 	th:notation "ACQ60902"^^xsd:string ;
 	th:definition "Asthma Control Questionnaire - 6 Item - Asthma Symptoms When You Woke up."^^xsd:string ;
@@ -3084,7 +3153,7 @@
 .
 <http://www.s-cubed.dk/SN000186/V1#SN000186_S030414>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "In general, during the past week, how limited were you in your activities because of your asthma?"^^xsd:string ;
 	th:identifier "S030414"^^xsd:string ;
 	th:notation "ACQ60903"^^xsd:string ;
 	th:definition "Asthma Control Questionnaire - 6 Item - Limited in Your Activities."^^xsd:string ;
@@ -3097,7 +3166,7 @@
 .
 <http://www.s-cubed.dk/SN000186/V1#SN000186_S030415>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "In general, during the past week, how much shortness of breath did you experience because of your asthma?"^^xsd:string ;
 	th:identifier "S030415"^^xsd:string ;
 	th:notation "ACQ60904"^^xsd:string ;
 	th:definition "Asthma Control Questionnaire - 6 Item - Shortness of Breath Experienced."^^xsd:string ;
@@ -3110,7 +3179,7 @@
 .
 <http://www.s-cubed.dk/SN000186/V1#SN000186_S030416>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "In general, during the past week, how much of the time did you wheeze?"^^xsd:string ;
 	th:identifier "S030416"^^xsd:string ;
 	th:notation "ACQ60905"^^xsd:string ;
 	th:definition "Asthma Control Questionnaire - 6 Item - How Much of the Time You Wheezed."^^xsd:string ;
@@ -3123,7 +3192,7 @@
 .
 <http://www.s-cubed.dk/SN000186/V1#SN000186_S004800>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "On average, during the past week, how many puffs/inhalations of short-acting bronchodilator (e.g. Ventolin/Bricanyl) have you used each day?"^^xsd:string ;
 	th:identifier "S004800"^^xsd:string ;
 	th:notation "ACQ60906"^^xsd:string ;
 	th:definition "Asthma Control Questionnaire - 6 Item - How Many Puffs/Inhalations Used."^^xsd:string ;
@@ -3182,7 +3251,7 @@
 .
 <http://www.s-cubed.dk/SN000707/V1#SN000707_S030413>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "On average, during the past week, how bad were your asthma symptoms when you woke up in the morning?"^^xsd:string ;
 	th:identifier "S030413"^^xsd:string ;
 	th:notation "ACQ609-Asthma Symptoms When Woke Up"^^xsd:string ;
 	th:definition "Asthma Control Questionnaire - 6 Item - Asthma Symptoms When You Woke up."^^xsd:string ;
@@ -3195,7 +3264,7 @@
 .
 <http://www.s-cubed.dk/SN000707/V1#SN000707_S030412>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "On average, during the past week, how often were you woken by your asthma during the night?"^^xsd:string ;
 	th:identifier "S030412"^^xsd:string ;
 	th:notation "ACQ609-Frequency of Awakening by Asthma"^^xsd:string ;
 	th:definition "Asthma Control Questionnaire - 6 Item - Woken by Your Asthma During Night."^^xsd:string ;
@@ -3208,7 +3277,7 @@
 .
 <http://www.s-cubed.dk/SN000707/V1#SN000707_S030414>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "In general, during the past week, how limited were you in your activities because of your asthma?"^^xsd:string ;
 	th:identifier "S030414"^^xsd:string ;
 	th:notation "ACQ609-Limitation Activities by Asthma"^^xsd:string ;
 	th:definition "Asthma Control Questionnaire - 6 Item - Limited in Your Activities."^^xsd:string ;
@@ -3221,7 +3290,7 @@
 .
 <http://www.s-cubed.dk/SN000707/V1#SN000707_S004800>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "On average, during the past week, how many puffs/inhalations of short-acting bronchodilator (e.g. Ventolin/Bricanyl) have you used each day?"^^xsd:string ;
 	th:identifier "S004800"^^xsd:string ;
 	th:notation "ACQ609-No. of Puffs/Inhalations per Day"^^xsd:string ;
 	th:definition "Asthma Control Questionnaire - 6 Item - How Many Puffs/Inhalations Used."^^xsd:string ;
@@ -3234,7 +3303,7 @@
 .
 <http://www.s-cubed.dk/SN000707/V1#SN000707_S030415>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "In general, during the past week, how much shortness of breath did you experience because of your asthma?"^^xsd:string ;
 	th:identifier "S030415"^^xsd:string ;
 	th:notation "ACQ609-Shortness of Breath Experienced"^^xsd:string ;
 	th:definition "Asthma Control Questionnaire - 6 Item - Shortness of Breath Experienced."^^xsd:string ;
@@ -3247,7 +3316,7 @@
 .
 <http://www.s-cubed.dk/SN000707/V1#SN000707_S030416>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "In general, during the past week, how much of the time did you wheeze?"^^xsd:string ;
 	th:identifier "S030416"^^xsd:string ;
 	th:notation "ACQ609-Wheezing Duration"^^xsd:string ;
 	th:definition "Asthma Control Questionnaire - 6 Item - How Much of the Time You Wheezed."^^xsd:string ;
@@ -3303,7 +3372,7 @@
 .
 <http://www.s-cubed.dk/SN000006/V1#SN000006_S000037>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Per-Protocol"^^xsd:string ;
 	th:identifier "S000037"^^xsd:string ;
 	th:notation "PER-PROTOCOL"^^xsd:string ;
 	th:definition "Treatment adjusted as per protocol."^^xsd:string ;
@@ -3316,7 +3385,7 @@
 .
 <http://www.s-cubed.dk/SN000006/V1#SN000006_SC17649>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Other"^^xsd:string ;
 	th:identifier "SC17649"^^xsd:string ;
 	th:notation "OTHER"^^xsd:string ;
 	th:definition "Different than the one(s) previously specified or mentioned. (NCI)"^^xsd:string ;
@@ -3331,8 +3400,6 @@
 <http://www.s-cubed.dk/SN000753/V1#SN000753>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Category for Adverse Event"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
 	isoT:hasState <http://www.s-cubed.dk/SN000753/V1#SN000753_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/SN000753/V1#SN000753_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3406,9 +3473,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S009968>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Anaphylaxis Event"^^xsd:string ;
 	th:identifier "S009968"^^xsd:string ;
 	th:notation "ANAPHYLAXIS EVENT"^^xsd:string ;
 	th:definition "Event related to an acute hypersensitive immune response that occurs from exposure to an allergen. It results from the release of histamine and histamine-like substances from mast cells, and can present with breathing difficulty due to narrowed airways, dizziness and hypotension, skin rash, weak pulse, nausea and vomiting."^^xsd:string ;
@@ -3421,9 +3486,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S007166>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Asthma Exacerbation Event"^^xsd:string ;
 	th:identifier "S007166"^^xsd:string ;
 	th:notation "ASTHMA EXACERBATION EVENT"^^xsd:string ;
 	th:definition "An increase in frequency and/or worsening of a symptom, condition, or disease regarding asthma event."^^xsd:string ;
@@ -3436,9 +3499,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S000041>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Bleeding Event"^^xsd:string ;
 	th:identifier "S000041"^^xsd:string ;
 	th:notation "BLEEDING EVENT"^^xsd:string ;
 	th:definition "Event related to the flow of blood from a ruptured blood vessel."^^xsd:string ;
@@ -3451,9 +3512,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S004885>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Bone Fracture"^^xsd:string ;
 	th:identifier "S004885"^^xsd:string ;
 	th:notation "BONE FRACTURE"^^xsd:string ;
 	th:definition "(Synonym 1 NCI) A traumatic injury to the bone in which the continuity of the bone is broken."^^xsd:string ;
@@ -3462,9 +3521,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S007168>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Drug Allergy Event"^^xsd:string ;
 	th:identifier "S007168"^^xsd:string ;
 	th:notation "DRUG ALLERGY EVENT"^^xsd:string ;
 	th:definition "Event related to an allergy to drug adminitrated."^^xsd:string ;
@@ -3477,9 +3534,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S007169>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Epistaxis Event"^^xsd:string ;
 	th:identifier "S007169"^^xsd:string ;
 	th:notation "EPISTAXIS EVENT"^^xsd:string ;
 	th:definition "Event regarding bleeding from the nose."^^xsd:string ;
@@ -3492,9 +3547,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S007170>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Foreign Body Reaction Event"^^xsd:string ;
 	th:identifier "S007170"^^xsd:string ;
 	th:notation "FOREIGN BODY REACTION EVENT"^^xsd:string ;
 	th:definition "Event regarding a granulomatous inflammatory reaction evoked by the presence of an exogenous material in the tissues, a characteristic feature of which is the formation of foreign body giant cells."^^xsd:string ;
@@ -3507,9 +3560,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S007164>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Gastrointestinal Disorder (Diverticulitis or GI Ulceration)"^^xsd:string ;
 	th:identifier "S007164"^^xsd:string ;
 	th:notation "GASTROINTESTINAL DISORDER"^^xsd:string ;
 	th:definition "(Synonym 1 NCI) A non-neoplastic or neoplastic disorder that affects the gastrointestinal tract, anus, liver, biliary system, and pancreas."^^xsd:string ;
@@ -3518,9 +3569,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S004022>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Hypercalcemia"^^xsd:string ;
 	th:identifier "S004022"^^xsd:string ;
 	th:notation "HYPERCALCEMIA"^^xsd:string ;
 	th:definition "Abnormally high concentration of calcium in the peripheral blood."^^xsd:string ;
@@ -3533,9 +3582,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S000044>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Hypoglycemia"^^xsd:string ;
 	th:identifier "S000044"^^xsd:string ;
 	th:notation "HYPOGLYCEMIA"^^xsd:string ;
 	th:definition "A disorder characterized by laboratory test results that indicate a low concentration of glucose in the blood."^^xsd:string ;
@@ -3548,9 +3595,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S000045>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Increased Calcitonin"^^xsd:string ;
 	th:identifier "S000045"^^xsd:string ;
 	th:notation "INCREASED CALCITONIN"^^xsd:string ;
 	th:definition "Category indicating an increased concentration of calcitonin in the blood serum."^^xsd:string ;
@@ -3563,9 +3608,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S000046>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Increased Lipase/Amylase"^^xsd:string ;
 	th:identifier "S000046"^^xsd:string ;
 	th:notation "INCREASED LIPASE/AMYLASE"^^xsd:string ;
 	th:definition "Category indicating an increased concentration of lipase/amylase in the blood serum."^^xsd:string ;
@@ -3578,9 +3621,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S006414>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Infection Event"^^xsd:string ;
 	th:identifier "S006414"^^xsd:string ;
 	th:notation "INFECTION EVENT"^^xsd:string ;
 	th:definition "Event related to an invasion of an organism's body tissues by disease-causing agents and their multiplication, as well as the reaction by the host to these organisms and/or toxins that the organisms produce."^^xsd:string ;
@@ -3593,9 +3634,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S004017>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Infusion Associated Reaction"^^xsd:string ;
 	th:identifier "S004017"^^xsd:string ;
 	th:notation "INFUSION ASSOCIATED REACTION"^^xsd:string ;
 	th:definition "A disorder characterized by adverse reaction to the infusion of pharmacological or biological substances."^^xsd:string ;
@@ -3608,9 +3647,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S000048>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Injection Site Reaction"^^xsd:string ;
 	th:identifier "S000048"^^xsd:string ;
 	th:notation "INJECTION SITE REACTION"^^xsd:string ;
 	th:definition "A disorder characterized by an intense adverse reaction (usually immunologic) developing at the site of an injection."^^xsd:string ;
@@ -3623,9 +3660,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S007171>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Metabolic Acidosis Event"^^xsd:string ;
 	th:identifier "S007171"^^xsd:string ;
 	th:notation "METABOLIC ACIDOSIS EVENT"^^xsd:string ;
 	th:definition "Event regarding increased acidity in the blood secondary to acid base imbalance. Causes include diabetes, kidney failure and shock."^^xsd:string ;
@@ -3638,9 +3673,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S007037>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Neurologic Disorder"^^xsd:string ;
 	th:identifier "S007037"^^xsd:string ;
 	th:notation "NEUROLOGIC DISORDER"^^xsd:string ;
 	th:definition "(Synonym 1 NCI) A non-neoplastic or neoplastic disorder that affects the brain, spinal cord, or peripheral nerves."^^xsd:string ;
@@ -3653,8 +3686,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S000052>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
+	isoC:label "Overdose"^^xsd:string ;
 	th:identifier "S000052"^^xsd:string ;
 	th:notation "OVERDOSE"^^xsd:string ;
 	th:definition "Exposure to, or intake of, an excessive amount of a substance. (NCI)"^^xsd:string ;
@@ -3667,9 +3699,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S000053>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Pancreatic Event"^^xsd:string ;
 	th:identifier "S000053"^^xsd:string ;
 	th:notation "PANCREATIC EVENT"^^xsd:string ;
 	th:definition "Inflammation of the pancreas."^^xsd:string ;
@@ -3682,9 +3712,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S007172>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Peripheral Neuropathy Event"^^xsd:string ;
 	th:identifier "S007172"^^xsd:string ;
 	th:notation "PERIPHERAL NEUROPATHY EVENT"^^xsd:string ;
 	th:definition "Event regarding disorder affecting the peripheral nervous system. It manifests with pain, tingling, numbness, and muscle weakness. It may be the result of physical injury, toxic substances, viral diseases, diabetes, renal failure, cancer, and drugs."^^xsd:string ;
@@ -3697,8 +3725,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S010962>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "ALT Increase Data"^^xsd:string ;
 	th:identifier "S010962"^^xsd:string ;
 	th:notation "ALT INCREASE DATA"^^xsd:string ;
 	th:definition "Category use to retrieving information regarding alanine aminotransferase increase."^^xsd:string ;
@@ -3711,8 +3738,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S009339>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Overdose Data"^^xsd:string ;
 	th:identifier "S009339"^^xsd:string ;
 	th:notation "OVERDOSE DATA"^^xsd:string ;
 	th:definition "Category use to retrieving information related to the exposure to, or intake of, an excessive amount of a substance."^^xsd:string ;
@@ -3725,8 +3751,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S009340>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Pregnancy Data"^^xsd:string ;
 	th:identifier "S009340"^^xsd:string ;
 	th:notation "PREGNANCY DATA"^^xsd:string ;
 	th:definition "(Synonym 1 for SC25742 PREGNANCY) Pregnancy is the state or condition of having a developing embryo or fetus in the body (uterus), after union of an ovum and spermatozoon, during the period from conception to birth. (NCI)"^^xsd:string ;
@@ -3739,9 +3764,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S030065>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Adverse Event of Special Interest"^^xsd:string ;
 	th:identifier "S030065"^^xsd:string ;
 	th:notation "ADVERSE EVENT OF SPECIAL INTEREST"^^xsd:string ;
 	th:definition "One of scientific and medical concern specific to the Sponsor's product or program, for which ongoing monitoring and rapid communication by the investigator to the sponsor can be appropriate."^^xsd:string ;
@@ -3754,9 +3777,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S004905>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Renal Failure"^^xsd:string ;
 	th:identifier "S004905"^^xsd:string ;
 	th:notation "RENAL FAILURE"^^xsd:string ;
 	th:definition "An acute or chronic condition that is characterized by the inability of the kidneys to adequately filter the blood."^^xsd:string ;
@@ -3769,9 +3790,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S000054>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Serious Hypoglycemia"^^xsd:string ;
 	th:identifier "S000054"^^xsd:string ;
 	th:notation "SERIOUS HYPOGLYCEMIA"^^xsd:string ;
 	th:definition "A serious disorder characterized by laboratory test results that indicate a low concentration of glucose in the blood."^^xsd:string ;
@@ -3784,9 +3803,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S000059>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Suspected or Confirmed Cerebrovascular Event"^^xsd:string ;
 	th:identifier "S000059"^^xsd:string ;
 	th:notation "SUSPECTED OR CONFIRMED CEREBROVASCULAR EVENT"^^xsd:string ;
 	th:definition "A Suspected or confirmed event relating to the brain and the blood vessels that supply it."^^xsd:string ;
@@ -3799,9 +3816,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S005135>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Suspected or Confirmed Diabetic Ketoacidosis"^^xsd:string ;
 	th:identifier "S005135"^^xsd:string ;
 	th:notation "SUSPECTED OR CONFIRMED DIABETIC KETOACIDOSIS"^^xsd:string ;
 	th:definition "Suspected or confirmed metabolic condition resulted from uncontrolled diabetes mellitus, in which the shift of acid-base status of the body toward the acid side because of loss of base or retention of acids other than carbonic acid is accompanied by the accumulation of ketone bodies in body tissues and fluids."^^xsd:string ;
@@ -3814,9 +3829,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S004237>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Allergic Reaction"^^xsd:string ;
 	th:identifier "S004237"^^xsd:string ;
 	th:notation "ALLERGIC REACTION"^^xsd:string ;
 	th:definition "An immune response that occurs following re-exposure to an innocuous antigen, and that requires the presence of existing antibodies against that antigen. This response involves the binding of IgE to mast cells, and may worsen with repeated exposures."^^xsd:string ;
@@ -3829,9 +3842,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S005136>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Suspected or Confirmed Heart Failure"^^xsd:string ;
 	th:identifier "S005136"^^xsd:string ;
 	th:notation "SUSPECTED OR CONFIRMED HEART FAILURE"^^xsd:string ;
 	th:definition "Suspected or confirmed inability of the heart to pump blood at an adequate rate to meet tissue metabolic requirements. Clinical symptoms of heart failure include: unusual dyspnea on light exertion, recurrent dyspnea occurring in the supine position, fluid retention or rales, jugular venous distension, pulmonary edema on physical exam, or pulmonary edema on chest x-ray presumed to be cardiac dysfunction."^^xsd:string ;
@@ -3844,9 +3855,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S000061>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Suspected or Confirmed Myocardial Infarction / Unstable Angina"^^xsd:string ;
 	th:identifier "S000061"^^xsd:string ;
 	th:notation "SUSPECTED OR CONFIRMED MYOCARDIAL INFARCTION / UNSTABLE ANGINA"^^xsd:string ;
 	th:definition "Suspected or confirmed gross necrosis of the myocardium, as a result of interruption of the blood supply to the area, as in coronary thrombosis or Angina pectoris (or equivalent type of ischemic discomfort) which has recently changed in frequency, duration, intensity, or occurs at rest."^^xsd:string ;
@@ -3859,9 +3868,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S030068>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Unsolicited"^^xsd:string ;
 	th:identifier "S030068"^^xsd:string ;
 	th:notation "UNSOLICITED"^^xsd:string ;
 	th:definition "Observed adverse event that does not fulfill the conditions prelisted in the CRF in the terms of diagnosis or in terms of onset window post-vaccination, e.g.: varicella or a solicited term such as headache starting after the solicited observation period (headache starting on day 10 post-vaccination in the case where headache between Day 0 and Day 7 is prelisted in the protocol and CRF)."^^xsd:string ;
@@ -3874,9 +3881,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S007167>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Vasculitis Event"^^xsd:string ;
 	th:identifier "S007167"^^xsd:string ;
 	th:notation "VASCULITIS EVENT"^^xsd:string ;
 	th:definition "An inflammatory event involving the wall of the vessels (large, medium, or small-sized vessels). The inflammatory process may cause necrosis or formation of granulomas in the vascular wall. It may be the result of an autoimmune disorder, infection, or malignancy. Representative examples include polyarteritis nodosa, temporal arteritis, Wegener granulomatosis, Kawasaki disease, Takayasu arteritis, and Henoch-Schonlein purpura."^^xsd:string ;
@@ -3889,9 +3894,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_SC17649>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Other"^^xsd:string ;
 	th:identifier "SC17649"^^xsd:string ;
 	th:notation "OTHER"^^xsd:string ;
 	th:definition "Different than the one(s) previously specified or mentioned. (NCI)"^^xsd:string ;
@@ -3901,8 +3904,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S000040>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
+	isoC:label "ALT Increase"^^xsd:string ;
 	th:identifier "S000040"^^xsd:string ;
 	th:notation "ALT INCREASE"^^xsd:string ;
 	th:definition "Alanine Aminotransferase increased in blood."^^xsd:string ;
@@ -3915,8 +3917,7 @@
 .
 <http://www.s-cubed.dk/SN000753/V1#SN000753_S031110>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Reactogenicity"^^xsd:string ;
 	th:identifier "S031110"^^xsd:string ;
 	th:notation "REACTOGENICITY"^^xsd:string ;
 	th:definition "Property of a vaccine of being able to produce common, \"expected\" adverse reactions, especially excessive immunological responses and associated signs and symptoms (fever, sore arm at injection site, etc)."^^xsd:string ;
@@ -3934,8 +3935,6 @@
 <http://www.s-cubed.dk/SN000012/V1#SN000012>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Relationship to Study Treatment"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
 	isoT:hasState <http://www.s-cubed.dk/SN000012/V1#SN000012_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/SN000012/V1#SN000012_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3976,9 +3975,7 @@
 .
 <http://www.s-cubed.dk/SN000012/V1#SN000012_S000090>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Not Related"^^xsd:string ;
 	th:identifier "S000090"^^xsd:string ;
 	th:notation "NOT RELATED"^^xsd:string ;
 	th:definition "A characteristic used to qualify the adverse event as clearly not related to the study treatment."^^xsd:string ;
@@ -3991,9 +3988,7 @@
 .
 <http://www.s-cubed.dk/SN000012/V1#SN000012_S000094>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Unlikely Related"^^xsd:string ;
 	th:identifier "S000094"^^xsd:string ;
 	th:notation "UNLIKELY RELATED"^^xsd:string ;
 	th:definition "A characteristic used to qualify the adverse event as unlikely related to the study treatment."^^xsd:string ;
@@ -4006,9 +4001,7 @@
 .
 <http://www.s-cubed.dk/SN000012/V1#SN000012_S000092>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Possibly Related"^^xsd:string ;
 	th:identifier "S000092"^^xsd:string ;
 	th:notation "POSSIBLY RELATED"^^xsd:string ;
 	th:definition "A characteristic indicating that an adverse event may be related to the study treatment."^^xsd:string ;
@@ -4021,9 +4014,7 @@
 .
 <http://www.s-cubed.dk/SN000012/V1#SN000012_S000093>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
+	isoC:label "Related"^^xsd:string ;
 	th:identifier "S000093"^^xsd:string ;
 	th:notation "RELATED"^^xsd:string ;
 	th:definition "A characteristic used to qualify the adverse event as related to the study treatment."^^xsd:string ;
@@ -4041,8 +4032,6 @@
 <http://www.s-cubed.dk/NP001002P/V1#NP001002P>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Relationship to Study Treatment Subset 01"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e61e5cd1-92d6-4b23-9986-9e865b730837> ;
 	isoT:hasState <http://www.s-cubed.dk/NP001002P/V1#NP001002P_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/NP001002P/V1#NP001002P_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -4058,7 +4047,8 @@
 	th:narrower <http://www.s-cubed.dk/SN000012/V1#SN000012_S000090> ;
 	th:subsets <http://www.s-cubed.dk/SN000012/V1#SN000012> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#3516dab1ac5b3ba5bc278109c1e6fb1484832ce5> ;
-	th:isOrdered <http://www.assero.co.uk/TS#c75371c2-d633-496f-bcb6-08e578f7ca73> ;
+	th:isOrdered <http://www.assero.co.uk/TS#12d93047-b55c-4a17-902d-f8e899799821> ;
+	th:isRanked <http://www.assero.co.uk/TRC#28323c1c-a70a-42a0-ab43-9813f975e3be> ;
 .
 <http://www.s-cubed.dk/NP001002P/V1#NP001002P_RS>
 	rdf:type isoR:RegistrationState ;
@@ -4084,19 +4074,768 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Relationship to Study Treatment Subset 01"^^xsd:string ;
 .
-<http://www.assero.co.uk/TS#c75371c2-d633-496f-bcb6-08e578f7ca73>
+<http://www.assero.co.uk/TS#12d93047-b55c-4a17-902d-f8e899799821>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#5929bb53-abb5-44de-b5e6-c19b39549ccc> ;
+	th:members <http://www.assero.co.uk/TSM#282c220a-19a8-466b-952a-d026b2f5083b> ;
 .
-<http://www.assero.co.uk/TSM#5929bb53-abb5-44de-b5e6-c19b39549ccc>
+<http://www.assero.co.uk/TSM#282c220a-19a8-466b-952a-d026b2f5083b>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/SN000012/V1#SN000012_S000093> ;
-	th:memberNext <http://www.assero.co.uk/TSM#922f16a6-a8e4-411d-83a0-9dc74b6c3b61> ;
+	th:memberNext <http://www.assero.co.uk/TSM#f679e73d-f98b-4681-ac29-e14c728bb5b7> ;
 .
-<http://www.assero.co.uk/TSM#922f16a6-a8e4-411d-83a0-9dc74b6c3b61>
+<http://www.assero.co.uk/TSM#f679e73d-f98b-4681-ac29-e14c728bb5b7>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/SN000012/V1#SN000012_S000090> ;
+.
+<http://www.assero.co.uk/TRC#28323c1c-a70a-42a0-ab43-9813f975e3be>
+	rdf:type th:RankedCollection ;
+	isoC:label ""^^xsd:string ;
+	th:members <http://www.assero.co.uk/TRM#c3a25d19-a4f0-460e-8208-05f453bba702> ;
+.
+<http://www.assero.co.uk/TRM#c3a25d19-a4f0-460e-8208-05f453bba702>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "1"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000012/V1#SN000012_S000090> ;
+	th:memberNext <http://www.assero.co.uk/TRM#91caf991-cf8a-4a79-8ebb-2878ca9935b0> ;
+.
+<http://www.assero.co.uk/TRM#91caf991-cf8a-4a79-8ebb-2878ca9935b0>
+	rdf:type th:RankedMember ;
+	isoC:label ""^^xsd:string ;
+	th:rank "2"^^xsd:integer ;
+	th:item <http://www.s-cubed.dk/SN000012/V1#SN000012_S000093> ;
+.
+<http://www.assero.co.uk/CLA#97334615-2307-4a0f-9777-ecb654750b58>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000116/V1#SN000116_S003908> ;
+	isoC:context <http://www.s-cubed.dk/SN000116/V1#SN000116> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#8ab48c30-bc29-4070-81a9-fc7f9d1f70e4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000116/V1#SN000116_S003908> ;
+	isoC:context <http://www.s-cubed.dk/SN000116/V1#SN000116> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#c3863e28-7e81-45d1-949e-1eb629fb865b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000116/V1#SN000116_S003909> ;
+	isoC:context <http://www.s-cubed.dk/SN000116/V1#SN000116> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#692cd003-5620-463d-8bec-9aea3e32b3b2>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000116/V1#SN000116_S003909> ;
+	isoC:context <http://www.s-cubed.dk/SN000116/V1#SN000116> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#f9e50e6d-ea8d-40de-bf19-bfc9aaa65d0d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000116/V1#SN000116_S006884> ;
+	isoC:context <http://www.s-cubed.dk/SN000116/V1#SN000116> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+.
+<http://www.assero.co.uk/CLA#1b135627-aab9-4ce5-9793-b3d169d9fed2>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000116/V1#SN000116_S006884> ;
+	isoC:context <http://www.s-cubed.dk/SN000116/V1#SN000116> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#a76fc3a7-72c2-4e77-bdf9-c7c9b8447fe9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+	isoC:context <http://www.s-cubed.dk/NP001001P/V1#NP001001P> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+.
+<http://www.assero.co.uk/CLA#7c2f8220-3d18-4f42-abe8-72c8be569499>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+	isoC:context <http://www.s-cubed.dk/NP001001P/V1#NP001001P> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+.
+<http://www.assero.co.uk/CLA#6906d91f-06ea-42d2-95ec-e316d51a14ed>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+.
+<http://www.assero.co.uk/CLA#54eaee03-21fb-419d-bb30-1b5350464ca9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+.
+<http://www.assero.co.uk/CLA#34583983-c466-4a33-88d1-f48de36d2737>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V4#C66767_C17998> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#aaf59342-0394-447f-a1e4-66e79a519ae5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V4#C66767_C17998> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#8b51e409-322e-4589-8df6-0ec413d267bc>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+.
+<http://www.assero.co.uk/CLA#22b1d4ee-4db7-4177-8d28-ac1059a70757>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+.
+<http://www.assero.co.uk/CLA#0fbda913-78cd-488d-ae65-0220c23145bb>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+.
+<http://www.assero.co.uk/CLA#f8a8395d-1ae4-47bb-a5ab-17466087dad6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+.
+<http://www.assero.co.uk/CLA#8bf5808a-13df-47aa-9a5e-52e5b9e516e6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+.
+<http://www.assero.co.uk/CLA#a3d7df76-3972-4573-abde-73164a5c3c47>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+.
+<http://www.assero.co.uk/CLA#df9fef02-77c5-413c-9577-4311c0f3a824>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+	isoC:context <http://www.s-cubed.dk/NP001001P/V1#NP001001P> ;
+.
+<http://www.assero.co.uk/CLA#3423a397-7e77-466b-a949-da0d5e4648a6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoC:context <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+	isoC:context <http://www.s-cubed.dk/NP001001P/V1#NP001001P> ;
+.
+<http://www.assero.co.uk/CLA#9bc8f13b-e607-4367-aa25-ca70bf9ea1ec>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C99075/V33#C99075_C78728> ;
+	isoC:context <http://www.s-cubed.dk/C66767/V1#C66767> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoC:context <http://www.s-cubed.dk/SN000012/V1#SN000012> ;
+.
+<http://www.assero.co.uk/CLA#1ba9e8d4-2bae-47ce-94b1-5de65263765d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000730/V1#SN000730_SC49501> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#c960ab8e-182e-40ea-9530-5482c9e3a822>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000730/V1#SN000730_SC49501> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#4a43f5a3-a638-43e5-940e-b9a416430457>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000730/V1#SN000730_S000010> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#6622dab7-d982-4e9c-8371-a35339f7bd8a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000730/V1#SN000730_S000010> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#6d390428-9900-4af3-8d7a-f0bf981dbde8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000730/V1#SN000730_S000011> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#f96ff9d5-fdd6-4224-8fac-37b3cc91d3b0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000730/V1#SN000730_S000011> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#7c38a828-4428-480b-9629-a47e489b14ff>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000730/V1#SN000730_S011612> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#4894862c-7ebf-4c2c-b6b8-0ed0d5fd7492>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000730/V1#SN000730_S011612> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#de7470e7-dc69-4280-b092-5df3c0904491>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000730/V1#SN000730_SC48660> ;
+	isoC:context <http://www.s-cubed.dk/SN000730/V1#SN000730> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#867f0ada-c856-4344-9d27-4da214ed2f0e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000029> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#256d19f5-5ad8-42c5-b182-5fd60f33573b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000030> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#65cf7618-e424-4186-a52e-3ed2cd44e9de>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000031> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#2a23c843-4c85-4466-8901-5a54730d7cd1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000032> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#c5cd9cdf-8412-456b-855e-03106e06521b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000033> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#5bd0c53e-cecd-4f10-840e-05e18ea6577e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000034> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#2f01594f-9677-4d8a-a25d-32578294995b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000035> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#e6b32a66-0481-41a8-9d14-df4da30929a3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000036> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#9145d5b3-f92b-4001-bcc1-33fcb4d30555>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S003958> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#102501fe-60a7-4098-88f6-b503c80cb4f5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000005/V1#SN000005_S000012> ;
+	isoC:context <http://www.s-cubed.dk/SN000005/V1#SN000005> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#d4d14138-fdf2-4614-8da8-7a35085f234d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S009968> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#fc8bcc78-d38a-4413-96e6-77a57e99f15a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S009968> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#c9fc751e-5f23-4a94-b1cd-caa2e1814f11>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007166> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#f30af34c-4ca5-4b04-8b54-07d84c9b0be8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007166> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#4911a443-ff38-4c41-b084-1df0d20b7289>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000041> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#603e3b24-b9c5-483e-9ff0-0e6c2ccfe16f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000041> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#27fb8a06-6399-4853-8352-61420b82fe5f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S004885> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#d4d6757f-1e7c-4264-83a0-8c536d15f5c2>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S004885> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#17ec034f-6ac7-4a46-a67b-537ed551f165>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007168> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#0be772d6-37de-4009-a039-068cfa7b5449>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007168> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#ffce18eb-7948-4ac1-a3df-1f26151ca812>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007169> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#363b62df-bb4d-4143-9802-7ecb8372f59a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007169> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#0ede8bec-fbdd-43f8-af3d-e222d18cf50e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007170> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#344265a5-6f17-405e-85d1-b041e91c216b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007170> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#4f68ade0-0a57-448b-bdcc-2055b8d705e6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007164> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#a5cbecff-a48c-4c51-a322-09b7625f419e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007164> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#f348140e-c8be-4879-b2de-b99b49f21995>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S004022> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#e3531d20-9a0c-443e-a887-34ee471fc027>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S004022> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#e97fe153-a233-4445-b06d-d00ed4ff9fdf>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000044> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#9290847e-597f-47d9-9118-3b91024c9774>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000044> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#cb768886-4e7a-4dbc-a47b-061ddef30c54>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000045> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#433810ae-6e8a-48ea-aaa0-65d877636420>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000045> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#cccbc15c-37e5-4793-9402-71efb8304684>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000046> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#991d649a-596e-44ce-a524-3b2dde6c85f0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000046> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#75aae713-41ab-46ec-a0e3-40a46e26bbc1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S006414> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#c9bc0102-ca2e-4df3-b74c-51340d39c970>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S006414> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#e3863e15-73b8-4a1f-898d-e6b2257c7315>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S004017> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#4e23894e-aa53-4ec1-9b9a-ac4ee91c7096>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S004017> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#038269fb-7573-4611-bf94-2809efa6bc90>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000048> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#55eb2c9a-ab80-461a-a39d-ce6de733530d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000048> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#13469ed1-b52c-485f-b334-abbafa0cba54>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007171> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#14111ef9-b75b-44fd-be28-2ed5589b72f2>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007171> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#dca485b7-467f-48f4-85dd-d5cd5d0705d6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007037> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#68e623d8-f9a8-42c1-805a-ea7ef566299a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007037> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#e1194ca9-3d06-4f14-9364-38a95a618669>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000052> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#eac631ff-eb09-4d62-9310-bfead4be1882>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000053> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#cb54d27b-e9e3-4e58-9378-1bc13b098ada>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000053> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#a909efe1-4a7b-4fe2-b2ca-75eebe6ebdc9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007172> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#2616a5ed-4bec-4e2f-a060-54bbc0522dd8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007172> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#5443261c-2dcb-4f39-8182-884528a9ec22>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66727/V4#C66727_C25742> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#a3508c1c-03f6-4c7f-995a-608b3e363d88>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S010962> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#f66f07fe-5085-4262-866b-14b9f0ed75b7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S009339> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#4a0d9827-5f90-4d4b-bfe1-a7ec421953c9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S009340> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#e8d52c30-aa39-46c9-b26a-7faacb01acc5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66727/V16#C66727_C41331> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#5020c44b-a6b2-4852-9f75-1d6d0adb7c49>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C66727/V16#C66727_C41331> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#10240030-369e-45b4-b438-4efb3b38adf6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S030065> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#839792fe-83bb-4b5d-9bad-efdcedc18f7e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S030065> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#9be30577-2ab6-4b70-a733-8298a3d24e15>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S004905> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#7c58e8c7-33bd-44f9-8510-3288d32e85f7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S004905> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#716faac2-9895-4b8d-beab-eff5b10cae44>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000054> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#7dfb49af-45d5-46b8-9a5a-9dacad53caec>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000054> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#2d193e7a-0de1-42b3-be4b-24c6fb231f21>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000059> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#e42e4d89-8b5d-4c05-8616-20ac2dde69ae>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000059> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#f931cc77-552c-4b18-8ab3-3a6407603544>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S005135> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#2679b8ec-acf8-4350-95cd-034146db9d23>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S005135> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#267de7dc-d418-43ae-8c2d-df11725b4104>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S004237> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#e3612a40-3bf0-49c8-a5c1-e3b73f4aed8d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S004237> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#89a2646b-6c72-466f-9335-242945527a87>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S005136> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#7e098f79-efc6-4cff-9e51-d80597ebc467>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S005136> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#67095f8f-48a3-40ff-aa9c-5382cac60844>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000061> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#1a4b76b7-9724-4aca-aa34-b76636a58be8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000061> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#f7811559-ac76-48f5-b0d4-52fb6f457e53>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S030068> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#0482fec9-d268-435b-9bb7-0251aecee6ca>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S030068> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#8c637a44-e29e-4f7b-8071-3681ce1e0c63>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007167> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#347a4012-2a5d-4c12-859f-3f5a01b54b42>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S007167> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#0b1af6b0-cef4-48c7-a5dd-9da9a1f03753>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_SC17649> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#196ad720-19e1-4243-af58-a32c9251f6c7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_SC17649> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#14a6e1c2-4f79-466f-bc5a-4c725e2f18a4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S000040> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#a917071b-e599-4765-bc0a-221651788379>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000753/V1#SN000753_S031110> ;
+	isoC:context <http://www.s-cubed.dk/SN000753/V1#SN000753> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#5af17bad-ad3e-45ad-aa0d-90272d1a08f9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000012/V1#SN000012_S000090> ;
+	isoC:context <http://www.s-cubed.dk/SN000012/V1#SN000012> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:context <http://www.s-cubed.dk/NP001002P/V1#NP001002P> ;
+.
+<http://www.assero.co.uk/CLA#b7323f65-14cc-4873-a15f-72e65706631d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000012/V1#SN000012_S000090> ;
+	isoC:context <http://www.s-cubed.dk/SN000012/V1#SN000012> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoC:context <http://www.s-cubed.dk/NP001002P/V1#NP001002P> ;
+.
+<http://www.assero.co.uk/CLA#2328fea8-6713-4a48-bd12-1009d9650e35>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000012/V1#SN000012_S000094> ;
+	isoC:context <http://www.s-cubed.dk/SN000012/V1#SN000012> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#03dbb540-6053-44bf-8335-c78ac30741b2>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000012/V1#SN000012_S000094> ;
+	isoC:context <http://www.s-cubed.dk/SN000012/V1#SN000012> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#6aeefe46-b2f0-471f-b482-5e418352f6d1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000012/V1#SN000012_S000092> ;
+	isoC:context <http://www.s-cubed.dk/SN000012/V1#SN000012> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+.
+<http://www.assero.co.uk/CLA#46dcb7ef-f52a-46c1-93b6-bcd22dd10e94>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000012/V1#SN000012_S000092> ;
+	isoC:context <http://www.s-cubed.dk/SN000012/V1#SN000012> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+.
+<http://www.assero.co.uk/CLA#8db3bc03-4013-4371-a098-8deb57e0803d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000012/V1#SN000012_S000093> ;
+	isoC:context <http://www.s-cubed.dk/SN000012/V1#SN000012> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:context <http://www.s-cubed.dk/NP001002P/V1#NP001002P> ;
+.
+<http://www.assero.co.uk/CLA#bc085567-3df3-40fa-8045-ab855785a03e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000012/V1#SN000012_S000093> ;
+	isoC:context <http://www.s-cubed.dk/SN000012/V1#SN000012> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoC:context <http://www.s-cubed.dk/NP001002P/V1#NP001002P> ;
 .

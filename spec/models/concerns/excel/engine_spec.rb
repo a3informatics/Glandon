@@ -41,7 +41,6 @@ describe Excel::Engine do
   class EET1Class < IsoConceptV2
 
     object_property :collection, cardinality: :many, model_class: "DefinitionClass"
-    object_property :tagged, cardinality: :many, model_class: "DefinitionClass"
 
     def to_hash
       {label: self.label}
@@ -71,7 +70,6 @@ describe Excel::Engine do
     attr_accessor :ct_notes
     attr_accessor :label
     attr_accessor :ordinal
-    attr_accessor :tagged
 
     def initialize
       @property_name = nil
@@ -89,10 +87,6 @@ describe Excel::Engine do
       result[:datatype] = datatype.to_json
       result[:compliance] = compliance.to_json
       return result
-    end
-
-    def add_tag_no_save(tag)
-      @tagged << tag
     end
 
   end
@@ -344,7 +338,7 @@ describe Excel::Engine do
     expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return(tag_a)
     expect(IsoConceptSystem).to receive(:path).with(["CDISC", "XXX"]).and_return(tag_b)
     object.process_sheet(logic)
-    expect(object.tags).to match_array([tag_a, tag_b])
+    expect(object.sheet_tags).to match_array([tag_a, tag_b])
   end
 
   it "checks sheet condition, II" do
@@ -366,7 +360,7 @@ describe Excel::Engine do
       }
     }
     object.process_sheet(logic)
-    expect(object.tags).to eq([])
+    expect(object.sheet_tags).to eq([])
   end
 
   it "tag from sheet name, I" do
@@ -406,44 +400,44 @@ describe Excel::Engine do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
-    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return({tag: "A"})
+    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return(IsoConceptSystem::Node.new(uri: Uri.new(uri: "http://www.example.com/tag#A"), pref_label: "A"))
     result = object.tag_from_sheet_name({additional: { path: ["CDISC"] }, mapping: {map: {CDASH: ["CDASH"], x: ["X"]}}})
-    expect(result).to eq([{:tag=>"A"}])
-    result = object.set_tags({object: parent})
-    expect(parent.tagged).to eq([{:tag=>"A"}])
+    expect(result.map{|x| x.pref_label}).to eq(["A"])
+    result = object.set_property_to_sheet_tags({object: parent, property: :tagged})
+    expect(parent.instance_variable_get("@tagged").map{|x| x.pref_label}).to eq(["A"])
   end
 
-  it "set column tag" do
+  it "set property to tag" do
     full_path = test_file_path(sub_dir, "set_column_tag_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     child = ChildClass.new
-    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_1"]).and_return({tag: "A"})
+    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_1"]).and_return(IsoConceptSystem::Node.new(uri: Uri.new(uri: "http://www.example.com/tag#A"), pref_label: "A"))
     expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_2"]).and_return(nil)
-    result = object.set_column_tag({row: 2, col: 1, object: child, mapping: {map: {Y: "tag_1"}}, can_be_empty: false, additional: {path: ["X", "Y"]}})
+    result = object.set_property_with_tag({row: 2, col: 1, object: child, property: :tagged, mapping: {map: {Y: "tag_1"}}, can_be_empty: false, additional: {path: ["X", "Y"]}})
     expect(parent.errors.count).to eq(0)
-    expect(child.tagged).to eq([{:tag=>"A"}])
+    expect(child.instance_variable_get("@tagged").map{|x| x.pref_label}).to eq(["A"])
     child = ChildClass.new
-    result = object.set_column_tag({row: 2, col: 1, object: child, mapping: {map: {Y: "tag_2"}}, can_be_empty: false, additional: {path: ["X", "Y"]}})
+    result = object.set_property_with_tag({row: 2, col: 1, object: child, property: :tagged, mapping: {map: {Y: "tag_2"}}, can_be_empty: false, additional: {path: ["X", "Y"]}})
     expect(parent.errors.count).to eq(0)
-    expect(child.tagged).to eq([])
+    expect(child.instance_variable_get("@tagged")).to eq([])
     child = ChildClass.new
-    result = object.set_column_tag({row: 3, col: 1, object: child, mapping: {map: {Z: "tag_1"}}, can_be_empty: false, additional: {path: ["X", "Y"]}})
+    result = object.set_property_with_tag({row: 3, col: 1, object: child, property: :tagged, mapping: {map: {Z: "tag_1"}}, can_be_empty: false, additional: {path: ["X", "Y"]}})
     expect(parent.errors.count).to eq(1)
     expect(parent.errors.full_messages.to_sentence).to eq("Error mapping 'Yes' using map {:Z=>\"tag_1\"} detected in row 3 column 1.")
-    expect(child.tagged).to eq([])
+    expect(child.instance_variable_get("@tagged")).to eq([])
     parent.errors.clear
     child = ChildClass.new
-    result = object.set_column_tag({row: 4, col: 1, object: child, mapping: {map: {Y: "tag_1"}}, can_be_empty: false, additional: {path: ["X", "Y"]}})
+    result = object.set_property_with_tag({row: 4, col: 1, object: child, property: :tagged, mapping: {map: {Y: "tag_1"}}, can_be_empty: false, additional: {path: ["X", "Y"]}})
     expect(parent.errors.count).to eq(2)
     expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 4 column 1. and Error mapping '' using map {:Y=>\"tag_1\"} detected in row 4 column 1.")
-    expect(child.tagged).to eq([])
+    expect(child.instance_variable_get("@tagged")).to eq([])
     parent.errors.clear
     child = ChildClass.new
-    result = object.set_column_tag({row: 4, col: 1, object: child, mapping: {map: {Y: "tag_2"}}, can_be_empty: true, additional: {path: ["X", "Y"]}})
+    result = object.set_property_with_tag({row: 4, col: 1, object: child, property: :tagged, mapping: {map: {Y: "tag_2"}}, can_be_empty: true, additional: {path: ["X", "Y"]}})
     expect(parent.errors.count).to eq(0)
-    expect(child.tagged).to eq([])
+    expect(child.instance_variable_get("@tagged")).to eq([])
   end
 
   it "creates parent" do
@@ -661,23 +655,23 @@ describe Excel::Engine do
     parent = EET2Class.new
     object = Excel::Engine.new(parent, workbook) 
     child = ChildClass.new
-    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_1"]).and_return("A")
-    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_2"]).and_return("B")
+    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_1"]).and_return(IsoConceptSystem::Node.new(uri: Uri.new(uri: "http://www.example.com/tag#A"), pref_label: "A"))
+    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_2"]).and_return(IsoConceptSystem::Node.new(uri: Uri.new(uri: "http://www.example.com/tag#B"), pref_label: "B"))
     expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_4"]).and_return(nil)
-    object.set_property_with_tag({row: 2, col: 1, object: child, can_be_empty: false, mapping: {map: {Y: "tag_1"}}, property: "label", additional: {path: ["X", "Y"]}})
+    object.set_property_with_tag({row: 2, col: 1, object: child, can_be_empty: false, mapping: {map: {Y: "tag_1"}}, property: :tagged, additional: {path: ["X", "Y"]}})
     expect(parent.errors.any?).to eq(false)
-    expect(child.label).to eq("A")
-    object.set_property_with_tag({row: 3, col: 1, object: child, can_be_empty: false, mapping: {map: {Y: "tag_1", Z: "tag_2"}}, property: "label", additional: {path: ["X", "Y"]}})
+    expect(child.instance_variable_get("@tagged").map{|x| x.pref_label}).to eq(["A"])
+    object.set_property_with_tag({row: 3, col: 1, object: child, can_be_empty: false, mapping: {map: {Y: "tag_1", Z: "tag_2"}}, property: :tagged, additional: {path: ["X", "Y"]}})
     expect(parent.errors.any?).to eq(false)
-    expect(child.label).to eq("B")
-    child.label = nil
-    object.set_property_with_tag({row: 3, col: 1, object: child, can_be_empty: false, mapping: {map: {Y: "tag_3", Z: "tag_4"}}, property: "label", additional: {path: ["X", "Y"]}})
+    expect(child.instance_variable_get("@tagged").map{|x| x.pref_label}).to eq(["A", "B"])
+    child.instance_variable_set("@tagged", [])
+    object.set_property_with_tag({row: 3, col: 1, object: child, can_be_empty: false, mapping: {map: {Y: "tag_3", Z: "tag_4"}}, property: :tagged, additional: {path: ["X", "Y"]}})
     expect(parent.errors.any?).to eq(false)
-    expect(child.label).to eq(nil)
-    object.set_property_with_tag({row: 4, col: 1, object: child, can_be_empty: false, mapping: {map: {Y: "tag_1"}}, property: "label", additional: {path: ["X", "Y"]}})
+    expect(child.instance_variable_get("@tagged").map{|x| x.pref_label}).to eq([])
+    object.set_property_with_tag({row: 4, col: 1, object: child, can_be_empty: false, mapping: {map: {Y: "tag_1"}}, property: :tagged, additional: {path: ["X", "Y"]}})
     expect(parent.errors.any?).to eq(true)
-    expect(parent.errors.count).to eq(1)
-    expect(parent.errors.full_messages.to_sentence).to eq("Error mapping '' using map {:Y=>\"tag_1\"} detected in row 4 column 1.")
+    expect(parent.errors.count).to eq(2)
+    expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 4 column 1. and Error mapping '' using map {:Y=>\"tag_1\"} detected in row 4 column 1.")
   end
 
   it "property with reference" do
@@ -888,6 +882,22 @@ describe Excel::Engine do
     object = Excel::Engine.new(parent, workbook) 
     result = object.sheet_info(:sponsor_term_format_one, :version_3)
     check_file_actual_expected(result, sub_dir, "sheet_info_expected_3.yaml", equate_method: :hash_equal)
+  end
+
+  it "returns the sheet info, IV" do
+    full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect{object.sheet_info(:sponsor_term_format, :version_5)}.to raise_error(Errors::ApplicationLogicError, "Exception when finding sheet definition for import type: 'sponsor_term_format'' and sheet: 'version_5'.")
+  end
+
+  it "returns the sheet info, V" do
+    full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect{object.sheet_info(:sponsor_term_format_one, :version_5)}.to raise_error(Errors::ApplicationLogicError, "Exception when finding sheet definition for import type: 'sponsor_term_format_one'' and sheet: 'version_5'.")
   end
 
   it "process engine, no errors" do
