@@ -209,72 +209,7 @@ describe "Thesauri Subsets", :type => :feature do
 
     end
 
-    it "edit timeout warnings and extend" do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
-
-      show_item '2010-03-05 Release', 'C85495'
-      context_menu_element_header(:subsets)
-
-      ui_in_modal do
-        context_menu_element_v2('subsets-index-table', 'NP000010P', :edit)
-      end
-      wait_for_ajax 10
-
-      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
-
-      expect( find('#imh_header')[:class] ).to include 'warning'
-
-      find( '#timeout' ).click
-      wait_for_ajax 10
-
-      expect( find('#imh_header')[:class] ).not_to include 'warning'
-
-      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
-
-      expect( find('#imh_header')[:class] ).to include 'danger'
-
-      sleep 28
-
-      expect( find('#timeout')[:class] ).to include 'disabled'
-      expect( find('#imh_header')[:class] ).not_to include 'danger'
-
-      Token.restore_timeout
-    end
-
-    it "prevents add, remove and move item in subset, when token expires" do
-      Token.set_timeout(10)
-
-      show_item '2010-03-05 Release', 'C85495'
-      context_menu_element_header(:subsets)
-
-      ui_in_modal do
-        context_menu_element_v2('subsets-index-table', 'NP000010P', :edit)
-      end
-      wait_for_ajax 10
-
-      sleep 12
-
-      add_or_remove_items ['C17998']
-
-      expect(page).to have_content "The edit lock has timed out."
-    end
-
-    it "clears token when leaving page" do
-      show_item '2010-03-05 Release', 'C85495'
-      context_menu_element_header(:subsets)
-
-      ui_in_modal do
-        context_menu_element_v2('subsets-index-table', 'NP000010P', :edit)
-      end
-      wait_for_ajax 10
-
-      expect(Token.all.count).to eq(1)
-      click_on 'Return'
-      wait_for_ajax 10
-      expect(Token.all.count).to eq(0)
-    end
-
-    it "edits properties of a subset MC in edit subset", js:true do
+    it "edits properties of a subset MC in edit subset" do
       audit_count = AuditTrail.count
 
       show_item '2010-03-05 Release', 'C81225'
@@ -321,6 +256,71 @@ describe "Thesauri Subsets", :type => :feature do
       w.close
     end
 
+    it "edit timeout warnings and extend" do
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
+
+      show_item '2010-03-05 Release', 'C85495'
+      context_menu_element_header(:subsets)
+
+      ui_in_modal do
+        context_menu_element_v2('subsets-index-table', 'NP000010P', :edit)
+      end
+      wait_for_ajax 10
+
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+
+      expect( find('#imh_header')[:class] ).to include 'warning'
+
+      find( '#timeout' ).click
+      wait_for_ajax 10
+
+      expect( find('#imh_header')[:class] ).not_to include 'warning'
+
+      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
+
+      expect( find('#imh_header')[:class] ).to include 'danger'
+
+      sleep 28
+
+      expect( find('#timeout')[:class] ).to include 'disabled'
+      expect( find('#imh_header')[:class] ).not_to include 'danger'
+
+      Token.restore_timeout
+    end
+
+    it "prevents add, remove and move item in subset, when token expires" do
+      Token.set_timeout3
+
+      show_item '2010-03-05 Release', 'C85495'
+      context_menu_element_header(:subsets)
+
+      ui_in_modal do
+        context_menu_element_v2('subsets-index-table', 'NP000010P', :edit)
+      end
+      wait_for_ajax 10
+
+      sleep 5
+
+      add_or_remove_items ['C17998']
+
+      expect(page).to have_content "The edit lock has timed out."
+    end
+
+    it "clears token when leaving page" do
+      show_item '2010-03-05 Release', 'C85495'
+      context_menu_element_header(:subsets)
+
+      ui_in_modal do
+        context_menu_element_v2('subsets-index-table', 'NP000010P', :edit)
+      end
+      wait_for_ajax 10
+
+      expect(Token.all.count).to eq(1)
+      click_on 'Return'
+      wait_for_ajax 10
+      expect(Token.all.count).to eq(0)
+    end
+
     it "can refresh page while editing in a locked state, creates new version" do
       show_item '2010-03-05 Release', 'C85491'
       context_menu_element_header(:subsets)
@@ -348,7 +348,7 @@ describe "Thesauri Subsets", :type => :feature do
       context_menu_element_v2("history", "0.1.0", :edit)
       expect(page).to have_content("Subset Editor")
 
-      page.driver.browser.navigate.refresh
+      ui_refresh_page
       expect(page).to have_content("Subset Editor")
 
       click_on 'Return'
