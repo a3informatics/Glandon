@@ -2702,47 +2702,41 @@ defaults: &defaults
             label: "DC_STAGE"
             actions:
               -
-                method: set_property_with_tag
+                method: set_property_with_custom
                 object: child
-                property: :tagged
+                property: :custom
                 mapping:
                   map:
-                    "Y": "DC Stage"
-                    "N": ""
+                    "Y": "true"
+                    "N": "false"
                 additional:
-                  path:
-                    - Process
-                    - Stage
+                  name: dc_stage
           -
             label: "SDTM_STAGE"
             actions:
               -
-                method: set_property_with_tag
+                method: set_property_with_custom
                 object: child
-                property: :tagged
+                property: :custom
                 mapping:
                   map:
-                    "Y": "SDTM Stage"
-                    "N": ""
+                    "Y": "true"
+                    "N": "false"
                 additional:
-                  path:
-                    - Process
-                    - Stage
+                  name: sdtm_stage
           -
             label: "ADAM_STAGE"
             actions:
               -
-                method: set_property_with_tag
+                method: set_property_with_custom
                 object: child
-                property: :tagged
+                property: :custom
                 mapping:
                   map:
-                    "Y": "ADaM Stage"
-                    "N": ""
+                    "Y": "true"
+                    "N": "false"
                 additional:
-                  path:
-                    - Process
-                    - Stage
+                  name: adam_stage
           -
             label: "INACTIVE_F"
             actions: []
@@ -2943,62 +2937,54 @@ defaults: &defaults
             label: "DC_STAGE"
             actions:
               -
-                method: set_property_with_tag
+                method: set_property_with_custom
                 object: child
-                property: :tagged
+                property: :custom
                 mapping:
                   map:
-                    "Y": "DC Stage"
-                    "N": ""
+                    "Y": "true"
+                    "N": "false"
                 additional:
-                  path:
-                    - Process
-                    - Stage
+                  name: dc_stage
           -
             label: "SDTM_STAGE"
             actions:
               -
-                method: set_property_with_tag
+                method: set_property_with_custom
                 object: child
-                property: :tagged
+                property: :custom
                 mapping:
                   map:
-                    "Y": "SDTM Stage"
-                    "N": ""
+                    "Y": "true"
+                    "N": "false"
                 additional:
-                  path:
-                    - Process
-                    - Stage
+                  name: sdtm_stage
           -
             label: "ADAM_STAGE"
             actions:
               -
-                method: set_property_with_tag
+                method: set_property_with_custom
                 object: child
-                property: :tagged
+                property: :custom
                 mapping:
                   map:
-                    "Y": "ADaM Stage"
-                    "N": ""
+                    "Y": "true"
+                    "N": "false"
                 additional:
-                  path:
-                    - Process
-                    - Stage
+                  name: adam_stage
           -
             label: "ED_USE"
             actions:
               -
-                method: set_property_with_tag
+                method: set_property_with_custom
                 object: child
-                property: :tagged
+                property: :custom
                 mapping:
                   map:
-                    "Y": "Ed Use"
-                    "N": ""
+                    "Y": "true"
+                    "N": "false"
                 additional:
-                  path:
-                    - Process
-                    - Stage
+                  name: ed_use
           -
             label: "INACTIVE_F"
             actions: []
