@@ -16,8 +16,8 @@
 
       <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
 
-          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#", id: "edit-properties-button",
-            icon: "icon-edit", text: "Edit properties" } %>
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#edit-properties-modal", id: "edit-properties-button",
+            icon: "icon-edit", text: "Edit properties", toggle: "modal" } %>
           <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
             icon: "icon-tag", text: "Edit tags", new_tab: true } %>
 
@@ -51,7 +51,7 @@
 </div>
 
 <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
-<%= render partial: "shared/thesauri/edit_properties_modal", :locals => { modal_id: 'extension', item: @tc } %>
+<%= render partial: "shared/thesauri/managed_concepts/edit/edit_properties", :locals => { item: @tc } %>
 <%= render partial: "shared/thesauri/managed_concepts/rank/edit_ranks", :locals => {item: @tc} %>
 
 <% if !@tc.paired? %>

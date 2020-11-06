@@ -1,6 +1,8 @@
 <%= stylesheet_link_tag 'shared/layouts/generic_editor_modal' %>
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="generic-editor">
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel"
+      aria-hidden="true" id="<%= local_assigns.fetch :id, "generic-editor" %>">
+
   <div class="modal-dialog modal-lg <%= local_assigns.fetch :width_class, "medium-screen" %>" role="document">
 
     <div class="modal-content">
@@ -17,6 +19,10 @@
 
       <div class="modal-body font-light">
 
+        <% if !(local_assigns.fetch :image_url, '').empty? %>
+          <img src="<%= asset_path image_url %>" class="modal-img"></img>
+        <% end %>
+        
         <div class="ge-content form-wrap"></div>
 
       </div>
@@ -28,4 +34,5 @@
 
     </div>
   </div>
+
 </div>

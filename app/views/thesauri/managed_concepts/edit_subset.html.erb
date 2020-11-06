@@ -18,7 +18,7 @@
 
       <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
 
-        <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#", id: "edit-properties",
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#edit-properties-modal", id: "edit-properties",
           icon: "icon-edit", text: "Edit properties", toggle: "modal" } %>
         <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags",
           icon: "icon-tag", text: "Edit tags", new_tab: true } %>
@@ -52,6 +52,6 @@
 </div>
 
 
-<%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: "subset", item: @subset_mc} %>
+<%= render partial: "shared/thesauri/managed_concepts/edit/edit_properties", :locals => { item: @subset_mc } %>
 <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @subset_mc.identifier, item_id: @subset_mc.id, item_notes_url: change_notes_iso_concept_path(@subset_mc.id)} %>
 <%= render partial: "shared/thesauri/managed_concepts/rank/edit_ranks", :locals => {item: @subset_mc} %>
