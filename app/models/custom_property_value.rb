@@ -1,4 +1,4 @@
-# Custom Property. The class holding the data for a custom property.
+# Custom Property Value. The class holding the data for a custom property.
 #
 # @author Dave Iberson-Hurst
 # @since 3.3.0

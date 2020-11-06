@@ -16,19 +16,20 @@ describe CustomPropertySet do
 
   it "<<" do
     expected = [
-      {:id=>nil,
-       :label=>"1",
-       :rdf_type=>"http://www.assero.co.uk/ISO11179Concepts#Concept",
-       :uri=>{}
+      {id: nil,
+       label: "1",
+       rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
+       uri: {}
       },
-      {:id=>nil,
-       :label=>"1",
-       :rdf_type=>"http://www.assero.co.uk/ISO11179Concepts#Concept",
-       :uri=>{}},
-      {:id=>nil,
-       :label=>"1",
-       :rdf_type=>"http://www.assero.co.uk/ISO11179Concepts#Concept",
-       :uri=>{}
+      {id: nil,
+       label: "1",
+       rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
+       uri: {}
+      },
+      {id: nil,
+       label: "1",
+       rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
+       uri: {}
       }
     ]
     item = CustomPropertySet.new
