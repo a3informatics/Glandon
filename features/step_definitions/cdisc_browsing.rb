@@ -2,25 +2,25 @@
 ##################### Pre-conditions - Given statements
 
 Given /Community [dD]ashboard/ do
-   expect(page).to have_content 'Changes between two CDISC Terminology versions'
+	expect(page).to have_content 'Changes between two CDISC Terminology versions'
 end
 
 Given('the latest version of CDISC has Version Label: {string} and Version Number: {string}') do |string, string2|
-  LATEST_VERSION = string2
-  LATEST_VERSION_LABEL = string
-  LVERSION = string2.split[0].to_i
-  end
+	LATEST_VERSION = string2
+	LATEST_VERSION_LABEL = string
+	LVERSION = string2.split[0].to_i
+end
 
 ##################### When statements 
 
 When('I click "Browse every version of CDISC CT"') do
- click_browse_every_version
- wait_for_ajax(20)
- end
+	click_browse_every_version
+	wait_for_ajax(20)
+end
 
- When /[bB]rowse latest version/ do
-  click_show_latest_version
-  wait_for_ajax(20)
+When /[bB]rowse latest version/ do
+	click_show_latest_version
+	wait_for_ajax(20)
 end
 
 When /[Ss]ee the changes across versions/ do
@@ -35,21 +35,21 @@ When('I sort on version {string} in the Difference table') do |string|
 end
 
 When('I select CDISC version {string} and CDISC version {string} by dragging the slides and click Display') do |string, string2|
-      ui_dashboard_slider(string,string2)
-      click_link 'Display'
-      wait_for_ajax(10)
+  ui_dashboard_slider(string,string2)
+  click_link 'Display'
+  wait_for_ajax(10)
 end
 
 ##################### Then statements #####################
 
 Then /latest (?:release\s)*version is/ do 
- expect(page).to have_content LATEST_VERSION
- ui_check_table_info("history", 1, 10, LVERSION)
- save_screen(TYPE)
-  wait_for_ajax(20)
+	expect(page).to have_content LATEST_VERSION
+	ui_check_table_info("history", 1, 10, LVERSION)
+	save_screen(TYPE)
+	wait_for_ajax(20)
 end
 
- Then /the Community Dashbaord is displayed/ do 
+Then /the Community Dashboard is displayed/ do
   expect(page).to have_content 'Changes between two CDISC Terminology versions'
   wait_for_ajax(20)
   save_screen(TYPE)
@@ -58,14 +58,14 @@ end
 ### Context menu ###
 
 Then('I verify that Show and Search are enabled and all other menus are disabled for {string}') do |string|
-        row = find("table#history tr", text: string)
-        expect(row).to have_selector(".context-menu .option.disabled", text: "Edit", visible: false)
-        expect(row).to have_selector(".context-menu .option.disabled", text: "Delete", visible: false)
-        expect(row).to have_selector(".context-menu .option.disabled", text: "Document control", visible: false)
-        expect(row).not_to have_selector(".context-menu .option.disabled", text: "Show", visible: false)
-        expect(row).not_to have_selector(".context-menu .option.disabled", text: "Search", visible: false)
-        save_screen(TYPE)
-        end
+  row = find("table#history tr", text: string)
+  expect(row).to have_selector(".context-menu .option.disabled", text: "Edit", visible: false)
+  expect(row).to have_selector(".context-menu .option.disabled", text: "Delete", visible: false)
+  expect(row).to have_selector(".context-menu .option.disabled", text: "Document control", visible: false)
+  expect(row).not_to have_selector(".context-menu .option.disabled", text: "Show", visible: false)
+  expect(row).not_to have_selector(".context-menu .option.disabled", text: "Search", visible: false)
+  save_screen(TYPE)
+end
 
 
 Then('I see Controlled Terminology Changes Across versions displayed') do
@@ -83,21 +83,21 @@ end
 
 
 Then('I see the differences in the {string} code list is displayed') do |string|
-      expect(page).to have_content 'Differences'
-      expect(page).to have_content string
-      wait_for_ajax(20)
-      save_screen(TYPE) 
+  expect(page).to have_content 'Differences'
+  expect(page).to have_content string
+  wait_for_ajax(20)
+  save_screen(TYPE) 
 end
 
 Then('the Differences panel has {int} entries and no updates to Submission Value, Preferred Term, Synonym or Definition') do |int|
-      if int < 10
-    ui_check_table_info("differences_table", 1, int, int)
-     else
-      ui_check_table_info("differences_table", 1, 10, int)
-     end
-      wait_for_ajax(20)
-      save_screen(TYPE)
- #Pending checking          
+  if int < 10
+	  ui_check_table_info("differences_table", 1, int, int)
+	else
+		ui_check_table_info("differences_table", 1, 10, int)
+	end
+  wait_for_ajax(20)
+  save_screen(TYPE)
+	#Pending checking          
 end
 
 Then('the Changes panel displays {int} entries') do |int|
@@ -106,8 +106,8 @@ Then('the Changes panel displays {int} entries') do |int|
   else
     ui_check_table_info("changes", 1, 10, int)
   end
-      wait_for_ajax(20)
-      save_screen(TYPE)
+  wait_for_ajax(20)
+  save_screen(TYPE)
 end
 
 Then('the {string}, c-code: {string} was created (+) in version {string} and deleted (-) in version {string}') do |string, string2, string3, string4|
@@ -162,7 +162,9 @@ Then('a PDF report is generated and contains the {int} entires in the Changes pa
 end
 
 Then('a PDF report is generated and contains the {int} entries in the Submission value changes panel') do |int|
-  new_window = window_opened_by { click_link 'PDF Report' }
+  # new_window = window_opened_by { click_link 'PDF Report' }
+  # new_window = window_opened_by { find("div", text:"PDF Report").click }
+  new_window = window_opened_by { page.find("#report").find(:xpath, '..').click }
   within_window new_window do
     sleep 10
     expect(current_path).to include("submission_report.pdf")
@@ -170,8 +172,5 @@ Then('a PDF report is generated and contains the {int} entries in the Submission
     save_screen(TYPE)
     page.execute_script "window.close();"
   end
+  # find('#home_button').click
 end
-
-
-
-       
