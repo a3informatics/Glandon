@@ -1,0 +1,5 @@
+<%= javascript_tag "let editItemPropertiesData = '#{ item.simple_to_h.to_json }',
+                        editItemPropertiesUpdateUrl = '#{ update_properties_thesauri_managed_concept_path(item) }';" %>
+
+<%= render partial: "shared/modals/generic_editor_modal", :locals => {
+    title: "Edit properties", id: "edit-properties-modal" } %>
