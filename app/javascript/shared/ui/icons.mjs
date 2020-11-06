@@ -46,7 +46,7 @@ const iconsInline = { 
       iconName: 'times-circle',
       ttip,
       ttipText,
-      ttipClasses: 'ttip-table left',
+      ttipClasses: 'ttip-table left text-small',
       cssClasses
     });
   },
@@ -64,7 +64,7 @@ const iconsInline = { 
       iconName: 'edit',
       ttip,
       ttipText,
-      ttipClasses: 'ttip-table left',
+      ttipClasses: 'ttip-table left text-small',
       cssClasses
     });
   }

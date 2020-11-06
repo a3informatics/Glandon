@@ -71,9 +71,11 @@ export default class ExtensionEditor extends CLEditor {
     let synonyms = item.synonym.split(';'),
         count = synonyms[0] ? synonyms.length : 0;
 
-    // Do nothing when Item has no synonyms
-    if ( count < 1 )
+    // Item has no synonyms
+    if ( count < 1 ) {
+      alerts.warning( 'Selected item has no synonyms.');
       return;
+    }
 
     // User confirmation and request execution
     $confirm({
