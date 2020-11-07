@@ -26,4 +26,12 @@ class CustomPropertySet
     @items.map {|x| x.to_h}
   end
 
+  def diff?(other)
+    self.name_value_pairs != other.name_value_pairs
+  end
+
+  def name_value_pairs
+    @items.map{|x| {name: x.custom_property_defined_by.label, value: x.value}}
+  end
+
 end

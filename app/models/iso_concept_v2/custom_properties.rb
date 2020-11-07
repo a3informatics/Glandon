@@ -1,4 +1,4 @@
-# Custom Property. Module to handle custom properties
+# Custom Properties. Module to handle custom properties
 #
 # @author Dave Iberson-Hurst
 # @since 3.3.0
@@ -18,7 +18,7 @@ class IsoConceptV2
       Sparql::Query.new.query("ASK {#{self.uri.rdf_type.to_ref} ^isoC:customPropertyOf ?o}", "", [:isoC]).ask? 
     end
 
-    def find_custom_properties(context=self.uri)
+    def find_custom_properties(context=self)
       @custom_properties = CustomProperty::Set.new(self)
       query_string = %Q{
         SELECT ?s ?p ?o ?e WHERE 
@@ -41,6 +41,14 @@ class IsoConceptV2
         @custom_properties << from_results_recurse(uri, by_subject)
       end
       @custom_properties
+    end
+
+    def custom_properties
+      @custom_properties
+    end
+
+    def custom_properties_diff?(previous)
+      self.custom_properties.diff?(previous.custom_properties)
     end
 
   end

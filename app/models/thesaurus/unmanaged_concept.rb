@@ -210,7 +210,7 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
   # @return [Thesaurus::UnmanagedConcept] the new object if changes, otherwise the previous object
   def replace_if_no_change(previous, add_properties=[])
     return self if previous.nil?
-    if !self.diff?(previous, {ignore: []})
+    if !self.custom_properties_diff?(previous) && !self.diff?(previous, {ignore: []})
       add_properties.each{|x| previous.instance_variable_set("@#{x}", self.instance_variable_get("@#{x}"))}
       return previous 
     else
