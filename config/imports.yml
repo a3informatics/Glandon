@@ -2674,11 +2674,10 @@ defaults: &defaults
               -
                 method: set_property_with_custom
                 object: child
-                property: :custom
+                property: :custom_properties
                 mapping: 
                   map: {}
                 additional:
-                  name: crf_display_value
                   definition: CRF Display Value
               -
                 method: create_shared
@@ -2713,13 +2712,12 @@ defaults: &defaults
               -
                 method: set_property_with_custom
                 object: child
-                property: :custom
+                property: :custom_properties
                 mapping:
                   map:
                     "Y": "true"
                     "N": "false"
                 additional:
-                  name: dc_stage
                   definition: DC Stage
           -
             label: "SDTM_STAGE"
@@ -2727,13 +2725,12 @@ defaults: &defaults
               -
                 method: set_property_with_custom
                 object: child
-                property: :custom
+                property: :custom_properties
                 mapping:
                   map:
                     "Y": "true"
                     "N": "false"
                 additional:
-                  name: sdtm_stage
                   definition: SDTM Stage
           -
             label: "ADAM_STAGE"
@@ -2741,13 +2738,12 @@ defaults: &defaults
               -
                 method: set_property_with_custom
                 object: child
-                property: :custom
+                property: :custom_properties
                 mapping:
                   map:
                     "Y": "true"
                     "N": "false"
                 additional:
-                  name: adam_stage
                   definition: ADaM Stage
           -
             label: "INACTIVE_F"
@@ -2921,11 +2917,10 @@ defaults: &defaults
               -
                 method: set_property_with_custom
                 object: child
-                property: :custom
+                property: :custom_properties
                 mapping:
                   map: {}
                 additional:
-                  name: crf_display_value
                   definition: CRF Display Value
               -
                 method: create_shared
@@ -2960,13 +2955,12 @@ defaults: &defaults
               -
                 method: set_property_with_custom
                 object: child
-                property: :custom
+                property: :custom_properties
                 mapping:
                   map:
                     "Y": "true"
                     "N": "false"
                 additional:
-                  name: dc_stage
                   definition: DC Stage
           -
             label: "SDTM_STAGE"
@@ -2974,13 +2968,12 @@ defaults: &defaults
               -
                 method: set_property_with_custom
                 object: child
-                property: :custom
+                property: :custom_properties
                 mapping:
                   map:
                     "Y": "true"
                     "N": "false"
                 additional:
-                  name: sdtm_stage
                   definition: SDTM Stage
           -
             label: "ADAM_STAGE"
@@ -2988,13 +2981,12 @@ defaults: &defaults
               -
                 method: set_property_with_custom
                 object: child
-                property: :custom
+                property: :custom_properties
                 mapping:
                   map:
                     "Y": "true"
                     "N": "false"
                 additional:
-                  name: adam_stage
                   definition: ADaM Stage
           -
             label: "ED_USE"
@@ -3002,13 +2994,12 @@ defaults: &defaults
               -
                 method: set_property_with_custom
                 object: child
-                property: :custom
+                property: :custom_properties
                 mapping:
                   map:
                     "Y": "true"
                     "N": "false"
                 additional:
-                  name: ed_use
                   definition: ED Use
           -
             label: "INACTIVE_F"

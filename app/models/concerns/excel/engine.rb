@@ -317,9 +317,10 @@ class Excel::Engine
     check_params(__method__.to_s, params, [:row, :col, :object, :mapping, :property, :can_be_empty, :additional])
     value = check_value(params[:row], params[:col], true)
     value = check_mapped(params[:row], params[:col], params[:mapping][:map]) unless params[:mapping][:map].empty?
-    definition = find_custom(params[:additional][:definition])
+    value = value.blank? ? "" : value
+    definition = find_custom(params[:additional][:definition], params[:row], params[:col])
     return if definition.blank?
-    add_custom(params[:object], params[:property], params[:additional][:name], value, definition)
+    add_custom(params[:object], params[:property], value, definition)
   end
 
   # Set Property With Tag. Set a property to a tag
@@ -607,14 +608,6 @@ private
     return nil
   end
 
-  # Find Custom From Label
-  def find_custom(label)
-    result = CustomPropertyDefinition.where(label: label)
-    return result.first unless result.empty?
-    raise Errors::ApplicationLogicError.new("Failed to find custom property definition for #{label}.")
-    nil
-  end
-
   # Find Columns
   def find_column(column, sheet)
     header_row = sheet.dig(:sheet, :header_row)
@@ -758,11 +751,21 @@ private
     property_set_value(object, name, current_tags)
   end
 
+  # Find Custom From Label
+  def find_custom(label, row, col)
+    result = CustomPropertyDefinition.where(label: label)
+    return result.first unless result.empty?
+    @errors.add(:base, "Failed to find custom property definition for #{label} in #{row} column #{col}.")
+    nil
+  end
+
   # Add custom
-  def add_custom(object, property, name, value, definition)
+  def add_custom(object, property, value, definition)
     custom_set = get_temporary(object, property)
-    custom_set ||= {}
-    custom_set[name] = {value: value, definition: definition.uri}
+    custom_set ||= CustomPropertySet.new
+    item = CustomPropertyValue.new(value: value, custom_property_defined_by: definition.uri)
+    #item.uri = item.create_uri(item.class.base_uri)
+    custom_set << item
     property_set_value(object, property, custom_set)
   end
 
