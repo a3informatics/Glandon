@@ -27,6 +27,7 @@ describe "Import::SponsorTermFormatOne" do
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+    load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
     load_cdisc_term_versions(1..62)
     nv_destroy
     nv_create(parent: "1000", child: "10000")
@@ -82,7 +83,7 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3.ttl")
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3.ttl")
     check_ttl_fix_v2(filename, "import_expected_3.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)

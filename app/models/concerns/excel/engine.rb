@@ -311,15 +311,12 @@ class Excel::Engine
   # @option params [Object] :object the object in which the property is being set
   # @option params [Hash] :mapping the mapping from spreadsheet values to internal values
   # @option params [String] :property the name of the property holding the set of custom values
-  # @option params [Boolean] :can_be_empty if true property can be blank.
   # @option params [Hash] :additonal hash containing the tag path, custom name and label
   # @return [Void] no return
   def set_property_with_custom(params)
     check_params(__method__.to_s, params, [:row, :col, :object, :mapping, :property, :can_be_empty, :additional])
-    value = check_value(params[:row], params[:col], params[:can_be_empty])
-    return if value.blank? && params[:can_be_empty]
-    value = check_mapped(params[:row], params[:col], params[:mapping][:map])
-    return if value.blank?
+    value = check_value(params[:row], params[:col], true)
+    value = check_mapped(params[:row], params[:col], params[:mapping][:map]) unless params[:mapping][:map].empty?
     definition = find_custom(params[:additional][:definition])
     return if definition.blank?
     add_custom(params[:object], params[:property], params[:additional][:name], value, definition)
@@ -612,8 +609,8 @@ private
 
   # Find Custom From Label
   def find_custom(label)
-    result = CustomPropertyDefinition.find(label: label)
-    return result unless result.nil?
+    result = CustomPropertyDefinition.where(label: label)
+    return result.first unless result.empty?
     raise Errors::ApplicationLogicError.new("Failed to find custom property definition for #{label}.")
     nil
   end
