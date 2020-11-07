@@ -19,12 +19,12 @@ class IsoConceptV2
     end
 
     def find_custom_properties(context=self)
-      @custom_properties = CustomProperty::Set.new(self)
+      @custom_properties = ::CustomPropertySet.new
       query_string = %Q{
         SELECT ?s ?p ?o ?e WHERE 
         { 
-          #{self.uri.rdf_type.to_ref} ^isoC:appliesTo ?e .
-          ?e isoC:context #{context.uri.to:ref} .
+          #{self.rdf_type.to_ref} ^isoC:appliesTo ?e .
+          ?e isoC:context #{context.uri.to_ref} .
           {
             ?e ?p ?o .
             BIND (?e as ?s)

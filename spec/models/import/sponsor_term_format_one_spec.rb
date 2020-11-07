@@ -83,11 +83,25 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_3.ttl")
     check_ttl_fix_v2(filename, "import_expected_3.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
 	end
+
+  it "import, no errors, version 2, short I, load check" do
+    results = Hash.new{|hash, key| hash[key]={}}
+    load_local_file_into_triple_store(sub_dir, "import_load_3.ttl")
+    ["http://www.s-cubed.dk/C66767/V1#C66767", "http://www.s-cubed.dk/SN000001/V1#SN000001"].each do |uri|
+      parent = Thesaurus::ManagedConcept.find_full(Uri.new(uri: uri))
+      results[parent.uri.to_s][""] = parent.find_custom_properties.name_value_pairs
+      parent.narrower.each do |child|
+        results[parent.uri.to_s][child.uri.to_s] = child.find_custom_properties(parent).name_value_pairs
+      end
+    end
+    check_file_actual_expected(results, sub_dir, "custom_properties_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+  end
 
   it "import, no errors, version 2, short II" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))

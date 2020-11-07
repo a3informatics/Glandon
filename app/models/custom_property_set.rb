@@ -26,12 +26,27 @@ class CustomPropertySet
     @items.map {|x| x.to_h}
   end
 
+  # Diff? Two sets different
+  #
+  # @return [Boolean] returns true if different, false otherwise
   def diff?(other)
     self.name_value_pairs != other.name_value_pairs
   end
 
+  # Name Value Pairs. Returns the property set as an array of hashes containing the name value pairs
+  #
+  # @return [Boolean] returns true if different, false otherwise
   def name_value_pairs
     @items.map{|x| {name: x.custom_property_defined_by.label, value: x.value}}
+  end
+
+  # Each. Iterate over the proprites
+  #
+  # @return [Enumerator] returns the enumerator for the collection
+  def each
+    @items.each do |property| 
+      yield(property)
+    end
   end
 
 end
