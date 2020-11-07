@@ -108,9 +108,9 @@ class Import < ApplicationRecord
     parent.to_sparql(sparql, true)
     objects[:managed_children].each do |child|
       child.to_sparql(sparql, true)
-      process_custom_properties(child, sparql)  
+      process_custom_properties(child, child, sparql)  
       child.children.each do |item|
-        process_custom_properties(item, sparql)  
+        process_custom_properties(item, child, sparql)  
       end
     end
     process_tags(objects, sparql)
@@ -246,10 +246,12 @@ private
   end
 
   # Process the custom properties
-  def process_custom_properties(item, sparql)
+  def process_custom_properties(item, context, sparql)
     return if item.custom_properties.nil?
     item.custom_properties.each do |custom_value|
       custom_value.uri = custom_value.create_uri(custom_value.class.base_uri)
+      custom_value.applies_to = item.uri
+      custom_value.context = [context.uri]
       custom_value.to_sparql(sparql)
     end
   end

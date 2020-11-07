@@ -93,7 +93,8 @@ describe "Import::SponsorTermFormatOne" do
   it "import, no errors, version 2, short I, load check" do
     results = Hash.new{|hash, key| hash[key]={}}
     load_local_file_into_triple_store(sub_dir, "import_load_3.ttl")
-    ["http://www.s-cubed.dk/C66767/V1#C66767", "http://www.s-cubed.dk/SN000001/V1#SN000001"].each do |uri|
+    ["http://www.s-cubed.dk/C66767/V1#C66767", "http://www.s-cubed.dk/SN000001/V1#SN000001", 
+      "http://www.s-cubed.dk/NP001002P/V1#NP001002P"].each do |uri|
       parent = Thesaurus::ManagedConcept.find_full(Uri.new(uri: uri))
       results[parent.uri.to_s][""] = parent.find_custom_properties.name_value_pairs
       parent.narrower.each do |child|

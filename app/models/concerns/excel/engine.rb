@@ -314,7 +314,7 @@ class Excel::Engine
   # @option params [Hash] :additonal hash containing the tag path, custom name and label
   # @return [Void] no return
   def set_property_with_custom(params)
-    check_params(__method__.to_s, params, [:row, :col, :object, :mapping, :property, :can_be_empty, :additional])
+    check_params(__method__.to_s, params, [:row, :col, :object, :mapping, :property, :additional])
     value = check_value(params[:row], params[:col], true)
     value = check_mapped(params[:row], params[:col], params[:mapping][:map]) unless params[:mapping][:map].empty?
     value = value.blank? ? "" : value
@@ -763,7 +763,7 @@ private
   def add_custom(object, property, value, definition)
     custom_set = get_temporary(object, property)
     custom_set ||= CustomPropertySet.new
-    item = CustomPropertyValue.new(value: value, custom_property_defined_by: definition)
+    item = CustomPropertyValue.new(value: value, custom_property_defined_by: definition, applies_to: nil, context: nil)
     #item.uri = item.create_uri(item.class.base_uri)
     custom_set << item
     property_set_value(object, property, custom_set)

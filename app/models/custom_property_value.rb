@@ -2,7 +2,7 @@
 #
 # @author Dave Iberson-Hurst
 # @since 3.3.0
-class CustomPropertyValue < Fuseki::Base
+class CustomPropertyValue < IsoContextualRelationship
   
   configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#CustomProperty",
             base_uri: "http://#{EnvironmentVariable.read("url_authority")}/CPV",

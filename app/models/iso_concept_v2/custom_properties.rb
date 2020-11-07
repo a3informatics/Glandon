@@ -22,23 +22,24 @@ class IsoConceptV2
       @custom_properties = ::CustomPropertySet.new
       query_string = %Q{
         SELECT ?s ?p ?o ?e WHERE 
-        { 
-          #{self.rdf_type.to_ref} ^isoC:appliesTo ?e .
-          ?e isoC:context #{context.uri.to_ref} .
-          {
-            ?e ?p ?o .
-            BIND (?e as ?s)
-          }
-          UNION
-          {
+        {            
+          ?e rdf:type isoC:CustomProperty .
+          ?e isoC:appliesTo #{self.uri.to_ref} .          
+          ?e isoC:context #{context.uri.to_ref} . 
+          {             
             ?e isoC:customPropertyDefinedBy ?s .
-            ?s ?p ?o .
-          }
-        }
+            ?s ?p ?o .             
+          }           
+          UNION           
+          {             
+            BIND (?e as ?s)
+            ?e ?p ?o .          
+          }         
+        }   
       }
       results = Sparql::Query.new.query(query_string, "", [:isoC])
       results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
-        @custom_properties << from_results_recurse(uri, by_subject)
+        @custom_properties << ::CustomPropertyValue.from_results_recurse(uri, results.by_subject)
       end
       @custom_properties
     end
