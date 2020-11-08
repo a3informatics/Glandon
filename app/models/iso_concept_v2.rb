@@ -15,7 +15,12 @@ class IsoConceptV2 < Fuseki::Base
   include ManagedAncestors
   include ClassifiedAs
   include CustomProperties
-  
+
+  def initialize(attributes = {})
+    @custom_properties = ::CustomPropertySet.new
+    super
+  end
+
   # Where Only Or Create
   #
   # @param label [String] the label required or to be created
