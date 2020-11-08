@@ -59,6 +59,7 @@ describe "Import::SponsorTermFormatOne" do
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       load_cdisc_term_versions(1..66)
       Import.destroy_all
       delete_all_public_test_files
@@ -352,7 +353,8 @@ describe "Import::SponsorTermFormatOne" do
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
-      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_cdisc_term_versions(1..66)
       load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
       load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
       load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
