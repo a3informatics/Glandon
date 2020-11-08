@@ -1,0 +1,52 @@
+@prefix : <http://www.assero.co.uk/CPD#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/CPD>
+	rdf:type owl:Ontology ;
+.
+:6df348da-ea72-462b-85d4-bb0b7df7d671
+	rdf:type isoC:CustomPropertyDefinition ;
+	isoC:datatype "boolean"^^xsd:string ;
+	isoC:default "false"^^xsd:string ;
+	isoC:label "DC Stage"^^xsd:string ;
+	isoC:description "Indicates that the codelist is used in the Data Collection Metadata or not."^^xsd:string ;
+	isoC:customPropertyOf th:UnmanagedConcept ;
+.
+:9650c753-5e24-4ddb-b34e-e500d45c8e27
+	rdf:type isoC:CustomPropertyDefinition ;
+	isoC:datatype "boolean"^^xsd:string ;
+	isoC:default "false"^^xsd:string ;
+	isoC:label "SDTM Stage"^^xsd:string ;
+	isoC:description "Indicates that the codelist is used in the Global Standard SDTM Metadata or not."^^xsd:string ;
+	isoC:customPropertyOf th:UnmanagedConcept ;
+.
+:820d8de1-86dc-47c6-bf65-a22178407b54
+	rdf:type isoC:CustomPropertyDefinition ;
+	isoC:datatype "boolean"^^xsd:string ;
+	isoC:default "false"^^xsd:string ;
+	isoC:label "ADaM Stage"^^xsd:string ;
+	isoC:description "Indicates that the codelist is used in the Global Standard ADAM Metadata or not."^^xsd:string ;
+	isoC:customPropertyOf th:UnmanagedConcept ;
+.
+:cc48bdec-cf7e-4b5c-9f06-a3cee638af99
+	rdf:type isoC:CustomPropertyDefinition ;
+	isoC:datatype "boolean"^^xsd:string ;
+	isoC:default "false"^^xsd:string ;
+	isoC:label "ED Use"^^xsd:string ;
+	isoC:description "Indicates that the codelist is used in the Global Standard External Data Workflows or not."^^xsd:string ;
+	isoC:customPropertyOf th:UnmanagedConcept ;
+.
+:ad82dece-004e-4c78-a83d-c6478e2692fc
+	rdf:type isoC:CustomPropertyDefinition ;
+	isoC:datatype "string"^^xsd:string ;
+	isoC:default ""^^xsd:string ;
+	isoC:label "CRF Display Value"^^xsd:string ;
+	isoC:description "This is for data collection purposes only. This is the text to appear on the CRF. As specified internally."^^xsd:string ;
+	isoC:customPropertyOf th:UnmanagedConcept ;
+.

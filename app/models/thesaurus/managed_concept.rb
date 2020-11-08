@@ -41,9 +41,10 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   # Replace If No Change. Replace the current with the previous if no differences.
   #
   # @param previous [Thesaurus::UnmanagedConcept] previous item
-  # @return [Thesaurus::UnmanagedConcept] the new object if changes, otherwise the previous object
+  # @return [Thesaurus::UnmanchagedConcept] the new object if changes, otherwise the previous object
   def replace_if_no_change(previous, add_properties=[])
     return self if previous.nil?
+    return self if self.custom_properties_diff?(previous)
     return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :has_previous_version, :origin, :change_description,
       :creation_date, :last_change_date, :explanatory_comment, :extends, :subsets]})
     replace_children_if_no_change(previous, add_properties)

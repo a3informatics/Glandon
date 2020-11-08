@@ -14,6 +14,7 @@ class IsoConceptV2 < Fuseki::Base
 
   include ManagedAncestors
   include ClassifiedAs
+  include CustomProperties
   
   # Where Only Or Create
   #

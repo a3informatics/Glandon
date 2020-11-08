@@ -106,34 +106,16 @@ class Import < ApplicationRecord
     sparql = Sparql::Update.new()
     sparql.default_namespace(parent.uri.namespace)
     parent.to_sparql(sparql, true)
-    objects[:managed_children].each do |c|
-      c.to_sparql(sparql, true)
+    objects[:managed_children].each do |child|
+      child.to_sparql(sparql, true)
+      process_custom_properties(child, child, sparql)  
+      child.children.each do |item|
+        process_custom_properties(item, child, sparql)  
+      end
     end
     process_tags(objects, sparql)
-    # classification_map = {}
-    # objects[:tags].each do |c|
-    #   key = "#{c[:subject]}.#{c[:object]}"
-    #   existing = Classification.where(c[:subject], c[:object])
-    #   if existing.nil? && classification_map.key?(key)
-    #     existing = classification_map[key]
-    #     new_contexts = c[:context].map{|s| s.to_s} - existing.context.map{|s| s.to_s}
-    #     new_contexts.each do |context|
-    #       sparql.add({uri: existing.uri}, {prefix: :isoC, fragment: "context"}, {uri: Uri.new(uri: context)})
-    #     end
-    #   elsif existing.nil?
-    #     classification = Classification.new(applies_to: c[:subject], classified_as: c[:object], context: c[:context])
-    #     classification.uri = classification.create_uri(Classification.base_uri)
-    #     classification.to_sparql(sparql)
-    #     classification_map[key] = classification
-    #   else
-    #     new_contexts = c[:context].map{|s| s.to_s} - existing.context.map{|s| s.to_s}
-    #     new_contexts.each do |context|
-    #       sparql.add({uri: existing.uri}, {prefix: :isoC, fragment: "context"}, {uri: Uri.new(uri: context)})
-    #     end
-    #   end
-    # rescue => e
-    #   byebug
-    # end
+
+
     filename = sparql.to_file
     response = CRUD.file(filename) if self.auto_load
     self.update(output_file: ImportFileHelpers.move(filename, "#{configuration[:import_type]}_#{self.id}_load.ttl"),
@@ -260,6 +242,17 @@ private
       end
     rescue => e
       byebug
+    end
+  end
+
+  # Process the custom properties
+  def process_custom_properties(item, context, sparql)
+    return if item.custom_properties.nil?
+    item.custom_properties.each do |custom_value|
+      custom_value.uri = custom_value.create_uri(custom_value.class.base_uri)
+      custom_value.applies_to = item.uri
+      custom_value.context = [context.uri]
+      custom_value.to_sparql(sparql)
     end
   end
 

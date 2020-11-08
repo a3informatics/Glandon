@@ -27,6 +27,7 @@ describe "Import::SponsorTermFormatOne" do
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+    load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
     load_cdisc_term_versions(1..62)
     nv_destroy
     nv_create(parent: "1000", child: "10000")
@@ -83,10 +84,25 @@ describe "Import::SponsorTermFormatOne" do
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
   #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_3.ttl")
     check_ttl_fix_v2(filename, "import_expected_3.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
 	end
+
+  it "import, no errors, version 2, short I, load check" do
+    results = Hash.new{|hash, key| hash[key]={}}
+    load_local_file_into_triple_store(sub_dir, "import_load_3.ttl")
+    ["http://www.s-cubed.dk/C66767/V1#C66767", "http://www.s-cubed.dk/SN000001/V1#SN000001", 
+      "http://www.s-cubed.dk/NP001002P/V1#NP001002P"].each do |uri|
+      parent = Thesaurus::ManagedConcept.find_full(Uri.new(uri: uri))
+      results[parent.uri.to_s][""] = parent.find_custom_properties.name_value_pairs
+      parent.narrower.each do |child|
+        results[parent.uri.to_s][child.uri.to_s] = child.find_custom_properties(parent).name_value_pairs
+      end
+    end
+    check_file_actual_expected(results, sub_dir, "custom_properties_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+  end
 
   it "import, no errors, version 2, short II" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))

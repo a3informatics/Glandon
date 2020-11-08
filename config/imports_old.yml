@@ -2687,14 +2687,6 @@ defaults: &defaults
                 condition:
                   method: column_not_blank?
                   column: 12
-              -
-                method: set_property_with_custom
-                object: child
-                property: :custom
-                can_be_empty: true
-                additional:
-                  name: crf_display_value
-                  label: CRF Display Value
           -
             label: "DISPLAY_ORDER"
             actions:  []
@@ -2710,44 +2702,47 @@ defaults: &defaults
             label: "DC_STAGE"
             actions:
               -
-                method: set_property_with_custom
+                method: set_property_with_tag
                 object: child
-                property: :custom
+                property: :tagged
                 mapping:
                   map:
-                    "Y": "true"
-                    "N": "false"
+                    "Y": "DC Stage"
+                    "N": ""
                 additional:
-                  name: dc_stage
-                  definitionl: DC Stage
+                  path:
+                    - Process
+                    - Stage
           -
             label: "SDTM_STAGE"
             actions:
               -
-                method: set_property_with_custom
+                method: set_property_with_tag
                 object: child
-                property: :custom
+                property: :tagged
                 mapping:
                   map:
-                    "Y": "true"
-                    "N": "false"
+                    "Y": "SDTM Stage"
+                    "N": ""
                 additional:
-                  name: sdtm_stage
-                  definition: SDTM Stage
+                  path:
+                    - Process
+                    - Stage
           -
             label: "ADAM_STAGE"
             actions:
               -
-                method: set_property_with_custom
+                method: set_property_with_tag
                 object: child
-                property: :custom
+                property: :tagged
                 mapping:
                   map:
-                    "Y": "true"
-                    "N": "false"
+                    "Y": "ADaM Stage"
+                    "N": ""
                 additional:
-                  name: adam_stage
-                  definition: ADaM Stage
+                  path:
+                    - Process
+                    - Stage
           -
             label: "INACTIVE_F"
             actions: []
@@ -2933,14 +2928,6 @@ defaults: &defaults
                 condition:
                   method: column_not_blank?
                   column: 12
-              -
-                method: set_property_with_custom
-                object: child
-                property: :custom
-                can_be_empty: true
-                additional:
-                  name: crf_display_value
-                  label: CRF Display Value
           -
             label: "DISPLAY_ORDER"
             actions:  []
@@ -2956,58 +2943,62 @@ defaults: &defaults
             label: "DC_STAGE"
             actions:
               -
-                method: set_property_with_custom
+                method: set_property_with_tag
                 object: child
-                property: :custom
+                property: :tagged
                 mapping:
                   map:
-                    "Y": "true"
-                    "N": "false"
+                    "Y": "DC Stage"
+                    "N": ""
                 additional:
-                  name: dc_stage
-                  definition: DC Stage
+                  path:
+                    - Process
+                    - Stage
           -
             label: "SDTM_STAGE"
             actions:
               -
-                method: set_property_with_custom
+                method: set_property_with_tag
                 object: child
-                property: :custom
+                property: :tagged
                 mapping:
                   map:
-                    "Y": "true"
-                    "N": "false"
+                    "Y": "SDTM Stage"
+                    "N": ""
                 additional:
-                  name: sdtm_stage
-                  definition: SDTM Stage
+                  path:
+                    - Process
+                    - Stage
           -
             label: "ADAM_STAGE"
             actions:
               -
-                method: set_property_with_custom
+                method: set_property_with_tag
                 object: child
-                property: :custom
+                property: :tagged
                 mapping:
                   map:
-                    "Y": "true"
-                    "N": "false"
+                    "Y": "ADaM Stage"
+                    "N": ""
                 additional:
-                  name: adam_stage
-                  definition: ADaM Stage
+                  path:
+                    - Process
+                    - Stage
           -
             label: "ED_USE"
             actions:
               -
-                method: set_property_with_custom
+                method: set_property_with_tag
                 object: child
-                property: :custom
+                property: :tagged
                 mapping:
                   map:
-                    "Y": "true"
-                    "N": "false"
+                    "Y": "Ed Use"
+                    "N": ""
                 additional:
-                  name: ed_use
-                  definition: ED Use
+                  path:
+                    - Process
+                    - Stage
           -
             label: "INACTIVE_F"
             actions: []

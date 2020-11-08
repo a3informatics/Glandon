@@ -446,19 +446,23 @@ describe Excel::Engine do
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     child = ChildClass.new
-    result = object.set_property_with_custom({row: 2, col: 1, object: child, property: :custom, mapping: {map: {Y: "TRUE", N: "FALSE"}}, can_be_empty: false, additional: {name: :tag}})
+    expect(CustomPropertyDefinition).to receive(:where).with({:label=>"XXX"}).and_return([CustomPropertyDefinition.new(uri: Uri.new(uri: "http://www.example.com/tag#A"), label: "XXX")])
+    result = object.set_property_with_custom({row: 2, col: 1, parent: parent, object: child, property: :custom, mapping: {map: {Y: "TRUE", N: "FALSE"}}, additional: {definition: "XXX"}})
     expect(parent.errors.count).to eq(0)
-    expect(child.instance_variable_get("@custom")).to eq({tag: "TRUE"})
+    result = child.instance_variable_get("@custom")
+    check_file_actual_expected(result.to_h, sub_dir, "property_to_custom_expected_1.yaml", equate_method: :hash_equal)
     child = ChildClass.new
-    result = object.set_property_with_custom({row: 3, col: 1, object: child, property: :custom, mapping: {map: {W: "TRUE", Z: "FALSE"}}, can_be_empty: false, additional: {name: :tag}})
+    expect(CustomPropertyDefinition).to receive(:where).with({:label=>"XXX"}).and_return([CustomPropertyDefinition.new(uri: Uri.new(uri: "http://www.example.com/tag#A"), label: "XXX")])
+    result = object.set_property_with_custom({row: 3, col: 1, parent: parent, object: child, property: :custom, mapping: {map: {W: "TRUE", Z: "FALSE"}}, additional: {definition: "XXX"}})
     expect(parent.errors.count).to eq(1)
     expect(parent.errors.full_messages.to_sentence).to eq("Error mapping 'Yes' using map {:W=>\"TRUE\", :Z=>\"FALSE\"} detected in row 3 column 1.")
-    expect(child.instance_variable_get("@custom")).to eq(nil)
+    check_file_actual_expected(result.to_h, sub_dir, "property_to_custom_expected_2.yaml", equate_method: :hash_equal)
     parent.errors.clear
     child = ChildClass.new
-    result = object.set_property_with_custom({row: 4, col: 1, object: child, property: :custom, mapping: {map: {Y: "TRUE", N: "FALSE"}}, can_be_empty: false, additional: {name: :tag}})
+    expect(CustomPropertyDefinition).to receive(:where).with({:label=>"XXX"}).and_return([])
+    result = object.set_property_with_custom({row: 4, col: 1, parent: parent, object: child, property: :custom, mapping: {map: {Y: "TRUE", N: "FALSE"}}, additional: {definition: "XXX"}})
     expect(parent.errors.count).to eq(2)
-    expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 4 column 1. and Error mapping '' using map {:Y=>\"TRUE\", :N=>\"FALSE\"} detected in row 4 column 1.")
+    expect(parent.errors.full_messages.to_sentence).to eq("Error mapping '' using map {:Y=>\"TRUE\", :N=>\"FALSE\"} detected in row 4 column 1. and Failed to find custom property definition for XXX in 4 column 1.")
     expect(child.instance_variable_get("@custom")).to eq(nil)
   end
 
