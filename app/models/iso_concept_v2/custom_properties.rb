@@ -48,6 +48,10 @@ class IsoConceptV2
       @custom_properties
     end
 
+    def custom_properties=(value)
+      @custom_properties = value
+    end
+
     def custom_properties_diff?(previous)
       self.custom_properties.diff?(previous.custom_properties)
     end

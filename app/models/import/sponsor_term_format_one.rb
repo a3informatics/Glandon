@@ -219,7 +219,7 @@ private
   def check_for_change(current, previous)
     return current unless subset_match?(current, previous)
     return current unless rank_match?(current, previous)
-    current.replace_if_no_change(previous, [:tagged])
+    current.replace_if_no_change(previous, [:tagged, :custom_properties])
   end
 
   def add_to_data(item, index, new_item)

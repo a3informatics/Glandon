@@ -99,13 +99,11 @@ module Import::STFOClasses
           new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
           # If new_child is NOT nil then already in the CL being extended, nothing else to do.
           # Otherwise try and find it.
-          new_child.rank = child.rank unless new_child.nil?
-          new_child.tagged = child.tagged unless new_child.nil?
+          copy_properties_from_to(child, new_child) unless new_child.nil?
           next unless new_child.nil?
           new_child = sponsor_or_referenced(ct, child, fixes)
           next if new_child.nil?
-          new_child.rank = child.rank unless new_child.nil?
-          new_child.tagged = child.tagged unless new_child.nil?
+          copy_properties_from_to(child, new_child) unless new_child.nil?
           new_narrower << new_child 
         end
         self.narrower = new_narrower
@@ -513,6 +511,14 @@ module Import::STFOClasses
 
   private
 
+    # Copy special properties from to
+    def copy_properties_from_to(source, target)
+      target.rank = source.rank 
+      target.tagged = source.tagged
+      target.custom_properties = source.custom_properties
+    end
+
+    # Has rank?
     def has_rank?(rank)
       return true unless rank.nil?
       add_log("Previous version not ranked")
