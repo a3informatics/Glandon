@@ -27,8 +27,7 @@ export default class ExtensionEditor extends CLEditor {
   }) {
 
     super({
-      id, selector, urls, onEdited,
-      helpDialogId: 'extension-edit'
+      id, selector, urls, onEdited
     });
 
   }
