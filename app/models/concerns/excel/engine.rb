@@ -23,6 +23,7 @@ class Excel::Engine
     @classifications = {}
     @sheet_tags = []
     @tag_set = {}
+    @custom_set = {}
   end
 
   # Process. Process a sheet according to the configuration
@@ -753,10 +754,15 @@ private
 
   # Find Custom From Label
   def find_custom(label, row, col)
+    return @custom_set[label] if @custom_set.key?(label)
     result = CustomPropertyDefinition.where(label: label)
-    return result.first unless result.empty?
-    @errors.add(:base, "Failed to find custom property definition for #{label} in #{row} column #{col}.")
-    nil
+    unless result.empty?
+      @custom_set[label] = result.first 
+      return result.first
+    else
+      @errors.add(:base, "Failed to find custom property definition for #{label} in #{row} column #{col}.")
+      nil
+    end
   end
 
   # Add custom

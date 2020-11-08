@@ -285,7 +285,7 @@ describe "Import::SponsorTermFormatOne" do
         expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
         expect(count_cl(th)).to eq(results.count)
         expect(count_cli(th)).to eq(31930)
-        expect(count_distinct_cli(th)).to eq(29514)
+        expect(count_distinct_cli(th)).to eq(29515)
         results.each do |x|
           check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
         end    
@@ -335,7 +335,7 @@ describe "Import::SponsorTermFormatOne" do
         expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
         expect(count_cl(th)).to eq(results.count)
         expect(count_cli(th)).to eq(32800)
-        expect(count_distinct_cli(th)).to eq(30226)
+        expect(count_distinct_cli(th)).to eq(30245)
         results.each do |x|
           check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
         end    
@@ -483,10 +483,11 @@ describe "Import::SponsorTermFormatOne" do
       uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
       uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
       uri_31 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH")
-      {"2-6" => {uri: uri_26, count: 197256}, "3-0" => {uri: uri_30, count: 291186}, "3-1" => {uri: uri_31, count: 299689}}.each do |version, data|
+      {"2-6" => {uri: uri_26, count: 197256}, "3-0" => {uri: uri_30, count: 291194}, "3-1" => {uri: uri_31, count: 299823}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
+      results = {}
       {"rank_V2-6.yaml" => uri_26, "rank_V3-0.yaml" => uri_30, "rank_V3-1.yaml" => uri_31}.each do |file, uri|
         config = read_yaml_file(sub_dir, file)
         code_lists = config[:codelists].map{|x| x[:codelist_code]}
