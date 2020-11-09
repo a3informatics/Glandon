@@ -14,7 +14,7 @@ class IsoConceptV2 < Fuseki::Base
 
   include ManagedAncestors
   include ClassifiedAs
-  include CustomProperties
+  include IcCustomProperties
 
   def initialize(attributes = {})
     @custom_properties = ::CustomPropertySet.new

@@ -6,6 +6,7 @@ describe IsoManagedV2Controller do
   include PublicFileHelpers
   include DownloadHelpers
   include UserAccountHelpers
+  include ControllerHelpers
 
   describe "Curator User" do
 
@@ -208,6 +209,35 @@ describe IsoManagedV2Controller do
       get :export_json, params:{id: uri.to_id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
+    end
+
+  end
+
+  describe "Custom Properties" do
+
+    login_content_admin
+
+    def sub_dir
+      return "controllers"
+    end
+
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+      load_cdisc_term_versions(1..45)
+    end
+
+    it 'custom properties' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      uri = Uri.new(uri: "http://www.sanofi.com/C67154/V1#C67154")
+      get :custom_properties, params:{id: uri.to_id}
+      data = check_good_json_response(response)
+      check_file_actual_expected(data, sub_dir, "custom_properties_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

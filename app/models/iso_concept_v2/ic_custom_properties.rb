@@ -4,14 +4,42 @@
 # @since 3.3.0
 class IsoConceptV2
   
-  module CustomProperties
+  module IcCustomProperties
 
     def self.included(base)
       base.extend(ClassMethods)
     end
 
     module ClassMethods
-      # Empty at present
+
+      # Find Custom Property Definitions. Find the custom property definitions for a specified klass
+      #
+      # @return [Array] array of CustomPropertyDefinition objects
+      def find_custom_property_definitions(klass)
+        results = []
+        query_string = %Q{
+          SELECT ?s ?p ?o WHERE 
+          {            
+            ?s rdf:type isoC:CustomPropertyDefinition .
+            ?s isoC:customPropertyOf #{klass.rdf_type.to_ref} .
+            ?s ?p ?o
+          }   
+        }
+        query_results = Sparql::Query.new.query(query_string, "", [:isoC])
+        query_results.by_subject.each do |subject, triples|
+          results << CustomPropertyDefinition.from_results(Uri.new(uri: subject), triples)
+        end
+        results
+      end
+
+      # Find Custom Property Definitions To H. Find the custom property definitions for a specified klass as a hash
+      #
+      # @return [Array] array of hash
+      def find_custom_property_definitions_to_h(klass)
+        results = find_custom_property_definitions(klass)
+        results.map{|x| x.to_h.merge({name: x.label.to_variable_style})}
+      end
+
     end
 
     def custom_properties?

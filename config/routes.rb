@@ -97,23 +97,6 @@ Rails.application.routes.draw do
       end
     end
   end
-  # resources :iso_managed do
-  #   collection do
-  #     get :status
-  #     get :find_by_tag
-  #     get :tags
-  #     get :graph
-  #     get :graph_links
-  #     get :impact
-  #     get :impact_start
-  #     get :impact_next
-  #     get :changes
-  #     get :comments
-  #   end
-  #   member do
-  #     get :branches
-  #   end
-  # end
   resources :iso_managed_v2, only: [:edit, :update] do
     collection do
       get :find_by_tag
@@ -127,6 +110,7 @@ Rails.application.routes.draw do
       put :update_semantic_version
       get :list_change_notes
       get :list_change_notes_data
+      get :custom_properties
       get :export_change_notes_csv
       get :export_ttl
       get :export_json
