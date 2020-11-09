@@ -8,7 +8,7 @@ describe IsoManagedV2::ImCustomProperties do
 
   class TestParent < IsoManagedV2
 
-    configure rdf_type: "http://www.assero.co.uk/Thesaurus#ManagedConcept",
+    configure rdf_type: "http://www.assero.co.uk/Test#ManagedConcept",
               base_uri: "http://www.assero.co.uk/MC",
               uri_unique: true
 
@@ -18,7 +18,7 @@ describe IsoManagedV2::ImCustomProperties do
 
   class TestChild < IsoConceptV2
 
-    configure rdf_type: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept",
+    configure rdf_type: "http://www.assero.co.uk/Test#UnmanagedConcept",
               base_uri: "http://www.assero.co.uk/UC",
               uri_unique: true
 
