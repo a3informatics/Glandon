@@ -44,7 +44,7 @@ class IsoManagedV2
         results[id] = {id: id} unless results.key?(id)
         results[id][x[:l].to_variable_style] = x[:v]
       end
-      results
+      results.values
     end
 
   end
