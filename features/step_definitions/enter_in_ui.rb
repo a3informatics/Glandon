@@ -25,9 +25,11 @@ When('I enter {string} in the Code List Items search area and click {string} to 
 end
 
 When('I enter {string} in the search area click {string} to display the {string} code list') do |string, string2, string3|
-  ui_table_search("changes", string)
-  find(:xpath, "//tr[contains(.,'#{string2}')]/td/a", :text => string2).click
-  wait_for_ajax(20)
+  if string2 == 'Changes'
+    ui_table_search("changes", string)
+    find(:xpath, "//tr[contains(.,'#{string2}')]/td/a", :text => string2).click
+    wait_for_ajax(20)
+  end
 end
 
 When('I enter {string} in the search area') do |string|

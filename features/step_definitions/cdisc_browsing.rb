@@ -110,10 +110,15 @@ Then('the Changes panel displays {int} entries') do |int|
   save_screen(TYPE)
 end
 
-Then('the {string}, c-code: {string} was created (+) in version {string} and deleted (-) in version {string}') do |string, string2, string3, string4|
-  ui_table_search("changes",string2)
-  ui_check_table_cell_create("changes",1,string3)
-  ui_check_table_cell_delete("changes",1,string4)
+
+Then('the {string}, c-code: {string} was created \(+) in version {string} and deleted \(-) in version {string}') do |string, string2, string3, string4|
+  ui_table_search('changes', string2)
+
+pos_cr = page.all(:xpath, "//table[@id='changes']/thead/tr/th[.='#{string3}']/preceding-sibling::*").length+1
+  ui_check_table_cell_create('changes',1,pos_cr)
+  
+pos_dl = page.all(:xpath, "//table[@id='changes']/thead/tr/th[.='#{string4}']/preceding-sibling::*").length+1
+  ui_check_table_cell_delete('changes',1,pos_dl)
   wait_for_ajax(20)
   save_screen(TYPE)
 end
