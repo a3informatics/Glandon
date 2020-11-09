@@ -181,7 +181,7 @@ describe "Biomedical Concept Instances", :type => :feature do
         fill_in 'identifier', with: 'BC Test'
         fill_in 'label', with: 'Test Label'
         find('#new-item-template').click
-        ip_pick_managed_items(:bct, [ { identifier: 'BASIC OBS', version: '1' } ], 'new-bc')
+        ip_pick_managed_items(:bct, [ { identifier: 'BASIC OBS PQR', version: '1' } ], 'new-bc')
 
         click_on 'Submit'
       end
@@ -221,7 +221,7 @@ describe "Biomedical Concept Instances", :type => :feature do
         fill_in 'identifier', with: 'BC Tææst'
         fill_in 'label', with: 'Test Label'
         find('#new-item-template').click
-        ip_pick_managed_items(:bct, [ { identifier: 'BASIC OBS', version: '1' } ], 'new-bc')
+        ip_pick_managed_items(:bct, [ { identifier: 'BASIC OBS PQR', version: '1' } ], 'new-bc')
 
         click_on 'Submit'
         wait_for_ajax 10
@@ -242,7 +242,7 @@ describe "Biomedical Concept Instances", :type => :feature do
 
     it "allows to delete a BC" do
       # Create a new BC and delete
-      ui_create_bc('DELETE BC', 'BC Label', { identifier: 'BASIC OBS', version: '1' })
+      ui_create_bc('DELETE BC', 'BC Label', { identifier: 'BASIC OBS PQR', version: '1' })
 
       bc_count = BiomedicalConceptInstance.all.count
 
@@ -397,7 +397,7 @@ describe "Biomedical Concept Instances", :type => :feature do
     end
 
     it "allows to create a new version off Standard BCs on Edit" do
-      ui_create_bc('TST BC 2', 'Test BC Label', { identifier: 'BASIC OBS', version: '1' })
+      ui_create_bc('TST BC 2', 'Test BC Label', { identifier: 'BASIC OBS PQR', version: '1' })
 
       # Creates a new version off of Standard
       context_menu_element_v2('history', '0.1.0', :document_control)
@@ -412,7 +412,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       click_on 'Submit Status Change'
       click_on 'Submit Status Change'
 
-      ui_create_bc('TST BC 3', 'Test BC Label', { identifier: 'BASIC OBS', version: '1' })
+      ui_create_bc('TST BC 3', 'Test BC Label', { identifier: 'BASIC OBS PQR', version: '1' })
       # Creates a new version off of Standard
       context_menu_element_v2('history', '0.1.0', :document_control)
 
