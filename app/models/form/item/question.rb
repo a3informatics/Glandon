@@ -57,34 +57,12 @@ class Form::Item::Question < Form::Item
 
   def add_child_with_clone(params, managed_ancestor)
     if multiple_managed_ancestors?
-      #new_question = clone_nodes_and_get_new_question(managed_ancestor)
-      new_question = simple_clone(managed_ancestor)
+      new_question = replicate_with_clone(managed_ancestor)
       new_question.add_child(params)
     else
       add_child(params)
     end
   end
-
-  # def clone_nodes_and_get_new_question(managed_ancestor)
-  #   result = nil
-  #   tx = transaction_begin
-  #   uris = managed_ancestor_path_uris(managed_ancestor)
-  #   prev_object = managed_ancestor
-  #   prev_object.transaction_set(tx)
-  #   uris.each do |old_uri|
-  #     old_object = self.class.klass_for(old_uri).find_children(old_uri)
-  #     if old_object.multiple_managed_ancestors?
-  #       cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
-  #       result = cloned_object if self.uri == old_object.uri
-  #       prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-  #       prev_object = cloned_object
-  #     else
-  #       prev_object = old_object
-  #     end
-  #   end
-  #   transaction_execute
-  #   result
-  # end
 
   # Add Child. Adds a child or children TUC references.
   #
@@ -113,7 +91,10 @@ class Form::Item::Question < Form::Item
 
   def delete_reference(reference, managed_ancestor)
     if multiple_managed_ancestors?
-      parent = clone_nodes_and_get_new_parent(reference,managed_ancestor)
+      #parent = clone_nodes_and_get_new_parent(reference,managed_ancestor)
+      new_parent = delete_with_clone(reference,managed_ancestor)
+      new_parent.reset_ordinals
+      new_parent = Form::Item.find_full(new_parent.id)
     else
       reference.delete_with_links
       self.reset_ordinals
@@ -125,33 +106,33 @@ class Form::Item::Question < Form::Item
     end
   end
 
-  def clone_nodes_and_get_new_parent(child, managed_ancestor)
-    new_parent = nil
-    new_object = nil
-    tx = transaction_begin
-    uris = child.managed_ancestor_path_uris(managed_ancestor)
-    prev_object = managed_ancestor
-    prev_object.transaction_set(tx)
-    uris.each do |old_uri|
-      old_object = self.class.klass_for(old_uri).find_children(old_uri)
-      if old_object.multiple_managed_ancestors?
-        cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
-        if child.uri == old_object.uri
-          prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
-          new_parent = prev_object
-          new_parent.clone_children_and_save_no_tx(managed_ancestor, tx) 
-        else
-          prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-        end
-        prev_object = cloned_object
-      else
-        prev_object = old_object
-      end
-    end
-    transaction_execute
-    new_parent.reset_ordinals
-    new_parent = Form::Item.find_full(new_parent.id)
-  end
+  # def clone_nodes_and_get_new_parent(child, managed_ancestor)
+  #   new_parent = nil
+  #   new_object = nil
+  #   tx = transaction_begin
+  #   uris = child.managed_ancestor_path_uris(managed_ancestor)
+  #   prev_object = managed_ancestor
+  #   prev_object.transaction_set(tx)
+  #   uris.each do |old_uri|
+  #     old_object = self.class.klass_for(old_uri).find_children(old_uri)
+  #     if old_object.multiple_managed_ancestors?
+  #       cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
+  #       if child.uri == old_object.uri
+  #         prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
+  #         new_parent = prev_object
+  #         new_parent.clone_children_and_save_no_tx(managed_ancestor, tx) 
+  #       else
+  #         prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+  #       end
+  #       prev_object = cloned_object
+  #     else
+  #       prev_object = old_object
+  #     end
+  #   end
+  #   transaction_execute
+  #   new_parent.reset_ordinals
+  #   new_parent = Form::Item.find_full(new_parent.id)
+  # end
 
   # Reset Ordinals. Reset the ordinals within the enclosing parent
   #

@@ -77,34 +77,12 @@ class Form::Group::Normal < Form::Group
 
   def add_child_with_clone(params, managed_ancestor)
     if multiple_managed_ancestors?
-      #new_normal = clone_nodes_and_get_new_normal(managed_ancestor)
-      new_normal = simple_clone(managed_ancestor)
+      new_normal = replicate_with_clone(managed_ancestor)
       new_normal.add_child(params)
     else
       add_child(params)
     end
   end
-
-  # def clone_nodes_and_get_new_normal(managed_ancestor)
-  #   result = nil
-  #   tx = transaction_begin
-  #   uris = managed_ancestor_path_uris(managed_ancestor)
-  #   prev_object = managed_ancestor
-  #   prev_object.transaction_set(tx)
-  #   uris.each do |old_uri|
-  #     old_object = self.class.klass_for(old_uri).find_children(old_uri)
-  #     if old_object.multiple_managed_ancestors?
-  #       cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
-  #       result = cloned_object if self.uri == old_object.uri
-  #       prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-  #       prev_object = cloned_object
-  #     else
-  #       prev_object = old_object
-  #     end
-  #   end
-  #   transaction_execute
-  #   result
-  # end
 
   # Add Child.
   #
