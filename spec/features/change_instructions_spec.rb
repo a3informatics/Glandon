@@ -9,13 +9,6 @@ describe "Change Instructions", :type => :feature do
   include WaitForAjaxHelper
   include NameValueHelpers
 
-  def in_modal
-    sleep 1
-    wait_for_ajax 20
-    yield
-    sleep 1
-  end
-
   def fill_in_field(id, text)
     page.find("##{id}").click
     sleep 0.2
@@ -68,7 +61,7 @@ describe "Change Instructions", :type => :feature do
       context_menu_element("history", 5, "58.0.0", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         expect(page).to have_content("Change Instructions for C99079")
         expect(page).to have_content("No Change Instructions were found.")
         click_button "Close"
@@ -84,7 +77,7 @@ describe "Change Instructions", :type => :feature do
       context_menu_element("history", 5, "58.0.0", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         click_button "+ Create new"
         wait_for_ajax 10
       end
@@ -94,7 +87,7 @@ describe "Change Instructions", :type => :feature do
       expect(page).to have_content("Empty", count: 2)
       #Help Dialog
       find(".icon-help").click
-      in_modal do
+      ui_in_modal do
         expect(page).to have_content("Editing a Change Instruction")
         click_on "Dismiss"
       end
@@ -109,7 +102,7 @@ describe "Change Instructions", :type => :feature do
       context_menu_element("history", 5, "58.0.0", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         click_button "+ Create new"
         wait_for_ajax 10
       end
@@ -128,7 +121,7 @@ describe "Change Instructions", :type => :feature do
 
       #Add references
       find("#add-previous").click
-      in_modal do
+      ui_in_modal do
         ui_selector_check_tabs(["Code Lists", "Code List Items"])
         ui_selector_check_tabs_gone(["Terminologies"])
         ui_selector_item_click("index", "C100129")
@@ -139,7 +132,7 @@ describe "Change Instructions", :type => :feature do
       check_link("previous", "icon-codelist", "QSCAT")
 
       find("#add-current").click
-      in_modal do
+      ui_in_modal do
         ui_selector_check_tabs(["Code Lists", "Code List Items"])
         ui_selector_check_tabs_gone(["Terminologies"])
         ui_selector_tab_click("Code List Items")
@@ -188,7 +181,7 @@ describe "Change Instructions", :type => :feature do
       context_menu_element("history", 5, "57.0.0", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         click_button "+ Create new"
         wait_for_ajax 10
       end
@@ -196,7 +189,7 @@ describe "Change Instructions", :type => :feature do
       expect(page).to have_content "Edit Change Instruction"
 
       find("#add-previous").click
-      in_modal do
+      ui_in_modal do
         ui_selector_item_click("index", "QSCAT")
         ui_selector_item_click("history", "57.0.0")
         click_on "Submit and proceed"
@@ -204,7 +197,7 @@ describe "Change Instructions", :type => :feature do
       wait_for_ajax 10
 
       find("#add-current").click
-      in_modal do
+      ui_in_modal do
         ui_selector_tab_click("Code List Items")
         wait_for_ajax 20
         ui_selector_item_click("index", "C100132")
@@ -219,7 +212,7 @@ describe "Change Instructions", :type => :feature do
       #Show items links
           wait_for_ajax(20)
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         check_link("current", "icon-codelist-item", "C100132").click
       end
       wait_for_ajax 10
@@ -229,17 +222,17 @@ describe "Change Instructions", :type => :feature do
 
       wait_for_ajax(20)
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         check_link("previous", "icon-codelist", "QSCAT").click
       end
       wait_for_ajax 10
       expect(page).to have_content("C100129")
-      expect(page).to have_content("Code Lists Items")
+      expect(page).to have_content("Code List Items")
 
       #Edit CI link
       wait_for_ajax(20)
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         find(".icon-edit").click
       end
       wait_for_ajax 10
@@ -251,7 +244,7 @@ describe "Change Instructions", :type => :feature do
 
       #Remove CI
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         find(".icon-trash").click
         ui_confirmation_dialog true
         wait_for_ajax 10
@@ -268,7 +261,7 @@ describe "Change Instructions", :type => :feature do
       context_menu_element("history", 5, identifier, :show)
       wait_for_ajax 20
       context_menu_element_header(:change_notes)
-      in_modal do
+      ui_in_modal do
         click_button "+ Add new"
         fill_in_field("cn-new-text", "CN TEST")
         page.find("#save-cn-new-button").click
@@ -277,7 +270,7 @@ describe "Change Instructions", :type => :feature do
       end
       # Add CI
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         click_button "+ Create new"
         wait_for_ajax 10
       end
@@ -288,7 +281,7 @@ describe "Change Instructions", :type => :feature do
       wait_for_ajax 10
 
       find("#add-previous").click
-      in_modal do
+      ui_in_modal do
         ui_table_search("index", identifier)
         ui_selector_item_click("index", identifier)
         ui_selector_item_click("history", "0.1.0")
@@ -302,13 +295,13 @@ describe "Change Instructions", :type => :feature do
       # Check
       wait_for_ajax 20
       context_menu_element_header(:change_notes)
-      in_modal do
+      ui_in_modal do
         ui_check_no_flash_message_present
         expect(page.find("#cn-0-text").text).to eq("CN TEST")
         click_on "Close"
       end
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         ui_check_no_flash_message_present
         expect(page).to have_content("CI TEST")
         click_on "Close"
@@ -339,7 +332,7 @@ describe "Change Instructions", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85754')]/td/a").click
       wait_for_ajax(10)
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         expect(page).to have_content("Change Instructions for C85754")
         expect(page).to have_content("No Change Instructions were found.")
         click_button "Close"
@@ -357,7 +350,7 @@ describe "Change Instructions", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85754')]/td/a").click
       wait_for_ajax(10)
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         click_button "+ Create new"
         wait_for_ajax 10
       end
@@ -365,7 +358,7 @@ describe "Change Instructions", :type => :feature do
       expect(page).to have_content "Edit Change Instruction"
 
       find("#add-current").click
-      in_modal do
+      ui_in_modal do
         ui_selector_tab_click("Code List Items")
         wait_for_ajax 20
         ui_table_search("index", "PKUWKG")
@@ -380,7 +373,7 @@ describe "Change Instructions", :type => :feature do
       wait_for_ajax(10)
 
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         check_link("current", "icon-codelist-item", "nmol/kg")
         click_on "Close"
       end
@@ -398,7 +391,7 @@ describe "Change Instructions", :type => :feature do
       ui_child_search("C125949")
       find(:xpath, "//tr[contains(.,'Urea')]/td/a", :text => 'Show').click
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         expect(page).to have_content "This concept will replace C61019"
         check_link("previous", "icon-codelist-item", "Blood Urea Nitrogen (C61019)")
         check_link("current", "icon-codelist-item", "Urea Nitrogen (C125949)")
@@ -434,7 +427,7 @@ describe "Change Instructions", :type => :feature do
       ui_child_search("C125949")
       find(:xpath, "//tr[contains(.,'Urea')]/td/a", :text => 'Show').click
       context_menu_element_header(:change_instructions)
-      in_modal do
+      ui_in_modal do
         expect(page).to have_content "This concept will replace C61019"
         check_link("previous", "icon-codelist-item", "Blood Urea Nitrogen (C61019)")
         check_link("current", "icon-codelist-item", "Urea Nitrogen (C125949)")

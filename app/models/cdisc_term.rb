@@ -3,7 +3,7 @@
 # @author Dave Iberson-Hurst
 # @since 2.22.0
 class CdiscTerm < Thesaurus
-  
+
   @@cdisc_ra = nil
 
   # Owner
@@ -28,8 +28,8 @@ class CdiscTerm < Thesaurus
   def self.version_dates
     results = []
     query_string = %Q{
-SELECT DISTINCT ?s ?d WHERE 
-{             
+SELECT DISTINCT ?s ?d WHERE
+{
   ?s rdf:type th:Thesaurus .
   ?s isoT:hasIdentifier ?si .
   ?si isoI:hasScope #{owner.ra_namespace.uri.to_ref} .
@@ -46,11 +46,11 @@ SELECT DISTINCT ?s ?d WHERE
   #
   # @return [Integer] the next version for the terminology
   def self.next_integer_version
-    super(C_IDENTIFIER, IsoRegistrationAuthority.cdisc_scope)
+    super(CdiscTerm.identifier, IsoRegistrationAuthority.cdisc_scope)
   end
-  
+
   # ---------
-  # Test Only  
+  # Test Only
   # ---------
   if Rails.env.test?
 
