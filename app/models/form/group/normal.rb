@@ -77,7 +77,7 @@ class Form::Group::Normal < Form::Group
 
   def add_child_with_clone(params, managed_ancestor)
     if multiple_managed_ancestors?
-      new_normal = replicate_with_clone(managed_ancestor)
+      new_normal = self.replicate_with_clone(self, managed_ancestor)
       new_normal.add_child(params)
     else
       add_child(params)

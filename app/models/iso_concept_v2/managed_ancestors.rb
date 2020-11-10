@@ -148,7 +148,7 @@ class IsoConceptV2
         old_object = self.class.klass_for(old_uri).find_children(old_uri)
         if old_object.multiple_managed_ancestors?
           cloned_object = clone_with_optional_update(managed_ancestor, old_object, prev_object, persist_objects, tx, {})
-          result = cloned_object if self.uri == old_object.uri
+          new_object = cloned_object if self.uri == old_object.uri
           replace_a_link(prev_object, old_object, cloned_object, managed_ancestor)
           prev_object = cloned_object
         else
@@ -156,7 +156,7 @@ class IsoConceptV2
         end
       end
       commit_changes(persist_objects, tx)
-      return new_parent, new_object
+      new_object
     end
 
     # Replicate Siblings With Clone. Clone all the ancestor chain. Self is the parent
