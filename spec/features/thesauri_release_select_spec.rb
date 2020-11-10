@@ -146,7 +146,6 @@ describe "Thesauri Release Select", :type => :feature do
 
     it "deselect CLs from the thesaurus, single or bulk", :type => :feature do
       navigate_to_release_sel
-      pause
       ui_table_search("table-cdisc-cls", "Protocol")
       page.find("#table-cdisc-cls-bulk-deselect").click
       ui_confirmation_dialog true
