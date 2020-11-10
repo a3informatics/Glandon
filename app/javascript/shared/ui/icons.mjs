@@ -14,7 +14,7 @@ const icons = {
    * @return {string} formatted icon HTML
    */
   checkMarkIcon(value, cssClasses = '', focusable = false ) {
-    if (value)
+    if ( value === 'true' || value === true )
       return renderIcon({
         iconName: 'sel-filled text-normal',
         cssClasses: cssClasses || 'text-link',

@@ -43,15 +43,13 @@ export default class TablePanel {
   }, args = {}) {
 
     Object.assign(this, {
-      selector, url, param, count, extraColumns, cache,
+      selector, url, param, count, extraColumns, deferLoading, cache,
       paginated, order, buttons, tableOptions, loadCallback,
-      errorDiv, ...args });
+      errorDiv, ...args
+    });
 
-    this._initTable();
+    this.initialize();
     this._setListeners();
-
-    if (!deferLoading)
-      this.loadData();
 
   }
 
@@ -63,11 +61,11 @@ export default class TablePanel {
   loadData(url) {
 
     // Set new instance data url if specified
-    if (url)
+    if ( url )
       this.url = url;
 
-    this.clear(false);
-    this._loading(true);
+    this.clear( false );
+    this._loading( true );
 
     if (this.paginated)
       this.request = $getPaginated(0, {
@@ -77,7 +75,7 @@ export default class TablePanel {
         cache: this.cache,
         errorDiv: this.errorDiv,
         pageDone: data => this._render( data ),
-        done: data => this.loadCallback( this.table ),
+        done: data => this._onDataLoaded( this.table ),
         always: () => this._loading( false )
       });
 
@@ -89,7 +87,7 @@ export default class TablePanel {
         done: data => {
 
           this._render( data );
-          this.loadCallback( this.table );
+          this._onDataLoaded( this.table );
 
         },
         always: () => this._loading( false )
@@ -104,6 +102,7 @@ export default class TablePanel {
    * @param {boolean} draw Specifies whether the table should redraw on clear, optional [default=true]
    */
   clear(draw = true) {
+
     this.table.search('')
               .clear()
 
@@ -111,6 +110,7 @@ export default class TablePanel {
 
     if ( draw )
       this.table.draw();
+
   }
 
   /**
@@ -118,15 +118,17 @@ export default class TablePanel {
    * @param {string} url optional, specify data source url
    */
   refresh(url) {
-    this.loadData(url);
+    this.loadData( url );
   }
 
   /**
    * Kill any ongoing loading process
    */
   kill() {
+
     if ( this.request )
       this.request.abort();
+
   }
 
   /**
@@ -135,6 +137,30 @@ export default class TablePanel {
    */
   get rowDataToArray() {
     return this.table.rows().data().toArray();
+  }
+
+  /**
+   * Initialize the Table Panel
+   */
+  initialize() {
+
+    this._initTable();
+
+    if ( !this.deferLoading )
+      this.loadData();
+
+  }
+
+  /**
+   * Destroy the DataTable instance in the Panel
+   */
+  destroy() {
+
+    this.table.clear()
+              .destroy();
+
+    $(`${ this.selector } tbody`).empty();
+
   }
 
 
@@ -152,7 +178,7 @@ export default class TablePanel {
    * @return {Object} DT row data object
    */
   _getRowDataFrom$(el) {
-    return this._getRowFrom$(el).data();
+    return this._getRowFrom$( el ).data();
   }
 
   /**
@@ -161,7 +187,7 @@ export default class TablePanel {
    * @return {Object} DT Row instance
    */
   _getRowFrom$(el) {
-    return this.table.row($(el).closest("tr"));
+    return this.table.row( $( el ).closest( 'tr' ) );
   }
 
   /**
@@ -171,7 +197,7 @@ export default class TablePanel {
    * @return {Object} DT Row instance
    */
   _getRowFromData(propertyName, value) {
-    return this.table.row( (i, data) => data[propertyName] === value ? true : false );
+    return this.table.row( ( i, data ) => data[ propertyName ] === value ? true : false );
   }
 
   /**
@@ -180,7 +206,7 @@ export default class TablePanel {
    * @param {function} handler Function to be executed on click
    */
   _clickListener( { target, handler } ) {
-    $(`${this.selector} tbody`).on("click", target, handler);
+    $( `${ this.selector } tbody` ).on( 'click', target, handler );
   }
 
   /**
@@ -189,16 +215,28 @@ export default class TablePanel {
    * @param {boolean} clear Enable clearing the table before rendering, optional, default = false
    */
   _render(data, clear = false) {
-    // Clear data first if argument set to true
-    if (clear)
-      this.clear(false);
 
-    for(let item of data) {
-      this.table.row.add(item);
+    // Clear data first if argument set to true
+    if ( clear )
+      this.clear( false );
+
+    for( let item of data ) {
+      this.table.row.add( item );
     }
 
-    this.table.draw();
+    this.table.draw()
     this.table.columns.adjust();
+
+  }
+
+  /**
+   * Executed when table data fully loaded, calls loadCallback with current table instance as argument
+   */
+  _onDataLoaded() {
+
+    if ( this.loadCallback )
+      this.loadCallback( this.table );
+
   }
 
   /**
@@ -206,8 +244,10 @@ export default class TablePanel {
    * @param {boolean} enable value corresponding to the desired loading state on/off
    */
   _loading(enable) {
+
     this.isProcessing = enable;
-    this.table.processing(enable);
+    this.table.processing( enable );
+
   }
 
   /**
@@ -223,12 +263,15 @@ export default class TablePanel {
    * @return {DataTable instance} An initialized table panel
    */
   _initTable() {
-    this.table = $(this.selector).DataTable(this._tableOpts);
 
-    // Show buttons if exist
-    if (this._tableOpts.buttons.length)
-      this.table.buttons().container()
-        .appendTo( $('.col-sm-6:eq(0)', this.table.table().container()) );
+    this.table = $( this.selector ).DataTable( this._tableOpts );
+
+    // Append buttons to DOM if any defined
+    if ( this._tableOpts.buttons.length )
+      this.table.buttons()
+                .container()
+                .appendTo( $( '.col-sm-6:eq(0)', this.table.table().container() ) );
+
   }
 
   /**
@@ -239,15 +282,18 @@ export default class TablePanel {
 
     let opts =  {
       order: this.order,
-      columns: [...this._defaultColumns, ...this.extraColumns],
+      columns: [
+        ...this._defaultColumns,
+        ...this.extraColumns
+      ],
       pageLength: pageLength,
       lengthMenu: pageSettings,
       processing: true,
       autoWidth: false,
       language: {
-        infoFiltered: "",
-        emptyTable: "No data.",
-        processing: renderSpinner('small')
+        infoFiltered: '',
+        emptyTable: 'No data.',
+        processing: renderSpinner( 'small' )
       },
       buttons: this.buttons
     }

@@ -64,11 +64,7 @@ function dtChildrenColumns(opts = {}) {
     { data: 'notation', ...opts },
     { data: 'preferred_term', ...opts },
     { data: 'synonym', ...opts },
-    {
-      width: '50%',
-      data: 'definition',
-      ...opts
-    },
+    { data: 'definition', ...opts },
     dtTagsColumn(opts)
   ];
 };

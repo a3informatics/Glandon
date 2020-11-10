@@ -76,8 +76,8 @@ function $getPaginated(offset = 0, params = {}) {
     // One 'page' of data loaded
     params.pageDone( r.data );
 
-    if ( _.isNumber( r.count ) && _.isNumber( r.offset ) && r.count >= params.count )
-      $getPaginated( r.offset + params.count, params );
+    if ( parseInt( r.count ) >= params.count )
+      $getPaginated( offset + params.count, params );
     else
       params.done(); // All data loaded
 

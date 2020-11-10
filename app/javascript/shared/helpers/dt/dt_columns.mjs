@@ -11,7 +11,7 @@ import { renderTagsInline } from 'shared/ui/tags'
 function dtButtonColumn(name) {
   return {
     orderable: false,
-    className: 'text-right',
+    className: 'text-right button-column',
     render: (data, type, r, m) => {
       switch (name) {
         case 'show':
