@@ -101,9 +101,19 @@ describe Import::ChangeInstruction do
     execute_import(release_date, {sdtm: true}, set_write_file)
   end
 
+  it "2020-06-26" do
+    release_date = "2020-09-25"
+    execute_import(release_date, {sdtm: true, send: true}, true)
+  end
+
   it "2020-09-25" do
     release_date = "2020-09-25"
     execute_import(release_date, {sdtm: true, protocol: true}, set_write_file)
   end
 
+  it "2020-11-06" do
+    release_date = "2020-09-25"
+    # No changes to be processed
+  end
+  
 end
