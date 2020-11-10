@@ -109,7 +109,11 @@ describe Fuseki::Resource::Property do
 
     item.set_uri(uri.to_s)
     expect(item.get).to eq(uri)
-
+    item.delete_value(ref_4) # Should not do anything
+    expect(item.get).to eq(uri)
+    item.replace_value(uri, ref_4) # Should not do anything
+    expect(item.get).to eq(uri)
+    
     ref_4 = TestFRP.new
     item = Fuseki::Resource::Property.new(ref_4, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: "", base_type: XSDDatatype.new("dateTime")})
     time = "1980-03-04"

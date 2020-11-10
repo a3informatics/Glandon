@@ -35,7 +35,7 @@ class Form < IsoManagedV2
 
   def move_up_with_clone(child, managed_ancestor)
     if child.multiple_managed_ancestors?
-      parent_and_child = clone_children_and_save(child, managed_ancestor)
+      parent_and_child = child.replicate_siblings_with_clone(child, managed_ancestor)
       parent_and_child.first.move_up(parent_and_child.second)
     else
       move_up(child)
@@ -44,7 +44,7 @@ class Form < IsoManagedV2
 
   def move_down_with_clone(child, managed_ancestor)
     if child.multiple_managed_ancestors?
-      parent_and_child = clone_children_and_save(child, managed_ancestor)
+      parent_and_child = child.replicate_siblings_with_clone(child, managed_ancestor)
       parent_and_child.first.move_down(parent_and_child.second)
     else
       move_down(child)
@@ -132,15 +132,15 @@ class Form < IsoManagedV2
 
 private
 
-  # Clone children within a transaction
-  def clone_children_and_save(child, managed_ancestor)
-    tx = transaction_begin
-    managed_ancestor.transaction_set(tx)
-    new_object = managed_ancestor.clone_children_and_save_no_tx(managed_ancestor, tx, child.uri)
-    transaction_execute
-    #new_parent = Form.find_full(managed_ancestor.id)
-    return managed_ancestor, new_object
-  end
+  # # Clone children within a transaction
+  # def clone_children_and_save(child, managed_ancestor)
+  #   tx = transaction_begin
+  #   managed_ancestor.transaction_set(tx)
+  #   new_object = managed_ancestor.clone_children_and_save_no_tx(managed_ancestor, tx, child.uri)
+  #   transaction_execute
+  #   #new_parent = Form.find_full(managed_ancestor.id)
+  #   return managed_ancestor, new_object
+  # end
 
   # Next Ordinal. Get the next ordinal for a managed item collection
   #

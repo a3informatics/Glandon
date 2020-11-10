@@ -785,7 +785,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       make_standard(form)
       form = Form.find_full(form.uri)
       #check_dates(form, sub_dir, "delete_form_10a.yaml", :creation_date, :last_change_date)
-      check_file_actual_expected(form.to_h, sub_dir, "delete_form_10a.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_form_10a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
       bc_group = Form::Group::Bc.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
@@ -793,7 +793,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 saved_form = new_form
       new_form = Form.find_full(new_form.uri)
       #check_dates(new_form, sub_dir, "delete_form_10b.yaml", :creation_date, :last_change_date)
-      check_file_actual_expected(new_form.to_h, sub_dir, "delete_form_10b.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(new_form.to_h, sub_dir, "delete_form_10b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
       #check_dates(form, sub_dir, "delete_form_10a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_10a.yaml", equate_method: :hash_equal)

@@ -48,8 +48,8 @@
 :has_previous_version: http://www.s-cubed.dk/XXX/V1#F
 :origin: ''
 :change_description: ''
-:creation_date: '2020-11-03T13:35:29+01:00'
-:last_change_date: '2020-11-03T13:35:29+01:00'
+:creation_date: '2020-11-10T17:49:07+01:00'
+:last_change_date: '2020-11-10T17:49:07+01:00'
 :explanatory_comment: ''
 :note: ''
 :completion: ''
@@ -66,38 +66,12 @@
   :has_item: []
   :repeating: false
   :has_sub_group:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNOR19mMDMyODdkNi0yM2VhLTQzYmItYjNjZi1mOTcyNzYxY2FhYmQ=
-    :uri: http://www.s-cubed.dk/XXX/V1#NG_f03287d6-23ea-43bb-b3cf-f972761caabd
-    :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
-    :label: Node 3
-    :tagged: []
-    :ordinal: 3
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_item: []
-    :repeating: false
-    :has_sub_group: []
-    :has_common: []
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNOR180Yjk4MTM2NC1kYWY0LTRjOTktODRmMC1mNzUxNGJkMDkyZTc=
-    :uri: http://www.s-cubed.dk/XXX/V1#NG_4b981364-daf4-4c99-84f0-f7514bd092e7
-    :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
-    :label: Node 4
-    :tagged: []
-    :ordinal: 5
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_item: []
-    :repeating: false
-    :has_sub_group: []
-    :has_common: []
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMiNOR18yNDJjM2Q5NC1mNDdjLTQ0NzctOWY1MS1hZmE0YzE4ZmE5NDk=
     :uri: http://www.s-cubed.dk/XXX/V2#NG_242c3d94-f47c-4477-9f51-afa4c18fa949
     :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
     :label: Node 3
     :tagged: []
-    :ordinal: 4
+    :ordinal: 2
     :note: ''
     :completion: ''
     :optional: false
@@ -110,7 +84,7 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
     :label: Node 4
     :tagged: []
-    :ordinal: 6
+    :ordinal: 3
     :note: ''
     :completion: ''
     :optional: false
@@ -119,133 +93,12 @@
     :has_sub_group: []
     :has_common: []
   :has_common:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNOR18xNzYwY2JiMS1hMzcwLTQxZjYtYTNiMy00OTNjMWQ5YzIyMzhfQ0c=
-    :uri: http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238_CG
-    :rdf_type: http://www.assero.co.uk/BusinessForm#CommonGroup
-    :label: Node CG 1
-    :tagged: []
-    :ordinal: 1
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_item:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNDSV84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmI=
-      :uri: http://www.s-cubed.dk/XXX/V1#CI_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb
-      :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
-      :label: "--POS"
-      :tagged: []
-      :ordinal: 1
-      :note: ''
-      :completion: ''
-      :optional: false
-      :has_property:
-        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNDSV84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmJfUjE=
-        :uri: http://www.s-cubed.dk/XXX/V1#CI_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_R1
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-        :label: ''
-        :tagged: []
-        :enabled: true
-        :optional: false
-        :ordinal: 1
-        :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode
-        :context: 
-      :has_coded_value:
-      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNDSV84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmJfVFVDMQ==
-        :uri: http://www.s-cubed.dk/XXX/V1#CI_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC1
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-        :label: ''
-        :tagged: []
-        :enabled: true
-        :optional: false
-        :ordinal: 1
-        :reference: http://www.cdisc.org/C71148/V62#C71148_C62166
-        :context: http://www.cdisc.org/C71148/V62#C71148
-        :local_label: Standing
-      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNDSV84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmJfVFVDMg==
-        :uri: http://www.s-cubed.dk/XXX/V1#CI_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC2
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-        :label: ''
-        :tagged: []
-        :enabled: true
-        :optional: false
-        :ordinal: 2
-        :reference: http://www.cdisc.org/C71148/V6#C71148_C62122
-        :context: http://www.cdisc.org/C71148/V62#C71148
-        :local_label: Sitting
-      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNDSV84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmJfVFVDMw==
-        :uri: http://www.s-cubed.dk/XXX/V1#CI_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC3
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-        :label: ''
-        :tagged: []
-        :enabled: true
-        :optional: false
-        :ordinal: 3
-        :reference: http://www.cdisc.org/C71148/V6#C71148_C62167
-        :context: http://www.cdisc.org/C71148/V62#C71148
-        :local_label: Supine Position
-      :has_common_item:
-      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ1BfMzZkMDFhMDQtOTdmYS00YWU5LThmNDAtOWYyNjZhNmNkYzA2
-        :uri: http://www.s-cubed.dk/XXX/V1#BCP_36d01a04-97fa-4ae9-8f40-9f266a6cdc06
-        :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-        :label: "--POS"
-        :tagged: []
-        :ordinal: 3
-        :note: ''
-        :completion: ''
-        :optional: false
-        :has_property:
-          :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ1BfMzZkMDFhMDQtOTdmYS00YWU5LThmNDAtOWYyNjZhNmNkYzA2X1Ix
-          :uri: http://www.s-cubed.dk/XXX/V1#BCP_36d01a04-97fa-4ae9-8f40-9f266a6cdc06_R1
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 1
-          :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode
-          :context: 
-        :has_coded_value:
-        - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ1BfMzZkMDFhMDQtOTdmYS00YWU5LThmNDAtOWYyNjZhNmNkYzA2X1RVQzE=
-          :uri: http://www.s-cubed.dk/XXX/V1#BCP_36d01a04-97fa-4ae9-8f40-9f266a6cdc06_TUC1
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 1
-          :reference: http://www.cdisc.org/C71148/V62#C71148_C62166
-          :context: http://www.cdisc.org/C71148/V62#C71148
-          :local_label: Standing
-        - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ1BfMzZkMDFhMDQtOTdmYS00YWU5LThmNDAtOWYyNjZhNmNkYzA2X1RVQzI=
-          :uri: http://www.s-cubed.dk/XXX/V1#BCP_36d01a04-97fa-4ae9-8f40-9f266a6cdc06_TUC2
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 2
-          :reference: http://www.cdisc.org/C71148/V6#C71148_C62122
-          :context: http://www.cdisc.org/C71148/V62#C71148
-          :local_label: Sitting
-        - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ1BfMzZkMDFhMDQtOTdmYS00YWU5LThmNDAtOWYyNjZhNmNkYzA2X1RVQzM=
-          :uri: http://www.s-cubed.dk/XXX/V1#BCP_36d01a04-97fa-4ae9-8f40-9f266a6cdc06_TUC3
-          :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-          :label: ''
-          :tagged: []
-          :enabled: true
-          :optional: false
-          :ordinal: 3
-          :reference: http://www.cdisc.org/C71148/V6#C71148_C62167
-          :context: http://www.cdisc.org/C71148/V62#C71148
-          :local_label: Supine Position
-        :is_common: true
-      :is_common: false
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMiNOR184MzBmYTcyYy1hNTllLTQ3NWItOWIyYy1lYjRiNWFjZTI2NGZfQ0c=
     :uri: http://www.s-cubed.dk/XXX/V2#NG_830fa72c-a59e-475b-9b2c-eb4b5ace264f_CG
     :rdf_type: http://www.assero.co.uk/BusinessForm#CommonGroup
     :label: Node CG 1
     :tagged: []
-    :ordinal: 2
+    :ordinal: 1
     :note: ''
     :completion: ''
     :optional: false
