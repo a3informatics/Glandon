@@ -53,26 +53,28 @@ function fitColumn(name, tableId) {
 /**
  * DataTable Select All button definition
  * @param {function} action Custom action to execute on button click, optional
+ * @param {boject} filter Custom filter to apply to DT rows scope, optional, defaults to search: applied
  * @return {Object} Custom Select All button options
  */
- function selectAllBtn(action) {
+ function selectAllBtn(action, filter = { search: 'applied' }) {
   return {
     text: 'Select All',
     className: 'btn-xs white',
-    action: action ? action : (e, dt, node, conf) => dt.rows({ selected: false }).select()
+    action: action ? action : (e, dt, node, conf) => dt.rows({ selected: false, ...filter }).select()
   }
 }
 
 /**
  * DataTable Select All button definition
  * @param {function} action Custom action to execute on button click, optional
+ * @param {boject} filter Custom filter to apply to DT rows scope, optional, defaults to search: applied
  * @return {Object} Custom Select All button options
  */
- function deselectAllBtn(action) {
+ function deselectAllBtn(action, filter = { search: 'applied' }) {
   return {
     text: 'Deselect All',
     className: 'btn-xs white',
-    action: action ? action : (e, dt, node, conf) => dt.rows({ selected: true }).deselect()
+    action: action ? action : (e, dt, node, conf) => dt.rows({ selected: true, ...filter }).deselect()
   }
 }
 

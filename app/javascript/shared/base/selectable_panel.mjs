@@ -132,16 +132,18 @@ export default class SelectablePanel extends TablePanel {
 
   /**
    * Select all rows in panel, override for custom behavior
+   * @param {boject} filter Custom filter to apply to DT rows scope, optional
    */
-  _selectAll() {
-    this.table.rows({ selected: false }).select();
+  _selectAll(filter = { selected: false, search: 'applied' }) {
+    this.table.rows( filter ).select();
   }
 
   /**
    * Deselect all rows in panel, override for custom behavior
+   * @param {boject} filter Custom filter to apply to DT rows scope, optional
    */
-  _deselectAll() {
-    this.table.rows({ selected: true }).deselect();
+  _deselectAll(filter = { selected: true, search: 'applied' }) {
+    this.table.rows( filter ).deselect();
   }
 
   /**
