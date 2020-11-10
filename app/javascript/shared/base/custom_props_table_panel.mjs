@@ -115,6 +115,7 @@ export default class CPTablePanel extends TablePanel {
         if ( r.definitions.length === 0 ) {
 
           alerts.warning( 'No Custom Property data available.' );
+          this._toggleCPColumns( false );
           return;
 
         }
