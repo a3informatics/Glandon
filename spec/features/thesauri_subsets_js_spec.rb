@@ -289,7 +289,7 @@ describe "Thesauri Subsets", :type => :feature do
     end
 
     it "prevents add, remove and move item in subset, when token expires" do
-      Token.set_timeout3
+      Token.set_timeout
 
       show_item '2010-03-05 Release', 'C85495'
       context_menu_element_header(:subsets)
