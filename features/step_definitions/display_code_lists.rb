@@ -127,6 +127,14 @@ if int < 10
    save_screen(TYPE)
 end
 
+Then('there are {string} entries displayed in the table') do |string,table|
+  expect(page).to have_content string+" entries"
+	table.hashes.each do |it|
+	  expect(page).to have_content it['item']
+	end
+  save_screen(TYPE)
+end
+
 Then('I see synonym {string} being shared with {string} codelist for the {string} item') do |string, string2, string3|
   expect(page).to have_content 'Shared Synonyms'
   expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/div", :text => string)
@@ -151,6 +159,14 @@ Then('I see Code Lists Index page is displayed') do
   save_screen(TYPE)
 end
 
+Then('I see the Search Terminology page displayed for release {string} version {string}') do |string,string2|
+  expect(page).to have_content "Search Terminology"
+  expect(page).to have_content string
+  expect(page).to have_content string2
+  wait_for_ajax(20)
+  save_screen(TYPE)
+end
+
 Then('I see a new code list starting with {string}') do |string|
   expect(page).to have_content string
   expect(page).to have_content 'Not Set'
@@ -166,7 +182,6 @@ Then('I see a new code list item') do
   end
 
 Then /I fill in the details for the code list ?(?:\(?(\w+)\)?.*)/ do |string, table|
-
   table.hashes.each do |hash|
       ui_editor_select_by_location(1,2)
       ui_editor_fill_inline "notation", "#{hash['SV']}\n"
@@ -180,7 +195,7 @@ Then /I fill in the details for the code list ?(?:\(?(\w+)\)?.*)/ do |string, ta
   end
   wait_for_ajax(20)
   save_screen(TYPE)
-  end
+end
 
 Then('I see Synonyms is {string}') do |string|
   ui_editor_check_value 1, 4, string

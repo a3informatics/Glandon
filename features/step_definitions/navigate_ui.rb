@@ -110,6 +110,12 @@ When('I click Changes for the {string}, c-code: {string}') do |string, string2|
    wait_for_ajax(20)
 end
 
+### Tables ###
+When('I click first row in table') do
+	find(:xpath, "//table[@id='searchTable']/tbody/tr[1]").double_click
+end
+
+
 ### Open in new tab and return to pervious tab from changes page ###
 
 When('I access the created {string}, c-code:{string} by right-clicking and open in new tab') do |string, string2|

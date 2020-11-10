@@ -114,10 +114,10 @@ end
 Then('the {string}, c-code: {string} was created \(+) in version {string} and deleted \(-) in version {string}') do |string, string2, string3, string4|
   ui_table_search('changes', string2)
 
-pos_cr = page.all(:xpath, "//table[@id='changes']/thead/tr/th[.='#{string3}']/preceding-sibling::*").length+1
+	pos_cr = page.all(:xpath, "//table[@id='changes']/thead/tr/th[.='#{string3}']/preceding-sibling::*").length+1
   ui_check_table_cell_create('changes',1,pos_cr)
   
-pos_dl = page.all(:xpath, "//table[@id='changes']/thead/tr/th[.='#{string4}']/preceding-sibling::*").length+1
+	pos_dl = page.all(:xpath, "//table[@id='changes']/thead/tr/th[.='#{string4}']/preceding-sibling::*").length+1
   ui_check_table_cell_delete('changes',1,pos_dl)
   wait_for_ajax(20)
   save_screen(TYPE)
@@ -178,4 +178,30 @@ Then('a PDF report is generated and contains the {int} entries in the Submission
     page.execute_script "window.close();"
   end
   # find('#home_button').click
+end
+
+Then('all search terminology fields are cleared') do
+	expect(find('#overall_search').value).to eq ''
+	expect(find('#searchTable_csearch_parent_identifier').value).to eq ''
+	expect(find('#searchTable_csearch_parent_label').value).to eq ''
+	expect(find('#searchTable_csearch_identifier').value).to eq ''
+	expect(find('#searchTable_csearch_notation').value).to eq ''
+	expect(find('#searchTable_csearch_preferred_term').value).to eq ''
+	expect(find('#searchTable_csearch_synonym').value).to eq ''
+	expect(find('#searchTable_csearch_definition').value).to eq ''
+	expect(find('#searchTable_csearch_tags').value).to eq ''
+	save_screen(TYPE)
+end
+
+Then('all search terminology fields are cleared except code list which contains {string}') do |string|
+	expect(find('#overall_search').value).to eq ''
+	expect(find('#searchTable_csearch_parent_identifier').value).to eq string
+	expect(find('#searchTable_csearch_parent_label').value).to eq ''
+	expect(find('#searchTable_csearch_identifier').value).to eq ''
+	expect(find('#searchTable_csearch_notation').value).to eq ''
+	expect(find('#searchTable_csearch_preferred_term').value).to eq ''
+	expect(find('#searchTable_csearch_synonym').value).to eq ''
+	expect(find('#searchTable_csearch_definition').value).to eq ''
+	expect(find('#searchTable_csearch_tags').value).to eq ''
+  save_screen(TYPE)
 end
