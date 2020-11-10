@@ -1,4 +1,4 @@
-import TablePanel from 'shared/base/table_panel'
+import CPTablePanel from 'shared/base/custom_props_table_panel'
 
 import { dtButtonColumn, dtIndicatorsColumn } from 'shared/helpers/dt/dt_columns'
 import { dtChildrenColumns } from 'shared/helpers/dt/dt_column_collections'
@@ -11,7 +11,7 @@ import { dtCLExtensibleColumn } from 'shared/helpers/dt/dt_columns'
  * @requires table [@id = 'children']
  * @author Samuel Banas <sab@s-cubed.dk>
  */
-export default class ChildrenPanel extends TablePanel {
+export default class ChildrenPanel extends CPTablePanel {
 
   /**
    * Create a Children Panel
@@ -32,12 +32,13 @@ export default class ChildrenPanel extends TablePanel {
     extraColumns = [],
     deferLoading = false,
     cache = true,
-    buttons = []
+    buttons = [],
+    cpEnabled = false
   }) {
 
     super({
       selector, url, param, count,
-      extraColumns, cache, buttons
+      extraColumns, cache, buttons, cpEnabled
     });
 
   }
@@ -69,15 +70,10 @@ export default class ChildrenPanel extends TablePanel {
     let options = super._tableOpts;
 
     options.columns = [
-        ...this._defaultColumns,
-        ...this.extraColumns,
+        ...options.columns,
         dtIndicatorsColumn({ withoutVersions: true }),
         dtButtonColumn('show')
     ];
-
-    // Enable horizontal scroll when table data too wide
-    options.scrollX = true;
-    options.autoWidth = true;
 
     options.language.emptyTable = 'No child items.';
 

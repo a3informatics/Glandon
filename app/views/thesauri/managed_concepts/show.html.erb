@@ -76,8 +76,11 @@
 </div>
 
 <div class="row">
-  <%= render partial: "shared/iso_managed/children/children_card", :locals => { title: "Code List Items",
-      url: show_data_thesauri_managed_concept_path(@tc, { managed_concept: { context_id: @context_id } }) } %>
+  <div class="loading-with-btns">
+    <%= render partial: "shared/iso_managed/children/children_card", :locals => { title: "Code List Items",
+        url: show_data_thesauri_managed_concept_path(@tc, { managed_concept: { context_id: @context_id } }),
+        custom_props?: true } %>
+  </div>
 </div>
 
 <%= render partial: "shared/thesauri/managed_concepts/subsets/manager", :locals => { item: @tc, edit_allowed: policy(Thesaurus).edit? } %>

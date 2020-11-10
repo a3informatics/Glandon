@@ -1,6 +1,10 @@
 <% if !local_assigns[:children_url].nil? %>
   <%= javascript_tag "let childrenDataUrl = '#{children_url}'" %>
-<% end%>
+<% end %>
+
+<% if local_assigns.fetch :custom_props?, false %>
+  <%= javascript_tag "let customPropsUrl = '#{custom_properties_iso_managed_v2_path(@tc)}';" %>
+<% end %>
 
 <table id="<%= local_assigns.fetch :id, 'children' %>" class="table <%= local_assigns.fetch :table_classes, 'striped' %>">
   <thead>
@@ -19,7 +23,7 @@
         <th class="fit">Extensible</th>
       <% end %>
 
-      <th>Definition</th>
+      <th class="th-wide">Definition</th>
       <th>Tags</th>
 
       <%# Extra Columns %>
