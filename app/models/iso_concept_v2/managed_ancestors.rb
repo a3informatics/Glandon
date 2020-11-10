@@ -116,7 +116,7 @@ class IsoConceptV2
     def update_with_clone(params, managed_ancestor)
       if multiple_managed_ancestors?
         result = nil
-        tx, persist_objects, uris, prev_object = managed_ancestor_prepare(managed_ancestor)
+        tx, persist_objects, uris, prev_object = managed_ancestor_prepare(managed_ancestor, self)
         uris.each do |old_uri|
           old_object = self.class.klass_for(old_uri).find_children(old_uri)
           if old_object.multiple_managed_ancestors?
@@ -143,7 +143,7 @@ class IsoConceptV2
     def replicate_with_clone(child, managed_ancestor)
       new_parent = nil
       new_object = nil
-      tx, persist_objects, uris, prev_object = managed_ancestor_prepare(managed_ancestor)
+      tx, persist_objects, uris, prev_object = managed_ancestor_prepare(managed_ancestor, self)
       uris.each do |old_uri|
         old_object = self.class.klass_for(old_uri).find_children(old_uri)
         if old_object.multiple_managed_ancestors?
@@ -159,7 +159,7 @@ class IsoConceptV2
       return new_parent, new_object
     end
 
-    # Replicate Siblings With Clone. Clone all the ancestor chain.
+    # Replicate Siblings With Clone. Clone all the ancestor chain. Self is the parent
     #
     # @param [Object] child the target object
     # @param [Object] managed_ancestor the managed ancestor
@@ -167,7 +167,7 @@ class IsoConceptV2
     def replicate_siblings_with_clone(child, managed_ancestor)
       new_parent = nil
       new_object = nil
-      tx, persist_objects, uris, prev_object = managed_ancestor_prepare(managed_ancestor)
+      tx, persist_objects, uris, prev_object = managed_ancestor_prepare(managed_ancestor, child)
       uris.each do |old_uri|
         old_object = self.class.klass_for(old_uri).find_children(old_uri)
         if old_object.multiple_managed_ancestors?
@@ -193,7 +193,7 @@ class IsoConceptV2
     # @return [Object] the new parent
     def delete_with_clone(managed_ancestor)
       new_parent = nil
-      tx, persist_objects, uris, prev_object = managed_ancestor_prepare(managed_ancestor)
+      tx, persist_objects, uris, prev_object = managed_ancestor_prepare(managed_ancestor, self)
       uris.each do |old_uri|
         old_object = self.class.klass_for(old_uri).find_children(old_uri)
         if self.uri == old_object.uri
@@ -214,10 +214,10 @@ class IsoConceptV2
   private
 
     # Prepare for a managed ancestor operation
-    def managed_ancestor_prepare(managed_ancestor)
+    def managed_ancestor_prepare(managed_ancestor, target)
       tx = transaction_begin
       persist_objects = []
-      uris = managed_ancestor_path_uris(managed_ancestor)
+      uris = target.managed_ancestor_path_uris(managed_ancestor)
       # @todo This should be true objects.last.uri == self.uri. Could add a check and exception
       prev_object = managed_ancestor
       prev_object.transaction_set(tx)
@@ -277,7 +277,7 @@ class IsoConceptV2
     def clone_children(the_object, managed_ancestor, persist_objects, tx, save_uri=nil, ignore_uri=nil)
       new_object = nil
       #items = Hash.new {|h,k| h[k] = []}
-      the_object.managed_ancestors_children_set.each do |child|
+      self.managed_ancestors_children_set.each do |child|
         next if !ignore_uri.nil? && ignore_uri == child.uri
         object = child.clone
         object.transaction_set(tx)

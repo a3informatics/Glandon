@@ -35,7 +35,7 @@ class Form < IsoManagedV2
 
   def move_up_with_clone(child, managed_ancestor)
     if child.multiple_managed_ancestors?
-      parent_and_child = child.replicate_siblings_with_clone(child, managed_ancestor)
+      parent_and_child = self.replicate_siblings_with_clone(child, managed_ancestor)
       parent_and_child.first.move_up(parent_and_child.second)
     else
       move_up(child)
@@ -44,7 +44,7 @@ class Form < IsoManagedV2
 
   def move_down_with_clone(child, managed_ancestor)
     if child.multiple_managed_ancestors?
-      parent_and_child = child.replicate_siblings_with_clone(child, managed_ancestor)
+      parent_and_child = self.replicate_siblings_with_clone(child, managed_ancestor)
       parent_and_child.first.move_down(parent_and_child.second)
     else
       move_down(child)

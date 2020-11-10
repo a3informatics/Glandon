@@ -291,6 +291,7 @@ describe Form::Item do
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
       tuc_ref = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC2"))
+      question = Form::Item::Question.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
       question.move_up_with_clone(tuc_ref, new_form)
       new_form = Form.find_full(new_form.uri)
       check_dates(new_form, sub_dir, "move_up_tuc_ref_1b.yaml", :creation_date, :last_change_date)
@@ -321,6 +322,7 @@ describe Form::Item do
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
       tuc_ref = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC2"))
+      question = Form::Item::Question.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
       question.move_down_with_clone(tuc_ref, new_form)
       new_form = Form.find_full(new_form.uri)
       check_dates(new_form, sub_dir, "move_down_tuc_ref_1b.yaml", :creation_date, :last_change_date)

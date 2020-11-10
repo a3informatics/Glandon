@@ -628,6 +628,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))#Ordinal 1
+byebug
       question.delete(normal_group, new_form)
       saved_form = new_form
       new_form = Form.find_full(new_form.uri)
