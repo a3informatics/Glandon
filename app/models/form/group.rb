@@ -64,7 +64,7 @@ class Form::Group < IsoConceptV2
   # @return [Object] the parent object, either new or the cloned new parent
   def delete(parent, managed_ancestor)
     if multiple_managed_ancestors?
-      parent = delete_with_clone(managed_ancestor)
+      parent = delete_with_clone(parent, managed_ancestor)
       parent = Form::Group.find_full(parent.id)
       parent.reset_ordinals
       parent

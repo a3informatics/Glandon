@@ -43,7 +43,7 @@ class Form::Item < IsoConceptV2
   # @return [Object] the parent object, either new or the cloned new object with updates
   def delete(parent, managed_ancestor)
     if multiple_managed_ancestors?
-      parent = delete_with_clone(managed_ancestor)
+      parent = delete_with_clone(parent, managed_ancestor)
       parent.reset_ordinals
     else
       delete_node(parent)

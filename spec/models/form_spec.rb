@@ -597,8 +597,8 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_4a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
-      common_group = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238_CG"))
-      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      common_group = Form::Group::Common.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238_CG"))
+      normal_group = Form::Group::Normal.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       expect(normal_group.has_common.count).to eq(1)
       common_group.delete(normal_group, new_form)
       saved_form = new_form
@@ -618,17 +618,23 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       form = Form.create(label: "Form1", identifier: "XXX")
       form.add_child({type:"normal_group"})
       normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
-      normal_group.add_child({type:"question"})
-      normal_group.add_child({type:"question"})
-      normal_group.add_child({type:"question"})
+      item = normal_group.add_child({type:"question"})
+      item.label = "1"
+      item.save
+      item = normal_group.add_child({type:"question"})
+      item.label = "2"
+      item.save
+      item = normal_group.add_child({type:"question"})
+      item.label = "3"
+      item.save
       make_standard(form)
       form = Form.find_full(form.uri)
       check_dates(form, sub_dir, "delete_form_5a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_5a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
-      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))#Ordinal 1
-byebug
+      normal_group = Form::Group::Normal.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      question = Form::Item::Question.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))#Ordinal 1
       question.delete(normal_group, new_form)
       saved_form = new_form
       new_form = Form.find_full(new_form.uri)
@@ -652,7 +658,8 @@ byebug
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_6a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
-      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      normal_group = Form::Group::Normal.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      question = Form::Item::Question.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
       question.delete(normal_group, new_form)
       saved_form = new_form
       new_form = Form.find_full(new_form.uri)
@@ -678,7 +685,8 @@ byebug
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_7a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
-      sub_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      normal_group = Form::Group::Normal.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      sub_group = Form::Group::Normal.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
       sub_group.delete(normal_group, new_form)
       saved_form = new_form
       new_form = Form.find_full(new_form.uri)
@@ -708,7 +716,8 @@ byebug
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_8a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
-      sub_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))#Node 2
+      form = Form.find_full(form.uri)
+      sub_group = Form::Group::Normal.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))#Node 2
       sub_group.delete(form, new_form)
       saved_form = new_form
       new_form = Form.find_full(new_form.uri)
@@ -740,7 +749,8 @@ byebug
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_9a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
-      sub_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))#Node 1
+      sub_group = Form::Group::Normal.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))#Node 1
+      normal_group = Form::Group::Normal.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       sub_group.delete(normal_group, new_form)
       saved_form = new_form
       new_form = Form.find_full(new_form.uri)

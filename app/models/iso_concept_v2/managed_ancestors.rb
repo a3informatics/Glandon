@@ -173,7 +173,7 @@ class IsoConceptV2
         if old_object.multiple_managed_ancestors?
           if child.uri == old_object.uri
             new_parent = prev_object
-            new_object, persist_objects = clone_children_with_note(new_parent, managed_ancestor, persist_objects, tx, child.uri) 
+            new_object, persist_objects = clone_children_with_note(self, new_parent, managed_ancestor, persist_objects, tx, child.uri) 
           else
             cloned_object = clone_with_optional_update(managed_ancestor, old_object, prev_object, persist_objects, tx, {})
             replace_a_link(prev_object, old_object, cloned_object, managed_ancestor)
@@ -191,7 +191,7 @@ class IsoConceptV2
     #
     # @param [Object] managed_ancestor the managed ancestor
     # @return [Object] the new parent
-    def delete_with_clone(managed_ancestor)
+    def delete_with_clone(parent, managed_ancestor)
       new_parent = nil
       tx, persist_objects, uris, prev_object = managed_ancestor_prepare(managed_ancestor, self)
       uris.each do |old_uri|
@@ -199,7 +199,7 @@ class IsoConceptV2
         if self.uri == old_object.uri
           delete_a_link(prev_object, old_object, managed_ancestor)
           new_parent = prev_object
-          new_object, persist_objects = clone_children_with_ignore(new_parent, managed_ancestor, persist_objects, tx, self.uri)
+          new_object, persist_objects = clone_children_with_ignore(parent, new_parent, managed_ancestor, persist_objects, tx, self.uri)
         else
           cloned_object = clone_with_optional_update(managed_ancestor, old_object, prev_object, persist_objects, tx, {})
           persist_objects << cloned_object
@@ -264,20 +264,20 @@ class IsoConceptV2
     end
 
     # Clone Children With Note
-    def clone_children_with_note(the_object, managed_ancestor, persist_objects, tx, save_uri)
-      clone_children(the_object, managed_ancestor, persist_objects, tx, save_uri, nil)
+    def clone_children_with_note(source, the_object, managed_ancestor, persist_objects, tx, save_uri)
+      clone_children(source, the_object, managed_ancestor, persist_objects, tx, save_uri, nil)
     end
 
     # Clone Children With Ignore
-    def clone_children_with_ignore(the_object, managed_ancestor, persist_objects, tx, ignore_uri)
-      clone_children(the_object, managed_ancestor, persist_objects, tx, nil, ignore_uri)
+    def clone_children_with_ignore(source, the_object, managed_ancestor, persist_objects, tx, ignore_uri)
+      clone_children(source, the_object, managed_ancestor, persist_objects, tx, nil, ignore_uri)
     end
 
     # Clone the children. It will ignore the object (it won't be cloned) if ignore_uri is not nil and it'll save it if save_uri is passed.
-    def clone_children(the_object, managed_ancestor, persist_objects, tx, save_uri=nil, ignore_uri=nil)
+    def clone_children(source, the_object, managed_ancestor, persist_objects, tx, save_uri=nil, ignore_uri=nil)
       new_object = nil
       #items = Hash.new {|h,k| h[k] = []}
-      self.managed_ancestors_children_set.each do |child|
+      source.managed_ancestors_children_set.each do |child|
         next if !ignore_uri.nil? && ignore_uri == child.uri
         object = child.clone
         object.transaction_set(tx)
