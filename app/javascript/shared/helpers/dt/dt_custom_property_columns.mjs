@@ -33,7 +33,7 @@ function dtTextColumn(name, props = {}) {
   return {
     data: name,
     className: 'custom-prop-column',
-    defaultContent: 'N/A',
+    defaultContent: '',
     ...props,
   }
 
@@ -49,7 +49,7 @@ function dtBooleanColumn(name, props = {}) {
 
   return dtTrueFalseColumn( name, {
     className: 'text-center custom-prop-column',
-    defaultContent: 'N/A',
+    defaultContent: '',
     ...props
   });
 
