@@ -11,6 +11,13 @@ describe Form::Group::Normal do
     return "models/form/group/normal"
   end
 
+  def make_standard(item)
+    params = {}
+    params[:registration_status] = "Standard"
+    params[:previous_state] = "Incomplete"
+    item.update_status(params)
+  end
+
   describe "Validation tests" do
 
     before :all do
@@ -73,13 +80,6 @@ describe Form::Group::Normal do
   end
 
   describe "Add child" do
-
-    def make_standard(item)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      item.update_status(params)
-    end
     
     def check_normal_group(uri, filename, write_file=false)
       normal = Form::Group::Normal.find_full(uri)
@@ -198,13 +198,6 @@ describe Form::Group::Normal do
   end
 
   describe "Add child, BC Groups" do
-
-    def make_standard(item)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      item.update_status(params)
-    end
     
     def check_normal_group(uri, filename, write_file=false)
       normal = Form::Group::Normal.find_full(uri)

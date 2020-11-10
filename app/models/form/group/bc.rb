@@ -44,9 +44,16 @@ class Form::Group::Bc < Form::Group
   end
 
   def delete(parent, managed_ancestor)
-    parent = delete_with_clone(managed_ancestor)
-    parent = Form::Group::Normal.find_full(parent.uri)
-    parent = parent.full_data
+    if multiple_managed_ancestors?
+      parent = delete_with_clone(managed_ancestor)
+      parent = Form::Group.find_full(parent.uri)
+      parent.reset_ordinals
+      parent = parent.full_data
+    else
+      parent = delete_node(parent)
+      parent = Form.find_full(parent.uri)
+      parent = parent.full_data
+    end
   end
 
   def delete_with_clone(managed_ancestor)
@@ -130,6 +137,9 @@ class Form::Group::Bc < Form::Group
     query_results.by_object(:result).first.to_bool
   end
 
+  # Bc Properties Uris
+  #
+  # @return [Array] Array of child property uri.
   def bc_properties_uris
     bc_properties = []
     self.has_item_objects.each do |bc_property|

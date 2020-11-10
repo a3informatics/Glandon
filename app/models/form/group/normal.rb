@@ -77,33 +77,34 @@ class Form::Group::Normal < Form::Group
 
   def add_child_with_clone(params, managed_ancestor)
     if multiple_managed_ancestors?
-      new_normal = clone_nodes_and_get_new_normal(managed_ancestor)
+      #new_normal = clone_nodes_and_get_new_normal(managed_ancestor)
+      new_normal = simple_clone(managed_ancestor)
       new_normal.add_child(params)
     else
       add_child(params)
     end
   end
 
-  def clone_nodes_and_get_new_normal(managed_ancestor)
-    result = nil
-    tx = transaction_begin
-    uris = managed_ancestor_path_uris(managed_ancestor)
-    prev_object = managed_ancestor
-    prev_object.transaction_set(tx)
-    uris.each do |old_uri|
-      old_object = self.class.klass_for(old_uri).find_children(old_uri)
-      if old_object.multiple_managed_ancestors?
-        cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
-        result = cloned_object if self.uri == old_object.uri
-        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-        prev_object = cloned_object
-      else
-        prev_object = old_object
-      end
-    end
-    transaction_execute
-    result
-  end
+  # def clone_nodes_and_get_new_normal(managed_ancestor)
+  #   result = nil
+  #   tx = transaction_begin
+  #   uris = managed_ancestor_path_uris(managed_ancestor)
+  #   prev_object = managed_ancestor
+  #   prev_object.transaction_set(tx)
+  #   uris.each do |old_uri|
+  #     old_object = self.class.klass_for(old_uri).find_children(old_uri)
+  #     if old_object.multiple_managed_ancestors?
+  #       cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
+  #       result = cloned_object if self.uri == old_object.uri
+  #       prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+  #       prev_object = cloned_object
+  #     else
+  #       prev_object = old_object
+  #     end
+  #   end
+  #   transaction_execute
+  #   result
+  # end
 
   # Add Child.
   #
@@ -300,28 +301,6 @@ class Form::Group::Normal < Form::Group
     parent = Form.find_full(parent.uri)
     parent = parent.full_data
   end
-
-  # # Clone the item and create. Use Sparql approach in case of children also need creating
-  # #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
-  # #   The Children are normally references. Also note the setting of the transaction in the cloned object and
-  # #   in the sparql generation, important both are done.
-  # def clone_children_and_save(tx, uri = nil)
-  #   sparql = Sparql::Update.new(tx)
-  #   new_object = nil
-  #   set = self.has_sub_group + self.has_item + self.has_common
-  #   set.each do |child|
-  #     object = child.clone
-  #     object.transaction_set(tx)
-  #     object.generate_uri(self.uri) 
-  #     object.to_sparql(sparql, true)
-  #     self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
-  #     unless uri.nil? 
-  #       new_object = object if child.uri == uri 
-  #     end 
-  #   end
-  #   sparql.create
-  #   new_object
-  # end
 
   # Full Data
   #
