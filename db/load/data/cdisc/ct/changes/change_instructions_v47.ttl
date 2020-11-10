@@ -11,17 +11,17 @@
 <http://www.assero.co.uk/BusinessOperational>
 	rdf:type owl:Ontology ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI1>
+<http://www.assero.co.uk/CHIN#c32e4b9a-b114-4e9f-8373-b614b809a4da>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma. This concept will replace C61019."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V47#TH_CI1_TUC2> ;
-	ba:ordinal "1"^^xsd: ;
+	ba:current <http://www.assero.co.uk/CHIN#c32e4b9a-b114-4e9f-8373-b614b809a4da_TUC2> ;
+	ba:ordinal "1"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI1_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#c32e4b9a-b114-4e9f-8373-b614b809a4da_TUC1> ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI1_TUC2>
+<http://www.assero.co.uk/CHIN#c32e4b9a-b114-4e9f-8373-b614b809a4da_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -31,7 +31,7 @@
 	:context <http://www.cdisc.org/CT/V47#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI1_TUC1>
+<http://www.assero.co.uk/CHIN#c32e4b9a-b114-4e9f-8373-b614b809a4da_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -41,17 +41,17 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI2>
+<http://www.assero.co.uk/CHIN#22ed367c-0062-4dd1-9ec7-c4b4216d2b00>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma. This concept will replace C74753."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V47#TH_CI2_TUC2> ;
-	ba:ordinal "2"^^xsd: ;
+	ba:current <http://www.assero.co.uk/CHIN#22ed367c-0062-4dd1-9ec7-c4b4216d2b00_TUC2> ;
+	ba:ordinal "2"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI2_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#22ed367c-0062-4dd1-9ec7-c4b4216d2b00_TUC1> ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI2_TUC2>
+<http://www.assero.co.uk/CHIN#22ed367c-0062-4dd1-9ec7-c4b4216d2b00_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -61,7 +61,7 @@
 	:context <http://www.cdisc.org/CT/V47#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI2_TUC1>
+<http://www.assero.co.uk/CHIN#22ed367c-0062-4dd1-9ec7-c4b4216d2b00_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -71,17 +71,17 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI3>
+<http://www.assero.co.uk/CHIN#9138af39-00c5-4962-9944-9f2ebb691b9e>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma. This concept will replace C61019."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V47#TH_CI3_TUC2> ;
-	ba:ordinal "3"^^xsd: ;
+	ba:current <http://www.assero.co.uk/CHIN#9138af39-00c5-4962-9944-9f2ebb691b9e_TUC2> ;
+	ba:ordinal "3"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI3_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#9138af39-00c5-4962-9944-9f2ebb691b9e_TUC1> ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI3_TUC2>
+<http://www.assero.co.uk/CHIN#9138af39-00c5-4962-9944-9f2ebb691b9e_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -91,7 +91,7 @@
 	:context <http://www.cdisc.org/CT/V47#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI3_TUC1>
+<http://www.assero.co.uk/CHIN#9138af39-00c5-4962-9944-9f2ebb691b9e_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -101,17 +101,17 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI4>
+<http://www.assero.co.uk/CHIN#15b15cce-63df-4fee-852b-60ca6a0dc75c>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma. This concept will replace C74753."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V47#TH_CI4_TUC2> ;
-	ba:ordinal "4"^^xsd: ;
+	ba:current <http://www.assero.co.uk/CHIN#15b15cce-63df-4fee-852b-60ca6a0dc75c_TUC2> ;
+	ba:ordinal "4"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI4_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#15b15cce-63df-4fee-852b-60ca6a0dc75c_TUC1> ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI4_TUC2>
+<http://www.assero.co.uk/CHIN#15b15cce-63df-4fee-852b-60ca6a0dc75c_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -121,7 +121,7 @@
 	:context <http://www.cdisc.org/CT/V47#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI4_TUC1>
+<http://www.assero.co.uk/CHIN#15b15cce-63df-4fee-852b-60ca6a0dc75c_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -131,17 +131,17 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI5>
+<http://www.assero.co.uk/CHIN#05308b6f-38db-4a75-884f-af4be47e3a66>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "The nomenclature has been updated and now the original mapping is obsolete. This concept will replace C27477."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V47#TH_CI5_TUC2> ;
-	ba:ordinal "5"^^xsd: ;
+	ba:current <http://www.assero.co.uk/CHIN#05308b6f-38db-4a75-884f-af4be47e3a66_TUC2> ;
+	ba:ordinal "5"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI5_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#05308b6f-38db-4a75-884f-af4be47e3a66_TUC1> ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI5_TUC2>
+<http://www.assero.co.uk/CHIN#05308b6f-38db-4a75-884f-af4be47e3a66_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -151,7 +151,7 @@
 	:context <http://www.cdisc.org/CT/V47#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI5_TUC1>
+<http://www.assero.co.uk/CHIN#05308b6f-38db-4a75-884f-af4be47e3a66_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -161,18 +161,18 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI6>
+<http://www.assero.co.uk/CHIN#86afc9a7-c354-45bd-9512-7e1965e60519>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This concept will replace C72074 and C3773, which have been removed with the 2016-03-25 publication."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V47#TH_CI6_TUC3> ;
-	ba:ordinal "6"^^xsd: ;
+	ba:current <http://www.assero.co.uk/CHIN#86afc9a7-c354-45bd-9512-7e1965e60519_TUC3> ;
+	ba:ordinal "6"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI6_TUC1> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI6_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#86afc9a7-c354-45bd-9512-7e1965e60519_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#86afc9a7-c354-45bd-9512-7e1965e60519_TUC2> ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI6_TUC3>
+<http://www.assero.co.uk/CHIN#86afc9a7-c354-45bd-9512-7e1965e60519_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -182,7 +182,7 @@
 	:context <http://www.cdisc.org/CT/V47#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI6_TUC1>
+<http://www.assero.co.uk/CHIN#86afc9a7-c354-45bd-9512-7e1965e60519_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -192,7 +192,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI6_TUC2>
+<http://www.assero.co.uk/CHIN#86afc9a7-c354-45bd-9512-7e1965e60519_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -202,17 +202,17 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI7>
+<http://www.assero.co.uk/CHIN#4e9a226d-0577-4525-9994-0696785691b4>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This concept will replace C64118, which has been removed with the 2016-03-25 publication."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V47#TH_CI7_TUC2> ;
-	ba:ordinal "7"^^xsd: ;
+	ba:current <http://www.assero.co.uk/CHIN#4e9a226d-0577-4525-9994-0696785691b4_TUC2> ;
+	ba:ordinal "7"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI7_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#4e9a226d-0577-4525-9994-0696785691b4_TUC1> ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI7_TUC2>
+<http://www.assero.co.uk/CHIN#4e9a226d-0577-4525-9994-0696785691b4_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -222,7 +222,7 @@
 	:context <http://www.cdisc.org/CT/V47#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI7_TUC1>
+<http://www.assero.co.uk/CHIN#4e9a226d-0577-4525-9994-0696785691b4_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -232,54 +232,54 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "The FDA requires non-clinical sponsors to identify Benign or Malignant so these concepts would never have been used. [Updated Comment]"^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V47#TH_CI8_TMC39> ;
-	ba:ordinal "8"^^xsd: ;
+	ba:current <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TMC39> ;
+	ba:ordinal "8"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC1> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC2> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC3> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC4> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC5> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC6> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC7> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC8> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC9> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC10> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC11> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC12> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC13> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC14> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC15> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC16> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC17> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC18> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC19> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC20> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC21> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC22> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC23> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC24> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC25> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC26> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC27> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC28> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC29> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC30> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC31> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC32> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC33> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC34> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC35> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC36> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC37> ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC38> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC3> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC4> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC5> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC6> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC7> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC8> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC9> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC10> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC11> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC12> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC13> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC14> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC15> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC16> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC17> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC18> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC19> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC20> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC21> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC22> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC23> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC24> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC25> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC26> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC27> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC28> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC29> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC30> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC31> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC32> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC33> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC34> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC35> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC36> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC37> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC38> ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TMC39>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TMC39>
 	rdf:type :TMcReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -288,7 +288,7 @@
 	:reference <http://www.cdisc.org/C88025/V47#C88025> ;
 	:context <http://www.cdisc.org/CT/V47#TH> ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC1>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -298,7 +298,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC2>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -308,7 +308,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC3>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -318,7 +318,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC4>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC4>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -328,7 +328,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC5>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC5>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -338,7 +338,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC6>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC6>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -348,7 +348,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC7>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC7>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -358,7 +358,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC8>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC8>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -368,7 +368,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC9>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC9>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -378,7 +378,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC10>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC10>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -388,7 +388,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC11>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC11>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -398,7 +398,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC12>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC12>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -408,7 +408,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC13>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC13>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -418,7 +418,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC14>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC14>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -428,7 +428,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC15>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC15>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -438,7 +438,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC16>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC16>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -448,7 +448,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC17>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC17>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -458,7 +458,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC18>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC18>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -468,7 +468,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC19>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC19>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -478,7 +478,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC20>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC20>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -488,7 +488,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC21>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC21>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -498,7 +498,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC22>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC22>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -508,7 +508,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC23>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC23>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -518,7 +518,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC24>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC24>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -528,7 +528,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC25>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC25>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -538,7 +538,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC26>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC26>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -548,7 +548,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC27>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC27>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -558,7 +558,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC28>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC28>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -568,7 +568,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC29>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC29>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -578,7 +578,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC30>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC30>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -588,7 +588,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC31>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC31>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -598,7 +598,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC32>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC32>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -608,7 +608,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC33>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC33>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -618,7 +618,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC34>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC34>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -628,7 +628,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC35>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC35>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -638,7 +638,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC36>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC36>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -648,7 +648,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC37>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC37>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -658,7 +658,7 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI8_TUC38>
+<http://www.assero.co.uk/CHIN#d1b67f5d-48ac-4d91-97e9-5dfd1030911a_TUC38>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -668,17 +668,17 @@
 	:context <http://www.cdisc.org/CT/V46#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI9>
+<http://www.assero.co.uk/CHIN#2527bca8-a276-4a48-8587-28606eee2335>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Creatinine belongs in test/parm name. Please use pg/mg (C67396) in its place."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V47#TH_CI9_TUC2> ;
-	ba:ordinal "9"^^xsd: ;
+	ba:current <http://www.assero.co.uk/CHIN#2527bca8-a276-4a48-8587-28606eee2335_TUC2> ;
+	ba:ordinal "9"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V47#TH_CI9_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#2527bca8-a276-4a48-8587-28606eee2335_TUC1> ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI9_TUC2>
+<http://www.assero.co.uk/CHIN#2527bca8-a276-4a48-8587-28606eee2335_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -688,7 +688,7 @@
 	:context <http://www.cdisc.org/CT/V47#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V47#TH_CI9_TUC1>
+<http://www.assero.co.uk/CHIN#2527bca8-a276-4a48-8587-28606eee2335_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
