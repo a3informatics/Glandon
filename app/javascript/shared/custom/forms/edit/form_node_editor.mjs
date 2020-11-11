@@ -69,7 +69,7 @@ export default class NodeEditor extends GenericEditor {
    */
   _onSuccess(result) {
 
-    let { changedIds, data } = result;
+    let { ids, data } = result;
 
     try {
 
@@ -91,7 +91,7 @@ export default class NodeEditor extends GenericEditor {
 
     }
 
-    this.onUpdate( changedIds );
+    this.onUpdate( ids );
     this.hide();
 
   }
