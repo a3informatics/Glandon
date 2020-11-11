@@ -38,7 +38,7 @@ class IsoConceptV2
       def find_custom_property_definitions_to_h(klass)
         results = find_custom_property_definitions(klass)
         results = results.map{|x| x.to_h.slice(:id, :datatype, :label).merge({name: x.label.to_variable_style})}
-        results.sort_by { |x| [ x[:datatype], x[:name] ] }
+        results.sort { |a, b| [b[:datatype], a[:name]] <=> [a[:datatype], b[:name]] }
       end
 
     end
