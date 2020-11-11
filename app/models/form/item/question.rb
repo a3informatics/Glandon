@@ -57,7 +57,7 @@ class Form::Item::Question < Form::Item
 
   def add_child_with_clone(params, managed_ancestor)
     if multiple_managed_ancestors?
-      new_question = replicate_with_clone(managed_ancestor)
+      new_question = replicate_with_clone(self, managed_ancestor)
       new_question.add_child(params)
     else
       add_child(params)
@@ -92,7 +92,7 @@ class Form::Item::Question < Form::Item
   def delete_reference(reference, managed_ancestor)
     if multiple_managed_ancestors?
       #parent = clone_nodes_and_get_new_parent(reference,managed_ancestor)
-      new_parent = delete_with_clone(reference,managed_ancestor)
+      new_parent = reference.delete_with_clone(self, managed_ancestor)
       new_parent.reset_ordinals
       new_parent = Form::Item.find_full(new_parent.id)
     else
