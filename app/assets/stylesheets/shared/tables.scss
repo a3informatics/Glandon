@@ -113,8 +113,12 @@ table th.nowrap {
   white-space: nowrap;
 }
 
+table th.th-xwide {
+  min-width: 320px;
+}
+
 table th.th-wide {
-  min-width: 300px;
+  min-width: 200px;
 }
 
 table th.th-medium{
