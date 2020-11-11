@@ -289,7 +289,7 @@ describe "Thesauri Subsets", :type => :feature do
     end
 
     it "prevents add, remove and move item in subset, when token expires" do
-      Token.set_timeout
+      Token.set_timeout 3
 
       show_item '2010-03-05 Release', 'C85495'
       context_menu_element_header(:subsets)
@@ -452,7 +452,7 @@ describe "Thesauri Subsets", :type => :feature do
     end
 
     it "prevents add, remove and move item in subset, when token expires" do
-      Token.set_timeout(10)
+      Token.set_timeout 3
 
       show_item '2010-03-05 Release', 'C85494'
       context_menu_element_header(:subsets)
@@ -462,7 +462,7 @@ describe "Thesauri Subsets", :type => :feature do
       end
       wait_for_ajax 10
 
-      sleep 12
+      sleep 5
 
       add_or_remove_items ['C85811']
 

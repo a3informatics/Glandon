@@ -16,7 +16,7 @@ module TagHelpers
     tc = Thesaurus::ManagedConcept.create
     tc2 = Thesaurus::ManagedConcept.create
     uc = tc.add_child( { identifier: 'SRVR' } )
-    bc = BiomedicalConceptInstance.create ( { identifier: 'TESTBC', label: "Test BC" } ) 
+    bc = BiomedicalConceptInstance.create ( { identifier: 'TESTBC', label: "Test BC" } )
     form = Form.create( { identifier: 'TESTF', label: "Test Form" } )
 
     if tag_items == true
@@ -73,7 +73,7 @@ module TagHelpers
       check_alert 'Tag deleted successfully'
       expect( node_count ).to eq( tag_count - 1 )
     else
-      check_alert error_msg
+      expect(page).to have_content error_msg
     end
   end
 
