@@ -23,6 +23,7 @@ export default class TablePanel {
    * @param {Array} params.buttons DT buttons definitions objects, empty by default
    * @param {Object} params.tableOptions Custom DT options object, will be merged with this instance's _tableOpts, optional
    * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
+   * @param {boolean} params.autoHeight Specifies whether the height of the table should match the window size, and add a horizontal scroll, optional
    * @param {element} params.errorDiv Custom element to display flash errors in, optional
    * @param {Object} args Optional additional arguments for extending classes
    */
@@ -39,12 +40,13 @@ export default class TablePanel {
     buttons = [],
     tableOptions = {},
     loadCallback = () => {},
+    autoHeight = false,
     errorDiv
   }, args = {}) {
 
     Object.assign(this, {
       selector, url, param, count, extraColumns, deferLoading, cache,
-      paginated, order, buttons, tableOptions, loadCallback,
+      paginated, order, buttons, tableOptions, loadCallback, autoHeight,
       errorDiv, ...args
     });
 
@@ -67,31 +69,11 @@ export default class TablePanel {
     this.clear( false );
     this._loading( true );
 
-    if (this.paginated)
-      this.request = $getPaginated(0, {
-        url: this.url,
-        count: this.count,
-        strictParam: this.param,
-        cache: this.cache,
-        errorDiv: this.errorDiv,
-        pageDone: data => this._render( data ),
-        done: data => this._onDataLoaded( this.table ),
-        always: () => this._loading( false )
-      });
+    if ( this.paginated )
+      this._loadDataPaginated();
 
     else
-      this.request = $get({
-        url: this.url,
-        cache: this.cache,
-        errorDiv: this.errorDiv,
-        done: data => {
-
-          this._render( data );
-          this._onDataLoaded( this.table );
-
-        },
-        always: () => this._loading( false )
-      });
+      this._loadData();
 
     return this;
 
@@ -173,6 +155,58 @@ export default class TablePanel {
   _setListeners() { }
 
   /**
+   * Fetch data in a single request, handle loading and updates
+   */
+  _loadData() {
+
+    this.request = $get({
+      url: this.url,
+      cache: this.cache,
+      errorDiv: this.errorDiv,
+      done: data => {
+
+        this._render( data );
+        this._onDataLoaded( this.table );
+
+      },
+      always: () => this._loading( false )
+    });
+
+  }
+
+  /**
+   * Fetch data in a paginated request, handle loading and updates
+   */
+  _loadDataPaginated() {
+
+    this.request = $getPaginated(0, {
+      url: this.url,
+      count: this.count,
+      strictParam: this.param,
+      cache: this.cache,
+      errorDiv: this.errorDiv,
+      pageDone: data => {
+
+        this._render( data )
+        this._loadingExtra( true ); // Show non-intrusive loading-extra animation
+
+      },
+      done: data => {
+
+        this._loadingExtra( false );  // Hide loading-extra animation
+        this._onDataLoaded( this.table );
+
+      },
+      always: () => this._loading( false )
+    });
+
+  }
+
+
+  /** Rows **/
+
+
+  /**
    * Finds DT row data in which element is present
    * @param {HTML Element} el html element that is contained in the table row
    * @return {Object} DT row data object
@@ -200,14 +234,9 @@ export default class TablePanel {
     return this.table.row( ( i, data ) => data[ propertyName ] === value ? true : false );
   }
 
-  /**
-   * Sets click listener and handler
-   * @param {string} target JQuery selector of target element
-   * @param {function} handler Function to be executed on click
-   */
-  _clickListener( { target, handler } ) {
-    $( `${ this.selector } tbody` ).on( 'click', target, handler );
-  }
+
+  /** Render **/
+
 
   /**
    * Add data into table and draw
@@ -229,6 +258,10 @@ export default class TablePanel {
 
   }
 
+
+  /** Events **/
+
+
   /**
    * Executed when table data fully loaded, calls loadCallback with current table instance as argument
    */
@@ -240,6 +273,19 @@ export default class TablePanel {
   }
 
   /**
+   * Sets click listener and handler
+   * @param {string} target JQuery selector of target element
+   * @param {function} handler Function to be executed on click
+   */
+  _clickListener( { target, handler } ) {
+    $( `${ this.selector } tbody` ).on( 'click', target, handler );
+  }
+
+
+  /** Support **/
+
+
+  /**
    * Change panel's loading state and update the isProcessing instance variable
    * @param {boolean} enable value corresponding to the desired loading state on/off
    */
@@ -248,6 +294,26 @@ export default class TablePanel {
     this.isProcessing = enable;
     this.table.processing( enable );
 
+  }
+
+  /**
+   * Change panel's unintrusive loading animation used for indication of extra data load, pagination
+   * @param {boolean} enable value corresponding to the desired loading state on/off
+   */
+  _loadingExtra(enable) {
+
+    this.isProcessing = enable;
+    this.$wrapper.find( '.dataTables_info' )
+                 .toggleClass( 'el-loading', enable );
+
+  }
+
+  /**
+   * Get the wrapper element of the table instance
+   * @return {JQuery Element} Table wrapper div
+   */
+  get $wrapper() {
+    return $( `${ this.selector }_wrapper` );
   }
 
   /**
@@ -275,6 +341,24 @@ export default class TablePanel {
   }
 
   /**
+   * Set of DT options for a horizontally scrollable table with height that fits in the current window
+   * @return {Object} DataTable options object
+   */
+  get _autoHeightOpts() {
+
+    let minHeight = 300,
+        docHeight = $( document ).innerHeight(),
+        yHeight = Math.max( docHeight - 250, minHeight );
+
+    return {
+      autoWidth: true,
+      scrollCollapse: true,
+      scrollY: yHeight
+    }
+
+  }
+
+  /**
    * DataTable basic options
    * @return {Object} DataTable initialization options object
    */
@@ -297,6 +381,9 @@ export default class TablePanel {
       },
       buttons: this.buttons
     }
+
+    if ( this.autoHeight )
+      Object.assign( opts, this._autoHeightOpts );
 
     if ( this.tableOptions ) // Merge with custom options
       Object.assign( opts, this.tableOptions );

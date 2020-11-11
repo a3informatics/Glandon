@@ -36,8 +36,10 @@ export default class IndexPanel extends TablePanel {
   }) {
     super({ selector, url, param, count, extraColumns, cache, buttons });
   }
+  
 
   /** Private **/
+
 
   /**
    * Get default column definitions for IsoManaged items
