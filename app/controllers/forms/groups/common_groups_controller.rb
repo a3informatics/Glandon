@@ -12,7 +12,7 @@ class Forms::Groups::CommonGroupsController < ManagedItemsController
   def update
     form = Form.find_full(update_params[:form_id])
     return true unless check_lock_for_item(form)
-    common = Form::Group::Common.find(protect_from_bad_id(params))
+    common = Form::Group::Common.find_full(protect_from_bad_id(params))
     common = common.update_with_clone(update_params, form)
     if common.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
@@ -23,10 +23,10 @@ class Forms::Groups::CommonGroupsController < ManagedItemsController
   end
 
   def destroy
-    parent = Form.find(the_params[:parent_id])
+    parent = Form.find_full(the_params[:parent_id])
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
-    common = Form::Group::Common.find(protect_from_bad_id(params))
+    common = Form::Group::Common.find_full(protect_from_bad_id(params))
     result = common.delete(parent, form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, group #{common.label} deleted.") if @lock.token.refresh == 1
