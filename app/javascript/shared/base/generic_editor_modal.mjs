@@ -249,7 +249,11 @@ export default class GenericEditor extends ModalView {
     for ( let error of errors ) {
 
       let field = this.content.find( `[name='${ error.name }']` );
-      Validator._renderError( field, error.status );
+
+      if ( field.length )
+        Validator._renderError( field, error.status );
+      else
+        alerts.error( Object.values( error ).join(' '), this.$error );
 
     }
 

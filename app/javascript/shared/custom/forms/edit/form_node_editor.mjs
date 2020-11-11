@@ -59,7 +59,7 @@ export default class NodeEditor extends GenericEditor {
    */
   _submit(type, rawResult = false) { 
 
-    super.rawResult( type, true );
+    super._submit( type, true );
 
   }
 
