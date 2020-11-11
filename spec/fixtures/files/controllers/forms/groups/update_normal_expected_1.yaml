@@ -10,12 +10,828 @@
   :completion: completion u
   :optional: false
   :has_item:
-  - http://www.s-cubed.dk/FN000120/V1#F_NG12_MA1
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9NQTE=
+    :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_MA1
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Mapping
+    :label: Mapping 1
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: Not Set
+    :optional: false
+    :mapping: QSSCAT='LEISURE AND HOUSEWORK"
   :repeating: false
   :has_sub_group:
-  - http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5
-  - http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6
-  - http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3
-  - http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2
-  - http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzU=
+    :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5
+    :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: 39. Complete household chores adequately as he/she used to perform in
+      the past
+    :tagged: []
+    :ordinal: 5
+    :note: Not Set
+    :completion: Not Set
+    :optional: false
+    :has_item:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTI=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5_Q2
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Initiation
+      :tagged: []
+      :ordinal: 2
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Initiation
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTJfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5_Q2_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTJfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5_Q2_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTJfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5_Q2_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTM=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5_Q3
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Planning & Organization
+      :tagged: []
+      :ordinal: 3
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Planning & Organization
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTNfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5_Q3_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTNfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5_Q3_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTNfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5_Q3_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfTUEx
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5_MA1
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Mapping
+      :label: Mapping 1
+      :tagged: []
+      :ordinal: 1
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :mapping: QSTESTCD="DAITM39"
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTQ=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5_Q4
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Effective Performance
+      :tagged: []
+      :ordinal: 4
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Effective Performance
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTRfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5_Q4_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTRfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5_Q4_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTRfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG5_Q4_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    :repeating: false
+    :has_sub_group: []
+    :has_common: []
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzY=
+    :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6
+    :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: 40. Stay safely at home by himself/herself when needed
+    :tagged: []
+    :ordinal: 6
+    :note: Not Set
+    :completion: Not Set
+    :optional: false
+    :has_item:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfTUEx
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6_MA1
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Mapping
+      :label: Mapping 1
+      :tagged: []
+      :ordinal: 1
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :mapping: QSTESTCD="DAITM40"
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTI=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6_Q2
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Initiation
+      :tagged: []
+      :ordinal: 2
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Initiation
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTJfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6_Q2_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTJfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6_Q2_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTJfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6_Q2_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTM=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6_Q3
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Planning & Organization
+      :tagged: []
+      :ordinal: 3
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Planning & Organization
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTNfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6_Q3_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTNfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6_Q3_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTNfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6_Q3_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTQ=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6_Q4
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Effective Performance
+      :tagged: []
+      :ordinal: 4
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Effective Performance
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTRfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6_Q4_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTRfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG6_Q4_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    :repeating: false
+    :has_sub_group: []
+    :has_common: []
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzM=
+    :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3
+    :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: 37.Take an interest in household chores that he/she used to perform in
+      the past
+    :tagged: []
+    :ordinal: 3
+    :note: Not Set
+    :completion: Not Set
+    :optional: false
+    :has_item:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTM=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_Q3
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Planning & Organization
+      :tagged: []
+      :ordinal: 3
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Planning & Organization
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTNfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_Q3_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTNfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_Q3_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTNfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_Q3_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfTUEx
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_MA1
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Mapping
+      :label: Mapping 1
+      :tagged: []
+      :ordinal: 1
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :mapping: QSTESTCD="DAITM37"
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTQ=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_Q4
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Effective Performance
+      :tagged: []
+      :ordinal: 4
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Effective Performance
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTRfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_Q4_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTRfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_Q4_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTRfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_Q4_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTI=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_Q2
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Initiation
+      :tagged: []
+      :ordinal: 2
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Initiation
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTJfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_Q2_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTJfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_Q2_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTJfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG3_Q2_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    :repeating: false
+    :has_sub_group: []
+    :has_common: []
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzI=
+    :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2
+    :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: 36. Show an interest in leisure activity(ies)
+    :tagged: []
+    :ordinal: 2
+    :note: Not Set
+    :completion: Not Set
+    :optional: false
+    :has_item:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTI=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2_Q2
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Initiation
+      :tagged: []
+      :ordinal: 2
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Initiation
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTJfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2_Q2_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTJfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2_Q2_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTJfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2_Q2_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTM=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2_Q3
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Planning & Organization
+      :tagged: []
+      :ordinal: 3
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Planning & Organization
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTNfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2_Q3_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTNfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2_Q3_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTNfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2_Q3_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfTUEx
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2_MA1
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Mapping
+      :label: Mapping 1
+      :tagged: []
+      :ordinal: 1
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :mapping: QSTESTCD="DAITM36"
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTQ=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2_Q4
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Effective Performance
+      :tagged: []
+      :ordinal: 4
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Effective Performance
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTRfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2_Q4_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTRfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2_Q4_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTRfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG2_Q4_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    :repeating: false
+    :has_sub_group: []
+    :has_common: []
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzQ=
+    :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4
+    :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: 38. Plan and organize adequately household chores that he/she used to
+      perform in the past
+    :tagged: []
+    :ordinal: 4
+    :note: Not Set
+    :completion: Not Set
+    :optional: false
+    :has_item:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTQ=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4_Q4
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Effective Performance
+      :tagged: []
+      :ordinal: 4
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Effective Performance
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTRfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4_Q4_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTRfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4_Q4_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTRfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4_Q4_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTI=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4_Q2
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Initiation
+      :tagged: []
+      :ordinal: 2
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Initiation
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTJfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4_Q2_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTJfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4_Q2_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTJfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4_Q2_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTM=
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4_Q3
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+      :label: Planning & Organization
+      :tagged: []
+      :ordinal: 3
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :datatype: string
+      :format: '20'
+      :mapping: QSORRES
+      :question_text: Planning & Organization
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTNfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4_Q3_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C48660
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTNfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4_Q3_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49487
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTNfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4_Q3_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C66742/V4#C66742_C49488
+        :context: http://www.cdisc.org/C66742/V56#C66742
+        :local_label: ''
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfTUEx
+      :uri: http://www.s-cubed.dk/FN000120/V1#F_NG12_NG4_MA1
+      :rdf_type: http://www.assero.co.uk/BusinessForm#Mapping
+      :label: Mapping 1
+      :tagged: []
+      :ordinal: 1
+      :note: ''
+      :completion: Not Set
+      :optional: false
+      :mapping: QSTESTCD="DAITM38"
+    :repeating: false
+    :has_sub_group: []
+    :has_common: []
   :has_common: []
