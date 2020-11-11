@@ -29,12 +29,17 @@ end
 When('I click {string} in/at the top/bottom of the page') do |string|
   if string == 'PDF Report'
 		# Ignore. All PDF handling is in the THEN-statement
-		# click_button string
+	  #click_button string
   end
+  
   if string =='Start'
     find('#fb_s_button').click 
-	wait_for_ajax(20)
   end
+  if string =='View Changes'
+   click_link 'View Changes'
+  end
+  wait_for_ajax(20)
+
 end
 
 
@@ -50,15 +55,19 @@ When('I click Context menu for {string}') do |string|
 end
 
 When('I click {string} in context menu for {string}') do |string, string2|
-	row = find("table#history tr", text: string2)
-	within(row) do
-    ui_table_search("history", string2)
-    find(".icon-context-menu").click
-    if string == 'edit'
-      context_menu_element('history', 4, string2, :edit)
-    end
-  end
-  wait_for_ajax(20)
+
+  row = find("table#history tr", text: string2)
+        within(row) do
+        ui_table_search("history", string2)
+        find(".icon-context-menu").click
+          if string == 'edit'
+            context_menu_element('history', 4, string2, :edit)
+          end
+          if string == 'show'
+            context_menu_element('history', 4, string2, :show)
+          end
+        end
+        wait_for_ajax(20)
 end
 
 When('I click {string} in context menu for {string} on the History page') do |string, string2|
@@ -106,7 +115,7 @@ end
 
 
 When('I click Changes for the {string}, c-code: {string}') do |string, string2|
-   ui_table_row_click(string, 'Changes')
+  find(:xpath, "//tr[contains(.,'#{string}')]/td/a", :text => "Changes").click
    wait_for_ajax(20)
 end
 
@@ -119,20 +128,18 @@ end
 ### Open in new tab and return to pervious tab from changes page ###
 
 When('I access the created {string}, c-code:{string} by right-clicking and open in new tab') do |string, string2|
-  new_window = window_opened_by {click_link find(:xpath, "//div[@id='created_div']/a", :text => string) } 
-  switch_to_window new_window
-  wait_for_ajax(20)    
+ find("#created_div a", text: string).click(:command, :shift)
+    wait_for_ajax(20)  
 end
 
 When('I access the updated {string}, c-code:{string} by right-clicking and open in new tab') do |string, string2|
-  new_window = window_opened_by {click_link find(:xpath, "//div[@id='updated_div']/a", :text => string) }
-  switch_to_window new_window    
+    find("#updated_div a", text: string).click(:command, :shift)
+   wait_for_ajax(20) 
 end
 
 When('I access the deleted {string}, c-code:{string} by right-clicking and open in new tab') do |string, string2|
-  new_window = window_opened_by { click_link find(:xpath, "//div[@id='deleted_div']/a", :text => string) }
-  switch_to_window new_window 
-  wait_for_ajax(20) 
+   find("#deleted_div a", text: string).click(:command, :shift)
+   wait_for_ajax(20) 
 end
 
 When('I return to {string} \(previous tab)') do |string|
@@ -169,7 +176,7 @@ Then('the list has {int} entries') do |int|
 end
 
 Then('I see that {string}') do |string|
-  expect(page).to have_content string
+    expect(page).to have_content string
   wait_for_ajax(20)
   save_screen(TYPE)
 end

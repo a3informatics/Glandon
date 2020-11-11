@@ -14,6 +14,8 @@ require 'rspec/expectations'
 require 'rspec'
 require 'base64'
 require 'selenium-webdriver'
+require 'nokogiri'
+require 'watir'
 
 # Load the schema. This is so it is available at class load/elaboration
 #require Rails.root.join('spec/support/data_helpers.rb')
@@ -50,16 +52,18 @@ Before do
   LATEST_VERSION='2020-06'
   #Load in the CDISC Terminology and recreate users
     log('loading terminology and users')
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-    load_files(schema_files, data_files)
-    #full_path = Rails.root.join("db/load/biomedical_concept_templates.ttl")
+    load_files(schema_files, [])
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+    #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    #full_path = Rails.root.join("db/load/")
     #load_file_into_triple_store(full_path)
-    #load_cdisc_term_versions(1..LST_VERSION)
+    load_cdisc_term_versions(1..LST_VERSION)
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
-    #quh_destroy
+    quh_destroy
     quh_create
     Token.destroy_all
     AuditTrail.destroy_all
@@ -68,9 +72,10 @@ Before do
     log('Data and users loaded')
 end
 
-# After do |scenario|
-#   nv_destroy
-# end
+After do |scenario|
+  nv_destroy
+end
+
 
 
  #TURN_ON_SCREEN_SHOT=false
@@ -229,7 +234,7 @@ ActionController::Base.allow_rescue = false
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
  #Cucumber::Rails::Database.javascript_strategy = :truncation
- Cucumber::Rails::Database.javascript_strategy = :transaction
+ #Cucumber::Rails::Database.javascript_strategy = :transaction
 
 
 

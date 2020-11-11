@@ -1,7 +1,7 @@
 
 ##################### Pre-conditions - Given statements
 
-Given /Community [dD]ashboard/ do
+Given /on Community [dD]ashboard/ do
 	expect(page).to have_content 'Changes between two CDISC Terminology versions'
 end
 
@@ -29,8 +29,8 @@ When /[Ss]ee the changes across versions/ do
 end
 
 
-When('I sort on version {string} in the Difference table') do |string|
-  ui_table_sort(Difference,string)
+When('I sort on version {string} in the Changes table') do |string|
+  ui_table_sort('changes',string)
   wait_for_ajax(20)
 end
 
@@ -48,12 +48,19 @@ Then /latest (?:release\s)*version is/ do
 	save_screen(TYPE)
 	wait_for_ajax(20)
 end
-
+          
 Then /the Community Dashboard is displayed/ do
   expect(page).to have_content 'Changes between two CDISC Terminology versions'
   wait_for_ajax(20)
   save_screen(TYPE)
 end
+
+Then ('I am on Dashboard') do
+  expect(page).to have_content 'Dashboard'
+  wait_for_ajax(20)
+  save_screen(TYPE)
+  end
+
 
 ### Context menu ###
 
@@ -110,6 +117,15 @@ Then('the Changes panel displays {int} entries') do |int|
   save_screen(TYPE)
 end
 
+Then('the Differences panel displays {int} entries') do |int|
+  if int < 10
+    ui_check_table_info("differences_table", 1, int, int)
+  else
+    ui_check_table_info("differences_table", 1, 10, int)
+  end
+  wait_for_ajax(20)
+  save_screen(TYPE)
+end
 
 Then('the {string}, c-code: {string} was created \(+) in version {string} and deleted \(-) in version {string}') do |string, string2, string3, string4|
   ui_table_search('changes', string2)
@@ -124,22 +140,17 @@ Then('the {string}, c-code: {string} was created \(+) in version {string} and de
 end
 
 Then('the code list item {string}, c-code: {string} and {string}, c-code: {string} is displayed as the first two rows') do |string, string2, string3, string4|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then('a PDF report is generated and contains the {int} entires in the Changes panel') do |int|
-# Then('a PDF report is generated and contains the {float} entires in the Changes panel') do |float|
-  pending # Write code here that turns the phrase above into concrete actions
+  ui_table_search('changes', "")
+  ui_check_table_cell('changes', 1, 1, string2)
+  ui_check_table_cell('changes', 1, 2, string)
+  ui_check_table_cell('changes', 2, 1, string4)
+  ui_check_table_cell('changes', 2, 2, string3)
 end
 
 Then('the Differences panel is displayed') do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(page).to have_content 'Differences'
 end
 
-Then('{int} changes are displayed') do |int|
-# Then('{float} changes are displayed') do |float|
-  pending # Write code here that turns the phrase above into concrete actions
-end
 
 Then('I see the Differences and Changes for the {string} code list for CDISC version {string} and CDISC version {string}') do |string, string2, string3|
   pending # Write code here that turns the phrase above into concrete actions
@@ -160,8 +171,10 @@ Then('a PDF report is generated and contains the {int} entires in the Changes pa
     sleep 10
     expect(current_path).to include("changes_report.pdf")
     expect(current_path).to include("thesauri/managed_concepts")
-    wait_for_ajax(20)
-    save_screen(TYPE)
+   
+     page.execute_script "window.scrollBy(0,10000);"
+     save_screen(TYPE)
+     
     page.execute_script "window.close();"
   end
 end

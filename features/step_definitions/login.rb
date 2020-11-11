@@ -9,7 +9,7 @@
   C_SYS_CONTENT_ADMIN = "admin@s-cubed.dk"
   
  C_PASSWORD = "Changeme1?" # on localhost
-#C_PASSWORD = "Changeme9?" #on VAL for community reader
+#C_PASSWORD = "Changeme10?" #on VAL for community reader
 
 Given('I am signed in successfully as {string}') do |string|
   visit "/users/sign_in"
@@ -25,4 +25,3 @@ Given('I am signed in successfully as {string}') do |string|
   expect(page).to have_text string
   expect(page).to have_text 'Signed in successfully'
 end
-
