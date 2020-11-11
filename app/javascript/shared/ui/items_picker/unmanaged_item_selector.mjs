@@ -83,7 +83,7 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
     // Initializes Selectable Children Panel
     this.childrenPanel = new IPPanel({
       tablePanelOptions: {
-        selector: `${this.selector} table#children`,
+        selector: `${this.selector} #children`,
         param: this._realParam,
         count: 10000,
         extraColumns: this._childrenColumns,

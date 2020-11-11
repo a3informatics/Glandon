@@ -79,9 +79,9 @@ export default class ManagedItemSelector extends Cacheable {
     this.indexPanel = new IPPanel({
       tablePanelOptions: {
         url: this.urls.index,
-        selector: `${this.selector} table#index`,
+        selector: `${this.selector} #index`,
         param: this._realParam,
-        count: 500,
+        count: 5000,
         extraColumns: this._indexColumns,
         loadCallback: () => this._toggleInteractivity(true)
       },
@@ -94,7 +94,7 @@ export default class ManagedItemSelector extends Cacheable {
     // Initializes Selectable History Panel
     this.historyPanel = new IPPanel({
       tablePanelOptions: {
-        selector: `${this.selector} table#history`,
+        selector: `${this.selector} #history`,
         param: this._realParam,
         count: 100,
         extraColumns: this._historyColumns,
@@ -105,7 +105,7 @@ export default class ManagedItemSelector extends Cacheable {
       },
       multiple: this.multiple,
       onSelect: (dtRows) => this._onItemSelect(dtRows),
-      onDeselect: (dtRows) => this._onItemDeselect(dtRows),  
+      onDeselect: (dtRows) => this._onItemDeselect(dtRows),
     });
   }
 
