@@ -120,8 +120,7 @@ export default class CPTablePanel extends TablePanel {
 
         }
 
-        this.customProps.definitions = r.definitions.sort( (a, b) => a.label.localeCompare( b.label ) )
-                                                    .sort( (a, b) => b.datatype.localeCompare( a.datatype ) );
+        this.customProps.definitions = r.definitions;
         this._mergeCPData( this.rowDataToArray, r.data );
         this._renderCPs();
 
@@ -155,9 +154,13 @@ export default class CPTablePanel extends TablePanel {
    */
   _mergeCPColumnDefs(oColumns) {
 
-    let columns = this.customProps.definitions.map( def => columnByDataType( def.datatype )( def.name ) ).reverse(),
+    // Map CP definitions to DT column definitions
+    let columns = this.customProps.definitions.map( def =>
+      columnByDataType( def.datatype )( def.name )
+    ),
         index = this.customProps.afterColumn + 1;
 
+    // Insert column definitions into original columns
     oColumns.splice( index, 0, ...columns );
 
   }
@@ -178,9 +181,7 @@ export default class CPTablePanel extends TablePanel {
     this.destroy();
 
     // Render Custom Property headers
-    this.customProps.definitions.reverse().forEach( def =>
-      this._renderCPHeader( def )
-    );
+    this._renderCPHeaders();
 
     // Re-initialize table and render data
     this._initTable();
@@ -189,14 +190,33 @@ export default class CPTablePanel extends TablePanel {
   }
 
   /**
-   * Render a single Custom Property header in the instance DataTable
+   * Render the Custom Property headers in the instance DataTable
+   * @param {Array} cpDefinitions Custom Property definition data objects
+   */
+  _renderCPHeaders(cpDefinitions) {
+
+    // Reduce collection into a set of rendered headers
+    let $headers = this.customProps.definitions.reduce( ( $h, definition ) =>
+      $h.add(
+        this._renderCPHeader( definition )
+      ),
+      $() // Initial value
+    ),
+        index = this.customProps.afterColumn;
+
+    // Insert rendered headers into DOM, after header with specified index
+    $headers.insertAfter( `${ this.selector } thead th:eq(${ index })` );
+
+  }
+
+  /**
+   * Render a single Custom Property header
    * @param {object} definition Custom Property definition data object
    */
   _renderCPHeader(definition) {
 
-    $( '<th>' ).text( definition.label )
-               .addClass( 'custom-prop nowrap' )
-               .insertAfter( `${ this.selector } thead th:eq(${ this.customProps.afterColumn })` );
+    return $( '<th>' ).text( definition.label )
+                      .addClass( 'custom-prop nowrap' );
 
   }
 
