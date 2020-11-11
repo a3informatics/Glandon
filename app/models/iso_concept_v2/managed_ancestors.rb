@@ -256,8 +256,8 @@ class IsoConceptV2
     def clone_with_optional_update(managed_ancestor, child, parent, persist_objects, tx, params={})
       object = child.clone
       object.transaction_set(tx)
-      object.update(params) if self.uri == child.uri && !params.empty?
       object.generate_uri(parent.uri) 
+      object.update(params) if self.uri == child.uri && !params.empty?
       uri_updated(managed_ancestor, child.uri, object.uri)
       persist_objects << object
       object
