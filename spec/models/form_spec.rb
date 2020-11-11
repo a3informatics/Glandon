@@ -792,23 +792,24 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       node.label = "Node 4"
       node.save
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCP_36d01a04-97fa-4ae9-8f40-9f266a6cdc06"))
-      bc_property.make_common
+      bc_property.make_common(node)
       make_standard(form)
       form = Form.find_full(form.uri)
-      #check_dates(form, sub_dir, "delete_form_10a.yaml", :creation_date, :last_change_date)
+      #fix_dates(form, sub_dir, "delete_form_10a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_10a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
-      bc_group = Form::Group::Bc.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      normal_group = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      bc_group = Form::Group::Bc.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
       bc_group.delete(normal_group, new_form)
-saved_form = new_form
+      saved_form = new_form
       new_form = Form.find_full(new_form.uri)
       #check_dates(new_form, sub_dir, "delete_form_10b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "delete_form_10b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
       #check_dates(form, sub_dir, "delete_form_10a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_10a.yaml", equate_method: :hash_equal)
-check_modified_uris(form, saved_form, "updated_uri_expected_18.yaml")
+      check_modified_uris(form, saved_form, "updated_uri_expected_18.yaml")
     end
 
     it "deletes BC group, doesn't delete common item" do
@@ -825,23 +826,24 @@ check_modified_uris(form, saved_form, "updated_uri_expected_18.yaml")
       node.save
       normal_group.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id]})
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296"))
-      bc_property.make_common
+      bc_property.make_common(node)
       make_standard(form)
       form = Form.find_full(form.uri)
       fix_dates(form, sub_dir, "delete_form_11a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_11a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
-      bc_group = Form::Group::Bc.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      normal_group = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      bc_group = Form::Group::Bc.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
       bc_group.delete(normal_group, new_form)
-saved_form = new_form
+      saved_form = new_form
       new_form = Form.find_full(new_form.uri)
       check_dates(new_form, sub_dir, "delete_form_11b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "delete_form_11b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
       fix_dates(form, sub_dir, "delete_form_11a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_11a.yaml", equate_method: :hash_equal)
-check_modified_uris(form, saved_form, "updated_uri_expected_19.yaml")
+      check_modified_uris(form, saved_form, "updated_uri_expected_19.yaml")
     end
 
   end

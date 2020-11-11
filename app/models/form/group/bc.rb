@@ -45,7 +45,7 @@ class Form::Group::Bc < Form::Group
 
   def delete(parent, managed_ancestor)
     if multiple_managed_ancestors?
-      parent = delete_with_clone(managed_ancestor)
+      parent = delete_with_clone(parent, managed_ancestor)
       parent = Form::Group.find_full(parent.uri)
       parent.reset_ordinals
       parent = parent.full_data
@@ -56,7 +56,7 @@ class Form::Group::Bc < Form::Group
     end
   end
 
-  def delete_with_clone(managed_ancestor)
+  def delete_with_clone(parent, managed_ancestor)
     new_parent = super
     new_parent = Form::Group.find_full(new_parent.id)
     new_parent.reset_ordinals

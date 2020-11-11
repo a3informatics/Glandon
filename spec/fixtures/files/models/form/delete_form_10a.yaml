@@ -48,8 +48,8 @@
 :has_previous_version: 
 :origin: ''
 :change_description: ''
-:creation_date: '2020-11-10T17:49:05+01:00'
-:last_change_date: '2020-11-10T17:49:05+01:00'
+:creation_date: '2020-11-11T20:38:52+01:00'
+:last_change_date: '2020-11-11T20:38:52+01:00'
 :explanatory_comment: ''
 :note: ''
 :completion: ''
@@ -373,20 +373,6 @@
     :note: ''
     :completion: ''
     :optional: false
-    :has_item: []
-    :repeating: false
-    :has_sub_group: []
-    :has_common: []
-  :has_common:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNOR18xNzYwY2JiMS1hMzcwLTQxZjYtYTNiMy00OTNjMWQ5YzIyMzhfQ0c=
-    :uri: http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238_CG
-    :rdf_type: http://www.assero.co.uk/BusinessForm#CommonGroup
-    :label: Node CG 1
-    :tagged: []
-    :ordinal: 1
-    :note: ''
-    :completion: ''
-    :optional: false
     :has_item:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNDSV84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmI=
       :uri: http://www.s-cubed.dk/XXX/V1#CI_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb
@@ -499,3 +485,17 @@
           :local_label: Supine Position
         :is_common: true
       :is_common: false
+    :repeating: false
+    :has_sub_group: []
+    :has_common: []
+  :has_common:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNOR18xNzYwY2JiMS1hMzcwLTQxZjYtYTNiMy00OTNjMWQ5YzIyMzhfQ0c=
+    :uri: http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238_CG
+    :rdf_type: http://www.assero.co.uk/BusinessForm#CommonGroup
+    :label: Node CG 1
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_item: []
