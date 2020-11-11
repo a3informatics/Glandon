@@ -25,8 +25,8 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
   def move_up
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
-    tuc_reference = OperationalReferenceV3::TucReference.find(protect_from_bad_id(params))
-    parent = IsoConceptV2.find(the_params[:parent_id])
+    tuc_reference = OperationalReferenceV3::TucReference.find_full(protect_from_bad_id(params))
+    parent = class_for_id(the_params[:parent_id]).find_full(Uri.new(id:the_params[:parent_id]))
     result = parent.move_up_with_clone(tuc_reference, form)  
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
@@ -39,8 +39,8 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
   def move_down
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
-    tuc_reference = OperationalReferenceV3::TucReference.find(protect_from_bad_id(params))
-    parent = IsoConceptV2.find(the_params[:parent_id])
+    tuc_reference = OperationalReferenceV3::TucReference.find_full(protect_from_bad_id(params))
+    parent = class_for_id(the_params[:parent_id]).find_full(Uri.new(id:the_params[:parent_id]))
     result = parent.move_down_with_clone(tuc_reference, form)  
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
