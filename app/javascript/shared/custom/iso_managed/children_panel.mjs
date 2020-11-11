@@ -43,7 +43,24 @@ export default class ChildrenPanel extends CPTablePanel {
 
   }
 
+
   /** Private **/
+
+
+  /**
+   * Toggle Custom Propety columns UI, maintain width of the item definition column
+   * @param {boolean} visible Target Custom Property columns visibility state
+   */
+  _toggleCPColumns(visible) {
+
+    // Retain definition column width (otherwise shrinks width too much)
+    this.$wrapper.find( 'th:contains("Definition")' )
+                 .toggleClass( 'th-xwide', visible );
+
+    super._toggleCPColumns( visible );
+
+
+  }
 
   /**
    * Get default column definitions for Children items

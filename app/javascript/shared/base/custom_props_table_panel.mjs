@@ -52,7 +52,7 @@ export default class CPTablePanel extends TablePanel {
     super({
       selector, url, param, count, extraColumns, cache,
       paginated, order, buttons, tableOptions, loadCallback,
-      errorDiv
+      autoHeight: true, errorDiv
     }, {
       customProps: {
         enabled: cpEnabled,
@@ -120,7 +120,8 @@ export default class CPTablePanel extends TablePanel {
 
         }
 
-        this.customProps.definitions = r.definitions;
+        this.customProps.definitions = r.definitions.sort( (a, b) => a.label.localeCompare( b.label ) )
+                                                    .sort( (a, b) => b.datatype.localeCompare( a.datatype ) );
         this._mergeCPData( this.rowDataToArray, r.data );
         this._renderCPs();
 
@@ -154,14 +155,10 @@ export default class CPTablePanel extends TablePanel {
    */
   _mergeCPColumnDefs(oColumns) {
 
-    for ( let def of this.customProps.definitions ) {
+    let columns = this.customProps.definitions.map( def => columnByDataType( def.datatype )( def.name ) ).reverse(),
+        index = this.customProps.afterColumn + 1;
 
-      let column = columnByDataType( def.datatype ),
-          index = this.customProps.afterColumn + 1;
-
-      column && oColumns.splice( index, 0, column( def.name ) );
-
-    }
+    oColumns.splice( index, 0, ...columns );
 
   }
 
@@ -181,7 +178,7 @@ export default class CPTablePanel extends TablePanel {
     this.destroy();
 
     // Render Custom Property headers
-    this.customProps.definitions.forEach( def =>
+    this.customProps.definitions.reverse().forEach( def =>
       this._renderCPHeader( def )
     );
 
@@ -255,7 +252,7 @@ export default class CPTablePanel extends TablePanel {
    * @return {JQuery Element} Custom Property button
    */
   get $cpBtn() {
-    return $( `${ this.selector }_wrapper .custom-props-btn` );
+    return this.$wrapper.find( '.custom-props-btn' );
   }
 
   /**
@@ -293,7 +290,6 @@ export default class CPTablePanel extends TablePanel {
 
     // Enable horizontal scroll when table data wide
     options.scrollX = true;
-    options.autoWidth = true;
 
     return options;
 
