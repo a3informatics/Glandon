@@ -16,7 +16,7 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
     normal = normal.update_with_clone(update_params, form)
     if normal.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: normal.to_h}, :status => 200
+      render :json => {data: normal.to_h, ids: form.modified_uris_as_ids }, :status => 200
     else
       render :json => {:fieldErrors => format_editor_errors(normal.errors)}, :status => 200
     end
