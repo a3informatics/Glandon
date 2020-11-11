@@ -16,8 +16,7 @@ describe "Forms", :type => :feature do
   describe "Forms Editor", :type => :feature, js:true do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
+      load_files(schema_files, [] )
       load_cdisc_term_versions(1..65)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_test_file_into_triple_store("forms/FN000150.ttl")
@@ -59,7 +58,7 @@ describe "Forms", :type => :feature do
       find('#main_area').scroll_to(:bottom)
     end
 
-    it "RECREATING BUG" do
+    it "Can edit form in locked state" do
       click_navbar_forms
       wait_for_ajax 20
       find(:xpath, "//tr[contains(.,'FN000120')]/td/a").click
@@ -79,7 +78,7 @@ describe "Forms", :type => :feature do
       click_action :move_up
       wait_for_ajax 10
 
-      check_alert 'Node moved successfully'
+      check_alert 'Moved successfully'
     end
 
     it "has correct initial state" do
