@@ -16,7 +16,7 @@ class Forms::Items::TextLabelsController < ManagedItemsController
     text_label = text_label.update_with_clone(update_params, form)
     if text_label.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: text_label.to_h}, :status => 200
+      render :json => {data: text_label.to_h, ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:fieldErrors => format_editor_errors(text_label.errors)}, :status => 200
     end
@@ -30,7 +30,7 @@ class Forms::Items::TextLabelsController < ManagedItemsController
     result = parent.move_up_with_clone(text_label, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: ""}, :status => 200
+      render :json => {data: "", ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
@@ -44,7 +44,7 @@ class Forms::Items::TextLabelsController < ManagedItemsController
     result = parent.move_down_with_clone(text_label, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: ""}, :status => 200
+      render :json => {data: "", ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
@@ -58,7 +58,7 @@ class Forms::Items::TextLabelsController < ManagedItemsController
     result = text_label.delete(parent)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, item #{text_label.label} deleted.") if @lock.token.refresh == 1
-    render json: {data: result }, status: 200
+    render json: {data: result, ids: form.modified_uris_as_ids}, status: 200
   end
 
 private

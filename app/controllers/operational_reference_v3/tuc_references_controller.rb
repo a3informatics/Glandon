@@ -16,7 +16,7 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
     tuc_reference = tuc_reference.update(update_params)
     if tuc_reference.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: tuc_reference.to_h}, :status => 200
+      render :json => {data: tuc_reference.to_h, ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:fieldErrors => format_editor_errors(tuc_reference.errors)}, :status => 200
     end
@@ -30,7 +30,7 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
     result = parent.move_up_with_clone(tuc_reference, form)  
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: ""}, :status => 200
+      render :json => {data: "", ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
@@ -44,7 +44,7 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
     result = parent.move_down_with_clone(tuc_reference, form)  
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: ""}, :status => 200
+      render :json => {data: "", ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
@@ -58,7 +58,7 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
     result = parent.delete_reference(tuc_reference, form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, item #{tuc_reference.label} deleted.") if @lock.token.refresh == 1
-    render json: {data: result }, status: 200
+    render json: {data: result, ids: form.modified_uris_as_ids}, status: 200
   end
 
 private

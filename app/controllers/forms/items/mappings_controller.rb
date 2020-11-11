@@ -16,7 +16,7 @@ class Forms::Items::MappingsController < ManagedItemsController
     mapping = mapping.update_with_clone(update_params, form)
     if mapping.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: mapping.to_h}, :status => 200
+      render :json => {data: mapping.to_h, ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:fieldErrors => format_editor_errors(mapping.errors)}, :status => 200
     end
@@ -30,7 +30,7 @@ class Forms::Items::MappingsController < ManagedItemsController
     result = parent.move_up_with_clone(mapping, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: ""}, :status => 200
+      render :json => {data: "", ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
@@ -44,7 +44,7 @@ class Forms::Items::MappingsController < ManagedItemsController
     result = parent.move_down_with_clone(mapping, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: ""}, :status => 200
+      render :json => {data: "", ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
@@ -58,7 +58,7 @@ class Forms::Items::MappingsController < ManagedItemsController
     result = mapping.delete(parent)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, item #{mapping.label} deleted.") if @lock.token.refresh == 1
-    render json: {data: result }, status: 200
+    render json: {data: result, ids: form.modified_uris_as_ids}, status: 200
   end
 
 private

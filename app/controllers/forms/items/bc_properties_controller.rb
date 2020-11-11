@@ -16,7 +16,7 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
     bc_property = bc_property.update_with_clone(update_params, form)
     if bc_property.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: bc_property.to_h}, :status => 200
+      render :json => {data: bc_property.to_h, ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:fieldErrors => format_editor_errors(bc_property.errors)}, :status => 200
     end
@@ -30,7 +30,7 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
     result = parent.move_up_with_clone(bc_property, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: ""}, :status => 200
+      render :json => {data: "", ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
@@ -44,7 +44,7 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
     result = parent.move_down_with_clone(bc_property, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: ""}, :status => 200
+      render :json => {data: "", ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
@@ -57,7 +57,7 @@ class Forms::Items::BcPropertiesController < ManagedItemsController
     common_item = bc_property.make_common_with_clone(form)
     return true if item_errors(bc_property)
     AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
-    render :json => {data: common_item}, :status => 200
+    render :json => {data: common_item, ids: form.modified_uris_as_ids}, :status => 200
   end
 
 private
