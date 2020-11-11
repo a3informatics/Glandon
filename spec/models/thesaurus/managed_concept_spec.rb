@@ -967,7 +967,8 @@ describe "Thesaurus::ManagedConcept" do
         Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C62656"),
         Uri.new(uri: "http://www.cdisc.org/C65047/V18#C65047_C63321"),
         Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C64431"),
-        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C64432")
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C64432"),
+        Uri.new(uri: "http://www.cdisc.org/C101806/V31#C101806_C102034")
       ]
       results = Thesaurus::ManagedConcept.children_set(set)
       check_file_actual_expected(results, sub_dir, "child_set_expected_1.yaml", equate_method: :hash_equal)
