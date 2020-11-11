@@ -962,6 +962,7 @@ check_modified_uris(form, saved_form, "updated_uri_expected_22.yaml")
       check_file_actual_expected(form.to_h, sub_dir, "move_up_form_3a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
+      normal_group = Form::Group::Normal.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))#Node 2
       normal_group.move_up_with_clone(question, new_form)
 saved_form = new_form
@@ -994,6 +995,7 @@ check_modified_uris(form, saved_form, "updated_uri_expected_23.yaml")
       check_file_actual_expected(form.to_h, sub_dir, "move_down_form_2a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
+      normal_group = Form::Group::Normal.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
       normal_group.move_down_with_clone(question, new_form)
 saved_form = new_form
