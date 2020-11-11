@@ -16,7 +16,7 @@ class Forms::Groups::CommonGroupsController < ManagedItemsController
     common = common.update_with_clone(update_params, form)
     if common.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: common.to_h}, :status => 200
+      render :json => {data: common.to_h, ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:fieldErrors => format_editor_errors(common.errors)}, :status => 200
     end
@@ -30,7 +30,7 @@ class Forms::Groups::CommonGroupsController < ManagedItemsController
     result = common.delete(parent, form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, group #{common.label} deleted.") if @lock.token.refresh == 1
-    render json: {data: result }, status: 200
+    render json: {data: result, ids: form.modified_uris_as_ids}, status: 200
   end
 
 private

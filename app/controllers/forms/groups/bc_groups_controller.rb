@@ -16,7 +16,7 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
     bc = bc.update_with_clone(update_params, form)
     if bc.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: bc.to_h}, :status => 200
+      render :json => {data: bc.to_h, ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:fieldErrors => format_editor_errors(bc.errors)}, :status => 200
     end
@@ -30,7 +30,7 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
     result = parent.move_up_with_clone(bc, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: ""}, :status => 200
+      render :json => {data: "", ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
@@ -44,7 +44,7 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
     result = parent.move_down_with_clone(bc, form)
     if parent.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: ""}, :status => 200
+      render :json => {data: "", ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:errors => parent.errors.full_messages}, :status => 422
     end
@@ -58,7 +58,7 @@ class Forms::Groups::BcGroupsController < ManagedItemsController
     result = bc.delete(parent, form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, group #{bc.label} deleted.") if @lock.token.refresh == 1
-    render json: {data: result }, status: 200
+    render json: {data: result, ids: form.modified_uris_as_ids}, status: 200
   end
 
 private

@@ -16,7 +16,7 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
     normal = normal.update_with_clone(update_params, form)
     if normal.errors.empty?
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: normal.to_h, ids: form.modified_uris_as_ids }, :status => 200
+      render :json => {data: normal.to_h, ids: form.modified_uris_as_ids}, :status => 200
     else
       render :json => {:fieldErrors => format_editor_errors(normal.errors)}, :status => 200
     end
@@ -29,7 +29,7 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
     new_child = normal.add_child_with_clone(add_child_params, form)
     return true if item_errors(normal)
     AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.token.refresh == 1
-    render :json => {data: format_data(new_child)}, :status => 200
+    render :json => {data: format_data(new_child), ids: form.modified_uris_as_ids}, :status => 200
   end
 
   def move_up
@@ -68,7 +68,7 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
     result = normal.delete(parent,form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, group #{normal.label} deleted.") if @lock.token.refresh == 1
-    render json: {data: result }, status: 200
+    render json: {data: result, ids: form.modified_uris_as_ids}, status: 200
   end
 
 private
