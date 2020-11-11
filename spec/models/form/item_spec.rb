@@ -112,8 +112,8 @@ describe Form::Item do
       check_file_actual_expected(form.to_h, sub_dir, "delete_item_expected_6a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
-      parent = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1"))
-      common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1"))
+      parent = Form::Group::Common.find_full(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1"))
+      common_item = Form::Item::Common.find_full(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1"))
       common_item.delete(parent, new_form)
       new_form = Form.find_full(new_form.uri)
       check_dates(new_form, sub_dir, "delete_item_expected_6b.yaml", :creation_date, :last_change_date)
