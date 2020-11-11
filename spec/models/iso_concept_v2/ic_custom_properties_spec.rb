@@ -23,6 +23,17 @@ describe IsoConceptV2::IcCustomProperties do
       uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD2"))
   end
 
+  def create_definition_3_and_4
+    @definition_3 = CustomPropertyDefinition.create(datatype: "string", label: "Z Flag", 
+      description: "A description YYY", default: "false",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/ISO11179Concepts#Concept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD3"))
+    @definition_4 = CustomPropertyDefinition.create(datatype: "boolean", label: "X Something", 
+      description: "A description YYY", default: "false",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/ISO11179Concepts#Concept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD4"))
+  end
+
   describe "basic tests" do
 
     before :each do
@@ -49,6 +60,9 @@ describe IsoConceptV2::IcCustomProperties do
       create_definition_2
       results = IsoConceptV2.find_custom_property_definitions_to_h(IsoConceptV2)
       check_file_actual_expected(results, sub_dir, "find_custom_property_definitions_to_h_expected_2.yaml")
+      create_definition_3_and_4
+      results = IsoConceptV2.find_custom_property_definitions_to_h(IsoConceptV2)
+      check_file_actual_expected(results, sub_dir, "find_custom_property_definitions_to_h_expected_3.yaml")
     end
 
   end
