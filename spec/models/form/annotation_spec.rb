@@ -16,8 +16,9 @@ describe Form::Annotation do
 
     it "create an instance" do
       uri = Uri.new(uri: "http://www.s-cubed.dk/A#A1")
-      annotation = Form::Annotation.new(uri, "domain_prefix", "domain_long_name", "sdtm_variable", "sdtm_topic_variable", "sdtm_topic_value")
-      check_file_actual_expected(annotation, sub_dir, "new_expected_1.yaml", write_file: true)
+      params = {uri: uri, domain_prefix: "dom_prefix",domain_long_name: "dom_long_name", sdtm_variable: "sdtm_variable" , sdtm_topic_variable:"sdtm_topic_variable" , sdtm_topic_value:"sdtm_topic_value"}
+      annotation = Form::Annotation.new(params)
+      check_file_actual_expected(annotation.to_h, sub_dir, "new_expected_1.yaml")
     end
 
   end
