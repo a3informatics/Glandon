@@ -80,4 +80,8 @@ private
     true
   end
 
+  def class_for_id(id)
+    IsoConceptV2.klass_for(Uri.new(id:id))
+  end
+
 end
