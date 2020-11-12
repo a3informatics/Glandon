@@ -82,12 +82,21 @@ class Form < IsoManagedV2
     return results
   end
 
-  def acrf
-    to_crf(annotation = true)
-  end
-
-  def crf
-    to_crf(annotation = false)
+  # To CRF.
+  #
+  # @return [String] String of HTML form representation
+  def to_crf(annotation = nil) 
+    form = self.class.find_full(self.uri)
+    html = ''
+    html += get_css
+    html += '<table class="table table-striped table-bordered table-condensed" id="crf">'
+    html += '<tr>'
+    html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
+    html += '</tr>'
+    form.has_group.sort_by {|x| x.ordinal}.each do |group|
+      html += group.to_crf
+    end
+    html += '</table>'
   end
 
   # Get Referenced Items.
@@ -145,23 +154,6 @@ class Form < IsoManagedV2
   end
 
   private
-
-    # To CRF.
-    #
-    # @return [String] String of HTML form representation
-    def to_crf(annotation = nil) 
-      form = self.class.find_full(self.uri)
-      html = ''
-      html += get_css
-      html += '<table class="table table-striped table-bordered table-condensed" id="crf">'
-      html += '<tr>'
-      html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
-      html += '</tr>'
-      form.has_group.sort_by {|x| x.ordinal}.each do |group|
-        html += group.to_crf
-      end
-      html += '</table>'
-    end
 
     # Next Ordinal. Get the next ordinal for a managed item collection
     #
