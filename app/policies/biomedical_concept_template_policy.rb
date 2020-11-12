@@ -1,2 +1,0 @@
-class BiomedicalConceptTemplatePolicy < ApplicationPolicy
-end

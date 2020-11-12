@@ -1,2 +1,0 @@
-class IsoRegistrationAuthorityPolicy < ApplicationPolicy
-end

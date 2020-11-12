@@ -1,2 +1,0 @@
-class IsoConceptSystemPolicy < ApplicationPolicy
-end

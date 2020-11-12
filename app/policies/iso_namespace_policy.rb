@@ -1,2 +1,0 @@
-class IsoNamespacePolicy < ApplicationPolicy
-end

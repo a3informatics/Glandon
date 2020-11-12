@@ -1,2 +1,0 @@
-class SdtmIgDomainPolicy < ApplicationPolicy
-end
