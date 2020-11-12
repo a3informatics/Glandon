@@ -34,11 +34,12 @@ class Form < IsoManagedV2
   end
 
   def acrf
-    to_crf(annotation = true)
+    annotations = Annotations.new(self)
+    to_crf(annotations)
   end
 
   def crf
-    to_crf(annotation = false)
+    to_crf
   end
 
   def move_up_with_clone(child, managed_ancestor)
@@ -126,7 +127,7 @@ private
   # To CRF.
   #
   # @return [String] String of HTML form representation
-  def to_crf(annotation = nil) 
+  def to_crf(annotations = nil) 
     form = self.class.find_full(self.uri)
     html = ''
     html += get_css
@@ -139,16 +140,6 @@ private
     end
     html += '</table>'
   end
-
-  # # Clone children within a transaction
-  # def clone_children_and_save(child, managed_ancestor)
-  #   tx = transaction_begin
-  #   managed_ancestor.transaction_set(tx)
-  #   new_object = managed_ancestor.clone_children_and_save_no_tx(managed_ancestor, tx, child.uri)
-  #   transaction_execute
-  #   #new_parent = Form.find_full(managed_ancestor.id)
-  #   return managed_ancestor, new_object
-  # end
 
   # Next Ordinal. Get the next ordinal for a managed item collection
   #
