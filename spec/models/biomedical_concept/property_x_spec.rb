@@ -174,7 +174,7 @@ describe BiomedicalConcept::PropertyX do
       property = BiomedicalConcept::PropertyX.new
       property.uri = property.create_uri(property.class.base_uri)
       cdt.has_property = [property]
-      property.instance_variable_set(:@parent_for_validation, bc)
+      property.identifier_property = true
       expect(property.valid?).to eq(true) #Has_coded_value empty
       property.has_coded_value_push(1) 
       expect(property.valid?).to eq(true) #Has_coded_value == 1
@@ -202,14 +202,40 @@ describe BiomedicalConcept::PropertyX do
       bc = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCI"))
       bc.update_property({property_id: property.id, has_coded_value: [{id: cli_1.id, context_id: cl.id}]})
       bc = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCI"))
-      bc.update_property({property_id: property.id, has_coded_value: [{id: cli_1.id, context_id: cl.id}, {id: cli_2.id, context_id: cl.id}]})
+      result = bc.update_property({property_id: property.id, has_coded_value: [{id: cli_1.id, context_id: cl.id}, {id: cli_2.id, context_id: cl.id}]})
+      expect(result.errors.count).to eq(1)
+      expect(result.errors.full_messages).to eq(["attempting to add multiple coded values"])
       bc = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCI"))
       expect(bc.has_item.first.has_complex_datatype.first.has_property.first.has_coded_value.count).to eq(1)
-      # property = BiomedicalConcept::PropertyX.find(Uri.new(uri: "http://www.assero.co.uk/IC#BCP"))
-      # property.instance_variable_set(:@parent_for_validation, bc)
-      # expect(property.valid?).to eq(false) #Has_coded_value == 2
     end
 
   end
 
+  describe "Identifier" do
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    end
+
+    it "finds managed ancestors, single" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI")
+      bc = BiomedicalConceptInstance.find(uri)
+      uri_p = Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode")
+      property = BiomedicalConcept::PropertyX.find(uri_p)
+      expect(property.identifier_property).to eq(false)
+      expect(property.identifier_property?(bc)).to eq(true)
+      property.identifier_property = true
+      expect(property.identifier_property).to eq(true)
+      property.identifier_property = false
+      expect(property.identifier_property).to eq(false)
+      uri_p = Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI_BCI4_BCCDTCD_BCPcode")
+      property = BiomedicalConcept::PropertyX.find(uri_p)
+      expect(property.identifier_property?(bc)).to eq(false)
+      expect(property.identifier_property).to eq(false)
+    end
+
+  end
 end

@@ -1,7 +1,7 @@
 # BC Identifier Validator. Checks if identifier is required and doesn't have multiple coded values
 #
 # @author Dave Iberson-Hurst
-# @since 2.21.1
+# @since 3.2.2
 class Validator::BcIdentifier < Validator::Base
   
   # Validate
@@ -9,7 +9,8 @@ class Validator::BcIdentifier < Validator::Base
   # @param record [Object] the rails object containing the field/attribute to be validated
   # @returns [Boolean] true if valid, false others. Errors set in record.
   def validate(record)
-    return true if record.valid_parent?
+    return true unless record.identifier_property
+    return true if record.has_coded_value.count <= 1 
     failed(record, 'attempting to add multiple coded values')
   end
   

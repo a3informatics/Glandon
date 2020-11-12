@@ -43,12 +43,15 @@ class BiomedicalConceptInstance < BiomedicalConcept
   def update_property(params)
     new_params = split_params(params)
     property = BiomedicalConceptInstance::PropertyX.find(params[:property_id])
+    property.identifier_property = true if property.identifier_property?(self)
     if new_params[:property].any?
       property.update_with_clone(new_params[:property], self)
+      property
     elsif new_params[:item].any?
       uris = property.managed_ancestor_path_uris(self)
       item = BiomedicalConceptInstance::Item.find(uris.first)
       item.update_with_clone(new_params[:item].dup, self) if new_params[:item].keys.any?
+      item
     else
       # Nothing to be done, empty parameters submitted
       ConsoleLogger.info(self.class.name, "update_property", "Attempt to update property with empty parameters.")
