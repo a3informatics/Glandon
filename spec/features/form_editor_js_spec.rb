@@ -13,9 +13,11 @@ describe "Forms", :type => :feature do
     return "features/forms"
   end
 
+
+  describe "Forms Editor", :type => :feature, js:true do
+
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-    load_files(schema_files, data_files)
+    load_files(schema_files, [])
     load_cdisc_term_versions(1..65)
     load_data_file_into_triple_store("mdr_identification.ttl")
     load_test_file_into_triple_store("forms/FN000150.ttl")
@@ -39,8 +41,6 @@ describe "Forms", :type => :feature do
   after :each do
     ua_logoff
   end
-
-  describe "Forms Editor", :type => :feature, js:true do
 
     it "has correct initial state" do
       edit_form('FN000150')
@@ -656,7 +656,7 @@ describe "Forms", :type => :feature do
 
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="normal_group"]').click
-      wait_for_ajax 10
+      wait_for_ajax 20
 
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="bc_group"]').click
@@ -973,6 +973,32 @@ describe "Forms", :type => :feature do
   end
 
   describe "Forms Editor, Locked State", :type => :feature, js:true do
+
+  before :all do
+    load_files(schema_files, [])
+    load_cdisc_term_versions(1..65)
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_test_file_into_triple_store("forms/FN000150.ttl")
+    load_test_file_into_triple_store("forms/FN000120.ttl")
+    load_test_file_into_triple_store("forms/CRF TEST 1.ttl")
+    load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    Token.delete_all
+    ua_create
+  end
+
+  after :all do
+    ua_destroy
+    Token.restore_timeout
+    Token.delete_all
+  end
+
+  before :each do
+    ua_curator_login
+  end
+
+  after :each do
+    ua_logoff
+  end
 
     def set_to_recorded(identifier)
       click_navbar_forms
