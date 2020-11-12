@@ -533,7 +533,7 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           multiple: this.params.multiple,
           columns: this.columns.bind(this),
           parentPanel: this,
-          urls: {history: miHistoryThesauriUrl, index: miIndexThesauriUrl},
+          urls: _globalIHUrls.thesauri,
         });
       break;
     case "cls":
@@ -543,7 +543,7 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           multiple: this.params.multiple,
           columns: this.columns.bind(this),
           parentPanel: this,
-          urls: {history: miHistoryClUrl, index: miIndexClUrl},
+          urls: _globalIHUrls.managed_concept,
         });
       break;
     case "clitems":
@@ -553,7 +553,7 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           multiple: this.params.multiple,
           columns: this.columns.bind(this),
           parentPanel: this,
-          urls: {history: miHistoryClUrl, index: miIndexClUrl, children: miChildrenClUrl},
+          urls: _globalIHUrls.unmanaged_concept,
         });
       break;
     case "bcs":
@@ -563,7 +563,7 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           multiple: this.params.multiple,
           columns: this.columns.bind(this),
           parentPanel: this,
-          urls: {history: miHistoryBcUrl, index: miIndexBcUrl},
+          urls: _globalIHUrls.biomedical_concept_instance,
         });
       break;
   }

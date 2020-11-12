@@ -1,20 +1,20 @@
-<%= javascript_tag 'setPageTitle("Study build: '+@study.has_identifier.identifier+' ('+@study.semantic_version+')")' %>
+<% content_for :page_title do %> <%= "Build: #{@study.has_identifier.identifier} (#{@study.semantic_version}) "%> <% end %>
 
-<%= javascript_include_tag "studies/build" %>
-<%= javascript_tag "var studyEmpty = #{@study_empty};" %>
+<%= javascript_pack_tag 'studies/build' %>
+<%= javascript_tag "let studyEmpty = #{@study_empty};" %>
+
 <% third_level_breadcrumb(:studies, @study, @close_path) %>
-
 
 <div class="row">
   <%= render layout: "shared/studies/study_header", :locals => {:item => @study, :badge => "icon-study"} do %>
+
     <div class="actions-wrap">
 
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
-        icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
 
     </div>
+
   <% end %>
 </div>
 
