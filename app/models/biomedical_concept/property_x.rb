@@ -57,13 +57,12 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
     ]
   end
 
-  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
-  #
-  # @return [Symbol] the predicate property as a symbol
-  def managed_ancestors_predicate
-    :has_property
-  end
-
+  # # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  # #
+  # # @return [Symbol] the predicate property as a symbol
+  # def managed_ancestors_predicate
+  #   :has_property
+  # end
 
   # Valid Parent? Check if the property is required and it has zero or one coded value in the context of the parent
   #

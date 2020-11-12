@@ -128,7 +128,7 @@ describe Form::Item::BcProperty do
       bci_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/RACE/V1#BCI"))
       normal.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id, bci_3.id]})
       normal = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
-      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
       result = bc_property.make_common(cg)
       check_file_actual_expected(result, sub_dir, "make_common_expected_3.yaml", equate_method: :hash_equal)
     end
@@ -167,7 +167,7 @@ describe Form::Item::BcProperty do
       bc_property.make_common_with_clone(new_form)
       new_form = Form.find_full(new_form.uri)
       check_dates(new_form, sub_dir, "make_common_expected_5b.yaml", :creation_date, :last_change_date)
-      check_file_actual_expected(new_form.to_h, sub_dir, "make_common_expected_5b.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(new_form.to_h, sub_dir, "make_common_expected_5b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
       check_dates(form, sub_dir, "make_common_expected_5a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "make_common_expected_5a.yaml", equate_method: :hash_equal)

@@ -21,35 +21,30 @@ class IsoConceptV2
       # @raise [Errors::ApplicationLogicError] raised to indicate the class has not configured the method
       # @return [Void] exception always raised
       def managed_ancestors_path
-        not_implemented(__method__.to_s)      
-      end
-
-      # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
-      #
-      # @raise [Errors::ApplicationLogicError] raised to indicate the class has not configured the method
-      # @return [Void] exception always raised
-      def managed_ancestors_predicate
-        not_implemented(__method__.to_s)      
-      end
-
-      # Managed Ancestors Children Set. Returns the set of clidren nodes. Normally this is children but can be a combination.
-      #
-      # @raise [Errors::ApplicationLogicError] raised to indicate the class has not configured the method
-      # @return [Void] exception always raised
-      def managed_ancestors_children_set
-        not_implemented(__method__.to_s)      
-      end
-
-    private
-
-      def not_implemented(the_method)
         Errors.application_error(self.name, the_method, "Method not implemented for class.")
       end
+
     end
 
     # ----------------
     # Instance Methods
     # ----------------
+
+    # Managed Ancestors Children Set. Returns the set of clidren nodes. Normally this is children but can be a combination.
+    #
+    # @return [Array] array of predicates (symbols)
+    def managed_ancestors_children_set
+      children
+    end
+
+    # Managed Ancestors Predicate. Returns the property(ies) from this instance/class in the managed ancestor path to the child class
+    #
+    # @param [Class] the child klass
+    # @return [Array] array of predicates (symbols)
+    def managed_ancestors_predicate(child_klass)
+      return [self.class.children_property_name] if child_klass.ancestors.include?(self.class.children_klass)
+      Errors.application_error(self.class.name, __method__.to_s, "Need to override the method to return the correct predicate(s). Classes are #{self.class.children_klass} and #{child_klass}.")
+    end
 
     # Managed Ancestor URIs. Find all the URIs of the managed ancstors of this concept.
     #
@@ -123,7 +118,7 @@ class IsoConceptV2
           if old_object.multiple_managed_ancestors?
             cloned_object = clone_with_optional_update(managed_ancestor, old_object, prev_object, persist_objects, tx, params)
             result = cloned_object if self.uri == old_object.uri
-            replace_a_link(prev_object, old_object, cloned_object, managed_ancestor)
+            replace_links(prev_object, old_object, cloned_object, managed_ancestor)
             prev_object = cloned_object
           else
             prev_object = old_object
@@ -150,7 +145,7 @@ class IsoConceptV2
         if old_object.multiple_managed_ancestors?
           cloned_object = clone_with_optional_update(managed_ancestor, old_object, prev_object, persist_objects, tx, {})
           new_object = cloned_object if self.uri == old_object.uri
-          replace_a_link(prev_object, old_object, cloned_object, managed_ancestor)
+          replace_links(prev_object, old_object, cloned_object, managed_ancestor)
           prev_object = cloned_object
         else
           prev_object = old_object
@@ -177,7 +172,7 @@ class IsoConceptV2
             new_object, persist_objects = clone_children_with_note(self, new_parent, managed_ancestor, persist_objects, tx, child.uri) 
           else
             cloned_object = clone_with_optional_update(managed_ancestor, old_object, prev_object, persist_objects, tx, {})
-            replace_a_link(prev_object, old_object, cloned_object, managed_ancestor)
+            replace_links(prev_object, old_object, cloned_object, managed_ancestor)
             prev_object = cloned_object
           end
         else
@@ -198,13 +193,13 @@ class IsoConceptV2
       uris.each do |old_uri|
         old_object = self.class.klass_for(old_uri).find_children(old_uri)
         if self.uri == old_object.uri
-          delete_a_link(prev_object, old_object, managed_ancestor)
+          delete_links(prev_object, old_object, managed_ancestor)
           new_parent = prev_object
           new_object, persist_objects = clone_children_with_ignore(parent, new_parent, managed_ancestor, persist_objects, tx, self.uri)
         else
           cloned_object = clone_with_optional_update(managed_ancestor, old_object, prev_object, persist_objects, tx, {})
           persist_objects << cloned_object
-          replace_a_link(prev_object, old_object, cloned_object, managed_ancestor)
+          replace_links(prev_object, old_object, cloned_object, managed_ancestor)
         end
         prev_object = cloned_object
       end
@@ -283,8 +278,8 @@ class IsoConceptV2
         object = child.clone
         object.transaction_set(tx)
         object.generate_uri(the_object.uri) 
-        predicate = child.managed_ancestors_predicate
-        replace_a_link(the_object, child, object, managed_ancestor)
+        #predicate = child.managed_ancestors_predicate
+        replace_links(the_object, child, object, managed_ancestor)
         #items[predicate] << object
         persist_objects << object
         unless save_uri.nil? 
@@ -308,19 +303,27 @@ class IsoConceptV2
       transaction_execute
     end
 
-    def replace_a_link(prev_object, old_object, new_object, managed_ancestor)
-      if prev_object.uri == managed_ancestor.uri
-        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, new_object.uri)
-      else
-        prev_object.properties.property(old_object.managed_ancestors_predicate).replace_value(old_object.uri, new_object.uri)
+    # Replace links
+    def replace_links(parent_object, old_object, new_object, managed_ancestor)
+      predicates = parent_object.managed_ancestors_predicate(old_object.class)
+      predicates.each do |predicate|
+        if parent_object.uri == managed_ancestor.uri
+          parent_object.replace_link(predicate, old_object.uri, new_object.uri)
+        else
+          parent_object.properties.property(predicate).replace_value(old_object.uri, new_object.uri)
+        end
       end
     end
 
-    def delete_a_link(prev_object, old_object, managed_ancestor)
-      if prev_object.uri == managed_ancestor.uri
-        prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
-      else
-        prev_object.properties.property(old_object.managed_ancestors_predicate).delete_value(old_object.uri)
+    # Delete links
+    def delete_links(parent_object, old_object, managed_ancestor)
+      predicates = parent_object.managed_ancestors_predicate(old_object.class)
+      predicates.each do |predicate|
+        if parent_object.uri == managed_ancestor.uri
+          parent_object.delete_link(predicate, old_object.uri)
+        else
+          parent_object.properties.property(predicate).delete_value(old_object.uri)
+        end
       end
     end  
 

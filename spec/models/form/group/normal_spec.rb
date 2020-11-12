@@ -264,7 +264,7 @@ describe Form::Group::Normal do
       normal = Form::Group::Normal.find(uri)
       normal.add_child({type:"bc_group", id_set:[bci_1.id]})
       normal = Form::Group::Normal.find(uri)
-      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
       bc_property.make_common(cg)
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       normal = Form::Group::Normal.find(uri)

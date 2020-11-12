@@ -12,12 +12,12 @@ class Form::Item::BcProperty < Form::Item
   object_property :has_property, cardinality: :one, model_class: "OperationalReferenceV3"
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
 
-  # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
-  #
-  # @return [Form::Group::Normal] array of objects
-  def managed_ancestors_children_set
-    self.has_coded_value
-  end
+  # # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
+  # #
+  # # @return [Form::Group::Normal] array of objects
+  # def managed_ancestors_children_set
+  #   self.has_coded_value
+  # end
 
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #
@@ -30,12 +30,12 @@ class Form::Item::BcProperty < Form::Item
     ]
   end
 
-  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
-  #
-  # @return [Symbol] the predicate property as a symbol
-  def managed_ancestors_predicate
-    :has_item
-  end
+  # # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  # #
+  # # @return [Symbol] the predicate property as a symbol
+  # def managed_ancestors_predicate
+  #   :has_item
+  # end
 
   # Get Item
   #

@@ -14,18 +14,18 @@ class Form::Item::Question < Form::Item
   data_property :mapping
   data_property :question_text 
 
-  object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
+  object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference", children: true
 
   validates_with Validator::Field, attribute: :format, method: :valid_format?
   validates_with Validator::Field, attribute: :mapping, method: :valid_mapping?
   validates_with Validator::Field, attribute: :question_text, method: :valid_question?
 
-  # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
-  #
-  # @return [Form::Group::Normal] array of objects
-  def managed_ancestors_children_set
-    self.has_coded_value
-  end
+  # # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
+  # #
+  # # @return [Form::Group::Normal] array of objects
+  # def managed_ancestors_children_set
+  #   self.has_coded_value
+  # end
 
   # Children Ordered. Provides the childen ordered by ordinal
   #

@@ -26,7 +26,6 @@ class Form
         WHERE 
           { #{string_uris[:where]} }
       }
-puts "Q: #{query_string}"
       results = Sparql::Update.new.sparql_update(query_string, "", [:bf])
       true
     end

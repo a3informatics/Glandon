@@ -14,13 +14,6 @@ class Form < IsoManagedV2
 
   include Form::Ordinal
 
-  # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
-  #
-  # @return [Form::Group::Normal] array of objects
-  def managed_ancestors_children_set
-    self.has_group
-  end
-
   # Children Ordered. Returns the set of children nodes ordered by ordinal. 
   #
   # @return [Form::Group::Normal] array of objects

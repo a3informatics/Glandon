@@ -29,12 +29,12 @@ class Form::Item < IsoConceptV2
     ]
   end
 
-  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
-  #
-  # @return [Symbol] the predicate property as a symbol
-  def managed_ancestors_predicate
-    :has_item
-  end
+  # # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  # #
+  # # @return [Symbol] the predicate property as a symbol
+  # def managed_ancestors_predicate
+  #   :has_item
+  # end
 
   # Delete. Delete the object. Clone if there are multiple parents.
   #
