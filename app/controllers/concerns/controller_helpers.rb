@@ -45,6 +45,7 @@ private
     result[:list_cn_path] = path_for(:list_change_notes, object)
     result[:impact_path] = path_for(:impact, object)
     result[:view_path] = path_for(:view, object)
+    result[:build_path] = path_for(:build, object)
 
     if edit && object.edit? && latest_item
       result[:edit_path] = path_for(:edit, object)

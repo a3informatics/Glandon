@@ -30,7 +30,7 @@
 
     <%= csrf_meta_tags %>
 
-    <% menu_category_title = controller_to_menu %>
+    <% menu_category_title = is_swb_menu? ? controller_to_menu_swb : controller_to_menu %>
     <% c_sysadmin, c_impexp, c_util, c_term, c_biocon, c_forms, c_sdtm, c_adam, c_studies =
       "System Admin", "Import/Export", "Utilities", "Terminology", "Biomedical Concepts", "Forms", "SDTM", "ADaM", "Studies"%>
 

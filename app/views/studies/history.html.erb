@@ -1,25 +1,19 @@
-<%= javascript_tag 'setPageTitle("History: '+@identifier+'")' %>
+<% content_for :page_title do %> History: <%= @identifier %> <% end %>
 
-<%= javascript_include_tag 'shared/iso_managed/history_page' %>
-<%= javascript_tag "var history_data_path = '#{history_data_studies_path}',
- 												url_rs_path = '#{iso_registration_states_v2_path("rs_id")}',
-												strict_params = 'study',
-												identifier = '#{@identifier}',
-												scope_id = '#{@scope_id}';" %>
+<%= javascript_pack_tag 'studies/history' %>
 
 <% second_level_breadcrumb(:studies, @scope_id, @identifier) %>
 
 <div class="row">
-  <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-study", item: @study, header_title: "Item History", with_tags: false} do %>
+  <%= render layout: "shared/headers/header_item_simple", :locals => { badge: "icon-study", item: @study, header_title: "Item History" } do %>
     <div class="actions-wrap">
-			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
-	<% end %>
+  <% end %>
 </div>
 
-<div class="row centered">
-	<div class="col-md-11 card table-cardstyle">
-		<%= render partial: "shared/history_panel", locals: {title: "Version History of '#{@identifier}'"} %>
-	</div>
+
+<div class="row">
+  <%= render partial: "shared/iso_managed/history/history_card", locals: {
+        identifier: @identifier, url: history_data_studies_path({study: {identifier: @identifier, scope_id: @scope_id}}) } %>
 </div>
