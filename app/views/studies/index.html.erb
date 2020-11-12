@@ -1,0 +1,37 @@
+<% content_for :page_title do %> Index: Studies <% end %>
+
+<%= javascript_pack_tag 'studies/index' %>
+
+<% first_level_breadcrumb (:studies) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-study",
+    main_text: "Studies", sub_text: "Browse all Studies in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+
+<div class="row">
+
+  <% content_for :description do %>
+    Below is the list of all <span class="text-link font-regular">sponsor</span> Studies.
+    Use the Search bar to find the Study you are looking for.
+    To see the History page of a Study, click on 'History'.
+  <% end %>
+
+  <% content_for :actions do %>
+
+    <% if policy(Thesaurus::ManagedConcept).new? %>
+      <a href="#new-study-modal" class="btn medium green" id="new-study-button" data-toggle="modal">
+        <span class="icon-plus text-tiny"></span>&nbsp;
+        New Study
+      </a>
+    <% end %>
+  <% end %>
+
+  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "Studies", url: index_data_studies_path } %>
+
+</div>
+
+<%= render partial: "shared/studies/create_modal" %>

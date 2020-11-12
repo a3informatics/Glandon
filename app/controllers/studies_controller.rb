@@ -2,7 +2,7 @@
 
 require 'controller_helpers.rb'
 
-class StudiesController < ApplicationController
+class StudiesController < ManagedItemsController
 
   include ControllerHelpers
 
@@ -12,7 +12,6 @@ class StudiesController < ApplicationController
 
   def index
     authorize Form
-    @protocols = Protocol.unique
   end
 
   def index_data
@@ -29,11 +28,13 @@ class StudiesController < ApplicationController
   def create
     authorize Form, :create?
     params = the_params.slice(:identifier, :label, :description)
-    protocol = Protocol.latest(identifier: the_params[:protocol_identifier], scope: IsoRegistrationAuthority.repository_scope)
+    protocol = Protocol.find(the_params[:protocol_id])
     params[:implements] = protocol.uri
     study = Study.create(params)
     if study.errors.empty?
-      render json: {history_url: history_studies_path({study:{identifier: study.scoped_identifier, scope_id: study.has_identifier.has_scope.id}})}, status: 200
+      result = study.to_h
+      result[:history_path] = history_studies_path({study: {identifier: study.scoped_identifier, scope_id: study.scope}})
+      render :json => {data: result}, :status => 200
     else
       render json: {errors: [study.errors.full_messages]}, status: 422
     end
@@ -85,7 +86,7 @@ class StudiesController < ApplicationController
 private
 
   def the_params
-    params.require(:study).permit(:identifier, :label, :description, :protocol_identifier, :scope_id, :count, :offset)
+    params.require(:study).permit(:identifier, :label, :description, :protocol_id, :scope_id, :count, :offset)
   end
 
   # Path for given action

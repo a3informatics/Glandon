@@ -226,7 +226,15 @@ const rdfTypesMap = {
   TAG: {
     rdfType: 'http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode',
     name: 'Concept System Tag'
+  },
+
+  // Studies
+  PROTOCOL_TEMPLATE: {
+    rdfType: 'http://www.assero.co.uk/Protocol#ProtocolTemplate',
+    name: 'Protocol Template',
+    param: 'protocol_template'
   }
+
 }
 
 /**

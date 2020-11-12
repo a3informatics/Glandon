@@ -266,6 +266,16 @@ export default class ItemsPicker extends ModalView {
   }
 
   /**
+   * Called on modal show complted, triggers window resized event
+   */
+  _onShowComplete() {
+
+    // Force tables column recalculation
+    $(window).resize();
+
+  }
+
+  /**
    * Set event listeners and handlers
    */
   _setListeners() {
@@ -439,7 +449,8 @@ export default class ItemsPicker extends ModalView {
       unmanaged_concept: rdfTypesMap.TH_CLI,
       biomedical_concept_instance: rdfTypesMap.BC,
       biomedical_concept_template: rdfTypesMap.BCT,
-      form: rdfTypesMap.FORM
+      form: rdfTypesMap.FORM,
+      protocol_template: rdfTypesMap.PROTOCOL_TEMPLATE
     }
 
   }

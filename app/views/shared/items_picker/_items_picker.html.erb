@@ -56,6 +56,10 @@
               <span class="icon-forms bg-accent-aqua"></span>
               <span>Forms</span>
             </div>
+            <div class="tab-option with-icon" id="tab-protocol-template">
+              <span class="icon-protocol-template bg-prim-bright"></span>
+              <span>Protocol Templates</span>
+            </div>
           </div>
 
           <div class="tab-wrap closed" data-tab="tab-thesauri" id="selector-thesauri">
@@ -78,7 +82,9 @@
           <div class="tab-wrap closed" data-tab="tab-form" id="selector-form">
             <%= render partial: "shared/items_picker/managed_item_selector" %>
           </div>
-
+          <div class="tab-wrap closed" data-tab="tab-protocol-template" id="selector-protocol-template">
+            <%= render partial: "shared/items_picker/managed_item_selector" %>
+          </div>
 
         </div>
 
