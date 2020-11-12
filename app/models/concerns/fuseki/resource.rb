@@ -215,6 +215,14 @@ module Fuseki
         define_method("#{name}_push") do |value|
           @properties.property(name.to_sym).set(value)
         end
+
+        define_method("#{name}_replace") do |old_value, new_value|
+          @properties.property(name.to_sym).replace_value(old_value, new_value)
+        end
+
+        define_method("#{name}_delete") do |value|
+          @properties.property(name.to_sym).delete_value(value)
+        end
       end
 
       define_method "#{name}_links" do

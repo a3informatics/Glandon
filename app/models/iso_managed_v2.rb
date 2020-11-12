@@ -23,7 +23,16 @@ class IsoManagedV2 < IsoConceptV2
 
   include IsoManagedV2::Versions
   include IsoManagedV2::PreviousVersion
+  include IsoManagedV2::UriManagement
   
+  # Initialize
+  #
+  # @return [IsoManagedV2] return the object
+  def initialize(params={})
+    super
+    @uri_managed = IsoManagedV2::UriManager.new(self)
+  end
+
   # Version
   #
   # @return [string] The version

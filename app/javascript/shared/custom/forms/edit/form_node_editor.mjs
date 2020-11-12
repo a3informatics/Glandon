@@ -53,9 +53,23 @@ export default class NodeEditor extends GenericEditor {
 
 
   /**
-   * On node update success, append updated properties and call onSubmit
+   * Submit data to the server, handle response, override rawResult parameter
+   * @param {String} type Request type
+   * @param {boolean} rawResult Specifies whether the request should pass raw result from the server to the callback, optional
    */
-  _onSuccess(data) {
+  _submit(type, rawResult = false) { 
+
+    super._submit( type, true );
+
+  }
+
+  /**
+   * On node update success, append updated properties and call onSubmit
+   * @param {object} result Raw result object returned from the server
+   */
+  _onSuccess(result) {
+
+    let { ids, data } = result;
 
     try {
 
@@ -77,7 +91,7 @@ export default class NodeEditor extends GenericEditor {
 
     }
 
-    this.onUpdate();
+    this.onUpdate( ids );
     this.hide();
 
   }

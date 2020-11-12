@@ -138,12 +138,13 @@ describe Form::Group do
       normal_1 = Form::Group::Normal.create(uri: Uri.new(uri: "http://www.example.com/A#X1"), note: "OK", ordinal: 1, completion: "None")
       expect(normal_1.errors.count).to eq(0)
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/DIABP/V1#BCI"))
-      result = normal_1.add_child({type:"common_group"})
+      cg = normal_1.add_child({type:"common_group"})
+      cg = Form::Group::Common.find_full(cg.uri)
       result = normal_1.add_child({type:"bc_group", id_set:[bci_1.id]})
       normal_1.save
       normal_1 = Form::Group::Normal.find_full(normal_1.uri)
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.example.com/A#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
-      bc_property.make_common
+      bc_property.make_common(cg)
       normal_1 = Form::Group::Normal.find_full(normal_1.uri)
       check_file_actual_expected(normal_1.to_h, sub_dir, "delete_bc_group_expected_1a.yaml", equate_method: :hash_equal)
       group = Form::Group::Bc.find(Uri.new(uri: "http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
@@ -160,12 +161,13 @@ describe Form::Group do
       expect(normal_1.errors.count).to eq(0)
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/DIABP/V1#BCI"))
       bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/SYSBP/V1#BCI"))
-      result = normal_1.add_child({type:"common_group"})
+      cg = normal_1.add_child({type:"common_group"})
+      cg = Form::Group::Common.find_full(cg.uri)
       result = normal_1.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id]})
       normal_1.save
       normal_1 = Form::Group::Normal.find_full(normal_1.uri)
-      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.example.com/A#BCP_b76597f7-972f-40f4-bed7-e134725cf296"))
-      bc_property.make_common
+      bc_property = Form::Item::BcProperty.find_full(Uri.new(uri: "http://www.example.com/A#BCP_b76597f7-972f-40f4-bed7-e134725cf296"))
+      bc_property.make_common(cg)
       normal_1 = Form::Group::Normal.find_full(normal_1.uri)
       check_file_actual_expected(normal_1.to_h, sub_dir, "delete_bc_group_expected_2a.yaml", equate_method: :hash_equal)
       common_item = Form::Item::Common.find(Uri.new(uri: "http://www.example.com/A#CI_9512d1d4-7f6c-4b3c-a330-ff3081f8de24"))

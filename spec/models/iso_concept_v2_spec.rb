@@ -442,6 +442,10 @@ describe "IsoConceptV2" do
       expect{IsoConceptV2.managed_ancestors_predicate}.to raise_error(Errors::ApplicationLogicError, "Method not implemented for class.")
     end
 
+    it "raises exception unless predicate method overloaded" do
+      expect{IsoConceptV2.managed_ancestors_children_set}.to raise_error(Errors::ApplicationLogicError, "Method not implemented for class.")
+    end
+
   end
 
 end

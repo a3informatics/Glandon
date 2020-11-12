@@ -17,6 +17,13 @@ describe Forms::Groups::NormalGroupsController do
       return "controllers/forms/groups"
     end
 
+    def make_standard(item)
+      params = {}
+      params[:registration_status] = "Standard"
+      params[:previous_state] = "Incomplete"
+      item.update_status(params)
+    end
+
     after :all do
       ua_remove_user("lock@example.com")
     end
@@ -43,6 +50,28 @@ describe Forms::Groups::NormalGroupsController do
       expect(response.code).to eq("200")
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_normal_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "update second version" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      make_standard(form)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      update_params = {form_id: new_form.id, note:"note u", completion:"completion u"} 
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(new_form, @user)
+      audit_count = AuditTrail.count
+      put :update, params:{id: normal_group.id, normal_group: update_params}
+      expect(AuditTrail.count).to eq(audit_count+1)
+      @normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_normal_expected_5.yaml", equate_method: :hash_equal)
     end
 
     it 'update, second update so no audit' do
