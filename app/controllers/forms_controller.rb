@@ -40,7 +40,13 @@ class FormsController < ManagedItemsController
   def crf
     @form = Form.find_minimum(protect_from_bad_id(params))
     @close_path = history_forms_path(:form => { identifier: @form.has_identifier.identifier, scope_id: @form.scope })
-    @html = @form.to_crf
+    @html = @form.crf
+  end
+
+  def acrf
+    @form = Form.find_minimum(protect_from_bad_id(params))
+    @close_path = history_forms_path(:form => { identifier: @form.has_identifier.identifier, scope_id: @form.scope })
+    @html = @form.acrf
   end
 
   def referenced_items
@@ -225,22 +231,6 @@ class FormsController < ManagedItemsController
   #   authorize Form, :export_json?
   #   @form = Form.find(params[:id], params[:namespace])
   #   send_data @form.to_xml, filename: "#{@form.owner_short_name}_#{@form.identifier}_ODM.xml", :type => 'application/xhtml+xml; header=present', disposition: "attachment"
-  # end
-
-  # def acrf
-  #   authorize Form, :view?
-  #   @form = Form.find(params[:id], params[:namespace])
-  #   @close_path = request.referer
-  #   respond_to do |format|
-  #     format.html do
-  #       @html = Reports::CrfReport.new.create(@form, {:annotate => true, :full => false}, current_user)
-  #     end
-  #     format.pdf do
-  #       @html = Reports::CrfReport.new.create(@form, {:annotate => true, :full => true}, current_user)
-  #       @render_args = {pdf: "#{@form.owner_short_name}_#{@form.identifier}_CRF", page_size: current_user.paper_size, lowquality: true}
-  #       render @render_args
-  #     end
-  #   end
   # end
 
 private
