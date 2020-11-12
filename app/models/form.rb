@@ -33,6 +33,14 @@ class Form < IsoManagedV2
     super
   end
 
+  def acrf
+    to_crf(annotation = true)
+  end
+
+  def crf
+    to_crf(annotation = false)
+  end
+
   def move_up_with_clone(child, managed_ancestor)
     if child.multiple_managed_ancestors?
       parent_and_child = self.replicate_siblings_with_clone(child, managed_ancestor)
@@ -61,23 +69,6 @@ class Form < IsoManagedV2
       results += group.get_item
     end
     return results
-  end
-
-  # To CRF.
-  #
-  # @return [String] String of HTML form representation
-  def to_crf(annotation = nil) 
-    form = self.class.find_full(self.uri)
-    html = ''
-    html += get_css
-    html += '<table class="table table-striped table-bordered table-condensed" id="crf">'
-    html += '<tr>'
-    html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
-    html += '</tr>'
-    form.has_group.sort_by {|x| x.ordinal}.each do |group|
-      html += group.to_crf
-    end
-    html += '</table>'
   end
 
   # Get Referenced Items.
@@ -131,6 +122,23 @@ class Form < IsoManagedV2
   end
 
 private
+  
+  # To CRF.
+  #
+  # @return [String] String of HTML form representation
+  def to_crf(annotation = nil) 
+    form = self.class.find_full(self.uri)
+    html = ''
+    html += get_css
+    html += '<table class="table table-striped table-bordered table-condensed" id="crf">'
+    html += '<tr>'
+    html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
+    html += '</tr>'
+    form.has_group.sort_by {|x| x.ordinal}.each do |group|
+      html += group.to_crf
+    end
+    html += '</table>'
+  end
 
   # # Clone children within a transaction
   # def clone_children_and_save(child, managed_ancestor)
