@@ -12,6 +12,13 @@ class Form::Item::BcProperty < Form::Item
   object_property :has_property, cardinality: :one, model_class: "OperationalReferenceV3"
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
 
+  # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
+  #
+  # @return [Form::Group::Normal] array of objects
+  def managed_ancestors_children_set
+    self.has_coded_value
+  end
+
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #
   # @return [String] the path as an expanded set of predicates
@@ -47,16 +54,18 @@ class Form::Item::BcProperty < Form::Item
   def to_crf
     html = ""
     if !is_common?
-      property_ref = self.has_property_objects.reference
-      property = BiomedicalConcept::PropertyX.find(property_ref)
-      html += start_row(self.optional)
-      html += question_cell(property.question_text)
-      if property.has_coded_value.length == 0
-        html += input_field(property)
-      else
-        html += terminology_cell
+      if self.has_property_objects.enabled
+        property_ref = self.has_property_objects.reference
+        property = BiomedicalConcept::PropertyX.find(property_ref)
+        html += start_row(self.has_property_objects.optional)
+        html += question_cell(property.question_text)
+        if property.has_coded_value.length == 0
+          html += input_field(property)
+        else
+          html += terminology_cell
+        end
+        html += end_row
       end
-      html += end_row
     end
     return html
   end
@@ -66,71 +75,79 @@ class Form::Item::BcProperty < Form::Item
   end
 
   def make_common_with_clone(managed_ancestor)
+    return nil unless common_group_present?
     if multiple_managed_ancestors?
-      new_bc_property = clone_nodes_and_children(self, managed_ancestor)
-      new_bc_property.second.make_common
+      cgs = get_common_group
+      cg = cgs.count == 1 ? clone_common_group(cgs.first, managed_ancestor) : Form::Group::Common.find(locate_common_group(managed_ancestor).first)
+      make_common(cg)
     else
-      make_common
+      cg = Form::Group::Common.find(get_common_group.first)
+      make_common(cg)
     end
-
   end
 
-  def make_common
-    unless get_common_group.empty? #Check if there is a common group
-      common_group = Form::Group::Common.find(get_common_group.first)
-      common_bcp = find_common_matches
-      property = BiomedicalConcept::PropertyX.find(self.has_property_objects.reference)
-      common_item = Form::Item::Common.create(label: property.alias, ordinal: common_group.next_ordinal, parent_uri: common_group.uri)
-      common_group.has_item_push(common_item.uri)
-      common_item.has_coded_value = []
-      self.has_coded_value_objects.each do |ref|
-        new_reference = ref.clone
-        new_reference.uri = new_reference.create_uri(common_item.uri)
-        new_reference.save
-        common_item.has_coded_value << new_reference
-      end
-      new_property = self.has_property_objects.clone
-      new_property.generate_uri(common_item.uri)
-      new_property.save 
-      common_item.has_property = new_property
-      common_bcp.each do |common_uri|
-        common_item.has_common_item_push(common_uri)
-      end
-      common_group.save
-      common_item.save
-      normal_group = Form::Group::Normal.find_full(get_normal_group.first)
-      normal_group = normal_group.full_data
-    else
-      self.errors.add(:base, "There is no Common group")
-    end  
+  def clone_common_group(uri, managed_ancestor)
+     cg = Form::Group::Common.find(uri)
+     cg.replicate_with_clone(cg, managed_ancestor)
   end
 
-  def clone_nodes_and_children(child, managed_ancestor)
-    new_parent = nil
-    new_object = nil
-    new_normal_group = nil
-    tx = transaction_begin
-    uris = child.managed_ancestor_path_uris(managed_ancestor)
-    prev_object = managed_ancestor
-    prev_object.transaction_set(tx)
-    uris.each do |old_uri|
-      old_object = self.class.klass_for(old_uri).find_children(old_uri)
-      cloned_object = clone_and_save(old_object, prev_object, tx)
-       if child.uri == old_object.uri
-         new_parent = prev_object
-         new_object = new_parent.clone_children_and_save(tx, child.uri)
-         new_normal_group = new_normal_group.clone_children_and_save(tx) 
-       end
-      if old_object.class == Form::Group::Normal 
-        new_normal_group = cloned_object unless old_object.has_common.empty?
-      end
-      prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-      prev_object = cloned_object
+  def make_common(common_group)
+    common_bcp = find_common_matches
+    property = BiomedicalConcept::PropertyX.find(self.has_property_objects.reference)
+    common_item = Form::Item::Common.create(label: property.alias, ordinal: common_group.next_ordinal, parent_uri: common_group.uri)
+    common_group.has_item_push(common_item.uri)
+    common_item.has_coded_value = []
+    self.has_coded_value_objects.each do |ref|
+      new_reference = ref.clone
+      new_reference.uri = new_reference.create_uri(common_item.uri)
+      new_reference.save
+      common_item.has_coded_value << new_reference
     end
-    transaction_execute
-    new_parent = Form::Item.find_full(new_parent.id)
-    return new_parent, new_object
+    new_property = self.has_property_objects.clone
+    new_property.generate_uri(common_item.uri)
+    new_property.save 
+    common_item.has_property = new_property
+    common_bcp.each do |common_uri|
+      common_item.has_common_item_push(common_uri)
+    end
+    common_group.save
+    common_item.save
+    normal_group = Form::Group::Normal.find_full(get_normal_group.first)
+    normal_group = normal_group.full_data
   end
+
+  def common_group_present?
+    return true if common_group?
+    self.errors.add(:base, "There is no Common group")
+    false
+  end
+
+  # def clone_nodes_and_children(child, managed_ancestor)
+  #   new_parent = nil
+  #   new_object = nil
+  #   new_normal_group = nil
+  #   tx = transaction_begin
+  #   uris = child.managed_ancestor_path_uris(managed_ancestor)
+  #   prev_object = managed_ancestor
+  #   prev_object.transaction_set(tx)
+  #   uris.each do |old_uri|
+  #     old_object = self.class.klass_for(old_uri).find_children(old_uri)
+  #     cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
+  #      if child.uri == old_object.uri
+  #        new_parent = prev_object
+  #        new_object = new_parent.clone_children_and_save_no_tx(managed_ancestor, tx, child.uri)
+  #        new_normal_group = new_normal_group.clone_children_and_save_no_tx(managed_ancestor, tx) 
+  #      end
+  #     if old_object.class == Form::Group::Normal 
+  #       new_normal_group = cloned_object unless old_object.has_common.empty?
+  #     end
+  #     prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+  #     prev_object = cloned_object
+  #   end
+  #   transaction_execute
+  #   new_parent = Form::Item.find_full(new_parent.id)
+  #   return new_parent, new_object
+  # end
 
   def to_h
     x = super
@@ -140,9 +157,9 @@ class Form::Item::BcProperty < Form::Item
 
   def update_with_clone(params, managed_ancestor)
     if multiple_managed_ancestors?
-      new_bc_property = clone_nodes(self.has_property_objects, managed_ancestor)
-      new_bc_property.first.has_property_objects.update(params)
-      new_bc_property.first.update(params.except(:enabled, :optional))
+      new_bc_property = replicate_with_clone(self, managed_ancestor)
+      new_bc_property.has_property_objects.update(params)
+      new_bc_property.update(params.except(:enabled, :optional))
     else
       self.has_property_objects.update(params)
       self.update(params.except(:enabled, :optional))
@@ -181,6 +198,7 @@ class Form::Item::BcProperty < Form::Item
       query_results.by_object(:s)
     end
 
+    # Get the common group
     def get_common_group
       query_string = %Q{         
         SELECT ?common_group WHERE 
@@ -194,12 +212,23 @@ class Form::Item::BcProperty < Form::Item
       query_results.by_object(:common_group)
     end
 
-    def common_group?
+    # Get the common group
+    def locate_common_group(managed_ancestor)
       query_string = %Q{         
-        SELECT ?result WHERE {BIND ( EXISTS {#{self.uri.to_ref} ^bf:hasItem ?bc_g. ?bc_g ^bf:hasSubGroup ?normal_g. ?normal_g bf:hasCommon ?c_g  } as ?result )}
+        SELECT ?cg WHERE 
+        {
+          #{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup ?ng. 
+          ?g bf:hasCommon ?cg .
+          ?ng ^bf:hasSubGroup*|^bf:hasSubGroup* #{managed_ancestor.uri.to_ref} 
+        }
       }     
       query_results = Sparql::Query.new.query(query_string, "", [:bf])
-      query_results.by_object(:result).first.to_bool
+      query_results.by_object(:cg)
+    end
+
+    # Do we have a common group?
+    def common_group?
+      Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup/bf:hasCommon ?cg }", "", [:bf]).ask? 
     end
 
     def get_normal_group

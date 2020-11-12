@@ -48,6 +48,17 @@
       :synonym: []
     :context: http://www.cdisc.org/C66789/V13#C66789
     :local_label: ''
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1BMMg==
+  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Placeholder
+  :label: Placeholder 2
+  :tagged: []
+  :ordinal: 3
+  :note: ''
+  :completion: Not Set
+  :optional: false
+  :free_text: Measure with shoes off. Round up or down to the nearest tenth inch or
+    tenth centimeter.
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ez
   :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q3
   :rdf_type: http://www.assero.co.uk/BusinessForm#Question
@@ -62,17 +73,6 @@
   :mapping: VSORRES
   :question_text: Height
   :has_coded_value: []
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1BMMg==
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2
-  :rdf_type: http://www.assero.co.uk/BusinessForm#Placeholder
-  :label: Placeholder 2
-  :tagged: []
-  :ordinal: 3
-  :note: ''
-  :completion: Not Set
-  :optional: false
-  :free_text: Measure with shoes off. Round up or down to the nearest tenth inch or
-    tenth centimeter.
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0
   :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4
   :rdf_type: http://www.assero.co.uk/BusinessForm#Question
@@ -171,7 +171,7 @@
       :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
       :context: 
     :has_coded_value: []
-    :is_common: true
+    :is_common: false
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF85MmJmOGI3NC1lYzc4LTQzNDgtOWExYi0xNTRhNmNjYjliOWY=
     :uri: http://www.s-cubed.dk/FN000150/V1#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
@@ -322,7 +322,7 @@
         - http://www.assero.co.uk/SYN#d88c8ea10f076325483be42bbe1abf9c709658f0
       :context: http://www.cdisc.org/C71620/V62#C71620
       :local_label: International Foot
-    :is_common: false
+    :is_common: true
   :has_biomedical_concept:
     :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=
     :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI
@@ -389,6 +389,28 @@
   :completion: ''
   :optional: false
   :has_item:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2Y=
+    :uri: http://www.s-cubed.dk/FN000150/V1#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: "--ORRES"
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2ZfUjE=
+      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPvalue
+      :context: 
+    :has_coded_value: []
+    :is_common: false
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF83OTQ4ZTYxNC1mZGJhLTQ4NGEtOWRmYy1jOThjZTM2OGQ0ZTc=
     :uri: http://www.s-cubed.dk/FN000150/V1#BCP_7948e614-fdba-484a-9dfc-c98ce368d4e7
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
@@ -436,28 +458,6 @@
         - http://www.assero.co.uk/SYN#2d2896805038f7d59edd0a6e072316d80d5df43a
       :context: http://www.cdisc.org/C66770/V59#C66770
       :local_label: Kilogram per Square Meter
-    :is_common: false
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2Y=
-    :uri: http://www.s-cubed.dk/FN000150/V1#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--ORRES"
-    :tagged: []
-    :ordinal: 1
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2ZfUjE=
-      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPvalue
-      :context: 
-    :has_coded_value: []
     :is_common: false
   :has_biomedical_concept:
     :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0k=
@@ -800,7 +800,7 @@
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0NJX2YwMzI4N2Q2LTIzZWEtNDNiYi1iM2NmLWY5NzI3NjFjYWFiZA==
     :uri: http://www.s-cubed.dk/FN000150/V1#CI_f03287d6-23ea-43bb-b3cf-f972761caabd
     :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
-    :label: "--DTC"
+    :label: "--ORRESU"
     :tagged: []
     :ordinal: 1
     :note: ''
@@ -815,30 +815,244 @@
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+      :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode
       :context: 
-    :has_coded_value: []
-    :has_common_item:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF80NjQ2YjQ3YS00YWU0LTRmMjEtYjVlMi01NjU4MTVjOGNkZWQ=
-      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded
-      :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-      :label: "--DTC"
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0NJX2YwMzI4N2Q2LTIzZWEtNDNiYi1iM2NmLWY5NzI3NjFjYWFiZF9UVUMx
+      :uri: http://www.s-cubed.dk/FN000150/V1#CI_f03287d6-23ea-43bb-b3cf-f972761caabd_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
       :tagged: []
+      :enabled: true
+      :optional: false
       :ordinal: 1
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YzNCNDNjY3NzBfQzQ5NjY4
+        :uri: http://www.cdisc.org/C66770/V34#C66770_C49668
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Centimeter
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
+        :identifier: C49668
+        :notation: cm
+        :definition: A basic unit of length equal to one hundredth of a meter or approximately
+          0.393700787 inch.
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
+        :synonym:
+        - http://www.assero.co.uk/SYN#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
+      :context: http://www.cdisc.org/C66770/V59#C66770
+      :local_label: Centimeter
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0NJX2YwMzI4N2Q2LTIzZWEtNDNiYi1iM2NmLWY5NzI3NjFjYWFiZF9UVUMy
+      :uri: http://www.s-cubed.dk/FN000150/V1#CI_f03287d6-23ea-43bb-b3cf-f972761caabd_TUC2
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0MiNDNjY3NzBfQzQ4NTAw
+        :uri: http://www.cdisc.org/C66770/V42#C66770_C48500
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Inch
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
+        :identifier: C48500
+        :notation: in
+        :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+        :synonym:
+        - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+      :context: http://www.cdisc.org/C66770/V59#C66770
+      :local_label: Inch
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0NJX2YwMzI4N2Q2LTIzZWEtNDNiYi1iM2NmLWY5NzI3NjFjYWFiZF9UVUMz
+      :uri: http://www.s-cubed.dk/FN000150/V1#CI_f03287d6-23ea-43bb-b3cf-f972761caabd_TUC3
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNDExMzk=
+        :uri: http://www.cdisc.org/C71620/V6#C71620_C41139
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: Meter
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C41139
+        :notation: m
+        :definition: A meter is defined as the length of the path traveled by light
+          in a vacuum during a time interval of 1/299 792 458 of a second and is equal
+          to 1.093 61 yards.(NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#df8fad2cc28080ebffb2553e4679edc2f50cfbfe
+        :synonym:
+        - http://www.assero.co.uk/SYN#df8fad2cc28080ebffb2553e4679edc2f50cfbfe
+      :context: http://www.cdisc.org/C71620/V62#C71620
+      :local_label: Meter
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0NJX2YwMzI4N2Q2LTIzZWEtNDNiYi1iM2NmLWY5NzI3NjFjYWFiZF9UVUM0
+      :uri: http://www.s-cubed.dk/FN000150/V1#CI_f03287d6-23ea-43bb-b3cf-f972761caabd_TUC4
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 4
+      :reference:
+        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNzEyNTM=
+        :uri: http://www.cdisc.org/C71620/V6#C71620_C71253
+        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+        :label: International Foot
+        :tagged:
+        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+        :identifier: C71253
+        :notation: ft
+        :definition: A unit of length defined by the U.S. National Bureau of Standards
+          as 30.48 centimeters. It is equal to 0.3048 meter, 12 inches, or to approximately
+          0.999998 survey foot.(NCI)
+        :extensible: false
+        :narrower: []
+        :preferred_term: http://www.assero.co.uk/PT#83503451d19c8ae02e0dc5f2bb30111e8d71c65d
+        :synonym:
+        - http://www.assero.co.uk/SYN#d88c8ea10f076325483be42bbe1abf9c709658f0
+      :context: http://www.cdisc.org/C71620/V62#C71620
+      :local_label: International Foot
+    :has_common_item:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9iNzY1OTdmNy05NzJmLTQwZjQtYmVkNy1lMTM0NzI1Y2YyOTY=
+      :uri: http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296
+      :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :label: "--ORRESU"
+      :tagged: []
+      :ordinal: 3
       :note: ''
       :completion: ''
       :optional: false
       :has_property:
-        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF80NjQ2YjQ3YS00YWU0LTRmMjEtYjVlMi01NjU4MTVjOGNkZWRfUjE=
-        :uri: http://www.s-cubed.dk/FN000150/V1#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded_R1
+        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9iNzY1OTdmNy05NzJmLTQwZjQtYmVkNy1lMTM0NzI1Y2YyOTZfUjE=
+        :uri: http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296_R1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
         :label: ''
         :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
-        :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+        :reference: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode
         :context: 
-      :has_coded_value: []
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9iNzY1OTdmNy05NzJmLTQwZjQtYmVkNy1lMTM0NzI1Y2YyOTZfVFVDMQ==
+        :uri: http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YzNCNDNjY3NzBfQzQ5NjY4
+          :uri: http://www.cdisc.org/C66770/V34#C66770_C49668
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Centimeter
+          :tagged:
+          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+          - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
+          :identifier: C49668
+          :notation: cm
+          :definition: A basic unit of length equal to one hundredth of a meter or
+            approximately 0.393700787 inch.
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
+          :synonym:
+          - http://www.assero.co.uk/SYN#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
+        :context: http://www.cdisc.org/C66770/V59#C66770
+        :local_label: Centimeter
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9iNzY1OTdmNy05NzJmLTQwZjQtYmVkNy1lMTM0NzI1Y2YyOTZfVFVDMg==
+        :uri: http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 2
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0MiNDNjY3NzBfQzQ4NTAw
+          :uri: http://www.cdisc.org/C66770/V42#C66770_C48500
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Inch
+          :tagged:
+          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+          - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
+          :identifier: C48500
+          :notation: in
+          :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+          :synonym:
+          - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+        :context: http://www.cdisc.org/C66770/V59#C66770
+        :local_label: Inch
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9iNzY1OTdmNy05NzJmLTQwZjQtYmVkNy1lMTM0NzI1Y2YyOTZfVFVDMw==
+        :uri: http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 3
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNDExMzk=
+          :uri: http://www.cdisc.org/C71620/V6#C71620_C41139
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Meter
+          :tagged:
+          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+          :identifier: C41139
+          :notation: m
+          :definition: A meter is defined as the length of the path traveled by light
+            in a vacuum during a time interval of 1/299 792 458 of a second and is
+            equal to 1.093 61 yards.(NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#df8fad2cc28080ebffb2553e4679edc2f50cfbfe
+          :synonym:
+          - http://www.assero.co.uk/SYN#df8fad2cc28080ebffb2553e4679edc2f50cfbfe
+        :context: http://www.cdisc.org/C71620/V62#C71620
+        :local_label: Meter
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0JDUF9iNzY1OTdmNy05NzJmLTQwZjQtYmVkNy1lMTM0NzI1Y2YyOTZfVFVDNA==
+        :uri: http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296_TUC4
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 4
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNzEyNTM=
+          :uri: http://www.cdisc.org/C71620/V6#C71620_C71253
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: International Foot
+          :tagged:
+          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+          :identifier: C71253
+          :notation: ft
+          :definition: A unit of length defined by the U.S. National Bureau of Standards
+            as 30.48 centimeters. It is equal to 0.3048 meter, 12 inches, or to approximately
+            0.999998 survey foot.(NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#83503451d19c8ae02e0dc5f2bb30111e8d71c65d
+          :synonym:
+          - http://www.assero.co.uk/SYN#d88c8ea10f076325483be42bbe1abf9c709658f0
+        :context: http://www.cdisc.org/C71620/V62#C71620
+        :local_label: International Foot
       :is_common: true
     :is_common: false

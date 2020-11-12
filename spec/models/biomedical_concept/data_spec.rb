@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe BiomedicalConcept do
-	
-	include DataHelpers
+  
+  include DataHelpers
   include PublicFileHelpers
 
   def sub_dir
@@ -132,7 +132,7 @@ describe BiomedicalConcept do
     results.each{|x| x.to_sparql(sparql, true)}
     full_path = sparql.to_file
   #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
-	end
+  end
 
   it "create instances" do
     load_local_file_into_triple_store(sub_dir, "biomedical_concept_templates.ttl")
@@ -162,7 +162,7 @@ describe BiomedicalConcept do
   it "check data" do
     load_local_file_into_triple_store(sub_dir, "biomedical_concept_templates.ttl")
     load_local_file_into_triple_store(sub_dir, "biomedical_concept_instances.ttl")
-    expect(BiomedicalConceptTemplate.unique.count).to eq(1)
+    expect(BiomedicalConceptTemplate.unique.count).to eq(6)
     expect(BiomedicalConceptInstance.unique.count).to eq(14)
   end
 

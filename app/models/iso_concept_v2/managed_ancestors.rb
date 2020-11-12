@@ -21,7 +21,7 @@ class IsoConceptV2
       # @raise [Errors::ApplicationLogicError] raised to indicate the class has not configured the method
       # @return [Void] exception always raised
       def managed_ancestors_path
-        Errors.application_error(self.name, __method__.to_s, "Method not implemented for class.")
+        not_implemented(__method__.to_s)      
       end
 
       # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
@@ -29,9 +29,22 @@ class IsoConceptV2
       # @raise [Errors::ApplicationLogicError] raised to indicate the class has not configured the method
       # @return [Void] exception always raised
       def managed_ancestors_predicate
-        Errors.application_error(self.name, __method__.to_s, "Method not implemented for class.")
+        not_implemented(__method__.to_s)      
       end
 
+      # Managed Ancestors Children Set. Returns the set of clidren nodes. Normally this is children but can be a combination.
+      #
+      # @raise [Errors::ApplicationLogicError] raised to indicate the class has not configured the method
+      # @return [Void] exception always raised
+      def managed_ancestors_children_set
+        not_implemented(__method__.to_s)      
+      end
+
+    private
+
+      def not_implemented(the_method)
+        Errors.application_error(self.name, the_method, "Method not implemented for class.")
+      end
     end
 
     # ----------------
@@ -104,31 +117,113 @@ class IsoConceptV2
       @parent_for_validation = managed_ancestor
       if multiple_managed_ancestors?
         result = nil
-        tx = transaction_begin
-        uris = managed_ancestor_path_uris(managed_ancestor)
-        # @todo This should be true objects.last.uri == self.uri
-        #   Could add an check and exception
-        prev_object = managed_ancestor
-        prev_object.transaction_set(tx)
+        tx, persist_objects, uris, prev_object = managed_ancestor_prepare(managed_ancestor, self)
         uris.each do |old_uri|
           old_object = self.class.klass_for(old_uri).find_children(old_uri)
           if old_object.multiple_managed_ancestors?
-            cloned_object = clone_update_and_save(old_object, params, prev_object, tx)
+            cloned_object = clone_with_optional_update(managed_ancestor, old_object, prev_object, persist_objects, tx, params)
             result = cloned_object if self.uri == old_object.uri
-            prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
+            replace_a_link(prev_object, old_object, cloned_object, managed_ancestor)
             prev_object = cloned_object
           else
             prev_object = old_object
           end
         end
-        transaction_execute
+        commit_changes(persist_objects, tx)
         result
       else
         self.update(params)
       end
     end
 
+    # Replicate With Clone. Replicate the object by cloning with all the nodes in the ancestor chain.
+    #
+    # @param [Object] child the target object
+    # @param [Object] managed_ancestor the managed ancestor
+    # @return [Object, Object] the new parent and target objects
+    def replicate_with_clone(child, managed_ancestor)
+      new_parent = nil
+      new_object = nil
+      tx, persist_objects, uris, prev_object = managed_ancestor_prepare(managed_ancestor, self)
+      uris.each do |old_uri|
+        old_object = self.class.klass_for(old_uri).find_children(old_uri)
+        if old_object.multiple_managed_ancestors?
+          cloned_object = clone_with_optional_update(managed_ancestor, old_object, prev_object, persist_objects, tx, {})
+          new_object = cloned_object if self.uri == old_object.uri
+          replace_a_link(prev_object, old_object, cloned_object, managed_ancestor)
+          prev_object = cloned_object
+        else
+          prev_object = old_object
+        end
+      end
+      commit_changes(persist_objects, tx)
+      new_object
+    end
+
+    # Replicate Siblings With Clone. Clone all the ancestor chain. Self is the parent
+    #
+    # @param [Object] child the target object
+    # @param [Object] managed_ancestor the managed ancestor
+    # @return [Object, Object] the new parent and target objects
+    def replicate_siblings_with_clone(child, managed_ancestor)
+      new_parent = nil
+      new_object = nil
+      tx, persist_objects, uris, prev_object = managed_ancestor_prepare(managed_ancestor, child)
+      uris.each do |old_uri|
+        old_object = self.class.klass_for(old_uri).find_children(old_uri)
+        if old_object.multiple_managed_ancestors?
+          if child.uri == old_object.uri
+            new_parent = prev_object
+            new_object, persist_objects = clone_children_with_note(self, new_parent, managed_ancestor, persist_objects, tx, child.uri) 
+          else
+            cloned_object = clone_with_optional_update(managed_ancestor, old_object, prev_object, persist_objects, tx, {})
+            replace_a_link(prev_object, old_object, cloned_object, managed_ancestor)
+            prev_object = cloned_object
+          end
+        else
+          prev_object = old_object
+        end
+      end
+      commit_changes(persist_objects, tx)
+      return new_parent, new_object
+    end
+
+    # Delete With Clone. Clone all the ancestor chain and delete the node
+    #
+    # @param [Object] managed_ancestor the managed ancestor
+    # @return [Object] the new parent
+    def delete_with_clone(parent, managed_ancestor)
+      new_parent = nil
+      tx, persist_objects, uris, prev_object = managed_ancestor_prepare(managed_ancestor, self)
+      uris.each do |old_uri|
+        old_object = self.class.klass_for(old_uri).find_children(old_uri)
+        if self.uri == old_object.uri
+          delete_a_link(prev_object, old_object, managed_ancestor)
+          new_parent = prev_object
+          new_object, persist_objects = clone_children_with_ignore(parent, new_parent, managed_ancestor, persist_objects, tx, self.uri)
+        else
+          cloned_object = clone_with_optional_update(managed_ancestor, old_object, prev_object, persist_objects, tx, {})
+          persist_objects << cloned_object
+          replace_a_link(prev_object, old_object, cloned_object, managed_ancestor)
+        end
+        prev_object = cloned_object
+      end
+      commit_changes(persist_objects, tx)
+      new_parent
+    end
+
   private
+
+    # Prepare for a managed ancestor operation
+    def managed_ancestor_prepare(managed_ancestor, target)
+      tx = transaction_begin
+      persist_objects = []
+      uris = target.managed_ancestor_path_uris(managed_ancestor)
+      # @todo This should be true objects.last.uri == self.uri. Could add a check and exception
+      prev_object = managed_ancestor
+      prev_object.transaction_set(tx)
+      return tx, persist_objects, uris, prev_object
+    end
 
     # Form path query
     def managed_ancestor_path_query(managed_ancestor)
@@ -158,33 +253,80 @@ class IsoConceptV2
       parts
     end 
 
-    # Clone the item, update if necessary and create. Use Sparql approach in case of children also need creating
-    #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
-    #   The Children are normally references. Also note the setting of the transaction in the cloned object and
-    #   in the sparql generation, important both are done.
-    def clone_update_and_save(child, params, parent, tx)
+    # Clone the item with an update if necessary. Note the setting of the transaction in the cloned object
+    def clone_with_optional_update(managed_ancestor, child, parent, persist_objects, tx, params={})
       object = child.clone
       object.transaction_set(tx)
       object.generate_uri(parent.uri) 
-      object.update(params) if self.uri == child.uri
-      sparql = Sparql::Update.new(tx)
-      object.to_sparql(sparql, true)
-      sparql.create
+      object.update(params) if self.uri == child.uri && !params.empty?
+      uri_updated(managed_ancestor, child.uri, object.uri)
+      persist_objects << object
       object
     end
 
-    # Clone the item and create. Use Sparql approach in case of children also need creating
-    #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
-    #   The Children are normally references. Also note the setting of the transaction in the cloned object and
-    #   in the sparql generation, important both are done.
-    def clone_and_save(child, parent, tx)
-      object = child.clone
-      object.transaction_set(tx)
-      object.generate_uri(parent.uri) 
+    # Clone Children With Note
+    def clone_children_with_note(source, the_object, managed_ancestor, persist_objects, tx, save_uri)
+      clone_children(source, the_object, managed_ancestor, persist_objects, tx, save_uri, nil)
+    end
+
+    # Clone Children With Ignore
+    def clone_children_with_ignore(source, the_object, managed_ancestor, persist_objects, tx, ignore_uri)
+      clone_children(source, the_object, managed_ancestor, persist_objects, tx, nil, ignore_uri)
+    end
+
+    # Clone the children. It will ignore the object (it won't be cloned) if ignore_uri is not nil and it'll save it if save_uri is passed.
+    def clone_children(source, the_object, managed_ancestor, persist_objects, tx, save_uri=nil, ignore_uri=nil)
+      new_object = nil
+      #items = Hash.new {|h,k| h[k] = []}
+      source.managed_ancestors_children_set.each do |child|
+        next if !ignore_uri.nil? && ignore_uri == child.uri
+        object = child.clone
+        object.transaction_set(tx)
+        object.generate_uri(the_object.uri) 
+        predicate = child.managed_ancestors_predicate
+        replace_a_link(the_object, child, object, managed_ancestor)
+        #items[predicate] << object
+        persist_objects << object
+        unless save_uri.nil? 
+          new_object = object if child.uri == save_uri 
+        end 
+        uri_updated(managed_ancestor, child.uri, object.uri)
+      end
+      #items.each do |predicate, object_array|
+      #  the_object.send("#{predicate}=".to_sym, object_array)
+      #end
+      return new_object, persist_objects
+    end
+
+    # Commit Changes. Commit the set of changes
+    def commit_changes(objects, tx)
       sparql = Sparql::Update.new(tx)
-      object.to_sparql(sparql, true)
+      objects.each do |object|
+        object.to_sparql(sparql, true)
+      end
       sparql.create
-      object
+      transaction_execute
+    end
+
+    def replace_a_link(prev_object, old_object, new_object, managed_ancestor)
+      if prev_object.uri == managed_ancestor.uri
+        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, new_object.uri)
+      else
+        prev_object.properties.property(old_object.managed_ancestors_predicate).replace_value(old_object.uri, new_object.uri)
+      end
+    end
+
+    def delete_a_link(prev_object, old_object, managed_ancestor)
+      if prev_object.uri == managed_ancestor.uri
+        prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
+      else
+        prev_object.properties.property(old_object.managed_ancestors_predicate).delete_value(old_object.uri)
+      end
+    end  
+
+    # Log the change in a URI
+    def uri_updated(managed_ancestor, old_uri, new_uri)
+      managed_ancestor.add_modified_uri(old_uri, new_uri)
     end
 
   end

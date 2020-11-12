@@ -153,9 +153,10 @@ export default class NodeHandler {
       url, data, type,
       contentType: 'application/json',
       errorDiv: this.editor._alertDiv,
-      done: d => {
+      rawResult: true,
+      done: result => {
 
-        done(d);
+        done( result );
         alerts.success( success, this.editor._alertDiv );
 
       },
@@ -180,7 +181,14 @@ export default class NodeHandler {
       url: this._nodeUrl + '/add_child',
       data: this._makeRequestData( 'add', type, extraData ),
       success: 'Added successfully.',
-      done: d => this.editor._onUpdate( this._appendData( d ) )
+      done: r => {
+
+        this.editor._onUpdate({
+          focusNode: this._appendData( r.data ),
+          changedIds: r.ids
+        });
+
+      }
     });
 
   }
@@ -312,7 +320,7 @@ export default class NodeHandler {
       url: this._nodeUrl + '/move_' + dir,
       data: this._makeRequestData( 'move' ),
       success: 'Moved successfully.',
-      done: d => {
+      done: r => {
 
         let sibling = dir === 'up' ?
                       this.node.previous :
@@ -321,7 +329,7 @@ export default class NodeHandler {
         this.node.swapOrdinals( sibling );
         this.node.parent.sortChildren();
 
-        this.editor._onUpdate();
+        this.editor._onUpdate({ changedIds: r.ids });
 
       }
     });
@@ -342,20 +350,23 @@ export default class NodeHandler {
       url: this._nodeUrl,
       data: this._makeRequestData( 'remove' ),
       success: 'Node removed successfully.',
-      done: d => {
+      done: r => {
 
         let parent = this.node.parent;
 
         if ( this.node.is( 'BC_GROUP' ) && parent.hasCommonGroup ) { 
 
-          let newChildren = this.editor._preprocessData(d).children;
+          let newChildren = this.editor._preprocessData( r.data ).children;
           parent.replaceChildren( newChildren );
 
         }
         else
           parent.removeChild( this.node );
 
-        this.editor._onUpdate( parent );
+        this.editor._onUpdate({
+          focusNode: parent,
+          changedIds: r.ids
+        });
 
       }
     });
@@ -380,14 +391,14 @@ export default class NodeHandler {
       url: this._nodeUrl + '/' + action,
       data: this._makeRequestData( action ),
       success: 'Node updated successfully.',
-      done: d => {
+      done: r => {
 
         // Merge new data into parent node
-        let newData = this.editor._preprocessData(d),
+        let newData = this.editor._preprocessData( r.data ),
             target = this.node.parent.parent.parent;
 
         this._merge( target, newData, true );
-        this.editor._onUpdate();
+        this.editor._onUpdate({ changedIds: r.ids });
 
       }
     });

@@ -228,16 +228,34 @@ export default class FormEditor extends TreeGraph {
 
   }
 
+  /**
+   * Update changed ids for all Nodes in the graph 
+   * @param {Object} changedIds Object containing old node ids as keys and new node ids as values for any changed nodes
+   */
+  _updateChangedIds(changedIds) {
+
+    if ( !changedIds )
+      return;
+
+    for ( let node of this.allNodes ) {
+
+      if ( changedIds[ node.data.id ] )
+        node.data.id = changedIds[ node.data.id ];
+
+    }
+
+  }
+
 
   /** Select **/
 
 
   /**
-  * Select a given node and update styling, render node-actions
-  * @extends _selectNode parent implementation
-  * @param {FormNode} node Target node instance
-  * @param {boolean} toggle Specifies if node deselect allowed, optional [default=true]
-  */
+   * Select a given node and update styling, render node-actions
+   * @extends _selectNode parent implementation
+   * @param {FormNode} node Target node instance
+   * @param {boolean} toggle Specifies if node deselect allowed, optional [default=true]
+   */
   _selectNode(node, toggle = true) {
 
     D3Actions.hide();
@@ -291,21 +309,26 @@ export default class FormEditor extends TreeGraph {
 
   /**
    * On graph data update; re-render, extend edit token and focus on node if available
-   * @param {FormNode} node Node to focus on after update, optional
+   * @param {FormNode} focusNode Node to focus on after update, optional
    */
-  _onUpdate(node) {
+  _onUpdate({ focusNode, changedIds } = {} ) {
 
+    this._updateChangedIds( changedIds );
+
+    // Re-render and restore graph
     this.render()._restoreGraph();
 
+    // onEdited callback - extend edit lock
     this.onEdited();
 
-    if (node) {
+    // Focus on a Node if given
+    if (focusNode) {
 
-      node.findElement();
-      this.focusOn( node, false );
+      focusNode.findElement();
+      this.focusOn( focusNode, false );
 
       // Set element focus
-      setTimeout( () => node.$.focus(), 100 );
+      setTimeout( () => focusNode.$.focus(), 100 );
 
     }
 
@@ -581,9 +604,9 @@ export default class FormEditor extends TreeGraph {
         this.restoreFocus();
 
       },
-      onUpdate: () => {
+      onUpdate: changedIds => {
 
-        this._onUpdate();
+        this._onUpdate({ changedIds });
         alerts.success( 'Node updated successfully.', this._alertDiv );
 
       }

@@ -30,7 +30,7 @@ describe BiomedicalConceptTemplatesController do
     end
 
     it "shows the history, page" do
-      bct_1 = BiomedicalConceptTemplate.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS/V1#BCT"))
+      bct_1 = BiomedicalConceptTemplate.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS_PQR/V1#BCT"))
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(BiomedicalConceptTemplate).to receive(:history_pagination).with({identifier: bct_1.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([bct_1])
       get :history, params:{biomedical_concept_template: {identifier: bct_1.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 20}}

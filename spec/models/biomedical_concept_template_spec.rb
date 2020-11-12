@@ -42,17 +42,17 @@ describe BiomedicalConceptTemplate do
   end 
 
   it "allows a BCT to be found" do
-    item = BiomedicalConceptTemplate.find(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS/V1#BCT"))
+    item = BiomedicalConceptTemplate.find(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS_PQR/V1#BCT"))
     check_file_actual_expected(item.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
   end
 
   it "allows a BCT to be found, full" do
-    item = BiomedicalConceptTemplate.find_full(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS/V1#BCT"))
+    item = BiomedicalConceptTemplate.find_full(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS_PQR/V1#BCT"))
     check_file_actual_expected(item.to_h, sub_dir, "find_full_expected_1.yaml", equate_method: :hash_equal)
   end
 
   it "allows a BCT to be found, minimum" do
-    item = BiomedicalConceptTemplate.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS/V1#BCT"))
+    item = BiomedicalConceptTemplate.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS_PQR/V1#BCT"))
     check_file_actual_expected(item.to_h, sub_dir, "find_minimum_expected_1.yaml", equate_method: :hash_equal)
   end
 

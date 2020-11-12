@@ -23,8 +23,8 @@ describe "Thesaurus Submission" do
 
   # ---------- IMPORTANT SWITCHES ----------
   
-  def set_write_file
-    false
+  def set_write_file(version)
+    version >= CdiscCtHelpers.version_range.last ? false : false
   end
 
   # ----------------------------------------
@@ -64,7 +64,7 @@ describe "Thesaurus Submission" do
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V#{version}#TH"))
       actual = ct.submission(1)
       next_result = check_submission(actual, expected.find{|x| x[:version] == version})
-      check_file_actual_expected(actual, sub_dir, "submission_expected_#{version}.yaml", equate_method: :hash_equal, write_file: set_write_file)
+      check_file_actual_expected(actual, sub_dir, "submission_expected_#{version}.yaml", equate_method: :hash_equal, write_file: set_write_file(version))
       result = result && next_result
     end
     expect(result).to be(true)
