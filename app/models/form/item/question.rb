@@ -94,7 +94,7 @@ class Form::Item::Question < Form::Item
       #parent = clone_nodes_and_get_new_parent(reference,managed_ancestor)
       new_parent = reference.delete_with_clone(self, managed_ancestor)
       new_parent.reset_ordinals
-      new_parent = Form::Item.find_full(new_parent.id)
+      new_parent = Form::Item.find_full(new_parent.id).to_h
     else
       reference.delete_with_links
       self.reset_ordinals

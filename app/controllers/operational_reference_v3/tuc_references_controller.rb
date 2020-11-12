@@ -52,8 +52,8 @@ class OperationalReferenceV3::TucReferencesController < ManagedItemsController
 
   def destroy
     tuc_reference = OperationalReferenceV3::TucReference.find(protect_from_bad_id(params))
-    parent = Form::Item.find(the_params[:parent_id])
-    form = Form.find_minimum(the_params[:form_id])
+    parent = class_for_id(the_params[:parent_id]).find_full(Uri.new(id:the_params[:parent_id]))
+    form = Form.find_full(the_params[:form_id])
     return true unless check_lock_for_item(form)
     result = parent.delete_reference(tuc_reference, form)
     return true if lock_item_errors
