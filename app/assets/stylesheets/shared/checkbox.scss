@@ -1,0 +1,57 @@
+// Styled checkbox
+
+input[type=checkbox].styled {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+input[type=checkbox].styled + .checkbox-styled {
+  position: relative;
+  display: inline-block;
+  margin: 0 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid $grey-light;
+}
+
+// Blue (base color)
+input[type=checkbox].styled:checked + .checkbox-styled {
+  background-color: $primary-color-bright;
+  border-color: $primary-color-bright;
+}
+
+// Green color
+input[type=checkbox].styled:checked + .checkbox-styled.green {
+  background-color: $secondary-color-light;
+  border-color: $secondary-color-light;
+}
+
+// Tick icon
+input[type=checkbox].styled:checked + .checkbox-styled::before {
+  position: absolute;
+  display: block;
+  top: 1px;
+  left: 2px;
+  font-family: "icomoon";
+  content: "\e944";
+  color: white;
+  font-size: 7pt;
+}
+
+// Focus
+input[type=checkbox].styled:focus + .checkbox-styled {
+  outline: 1px solid $grey-light;
+  outline-offset: 1px;
+}
+
+// Disabled
+input[type=checkbox].styled:disabled + .checkbox-styled {
+  opacity: .6;
+}

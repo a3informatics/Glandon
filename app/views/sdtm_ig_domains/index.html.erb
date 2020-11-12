@@ -1,0 +1,33 @@
+<% content_for :page_title do %> Index: SDTM IG Domains <% end %>
+
+<%= javascript_pack_tag 'sdtm_ig_domains/index' %>
+
+<% first_level_breadcrumb (:sdtm_ig_domains) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-sdtm",
+    main_text: "SDTM IG Domains", sub_text: "Browse all SDTM IG Domains in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+<div class="row">
+
+  <% content_for :description do %>
+    Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> SDTM IG Domains.
+    Use the Search bar to find the SDTM IG Domain you are looking for.
+    To see SDTM IG Domain's respective History page, click on it.
+  <% end %>
+
+  <% content_for :actions do %>
+
+    <% if policy(SdtmIgDomain).new? %>
+      <a href="#" class="btn medium green" id="new_form">
+        <span class="icon-plus text-tiny"></span>&nbsp; New SDTM IG Domain
+      </a>
+    <% end %>
+  <% end %>
+
+  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "SDTM IG Domains", url: sdtm_ig_domains_path } %>
+
+</div>

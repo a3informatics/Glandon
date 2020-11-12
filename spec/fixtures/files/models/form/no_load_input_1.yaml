@@ -1,0 +1,73 @@
+---
+:operation:
+  :action: CREATE
+  :new_version: 1
+  :new_state: Incomplete
+  :identifier_edit: true
+:managed_item:
+  :type: http://www.assero.co.uk/BusinessForm#Form
+  :id: ''
+  :namespace: ''
+  :label: Placeholder 1
+  :extension_properties: []
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-11-07T14:28:57+00:00'
+  :last_changed_date: '2016-11-07T14:28:57+00:00'
+  :explanatory_comment: ''
+  :registration_state:
+    :namespace: ''
+    :id: ''
+    :registration_authority:
+      :id: ''
+      :number: ''
+      :scheme: ''
+      :owner: false
+      :namespace:
+        :namespace: ''
+        :id: ''
+        :name: ''
+        :shortName: ''
+    :registration_status: ''
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :current: false
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: ''
+  :scoped_identifier:
+    :id: ''
+    :identifier: P2
+    :version_label: ''
+    :version: 0
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :id: ''
+    :namespace: ''
+    :label: Placeholder Group
+    :extension_properties: []
+    :ordinal: 1
+    :optional: false
+    :completion: ''
+    :note: ''
+    :children:
+    - :type: http://www.assero.co.uk/BusinessForm#Placeholder
+      :id: ''
+      :namespace: ''
+      :label: Placeholder
+      :extension_properties: []
+      :ordinal: 1
+      :note: ''
+      :completion: 'Textual false value **in bold**'
+      :optional: false
+      :free_text: cccccc
+    :repeating: false
+    :bc_ref: {}

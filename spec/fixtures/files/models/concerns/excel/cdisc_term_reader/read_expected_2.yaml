@@ -1,0 +1,258 @@
+---
+:parent:
+  :order: 1
+  :instance:
+    :operation:
+      :action: CREATE
+      :new_version: 1
+      :new_semantic_version: 1.1.0
+      :new_state: Standard
+      :identifier_edit: true
+    :managed_item:
+      :type: http://www.assero.co.uk/ISO25964#Thesaurus
+      :id: ''
+      :namespace: ''
+      :label: CDISC Terminology 2018-01-01
+      :extension_properties: []
+      :origin: ''
+      :change_description: ''
+      :creation_date: '2018-01-01'
+      :last_changed_date: '2019-01-09T12:20:26+00:00'
+      :explanatory_comment: ''
+      :registration_state:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: ''
+        :registration_authority:
+          :id: ''
+          :number: "<Not Set>"
+          :scheme: DUNS
+          :owner: false
+          :namespace:
+            :namespace: ''
+            :id: ''
+            :name: ''
+            :shortName: ''
+        :registration_status: Not_Set
+        :administrative_note: ''
+        :effective_date: '2016-01-01T00:00:00+00:00'
+        :until_date: '2016-01-01T00:00:00+00:00'
+        :current: false
+        :unresolved_issue: ''
+        :administrative_status: ''
+        :previous_state: Not_Set
+      :scoped_identifier:
+        :id: ''
+        :identifier: CDISC Terminology
+        :version_label: '2018-01-01'
+        :version: 0
+        :semantic_version: 0.0.0
+        :namespace:
+          :namespace: ''
+          :id: ''
+          :name: ''
+          :shortName: ''
+      :children:
+      - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+        :id: ''
+        :namespace: ''
+        :label: 4 Stair Ascend Functional Test Test Code
+        :extension_properties: []
+        :identifier: C141663
+        :notation: A4STR1TC
+        :synonym: 4 Stair Ascend Functional Test Test Code
+        :definition: 4 Stair Ascend test code.
+        :preferredTerm: CDISC Functional Test 4 Stair Ascend Test Code Terminology
+        :topLevel: false
+        :parentIdentifier: ''
+        :children:
+        - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+          :id: ''
+          :namespace: ''
+          :label: 4 Stair Ascend - Time to Ascend 4 Stairs
+          :extension_properties: []
+          :identifier: C141706
+          :notation: A4STR101
+          :synonym: A4STR1-Time to Ascend 4 Stairs
+          :definition: 4 Stair Ascend - Time taken to ascend 4 stairs.
+          :preferredTerm: 4 Stair Ascend - Time to Ascend 4 Stairs
+          :topLevel: false
+          :parentIdentifier: ''
+          :children: []
+        - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+          :id: ''
+          :namespace: ''
+          :label: 4 Stair Ascend - Test Grade
+          :extension_properties: []
+          :identifier: C141707
+          :notation: A4STR102
+          :synonym: A4STR1-Test Grade
+          :definition: 4 Stair Ascend - Test grade.
+          :preferredTerm: 4 Stair Ascend - Test Grade
+          :topLevel: false
+          :parentIdentifier: ''
+          :children: []
+        - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+          :id: ''
+          :namespace: ''
+          :label: 4 Stair Ascend - Wear Orthoses
+          :extension_properties: []
+          :identifier: C147590
+          :notation: A4STR103
+          :synonym: A4STR1-Wear Orthoses
+          :definition: 4 Stair Ascend - Did subject wear orthoses?
+          :preferredTerm: 4 Stair Ascend - Wear Orthoses
+          :topLevel: false
+          :parentIdentifier: ''
+          :children: []
+        :extensible: false
+      - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+        :id: ''
+        :namespace: ''
+        :label: 4 Stair Ascend Functional Test Test Name
+        :extension_properties: []
+        :identifier: C141662
+        :notation: A4STR1TN
+        :synonym: 4 Stair Ascend Functional Test Test Name
+        :definition: 4 Stair Ascend test name.
+        :preferredTerm: CDISC Functional Test 4 Stair Ascend Test Name Terminology
+        :topLevel: false
+        :parentIdentifier: ''
+        :children:
+        - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+          :id: ''
+          :namespace: ''
+          :label: 4 Stair Ascend - Time to Ascend 4 Stairs
+          :extension_properties: []
+          :identifier: '141706'
+          :notation: A4STR1-Time to Ascend 4 Stairs
+          :synonym: A4STR1-Time to Ascend 4 Stairs
+          :definition: 4 Stair Ascend - Time taken to ascend 4 stairs.
+          :preferredTerm: 4 Stair Ascend - Time to Ascend 4 Stairs
+          :topLevel: false
+          :parentIdentifier: ''
+          :children: []
+        - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+          :id: ''
+          :namespace: ''
+          :label: 4 Stair Ascend - Test Grade
+          :extension_properties: []
+          :identifier: C141
+          :notation: A4STR1-Test Grade
+          :synonym: A4STR1-Test Grade
+          :definition: 4 Stair Ascend - Test grade.
+          :preferredTerm: 4 Stair Ascend - Test Grade
+          :topLevel: false
+          :parentIdentifier: ''
+          :children: []
+        - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+          :id: ''
+          :namespace: ''
+          :label: 4 Stair Ascend - Wear Orthoses
+          :extension_properties: []
+          :identifier: C14759X
+          :notation: A4STR1-Wear Orthoses
+          :synonym: A4STR1-Wear Orthoses
+          :definition: 4 Stair Ascend - Did subject wear orthoses?
+          :preferredTerm: 4 Stair Ascend - Wear Orthoses
+          :topLevel: false
+          :parentIdentifier: ''
+          :children: []
+        :extensible: false
+      - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+        :id: ''
+        :namespace: ''
+        :label: ''
+        :extension_properties: []
+        :identifier: C115388
+        :notation: SIXMW1TC
+        :synonym: 6 Minute Walk Functional Test Test Code
+        :definition: 6 Minute Walk Test test code.
+        :preferredTerm: CDISC Functional Test 6MWT Test Code Terminology
+        :topLevel: false
+        :parentIdentifier: ''
+        :children:
+        - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+          :id: ''
+          :namespace: ''
+          :label: 6MWT - Distance at 6 Minutes
+          :extension_properties: []
+          :identifier: ''
+          :notation: SIXMW106
+          :synonym: SIXMW1-Distance at 6 Minutes
+          :definition: 6 Minute Walk Test - Distance at 6 minutes.
+          :preferredTerm: 6MWT - Distance at 6 Minutes
+          :topLevel: false
+          :parentIdentifier: ''
+          :children: []
+        - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+          :id: ''
+          :namespace: ''
+          :label: 6MWT - Distance at 1 Minute
+          :extension_properties: []
+          :identifier: C115800
+          :notation: SIXMW101
+          :synonym: SIXMW1-Distance at 1 Minute
+          :definition: 6 Minute Walk Test - Distance at 1 minute.
+          :preferredTerm: 6MWT - Distance at 1 Minute
+          :topLevel: false
+          :parentIdentifier: ''
+          :children: []
+        - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+          :id: ''
+          :namespace: ''
+          :label: 6MWT - Distance at 2 Minutes
+          :extension_properties: []
+          :identifier: C115801
+          :notation: ''
+          :synonym: SIXMW1-Distance at 2 Minutes
+          :definition: 6 Minute Walk Test - Distance at 2 minutes.
+          :preferredTerm: 6MWT - Distance at 2 Minutes
+          :topLevel: false
+          :parentIdentifier: ''
+          :children: []
+        - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+          :id: ''
+          :namespace: ''
+          :label: 6MWT - Distance at 3 Minutes
+          :extension_properties: []
+          :identifier: C115802
+          :notation: SIXMW103
+          :synonym: ''
+          :definition: 6 Minute Walk Test - Distance at 3 minutes.
+          :preferredTerm: 6MWT - Distance at 3 Minutes
+          :topLevel: false
+          :parentIdentifier: ''
+          :children: []
+        - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+          :id: ''
+          :namespace: ''
+          :label: 6MWT - Distance at 4 Minutes
+          :extension_properties: []
+          :identifier: C115803
+          :notation: SIXMW104
+          :synonym: SIXMW1-Distance at 4 Minutes
+          :definition: ''
+          :preferredTerm: 6MWT - Distance at 4 Minutes
+          :topLevel: false
+          :parentIdentifier: ''
+          :children: []
+        - :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+          :id: ''
+          :namespace: ''
+          :label: ''
+          :extension_properties: []
+          :identifier: C115804
+          :notation: SIXMW105
+          :synonym: SIXMW1-Distance at 5 Minutes
+          :definition: 6 Minute Walk Test - Distance at 5 minutes.
+          :preferredTerm: ''
+          :topLevel: false
+          :parentIdentifier: ''
+          :children: []
+        :extensible: false
+      :ordinal: 1
+:children: []
+:classifications:
+  :datatype: false
+  :core: false
+  :compliance: false

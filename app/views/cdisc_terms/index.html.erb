@@ -1,0 +1,67 @@
+<% content_for :page_title do %> CDISC Terminology Changes <% end %>
+
+<%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
+<%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/timeline_cdisc', 'shared/alphabetical_filter', 'cdisc_term/index'%>
+<%= stylesheet_link_tag 'shared/alphabetical_filter','shared/timeline_cdisc', media: 'all' %>
+
+<%= javascript_tag "var changes_path = '#{compare_data_thesauri_path(id: "compareThIdFirst", thesauri: {thesaurus_id: "compareThIdSecond"})}';" %>
+
+<style>
+
+  .rowpad {
+    padding-top: 20px;
+  }
+
+  html,body {
+    height: unset !important;
+    min-width: 768px;
+  }
+
+  #main_area{
+    overflow-x: hidden !important;
+  }
+
+  #results_div .icon-filter{  margin-left:4px; }
+
+  .timeline-outer-container{
+    max-width: 90%;
+  }
+
+  #alerts {
+    top: 50px;
+  }
+
+</style>
+
+<div class="row rowpad">
+  <div class="col-md-12">
+      <div class="btns-wrap">
+        <div class="font-light">Shortcuts:</div>
+        <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: history_cdisc_terms_path, id: "btn-browse-cdisc",
+          icon: "icon-browse-all", btn_text: "Browse every version of CDISC CT", btn_class: ""} %>
+        <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: changes_thesauri_path(@current_id), id: "btn-see-changes",
+          icon: "icon-see-changes", btn_text: "See the changes across versions", btn_class: ""} %>
+        <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: submission_thesauri_path(@current_id), id: "btn-submission-changes",
+          icon: "icon-submission-changes", btn_text: "See submission value changes across versions", btn_class: ""} %>
+        <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: search_thesauri_path(@latest_id), id: "btn-search-latest",
+          icon: "icon-search-latest", btn_text: "Search the latest version of CDISC CT", btn_class: ""} %>
+          <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: thesauri_path(@latest_id), id: "btn-browse-latest",
+            icon: "icon-view-circle", btn_text: "Browse the latest version of CDISC CT", btn_class: ""} %>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="divider bg-grey-light" style="width: 90%; margin-bottom: 0px;"></div>
+  <div class="col-md-12 card">
+    <div class="card-header">Changes between two CDISC Terminology versions</div>
+      <div class="card-content">
+        <div class="row">
+          <%= render partial: "shared/cdisc_terms/timeline_slider", :locals => {
+            title_text: "Select versions by dragging the sliders and click Display to display changes:",
+            start_year: @versions_yr_span[0], end_year: @versions_yr_span[1], versions_normalized: @versions_normalized, versions: @versions, slider_pretexts: ["from", "to"],
+            button: (render partial: "shared/buttons/ico_btn", :locals => {link_path: "#", id: "go_button", icon: "icon-browse-all", btn_text: "Display", btn_class: "highlight"}).html_safe }%>
+        </div>
+        <%= render partial: "shared/thesauri/terminologies_compare_panel" %>
+      </div>
+    </div>
+  </div>

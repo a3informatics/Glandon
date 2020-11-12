@@ -1,0 +1,46 @@
+<% content_for :page_title do %> Ad-Hoc Report Results <% end %>
+
+<%= javascript_pack_tag 'ad_hoc_reports/results' %>
+<%= javascript_tag "let reportStatusUrl='#{run_progress_ad_hoc_report_path(@report)}',
+												reportResultsUrl='#{run_results_ad_hoc_report_path(@report)}';" %>
+
+<% breadcrumb ([id_to_type(:ad_hoc_reports), {link: "#", text: "Results"}]) %>
+
+<div class="row">
+	<%= render layout: "shared/headers/header_generic", :locals => { badge: "icon-document", header_title: "",
+		main_text: "Report: #{@report.label}", sub_texts: "Showing query results." } do %>
+
+		<div class="actions-wrap" role="group" aria-label="First group">
+
+			<% if policy(AdHocReport).export_csv? %>
+				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: export_csv_ad_hoc_report_path(@report), id: "export_csv",
+					icon: "icon-file", text: "Export CSV" } %>
+			<% end %>
+
+			<%= render partial: "shared/buttons/return", :locals => { url: ad_hoc_reports_path } %>
+
+		</div>
+
+	<% end %>
+</div>
+
+<div class="row">
+
+	<div class="col-md-12 card wide">
+		<div class="card-header">Ad-Hoc Report Results</div>
+		<div class="card-content table-cardstyle all-columns">
+			<table id="results" class="table">
+				<thead>
+			  	<tr>
+			  		<% @columns.each do |key, entry| %>
+			    		<th><%= entry[:label] %></th>
+			    	<% end %>
+			  	</tr>
+				</thead>
+				<tbody>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+
+</div>

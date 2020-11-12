@@ -1,0 +1,79 @@
+<BiomedicalConceptTemplates Version="1">
+	<BiomedicalConceptTemplate Id="BCT AE" Name="Adverse Event Biomedical Concept Template">
+		<Class Name="AdverseEvent">
+			<Attribute Alias="Result" Name="value" Datatype="ST">
+				<Property Alias="Result Value (--TERM)"  Name="value"/>
+			</Attribute>
+			<Attribute Alias="Category" Name="categoryCode">
+				<Property Alias="Category (--CAT)" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Subcategory" Name="subcategoryCode">
+				<Property Alias="Subcategory (--SCAT)" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Severity" Name="severityCode">
+				<Property Alias="Severity (--SEV)" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Serious" Name="seriousnessCode">
+				<Property Alias="Serious Event (--SER)" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Pattern" Name="occurrencepatternCode">
+				<Property Alias="Pattern of Adverse Event (--PATT)" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Hospitalization" Name="hospitalizationRequiredIndicator">
+				<Property Alias="Hospitalization Required (--SHOSP)" Name="value"/>
+			</Attribute>
+			<Attribute Alias="Dates" Name="occurrenceDateRange">
+				<Property Alias="Start DateTime" Name="low">
+					<Property Alias="Start DateTime (--STDTC)" Name="value"/>
+				</Property>
+				<Property Alias="End DateTime" Name="high">
+					<Property Alias="End DateTime (--ENDTC)" Name="value"/>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="AdverseEventActionTaken">
+			<Attribute Alias="Action taken" Name="typeCode">
+				<Property Alias="Action taken (--ACN)"  Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="AdverseEventActionTaken2">
+			<Attribute Alias="Other Action" Name="typeCode">
+				<Property Alias="Other Action Taken (--ACNOTH)"  Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation"> 
+			<Attribute Alias="Site of Administration" Name="targetAnatomicSiteCode">
+				<Property Alias="Site of Administration (--LOC)" Name="code"/> 
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservationResult5"> 
+			<Attribute Alias="Causality" Name="value" Datatype="CD">
+				<Property Alias="Causality (--REL)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservationResult2"> 
+			<Attribute Alias="Relationship" Name="value" Datatype="ST">
+				<Property Alias="Relationship to Non-Study Treatment (--RELNST)" Name="value"/>
+			</Attribute>
+		</Class>
+		<Class Name="AdverseEventOutcomeResult">
+			<Attribute Alias="Outcome" Name="value" Datatype="CD">
+				<Property Alias="Outcome (--OUT)"  Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservationResult3"> 
+			<Attribute Alias="Cancer" Name="value" Datatype="CD">
+				<Property Alias="Involves Cancer (--SCAN)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservationResult4"> 
+			<Attribute Alias="Death" Name="value" Datatype="CD">
+				<Property Alias="Results in Death (--SDTH)" Name="code"/>
+			</Attribute>
+		</Class>
+	</BiomedicalConceptTemplate>
+</BiomedicalConceptTemplates>
+

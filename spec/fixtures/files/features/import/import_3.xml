@@ -1,0 +1,1127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+*****************************************************
+     Written by XClinical Study Composer
+     Author: Manuel Neukum <manuel.neukum@xclinical.com> XClinical
+     Info:   
+*****************************************************
+-->
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xc="http://www.xclinical.com/xmlns/odm/xc-2-6" FileType="Snapshot" FileOID="leopharma-library-lvl1" CreationDateTime="2015-02-09T13:49:27+01:00" AsOfDateTime="2015-07-07T14:59:22+02:00" Granularity="All" ODMVersion="1.3" XClinicalVersion="marvin-2.6" Originator="LEO Pharma">  
+  <Study OID="leopharma-library-global"> 
+    <GlobalVariables> 
+      <StudyName>Global CRF Modules</StudyName>  
+      <StudyDescription>Global CRF Modules</StudyDescription>  
+      <ProtocolName>leopharma-library-global</ProtocolName> 
+    </GlobalVariables>  
+    <BasicDefinitions> 
+      <MeasurementUnit OID="m_lb" Name="pounds"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">lb</TranslatedText> 
+        </Symbol>  
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_kg" Name="kilogramm"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">kg</TranslatedText> 
+        </Symbol>  
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_in" Name="inch"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">in</TranslatedText> 
+        </Symbol>  
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_cm" Name="centimeter"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">cm</TranslatedText> 
+        </Symbol>  
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_fahrenheit" Name="Fahrenheit"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">Fahrenheit</TranslatedText> 
+        </Symbol>  
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_celsius" Name="Celsius"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">Celsius</TranslatedText> 
+        </Symbol>  
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_mmhg" Name="mmHg"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">mmHg</TranslatedText> 
+        </Symbol>  
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_bpm" Name="bpm"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">bpm</TranslatedText> 
+        </Symbol>  
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_mg" Name="mg"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">mg</TranslatedText> 
+        </Symbol>  
+        <xc:Description> 
+          <TranslatedText>The unit of mass equal to one thousandth of a gram or 1000 micrograms. One milligram equals approximately 0.015432 grain or 35.274 x 10E-6 ounce.(NCI)</TranslatedText> 
+        </xc:Description> 
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_mgml" Name="mg/mL"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">mg/mL</TranslatedText> 
+        </Symbol>  
+        <xc:Description> 
+          <TranslatedText>A unit of concentration or mass density equal to one milligram of substance per milliliter of solution or one gram of substance per liter of solution.</TranslatedText> 
+        </xc:Description> 
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_ml" Name="mL"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">mL</TranslatedText> 
+        </Symbol>  
+        <xc:Description> 
+          <TranslatedText>The unit of volume equal to one thousandth of a liter, one cubic centimeter, 10E-6 cubic meter, or approximately to 0.061 023 7 cubic inch.(NCI)</TranslatedText> 
+        </xc:Description> 
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_mmol" Name="mmol"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">mmol</TranslatedText> 
+        </Symbol>  
+        <xc:Description> 
+          <TranslatedText>A unit of amount of substance equal to 0.001 mole.(NCI)</TranslatedText> 
+        </xc:Description> 
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_mol" Name="mol"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">mol</TranslatedText> 
+        </Symbol>  
+        <xc:Description> 
+          <TranslatedText>A unit defined as the amount of substance that contains as many elementary units as there are atoms in 0.012 kg of carbon-12. When the mole is used, the elementary entities must be specified and may be atoms, molecules, ions, electrons, other particles, or specified groups of such particles.(NCI)</TranslatedText> 
+        </xc:Description> 
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_ug" Name="ug"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">ug</TranslatedText> 
+        </Symbol>  
+        <xc:Description> 
+          <TranslatedText>The unit of mass equal to one millionth of a gram or one thousandth of a milligram.(NCI)</TranslatedText> 
+        </xc:Description> 
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_percent" Name="%"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">%</TranslatedText> 
+        </Symbol>  
+      </MeasurementUnit>  
+      <MeasurementUnit OID="m_mm" Name="mm"> 
+        <Symbol> 
+          <TranslatedText xml:lang="en">mm</TranslatedText> 
+        </Symbol>  
+      </MeasurementUnit> 
+    </BasicDefinitions>  
+    <MetaDataVersion OID="0.1" Name="0.1" Description="Use of controlled terminology CDISC_CT.SDTM.2014-12-19"> 
+      <Protocol> 
+        <StudyEventRef StudyEventOID="e_del_screening" OrderNumber="1" Mandatory="Yes"/>  
+        <StudyEventRef StudyEventOID="e_del_unscheduled" OrderNumber="2" Mandatory="Yes"/>  
+        <StudyEventRef StudyEventOID="e_eot" OrderNumber="3" Mandatory="Yes"/>  
+        <StudyEventRef StudyEventOID="e_cm" OrderNumber="4" Mandatory="Yes"/>  
+        <StudyEventRef StudyEventOID="e_pr" OrderNumber="5" Mandatory="Yes"/>  
+        <StudyEventRef StudyEventOID="e_co" OrderNumber="6" Mandatory="Yes"/>  
+        <StudyEventRef StudyEventOID="e_del_ecg" OrderNumber="7" Mandatory="Yes"/>  
+      </Protocol>  
+      <StudyEventDef OID="e_del_screening" Name="Screening" Type="Scheduled" Repeating="No"> 
+        <FormRef FormOID="f_ie" OrderNumber="2" Mandatory="Yes"/>  
+        <FormRef FormOID="f_del_visitinfo" OrderNumber="1" Mandatory="Yes"/>  
+        <FormRef FormOID="f_mh" OrderNumber="3" Mandatory="Yes"/>  
+        <FormRef FormOID="f_preg" OrderNumber="4" Mandatory="Yes"/>  
+        <FormRef FormOID="f_et" OrderNumber="5" Mandatory="Yes"/>  
+        <xc:DisplayName> 
+          <TranslatedText xml:lang="en">Screening</TranslatedText> 
+        </xc:DisplayName>  
+      </StudyEventDef>  
+      <StudyEventDef OID="e_del_unscheduled" Name="Unscheduled Visit" Type="Scheduled" Repeating="No"> 
+        <FormRef FormOID="f_preg" OrderNumber="2" Mandatory="Yes"/>  
+        <FormRef FormOID="f_lb" OrderNumber="3" Mandatory="Yes"/>  
+        <FormRef FormOID="f_del_lb_simple" OrderNumber="4" Mandatory="Yes"/>  
+        <FormRef FormOID="f_vreason" OrderNumber="1" Mandatory="Yes"/>  
+      </StudyEventDef>  
+      <StudyEventDef OID="e_eot" Name="End of Trial Visit" Type="Scheduled" Repeating="No"> 
+        <FormRef FormOID="f_eot" OrderNumber="1" Mandatory="Yes"/>  
+      </StudyEventDef>  
+      <StudyEventDef OID="e_cm" Name="Concomitant Medication" Type="Scheduled" Repeating="No"> 
+        <FormRef FormOID="f_cm" OrderNumber="1" Mandatory="Yes"/>  
+      </StudyEventDef>  
+      <StudyEventDef OID="e_pr" Name="Concomitant treatment and procedures" Type="Scheduled" Repeating="No"> 
+        <FormRef FormOID="f_pr" OrderNumber="1" Mandatory="Yes"/>  
+      </StudyEventDef>  
+      <StudyEventDef OID="e_co" Name="General Comments" Type="Scheduled" Repeating="No"> 
+        <FormRef FormOID="f_co" OrderNumber="1" Mandatory="Yes"/>  
+      </StudyEventDef>  
+      <StudyEventDef OID="e_del_ecg" Name="ECG" Type="Scheduled" Repeating="No"> 
+        <FormRef FormOID="f_ecg" OrderNumber="1" Mandatory="Yes"/>  
+      </StudyEventDef>  
+      <FormDef OID="f_ie" Name="Inclusion/Exclusion Criteria" Repeating="No"> 
+        <ItemGroupRef ItemGroupOID="g_ie_protocol" OrderNumber="1" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_ie_inclusion" OrderNumber="2" Mandatory="No"/>  
+        <ItemGroupRef ItemGroupOID="g_ie_exclusion" OrderNumber="3" Mandatory="No"/>  
+      </FormDef>  
+      <FormDef OID="f_del_visitinfo" Name="Visit Info" Repeating="No"> 
+        <ItemGroupRef ItemGroupOID="g_vd" OrderNumber="1" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_ic" OrderNumber="2" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_wo" OrderNumber="3" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_dm" OrderNumber="4" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_screen" OrderNumber="5" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_vs" OrderNumber="6" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_pe" OrderNumber="7" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_rand" OrderNumber="8" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_comp" OrderNumber="9" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_photo" OrderNumber="10" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_skin" OrderNumber="11" Mandatory="Yes"/>  
+      </FormDef>  
+      <FormDef OID="f_mh" Name="Medical/Surgical History" Repeating="No"> 
+        <ItemGroupRef ItemGroupOID="g_mh" OrderNumber="2" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_mh_mhyn" OrderNumber="1" Mandatory="Yes"/>  
+      </FormDef>  
+      <FormDef OID="f_preg" Name="Pregnancy Form" Repeating="No"> 
+        <ItemGroupRef ItemGroupOID="g_upt" OrderNumber="2" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_cbp" OrderNumber="1" Mandatory="Yes"/>  
+      </FormDef>  
+      <FormDef OID="f_lb" Name="Laboratory Tests" Repeating="Yes"> 
+        <ItemGroupRef ItemGroupOID="g_lb" OrderNumber="1" Mandatory="No"/>  
+      </FormDef>  
+      <FormDef OID="f_del_lb_simple" Name="Laboratory Tests" Repeating="No"> 
+        <ItemGroupRef ItemGroupOID="g_lb_simple" OrderNumber="1" Mandatory="Yes"/>  
+      </FormDef>  
+      <FormDef OID="f_et" Name="Early Termination" Repeating="No"> 
+        <ItemGroupRef ItemGroupOID="g_et" OrderNumber="1" Mandatory="Yes"/>  
+      </FormDef>  
+      <FormDef OID="f_eot" Name="End of Trial Form" Repeating="No"> 
+        <ItemGroupRef ItemGroupOID="g_eot" OrderNumber="2" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_vd" OrderNumber="1" Mandatory="Yes"/>  
+        <xc:InformationText Type="help" Position="before"> 
+          <TranslatedText xml:lang="en">Please complete this form for ALL subjects when they complete/withdraw from the study.</TranslatedText> 
+        </xc:InformationText>  
+      </FormDef>  
+      <FormDef OID="f_cm" Name="Concomitant Medication Form" Repeating="No"> 
+        <ItemGroupRef ItemGroupOID="g_cm" OrderNumber="2" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_cm_cmyn" OrderNumber="1" Mandatory="Yes"/>  
+      </FormDef>  
+      <FormDef OID="f_pr" Name="Concomitant Treatment and Procedures Form" Repeating="No"> 
+        <ItemGroupRef ItemGroupOID="g_pr_pryn" OrderNumber="1" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_pr" OrderNumber="2" Mandatory="Yes"/>  
+      </FormDef>  
+      <FormDef OID="f_co" Name="General Comments Form" Repeating="No"> 
+        <ItemGroupRef ItemGroupOID="g_co_coyn" OrderNumber="1" Mandatory="Yes"/>  
+        <ItemGroupRef ItemGroupOID="g_co" OrderNumber="2" Mandatory="Yes"/>  
+      </FormDef>  
+      <FormDef OID="f_ecg" Name="ECG Form" Repeating="No"> 
+        <ItemGroupRef ItemGroupOID="g_ecgyn" OrderNumber="1" Mandatory="Yes"/>  
+      </FormDef>  
+      <FormDef OID="f_vreason" Name="Reason for the Visit" Repeating="No"> 
+        <ItemGroupRef ItemGroupOID="g_vreason" OrderNumber="1" Mandatory="Yes"/>  
+      </FormDef>  
+      <ItemGroupDef OID="g_vd" Name="Visit Date" Repeating="No" SASDatasetName="VISDT"> 
+        <ItemRef ItemOID="i_vd_visitdate" Mandatory="Yes" OrderNumber="1"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_ie_protocol" Name="Inclusion/Exclusion Criteria" Repeating="No" SASDatasetName="IEPROT"> 
+        <ItemRef ItemOID="i_ie_ieyn" Mandatory="Yes" OrderNumber="1"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_ie_inclusion" Name="Inclusion Criteria Number(s)" Repeating="Yes" SASDatasetName="IEIN"> 
+        <ItemRef ItemOID="i_ie_no" Mandatory="Yes" OrderNumber="1"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_ie_exclusion" Name="Exclusion Criteria Number(s)" Repeating="Yes" SASDatasetName="IEEX"> 
+        <ItemRef ItemOID="i_ie_no" Mandatory="Yes" OrderNumber="1"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_ic" Name="Informed Consent" Repeating="No" SASDatasetName="IC"> 
+        <ItemRef ItemOID="i_vc_dat" Mandatory="Yes" OrderNumber="1"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_wo" Name="Washout" Repeating="No" SASDatasetName="WO"> 
+        <ItemRef ItemOID="i_wo_woyn" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_wo_date" Mandatory="Yes" OrderNumber="2"/>  
+        <ItemRef ItemOID="i_wo_drug" Mandatory="Yes" OrderNumber="3"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_dm" Name="Demographics" Repeating="No" SASDatasetName="DM"> 
+        <ItemRef ItemOID="i_dm_dob" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_dm_age" Mandatory="Yes" OrderNumber="2"/>  
+        <ItemRef ItemOID="i_dm_sex" Mandatory="Yes" OrderNumber="3"/>  
+        <ItemRef ItemOID="i_dm_race" Mandatory="Yes" OrderNumber="4"/>  
+        <ItemRef ItemOID="i_dm_ethnic" Mandatory="Yes" OrderNumber="6"/>  
+        <ItemRef ItemOID="i_other" Mandatory="Yes" OrderNumber="5"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_screen" Name="Screening failure" Repeating="No" SASDatasetName="SCFAIL"> 
+        <ItemRef ItemOID="i_screen_fail" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_screen_fail_rsn" Mandatory="Yes" OrderNumber="2"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_vs" Name="Vital Signs" Repeating="No" SASDatasetName="VS"> 
+        <ItemRef ItemOID="i_vs_height" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_vs_weight" Mandatory="Yes" OrderNumber="2"/>  
+        <ItemRef ItemOID="i_vs_temp" Mandatory="Yes" OrderNumber="3"/>  
+        <ItemRef ItemOID="i_vs_temp_loc" Mandatory="Yes" OrderNumber="4"/>  
+        <ItemRef ItemOID="i_vs_sysbp" Mandatory="Yes" OrderNumber="5"/>  
+        <ItemRef ItemOID="i_vs_diabp" Mandatory="Yes" OrderNumber="6"/>  
+        <ItemRef ItemOID="i_vs_hr" Mandatory="Yes" OrderNumber="7"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_pe" Name="Physical Examination - Abbreviated" Repeating="Yes" SASDatasetName="PE"> 
+        <ItemRef ItemOID="i_pe_res" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_reason" Mandatory="Yes" OrderNumber="2"/>  
+        <xc:InformationText Type="help" Position="before"> 
+          <TranslatedText xml:lang="en">Any abnormalities observed at this visit must be listed in relevant Medical History as concurrent diagnosis.</TranslatedText> 
+        </xc:InformationText>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_mh" Name="Medical History" Repeating="Yes" SASDatasetName="MH"> 
+        <ItemRef ItemOID="i_mh_diag" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_mh_outcome" Mandatory="Yes" OrderNumber="2"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_mh_mhyn" Name="Medical History" Repeating="No" SASDatasetName="MH"> 
+        <ItemRef ItemOID="i_mh_mhyn" Mandatory="Yes" OrderNumber="1"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_upt" Name="Urine Pregnancy Test (UPT)" Repeating="No" SASDatasetName="UPT"> 
+        <ItemRef ItemOID="i_upt_res" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_upt_dat" Mandatory="Yes" OrderNumber="2"/>  
+        <xc:InformationText Type="help" Position="before"> 
+          <TranslatedText xml:lang="en">Please check the appropriate response</TranslatedText> 
+        </xc:InformationText>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_lb" Name="Laboratory Tests" Repeating="Yes" SASDatasetName="LB"> 
+        <ItemRef ItemOID="i_lb_cat" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_lb_sampdate" Mandatory="Yes" OrderNumber="4"/>  
+        <ItemRef ItemOID="i_lb_samples" Mandatory="Yes" OrderNumber="2"/>  
+        <ItemRef ItemOID="i_lb_rsn_notcollected" Mandatory="Yes" OrderNumber="3"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_lb_simple" Name="Laboratory Tests" Repeating="No" SASDatasetName="LB"> 
+        <ItemRef ItemOID="i_lb_clin" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_notdone" Mandatory="Yes" OrderNumber="2"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_rand" Name="Randomisation" Repeating="No" SASDatasetName="RAND"> 
+        <ItemRef ItemOID="i_rand_randyn" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_rand_no" Mandatory="Yes" OrderNumber="2"/>  
+        <ItemRef ItemOID="i_rand_dat" Mandatory="Yes" OrderNumber="3"/>  
+        <xc:DisplayName> 
+          <TranslatedText xml:lang="en">Randomisation</TranslatedText> 
+        </xc:DisplayName>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_comp" Name="Compliance" Repeating="No" SASDatasetName="COMP"> 
+        <ItemRef ItemOID="i_comp_compyn" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_no" Mandatory="Yes" OrderNumber="2"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_et" Name="Early Termination" Repeating="No" SASDatasetName="ET"> 
+        <ItemRef ItemOID="i_et_visit" Mandatory="Yes" OrderNumber="1"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_eot" Name="End of Trial" Repeating="No" SASDatasetName="EOT"> 
+        <ItemRef ItemOID="i_eot_lastvisit" Mandatory="Yes" OrderNumber="5"/>  
+        <ItemRef ItemOID="i_eot_med" Mandatory="Yes" OrderNumber="6"/>  
+        <ItemRef ItemOID="i_eot_med_last" Mandatory="Yes" OrderNumber="7"/>  
+        <ItemRef ItemOID="i_eot_eotyn" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_eot_reason" Mandatory="Yes" OrderNumber="2"/>  
+        <ItemRef ItemOID="i_other" Mandatory="Yes" OrderNumber="3"/>  
+        <ItemRef ItemOID="i_comment" Mandatory="Yes" OrderNumber="4"/>  
+        <xc:InformationText Type="help" Position="after"> 
+          <TranslatedText xml:lang="en">* Please specify other reason in the corresponding field &lt;br/&gt; ** Please specify in the comment field</TranslatedText> 
+        </xc:InformationText>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_cm" Name="Concomitant Medication" Repeating="Yes" SASDatasetName="CM"> 
+        <ItemRef ItemOID="i_cm_no" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_cm_trt" Mandatory="Yes" OrderNumber="2"/>  
+        <ItemRef ItemOID="i_cm_route" Mandatory="Yes" OrderNumber="3"/>  
+        <ItemRef ItemOID="i_cm_dose" Mandatory="No" OrderNumber="5"/>  
+        <ItemRef ItemOID="i_cm_freq" Mandatory="No" OrderNumber="4"/>  
+        <ItemRef ItemOID="i_cm_dose_txt" Mandatory="No" OrderNumber="6"/>  
+        <ItemRef ItemOID="i_cm_indication" Mandatory="Yes" OrderNumber="7"/>  
+        <ItemRef ItemOID="i_cm_startedbefore" Mandatory="Yes" OrderNumber="8"/>  
+        <ItemRef ItemOID="i_cm_stdat" Mandatory="Yes" OrderNumber="9"/>  
+        <ItemRef ItemOID="i_cm_enddat" Mandatory="Yes" OrderNumber="10"/>  
+        <ItemRef ItemOID="i_cm_ongoing" Mandatory="Yes" OrderNumber="11"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_cm_cmyn" Name="Concomitant Medication" Repeating="No" SASDatasetName="CMYN"> 
+        <ItemRef ItemOID="i_cm_cmyn" Mandatory="Yes" OrderNumber="1"/>  
+        <xc:InformationText Type="help" Position="after"> 
+          <TranslatedText xml:lang="en">If yes, please list all medication (except study medication) being used from screening onwards.</TranslatedText> 
+        </xc:InformationText>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_pr_pryn" Name="Concomitant treatment and procedures" Repeating="No" SASDatasetName="PRYN"> 
+        <ItemRef ItemOID="i_pr_pryn" Mandatory="Yes" OrderNumber="1"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_pr" Name="Has the subject received any other concomitant treatment or procedures?" Repeating="Yes" SASDatasetName="PR"> 
+        <ItemRef ItemOID="i_pr_trt" Mandatory="Yes" OrderNumber="2"/>  
+        <ItemRef ItemOID="i_pr_id" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_pr_stdat" Mandatory="Yes" OrderNumber="3"/>  
+        <ItemRef ItemOID="i_pr_enddat" Mandatory="Yes" OrderNumber="4"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_photo" Name="Photographs" Repeating="No" SASDatasetName="PHOTO"> 
+        <ItemRef ItemOID="i_photo_photoyn" Mandatory="Yes" OrderNumber="1"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_co_coyn" Name="General Comments" Repeating="No" SASDatasetName="COYN"> 
+        <ItemRef ItemOID="i_co_coyn" Mandatory="Yes" OrderNumber="1"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_co" Name="General Comments" Repeating="Yes" SASDatasetName="CO"> 
+        <ItemRef ItemOID="i_co_visit" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_co" Mandatory="Yes" OrderNumber="2"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_cbp" Name="Childbearing Potential" Repeating="No" SASDatasetName="CBP"> 
+        <ItemRef ItemOID="i_cbp" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_other" Mandatory="Yes" OrderNumber="2"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_ecgyn" Name="ECG" Repeating="No" SASDatasetName="ECG"> 
+        <ItemRef ItemOID="i_ecg_ecgyn" Mandatory="Yes" OrderNumber="1"/>  
+        <ItemRef ItemOID="i_notdone" Mandatory="Yes" OrderNumber="2"/>  
+        <ItemRef ItemOID="i_ecg_date" Mandatory="Yes" OrderNumber="3"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_vreason" Name="Reason for the Visit" Repeating="No" SASDatasetName="VREASON"> 
+        <ItemRef ItemOID="i_vreason" Mandatory="Yes" OrderNumber="1"/>  
+      </ItemGroupDef>  
+      <ItemGroupDef OID="g_skin" Name="Fitzpatrick Skin type" Repeating="No" SASDatasetName="SKIN"> 
+        <ItemRef ItemOID="i_skin_class" Mandatory="Yes" OrderNumber="1"/>  
+      </ItemGroupDef>  
+      <ItemDef OID="i_vd_visitdate" Name="Visit Date (DDMMYYYY)" DataType="date" Length="10" SASFieldName="VISDAT"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Visit Date (DDMMYYYY)</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_ie_ieyn" Name="Has the subject met all inclusion/exclusion criteria according to protocol?" DataType="text" Length="1" SASFieldName="IEYN"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Has the subject met all inclusion/exclusion criteria according to protocol?</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_yesno"/>  
+      </ItemDef>  
+      <ItemDef OID="i_ie_no" Name="Number" DataType="integer" Length="2" SASFieldName="IENO"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Number</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_vc_dat" Name="Date of signature of the informed consent form" DataType="date" SASFieldName="ICDAT" Length="10"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Date of signature of the informed consent form</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_wo_woyn" Name="Did the Subject start a washout period?" DataType="text" Length="1" SASFieldName="WOYN"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Did the Subject start a washout period?</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_yesno"/>  
+      </ItemDef>  
+      <ItemDef OID="i_wo_date" Name="Washout start date (DDMMMYYYY)" DataType="date" Length="10" SASFieldName="WODAT"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Washout start date (DDMMMYYYY)</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_wo_drug" Name="If yes, please specify drug requiring washout" DataType="text" Length="100" SASFieldName="WODRUG"> 
+        <Question> 
+          <TranslatedText xml:lang="en">If yes, please specify drug requiring washout</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_dm_dob" Name="Date of Birth" DataType="date" Length="10" SASFieldName="BRTHDTC"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Date of Birth</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_dm_age" Name="Age" DataType="integer" Length="3" SASFieldName="AGE"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Age</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_dm_sex" Name="Sex" DataType="text" SASFieldName="SEX" Length="1"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Sex</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_sex"/>  
+      </ItemDef>  
+      <ItemDef OID="i_dm_race" Name="Race" DataType="integer" Length="1" SASFieldName="RACE"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Race</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_race"/>  
+      </ItemDef>  
+      <ItemDef OID="i_dm_ethnic" Name="Ethnicity, as self-reported by the Subject" DataType="integer" Length="1" SASFieldName="ETHNIC"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Ethnicity, as self-reported by the Subject</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_ethnic"/>  
+      </ItemDef>  
+      <ItemDef OID="i_other" Name="If other, please specify" DataType="text" Length="200" SASFieldName="OTHER"> 
+        <Question> 
+          <TranslatedText xml:lang="en">If other, please specify</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_screen_fail" Name="Is the subject is a screening failure?" DataType="text" SASFieldName="SCFL" Length="1"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Is the subject is a screening failure?</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_yesno"/>  
+      </ItemDef>  
+      <ItemDef OID="i_screen_fail_rsn" Name="Primary reason for screen failure" DataType="text" Length="200" SASFieldName="SCFLRS"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Primary reason for screen failure</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_vs_height" Name="Height" DataType="integer" Length="3" SDSVarName="VSORRES" SASFieldName="HEIGHT"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Height</TranslatedText> 
+        </Question>  
+        <MeasurementUnitRef MeasurementUnitOID="m_in"/>  
+        <MeasurementUnitRef MeasurementUnitOID="m_cm"/>  
+      </ItemDef>  
+      <ItemDef OID="i_vs_weight" Name="Weight" DataType="float" Length="4" SignificantDigits="1" SDSVarName="VSORRES" SASFieldName="WEIGHT"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Weight</TranslatedText> 
+        </Question>  
+        <MeasurementUnitRef MeasurementUnitOID="m_lb"/>  
+        <MeasurementUnitRef MeasurementUnitOID="m_kg"/>  
+      </ItemDef>  
+      <ItemDef OID="i_vs_temp" Name="Temperature" DataType="float" Length="4" SignificantDigits="1" SASFieldName="TEMP" SDSVarName="VSORRES"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Temperature</TranslatedText> 
+        </Question>  
+        <MeasurementUnitRef MeasurementUnitOID="m_fahrenheit"/>  
+        <MeasurementUnitRef MeasurementUnitOID="m_celsius"/>  
+      </ItemDef>  
+      <ItemDef OID="i_vs_temp_loc" Name="Temperature measured at" DataType="integer" SASFieldName="TEMPLOC" Length="1" SDSVarName="VSLOC"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Temperature measured at</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_temp_loc"/>  
+      </ItemDef>  
+      <ItemDef OID="i_vs_sysbp" Name="Systolic Blood Pressure" DataType="integer" SDSVarName="VSORRES" Length="3" SASFieldName="SYSBP"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Systolic Blood Pressure</TranslatedText> 
+        </Question>  
+        <MeasurementUnitRef MeasurementUnitOID="m_mmhg"/>  
+        <Alias Context="EHR4CR" Name="snomedct:27846237846"/>  
+      </ItemDef>  
+      <ItemDef OID="i_vs_diabp" Name="Diastolic Blood Pressure" DataType="integer" SDSVarName="VSORRES" Length="3" SASFieldName="DIABP"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Diastolic Blood Pressure</TranslatedText> 
+        </Question>  
+        <MeasurementUnitRef MeasurementUnitOID="m_mmhg"/>  
+      </ItemDef>  
+      <ItemDef OID="i_vs_hr" Name="Heart Rate" DataType="integer" Length="3" SDSVarName="VSORRES" SASFieldName="HR"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Heart Rate</TranslatedText> 
+        </Question>  
+        <MeasurementUnitRef MeasurementUnitOID="m_bpm"/>  
+      </ItemDef>  
+      <ItemDef OID="i_pe_res" Name="Result" DataType="integer" Length="1"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Result</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_abnorm_nd"/>  
+      </ItemDef>  
+      <ItemDef OID="i_reason" Name="Reason Not Done" DataType="text" Length="200"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Reason Not Done</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_mh_diag" Name="Diagnosis" DataType="text" Length="200" SASFieldName="MHDIAG"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Diagnosis</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_mh_mhyn" Name="Does the subject have any other relevant medical history including concurrent diagnoses NOT listed in the concomitant medication chart?" DataType="text"> 
+        <CodeListRef CodeListOID="cl_yesno"/>  
+        <xc:InformationText Type="help" Position="after"> 
+          <TranslatedText xml:lang="en">If yes, please specify one diagnosis per line below</TranslatedText> 
+        </xc:InformationText>  
+      </ItemDef>  
+      <ItemDef OID="i_mh_outcome" Name="Outcome" DataType="integer" Length="1" SASFieldName="MHOUT"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Outcome</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_ongo"/>  
+      </ItemDef>  
+      <ItemDef OID="i_upt_res" Name="Result" DataType="integer" Length="1" SASFieldName="UPTRES"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Result</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_upt"/>  
+      </ItemDef>  
+      <ItemDef OID="i_upt_dat" Name="Date" DataType="date" Length="10" SASFieldName="UPTDAT"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Date</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_lb_cat" Name="Test category" DataType="integer" Length="3" SASFieldName="LBCAT" SDSVarName="LBCAT"> 
+        <CodeListRef CodeListOID="cl_lb_test"/>  
+      </ItemDef>  
+      <ItemDef OID="i_lb_sampdate" Name="Sampling Date" DataType="date" Length="10" SASFieldName="LBDAT"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Sampling Date</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_lb_samples" Name="Have all central blood &amp; urine samples required for the visit been collected?" DataType="text" Length="2"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Have all central blood &amp; urine samples required for the visit been collected?</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_yesno_na"/>  
+      </ItemDef>  
+      <ItemDef OID="i_lb_rsn_notcollected" Name="Reason sample not collected" DataType="text" Length="200"> 
+      </ItemDef>  
+      <ItemDef OID="i_lb_clin" Name="Laboratory Tests" DataType="integer" Length="1"> 
+        <CodeListRef CodeListOID="cl_abnorm_clin_nd"/>  
+      </ItemDef>  
+      <ItemDef OID="i_notdone" Name="If Not Done, please specify reason below" DataType="text" Length="200"> 
+        <Question> 
+          <TranslatedText xml:lang="en">If Not done, please specify reason below</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_rand_randyn" Name="Was the subject randomised via e.g. the IWRS?" DataType="text" Length="1"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Was the subject randomised via e.g. the IWRS?</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_yesno"/>  
+      </ItemDef>  
+      <ItemDef OID="i_rand_no" Name="Randomisation number" DataType="text" Length="10"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Randomisation number</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_rand_dat" Name="Date of Randomisation" DataType="date" Length="10" SASFieldName="RANDAT"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Date of Randomisation</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_comp_compyn" Name="Did the Subject apply the study medication according to protocol?" DataType="text" Length="1"> 
+        <CodeListRef CodeListOID="cl_yesno"/>  
+      </ItemDef>  
+      <ItemDef OID="i_no" Name="If no, please please provide why:" DataType="text" Length="200"> 
+        <Question> 
+          <TranslatedText xml:lang="en">If no, please please provide why:</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_et_visit" Name="Visit prior to early termination" DataType="text" Length="25"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Visit prior to early termination</TranslatedText> 
+        </Question>  
+        <xc:Description> 
+          <TranslatedText>Use drop down list</TranslatedText> 
+        </xc:Description> 
+      </ItemDef>  
+      <ItemDef OID="i_eot_lastvisit" Name="Last scheduled visit for which data is recorded" DataType="integer" Length="2"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Last scheduled visit for which data is recorded</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_eot_med" Name="Did the subject apply any study medication?" DataType="text" Length="3"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Did the subject apply any study medication?</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_yesno_unk"/>  
+      </ItemDef>  
+      <ItemDef OID="i_eot_med_last" Name="If yes, please state date of last application of study medication" DataType="date" Length="10"> 
+        <Question> 
+          <TranslatedText xml:lang="en">If yes, please state date of last application of study medication</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_eot_eotyn" Name="Did the Subject complete the study as per protocol?" DataType="text"> 
+        <CodeListRef CodeListOID="cl_yesno"/>  
+      </ItemDef>  
+      <ItemDef OID="i_eot_reason" Name="Primary Reason for Leaving the Trial" DataType="integer" Length="1"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Primary Reason for Leaving the Trial</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_eot_reason"/>  
+      </ItemDef>  
+      <ItemDef OID="i_comment" Name="Comment" DataType="text" Length="200"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Comment</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_cm_no" Name="No." DataType="integer" SASFieldName="CMSPID" Length="3" SDSVarName="CMSPID"> 
+        <Question> 
+          <TranslatedText xml:lang="en">No.</TranslatedText> 
+        </Question>  
+        <xc:InformationText Type="help" Position="after"> 
+          <TranslatedText xml:lang="en">Do not enter No. as it is calculated automatically</TranslatedText> 
+        </xc:InformationText>  
+      </ItemDef>  
+      <ItemDef OID="i_cm_trt" Name="Drug Name (trade preferred)" DataType="text" Length="200" SDSVarName="CMTRT" SASFieldName="CMTRT"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Drug Name (trade preferred)</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_cm_route" Name="Route" DataType="text" SDSVarName="CMROUTE" SASFieldName="CMROUTE" Length="200"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Route</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_route"/>  
+      </ItemDef>  
+      <ItemDef OID="i_cm_dose" Name="Total daily dose" DataType="float" Length="8" SignificantDigits="2" SDSVarName="CMDOSE" SASFieldName="CMDOSE"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Total daily dose</TranslatedText> 
+        </Question>  
+        <MeasurementUnitRef MeasurementUnitOID="m_mg"/>  
+        <MeasurementUnitRef MeasurementUnitOID="m_ml"/>  
+        <MeasurementUnitRef MeasurementUnitOID="m_mmol"/>  
+        <MeasurementUnitRef MeasurementUnitOID="m_mol"/>  
+        <MeasurementUnitRef MeasurementUnitOID="m_ug"/>  
+        <MeasurementUnitRef MeasurementUnitOID="m_mgml"/>  
+        <MeasurementUnitRef MeasurementUnitOID="m_percent"/>  
+        <xc:InformationText Type="help" Position="after"> 
+          <TranslatedText xml:lang="en">Total daily dose should be entered as a number. If the dose is not daily enter N/A or PRN and enter the frequency in the unit field (eg. 2/weekly)</TranslatedText> 
+        </xc:InformationText>  
+        <xc:Description> 
+          <TranslatedText>Please attached the measurement units for the units per study.</TranslatedText> 
+        </xc:Description> 
+      </ItemDef>  
+      <ItemDef OID="i_cm_freq" Name="Frequency" DataType="text" Length="20"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Frequency</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_freq"/>  
+      </ItemDef>  
+      <ItemDef OID="i_cm_dose_txt" Name="Total daily dose (Ranges)" DataType="text" Length="200" SASFieldName="CMDOSTXT" SDSVarName="CMDOSTXT"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Total daily dose (Ranges)</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_cm_indication" Name="Indication" DataType="text" SASFieldName="CMINDC" SDSVarName="CMINDC" Length="200"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Indication</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_cm_startedbefore" Name="Started before study" DataType="text" Length="1"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Started before study</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_yesno"/>  
+        <xc:InformationText Type="help" Position="after"> 
+          <TranslatedText xml:lang="en">If started before the study, date of first dose is not expected.</TranslatedText> 
+        </xc:InformationText>  
+      </ItemDef>  
+      <ItemDef OID="i_cm_stdat" Name="Start Date" DataType="date" Length="10" SASFieldName="CMSTDTC" SDSVarName="CMSTDTC"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Start Date</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_cm_enddat" Name="Stop Date" DataType="date" Length="10" SASFieldName="CMENDTC" SDSVarName="CMENDTC"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Stop Date</TranslatedText> 
+        </Question>  
+        <xc:InformationText Type="help" Position="after"> 
+          <TranslatedText xml:lang="en">If ongoing, date of last dose is not expected</TranslatedText> 
+        </xc:InformationText>  
+      </ItemDef>  
+      <ItemDef OID="i_cm_ongoing" Name="Ongoing" DataType="text" Length="1" SASFieldName="CMONGO" SDSVarName="SUPPCM1"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Ongoing</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_yesno"/>  
+      </ItemDef>  
+      <ItemDef OID="i_cm_cmyn" Name="Did the Subject use any Concomitant Medication?" DataType="text" Length="1" SASFieldName="CMYN"> 
+        <CodeListRef CodeListOID="cl_yesno"/>  
+      </ItemDef>  
+      <ItemDef OID="i_pr_pryn" Name="Concomitant treatment and procedures" DataType="text" Length="1" SASFieldName="PRYN"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Concomitant treatment and procedures</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_yesno"/>  
+      </ItemDef>  
+      <ItemDef OID="i_pr_trt" Name="Default.Item.61" DataType="text" SDSVarName="PRTRT" SASFieldName="PRTRT" Length="200"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Reported Name of Procedure</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_pr_id" Name="No" DataType="integer" SDSVarName="PRSPID" Length="3" SASFieldName="PRSPID"> 
+        <Question> 
+          <TranslatedText xml:lang="en">No</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_pr_stdat" Name="Start date" DataType="date" SDSVarName="PRSTDTC" SASFieldName="PRSTDTC" Length="10"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Start date</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_pr_enddat" Name="Stop date" DataType="date" Length="10" SDSVarName="PRENDTC" SASFieldName="PRENDTC"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Stop date</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_photo_photoyn" Name="Were photographs taken?" DataType="text" Length="2"> 
+        <CodeListRef CodeListOID="cl_yesno_na"/>  
+      </ItemDef>  
+      <ItemDef OID="i_co_coyn" Name="Check No if there were no comments" DataType="text" Length="1" SASFieldName="COYN"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Check No if there were no comments</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_yesno"/>  
+      </ItemDef>  
+      <ItemDef OID="i_co_visit" Name="Visit Number" DataType="integer" Length="2" SASFieldName="COVISIT"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Visit Number</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_co" Name="Comment" DataType="text" SDSVarName="COVAL" SASFieldName="COVAL" Length="200"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Comment</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_cbp" Name="Check appropriate option" DataType="integer" Length="1" SASFieldName="CBP"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Check appropriate option</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="c_cbp"/>  
+      </ItemDef>  
+      <ItemDef OID="i_ecg_ecgyn" Name="ECG status" DataType="integer" Length="2" SASFieldName="ECG"> 
+        <Question> 
+          <TranslatedText xml:lang="en">ECG status</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="cl_abnorm_clin_nd"/>  
+      </ItemDef>  
+      <ItemDef OID="i_ecg_date" Name="Date of ECG" DataType="date" Length="10" SASFieldName="ECGDAT"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Date of ECG</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_vreason" Name="Reason for the Visit" DataType="text" Length="200" SASFieldName="VREASON"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Reason for the Visit</TranslatedText> 
+        </Question>  
+      </ItemDef>  
+      <ItemDef OID="i_skin_class" Name="Skin Classification" DataType="integer" Length="1"> 
+        <Question> 
+          <TranslatedText xml:lang="en">Skin Classification</TranslatedText> 
+        </Question>  
+        <CodeListRef CodeListOID="c_fritzpatrick"/>  
+      </ItemDef>  
+      <CodeList OID="cl_yesno" Name="YESNO" DataType="text" SASFormatName="YESNO"> 
+        <CodeListItem CodedValue="y"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Yes</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="n"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">No</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="cl_sex" Name="Sex" DataType="text" SASFormatName="SEX"> 
+        <CodeListItem CodedValue="m"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Male</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="f"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Female</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="cl_race" Name="Race" DataType="integer" SASFormatName="RACE"> 
+        <CodeListItem CodedValue="1"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">American Indian or Alaska Native</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="2"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Asian</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="3"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Black or African American</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="4"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Native Hawaiian or Other Pacific Islander</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="5"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">White</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="99"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Other</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="cl_ethnic" Name="Ethnic" DataType="integer" SASFormatName="ETHNIC"> 
+        <CodeListItem CodedValue="1"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Hispanic or Latino</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="2"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Not Hispanic or Latino</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="cl_temp_loc" Name="Temperature measured at" DataType="integer" SASFormatName="TEMPLOC"> 
+        <CodeListItem CodedValue="C12394"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Ear</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="C12421"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Oral</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="cl_abnorm_nd" Name="(Ab)normal and ND" DataType="integer" SASFormatName="ABNORMND"> 
+        <CodeListItem CodedValue="1"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Normal</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="2"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Abnormal</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="99"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Not Done</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="cl_ongo" Name="Ongoing or Resolved" DataType="integer" SASFormatName="ONGORES"> 
+        <CodeListItem CodedValue="1"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Ongoing</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="2"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Resolved</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="cl_upt" Name="Urine Pregnancy Test result" DataType="integer"> 
+        <CodeListItem CodedValue="1"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Positive</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="2"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Negative</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="0"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Not Done</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="99"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Not Applicable (Male or Non-childbearing)</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="cl_lb_test" Name="Laboratory Tests" DataType="integer"> 
+        <CodeListItem CodedValue="1"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Haematology</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="2"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Biochemistry</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="3"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Serum</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="4"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Urinalysis</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="cl_yesno_na" Name="YESNONA" DataType="text" SASFormatName="YESNONA"> 
+        <CodeListItem CodedValue="y"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Yes</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="n"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">No</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="na"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">N/A</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="cl_abnorm_clin_nd" Name="(Ab)normal, clinically significatn and ND" DataType="integer" SASFormatName="ABNORMND"> 
+        <CodeListItem CodedValue="1"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Normal</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="2"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Abnormal, not clinically significant</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="3"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Abnormal, clinically significant</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="99"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Not Done</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="cl_yesno_unk" Name="YESNOUNK" DataType="text" SASFormatName="YESNOUNK"> 
+        <CodeListItem CodedValue="y"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Yes</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="n"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">No</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="unk"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Unknown</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="cl_eot_reason" Name="Primary Reason for Leaving the Trial" DataType="integer" SASFormatName="EOTRSN"> 
+        <CodeListItem CodedValue="1"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Screening failure</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="2"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Unacceptable treatment efficacy</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="3"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Unacceptable adverse event**</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="4"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Unacceptable LSR**</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="5"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Exclusion criteria emerging during study**</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="6"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Voluntary (and no other reason)</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="7"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Death</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="8"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Lost to follow-up</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="99"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Other reason(s)*</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="cl_route" Name="Route of Administration" DataType="text" SASFormatName="ROUTE"> 
+        <ExternalCodeList Dictionary="CL.C66729.ROUTE"/>  
+      </CodeList>  
+      <CodeList OID="cl_freq" Name="Frequency" DataType="text" SASFormatName="FREQ"> 
+        <ExternalCodeList Dictionary="CL.C71113.FREQ"/>  
+      </CodeList>  
+      <CodeList OID="c_cbp" Name="Childbearing Potential" DataType="integer" SASFormatName="CBP"> 
+        <CodeListItem CodedValue="1"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Male</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="2"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Postmenopausal (at least one year)</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="3"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Surgically Sterile (i.e. hysterectomy, bilateral oophorectomy, bilateral tubal</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="4"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Hormonal Contraceptive</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="5"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">IUD</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="6"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Abstinence / Partner Vasectomy</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="7"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Spermicide in Combination with a Barrier Method</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="99"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">Other</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList>  
+      <CodeList OID="c_fritzpatrick" Name="Fitzpatrick Skin Classification" DataType="integer" SASFormatName="SKIN"> 
+        <CodeListItem CodedValue="1"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">I</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="2"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">II</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="3"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">III</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="4"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">IV</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="5"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">V</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+        <CodeListItem CodedValue="6"> 
+          <Decode> 
+            <TranslatedText xml:lang="en">VI</TranslatedText> 
+          </Decode> 
+        </CodeListItem>  
+      </CodeList> 
+    </MetaDataVersion> 
+  </Study>  
+  <AdminData> 
+    <SignatureDef OID="sig01"> 
+      <Meaning>meaning</Meaning>  
+      <LegalReason>legal</LegalReason> 
+    </SignatureDef>  
+  </AdminData>  
+  <xc:EditorSetup xmlns:edit="http://www.xclinical.com/xmlns/editor/xc-1-0">  
+    <edit:DefineMetaDataFile/>  
+  </xc:EditorSetup>  
+  <xc:Library Checksum="d99c7787f70499792bb273050d5d59e0"/> 
+</ODM>

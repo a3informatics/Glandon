@@ -1,0 +1,10 @@
+<%= render layout: "shared/information_dialog", :locals => {id: "information-dialog-rank", title: "How to use Rank", wide: true} do %>
+  To assign / change Rank value, click on the cell with the <span class="text-light icon-edit"></span> icon in the respective row and type in a numeric value. <br/>
+  Use the <span class="font-regular">Tab</span> key to traverse the cells quickly. <br/>
+  You must click the <button class="btn btn-xs green">Save changes</button> button to save the values you enter. Closing the dialog without saving will result in losing your changes.<br/><br/>
+
+  To automatically assign Ranks (1 to N) to Code Lists in the order in which they are sorted in the table, click on <button class="btn btn-xs light">Auto-Rank by order</button>.
+  This will <span class="font-regular">overwrite</span> current Rank values. They will not be saved, however, until you save them manually.<br/><br/>
+
+  To remove the Rank from the Code List altogether, clearing all the assigned values, click the <button class="btn btn-xs red">Disable rank</button> button.<br/><br/>
+<% end %>

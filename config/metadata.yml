@@ -1,0 +1,15 @@
+defaults: &defaults
+  sdtm_format_values:
+   - 'ISO 8601'
+   - 'ISO 3166'
+   - 'MedDRA'
+   - ''
+
+development:
+  <<: *defaults
+
+production: 
+  <<: *defaults
+  
+test: 
+  <<: *defaults

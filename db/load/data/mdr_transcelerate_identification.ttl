@@ -1,0 +1,49 @@
+@prefix ns: <http://www.assero.co.uk/NS#> .
+@prefix ra: <http://www.assero.co.uk/RA#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns:CDISC
+  rdf:type isoI:Namespace ;
+  isoI:name "Clinical Data Interchange Standards Consortium"^^xsd:string ;
+  isoI:shortName "CDISC"^^xsd:string ;
+  isoI:authority "www.cdisc.org"^^xsd:string ;
+.
+ns:SCUBED 
+  rdf:type isoI:Namespace ;
+  isoI:name "S-cubed Aps"^^xsd:string ; 
+  isoI:shortName "S-cubed"^^xsd:string ; 
+  isoI:authority "www.s-cubed.dk"^^xsd:string ;
+.
+ns:TRANSCELERATE
+  rdf:type isoI:Namespace ;
+  isoI:name "TransCelerate BioPharma Inc."^^xsd:string ; 
+  isoI:shortName "Transcelerate"^^xsd:string ; 
+  isoI:authority "www.transceleratebiopharmainc.com"^^xsd:string ;
+.
+ra:DUNS123456789
+  rdf:type isoR:RegistrationAuthority ; 
+  isoR:raNamespace <http://www.assero.co.uk/NS#SCUBED> ;
+  isoR:organizationIdentifier "123456789"^^xsd:string ;
+  isoR:internationalCodeDesignator "DUNS"^^xsd:string ; 
+  isoR:owner "false"^^xsd:boolean ;   
+.
+ra:DUNS084433759
+  rdf:type isoR:RegistrationAuthority ;
+  isoR:raNamespace <http://www.assero.co.uk/NS#CDISC> ;
+  isoR:organizationIdentifier "084433759"^^xsd:string ;
+  isoR:internationalCodeDesignator "DUNS"^^xsd:string ; 
+  isoR:owner "false"^^xsd:boolean ;   
+.
+ra:DUNS079658684
+  rdf:type isoR:RegistrationAuthority ;
+  isoR:raNamespace <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+  isoR:organizationIdentifier "079658684"^^xsd:string ;
+  isoR:internationalCodeDesignator "DUNS"^^xsd:string ; 
+  isoR:owner "true"^^xsd:boolean ;   
+.

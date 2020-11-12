@@ -1,0 +1,60 @@
+<% content_for :page_title do %> <%= "Edit Extension: #{@tc.notation} (#{@tc.has_identifier.identifier})" %> <% end %>
+
+<%= javascript_pack_tag 'thesauri/managed_concepts/extensions/edit' %>
+
+<%= javascript_tag "let timerTokenId = '#{@token.id}',
+                        timerWarning = '#{current_user.edit_lock_warning}';"%>
+
+<% third_level_breadcrumb(:thesauri, @tc, history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_codelist", :locals => { item: @tc, context: @ct, badge: "CL" } do %>
+
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+      <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
+
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#edit-properties-modal", id: "edit-properties-button",
+            icon: "icon-edit", text: "Edit properties", toggle: "modal" } %>
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+            icon: "icon-tag", text: "Edit tags", new_tab: true } %>
+
+          <% if @tc.ranked? %>
+            <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#rank-items-modal", id: "edit-ranks-button",
+              icon: "icon-rank", text: "Edit ranks", toggle: "modal" } %>
+          <% else %>
+            <%= render partial: "shared/thesauri/managed_concepts/rank/enable_rank", :locals => { item: @tc } %>
+          <% end %>
+
+          <%= render partial: "shared/thesauri/managed_concepts/pair/pair_button", :locals => { item: @tc } %>
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-notes-modal", id: "change-notes-button",
+            icon: "icon-note", text: "Change notes", toggle: "modal" } %>
+
+      <% end %>
+
+    </div>
+
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-12 card wide">
+    <div class="card-header">
+      Extension Editor
+    </div>
+    <div class="card-content">
+      <%= render partial: "shared/thesauri/managed_concepts/extensions/editor", :locals => { item: @tc, context_id: @context_id } %>
+    </div>
+  </div>
+</div>
+
+<%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
+<%= render partial: "shared/thesauri/managed_concepts/edit/edit_properties", :locals => { item: @tc } %>
+<%= render partial: "shared/thesauri/managed_concepts/rank/edit_ranks", :locals => {item: @tc} %>
+
+<% if !@tc.paired? %>
+  <%= render partial: "shared/items_picker/items_picker", :locals => { id: "pair",
+      description: "Select another Code List to pair this Code List with." } %>
+<% end %>

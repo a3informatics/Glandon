@@ -1,0 +1,13 @@
+<%= name %>:
+
+<% if items.empty? %>
+  <span class='font-light'> None</span>
+<% end %>
+
+<span class="labels-inline-wrap">
+
+  <% items.each do |item| %>
+    <div class="bg-label font-light <%= local_assigns.fetch :css_class, '' %>"><%= item %></div>
+  <% end %>
+
+</span>

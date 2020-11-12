@@ -1,0 +1,96 @@
+---
+- :label: "Test Code"
+  :bridg: "DefinedObservation.nameCode"
+  :sdtm: "--TESTCD"
+- :label: "Category"
+  :bridg: DefinedObservation.categoryCode
+  :sdtm: "--CAT"
+- :label: "Sub Category"
+  :bridg: DefinedObservation.subcategoryCode
+  :sdtm: "--SCAT"
+- :label: "Method"
+  :bridg: PerformedObservation.methodCode.CD
+  :sdtm: "--METHOD"
+- :label: "Position"
+  :bridg: PerformedObservation.bodyPositionCode
+  :sdtm: "--POS"
+- :label: "Status"
+  :bridg: PerformedObservation.negationIndicator
+  :sdtm: "--STAT"
+- :label: "Reason Not Done"
+  :bridg: PerformedObservation.negationReason.SC
+  :sdtm: ""
+- :label: "Date Time of Observation"
+  :bridg: PerformedObservation.dateRange.IVL_TS_DATETIME.low
+  :sdtm: "--DTC"
+- :label: "Location"
+  :bridg: PerformedObservation.approachAnatomicSiteCode
+  :sdtm: "--LOC"
+- :label: "Laterality"
+  :bridg: PerformedObservation.approachAnatomicSiteLateralityCode
+  :sdtm: "--LAT"
+- :label: "Result Value"
+  :bridg: PerformedObservationResult.value
+  :sdtm: "--ORRES"
+- :label: "Result Units"
+  :bridg: PerformedObservationResult.value
+  :sdtm: "--ORRESU"
+- :label: "Baseline"
+  :bridg: PerformedClinicalResult.baselineIndicator
+#- :label: "Test Code"
+#  :bridg: PerformedObservationResult2.value.ST.value: "--RELNST"
+#  :sdtm: ""
+#- :label: "Test Code"
+#  :bridg: PerformedObservationResult3.value.CD.code: "--SCAN"
+#  :sdtm: ""
+#- :label: "Test Code"
+#  :bridg: PerformedObservationResult4.value.CD.code: "--SDTH"
+#  :sdtm: ""
+#- :label: "Test Code"
+#  :bridg: PerformedObservationResult5.value.CD.code: "--REL"
+#  :sdtm: ""
+- :label: "AE Term"
+  :bridg: AdverseEvent.value
+  :sdtm: "--TERM"
+- :label: "Severity"
+  :bridg: AdverseEvent.severityCode
+  :sdtm: "--SEV"
+- :label: "Seriousness"
+  :bridg: AdverseEvent.seriousnessCode
+  :sdtm: "--SER"
+- :label: "Pattern"
+  :bridg: AdverseEvent.occurrencepatternCode
+  :sdtm: "--PATT"
+- :label: "hospitalization Required"
+  :bridg: AdverseEvent.hospitalizationRequiredIndicator
+  :sdtm: "--SHOSP"
+- :label: "Start Date Time"
+  :bridg: AdverseEvent.occuranceDateRange.IVL_TS_DATETIME.low
+  :sdtm: "--STDTC"
+- :label: "End Date Time"
+  :bridg: AdverseEvent.occuranceDateRange.IVL_TS_DATETIME.high
+  :sdtm: "--ENDTC"
+- :label: "Action Taken"
+  :bridg: AdverseEventActionTaken.typeCode
+  :sdtm: "--ACN"
+- :label: "Action Taken Extra"
+  :bridg: AdverseEventActionTaken2.typeCode
+  :sdtm: "--ACNOTH"
+- :label: "Adverse Event Outcome"
+  :bridg: AdverseEventOutcomeResult
+  :sdtm: "--OUT"
+- :label: "Specimen"
+  :bridg: Material.formCode
+  :sdtm: "--SPEC"
+- :label: "Directionality"
+  :bridg: PerformedProcedure.targetAnatomicSiteDirectionalityCode
+  :sdtm: "--DIR"
+- :label: "Performer"
+  :bridg: Performer.typeCode
+  :sdtm: "--EVAL"
+- :label: "Performer Alias"
+  :bridg: Performer.evaluatorAlias
+  :sdtm: "_EVALID"
+- :label: "Clinical Significance"
+  :bridg: PerformedClinicalInterpretation.clinicallySignificantIndicator
+  :sdtm: "--CLSIG"

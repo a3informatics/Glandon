@@ -1,0 +1,52 @@
+<% content_for :page_title do %> Ad-Hoc Reports <% end %>
+
+<%= javascript_pack_tag 'ad_hoc_reports/index' %>
+
+<% first_level_breadcrumb (:ad_hoc_reports) %>
+
+<%= javascript_tag "let reportsDataUrl = '#{ ad_hoc_reports_path }',
+                        reportsDeleteAllowed = #{ policy(AdHocReport).destroy? };" %>
+
+<div class="row">
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-document", header_title: "",
+		main_text: "Ad-Hoc Reports", sub_texts: "View, manage and run your Ad-Hoc reports." } do %>
+	<% end %>
+</div>
+
+<div id="reports-index" class="row centered">
+
+	<div class="col-md-11 card wide">
+
+		<div class="card-header">Index: Ad-Hoc Reports</div>
+
+		<div class="card-content table-cardstyle">
+
+			<table id="main" class="table table-striped table-bordered table-condensed">
+				<thead>
+			  	<tr>
+			    	<th>Label</th>
+						<th>Required Parameter</th>
+			    	<th>Last Run</th>
+			    	<th class="fit">Active</th>
+			    	<th class="fit"></th>
+			  	</tr>
+				</thead>
+				<tbody>
+
+			  </tbody>
+			</table>
+
+			<% if policy(AdHocReport).create? %>
+        <div class="btns-wrap">
+		      <%= link_to "+ Add New", new_ad_hoc_report_path, :class => "btn medium green" %>
+        </div>
+			<% end %>
+
+		</div>
+
+	</div>
+
+</div>
+
+<%= render partial: "shared/items_picker/items_picker", :locals => { id: 'report-param',
+      description: "Select one item to run the report based on." } %>

@@ -1,0 +1,33 @@
+<% content_for :page_title do %> Index: SDTM IGs <% end %>
+
+<%= javascript_pack_tag 'sdtm_igs/index' %>
+
+<% first_level_breadcrumb (:sdtm_igs) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-sdtm",
+    main_text: "SDTM IGs", sub_text: "Browse all SDTM IGs in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+<div class="row">
+
+  <% content_for :description do %>
+    Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> SDTM IGs.
+    Use the Search bar to find the SDTM IG you are looking for.
+    To see SDTM IG's respective History page, click on it.
+  <% end %>
+
+  <% content_for :actions do %>
+
+    <% if policy(SdtmIg).new? %>
+      <a href="#" class="btn medium green" id="new_sdtm_model">
+        <span class="icon-plus text-tiny"></span>&nbsp; New SDTM IG
+      </a>
+    <% end %>
+  <% end %>
+
+  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "SDTM IGs", url: sdtm_igs_path } %>
+
+</div>

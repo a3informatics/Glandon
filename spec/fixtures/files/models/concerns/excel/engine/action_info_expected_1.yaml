@@ -1,0 +1,42 @@
+---
+- - :method: create_parent
+    :klass: AdamIg
+    :map:
+      :SUBJECT LEVEL ANALYSIS DATASET: ADAMIG ADSL
+      :BASIC DATA STRUCTURE: ADAMIG BDS
+  - :method: set_property
+    :property: label
+    :map:
+      :SUBJECT LEVEL ANALYSIS DATASET: Subject Level Analysis Dataset
+      :BASIC DATA STRUCTURE: Basic Data Structure
+- []
+- []
+- - :method: create_child
+    :klass: AdamIg::Dataset
+    :map: []
+  - :method: set_property
+    :property: name
+    :map: []
+- - :method: set_property
+    :property: label
+    :map: []
+- - :method: datatype_classification
+    :property: datatype
+    :map:
+      :Char: Character
+      :Num: Numeric
+- - :method: ct_reference
+    :property: ct
+    :map: []
+  - :metjod: ct_other
+    :property: ct_notes
+    :map: []
+- - :method: core_classification
+    :property: compliance
+    :map:
+      :Req: Required
+      :Perm: Permissible
+      :Cond: Conditional
+- - :method: set_property
+    :property: notes
+    :map: []

@@ -1,0 +1,37 @@
+@import "custom/vars.scss";
+
+.modal-body .form-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.modal-body .form-row .form-group{
+  margin: 10px 15px;
+}
+
+.modal-body .form-wrap.with-labels .form-row input, .modal-body .form-wrap.with-labels .form-row textarea{
+  border: 1px solid $grey-bright;
+  border-radius: 5px;
+}
+
+.modal-body .form-row textarea{
+  min-width: 300px;
+  max-width: 500px;
+  min-height: 100px;
+}
+
+.modal-body .form-row textarea.wide{
+  min-width: 450px;
+  max-width: 700px;
+  min-height: 100px;
+}
+
+.modal-body .form-wrap{
+  font-family: $font-light;
+}
+
+.modal-body .form-wrap.with-labels label{
+  color: $primary-color-light;
+}

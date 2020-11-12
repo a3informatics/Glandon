@@ -1,0 +1,24 @@
+<% content_for :page_title do %> <%= "Show ADaM IG Dataset: #{@adam_ig_dataset.has_identifier.identifier} (#{@adam_ig_dataset.semantic_version})" %> <% end %>
+
+<%= javascript_pack_tag 'adam_ig_datasets/show' %>
+
+<% third_level_breadcrumb(:adam_ig_datasets, @adam_ig_dataset, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => { :item => @adam_ig_dataset, :badge => "icon-adam" } do %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div id="show-panel" class="col-md-12 card wide">
+    <div class="card-header">
+      Show: ADaM IG Dataset
+    </div>
+    <div class="card-content">
+      <%= render partial: "shared/adam_ig_datasets/show_panel", locals: { show_url: @show_path } %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<% content_for :page_title do %> Imports <% end %>
+
+<%= javascript_pack_tag 'imports/index' %>
+<%= javascript_tag "let importsDataUrl = '#{imports_path}',
+												importsDeleteAllUrl= '#{destroy_multiple_imports_path({ imports: { items: "all" } })}';" %>
+
+<% first_level_breadcrumb (:imports) %>
+
+<div class="row">
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-import", header_title: "",
+		main_text: "Current Imports", sub_texts: "Showing all import jobs." } do %>
+
+			<%= render partial: "shared/buttons/return", :locals => { url: list_imports_path } %>
+
+	<% end %>
+</div>
+
+<div id="imports-index" class="row">
+
+	<div class="col-md-12 card wide">
+		<div class="card-header">
+			Index: Imports
+		</div>
+		<div class="card-content table-cardstyle">
+			<table id="main" style="width: 100%;" class="table">
+				<thead>
+			  	<tr>
+			    	<th class="fit">ID</th>
+		        <th class="fit">Owner</th>
+			    	<th class="fit">Identifier</th>
+		        <th>Input File</th>
+		        <th class="fit">Complete</th>
+			    	<th class="fit">Succesful</th>
+		        <th class="fit">Auto Load</th>
+		        <th class="fit"></th>
+			  	</tr>
+				</thead>
+				<tbody>
+
+			  </tbody>
+			</table>
+
+			<div class="btns-wrap">
+				<button id="remove-all-imports" class="btn medium red remove-import">
+					<span class="icon-trash text-small"></span> Delete All
+				</button>
+			</div>
+
+		</div>
+	</div>
+
+</div>

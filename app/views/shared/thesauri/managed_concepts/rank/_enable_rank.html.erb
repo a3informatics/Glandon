@@ -1,0 +1,5 @@
+<%= javascript_include_tag "shared/thesauri/managed_concepts/rank/enable_rank" %>
+<%= javascript_tag "var enableRankPath = '#{add_rank_thesauri_managed_concept_path(item)}';"%>
+
+<%= render partial: "shared/context_menu/menu_item", :locals => { url: "#", id: "enable-rank-button",
+  icon: "icon-rank", text: "Enable rank" } %>

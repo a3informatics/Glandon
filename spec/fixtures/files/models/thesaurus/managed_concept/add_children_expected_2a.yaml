@@ -1,0 +1,261 @@
+---
+:id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MA==
+:uri: http://www.cdisc.org/C66780/V4#C66780
+:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+:label: Age Span
+:has_state:
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9SUw==
+  :uri: http://www.cdisc.org/C66780/V4#C66780_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Standard
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Standard
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS084433759
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '084433759'
+    :international_code_designator: DUNS
+    :owner: false
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+:has_identifier:
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9TSQ==
+  :uri: http://www.cdisc.org/C66780/V4#C66780_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: C66780
+  :version_label: 2007-05-31 Release
+  :version: 4
+  :semantic_version: 4.0.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+    :uri: http://www.assero.co.uk/NS#CDISC
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: CDISC
+    :name: Clinical Data Interchange Standards Consortium
+    :authority: www.cdisc.org
+:has_previous_version: http://www.cdisc.org/C66780/V2#C66780
+:origin: ''
+:change_description: ''
+:creation_date: '2007-05-31T00:00:00+00:00'
+:last_change_date: '2007-05-31T00:00:00+00:00'
+:explanatory_comment: ''
+:identifier: C66780
+:notation: AGESPAN
+:definition: Subgroups of populations based on age. (NCI)
+:extensible: true
+:narrower:
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DNDk2NDI=
+  :uri: http://www.cdisc.org/C66780/V4#C66780_C49642
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Preterm Newborn Infant
+  :identifier: C49642
+  :notation: PRETERM NEWBORN INFANTS
+  :definition: An infant born prior to completion of the normal gestation period.
+    (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMjRiM2JkYmRjYzE4NzNkOTk3NjgwOWQyYWUzMmQ5ZTFkODZkNzMwZA==
+    :uri: http://www.assero.co.uk/PT#24b3bdbdcc1873d9976809d2ae32d9e1d86d730d
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Preterm Newborn Infant
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MV9DMjUzMDE=
+  :uri: http://www.cdisc.org/C66781/V4#C66781_C25301
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Day
+  :identifier: C25301
+  :notation: DAYS
+  :definition: The time for Earth to make a complete rotation on its axis; ordinarily
+    divided into twenty-four hours.  This also refers to a specific day. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjOTg3YjljZWQwOGQ0YWM1ZDExZDI4NmNhNGI1NGI5OWE0ZjY5MTY0Yg==
+    :uri: http://www.assero.co.uk/PT#987b9ced08d4ac5d11d286ca4b54b99a4f69164b
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Day
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DNDk2NDE=
+  :uri: http://www.cdisc.org/C66780/V4#C66780_C49641
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: In Utero
+  :identifier: C49641
+  :notation: IN UTERO
+  :definition: The period of time during which the embryo or foetus is present in
+    the uterus of the female. Also describes the location of the embryo or foetus
+    as being in the uterus in contrast to outside the uterus (ex utero). (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMzM3MDFlNmY2ZWQ5NmUzMjE4NDA4MTJjMTVlOTNhOWRiNzAyMGUzNA==
+    :uri: http://www.assero.co.uk/PT#33701e6f6ed96e321840812c15e93a9db7020e34
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: In Utero
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DNDk2NDM=
+  :uri: http://www.cdisc.org/C66780/V4#C66780_C49643
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Infant And Toddler
+  :identifier: C49643
+  :notation: INFANT AND TODDLER (28 DAYS - 23 MONTHS)
+  :definition: A person from 28 days to 23 months of age. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjOWVlZmIzNjY5MmUwMDVkODViZmI0OTdjZWI4NWZjNWQ4MmIxZjE3Zg==
+    :uri: http://www.assero.co.uk/PT#9eefb36692e005d85bfb497ceb85fc5d82b1f17f
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Infant And Toddler
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DNDk2ODM=
+  :uri: http://www.cdisc.org/C66780/V4#C66780_C49683
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Children 2-11 Years Old
+  :identifier: C49683
+  :notation: CHILDREN (2-11 YEARS)
+  :definition: A person from 2 years to 11 years of age. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYjczYTJmYWMyZjI2ZGMxNWFkNGQ0NjNiOTMwZTM1YzllZWM2MDg0MA==
+    :uri: http://www.assero.co.uk/PT#b73a2fac2f26dc15ad4d463b930e35c9eec60840
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Children 2-11 Years Old
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DMTY3MzE=
+  :uri: http://www.cdisc.org/C66780/V4#C66780_C16731
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Newborn
+  :identifier: C16731
+  :notation: NEWBORN (0-27 DAYS)
+  :definition: An infant during the first month after birth. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMDk2ZTE3MGUwOTkxNDEwYzE4YmE4OTQwYjllZTNiMWQwMmE1ZjhiOQ==
+    :uri: http://www.assero.co.uk/PT#096e170e0991410c18ba8940b9ee3b1d02a5f8b9
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Newborn
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DMjc5NTQ=
+  :uri: http://www.cdisc.org/C66780/V4#C66780_C27954
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Adolescent
+  :identifier: C27954
+  :notation: ADOLESCENT (12-17 YEARS)
+  :definition: A juvenile between the onset of puberty and maturity; in the state
+    of development between puberty and maturity. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMmRlMjUwNTQ0MGNhNDA2ZWRkZjQzMjQ2NjEyZGVmNjY0Y2FlOWJkOQ==
+    :uri: http://www.assero.co.uk/PT#2de2505440ca406eddf43246612def664cae9bd9
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Adolescent
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DNDk2ODU=
+  :uri: http://www.cdisc.org/C66780/V4#C66780_C49685
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Adult 18-65 Years Old
+  :identifier: C49685
+  :notation: ADULT (18-65)
+  :definition: A person from 18 years to 65 years of age. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjNTE2YzY0NzFlMWVhNmUxMDYzODRkZWNlYmJkNzI0MzViODUxMGE3Ng==
+    :uri: http://www.assero.co.uk/PT#516c6471e1ea6e106384decebbd72435b8510a76
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Adult 18-65 Years Old
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DMTYyNjg=
+  :uri: http://www.cdisc.org/C66780/V4#C66780_C16268
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Elderly
+  :identifier: C16268
+  :notation: ELDERLY (> 65)
+  :definition: An age group comprised by people 65 years of age and older. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjOTk0NTU4YjYzMDJiYWI4MTZlNGI1ZjliYWIyNTRkNGMzZWIyZmVjNg==
+    :uri: http://www.assero.co.uk/PT#994558b6302bab816e4b5f9bab254d4c3eb2fec6
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Elderly
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MV9DMjU1Mjk=
+  :uri: http://www.cdisc.org/C66781/V4#C66781_C25529
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Hour
+  :identifier: C25529
+  :notation: HOURS
+  :definition: A unit measure of time equal to 3,600 seconds or 60 minutes. It is
+    approximately 1/24 of a median day. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYzM3Y2Y4MzhiMGI5ODBkYTc4ZjE5YWMxMzY2MzU5ZmI4MDk1MWY2Mg==
+    :uri: http://www.assero.co.uk/PT#c37cf838b0b980da78f19ac1366359fb80951f62
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Hour
+  :synonym: []
+:extends: 
+:subsets: 
+:paired_with: 
+:refers_to:
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MV9DMjUzMDE=
+  :uri: http://www.cdisc.org/C66781/V4#C66781_C25301
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Day
+  :identifier: C25301
+  :notation: DAYS
+  :definition: The time for Earth to make a complete rotation on its axis; ordinarily
+    divided into twenty-four hours.  This also refers to a specific day. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjOTg3YjljZWQwOGQ0YWM1ZDExZDI4NmNhNGI1NGI5OWE0ZjY5MTY0Yg==
+    :uri: http://www.assero.co.uk/PT#987b9ced08d4ac5d11d286ca4b54b99a4f69164b
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Day
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MV9DMjU1Mjk=
+  :uri: http://www.cdisc.org/C66781/V4#C66781_C25529
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Hour
+  :identifier: C25529
+  :notation: HOURS
+  :definition: A unit measure of time equal to 3,600 seconds or 60 minutes. It is
+    approximately 1/24 of a median day. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYzM3Y2Y4MzhiMGI5ODBkYTc4ZjE5YWMxMzY2MzU5ZmI4MDk1MWY2Mg==
+    :uri: http://www.assero.co.uk/PT#c37cf838b0b980da78f19ac1366359fb80951f62
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Hour
+  :synonym: []
+:preferred_term:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjZTQ2NjllYjYzNTg0YjBjMTNmZTE1YTJmNzNmOTkzODdmYjg2YjBjMA==
+  :uri: http://www.assero.co.uk/PT#e4669eb63584b0c13fe15a2f73f99387fb86b0c0
+  :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+  :label: CDISC SDTM Age GroupTerminology
+:synonym:
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2YyNTQ0Nzc1YTJmZjI1YWI1YzM1ODgyZTUyNWU3OGNiMWJkNDdhYmM=
+  :uri: http://www.assero.co.uk/SYN#f2544775a2ff25ab5c35882e525e78cb1bd47abc
+  :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+  :label: Age Span
+:is_ordered: 
+:is_ranked: 

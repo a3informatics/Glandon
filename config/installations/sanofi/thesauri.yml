@@ -1,0 +1,31 @@
+defaults: &defaults
+  extensions:
+    can_extend_unextensible: true 
+  identifiers:
+    scheme_type: flat # either :flat or :hierarchical. Can be symbol or string
+    parent: 
+      generated: 
+        pattern: "SN[identifier]" 
+        width: "6"
+    child: 
+      generated: 
+        pattern: "S[identifier]"
+        width: "6"
+  permitted_pairing:
+    - parent: TESTCD
+      child: TEST
+    - parent: TSCD
+      child: TS
+    - parent: TC
+      child: TN
+    - parent: PARMCD
+      child: PARM
+
+development:
+  <<: *defaults
+
+production: 
+  <<: *defaults
+  
+test: 
+  <<: *defaults

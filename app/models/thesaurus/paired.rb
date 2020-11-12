@@ -1,0 +1,176 @@
+# Managed Concepts Pair
+#
+# @author Dave Iberson-Hurst
+# @since 3.1.0
+class Thesaurus
+
+  module Paired
+
+    # Validate And Pair. Check if items can be paired. If so do it, otherwise report an error.
+    #
+    # @param [String] id id of the other the potential paired code list (child)
+    # @return [Boolean] returns true if pairing succesful, otherwise false. Errors in errors object.
+    def validate_and_pair(id)
+      return false if already_paired?
+      other = self.class.find_with_properties(id)
+      valid_pairing?(other) ? pair(id) : self.errors.add(:base, "Pairing not permitted, trying to pair #{self.notation} with #{other.notation}.")
+      self.errors.empty?
+    end
+
+    # Validate And Unpair. Check if item is paired. If so unpair, otherwise report an error.
+    #
+    # @return [Boolean] returns true if unpairing succesful, otherwise false. Errors in errors object.
+    def validate_and_unpair
+      return false if not_paired?
+      unpair
+      self.errors.empty?
+    end
+
+    # Not Paired?
+    #
+    # @return [Boolean] returns true if not paired, false otherwise.
+    def not_paired?
+      return false if paired?
+      self.errors.add(:base, "Cannot unpair as the item is not paired.")
+      true
+    end
+
+    # Already Paired?
+    #
+    # @return [Boolean] returns true if already paired, false otherwise.
+    def already_paired?
+      return false unless paired?
+      self.errors.add(:base, "Pairing not permitted, already paired.")
+      true
+    end
+
+    # Valid Pairing? Is the pairing a valid one.
+    #
+    # @param [Thesaurus::ManagedConcept] other the potential paired code list (child)
+    # @return [Boolean] returns true if pairing is permitted, false otherwise.
+    def valid_pairing?(other)
+      result = nil
+      Rails.configuration.thesauri[:permitted_pairing].each do |config|
+        next unless check_rule(config, :parent, self.notation)
+        result = config
+        break
+      end
+      return false unless config_found?(result, other)
+      return false unless matching_pairs?(result, other)
+      matching_prefix?(result, other)
+    end
+
+    # Paired? Is this item paired, either as parent or child
+    #
+    # @result [Boolean] return true if this instance is ranked
+    def paired?
+      query_string = %Q{
+        ASK {{#{self.uri.to_ref} th:pairedWith ?o} UNION {?s th:pairedWith #{self.uri.to_ref}}}
+      }
+      Sparql::Query.new.query(query_string, "", [:th]).ask? 
+    end
+
+    # Paired As Parent? Is this item paired as the parent
+    #
+    # @result [Boolean] return true if this instance is ranked
+    def paired_as_parent?
+      Sparql::Query.new.query("ASK {#{self.uri.to_ref} th:pairedWith ?o}", "", [:th]).ask? 
+    end
+
+    # Paired As Child? Is this item paired as the parent
+    #
+    # @result [Boolean] return true if this instance is ranked
+    def paired_as_child?
+      Sparql::Query.new.query("ASK {?s th:pairedWith #{self.uri.to_ref}}", "", [:th]).ask? 
+    end
+
+    # Pair. Pair the code list as the parent with the specified other code list as the child. 
+    #
+    # @param [Uri|String] id the identifier, either a URI or the id
+    # @return [Void] no return.
+    def pair(id)
+      uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+      self.add_link(:paired_with, uri)
+    end
+
+    # Unpair. Remove the pairing from the parent.
+    #
+    # @return [Void] no return.
+    def unpair
+      self.paired_with_links
+      self.delete_link(:paired_with, self.paired_with)
+    end
+
+    # Other Pair. Find the other end of the paired relationship.
+    #
+    # @raise [Errors::ApplicationLogicError] raised if no paired code list found or multiple found.
+    # @return [Thesaurus::ManagedConcept] the object paired with
+    def other_pair
+      objects = []
+      query_string = %Q{
+        SELECT DISTINCT ?o WHERE {
+          {
+            #{self.uri.to_ref} ^th:pairedWith ?o
+          } 
+          UNION
+          {
+            #{self.uri.to_ref} th:pairedWith ?o
+          }
+        }
+      }
+      results = Sparql::Query.new.query(query_string, "", [:th]).by_object
+      return self.class.find_minimum(results.first) if results.count == 1
+      Errors.application_error(self.class.name, __method__.to_s, "Failed to find single paired code list.")
+    end
+
+  private
+
+    # Config found?
+    def config_found?(config, other)
+      return true unless config.nil?
+      msg = "Pairing not permitted, trying to pair #{self.notation} with #{other.notation}. Valid pairs are #{valid_pairs}."
+      self.errors.add(:base, msg)
+      false
+    end
+
+    # Matching pairs?
+    def matching_pairs?(config, other)
+      return true if check_rule(config, :child, other.notation)
+      msg = "Pairing not permitted, trying to pair #{self.notation} with #{other.notation}. Valid pairs are #{valid_pairs}."
+      self.errors.add(:base, msg)
+      false
+    end
+
+    # Check the prefix
+    def matching_prefix?(config, other)
+      return true if check_prefix(config, other)
+      msg = "Pairing not permitted, mismatch in name #{get_prefix(config, :parent, self.notation)} versus #{get_prefix(config, :child, other.notation)}. Valid pairs are #{valid_pairs}."
+      self.errors.add(:base, msg)
+      false
+    end
+
+    # Format the matching pairs for error messages
+    def valid_pairs
+      Rails.configuration.thesauri[:permitted_pairing].map{|x| "(--#{x[:parent]}, --#{x[:child]})"}.join(", ")
+    end
+ 
+    # Check individual pairing rule, parent or child match the config.
+    def check_rule(config, field, value)
+      str = config[field]
+      return false if value.length < str.length
+      return value[-str.length..-1] == str
+    end
+
+    # Make sure prefixes match, e.g. nn is the same in nnTESTCD & nnTEST
+    def check_prefix(config, other)
+      return get_prefix(config, :parent, self.notation) == get_prefix(config, :child, other.notation)
+    end
+
+    # Make sure prefixes match, e.g. nn is the same in nnTESTCD & nnTEST
+    def get_prefix(config, field, notation)
+      notation[0..-config[field].length-1]
+    end
+
+  end
+
+end

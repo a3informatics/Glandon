@@ -1,0 +1,35 @@
+<% content_for :page_title do %> Index: Forms <% end %>
+
+<%= javascript_pack_tag 'forms/index' %>
+
+<% first_level_breadcrumb (:forms) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-forms",
+    main_text: "Forms", sub_text: "Browse all Forms in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+<div class="row">
+
+  <% content_for :description do %>
+    Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Forms.
+    Use the Search bar to find the Form you are looking for.
+    To see Form's respective History page, click on it.
+  <% end %>
+
+  <% content_for :actions do %>
+
+    <% if policy(Form).new? %>
+    <a href="#new-form-modal" class="btn medium green" id="new-form-button" data-toggle="modal">
+      <span class="icon-plus text-tiny"></span>&nbsp; New Form
+    </a>
+    <% end %>
+  <% end %>
+
+  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "Forms", url: forms_path } %>
+
+</div>
+
+<%= render partial: "shared/forms/create_modal" %>

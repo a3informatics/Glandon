@@ -1,0 +1,181 @@
+@prefix : <http://www.acme-pharma.com/AIRPORTS/V2#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.acme-pharma.com/AIRPORTS/V2>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label ""^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-01-27T19:55:15+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TCR1 ;
+	th:isTopConceptReference :TH_TCR2 ;
+	th:isTopConceptReference :TH_TCR3 ;
+	th:isTopConcept <http://www.acme-pharma.com/A00001/V2#A00001> ;
+	th:isTopConcept <http://www.acme-pharma.com/A00002/V1#A00002> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "AIRPORTS"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "2"^^xsd:positiveInteger ;
+	isoI:semanticVersion "2.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+:TH_TCR1
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.acme-pharma.com/A00001/V2#A00001> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:TH_TCR2
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.acme-pharma.com/A00002/V1#A00002> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:TH_TCR3
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.acme-pharma.com/A00003/V1#A00003> ;
+	bo:localLabel ""^^xsd:string ;
+.
+<http://www.acme-pharma.com/A00001/V2#A00001>
+	rdf:type th:ManagedConcept ;
+	isoC:label "London Heathrow"^^xsd:string ;
+	isoT:hasState <http://www.acme-pharma.com/A00001/V2#A00001_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/A00001/V2#A00001_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-01-27T19:55:15+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "A00001"^^xsd:string ;
+	th:notation "LHR"^^xsd:string ;
+	th:definition "London Heathrow the UK's busiest airport."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.acme-pharma.com/A00001/V2#A00001_A000011> ;
+	th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A000012> ;
+	th:narrower <http://www.acme-pharma.com/A00001/V2#A00001_A000030> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a> ;
+	th:synonym <http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472> ;
+	th:synonym <http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3> ;
+.
+<http://www.acme-pharma.com/A00001/V2#A00001_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/A00001/V2#A00001_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "A00001"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "2"^^xsd:positiveInteger ;
+	isoI:semanticVersion "2.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+<http://www.acme-pharma.com/A00001/V2#A00001_A000011>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Terminal 5"^^xsd:string ;
+	th:identifier "A000011"^^xsd:string ;
+	th:notation "T5"^^xsd:string ;
+	th:definition "Terminal 5, the newest terminal at Heathrow."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#26357de9280b8b1df0049b6923d1bc19ad3f377c> ;
+	th:synonym <http://www.assero.co.uk/SYN#a39d900d25e54ad5f61dfacf23077413ca49cf5d> ;
+	th:synonym <http://www.assero.co.uk/SYN#84951d6f13f0db7aa4b351d1c8afab29a8173201> ;
+	th:synonym <http://www.assero.co.uk/SYN#af6cf7cee7960bb1f8e33409ad316508e5b4a166> ;
+	th:synonym <http://www.assero.co.uk/SYN#af84b37afa3c3d83b068c072d126f7873553306f> ;
+.
+<http://www.acme-pharma.com/A00001/V2#A00001_A000030>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Terminal 2"^^xsd:string ;
+	th:identifier "A000030"^^xsd:string ;
+	th:notation "T2"^^xsd:string ;
+	th:definition "The old Queens Terminal"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#f2bfd6268011c04149153dd32d83e67cfce8c904> ;
+.
+<http://www.assero.co.uk/PT#f2bfd6268011c04149153dd32d83e67cfce8c904>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Terminal 2"^^xsd:string ;
+.
+<http://www.acme-pharma.com/A00003/V1#A00003>
+	rdf:type th:ManagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoT:hasState <http://www.acme-pharma.com/A00003/V1#A00003_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/A00003/V1#A00003_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-01-27T19:55:15+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "A00003"^^xsd:string ;
+	th:notation "BSL"^^xsd:string ;
+	th:definition "Basel"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+.
+<http://www.acme-pharma.com/A00003/V1#A00003_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/A00003/V1#A00003_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "A00003"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.

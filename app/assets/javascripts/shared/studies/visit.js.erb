@@ -1,0 +1,152 @@
+/*
+* Visit
+*
+* Only in Study Build page
+*/
+
+/**
+ * Visit Constructor
+ *
+ * @param data [Object] visit data
+ * @param matrixRef [Object Instance] reference to the parent matrix instance
+ * @return [void]
+ */
+function Visit(data, matrixRef) {
+  this.id = data.id;
+  this.matrix = matrixRef;
+  this.data = data;
+}
+
+
+/**
+ ************** General **************
+**/
+
+
+/**
+ * Generates HTML for a single visit button
+ *
+ * @return [String] formatted visit button HTML
+ */
+Visit.prototype.buttonHTML = function() {
+  var html =
+  "<span class='bg-label clickable ttip visit' data-id='"+ this.data.id +"'>" +
+    "<span class='ttip-text shadow-small text-medium text-small'>" + this.data.label + "</span>" +
+    this.data.short_name +
+  "</span>";
+
+  this.div = ".visit[data-id='" + this.data.id + "']";
+
+  return html;
+}
+
+/**
+ * Generates HTML for a single visit block
+ *
+ * @return [String] formatted visit block HTML
+ */
+Visit.prototype.blockHTML = function() {
+  var blockCSS = this.getBlockCSS();
+
+  if(_.isNull(blockCSS))
+    return "";
+
+  var style = "left: " + blockCSS.offsetLeft + "; " +
+              "width: " + blockCSS.width + ";";
+
+  var content = "<div class='visit-label'>" +
+                  this.data.short_name +
+                "</div>";
+
+  // HTML to Render
+  return "<div class='visit-block' style='"+ style +"' data-visit-id='"+this.data.id+"'>" +
+            content +
+         "</div>";
+}
+
+/**
+ * Add / remove timepoint in this visit instance
+ *
+ * @param timepoint [String] timepoint id
+ * @return [void]
+ */
+Visit.prototype.updateTimepoint = function(timepointId) {
+  var adding = !_.contains(this.data.timepoints, timepointId);
+
+  this.matrix.getActiveArm().timeline.executeRequest({
+    url: this.updateTpUrl(adding),
+    type: "POST",
+    data: {visit: {timepoints: [timepointId]}},
+    callback: function(result) {
+
+      var timepoint = this.matrix.getActiveArm().timeline.findTimepoint("id", timepointId);
+
+      if(adding) {
+        this.data.timepoints.push(timepointId);
+        timepoint.data.visit_id = this.data.id;
+      }
+      else{
+        this.data.timepoints.splice(_.indexOf(this.data.timepoints, timepointId), 1);
+        timepoint.data.visit_id = "";
+      }
+
+      this.matrix.disableFiltering();
+      var timeline = this.matrix.getActiveArm().timeline;
+      timeline.loading(false);
+      timeline.render(timeline.data.timepoints);
+
+    }.bind(this)
+
+  });
+}
+
+/**
+ * Get url for this visit timepoints update (add/remove)
+ *
+ * @param adding [Boolean] if true, will return url for adding TPs
+ * @return [String] url pointing to this visit instance
+ */
+Visit.prototype.updateTpUrl = function(adding) {
+  if (adding)
+    return visitAddTpUrl.replace("visitId", this.id);
+
+  return visitRemoveTpUrl.replace("visitId", this.id);
+}
+
+/**
+ * Makes a CSS object for a visit block
+ *
+ * @return [Object] left, width values
+ */
+Visit.prototype.getBlockCSS = function() {
+  var edgeTimepoints = this.getVisitEdgeTps();
+
+  // No timepoints in an epoch - do not render
+  if (_.isEmpty(edgeTimepoints))
+    return null;
+
+  var visitWidth, visitLeft,
+      tpRadius = this.matrix.getActiveArm().timeline.tpRadius;
+
+  visitLeft = "calc(" + edgeTimepoints[0].offsetLeft + "% + " + (tpRadius/2 - 4) + "px)";
+  visitWidth = "calc(" + (edgeTimepoints[1].offsetLeft - edgeTimepoints[0].offsetLeft) + "% + 8px)";
+
+  return {
+    width: visitWidth,
+    offsetLeft: visitLeft
+  };
+}
+
+/**
+ * Finds first and last timepoints belonging to a visit
+ *
+ * @return [Array] [0] first visit timepoint, [1] last visit timepoint
+ * returns empty [] if no timepoints found
+ */
+Visit.prototype.getVisitEdgeTps = function() {
+  var visitTimepoints = _.filter(this.matrix.getActiveArm().timeline.data.renderTimepoints, function (tp) { return tp.data.visit_id == this.data.id; }.bind(this));
+  if (_.isEmpty(visitTimepoints))
+    return [];
+
+  return [_.first(visitTimepoints), _.last(visitTimepoints)];
+}

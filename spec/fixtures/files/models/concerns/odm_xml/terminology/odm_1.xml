@@ -1,0 +1,876 @@
+<!-- 
+
+   ODMTest: CDISC ODM Test Suite, (c) Assero Limited, 2004, 2005, 2006 & 2007
+
+   Test Set:  	010 - Version 1.2 (Schema) & Version 1.2.1 (Schema), Example Metadata
+   Test Item: 	010
+   Description:	Complete metadata example. No errors.
+   Result:		No errors.
+   
+   ($Revision: 3 $)
+
+-->
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ODM FileOID="CES_001" 
+     FileType="Transactional" 
+     Granularity="Metadata" 
+     CreationDateTime="2005-01-01T12:00:00+01:00" 	               
+     xmlns="http://www.cdisc.org/ns/odm/v1.2"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+	<Study OID="CES">
+		<GlobalVariables>
+			<StudyName>CDISC Example Study</StudyName>
+			<StudyDescription>A simple trial to demonstrate the end-to-end application of the CDISC Standards</StudyDescription>
+			<ProtocolName>CDISC Example Study</ProtocolName>
+		</GlobalVariables>
+		<BasicDefinitions>
+			<MeasurementUnit OID="MU_MMHG" Name="mm Hg">
+				<Symbol>
+					<TranslatedText xml:lang="en">mm Hg</TranslatedText>
+					<TranslatedText xml:lang="fr">mm Hg</TranslatedText>
+					<TranslatedText xml:lang="de">mm Hg</TranslatedText>
+				</Symbol>
+			</MeasurementUnit>
+			<MeasurementUnit OID="MU_POUNDS" Name="Pounds">
+				<Symbol>
+					<TranslatedText xml:lang="en">lbs</TranslatedText>
+					<TranslatedText xml:lang="fr">livres</TranslatedText>
+					<TranslatedText xml:lang="de">Pfund</TranslatedText>
+				</Symbol>
+			</MeasurementUnit>
+			<MeasurementUnit OID="MU_INCHES" Name="Inches">
+				<Symbol>
+					<TranslatedText xml:lang="en">in</TranslatedText>
+					<TranslatedText xml:lang="fr">pouce</TranslatedText>
+					<TranslatedText xml:lang="de">Zoll</TranslatedText>
+				</Symbol>
+			</MeasurementUnit>
+		</BasicDefinitions>
+		<MetaDataVersion OID="CES_MDV_V1" Name="CDISC Example Study Metadata">
+			<Protocol>
+				<StudyEventRef StudyEventOID="BASELINE" Mandatory="Yes" OrderNumber="1"/>
+				<StudyEventRef StudyEventOID="WEEK_1" Mandatory="Yes" OrderNumber="2"/>
+				<StudyEventRef StudyEventOID="WEEK_2" Mandatory="Yes" OrderNumber="3"/>
+				<StudyEventRef StudyEventOID="DIARY" Mandatory="Yes" OrderNumber="4"/>
+				<StudyEventRef StudyEventOID="AE" Mandatory="No" OrderNumber="5"/>
+			</Protocol>
+			<StudyEventDef OID="BASELINE" Name="Baseline Visit" Repeating="No" Type="Scheduled">
+				<FormRef FormOID="F_BASELINE" Mandatory="Yes" OrderNumber="1"/>
+				<FormRef FormOID="F_CM" Mandatory="Yes" OrderNumber="2"/>
+				<FormRef FormOID="F_LAB" Mandatory="Yes" OrderNumber="3"/>
+			</StudyEventDef>
+			<StudyEventDef OID="WEEK_1" Name="Week 1 Visit" Repeating="No" Type="Scheduled">
+				<FormRef FormOID="F_WEEK_1_2" Mandatory="Yes" OrderNumber="1"/>
+				<FormRef FormOID="F_LAB" Mandatory="Yes" OrderNumber="2"/>
+			</StudyEventDef>
+			<StudyEventDef OID="WEEK_2" Name="Week 2 Visit" Repeating="No" Type="Scheduled">
+				<FormRef FormOID="F_WEEK_1_2" Mandatory="Yes" OrderNumber="1"/>
+				<FormRef FormOID="F_LAB" Mandatory="Yes" OrderNumber="2"/>
+			</StudyEventDef>
+			<StudyEventDef OID="DIARY" Name="Patient Diary Event" Repeating="Yes" Type="Scheduled">
+				<FormRef FormOID="F_DIARY" Mandatory="Yes" OrderNumber="1"/>
+			</StudyEventDef>
+			<StudyEventDef OID="AE" Name="Adverse Event" Repeating="No" Type="Common">
+				<FormRef FormOID="F_AE" Mandatory="No" OrderNumber="1"/>
+				<FormRef FormOID="F_CM" Mandatory="No" OrderNumber="2"/>
+			</StudyEventDef>
+			<FormDef OID="F_BASELINE" Name="Baseline Visit Form" Repeating="No">
+				<ItemGroupRef ItemGroupOID="IG_COMMON" Mandatory="Yes" OrderNumber="1"/>
+				<ItemGroupRef ItemGroupOID="IG_DM" Mandatory="Yes" OrderNumber="2"/>
+				<ItemGroupRef ItemGroupOID="IG_SH" Mandatory="Yes" OrderNumber="3"/>
+				<ItemGroupRef ItemGroupOID="IG_DH" Mandatory="Yes" OrderNumber="4"/>
+				<ItemGroupRef ItemGroupOID="IG_PE_BASE" Mandatory="Yes" OrderNumber="5"/>
+			</FormDef>
+			<FormDef OID="F_WEEK_1_2" Name="Week 1 and 2 Form" Repeating="No">
+				<ItemGroupRef ItemGroupOID="IG_COMMON" Mandatory="Yes" OrderNumber="1"/>
+				<ItemGroupRef ItemGroupOID="IG_PE_WEEK" Mandatory="Yes" OrderNumber="2"/>
+			</FormDef>
+			<FormDef OID="F_DIARY" Name="Diary Form" Repeating="No">
+				<ItemGroupRef ItemGroupOID="IG_COMMON" Mandatory="Yes" OrderNumber="1"/>
+				<ItemGroupRef ItemGroupOID="IG_PD" Mandatory="Yes" OrderNumber="2"/>
+			</FormDef>
+			<FormDef OID="F_AE" Name="Adverse Event Form (ACRO)" Repeating="Yes">
+				<ItemGroupRef ItemGroupOID="IG_COMMON" Mandatory="Yes" OrderNumber="1"/>
+				<ItemGroupRef ItemGroupOID="IG_AE_OCCURRED" Mandatory="Yes" OrderNumber="2"/>
+				<ItemGroupRef ItemGroupOID="IG_AE" Mandatory="Yes" OrderNumber="3"/>
+			</FormDef>
+			<FormDef OID="F_CM" Name="Prior or Concomitant Medications (ACRO)" Repeating="Yes">
+				<ItemGroupRef ItemGroupOID="IG_COMMON" Mandatory="Yes" OrderNumber="1"/>
+				<ItemGroupRef ItemGroupOID="IG_CM_TAKEN" Mandatory="Yes" OrderNumber="2"/>
+				<ItemGroupRef ItemGroupOID="IG_CM" Mandatory="Yes" OrderNumber="3"/>
+			</FormDef>
+			<FormDef OID="F_LAB" Name="Laboratory" Repeating="No">
+				<ItemGroupRef ItemGroupOID="IG_COMMON" Mandatory="Yes" OrderNumber="1"/>
+				<ItemGroupRef ItemGroupOID="IG_LB_HEMATOLOGY" Mandatory="Yes" OrderNumber="3"/>
+			</FormDef>
+      <FormDef OID="F_ERROR" Name="Laboratory" Repeating="No">
+        <ItemGroupRef ItemGroupOID="IG_COMMON" Mandatory="Yes" OrderNumber="1"/>
+        <ItemGroupRef ItemGroupOID="IG_ERROR" Mandatory="Yes" OrderNumber="3"/>
+      </FormDef>
+			<ItemGroupDef OID="IG_COMMON" Name="Common" Repeating="No" SASDatasetName="COMMON" Domain="DM">
+				<ItemRef ItemOID="I_SITE" Mandatory="Yes" OrderNumber="1"/>
+				<ItemRef ItemOID="I_SUBJECTID" Mandatory="Yes" OrderNumber="2"/>
+				<ItemRef ItemOID="I_VISIT" Mandatory="Yes" OrderNumber="3"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID="IG_DM" Name="Demographics" Repeating="No" SASDatasetName="DEMOG" Domain="DM">
+				<ItemRef ItemOID="I_BRTHDT" Mandatory="Yes" OrderNumber="1"/>
+				<ItemRef ItemOID="I_SEX" Mandatory="Yes" OrderNumber="2"/>
+				<ItemRef ItemOID="I_RACE" Mandatory="Yes" OrderNumber="3"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID="IG_SH" Name="Smoking History" Repeating="No" SASDatasetName="SMOKE" Domain="SU">
+				<ItemRef ItemOID="I_SMOKING" Mandatory="Yes" OrderNumber="1"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID="IG_DH" Name="Drinking History" Repeating="No" SASDatasetName="DRINK" Domain="SU">
+				<ItemRef ItemOID="I_DRINKING" Mandatory="Yes" OrderNumber="1"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID="IG_PE_BASE" Name="Physical Exam" Repeating="No" SASDatasetName="PHYEXBAS" Domain="VS">
+				<ItemRef ItemOID="I_HEIGHT" Mandatory="Yes" OrderNumber="1"/>
+				<ItemRef ItemOID="I_WEIGHT" Mandatory="Yes" OrderNumber="2"/>
+				<ItemRef ItemOID="I_SYSBP" Mandatory="Yes" OrderNumber="3"/>
+				<ItemRef ItemOID="I_DIABP" Mandatory="Yes" OrderNumber="4"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID="IG_PE_WEEK" Name="Physical Exam" Repeating="No" SASDatasetName="PHYEX" Domain="VS">
+				<ItemRef ItemOID="I_WEIGHT" Mandatory="Yes" OrderNumber="1"/>
+				<ItemRef ItemOID="I_SYSBP" Mandatory="Yes" OrderNumber="2"/>
+				<ItemRef ItemOID="I_DIABP" Mandatory="Yes" OrderNumber="3"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID="IG_PD" Name="Patient Diary" Repeating="Yes" SASDatasetName="DIARY" Domain="QS">
+				<ItemRef ItemOID="I_DAY" Mandatory="Yes" OrderNumber="1"/>
+				<ItemRef ItemOID="I_DATE" Mandatory="Yes" OrderNumber="2"/>
+				<ItemRef ItemOID="I_DIARY" Mandatory="Yes" OrderNumber="3"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID="IG_AE_OCCURRED" Name="Adverse Events Occurred" Repeating="No" SASDatasetName="AEOCCUR" Domain="AE">
+				<ItemRef ItemOID="I_AE_OCCURRED" Mandatory="Yes" OrderNumber="1"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID="IG_AE" Name="Adverse Event" Repeating="Yes" SASDatasetName="AEEVENT" Domain="AE">
+				<ItemRef ItemOID="I_AE_EVENT" Mandatory="Yes" OrderNumber="1"/>
+				<ItemRef ItemOID="I_AE_TERM" Mandatory="Yes" OrderNumber="2"/>
+				<ItemRef ItemOID="I_AE_START" Mandatory="Yes" OrderNumber="3"/>
+				<ItemRef ItemOID="I_AE_STOP" Mandatory="No" OrderNumber="4"/>
+				<ItemRef ItemOID="I_AE_CONTINUES" Mandatory="No" OrderNumber="5"/>
+				<ItemRef ItemOID="I_AE_SERIOUS" Mandatory="Yes" OrderNumber="6"/>
+				<ItemRef ItemOID="I_AE_SEVERITY" Mandatory="Yes" OrderNumber="7"/>
+				<ItemRef ItemOID="I_AE_RELATED" Mandatory="Yes" OrderNumber="8"/>
+				<ItemRef ItemOID="I_AE_ACTION" Mandatory="Yes" OrderNumber="9"/>
+				<ItemRef ItemOID="I_AE_OUTCOME" Mandatory="Yes" OrderNumber="10"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID="IG_CM_TAKEN" Name="Non-study Medications Taken" Repeating="No" SASDatasetName="NSMEDTK" Domain="CM">
+				<ItemRef ItemOID="I_CM_TAKEN" Mandatory="Yes" OrderNumber="1"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID="IG_CM" Name="Prior or Concomitant Medications" Repeating="Yes" SASDatasetName="CONMED" Domain="CM">
+				<ItemRef ItemOID="I_CM_NUMBER" Mandatory="Yes" OrderNumber="1"/>
+				<ItemRef ItemOID="I_CM_NAME" Mandatory="Yes" OrderNumber="2"/>
+				<ItemRef ItemOID="I_CM_DOSE" Mandatory="Yes" OrderNumber="3"/>
+				<ItemRef ItemOID="I_CM_DOSEUNIT" Mandatory="Yes" OrderNumber="4"/>
+				<ItemRef ItemOID="I_CM_DOSEFREQ" Mandatory="Yes" OrderNumber="5"/>
+				<ItemRef ItemOID="I_CM_START" Mandatory="Yes" OrderNumber="6"/>
+				<ItemRef ItemOID="I_CM_STOP" Mandatory="Yes" OrderNumber="7"/>
+				<ItemRef ItemOID="I_CM_CONTINUES" Mandatory="Yes" OrderNumber="8"/>
+				<ItemRef ItemOID="I_CM_IEXISTING" Mandatory="Yes" OrderNumber="9"/>
+				<ItemRef ItemOID="I_CM_IAE" Mandatory="Yes" OrderNumber="10"/>
+				<ItemRef ItemOID="I_CM_IPROP" Mandatory="Yes" OrderNumber="11"/>
+				<ItemRef ItemOID="I_CM_IPROPDESC" Mandatory="Yes" OrderNumber="12"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID="IG_LB_HEMATOLOGY" Name="Hematology" Repeating="No" SASDatasetName="LAB" Domain="LB">
+				<ItemRef ItemOID="I_LB_NAME" Mandatory="Yes" OrderNumber="1"/>
+				<ItemRef ItemOID="I_LB_ID" Mandatory="Yes" OrderNumber="2"/>
+				<ItemRef ItemOID="I_LB_ACCESSION" Mandatory="Yes" OrderNumber="3"/>
+				<ItemRef ItemOID="I_LB_RBC" Mandatory="Yes" OrderNumber="4"/>
+				<ItemRef ItemOID="I_LB_RBC_LO" Mandatory="Yes" OrderNumber="5"/>
+				<ItemRef ItemOID="I_LB_RBC_HI" Mandatory="Yes" OrderNumber="6"/>
+				<ItemRef ItemOID="I_LB_RBC_NOTDONE" Mandatory="Yes" OrderNumber="7"/>
+				<ItemRef ItemOID="I_LB_WBC" Mandatory="Yes" OrderNumber="8"/>
+				<ItemRef ItemOID="I_LB_WBC_LO" Mandatory="Yes" OrderNumber="9"/>
+				<ItemRef ItemOID="I_LB_WBC_HI" Mandatory="Yes" OrderNumber="10"/>
+				<ItemRef ItemOID="I_LB_WBC_NOTDONE" Mandatory="Yes" OrderNumber="11"/>
+			</ItemGroupDef>
+			<ItemDef OID="I_SITE" Name="Site Number" DataType="text" Length="3" SASFieldName="SITEID" SDSVarName="SITEID">
+				<Question>
+					<TranslatedText xml:lang="en">Site #</TranslatedText>
+					<TranslatedText xml:lang="fr">Emplacement #</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_SUBJECTID" Name="Subject ID" DataType="text" Length="11" SASFieldName="USUBJID" SDSVarName="USUBJID">
+				<Question>
+					<TranslatedText xml:lang="en">Subject ID #</TranslatedText>
+					<TranslatedText xml:lang="de">ID des Patienten #</TranslatedText>
+					<TranslatedText xml:lang="fr">Sujet Identification #</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_SUBJECTINITIALS" Name="Subject Initials" DataType="text" Length="3" SASFieldName="SUBJINIT">
+				<Question>
+					<TranslatedText xml:lang="en">Subject Initials</TranslatedText>
+					<TranslatedText xml:lang="fr">Initiales du Sujet</TranslatedText>
+					<TranslatedText xml:lang="de">Initialen des Patienten</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_VISIT" Name="Visit Date" DataType="date" SASFieldName="VISITDAT" SDSVarName="RFSTDTC">
+				<Question>
+					<TranslatedText xml:lang="en">Visit Date</TranslatedText>
+					<TranslatedText xml:lang="fr">Date de Visite</TranslatedText>
+					<TranslatedText xml:lang="de">Besuchsdatum</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_BRTHDT" Name="Date of Birth" DataType="date" SASFieldName="DOB" SDSVarName="BRTHDTC">
+				<Question>
+					<TranslatedText xml:lang="en">Date of Birth</TranslatedText>
+					<TranslatedText xml:lang="fr">Date de Naissance</TranslatedText>
+					<TranslatedText xml:lang="de">Geburtsdatum</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_SEX" Name="DM - Sex" DataType="text" Length="1" SASFieldName="GENDER" SDSVarName="SEX">
+				<Question>
+					<TranslatedText xml:lang="en">Sex</TranslatedText>
+					<TranslatedText xml:lang="fr">Genre</TranslatedText>
+					<TranslatedText xml:lang="de">Geschlecht</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_SEX"/>
+			</ItemDef>
+			<ItemDef OID="I_RACE" Name="DM - Race" DataType="text" Length="20" SASFieldName="RACE" SDSVarName="RACE">
+				<Question>
+					<TranslatedText xml:lang="en">Race</TranslatedText>
+					<TranslatedText xml:lang="fr">Appartenance ethnique</TranslatedText>
+					<TranslatedText xml:lang="de">Ethnischer Ursprung</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_RACE"/>
+			</ItemDef>
+			<ItemDef OID="I_SMOKING" Name="Smoking" DataType="text" Length="20" SASFieldName="SMOKES" SDSVarName="SUDOSE">
+				<Question>
+					<TranslatedText xml:lang="en">Number of cigarettes per day</TranslatedText>
+					<TranslatedText xml:lang="fr">Nombre de cigarettes par jour</TranslatedText>
+					<TranslatedText xml:lang="de">Zahl der Zigaretten pro Tag</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_SMOKING"/>
+			</ItemDef>
+			<ItemDef OID="I_DRINKING" Name="Drinking" DataType="text" Length="20" SASFieldName="DRINKS" SDSVarName="SUDOSE">
+				<Question>
+					<TranslatedText xml:lang="en">Number of alcoholic drinks per day</TranslatedText>
+					<TranslatedText xml:lang="fr">Nombre de boissons alcoolique par jour</TranslatedText>
+					<TranslatedText xml:lang="de">Zahl der alkoholische Getränke pro Tag</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_DRINKING"/>
+			</ItemDef>
+			<ItemDef OID="I_SYSBP" Name="Systolic BP" DataType="integer" Length="3" SASFieldName="SYSTL" SDSVarName="VSORRES">
+				<Question>
+					<TranslatedText xml:lang="en">Systolic BP</TranslatedText>
+					<TranslatedText xml:lang="fr">Tension artérielle systolique</TranslatedText>
+					<TranslatedText xml:lang="de">Systolischer Blutdruck</TranslatedText>
+				</Question>
+				<MeasurementUnitRef MeasurementUnitOID="MU_MMHG"/>
+			</ItemDef>
+			<ItemDef OID="I_DIABP" Name="Diastolic BP" DataType="integer" Length="3" SASFieldName="DIASYSTL" SDSVarName="VSORRES">
+				<Question>
+					<TranslatedText xml:lang="en">Diastolic BP</TranslatedText>
+					<TranslatedText xml:lang="fr">Tension artérielle diastolique</TranslatedText>
+					<TranslatedText xml:lang="de">Diastolischer Blutdruck</TranslatedText>
+				</Question>
+				<MeasurementUnitRef MeasurementUnitOID="MU_MMHG"/>
+			</ItemDef>
+			<ItemDef OID="I_HEIGHT" Name="Height" DataType="integer" Length="3" SASFieldName="HEIGHT" SDSVarName="VSORRES">
+				<Question>
+					<TranslatedText xml:lang="en">Height</TranslatedText>
+					<TranslatedText xml:lang="fr">Taille</TranslatedText>
+					<TranslatedText xml:lang="de">Größe</TranslatedText>
+				</Question>
+				<MeasurementUnitRef MeasurementUnitOID="MU_INCHES"/>
+			</ItemDef>
+			<ItemDef OID="I_WEIGHT" Name="Weight" DataType="integer" Length="3" SASFieldName="WEIGHT" SDSVarName="VSORRES">
+				<Question>
+					<TranslatedText xml:lang="en">Weight</TranslatedText>
+					<TranslatedText xml:lang="fr">Poids</TranslatedText>
+					<TranslatedText xml:lang="de">Gewicht</TranslatedText>
+				</Question>
+				<MeasurementUnitRef MeasurementUnitOID="MU_POUNDS"/>
+			</ItemDef>
+			<ItemDef OID="I_DAY" Name="Diary Day" DataType="integer" Length="1" SDSVarName="QSDY">
+				<Question>
+					<TranslatedText xml:lang="en">Day</TranslatedText>
+					<TranslatedText xml:lang="fr">Jour</TranslatedText>
+					<TranslatedText xml:lang="de">Tag</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_DIARY_DAY"/>
+			</ItemDef>
+			<ItemDef OID="I_DATE" Name="Diary Date" DataType="date" SDSVarName="QSDTC">
+				<Question>
+					<TranslatedText xml:lang="en">Date</TranslatedText>
+					<TranslatedText xml:lang="fr">Date</TranslatedText>
+					<TranslatedText xml:lang="de">Datum</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_DIARY" Name="Scale" DataType="integer" Length="1" SDSVarName="QSORRES">
+				<Question>
+					<TranslatedText xml:lang="en">Discomfort Severity</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_DIARY"/>
+			</ItemDef>
+			<ItemDef OID="I_AE_OCCURRED" Name="Adverse Event Experienced" DataType="integer" Length="1" SASFieldName="AEEVTEXP">
+				<Question>
+					<TranslatedText xml:lang="en">Has the subject experienced any adverse events</TranslatedText>
+					<TranslatedText xml:lang="fr">Est ce que le sujet a eu des événements défavorables</TranslatedText>
+					<TranslatedText xml:lang="de">Hat der Patient unerwünschte Vorfälle</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_NOYES"/>
+			</ItemDef>
+			<ItemDef OID="I_AE_EVENT" Name="Adverse Event Number" DataType="integer" Length="3" SDSVarName="AESPID">
+				<Question>
+					<TranslatedText xml:lang="en">Event No.</TranslatedText>
+					<TranslatedText xml:lang="fr">Nombre d&apos;événement</TranslatedText>
+					<TranslatedText xml:lang="de">Zahl der Vorfälle</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_AE_TERM" Name="Adverse Event Term" DataType="text" Length="255" SDSVarName="AETERM">
+				<Question>
+					<TranslatedText xml:lang="en">Adverse event</TranslatedText>
+					<TranslatedText xml:lang="fr">L&apos;événements défavorable</TranslatedText>
+					<TranslatedText xml:lang="de">Vorfall</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_AE_START" Name="Adverse Event Start Date" DataType="date" SDSVarName="AESTDTC">
+				<Question>
+					<TranslatedText xml:lang="en">Start Date</TranslatedText>
+					<TranslatedText xml:lang="fr">Date du début</TranslatedText>
+					<TranslatedText xml:lang="de">Anfangsdatum</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_AE_STOP" Name="Adverse Event Stop Date" DataType="date" SDSVarName="AEENDTC">
+				<Question>
+					<TranslatedText xml:lang="en">Stop Date</TranslatedText>
+					<TranslatedText xml:lang="fr">Date de la fin</TranslatedText>
+					<TranslatedText xml:lang="de">Datum des Endes</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_AE_CONTINUES" Name="Adverse Event Continues" DataType="integer" Length="1" SDSVarName="AEENRF">
+				<Question>
+					<TranslatedText xml:lang="en">Mark if event is still continuing</TranslatedText>
+					<TranslatedText xml:lang="fr">Marque si l&apos;événement continue toujours</TranslatedText>
+					<TranslatedText xml:lang="de">Markieren wenn heute noch kontinuierend</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_NOYES"/>
+			</ItemDef>
+			<ItemDef OID="I_AE_SERIOUS" Name="Adverse Event Serious" DataType="integer" Length="1" SDSVarName="AESER">
+				<Question>
+					<TranslatedText xml:lang="en">Was event serious</TranslatedText>
+					<TranslatedText xml:lang="fr">était l&apos;événement sérieux</TranslatedText>
+					<TranslatedText xml:lang="de">Waren die Vorfälle ernsthaft</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_NOYES"/>
+			</ItemDef>
+			<ItemDef OID="I_AE_SEVERITY" Name="Adverse Event Severity" DataType="integer" Length="1" SDSVarName="AESEV">
+				<Question>
+					<TranslatedText xml:lang="en">Severity</TranslatedText>
+					<TranslatedText xml:lang="fr">Sévérité</TranslatedText>
+					<TranslatedText xml:lang="de">Ernsthaftigkeit</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_AE_SEVERITY"/>
+			</ItemDef>
+			<ItemDef OID="I_AE_RELATED" Name="Adverse Event Related" DataType="integer" Length="1" SDSVarName="AEREL">
+				<Question>
+					<TranslatedText xml:lang="en">Is there a reasonable possibility that the AE may have been caused by the study drug</TranslatedText>
+					<TranslatedText xml:lang="fr">Y a il une possibilité raisonnable que les événements défavorables a pu avoir été provoqué par la drogue d&apos;étude</TranslatedText>
+					<TranslatedText xml:lang="de">Gibt es eine angemessene Möglichkeit, dass die Vorfälle durch das Medikament des Studiums verursacht werden</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_NOYES"/>
+			</ItemDef>
+			<ItemDef OID="I_AE_ACTION" Name="Adverse Event Action Taken" DataType="integer" Length="1" SDSVarName="AEACN">
+				<Question>
+					<TranslatedText xml:lang="en">Action taken with study drug</TranslatedText>
+					<TranslatedText xml:lang="fr">Mesure prise avec le medicament de l&apos;étude</TranslatedText>
+					<TranslatedText xml:lang="de">Ergriffene Maßnahmen mit Medikament des Studiums</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_AE_ACTION"/>
+			</ItemDef>
+			<ItemDef OID="I_AE_OUTCOME" Name="Adverse Event Subject Outcome" DataType="integer" Length="1" SDSVarName="AEOUT">
+				<Question>
+					<TranslatedText xml:lang="en">Subject outcome</TranslatedText>
+					<TranslatedText xml:lang="fr">Résultats du sujet</TranslatedText>
+					<TranslatedText xml:lang="de">Patient Resultate</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_AE_OUTCOME"/>
+			</ItemDef>
+			<ItemDef OID="I_CM_TAKEN" Name="Non-study Medications taken" DataType="integer" Length="1">
+				<Question>
+					<TranslatedText xml:lang="en">Were any non-study medications taken</TranslatedText>
+					<TranslatedText xml:lang="fr">Est ce que le sujet a pris des medicament non-relatéé à l&apos;étude</TranslatedText>
+					<TranslatedText xml:lang="de">Hat der Patient Medikamente genommen, die keine Beziehung zum Studium haben</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_NOYES"/>
+			</ItemDef>
+			<ItemDef OID="I_CM_NUMBER" Name="Medication Number" DataType="integer" Length="3" SDSVarName="CMSPID">
+				<Question>
+					<TranslatedText xml:lang="en">Medication No.</TranslatedText>
+					<TranslatedText xml:lang="fr">No. De Médicament</TranslatedText>
+					<TranslatedText xml:lang="de">Nummer des Medikaments</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_CM_NAME" Name="Medication Name" DataType="text" Length="255" SDSVarName="CMTRT">
+				<Question>
+					<TranslatedText xml:lang="en">Drug Name (Brand or Generic)</TranslatedText>
+					<TranslatedText xml:lang="fr">Nom de Drogue (Marque ou générique)</TranslatedText>
+					<TranslatedText xml:lang="de">Name des Medikaments (Marke oder Generisch)</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_CM_DOSE" Name="Medication Dose" DataType="text" Length="20" SDSVarName="CMDOSE">
+				<Question>
+					<TranslatedText xml:lang="en">Total Dose Per Freqeuncy Checked</TranslatedText>
+					<TranslatedText xml:lang="fr">Dose totale par fréquence vérifié</TranslatedText>
+					<TranslatedText xml:lang="de">Totale Dosis per überprüfte Frequenz</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_CM_DOSEUNIT" Name="Medication Dose Untis" DataType="text" Length="20" SDSVarName="CMDOSEU">
+				<Question>
+					<TranslatedText xml:lang="en">Unit</TranslatedText>
+					<TranslatedText xml:lang="fr">Unité</TranslatedText>
+					<TranslatedText xml:lang="de">Einheit</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_CM_DOSEFREQ" Name="Medication Dose Freqeuncy" DataType="integer" Length="1" SDSVarName="CMDOSFRQ">
+				<Question>
+					<TranslatedText xml:lang="en">Frequency</TranslatedText>
+					<TranslatedText xml:lang="fr">Fréquence</TranslatedText>
+					<TranslatedText xml:lang="de">Frequenz</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_CM_FREQUENCY"/>
+			</ItemDef>
+			<ItemDef OID="I_CM_START" Name="Medication Start Date" DataType="date" SDSVarName="CMSTDTC">
+				<Question>
+					<TranslatedText xml:lang="en">Start Date</TranslatedText>
+					<TranslatedText xml:lang="fr">Date du début</TranslatedText>
+					<TranslatedText xml:lang="de">Anfangsdatum</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_CM_STOP" Name="Medication Stop Date" DataType="date" SDSVarName="CMENDTC">
+				<Question>
+					<TranslatedText xml:lang="en">Stop Date</TranslatedText>
+					<TranslatedText xml:lang="fr">Date de la fin</TranslatedText>
+					<TranslatedText xml:lang="de">Datum des Endes</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_CM_CONTINUES" Name="Medication Continues" DataType="integer" Length="1" SDSVarName="CMENRF">
+				<Question>
+					<TranslatedText xml:lang="en">Mark if medication is still continuing</TranslatedText>
+					<TranslatedText xml:lang="fr">Marque si le médicament est à ce jour utilisé</TranslatedText>
+					<TranslatedText xml:lang="de">Markieren wenn der Patient dieses Medikament noch immer benutzt</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_NOYES"/>
+			</ItemDef>
+			<ItemDef OID="I_CM_IEXISTING" Name="Pre-exisitng Illness" DataType="integer" Length="3" SASFieldName="CMINDCPI" SDSVarName="CMINDC">
+				<Question>
+					<TranslatedText xml:lang="en">Pre-exisitng illness</TranslatedText>
+					<TranslatedText xml:lang="fr">Maladie se produisant avant</TranslatedText>
+					<TranslatedText xml:lang="de">Vorherige Krankheit</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_CM_IAE" Name="Adverse Event" DataType="integer" Length="3" SASFieldName="CMINDCAE" SDSVarName="CMINDC">
+				<Question>
+					<TranslatedText xml:lang="en">Adverse Event</TranslatedText>
+					<TranslatedText xml:lang="fr">Les événements défavorables</TranslatedText>
+					<TranslatedText xml:lang="de">Vorfall</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_CM_IPROP" Name="Prophylaxis" DataType="integer" Length="1" SASFieldName="CMINDCPY" SDSVarName="CMINDC">
+				<Question>
+					<TranslatedText xml:lang="en">Prophylaxis</TranslatedText>
+					<TranslatedText xml:lang="fr">Prophylaxie</TranslatedText>
+					<TranslatedText xml:lang="de">Prophylaxis</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_NOYES"/>
+			</ItemDef>
+			<ItemDef OID="I_CM_IPROPDESC" Name="Prophylaxis Description" DataType="text" Length="20" SASFieldName="CMINDCPD" SDSVarName="CMINDC">
+				<Question>
+					<TranslatedText xml:lang="en">Prophylaxis, Specify</TranslatedText>
+					<TranslatedText xml:lang="fr">Prophylaxie, Description</TranslatedText>
+					<TranslatedText xml:lang="de">Prophylaxis, Beschreibung</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_LB_NAME" Name="Laboratory Name" DataType="text" Length="14" SDSVarName="LBNAM">
+				<Question>
+					<TranslatedText xml:lang="en">Laboratory Name</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_LB_ID" Name="Laboratory ID" DataType="text" Length="5">
+				<Question>
+					<TranslatedText xml:lang="en">Laboratory ID</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_LB_ACCESSION" Name="Accession Number" DataType="integer" Length="5">
+				<Question>
+					<TranslatedText xml:lang="en">Accession #</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_LB_RBC" Name="RBC" DataType="float" Length="8" SASFieldName="RBC" SDSVarName="LBORRES" SignificantDigits="3">
+				<Question>
+					<TranslatedText xml:lang="en">Red Blood Count</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_LB_RBC_LO" Name="RBC Normal Range Lo" DataType="float" Length="8" SASFieldName="RBCLOW" SDSVarName="LBORNRLO" SignificantDigits="3">
+				<Question>
+					<TranslatedText xml:lang="en">Red Blood Count, Normal Range, Low</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_LB_RBC_HI" Name="RBC Normal Range Hi" DataType="float" Length="8" SASFieldName="RBCHIGH" SDSVarName="LBORNRHI" SignificantDigits="3">
+				<Question>
+					<TranslatedText xml:lang="en">Red Blood Count, Normal Range, High</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_LB_RBC_NOTDONE" Name="RBC Done" DataType="text" Length="8" SASFieldName="RBCNOTDN" SDSVarName="LBSTAT">
+				<Question>
+					<TranslatedText xml:lang="en">Not Done</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_NOTDONE"/>
+			</ItemDef>
+			<ItemDef OID="I_LB_WBC" Name="WBC" DataType="float" Length="8" SASFieldName="WBC" SDSVarName="LBORRES" SignificantDigits="3">
+				<Question>
+					<TranslatedText xml:lang="en">White Blood Count</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_LB_WBC_LO" Name="WBC Normal Range Lo" DataType="float" Length="8" SASFieldName="WBCLOW" SDSVarName="LBORNRLO" SignificantDigits="3">
+				<Question>
+					<TranslatedText xml:lang="en">White Blood Count, Normal Range, Low</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_LB_WBC_HI" Name="WBC Normal Range Hi" DataType="float" Length="8" SASFieldName="WBCHIGH" SDSVarName="LBORNRHI" SignificantDigits="3">
+				<Question>
+					<TranslatedText xml:lang="en">White Blood Count, Normal Range, High</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I_LB_WBC_NOTDONE" Name="WBC Done" DataType="text" Length="8" SDSVarName="LBSTAT">
+				<Question>
+					<TranslatedText xml:lang="en">Not Done</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL_NOTDONE"/>
+			</ItemDef>
+			<CodeList OID="CL_SEX" Name="Sex" DataType="text" SASFormatName="SEX">
+				<CodeListItem CodedValue="M">
+					<Decode>
+						<TranslatedText xml:lang="en">Male</TranslatedText>
+						<TranslatedText xml:lang="fr">Masculin</TranslatedText>
+						<TranslatedText xml:lang="de">Männlich</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="F">
+					<Decode>
+						<TranslatedText xml:lang="en">Female</TranslatedText>
+						<TranslatedText xml:lang="fe">Féminin</TranslatedText>
+						<TranslatedText xml:lang="de">Weiblich</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL_RACE" Name="Race" DataType="text" SASFormatName="RACE">
+				<CodeListItem CodedValue="CAUCASIAN">
+					<Decode>
+						<TranslatedText xml:lang="en">Caucasian</TranslatedText>
+						<TranslatedText xml:lang="fr">Caucasien</TranslatedText>
+						<TranslatedText xml:lang="de">Kaukasisch</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="BLACK">
+					<Decode>
+						<TranslatedText xml:lang="en">Black</TranslatedText>
+						<TranslatedText xml:lang="fr">Noire</TranslatedText>
+						<TranslatedText xml:lang="de">Schwarz</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="ASIAN">
+					<Decode>
+						<TranslatedText xml:lang="en">Asian</TranslatedText>
+						<TranslatedText xml:lang="fr">Asiate</TranslatedText>
+						<TranslatedText xml:lang="de">Asiatisch</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="OTHER">
+					<Decode>
+						<TranslatedText xml:lang="en">Other</TranslatedText>
+						<TranslatedText xml:lang="fr">Autre</TranslatedText>
+						<TranslatedText xml:lang="de">Sonstige</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL_SMOKING" Name="Smoking" DataType="text" SASFormatName="SMOKE">
+				<CodeListItem CodedValue="LT10">
+					<Decode>
+						<TranslatedText xml:lang="en">Less Than 10 cigarettes per day</TranslatedText>
+						<TranslatedText xml:lang="fr">Moins que 10 cigarettes par jour</TranslatedText>
+						<TranslatedText xml:lang="de">Weniger als 10 Zigaretten pro Tag</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="10TO20">
+					<Decode>
+						<TranslatedText xml:lang="en">10 to 20 cigarettes per day</TranslatedText>
+						<TranslatedText xml:lang="fr">10 à 20 cigarettes par jour</TranslatedText>
+						<TranslatedText xml:lang="de">10 bis 20 Zigaretten pro Tag</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="GT20">
+					<Decode>
+						<TranslatedText xml:lang="en">Greater Than 20 cigarettes per day</TranslatedText>
+						<TranslatedText xml:lang="fr">Plus de 20 cigarettes par jour</TranslatedText>
+						<TranslatedText xml:lang="de">Mehr als 20 Zigaretten pro Tag</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL_DRINKING" Name="Drinking" DataType="text" SASFormatName="DRINK">
+				<CodeListItem CodedValue="LT1">
+					<Decode>
+						<TranslatedText xml:lang="en">Less Than 1 drink per day</TranslatedText>
+						<TranslatedText xml:lang="fr">Moins que une boisson par jour</TranslatedText>
+						<TranslatedText xml:lang="de">Weniger als ein Getränk pro Tag</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="1TO2">
+					<Decode>
+						<TranslatedText xml:lang="en">1 to 2 drinks per day</TranslatedText>
+						<TranslatedText xml:lang="fr">1 à 2 boissons par jour</TranslatedText>
+						<TranslatedText xml:lang="de">1 bis 2 Getränke pro Tag</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="GT2">
+					<Decode>
+						<TranslatedText xml:lang="en">Greater Than 2 drinks per day</TranslatedText>
+						<TranslatedText xml:lang="fr">Plus que 2 boissons par jour</TranslatedText>
+						<TranslatedText xml:lang="de">Mehr als 2 Getränke pro Tag</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL_DIARY" Name="Diary" DataType="integer" SASFormatName="DIARY">
+				<CodeListItem CodedValue="1">
+					<Decode>
+						<TranslatedText xml:lang="en">None</TranslatedText>
+						<TranslatedText xml:lang="fr">Aucun</TranslatedText>
+						<TranslatedText xml:lang="de">Keine</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="2">
+					<Decode>
+						<TranslatedText xml:lang="en">Mild</TranslatedText>
+						<TranslatedText xml:lang="fr">Doux</TranslatedText>
+						<TranslatedText xml:lang="de">Mild</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="3">
+					<Decode>
+						<TranslatedText xml:lang="en">Moderate</TranslatedText>
+						<TranslatedText xml:lang="fr">Modéré</TranslatedText>
+						<TranslatedText xml:lang="de">Gemäßigt</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="4">
+					<Decode>
+						<TranslatedText xml:lang="en">Severe</TranslatedText>
+						<TranslatedText xml:lang="fr">Grave</TranslatedText>
+						<TranslatedText xml:lang="de">Ernsthaft</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL_DIARY_DAY" Name="Diary Day" DataType="integer" SASFormatName="DIARYDAY">
+				<CodeListItem CodedValue="1">
+					<Decode>
+						<TranslatedText xml:lang="en">1</TranslatedText>
+						<TranslatedText xml:lang="fr">1</TranslatedText>
+						<TranslatedText xml:lang="de">1</TranslatedText>
+						<TranslatedText xml:lang="it">i</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="2">
+					<Decode>
+						<TranslatedText xml:lang="en">2</TranslatedText>
+						<TranslatedText xml:lang="fr">2</TranslatedText>
+						<TranslatedText xml:lang="de">2</TranslatedText>
+						<TranslatedText xml:lang="it">ii</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="3">
+					<Decode>
+						<TranslatedText xml:lang="en">3</TranslatedText>
+						<TranslatedText xml:lang="fr">3</TranslatedText>
+						<TranslatedText xml:lang="de">3</TranslatedText>
+						<TranslatedText xml:lang="it">iii</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="4">
+					<Decode>
+						<TranslatedText xml:lang="en">4</TranslatedText>
+						<TranslatedText xml:lang="fr">4</TranslatedText>
+						<TranslatedText xml:lang="de">4</TranslatedText>
+						<TranslatedText xml:lang="it">iv</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="5">
+					<Decode>
+						<TranslatedText xml:lang="en">5</TranslatedText>
+						<TranslatedText xml:lang="fr">5</TranslatedText>
+						<TranslatedText xml:lang="de">5</TranslatedText>
+						<TranslatedText xml:lang="it">v</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="6">
+					<Decode>
+						<TranslatedText xml:lang="en">6</TranslatedText>
+						<TranslatedText xml:lang="fr">6</TranslatedText>
+						<TranslatedText xml:lang="de">6</TranslatedText>
+						<TranslatedText xml:lang="it">vi</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="7">
+					<Decode>
+						<TranslatedText xml:lang="en">7</TranslatedText>
+						<TranslatedText xml:lang="fr">7</TranslatedText>
+						<TranslatedText xml:lang="de">7</TranslatedText>
+						<TranslatedText xml:lang="it">vii</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL_NOYES" Name="No Yes" DataType="integer" SASFormatName="NOYES">
+				<CodeListItem CodedValue="0">
+					<Decode>
+						<TranslatedText xml:lang="en">No</TranslatedText>
+						<TranslatedText xml:lang="fr">Non</TranslatedText>
+						<TranslatedText xml:lang="de">Nein</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="1">
+					<Decode>
+						<TranslatedText xml:lang="en">Yes</TranslatedText>
+						<TranslatedText xml:lang="fr">Oui</TranslatedText>
+						<TranslatedText xml:lang="de">Ja</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL_AE_SEVERITY" Name="Adverse Event Severity" DataType="integer" SASFormatName="AESEV">
+				<CodeListItem CodedValue="1">
+					<Decode>
+						<TranslatedText xml:lang="en">Mild</TranslatedText>
+						<TranslatedText xml:lang="fr">Doux</TranslatedText>
+						<TranslatedText xml:lang="de">Mild</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="2">
+					<Decode>
+						<TranslatedText xml:lang="en">Moderate</TranslatedText>
+						<TranslatedText xml:lang="fr">Modéré</TranslatedText>
+						<TranslatedText xml:lang="de">Gemäßigt</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="3">
+					<Decode>
+						<TranslatedText xml:lang="en">Severe</TranslatedText>
+						<TranslatedText xml:lang="fr">Grave</TranslatedText>
+						<TranslatedText xml:lang="de">Ernsthaft</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL_AE_ACTION" Name="Adverse Event Action Taken" DataType="integer" SASFormatName="AEACTION">
+				<CodeListItem CodedValue="1">
+					<Decode>
+						<TranslatedText xml:lang="en">None</TranslatedText>
+						<TranslatedText xml:lang="fr">Aucun</TranslatedText>
+						<TranslatedText xml:lang="de">Keine</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="2">
+					<Decode>
+						<TranslatedText xml:lang="en">Study drug regimen changed</TranslatedText>
+						<TranslatedText xml:lang="fr">Regime de l&apos;étude changé</TranslatedText>
+						<TranslatedText xml:lang="de">Regime des Studiums geändert</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="3">
+					<Decode>
+						<TranslatedText xml:lang="en">Temporarily stopped study drug</TranslatedText>
+						<TranslatedText xml:lang="fr">Etude arreté temporairement</TranslatedText>
+						<TranslatedText xml:lang="de">Studium temporär unterbrochen</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="4">
+					<Decode>
+						<TranslatedText xml:lang="en">Study drug discontinued</TranslatedText>
+						<TranslatedText xml:lang="fr">Etude du medicament discontinué</TranslatedText>
+						<TranslatedText xml:lang="de">Studium des Medikaments diskontinuiert</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL_AE_OUTCOME" Name="Adverse Event Action Taken" DataType="integer" SASFormatName="AEOUT">
+				<CodeListItem CodedValue="1">
+					<Decode>
+						<TranslatedText xml:lang="en">Subject remains in study</TranslatedText>
+						<TranslatedText xml:lang="fr">Sujet reste dans l&apos;étude</TranslatedText>
+						<TranslatedText xml:lang="de">Patient bleibt in dem Studium</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="2">
+					<Decode>
+						<TranslatedText xml:lang="en">Withdrawn from study</TranslatedText>
+						<TranslatedText xml:lang="fr">Retraité de l&apos;étude</TranslatedText>
+						<TranslatedText xml:lang="de">Vom Studium ausgeschlossen</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="3">
+					<Decode>
+						<TranslatedText xml:lang="en">Lost to follow-up</TranslatedText>
+						<TranslatedText xml:lang="fr">Perdu au follow-up</TranslatedText>
+						<TranslatedText xml:lang="de">Verloren an follow-up</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="4">
+					<Decode>
+						<TranslatedText xml:lang="en">Death</TranslatedText>
+						<TranslatedText xml:lang="fr">Mort</TranslatedText>
+						<TranslatedText xml:lang="de">Tot</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL_CM_FREQUENCY" Name="Medications Frequency" DataType="integer" SASFormatName="AEFREQ">
+				<CodeListItem CodedValue="1">
+					<Decode>
+						<TranslatedText xml:lang="en">Single Dose</TranslatedText>
+						<TranslatedText xml:lang="fr">Une dose</TranslatedText>
+						<TranslatedText xml:lang="de">Eine Dosis</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="2">
+					<Decode>
+						<TranslatedText xml:lang="en">Daily</TranslatedText>
+						<TranslatedText xml:lang="fr">Quotidien</TranslatedText>
+						<TranslatedText xml:lang="de">Täglich</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="3">
+					<Decode>
+						<TranslatedText xml:lang="en">Weekly</TranslatedText>
+						<TranslatedText xml:lang="fr">Hebdomadaire</TranslatedText>
+						<TranslatedText xml:lang="de">Wöchentlich</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="4">
+					<Decode>
+						<TranslatedText xml:lang="en">Monthly</TranslatedText>
+						<TranslatedText xml:lang="fr">Mensuel</TranslatedText>
+						<TranslatedText xml:lang="de">Monatlich</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="5">
+					<Decode>
+						<TranslatedText xml:lang="en">PRN</TranslatedText>
+						<TranslatedText xml:lang="fr">PRN</TranslatedText>
+						<TranslatedText xml:lang="de">PRN</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="99">
+					<Decode>
+						<TranslatedText xml:lang="en">Other</TranslatedText>
+						<TranslatedText xml:lang="fr">Autre</TranslatedText>
+						<TranslatedText xml:lang="de">Sonstige</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL_NOTDONE" Name="Not Done" DataType="text">
+				<CodeListItem CodedValue="NOT DONE">
+					<Decode>
+						<TranslatedText xml:lang="en">NOT DONE</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+		</MetaDataVersion>
+	</Study>
+</ODM>

@@ -1,0 +1,376 @@
+---
+:id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI1gx
+:uri: http://www.example.com/A#X1
+:rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+:label: ''
+:tagged: []
+:ordinal: 1
+:note: OK
+:completion: None
+:optional: false
+:has_item: []
+:repeating: false
+:has_sub_group:
+- :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDR18xNzYwY2JiMS1hMzcwLTQxZjYtYTNiMy00OTNjMWQ5YzIyMzg=
+  :uri: http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238
+  :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
+  :label: Diastolic Blood Pressure
+  :tagged: []
+  :ordinal: 2
+  :note: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF80NjQ2YjQ3YS00YWU0LTRmMjEtYjVlMi01NjU4MTVjOGNkZWQ=
+    :uri: http://www.example.com/A#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: "--TESTCD"
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF80NjQ2YjQ3YS00YWU0LTRmMjEtYjVlMi01NjU4MTVjOGNkZWRfUjE=
+      :uri: http://www.example.com/A#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI1_BCCDTCD_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF80NjQ2YjQ3YS00YWU0LTRmMjEtYjVlMi01NjU4MTVjOGNkZWRfVFVDMQ==
+      :uri: http://www.example.com/A#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.cdisc.org/C66741/V49#C66741_C25299
+      :context: http://www.cdisc.org/C66741/V61#C66741
+      :local_label: Diastolic Blood Pressure
+    :is_common: true
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF85MmJmOGI3NC1lYzc4LTQzNDgtOWExYi0xNTRhNmNjYjliOWY=
+    :uri: http://www.example.com/A#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: "--DTC"
+    :tagged: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF85MmJmOGI3NC1lYzc4LTQzNDgtOWExYi0xNTRhNmNjYjliOWZfUjE=
+      :uri: http://www.example.com/A#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+      :context: 
+    :has_coded_value: []
+    :is_common: false
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF9iNzY1OTdmNy05NzJmLTQwZjQtYmVkNy1lMTM0NzI1Y2YyOTY=
+    :uri: http://www.example.com/A#BCP_b76597f7-972f-40f4-bed7-e134725cf296
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: "--POS"
+    :tagged: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF9iNzY1OTdmNy05NzJmLTQwZjQtYmVkNy1lMTM0NzI1Y2YyOTZfUjE=
+      :uri: http://www.example.com/A#BCP_b76597f7-972f-40f4-bed7-e134725cf296_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF9iNzY1OTdmNy05NzJmLTQwZjQtYmVkNy1lMTM0NzI1Y2YyOTZfVFVDMQ==
+      :uri: http://www.example.com/A#BCP_b76597f7-972f-40f4-bed7-e134725cf296_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.cdisc.org/C71148/V62#C71148_C62166
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: Standing
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF9iNzY1OTdmNy05NzJmLTQwZjQtYmVkNy1lMTM0NzI1Y2YyOTZfVFVDMg==
+      :uri: http://www.example.com/A#BCP_b76597f7-972f-40f4-bed7-e134725cf296_TUC2
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :reference: http://www.cdisc.org/C71148/V6#C71148_C62122
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: Sitting
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF9iNzY1OTdmNy05NzJmLTQwZjQtYmVkNy1lMTM0NzI1Y2YyOTZfVFVDMw==
+      :uri: http://www.example.com/A#BCP_b76597f7-972f-40f4-bed7-e134725cf296_TUC3
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :reference: http://www.cdisc.org/C71148/V6#C71148_C62167
+      :context: http://www.cdisc.org/C71148/V62#C71148
+      :local_label: Supine Position
+    :is_common: false
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8zNmQwMWEwNC05N2ZhLTRhZTktOGY0MC05ZjI2NmE2Y2RjMDY=
+    :uri: http://www.example.com/A#BCP_36d01a04-97fa-4ae9-8f40-9f266a6cdc06
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: "--LOC"
+    :tagged: []
+    :ordinal: 4
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8zNmQwMWEwNC05N2ZhLTRhZTktOGY0MC05ZjI2NmE2Y2RjMDZfUjE=
+      :uri: http://www.example.com/A#BCP_36d01a04-97fa-4ae9-8f40-9f266a6cdc06_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8zNmQwMWEwNC05N2ZhLTRhZTktOGY0MC05ZjI2NmE2Y2RjMDZfVFVDMQ==
+      :uri: http://www.example.com/A#BCP_36d01a04-97fa-4ae9-8f40-9f266a6cdc06_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.cdisc.org/C74456/V58#C74456_C32141
+      :context: http://www.cdisc.org/C74456/V62#C74456
+      :local_label: Arm
+    :is_common: false
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2Y=
+    :uri: http://www.example.com/A#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: "--LAT"
+    :tagged: []
+    :ordinal: 5
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2ZfUjE=
+      :uri: http://www.example.com/A#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI7_BCCDTCD_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2ZfVFVDMQ==
+      :uri: http://www.example.com/A#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.cdisc.org/C99073/V28#C99073_C25229
+      :context: http://www.cdisc.org/C99073/V57#C99073
+      :local_label: Left
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2ZfVFVDMg==
+      :uri: http://www.example.com/A#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC2
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :reference: http://www.cdisc.org/C99073/V28#C99073_C25228
+      :context: http://www.cdisc.org/C99073/V57#C99073
+      :local_label: Right
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8wY2RhNmYyNC1lNTRkLTQ3MjQtYWY3OS05MTZkNDFkOWJkN2ZfVFVDMw==
+      :uri: http://www.example.com/A#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC3
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :reference: http://www.cdisc.org/C99073/V28#C99073_C13332
+      :context: http://www.cdisc.org/C99073/V57#C99073
+      :local_label: Bilateral
+    :is_common: false
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF83OTQ4ZTYxNC1mZGJhLTQ4NGEtOWRmYy1jOThjZTM2OGQ0ZTc=
+    :uri: http://www.example.com/A#BCP_7948e614-fdba-484a-9dfc-c98ce368d4e7
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: "--ORRES"
+    :tagged: []
+    :ordinal: 6
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF83OTQ4ZTYxNC1mZGJhLTQ4NGEtOWRmYy1jOThjZTM2OGQ0ZTdfUjE=
+      :uri: http://www.example.com/A#BCP_7948e614-fdba-484a-9dfc-c98ce368d4e7_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPvalue
+      :context: 
+    :has_coded_value: []
+    :is_common: false
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF9jOWY3ZjdkZS1kMjI3LTRlMTUtYjE3MS0wNmM0MzA2Yjc3ZjQ=
+    :uri: http://www.example.com/A#BCP_c9f7f7de-d227-4e15-b171-06c4306b77f4
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: "--ORRESU"
+    :tagged: []
+    :ordinal: 7
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF9jOWY3ZjdkZS1kMjI3LTRlMTUtYjE3MS0wNmM0MzA2Yjc3ZjRfUjE=
+      :uri: http://www.example.com/A#BCP_c9f7f7de-d227-4e15-b171-06c4306b77f4_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF9jOWY3ZjdkZS1kMjI3LTRlMTUtYjE3MS0wNmM0MzA2Yjc3ZjRfVFVDMQ==
+      :uri: http://www.example.com/A#BCP_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.cdisc.org/C66770/V38#C66770_C49670
+      :context: http://www.cdisc.org/C66770/V59#C66770
+      :local_label: Millimeter of Mercury
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF9jOWY3ZjdkZS1kMjI3LTRlMTUtYjE3MS0wNmM0MzA2Yjc3ZjRfVFVDMg==
+      :uri: http://www.example.com/A#BCP_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC2
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :reference: http://www.cdisc.org/C66770/V55#C66770_C42547
+      :context: http://www.cdisc.org/C66770/V59#C66770
+      :local_label: Pascal
+    :is_common: false
+  :has_biomedical_concept:
+    :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDR18xNzYwY2JiMS1hMzcwLTQxZjYtYTNiMy00OTNjMWQ5YzIyMzhfUjE=
+    :uri: http://www.example.com/A#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238_R1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.s-cubed.dk/DIABP/V1#BCI
+    :context: 
+:has_common:
+- :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI1gxX0NH
+  :uri: http://www.example.com/A#X1_CG
+  :rdf_type: http://www.assero.co.uk/BusinessForm#CommonGroup
+  :label: Not set
+  :tagged: []
+  :ordinal: 1
+  :note: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0NJX2Y5ZmU3MTI4LTRiNjMtNDgyZC05YTExLTYyMjUwZTI0ZmUwYw==
+    :uri: http://www.example.com/A#CI_f9fe7128-4b63-482d-9a11-62250e24fe0c
+    :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
+    :label: "--TESTCD"
+    :tagged: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0NJX2Y5ZmU3MTI4LTRiNjMtNDgyZC05YTExLTYyMjUwZTI0ZmUwY19SMQ==
+      :uri: http://www.example.com/A#CI_f9fe7128-4b63-482d-9a11-62250e24fe0c_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI1_BCCDTCD_BCPcode
+      :context: 
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0NJX2Y5ZmU3MTI4LTRiNjMtNDgyZC05YTExLTYyMjUwZTI0ZmUwY19UVUMx
+      :uri: http://www.example.com/A#CI_f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.cdisc.org/C66741/V49#C66741_C25299
+      :context: http://www.cdisc.org/C66741/V61#C66741
+      :local_label: Diastolic Blood Pressure
+    :has_common_item:
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF80NjQ2YjQ3YS00YWU0LTRmMjEtYjVlMi01NjU4MTVjOGNkZWQ=
+      :uri: http://www.example.com/A#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded
+      :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+      :label: "--TESTCD"
+      :tagged: []
+      :ordinal: 1
+      :note: ''
+      :completion: ''
+      :optional: false
+      :has_property:
+        :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF80NjQ2YjQ3YS00YWU0LTRmMjEtYjVlMi01NjU4MTVjOGNkZWRfUjE=
+        :uri: http://www.example.com/A#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded_R1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI1_BCCDTCD_BCPcode
+        :context: 
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF80NjQ2YjQ3YS00YWU0LTRmMjEtYjVlMi01NjU4MTVjOGNkZWRfVFVDMQ==
+        :uri: http://www.example.com/A#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: false
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66741/V49#C66741_C25299
+        :context: http://www.cdisc.org/C66741/V61#C66741
+        :local_label: Diastolic Blood Pressure
+      :is_common: true
+    :is_common: false

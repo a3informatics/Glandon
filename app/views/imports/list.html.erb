@@ -1,0 +1,29 @@
+<% content_for :page_title do %> Import <% end %>
+
+<% first_level_breadcrumb (:imports) %>
+
+<div class="row">
+	<%= render layout: "shared/headers/header_generic", :locals => { badge: "icon-import", header_title: "",
+		main_text: "Import Centre", sub_texts: "Load data into the MDR." } do %>
+
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: imports_path, id: "imports-button",
+        icon: "icon-list-ul", text: "Current Imports" } %>
+    </div>
+
+	<% end %>
+</div>
+
+<div class="row centered">
+  <div class="col-md-11 card wide">
+      <div class="card-header">
+        Import Options
+      </div>
+      <div class="card-content">
+        <div class="sub-card-wrap eq">
+          <% @items.each_with_index do |item, index| %>
+              <%= render partial: "shared/import/list_panel", locals: {item: item} %>
+          <% end %>
+        </div>
+  </div>
+</div>

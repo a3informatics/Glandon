@@ -1,0 +1,32 @@
+PREFIX bc: <http://www.assero.co.uk/BiomedicalConcept#>
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> rdf:type bc:BiomedicalConceptInstance . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> isoC:label "Height"^^xsd:string . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> isoT:hasState <http://www.s-cubed.dk/HEIGHT/V1#BCI_RS> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> isoT:hasIdentifier <http://www.s-cubed.dk/HEIGHT/V1#BCI_SI> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> isoT:origin ""^^xsd:string . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> isoT:changeDescription ""^^xsd:string . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> isoT:lastChangeDate "2020-09-10T10:45:33+02:00"^^xsd:dateTime . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> isoT:explanatoryComment ""^^xsd:string . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> bc:hasItem <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> bc:hasItem <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> bc:hasItem <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> bc:hasItem <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> bc:hasItem <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI5> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> bc:hasItem <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI6> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> bc:hasItem <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI7> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> bc:hasItem <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI8> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> bc:hasItem <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI3> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> bc:hasItem <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI9> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> bc:hasItem <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI4> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> bc:identifiedBy <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1> . 
+<http://www.s-cubed.dk/HEIGHT/V1#BCI> bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> . 
+}

@@ -1,0 +1,78 @@
+@prefix : <http://www.s-cubed.dk/CDT#> .
+@prefix cdt: <http://www.s-cubed.dk/ComplexDatatypes#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/CDT>
+	rdf:type owl:Ontology ;
+.
+:BL
+	rdf:type cdt:ComplexDatatype ;
+	cdt:label "Boolean"^^xsd:string ;
+	cdt:shortName "BL"^^xsd:string ;
+	cdt:hasProperty :BL_value ;
+.
+:BL_value
+	rdf:type cdt:PropertyX ;
+	cdt:label "value"^^xsd:string ;
+	cdt:simpleDatatype "boolean"^^xsd:string ;
+.
+:CD
+	rdf:type cdt:ComplexDatatype ;
+	cdt:label "Coded"^^xsd:string ;
+	cdt:shortName "CD"^^xsd:string ;
+	cdt:hasProperty :CD_code ;
+.
+:CD_code
+	rdf:type cdt:PropertyX ;
+	cdt:label "code"^^xsd:string ;
+	cdt:simpleDatatype "string"^^xsd:string ;
+.
+:PQR
+	rdf:type cdt:ComplexDatatype ;
+	cdt:label "Physical Quantity Result"^^xsd:string ;
+	cdt:shortName "PQR"^^xsd:string ;
+	cdt:hasProperty :PQR_code ;
+	cdt:hasProperty :PQR_value ;
+.
+:PQR_code
+	rdf:type cdt:PropertyX ;
+	cdt:label "code"^^xsd:string ;
+	cdt:simpleDatatype "string"^^xsd:string ;
+.
+:PQR_value
+	rdf:type cdt:PropertyX ;
+	cdt:label "value"^^xsd:string ;
+	cdt:simpleDatatype "float"^^xsd:string ;
+.
+:PQR_INT
+	rdf:type cdt:ComplexDatatype ;
+	cdt:label "Physical Quantity Result, Integer"^^xsd:string ;
+	cdt:shortName "PQR_INT"^^xsd:string ;
+	cdt:hasProperty :PQR_INT_code ;
+	cdt:hasProperty :PQR_INT_value ;
+.
+:PQR_INT_code
+	rdf:type cdt:PropertyX ;
+	cdt:label "code"^^xsd:string ;
+	cdt:simpleDatatype "string"^^xsd:string ;
+.
+:PQR_INT_value
+	rdf:type cdt:PropertyX ;
+	cdt:label "value"^^xsd:string ;
+	cdt:simpleDatatype "integer"^^xsd:string ;
+.
+:DATETIME
+	rdf:type cdt:ComplexDatatype ;
+	cdt:label "Date Time"^^xsd:string ;
+	cdt:shortName "DATETIME"^^xsd:string ;
+	cdt:hasProperty :DATETIME_value ;
+.
+:DATETIME_value
+	rdf:type cdt:PropertyX ;
+	cdt:label "value"^^xsd:string ;
+	cdt:simpleDatatype "dateTime"^^xsd:string ;
+.

@@ -1,0 +1,39 @@
+<% content_for :page_title do %> Index: Code Lists <% end %>
+
+<%= javascript_pack_tag 'thesauri/managed_concepts/index' %>
+<%= javascript_tag "let createCLUrl = '#{thesauri_managed_concepts_path}'" %>
+
+<% first_level_breadcrumb (:code_lists) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-codelist",
+    main_text: "Code Lists", sub_text: "Browse all Code Lists in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+<div class="row">
+
+	<% content_for :description do %>
+    Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Code Lists.
+    Use the Search bar to find the Code List you are looking for. To see Code List's respective History page, click on 'History'. <br/>
+    <span class="font-regular">The properties and indicators for each Code List reflect its latest version.</span>
+	<% end %>
+
+	<% content_for :actions do %>
+    <% if policy(Thesaurus::ManagedConcept).new? %>
+      <a href="#" class="btn medium green ttip" id="tnb_new_button">
+        <span class="ttip-text ttip-left shadow-small text-medium text-small">An identifier will be automatically generated</span>
+        <span class="icon-plus text-tiny"></span> New Code List
+      </a>
+    <% end %>
+	<% end %>
+
+  <% content_for :extra_columns do %>
+    <th>Submission Value</th>
+  <% end %>
+
+	<%= render partial: "shared/iso_managed/index/index_card", locals: { title: "Code Lists",
+        url: set_with_indicators_thesauri_managed_concepts_path({managed_concept: { type: "all" } }) } %>
+
+</div>

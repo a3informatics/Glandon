@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= favicon_link_tag %>
+
+  	<title>
+      <%= yield :page_title %> - <%= APP_CONFIG['application_name'] %>
+    </title>
+
+    <% if !Rails.application.config.assets.precompile.include? "#{params[:controller]}.js" %>
+      <%= stylesheet_link_tag    'application', media: 'all' %>
+
+      <%= javascript_include_tag 'application' %>
+  	<% else %>
+      <%= stylesheet_link_tag    'application', params[:controller], media: 'all' %>
+      <%= javascript_include_tag 'application', params[:controller] %>
+  	<% end %>
+
+    <%= stylesheet_link_tag 'print', :media => 'print'%>
+
+    <%= javascript_include_tag 'locked_items' if Rails.env != "test" %>
+
+    <%= javascript_pack_tag 'application' %>
+
+    <%= csrf_meta_tags %>
+
+    <% menu_category_title = controller_to_menu %>
+    <% c_sysadmin, c_impexp, c_util, c_term, c_biocon, c_forms, c_sdtm, c_adam, c_studies =
+      "System Admin", "Import/Export", "Utilities", "Terminology", "Biomedical Concepts", "Forms", "SDTM", "ADaM", "Studies"%>
+
+    <style>
+      html, body {
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      body {
+      	padding-top: 51px;
+      }
+
+      .container-fluid, .full {
+      	height:100%;
+      }
+
+      #main_area {
+        width: 100%;
+        min-height: 100%;
+        padding: 0px 10px;
+        overflow-y: auto;
+        margin: 0px;
+      }
+
+      @media (min-width:768px) {
+
+        #main_area {
+          width: <%= if current_user.is_only_community? then "100%" else "calc(100% - 270px)" end %>;
+          max-height: 100%;
+          padding: 0 50px;
+        }
+
+        html, body {
+          overflow-y: <%= if current_user.is_only_community? then "auto" else "hidden" end %>;
+        }
+
+        .ma-sb-col{
+          transition: width .4s;
+          transition-delay: .1s;
+          width: calc(100% - 60px) !important;
+        }
+
+        .ma-sb-exp{
+          transition: width .2s;
+          width: calc(100% - 270px);
+        }
+
+      }
+
+      .table td.fit,
+			.table th.fit {
+    		white-space: nowrap;
+    		width: 1%;
+			}
+    </style>
+  </head>
+  <body class="bg-grey-bright page-scroll-styled">
+    <div class="container-fluid">
+      <!-- NAVBAR BEGIN -->
+      <nav class="navbar navbar-inverse navbar-fixed-top bg-prim-dark">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <!-- NAVBAR EXPAND BUTTON FOR VERTICAL SCREENS -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <% if !current_user.is_only_community? %>
+              <button type="button" class="navbar-toggle arrow-rotate" id="sidebar-v-toggle" onclick="toggleSidebar()">
+                <span class="icon-arrow-u-nopad text-white"></span>
+              </button>
+            <% end %>
+            <!-- LOGO AND TITLE -->
+            <a class="navbar-brand" href="/">
+              <img alt='Brand' src='<%= image_path("a3-logo") %>' width='25'>
+            </a>
+            <a class="navbar-brand" href="/">
+              <span class='text-light'>
+                <small><%= ENV['organization_navbar'] %><%= "#{APP_CONFIG['application_name']}"%> (v<%= Version::VERSION %>)</small>
+              </span>
+            </a>
+          </div>
+          <!-- ICONS -->
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <!-- HOME -->
+              <li>
+                <a id="home_button" href="/">
+                  <span class="icon-home text-light ttip">
+                    <span class="ttip-text ttip-right shadow-small text-medium">
+                      Home
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <!-- PRINT -->
+              <li>
+                <%= link_to "", id: 'print_button' do %>
+                  <span class="icon-print text-light ttip">
+                    <span class="ttip-text ttip-right shadow-small text-medium">
+                      Print page
+                    </span>
+                  </span>
+                <% end %>
+              </li>
+              <!-- USERS -->
+              <% if policy(User).index? %>
+                <li>
+                  <a id="users_button" href="/users">
+                    <span class="icon-users text-light ttip">
+                      <span class="ttip-text ttip-right shadow-small text-medium">
+                        Manage users
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              <% end %>
+              <% if current_user.is_only_community? %>
+              <li>
+                <a id="help_button" href="<%= APP_CONFIG['help_url'] %>" target="_blank">
+                  <span class="icon-help text-light ttip">
+                    <span class="ttip-text ttip-right shadow-small text-medium">
+                      Help
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <% end %>
+              <!-- USER BADGE -->
+              <li>
+              <span class="user-badge-wrap">
+                <span class="vertical-divider"></span>
+                <span class="user-icon bg-sec-light text-white">
+                <% if current_user.name != nil %>
+                  <%="#{current_user.name[0]}"%>
+                <% else %>
+                  ?
+                <% end %>
+                </span>
+                <span class="navbar-text user-badge">
+                  <div id="user-name" class="text-bright text-small">
+                    <% if current_user.user_name_display == "Yes" %>
+                      <%= "#{current_user.name} "%>
+                    <% end %>
+                  </div>
+                  <div id="user-role" class="text-light text-tiny">
+                    <% if current_user.user_role_display == "Yes" %>
+                      <%= "#{current_user.role_list_stripped}"%>
+                    <% end %>
+                  </div>
+                </span>
+              </span>
+              </li>
+              <!-- USER CONFIG -->
+              <% if policy(UserSetting).index? %>
+                <li>
+                  <a id="settings_button" href="<%= user_settings_path %>">
+                    <span class="icon-settings text-light ttip">
+                      <span class="ttip-text ttip-left shadow-small text-medium">
+                        Preferences
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              <% end %>
+              <!-- LOG OFF -->
+              <li>
+                <%= link_to destroy_user_session_path, :method => :delete, id: 'logoff_button' do %>
+                  <span class="icon-sign-out text-light ttip">
+                    <span class="ttip-text ttip-left shadow-small text-medium">
+                      Sign out
+                    </span>
+                  </span>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- NAVBAR END -->
+      <!-- SIDEBAR BEGIN -->
+      <div class="row full">
+        <% if !current_user.is_only_community? %>
+          <div id="sidebar" class="col-sm-2 shadow-medium text-dark collapsed-vertical page-scroll-styled">
+            <div class="nav nav_pills nav-stacked">
+              <span id="sidebar-arrow" class="icon-arrow-l text-light arrow" onclick="toggleSidebar()"></span>
+              <span class="menu-type-wrap">
+                <span id="button-mdr" class="menu-type-button <%= "active" if !is_swb_menu? %> ttip" onclick="swapMenuTypes(this)">
+                  MDR
+                  <span class="ttip-text shadow-small">Meta Data Repository</span>
+                </span>
+                <span id="button-swb" class="menu-type-button <%= "active" if is_swb_menu? %> ttip" onclick="swapMenuTypes(this)">
+                  SWB
+                  <span class="ttip-text shadow-small">Study Workbench</span>
+                </span>
+              </span>
+
+              <div id="menu-type-mdr" <%= "hidden" if is_swb_menu? %>>
+                <% if link_group_on_role([Dashboard]) %>
+                <div class="category-container collapsed">
+                <%= render partial: "shared/sidebar/menu_category", :locals => {:klass => Dashboard, link_id: "main_nav_d",
+                  link_path: dashboard_index_path, selected_cat: menu_category_title, icon_id: "icon-dashboard", category_title: "Dashboard"} %>
+                </div>
+                <% end %>
+                <% if link_group_on_role([IsoNamespace, IsoRegistrationAuthority, Token, AuditTrail]) %>
+                  <div id="main_nav_sysadmin" class="category-container <%= if c_sysadmin != menu_category_title then "collapsed" end %>">
+                    <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-sysadmin", category_title: c_sysadmin} %>
+                    <ul class="nav">
+               				<%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => IsoNamespace, link_id: "main_nav_in",
+               					link_path: iso_namespaces_path, link_text: "Namespaces", current_link: controller_name.to_s} %>
+               				<%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => IsoRegistrationAuthority, link_id: "main_nav_ira",
+               					link_path: iso_registration_authorities_path, link_text: "Registration Authorities", current_link: controller_name.to_s} %>
+               				<%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => Token, link_id: "main_nav_el",
+               					link_path: tokens_path, link_text: "Edit Locks", current_link: controller_name.to_s} %>
+               				<%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => AuditTrail, link_id: "main_nav_at",
+               					link_path: audit_trail_index_path, link_text: "Audit Trail", current_link: controller_name.to_s} %>
+        	 		      </ul>
+                  </div>
+                <% end %>
+                <% if link_group_on_role([Upload, Import, Background]) %>
+                <div id="main_nav_impexp" class="category-container <%= if c_impexp != menu_category_title then "collapsed" end %>">
+                  <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-impexp", category_title: c_impexp} %>
+                  <ul class="nav">
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => Upload, link_id: "main_nav_u",
+             					link_path: uploads_path, link_text: "Upload", current_link: controller_name.to_s} %>
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => Import, link_id: "main_nav_i",
+                      link_path: list_imports_path, link_text: "Import", current_link: controller_name.to_s} %>
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => Export, link_id: "main_nav_e",
+                      link_path: exports_path, link_text: "Export", current_link: controller_name.to_s} %>
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => Background, link_id: "main_nav_bj",
+             					link_path: backgrounds_path, link_text: "Background Jobs", current_link: controller_name.to_s} %>
+                  </ul>
+                </div>
+                <% end %>
+                <% if link_group_on_role([IsoConceptSystem, MarkdownEngine, AdHocReport]) %>
+                <div id="main_nav_util" class="category-container <%= if c_util != menu_category_title then "collapsed" end %>">
+                  <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-utils", category_title: c_util} %>
+                  <ul class="nav">
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => IsoConceptSystem, link_id: "main_nav_ics",
+             					link_path: iso_concept_systems_path, link_text: "Tags", current_link: controller_name.to_s} %>
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => MarkdownEngine, link_id: "main_nav_ma",
+             					link_path: markdown_engines_path, link_text: "Markdown", current_link: controller_name.to_s} %>
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => AdHocReport, link_id: "main_nav_ahr",
+             					link_path: ad_hoc_reports_path, link_text: "Ad Hoc Reports", current_link: controller_name.to_s} %>
+                  </ul>
+                </div>
+                <% end %>
+                <% if link_group_on_role([Thesaurus, CdiscTerm]) %>
+                <div id="main_nav_term" class="category-container <%= if c_term != menu_category_title then "collapsed" end %>">
+                  <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-terminology", category_title: c_term} %>
+                  <ul class="nav">
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => Thesaurus, link_id: "main_nav_te",
+             					link_path: thesauri_index_path, link_text: "Terminology", current_link: controller_name.to_s} %>
+             				<%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => CdiscTerm, link_id: "main_nav_ct",
+             					link_path: history_cdisc_terms_path, link_text: "CDISC Terminology", current_link: controller_name.to_s} %>
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => Thesaurus, link_id: "main_nav_cl",
+                      link_path: thesauri_managed_concepts_path, link_text: "Code Lists", current_link: controller_name.to_s} %>
+                  </ul>
+                </div>
+                <% end %>
+                <% if link_group_on_role([BiomedicalConceptTemplate, BiomedicalConceptInstance]) %>
+                <div id="main_nav_biocon" class="category-container <%= if c_biocon != menu_category_title then "collapsed" end %>">
+                  <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-biocon", category_title: c_biocon} %>
+                  <ul class="nav">
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => BiomedicalConceptTemplate, link_id: "main_nav_bct",
+             					link_path: biomedical_concept_templates_path, link_text: "Biomedical Concept Templates", current_link: controller_name.to_s} %>
+             				<%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => BiomedicalConceptInstance, link_id: "main_nav_bc",
+             					link_path: biomedical_concept_instances_path, link_text: "Biomedical Concepts", current_link: controller_name.to_s} %>
+                  </ul>
+                </div>
+                <% end %>
+                <% if link_group_on_role([Form]) %>
+                <div id="main_nav_forms" class="category-container <%= if c_forms != menu_category_title then "collapsed" end %>">
+                  <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-forms", category_title: c_forms} %>
+                  <ul class="nav">
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => Form, link_id: "main_nav_f",
+             					link_path: forms_path, link_text: "Forms", current_link: controller_name.to_s} %>
+                  </ul>
+                </div>
+                <% end %>
+                <% if link_group_on_role([SdtmModel, SdtmIg, SdtmIgDomain, SdtmClass]) %>
+                <div id="main_nav_sdtm" class="category-container <%= if c_sdtm != menu_category_title then "collapsed" end %>">
+                  <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-sdtm", category_title: c_sdtm} %>
+                  <ul class="nav">
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmModel, link_id: "main_nav_sm",
+             					link_path: sdtm_models_path, link_text: "CDISC SDTM Model", current_link: controller_name.to_s} %>
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmIg, link_id: "main_nav_sig",
+             					link_path: sdtm_igs_path, link_text: "CDISC SDTM IGs", current_link: controller_name.to_s} %>
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmIgDomain, link_id: "main_nav_sd",
+             					link_path: sdtm_ig_domains_path, link_text: "SDTM IG Domains", current_link: controller_name.to_s} %>
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmClass, link_id: "main_nav_c",
+                      link_path: sdtm_classes_path, link_text: "SDTM Classes", current_link: controller_name.to_s} %>
+                  </ul>
+                </div>
+                <% end %>
+                <% if link_group_on_role([AdamIg, AdamIgDataset]) %>
+                <div id="main_nav_adam" class="category-container <%= if c_adam != menu_category_title then "collapsed" end %>">
+                  <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-adam", category_title: c_adam} %>
+                  <ul class="nav">
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => AdamIg, link_id: "main_nav_aig",
+                      link_path: adam_igs_path, link_text: "CDISC ADaM IGs", current_link: controller_name.to_s} %>
+                  </ul>
+                  <ul class="nav">
+                    <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => AdamIgDataset, link_id: "main_nav_aigd",
+                      link_path: adam_ig_datasets_path, link_text: "CDISC ADaM IG Datasets", current_link: controller_name.to_s} %>
+                  </ul>
+                </div>
+                <% end %>
+              </div>
+              <div id="menu-type-swb" <%= "hidden" if !is_swb_menu? %>>
+                <% if link_group_on_role([Thesaurus]) %>
+                  <div id="main_nav_studies" class="category-container <%= if c_studies != menu_category_title then "collapsed" end %>">
+                    <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-study", category_title: c_studies} %>
+                    <ul class="nav">
+                      <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => Thesaurus, link_id: "main_nav_studies",
+                        link_path: studies_path, link_text: "Studies", current_link: controller_name.to_s} %>
+                    </ul>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <!-- SIDEBAR END -->
+        <% if current_user.is_only_community? then width_class = "col-sm-12" else width_class = "col-sm-10" end%>
+        <div id="main_area" class="<%= width_class %> ma-sb-exp page-scroll-styled">
+          <div>
+            <%= session[:breadcrumbs].html_safe %>
+          </div>
+          <div id="datatables">
+            <!-- Datatables page length options-->
+            <%= javascript_tag "var pageLength = #{current_user.table_rows};" %>
+            <%= javascript_tag "var pageSettings = #{UserSettings.datatable_settings};" %>
+          </div>
+          <div id="alerts">
+            <% flash.each do |type, message| %>
+              <div class="alert <%= bootstrap_class_for(type) %> fade in">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <%= message %>
+              </div>
+            <% end %>
+          </div>
+  				<%= yield %>
+  				<p>&nbsp;</p>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>-->
+
+
+
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>

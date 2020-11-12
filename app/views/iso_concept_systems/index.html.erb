@@ -1,0 +1,42 @@
+<% content_for :page_title do %> Tags <% end %>
+
+<%= javascript_pack_tag 'iso_concept_systems/index' %>
+<%= javascript_tag "let tagsDataUrl = '#{ iso_concept_system_path(@concept_system) }',
+                        tagUpdateUrl = '#{ iso_concept_systems_node_path('tagID') }',
+                        tagCreateUrl = '#{ add_iso_concept_systems_node_path('tagID') }'; " %>
+
+<% first_level_breadcrumb (:iso_concept_systems) %>
+
+<div class="row">
+	<%= render layout: "shared/headers/header_generic", :locals => { badge: "icon-tag", header_title: "",
+		main_text: "Tags", sub_texts: "View and manage the Tags Tree." } do %>
+	<% end %>
+</div>
+
+<div class="row">
+
+  <div class="col-md-12 card">
+
+    <div class="card-header">
+      Tags Editor
+      <span id="editor-help-btn" class="icon-help text-white text-xtiny clickable ttip" style="margin-left: 10px">
+        <span class="ttip-text shadow-small text-medium"> Editor Help </span>
+      </span>
+    </div>
+
+    <div class="card-content">
+
+      <div id="tags-tree" style="min-height: 400px">
+
+        <%= render partial: "shared/d3/tree_graph" %>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<%= render partial: "shared/modals/generic_editor_modal", locals: { title: "Edit Tag" } %>
+<%= render partial: "shared/iso_concept_systems/tagged_items_panel" %>
+<%= render partial: "shared/help_dialogs/tags_editor_help" %>

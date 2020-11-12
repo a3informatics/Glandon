@@ -1,0 +1,15 @@
+<% if !local_assigns[:children_url].nil? %>
+  <%= javascript_tag "let childrenDataUrl = '#{children_url}'" %>
+<% end %>
+
+<div class="table-cardstyle all-columns">
+  <table id="children" class="table <%= local_assigns.fetch :table_classes, '' %>">
+    <thead>
+      <tr>
+        <th class="fit">Identifier</th>
+        <th>Submission Value</th>
+        <th>Label</th>
+      </tr>
+    </thead>
+  </table>
+</div>

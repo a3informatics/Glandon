@@ -1,0 +1,1183 @@
+# baseURI: http://www.assero.co.uk/MDRCDISCSDTM
+# imports: http://www.assero.co.uk/CDISCSDTM
+
+@prefix : <http://www.assero.co.uk/MDRModels/V1#> .
+@prefix bd: <http://www.assero.co.uk/BusinessDomain#> .
+@prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/MDRCDISCSDTM>
+	rdf:type owl:Ontology ;
+	owl:imports <http://www.assero.co.uk/CDISCSDTM> ;
+.
+:M-CDISC_SDTM
+	rdf:type bd:Model ;
+	rdfs:label "SDTM Model"^^xsd:string ;
+	isoT:ChangeDescription "As issued by CDISC"^^xsd:string ;
+	isoT:Origin "See the equivalent PDF document: SDTM Version 1.2"^^xsd:string ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:includesTabulation :M_CDISC_SDTM_EVENTS ;
+	bd:includesTabulation :M_CDISC_SDTM_INTERVENTIONS ;
+	bd:includesTabulation :M_CDISC_SDTM_FINDINGS ;
+	isoI:hasIdentifier mdrItems:SI-CDISC_SDTM-1 ;
+	isoR:hasState mdrItems:RS-CDISC_SDTM-1 ;
+.
+mdrItems:SI-CDISC_SDTM-1
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM Model"^^xsd:string ;
+	isoI:versionLabel "1.2"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_SDTM-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2008-11-12T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2100-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
+M-CDISC_SDTM_EVENTS
+	rdf:type bd:ClassDomain ;
+	rdfs:label ""^^xsd:string ;
+	isoT:ChangeDescription ""^^xsd:string ;
+	isoT:Origin ""^^xsd:string ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:includesColumn :M-CDISC_SDTM_STUDYID ;
+	bd:includesColumn :M-CDISC_SDTM_DOMAIN ;
+	bd:includesColumn :M-CDISC_SDTM_USUBJID ;
+	bd:includesColumn :M-CDISC_SDTM_SEQ ;
+	bd:includesColumn :M-CDISC_SDTM_GRPID ;
+	bd:includesColumn :M-CDISC_SDTM_REFID ;
+	bd:includesColumn :M-CDISC_SDTM_SPID ;
+	bd:includesColumn :M-CDISC_SDTM_TERM ;
+	bd:includesColumn :M-CDISC_SDTM_BODSYS ;
+	bd:includesColumn :M-CDISC_SDTM_LOC ;
+	bd:includesColumn :M-CDISC_SDTM_SEV ;
+	bd:includesColumn :M-CDISC_SDTM_SER ;
+	bd:includesColumn :M-CDISC_SDTM_ACN ;
+	bd:includesColumn :M-CDISC_SDTM_ACNOTH ;
+	bd:includesColumn :M-CDISC_SDTM_REL ;
+	bd:includesColumn :M-CDISC_SDTM_RELNST ;
+	bd:includesColumn :M-CDISC_SDTM_PATT ;
+	bd:includesColumn :M-CDISC_SDTM_OUT ;
+	bd:includesColumn :M-CDISC_SDTM_MODIFY ;
+	bd:includesColumn :M-CDISC_SDTM_SCAN ;
+	bd:includesColumn :M-CDISC_SDTM_SCONG ;
+	bd:includesColumn :M-CDISC_SDTM_SDISAB ;
+	bd:includesColumn :M-CDISC_SDTM_SDTH ;
+	bd:includesColumn :M-CDISC_SDTM_SHOSP ;
+	bd:includesColumn :M-CDISC_SDTM_SLIFE ;
+	bd:includesColumn :M-CDISC_SDTM_SOD ;
+	bd:includesColumn :M-CDISC_SDTM_SMIE ;
+	bd:includesColumn :M-CDISC_SDTM_CONTRT ;
+	bd:includesColumn :M-CDISC_SDTM_TOX ;
+	bd:includesColumn :M-CDISC_SDTM_DECOD ;
+	bd:includesColumn :M-CDISC_SDTM_TOXGR ;
+	bd:includesColumn :M-CDISC_SDTM_CAT ;
+	bd:includesColumn :M-CDISC_SDTM_SCAT ;
+	bd:includesColumn :M-CDISC_SDTM_PRESP ;
+	bd:includesColumn :M-CDISC_SDTM_OCCUR ;
+	bd:includesColumn :M-CDISC_SDTM_STAT ;
+	bd:includesColumn :M-CDISC_SDTM_REASND ;
+	bd:includesColumn :M-CDISC_SDTM_VISITNUM ;
+	bd:includesColumn :M-CDISC_SDTM_STDY ;
+	bd:includesColumn :M-CDISC_SDTM_ENDY ;
+	bd:includesColumn :M-CDISC_SDTM_DUR ;
+	bd:includesColumn :M-CDISC_SDTM_TPT ;
+	bd:includesColumn :M-CDISC_SDTM_TPTNUM ;
+	bd:includesColumn :M-CDISC_SDTM_ELTM ;
+	bd:includesColumn :M-CDISC_SDTM_TPTREF ;
+	bd:includesColumn :M-CDISC_SDTM_RFTDTC ;
+	bd:includesColumn :M-CDISC_SDTM_STRF ;
+	bd:includesColumn :M-CDISC_SDTM_ENRF ;
+	bd:includesColumn :M-CDISC_SDTM_VISIT ;
+	bd:includesColumn :M-CDISC_SDTM_EVLINT ;
+	bd:includesColumn :M-CDISC_SDTM_STRTPT ;
+	bd:includesColumn :M-CDISC_SDTM_STTPT ;
+	bd:includesColumn :M-CDISC_SDTM_ENRTPT ;
+	bd:includesColumn :M-CDISC_SDTM_ENTPT ;
+	bd:includesColumn :M-CDISC_SDTM_VISITDY ;
+	bd:includesColumn :M-CDISC_SDTM_TAETORD ;
+	bd:includesColumn :M-CDISC_SDTM_EPOCH ;
+	bd:includesColumn :M-CDISC_SDTM_DTC ;
+	bd:includesColumn :M-CDISC_SDTM_STDTC ;
+	bd:includesColumn :M-CDISC_SDTM_ENDTC ;
+	bd:includesColumn :M-CDISC_SDTM_DY ;
+	isoI:hasIdentifier mdrItems:SI-CDISC_SDTM_EVENTS-1 ;
+	isoR:hasState mdrItems:RS-CDISC_SDTM_EVENTS-1 ;
+.
+mdrItems:SI-CDISC_SDTM_EVENTS-1
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM EVENTS Model"^^xsd:string ;
+	isoI:versionLabel "1.2"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_SDTM_EVENTS-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2008-11-12T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2100-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
+M-CDISC_SDTM_INTERVENTIONS
+	rdf:type bd:ClassDomain ;
+	rdfs:label ""^^xsd:string ;
+	isoT:ChangeDescription ""^^xsd:string ;
+	isoT:Origin ""^^xsd:string ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:includesColumn :M-CDISC_SDTM_STUDYID ;
+	bd:includesColumn :M-CDISC_SDTM_DOMAIN ;
+	bd:includesColumn :M-CDISC_SDTM_USUBJID ;
+	bd:includesColumn :M-CDISC_SDTM_SEQ ;
+	bd:includesColumn :M-CDISC_SDTM_GRPID ;
+	bd:includesColumn :M-CDISC_SDTM_REFID ;
+	bd:includesColumn :M-CDISC_SDTM_SPID ;
+	bd:includesColumn :M-CDISC_SDTM_TRT ;
+	bd:includesColumn :M-CDISC_SDTM_INDC ;
+	bd:includesColumn :M-CDISC_SDTM_CLAS ;
+	bd:includesColumn :M-CDISC_SDTM_CLASCD ;
+	bd:includesColumn :M-CDISC_SDTM_DOSE ;
+	bd:includesColumn :M-CDISC_SDTM_DOSTXT ;
+	bd:includesColumn :M-CDISC_SDTM_DOSU ;
+	bd:includesColumn :M-CDISC_SDTM_DOSFRM ;
+	bd:includesColumn :M-CDISC_SDTM_DOSFRQ ;
+	bd:includesColumn :M-CDISC_SDTM_DOSTOT ;
+	bd:includesColumn :M-CDISC_SDTM_DOSRGM ;
+	bd:includesColumn :M-CDISC_SDTM_MODIFY ;
+	bd:includesColumn :M-CDISC_SDTM_ROUTE ;
+	bd:includesColumn :M-CDISC_SDTM_LOT ;
+	bd:includesColumn :M-CDISC_SDTM_LOC ;
+	bd:includesColumn :M-CDISC_SDTM_TRTV ;
+	bd:includesColumn :M-CDISC_SDTM_VAMT ;
+	bd:includesColumn :M-CDISC_SDTM_VAMTU ;
+	bd:includesColumn :M-CDISC_SDTM_ADJ ;
+	bd:includesColumn :M-CDISC_SDTM_DECOD ;
+	bd:includesColumn :M-CDISC_SDTM_CAT ;
+	bd:includesColumn :M-CDISC_SDTM_SCAT ;
+	bd:includesColumn :M-CDISC_SDTM_PRESP ;
+	bd:includesColumn :M-CDISC_SDTM_OCCUR ;
+	bd:includesColumn :M-CDISC_SDTM_STAT ;
+	bd:includesColumn :M-CDISC_SDTM_REASND ;
+	bd:includesColumn :M-CDISC_SDTM_VISITNUM ;
+	bd:includesColumn :M-CDISC_SDTM_STDY ;
+	bd:includesColumn :M-CDISC_SDTM_ENDY ;
+	bd:includesColumn :M-CDISC_SDTM_DUR ;
+	bd:includesColumn :M-CDISC_SDTM_TPT ;
+	bd:includesColumn :M-CDISC_SDTM_TPTNUM ;
+	bd:includesColumn :M-CDISC_SDTM_ELTM ;
+	bd:includesColumn :M-CDISC_SDTM_TPTREF ;
+	bd:includesColumn :M-CDISC_SDTM_RFTDTC ;
+	bd:includesColumn :M-CDISC_SDTM_STRF ;
+	bd:includesColumn :M-CDISC_SDTM_ENRF ;
+	bd:includesColumn :M-CDISC_SDTM_VISIT ;
+	bd:includesColumn :M-CDISC_SDTM_EVLINT ;
+	bd:includesColumn :M-CDISC_SDTM_STRTPT ;
+	bd:includesColumn :M-CDISC_SDTM_STTPT ;
+	bd:includesColumn :M-CDISC_SDTM_ENRTPT ;
+	bd:includesColumn :M-CDISC_SDTM_ENTPT ;
+	bd:includesColumn :M-CDISC_SDTM_VISITDY ;
+	bd:includesColumn :M-CDISC_SDTM_TAETORD ;
+	bd:includesColumn :M-CDISC_SDTM_EPOCH ;
+	bd:includesColumn :M-CDISC_SDTM_DTC ;
+	bd:includesColumn :M-CDISC_SDTM_STDTC ;
+	bd:includesColumn :M-CDISC_SDTM_ENDTC ;
+	bd:includesColumn :M-CDISC_SDTM_DY ;
+	isoI:hasIdentifier mdrItems:SI-CDISC_SDTM_INTERVENTIONS-1 ;
+	isoR:hasState mdrItems:RS-CDISC_SDTM_INTERVENTIONS-1 ;
+.
+mdrItems:SI-CDISC_SDTM_INTERVENTIONS-1
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM INTERVENTIONS Model"^^xsd:string ;
+	isoI:versionLabel "1.2"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_SDTM_INTERVENTIONS-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2008-11-12T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2100-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
+M-CDISC_SDTM_FINDINGS
+	rdf:type bd:ClassDomain ;
+	rdfs:label ""^^xsd:string ;
+	isoT:ChangeDescription ""^^xsd:string ;
+	isoT:Origin ""^^xsd:string ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:includesColumn :M-CDISC_SDTM_STUDYID ;
+	bd:includesColumn :M-CDISC_SDTM_DOMAIN ;
+	bd:includesColumn :M-CDISC_SDTM_USUBJID ;
+	bd:includesColumn :M-CDISC_SDTM_SEQ ;
+	bd:includesColumn :M-CDISC_SDTM_GRPID ;
+	bd:includesColumn :M-CDISC_SDTM_REFID ;
+	bd:includesColumn :M-CDISC_SDTM_SPID ;
+	bd:includesColumn :M-CDISC_SDTM_TESTCD ;
+	bd:includesColumn :M-CDISC_SDTM_ORNRLO ;
+	bd:includesColumn :M-CDISC_SDTM_ORNRHI ;
+	bd:includesColumn :M-CDISC_SDTM_STRESC ;
+	bd:includesColumn :M-CDISC_SDTM_STRESN ;
+	bd:includesColumn :M-CDISC_SDTM_STRESU ;
+	bd:includesColumn :M-CDISC_SDTM_STNRLO ;
+	bd:includesColumn :M-CDISC_SDTM_STNRHI ;
+	bd:includesColumn :M-CDISC_SDTM_STNRC ;
+	bd:includesColumn :M-CDISC_SDTM_NRIND ;
+	bd:includesColumn :M-CDISC_SDTM_RESCAT ;
+	bd:includesColumn :M-CDISC_SDTM_TEST ;
+	bd:includesColumn :M-CDISC_SDTM_STAT ;
+	bd:includesColumn :M-CDISC_SDTM_REASND ;
+	bd:includesColumn :M-CDISC_SDTM_XFN ;
+	bd:includesColumn :M-CDISC_SDTM_NAM ;
+	bd:includesColumn :M-CDISC_SDTM_LOINC ;
+	bd:includesColumn :M-CDISC_SDTM_SPEC ;
+	bd:includesColumn :M-CDISC_SDTM_SPCCND ;
+	bd:includesColumn :M-CDISC_SDTM_LOC ;
+	bd:includesColumn :M-CDISC_SDTM_METHOD ;
+	bd:includesColumn :M-CDISC_SDTM_BLFL ;
+	bd:includesColumn :M-CDISC_SDTM_MODIFY ;
+	bd:includesColumn :M-CDISC_SDTM_FAST ;
+	bd:includesColumn :M-CDISC_SDTM_DRVFL ;
+	bd:includesColumn :M-CDISC_SDTM_EVAL ;
+	bd:includesColumn :M-CDISC_SDTM_TOX ;
+	bd:includesColumn :M-CDISC_SDTM_TOXGR ;
+	bd:includesColumn :M-CDISC_SDTM_SEV ;
+	bd:includesColumn :M-CDISC_SDTM_DTHREL ;
+	bd:includesColumn :M-CDISC_SDTM_LLOQ ;
+	bd:includesColumn :M-CDISC_SDTM_CAT ;
+	bd:includesColumn :M-CDISC_SDTM_SCAT ;
+	bd:includesColumn :M-CDISC_SDTM_POS ;
+	bd:includesColumn :M-CDISC_SDTM_BODSYS ;
+	bd:includesColumn :M-CDISC_SDTM_ORRES ;
+	bd:includesColumn :M-CDISC_SDTM_ORRESU ;
+	bd:includesColumn :M-CDISC_SDTM_VISITNUM ;
+	bd:includesColumn :M-CDISC_SDTM_STDY ;
+	bd:includesColumn :M-CDISC_SDTM_ENDY ;
+	bd:includesColumn :M-CDISC_SDTM_DUR ;
+	bd:includesColumn :M-CDISC_SDTM_TPT ;
+	bd:includesColumn :M-CDISC_SDTM_TPTNUM ;
+	bd:includesColumn :M-CDISC_SDTM_ELTM ;
+	bd:includesColumn :M-CDISC_SDTM_TPTREF ;
+	bd:includesColumn :M-CDISC_SDTM_RFTDTC ;
+	bd:includesColumn :M-CDISC_SDTM_STRF ;
+	bd:includesColumn :M-CDISC_SDTM_ENRF ;
+	bd:includesColumn :M-CDISC_SDTM_VISIT ;
+	bd:includesColumn :M-CDISC_SDTM_EVLINT ;
+	bd:includesColumn :M-CDISC_SDTM_STRTPT ;
+	bd:includesColumn :M-CDISC_SDTM_STTPT ;
+	bd:includesColumn :M-CDISC_SDTM_ENRTPT ;
+	bd:includesColumn :M-CDISC_SDTM_ENTPT ;
+	bd:includesColumn :M-CDISC_SDTM_VISITDY ;
+	bd:includesColumn :M-CDISC_SDTM_TAETORD ;
+	bd:includesColumn :M-CDISC_SDTM_EPOCH ;
+	bd:includesColumn :M-CDISC_SDTM_DTC ;
+	bd:includesColumn :M-CDISC_SDTM_STDTC ;
+	bd:includesColumn :M-CDISC_SDTM_ENDTC ;
+	bd:includesColumn :M-CDISC_SDTM_DY ;
+	isoI:hasIdentifier mdrItems:SI-CDISC_SDTM_FINDINGS-1 ;
+	isoR:hasState mdrItems:RS-CDISC_SDTM_FINDINGS-1 ;
+.
+mdrItems:SI-CDISC_SDTM_FINDINGS-1
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM FINDINGS Model"^^xsd:string ;
+	isoI:versionLabel "1.2"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:hasScope mdrItems:NS-CDISC ;
+.
+mdrItems:RS-CDISC_SDTM_FINDINGS-1
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2008-11-12T00:00:00Z"^^xsd:dateTime ;
+	isoR:untilDate "2100-01-01T00:00:00Z"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Qualified"^^xsd:string ;
+	isoR:byAuthority mdrItems:RA-084433759 ;
+.
+:M-CDISC_SDTM_STUDYID
+	rdf:type bd:Column ;
+	rdfs:label "Study Identifier"^^xsd:string ;
+	bd:name "STUDYID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Unique identifier for a study." ;
+.
+:M-CDISC_SDTM_DOMAIN
+	rdf:type bd:Column ;
+	rdfs:label "Domain Abbreviation"^^xsd:string ;
+	bd:name "DOMAIN"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Two-character abbreviation for the domain most relevant to the observation. The Domain abbreviation is also used as a prefix for variables to ensure uniqueness when datasets are merged." ;
+.
+:M-CDISC_SDTM_USUBJID
+	rdf:type bd:Column ;
+	rdfs:label "Unique Subject Identifier"^^xsd:string ;
+	bd:name "USUBJID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product." ;
+.
+:M-CDISC_SDTM_SEQ
+	rdf:type bd:Column ;
+	rdfs:label "Sequence Number"^^xsd:string ;
+	bd:name "--SEQ"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Sequence number to ensure uniqueness of records within a dataset for a subject (or within a parameter, in the case of the Trial Summary domain). May be any valid number (including decimals) and does not have to start at 1. Should be assigned to be in a consistent chronological order." ;
+.
+:M-CDISC_SDTM_GRPID
+	rdf:type bd:Column ;
+	rdfs:label "Group ID"^^xsd:string ;
+	bd:name "--GRPID"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Optional group identifier, used to link together a block of related records within a subject in a domain. Also used to link together a block of related records in the Trial Summary dataset." ;
+.
+:M-CDISC_SDTM_REFID
+	rdf:type bd:Column ;
+	rdfs:label "Reference ID"^^xsd:string ;
+	bd:name "--REFID"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Optional internal or external identifier such as lab specimen ID, or UUID for an ECG waveform or a medical image." ;
+.
+:M-CDISC_SDTM_SPID
+	rdf:type bd:Column ;
+	rdfs:label "Sponsor ID"^^xsd:string ;
+	bd:name "--SPID"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Sponsor-defined identifier. Example: pre-printed line identifier on a Concomitant Medications page." ;
+.
+:M-CDISC_SDTM_VISITNUM
+	rdf:type bd:Column ;
+	rdfs:label "Visit Number"^^xsd:string ;
+	bd:name "VISITNUM"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Clinical encounter number. Numeric version of VISIT, used for sorting." ;
+.
+:M-CDISC_SDTM_STDY
+	rdf:type bd:Column ;
+	rdfs:label "Study Day of Start of Observation"^^xsd:string ;
+	bd:name "--STDY"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Actual study day of start of observation expressed in integer days relative to the sponsor-defined RFSTDTC in Demographics." ;
+.
+:M-CDISC_SDTM_ENDY
+	rdf:type bd:Column ;
+	rdfs:label "Study Day of End of Observation"^^xsd:string ;
+	bd:name "--ENDY"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Actual study day of end of observation expressed in integer days relative to the sponsor-defined RFSTDTC in Demographics." ;
+.
+:M-CDISC_SDTM_DUR
+	rdf:type bd:Column ;
+	rdfs:label "Duration"^^xsd:string ;
+	bd:name "--DUR"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Collected duration of an event, intervention, or finding represented in ISO 8601 character format. Used only if collected on the CRF and not derived." ;
+.
+:M-CDISC_SDTM_TPT
+	rdf:type bd:Column ;
+	rdfs:label "Planned Time Point Name"^^xsd:string ;
+	bd:name "--TPT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Text description of time when a measurement or observation should be taken as defined in the protocol. This may be represented as an elapsed time relative to a fixed reference point, such as time of last dose. See --TPTNUM and --TPTREF." ;
+.
+:M-CDISC_SDTM_TPTNUM
+	rdf:type bd:Column ;
+	rdfs:label "Planned Time Point Number"^^xsd:string ;
+	bd:name "--TPTNUM"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Numeric version of planned time point used in sorting." ;
+.
+:M-CDISC_SDTM_ELTM
+	rdf:type bd:Column ;
+	rdfs:label "Planned Elapsed Time from Time Point Ref"^^xsd:string ;
+	bd:name "--ELTM"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Planned Elapsed time in ISO 8601 character format relative to a planned fixed reference (--TPTREF) such as "Previous Dose" or "Previous Meal". This variable is useful where there are repetitive measures. Not a clock time or a date/time variable, but an interval, represented as ISO duration." ;
+.
+:M-CDISC_SDTM_TPTREF
+	rdf:type bd:Column ;
+	rdfs:label "Time Point Reference"^^xsd:string ;
+	bd:name "--TPTREF"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Description of the fixed reference point referred to by --ELTM, --TPTNUM, and --TPT. Examples: PREVIOUS DOSE, PREVIOUS MEAL." ;
+.
+:M-CDISC_SDTM_RFTDTC
+	rdf:type bd:Column ;
+	rdfs:label "Date/Time of Reference Time Point"^^xsd:string ;
+	bd:name "--RFTDTC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Date/time for a fixed reference time point defined by --TPTREF in ISO 8601 character format." ;
+.
+:M-CDISC_SDTM_STRF
+	rdf:type bd:Column ;
+	rdfs:label "Start Relative to Reference Period"^^xsd:string ;
+	bd:name "--STRF"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Identifies the start of the observation as being before, during, or after the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point represented by RFSTDTC and RFENDTC in Demographics." ;
+.
+:M-CDISC_SDTM_ENRF
+	rdf:type bd:Column ;
+	rdfs:label "End Relative to Reference Period"^^xsd:string ;
+	bd:name "--ENRF"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Identifies the end of the observation as being before, during or after the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point represented by RFSTDTC and RFENDTC in Demographics." ;
+.
+:M-CDISC_SDTM_VISIT
+	rdf:type bd:Column ;
+	rdfs:label "Visit Name"^^xsd:string ;
+	bd:name "VISIT"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Protocol-defined description of a clinical encounter." ;
+.
+:M-CDISC_SDTM_EVLINT
+	rdf:type bd:Column ;
+	rdfs:label "Evaluation Interval"^^xsd:string ;
+	bd:name "--EVLINT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Evaluation interval associated with an observation such as a finding --TESTCD, represented in ISO 8601 character format. Example: -P2M to represent a period of the past 2 months as the evaluation interval for a question from a questionnaire such as SF-36." ;
+.
+:M-CDISC_SDTM_STRTPT
+	rdf:type bd:Column ;
+	rdfs:label "Start Relative to Reference Time Point"^^xsd:string ;
+	bd:name "--STRTPT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Identifies the start of the observation as being before or after the sponsor-defined reference time point defined by variable --STTPT." ;
+.
+:M-CDISC_SDTM_STTPT
+	rdf:type bd:Column ;
+	rdfs:label "Start Reference Time Point"^^xsd:string ;
+	bd:name "--STTPT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Description or date/time in ISO 8601 character format of the sponsor-defined reference point referred to by --STRTPT. Examples: "2003-12-15" or "VISIT 1"." ;
+.
+:M-CDISC_SDTM_ENRTPT
+	rdf:type bd:Column ;
+	rdfs:label "End Relative to Reference Time Point"^^xsd:string ;
+	bd:name "--ENRTPT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Identifies the end of the observation as being before or after the sponsor-defined reference time point defined by variable --ENTPT." ;
+.
+:M-CDISC_SDTM_ENTPT
+	rdf:type bd:Column ;
+	rdfs:label "End Reference Time Point"^^xsd:string ;
+	bd:name "--ENTPT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Description or date/time in ISO 8601 character format of the sponsor-defined reference point referred to by --ENRTPT. Examples: "2003-12-25" or "VISIT 2"." ;
+.
+:M-CDISC_SDTM_VISITDY
+	rdf:type bd:Column ;
+	rdfs:label "Planned Study Day of Visit"^^xsd:string ;
+	bd:name "VISITDY"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Planned study day of VISIT. Should be an integer." ;
+.
+:M-CDISC_SDTM_TAETORD
+	rdf:type bd:Column ;
+	rdfs:label "Planned Order of Elements within Arm"^^xsd:string ;
+	bd:name "TAETORD"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Number that gives the planned order of the Element within the Arm." ;
+.
+:M-CDISC_SDTM_EPOCH
+	rdf:type bd:Column ;
+	rdfs:label "Epoch"^^xsd:string ;
+	bd:name "EPOCH"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Epoch associated with the start date/time of the observation, or the date/time of collection if start date/time is not collected." ;
+.
+:M-CDISC_SDTM_DTC
+	rdf:type bd:Column ;
+	rdfs:label "Date/Time of Collection"^^xsd:string ;
+	bd:name "--DTC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Collection date and time of an observation represented in IS0 8601 character format." ;
+.
+:M-CDISC_SDTM_STDTC
+	rdf:type bd:Column ;
+	rdfs:label "Start Date/Time of Observation"^^xsd:string ;
+	bd:name "--STDTC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Start date/time of an observation represented in IS0 8601 character format." ;
+.
+:M-CDISC_SDTM_ENDTC
+	rdf:type bd:Column ;
+	rdfs:label "End Date/Time of Observation"^^xsd:string ;
+	bd:name "--ENDTC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "End date/time of the observation represented in IS0 8601 character format." ;
+.
+:M-CDISC_SDTM_DY
+	rdf:type bd:Column ;
+	rdfs:label "Study Day of Visit/Collection/Exam"^^xsd:string ;
+	bd:name "--DY"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Actual study day of visit/collection/exam expressed in integer days relative to the sponsor-defined RFSTDTC in Demographics." ;
+.
+:M-CDISC_SDTM_TERM
+	rdf:type bd:Column ;
+	rdfs:label "Reported Term"^^xsd:string ;
+	bd:name "--TERM"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Topic variable for an event observation, which is the verbatim or pre-specified name of the event." ;
+.
+:M-CDISC_SDTM_BODSYS
+	rdf:type bd:Column ;
+	rdfs:label "Body System or Organ Class"^^xsd:string ;
+	bd:name "--BODSYS"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Body system or system organ class from a standard hierarchy (e.g. MedDRA) associated with an event. Example: GASTROINTESTINAL DISORDERS." ;
+.
+:M-CDISC_SDTM_LOC
+	rdf:type bd:Column ;
+	rdfs:label "Location of Event"^^xsd:string ;
+	bd:name "--LOC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Describes anatomical location relevant for the event. Example: LEFT ARM for skin rash." ;
+.
+:M-CDISC_SDTM_SEV
+	rdf:type bd:Column ;
+	rdfs:label "Severity/Intensity"^^xsd:string ;
+	bd:name "--SEV"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "The severity or intensity of the event. Examples: MILD, MODERATE, SEVERE." ;
+.
+:M-CDISC_SDTM_SER
+	rdf:type bd:Column ;
+	rdfs:label "Serious Event"^^xsd:string ;
+	bd:name "--SER"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Is this is a serious event? Valid values are "Y" and "N"." ;
+.
+:M-CDISC_SDTM_ACN
+	rdf:type bd:Column ;
+	rdfs:label "Action Taken with Study Treatment"^^xsd:string ;
+	bd:name "--ACN"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Describes changes made to the study treatment as a result of the event. Examples: DOSE INCREASED, DOSE NOT CHANGED." ;
+.
+:M-CDISC_SDTM_ACNOTH
+	rdf:type bd:Column ;
+	rdfs:label "Other Action Taken"^^xsd:string ;
+	bd:name "--ACNOTH"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Describes other actions taken as a result of the event that are unrelated to dose adjustments of study treatment." ;
+.
+:M-CDISC_SDTM_REL
+	rdf:type bd:Column ;
+	rdfs:label "Causality"^^xsd:string ;
+	bd:name "--REL"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Records the investigator's opinion as to the causality of the event to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED, POSSIBLY RELATED, RELATED." ;
+.
+:M-CDISC_SDTM_RELNST
+	rdf:type bd:Column ;
+	rdfs:label "Relationship to Non-Study Treatment"^^xsd:string ;
+	bd:name "--RELNST"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "An opinion as to whether the event may have been due to a treatment other than study drug. Example: "MORE LIKELY RELATED TO ASPIRIN USE."" ;
+.
+:M-CDISC_SDTM_PATT
+	rdf:type bd:Column ;
+	rdfs:label "Pattern of Event"^^xsd:string ;
+	bd:name "--PATT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to indicate the pattern of the event over time. Examples: INTERMITTENT, CONTINUOUS, SINGLE EVENT." ;
+.
+:M-CDISC_SDTM_OUT
+	rdf:type bd:Column ;
+	rdfs:label "Outcome of Event"^^xsd:string ;
+	bd:name "--OUT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Description of the outcome of an event. Examples: RECOVERED/RESOLVED, FATAL." ;
+.
+:M-CDISC_SDTM_MODIFY
+	rdf:type bd:Column ;
+	rdfs:label "Modified Reported Term"^^xsd:string ;
+	bd:name "--MODIFY"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "If the value for --TERM is modified for coding purposes, then the modified text is placed here." ;
+.
+:M-CDISC_SDTM_SCAN
+	rdf:type bd:Column ;
+	rdfs:label "Involves Cancer"^^xsd:string ;
+	bd:name "--SCAN"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Was the event associated with the development of cancer? Valid values are "Y" and "N"." ;
+.
+:M-CDISC_SDTM_SCONG
+	rdf:type bd:Column ;
+	rdfs:label "Congenital Anomaly or Birth Defect"^^xsd:string ;
+	bd:name "--SCONG"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Was the event associated with congenital anomaly or birth defect? Valid values are "Y" and "N"." ;
+.
+:M-CDISC_SDTM_SDISAB
+	rdf:type bd:Column ;
+	rdfs:label "Persist or Signif Disability/Incapacity"^^xsd:string ;
+	bd:name "--SDISAB"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Did the event result in persistent or significant disability/incapacity? Valid values are "Y" and "N"." ;
+.
+:M-CDISC_SDTM_SDTH
+	rdf:type bd:Column ;
+	rdfs:label "Results in Death"^^xsd:string ;
+	bd:name "--SDTH"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Did the event result in death? Valid values are "Y" and "N"." ;
+.
+:M-CDISC_SDTM_SHOSP
+	rdf:type bd:Column ;
+	rdfs:label "Requires or Prolongs Hospitalization"^^xsd:string ;
+	bd:name "--SHOSP"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Did the event require or prolong hospitalization? Valid values are "Y" and "N"." ;
+.
+:M-CDISC_SDTM_SLIFE
+	rdf:type bd:Column ;
+	rdfs:label "Is Life Threatening"^^xsd:string ;
+	bd:name "--SLIFE"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Was the event life threatening? Valid values are "Y" and "N"." ;
+.
+:M-CDISC_SDTM_SOD
+	rdf:type bd:Column ;
+	rdfs:label "Occurred with Overdose"^^xsd:string ;
+	bd:name "--SOD"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Did the event occur with an overdose? Valid values are "Y" and "N"." ;
+.
+:M-CDISC_SDTM_SMIE
+	rdf:type bd:Column ;
+	rdfs:label "Other Medically Important Serious Event"^^xsd:string ;
+	bd:name "--SMIE"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Do additional categories for seriousness apply? Valid values are "Y" and "N"." ;
+.
+:M-CDISC_SDTM_CONTRT
+	rdf:type bd:Column ;
+	rdfs:label "Concomitant or Additional Trtmnt Given"^^xsd:string ;
+	bd:name "--CONTRT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Was another treatment given because of the occurrence of the event? Valid values are "Y" and "N"." ;
+.
+:M-CDISC_SDTM_TOX
+	rdf:type bd:Column ;
+	rdfs:label "Toxicity"^^xsd:string ;
+	bd:name "--TOX"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Description of toxicity quantified by --TOXGR such as NCI CTCAE Short Name. Examples: HYPERCALCEMIA, HYPOCALCEMIA. Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define.xml document." ;
+.
+:M-CDISC_SDTM_DECOD
+	rdf:type bd:Column ;
+	rdfs:label "Dictionary-Derived Term"^^xsd:string ;
+	bd:name "--DECOD"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Dictionary or sponsor-defined derived text description of the topic variable, --TERM, or the modified topic variable (--MODIFY), if applicable. Equivalent to the Preferred Term (PT in MedDRA)." ;
+.
+:M-CDISC_SDTM_TOXGR
+	rdf:type bd:Column ;
+	rdfs:label "Toxicity Grade"^^xsd:string ;
+	bd:name "--TOXGR"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Records toxicity grade using a standard toxicity scale (such as the NCI CTCAE). Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define.xml document." ;
+.
+:M-CDISC_SDTM_CAT
+	rdf:type bd:Column ;
+	rdfs:label "Category"^^xsd:string ;
+	bd:name "--CAT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to define a category of topic-variable values." ;
+.
+:M-CDISC_SDTM_SCAT
+	rdf:type bd:Column ;
+	rdfs:label "Subcategory"^^xsd:string ;
+	bd:name "--SCAT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to define a further categorization of --CAT values." ;
+.
+:M-CDISC_SDTM_PRESP
+	rdf:type bd:Column ;
+	rdfs:label "Pre-specified"^^xsd:string ;
+	bd:name "--PRESP"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to indicate whether the event described by --TERM was pre-specified on a CRF. Value is Y for pre-specified events, null for spontaneously reported events." ;
+.
+:M-CDISC_SDTM_OCCUR
+	rdf:type bd:Column ;
+	rdfs:label "Occurrence"^^xsd:string ;
+	bd:name "--OCCUR"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to record whether a pre-specified event occurred when information about the occurrence of a specific event is solicited." ;
+.
+:M-CDISC_SDTM_STAT
+	rdf:type bd:Column ;
+	rdfs:label "Completion Status"^^xsd:string ;
+	bd:name "--STAT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to indicate when a question about the occurrence of a pre-specified event was not answered. Should be null or have a value of NOT DONE." ;
+.
+:M-CDISC_SDTM_REASND
+	rdf:type bd:Column ;
+	rdfs:label "Reason Not Done"^^xsd:string ;
+	bd:name "--REASND"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Reason not done. Used in conjunction with --STAT when its value is NOT DONE." ;
+.
+:M-CDISC_SDTM_TRT
+	rdf:type bd:Column ;
+	rdfs:label "Name of Treatment"^^xsd:string ;
+	bd:name "--TRT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "The topic for the intervention observation, usually the verbatim name of the treatment, drug, medicine, or therapy given during the dosing interval for the observation." ;
+.
+:M-CDISC_SDTM_INDC
+	rdf:type bd:Column ;
+	rdfs:label "Indication"^^xsd:string ;
+	bd:name "--INDC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Denotes the indication for the intervention (e.g., why the therapy was taken or administered)." ;
+.
+:M-CDISC_SDTM_CLAS
+	rdf:type bd:Column ;
+	rdfs:label "Class"^^xsd:string ;
+	bd:name "--CLAS"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Class for a medication or treatment, often obtained from a coding dictionary." ;
+.
+:M-CDISC_SDTM_CLASCD
+	rdf:type bd:Column ;
+	rdfs:label "Class Code"^^xsd:string ;
+	bd:name "--CLASCD"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to represent code for --CLAS." ;
+.
+:M-CDISC_SDTM_DOSE
+	rdf:type bd:Column ;
+	rdfs:label "Dose"^^xsd:string ;
+	bd:name "--DOSE"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Amount of --TRT given. Not populated when --DOSTXT is populated." ;
+.
+:M-CDISC_SDTM_DOSTXT
+	rdf:type bd:Column ;
+	rdfs:label "Dose Description"^^xsd:string ;
+	bd:name "--DOSTXT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Dosing information collected in text form. Examples: <1 per day, 200-400. Not populated when --DOSE is populated." ;
+.
+:M-CDISC_SDTM_DOSU
+	rdf:type bd:Column ;
+	rdfs:label "Dose Units"^^xsd:string ;
+	bd:name "--DOSU"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Units for --DOSE, --DOSTOT, or --DOSTXT (Examples: ng, mg, mg/kg)." ;
+.
+:M-CDISC_SDTM_DOSFRM
+	rdf:type bd:Column ;
+	rdfs:label "Dose Form"^^xsd:string ;
+	bd:name "--DOSFRM"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Dose form for the treatment. Examples: TABLET, CAPSULE." ;
+.
+:M-CDISC_SDTM_DOSFRQ
+	rdf:type bd:Column ;
+	rdfs:label "Dosing Frequency per Interval"^^xsd:string ;
+	bd:name "--DOSFRQ"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Usually expressed as the number of doses given per a specific interval. Examples: QD, BID, TID, QID." ;
+.
+:M-CDISC_SDTM_DOSTOT
+	rdf:type bd:Column ;
+	rdfs:label "Total Daily Dose"^^xsd:string ;
+	bd:name "--DOSTOT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Total daily dose of --TRT using the units in --DOSU. Used when dosing is collected as Total Daily Dose." ;
+.
+:M-CDISC_SDTM_DOSRGM
+	rdf:type bd:Column ;
+	rdfs:label "Intended Dose Regimen"^^xsd:string ;
+	bd:name "--DOSRGM"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Text description of the (intended) schedule or regimen for the Intervention. Examples: TWO WEEKS ON, TWO WEEKS OFF." ;
+.
+:M-CDISC_SDTM_MODIFY
+	rdf:type bd:Column ;
+	rdfs:label "Modified Treatment Name"^^xsd:string ;
+	bd:name "--MODIFY"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "If the value for --TRT is modified for coding purposes, then the modified text is placed here." ;
+.
+:M-CDISC_SDTM_ROUTE
+	rdf:type bd:Column ;
+	rdfs:label "Route of Administration"^^xsd:string ;
+	bd:name "--ROUTE"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Route of administration for the intervention. Examples: ORAL, INTRAVENOUS." ;
+.
+:M-CDISC_SDTM_LOT
+	rdf:type bd:Column ;
+	rdfs:label "Lot Number"^^xsd:string ;
+	bd:name "--LOT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Lot number for the intervention described in --TRT." ;
+.
+:M-CDISC_SDTM_LOC
+	rdf:type bd:Column ;
+	rdfs:label "Location of Dose Administration"^^xsd:string ;
+	bd:name "--LOC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Anatomical location of an intervention, such as an injection site. Example: RIGHT ARM for an injection." ;
+.
+:M-CDISC_SDTM_TRTV
+	rdf:type bd:Column ;
+	rdfs:label "Treatment Vehicle"^^xsd:string ;
+	bd:name "--TRTV"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Vehicle for administration of treatment, such as a liquid in which the treatment drug is dissolved. Example: SALINE." ;
+.
+:M-CDISC_SDTM_VAMT
+	rdf:type bd:Column ;
+	rdfs:label "Treatment Vehicle Amount"^^xsd:string ;
+	bd:name "--VAMT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Amount of the treatment vehicle administered or given." ;
+.
+:M-CDISC_SDTM_VAMTU
+	rdf:type bd:Column ;
+	rdfs:label "Treatment Vehicle Amount Units"^^xsd:string ;
+	bd:name "--VAMTU"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Units for the treatment vehicle. Examples: mL, mg." ;
+.
+:M-CDISC_SDTM_ADJ
+	rdf:type bd:Column ;
+	rdfs:label "Reason for Dose Adjustment"^^xsd:string ;
+	bd:name "--ADJ"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Describes reason or explanation of why a dose is adjusted. Examples ADVERSE EVENT, INSUFFICIENT RESPONSE, NON-MEDICAL REASON." ;
+.
+:M-CDISC_SDTM_DECOD
+	rdf:type bd:Column ;
+	rdfs:label "Standardized Treatment Name"^^xsd:string ;
+	bd:name "--DECOD"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Standardized or dictionary-derived name of the topic variable, --TRT, or the modified topic variable (--MODIFY), if applicable. Equivalent to the generic drug name in WHO Drug, or a term in SNOMED, ICD9, or other published or sponsor-defined dictionaries." ;
+.
+:M-CDISC_SDTM_CAT
+	rdf:type bd:Column ;
+	rdfs:label "Category"^^xsd:string ;
+	bd:name "--CAT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to define a category of topic-variable values." ;
+.
+:M-CDISC_SDTM_SCAT
+	rdf:type bd:Column ;
+	rdfs:label "Subcategory"^^xsd:string ;
+	bd:name "--SCAT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to define a further categorization of --CAT values." ;
+.
+:M-CDISC_SDTM_PRESP
+	rdf:type bd:Column ;
+	rdfs:label "Pre-specified"^^xsd:string ;
+	bd:name "--PRESP"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used when a specific intervention is pre-specified on a CRF. Values should be "Y" or null." ;
+.
+:M-CDISC_SDTM_OCCUR
+	rdf:type bd:Column ;
+	rdfs:label "Occurrence"^^xsd:string ;
+	bd:name "--OCCUR"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to record whether a pre-specified intervention occurred when information about the occurrence of a specific intervention is solicited." ;
+.
+:M-CDISC_SDTM_STAT
+	rdf:type bd:Column ;
+	rdfs:label "Completion Status"^^xsd:string ;
+	bd:name "--STAT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to indicate when a question about the occurrence of a pre-specified intervention was not answered. Should be null or have a value of NOT DONE." ;
+.
+:M-CDISC_SDTM_REASND
+	rdf:type bd:Column ;
+	rdfs:label "Reason Not Done"^^xsd:string ;
+	bd:name "--REASND"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Reason not done. Used in conjunction with --STAT when value is NOT DONE." ;
+.
+:M-CDISC_SDTM_TESTCD
+	rdf:type bd:Column ;
+	rdfs:label "Short Name of Measurement, Test or Examination"^^xsd:string ;
+	bd:name "--TESTCD"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Short character value for --TEST used as a column name when converting a dataset from a vertical format to a horizontal format. The short value can be up to 8 characters. Examples: PLAT, SYSBP, RRMIN, EYEEXAM." ;
+.
+:M-CDISC_SDTM_ORNRLO
+	rdf:type bd:Column ;
+	rdfs:label "Normal Range Lower Limit-Original Units"^^xsd:string ;
+	bd:name "--ORNRLO"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Lower end of normal range or reference range for results stored in --ORRES." ;
+.
+:M-CDISC_SDTM_ORNRHI
+	rdf:type bd:Column ;
+	rdfs:label "Normal Range Upper Limit-Original Units"^^xsd:string ;
+	bd:name "--ORNRHI"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Upper end of normal range or reference range for results stored in --ORRES." ;
+.
+:M-CDISC_SDTM_STRESC
+	rdf:type bd:Column ;
+	rdfs:label "Result or Finding in Standard Format"^^xsd:string ;
+	bd:name "--STRESC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Contains the result value for all findings, copied or derived from --ORRES in a standard format or in standard units. --STRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in --STRESN. For example, if various tests have results "NONE", "NEG", and "NEGATIVE" in --ORRES and these results effectively have the same meaning, they could be represented in standard format in --STRESC as "NEGATIVE"." ;
+.
+:M-CDISC_SDTM_STRESN
+	rdf:type bd:Column ;
+	rdfs:label "Numeric Result/Finding in Standard Units"^^xsd:string ;
+	bd:name "--STRESN"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used for continuous or numeric results or findings in standard format; copied in numeric format from --STRESC. --STRESN should store all numeric test results or findings." ;
+.
+:M-CDISC_SDTM_STRESU
+	rdf:type bd:Column ;
+	rdfs:label "Standard Units"^^xsd:string ;
+	bd:name "--STRESU"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Standardized units used for --STRESC and --STRESN. Example: mol/L." ;
+.
+:M-CDISC_SDTM_STNRLO
+	rdf:type bd:Column ;
+	rdfs:label "Normal Range Lower Limit-Standard Units"^^xsd:string ;
+	bd:name "--STNRLO"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Lower end of normal range or reference range for standardized results (e.g., --STRESC, --STRESN) represented in standardized units (--STRESU)." ;
+.
+:M-CDISC_SDTM_STNRHI
+	rdf:type bd:Column ;
+	rdfs:label "Normal Range Upper Limit-Standard Units"^^xsd:string ;
+	bd:name "--STNRHI"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Upper end of normal range or reference range for standardized results (e.g., --STRESC, --STRESN) represented in standardized units (--STRESU)." ;
+.
+:M-CDISC_SDTM_STNRC
+	rdf:type bd:Column ;
+	rdfs:label "Normal Range for Character Results"^^xsd:string ;
+	bd:name "--STNRC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Normal range or reference range for results stored in --STRESC that are character in ordinal or categorical scale. Example: Negative to Trace." ;
+.
+:M-CDISC_SDTM_NRIND
+	rdf:type bd:Column ;
+	rdfs:label "Normal/Reference Range Indicator"^^xsd:string ;
+	bd:name "--NRIND"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to indicate the value is outside the normal range or reference range. May be defined by --ORNRLO and --ORNRHI or other objective criteria. Examples: Y, N; HIGH, LOW; NORMAL; ABNORMAL." ;
+.
+:M-CDISC_SDTM_RESCAT
+	rdf:type bd:Column ;
+	rdfs:label "Result Category"^^xsd:string ;
+	bd:name "--RESCAT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to categorize the result of a finding. Example: MALIGNANT or BENIGN for tumor findings." ;
+.
+:M-CDISC_SDTM_TEST
+	rdf:type bd:Column ;
+	rdfs:label "Name of Measurement, Test or Examination"^^xsd:string ;
+	bd:name "--TEST"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Long name For --TESTCD. Examples: Platelet, Systolic Blood Pressure, Summary (Min) RR Duration, Eye Examination." ;
+.
+:M-CDISC_SDTM_STAT
+	rdf:type bd:Column ;
+	rdfs:label "Completion Status"^^xsd:string ;
+	bd:name "--STAT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to indicate that a question was not asked or a test was not done, or a test was attempted but did not generate a result. Should be null or have a value of NOT DONE." ;
+.
+:M-CDISC_SDTM_REASND
+	rdf:type bd:Column ;
+	rdfs:label "Reason Not Done"^^xsd:string ;
+	bd:name "--REASND"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Reason not done. Used in conjunction with --STAT when value is NOT DONE." ;
+.
+:M-CDISC_SDTM_XFN
+	rdf:type bd:Column ;
+	rdfs:label "External Filename"^^xsd:string ;
+	bd:name "--XFN"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Filename for an external file, such as one for an ECG waveform or a medical image." ;
+.
+:M-CDISC_SDTM_NAM
+	rdf:type bd:Column ;
+	rdfs:label "Laboratory/Vendor Name"^^xsd:string ;
+	bd:name "--NAM"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Name or identifier of the vendor (e.g., laboratory) that provided the test results." ;
+.
+:M-CDISC_SDTM_LOINC
+	rdf:type bd:Column ;
+	rdfs:label "LOINC Code"^^xsd:string ;
+	bd:name "--LOINC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Logical Observation Identifiers Names and Codes (LOINC) code for the topic variable such as a lab test." ;
+.
+:M-CDISC_SDTM_SPEC
+	rdf:type bd:Column ;
+	rdfs:label "Specimen Material Type"^^xsd:string ;
+	bd:name "--SPEC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Defines the type of specimen used for a measurement. Examples: SERUM, PLASMA, URINE." ;
+.
+:M-CDISC_SDTM_SPCCND
+	rdf:type bd:Column ;
+	rdfs:label "Specimen Condition"^^xsd:string ;
+	bd:name "--SPCCND"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Defines the condition of the specimen. Example: CLOUDY." ;
+.
+:M-CDISC_SDTM_LOC
+	rdf:type bd:Column ;
+	rdfs:label "Location Used for the Measurement"^^xsd:string ;
+	bd:name "--LOC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Location relevant to the collection of the measurement. Example: RECTAL for temperature, LEFT ARM for blood pressure or V1 for an ECG lead." ;
+.
+:M-CDISC_SDTM_METHOD
+	rdf:type bd:Column ;
+	rdfs:label "Method of Test or Examination"^^xsd:string ;
+	bd:name "--METHOD"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Method of the test or examination. Examples: EIA (Enzyme Immunoassay), ELECTROPHORESIS, DIPSTICK." ;
+.
+:M-CDISC_SDTM_BLFL
+	rdf:type bd:Column ;
+	rdfs:label "Baseline Flag"^^xsd:string ;
+	bd:name "--BLFL"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Indicator used to identify a baseline value. Should be Y or null." ;
+.
+:M-CDISC_SDTM_MODIFY
+	rdf:type bd:Column ;
+	rdfs:label "Modified Term"^^xsd:string ;
+	bd:name "--MODIFY"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "If the value of --ORRES is modified for coding purposes, then the modified text is placed here." ;
+.
+:M-CDISC_SDTM_FAST
+	rdf:type bd:Column ;
+	rdfs:label "Fasting Status"^^xsd:string ;
+	bd:name "--FAST"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Indicator used to identify fasting status. Valid values include Y, N, U or null if not relevant." ;
+.
+:M-CDISC_SDTM_DRVFL
+	rdf:type bd:Column ;
+	rdfs:label "Derived Flag"^^xsd:string ;
+	bd:name "--DRVFL"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to indicate a derived record (e.g., a record that represents the average of other records such as a computed baseline). Should be Y or null." ;
+.
+:M-CDISC_SDTM_EVAL
+	rdf:type bd:Column ;
+	rdfs:label "Evaluator"^^xsd:string ;
+	bd:name "--EVAL"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Role of the person who provided the evaluation. Used only for results that are subjective (e.g., assigned by a person or a group). Examples: ADJUDICATION COMMITTEE, VENDOR." ;
+.
+:M-CDISC_SDTM_TOX
+	rdf:type bd:Column ;
+	rdfs:label "Toxicity"^^xsd:string ;
+	bd:name "--TOX"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Description of toxicity quantified by --TOXGR such as NCI CTCAE Short Name. Examples: HYPERCALCEMIA, HYPOCALCEMIA. Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define.xml document." ;
+.
+:M-CDISC_SDTM_TOXGR
+	rdf:type bd:Column ;
+	rdfs:label "Toxicity Grade"^^xsd:string ;
+	bd:name "--TOXGR"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Records toxicity grade using a standard toxicity scale (such as the NCI CTCAE). Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define data definition document. Example: 2." ;
+.
+:M-CDISC_SDTM_SEV
+	rdf:type bd:Column ;
+	rdfs:label "Severity"^^xsd:string ;
+	bd:name "--SEV"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Describes the severity or intensity of a particular finding. Examples: MILD, MODERATE, SEVERE." ;
+.
+:M-CDISC_SDTM_DTHREL
+	rdf:type bd:Column ;
+	rdfs:label "Relationship to Death"^^xsd:string ;
+	bd:name "--DTHREL"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Describes the relationship of a particular finding to the death of a subject." ;
+.
+:M-CDISC_SDTM_LLOQ
+	rdf:type bd:Column ;
+	rdfs:label "Lower Limit of Quantitation"^^xsd:string ;
+	bd:name "--LLOQ"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Indicates the lower limit of quantitation for an assay. Units will be those used for --STRESU." ;
+.
+:M-CDISC_SDTM_CAT
+	rdf:type bd:Column ;
+	rdfs:label "Category"^^xsd:string ;
+	bd:name "--CAT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to define a category of topic-variable values. Examples: HEMATOLOGY, URINALYSIS, CHEMISTRY, HAMILTON DEPRESSION SCALE, SF36." ;
+.
+:M-CDISC_SDTM_SCAT
+	rdf:type bd:Column ;
+	rdfs:label "Subcategory"^^xsd:string ;
+	bd:name "--SCAT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to define a further categorization of --CAT values. Example: DIFFERENTIAL." ;
+.
+:M-CDISC_SDTM_POS
+	rdf:type bd:Column ;
+	rdfs:label "Position of Subject During Observation"^^xsd:string ;
+	bd:name "--POS"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Position of the subject during a measurement or examination. Examples: SUPINE, STANDING, SITTING." ;
+.
+:M-CDISC_SDTM_BODSYS
+	rdf:type bd:Column ;
+	rdfs:label "Body System or Organ Class"^^xsd:string ;
+	bd:name "--BODSYS"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Body System or Organ Class that is involved for a finding from the standard hierarchy for dictionary-coded results. Example: MedDRA SOC." ;
+.
+:M-CDISC_SDTM_ORRES
+	rdf:type bd:Column ;
+	rdfs:label "Result or Finding in Original Units"^^xsd:string ;
+	bd:name "--ORRES"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Result of the measurement or finding as originally received or collected. Examples: 120, <1, POS." ;
+.
+:M-CDISC_SDTM_ORRESU
+	rdf:type bd:Column ;
+	rdfs:label "Original Units"^^xsd:string ;
+	bd:name "--ORRESU"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Unit for --ORRES. Examples: IN, LB, kg/L." ;
+.

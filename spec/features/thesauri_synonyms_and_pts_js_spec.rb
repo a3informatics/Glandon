@@ -1,0 +1,514 @@
+require 'rails_helper'
+
+describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
+
+  # NOTE: Needs to be run as one single run due to dynamic identifiers
+
+  include DataHelpers
+  include UiHelpers
+  include UserAccountHelpers
+  include PauseHelpers
+  include WaitForAjaxHelper
+  include NameValueHelpers
+  include EditorHelpers
+
+  def wait_for_ajax_long
+    wait_for_ajax(10)
+  end
+
+  describe "The Content Admin User can", :type => :feature do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl", "change_instructions_v47.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..47)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+
+      clear_iso_concept_object
+      clear_iso_namespace_object
+      clear_iso_registration_authority_object
+      clear_iso_registration_state_object
+      ua_create
+      nv_destroy
+      nv_create(parent: "10", child: "999")
+      Token.destroy_all
+      set_transactional_tests false
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    after :all do
+      nv_destroy
+      ua_destroy
+      set_transactional_tests true
+    end
+
+    it "allows terminology synonyms to be displayed for code lists (REQ-MDR-SY-010)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'History'
+      expect(page).to have_content 'Controlled Terminology'
+      context_menu_element('history', 5, '2015-06-26 Release', :show)
+      wait_for_ajax_long
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '44.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children", 1, 10, 504)
+      ui_child_search("C6674")
+      ui_check_table_info("children", 1, 2, 2)
+      ui_check_table_cell("children", 1, 1, "C66742")
+      ui_check_table_cell("children", 1, 3, "CDISC SDTM Yes No Unknown or Not Applicable Response Terminology")
+      ui_check_table_cell("children", 2, 1, "C66741")
+      ui_check_table_cell("children", 2, 3, "CDISC SDTM Vital Sign Test Code Terminology")
+    end
+
+    it "allows terminology synonyms to be displayed for code list items (REQ-MDR-SY-010)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'History'
+      expect(page).to have_content 'Controlled Terminology'
+      context_menu_element('history', 5, '2015-06-26 Release', :show)
+      wait_for_ajax_long
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '44.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children", 1, 10, 504)
+      ui_child_search("C66742")
+      find(:xpath, "//tr[contains(.,'No Yes Response')]/td/a", :text => 'Show').click
+      wait_for_ajax_long
+      expect(page).to have_content 'No Yes Response'
+      expect(page).to have_content 'C66742'
+      ui_check_table_info("children", 1, 4, 4)
+      ui_check_table_cell("children", 1, 3, "Yes")
+      ui_check_table_cell("children", 4, 3, "Unknown")
+    end
+
+    it "allows to display code lists and code list items with the same synonym (REQ-MDR-SY-020)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'History'
+      expect(page).to have_content 'Controlled Terminology'
+      context_menu_element('history', 5, '2015-06-26 Release', :show)
+      wait_for_ajax_long
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '44.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children", 1, 10, 504)
+      ui_child_search("C66742")
+      find(:xpath, "//tr[contains(.,'No Yes Response')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'No Yes Response'
+      expect(page).to have_content 'C66742'
+      ui_check_table_info("children", 1, 4, 4)
+      find(:xpath, "//tr[contains(.,'C17998')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Shared Synonyms'
+      expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/a/div/div", :text => 'FREQ (C71113)')
+      expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/a/div/div", :text => 'XDOSFRQ (C78745)')
+    end
+
+    it "allows to assign synonyms on a code list item (REQ-MDR-SY-030)", js: true do
+      click_navbar_code_lists
+      expect(page).to have_content 'Index: Code Lists'
+      click_link 'New Code List'
+      wait_for_ajax_long
+      expect(page).to have_content 'NP000010P'
+      wait_for_ajax_long
+      context_menu_element('history', 4, 'NP000010P', :edit)
+      wait_for_ajax_long
+      click_on 'New item'
+      wait_for_ajax_long
+      expect(page).to have_content 'NC00000999C'
+      ui_editor_select_by_location(1,2)
+      ui_editor_fill_inline "notation", "SUBMISSION 999C\n"
+      ui_editor_select_by_location(1,3)
+      ui_editor_fill_inline "preferred_term", "The PT 999C\n"
+      ui_editor_select_by_location(1,4)
+      ui_editor_fill_inline "synonym", "Syn3\n"
+      expect(page).to have_content 'Syn3'
+      ui_editor_select_by_location(1,5)
+      ui_editor_fill_inline "definition", "We never fill this in, too tricky 999C!\n"
+      click_link 'Return'
+    end
+
+    it "allows to assign more synonyms on a code list item (REQ-MDR-SY-030)", js:true do
+      click_navbar_code_lists
+      expect(page).to have_content 'Index: Code Lists'
+      click_link 'New Code List'
+      wait_for_ajax_long
+      expect(page).to have_content 'NP000011P'
+      wait_for_ajax_long
+      context_menu_element('history', 4, 'NP000011P', :edit)
+      wait_for_ajax_long
+      click_on 'New item'
+      wait_for_ajax_long
+      expect(page).to have_content 'NC00001000C'
+      ui_editor_select_by_location(1,3)
+      ui_editor_fill_inline "preferred_term", "CodeListItem1\n"
+      ui_editor_select_by_location(1,4)
+      ui_editor_fill_inline "synonym", "Syn4a; Syn4b\n"
+      expect(page).to have_content 'Syn4a; Syn4b'
+      click_link 'Return'
+    end
+
+    it "allows to update a synonyms on a code list item (REQ-MDR-SY-030)", js:true do
+      click_navbar_code_lists
+      expect(page).to have_content 'Index: Code Lists'
+      click_link 'New Code List'
+      wait_for_ajax_long
+      expect(page).to have_content 'NP000012P'
+      wait_for_ajax_long
+      context_menu_element('history', 4, 'NP000012P', :edit)
+      wait_for_ajax_long
+      click_on 'New item'
+      wait_for_ajax_long
+      expect(page).to have_content 'NC00001001C'
+      ui_editor_select_by_location(1,3)
+      ui_editor_fill_inline "preferred_term", "CodeListItem1\n"
+      ui_editor_select_by_location(1,4)
+      ui_editor_fill_inline "synonym", "Syn6\n"
+      expect(page).to have_content 'Syn6'
+      ui_editor_select_by_location(1,4)
+      ui_editor_fill_inline "synonym", "NewCLSyn6\n"
+      expect(page).to have_content 'NewCLSyn6'
+      ui_editor_select_by_location(1,4)
+      ui_editor_fill_inline "synonym", "CLSyn6; NewCLSyn6\n"
+      expect(page).to have_content 'CLSyn6; NewCLSyn6'
+      click_link 'Return'
+    end
+
+    it "allows to delete a synonyms on a code list item (REQ-MDR-SY-030)", js:true do
+      click_navbar_code_lists
+      expect(page).to have_content 'Index: Code Lists'
+      click_link 'New Code List'
+      wait_for_ajax_long
+      expect(page).to have_content 'NP000013P'
+      wait_for_ajax_long
+      context_menu_element('history', 4, 'NP000013P', :edit)
+      wait_for_ajax_long
+      click_on 'New item'
+      wait_for_ajax_long
+      expect(page).to have_content 'NC00001002C'
+      ui_editor_select_by_location(1,3)
+      ui_editor_fill_inline "preferred_term", "CodeListItem1\n"
+      ui_editor_select_by_location(1,4)
+      ui_editor_fill_inline "synonym", "Syn8\n"
+      expect(page).to have_content 'Syn8'
+      ui_editor_select_by_location(1,4)
+      ui_editor_fill_inline "synonym", "\n"
+      expect(page).not_to have_content 'CLSyn8'
+      click_link 'Return'
+    end
+
+    it "allows to assign a preferred term on a code list item (REQ-MDR-SY-030)", js: true do
+      click_navbar_code_lists
+      expect(page).to have_content 'Index: Code Lists'
+      click_link 'New Code List'
+      wait_for_ajax_long
+      expect(page).to have_content 'NP000014P'
+      wait_for_ajax_long
+      context_menu_element('history', 4, 'NP000014P', :edit)
+      wait_for_ajax_long
+      click_on 'New item'
+      wait_for_ajax_long
+      expect(page).to have_content 'NC00001003C'
+      wait_for_ajax_long
+      ui_editor_select_by_location(1,3)
+      ui_editor_fill_inline "preferred_term", "CodeListItem1\t"
+      ui_editor_select_by_location(1,4)
+      ui_editor_fill_inline "synonym", "Syn10\n"
+      expect(page).to have_content 'CodeListItem1'
+      click_link "Return"
+      wait_for_ajax 10
+    end
+
+    it "allows to delete a preferred term on a code list item (REQ-MDR-PT-030)", js:true do
+      click_navbar_code_lists
+      wait_for_ajax(20)
+      expect(page).to have_content 'Index: Code Lists'
+      click_link 'New Code List'
+      wait_for_ajax_long
+      expect(page).to have_content 'NP000015P'
+      wait_for_ajax_long
+      context_menu_element('history', 4, 'NP000015P', :edit)
+      wait_for_ajax_long
+      click_on 'New item'
+      wait_for_ajax_long
+      expect(page).to have_content 'NC00001004C'
+      ui_editor_select_by_location(1,3)
+      ui_editor_fill_inline "preferred_term", "CodeList12\n"
+      ui_editor_select_by_location(1,2)
+      ui_editor_fill_inline "notation", "Submission12\n"
+      page.driver.browser.navigate.refresh
+      wait_for_ajax_long
+      expect(page).to have_content 'NP000015P'
+      click_on 'New item'
+      wait_for_ajax_long
+      expect(page).to have_content 'NC00001005C'
+      ui_editor_select_by_location(1,3)
+      ui_editor_fill_inline "preferred_term", "CodeListItem1\n"
+      expect(page).to have_content 'CodeListItem1'
+      ui_editor_select_by_location(1,3)
+      ui_editor_fill_inline "preferred_term", "\n"
+      expect(page).not_to have_content 'CodeListItem1'
+    end
+
+    it "allows Synonyms to be displayed for CDISC code lists (REQ-MDR-PT-010)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content 'History'
+      context_menu_element('history', 5, '2015-12-18 Release', :show)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '46.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children", 1, 10, 561)
+      ui_child_search("C7115")
+      ui_check_table_info("children", 1, 4, 4)
+      ui_check_table_cell("children", 1, 4, "ECG Test Code")
+      ui_check_table_cell("children", 4, 4, "ECG Result")
+    end
+
+    # Preferred Terms
+    it "allows Preferred Term to be displayed for CDISC code list items (REQ-MDR-PT-010)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content 'History'
+      context_menu_element('history', 5, '2015-12-18 Release', :show)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '46.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children", 1, 10, 561)
+      ui_child_search("C7115")
+      ui_check_table_info("children", 1, 4, 4)
+      ui_check_table_cell("children", 1, 3, "CDISC SDTM ECG Test Code Terminology")
+      ui_check_table_cell("children", 4, 3, "CDISC SDTM ECG Finding Terminology")
+    end
+
+    it "allows to display code lists and code list items with the same preferred term (REQ-MDR-PT-020)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'History'
+      expect(page).to have_content 'Controlled Terminology'
+      context_menu_element('history', 5, '2016-03-25 Release', :show)
+      wait_for_ajax(20)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '47.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children", 1, 10, 572)
+      ui_child_search("unit")
+      find(:xpath, "//tr[contains(.,'PKUNIT')]/td/a", :text => 'Show').click
+      wait_for_ajax(20)
+      expect(page).to have_content 'Definition: Units of measure for pharmacokinetic data and parameters.'
+      expect(page).to have_content 'C85494'
+      wait_for_ajax_long
+      ui_check_table_info("children", 1, 10, 671)
+      find(:xpath, "//tr[contains(.,'C85754')]/td/a", :text => 'Show').click
+      wait_for_ajax(20)
+      expect(page).to have_content 'Shared Preferred Terms'
+      find(:xpath, "//div[@id='pts-panel']/div/div/div/a/div/div", :text => 'UNIT (C71620)').click
+      wait_for_ajax_long
+      expect(page).to have_content 'Shared Preferred Terms'
+      find(:xpath, "//div[@id='pts-panel']/div/div/div/a/div/div", :text => 'PKUNIT (C85494)').click
+      wait_for_ajax_long
+      expect(page).to have_content 'Shared Preferred Terms'
+      expect(page).to have_xpath("//div[@id='pts-panel']/div/div/div/a/div/div", :text => 'UNIT (C71620)')
+    end
+
+    it "allows to display code lists and code list items with the same synonym (REQ-MDR-PT-020)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'History'
+      expect(page).to have_content 'Controlled Terminology'
+      context_menu_element('history', 5, '2016-03-25 Release', :show)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '47.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children", 1, 10, 572)
+      ui_child_search("C67154")
+      find(:xpath, "//tr[contains(.,'C67154')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Definition: Terminology used for laboratory test names of the CDISC Study Data Tabulation Model.'
+      expect(page).to have_content 'C67154'
+      wait_for_ajax_long
+      ui_child_search("C125949")
+      find(:xpath, "//tr[contains(.,'Urea')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Shared Synonyms'
+      find(:xpath, "//*[@id='synonyms-panel']/div/div/div/a/div/div[2]", :text => 'LBTESTCD (C65047)').click
+      wait_for_ajax_long
+      expect(page).to have_content 'Shared Synonyms'
+      find(:xpath, "//*[@id='synonyms-panel']/div/div/div/a/div/div[2]", :text => 'LBTEST (C67154)').click
+      wait_for_ajax_long
+      expect(page).to have_content 'Shared Synonyms'
+      expect(page).to have_xpath("//div[@id='pts-panel']/div/div/div/a/div/div", :text => 'LBTESTCD (C65047)')
+    end
+
+    #tags
+    it "allows Tags to be displayed, table, thesaurus level (REQ-MDR-??????)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content 'History'
+      context_menu_element('history', 5, '2015-12-18 Release', :show)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '46.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children", 1, 10, 561)
+      ui_child_search("C99075")
+      ui_check_table_info("children", 1, 1, 1)
+      ui_check_table_cell("children", 1, 7, "SDTM\nSEND")
+    end
+
+    it "allows Tags to be displayed, table, managed concept level (REQ-MDR-??????)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content 'History'
+      context_menu_element('history', 5, '2015-12-18 Release', :show)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '46.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children", 1, 10, 561)
+      ui_child_search("C99075")
+      ui_check_table_cell("children", 1, 7, "SDTM\nSEND")
+      ui_check_table_info("children", 1, 1, 1)
+      find(:xpath, "//tr[contains(.,'C99075')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'PORTOT'
+      expect(page).to have_content 'C99075'
+      ui_check_table_cell("children", 1, 6, "SDTM\nSEND")
+    end
+
+    it "allows Tags to be displayed, header (REQ-MDR-??????)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content 'History'
+      context_menu_element('history', 5, '2015-12-18 Release', :show)
+      # Thesaurus - level
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '46.0.0'
+      expect(page).to have_content 'Show more'
+      ui_header_show_more_tags
+      expect(page).to have_content 'Tags: ADaM CDASH SDTM SEND'
+      find(:xpath, "//tr[contains(.,'C99074')]/td/a", :text => 'Show').click
+      wait_for_ajax_long
+      # Managed concept - level
+      expect(page).to have_content 'DIR'
+      expect(page).to have_content 'C99074'
+      expect(page).to have_content 'Show more'
+      #find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
+      #find(:xpath, '//*[@id="imh_header"]/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
+      ui_header_show_more_tags
+      expect(page).to have_content 'Tags: SDTM SEND'
+      find(:xpath, "//tr[contains(.,'C90069')]/td/a", :text => 'Show').click
+      wait_for_ajax_long
+      # Unmanaged concept - level
+      expect(page).to have_content 'TIP'
+      expect(page).to have_content 'C90069'
+      expect(page).to have_content 'Show more'
+      #find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
+      ui_header_show_more_tags
+      wait_for_ajax_long
+      expect(page).to have_content 'Tags: SDTM SEND'
+    end
+
+    it "checks for correct display of shared PTs or Ss, unmanaged concepts", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content 'History'
+      context_menu_element('history', 5, '2015-12-18 Release', :show)
+      wait_for_ajax_long
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '46.0.0'
+      ui_child_search("sex")
+      ui_check_table_info("children", 1, 3, 3)
+      find(:xpath, "//tr[contains(.,'C66731')]/td/a", :text => 'Show').click
+      wait_for_ajax_long
+      expect(page).to have_content 'C66731'
+      expect(page).to have_content 'Preferred term: CDISC SDTM Sex of Individual Terminology'
+      ui_check_table_info("children", 1, 4, 4)
+      find(:xpath, "//tr[contains(.,'C17998')]/td/a", :text => 'Show').click
+      wait_for_ajax_long
+      expect(page).to have_content 'Preferred term: Unknown'
+      expect(page).to have_xpath("//div[@id='pts-panel']/div/div/div/a", count: 14)
+      expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/a", count: 28)
+    end
+
+    it "checks for correct display of no shared PTs or Synonyms found, unmanaged concepts", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'Controlled Terminology'
+      context_menu_element('history', 5, '2015-09-25 Release', :show)
+      expect(page).to have_content '45.0.0'
+      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      wait_for_ajax_long
+      expect(page).to have_content 'EPOCH'
+      find(:xpath, "//tr[contains(.,'C123453')]/td/a", :text => 'Show').click
+      wait_for_ajax_long
+      expect(page).to have_content 'Preferred term: Induction Therapy Epoch'
+      expect(page).to have_content 'No Shared Preferred Terms.'
+      expect(page).to have_content 'No Shared Synonyms.'
+    end
+
+  end
+
+  def check_tags(date, version, ct_tags, cl_tags)
+    click_navbar_cdisc_terminology
+    wait_for_ajax(20)
+    ui_table_search("history", "#{date} Release")
+    context_menu_element('history', 5, "#{date} Release", :show)
+    wait_for_ajax_long
+    expect(page).to have_content "#{version}"
+    ui_header_show_more_tags
+    expect(page).to have_content "Tags: #{ct_tags}"
+    ui_table_search("children", "C100170")
+    find(:xpath, "//tr[contains(.,'C100170')]/td/a", :text => 'Show').click
+    wait_for_ajax_long
+    expect(page).to have_content "C100170"
+  sleep 1
+    ui_header_show_more_tags
+    expect(page).to have_content "Tags: #{cl_tags}"
+  end
+
+  describe "Filtered Tags", :type => :feature do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..61)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      ua_create
+      nv_destroy
+      nv_create(parent: "10", child: "999")
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      # wait_for_ajax
+      #ua_logoff
+    end
+
+    after :all do
+      nv_destroy
+      ua_destroy
+    end
+
+    it "Check on filtered tags", js:true do
+      check_tags("2012-03-23", "30.0.0", "ADaM CDASH QS SDTM SEND", "QS SDTM")
+      check_tags("2014-06-27", "39.0.0", "ADaM CDASH QS-FT SDTM SEND", "QS-FT SDTM")
+      check_tags("2014-12-19", "42.0.0", "ADaM CDASH COA SDTM SEND", "SDTM")
+      check_tags("2015-06-26", "44.0.0", "ADaM CDASH QRS SDTM SEND", "SDTM")
+      check_tags("2015-12-18", "46.0.0", "ADaM CDASH SDTM SEND", "SDTM")
+    end
+
+  end
+
+end

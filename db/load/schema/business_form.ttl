@@ -1,0 +1,264 @@
+@prefix : <http://www.assero.co.uk/BusinessForm#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix cbc: <http://www.assero.co.uk/BiomedicalConcept#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/BusinessForm>
+  rdf:type owl:Ontology ;
+  owl:versionInfo "v3.2.0"^^xsd:string ;
+  rdfs:label "Form Schema"^^xsd:string ;
+  owl:imports <http://www.assero.co.uk/BusinessOperational> ;
+  owl:imports <http://www.assero.co.uk/BiomedicalConcept#> ;
+.
+:Form
+  rdf:type owl:Class ;
+  rdfs:label "Form"^^xsd:string ;
+  rdfs:subClassOf bo:Component ;
+  skos:definition ""^^xsd:string
+.
+:Node
+  rdf:type owl:Class ;
+  rdfs:subClassOf isoC:Concept ;
+  rdfs:label "Group"^^xsd:string ;
+  skos:definition ""^^xsd:string
+.
+:Group
+  rdf:type owl:Class ;
+  rdfs:label "Group"^^xsd:string ;
+  rdfs:subClassOf :Node ;
+  skos:definition "Generic group."^^xsd:string
+.
+:NormalGroup
+  rdf:type owl:Class ;
+  rdfs:label "Group"^^xsd:string ;
+  rdfs:subClassOf :Group ;
+  skos:definition "Normal group."^^xsd:string
+.
+:BcGroup
+  rdf:type owl:Class ;
+  rdfs:label "BC Group"^^xsd:string ;
+  rdfs:subClassOf :Group ;
+  skos:definition "BC group."^^xsd:string
+.
+:CommonGroup
+  rdf:type owl:Class ;
+  rdfs:label "Group"^^xsd:string ;
+  rdfs:subClassOf :Group ;
+  skos:definition "A common group."^^xsd:string
+.
+:Item
+  rdf:type owl:Class ;
+  rdfs:label "Generic Item"^^xsd:string ;
+  rdfs:subClassOf :Node ;
+  skos:definition ""^^xsd:string
+.
+:Placeholder
+  rdf:type owl:Class ;
+  rdfs:label "Placeholder Item"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+  skos:definition "Placeholder item."^^xsd:string
+.
+:TextLabel
+  rdf:type owl:Class ;
+  rdfs:label "Text label"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+  skos:definition "A passive text label item."^^xsd:string
+.
+:Mapping
+  rdf:type owl:Class ;
+  rdfs:label "Mapping"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+  skos:definition "A passive mapping item."^^xsd:string
+.
+:BcProperty
+  rdf:type owl:Class ;
+  rdfs:label "Biomedical Concept based Item"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+  skos:definition "A form question based upon a Biomedical Concept property"^^xsd:string
+.
+:Question
+  rdf:type owl:Class ;
+  rdfs:label "Question Item"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+  skos:definition "A form question."^^xsd:string
+.
+:CommonItem
+  rdf:type owl:Class ;
+  rdfs:label "Common Item"^^xsd:string ;
+  rdfs:subClassOf :BcProperty ;
+  skos:definition "A common item."^^xsd:string
+.
+:hasGroup
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :Form ;
+  rdfs:label "Has group relationship"^^xsd:string ;
+  rdfs:range :Group ;
+  skos:definition ""^^xsd:string
+.
+:hasItem
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :Group ;
+  rdfs:label "Has item relationship"^^xsd:string ;
+  rdfs:range :Item ;
+  skos:definition "Has an item relationship"^^xsd:string
+.
+:hasCommon
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :NormalGroup ;
+  rdfs:label "Has common group relationship"^^xsd:string ;
+  rdfs:range :CommonGroup ;
+  skos:definition "Has a common group relationship"^^xsd:string
+.
+:hasCommonItem
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has common item relationship"^^xsd:string ;
+  rdfs:domain :CommonItem ;
+  rdfs:range :BcProperty ;
+  skos:definition "Has a common item relationship"^^xsd:string
+.
+:hasSubGroup
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :NormalGroup ;
+  rdfs:label "Has sub group relationship"^^xsd:string ;
+  rdfs:range :Group ;
+  skos:definition "Has a sub group relationship"^^xsd:string
+.
+:hasBiomedicalConcept
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :BcGroup ;
+  rdfs:label "Reference to Biomedical Concept"^^xsd:string ;
+  rdfs:range bo:Reference ;
+  skos:definition "Reference to a Biomedical Concept"^^xsd:string
+.
+:hasProperty
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :BcProperty ;
+  rdfs:label "Reference to Biomedical Concept property."^^xsd:string ;
+  rdfs:range bo:Reference;
+  skos:definition "Reference to a Biomedical Concept property"^^xsd:string
+.
+# Deprecated
+:hasThesaurusConcept
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :Question ;
+  rdfs:label "Reference to Thesaurus Concept."^^xsd:string ;
+  rdfs:range bo:TcReference ;
+  skos:definition "Reference to a Thesaurus Concept"^^xsd:string
+.
+:hasCodedValue
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Coded Value Relationship"^^xsd:string ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf  ( :Question :BcProperty)
+    ] ;
+  rdfs:range bo:TUcReference ;
+  skos:definition "Reference to a coded value."^^xsd:string
+.
+:completion
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :Node :Form)
+    ] ;
+  rdfs:label "Completion instructions"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The completion instructions for the item."^^xsd:string
+.
+:note
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Note"^^xsd:string ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Node :Form)
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "The note for the item."^^xsd:string
+.
+:repeating
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :NormalGroup ;
+  rdfs:label "Repeating group"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+  skos:definition "The group is a repeating group."^^xsd:string
+.
+:optional
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Node ;
+  rdfs:label "Optional group"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+  skos:definition "Item optional flag."^^xsd:string
+.
+:freeText
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Placeholder ;
+  rdfs:label "Placeholder text"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "Placeholder free text."^^xsd:string
+.
+:labelText
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :TextLabel ;
+  rdfs:label "Label text"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "Label text."^^xsd:string
+.
+:ordinal
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Node ;
+  rdfs:label "Node ordinal"^^xsd:string ;
+  rdfs:range xsd:integer ;
+  skos:definition "The ordinal within the set."^^xsd:string
+.
+:datatype
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Question ;
+  rdfs:label "Datatype"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The datatype of the response."^^xsd:string
+.
+:format
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Question ;
+  rdfs:label "Format"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The format of the response."^^xsd:string
+.
+:mapping
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Mapping :Question)
+    ] ;
+  rdfs:label "Mapping"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The annotation/mapping."^^xsd:string
+.
+:questionText
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :Question ;
+  rdfs:label "Question text"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The question text."^^xsd:string
+.

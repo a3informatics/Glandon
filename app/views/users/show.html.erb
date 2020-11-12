@@ -1,0 +1,41 @@
+<% content_for :page_title do %> Show User: <%= @user.email %> <% end %>
+
+<%= javascript_pack_tag 'users/show' %>
+
+<div class="row">
+	<%= render layout: "shared/headers/header_generic", :locals => { badge: "icon-users", header_title: "",
+		main_text: "Users", sub_texts: "Showing user information" } do %>
+	<% end %>
+</div>
+
+<div class="row centered">
+	<div class="col-md-10 card wide table-cardstyle all-columns">
+		<div class="card-header">Show User: <%= @user.email %></div>
+		<div class="card-content">
+	  	<table id="main" class="table table-striped table-bordered table-condensed">
+	  		<thead>
+	  			<tr>
+	    			<th>Role name</th>
+						<th>Has role</th>
+	  			</tr>
+	  		</thead>
+	  		<tbody>
+					<% Role.all.each do |role| %>
+		  			<tr>
+  						<td><%= Role.to_display(role.name.to_sym) %></td>
+		    		  <%=  true_false_glyphicon(@user.role_ids.include?(role.id)) %>
+		  			</tr>
+					<% end %>
+		  	</tbody>
+		</table>
+
+		<div class="btns-wrap">
+			<a href="<%= edit_user_path(@user) %>" class="btn medium light">
+				<span class="icon-edit"></span>
+				Edit User Roles
+			</a>
+		</div>
+
+		</div>
+	</div>
+</div>

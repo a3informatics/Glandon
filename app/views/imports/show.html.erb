@@ -1,0 +1,69 @@
+<% content_for :page_title do %> Import Status <% end %>
+
+<%= javascript_include_tag 'import/show' %>
+<%= javascript_tag "var importDataUrl = '#{import_path(@import)}';" %>
+
+<% first_level_breadcrumb (:imports) %>
+
+<div class="row">
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-import", header_title: "",
+		main_text: "Import Centre", sub_texts: "Showing import details." } do %>
+
+			<%= render partial: "shared/buttons/return", :locals => { url: imports_path } %>
+
+	<% end %>
+</div>
+
+<div class="row centered">
+  <div class="col-md-11 card wide">
+    <div class="card-header">Import Status</div>
+    <div class="card-content">
+      <div class = "sub-card-wrap flex-total-center">
+	        <div class="sub-card" id='import-info' style="width: 70%;">
+	          <div class="sub-card-header">Details</div>
+	          <div class="sub-card-content">
+	            <table class="table table-condensed">
+	              <tbody>
+	                <tr> <td class="font-regular">Description:</td> <td class='job-description'></td> </tr>
+									<tr> <td class="font-regular">Identifier:</td> <td id='import-identifier'></td> </tr>
+	                <tr> <td class="font-regular">Owner:</td> <td id='import-owner'></td> </tr>
+	                <tr> <td class="font-regular">Success:</td> <td id='import-success'></td> </tr>
+	                <tr> <td class="font-regular">Started At:</td>	<td class='job-started-at'></td> </tr>
+	              </tbody>
+	            </table>
+							<div id="import-alerts"></div>
+	          </div>
+	        </div>
+
+	        <div class="sub-card" id="import-job" style="width: 70%;">
+	          <div class="sub-card-header">Background Job</div>
+	          <div class="sub-card-content table-cardstyle all-columns">
+							<div id='job-loading-wrap'></div>
+	            <table class="table table-condensed">
+	              <tbody>
+	                <tr> <td class="font-regular">Description:</td>	<td class='job-description'></td> </tr>
+	                <tr> <td class="font-regular">Status:</td> <td id='job-status'></td> </tr>
+	                <tr> <td class="font-regular">Started At:</td> <td class='job-started-at'></td> </tr>
+	                <tr> <td class="font-regular">Percentage:</td> <td id='job-percentage'></td> </tr>
+	              </tbody>
+	            </table>
+	          </div>
+	        </div>
+
+	        <div class="sub-card red" id="import-errors" style="width: 70%;">
+	          <div class="sub-card-header">Errors</div>
+	          <div class="sub-card-content table-cardstyle all-columns">
+	            <table id="errors" class="table table-striped table-bordered table-condensed">
+	              <thead>
+	                <th class="fit"></th>
+	                <th class="font-regular">Message</th>
+	              </thead>
+	              <tbody></tbody>
+	            </table>
+	          </div>
+	        </div>
+
+				</div>
+			</div>
+  </div>
+</div>

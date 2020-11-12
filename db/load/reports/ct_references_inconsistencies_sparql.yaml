@@ -1,0 +1,49 @@
+---
+:parameters:
+  - 
+    :name: "Terminology"
+    :description: "The terminology for which the CDISC References Inconsistencies are required."
+    :type: :thesauri
+:columns:
+  :cll:
+    :label: Sponsor Code List Label
+    :type: literal
+  :clid:
+    :label: Sponsor Code List Identifier
+    :type: literal
+  :clil:
+    :label: Sponsor Code List Item Label
+    :type: literal
+  :cliid:
+    :label: Sponsor Code List Item Identifier
+    :type: literal
+  :rv:
+    :label: CDISC Version Used
+    :type: literal
+:label: CDISC References Inconsistencies
+:query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#> 
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#> 
+PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>  
+PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>  
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>  
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>   
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>  
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>  
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>  
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>  
+SELECT DISTINCT ?cll ?clid ?clil ?cliid ?rv WHERE        
+{           
+  VALUES ?th {[[[parameter_1]]]} 
+  ?th th:reference/bo:reference/isoT:hasState/isoR:byAuthority ?auth .
+  ?th th:reference/bo:reference/isoT:hasIdentifier/isoI:version ?rv . 
+  { ?th th:isTopConceptReference/bo:reference/th:narrower ?cli } MINUS
+  { ?th th:reference/bo:reference/th:isTopConceptReference/bo:reference/th:narrower ?cli }
+  ?cli th:identifier ?cliid . 
+  FILTER (STRSTARTS( ?cliid, "C"))
+  ?cli ^th:narrower ?cl .
+  ?cli isoC:label ?clil .
+  ?cli th:identifier ?cliid . 
+  ?cl isoC:label ?cll .
+  ?cl th:identifier ?clid . 
+}'
+:type: Ad Hoc Report Definition

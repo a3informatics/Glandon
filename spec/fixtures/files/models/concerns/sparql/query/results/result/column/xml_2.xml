@@ -1,0 +1,24 @@
+<root>
+  <result>
+    <binding name="s_p">
+      <uri>http://www.assero.co.uk/MDRItems#RAI-123456789</uri>
+    </binding>
+    <binding name="p_w">
+      <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/ISO11179Basic#RegistrationAuthorityIdentifier</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s_p">
+      <uri>http://www.assero.co.uk/MDRItems#RAI-123456789</uri>
+    </binding>
+    <binding name="p_w">
+      <uri>http://www.assero.co.uk/ISO11179Basic#internationalCodeDesignator</uri>
+    </binding>
+    <binding name="o">
+      <literal>DUNS</literal>
+    </binding>
+  </result>
+</root>

@@ -1,0 +1,58 @@
+<% content_for :page_title do %> Edit Tags: <%= @item.label %> <% end %>
+
+<%= stylesheet_link_tag 'iso_concept_systems/tags' %>
+<%= javascript_pack_tag 'iso_concept/edit_tags' %>
+
+<%= javascript_tag "let tagsDataUrl = '#{ iso_concept_system_path(@concept_system) }',
+                        conceptTagsUrl = '#{ tags_full_iso_concept_path(@iso_concept) }',
+                        conceptAddTagUrl = '#{ add_tag_iso_concept_path(@iso_concept) }',
+                        conceptRemoveTagUrl = '#{ remove_tag_iso_concept_path(@iso_concept) }'; " %>
+
+<%= render partial: "shared/breadcrumb_by_type", :locals => { item: @item, type: @concept_klass.to_s, close_path: @close_path,
+      parent: @parent, context_id: @context_id} %>
+
+<div class="row">
+    <%= render layout: "shared/headers/header_by_type", :locals => { item: @item, type: @concept_klass.to_s, with_tags: false } do %>
+
+      <div class="actions-wrap">
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: iso_concept_systems_path, id: "manage-tags",
+          icon: "icon-tag", text: "Manage all tags" } %>
+        <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+      </div>
+
+    <% end %>
+</div>
+
+<div class="row">
+
+  <div class="col-md-12 card">
+
+    <div class="card-header">
+      Edit Item Tags
+    </div>
+
+    <div class="card-content">
+
+      <div id="concept-tags-editor" class="text-centered font-light text-small">
+        Attached Tags (click to detach)
+
+        <div id="tags" class="labels-inline-wrap"> </div>
+
+        <button class="btn btn-xs white disabled" id="add-tag-btn"> + Attach Tag</button>
+
+      </div>
+
+      <br>
+
+      <div id="tags-tree" style="min-height: 400px">
+
+        <%= render partial: "shared/d3/tree_graph" %>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<%= render partial: "shared/iso_concept_systems/tagged_items_panel" %>

@@ -1,0 +1,2 @@
+class IsoConcept
+end

@@ -1,0 +1,3532 @@
+defaults: &defaults
+  imports: &default_imports
+    cdisc_adam_ig:
+      title: CDISC ADaM Implementation Guide Import - Excel
+      background: true
+      description: This facilty allows for the ADaM Implementation Guide to be imported from an MS Excel file.
+      link_text: "Import CDISC ADaM IG"
+      link_path: "/imports/adam_igs/new?imports[file_type]=0"
+    cdisc_sdtm_model:
+      title: CDISC SDTM Model Import - Excel
+      background: true
+      description: This facilty allows for the SDTM Model to be imported from an MS Excel file.
+      link_text: "Import CDISC SDTM Model"
+      link_path: "/imports/sdtm_model/new?imports[file_type]=0"
+    cdisc_sdtm_ig:
+      title: CDISC SDTM Implementation Guide Import - Excel
+      background: true
+      description: This facilty allows for the SDTM Implementation Guide to be imported from an MS Excel file.
+      link_text: "Import CDISC SDTM IG"
+      link_path: "/imports/sdtm_ig/new?imports[file_type]=0"
+    cdisc_term:
+      title: CDISC Terminology Import - Excel
+      background: true
+      description: This facilty allows for the CDISC Terminology to be imported from one or more MS Excel files.
+      link_text: "Import CDISC Term (Excel)"
+      link_path: "/imports/cdisc_terms/new?imports[file_type]=0"
+    cdisc_term_api:
+      title: CDISC Terminology Import - API
+      background: true
+      description: This facilty allows for the CDISC Terminology to be imported usig the CDISC API.
+      link_text: "Import CDISC Term (API)"
+      link_path: "/imports/cdisc_terms/new?imports[file_type]=3"
+    # cdisc_change_instructions:
+    #   title: CDISC Terminology Change Instructions - Excel
+    #   background: true
+    #   description: This facilty allows for the CDISC Terminology change instructions to be imported from one or more MS Excel files.
+    #   link_text: "Import Change Instructions"
+    #   link_path: "/imports/change_instructions/new?imports[file_type]=0"
+    # form_als:
+    #   title: Form Import - ALS
+    #   background: true
+    #   description: This facilty allows for a form to be imported from an ALS file.
+    #   link_text: "Import Form from ALS"
+    #   link_path: "/imports/crfs/new?imports[file_type]=2"
+    # form_odm:
+    #   title: Form Import - ODM
+    #   background: true
+    #   description: This facilty allows for a form to be imported from an ODM XML file.
+    #   link_text: "Import Form from ODM"
+    #   link_path: "/imports/crfs/new?imports[file_type]=1"
+    term_excel:
+      title: Import Terminology - Excel
+      background: true
+      description: This facilty allows for a draft code list to be imported from an MS Excel file.
+      link_text: "Import Terminology from Excel"
+      link_path: "/imports/sponsor_term_format_two/new?imports[file_type]=0"
+    # term_odm:
+    #   title: Import Terminology - ODM
+    #   background: true
+    #   description: This facilty allows for a form to be imported from an ODM XML file.
+    #   link_text: "Import Terminology from ODM"
+    #   link_path: "/imports/terms/new?imports[file_type]=1"
+  processing: &default_processing
+    cdisc_change_instructions:
+      sheets:
+        main:
+          selection:
+            first: true
+          sheet:
+            actions: []
+            header_row:
+              - "Release Date"
+              - "Request Code"
+              - "Change Type"
+              - "NCI Code"
+              - "CDISC Term Type"
+              - "CDISC Codelist (Short Name)"
+              - "CDISC Codelist (Long Name)"
+              - "Change Summary"
+              - "Original"
+              - "New"
+              - "Change Implementation Instructions"
+              - "Use"
+              - "Prev Codelist"
+              - "Prev Term"
+              - "New Codelists"
+              - "New Terms"
+              - "Comment"
+          row:
+            conditions:
+              -
+                -
+                  method: column_affirmative?
+                  column: 12
+          columns:
+          -
+            label: "Release Date"
+            actions: []
+          -
+            label: "Request Code"
+            actions: []
+          -
+            label: "Change Type"
+            actions: []
+          -
+            label: "NCI Code"
+            actions: []
+          -
+            label: "CDISC Term Type"
+            actions: []
+          -
+            label: "CDISC Codelist (Short Name)"
+            actions: []
+          -
+            label: "CDISC Codelist (Long Name)"
+            actions: []
+          -
+            label: "Change Summary"
+            actions: []
+          -
+            label: "Original"
+            actions: []
+          -
+            label: "New"
+            actions: []
+          -
+            label: "Change Implementation Instructions"
+            actions: []
+          -
+            label: "Use"
+            actions: []
+          -
+            label: "Prev Codelist"
+            actions:
+              -
+                method: c_codes?
+                object: NA
+                klass: NA
+                additional:
+                  token: ","
+              -
+                method: create_item
+                object: parent
+                klass: "Import::ChangeInstruction::Instruction"
+              -
+                method: tokenize_and_set_property
+                object: parent
+                property: previous_parent
+                can_be_empty: false
+                additional:
+                  token: ","
+          -
+            label: "Prev Term"
+            actions:
+              -
+                method: c_codes?
+                object: NA
+                klass: NA
+                can_be_empty: true
+                additional:
+                  token: ","
+              -
+                method: tokenize_and_set_property
+                object: parent
+                property: previous_children
+                can_be_empty: true
+                additional:
+                  token: ","
+          -
+            label: "New Codelists"
+            actions:
+              -
+                method: c_codes?
+                object: NA
+                klass: NA
+                additional:
+                  token: ","
+              -
+                method: tokenize_and_set_property
+                object: parent
+                property: current_parent
+                additional:
+                  token: ","
+          -
+            label: "New Terms"
+            actions:
+              -
+                method: c_codes?
+                object: NA
+                klass: NA
+                can_be_empty: true
+                additional:
+                  token: ","
+              -
+                method: tokenize_and_set_property
+                object: parent
+                property: current_children
+                can_be_empty: true
+                additional:
+                  token: ","
+          -
+            label: "Comment"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: description
+                can_be_empty: false
+              -
+                method: check_valid
+                object: parent
+    cdisc_sdtm_model:
+      sheets:
+        version_1:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Seq. For Order"  
+              - "Observation Class" 
+              - "Domain Prefix" 
+              - "Variable Name (minus domain prefix)"  
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms, Codelist or Format"  
+              - "Role"
+              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "Core"
+          row:
+            conditions:
+              -
+                -
+                  column: 2
+                  value_in_set: 
+                    - Special Purpose
+                    - Special-Purpose
+                    - Relationship
+                    - Trial Design
+                -
+                  column: 3
+                  method: column_not_blank?
+              -
+                -
+                  column: 2
+                  value_in_set: 
+                    - All Classes
+                    - Events
+                    - Events-General
+                    - Interventions
+                    - Interventions-General
+                    - Findings
+                    - Findings-General
+                -
+                  column: 3
+                  method: column_blank?
+          columns:
+          -
+            label: "Observation Class" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 3
+                  method: column_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 3
+                  method: column_blank?
+          -
+            label: "Domain Prefix" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                additional:
+                  prefix: SDTM MODEL
+                condition:
+                  column: 3
+                  method: column_not_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                condition:
+                  column: 3
+                  method: column_not_blank?
+          -
+            label: "Variable Name (minus domain prefix)"  
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmClass::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_regex
+                object: child
+                property: prefixed
+                additional:
+                  regex: '^--'
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                additional:
+                  search: sdtm
+          -
+            label: "Seq. For Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: 
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                mapping:
+                  map:
+                    Char: Character
+                    Num: Numeric
+          -
+            label: "Controlled Terms, Codelist or Format"  
+            actions: []
+          -
+            label: "Role"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    "": None
+                    Identifier: Identifier
+                    Topic: Topic
+                    Timing: Timing
+                    Rule: Rule
+                    Grouping Qualifier: Grouping
+                    Result Qualifier: Result
+                    Synonym Qualifier: Synonym
+                    Record Qualifier: Record
+                    Variable Qualifier: Variable
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                    - "Qualifier"
+                mapping:
+                  map:
+                    "": None
+                    Identifier: Identifier
+                    Topic: Topic
+                    Timing: Timing
+                    Rule: Rule
+                    Grouping Qualifier: Grouping
+                    Result Qualifier: Result
+                    Synonym Qualifier: Synonym
+                    Record Qualifier: Record
+                    Variable Qualifier: Variable
+          -
+            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                property: description
+          -
+            label: "Core"
+            actions: []
+        version_2:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Version"  
+              - "Seq. For Order"  
+              - "Observation Class" 
+              - "Domain Prefix" 
+              - "Variable Name (minus domain prefix)"  
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms or Format"  
+              - "Role"
+              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "Core"
+          row:
+            conditions:
+              -
+                -
+                  column: 3
+                  value_in_set: 
+                    - Special Purpose
+                    - Special-Purpose
+                    - Relationship
+                    - Trial Design
+                -
+                  column: 4
+                  method: column_not_blank?
+              -
+                -
+                  column: 3
+                  value_in_set: 
+                    - All Classes
+                    - Events
+                    - Events-General
+                    - Interventions
+                    - Interventions-General
+                    - Findings
+                    - Findings-General
+                -
+                  column: 4
+                  method: column_blank?
+          columns:
+          -
+            label: "Version" 
+            actions: []
+          -
+            label: "Observation Class" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 4
+                  method: column_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 4
+                  method: column_blank?
+          -
+            label: "Domain Prefix" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                additional:
+                  prefix: SDTM MODEL
+                condition:
+                  column: 4
+                  method: column_not_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                condition:
+                  column: 4
+                  method: column_not_blank?
+          -
+            label: "Variable Name (minus domain prefix)"  
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmClass::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_regex
+                object: child
+                property: prefixed
+                additional:
+                  regex: '^--'
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                additional:
+                  search: sdtm
+          -
+            label: "Seq. For Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: 
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                mapping:
+                  map:
+                    Char: Character
+                    Num: Numeric
+          -
+            label: "Controlled Terms or Format"  
+            actions: []
+          -
+            label: "Role"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    "": None
+                    Identifier: Identifier
+                    Topic: Topic
+                    Timing: Timing
+                    Rule: Rule
+                    Grouping Qualifier: Grouping
+                    Result Qualifier: Result
+                    Synonym Qualifier: Synonym
+                    Record Qualifier: Record
+                    Variable Qualifier: Variable
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                    - "Qualifier"
+                mapping:
+                  map:
+                    "": None
+                    Identifier: Identifier
+                    Topic: Topic
+                    Timing: Timing
+                    Rule: Rule
+                    Grouping Qualifier: Grouping
+                    Result Qualifier: Result
+                    Synonym Qualifier: Synonym
+                    Record Qualifier: Record
+                    Variable Qualifier: Variable
+          -
+            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                property: description
+          -
+            label: "Core"
+            actions: []
+        version_3:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Version"  
+              - "Variable Order"  
+              - "Class" 
+              - "Dataset Name" 
+              - "Variable Name"  
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms or Format"  
+              - "Role"
+              - "Role Description"
+              - "Description"  
+          row:
+            conditions:
+              -
+                -
+                  column: 3
+                  value_in_set: 
+                    - Special Purpose
+                    - Special-Purpose
+                    - Relationship
+                    - Trial Design
+                -
+                  column: 4
+                  method: column_not_blank?
+              -
+                -
+                  column: 3
+                  value_in_set: 
+                    - All Classes
+                    - General Observations
+                    - Events
+                    - Events-General
+                    - Interventions
+                    - Interventions-General
+                    - Findings
+                    - Findings-General
+                -
+                  column: 4
+                  method: column_blank?
+          columns:
+          -
+            label: "Version" 
+            actions: []
+          -
+            label: "Class" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    General Observations: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 4
+                  method: column_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    General Observations: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 4
+                  method: column_blank?
+          -
+            label: "Dataset Name" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                additional:
+                  prefix: SDTM MODEL
+                condition:
+                  column: 4
+                  method: column_not_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                condition:
+                  column: 4
+                  method: column_not_blank?
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmClass::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_regex
+                object: child
+                property: prefixed
+                additional:
+                  regex: '^--'
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                additional:
+                  search: sdtm
+          -
+            label: "Variable Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: 
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                mapping:
+                  map:
+                    Char: Character
+                    Num: Numeric
+          -
+            label: "Controlled Terms or Format"  
+            actions: []
+          -
+            label: "Role"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    "": None
+                    Identifier: Identifier
+                    Topic: Topic
+                    Timing: Timing
+                    Rule: Rule
+                    Grouping Qualifier: Grouping
+                    Result Qualifier: Result
+                    Synonym Qualifier: Synonym
+                    Record Qualifier: Record
+                    Variable Qualifier: Variable
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                    - "Qualifier"
+                mapping:
+                  map:
+                    "": None
+                    Identifier: Identifier
+                    Topic: Topic
+                    Timing: Timing
+                    Rule: Rule
+                    Grouping Qualifier: Grouping
+                    Result Qualifier: Result
+                    Synonym Qualifier: Synonym
+                    Record Qualifier: Record
+                    Variable Qualifier: Variable
+          -
+            label: "Role Description"
+            actions: []
+          -
+            label: "Description"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                property: description
+    cdisc_sdtm_ig:
+      sheets:
+        version_1:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Seq. For Order"  
+              - "Observation Class" 
+              - "Domain Prefix" 
+              - "Variable Name (minus domain prefix)"  
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms, Codelist or Format"  
+              - "Role"
+              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "Core"
+          row:
+            conditions:
+              -
+                -
+                  column: 3
+                  method: column_not_blank?
+          columns:
+          -
+            label: "Domain Prefix" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmIgDomain
+                additional:
+                  prefix: SDTM IG
+              -
+                method: set_property
+                object: parent
+                property: prefix
+              -
+                method: set_property_with_lookup
+                object: parent
+                property: label
+                additional:
+                  sheet_name: Extra
+                  key_column: Domain Name
+                  value_column: Domain Label
+              -
+                method: set_property_with_lookup
+                object: parent
+                property: structure
+                additional:
+                  sheet_name: Extra
+                  key_column: Domain Name
+                  value_column: Domain Structure
+          -
+            label: "Observation Class" 
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: referenced_class
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                    Special Purpose: SDTM SPECIAL PURPOSE
+                    Special-Purpose: SDTM SPECIAL PURPOSE
+                    Trial Design: SDTM TRIAL DESIGN
+                    Relationship: SDTM RELATIONSHIPS
+                    Relationships: SDTM RELATIONSHIPS
+                    Study Reference: SDTM STUDY REFERENCE
+                    Associated Persons: SDTM ASSOCIATED PERSONS
+          -
+            label: "Variable Name (minus domain prefix)"  
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmIgDomain::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                additional:
+                  search: sdtm
+          -
+            label: "Seq. For Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: []
+          -
+            label: "Controlled Terms, Codelist or Format"  
+            actions: 
+              -
+                method: set_property
+                object: child
+                can_be_empty: true
+                property: ct_and_format
+              -
+                method: ct_other
+                object: child
+                can_be_empty: true
+                property: format
+          -
+            label: "Role"
+            actions: []
+          -
+            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                can_be_empty: true
+                property: description
+          -
+            label: "Core"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: compliance
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    Req: Required
+                    Exp: Expected
+                    Perm: Permissible
+        version_2:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Version"  
+              - "Seq. For Order"  
+              - "Observation Class" 
+              - "Domain Prefix" 
+              - "Variable Name (minus domain prefix)"  
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms or Format"  
+              - "Role"
+              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "Core"
+          row:
+            conditions:
+              -
+                -
+                  column: 4
+                  method: column_not_blank?
+          columns:
+          -
+            label: "Domain Prefix" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmIgDomain
+                additional:
+                  prefix: SDTM IG
+              -
+                method: set_property
+                object: parent
+                property: prefix
+              -
+                method: set_property_with_lookup
+                object: parent
+                property: label
+                additional:
+                  sheet_name: Extra
+                  key_column: Domain Name
+                  value_column: Domain Label
+              -
+                method: set_property_with_lookup
+                object: parent
+                property: structure
+                additional:
+                  sheet_name: Extra
+                  key_column: Domain Name
+                  value_column: Domain Structure
+          -
+            label: "Version" 
+            actions: []
+          -
+            label: "Observation Class" 
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: referenced_class
+                mapping:
+                  map:
+                    All Classes: SDTM MODEL ALL
+                    Events: SDTM MODEL EVENTS
+                    Events-General: SDTM MODEL EVENTS
+                    Interventions: SDTM MODEL INTERVENTIONS
+                    Interventions-General: SDTM MODEL INTERVENTIONS
+                    Findings: SDTM MODEL FINDINGS
+                    Findings-General: SDTM MODEL FINDINGS
+                    Special Purpose: SDTM SPECIAL PURPOSE
+                    Special-Purpose: SDTM SPECIAL PURPOSE
+                    Trial Design: SDTM TRIAL DESIGN
+                    Relationship: SDTM RELATIONSHIPS
+                    Relationships: SDTM RELATIONSHIPS
+                    Study Reference: SDTM STUDY REFERENCE
+                    Associated Persons: SDTM ASSOCIATED PERSONS
+          -
+            label: "Variable Name (minus domain prefix)"  
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmIgDomain::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                additional:
+                  search: sdtm
+          -
+            label: "Seq. For Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: []
+          -
+            label: "Controlled Terms or Format"  
+            actions:
+              -
+                method: set_property
+                object: child
+                can_be_empty: true
+                property: ct_and_format
+              -
+                method: ct_other
+                object: child
+                can_be_empty: true
+                property: format
+          -
+            label: "Role"
+            actions: []
+          -
+            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                property: description
+          -
+            label: "Core"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: compliance
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    Req: Required
+                    Exp: Expected
+                    Perm: Permissible        
+    cdisc_adam_ig:
+      sheets:
+        version_1:
+          selection:
+            label: ADaM IG
+          sheet:
+            actions: []
+            header_row:
+              - "Data Structure Name"
+              - "Dataset Name"
+              - "Variable Group"
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Codelist/Controlled Terms"
+              - "Core"
+              - "CDISC Notes"
+          columns:
+          -
+            label: "Data Structure Name"
+            actions: 
+              -
+                method: create_parent
+                object: parent
+                klass: AdamIgDataset
+                mapping:
+                  map:
+                    SUBJECT LEVEL ANALYSIS DATASET: ADSL
+                    BASIC DATA STRUCTURE: BDS
+              -
+                method: set_property
+                object: parent
+                property: label
+                mapping:
+                  map:
+                    SUBJECT LEVEL ANALYSIS DATASET: Subject-Level Analysis Dataset
+                    BASIC DATA STRUCTURE: Basic Data Structure
+          -
+            label: "Dataset Name"
+            actions: []
+          -
+            label: "Variable Group"
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: AdamIgDataset::Variable
+              -
+                method: ordinal
+                object: child
+                property: ordinal
+              -
+                method: set_property
+                object: child
+                property: name
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                mapping:
+                  map:
+                    Char: Character
+                    Num: Numeric
+          -
+            label: "Codelist/Controlled Terms"
+            actions:
+              -
+                method: set_property
+                object: child
+                can_be_empty: true
+                property: ct
+          -
+            label: "Core"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: compliance
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "ADAM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    Req: Required
+                    Cond: Conditional
+                    Perm: Permissible
+          -
+            label: "CDISC Notes"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: notes
+        version_2:
+          selection:
+            label: ADaM IG
+          sheet:
+            actions: []
+            header_row:
+              - "Version"
+              - "Data Structure Name"
+              - "Dataset Name"
+              - "Variable Group"
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Codelist/Controlled Terms"
+              - "Core"
+              - "CDISC Notes"
+          columns:
+          -
+            label: "Dataset Name"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: AdamIgDataset
+          -
+            label: "Data Structure Name"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+          -
+            label: "Version"
+            actions: []
+          -
+            label: "Variable Group"
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: AdamIgDataset::Variable
+              -
+                method: ordinal
+                object: child
+                property: ordinal
+              -
+                method: set_property
+                object: child
+                property: name
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                mapping:
+                  map:
+                    Char: Character
+                    Num: Numeric
+          -
+            label: "Codelist/Controlled Terms"
+            actions:
+              -
+                method: set_property
+                object: child
+                can_be_empty: true
+                property: ct
+          -
+            label: "Core"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: compliance
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "ADAM-STD"
+                    - "Variable"
+                    - "Classification"
+                mapping:
+                  map:
+                    Req: Required
+                    Cond: Conditional
+                    Perm: Permissible
+          -
+            label: "CDISC Notes"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: notes
+    cdisc_term:
+      sheets:
+        version_1:
+          selection:
+            label: SDTM
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                additional:
+                  path:
+                    - "CDISC"
+                mapping:
+                  map:
+                    ADaM:
+                      - ADaM
+                    CDASH:
+                      - CDASH
+                    SDTM:
+                      - SDTM
+                    Protocol:
+                      - Protocol
+                    SEND:
+                      - SEND
+                    "QS T":
+                      - QS
+                      - SDTM
+                    "QS-FT T":
+                      - QS-FT
+                      - SDTM
+                    COA:
+                      - COA
+                      - SDTM
+                    QRS:
+                      - QRS
+                      - SDTM
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name"
+              - "CDISC Value"
+              - "NCI Preferred Term"
+              - "CDISC Definition"
+              - "CDISC Synonym(s) (where applicable)"
+              - "Pre-release/ Production"
+          columns:
+          -
+            label: "Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+              -
+                method: create_parent
+                object: parent
+                klass: Import::CdiscClasses::CdiscCodeList
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: parent
+                property: identifier
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property_to_sheet_tags
+                object: parent
+                property: :tagged
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: create_child
+                object: child
+                klass: Import::CdiscClasses::CdiscCodeListItem
+                condition:
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: identifier
+                condition:
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property_to_sheet_tags
+                object: child
+                property: :tagged
+                condition:
+                  method: column_blank?
+                  column: 3
+          -
+            label: "Codelist Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+          -
+            label: "Codelist Extensible (Yes/No)"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
+                condition:
+                  method: column_not_blank?
+                  column: 3
+          -
+            label: "Codelist Name"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                condition:
+                  method: column_not_blank?
+                  column: 3
+          -
+            label: "CDISC Value"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: notation
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: notation
+                condition:
+                  method: column_blank?
+                  column: 3
+          -
+            label: "NCI Preferred Term"
+            actions:
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
+                can_be_empty: false
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: false
+                condition:
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: false
+                condition:
+                  method: column_blank?
+                  column: 3
+          -
+            label: "CDISC Definition"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: definition
+                condition:
+                  method: column_blank?
+                  column: 3
+          -
+            label: "CDISC Synonym(s) (where applicable)"
+            actions:
+              -
+                method: tokenize_and_create_shared
+                object: parent
+                property: synonym
+                can_be_empty: true
+                additional:
+                  token: ";"
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                additional:
+                  token: ";"
+                condition:
+                  method: column_blank?
+                  column: 3
+          -
+            label: Pre-release/ Production
+            actions: []
+        version_2:
+          selection:
+            label: SDTM
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                additional:
+                  path:
+                    - "CDISC"
+                mapping:
+                  map:
+                    ADaM:
+                      - ADaM
+                    CDASH:
+                      - CDASH
+                    SDTM:
+                      - SDTM
+                    Protocol:
+                      - Protocol
+                    SEND:
+                      - SEND
+                    "QS T":
+                      - QS
+                      - SDTM
+                    "QS-FT T":
+                      - QS-FT
+                      - SDTM
+                    COA:
+                      - COA
+                      - SDTM
+                    QRS:
+                      - QRS
+                      - SDTM
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name"
+              - "CDISC Submission Value"
+              - "CDISC Preferred Term"
+              - "CDISC Synonym(s)"
+              - "CDISC Definition"
+              - "NCI Preferred Term"
+              - "Pre-release/ Production"
+              - "Notes (Reference for CDISC PT)"
+          columns:
+          -
+            label: "Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+              -
+                method: create_parent
+                object: parent
+                klass: Import::CdiscClasses::CdiscCodeList
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: parent
+                property: identifier
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property_to_sheet_tags
+                object: parent
+                property: :tagged
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: create_child
+                object: child
+                klass: Import::CdiscClasses::CdiscCodeListItem
+                condition:
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: identifier
+                condition:
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property_to_sheet_tags
+                object: child
+                property: :tagged
+                condition:
+                  method: column_blank?
+                  column: 3
+          -
+            label: "Codelist Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+          -
+            label: "Codelist Extensible (Yes/No)"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
+                condition:
+                  method: column_not_blank?
+                  column: 3
+          -
+            label: "Codelist Name"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                condition:
+                  method: column_not_blank?
+                  column: 3
+          -
+            label: "CDISC Submission Value"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: notation
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: notation
+                condition:
+                  method: column_blank?
+                  column: 3
+          -
+            label: "CDISC Preferred Term"
+            actions: []
+          -
+            label: "CDISC Synonym(s)"
+            actions:
+              -
+                method: tokenize_and_create_shared
+                object: parent
+                property: synonym
+                can_be_empty: true
+                additional:
+                  token: ";"
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                additional:
+                  token: ";"
+                condition:
+                  method: column_blank?
+                  column: 3
+          -
+            label: "CDISC Definition"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: definition
+                condition:
+                  method: column_blank?
+                  column: 3
+          -
+            label: "NCI Preferred Term"
+            actions:
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
+                can_be_empty: false
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: false
+                condition:
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: false
+                condition:
+                  method: column_blank?
+                  column: 3
+          -
+            label: "Pre-release/ Production"
+            actions: []
+          -
+            label: "Notes (Reference for CDISC PT)"
+            actions: []
+        version_3:
+          selection:
+            label: SDTM
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                additional:
+                  path:
+                    - "CDISC"
+                mapping:
+                  map:
+                    ADaM:
+                      - ADaM
+                    CDASH:
+                      - CDASH
+                    SDTM:
+                      - SDTM
+                    Protocol:
+                      - Protocol
+                    SEND:
+                      - SEND
+                    "QS T":
+                      - QS
+                      - SDTM
+                    "QS-FT T":
+                      - QS-FT
+                      - SDTM
+                    COA:
+                      - COA
+                      - SDTM
+                    QRS:
+                      - QRS
+                      - SDTM
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name"
+              - "CDISC Submission Value"
+              - "CDISC Preferred Term"
+              - "CDISC Synonym(s)"
+              - "CDISC Definition"
+              - "NCI Preferred Term"
+              - "Pre-release/ Production"
+              - "Notes (Reference for CDISC PT)"
+          columns:
+          -
+            label: "Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+              -
+                method: create_parent
+                object: parent
+                klass: Import::CdiscClasses::CdiscCodeList
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: parent
+                property: identifier
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property_to_sheet_tags
+                object: parent
+                property: :tagged
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: create_child
+                object: child
+                klass: Import::CdiscClasses::CdiscCodeListItem
+                condition:
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: identifier
+                condition:
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property_to_sheet_tags
+                property: :tagged
+                object: child
+                condition:
+                  method: column_blank?
+                  column: 3
+          -
+            label: "Codelist Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: "Codelist Extensible (Yes/No)"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
+                condition:
+                  method: column_blank?
+                  column: 2
+          -
+            label: "Codelist Name"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                condition:
+                  method: column_blank?
+                  column: 2
+          -
+            label: "CDISC Submission Value"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: notation
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: notation
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: "CDISC Preferred Term"
+            actions: []
+          -
+            label: "CDISC Synonym(s)"
+            actions:
+              -
+                method: tokenize_and_create_shared
+                object: parent
+                property: synonym
+                can_be_empty: true
+                additional:
+                  token: ";"
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                additional:
+                  token: ";"
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: "CDISC Definition"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: definition
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: "NCI Preferred Term"
+            actions:
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
+                can_be_empty: false
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: false
+                condition:
+                  method: column_not_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: false
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: Pre-release/ Production
+            actions: []
+          -
+            label: Notes (Reference for CDISC PT)
+            actions: []
+        version_4:
+          selection:
+            date: true
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                additional:
+                  path:
+                    - "CDISC"
+                mapping:
+                  map:
+                    ADaM:
+                      - ADaM
+                    CDASH:
+                      - CDASH
+                    SDTM:
+                      - SDTM
+                    Protocol:
+                      - Protocol
+                    SEND:
+                      - SEND
+                    "QS T":
+                      - QS
+                      - SDTM
+                    "QS-FT T":
+                      - QS-FT
+                      - SDTM
+                    COA:
+                      - COA
+                      - SDTM
+                    QRS:
+                      - QRS
+                      - SDTM
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name"
+              - "CDISC Submission Value"
+              - "CDISC Preferred Term"
+              - "CDISC Synonym(s)"
+              - "CDISC Definition"
+              - "NCI Preferred Term"
+          columns:
+          -
+            label: "Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+              -
+                method: create_parent
+                object: parent
+                klass: Import::CdiscClasses::CdiscCodeList
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: parent
+                property: identifier
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property_to_sheet_tags
+                object: parent
+                property: :tagged
+                condition:
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: create_child
+                object: child
+                klass: Import::CdiscClasses::CdiscCodeListItem
+                condition:
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: identifier
+                condition:
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property_to_sheet_tags
+                object: child
+                property: :tagged
+                condition:
+                  method: column_blank?
+                  column: 3
+          -
+            label: "Codelist Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: "Codelist Extensible (Yes/No)"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
+                condition:
+                  method: column_blank?
+                  column: 2
+          -
+            label: "Codelist Name"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                condition:
+                  method: column_blank?
+                  column: 2
+          -
+            label: "CDISC Submission Value"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: notation
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: notation
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: "CDISC Preferred Term"
+            actions: []
+          -
+            label: "CDISC Synonym(s)"
+            actions:
+              -
+                method: tokenize_and_create_shared
+                object: parent
+                property: synonym
+                can_be_empty: true
+                additional:
+                  token: ";"
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                additional:
+                  token: ";"
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: "CDISC Definition"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: definition
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: "NCI Preferred Term"
+            actions:
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
+                can_be_empty: false
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: false
+                condition:
+                  method: column_not_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: false
+                condition:
+                  method: column_not_blank?
+                  column: 2
+        version_5:
+          selection:
+            date: true
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                additional:
+                  path:
+                    - "CDISC"
+                mapping:
+                  map:
+                    ADaM:
+                      - ADaM
+                    CDASH:
+                      - CDASH
+                    SDTM:
+                      - SDTM
+                    Protocol:
+                      - Protocol
+                    SEND:
+                      - SEND
+                    "QS T":
+                      - QS
+                      - SDTM
+                    "QS-FT T":
+                      - QS-FT
+                      - SDTM
+                    COA:
+                      - COA
+                      - SDTM
+                    QRS:
+                      - QRS
+                      - SDTM
+                    "Def-XML":
+                      - Define-XML
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name"
+              - "CDISC Submission Value"
+              - "CDISC Synonym(s)"
+              - "CDISC Definition"
+              - "NCI Preferred Term"
+          columns:
+          -
+            label: "Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+              -
+                method: create_parent
+                object: parent
+                klass: Import::CdiscClasses::CdiscCodeList
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: set_property
+                object: parent
+                property: identifier
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: set_property_to_sheet_tags
+                object: parent
+                property: :tagged
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: create_child
+                object: child
+                klass: Import::CdiscClasses::CdiscCodeListItem
+                condition:
+                  method: column_not_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: identifier
+                condition:
+                  method: column_not_blank?
+                  column: 2
+              -
+                method: set_property_to_sheet_tags
+                object: child
+                property: :tagged
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: "Codelist Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: "Codelist Extensible (Yes/No)"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
+                    "NA": false
+                condition:
+                  method: column_blank?
+                  column: 2
+          -
+            label: "Codelist Name"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                condition:
+                  method: column_blank?
+                  column: 2
+          -
+            label: "CDISC Submission Value"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: notation
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: notation
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: "CDISC Synonym(s)"
+            actions:
+              -
+                method: tokenize_and_create_shared
+                object: parent
+                property: synonym
+                can_be_empty: true
+                additional:
+                  token: ";"
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                additional:
+                  token: ";"
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: "CDISC Definition"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: definition
+                condition:
+                  method: column_not_blank?
+                  column: 2
+          -
+            label: "NCI Preferred Term"
+            actions:
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
+                can_be_empty: false
+                condition:
+                  method: column_blank?
+                  column: 2
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: false
+                condition:
+                  method: column_not_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: false
+                condition:
+                  method: column_not_blank?
+                  column: 2
+    sponsor_term_format_one:
+      sheets:
+        version_2:
+          selection:
+            first: true
+          sheet:
+            actions: []
+            header_row:
+              - "CODELIST_LONG_NAME"
+              - "CODELIST_SHORT_NAME"
+              - "CODELIST_EXTENSIBLE"
+              - "CODELIST_DEFINITION"
+              - "CODELIST_CODE"
+              - "CODE"
+              - "SUBMISSION_VALUE"
+              - "DECODE"
+              - "SYNONYM"
+              - "CODE_DEFINITION"
+              - "DATA_TYPE"
+              - "CRF_DISPLAY_VALUE"
+              - "DISPLAY_ORDER"
+              - "RANK"
+              - "DC_STAGE"
+              - "SDTM_STAGE"
+              - "ADAM_STAGE"
+              - "INACTIVE_F"
+          columns:
+          -
+            label: "CODELIST_SHORT_NAME"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: Import::STFOClasses::STFOCodeList
+              -
+                method: set_property
+                object: parent
+                property: notation
+              -
+                method: set_property_to_sheet_tags
+                object: parent
+                property: :tagged
+          -
+            label: "CODELIST_CODE"
+            actions:
+              -
+                method: regex?
+                object: NA
+                additional:
+                  regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"
+              -
+                method: set_property
+                object: parent
+                property: identifier
+          -
+            label: "CODELIST_LONG_NAME"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
+                can_be_empty: false
+          -
+            label: "CODELIST_EXTENSIBLE"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
+          -
+            label: "CODELIST_DEFINITION"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+          -
+            label: "CODE"
+            actions:
+              -
+                method: regex?
+                object: NA
+                additional:
+                  regex: "\\AS[0-9]{6}|SC[0-9]{3,6}|C[0-9]{3,6}\\z"
+              -
+                method: create_child
+                object: child
+                klass: Import::STFOClasses::STFOCodeListItem
+              -
+                method: set_property
+                object: child
+                property: identifier
+          -
+            label: "SUBMISSION_VALUE"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: notation
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                condition:
+                  method: column_blank?
+                  column:
+                    - 8
+                    - 12
+              -
+                method: set_property
+                object: child
+                property: label
+                condition:
+                  method: column_blank?
+                  column:
+                    - 8
+                    - 12
+          -
+            label: "DECODE"
+            actions:
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: true
+                condition:
+                  method: column_blank?
+                  column:
+                    - 12
+          -
+            label: "SYNONYM"
+            actions:
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                additional:
+                  token: ";"
+          -
+            label: "CODE_DEFINITION"
+            actions:
+              -
+                method: set_property_with_default
+                object: child
+                property: definition
+                additional:
+                  default: "Not defined."
+          -
+            label: "DATA_TYPE"
+            actions: []
+          -
+            label: "CRF_DISPLAY_VALUE"
+            actions:
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping: 
+                  map: {}
+                additional:
+                  definition: CRF Display Value
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                condition:
+                  method: column_blank?
+                  column: 8
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: true
+                condition:
+                  method: column_not_blank?
+                  column: 12
+          -
+            label: "DISPLAY_ORDER"
+            actions:  []
+          -
+            label: "RANK"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: :rank
+                can_be_empty: true
+          -
+            label: "DC_STAGE"
+            actions:
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping:
+                  map:
+                    "Y": "true"
+                    "N": "false"
+                additional:
+                  definition: DC Stage
+          -
+            label: "SDTM_STAGE"
+            actions:
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping:
+                  map:
+                    "Y": "true"
+                    "N": "false"
+                additional:
+                  definition: SDTM Stage
+          -
+            label: "ADAM_STAGE"
+            actions:
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping:
+                  map:
+                    "Y": "true"
+                    "N": "false"
+                additional:
+                  definition: ADaM Stage
+          -
+            label: "INACTIVE_F"
+            actions: []
+        version_3:
+          selection:
+            first: true
+          sheet:
+            actions: []
+            header_row:
+              - "CODELIST_LONG_NAME"
+              - "CODELIST_SHORT_NAME"
+              - "CODELIST_EXTENSIBLE"
+              - "CODELIST_DEFINITION"
+              - "CODELIST_CODE"
+              - "CODE"
+              - "SUBMISSION_VALUE"
+              - "DECODE"
+              - "SYNONYM"
+              - "CODE_DEFINITION"
+              - "DATA_TYPE"
+              - "CRF_DISPLAY_VALUE"
+              - "DISPLAY_ORDER"
+              - "RANK"
+              - "DC_STAGE"
+              - "SDTM_STAGE"
+              - "ADAM_STAGE"
+              - "ED_USE"
+              - "INACTIVE_F"
+          columns:
+          -
+            label: "CODELIST_SHORT_NAME"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: Import::STFOClasses::STFOCodeList
+              -
+                method: set_property
+                object: parent
+                property: notation
+              -
+                method: set_property_to_sheet_tags
+                object: parent
+                property: :tagged
+          -
+            label: "CODELIST_CODE"
+            actions:
+              -
+                method: regex?
+                object: NA
+                additional:
+                  regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"
+              -
+                method: set_property
+                object: parent
+                property: identifier
+          -
+            label: "CODELIST_LONG_NAME"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
+                can_be_empty: false
+          -
+            label: "CODELIST_EXTENSIBLE"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
+          -
+            label: "CODELIST_DEFINITION"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+          -
+            label: "CODE"
+            actions:
+              -
+                method: regex?
+                object: NA
+                additional:
+                  regex: "\\AS[0-9]{6}|SC[0-9]{3,6}|C[0-9]{3,6}\\z"
+              -
+                method: create_child
+                object: child
+                klass: Import::STFOClasses::STFOCodeListItem
+              -
+                method: set_property
+                object: child
+                property: identifier
+          -
+            label: "SUBMISSION_VALUE"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: notation
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                condition:
+                  method: column_blank?
+                  column:
+                    - 8
+                    - 12
+              -
+                method: set_property
+                object: child
+                property: label
+                condition:
+                  method: column_blank?
+                  column:
+                    - 8
+                    - 12
+          -
+            label: "DECODE"
+            actions:
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: true
+                condition:
+                  method: column_blank?
+                  column:
+                    - 12
+          -
+            label: "SYNONYM"
+            actions:
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                additional:
+                  token: ";"
+          -
+            label: "CODE_DEFINITION"
+            actions:
+              -
+                method: set_property_with_default
+                object: child
+                property: definition
+                additional:
+                  default: "Not defined."
+          -
+            label: "DATA_TYPE"
+            actions: []
+          -
+            label: "CRF_DISPLAY_VALUE"
+            actions:
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping:
+                  map: {}
+                additional:
+                  definition: CRF Display Value
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                condition:
+                  method: column_blank?
+                  column: 8
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: true
+                condition:
+                  method: column_not_blank?
+                  column: 12
+          -
+            label: "DISPLAY_ORDER"
+            actions:  []
+          -
+            label: "RANK"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: :rank
+                can_be_empty: true
+          -
+            label: "DC_STAGE"
+            actions:
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping:
+                  map:
+                    "Y": "true"
+                    "N": "false"
+                additional:
+                  definition: DC Stage
+          -
+            label: "SDTM_STAGE"
+            actions:
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping:
+                  map:
+                    "Y": "true"
+                    "N": "false"
+                additional:
+                  definition: SDTM Stage
+          -
+            label: "ADAM_STAGE"
+            actions:
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping:
+                  map:
+                    "Y": "true"
+                    "N": "false"
+                additional:
+                  definition: ADaM Stage
+          -
+            label: "ED_USE"
+            actions:
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping:
+                  map:
+                    "Y": "true"
+                    "N": "false"
+                additional:
+                  definition: ED Use
+          -
+            label: "INACTIVE_F"
+            actions: []
+    sponsor_term_format_two:
+      sheets:
+        version_1:
+          selection:
+            first: true
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                additional:
+                  path:
+                    - "Process"
+                    - "Scope"
+                mapping:
+                  map:
+                    Harmonized:
+                      - Global
+                    Study:
+                      - Study
+            header_row:
+              - "CODELIST_LONG_NAME"
+              - "CODELIST_SHORT_NAME"
+              - "CODELIST_EXTENSIBLE"
+              - "CODELIST_DEFINITION"
+              - "CODELIST_CODE"
+              - "CODE"
+              - "SUBMISSION_VALUE"
+              - "DECODE"
+              - "SYNONYM"
+              - "CODE_DEFINITION"
+              - "DATA_TYPE"
+              - "CRF_DISPLAY_VALUE"
+              - "DISPLAY_ORDER"
+              - "RANK"
+          columns:
+          -
+            label: "CODELIST_SHORT_NAME"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: Import::STFOClasses::STFOCodeList
+              -
+                method: set_property
+                object: parent
+                property: notation
+          -
+            label: "CODELIST_CODE"
+            actions: []
+          -
+            label: "CODELIST_LONG_NAME"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
+          -
+            label: "CODELIST_EXTENSIBLE"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                mapping:
+                  map:
+                    "Yes": true
+                    "No": false
+          -
+            label: "CODELIST_DEFINITION"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+          -
+            label: "CODE"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: Import::STFOClasses::STFOCodeListItem
+          -
+            label: "SUBMISSION_VALUE"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: notation
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                condition:
+                  method: column_blank?
+                  column:
+                    - 8
+                    - 12
+          -
+            label: "DECODE"
+            actions:
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+          -
+            label: "SYNONYM"
+            actions:
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                additional:
+                  token: ";"
+          -
+            label: "CODE_DEFINITION"
+            actions:
+              -
+                method: set_property_with_default
+                object: child
+                property: definition
+                additional:
+                  default: "Not defined."
+          -
+            label: "DATA_TYPE"
+            actions: []
+          -
+            label: "CRF_DISPLAY_VALUE"
+            actions:
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                condition:
+                  method: column_blank?
+                  column: 8
+          -
+            label: "DISPLAY_ORDER"
+            actions: []
+          -
+            label: "RANK"
+            actions: []
+    cdisc_library_api:
+      base_href: "https://library.cdisc.org/api/"
+      ct:
+        products:
+          ADaM:
+            label: ADaM
+            tags:
+              - ADaM
+            from: 2010-05-03
+            to: 2100-01-01
+          CDASH:
+            label: CDASH
+            tags:
+              - CDASH
+            from: 2010-05-03
+            to: 2100-01-01
+          SDTM:
+            label: SDTM
+            tags:
+              - SDTM
+            from: 2007-03-06
+            to: 2100-01-01
+          Protocol:
+            label: Protocol
+            tags:
+              - Protocol
+            from: 2017-06-30
+            to: 2100-01-01
+          SEND:
+            label: SEND
+            tags:
+              - SEND
+            from: 2011-06-10
+            to: 2100-01-01
+          "QS-FT":
+            label: QS-FT
+            tags:
+              - QS-FT
+              - SDTM
+            from: 2011-06-10
+            to: 2014-10-06
+          QRS:
+            label: QRS
+            tags:
+              - QRS
+              - SDTM
+            from: 2015-06-26
+            to: 2015-09-25
+          COA:
+            label: COA
+            tags:
+              - COA
+              - SDTM
+            from: 2014-12-19
+            to: 2015-03-27
+          Define:
+            label: Define-XML
+            tags:
+              - Define-XML
+            from: 2019-12-20
+            to: 2100-01-01
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+test:
+  imports:
+    <<: *default_imports
+    test_1:
+      title: Test 1 - Excel
+      background: true
+      description: A test
+      link_text: "Import ADaM IG"
+      link_path: "/imports/adam_igs/new?imports[file_type]=0"
+    test_2:
+      title: Test 2 - Excel
+      background: true
+      description: A test
+      link_text: "Import ADaM IG"
+      link_path: "/imports/adam_igs/new?imports[file_type]=0"
+  processing:
+    <<: *default_processing
+    test_1:
+      sheets:
+        sheet_1:
+          selection:
+            label: Sheet1
+          sheet:
+            header_row:
+              - "PARENT"
+              - "CHILD"
+              - "CT"
+              - "DATATYPE"
+              - "CORE"
+          columns:
+          -
+            label: "PARENT"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: ParentClass
+                mapping:
+                  map:
+                    P1: P1
+                    P2: P2
+              -
+                method: set_property
+                object: parent
+                property: label
+                mapping:
+                  map:
+                    P1: Parent One
+                    P2: Parent Two
+          -
+            label: CHILD
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: ChildClass
+              -
+                method: ordinal
+                object: child
+                property: ordinal
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: CT
+            actions:
+              -
+                method: ct_reference
+                object: child
+                property: ct
+              -
+                method: ct_other
+                object: child
+                property: ct_notes
+          -
+            label: DATATYPE
+            actions:
+              -
+                method: create_classification
+                object: child
+                property: datatype
+                mapping:
+                  map:
+                    CHAR: Character
+                    NUM: Numeric
+          -
+            label: CORE
+            actions:
+              -
+                method: create_classification
+                object: child
+                property: compliance
+                mapping:
+                  map:
+                    R: Required
+                    P: Permissible
+                    E: Conditional
+    test_2:
+      sheets:
+        sheet_1:
+          selection:
+            label: Sheet1
+          sheet:
+            header_row:
+              - "PARENT"
+              - "CHILD"
+              - "CT"
+              - "DATATYPE"
+              - "CORE"
+          columns:
+          -
+            label: "PARENT"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: ParentClass
+                mapping:
+                  map:
+                    X1: Parent One
+                    X2: Parent Two
+              -
+                method: set_property
+                object: parent
+                property: label
+                mapping:
+                  map:
+                    X1: Parent One
+                    X2: Parent Two
+          -
+            label: CHILD
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: ChildClass
+              -
+                method: ordinal
+                object: child
+                property: ordinal
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: CT
+            actions:
+              -
+                method: ct_reference
+                object: child
+                property: ct
+              -
+                method: ct_other
+                object: child
+                property: ct_notes
+          -
+            label: DATATYPE
+            actions:
+              -
+                method: create_classification
+                object: child
+                property: datatype
+                mapping:
+                  map:
+                    CHAR: Character
+                    NUM: Numeric
+          -
+            label: CORE
+            actions:
+              -
+                method: create_classification
+                object: child
+                property: compliance
+                mapping:
+                  map:
+                    R: Required
+                    P: Permissible
+                    E: Conditional
+    test_3:
+      sheets:
+        sheet_1:
+          selection:
+            label: hee # Note short name
+          sheet:
+            header_row:
+              - "PARENT"
+              - "CHILD"
+              - "CT"
+              - "DATATYPE"
+              - "CORE"
+          columns:
+          -
+            label: "PARENT"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: ParentClass
+                mapping:
+                  map:
+                    P1: P1
+                    P2: P2
+              -
+                method: set_property
+                object: parent
+                property: label
+                mapping:
+                  map:
+                    P1: Parent One
+                    P2: Parent Two
+          -
+            label: CHILD
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: ChildClass
+              -
+                method: ordinal
+                object: child
+                property: ordinal
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: CT
+            actions:
+              -
+                method: ct_reference
+                object: child
+                property: ct
+                can_be_empty: true
+              -
+                method: ct_other
+                object: child
+                property: ct_notes
+                condition:
+                  method: column_blank?
+                  column: 3
+          -
+            label: DATATYPE
+            actions:
+              -
+                method: create_classification
+                object: child
+                property: datatype
+                mapping:
+                  map:
+                    CHAR: Character
+                    NUM: Numeric
+          -
+            label: CORE
+            actions:
+              -
+                method: create_classification
+                object: child
+                property: compliance
+                mapping:
+                  map:
+                    R: Required
+                    P: Permissible
+                    E: Conditional
+    test_4:
+      sheets:
+        sheet_1:
+          selection:
+            label: hee # Note short name
+          sheet:
+            header_row: []
+          columns: []
+    test_5:
+      sheets:
+        sheet_1:
+          selection:
+            date: true
+          sheet:
+            header_row: []
+          columns: []
+    test_6:
+      sheets:
+        sheet_1:
+          selection:
+            first: true
+          sheet:
+            header_row: []
+          columns: []
+    test_7:
+      sheets:
+        sheet_1:
+          selection:
+            wrong: method
+          sheet:
+            header_row: []
+          columns: []
+    test_8:
+      sheets:
+        sheet_1:
+          selection:
+            label: Sheet1
+          row:
+            conditions:
+              -
+                - 
+                  method: column_affirmative?
+                  column: 3
+          sheet:
+            header_row: []
+          columns: []

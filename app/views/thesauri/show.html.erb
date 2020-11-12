@@ -1,0 +1,39 @@
+<% content_for :page_title do %> <%= "Show Terminology: #{@ct.has_identifier.identifier} (#{@ct.semantic_version})" %> <% end %>
+
+<%= javascript_pack_tag 'thesauri/show' %>
+
+<% third_level_breadcrumb(:thesauri, @ct, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @ct, badge: "icon-terminology" } do %>
+
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+      <% if policy(Thesaurus).edit? %>
+
+        <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
+
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+            icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty? } %>
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-notes-modal", id: "change-notes-button",
+            icon: "icon-note", text: "Change notes", toggle: "modal", disabled: !@ct.supporting_edit? } %>
+
+        <% end %>
+
+      <% end %>
+    </div>
+
+  <% end %>
+
+  <% if policy(Thesaurus).edit? && @ct.supporting_edit? %>
+    <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => { item_name: @ct.has_identifier.identifier,
+        item_id: @ct.id, item_notes_url: change_notes_iso_concept_path(@ct.id)} %>
+  <% end %>
+
+</div>
+
+<div class="row">
+  <%= render partial: "shared/iso_managed/children/children_card", :locals => { title: "Code Lists",
+      url: children_with_indicators_thesauri_path(@ct), extensible?: true } %>
+</div>

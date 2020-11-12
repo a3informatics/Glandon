@@ -1,0 +1,52 @@
+// TOOLTIP
+.ttip {
+  position: relative;
+  display: inline-block;
+}
+
+.ttip .ttip-text {
+  font-family: $font-light;
+  top: 60%;
+  margin-top: 10px;
+  border-radius: 5px;
+  visibility: hidden;
+  background-color: white;
+  text-align: center;
+  padding: 7px 12px;
+  position: absolute;
+  z-index: 12;
+  white-space: nowrap;
+  line-height: normal;
+}
+
+.ttip-text.wrap{
+  white-space: normal;
+  width: 600px;
+  text-align: left;
+}
+
+.ttip:hover .ttip-text {
+  visibility: visible;
+}
+
+.ttip-right{
+  left: 0%;
+}
+
+.ttip-left{
+  right: 0%;
+}
+
+.ttip-top{
+  top: -150% !important;
+}
+
+.ttip .ttip-table{
+  top: -50%;
+  left: 80%;
+}
+
+.ttip .ttip-table.left{
+  right: 0%;
+  left: auto !important;
+}

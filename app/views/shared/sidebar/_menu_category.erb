@@ -1,0 +1,14 @@
+<%# The dashboard category requires special, additional HTML code, as the category itself is clickable, unlike the others %>
+<% is_dashboard = (category_title == "Dashboard") %>
+<% return if is_dashboard && !policy(klass).index? %>
+
+<% if is_dashboard then item_html =raw("document.location.href = '" + link_path + "'\" id='"+link_id+"'") %>
+<% else item_html = "sidebarCategoryHandler(this)" end %>
+
+<span class="category-item <%= if selected_cat == category_title then "selected" end %>" onclick="<%=item_html%>">
+  <span class="<%= icon_id %> text-large category-icon text-light"></span>
+  <span class='category-title text-medium'> <%= category_title %> </span>
+  <% if !is_dashboard %>
+    <span class='icon-arrow-d arrow text-light'></span>
+  <%end%>
+</span>

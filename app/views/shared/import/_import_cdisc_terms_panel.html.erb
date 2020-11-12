@@ -1,0 +1,41 @@
+<%= stylesheet_link_tag 'concerns/check_box' %>
+<div class="col-md-10 card wide">
+  <div class="card-header">
+    <%= title %>
+  </div>
+  <div class="card-content">
+    <%= form_for @model, url: create_path do |f| %>
+      <div class="row form-wrap hor">
+        <div class="form-group">
+          <%= label_tag :version, "Version:", class: "font-light"  %>
+          <%= text_field_tag "imports[version]", "#{@next_version}", class: "narrow", readonly: true %>
+        </div>
+        <div class="form-group">
+          <%= label_tag :semantic_version, "Semantic Version:", class: "font-light" %>
+          <%= text_field_tag "imports[semantic_version]", "#{SemanticVersion.new(major: @next_version).to_s}", class: "narrow", readonly: true %>
+        </div>
+        <div class="form-group">
+          <%= label_tag :date, "Release Date:", class: "font-light" %>
+          <%= date_field_tag "imports[date]" %>
+        </div>
+        <div class="form-group">
+          <%= label_tag :auto_load, "Auto load:", class: "font-light" %>
+          <div class="material-switch pull-left small">
+            <input id="imports_auto_load" name="imports[auto_load]" type="checkbox"/>
+            <label for="imports_auto_load" class="label-success"></label>
+          </div>
+        </div>
+      </div>
+      <% if @file_type != 3 %>
+        <div class="row">
+            <div class="col-md-12 form-wrap">
+              <%= label_tag :files, "Select one or more files to import (Cmd + Click for multiple):", class: "font-light" %>
+              <%= select_tag("imports[files][]", options_for_select(@files), multiple: multiple, class: "form-control scroll-styled", :size => 12) %>
+            </div>
+        </div>
+      <% end %>
+      <input value="<%= @file_type %>" type="hidden" name="[imports]file_type" id="[imports]file_type" />
+      <center> <%= f.submit "Start Import", class: "btn medium green" %> </center>
+    <% end %>
+  </div>
+</div>

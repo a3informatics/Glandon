@@ -1,0 +1,44 @@
+<% content_for :page_title do %> Index: Terminologies <% end %>
+
+<%= javascript_pack_tag 'thesauri/index' %>
+<%= javascript_tag "let searchMultiUrl = '#{search_multiple_thesauri_index_path}',
+												searchUrl = '#{search_thesauri_path(id: "thId")}';" %>
+
+<% first_level_breadcrumb (:thesauri) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-terminology",
+    main_text: "Terminologies", sub_text: "Browse all Terminologies in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+<div class="row">
+
+	<% content_for :description do %>
+		Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Terminologies.
+		Use the Search bar to find the Terminology you are looking for.
+		To see Terminology's respective History page, click on it.
+	<% end %>
+
+	<% content_for :actions do %>
+		<a href="#im-select-modal" class="btn medium white" id="search" data-toggle="modal">
+			<span class="icon-search text-small"></span>&nbsp; Search Terminologies
+		</a>
+		<% if policy(Thesaurus).new? %>
+			<a href="#newTerminologyModal" class="btn medium green" id="new_terminology" data-toggle="modal">
+				<span class="icon-plus text-tiny"></span>&nbsp;	New Terminology
+			</a>
+		<% end %>
+	<% end %>
+
+	<%= render partial: "shared/iso_managed/index/index_card", locals: { title: "Terminology", url: thesauri_index_path } %>
+
+</div>
+
+<%= render partial: "shared/iso_managed/managed_items_select_modal", :locals => {type: :thesauri,
+	description: "Select one or more Terminology version in which to search, or choose all Current / Latest versions."} %>
+
+<% if policy(Thesaurus).new? %>
+	<%= render partial: "shared/thesauri/new_terminology" %>
+<% end %>

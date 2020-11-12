@@ -1,0 +1,55 @@
+---
+- :label: Parent One
+  :children:
+  - :ct: ''
+    :ct_notes: CT Other 1
+    :label: C1
+    :ordinal: 1
+    :datatype:
+      :label: Character
+    :compliance:
+      :label: Required
+  - :ct: AAA
+    :ct_notes: ''
+    :label: C2
+    :ordinal: 2
+    :datatype:
+      :label: Numeric
+    :compliance:
+      :label: Conditional
+  :scoped_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: P1
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+- :label: Parent Two
+  :children:
+  - :ct: ''
+    :ct_notes: ''
+    :label: C3
+    :ordinal: 1
+    :datatype:
+      :label: Numeric
+    :compliance:
+      :label: Permissible
+  - :ct: ''
+    :ct_notes: CT Other 2
+    :label: C4
+    :ordinal: 2
+    :datatype:
+      :label: Character
+    :compliance:
+      :label: Permissible
+  :scoped_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: P2
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 

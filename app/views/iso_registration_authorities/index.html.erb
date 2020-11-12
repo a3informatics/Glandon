@@ -1,0 +1,95 @@
+<% content_for :page_title do %> Registration Authorities <% end %>
+
+<%= javascript_pack_tag 'iso_namespaces/index' %>
+
+<% first_level_breadcrumb (:iso_registration_authorities) %>
+
+<div class="row">
+	<%= render layout: "shared/headers/header_generic", :locals => { badge: "RA", header_title: "",
+		main_text: "Registration Authorities", sub_texts: "View and manage Registration Authorities in the system." } do %>
+	<% end %>
+</div>
+
+<div class="row centered">
+
+  <div class="col-md-11 card wide">
+
+    <div class="card-header">
+        Registration Authorities
+    </div>
+
+    <div class="card-content table-cardstyle">
+
+      <div class="text-normal text-link ci-card-title">
+        Ownership
+      </div>
+
+      <span class="font-light">
+        This repository is owned by <span class="font-bold"><%= @owner.ra_namespace.short_name %>.</span>
+      </span>
+
+      <div class="text-normal text-link ci-card-title">
+        Index of Registration Authorities
+      </div>
+
+      <div class="table-width-wrapper">
+      	<table id="main" class="table">
+      		<thead>
+      			<tr>
+      			    <th>Number</th>
+      			    <th>Scheme</th>
+      			    <th>Name</th>
+      			    <th>Short Name</th>
+      			    <th>Owner</th>
+      			    <th class="fit"></th>
+      		  	</tr>
+      		</thead>
+      	  	<tbody>
+      			<% @registrationAuthorities.each do |ra| %>
+      		  		<tr>
+      				    <td><%= ra.organization_identifier %></td>
+      				    <td><%= ra.international_code_designator %></td>
+      				    <td><%= ra.ra_namespace.name %></td>
+      				    <td><%= ra.ra_namespace.short_name %></td>
+      				    <%= true_false_glyphicon(ra.owner) %>
+                  <td>
+                    <% if ra.not_used? %>
+                      <button class="btn icon-only red remove-namespace" id="delete-ra-<%= ra.id %>" data-url="<%=  iso_registration_authority_path(ra) %>" data-type="DELETE">
+                        <span class="icon-trash"></span>
+                      </button>
+                    <% end %>
+                  </td>
+      				</tr>
+      			<% end %>
+      		</tbody>
+      	</table>
+      </div>
+
+      <% if policy(IsoRegistrationAuthority).new? %>
+
+        <div class="text-normal text-link ci-card-title">
+  				Add a New Registration Authority
+  			</div>
+
+        <%= form_for IsoRegistrationAuthority.new do |f| %>
+
+          <div class="text-centered">
+
+            <div class="form-wrap wide">
+              <div class="form-group">
+                <%= f.text_field :organization_identifier, placeholder: "DUNS Number", value: "" %>
+              </div>
+              <div class="form-group">
+                <%= select_tag("iso_registration_authority[namespace_id]", options_for_select(@namespaces) ) %>
+              </div>
+            </div>
+
+            <%= f.submit "+ New Registration Authority", class: "btn medium green" %>
+          </div>
+
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

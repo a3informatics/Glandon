@@ -1,0 +1,2 @@
+class MarkdownEnginePolicy < ApplicationPolicy
+end

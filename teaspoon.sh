@@ -1,0 +1,6 @@
+rake teaspoon files=spec/javascripts/application_spec,spec/javascripts/cdisc_cross_ref_panel_spec,spec/javascripts/colour_spec
+rake teaspoon files=spec/javascripts/d3_editor_spec,spec/javascripts/d3_graph_spec,spec/javascripts/field_validation_spec
+rake teaspoon files=spec/javascripts/impact_analysis_graph_panel_spec,spec/javascripts/impact_analysis_spec
+rake teaspoon files=spec/javascripts/iso_managed_list_panel_1_spec,spec/javascripts/iso_managed_list_panel_2_spec
+rake teaspoon files=spec/javascripts/d3_tree_rect_spec
+rake teaspoon files=spec/javascripts/d3_tree_spec

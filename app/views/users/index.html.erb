@@ -1,0 +1,98 @@
+<% content_for :page_title do %> Manage Users <% end %>
+
+<%= javascript_pack_tag 'users/index' %>
+<% first_level_breadcrumb (:users) %>
+
+<div class="row">
+
+	<%= render layout: "shared/headers/header_generic", :locals => { badge: "icon-users", header_title: "",
+		main_text: "Users", sub_texts: "View and manage all users in the system." } do %>
+	<% end %>
+</div>
+
+<div class="row centered">
+
+	<div class="card col-md-12">
+
+		<div class="card-header">All User Accounts</div>
+
+		<div class="card-content table-cardstyle">
+
+
+			<div class="half-blocks-wrap">
+
+	      <div class="font-light half-block">
+	      	List of all Users in the system; allows to edit user roles, lock, unlock, and delete accounts. <br>
+					<i>Note: For traceability reasons, User who has logged in at least once cannot be deleted, only locked.</i>
+	      </div>
+
+	      <div class="actions-wrap half-block">
+	        <a href="<%= new_user_path %>" id="new-user-btn" class="btn medium green">+ New User</a>
+	      </div>
+
+	    </div>
+
+			<br>
+
+			<table id="main" class="table">
+				<thead>
+					<tr>
+			    	<th>User email</th>
+			    	<th>Roles</th>
+			    	<th>Login Count</th>
+	          <th>Last Login</th>
+	          <th class="ignore fit"></th>
+			  	</tr>
+				</thead>
+				<tbody>
+					<% @users.each do |user| %>
+					  <% last_si = user.last_sign_in_at %>
+	        	<tr>
+					    	<td><%= user.email %></td>
+					    	<td><%= user.role_list_stripped %></td>
+	              <td><%= user.sign_in_count %></td>
+	              <td>
+									<% if last_si.nil? %>
+										Not logged in yet!
+									<% else %>
+										<%= "#{ last_si.strftime("%F") }, #{ time_ago_in_words( last_si.strftime("%F") ) }" %>
+									<% end %>
+								</td>
+					    	<td class="no-break">
+
+									<%= link_to edit_user_path(user), :class => "btn icon-only white ttip edit-user" do %>
+										<span class="icon-edit"></span>
+										<span class="ttip-text ttip-top ttip-left shadow-small text-medium text-small">Edit User</span>
+									<% end %>
+
+									<% if @current_user.id != user.id %>
+
+										<% if user.is_active? %>
+											<%= link_to lock_user_path(user), method: :put, :class => "btn icon-only white ttip lock-user" do %>
+												<span class="icon-lock"></span>
+												<span class="ttip-text ttip-top ttip-left shadow-small text-medium text-small">Lock User</span>
+											<% end %>
+										<% else %>
+											<%= link_to unlock_user_path(user), method: :put, :class => "btn icon-only white ttip unlock-user" do %>
+												<span class="icon-lock-open"></span>
+												<span class="ttip-text ttip-top ttip-left shadow-small text-medium text-small">Unlock User</span>
+											<% end %>
+										<% end %>
+
+										<a href="#" class="btn icon-only red ttip delete-user" data-url="<%= user_path(user) %>" data-type="DELETE">
+											<span class="icon-trash"></span>
+											<span class="ttip-text ttip-top ttip-left shadow-small text-medium text-small">Delete User</span>
+										</a>
+
+									<% end %>
+
+	              </td>
+					  	</tr>
+					<% end %>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+</div>

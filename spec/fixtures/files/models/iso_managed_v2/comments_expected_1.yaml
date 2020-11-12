@@ -1,0 +1,37 @@
+---
+- :uri: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: MDRForms/ACME/V1
+    fragment: F-ACME_TEST
+  :version: '1'
+  :semantic_version: 1.2.3
+  :explanatory_comment: Hello
+  :change_description: Creation
+  :origin: I am new
+  :last_change_date: '2016-06-16'
+  :creation_date: '2016-06-15'
+- :uri: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: MDRForms/ACME/V2
+    fragment: F-ACME_TEST
+  :version: '2'
+  :semantic_version: 1.3.0
+  :explanatory_comment: Something
+  :change_description: An update
+  :origin: Origin comment
+  :last_change_date: '2016-06-16'
+  :creation_date: '2016-06-15'
+- :uri: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: MDRForms/ACME/V3
+    fragment: F-ACME_TEST
+  :version: '3'
+  :semantic_version: 1.4.0
+  :explanatory_comment: Well really
+  :change_description: Update
+  :origin: Just rude!
+  :last_change_date: '2016-06-16'
+  :creation_date: '2016-06-15'

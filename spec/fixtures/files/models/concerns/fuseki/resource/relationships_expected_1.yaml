@@ -1,0 +1,15 @@
+---
+- :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: Test
+    fragment: raNamespace
+  :model_classes:
+  - !ruby/class 'IsoNamespace'
+- :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: Test
+    fragment: byAuthority
+  :model_classes:
+  - !ruby/class 'IsoRegistrationAuthority'

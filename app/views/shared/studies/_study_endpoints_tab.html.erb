@@ -1,0 +1,28 @@
+<%= javascript_include_tag "shared/studies/study_endpoints" %>
+
+<%= javascript_tag "var endpointsUrl = '#{endpoints_protocol_path(@study.protocol.id)}';" %>
+
+<div class="text-xnormal font-light ci-card-title">
+  Study Endpoints
+</div>
+
+<div id="study-endpoints" class="table-cardstyle all-columns">
+  <center>
+    <div class="font-light text-small text-medium">
+      The following is the list of available Study Endpoints. The ones being used in this study are marked.
+    </div>
+  </center>
+  <br/>
+  <table id="endpoints">
+    <thead>
+      <tr>
+        <th class="th-small">Label</th>
+        <th>Endpoint</th>
+        <th class="th-small">Used in Study</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+</div>

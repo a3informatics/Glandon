@@ -1,0 +1,28 @@
+<% content_for :page_title do %> Submission Value Changes: <%= @ct.has_identifier.identifier %> <% end %>
+
+<%= javascript_include_tag 'thesauri/changes' %>
+<%= javascript_tag "var url_path = '#{submission_data_thesauri_path(@ct)}';" %>
+<%= javascript_tag "var column_count = '#{@version_count}';" %>
+<%= javascript_tag "var pdfLoadingDur = 30,
+                        loadingMessage = 'Generating report...',
+                        errTimeoutMessage = 'Error occurred while generating the report.',
+                        redirectPath = '"+submission_report_thesauri_path(@ct, format: :pdf)+"';" %>
+<% second_level_breadcrumb(:thesauri, @ct.scope.id, @ct.has_identifier.identifier, "Submission value changes: ") %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_item_simple", :locals => { badge: "icon-terminology", item: @ct, header_title: "Submission value changes" } do %>
+    <div class="actions-wrap">
+
+      <div onclick="showFullPageSpinnerWithRedirect(pdfLoadingDur, loadingMessage, errTimeoutMessage, redirectPath);">
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: "#", id: "report",
+            icon: "icon-file", text: "PDF Report" } %>
+      </div>
+
+      <%= render partial: "shared/buttons/return", :locals => { url: request.referrer } %>
+
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <%= render partial: "shared/thesauri/changes_panel_v2", :locals => {title: "Submission value changes", info: "Set of submission value changes across versions.", column_count: @version_count, links: @links} %>
+</div>

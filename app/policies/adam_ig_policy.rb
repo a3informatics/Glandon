@@ -1,0 +1,2 @@
+class AdamIgPolicy < ApplicationPolicy
+end

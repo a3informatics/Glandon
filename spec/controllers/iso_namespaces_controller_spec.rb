@@ -1,0 +1,125 @@
+require 'rails_helper'
+
+describe IsoNamespacesController do
+
+  include DataHelpers
+
+  describe "Authrorized User" do
+
+    login_curator
+
+    before :each do
+      clear_triple_store
+      load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      load_test_file_into_triple_store("iso_namespace_fake.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
+    end
+
+    it "index namespaces" do
+      namespaces = IsoNamespace.all
+      expect(IsoNamespace).to receive(:all).and_return(namespaces)
+      get :index
+      expected = namespaces.map{|x| x.to_h}
+      actual = assigns(:namespaces).map{|x| x.to_h}
+      expect(actual).to eq(expected)
+      expect(response).to render_template("index")
+    end
+
+    it 'creates namespace' do
+      expect(IsoNamespace.all.count).to eq(2)
+      post :create, params:{iso_namespace: { name: "XXX Pharma", short_name: "XXX", authority: "www.example.com" }}
+      expect(IsoNamespace.all.count).to eq(3)
+      expect(response).to redirect_to("/iso_namespaces")
+    end
+
+    it 'fails to create an existing namespace' do
+      expect(IsoNamespace.all.count).to eq(2)
+      post :create, params:{iso_namespace: { name: "YYY Pharma", short_name: "YYY", authority: "www.example.com"  }}
+      expect(IsoNamespace.all.count).to eq(3)
+      post :create, params:{iso_namespace: { name: "YYY Pharma", short_name: "YYY", authority: "www.example.com"  }}
+      expect(IsoNamespace.all.count).to eq(3)
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/iso_namespaces")
+    end
+
+    it 'deletes namespace, used, not deleted' do
+      ns = IsoNamespace.find_by_short_name("AAA")
+      delete :destroy, params:{:id => ns.id}
+      expect(response.code).to eq("422")
+      expect( JSON.parse(response.body).deep_symbolize_keys ).to eq(errors: ["Scope Namespace is in use and cannot be deleted."])
+      expect(IsoNamespace.all.count).to eq(2)
+    end
+
+    it 'deletes namespace, not found' do
+      expect(IsoNamespace.all.count).to eq(2)
+      post :create, params:{iso_namespace: { name: "XXX Pharma", short_name: "XXX", authority: "www.example.com" }}
+      expect(IsoNamespace.all.count).to eq(3)
+      ns = IsoNamespace.find_by_short_name("XXX")
+      delete :destroy, params:{:id => ns.id}
+      expect(IsoNamespace.all.count).to eq(2)
+      delete :destroy, params:{:id => ns.id} # Delete again! Should fail.
+      expect(response.code).to eq("422")
+      expect( JSON.parse(response.body).deep_symbolize_keys ).to eq(errors: ["Unable to delete Scope Namespace."])
+      expect(IsoNamespace.all.count).to eq(2)
+    end
+
+    it 'deletes namespace, not used, deleted' do
+      expect(IsoNamespace.all.count).to eq(2)
+      post :create, params:{iso_namespace: { name: "XXX Pharma", short_name: "XXX", authority: "www.example.com" }}
+      expect(IsoNamespace.all.count).to eq(3)
+      ns = IsoNamespace.find_by_short_name("XXX")
+      delete :destroy, params:{:id => ns.id}
+      expect(IsoNamespace.all.count).to eq(2)
+      expect(response.code).to eq("200")
+    end
+
+  end
+
+  describe "Unauthorized User" do
+
+    login_sys_admin
+
+    it "index registration state" do
+      get :index
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it 'makes a registration state current' do
+      post :new
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+    it 'creates namespace' do
+      post :create, params:{iso_namespace: { name: "XXX Pharma", shortName: "XXX" }}
+      expect(response).to redirect_to("/")
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
+    end
+
+  end
+
+  describe "Not logged in" do
+
+    it "index namespace" do
+      get :index
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "new namespace" do
+      get :new
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it 'creates namespace' do
+      post :create, params:{iso_namespace: { name: "XXX Pharma", shortName: "XXX" }}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+  end
+
+end

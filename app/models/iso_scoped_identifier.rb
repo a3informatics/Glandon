@@ -1,0 +1,2 @@
+class IsoScopedIdentifier
+end

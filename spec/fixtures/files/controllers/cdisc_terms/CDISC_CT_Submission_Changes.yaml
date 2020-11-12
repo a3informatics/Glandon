@@ -1,0 +1,2876 @@
+---
+:versions:
+- :version_label: '2014-12-16'
+  :version: 39
+- :version_label: '2015-03-27'
+  :version: 40
+- :version_label: '2015-06-26'
+  :version: 41
+:children:
+  :C100129.C111379:
+    :parent_identifier: C100129
+    :label: Columbia-Suicide Severity Rating Scale Children's Since Last Visit Questionnaire
+    :preferred_term: Columbia-Suicide Severity Rating Scale Children's Since Last
+      Visit Questionnaire
+    :notation: C-SSRS CHILDREN'S SINCE LAST VIST
+    :result:
+    - &1
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *1
+    - :previous: C-SSRS CHILDREN'S SINCE LAST VIST
+      :current: C-SSRS CHILDREN'S SINCE LAST VISIT
+      :status: :updated
+    :identifier: C111379
+    :id: CLI-C100129_C111379
+  :C100145.C100725:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Lightheadedness
+    :preferred_term: PDQUALIF - Lightheadedness
+    :notation: PDQ01-Dizziness
+    :result:
+    - &2
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Dizziness
+      :current: ''
+      :status: :updated
+    - *2
+    :identifier: C100725
+    :id: CLI-C100145_C100725
+  :C100145.C100726:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Imbalance
+    :preferred_term: PDQUALIF - Imbalance
+    :notation: PDQ01-Imbalance
+    :result:
+    - &3
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Imbalance
+      :current: ''
+      :status: :updated
+    - *3
+    :identifier: C100726
+    :id: CLI-C100145_C100726
+  :C100145.C100727:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Swallowing Difficulty
+    :preferred_term: PDQUALIF - Swallowing Difficulty
+    :notation: PDQ01-Swallow
+    :result:
+    - &4
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Swallow
+      :current: ''
+      :status: :updated
+    - *4
+    :identifier: C100727
+    :id: CLI-C100145_C100727
+  :C100145.C100728:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Communication
+    :preferred_term: PDQUALIF - Communication
+    :notation: PDQ01-Communication
+    :result:
+    - &5
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Communication
+      :current: ''
+      :status: :updated
+    - *5
+    :identifier: C100728
+    :id: CLI-C100145_C100728
+  :C100145.C100729:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Nocturia
+    :preferred_term: PDQUALIF - Nocturia
+    :notation: PDQ01-Nocturia
+    :result:
+    - &6
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Nocturia
+      :current: ''
+      :status: :updated
+    - *6
+    :identifier: C100729
+    :id: CLI-C100145_C100729
+  :C100145.C100730:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Sexual Ability
+    :preferred_term: PDQUALIF - Sexual Ability
+    :notation: PDQ01-Sexual Ability
+    :result:
+    - &7
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Sexual Ability
+      :current: ''
+      :status: :updated
+    - *7
+    :identifier: C100730
+    :id: CLI-C100145_C100730
+  :C100145.C100731:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Neuropathy in Hands or Feet
+    :preferred_term: PDQUALIF - Neuropathy in Hands or Feet
+    :notation: PDQ01-Neuropathy
+    :result:
+    - &8
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Neuropathy
+      :current: ''
+      :status: :updated
+    - *8
+    :identifier: C100731
+    :id: CLI-C100145_C100731
+  :C100145.C100732:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Bladder Control Difficulty
+    :preferred_term: PDQUALIF - Bladder Control Difficulty
+    :notation: PDQ01-Uro-frequency
+    :result:
+    - &9
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Uro-frequency
+      :current: ''
+      :status: :updated
+    - *9
+    :identifier: C100732
+    :id: CLI-C100145_C100732
+  :C100145.C100733:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Constipation
+    :preferred_term: PDQUALIF - Constipation
+    :notation: PDQ01-Constipation
+    :result:
+    - &10
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Constipation
+      :current: ''
+      :status: :updated
+    - *10
+    :identifier: C100733
+    :id: CLI-C100145_C100733
+  :C100145.C100734:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Trouble with Sleep Initiation or Waking Early
+    :preferred_term: PDQUALIF - Trouble with Sleep Initiation or Waking Early
+    :notation: PDQ01-Sleep Initiation
+    :result:
+    - &11
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Sleep Initiation
+      :current: ''
+      :status: :updated
+    - *11
+    :identifier: C100734
+    :id: CLI-C100145_C100734
+  :C100145.C100735:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Trouble with Sleep Maintenance
+    :preferred_term: PDQUALIF - Trouble with Sleep Maintenance
+    :notation: PDQ01-Sleep Maintenance
+    :result:
+    - &12
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Sleep Maintenance
+      :current: ''
+      :status: :updated
+    - *12
+    :identifier: C100735
+    :id: CLI-C100145_C100735
+  :C100145.C100736:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Positive Outlook Difficult
+    :preferred_term: PDQUALIF - Positive Outlook Difficult
+    :notation: PDQ01-Outlook
+    :result:
+    - &13
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Outlook
+      :current: ''
+      :status: :updated
+    - *13
+    :identifier: C100736
+    :id: CLI-C100145_C100736
+  :C100145.C100737:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Burden to Others
+    :preferred_term: PDQUALIF - Burden to Others
+    :notation: PDQ01-Burden
+    :result:
+    - &14
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Burden
+      :current: ''
+      :status: :updated
+    - *14
+    :identifier: C100737
+    :id: CLI-C100145_C100737
+  :C100145.C100738:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Social Life Affected
+    :preferred_term: PDQUALIF - Social Life Affected
+    :notation: PDQ01-Social Life - Affected
+    :result:
+    - &15
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Social Life - Affected
+      :current: ''
+      :status: :updated
+    - *15
+    :identifier: C100738
+    :id: CLI-C100145_C100738
+  :C100145.C100739:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Worry about Future
+    :preferred_term: PDQUALIF - Worry about Future
+    :notation: PDQ01-Future
+    :result:
+    - &16
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Future
+      :current: ''
+      :status: :updated
+    - *16
+    :identifier: C100739
+    :id: CLI-C100145_C100739
+  :C100145.C100740:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Difficulty in Asking for Help
+    :preferred_term: PDQUALIF - Difficulty in Asking for Help
+    :notation: PDQ01-Ask for Help
+    :result:
+    - &17
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Ask for Help
+      :current: ''
+      :status: :updated
+    - *17
+    :identifier: C100740
+    :id: CLI-C100145_C100740
+  :C100145.C100741:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Important to Maintain Independence
+    :preferred_term: PDQUALIF - Important to Maintain Independence
+    :notation: PDQ01-Maintain Independence
+    :result:
+    - &18
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Maintain Independence
+      :current: ''
+      :status: :updated
+    - *18
+    :identifier: C100741
+    :id: CLI-C100145_C100741
+  :C100145.C100742:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Difficulty in Adjusting to Change
+    :preferred_term: PDQUALIF - Difficulty in Adjusting to Change
+    :notation: PDQ01-Adjust to Change
+    :result:
+    - &19
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Adjust to Change
+      :current: ''
+      :status: :updated
+    - *19
+    :identifier: C100742
+    :id: CLI-C100145_C100742
+  :C100145.C100743:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Social Life Not Affected
+    :preferred_term: PDQUALIF - Social Life Not Affected
+    :notation: PDQ01-Social Life - Not Affected
+    :result:
+    - &20
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Social Life - Not Affected
+      :current: ''
+      :status: :updated
+    - *20
+    :identifier: C100743
+    :id: CLI-C100145_C100743
+  :C100145.C100744:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Travel Important
+    :preferred_term: PDQUALIF - Travel Important
+    :notation: PDQ01-Travel
+    :result:
+    - &21
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Travel
+      :current: ''
+      :status: :updated
+    - *21
+    :identifier: C100744
+    :id: CLI-C100145_C100744
+  :C100145.C100745:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Family Relationship Affected
+    :preferred_term: PDQUALIF - Family Relationship Affected
+    :notation: PDQ01-Family Relationship
+    :result:
+    - &22
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Family Relationship
+      :current: ''
+      :status: :updated
+    - *22
+    :identifier: C100745
+    :id: CLI-C100145_C100745
+  :C100145.C100746:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Social Isolation
+    :preferred_term: PDQUALIF - Social Isolation
+    :notation: PDQ01-Social Isolation
+    :result:
+    - &23
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Social Isolation
+      :current: ''
+      :status: :updated
+    - *23
+    :identifier: C100746
+    :id: CLI-C100145_C100746
+  :C100145.C100747:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Self Concept Change
+    :preferred_term: PDQUALIF - Self Concept Change
+    :notation: PDQ01-Self Concept/Image
+    :result:
+    - &24
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Self Concept/Image
+      :current: ''
+      :status: :updated
+    - *24
+    :identifier: C100747
+    :id: CLI-C100145_C100747
+  :C100145.C100748:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Sexual Desirability
+    :preferred_term: PDQUALIF - Sexual Desirability
+    :notation: PDQ01-Sexual Desirability
+    :result:
+    - &25
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Sexual Desirability
+      :current: ''
+      :status: :updated
+    - *25
+    :identifier: C100748
+    :id: CLI-C100145_C100748
+  :C100145.C100749:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Independent Hygiene in Past 7 Days
+    :preferred_term: PDQUALIF - Independent Hygiene in Past 7 Days
+    :notation: PDQ01-Independent Hygiene
+    :result:
+    - &26
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Independent Hygiene
+      :current: ''
+      :status: :updated
+    - *26
+    :identifier: C100749
+    :id: CLI-C100145_C100749
+  :C100145.C100750:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Independent Food Preparation in Past 7 Days
+    :preferred_term: PDQUALIF - Independent Food Preparation in Past 7 Days
+    :notation: PDQ01-Independent Food Preparation
+    :result:
+    - &27
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Independent Food Preparation
+      :current: ''
+      :status: :updated
+    - *27
+    :identifier: C100750
+    :id: CLI-C100145_C100750
+  :C100145.C100751:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Problem with Communication in the Past 7 Days
+    :preferred_term: PDQUALIF - Problem with Communication in the Past 7 Days
+    :notation: PDQ01-Comm in the Past 7 Days
+    :result:
+    - &28
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Comm in the Past 7 Days
+      :current: ''
+      :status: :updated
+    - *28
+    :identifier: C100751
+    :id: CLI-C100145_C100751
+  :C100145.C100752:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Fatigue in Past 7 Days
+    :preferred_term: PDQUALIF - Fatigue in Past 7 Days
+    :notation: PDQ01-Fatigue
+    :result:
+    - &29
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Fatigue
+      :current: ''
+      :status: :updated
+    - *29
+    :identifier: C100752
+    :id: CLI-C100145_C100752
+  :C100145.C100753:
+    :parent_identifier: C100145
+    :label: PDQUALIF - House Work in Past 7 Days
+    :preferred_term: PDQUALIF - House Work in Past 7 Days
+    :notation: PDQ01-Usual Share of Work in Home
+    :result:
+    - &30
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Usual Share of Work in Home
+      :current: ''
+      :status: :updated
+    - *30
+    :identifier: C100753
+    :id: CLI-C100145_C100753
+  :C100145.C100754:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Sleep with Partner in Past 7 Days
+    :preferred_term: PDQUALIF - Sleep with Partner in Past 7 Days
+    :notation: PDQ01-Sleep with Partner
+    :result:
+    - &31
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Sleep with Partner
+      :current: ''
+      :status: :updated
+    - *31
+    :identifier: C100754
+    :id: CLI-C100145_C100754
+  :C100145.C100755:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Driving in Past 7 Days
+    :preferred_term: PDQUALIF - Driving in Past 7 Days
+    :notation: PDQ01-Driving
+    :result:
+    - &32
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Driving
+      :current: ''
+      :status: :updated
+    - *32
+    :identifier: C100755
+    :id: CLI-C100145_C100755
+  :C100145.C100756:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Financial Strain in Past 7 Days
+    :preferred_term: PDQUALIF - Financial Strain in Past 7 Days
+    :notation: PDQ01-Financial Strain
+    :result:
+    - &33
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Financial Strain
+      :current: ''
+      :status: :updated
+    - *33
+    :identifier: C100756
+    :id: CLI-C100145_C100756
+  :C100145.C100757:
+    :parent_identifier: C100145
+    :label: PDQUALIF - Parkinson's Symptoms
+    :preferred_term: PDQUALIF - Parkinson's Symptoms
+    :notation: PDQ01-Parkinson's Symptoms
+    :result:
+    - &34
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ01-Parkinson's Symptoms
+      :current: ''
+      :status: :updated
+    - *34
+    :identifier: C100757
+    :id: CLI-C100145_C100757
+  :C100146.C100725:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Lightheadedness
+    :preferred_term: PDQUALIF - Lightheadedness
+    :notation: PDQ0101
+    :result:
+    - &35
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0101
+      :current: ''
+      :status: :updated
+    - *35
+    :identifier: C100725
+    :id: CLI-C100146_C100725
+  :C100146.C100726:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Imbalance
+    :preferred_term: PDQUALIF - Imbalance
+    :notation: PDQ0102
+    :result:
+    - &36
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0102
+      :current: ''
+      :status: :updated
+    - *36
+    :identifier: C100726
+    :id: CLI-C100146_C100726
+  :C100146.C100727:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Swallowing Difficulty
+    :preferred_term: PDQUALIF - Swallowing Difficulty
+    :notation: PDQ0103
+    :result:
+    - &37
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0103
+      :current: ''
+      :status: :updated
+    - *37
+    :identifier: C100727
+    :id: CLI-C100146_C100727
+  :C100146.C100728:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Communication
+    :preferred_term: PDQUALIF - Communication
+    :notation: PDQ0104
+    :result:
+    - &38
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0104
+      :current: ''
+      :status: :updated
+    - *38
+    :identifier: C100728
+    :id: CLI-C100146_C100728
+  :C100146.C100729:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Nocturia
+    :preferred_term: PDQUALIF - Nocturia
+    :notation: PDQ0105
+    :result:
+    - &39
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0105
+      :current: ''
+      :status: :updated
+    - *39
+    :identifier: C100729
+    :id: CLI-C100146_C100729
+  :C100146.C100730:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Sexual Ability
+    :preferred_term: PDQUALIF - Sexual Ability
+    :notation: PDQ0106
+    :result:
+    - &40
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0106
+      :current: ''
+      :status: :updated
+    - *40
+    :identifier: C100730
+    :id: CLI-C100146_C100730
+  :C100146.C100731:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Neuropathy in Hands or Feet
+    :preferred_term: PDQUALIF - Neuropathy in Hands or Feet
+    :notation: PDQ0107
+    :result:
+    - &41
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0107
+      :current: ''
+      :status: :updated
+    - *41
+    :identifier: C100731
+    :id: CLI-C100146_C100731
+  :C100146.C100732:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Bladder Control Difficulty
+    :preferred_term: PDQUALIF - Bladder Control Difficulty
+    :notation: PDQ0108
+    :result:
+    - &42
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0108
+      :current: ''
+      :status: :updated
+    - *42
+    :identifier: C100732
+    :id: CLI-C100146_C100732
+  :C100146.C100733:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Constipation
+    :preferred_term: PDQUALIF - Constipation
+    :notation: PDQ0109
+    :result:
+    - &43
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0109
+      :current: ''
+      :status: :updated
+    - *43
+    :identifier: C100733
+    :id: CLI-C100146_C100733
+  :C100146.C100734:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Trouble with Sleep Initiation or Waking Early
+    :preferred_term: PDQUALIF - Trouble with Sleep Initiation or Waking Early
+    :notation: PDQ0110
+    :result:
+    - &44
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0110
+      :current: ''
+      :status: :updated
+    - *44
+    :identifier: C100734
+    :id: CLI-C100146_C100734
+  :C100146.C100735:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Trouble with Sleep Maintenance
+    :preferred_term: PDQUALIF - Trouble with Sleep Maintenance
+    :notation: PDQ0111
+    :result:
+    - &45
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0111
+      :current: ''
+      :status: :updated
+    - *45
+    :identifier: C100735
+    :id: CLI-C100146_C100735
+  :C100146.C100736:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Positive Outlook Difficult
+    :preferred_term: PDQUALIF - Positive Outlook Difficult
+    :notation: PDQ0112
+    :result:
+    - &46
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0112
+      :current: ''
+      :status: :updated
+    - *46
+    :identifier: C100736
+    :id: CLI-C100146_C100736
+  :C100146.C100737:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Burden to Others
+    :preferred_term: PDQUALIF - Burden to Others
+    :notation: PDQ0113
+    :result:
+    - &47
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0113
+      :current: ''
+      :status: :updated
+    - *47
+    :identifier: C100737
+    :id: CLI-C100146_C100737
+  :C100146.C100738:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Social Life Affected
+    :preferred_term: PDQUALIF - Social Life Affected
+    :notation: PDQ0114
+    :result:
+    - &48
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0114
+      :current: ''
+      :status: :updated
+    - *48
+    :identifier: C100738
+    :id: CLI-C100146_C100738
+  :C100146.C100739:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Worry about Future
+    :preferred_term: PDQUALIF - Worry about Future
+    :notation: PDQ0115
+    :result:
+    - &49
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0115
+      :current: ''
+      :status: :updated
+    - *49
+    :identifier: C100739
+    :id: CLI-C100146_C100739
+  :C100146.C100740:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Difficulty in Asking for Help
+    :preferred_term: PDQUALIF - Difficulty in Asking for Help
+    :notation: PDQ0116
+    :result:
+    - &50
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0116
+      :current: ''
+      :status: :updated
+    - *50
+    :identifier: C100740
+    :id: CLI-C100146_C100740
+  :C100146.C100741:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Important to Maintain Independence
+    :preferred_term: PDQUALIF - Important to Maintain Independence
+    :notation: PDQ0117
+    :result:
+    - &51
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0117
+      :current: ''
+      :status: :updated
+    - *51
+    :identifier: C100741
+    :id: CLI-C100146_C100741
+  :C100146.C100742:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Difficulty in Adjusting to Change
+    :preferred_term: PDQUALIF - Difficulty in Adjusting to Change
+    :notation: PDQ0118
+    :result:
+    - &52
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0118
+      :current: ''
+      :status: :updated
+    - *52
+    :identifier: C100742
+    :id: CLI-C100146_C100742
+  :C100146.C100743:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Social Life Not Affected
+    :preferred_term: PDQUALIF - Social Life Not Affected
+    :notation: PDQ0119
+    :result:
+    - &53
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0119
+      :current: ''
+      :status: :updated
+    - *53
+    :identifier: C100743
+    :id: CLI-C100146_C100743
+  :C100146.C100744:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Travel Important
+    :preferred_term: PDQUALIF - Travel Important
+    :notation: PDQ0120
+    :result:
+    - &54
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0120
+      :current: ''
+      :status: :updated
+    - *54
+    :identifier: C100744
+    :id: CLI-C100146_C100744
+  :C100146.C100745:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Family Relationship Affected
+    :preferred_term: PDQUALIF - Family Relationship Affected
+    :notation: PDQ0121
+    :result:
+    - &55
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0121
+      :current: ''
+      :status: :updated
+    - *55
+    :identifier: C100745
+    :id: CLI-C100146_C100745
+  :C100146.C100746:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Social Isolation
+    :preferred_term: PDQUALIF - Social Isolation
+    :notation: PDQ0122
+    :result:
+    - &56
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0122
+      :current: ''
+      :status: :updated
+    - *56
+    :identifier: C100746
+    :id: CLI-C100146_C100746
+  :C100146.C100747:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Self Concept Change
+    :preferred_term: PDQUALIF - Self Concept Change
+    :notation: PDQ0123
+    :result:
+    - &57
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0123
+      :current: ''
+      :status: :updated
+    - *57
+    :identifier: C100747
+    :id: CLI-C100146_C100747
+  :C100146.C100748:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Sexual Desirability
+    :preferred_term: PDQUALIF - Sexual Desirability
+    :notation: PDQ0124
+    :result:
+    - &58
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0124
+      :current: ''
+      :status: :updated
+    - *58
+    :identifier: C100748
+    :id: CLI-C100146_C100748
+  :C100146.C100749:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Independent Hygiene in Past 7 Days
+    :preferred_term: PDQUALIF - Independent Hygiene in Past 7 Days
+    :notation: PDQ0125
+    :result:
+    - &59
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0125
+      :current: ''
+      :status: :updated
+    - *59
+    :identifier: C100749
+    :id: CLI-C100146_C100749
+  :C100146.C100750:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Independent Food Preparation in Past 7 Days
+    :preferred_term: PDQUALIF - Independent Food Preparation in Past 7 Days
+    :notation: PDQ0126
+    :result:
+    - &60
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0126
+      :current: ''
+      :status: :updated
+    - *60
+    :identifier: C100750
+    :id: CLI-C100146_C100750
+  :C100146.C100751:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Problem with Communication in the Past 7 Days
+    :preferred_term: PDQUALIF - Problem with Communication in the Past 7 Days
+    :notation: PDQ0127
+    :result:
+    - &61
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0127
+      :current: ''
+      :status: :updated
+    - *61
+    :identifier: C100751
+    :id: CLI-C100146_C100751
+  :C100146.C100752:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Fatigue in Past 7 Days
+    :preferred_term: PDQUALIF - Fatigue in Past 7 Days
+    :notation: PDQ0128
+    :result:
+    - &62
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0128
+      :current: ''
+      :status: :updated
+    - *62
+    :identifier: C100752
+    :id: CLI-C100146_C100752
+  :C100146.C100753:
+    :parent_identifier: C100146
+    :label: PDQUALIF - House Work in Past 7 Days
+    :preferred_term: PDQUALIF - House Work in Past 7 Days
+    :notation: PDQ0129
+    :result:
+    - &63
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0129
+      :current: ''
+      :status: :updated
+    - *63
+    :identifier: C100753
+    :id: CLI-C100146_C100753
+  :C100146.C100754:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Sleep with Partner in Past 7 Days
+    :preferred_term: PDQUALIF - Sleep with Partner in Past 7 Days
+    :notation: PDQ0130
+    :result:
+    - &64
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0130
+      :current: ''
+      :status: :updated
+    - *64
+    :identifier: C100754
+    :id: CLI-C100146_C100754
+  :C100146.C100755:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Driving in Past 7 Days
+    :preferred_term: PDQUALIF - Driving in Past 7 Days
+    :notation: PDQ0131
+    :result:
+    - &65
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0131
+      :current: ''
+      :status: :updated
+    - *65
+    :identifier: C100755
+    :id: CLI-C100146_C100755
+  :C100146.C100756:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Financial Strain in Past 7 Days
+    :preferred_term: PDQUALIF - Financial Strain in Past 7 Days
+    :notation: PDQ0132
+    :result:
+    - &66
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0132
+      :current: ''
+      :status: :updated
+    - *66
+    :identifier: C100756
+    :id: CLI-C100146_C100756
+  :C100146.C100757:
+    :parent_identifier: C100146
+    :label: PDQUALIF - Parkinson's Symptoms
+    :preferred_term: PDQUALIF - Parkinson's Symptoms
+    :notation: PDQ0133
+    :result:
+    - &67
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: PDQ0133
+      :current: ''
+      :status: :updated
+    - *67
+    :identifier: C100757
+    :id: CLI-C100146_C100757
+  :C101830.C102233:
+    :parent_identifier: C101830
+    :label: YMRS - Elevated Mood
+    :preferred_term: YMRS - Elevated Mood
+    :notation: YMRS0101
+    :result:
+    - &68
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS0101
+      :current: ''
+      :status: :updated
+    - *68
+    :identifier: C102233
+    :id: CLI-C101830_C102233
+  :C101830.C102234:
+    :parent_identifier: C101830
+    :label: YMRS - Increased Motor Activity-Energy
+    :preferred_term: YMRS - Increased Motor Activity-Energy
+    :notation: YMRS0102
+    :result:
+    - &69
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS0102
+      :current: ''
+      :status: :updated
+    - *69
+    :identifier: C102234
+    :id: CLI-C101830_C102234
+  :C101830.C102235:
+    :parent_identifier: C101830
+    :label: YMRS - Sexual Interest
+    :preferred_term: YMRS - Sexual Interest
+    :notation: YMRS0103
+    :result:
+    - &70
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS0103
+      :current: ''
+      :status: :updated
+    - *70
+    :identifier: C102235
+    :id: CLI-C101830_C102235
+  :C101830.C102236:
+    :parent_identifier: C101830
+    :label: YMRS - Sleep
+    :preferred_term: YMRS - Sleep
+    :notation: YMRS0104
+    :result:
+    - &71
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS0104
+      :current: ''
+      :status: :updated
+    - *71
+    :identifier: C102236
+    :id: CLI-C101830_C102236
+  :C101830.C102237:
+    :parent_identifier: C101830
+    :label: YMRS - Irritability
+    :preferred_term: YMRS - Irritability
+    :notation: YMRS0105
+    :result:
+    - &72
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS0105
+      :current: ''
+      :status: :updated
+    - *72
+    :identifier: C102237
+    :id: CLI-C101830_C102237
+  :C101830.C102238:
+    :parent_identifier: C101830
+    :label: YMRS - Speech (Rate and Amount)
+    :preferred_term: YMRS - Speech (Rate and Amount)
+    :notation: YMRS0106
+    :result:
+    - &73
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS0106
+      :current: ''
+      :status: :updated
+    - *73
+    :identifier: C102238
+    :id: CLI-C101830_C102238
+  :C101830.C102239:
+    :parent_identifier: C101830
+    :label: YMRS - Language-Thought Disorder
+    :preferred_term: YMRS - Language-Thought Disorder
+    :notation: YMRS0107
+    :result:
+    - &74
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS0107
+      :current: ''
+      :status: :updated
+    - *74
+    :identifier: C102239
+    :id: CLI-C101830_C102239
+  :C101830.C102240:
+    :parent_identifier: C101830
+    :label: YMRS - Content
+    :preferred_term: YMRS - Content
+    :notation: YMRS0108
+    :result:
+    - &75
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS0108
+      :current: ''
+      :status: :updated
+    - *75
+    :identifier: C102240
+    :id: CLI-C101830_C102240
+  :C101830.C102241:
+    :parent_identifier: C101830
+    :label: YMRS - Disruptive-Aggressive Behaviour
+    :preferred_term: YMRS - Disruptive-Aggressive Behaviour
+    :notation: YMRS0109
+    :result:
+    - &76
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS0109
+      :current: ''
+      :status: :updated
+    - *76
+    :identifier: C102241
+    :id: CLI-C101830_C102241
+  :C101830.C102242:
+    :parent_identifier: C101830
+    :label: YMRS - Appearance
+    :preferred_term: YMRS - Appearance
+    :notation: YMRS0110
+    :result:
+    - &77
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS0110
+      :current: ''
+      :status: :updated
+    - *77
+    :identifier: C102242
+    :id: CLI-C101830_C102242
+  :C101830.C102243:
+    :parent_identifier: C101830
+    :label: YMRS - Insight
+    :preferred_term: YMRS - Insight
+    :notation: YMRS0111
+    :result:
+    - &78
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS0111
+      :current: ''
+      :status: :updated
+    - *78
+    :identifier: C102243
+    :id: CLI-C101830_C102243
+  :C101831.C102233:
+    :parent_identifier: C101831
+    :label: YMRS - Elevated Mood
+    :preferred_term: YMRS - Elevated Mood
+    :notation: YMRS01-Elevated Mood
+    :result:
+    - &79
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS01-Elevated Mood
+      :current: ''
+      :status: :updated
+    - *79
+    :identifier: C102233
+    :id: CLI-C101831_C102233
+  :C101831.C102234:
+    :parent_identifier: C101831
+    :label: YMRS - Increased Motor Activity-Energy
+    :preferred_term: YMRS - Increased Motor Activity-Energy
+    :notation: YMRS01-Increased Motor Activity-Energy
+    :result:
+    - &80
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS01-Increased Motor Activity-Energy
+      :current: ''
+      :status: :updated
+    - *80
+    :identifier: C102234
+    :id: CLI-C101831_C102234
+  :C101831.C102235:
+    :parent_identifier: C101831
+    :label: YMRS - Sexual Interest
+    :preferred_term: YMRS - Sexual Interest
+    :notation: YMRS01-Sexual Interest
+    :result:
+    - &81
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS01-Sexual Interest
+      :current: ''
+      :status: :updated
+    - *81
+    :identifier: C102235
+    :id: CLI-C101831_C102235
+  :C101831.C102236:
+    :parent_identifier: C101831
+    :label: YMRS - Sleep
+    :preferred_term: YMRS - Sleep
+    :notation: YMRS01-Sleep
+    :result:
+    - &82
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS01-Sleep
+      :current: ''
+      :status: :updated
+    - *82
+    :identifier: C102236
+    :id: CLI-C101831_C102236
+  :C101831.C102237:
+    :parent_identifier: C101831
+    :label: YMRS - Irritability
+    :preferred_term: YMRS - Irritability
+    :notation: YMRS01-Irritability
+    :result:
+    - &83
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS01-Irritability
+      :current: ''
+      :status: :updated
+    - *83
+    :identifier: C102237
+    :id: CLI-C101831_C102237
+  :C101831.C102238:
+    :parent_identifier: C101831
+    :label: YMRS - Speech (Rate and Amount)
+    :preferred_term: YMRS - Speech (Rate and Amount)
+    :notation: YMRS01-Speech (Rate and Amount)
+    :result:
+    - &84
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS01-Speech (Rate and Amount)
+      :current: ''
+      :status: :updated
+    - *84
+    :identifier: C102238
+    :id: CLI-C101831_C102238
+  :C101831.C102239:
+    :parent_identifier: C101831
+    :label: YMRS - Language-Thought Disorder
+    :preferred_term: YMRS - Language-Thought Disorder
+    :notation: YMRS01-Language-Thought Disorder
+    :result:
+    - &85
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS01-Language-Thought Disorder
+      :current: ''
+      :status: :updated
+    - *85
+    :identifier: C102239
+    :id: CLI-C101831_C102239
+  :C101831.C102240:
+    :parent_identifier: C101831
+    :label: YMRS - Content
+    :preferred_term: YMRS - Content
+    :notation: YMRS01-Content
+    :result:
+    - &86
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS01-Content
+      :current: ''
+      :status: :updated
+    - *86
+    :identifier: C102240
+    :id: CLI-C101831_C102240
+  :C101831.C102241:
+    :parent_identifier: C101831
+    :label: YMRS - Disruptive-Aggressive Behaviour
+    :preferred_term: YMRS - Disruptive-Aggressive Behaviour
+    :notation: YMRS01-Disruptive-Aggressive Behaviour
+    :result:
+    - &87
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS01-Disruptive-Aggressive Behaviour
+      :current: ''
+      :status: :updated
+    - *87
+    :identifier: C102241
+    :id: CLI-C101831_C102241
+  :C101831.C102242:
+    :parent_identifier: C101831
+    :label: YMRS - Appearance
+    :preferred_term: YMRS - Appearance
+    :notation: YMRS01-Appearance
+    :result:
+    - &88
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS01-Appearance
+      :current: ''
+      :status: :updated
+    - *88
+    :identifier: C102242
+    :id: CLI-C101831_C102242
+  :C101831.C102243:
+    :parent_identifier: C101831
+    :label: YMRS - Insight
+    :preferred_term: YMRS - Insight
+    :notation: YMRS01-Insight
+    :result:
+    - &89
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: YMRS01-Insight
+      :current: ''
+      :status: :updated
+    - *89
+    :identifier: C102243
+    :id: CLI-C101831_C102243
+  :C103330.C17953:
+    :parent_identifier: C103330
+    :label: Education Level
+    :preferred_term: Education Level
+    :notation: Education Level
+    :result:
+    - &90
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *90
+    - :previous: Education Level
+      :current: Level of Education Attained
+      :status: :updated
+    :identifier: C17953
+    :id: CLI-C103330_C17953
+  :C103486.C103751:
+    :parent_identifier: C103486
+    :label: SOWS Short - Feeling Sick
+    :preferred_term: SOWS Short - Feeling Sick
+    :notation: SOWSB1-Feeling Sick
+    :result:
+    - &91
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB1-Feeling Sick
+      :current: ''
+      :status: :updated
+    - *91
+    :identifier: C103751
+    :id: CLI-C103486_C103751
+  :C103486.C103752:
+    :parent_identifier: C103486
+    :label: SOWS Short - Stomach Cramps
+    :preferred_term: SOWS Short - Stomach Cramps
+    :notation: SOWSB1-Stomach Cramps
+    :result:
+    - &92
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB1-Stomach Cramps
+      :current: ''
+      :status: :updated
+    - *92
+    :identifier: C103752
+    :id: CLI-C103486_C103752
+  :C103486.C103753:
+    :parent_identifier: C103486
+    :label: SOWS Short - Muscle Spasms/Twitching
+    :preferred_term: SOWS Short - Muscle Spasms/Twitching
+    :notation: SOWSB1-Muscle Spasms/Twitching
+    :result:
+    - &93
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB1-Muscle Spasms/Twitching
+      :current: ''
+      :status: :updated
+    - *93
+    :identifier: C103753
+    :id: CLI-C103486_C103753
+  :C103486.C103754:
+    :parent_identifier: C103486
+    :label: SOWS Short - Feelings of Coldness
+    :preferred_term: SOWS Short - Feelings of Coldness
+    :notation: SOWSB1-Feelings of Coldness
+    :result:
+    - &94
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB1-Feelings of Coldness
+      :current: ''
+      :status: :updated
+    - *94
+    :identifier: C103754
+    :id: CLI-C103486_C103754
+  :C103486.C103755:
+    :parent_identifier: C103486
+    :label: SOWS Short - Heart Pounding
+    :preferred_term: SOWS Short - Heart Pounding
+    :notation: SOWSB1-Heart Pounding
+    :result:
+    - &95
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB1-Heart Pounding
+      :current: ''
+      :status: :updated
+    - *95
+    :identifier: C103755
+    :id: CLI-C103486_C103755
+  :C103486.C103756:
+    :parent_identifier: C103486
+    :label: SOWS Short - Muscular Tension
+    :preferred_term: SOWS Short - Muscular Tension
+    :notation: SOWSB1-Muscular Tension
+    :result:
+    - &96
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB1-Muscular Tension
+      :current: ''
+      :status: :updated
+    - *96
+    :identifier: C103756
+    :id: CLI-C103486_C103756
+  :C103486.C103757:
+    :parent_identifier: C103486
+    :label: SOWS Short - Aches and Pains
+    :preferred_term: SOWS Short - Aches and Pains
+    :notation: SOWSB1-Aches and Pains
+    :result:
+    - &97
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB1-Aches and Pains
+      :current: ''
+      :status: :updated
+    - *97
+    :identifier: C103757
+    :id: CLI-C103486_C103757
+  :C103486.C103758:
+    :parent_identifier: C103486
+    :label: SOWS Short - Yawning
+    :preferred_term: SOWS Short - Yawning
+    :notation: SOWSB1-Yawning
+    :result:
+    - &98
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB1-Yawning
+      :current: ''
+      :status: :updated
+    - *98
+    :identifier: C103758
+    :id: CLI-C103486_C103758
+  :C103486.C103759:
+    :parent_identifier: C103486
+    :label: SOWS Short - Runny Eyes
+    :preferred_term: SOWS Short - Runny Eyes
+    :notation: SOWSB1-Runny Eyes
+    :result:
+    - &99
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB1-Runny Eyes
+      :current: ''
+      :status: :updated
+    - *99
+    :identifier: C103759
+    :id: CLI-C103486_C103759
+  :C103486.C103760:
+    :parent_identifier: C103486
+    :label: SOWS Short - Insomnia/Problems Sleeping
+    :preferred_term: SOWS Short - Insomnia/Problems Sleeping
+    :notation: SOWSB1-Insomnia/Problems Sleeping
+    :result:
+    - &100
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB1-Insomnia/Problems Sleeping
+      :current: ''
+      :status: :updated
+    - *100
+    :identifier: C103760
+    :id: CLI-C103486_C103760
+  :C103487.C103751:
+    :parent_identifier: C103487
+    :label: SOWS Short - Feeling Sick
+    :preferred_term: SOWS Short - Feeling Sick
+    :notation: SOWSB101
+    :result:
+    - &101
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB101
+      :current: ''
+      :status: :updated
+    - *101
+    :identifier: C103751
+    :id: CLI-C103487_C103751
+  :C103487.C103752:
+    :parent_identifier: C103487
+    :label: SOWS Short - Stomach Cramps
+    :preferred_term: SOWS Short - Stomach Cramps
+    :notation: SOWSB102
+    :result:
+    - &102
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB102
+      :current: ''
+      :status: :updated
+    - *102
+    :identifier: C103752
+    :id: CLI-C103487_C103752
+  :C103487.C103753:
+    :parent_identifier: C103487
+    :label: SOWS Short - Muscle Spasms/Twitching
+    :preferred_term: SOWS Short - Muscle Spasms/Twitching
+    :notation: SOWSB103
+    :result:
+    - &103
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB103
+      :current: ''
+      :status: :updated
+    - *103
+    :identifier: C103753
+    :id: CLI-C103487_C103753
+  :C103487.C103754:
+    :parent_identifier: C103487
+    :label: SOWS Short - Feelings of Coldness
+    :preferred_term: SOWS Short - Feelings of Coldness
+    :notation: SOWSB104
+    :result:
+    - &104
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB104
+      :current: ''
+      :status: :updated
+    - *104
+    :identifier: C103754
+    :id: CLI-C103487_C103754
+  :C103487.C103755:
+    :parent_identifier: C103487
+    :label: SOWS Short - Heart Pounding
+    :preferred_term: SOWS Short - Heart Pounding
+    :notation: SOWSB105
+    :result:
+    - &105
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB105
+      :current: ''
+      :status: :updated
+    - *105
+    :identifier: C103755
+    :id: CLI-C103487_C103755
+  :C103487.C103756:
+    :parent_identifier: C103487
+    :label: SOWS Short - Muscular Tension
+    :preferred_term: SOWS Short - Muscular Tension
+    :notation: SOWSB106
+    :result:
+    - &106
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB106
+      :current: ''
+      :status: :updated
+    - *106
+    :identifier: C103756
+    :id: CLI-C103487_C103756
+  :C103487.C103757:
+    :parent_identifier: C103487
+    :label: SOWS Short - Aches and Pains
+    :preferred_term: SOWS Short - Aches and Pains
+    :notation: SOWSB107
+    :result:
+    - &107
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB107
+      :current: ''
+      :status: :updated
+    - *107
+    :identifier: C103757
+    :id: CLI-C103487_C103757
+  :C103487.C103758:
+    :parent_identifier: C103487
+    :label: SOWS Short - Yawning
+    :preferred_term: SOWS Short - Yawning
+    :notation: SOWSB108
+    :result:
+    - &108
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB108
+      :current: ''
+      :status: :updated
+    - *108
+    :identifier: C103758
+    :id: CLI-C103487_C103758
+  :C103487.C103759:
+    :parent_identifier: C103487
+    :label: SOWS Short - Runny Eyes
+    :preferred_term: SOWS Short - Runny Eyes
+    :notation: SOWSB109
+    :result:
+    - &109
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB109
+      :current: ''
+      :status: :updated
+    - *109
+    :identifier: C103759
+    :id: CLI-C103487_C103759
+  :C103487.C103760:
+    :parent_identifier: C103487
+    :label: SOWS Short - Insomnia/Problems Sleeping
+    :preferred_term: SOWS Short - Insomnia/Problems Sleeping
+    :notation: SOWSB110
+    :result:
+    - &110
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: SOWSB110
+      :current: ''
+      :status: :updated
+    - *110
+    :identifier: C103760
+    :id: CLI-C103487_C103760
+  :C116109.C116247:
+    :parent_identifier: C116109
+    :label: Half Maximal Inhibitory Concentration Treatment Result Measurement
+    :preferred_term: Half Maximal Inhibitory Concentration Treatment Result Measurement
+    :notation: IC50 Treatment Result
+    :result:
+    - &111
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: IC50 Treatment Result
+      :current: IC50 Subject Result
+      :status: :updated
+    - *111
+    :identifier: C116247
+    :id: CLI-C116109_C116247
+  :C116109.C116251:
+    :parent_identifier: C116109
+    :label: 95 Percent Maximal Inhibitory Concentration Treatment Result Measurement
+    :preferred_term: 95 Percent Maximal Inhibitory Concentration Treatment Result
+      Measurement
+    :notation: IC95 Treatment Result
+    :result:
+    - &112
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: IC95 Treatment Result
+      :current: IC95 Subject Result
+      :status: :updated
+    - *112
+    :identifier: C116251
+    :id: CLI-C116109_C116251
+  :C116110.C116247:
+    :parent_identifier: C116110
+    :label: Half Maximal Inhibitory Concentration Treatment Result Measurement
+    :preferred_term: Half Maximal Inhibitory Concentration Treatment Result Measurement
+    :notation: IC50T
+    :result:
+    - &113
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: IC50T
+      :current: IC50S
+      :status: :updated
+    - *113
+    :identifier: C116247
+    :id: CLI-C116110_C116247
+  :C116110.C116251:
+    :parent_identifier: C116110
+    :label: 95 Percent Maximal Inhibitory Concentration Treatment Result Measurement
+    :preferred_term: 95 Percent Maximal Inhibitory Concentration Treatment Result
+      Measurement
+    :notation: IC95T
+    :result:
+    - &114
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: IC95T
+      :current: IC95S
+      :status: :updated
+    - *114
+    :identifier: C116251
+    :id: CLI-C116110_C116251
+  :C118971.C119106:
+    :parent_identifier: C118971
+    :label: Stent Thrombosis Coronary ARC Timing Clinical Classification
+    :preferred_term: Stent Thrombosis Coronary ARC Timing Clinical Classification
+    :notation: STENT THROMBOSIS CORONARY ARC TIMING
+    :result:
+    - &115
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *115
+    - :previous: STENT THROMBOSIS CORONARY ARC TIMING
+      :current: ''
+      :status: :updated
+    :identifier: C119106
+    :id: CLI-C118971_C119106
+  :C119077.C119197:
+    :parent_identifier: C119077
+    :label: ARC STC Timing - Stent Thrombosis Coronary ARC Timing
+    :preferred_term: ARC STC Timing - Stent Thrombosis Coronary ARC Timing
+    :notation: STCT01-STC ARC Timing
+    :result:
+    - &116
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *116
+    - :previous: STCT01-STC ARC Timing
+      :current: ''
+      :status: :updated
+    :identifier: C119197
+    :id: CLI-C119077_C119197
+  :C119078.C119197:
+    :parent_identifier: C119078
+    :label: ARC STC Timing - Stent Thrombosis Coronary ARC Timing
+    :preferred_term: ARC STC Timing - Stent Thrombosis Coronary ARC Timing
+    :notation: STCT0101
+    :result:
+    - &117
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *117
+    - :previous: STCT0101
+      :current: ''
+      :status: :updated
+    :identifier: C119197
+    :id: CLI-C119078_C119197
+  :C120522.C92228:
+    :parent_identifier: C120522
+    :label: Borderline QTcB
+    :preferred_term: Borderline QTcB
+    :notation: BORDERLINE QTcB
+    :result:
+    - &118
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *118
+    - :previous: BORDERLINE QTcB
+      :current: BORDERLINE QTCB
+      :status: :updated
+    :identifier: C92228
+    :id: CLI-C120522_C92228
+  :C120522.C92229:
+    :parent_identifier: C120522
+    :label: Borderline QTcF
+    :preferred_term: Borderline QTcF
+    :notation: BORDERLINE QTcF
+    :result:
+    - &119
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *119
+    - :previous: BORDERLINE QTcF
+      :current: BORDERLINE QTCF
+      :status: :updated
+    :identifier: C92229
+    :id: CLI-C120522_C92229
+  :C66770.C49673:
+    :parent_identifier: C66770
+    :label: Beats per Minute
+    :preferred_term: Beats per Minute
+    :notation: BEATS/MIN
+    :result:
+    - &120
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *120
+    - :previous: BEATS/MIN
+      :current: beats/min
+      :status: :updated
+    :identifier: C49673
+    :id: CLI-C66770_C49673
+  :C66770.C49674:
+    :parent_identifier: C66770
+    :label: Breaths per Minute
+    :preferred_term: Breaths per Minute
+    :notation: BREATHS/MIN
+    :result:
+    - &121
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *121
+    - :previous: BREATHS/MIN
+      :current: breaths/min
+      :status: :updated
+    :identifier: C49674
+    :id: CLI-C66770_C49674
+  :C67154.C116208:
+    :parent_identifier: C67154
+    :label: Platelet Derived Growth Factor Isoform AB Measurement
+    :preferred_term: Platelet Derived Growth Factor Isoform AB Measurement
+    :notation: Platelet Derived Growth Factor Isoform AB
+    :result:
+    - &122
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: Platelet Derived Growth Factor Isoform AB
+      :current: Platelet Derived Growth Factor IsoformAB
+      :status: :updated
+    - *122
+    :identifier: C116208
+    :id: CLI-C67154_C116208
+  :C71150.C92228:
+    :parent_identifier: C71150
+    :label: Borderline QTcB
+    :preferred_term: Borderline QTcB
+    :notation: BORDERLINE QTcB
+    :result:
+    - &123
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *123
+    - :previous: BORDERLINE QTcB
+      :current: BORDERLINE QTCB
+      :status: :updated
+    :identifier: C92228
+    :id: CLI-C71150_C92228
+  :C71150.C92229:
+    :parent_identifier: C71150
+    :label: Borderline QTcF
+    :preferred_term: Borderline QTcF
+    :notation: BORDERLINE QTcF
+    :result:
+    - &124
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *124
+    - :previous: BORDERLINE QTcF
+      :current: BORDERLINE QTCF
+      :status: :updated
+    :identifier: C92229
+    :id: CLI-C71150_C92229
+  :C71152.C117784:
+    :parent_identifier: C71152
+    :label: Aggregate QTCB Interval
+    :preferred_term: Aggregate QTCB Interval
+    :notation: QTCB Interval, Aggregate
+    :result:
+    - &125
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *125
+    - :previous: QTCB Interval, Aggregate
+      :current: QTcB Interval, Aggregate
+      :status: :updated
+    :identifier: C117784
+    :id: CLI-C71152_C117784
+  :C71152.C117785:
+    :parent_identifier: C71152
+    :label: Single Beat QTCB Interval
+    :preferred_term: Single Beat QTCB Interval
+    :notation: QTCB Interval, Single Beat
+    :result:
+    - &126
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *126
+    - :previous: QTCB Interval, Single Beat
+      :current: QTcB Interval, Single Beat
+      :status: :updated
+    :identifier: C117785
+    :id: CLI-C71152_C117785
+  :C71152.C117786:
+    :parent_identifier: C71152
+    :label: Aggregate QTCF Interval
+    :preferred_term: Aggregate QTCF Interval
+    :notation: QTCF Interval, Aggregate
+    :result:
+    - &127
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *127
+    - :previous: QTCF Interval, Aggregate
+      :current: QTcF Interval, Aggregate
+      :status: :updated
+    :identifier: C117786
+    :id: CLI-C71152_C117786
+  :C71152.C117787:
+    :parent_identifier: C71152
+    :label: Single Beat QTCF Interval
+    :preferred_term: Single Beat QTCF Interval
+    :notation: QTCF Interval, Single Beat
+    :result:
+    - &128
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *128
+    - :previous: QTCF Interval, Single Beat
+      :current: QTcF Interval, Single Beat
+      :status: :updated
+    :identifier: C117787
+    :id: CLI-C71152_C117787
+  :C71620.C105501:
+    :parent_identifier: C71620
+    :label: Milliequivalent Per Gram of Creatinine
+    :preferred_term: Milliequivalent Per Gram of Creatinine
+    :notation: mEq/g Creatinine
+    :result:
+    - &129
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: mEq/g Creatinine
+      :current: ''
+      :status: :updated
+    - *129
+    :identifier: C105501
+    :id: CLI-C71620_C105501
+  :C71620.C105502:
+    :parent_identifier: C71620
+    :label: Milligram Per Gram of Creatinine
+    :preferred_term: Milligram Per Gram of Creatinine
+    :notation: mg/g Creatinine
+    :result:
+    - &130
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: mg/g Creatinine
+      :current: ''
+      :status: :updated
+    - *130
+    :identifier: C105502
+    :id: CLI-C71620_C105502
+  :C71620.C105510:
+    :parent_identifier: C71620
+    :label: Millimole Per Gram of Creatinine
+    :preferred_term: Millimole Per Gram of Creatinine
+    :notation: mmol/g Creatinine
+    :result:
+    - &131
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: mmol/g Creatinine
+      :current: ''
+      :status: :updated
+    - *131
+    :identifier: C105510
+    :id: CLI-C71620_C105510
+  :C71620.C105511:
+    :parent_identifier: C71620
+    :label: Millimole Per Mole of Creatinine
+    :preferred_term: Millimole Per Mole of Creatinine
+    :notation: mmol/mol Creatinine
+    :result:
+    - &132
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: mmol/mol Creatinine
+      :current: ''
+      :status: :updated
+    - *132
+    :identifier: C105511
+    :id: CLI-C71620_C105511
+  :C71620.C105522:
+    :parent_identifier: C71620
+    :label: Unit Per Gram Hemoglobin
+    :preferred_term: Unit Per Gram Hemoglobin
+    :notation: U/g HGB
+    :result:
+    - &133
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: U/g HGB
+      :current: ''
+      :status: :updated
+    - *133
+    :identifier: C105522
+    :id: CLI-C71620_C105522
+  :C71620.C105523:
+    :parent_identifier: C71620
+    :label: Unit Per Gram of Creatinine
+    :preferred_term: Unit Per Gram of Creatinine
+    :notation: U/g Creatinine
+    :result:
+    - &134
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: U/g Creatinine
+      :current: ''
+      :status: :updated
+    - *134
+    :identifier: C105523
+    :id: CLI-C71620_C105523
+  :C71620.C116239:
+    :parent_identifier: C71620
+    :label: Cells per Kilogram
+    :preferred_term: Cells per Kilogram
+    :notation: cells/kg
+    :result:
+    - &135
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: cells/kg
+      :current: ''
+      :status: :updated
+    - *135
+    :identifier: C116239
+    :id: CLI-C71620_C116239
+  :C71620.C49673:
+    :parent_identifier: C71620
+    :label: Beats per Minute
+    :preferred_term: Beats per Minute
+    :notation: BEATS/MIN
+    :result:
+    - &136
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *136
+    - :previous: BEATS/MIN
+      :current: beats/min
+      :status: :updated
+    :identifier: C49673
+    :id: CLI-C71620_C49673
+  :C71620.C49674:
+    :parent_identifier: C71620
+    :label: Breaths per Minute
+    :preferred_term: Breaths per Minute
+    :notation: BREATHS/MIN
+    :result:
+    - &137
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *137
+    - :previous: BREATHS/MIN
+      :current: breaths/min
+      :status: :updated
+    :identifier: C49674
+    :id: CLI-C71620_C49674
+  :C71620.C67242:
+    :parent_identifier: C71620
+    :label: Cells per Microliter
+    :preferred_term: Cells per Microliter
+    :notation: cells/uL
+    :result:
+    - &138
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: cells/uL
+      :current: ''
+      :status: :updated
+    - *138
+    :identifier: C67242
+    :id: CLI-C71620_C67242
+  :C71620.C69442:
+    :parent_identifier: C71620
+    :label: Medical Drop
+    :preferred_term: Medical Drop
+    :notation: gtt
+    :result:
+    - &139
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *139
+    - :previous: gtt
+      :current: ''
+      :status: :updated
+    :identifier: C69442
+    :id: CLI-C71620_C69442
+  :C71620.C70479:
+    :parent_identifier: C71620
+    :label: Log10 50 Percent Embryo Infective Dose
+    :preferred_term: Log10 50 Percent Embryo Infective Dose
+    :notation: log10 EID 50
+    :result:
+    - &140
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: log10 EID 50
+      :current: ''
+      :status: :updated
+    - *140
+    :identifier: C70479
+    :id: CLI-C71620_C70479
+  :C71620.C70484:
+    :parent_identifier: C71620
+    :label: Log10 50 Percent Cell Culture Infective Dose
+    :preferred_term: Log10 50 Percent Cell Culture Infective Dose
+    :notation: log10 CCID 50
+    :result:
+    - &141
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: log10 CCID 50
+      :current: ''
+      :status: :updated
+    - *141
+    :identifier: C70484
+    :id: CLI-C71620_C70484
+  :C71620.C70488:
+    :parent_identifier: C71620
+    :label: Log10 50 Percent Tissue Culture Infective Dose
+    :preferred_term: Log10 50 Percent Tissue Culture Infective Dose
+    :notation: log10 TCID 50
+    :result:
+    - &142
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: log10 TCID 50
+      :current: ''
+      :status: :updated
+    - *142
+    :identifier: C70488
+    :id: CLI-C71620_C70488
+  :C71620.C70532:
+    :parent_identifier: C71620
+    :label: 50 Percent Embryo Infective Dose
+    :preferred_term: 50 Percent Embryo Infective Dose
+    :notation: EID 50
+    :result:
+    - &143
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: EID 50
+      :current: ''
+      :status: :updated
+    - *143
+    :identifier: C70532
+    :id: CLI-C71620_C70532
+  :C71620.C70534:
+    :parent_identifier: C71620
+    :label: 50 Percent Cell Culture Infective Dose
+    :preferred_term: 50 Percent Cell Culture Infective Dose
+    :notation: CCID 50
+    :result:
+    - &144
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: CCID 50
+      :current: ''
+      :status: :updated
+    - *144
+    :identifier: C70534
+    :id: CLI-C71620_C70534
+  :C74559.C17953:
+    :parent_identifier: C74559
+    :label: Education Level
+    :preferred_term: Education Level
+    :notation: EDLEVEL
+    :result:
+    - &145
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *145
+    - :previous: EDLEVEL
+      :current: EDULEVEL
+      :status: :updated
+    :identifier: C17953
+    :id: CLI-C74559_C17953
+  :C78733.C78725:
+    :parent_identifier: C78733
+    :label: Autolized Specimen
+    :preferred_term: Autolized Specimen
+    :notation: AUTOLIZED
+    :result:
+    - &146
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: AUTOLIZED
+      :current: AUTOLYZED
+      :status: :updated
+    - *146
+    :identifier: C78725
+    :id: CLI-C78733_C78725
+  :C85493.C102356:
+    :parent_identifier: C85493
+    :label: Accumulation Ratio Area Under the Curve
+    :preferred_term: Accumulation Ratio Area Under the Curve
+    :notation: Accumulation Ratio AUC
+    :result:
+    - &147
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - *147
+    - :previous: Accumulation Ratio AUC
+      :current: Accumulation Ratio AUCTAU
+      :status: :updated
+    :identifier: C102356
+    :id: CLI-C85493_C102356
+  :C85493.C85580:
+    :parent_identifier: C85493
+    :label: Collection Interval Midpoint
+    :preferred_term: Collection Interval Midpoint
+    :notation: Midpoint of Collection Interval
+    :result:
+    - &148
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: Midpoint of Collection Interval
+      :current: Midpoint of Interval of Last Nonzero ER
+      :status: :updated
+    - *148
+    :identifier: C85580
+    :id: CLI-C85493_C85580
+  :C85493.C85700:
+    :parent_identifier: C85493
+    :label: Mean Residence Time Last
+    :preferred_term: Mean Residence Time Last
+    :notation: MRT to Last Nonzero Conc
+    :result:
+    - &149
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: MRT to Last Nonzero Conc
+      :current: ''
+      :status: :updated
+    - *149
+    :identifier: C85700
+    :id: CLI-C85493_C85700
+  :C85493.C85769:
+    :parent_identifier: C85493
+    :label: Observed Mean Residence Time Infinity
+    :preferred_term: Observed Mean Residence Time Infinity
+    :notation: MRT Infinity Obs
+    :result:
+    - &150
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: MRT Infinity Obs
+      :current: ''
+      :status: :updated
+    - *150
+    :identifier: C85769
+    :id: CLI-C85493_C85769
+  :C85493.C85793:
+    :parent_identifier: C85493
+    :label: Predicted Mean Residence Time Infinity
+    :preferred_term: Predicted Mean Residence Time Infinity
+    :notation: MRT Infinity Pred
+    :result:
+    - &151
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: MRT Infinity Pred
+      :current: ''
+      :status: :updated
+    - *151
+    :identifier: C85793
+    :id: CLI-C85493_C85793
+  :C85493.C85823:
+    :parent_identifier: C85493
+    :label: Time of Maximum Observed Excretion Rate
+    :preferred_term: Time of Maximum Observed Excretion Rate
+    :notation: Time of Max Excretion Rate
+    :result:
+    - &152
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: Time of Max Excretion Rate
+      :current: Midpoint of Interval of Maximum ER
+      :status: :updated
+    - *152
+    :identifier: C85823
+    :id: CLI-C85493_C85823
+  :C85494.C85668:
+    :parent_identifier: C85494
+    :label: Liter per Micromole per Day
+    :preferred_term: Liter per Micromole per Day
+    :notation: L/umol/day
+    :result:
+    - &153
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/umol/day
+      :current: ''
+      :status: :updated
+    - *153
+    :identifier: C85668
+    :id: CLI-C85494_C85668
+  :C85494.C85669:
+    :parent_identifier: C85494
+    :label: Liter per Micromole per Hour
+    :preferred_term: Liter per Micromole per Hour
+    :notation: L/umol/h
+    :result:
+    - &154
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/umol/h
+      :current: ''
+      :status: :updated
+    - *154
+    :identifier: C85669
+    :id: CLI-C85494_C85669
+  :C85494.C85670:
+    :parent_identifier: C85494
+    :label: Liter per Micromole per Minute
+    :preferred_term: Liter per Micromole per Minute
+    :notation: L/umol/min
+    :result:
+    - &155
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/umol/min
+      :current: ''
+      :status: :updated
+    - *155
+    :identifier: C85670
+    :id: CLI-C85494_C85670
+  :C85494.C85676:
+    :parent_identifier: C85494
+    :label: Liter per Millimole per Day
+    :preferred_term: Liter per Millimole per Day
+    :notation: L/mmol/day
+    :result:
+    - &156
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/mmol/day
+      :current: ''
+      :status: :updated
+    - *156
+    :identifier: C85676
+    :id: CLI-C85494_C85676
+  :C85494.C85677:
+    :parent_identifier: C85494
+    :label: Liter per Millimole per Hour
+    :preferred_term: Liter per Millimole per Hour
+    :notation: L/mmol/h
+    :result:
+    - &157
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/mmol/h
+      :current: ''
+      :status: :updated
+    - *157
+    :identifier: C85677
+    :id: CLI-C85494_C85677
+  :C85494.C85678:
+    :parent_identifier: C85494
+    :label: Liter per Millimole per Minute
+    :preferred_term: Liter per Millimole per Minute
+    :notation: L/mmol/min
+    :result:
+    - &158
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/mmol/min
+      :current: ''
+      :status: :updated
+    - *158
+    :identifier: C85678
+    :id: CLI-C85494_C85678
+  :C85494.C85680:
+    :parent_identifier: C85494
+    :label: Liter per Mole
+    :preferred_term: Liter per Mole
+    :notation: L/mol
+    :result:
+    - &159
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/mol
+      :current: ''
+      :status: :updated
+    - *159
+    :identifier: C85680
+    :id: CLI-C85494_C85680
+  :C85494.C85681:
+    :parent_identifier: C85494
+    :label: Liter per Mole per Day
+    :preferred_term: Liter per Mole per Day
+    :notation: L/mol/day
+    :result:
+    - &160
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/mol/day
+      :current: ''
+      :status: :updated
+    - *160
+    :identifier: C85681
+    :id: CLI-C85494_C85681
+  :C85494.C85682:
+    :parent_identifier: C85494
+    :label: Liter per Mole per Hour
+    :preferred_term: Liter per Mole per Hour
+    :notation: L/mol/h
+    :result:
+    - &161
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/mol/h
+      :current: ''
+      :status: :updated
+    - *161
+    :identifier: C85682
+    :id: CLI-C85494_C85682
+  :C85494.C85683:
+    :parent_identifier: C85494
+    :label: Liter per Mole per Minute
+    :preferred_term: Liter per Mole per Minute
+    :notation: L/mol/min
+    :result:
+    - &162
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/mol/min
+      :current: ''
+      :status: :updated
+    - *162
+    :identifier: C85683
+    :id: CLI-C85494_C85683
+  :C85494.C85685:
+    :parent_identifier: C85494
+    :label: Liter per Nanogram per Day
+    :preferred_term: Liter per Nanogram per Day
+    :notation: L/ng/day
+    :result:
+    - &163
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/ng/day
+      :current: ''
+      :status: :updated
+    - *163
+    :identifier: C85685
+    :id: CLI-C85494_C85685
+  :C85494.C85686:
+    :parent_identifier: C85494
+    :label: Liter per Nanogram per Hour
+    :preferred_term: Liter per Nanogram per Hour
+    :notation: L/ng/h
+    :result:
+    - &164
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/ng/h
+      :current: ''
+      :status: :updated
+    - *164
+    :identifier: C85686
+    :id: CLI-C85494_C85686
+  :C85494.C85687:
+    :parent_identifier: C85494
+    :label: Liter per Nanogram per Minute
+    :preferred_term: Liter per Nanogram per Minute
+    :notation: L/ng/min
+    :result:
+    - &165
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/ng/min
+      :current: ''
+      :status: :updated
+    - *165
+    :identifier: C85687
+    :id: CLI-C85494_C85687
+  :C85494.C85689:
+    :parent_identifier: C85494
+    :label: Liter per Nanomole per Day
+    :preferred_term: Liter per Nanomole per Day
+    :notation: L/nmol/day
+    :result:
+    - &166
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/nmol/day
+      :current: ''
+      :status: :updated
+    - *166
+    :identifier: C85689
+    :id: CLI-C85494_C85689
+  :C85494.C85690:
+    :parent_identifier: C85494
+    :label: Liter per Nanomole per Hour
+    :preferred_term: Liter per Nanomole per Hour
+    :notation: L/nmol/h
+    :result:
+    - &167
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/nmol/h
+      :current: ''
+      :status: :updated
+    - *167
+    :identifier: C85690
+    :id: CLI-C85494_C85690
+  :C85494.C85691:
+    :parent_identifier: C85494
+    :label: Liter per Nanomole per Minute
+    :preferred_term: Liter per Nanomole per Minute
+    :notation: L/nmol/min
+    :result:
+    - &168
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/nmol/min
+      :current: ''
+      :status: :updated
+    - *168
+    :identifier: C85691
+    :id: CLI-C85494_C85691
+  :C85494.C85693:
+    :parent_identifier: C85494
+    :label: Liter per Picogram per Day
+    :preferred_term: Liter per Picogram per Day
+    :notation: L/pg/day
+    :result:
+    - &169
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/pg/day
+      :current: ''
+      :status: :updated
+    - *169
+    :identifier: C85693
+    :id: CLI-C85494_C85693
+  :C85494.C85694:
+    :parent_identifier: C85494
+    :label: Liter per Picogram per Hour
+    :preferred_term: Liter per Picogram per Hour
+    :notation: L/pg/h
+    :result:
+    - &170
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/pg/h
+      :current: ''
+      :status: :updated
+    - *170
+    :identifier: C85694
+    :id: CLI-C85494_C85694
+  :C85494.C85695:
+    :parent_identifier: C85494
+    :label: Liter per Picogram per Minute
+    :preferred_term: Liter per Picogram per Minute
+    :notation: L/pg/min
+    :result:
+    - &171
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: L/pg/min
+      :current: ''
+      :status: :updated
+    - *171
+    :identifier: C85695
+    :id: CLI-C85494_C85695
+  :C85494.C85716:
+    :parent_identifier: C85494
+    :label: Milliliter per Mole per Day
+    :preferred_term: Milliliter per Mole per Day
+    :notation: mL/mol/day
+    :result:
+    - &172
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: mL/mol/day
+      :current: ''
+      :status: :updated
+    - *172
+    :identifier: C85716
+    :id: CLI-C85494_C85716
+  :C85494.C85717:
+    :parent_identifier: C85494
+    :label: Milliliter per Mole per Hour
+    :preferred_term: Milliliter per Mole per Hour
+    :notation: mL/mol/h
+    :result:
+    - &173
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: mL/mol/h
+      :current: ''
+      :status: :updated
+    - *173
+    :identifier: C85717
+    :id: CLI-C85494_C85717
+  :C85494.C85718:
+    :parent_identifier: C85494
+    :label: Milliliter per Mole per Minute
+    :preferred_term: Milliliter per Mole per Minute
+    :notation: mL/mol/min
+    :result:
+    - &174
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: mL/mol/min
+      :current: ''
+      :status: :updated
+    - *174
+    :identifier: C85718
+    :id: CLI-C85494_C85718
+  :C85839.C85580:
+    :parent_identifier: C85839
+    :label: Collection Interval Midpoint
+    :preferred_term: Collection Interval Midpoint
+    :notation: MIDPTLST
+    :result:
+    - &175
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: MIDPTLST
+      :current: ERTLST
+      :status: :updated
+    - *175
+    :identifier: C85580
+    :id: CLI-C85839_C85580
+  :C85839.C85700:
+    :parent_identifier: C85839
+    :label: Mean Residence Time Last
+    :preferred_term: Mean Residence Time Last
+    :notation: MRTLST
+    :result:
+    - &176
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: MRTLST
+      :current: ''
+      :status: :updated
+    - *176
+    :identifier: C85700
+    :id: CLI-C85839_C85700
+  :C85839.C85769:
+    :parent_identifier: C85839
+    :label: Observed Mean Residence Time Infinity
+    :preferred_term: Observed Mean Residence Time Infinity
+    :notation: MRTIFO
+    :result:
+    - &177
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: MRTIFO
+      :current: ''
+      :status: :updated
+    - *177
+    :identifier: C85769
+    :id: CLI-C85839_C85769
+  :C85839.C85793:
+    :parent_identifier: C85839
+    :label: Predicted Mean Residence Time Infinity
+    :preferred_term: Predicted Mean Residence Time Infinity
+    :notation: MRTIFP
+    :result:
+    - &178
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: MRTIFP
+      :current: ''
+      :status: :updated
+    - *178
+    :identifier: C85793
+    :id: CLI-C85839_C85793
+  :C96785.C96644:
+    :parent_identifier: C96785
+    :label: Unequivocal Progression
+    :preferred_term: Unequivocal Progression
+    :notation: UPD
+    :result:
+    - &179
+      :previous: ''
+      :current: ''
+      :status: :no_change
+    - :previous: UPD
+      :current: ''
+      :status: :updated
+    - *179
+    :identifier: C96644
+    :id: CLI-C96785_C96644

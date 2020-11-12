@@ -1,0 +1,63 @@
+<%= javascript_include_tag 'shared/thesauri/managed_concepts/rank/edit_ranks' %>
+<%= javascript_tag "var rankedChildrenUrl = '#{children_ranked_thesauri_managed_concept_path(item)}',
+                        rankRemoveUrl = '#{remove_rank_thesauri_managed_concept_path(item)}',
+                        rankSaveUrl = '#{update_rank_thesauri_managed_concept_path(item)}';"%>
+
+<div class="modal fade bd-example-modal-lg edit-properties" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="rank-items-modal">
+  <div class="modal-dialog modal-lg wide-screen" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title text-normal" id="tableModalLabel">
+          <span class="icon-rank text-link" style="margin-right:10px;"></span>
+          Rank Code List Items (<%= item.identifier %>)
+        </span>
+        <button type="button" class="close" id="close-modal-button"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 table-cardstyle all-columns loading-destretch">
+
+            <%= render partial: "shared/help_dialogs/rank_help" %>
+
+            <center>
+              <button class="btn medium light" id="auto-rank-btn">Auto-Rank by order</button>
+              <span id="rank-help" class="icon-help text-small clickable text-light ttip"><span class="ttip-text text-medium shadow-small">Help</span></span>
+            </center>
+
+            <table id="rank-table" class="table" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th class="fit"><span class="text-link">Rank</span></th>
+                  <th class="fit">Identifer</th>
+                  <th class="fit">Submission Value</th>
+                  <th class="th-medium">Preferred Term</th>
+                  <th class="th-medium">Synonyms</th>
+                  <th>Definition</th>
+                  <th class="th-medium">Tag(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn medium light" id="close-modal-button">
+          Close
+        </button>
+        <button type="button" class="btn medium red ttip" id="remove-rank-button">
+          <span class="ttip-text ttip-left shadow-small text-medium">
+            Clears Rank of this Code List
+          </span>
+          <span class="icon-times text-tiny"></span>
+          Disable rank
+        </button>
+        <button class="btn medium green submit-btn" id="save-rank-button">
+          <span class="icon-ok text-tiny"></span>
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

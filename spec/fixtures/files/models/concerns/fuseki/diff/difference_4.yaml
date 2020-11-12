@@ -1,0 +1,17 @@
+---
+:owner:
+  :status: :updated
+  :previous: '12346'
+  :current: '12345'
+  :difference: |
+    <div class="diff">
+      <ul>
+        <li class="del"><del>1234<strong>6</strong></del></li>
+        <li class="ins"><ins>1234<strong>5</strong></ins></li>
+      </ul>
+    </div>
+:organization_identifier:
+  :status: :no_change
+  :previous: Hello World
+  :current: Hello World
+  :difference: <div class="diff"></div>

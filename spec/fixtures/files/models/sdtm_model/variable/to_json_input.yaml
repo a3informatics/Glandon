@@ -1,0 +1,24 @@
+---
+:type: http://www.assero.co.uk/BusinessDomain#ModelVariable
+:id: M-CDISC_SDTMMODEL_xxTPTREF
+:namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+:label: Time Point Reference
+:extension_properties: []
+:ordinal: 27
+:rule: ''
+:name: "--TPTREF"
+:prefixed: true
+:description: 'Description of the fixed reference point referred to by --ELTM, --TPTNUM,
+  and --TPT. Examples: PREVIOUS DOSE, PREVIOUS MEAL.'
+:datatype:
+  :type: http://www.assero.co.uk/BusinessDomain#VariableType
+  :id: M-CDISC_SDTMMODEL_DT_CHAR
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: Char
+  :extension_properties: []
+:classification:
+  :type: http://www.assero.co.uk/BusinessDomain#VariableClassification
+  :id: M-CDISC_SDTMMODEL_C_TIMING
+  :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
+  :label: Timing
+  :extension_properties: []

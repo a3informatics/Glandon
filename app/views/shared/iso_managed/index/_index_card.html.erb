@@ -1,0 +1,27 @@
+<div class="col-md-12 card wide">
+  <div class="card-header">
+    Index: <%= title %>
+  </div>
+  <div class="card-content">
+    <div class="half-blocks-wrap">
+
+      <div class="font-light half-block">
+        <%= yield :description %>
+      </div>
+
+      <div class="actions-wrap half-block">
+        <%= yield :actions %>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div class="table-width-wrapper" id="index-panel">
+      <%= render layout: "shared/iso_managed/index/index_panel", locals: { index_url: url, has_history_btn?: true } do %>
+        <%= yield :extra_columns %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

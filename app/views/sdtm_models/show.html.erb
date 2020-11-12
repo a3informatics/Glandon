@@ -1,0 +1,24 @@
+<% content_for :page_title do %> <%= "Show CDISC SDTM Model: #{@sdtm_model.has_identifier.identifier} (#{@sdtm_model.semantic_version})" %> <% end %>
+
+<%= javascript_pack_tag 'sdtm_models/show' %>
+
+<% third_level_breadcrumb(:sdtm_models, @sdtm_model, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @sdtm_model, badge: "icon-sdtm" } do %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div id="show-panel" class="col-md-12 card wide">
+    <div class="card-header">
+      Show: CDISC SDTM Model
+    </div>
+    <div class="card-content">
+      <%= render partial: "shared/sdtm_models/show_panel", locals: { show_url: @show_path } %>
+    </div>
+  </div>
+</div>

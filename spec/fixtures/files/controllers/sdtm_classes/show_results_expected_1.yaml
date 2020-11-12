@@ -1,0 +1,108 @@
+---
+- :uri: ''
+  :ordinal: 1
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
+  :label: Study Identifier
+  :name: STUDYID
+  :description: Unique identifier for a study.
+  :typed_as: Character
+  :classified_as: Identifier
+  :sub_classified_as: ''
+- :uri: ''
+  :ordinal: 2
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
+  :label: Domain Abbreviation
+  :name: DOMAIN
+  :description: Two-character abbreviation for the domain.
+  :typed_as: Character
+  :classified_as: Identifier
+  :sub_classified_as: ''
+- :uri: ''
+  :ordinal: 3
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
+  :label: Unique Subject Identifier
+  :name: USUBJID
+  :description: Identifier used to uniquely identify a subject across all studies
+    for all applications or submissions involving the product.
+  :typed_as: Character
+  :classified_as: Identifier
+  :sub_classified_as: ''
+- :uri: ''
+  :ordinal: 4
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
+  :label: Sequence Number
+  :name: SESEQ
+  :description: Sequence Number given to ensure uniqueness of subject records within
+    a domain. Should be assigned to be consistent chronological order.
+  :typed_as: Numeric
+  :classified_as: Identifier
+  :sub_classified_as: ''
+- :uri: ''
+  :ordinal: 5
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
+  :label: Element Code
+  :name: ETCD
+  :description: ETCD (the companion to ELEMENT) is limited to 8 characters and does
+    not have special character restrictions. These values should be short for ease
+    of use in programming, but it is not expected that ETCD will need to serve as
+    a variable name.
+  :typed_as: Character
+  :classified_as: Topic
+  :sub_classified_as: ''
+- :uri: ''
+  :ordinal: 6
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
+  :label: Description of Element
+  :name: ELEMENT
+  :description: The name of the Element. If ETCD has a value of 'UNPLAN' then ELEMENT
+    should be Null.
+  :typed_as: Character
+  :classified_as: Qualifier
+  :sub_classified_as: Synonym
+- :uri: ''
+  :ordinal: 7
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
+  :label: Start Date/Time of Element
+  :name: SESTDTC
+  :description: Start date/time for an Element for each subject.
+  :typed_as: Character
+  :classified_as: Timing
+  :sub_classified_as: ''
+- :uri: ''
+  :ordinal: 8
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
+  :label: End Date/Time of Element
+  :name: SEENDTC
+  :description: End date/time for an Element for each subject.
+  :typed_as: Character
+  :classified_as: Timing
+  :sub_classified_as: ''
+- :uri: ''
+  :ordinal: 9
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
+  :label: Planned Order of Elements within Arm
+  :name: TAETORD
+  :description: Number that gives the order of the Element within the Arm.
+  :typed_as: Numeric
+  :classified_as: Timing
+  :sub_classified_as: ''
+- :uri: ''
+  :ordinal: 10
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
+  :label: Epoch
+  :name: EPOCH
+  :description: Epoch associated with the Element in the planned sequence of Elements
+    for the ARM to which the subject was assigned
+  :typed_as: Character
+  :classified_as: Timing
+  :sub_classified_as: ''
+- :uri: ''
+  :ordinal: 11
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
+  :label: Description of Unplanned Element
+  :name: SEUPDES
+  :description: Description of what happened to the subject during this unplanned
+    Element. Used only if ETCD has the value of 'UNPLAN'.
+  :typed_as: Character
+  :classified_as: Qualifier
+  :sub_classified_as: Synonym

@@ -1,0 +1,23 @@
+@import "shared/vars.scss";
+
+#concept-tags-editor.el-loading {
+  opacity: 0.6;
+}
+
+#concept-tags-editor #tags {
+  margin: 10px;
+}
+
+.bg-label.tag {
+  border: 2px solid;
+}
+
+.bg-label.tag.removable:hover {
+  box-shadow: none !important;
+  border-color: $accent-color-2-light !important;
+}
+
+.bg-label.tag.removable:hover::after {
+  top: -12px;
+  right: -10px;
+}

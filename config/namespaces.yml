@@ -1,0 +1,35 @@
+defaults: &defaults
+  optional: &default_optional
+    isoI: "http://www.assero.co.uk/ISO11179Identification"
+    isoR: "http://www.assero.co.uk/ISO11179Registration"
+    isoC: "http://www.assero.co.uk/ISO11179Concepts"
+    isoT: "http://www.assero.co.uk/ISO11179Types"
+    th: "http://www.assero.co.uk/Thesaurus"
+    fr: "http://www.s-cubed.dk/Framework"
+    cdt: "http://www.s-cubed.dk/ComplexDatatypes"
+    pr: "http://www.assero.co.uk/Protocol"
+    en: "http://www.assero.co.uk/Enumerated"
+    bc: "http://www.assero.co.uk/BiomedicalConcept"
+    bo: "http://www.assero.co.uk/BusinessOperational"
+    ba: "http://www.assero.co.uk/Annotations"
+    bf: "http://www.assero.co.uk/BusinessForm"
+    bd: "http://www.assero.co.uk/Tabulation"
+    pr: "http://www.assero.co.uk/Protocol"
+    owl: "http://www.w3.org/2002/07/owl"
+  required: &default_required
+    rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns"
+    rdfs: "http://www.w3.org/2000/01/rdf-schema"
+    xsd: "http://www.w3.org/2001/XMLSchema"
+    skos: "http://www.w3.org/2004/02/skos/core"
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+test:
+  optional:
+    <<: *default_optional
+  required:
+    <<: *default_required

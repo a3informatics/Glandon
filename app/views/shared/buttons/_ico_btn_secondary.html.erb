@@ -1,0 +1,26 @@
+<a href="<%= url %>"
+   class="ico-btn-sec
+     <%= local_assigns.fetch :color, 'white' if !id.eql? 'timeout' %>
+     <%= "disabled" if (local_assigns.fetch :disabled, false) %>
+     <%= "token-timeout" if id.eql? "timeout" %>"
+   id="<%= id %>"
+
+   <% if !(local_assigns.fetch :toggle, '').empty? %>
+    data-toggle="<%= toggle %>"
+   <% end %>
+   <% if (local_assigns.fetch :new_tab, false) == true %>
+      target="_blank"
+   <% end %>
+>
+
+  <% if (local_assigns.fetch :no_badge, false) == true %>
+    <span class="<%= icon %> text-accent-2 text-xlarge"></span>
+    <span class="ico-btn-sec-text"><%= local_assigns.fetch :text, '' %></span>
+  <% else %>
+    <span class="circular-badge">
+      <span class="<%= icon %>"></span>
+    </span>
+    <span class="ico-btn-sec-text"><%= local_assigns.fetch :text, '' %></span>
+  <% end %>
+
+</a>

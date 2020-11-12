@@ -1,0 +1,96 @@
+<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'shared/table_select' %>
+
+<div class="modal fade bd-example-modal-lg modal-items-picker" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="items-picker-<%= id %>">
+  <div class="modal-dialog modal-lg full-screen" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <span class="modal-title text-normal text-medium" id="tableModalLabel">
+          <span class="circular-badge small bg-prim-light" style="margin-right: 6px;">
+            <span class="icon-selection text-white"></span>
+          </span>
+          Item Picker
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body font-light spinner-spread table-cardstyle table-minimal stack-bottom">
+
+        <div class="text-centered" id="items-picker-description">
+          <%= local_assigns.fetch :description, "To proceed, select one or more items." %>
+        </div>
+
+        <hr>
+
+        <%= render partial: "shared/items_picker/selection_view" %>
+
+        <br>
+
+        <div class="tabs-layout text-small" id="items-picker-tabs">
+
+          <div class="tabs-sel">
+            <div class="tab-option with-icon" id="tab-thesauri">
+              <span class="icon-terminology bg-prim-light"></span>
+              <span>Terminologies</span>
+            </div>
+            <div class="tab-option with-icon" id="tab-managed-concept">
+              <span class="icon-codelist bg-prim-bright"></span>
+              <span>Code Lists</span>
+            </div>
+            <div class="tab-option with-icon" id="tab-unmanaged-concept">
+              <span class="icon-codelist-item bg-prim-bright"></span>
+              <span>Code List Items</span>
+            </div>
+            <div class="tab-option with-icon" id="tab-biomedical-concept-instance">
+              <span class="icon-biocon bg-accent-purple"></span>
+              <span>Biomedical Concepts</span>
+            </div>
+            <div class="tab-option with-icon" id="tab-biomedical-concept-template">
+              <span class="icon-biocon-template bg-accent-purple-light"></span>
+              <span>Biomedical Concept Templates</span>
+            </div>
+            <div class="tab-option with-icon" id="tab-form">
+              <span class="icon-forms bg-accent-aqua"></span>
+              <span>Forms</span>
+            </div>
+          </div>
+
+          <div class="tab-wrap closed" data-tab="tab-thesauri" id="selector-thesauri">
+            <%= render partial: "shared/items_picker/managed_item_selector" %>
+          </div>
+          <div class="tab-wrap closed" data-tab="tab-managed-concept" id="selector-managed-concept">
+            <%= render partial: "shared/items_picker/managed_item_selector", locals:
+                  { extra_index_columns: [ {name: "Submission Value", css_class: ""} ] } %>
+          </div>
+          <div class="tab-wrap closed" data-tab="tab-unmanaged-concept" id="selector-unmanaged-concept">
+            <%= render partial: "shared/items_picker/unmanaged_item_selector", locals:
+                  { extra_index_columns: [ {name: "Submission Value", css_class: ""} ] } %>
+          </div>
+          <div class="tab-wrap closed" data-tab="tab-biomedical-concept-instance" id="selector-biomedical-concept-instance">
+            <%= render partial: "shared/items_picker/managed_item_selector" %>
+          </div>
+          <div class="tab-wrap closed" data-tab="tab-biomedical-concept-template" id="selector-biomedical-concept-template">
+            <%= render partial: "shared/items_picker/managed_item_selector" %>
+          </div>
+          <div class="tab-wrap closed" data-tab="tab-form" id="selector-form">
+            <%= render partial: "shared/items_picker/managed_item_selector" %>
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn medium light" id="items-picker-close" data-dismiss="modal" aria-label="Close">Close</button>
+        <button type="button" class="btn medium green disabled" id="items-picker-submit">Submit and proceed</button>
+      </div>
+
+      <%= render partial: "shared/js_urls" %>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<% content_for :page_title do %> History: <%= @identifier %> <% end %>
+
+<%= javascript_pack_tag 'sdtm_igs/history' %>
+
+<% second_level_breadcrumb(:sdtm_igs, @scope_id, @identifier) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_item_simple", :locals => { badge: "icon-sdtm", item: @item, header_title: "Item History" } do %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <%= render partial: "shared/iso_managed/history/history_card", locals: {
+        identifier: @identifier, url: history_sdtm_igs_path({sdtm_ig: {identifier: @identifier, scope_id: @scope_id}}) } %>
+</div>

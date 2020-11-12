@@ -1,0 +1,974 @@
+---
+- :uri: http://www.cdisc.org/C74457/V10#C74457
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU3L1YxMCNDNzQ0NTc=
+  :identifier: C74457
+  :version: '10'
+  :semantic_version: ''
+  :label: Race
+  :version_label: 2008-09-24 Release
+- :uri: http://www.cdisc.org/C74559/V10#C74559
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTU5L1YxMCNDNzQ1NTk=
+  :identifier: C74559
+  :version: '10'
+  :semantic_version: ''
+  :label: Subject Characteristic Code
+  :version_label: 2008-09-24 Release
+- :uri: http://www.cdisc.org/C76348/V10#C76348
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzQ4L1YxMCNDNzYzNDg=
+  :identifier: C76348
+  :version: '10'
+  :semantic_version: ''
+  :label: Marital Status
+  :version_label: 2008-09-24 Release
+- :uri: http://www.cdisc.org/C76351/V10#C76351
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTE=
+  :identifier: C76351
+  :version: '10'
+  :semantic_version: ''
+  :label: Skin Classification
+  :version_label: 2008-09-24 Release
+- :uri: http://www.cdisc.org/CT/V10#TH
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjEwI1RI
+  :identifier: CT
+  :version: '10'
+  :semantic_version: ''
+  :label: Controlled Terminology
+  :version_label: 2008-09-24 Release
+- :uri: http://www.cdisc.org/C25188/V9#C25188
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1MTg4L1Y5I0MyNTE4OA==
+  :identifier: C25188
+  :version: '9'
+  :semantic_version: ''
+  :label: Marital Status
+  :version_label: 2008-09-22 Release
+- :uri: http://www.cdisc.org/C66727/V9#C66727
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y5I0M2NjcyNw==
+  :identifier: C66727
+  :version: '9'
+  :semantic_version: ''
+  :label: Completion/Reason for Non-Completion
+  :version_label: 2008-09-22 Release
+- :uri: http://www.cdisc.org/C66737/V9#C66737
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y5I0M2NjczNw==
+  :identifier: C66737
+  :version: '9'
+  :semantic_version: ''
+  :label: Trial Phase
+  :version_label: 2008-09-22 Release
+- :uri: http://www.cdisc.org/C71620/V9#C71620
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y5I0M3MTYyMA==
+  :identifier: C71620
+  :version: '9'
+  :semantic_version: ''
+  :label: Unit
+  :version_label: 2008-09-22 Release
+- :uri: http://www.cdisc.org/CT/V9#TH
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjkjVEg=
+  :identifier: CT
+  :version: '9'
+  :semantic_version: ''
+  :label: Controlled Terminology
+  :version_label: 2008-09-22 Release
+- :uri: http://www.cdisc.org/C65047/V8#C65047
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1Y4I0M2NTA0Nw==
+  :identifier: C65047
+  :version: '8'
+  :semantic_version: ''
+  :label: Laboratory Test Code
+  :version_label: 2008-08-26 Release
+- :uri: http://www.cdisc.org/C66726/V8#C66726
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y4I0M2NjcyNg==
+  :identifier: C66726
+  :version: '8'
+  :semantic_version: ''
+  :label: Pharmaceutical Dosage Form
+  :version_label: 2008-08-26 Release
+- :uri: http://www.cdisc.org/C66727/V8#C66727
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y4I0M2NjcyNw==
+  :identifier: C66727
+  :version: '8'
+  :semantic_version: ''
+  :label: Completion/Reason for Non-Completion
+  :version_label: 2008-08-26 Release
+- :uri: http://www.cdisc.org/C66737/V8#C66737
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y4I0M2NjczNw==
+  :identifier: C66737
+  :version: '8'
+  :semantic_version: ''
+  :label: Trial Phase
+  :version_label: 2008-08-26 Release
+- :uri: http://www.cdisc.org/C67154/V8#C67154
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y4I0M2NzE1NA==
+  :identifier: C67154
+  :version: '8'
+  :semantic_version: ''
+  :label: Laboratory Test Name
+  :version_label: 2008-08-26 Release
+- :uri: http://www.cdisc.org/C74456/V8#C74456
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU2L1Y4I0M3NDQ1Ng==
+  :identifier: C74456
+  :version: '8'
+  :semantic_version: ''
+  :label: Anatomical Location
+  :version_label: 2008-08-26 Release
+- :uri: http://www.cdisc.org/C74558/V8#C74558
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTU4L1Y4I0M3NDU1OA==
+  :identifier: C74558
+  :version: '8'
+  :semantic_version: ''
+  :label: Category for Disposition Event
+  :version_label: 2008-08-26 Release
+- :uri: http://www.cdisc.org/C74559/V8#C74559
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTU5L1Y4I0M3NDU1OQ==
+  :identifier: C74559
+  :version: '8'
+  :semantic_version: ''
+  :label: Subject Characteristic Code
+  :version_label: 2008-08-26 Release
+- :uri: http://www.cdisc.org/C74560/V8#C74560
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTYwL1Y4I0M3NDU2MA==
+  :identifier: C74560
+  :version: '8'
+  :semantic_version: ''
+  :label: Skin Classification
+  :version_label: 2008-08-26 Release
+- :uri: http://www.cdisc.org/C74561/V8#C74561
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTYxL1Y4I0M3NDU2MQ==
+  :identifier: C74561
+  :version: '8'
+  :semantic_version: ''
+  :label: Skin Type
+  :version_label: 2008-08-26 Release
+- :uri: http://www.cdisc.org/CT/V8#TH
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjgjVEg=
+  :identifier: CT
+  :version: '8'
+  :semantic_version: ''
+  :label: Controlled Terminology
+  :version_label: 2008-08-26 Release
+- :uri: http://www.cdisc.org/C71148/V7#C71148
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y3I0M3MTE0OA==
+  :identifier: C71148
+  :version: '7'
+  :semantic_version: ''
+  :label: Position
+  :version_label: 2008-01-25 Release
+- :uri: http://www.cdisc.org/CT/V7#TH
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjcjVEg=
+  :identifier: CT
+  :version: '7'
+  :semantic_version: ''
+  :label: Controlled Terminology
+  :version_label: 2008-01-25 Release
+- :uri: http://www.cdisc.org/C71113/V6#C71113
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1Y2I0M3MTExMw==
+  :identifier: C71113
+  :version: '6'
+  :semantic_version: ''
+  :label: Frequency
+  :version_label: 2008-01-15 Release
+- :uri: http://www.cdisc.org/C71148/V6#C71148
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OA==
+  :identifier: C71148
+  :version: '6'
+  :semantic_version: ''
+  :label: Position
+  :version_label: 2008-01-15 Release
+- :uri: http://www.cdisc.org/C71150/V6#C71150
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUwL1Y2I0M3MTE1MA==
+  :identifier: C71150
+  :version: '6'
+  :semantic_version: ''
+  :label: ECG Result
+  :version_label: 2008-01-15 Release
+- :uri: http://www.cdisc.org/C71151/V6#C71151
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUxL1Y2I0M3MTE1MQ==
+  :identifier: C71151
+  :version: '6'
+  :semantic_version: ''
+  :label: ECG Test Method
+  :version_label: 2008-01-15 Release
+- :uri: http://www.cdisc.org/C71152/V6#C71152
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y2I0M3MTE1Mg==
+  :identifier: C71152
+  :version: '6'
+  :semantic_version: ''
+  :label: ECG Test Name
+  :version_label: 2008-01-15 Release
+- :uri: http://www.cdisc.org/C71153/V6#C71153
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUzL1Y2I0M3MTE1Mw==
+  :identifier: C71153
+  :version: '6'
+  :semantic_version: ''
+  :label: ECG Test Code
+  :version_label: 2008-01-15 Release
+- :uri: http://www.cdisc.org/C71620/V6#C71620
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMA==
+  :identifier: C71620
+  :version: '6'
+  :semantic_version: ''
+  :label: Unit
+  :version_label: 2008-01-15 Release
+- :uri: http://www.cdisc.org/CT/V6#TH
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjYjVEg=
+  :identifier: CT
+  :version: '6'
+  :semantic_version: ''
+  :label: Controlled Terminology
+  :version_label: 2008-01-15 Release
+- :uri: http://www.cdisc.org/C66738/V5#C66738
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM4L1Y1I0M2NjczOA==
+  :identifier: C66738
+  :version: '5'
+  :semantic_version: ''
+  :label: Trial Summary Parameter Test Code
+  :version_label: 2007-06-05 Release
+- :uri: http://www.cdisc.org/CT/V5#TH
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjUjVEg=
+  :identifier: CT
+  :version: '5'
+  :semantic_version: ''
+  :label: Controlled Terminology
+  :version_label: 2007-06-05 Release
+- :uri: http://www.cdisc.org/C65047/V4#C65047
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1Y0I0M2NTA0Nw==
+  :identifier: C65047
+  :version: '4'
+  :semantic_version: ''
+  :label: Laboratory Test Code
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66726/V4#C66726
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNg==
+  :identifier: C66726
+  :version: '4'
+  :semantic_version: ''
+  :label: Pharmaceutical Dosage Form
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66727/V4#C66727
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyNw==
+  :identifier: C66727
+  :version: '4'
+  :semantic_version: ''
+  :label: Completion/Reason for Non-Completion
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66728/V4#C66728
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==
+  :identifier: C66728
+  :version: '4'
+  :semantic_version: ''
+  :label: Relation to Reference Period
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66729/V4#C66729
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI5L1Y0I0M2NjcyOQ==
+  :identifier: C66729
+  :version: '4'
+  :semantic_version: ''
+  :label: Route of Administration
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66731/V4#C66731
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMxL1Y0I0M2NjczMQ==
+  :identifier: C66731
+  :version: '4'
+  :semantic_version: ''
+  :label: Sex
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66732/V4#C66732
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMyL1Y0I0M2NjczMg==
+  :identifier: C66732
+  :version: '4'
+  :semantic_version: ''
+  :label: Sex of Participants
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66733/V4#C66733
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMzL1Y0I0M2NjczMw==
+  :identifier: C66733
+  :version: '4'
+  :semantic_version: ''
+  :label: Size
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66734/V4#C66734
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM0L1Y0I0M2NjczNA==
+  :identifier: C66734
+  :version: '4'
+  :semantic_version: ''
+  :label: Domain Abbreviation
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66735/V4#C66735
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM1L1Y0I0M2NjczNQ==
+  :identifier: C66735
+  :version: '4'
+  :semantic_version: ''
+  :label: Trial Blinding Schema
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66736/V4#C66736
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM2L1Y0I0M2NjczNg==
+  :identifier: C66736
+  :version: '4'
+  :semantic_version: ''
+  :label: Trial Indication Type
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66737/V4#C66737
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y0I0M2NjczNw==
+  :identifier: C66737
+  :version: '4'
+  :semantic_version: ''
+  :label: Trial Phase
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66738/V4#C66738
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM4L1Y0I0M2NjczOA==
+  :identifier: C66738
+  :version: '4'
+  :semantic_version: ''
+  :label: Trial Summary Parameter Test Code
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66739/V4#C66739
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM5L1Y0I0M2NjczOQ==
+  :identifier: C66739
+  :version: '4'
+  :semantic_version: ''
+  :label: Trial Type
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66741/V4#C66741
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MQ==
+  :identifier: C66741
+  :version: '4'
+  :semantic_version: ''
+  :label: Vital Signs Test Code
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66742/V4#C66742
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+  :identifier: C66742
+  :version: '4'
+  :semantic_version: ''
+  :label: No Yes Response
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66767/V4#C66767
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2Nw==
+  :identifier: C66767
+  :version: '4'
+  :semantic_version: ''
+  :label: Action Taken with Study Treatment
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66768/V4#C66768
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1Y0I0M2Njc2OA==
+  :identifier: C66768
+  :version: '4'
+  :semantic_version: ''
+  :label: Outcome of Event
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66769/V4#C66769
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY5L1Y0I0M2Njc2OQ==
+  :identifier: C66769
+  :version: '4'
+  :semantic_version: ''
+  :label: Severity/Intensity Scale for Adverse Events
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66770/V4#C66770
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0I0M2Njc3MA==
+  :identifier: C66770
+  :version: '4'
+  :semantic_version: ''
+  :label: Units for Vital Signs Results
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66780/V4#C66780
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MA==
+  :identifier: C66780
+  :version: '4'
+  :semantic_version: ''
+  :label: Age Span
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66781/V4#C66781
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MQ==
+  :identifier: C66781
+  :version: '4'
+  :semantic_version: ''
+  :label: Age Unit
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66783/V4#C66783
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgzL1Y0I0M2Njc4Mw==
+  :identifier: C66783
+  :version: '4'
+  :semantic_version: ''
+  :label: CDISC System Organ Class
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66784/V4#C66784
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg0L1Y0I0M2Njc4NA==
+  :identifier: C66784
+  :version: '4'
+  :semantic_version: ''
+  :label: Common Terminology Criteria for Adverse Events
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66785/V4#C66785
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg1L1Y0I0M2Njc4NQ==
+  :identifier: C66785
+  :version: '4'
+  :semantic_version: ''
+  :label: Control Type
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66786/V4#C66786
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg2L1Y0I0M2Njc4Ng==
+  :identifier: C66786
+  :version: '4'
+  :semantic_version: ''
+  :label: Country
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66787/V4#C66787
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg3L1Y0I0M2Njc4Nw==
+  :identifier: C66787
+  :version: '4'
+  :semantic_version: ''
+  :label: Diagnosis Group
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66788/V4#C66788
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y0I0M2Njc4OA==
+  :identifier: C66788
+  :version: '4'
+  :semantic_version: ''
+  :label: Dictionary Name
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66789/V4#C66789
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1Y0I0M2Njc4OQ==
+  :identifier: C66789
+  :version: '4'
+  :semantic_version: ''
+  :label: Not Done
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66790/V4#C66790
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1Y0I0M2Njc5MA==
+  :identifier: C66790
+  :version: '4'
+  :semantic_version: ''
+  :label: Patient Ethnic Group
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66797/V4#C66797
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzk3L1Y0I0M2Njc5Nw==
+  :identifier: C66797
+  :version: '4'
+  :semantic_version: ''
+  :label: Category for Inclusion/Exclusion
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C67152/V4#C67152
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y0I0M2NzE1Mg==
+  :identifier: C67152
+  :version: '4'
+  :semantic_version: ''
+  :label: Trial Summary Parameter Test Name
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C67153/V4#C67153
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUzL1Y0I0M2NzE1Mw==
+  :identifier: C67153
+  :version: '4'
+  :semantic_version: ''
+  :label: Vital Signs Test Name
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C67154/V4#C67154
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y0I0M2NzE1NA==
+  :identifier: C67154
+  :version: '4'
+  :semantic_version: ''
+  :label: Laboratory Test Name
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/CT/V4#TH
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjQjVEg=
+  :identifier: CT
+  :version: '4'
+  :semantic_version: ''
+  :label: Controlled Terminology
+  :version_label: 2007-05-31 Release
+- :uri: http://www.cdisc.org/C66737/V3#C66737
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1YzI0M2NjczNw==
+  :identifier: C66737
+  :version: '3'
+  :semantic_version: ''
+  :label: Trial Phase
+  :version_label: 2007-04-26 Release
+- :uri: http://www.cdisc.org/C66785/V3#C66785
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg1L1YzI0M2Njc4NQ==
+  :identifier: C66785
+  :version: '3'
+  :semantic_version: ''
+  :label: Control Type
+  :version_label: 2007-04-26 Release
+- :uri: http://www.cdisc.org/CT/V3#TH
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjMjVEg=
+  :identifier: CT
+  :version: '3'
+  :semantic_version: ''
+  :label: Controlled Terminology
+  :version_label: 2007-04-26 Release
+- :uri: http://www.cdisc.org/C49647/V2#C49647
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjQ3L1YyI0M0OTY0Nw==
+  :identifier: C49647
+  :version: '2'
+  :semantic_version: ''
+  :label: Control Type
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C65047/V2#C65047
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyI0M2NTA0Nw==
+  :identifier: C65047
+  :version: '2'
+  :semantic_version: ''
+  :label: Laboratory Test Code
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66726/V2#C66726
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1YyI0M2NjcyNg==
+  :identifier: C66726
+  :version: '2'
+  :semantic_version: ''
+  :label: Pharmaceutical Dosage Form
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66727/V2#C66727
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1YyI0M2NjcyNw==
+  :identifier: C66727
+  :version: '2'
+  :semantic_version: ''
+  :label: Completion/Reason for Non-Completion
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66728/V2#C66728
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1YyI0M2NjcyOA==
+  :identifier: C66728
+  :version: '2'
+  :semantic_version: ''
+  :label: Relation to Reference Period
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66729/V2#C66729
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI5L1YyI0M2NjcyOQ==
+  :identifier: C66729
+  :version: '2'
+  :semantic_version: ''
+  :label: Route of Administration
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66731/V2#C66731
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMxL1YyI0M2NjczMQ==
+  :identifier: C66731
+  :version: '2'
+  :semantic_version: ''
+  :label: Sex
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66732/V2#C66732
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMyL1YyI0M2NjczMg==
+  :identifier: C66732
+  :version: '2'
+  :semantic_version: ''
+  :label: Sex of Participants
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66733/V2#C66733
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMzL1YyI0M2NjczMw==
+  :identifier: C66733
+  :version: '2'
+  :semantic_version: ''
+  :label: Size
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66734/V2#C66734
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM0L1YyI0M2NjczNA==
+  :identifier: C66734
+  :version: '2'
+  :semantic_version: ''
+  :label: Domain Abbreviation
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66735/V2#C66735
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM1L1YyI0M2NjczNQ==
+  :identifier: C66735
+  :version: '2'
+  :semantic_version: ''
+  :label: Trial Blinding Schema
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66736/V2#C66736
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM2L1YyI0M2NjczNg==
+  :identifier: C66736
+  :version: '2'
+  :semantic_version: ''
+  :label: Trial Indication Type
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66737/V2#C66737
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1YyI0M2NjczNw==
+  :identifier: C66737
+  :version: '2'
+  :semantic_version: ''
+  :label: Trial Phase
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66738/V2#C66738
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM4L1YyI0M2NjczOA==
+  :identifier: C66738
+  :version: '2'
+  :semantic_version: ''
+  :label: Trial Summary Parameter Test Code
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66739/V2#C66739
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM5L1YyI0M2NjczOQ==
+  :identifier: C66739
+  :version: '2'
+  :semantic_version: ''
+  :label: Trial Type
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66741/V2#C66741
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1YyI0M2Njc0MQ==
+  :identifier: C66741
+  :version: '2'
+  :semantic_version: ''
+  :label: Vital Signs Test Code
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66742/V2#C66742
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1YyI0M2Njc0Mg==
+  :identifier: C66742
+  :version: '2'
+  :semantic_version: ''
+  :label: No Yes Response
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66767/V2#C66767
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1YyI0M2Njc2Nw==
+  :identifier: C66767
+  :version: '2'
+  :semantic_version: ''
+  :label: Action Taken with Study Treatment
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66768/V2#C66768
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1YyI0M2Njc2OA==
+  :identifier: C66768
+  :version: '2'
+  :semantic_version: ''
+  :label: Outcome of Event
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66769/V2#C66769
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY5L1YyI0M2Njc2OQ==
+  :identifier: C66769
+  :version: '2'
+  :semantic_version: ''
+  :label: Severity/Intensity Scale for Adverse Events
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66770/V2#C66770
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YyI0M2Njc3MA==
+  :identifier: C66770
+  :version: '2'
+  :semantic_version: ''
+  :label: Units for Vital Signs Results
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66780/V2#C66780
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI0M2Njc4MA==
+  :identifier: C66780
+  :version: '2'
+  :semantic_version: ''
+  :label: Age Span
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66781/V2#C66781
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ==
+  :identifier: C66781
+  :version: '2'
+  :semantic_version: ''
+  :label: Age Unit
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66783/V2#C66783
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgzL1YyI0M2Njc4Mw==
+  :identifier: C66783
+  :version: '2'
+  :semantic_version: ''
+  :label: CDISC System Organ Class
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66784/V2#C66784
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg0L1YyI0M2Njc4NA==
+  :identifier: C66784
+  :version: '2'
+  :semantic_version: ''
+  :label: Common Terminology Criteria for Adverse Events
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66786/V2#C66786
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg2L1YyI0M2Njc4Ng==
+  :identifier: C66786
+  :version: '2'
+  :semantic_version: ''
+  :label: Country
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66787/V2#C66787
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg3L1YyI0M2Njc4Nw==
+  :identifier: C66787
+  :version: '2'
+  :semantic_version: ''
+  :label: Diagnosis Group
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66788/V2#C66788
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1YyI0M2Njc4OA==
+  :identifier: C66788
+  :version: '2'
+  :semantic_version: ''
+  :label: Dictionary Name
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66789/V2#C66789
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YyI0M2Njc4OQ==
+  :identifier: C66789
+  :version: '2'
+  :semantic_version: ''
+  :label: Not Done
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66790/V2#C66790
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1YyI0M2Njc5MA==
+  :identifier: C66790
+  :version: '2'
+  :semantic_version: ''
+  :label: Patient Ethnic Group
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C66797/V2#C66797
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzk3L1YyI0M2Njc5Nw==
+  :identifier: C66797
+  :version: '2'
+  :semantic_version: ''
+  :label: Category for Inclusion/Exclusion
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C67152/V2#C67152
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1YyI0M2NzE1Mg==
+  :identifier: C67152
+  :version: '2'
+  :semantic_version: ''
+  :label: Trial Summary Parameter Test Name
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C67153/V2#C67153
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUzL1YyI0M2NzE1Mw==
+  :identifier: C67153
+  :version: '2'
+  :semantic_version: ''
+  :label: Vital Signs Test Name
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C67154/V2#C67154
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YyI0M2NzE1NA==
+  :identifier: C67154
+  :version: '2'
+  :semantic_version: ''
+  :label: Laboratory Test Name
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/CT/V2#TH
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjIjVEg=
+  :identifier: CT
+  :version: '2'
+  :semantic_version: ''
+  :label: Controlled Terminology
+  :version_label: 2007-04-20 Release
+- :uri: http://www.cdisc.org/C16564/V1#C16564
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzE2NTY0L1YxI0MxNjU2NA==
+  :identifier: C16564
+  :version: '1'
+  :semantic_version: ''
+  :label: Patient Ethnic Group
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C16960/V1#C16960
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzE2OTYwL1YxI0MxNjk2MA==
+  :identifier: C16960
+  :version: '1'
+  :semantic_version: ''
+  :label: Patient Ethnic Group
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C20587/V1#C20587
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzIwNTg3L1YxI0MyMDU4Nw==
+  :identifier: C20587
+  :version: '1'
+  :semantic_version: ''
+  :label: Age Group
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C25464/V1#C25464
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NDY0L1YxI0MyNTQ2NA==
+  :identifier: C25464
+  :version: '1'
+  :semantic_version: ''
+  :label: Country
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C25681/V1#C25681
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MQ==
+  :identifier: C25681
+  :version: '1'
+  :semantic_version: ''
+  :label: Size
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C28421/V1#C28421
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI4NDIxL1YxI0MyODQyMQ==
+  :identifier: C28421
+  :version: '1'
+  :semantic_version: ''
+  :label: Sex
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C38114/V1#C38114
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzM4MTE0L1YxI0MzODExNA==
+  :identifier: C38114
+  :version: '1'
+  :semantic_version: ''
+  :label: Route of Administration
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C42636/V1#C42636
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQyNjM2L1YxI0M0MjYzNg==
+  :identifier: C42636
+  :version: '1'
+  :semantic_version: ''
+  :label: Pharmaceutical Dosage Form
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C48281/V1#C48281
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ4MjgxL1YxI0M0ODI4MQ==
+  :identifier: C48281
+  :version: '1'
+  :semantic_version: ''
+  :label: Trial Phase
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49480/V1#C49480
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDgwL1YxI0M0OTQ4MA==
+  :identifier: C49480
+  :version: '1'
+  :semantic_version: ''
+  :label: Category for Inclusion and or Exclusion
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49484/V1#C49484
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDg0L1YxI0M0OTQ4NA==
+  :identifier: C49484
+  :version: '1'
+  :semantic_version: ''
+  :label: Not Done
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49486/V1#C49486
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDg2L1YxI0M0OTQ4Ng==
+  :identifier: C49486
+  :version: '1'
+  :semantic_version: ''
+  :label: Yes, No, Unknown, or Not Applicable Response
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49489/V1#C49489
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDg5L1YxI0M0OTQ4OQ==
+  :identifier: C49489
+  :version: '1'
+  :semantic_version: ''
+  :label: Adverse Event Outcome
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49499/V1#C49499
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDk5L1YxI0M0OTQ5OQ==
+  :identifier: C49499
+  :version: '1'
+  :semantic_version: ''
+  :label: Action Taken with Study Treatment
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49558/V1#C49558
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NTU4L1YxI0M0OTU1OA==
+  :identifier: C49558
+  :version: '1'
+  :semantic_version: ''
+  :label: Submission Domain Abbreviation
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49627/V1#C49627
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjI3L1YxI0M0OTYyNw==
+  :identifier: C49627
+  :version: '1'
+  :semantic_version: ''
+  :label: Reason for Non-Completion
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49638/V1#C49638
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjM4L1YxI0M0OTYzOA==
+  :identifier: C49638
+  :version: '1'
+  :semantic_version: ''
+  :label: Relation to Reference Period
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49647/V1#C49647
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjQ3L1YxI0M0OTY0Nw==
+  :identifier: C49647
+  :version: '1'
+  :semantic_version: ''
+  :label: Control Type
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49650/V1#C49650
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjUwL1YxI0M0OTY1MA==
+  :identifier: C49650
+  :version: '1'
+  :semantic_version: ''
+  :label: Diagnosis Group
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49652/V1#C49652
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjUyL1YxI0M0OTY1Mg==
+  :identifier: C49652
+  :version: '1'
+  :semantic_version: ''
+  :label: Trial Indication Type
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49658/V1#C49658
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjU4L1YxI0M0OTY1OA==
+  :identifier: C49658
+  :version: '1'
+  :semantic_version: ''
+  :label: Trial Blinding Schema
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49660/V1#C49660
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjYwL1YxI0M0OTY2MA==
+  :identifier: C49660
+  :version: '1'
+  :semantic_version: ''
+  :label: Trial Type
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49672/V1#C49672
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjcyL1YxI0M0OTY3Mg==
+  :identifier: C49672
+  :version: '1'
+  :semantic_version: ''
+  :label: Vital Signs
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49675/V1#C49675
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5Njc1L1YxI0M0OTY3NQ==
+  :identifier: C49675
+  :version: '1'
+  :semantic_version: ''
+  :label: Units for Vital Signs Results
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49691/V1#C49691
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjkxL1YxI0M0OTY5MQ==
+  :identifier: C49691
+  :version: '1'
+  :semantic_version: ''
+  :label: Trial Summary Parameter
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49696/V1#C49696
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5Njk2L1YxI0M0OTY5Ng==
+  :identifier: C49696
+  :version: '1'
+  :semantic_version: ''
+  :label: Sex of Study Group
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49704/V1#C49704
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NzA0L1YxI0M0OTcwNA==
+  :identifier: C49704
+  :version: '1'
+  :semantic_version: ''
+  :label: Common Terminology Criteria for Adverse Events
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C49705/V1#C49705
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NzA1L1YxI0M0OTcwNQ==
+  :identifier: C49705
+  :version: '1'
+  :semantic_version: ''
+  :label: Severity/Intensity Scale for Adverse Events
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C50399/V1#C50399
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzUwMzk5L1YxI0M1MDM5OQ==
+  :identifier: C50399
+  :version: '1'
+  :semantic_version: ''
+  :label: Dictionary Name
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C50400/V1#C50400
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzUwNDAwL1YxI0M1MDQwMA==
+  :identifier: C50400
+  :version: '1'
+  :semantic_version: ''
+  :label: Age Unit
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C64388/V1#C64388
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY0Mzg4L1YxI0M2NDM4OA==
+  :identifier: C64388
+  :version: '1'
+  :semantic_version: ''
+  :label: CDISC System Organ Class
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/C65047/V1#C65047
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YxI0M2NTA0Nw==
+  :identifier: C65047
+  :version: '1'
+  :semantic_version: ''
+  :label: CDISC SDTM Laboratory Test Terminology
+  :version_label: 2007-03-06 Release
+- :uri: http://www.cdisc.org/CT/V1#TH
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjEjVEg=
+  :identifier: CT
+  :version: '1'
+  :semantic_version: ''
+  :label: Controlled Terminology
+  :version_label: 2007-03-06 Release

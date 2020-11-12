@@ -1,0 +1,14 @@
+PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> rdf:type isoI:ScopedIdentifier . 
+<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:identifier "TEST3"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:versionLabel "0.4"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:version "4"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:semanticVersion ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:hasScope <http://www.assero.co.uk/NS#BBB> . 
+}

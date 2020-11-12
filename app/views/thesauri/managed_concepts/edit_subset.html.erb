@@ -1,0 +1,57 @@
+<% content_for :page_title do %> <%= "Edit Subset: #{@subset_mc.notation} (#{@subset_mc.has_identifier.identifier})" %> <% end %>
+
+<%= javascript_pack_tag 'thesauri/managed_concepts/subsets/edit' %>
+
+<%= stylesheet_link_tag 'shared/table_select_simple', 'shared/layouts/tabs_layout' %>
+
+<%= javascript_tag "let timerTokenId = '#{@token.id}',
+                        timerWarning = '#{current_user.edit_lock_warning}';"%>
+
+<% third_level_breadcrumb(:thesauri, @subset_mc, history_thesauri_index_path({thesauri: {identifier: @subset_mc.scoped_identifier, scope_id: @subset_mc.scope.id}})) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_codelist", :locals => { item: @subset_mc, context: @ct, badge: "CL" } do %>
+
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+      <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
+
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#edit-properties-modal", id: "edit-properties",
+          icon: "icon-edit", text: "Edit properties", toggle: "modal" } %>
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags",
+          icon: "icon-tag", text: "Edit tags", new_tab: true } %>
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-notes-modal", id: "change-notes-button",
+          icon: "icon-note", text: "Change notes", toggle: "modal" } %>
+
+        <% if @subset_mc.ranked? %>
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#rank-items-modal", id: "edit-ranks-button",
+            icon: "icon-rank", text: "Edit ranks", toggle: "modal" } %>
+        <% else %>
+          <%= render partial: "shared/thesauri/managed_concepts/rank/enable_rank", :locals => { item: @subset_mc } %>
+        <% end %>
+
+      <% end %>
+    </div>
+
+  <% end %>
+
+</div>
+
+<div class="row">
+  <div class="col-md-12 card">
+    <div class="card-header">
+      Subset Editor
+    </div>
+    <div class="card-content">
+      <%= render partial: "shared/thesauri/managed_concepts/subsets/editor", :locals => {
+          subset: @subset, source: @source_mc } %>
+    </div>
+  </div>
+</div>
+
+
+<%= render partial: "shared/thesauri/managed_concepts/edit/edit_properties", :locals => { item: @subset_mc } %>
+<%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @subset_mc.identifier, item_id: @subset_mc.id, item_notes_url: change_notes_iso_concept_path(@subset_mc.id)} %>
+<%= render partial: "shared/thesauri/managed_concepts/rank/edit_ranks", :locals => {item: @subset_mc} %>

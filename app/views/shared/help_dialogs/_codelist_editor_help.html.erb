@@ -1,0 +1,22 @@
+<%= render layout: "shared/information_dialog", :locals => {id: "information-dialog-cl-edit", title: title, wide: true} do %>
+  Click on <button class="btn btn-xs white">Refresh</button> to reload the data in the table. <br/>
+  To create a <span class="font-regular">new</span> Code List Item in this Code List, click on <button class="btn btn-xs green">New Item</button>. <br/>
+  Click on <button class="btn btn-xs white">Add items</button> to find and <span class="font-regular">add existing</span> Code List Items from other Code Lists in the system.<br/>
+  To remove a Code List Item from the Code List, click on <span class="icon-times-circle text-accent-2"></span>. <br/>
+  (<i>This will remove the item from the system if the Code List is its only parent. Otherwise the item will be unlinked from the Code List.</i>)
+  <hr>
+  Color indicators: <br/>
+  <span class="circular-badge tiny bg-prim-medium"></span> - Item is owned and can be edited. <br/>
+  <span class="circular-badge tiny bg-accent-1"></span> - Item is owned by CDISC and cannot be edited. <br/>
+  <span class="circular-badge tiny bg-grey-light"></span> - Item is owned by sponsor, but is referenced from another Code List. It can only be edited from its native parent. <br/>
+
+  When hovering mouse over a cell and the <span class="icon-edit text-prim-light"></span> icon appears, that means the field is <span class="font-regular">inline editable</span>.
+  <br/><br/>
+
+  <%= render "shared/help_dialogs/shared/text_edit_help" %>
+
+  Items with editable Tags are marked with <span class="icon-long-arrow text-prim-light" style="display: inline-block; transform: rotate(45deg)"></span> when hovered over. <br>
+  To Edit tags of an item, click on its Tags cell (<i>keyboard navigation cannot be used</i>).
+  A new window will be opened. Edit the tags, close the window and use the <button class="btn white btn-xs">Refresh</button> button to see the changes you made.
+  <br/><br/>
+<% end %>

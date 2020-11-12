@@ -1,0 +1,76 @@
+@prefix : <http://www.assero.co.uk/CSN#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/CSN>
+	rdf:type owl:Ontology ;
+.
+:a96ec501-7cc2-4ce1-b318-f646a44f6964
+	rdf:type isoC:ConceptSystem ;
+	isoC:prefLabel "Tags"^^xsd:string ;
+	isoC:description "Root node for all tags"^^xsd:string ;
+	isoC:isTopConcept :2e6db59f-83fe-4bf3-aeb9-ca41b3dc1a36 ;
+.
+:2e6db59f-83fe-4bf3-aeb9-ca41b3dc1a36
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "CDISC"^^xsd:string ;
+	isoC:description "CDISC related tags"^^xsd:string ;
+	isoC:narrower :84dae964-eed2-4dc0-a38f-40b9dd982ee9 ;
+	isoC:narrower :beb85d2a-64bb-4b46-89bf-1473fbde57e6 ;
+	isoC:narrower :d63a1afc-ee9f-46b8-9168-9a300a714ac9 ;
+	isoC:narrower :ceffdc40-7e0c-44df-a67f-5b5fff9e52f3 ;
+	isoC:narrower :619d63e1-23c0-4424-8651-a194b303464d ;
+	isoC:narrower :5e1c8722-ab95-4b9b-93f3-c2e7f85e6425 ;
+	isoC:narrower :f1a122f0-20a4-4d00-9cc7-fb0673fef59a ;
+	isoC:narrower :76824011-f07b-452d-883f-e38d7559b60d ;
+	isoC:narrower :ef2cedae-47d7-41cf-a386-882cf865f86d ;
+.
+:84dae964-eed2-4dc0-a38f-40b9dd982ee9
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "SDTM"^^xsd:string ;
+	isoC:description "SDTM related information."^^xsd:string ;
+.
+:beb85d2a-64bb-4b46-89bf-1473fbde57e6
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "CDASH"^^xsd:string ;
+	isoC:description "CDASH related information."^^xsd:string ;
+.
+:d63a1afc-ee9f-46b8-9168-9a300a714ac9
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "ADaM"^^xsd:string ;
+	isoC:description "ADaM related information."^^xsd:string ;
+.
+:ceffdc40-7e0c-44df-a67f-5b5fff9e52f3
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "SEND"^^xsd:string ;
+	isoC:description "SEND related information."^^xsd:string ;
+.
+:619d63e1-23c0-4424-8651-a194b303464d
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Protocol"^^xsd:string ;
+	isoC:description "Protocol related information."^^xsd:string ;
+.
+:5e1c8722-ab95-4b9b-93f3-c2e7f85e6425
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "QS"^^xsd:string ;
+	isoC:description "Questionnaire related information."^^xsd:string ;
+.
+:f1a122f0-20a4-4d00-9cc7-fb0673fef59a
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "QS-FT"^^xsd:string ;
+	isoC:description "Questionnaire and Functional Test related information."^^xsd:string ;
+.
+:76824011-f07b-452d-883f-e38d7559b60d
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "COA"^^xsd:string ;
+	isoC:description "Clinical Outcome Assessent related information."^^xsd:string ;
+.
+:ef2cedae-47d7-41cf-a386-882cf865f86d
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "QRS"^^xsd:string ;
+	isoC:description "Questionnaire and Rating Scale related information."^^xsd:string ;
+.

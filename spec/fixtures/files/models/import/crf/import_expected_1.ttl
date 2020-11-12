@@ -1,0 +1,258 @@
+@prefix : <http://www.assero.co.uk/MDRForms/ACME/V1#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/MDRForms/ACME/V1>
+	rdf:type owl:Ontology ;
+.
+:F-ACME_FAE
+	rdf:type <http://www.assero.co.uk/BusinessForm#Form> ;
+	rdfs:label "Adverse Event Form (ACRO)"^^xsd:string ;
+	isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> ;
+	isoT:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> ;
+	isoT:creationDate "2019-03-24T06:54:47+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-03-24T06:54:47+00:00"^^xsd:dateTime ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	isoT:origin ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:note ""^^xsd:string ;
+	bf:hasGroup :F-ACME_FAE_G1 ;
+	bf:hasGroup :F-ACME_FAE_G2 ;
+	bf:hasGroup :F-ACME_FAE_G3 ;
+.
+<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1>
+	rdf:type isoR:RegistrationState ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+.
+<http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1>
+	isoI:identifier "F AE"^^xsd:string ;
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+:F-ACME_FAE_G1
+	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
+	rdfs:label "Common"^^xsd:string ;
+	bf:ordinal "1"^^xsd:positiveInteger ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasItem :F-ACME_FAE_G1_I1 ;
+	bf:hasItem :F-ACME_FAE_G1_I2 ;
+	bf:hasItem :F-ACME_FAE_G1_I3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F-ACME_FAE_G1_I1
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Site Number"^^xsd:string ;
+	bf:ordinal "1"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:question_text "Site #"^^xsd:string ;
+	bf:mapping "SITEID"^^xsd:string ;
+.
+:F-ACME_FAE_G1_I2
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Subject ID"^^xsd:string ;
+	bf:ordinal "2"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "11"^^xsd:string ;
+	bf:question_text "Subject ID #"^^xsd:string ;
+	bf:mapping "USUBJID"^^xsd:string ;
+.
+:F-ACME_FAE_G1_I3
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Visit Date"^^xsd:string ;
+	bf:ordinal "3"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "date"^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:question_text "Visit Date"^^xsd:string ;
+	bf:mapping "RFSTDTC"^^xsd:string ;
+.
+:F-ACME_FAE_G2
+	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
+	rdfs:label "Adverse Events Occurred"^^xsd:string ;
+	bf:ordinal "2"^^xsd:positiveInteger ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasItem :F-ACME_FAE_G2_I1 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F-ACME_FAE_G2_I1
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Adverse Event Experienced"^^xsd:string ;
+	bf:ordinal "1"^^xsd:positiveInteger ;
+	bf:note "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:question_text "Has the subject experienced any adverse events"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+.
+:F-ACME_FAE_G3
+	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
+	rdfs:label "Adverse Event"^^xsd:string ;
+	bf:ordinal "3"^^xsd:positiveInteger ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasItem :F-ACME_FAE_G3_I1 ;
+	bf:hasItem :F-ACME_FAE_G3_I2 ;
+	bf:hasItem :F-ACME_FAE_G3_I3 ;
+	bf:hasItem :F-ACME_FAE_G3_I4 ;
+	bf:hasItem :F-ACME_FAE_G3_I5 ;
+	bf:hasItem :F-ACME_FAE_G3_I6 ;
+	bf:hasItem :F-ACME_FAE_G3_I7 ;
+	bf:hasItem :F-ACME_FAE_G3_I8 ;
+	bf:hasItem :F-ACME_FAE_G3_I9 ;
+	bf:hasItem :F-ACME_FAE_G3_I10 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F-ACME_FAE_G3_I1
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Adverse Event Number"^^xsd:string ;
+	bf:ordinal "1"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "integer"^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:question_text "Event No."^^xsd:string ;
+	bf:mapping "AESPID"^^xsd:string ;
+.
+:F-ACME_FAE_G3_I2
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Adverse Event Term"^^xsd:string ;
+	bf:ordinal "2"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "255"^^xsd:string ;
+	bf:question_text "Adverse event"^^xsd:string ;
+	bf:mapping "AETERM"^^xsd:string ;
+.
+:F-ACME_FAE_G3_I3
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Adverse Event Start Date"^^xsd:string ;
+	bf:ordinal "3"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "date"^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:question_text "Start Date"^^xsd:string ;
+	bf:mapping "AESTDTC"^^xsd:string ;
+.
+:F-ACME_FAE_G3_I4
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Adverse Event Stop Date"^^xsd:string ;
+	bf:ordinal "4"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "date"^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:question_text "Stop Date"^^xsd:string ;
+	bf:mapping "AEENDTC"^^xsd:string ;
+.
+:F-ACME_FAE_G3_I5
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Adverse Event Continues"^^xsd:string ;
+	bf:ordinal "5"^^xsd:positiveInteger ;
+	bf:note "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:question_text "Mark if event is still continuing"^^xsd:string ;
+	bf:mapping "AEENRF"^^xsd:string ;
+.
+:F-ACME_FAE_G3_I6
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Adverse Event Serious"^^xsd:string ;
+	bf:ordinal "6"^^xsd:positiveInteger ;
+	bf:note "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:question_text "Was event serious"^^xsd:string ;
+	bf:mapping "AESER"^^xsd:string ;
+.
+:F-ACME_FAE_G3_I7
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Adverse Event Severity"^^xsd:string ;
+	bf:ordinal "7"^^xsd:positiveInteger ;
+	bf:note "* No entries found in code list 'C66769' for item with submission value: '1' or preferred term: 'Mild'.\n* No entries found in code list 'C66769' for item with submission value: '2' or preferred term: 'Moderate'.\n* No entries found in code list 'C66769' for item with submission value: '3' or preferred term: 'Severe'.\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:question_text "Severity"^^xsd:string ;
+	bf:mapping "AESEV"^^xsd:string ;
+.
+:F-ACME_FAE_G3_I8
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Adverse Event Related"^^xsd:string ;
+	bf:ordinal "8"^^xsd:positiveInteger ;
+	bf:note "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:question_text "Is there a reasonable possibility that the AE may have been caused by the study drug"^^xsd:string ;
+	bf:mapping "AEREL"^^xsd:string ;
+.
+:F-ACME_FAE_G3_I9
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Adverse Event Action Taken"^^xsd:string ;
+	bf:ordinal "9"^^xsd:positiveInteger ;
+	bf:note "* No entries found for code list, parameters ['notation=AEACTION'].\n* No entries found for code list, parameters ['notation=CLAEACTION'].\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:question_text "Action taken with study drug"^^xsd:string ;
+	bf:mapping "AEACN"^^xsd:string ;
+.
+:F-ACME_FAE_G3_I10
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Adverse Event Subject Outcome"^^xsd:string ;
+	bf:ordinal "10"^^xsd:positiveInteger ;
+	bf:note "* No entries found for code list, parameters ['notation=AEOUT'].\n* No entries found for code list, parameters ['notation=CLAEOUTCOME'].\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:question_text "Subject outcome"^^xsd:string ;
+	bf:mapping "AEOUT"^^xsd:string ;
+.

@@ -1,0 +1,159 @@
+@prefix : <http://www.acme-pharma.com/NEW_TH/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.acme-pharma.com/NEW_TH/V1>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label ""^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-04-16 13:13:02 +0100"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TCR1 ;
+	th:isTopConceptReference :TH_TCR2 ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:byAuthority <http://www.acme-pharma.com/A00002/V1#A00002_SI> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "NEW_TH"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.acme-pharma.com/A00002/V1#A00002_SI> ;
+.
+:TH_TCR1
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+.
+:TH_TCR2
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+.
+<http://www.acme-pharma.com/A00001/V1#A00001>
+	rdf:type th:ManagedConcept ;
+	isoC:label "London Heathrow"^^xsd:string ;
+	isoT:hasState <http://www.acme-pharma.com/A00001/V1#A00001_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/A00001/V1#A00001_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-04-16 13:13:02 +0100"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "A00001"^^xsd:string ;
+	th:notation "LHR"^^xsd:string ;
+	th:definition "A definition"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A000011> ;
+	th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A000012> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#61ba6ff2-f8e4-47ee-91a5-28250fd3e2bc> ;
+	th:synonym <http://www.assero.co.uk/SYN#4e8d87d9-85f3-4f65-a60c-ebe47f9a4bc5> ;
+	th:synonym <http://www.assero.co.uk/SYN#fb45b720-abde-465a-8264-b0aa1880665c> ;
+.
+<http://www.acme-pharma.com/A00001/V1#A00001_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:byAuthority <http://www.acme-pharma.com/A00002/V1#A00002_SI> ;
+.
+<http://www.acme-pharma.com/A00001/V1#A00001_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "A00001"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.acme-pharma.com/A00002/V1#A00002_SI> ;
+.
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Terminal 5"^^xsd:string ;
+	th:identifier "A000011"^^xsd:string ;
+	th:notation "T5"^^xsd:string ;
+	th:definition "The 5th LHR Terminal"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d5665e5c-46e2-4998-977b-91cb75063fe9> ;
+	th:synonym <http://www.assero.co.uk/SYN#b12fb414-c650-442f-9155-c24652fca737> ;
+	th:synonym <http://www.assero.co.uk/SYN#bbf62d83-762c-40e0-84a0-89178aa00ade> ;
+	th:synonym <http://www.assero.co.uk/SYN#4dc6938a-db1b-4cfb-97dc-bd5c38dfaa4c> ;
+	th:synonym <http://www.assero.co.uk/SYN#270c2d64-1512-40b1-a6a8-3e90c6b3d15b> ;
+.
+<http://www.acme-pharma.com/A00001/V1#A00001_A000012>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Terminal 1"^^xsd:string ;
+	th:identifier "A000012"^^xsd:string ;
+	th:notation "T1"^^xsd:string ;
+	th:definition "The oldest LHR Terminal"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d3fef524-c82e-4469-bdc3-ab84d460b7fd> ;
+.
+<http://www.acme-pharma.com/A00002/V1#A00002>
+	rdf:type th:ManagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoT:hasState <http://www.acme-pharma.com/A00002/V1#A00002_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/A00002/V1#A00002_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-04-16 13:13:02 +0100"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "A00002"^^xsd:string ;
+	th:notation "CPH"^^xsd:string ;
+	th:definition "Copenhagen"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+.
+<http://www.acme-pharma.com/A00002/V1#A00002_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:byAuthority <http://www.acme-pharma.com/A00002/V1#A00002_SI> ;
+.
+<http://www.acme-pharma.com/A00002/V1#A00002_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "A00002"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.acme-pharma.com/A00002/V1#A00002_SI> ;
+.

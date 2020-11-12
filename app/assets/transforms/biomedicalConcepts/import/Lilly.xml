@@ -1,0 +1,1819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BiomedicalConcepts>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C111361" Name="Forced Vital Capacity">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C111361</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C111361</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C48505</Value>
+					<Value>CLI-C71620_C28254</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112381" Name="Percent Predicted Forced Vital Capacity">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112381</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112381</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C38084" Name="Forced Expiratory Volume in 1 Second">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C38084</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C38084</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C48505</Value>
+					<Value>CLI-C71620_C28254</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112376" Name="Percent Predicted FEV1">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112376</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112376</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112285" Name="FEV1 Reversibility">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112285</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112285</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C111359" Name="FEV1/FVC">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C111359</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C111359</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112377" Name="Percent Predicted FEV1/FVC">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112377</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112377</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C2000000_8" Name="Forced Expiratory Flow 25-75% Capacity">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>[NOT APPLICABLE]</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>[NOT APPLICABLE]</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C67390</Value>
+					<Value>CLI-C71620_C69073</Value>
+					<Value>CLI-C71620_C67388</Value>
+					<Value>CLI-C71620_C64777</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C2000000_9" Name="Percent predicted FEF 25-75">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>[NOT APPLICABLE]</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>[NOT APPLICABLE]</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C41372" Name="Peak Expiratory Flow">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C41372</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C41372</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C67390</Value>
+					<Value>CLI-C71620_C69073</Value>
+					<Value>CLI-C71620_C67388</Value>
+					<Value>CLI-C71620_C64777</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112384" Name="Percent Predicted Peak Expiratory Flow">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112384</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112384</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112368" Name="PEF Reversibility">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112368</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112368</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C47843" Name="Forced Expiratory Volume in 6 Seconds">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C47843</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C47843</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C48505</Value>
+					<Value>CLI-C71620_C28254</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112378" Name="Percent Predicted FEV6">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112378</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112378</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C111360" Name="Forced Inspiratory Volume in 1 Second">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C111360</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C111360</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C48505</Value>
+					<Value>CLI-C71620_C28254</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112380" Name="Percent Predicted FIV1">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112380</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112380</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C111324" Name="Tidal Volume">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C111324</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C111324</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C48505</Value>
+					<Value>CLI-C71620_C28254</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112387" Name="Percent Predicted Tidal Volume">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112387</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112387</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C111362" Name="Inspiratory Capacity">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C111362</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C111362</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C48505</Value>
+					<Value>CLI-C71620_C28254</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112382" Name="Percent Predicted Inspiratory Capacity">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112382</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112382</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112321" Name="IC Reversibility">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112321</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112321</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C111200" Name="Expiratory Reserve Volume">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C111200</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C111200</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C48505</Value>
+					<Value>CLI-C71620_C28254</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112375" Name="Percent Predicted ERV">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112375</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112375</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C111237" Name="Inspiratory Reserve Volume">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C111237</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C111237</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C48505</Value>
+					<Value>CLI-C71620_C28254</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112383" Name="Percent Predicted IRV">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112383</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112383</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C111315" Name="Slow Vital Capacity">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C111315</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C111315</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C48505</Value>
+					<Value>CLI-C71620_C28254</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112386" Name="Percent Predicted Slow Vital Capacity">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112386</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112386</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112333" Name="Maximum Forced Inspiratory Flow">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112333</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112333</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C67390</Value>
+					<Value>CLI-C71620_C69073</Value>
+					<Value>CLI-C71620_C67388</Value>
+					<Value>CLI-C71620_C64777</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112379" Name="Percent Predicted FIFmax">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112379</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112379</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C89836" Name="Residual Volume">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C89836</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C89836</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C48505</Value>
+					<Value>CLI-C71620_C28254</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112385" Name="Percent Predicted Residual Volume">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112385</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112385</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C111325" Name="Total Lung Capacity">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C111325</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C111325</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C48505</Value>
+					<Value>CLI-C71620_C28254</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+	<BiomedicalConcept Template="BCT-Obs_PQR" Scope="NS-CDISC" Id="BC_C112388" Name="Percent Predicted Total Lung Capacity">
+		<Class Name="DefinedObservation">
+			<Attribute Alias="Test" Name="nameCode">
+				<Property Enabled="true" Collect="true" Alias="Test Code (--TESTCD)" Name="code">
+					<Value>CLI-C111106_C112388</Value>
+				</Property>
+				<Property Enabled="true" Collect="true" Alias="Name" Name="originalText">
+					<Property Enabled="true" Collect="true" Alias="Test Name (--TEST)" Name="value">
+						<Value>CLI-C111107_C112388</Value>
+					</Property>
+				</Property>
+			</Attribute>
+			<Attribute Alias="SiteOfAdministration" Name="targetAnatomicSiteCode">
+				<Property Enabled="true" Collect="true" Alias="Location (--LOC)" Name="code">
+					<Value>CLI-C74456_C12421</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Method" Name="methodCode">
+				<Property Enabled="true" Collect="true" Alias="Method Code (--METHOD)" Name="code">
+					<Value>CLI-C85492_C85397</Value>
+				</Property>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedObservation">
+			<Attribute Alias="DateTime" Name="dateRange">
+				<Property Enabled="true" Collect="true" Alias="Date" Name="low">
+					<Property Alias="Date and Time (--DTC)" Enabled="true" Collect="true" Name="value"/>
+				</Property>
+			</Attribute>
+			<Attribute Alias="ReasonNotDone" Name="negationReason">
+				<Property Enabled="true" Collect="true" Alias="Code" Name="code"/>
+			</Attribute>
+			<Attribute Alias="Position" Name="bodyPositionCode">
+				<Property Alias="Body Position (--POS)" Name="code" Enabled="true" Collect="false"/>
+			</Attribute>
+			<Attribute Alias="Laterality" Name="targetAnatomicSiteLateralityCode">
+				<Property Enabled="true" Collect="false" Alias="Laterality (--LAT)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalResult">
+			<Attribute Alias="Result" Name="value" Datatype="PQR">
+				<Property Enabled="true" Collect="true" Alias="Result Value (--ORRES)" Name="value"/>
+				<Property Enabled="true" Collect="true" Alias="Result Units (--ORRESU)" Name="code">
+					<Value>CLI-C71620_C25613</Value>
+					<Value>CLI-C71620_C44256</Value>
+				</Property>
+			</Attribute>
+			<Attribute Alias="Baseline" Name="baselineIndicator">
+				<Property Enabled="true" Collect="true" Alias="Baseline (--BLFL)" Name="value">
+					<Value>CLI-C66742_C49487</Value>
+					<Value>CLI-C66742_C49488</Value>
+				</Property>
+			</Attribute>
+		</Class>
+	</BiomedicalConcept>
+</BiomedicalConcepts>

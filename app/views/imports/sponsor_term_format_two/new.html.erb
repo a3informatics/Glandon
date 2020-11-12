@@ -1,0 +1,16 @@
+<% content_for :page_title do %> Import Sponsor Code List <% end %>
+
+<% first_level_breadcrumb (:imports) %>
+
+<div class="row">
+	<%= render layout: "shared/headers/header_generic", :locals => { badge: "icon-import", header_title: "",
+		main_text: "Import Centre", sub_texts: "Sponsor Code List Import" } do %>
+
+			<%= render partial: "shared/buttons/return", :locals => { url: list_imports_path } %>
+
+	<% end %>
+</div>
+
+<div class="row centered">
+    <%= render partial: "shared/import/import_sponsor_terms_panel", locals: {create_path: imports_sponsor_term_format_two_index_path, title: "Import Sponsor Code List using Excel", multiple: false} %>
+</div>

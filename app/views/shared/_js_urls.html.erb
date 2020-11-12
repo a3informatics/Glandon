@@ -1,0 +1,59 @@
+<%  index_th_url = thesauri_index_path
+    history_th_url = history_thesauri_index_path(thesauri: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_cl_url = set_with_indicators_thesauri_managed_concepts_path(managed_concept: {type: "all"})
+    history_cl_url = history_thesauri_managed_concepts_path(managed_concept: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    children_cl_url = children_thesauri_managed_concept_path(id: "miClId")
+
+    index_bc_url = biomedical_concept_instances_path
+    history_bc_url = history_biomedical_concept_instances_path(biomedical_concept_instance: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_bct_url = biomedical_concept_templates_path
+    history_bct_url = history_biomedical_concept_templates_path(biomedical_concept_template: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_form_url = forms_path
+    history_form_url = history_forms_path(form: {identifier: "miHistoryId", scope_id: "miScopeId"})
+
+    index_assessments_url = assessments_path
+    history_assessments_url = history_assessments_path(assessment: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_protocol_templates = protocol_templates_path
+    history_protocol_templates = history_protocol_templates_path(protocol_template: {identifier: "miHistoryId", scope_id: "miScopeId"})
+%>
+
+<%# Legacy url variables *** DEPRECATED *** %>
+<%= javascript_tag "var miIndexThesauriUrl = '#{index_th_url}',
+                        miHistoryThesauriUrl = '#{history_th_url}',
+                        miIndexClUrl = '#{index_cl_url}',
+                        miHistoryClUrl = '#{history_cl_url}',
+                        miChildrenClUrl = '#{children_cl_url}';"
+                        %>
+
+<%# Use these instead %>
+<%= javascript_tag "var _globalIHUrls = { 
+                          thesauri: {
+                            index: '#{index_th_url}',
+                            history:  '#{history_th_url}'
+                          },
+                          managed_concept: {
+                            index: '#{index_cl_url}',
+                            history:  '#{history_cl_url}',
+                            children: '#{children_cl_url}'
+                          },
+                          biomedical_concept_instance: {
+                            index: '#{index_bc_url}',
+                            history:  '#{history_bc_url}'
+                          },
+                          biomedical_concept_template: {
+                            index: '#{index_bct_url}',
+                            history:  '#{history_bct_url}'
+                          },
+                          form: {
+                            index: '#{index_form_url}',
+                            history:  '#{history_form_url}'
+                          },
+                          assessment: {
+                            index: '#{index_assessments_url}',
+                            history:  '#{history_assessments_url}'
+                          },
+                          protocol_template: {
+                            index: '#{index_protocol_templates}',
+                            history:  '#{history_protocol_templates}'
+                          }
+                        }"%>

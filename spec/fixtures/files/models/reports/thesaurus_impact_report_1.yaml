@@ -1,0 +1,708 @@
+---
+http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66770_C28252:
+  :root:
+    :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+    :id: CLI-C66770_C28252
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :label: Kilogram
+    :extension_properties:
+    - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+      :instance_variable: extensible
+      :label: Extensible
+    :identifier: C28252
+    :notation: kg
+    :synonym: Kilogram
+    :definition: The basic SI unit of mass. It is defined as the mass of an international
+      prototype in the form of a platinum-iridium cylinder kept at Sevres in France.
+      It is the only basic unit still defined in terms of a material object, and also
+      the only one with a prefix [kilo] already in place. A kilogram is equal to 1,000
+      grams and 2.204 622 6 pounds. (NCI)
+    :preferredTerm: Kilogram
+    :topLevel: false
+    :parentIdentifier: C66770
+    :children: []
+  :children:
+  - :uri: http://www.assero.co.uk/MDRThesaurus/CDISC/V42#TH-CDISC_CDISCTerminology
+  - :uri: http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208
+  - :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_MIXED
+  - :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBC2
+http://www.assero.co.uk/MDRThesaurus/CDISC/V42#TH-CDISC_CDISCTerminology:
+  :root:
+    :type: http://www.assero.co.uk/ISO25964#Thesaurus
+    :id: TH-CDISC_CDISCTerminology
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :label: CDISC Terminology 2015-09-25
+    :extension_properties: []
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2015-09-25T00:00:00+01:00'
+    :last_changed_date: '2015-09-25T00:00:00+01:00'
+    :explanatory_comment: ''
+    :registration_state:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: RS-CDISC_CDISCTerminology-42
+      :registration_authority:
+        :id: RA-084433759
+        :number: 084433759
+        :scheme: DUNS
+        :owner: false
+        :namespace:
+          :namespace: http://www.assero.co.uk/MDRItems
+          :id: NS-CDISC
+          :name: Clinical Data Interchange Standards Consortium
+          :shortName: CDISC
+      :registration_status: Standard
+      :administrative_note: ''
+      :effective_date: '2015-09-25T00:00:00Z'
+      :until_date: '2015-09-25T00:00:00Z'
+      :current: false
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Qualified
+    :scoped_identifier:
+      :id: SI-CDISC_CDISCTerminology-42
+      :identifier: CDISC Terminology
+      :version_label: '2015-09-25'
+      :version: 42
+      :semantic_version: 42.0.0
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-CDISC
+        :name: Clinical Data Interchange Standards Consortium
+        :shortName: CDISC
+  :children: []
+http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208:
+  :root:
+    :type: http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance
+    :id: BC-ACME_BC_C25208
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :label: Weight (BC C25208)
+    :extension_properties: []
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2016-01-01T00:00:00+00:00'
+    :last_changed_date: '2016-01-01T00:00:00+00:00'
+    :explanatory_comment: ''
+    :registration_state:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: RS-ACME_BC_C25208-1
+      :registration_authority:
+        :id: RA-123456789
+        :number: '123456789'
+        :scheme: DUNS
+        :owner: true
+        :namespace:
+          :namespace: http://www.assero.co.uk/MDRItems
+          :id: NS-ACME
+          :name: ACME Pharma
+          :shortName: ACME
+      :registration_status: Standard
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00Z'
+      :until_date: '2016-01-01T00:00:00Z'
+      :current: false
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Qualified
+    :scoped_identifier:
+      :id: SI-ACME_BC_C25208-1
+      :identifier: BC C25208
+      :version_label: '0.1'
+      :version: 1
+      :semantic_version: 1.0.0
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-ACME
+        :name: ACME Pharma
+        :shortName: ACME
+  :children:
+  - :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_MIXED
+  - :uri: http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain
+  - :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBC2
+http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_MIXED:
+  :root:
+    :type: http://www.assero.co.uk/BusinessForm#Form
+    :id: F-ACME_MIXED
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Mixed Form
+    :extension_properties: []
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2017-05-12T09:54:30+01:00'
+    :last_changed_date: '2017-05-24T18:16:21+01:00'
+    :explanatory_comment: ''
+    :registration_state:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: RS-ACME_MIXED-1
+      :registration_authority:
+        :id: RA-123456789
+        :number: '123456789'
+        :scheme: DUNS
+        :owner: true
+        :namespace:
+          :namespace: http://www.assero.co.uk/MDRItems
+          :id: NS-ACME
+          :name: ACME Pharma
+          :shortName: ACME
+      :registration_status: Incomplete
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00+00:00'
+      :until_date: '2016-01-01T00:00:00+00:00'
+      :current: false
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Incomplete
+    :scoped_identifier:
+      :id: SI-ACME_MIXED-1
+      :identifier: MIXED
+      :version_label: ''
+      :version: 1
+      :semantic_version: 0.1.0
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-ACME
+        :name: ACME Pharma
+        :shortName: ACME
+  :children: []
+http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain:
+  :root:
+    :type: http://www.assero.co.uk/BusinessDomain#UserDomain
+    :id: D-ACME_VSDomain
+    :namespace: http://www.assero.co.uk/MDRSdtmUD/ACME/V1
+    :label: Vital Signs
+    :extension_properties: []
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2017-05-13T10:11:02+01:00'
+    :last_changed_date: '2017-05-13T10:11:02+01:00'
+    :explanatory_comment: ''
+    :registration_state:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: RS-ACME_VSDomain-1
+      :registration_authority:
+        :id: RA-123456789
+        :number: '123456789'
+        :scheme: DUNS
+        :owner: true
+        :namespace:
+          :namespace: http://www.assero.co.uk/MDRItems
+          :id: NS-ACME
+          :name: ACME Pharma
+          :shortName: ACME
+      :registration_status: Incomplete
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00+00:00'
+      :until_date: '2016-01-01T00:00:00+00:00'
+      :current: false
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Incomplete
+    :scoped_identifier:
+      :id: SI-ACME_VSDomain-1
+      :identifier: VS Domain
+      :version_label: ''
+      :version: 1
+      :semantic_version: 0.1.0
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-ACME
+        :name: ACME Pharma
+        :shortName: ACME
+  :children: []
+http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBC2:
+  :root:
+    :type: http://www.assero.co.uk/BusinessForm#Form
+    :id: F-ACME_VSBC2
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Vital Signs BC Demo 2
+    :extension_properties: []
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2017-06-22T08:21:23+01:00'
+    :last_changed_date: '2017-06-22T08:21:54+01:00'
+    :explanatory_comment: ''
+    :registration_state:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: RS-ACME_VSBC2-1
+      :registration_authority:
+        :id: RA-123456789
+        :number: '123456789'
+        :scheme: DUNS
+        :owner: true
+        :namespace:
+          :namespace: http://www.assero.co.uk/MDRItems
+          :id: NS-ACME
+          :name: ACME Pharma
+          :shortName: ACME
+      :registration_status: Incomplete
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00+00:00'
+      :until_date: '2016-01-01T00:00:00+00:00'
+      :current: false
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Incomplete
+    :scoped_identifier:
+      :id: SI-ACME_VSBC2-1
+      :identifier: VS BC 2
+      :version_label: ''
+      :version: 1
+      :semantic_version: 0.1.0
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-ACME
+        :name: ACME Pharma
+        :shortName: ACME
+  :children: []
+http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66770_C48155:
+  :root:
+    :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+    :id: CLI-C66770_C48155
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :label: Gram
+    :extension_properties:
+    - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+      :instance_variable: extensible
+      :label: Extensible
+    :identifier: C48155
+    :notation: g
+    :synonym: Gram
+    :definition: A metric unit of mass equal to one one thousandth of a kilogram.
+      (NCI)
+    :preferredTerm: Gram
+    :topLevel: false
+    :parentIdentifier: C66770
+    :children: []
+  :children:
+  - :uri: http://www.assero.co.uk/MDRThesaurus/CDISC/V42#TH-CDISC_CDISCTerminology
+  - :uri: http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208
+  - :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_MIXED
+  - :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBC2
+http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66741_C25298:
+  :root:
+    :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+    :id: CLI-C66741_C25298
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :label: Systolic Blood Pressure
+    :extension_properties:
+    - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+      :instance_variable: extensible
+      :label: Extensible
+    :identifier: C25298
+    :notation: SYSBP
+    :synonym: Systolic Blood Pressure
+    :definition: The blood pressure during the contraction of the left ventricle of
+      the heart. (NCI)
+    :preferredTerm: Systolic Blood Pressure
+    :topLevel: false
+    :parentIdentifier: C66741
+    :children: []
+  :children:
+  - :uri: http://www.assero.co.uk/MDRThesaurus/CDISC/V42#TH-CDISC_CDISCTerminology
+  - :uri: http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298
+http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298:
+  :root:
+    :type: http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance
+    :id: BC-ACME_BC_C25298
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :label: Systolic Blood Pressure (BC C25298)
+    :extension_properties: []
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2016-01-01T00:00:00+00:00'
+    :last_changed_date: '2016-01-01T00:00:00+00:00'
+    :explanatory_comment: ''
+    :registration_state:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: RS-ACME_BC_C25298-1
+      :registration_authority:
+        :id: RA-123456789
+        :number: '123456789'
+        :scheme: DUNS
+        :owner: true
+        :namespace:
+          :namespace: http://www.assero.co.uk/MDRItems
+          :id: NS-ACME
+          :name: ACME Pharma
+          :shortName: ACME
+      :registration_status: Standard
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00Z'
+      :until_date: '2016-01-01T00:00:00Z'
+      :current: false
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Qualified
+    :scoped_identifier:
+      :id: SI-ACME_BC_C25298-1
+      :identifier: BC C25298
+      :version_label: '0.1'
+      :version: 1
+      :semantic_version: 1.0.0
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-ACME
+        :name: ACME Pharma
+        :shortName: ACME
+  :children: []
+http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C67153_C25298:
+  :root:
+    :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+    :id: CLI-C67153_C25298
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :label: Systolic Blood Pressure
+    :extension_properties:
+    - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+      :instance_variable: extensible
+      :label: Extensible
+    :identifier: C25298
+    :notation: Systolic Blood Pressure
+    :synonym: Systolic Blood Pressure
+    :definition: The blood pressure during the contraction of the left ventricle of
+      the heart. (NCI)
+    :preferredTerm: Systolic Blood Pressure
+    :topLevel: false
+    :parentIdentifier: C67153
+    :children: []
+  :children:
+  - :uri: http://www.assero.co.uk/MDRThesaurus/CDISC/V42#TH-CDISC_CDISCTerminology
+  - :uri: http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298
+http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66741_C25299:
+  :root:
+    :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+    :id: CLI-C66741_C25299
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :label: Diastolic Blood Pressure
+    :extension_properties:
+    - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+      :instance_variable: extensible
+      :label: Extensible
+    :identifier: C25299
+    :notation: DIABP
+    :synonym: Diastolic Blood Pressure
+    :definition: The blood pressure after the contraction of the heart while the chambers
+      of the heart refill with blood. (NCI)
+    :preferredTerm: Diastolic Blood Pressure
+    :topLevel: false
+    :parentIdentifier: C66741
+    :children: []
+  :children:
+  - :uri: http://www.assero.co.uk/MDRThesaurus/CDISC/V42#TH-CDISC_CDISCTerminology
+  - :uri: http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299
+http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299:
+  :root:
+    :type: http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance
+    :id: BC-ACME_BC_C25299
+    :namespace: http://www.assero.co.uk/MDRBCs/V1
+    :label: Diastolic Blood Pressure (BC C25299)
+    :extension_properties: []
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2016-01-01T00:00:00+00:00'
+    :last_changed_date: '2016-01-01T00:00:00+00:00'
+    :explanatory_comment: ''
+    :registration_state:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: RS-ACME_BC_C25299-1
+      :registration_authority:
+        :id: RA-123456789
+        :number: '123456789'
+        :scheme: DUNS
+        :owner: true
+        :namespace:
+          :namespace: http://www.assero.co.uk/MDRItems
+          :id: NS-ACME
+          :name: ACME Pharma
+          :shortName: ACME
+      :registration_status: Standard
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00Z'
+      :until_date: '2016-01-01T00:00:00Z'
+      :current: false
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Qualified
+    :scoped_identifier:
+      :id: SI-ACME_BC_C25299-1
+      :identifier: BC C25299
+      :version_label: '0.1'
+      :version: 1
+      :semantic_version: 1.0.0
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-ACME
+        :name: ACME Pharma
+        :shortName: ACME
+  :children: []
+http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C67153_C25299:
+  :root:
+    :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+    :id: CLI-C67153_C25299
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+    :label: Diastolic Blood Pressure
+    :extension_properties:
+    - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+      :instance_variable: extensible
+      :label: Extensible
+    :identifier: C25299
+    :notation: Diastolic Blood Pressure
+    :synonym: Diastolic Blood Pressure
+    :definition: The blood pressure after the contraction of the heart while the chambers
+      of the heart refill with blood. (NCI)
+    :preferredTerm: Diastolic Blood Pressure
+    :topLevel: false
+    :parentIdentifier: C67153
+    :children: []
+  :children:
+  - :uri: http://www.assero.co.uk/MDRThesaurus/CDISC/V42#TH-CDISC_CDISCTerminology
+  - :uri: http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299
+http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C74457_C16352:
+  :root:
+    :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+    :id: CLI-C74457_C16352
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :label: African American
+    :extension_properties:
+    - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+      :instance_variable: extensible
+      :label: Extensible
+    :identifier: C16352
+    :notation: BLACK OR AFRICAN AMERICAN
+    :synonym: ''
+    :definition: A person having origins in any of the black racial groups of Africa.
+      Terms such as 'Haitian' or 'Negro' can be used in addition to 'Black or African
+      American.' (FDA)
+    :preferredTerm: African American
+    :topLevel: false
+    :parentIdentifier: C74457
+    :children: []
+  :children:
+  - :uri: http://www.assero.co.uk/MDRThesaurus/CDISC/V43#TH-CDISC_CDISCTerminology
+  - :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101
+http://www.assero.co.uk/MDRThesaurus/CDISC/V43#TH-CDISC_CDISCTerminology:
+  :root:
+    :type: http://www.assero.co.uk/ISO25964#Thesaurus
+    :id: TH-CDISC_CDISCTerminology
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :label: CDISC Terminology 2015-12-18
+    :extension_properties: []
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2015-12-18T00:00:00+00:00'
+    :last_changed_date: '2015-12-18T00:00:00+00:00'
+    :explanatory_comment: ''
+    :registration_state:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: RS-CDISC_CDISCTerminology-43
+      :registration_authority:
+        :id: RA-084433759
+        :number: 084433759
+        :scheme: DUNS
+        :owner: false
+        :namespace:
+          :namespace: http://www.assero.co.uk/MDRItems
+          :id: NS-CDISC
+          :name: Clinical Data Interchange Standards Consortium
+          :shortName: CDISC
+      :registration_status: Standard
+      :administrative_note: ''
+      :effective_date: '2015-12-18T00:00:00Z'
+      :until_date: '2100-01-01T00:00:00Z'
+      :current: true
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Qualified
+    :scoped_identifier:
+      :id: SI-CDISC_CDISCTerminology-43
+      :identifier: CDISC Terminology
+      :version_label: '2015-12-18'
+      :version: 43
+      :semantic_version: 43.0.0
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-CDISC
+        :name: Clinical Data Interchange Standards Consortium
+        :shortName: CDISC
+  :children: []
+http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DM101:
+  :root:
+    :type: http://www.assero.co.uk/BusinessForm#Form
+    :id: F-ACME_DM101
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Demographics
+    :extension_properties: []
+    :origin: See the MS Word Document for Demographics dated 2015-07-28
+    :change_description: Created from MS Word document
+    :creation_date: '2016-09-01T09:37:58+01:00'
+    :last_changed_date: '2017-09-12T19:29:28+01:00'
+    :explanatory_comment: Incorporates all changes up to and including 2015-07-28
+    :registration_state:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: RS-ACME_DM101-1
+      :registration_authority:
+        :id: RA-123456789
+        :number: '123456789'
+        :scheme: DUNS
+        :owner: true
+        :namespace:
+          :namespace: http://www.assero.co.uk/MDRItems
+          :id: NS-ACME
+          :name: ACME Pharma
+          :shortName: ACME
+      :registration_status: Candidate
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00+00:00'
+      :until_date: '2016-01-01T00:00:00+00:00'
+      :current: false
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Incomplete
+    :scoped_identifier:
+      :id: SI-ACME_DM101-1
+      :identifier: DM1 01
+      :version_label: ''
+      :version: 1
+      :semantic_version: 0.0.0
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-ACME
+        :name: ACME Pharma
+        :shortName: ACME
+  :children: []
+http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C66770_C28252:
+  :root:
+    :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+    :id: CLI-C66770_C28252
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :label: Kilogram
+    :extension_properties:
+    - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+      :instance_variable: extensible
+      :label: Extensible
+    :identifier: C28252
+    :notation: kg
+    :synonym: Kilogram
+    :definition: The basic SI unit of mass. It is defined as the mass of an international
+      prototype in the form of a platinum-iridium cylinder kept at Sevres in France.
+      It is the only basic unit still defined in terms of a material object, and also
+      the only one with a prefix [kilo] already in place. A kilogram is equal to 1,000
+      grams and 2.204 622 6 pounds. (NCI)
+    :preferredTerm: Kilogram
+    :topLevel: false
+    :parentIdentifier: C66770
+    :children: []
+  :children:
+  - :uri: http://www.assero.co.uk/MDRThesaurus/CDISC/V43#TH-CDISC_CDISCTerminology
+  - :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_MIXEDVS
+http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_MIXEDVS:
+  :root:
+    :type: http://www.assero.co.uk/BusinessForm#Form
+    :id: F-ACME_MIXEDVS
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Mixed Vital Signs
+    :extension_properties: []
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2017-05-13T17:24:28+01:00'
+    :last_changed_date: '2017-05-13T17:27:34+01:00'
+    :explanatory_comment: ''
+    :registration_state:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: RS-ACME_MIXEDVS-1
+      :registration_authority:
+        :id: RA-123456789
+        :number: '123456789'
+        :scheme: DUNS
+        :owner: true
+        :namespace:
+          :namespace: http://www.assero.co.uk/MDRItems
+          :id: NS-ACME
+          :name: ACME Pharma
+          :shortName: ACME
+      :registration_status: Incomplete
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00+00:00'
+      :until_date: '2016-01-01T00:00:00+00:00'
+      :current: false
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Incomplete
+    :scoped_identifier:
+      :id: SI-ACME_MIXEDVS-1
+      :identifier: MIXED VS
+      :version_label: ''
+      :version: 1
+      :semantic_version: 0.1.0
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-ACME
+        :name: ACME Pharma
+        :shortName: ACME
+  :children: []
+http://www.assero.co.uk/MDRThesaurus/CDISC/V43#CLI-C100150_C100955:
+  :root:
+    :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+    :id: CLI-C100150_C100955
+    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
+    :label: CGI - Severity of Illness
+    :extension_properties:
+    - :rdf_type: http://www.assero.co.uk/ISO25964#extensible
+      :instance_variable: extensible
+      :label: Extensible
+    :identifier: C100955
+    :notation: CGI0101
+    :synonym: CGI01-Severity of Illness
+    :definition: Clinical Global Impression - Considering your total clinical experience
+      with this particular population, how mentally ill is the patient at this time?
+    :preferredTerm: CGI - Severity of Illness
+    :topLevel: false
+    :parentIdentifier: C100150
+    :children: []
+  :children:
+  - :uri: http://www.assero.co.uk/MDRThesaurus/CDISC/V43#TH-CDISC_CDISCTerminology
+  - :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DT
+http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_DT:
+  :root:
+    :type: http://www.assero.co.uk/BusinessForm#Form
+    :id: F-ACME_DT
+    :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+    :label: Deleted Terminology Example
+    :extension_properties: []
+    :origin: ''
+    :change_description: ''
+    :creation_date: '2017-09-28T09:45:46+01:00'
+    :last_changed_date: '2017-09-28T09:46:37+01:00'
+    :explanatory_comment: ''
+    :registration_state:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: RS-ACME_DT-1
+      :registration_authority:
+        :id: RA-123456789
+        :number: '123456789'
+        :scheme: DUNS
+        :owner: true
+        :namespace:
+          :namespace: http://www.assero.co.uk/MDRItems
+          :id: NS-ACME
+          :name: ACME Pharma
+          :shortName: ACME
+      :registration_status: Incomplete
+      :administrative_note: ''
+      :effective_date: '2016-01-01T00:00:00+00:00'
+      :until_date: '2016-01-01T00:00:00+00:00'
+      :current: false
+      :unresolved_issue: ''
+      :administrative_status: ''
+      :previous_state: Incomplete
+    :scoped_identifier:
+      :id: SI-ACME_DT-1
+      :identifier: DT
+      :version_label: ''
+      :version: 1
+      :semantic_version: 0.1.0
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-ACME
+        :name: ACME Pharma
+        :shortName: ACME
+  :children: []

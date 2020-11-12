@@ -1,0 +1,42 @@
+<% content_for :page_title do %> New Ad-Hoc Report <% end %>
+
+<% breadcrumb ([id_to_type(:ad_hoc_reports), {link: "#", text: "New"}]) %>
+
+<div class="row">
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-document", header_title: "",
+		main_text: "Ad-Hoc Reports", sub_texts: "Add a new Ad-Hoc Report." } do %>
+
+		<%= render partial: "shared/buttons/return", :locals => { url: ad_hoc_reports_path } %> 
+
+	<% end %>
+</div>
+
+<div class="row centered">
+
+	<div class="col-md-10 card wide">
+
+		<div class="card-header">
+			New Ad-Hoc Report
+		</div>
+
+		<div class="card-content">
+			<div class="font-light">
+				Note: To create an Ad-Hoc Report, its source file must be <a href="<%= uploads_path %>">uploaded</a> to the server first.
+			</div>
+
+			<hr>
+
+			<div class="text-centered">
+				<%= form_for @item do |f| %>
+		  		<div class="form-group form-wrap">
+		      	<%= label_tag :files, "Select Report File", class: "font-light" %> <br>
+		      	<%= select_tag("ad_hoc_report[files][]", options_for_select(@files), :multiple => false) %>
+		    	</div>
+					<%= f.submit "Create Report", class: "btn medium green" %>
+				<% end %>
+			</div>
+
+		</div>
+	</div>
+
+</div>

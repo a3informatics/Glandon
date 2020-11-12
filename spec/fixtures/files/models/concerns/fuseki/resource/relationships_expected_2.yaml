@@ -1,0 +1,19 @@
+---
+- :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: Test
+    fragment: organizationIdentifier
+  :model_classes: []
+- :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: Test
+    fragment: internationalCodeDesignator
+  :model_classes: []
+- :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: Test
+    fragment: owner
+  :model_classes: []

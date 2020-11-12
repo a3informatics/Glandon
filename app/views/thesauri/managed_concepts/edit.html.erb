@@ -1,0 +1,53 @@
+<% content_for :page_title do %> <%= "Edit: #{@thesaurus_concept.notation} (#{@thesaurus_concept.has_identifier.identifier})" %> <% end %>
+
+<%= javascript_pack_tag 'thesauri/managed_concepts/edit' %>
+
+<%= javascript_tag "let timerTokenId = '#{@token.id}',
+                        timerWarning = '#{current_user.edit_lock_warning}';"%>
+
+<% third_level_breadcrumb(:code_lists, @thesaurus_concept, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_codelist", :locals => { item: @thesaurus_concept, context: @thesaurus, badge: "CL" } do %>
+
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+      <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
+
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#edit-properties-modal", id: "edit-properties-button",
+            icon: "icon-edit", text: "Edit properties", toggle: "modal" } %>
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+            icon: "icon-tag", text: "Edit tags", new_tab: true } %>
+
+          <% if @thesaurus_concept.ranked? %>
+            <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#rank-items-modal", id: "edit-ranks-button",
+              icon: "icon-rank", text: "Edit ranks", toggle: "modal" } %>
+          <% else %>
+            <%= render partial: "shared/thesauri/managed_concepts/rank/enable_rank", :locals => { item: @thesaurus_concept } %>
+          <% end %>
+
+          <%= render partial: "shared/thesauri/managed_concepts/pair/pair_button", :locals => { item: @thesaurus_concept } %>
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-notes-modal", id: "change-notes-button",
+            icon: "icon-note", text: "Change notes", toggle: "modal" } %>
+
+      <% end %>
+
+    </div>
+
+  <% end %>
+</div>
+
+<div class="row">
+  <%= render partial: "shared/thesauri/managed_concepts/edit/edit_card", locals: { item: @thesaurus_concept, token: @token } %>
+</div>
+
+<%= render partial: "shared/thesauri/managed_concepts/edit/edit_properties", :locals => { item: @thesaurus_concept } %>
+<%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @thesaurus_concept.identifier, item_id: @thesaurus_concept.id, item_notes_url: change_notes_iso_concept_path(@thesaurus_concept.id)} %>
+<%= render partial: "shared/thesauri/managed_concepts/rank/edit_ranks", :locals => {item: @thesaurus_concept} %>
+
+<% if !@thesaurus_concept.paired? %>
+  <%= render partial: "shared/items_picker/items_picker", :locals => { id: "pair",
+      description: "Select another Code List to pair this Code List with." } %>
+<% end %>

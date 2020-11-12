@@ -1,0 +1,14 @@
+PREFIX : <http://www.assero.co.uk/MDRForms/ACME/V1#>
+PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2> rdf:type <http://www.assero.co.uk/BusinessForm#Form> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST2> rdfs:label "Test Form No. 2"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST2-1> rdf:type isoR:RegistrationState . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST2-1> isoR:byAuthority mdrItems:RA-123456789 . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST2-1> isoR:registrationStatus "Incomplete"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST2-1> isoR:administrativeNote ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST2-1> isoR:effectiveDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST2-1> isoR:untilDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST2-1> isoR:unresolvedIssue ""^^xsd:string . 
+}
