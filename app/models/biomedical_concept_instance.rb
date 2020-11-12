@@ -14,7 +14,7 @@ class BiomedicalConceptInstance < BiomedicalConcept
   # @param [Class] the child klass
   # @return [Array] array of predicates (symbols)
   def managed_ancestors_predicate(child_klass)
-    identified_by_links.empty? ? [:has_item] : [:has_item, :identified_by]
+    identified_by_links.blank? ? [:has_item] : [:has_item, :identified_by]
   end
 
   # Create From Template. Creates a new instance from the specified template

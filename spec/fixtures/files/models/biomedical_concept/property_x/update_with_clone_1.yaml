@@ -49,7 +49,7 @@
 :origin: ''
 :change_description: ''
 :creation_date: '2016-01-01T00:00:00+00:00'
-:last_change_date: '2020-11-09T12:40:16+01:00'
+:last_change_date: '2020-11-12T18:19:21+01:00'
 :explanatory_comment: ''
 :has_item:
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMTA=
@@ -153,7 +153,7 @@
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGU=
       :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-      :label: new_label
+      :label: code
       :tagged: []
       :question_text: ''
       :prompt_text: ''
@@ -306,10 +306,10 @@
     :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#CD
     :has_property:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJOV9CQ0NEVENEX0JDUHZhbHVl
-      :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI9_BCCDTCD_BCPvalue
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJOV9CQ0NEVENEX0JDUGNvZGU=
+      :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI9_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-      :label: value
+      :label: code
       :tagged: []
       :question_text: ''
       :prompt_text: ''
@@ -317,7 +317,7 @@
       :alias: "--REASND"
       :has_coded_value: []
       :is_a: http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2
-      :is_complex_datatype_property: 
+      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJNA==
   :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI4
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
@@ -397,7 +397,7 @@
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGU=
       :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-      :label: new_label
+      :label: code
       :tagged: []
       :question_text: ''
       :prompt_text: ''
