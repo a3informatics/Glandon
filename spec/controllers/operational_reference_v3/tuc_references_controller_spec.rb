@@ -50,6 +50,34 @@ describe OperationalReferenceV3::TucReferencesController do
       check_file_actual_expected(actual, sub_dir, "update_tuc_reference_expected_1.yaml", equate_method: :hash_equal)
     end
 
+    it "update second version" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      cli_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49508"))
+      context_1 = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681"))
+      question.add_child({type:"tuc_reference", id_set:[{id:cli_1.id, context_id: context_1.id}]})
+      make_standard(form)
+      form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#F"))
+      check_file_actual_expected(form.to_h, sub_dir, "update_tuc_reference_expected_5a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC1"))
+      update_params = {form_id: new_form.id, local_label:"New label", enabled: false, optional: true} 
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(new_form, @user)
+      audit_count = AuditTrail.count
+      put :update, params:{id: tuc_reference.id, tuc_reference: update_params}
+      expect(AuditTrail.count).to eq(audit_count+1)
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_tuc_reference_expected_5b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#F"))
+      check_file_actual_expected(form.to_h, sub_dir, "update_tuc_reference_expected_5a.yaml", equate_method: :hash_equal)
+    end
+
     it 'update, second update so no audit' do
       update_params = {form_id: @form.id, local_label:"label u"} 
       request.env['HTTP_ACCEPT'] = "application/json"

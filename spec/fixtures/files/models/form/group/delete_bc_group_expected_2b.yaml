@@ -11,8 +11,8 @@
 :has_item: []
 :repeating: false
 :has_sub_group:
-- :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDR19mOWZlNzEyOC00YjYzLTQ4MmQtOWExMS02MjI1MGUyNGZlMGM=
-  :uri: http://www.example.com/A#BCG_f9fe7128-4b63-482d-9a11-62250e24fe0c
+- :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDR19mMDMyODdkNi0yM2VhLTQzYmItYjNjZi1mOTcyNzYxY2FhYmQ=
+  :uri: http://www.example.com/A#BCG_f03287d6-23ea-43bb-b3cf-f972761caabd
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Systolic Blood Pressure
   :tagged: []
@@ -21,8 +21,8 @@
   :completion: ''
   :optional: false
   :has_item:
-  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF9mMDMyODdkNi0yM2VhLTQzYmItYjNjZi1mOTcyNzYxY2FhYmQ=
-    :uri: http://www.example.com/A#BCP_f03287d6-23ea-43bb-b3cf-f972761caabd
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF80Yjk4MTM2NC1kYWY0LTRjOTktODRmMC1mNzUxNGJkMDkyZTc=
+    :uri: http://www.example.com/A#BCP_4b981364-daf4-4c99-84f0-f7514bd092e7
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--TESTCD"
     :tagged: []
@@ -31,8 +31,8 @@
     :completion: ''
     :optional: false
     :has_property:
-      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF9mMDMyODdkNi0yM2VhLTQzYmItYjNjZi1mOTcyNzYxY2FhYmRfUjE=
-      :uri: http://www.example.com/A#BCP_f03287d6-23ea-43bb-b3cf-f972761caabd_R1
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF80Yjk4MTM2NC1kYWY0LTRjOTktODRmMC1mNzUxNGJkMDkyZTdfUjE=
+      :uri: http://www.example.com/A#BCP_4b981364-daf4-4c99-84f0-f7514bd092e7_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
       :tagged: []
@@ -42,8 +42,8 @@
       :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1_BCCDTCD_BCPcode
       :context: 
     :has_coded_value:
-    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF9mMDMyODdkNi0yM2VhLTQzYmItYjNjZi1mOTcyNzYxY2FhYmRfVFVDMQ==
-      :uri: http://www.example.com/A#BCP_f03287d6-23ea-43bb-b3cf-f972761caabd_TUC1
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF80Yjk4MTM2NC1kYWY0LTRjOTktODRmMC1mNzUxNGJkMDkyZTdfVFVDMQ==
+      :uri: http://www.example.com/A#BCP_4b981364-daf4-4c99-84f0-f7514bd092e7_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -70,34 +70,12 @@
       :context: http://www.cdisc.org/C66741/V61#C66741
       :local_label: Systolic Blood Pressure
     :is_common: false
-  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF80Yjk4MTM2NC1kYWY0LTRjOTktODRmMC1mNzUxNGJkMDkyZTc=
-    :uri: http://www.example.com/A#BCP_4b981364-daf4-4c99-84f0-f7514bd092e7
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmI=
+    :uri: http://www.example.com/A#BCP_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--DTC"
     :tagged: []
     :ordinal: 2
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF80Yjk4MTM2NC1kYWY0LTRjOTktODRmMC1mNzUxNGJkMDkyZTdfUjE=
-      :uri: http://www.example.com/A#BCP_4b981364-daf4-4c99-84f0-f7514bd092e7_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
-      :context: 
-    :has_coded_value: []
-    :is_common: false
-  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmI=
-    :uri: http://www.example.com/A#BCP_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--POS"
-    :tagged: []
-    :ordinal: 3
     :note: ''
     :completion: ''
     :optional: false
@@ -110,11 +88,33 @@
       :enabled: true
       :optional: false
       :ordinal: 1
+      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+      :context: 
+    :has_coded_value: []
+    :is_common: true
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84MzBmYTcyYy1hNTllLTQ3NWItOWIyYy1lYjRiNWFjZTI2NGY=
+    :uri: http://www.example.com/A#BCP_830fa72c-a59e-475b-9b2c-eb4b5ace264f
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: "--POS"
+    :tagged: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84MzBmYTcyYy1hNTllLTQ3NWItOWIyYy1lYjRiNWFjZTI2NGZfUjE=
+      :uri: http://www.example.com/A#BCP_830fa72c-a59e-475b-9b2c-eb4b5ace264f_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
       :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode
       :context: 
     :has_coded_value:
-    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmJfVFVDMQ==
-      :uri: http://www.example.com/A#BCP_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC1
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84MzBmYTcyYy1hNTllLTQ3NWItOWIyYy1lYjRiNWFjZTI2NGZfVFVDMQ==
+      :uri: http://www.example.com/A#BCP_830fa72c-a59e-475b-9b2c-eb4b5ace264f_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -141,8 +141,8 @@
         - http://www.assero.co.uk/SYN#945f18c92f689a4154181b62cac40154b64edee9
       :context: http://www.cdisc.org/C71148/V62#C71148
       :local_label: Standing
-    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmJfVFVDMg==
-      :uri: http://www.example.com/A#BCP_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC2
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84MzBmYTcyYy1hNTllLTQ3NWItOWIyYy1lYjRiNWFjZTI2NGZfVFVDMg==
+      :uri: http://www.example.com/A#BCP_830fa72c-a59e-475b-9b2c-eb4b5ace264f_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -167,8 +167,8 @@
         - http://www.assero.co.uk/SYN#d79919201623d71b31f2ac9d83bc18e08a779e8a
       :context: http://www.cdisc.org/C71148/V62#C71148
       :local_label: Sitting
-    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmJfVFVDMw==
-      :uri: http://www.example.com/A#BCP_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC3
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84MzBmYTcyYy1hNTllLTQ3NWItOWIyYy1lYjRiNWFjZTI2NGZfVFVDMw==
+      :uri: http://www.example.com/A#BCP_830fa72c-a59e-475b-9b2c-eb4b5ace264f_TUC3
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -193,9 +193,9 @@
         - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
       :context: http://www.cdisc.org/C71148/V62#C71148
       :local_label: Supine Position
-    :is_common: true
-  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84MzBmYTcyYy1hNTllLTQ3NWItOWIyYy1lYjRiNWFjZTI2NGY=
-    :uri: http://www.example.com/A#BCP_830fa72c-a59e-475b-9b2c-eb4b5ace264f
+    :is_common: false
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8yNDJjM2Q5NC1mNDdjLTQ0NzctOWY1MS1hZmE0YzE4ZmE5NDk=
+    :uri: http://www.example.com/A#BCP_242c3d94-f47c-4477-9f51-afa4c18fa949
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--LOC"
     :tagged: []
@@ -204,8 +204,8 @@
     :completion: ''
     :optional: false
     :has_property:
-      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84MzBmYTcyYy1hNTllLTQ3NWItOWIyYy1lYjRiNWFjZTI2NGZfUjE=
-      :uri: http://www.example.com/A#BCP_830fa72c-a59e-475b-9b2c-eb4b5ace264f_R1
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8yNDJjM2Q5NC1mNDdjLTQ0NzctOWY1MS1hZmE0YzE4ZmE5NDlfUjE=
+      :uri: http://www.example.com/A#BCP_242c3d94-f47c-4477-9f51-afa4c18fa949_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
       :tagged: []
@@ -215,8 +215,8 @@
       :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode
       :context: 
     :has_coded_value:
-    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84MzBmYTcyYy1hNTllLTQ3NWItOWIyYy1lYjRiNWFjZTI2NGZfVFVDMQ==
-      :uri: http://www.example.com/A#BCP_830fa72c-a59e-475b-9b2c-eb4b5ace264f_TUC1
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8yNDJjM2Q5NC1mNDdjLTQ0NzctOWY1MS1hZmE0YzE4ZmE5NDlfVFVDMQ==
+      :uri: http://www.example.com/A#BCP_242c3d94-f47c-4477-9f51-afa4c18fa949_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -245,8 +245,8 @@
       :context: http://www.cdisc.org/C74456/V62#C74456
       :local_label: Arm
     :is_common: false
-  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8yNDJjM2Q5NC1mNDdjLTQ0NzctOWY1MS1hZmE0YzE4ZmE5NDk=
-    :uri: http://www.example.com/A#BCP_242c3d94-f47c-4477-9f51-afa4c18fa949
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8xNTlhN2Q3Zi0xZWY1LTQwZjctODA4Yi1kNWQ2NmFjN2EwNmU=
+    :uri: http://www.example.com/A#BCP_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--LAT"
     :tagged: []
@@ -255,8 +255,8 @@
     :completion: ''
     :optional: false
     :has_property:
-      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8yNDJjM2Q5NC1mNDdjLTQ0NzctOWY1MS1hZmE0YzE4ZmE5NDlfUjE=
-      :uri: http://www.example.com/A#BCP_242c3d94-f47c-4477-9f51-afa4c18fa949_R1
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8xNTlhN2Q3Zi0xZWY1LTQwZjctODA4Yi1kNWQ2NmFjN2EwNmVfUjE=
+      :uri: http://www.example.com/A#BCP_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
       :tagged: []
@@ -266,8 +266,8 @@
       :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7_BCCDTCD_BCPcode
       :context: 
     :has_coded_value:
-    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8yNDJjM2Q5NC1mNDdjLTQ0NzctOWY1MS1hZmE0YzE4ZmE5NDlfVFVDMQ==
-      :uri: http://www.example.com/A#BCP_242c3d94-f47c-4477-9f51-afa4c18fa949_TUC1
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8xNTlhN2Q3Zi0xZWY1LTQwZjctODA4Yi1kNWQ2NmFjN2EwNmVfVFVDMQ==
+      :uri: http://www.example.com/A#BCP_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -292,8 +292,8 @@
         :synonym: []
       :context: http://www.cdisc.org/C99073/V57#C99073
       :local_label: Left
-    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8yNDJjM2Q5NC1mNDdjLTQ0NzctOWY1MS1hZmE0YzE4ZmE5NDlfVFVDMg==
-      :uri: http://www.example.com/A#BCP_242c3d94-f47c-4477-9f51-afa4c18fa949_TUC2
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8xNTlhN2Q3Zi0xZWY1LTQwZjctODA4Yi1kNWQ2NmFjN2EwNmVfVFVDMg==
+      :uri: http://www.example.com/A#BCP_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -318,8 +318,8 @@
         :synonym: []
       :context: http://www.cdisc.org/C99073/V57#C99073
       :local_label: Right
-    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8yNDJjM2Q5NC1mNDdjLTQ0NzctOWY1MS1hZmE0YzE4ZmE5NDlfVFVDMw==
-      :uri: http://www.example.com/A#BCP_242c3d94-f47c-4477-9f51-afa4c18fa949_TUC3
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8xNTlhN2Q3Zi0xZWY1LTQwZjctODA4Yi1kNWQ2NmFjN2EwNmVfVFVDMw==
+      :uri: http://www.example.com/A#BCP_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_TUC3
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -344,34 +344,12 @@
       :context: http://www.cdisc.org/C99073/V57#C99073
       :local_label: Bilateral
     :is_common: false
-  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8xNTlhN2Q3Zi0xZWY1LTQwZjctODA4Yi1kNWQ2NmFjN2EwNmU=
-    :uri: http://www.example.com/A#BCP_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF81M2RkODdjMy0xYzI5LTQyNDAtYmE5OC03MjM0MTg5NmIzNDg=
+    :uri: http://www.example.com/A#BCP_53dd87c3-1c29-4240-ba98-72341896b348
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--ORRES"
     :tagged: []
     :ordinal: 6
-    :note: ''
-    :completion: ''
-    :optional: false
-    :has_property:
-      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF8xNTlhN2Q3Zi0xZWY1LTQwZjctODA4Yi1kNWQ2NmFjN2EwNmVfUjE=
-      :uri: http://www.example.com/A#BCP_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_R1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPvalue
-      :context: 
-    :has_coded_value: []
-    :is_common: false
-  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF81M2RkODdjMy0xYzI5LTQyNDAtYmE5OC03MjM0MTg5NmIzNDg=
-    :uri: http://www.example.com/A#BCP_53dd87c3-1c29-4240-ba98-72341896b348
-    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-    :label: "--ORRESU"
-    :tagged: []
-    :ordinal: 7
     :note: ''
     :completion: ''
     :optional: false
@@ -384,11 +362,33 @@
       :enabled: true
       :optional: false
       :ordinal: 1
+      :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPvalue
+      :context: 
+    :has_coded_value: []
+    :is_common: false
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF85NTEyZDFkNC03ZjZjLTRiM2MtYTMzMC1mZjMwODFmOGRlMjQ=
+    :uri: http://www.example.com/A#BCP_9512d1d4-7f6c-4b3c-a330-ff3081f8de24
+    :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
+    :label: "--ORRESU"
+    :tagged: []
+    :ordinal: 7
+    :note: ''
+    :completion: ''
+    :optional: false
+    :has_property:
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF85NTEyZDFkNC03ZjZjLTRiM2MtYTMzMC1mZjMwODFmOGRlMjRfUjE=
+      :uri: http://www.example.com/A#BCP_9512d1d4-7f6c-4b3c-a330-ff3081f8de24_R1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :label: ''
+      :tagged: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
       :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPcode
       :context: 
     :has_coded_value:
-    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF81M2RkODdjMy0xYzI5LTQyNDAtYmE5OC03MjM0MTg5NmIzNDhfVFVDMQ==
-      :uri: http://www.example.com/A#BCP_53dd87c3-1c29-4240-ba98-72341896b348_TUC1
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF85NTEyZDFkNC03ZjZjLTRiM2MtYTMzMC1mZjMwODFmOGRlMjRfVFVDMQ==
+      :uri: http://www.example.com/A#BCP_9512d1d4-7f6c-4b3c-a330-ff3081f8de24_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -415,8 +415,8 @@
         - http://www.assero.co.uk/SYN#2bdde86e2670dd41617c7be1092b5a671feb4c3b
       :context: http://www.cdisc.org/C66770/V59#C66770
       :local_label: Millimeter of Mercury
-    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF81M2RkODdjMy0xYzI5LTQyNDAtYmE5OC03MjM0MTg5NmIzNDhfVFVDMg==
-      :uri: http://www.example.com/A#BCP_53dd87c3-1c29-4240-ba98-72341896b348_TUC2
+    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF85NTEyZDFkNC03ZjZjLTRiM2MtYTMzMC1mZjMwODFmOGRlMjRfVFVDMg==
+      :uri: http://www.example.com/A#BCP_9512d1d4-7f6c-4b3c-a330-ff3081f8de24_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :tagged: []
@@ -500,8 +500,8 @@
     :identified_by: 
     :based_on: 
 :has_common:
-- :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI1gyX0NH
-  :uri: http://www.example.com/A#X2_CG
+- :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0NHXzE3NjBjYmIxLWEzNzAtNDFmNi1hM2IzLTQ5M2MxZDljMjIzOA==
+  :uri: http://www.example.com/A#CG_1760cbb1-a370-41f6-a3b3-493c1d9c2238
   :rdf_type: http://www.assero.co.uk/BusinessForm#CommonGroup
   :label: Not set
   :tagged: []
@@ -510,114 +510,34 @@
   :completion: ''
   :optional: false
   :has_item:
-  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0NJXzk1MTJkMWQ0LTdmNmMtNGIzYy1hMzMwLWZmMzA4MWY4ZGUyNA==
-    :uri: http://www.example.com/A#CI_9512d1d4-7f6c-4b3c-a330-ff3081f8de24
+  - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0NJXzE2ODE1ZTg3LTAxNDEtNGRlMy1iNTc1LWYwNmE3MjliZGY0MA==
+    :uri: http://www.example.com/A#CI_16815e87-0141-4de3-b575-f06a729bdf40
     :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
-    :label: "--POS"
+    :label: "--DTC"
     :tagged: []
     :ordinal: 1
     :note: ''
     :completion: ''
     :optional: false
     :has_property:
-      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0NJXzk1MTJkMWQ0LTdmNmMtNGIzYy1hMzMwLWZmMzA4MWY4ZGUyNF9SMQ==
-      :uri: http://www.example.com/A#CI_9512d1d4-7f6c-4b3c-a330-ff3081f8de24_R1
+      :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0NJXzE2ODE1ZTg3LTAxNDEtNGRlMy1iNTc1LWYwNmE3MjliZGY0MF9SMQ==
+      :uri: http://www.example.com/A#CI_16815e87-0141-4de3-b575-f06a729bdf40_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
       :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
-      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode
+      :reference: http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
       :context: 
-    :has_coded_value:
-    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0NJXzk1MTJkMWQ0LTdmNmMtNGIzYy1hMzMwLWZmMzA4MWY4ZGUyNF9UVUMx
-      :uri: http://www.example.com/A#CI_9512d1d4-7f6c-4b3c-a330-ff3081f8de24_TUC1
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 1
-      :reference:
-        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2MiNDNzExNDhfQzYyMTY2
-        :uri: http://www.cdisc.org/C71148/V62#C71148_C62166
-        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-        :label: Standing
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
-        :identifier: C62166
-        :notation: STANDING
-        :definition: The act of assuming or maintaining an erect upright position.
-          (NCI)
-        :extensible: false
-        :narrower: []
-        :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
-        :synonym:
-        - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
-        - http://www.assero.co.uk/SYN#945f18c92f689a4154181b62cac40154b64edee9
-      :context: http://www.cdisc.org/C71148/V62#C71148
-      :local_label: Standing
-    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0NJXzk1MTJkMWQ0LTdmNmMtNGIzYy1hMzMwLWZmMzA4MWY4ZGUyNF9UVUMy
-      :uri: http://www.example.com/A#CI_9512d1d4-7f6c-4b3c-a330-ff3081f8de24_TUC2
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 2
-      :reference:
-        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxMjI=
-        :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
-        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-        :label: Sitting
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        :identifier: C62122
-        :notation: SITTING
-        :definition: The state or act of one who sits; the posture of one who occupies
-          a seat. (NCI)
-        :extensible: false
-        :narrower: []
-        :preferred_term: http://www.assero.co.uk/PT#d79919201623d71b31f2ac9d83bc18e08a779e8a
-        :synonym:
-        - http://www.assero.co.uk/SYN#d79919201623d71b31f2ac9d83bc18e08a779e8a
-      :context: http://www.cdisc.org/C71148/V62#C71148
-      :local_label: Sitting
-    - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0NJXzk1MTJkMWQ0LTdmNmMtNGIzYy1hMzMwLWZmMzA4MWY4ZGUyNF9UVUMz
-      :uri: http://www.example.com/A#CI_9512d1d4-7f6c-4b3c-a330-ff3081f8de24_TUC3
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-      :label: ''
-      :tagged: []
-      :enabled: true
-      :optional: false
-      :ordinal: 3
-      :reference:
-        :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjc=
-        :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
-        :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-        :label: Supine Position
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        :identifier: C62167
-        :notation: SUPINE
-        :definition: A posterior recumbent body position whereby the person lies on
-          its back and faces upward. (NCI)
-        :extensible: false
-        :narrower: []
-        :preferred_term: http://www.assero.co.uk/PT#120bf64d01680390ffcf00cc1bdce0d885791a9e
-        :synonym:
-        - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
-      :context: http://www.cdisc.org/C71148/V62#C71148
-      :local_label: Supine Position
+    :has_coded_value: []
     :has_common_item:
     - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmI=
       :uri: http://www.example.com/A#BCP_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
-      :label: "--POS"
+      :label: "--DTC"
       :tagged: []
-      :ordinal: 3
+      :ordinal: 2
       :note: ''
       :completion: ''
       :optional: false
@@ -630,88 +550,8 @@
         :enabled: true
         :optional: false
         :ordinal: 1
-        :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode
+        :reference: http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
         :context: 
-      :has_coded_value:
-      - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmJfVFVDMQ==
-        :uri: http://www.example.com/A#BCP_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC1
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-        :label: ''
-        :tagged: []
-        :enabled: true
-        :optional: false
-        :ordinal: 1
-        :reference:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2MiNDNzExNDhfQzYyMTY2
-          :uri: http://www.cdisc.org/C71148/V62#C71148_C62166
-          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-          :label: Standing
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-          - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
-          :identifier: C62166
-          :notation: STANDING
-          :definition: The act of assuming or maintaining an erect upright position.
-            (NCI)
-          :extensible: false
-          :narrower: []
-          :preferred_term: http://www.assero.co.uk/PT#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
-          :synonym:
-          - http://www.assero.co.uk/SYN#742f03c37a89fa0b0d7f3cb1fc000693502f60b3
-          - http://www.assero.co.uk/SYN#945f18c92f689a4154181b62cac40154b64edee9
-        :context: http://www.cdisc.org/C71148/V62#C71148
-        :local_label: Standing
-      - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmJfVFVDMg==
-        :uri: http://www.example.com/A#BCP_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC2
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-        :label: ''
-        :tagged: []
-        :enabled: true
-        :optional: false
-        :ordinal: 2
-        :reference:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxMjI=
-          :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
-          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-          :label: Sitting
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-          :identifier: C62122
-          :notation: SITTING
-          :definition: The state or act of one who sits; the posture of one who occupies
-            a seat. (NCI)
-          :extensible: false
-          :narrower: []
-          :preferred_term: http://www.assero.co.uk/PT#d79919201623d71b31f2ac9d83bc18e08a779e8a
-          :synonym:
-          - http://www.assero.co.uk/SYN#d79919201623d71b31f2ac9d83bc18e08a779e8a
-        :context: http://www.cdisc.org/C71148/V62#C71148
-        :local_label: Sitting
-      - :id: aHR0cDovL3d3dy5leGFtcGxlLmNvbS9BI0JDUF84Y2Q2MmQzYy1iY2UyLTRkMWItYmM3ZS1jYzY1NDQ1NTFhYmJfVFVDMw==
-        :uri: http://www.example.com/A#BCP_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC3
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-        :label: ''
-        :tagged: []
-        :enabled: true
-        :optional: false
-        :ordinal: 3
-        :reference:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxNjc=
-          :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
-          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-          :label: Supine Position
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-          :identifier: C62167
-          :notation: SUPINE
-          :definition: A posterior recumbent body position whereby the person lies
-            on its back and faces upward. (NCI)
-          :extensible: false
-          :narrower: []
-          :preferred_term: http://www.assero.co.uk/PT#120bf64d01680390ffcf00cc1bdce0d885791a9e
-          :synonym:
-          - http://www.assero.co.uk/SYN#38cb0248720c26ec02e68f5a42d72ca12e843af8
-        :context: http://www.cdisc.org/C71148/V62#C71148
-        :local_label: Supine Position
+      :has_coded_value: []
       :is_common: true
     :is_common: false

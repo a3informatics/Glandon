@@ -275,6 +275,11 @@ module Fuseki
           @resources["#{name}".to_sym][:predicate]
         end
 
+        # Define a class method to get the child property name
+        define_singleton_method "children_property_name" do
+          "#{name}".to_sym
+        end
+
       else
 
         # Define a class method to return if children predicate exists

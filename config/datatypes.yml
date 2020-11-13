@@ -3,6 +3,7 @@ defaults: &defaults
     typed: :to_s
     literal: :to_s
     default: ""
+    default_format: "20"
   http://www.w3.org/2001/XMLSchema#boolean:
     typed: :to_bool
     literal: :to_s
@@ -26,14 +27,17 @@ defaults: &defaults
     typed: :to_i
     literal: :to_s
     default: 1
+    default_format: "3"
   http://www.w3.org/2001/XMLSchema#positiveInteger: 
     typed: :to_i 
     literal: :to_s
     default: 1
+    default_format: "3"
   http://www.w3.org/2001/XMLSchema#float: 
     typed: :to_i 
     literal: :to_s
     default: 1.0
+    default_format: "5.2"
 
 development:
   <<: *defaults

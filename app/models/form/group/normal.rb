@@ -20,6 +20,16 @@ class Form::Group::Normal < Form::Group
 
   validates_with Validator::Field, attribute: :repeating, method: :valid_boolean?
 
+  # Managed Ancestors Predicate. Returns the property(ies) from this instance/class in the managed ancestor path to the child class
+  #
+  # @param [Class] the child klass
+  # @return [Array] array of predicates (symbols)
+  def managed_ancestors_predicate(child_klass)
+    return [:has_common] if child_klass == Form::Group::Common
+    return [:has_sub_group] if [Form::Group::Normal, Form::Group::Bc].include?(child_klass)
+    [:has_item]
+  end
+
   # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
   #
   # @return [Form::Group::Normal] array of objects
