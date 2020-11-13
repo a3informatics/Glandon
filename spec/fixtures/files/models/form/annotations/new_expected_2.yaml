@@ -1,24 +1,16 @@
 ---
 :annotation_set:
-- :uri: http://www.s-cubed.dk/A#A1
-  :domain_prefix: dom_prefix1
-  :domain_long_name: dom_long_name1
-  :sdtm_variable: sdtm_variable
-  :sdtm_topic_variable: sdtm_topic_variable
-  :sdtm_topic_value: sdtm_topic_value
-- :uri: http://www.s-cubed.dk/A#A2
-  :domain_prefix: dom_prefix2
-  :domain_long_name: dom_long_name2
-  :sdtm_variable: sdtm_variable
-  :sdtm_topic_variable: sdtm_topic_variable
-  :sdtm_topic_value: sdtm_topic_value
-- :uri: http://www.s-cubed.dk/A#A3
-  :domain_prefix: dom_prefix3
-  :domain_long_name: dom_long_name3
-  :sdtm_variable: sdtm_variable
-  :sdtm_topic_variable: sdtm_topic_variable
-  :sdtm_topic_value: sdtm_topic_value
+- :uri: http://www.s-cubed.dk/form_test/V1#F_NG4_Q1
+  :domain_prefix: VS
+  :domain_long_name: Vital Signs
+  :sdtm_variable: VSTEST
+  :sdtm_topic_variable: ''
+  :sdtm_topic_value: ''
+- :uri: http://www.s-cubed.dk/form_test/V1#F_NG4_Q3
+  :domain_prefix: VS
+  :domain_long_name: Vital Signs
+  :sdtm_variable: VSORRESU
+  :sdtm_topic_variable: ''
+  :sdtm_topic_value: ''
 :domain_list:
-  :dom_prefix1: dom_long_name1
-  :dom_prefix2: dom_long_name2
-  :dom_prefix3: dom_long_name3
+  :VS: Vital Signs

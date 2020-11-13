@@ -19,6 +19,14 @@ class Form
       @sdtm_topic_value = params[:sdtm_topic_value]
     end
 
+    def domain_prefix
+      @domain_prefix
+    end
+
+    def domain_long_name
+      @domain_long_name
+    end
+
     # ---------
     # Test Only  
     # ---------
