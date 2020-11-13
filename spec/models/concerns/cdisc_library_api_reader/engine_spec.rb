@@ -24,7 +24,7 @@ describe CDISCLibraryAPIReader::Engine do
     expect(parent.errors.count).to eq(0)
   end
 
-  it "process protocol", :speed => 'slow', :requires => 'cdisc_library_api' do
+  it "process protocol", :import_test => 'slow', :requires => 'cdisc_library_api' do
     parent = IsoConceptV2.new
     object = CDISCLibraryAPIReader::Engine.new(parent) 
     object.process("/mdr/ct/packages/protocolct-2019-09-27")
@@ -60,7 +60,7 @@ describe CDISCLibraryAPIReader::Engine do
     check_file_actual_expected(result, other_dir, "execute_expected_5.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
-  it "process cdash", :speed => 'slow', :requires => 'cdisc_library_api' do
+  it "process cdash", :import_test => 'slow', :requires => 'cdisc_library_api' do
     parent = IsoConceptV2.new
     object = CDISCLibraryAPIReader::Engine.new(parent) 
     object.process("/mdr/ct/packages/cdashct-2019-06-28")

@@ -1826,7 +1826,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       check_tags(release_date)
     end
 
-    it "Create 2020-09-25", :speed => 'slow' do
+    it "Create 2020-09-25", :import_data => 'slow' do
       release_date = "2020-09-25"
       results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date, define: "2020-06-26"}, set_write_file, use_api)
       expected = [
@@ -1861,7 +1861,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       check_tags(release_date)
     end
 
-    it "Create 2020-11-06", :speed => 'slow' do
+    it "Create 2020-11-06", :import_data => 'slow' do
       release_date = "2020-11-06"
       results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date, define: release_date}, set_write_file, use_api)
       expected = [
