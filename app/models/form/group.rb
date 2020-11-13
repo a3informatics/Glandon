@@ -17,6 +17,7 @@ class Form::Group < IsoConceptV2
   validates :optional, inclusion: { in: [ true, false ] }
 
   include Form::Ordinal
+  include Form::CRF
 
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #

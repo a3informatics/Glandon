@@ -24,9 +24,9 @@ class Form::Item::Mapping < Form::Item
   # To CRF
   #
   # @return [String] An html string of Mapping item
-  def to_crf
+  def to_crf(annotations = nil)
     html = ""
-    #html += mapping_row(self.mapping) #if options[:annotate]
+    html += mapping_row(self.mapping) if !annotations.nil? #options[:annotate]
   end
 
 private

@@ -54,7 +54,7 @@ class Form::Group::Common < Form::Group
     html = ""
     html += text_row(self.label)
     self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
-      html += item.to_crf
+      html += item.to_crf(annotations = nil)
     end
     return html
   end

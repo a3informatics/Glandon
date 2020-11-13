@@ -13,6 +13,7 @@ class Form < IsoManagedV2
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
 
   include Form::Ordinal
+  include Form::CRF
 
   # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
   #
@@ -134,9 +135,29 @@ private
     html += '<table class="table table-striped table-bordered table-condensed" id="crf">'
     html += '<tr>'
     html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
+
+    unless annotations.nil?
+      html += '<td>' 
+      domains = annotations.domain_list
+      domains.each_with_index do |domain, index|
+        domain_annotation = domain[:domain_prefix]
+        if !domain[:domain_long_name].empty?
+          domain_annotation += "=" + domain[:domain_long_name]
+        end
+        class_suffix = index < C_DOMAIN_CLASS_COUNT ? "#{index + 1}" : "other"
+        class_name = "domain-#{class_suffix}"
+        html += "<h4 class=\"#{class_name}\">#{domain_annotation}</h4>"
+        domain[:class] = class_name
+        @@domain_map[domain[:domain_prefix]] = domain
+      end
+      html += '</td>'
+    else
+      html += empty_cell
+    end
+
     html += '</tr>'
     form.has_group.sort_by {|x| x.ordinal}.each do |group|
-      html += group.to_crf
+      html += group.to_crf(annotations = nil)
     end
     html += '</table>'
   end
@@ -159,25 +180,25 @@ private
     query_results.by_object(:max).first.to_i + 1
   end
 
-  def get_css
-    html = "<style>"
-    html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
-    html += "table.crf-input-field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; "
-    html += "vertical-align: center; padding: 5px; }\n"
-    html += "table.crf-input-field td:not(:last-child){border-right: 1px dashed}\n"
-    html += "h4.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 5px; }\n"
-    html += "p.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 5px; }\n"
-    html += "h4.domain-2 {border-radius: 5px; background: #AED6F1; padding: 5px; }\n"
-    html += "p.domain-2 {border-radius: 5px; background: #AED6F1; padding: 5px; }\n"
-    html += "h4.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 5px; }\n"
-    html += "p.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 5px; }\n"
-    html += "h4.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 5px; }\n"
-    html += "p.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 5px; }\n"
-    html += "h4.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
-    html += "p.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
-    html += "h4.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
-    html += "p.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
-    html += "</style>"
-  end
+  # def get_css
+  #   html = "<style>"
+  #   html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
+  #   html += "table.crf-input-field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; "
+  #   html += "vertical-align: center; padding: 5px; }\n"
+  #   html += "table.crf-input-field td:not(:last-child){border-right: 1px dashed}\n"
+  #   html += "h4.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 5px; }\n"
+  #   html += "p.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 5px; }\n"
+  #   html += "h4.domain-2 {border-radius: 5px; background: #AED6F1; padding: 5px; }\n"
+  #   html += "p.domain-2 {border-radius: 5px; background: #AED6F1; padding: 5px; }\n"
+  #   html += "h4.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 5px; }\n"
+  #   html += "p.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 5px; }\n"
+  #   html += "h4.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 5px; }\n"
+  #   html += "p.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 5px; }\n"
+  #   html += "h4.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
+  #   html += "p.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
+  #   html += "h4.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
+  #   html += "p.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
+  #   html += "</style>"
+  # end
 
 end
