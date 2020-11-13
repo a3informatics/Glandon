@@ -355,7 +355,7 @@ Rails.application.routes.draw do
       post :create_from_template
     end
   end
-  resources :studies, only: [:create, :update] do
+  resources :studies, only: [:show, :create, :update] do
     member do
       get :build
       get :design
@@ -364,9 +364,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :index
-      get :index_data
       get :history
-      get :history_data
     end
   end
   resources :protocols, only: [:show, :update] do

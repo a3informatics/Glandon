@@ -12,13 +12,7 @@ class StudiesController < ManagedItemsController
 
   def index
     authorize Form
-  end
-
-  def index_data
-    authorize Form, :view?
-    studies = Study.unique
-    studies = studies.map{|x| x.reverse_merge!({history_path: history_studies_path({study:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
-    render json: {data: studies}, status: 200
+    super
   end
 
   # def update
@@ -42,20 +36,19 @@ class StudiesController < ManagedItemsController
 
   def history
     authorize Form, :show?
-    @study = Study.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-    @identifier = the_params[:identifier]
-    @scope_id = the_params[:scope_id]
-    @close_path = studies_path
-  end
-
-  def history_data
-    authorize Form, :show?
-    results = []
-    history_results = Study.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
-    current = Study.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-    latest = Study.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-    results = add_history_paths(Form, history_results, current, latest)
-    render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
+    respond_to do |format|
+      format.html do
+        super
+      end
+      format.json do
+        results = []
+        history_results = Study.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
+        current = Study.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        latest = Study.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        results = add_history_paths(Form, history_results, current, latest)
+        render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
+      end
+    end
   end
 
   def build
@@ -101,6 +94,18 @@ private
       else
         return ""
     end
+  end
+
+  def model_klass
+    Study
+  end
+
+  def history_path_for(identifier, scope_id)
+    return {history_path: history_studies_path({study:{identifier: identifier, scope_id: scope_id}})}
+  end
+
+  def close_path_for
+    studies_path
   end
 
 end
