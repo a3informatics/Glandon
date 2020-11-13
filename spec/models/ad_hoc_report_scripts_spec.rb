@@ -88,7 +88,7 @@ RSpec.describe AdHocReport, type: :model do
       report.results_file = "missing_tags_results_1.yaml"
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH").to_id])}
       results = AdHocReportFiles.read("missing_tags_results_1.yaml")
-      check_file_actual_expected(results, sub_dir, "missing_tags_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "missing_tags_expected_1.yaml", equate_method: :hash_equal, write_file: false)
     end
 
   end
@@ -131,7 +131,7 @@ RSpec.describe AdHocReport, type: :model do
       report.results_file = "extension_count_results_2.yaml"
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH").to_id])}
       results = AdHocReportFiles.read("extension_count_results_2.yaml")
-      check_file_actual_expected(results, sub_dir, "extension_count_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "extension_count_expected_2.yaml", equate_method: :hash_equal, write_file: false)
     end
   
   end
@@ -204,11 +204,9 @@ RSpec.describe AdHocReport, type: :model do
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6_migrated.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0_migrated.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/ranks_V2-6.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/ranks_V3-0.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/rank_extensions_V2-6.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
       AdHocReport.delete_all
       delete_all_public_files
     end
@@ -261,11 +259,9 @@ RSpec.describe AdHocReport, type: :model do
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6_migrated.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0_migrated.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/ranks_V2-6.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/ranks_V3-0.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/rank_extensions_V2-6.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
       AdHocReport.delete_all
       delete_all_public_files
     end

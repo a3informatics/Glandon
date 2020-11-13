@@ -3,7 +3,6 @@
 :uri: http://www.s-cubed.dk/XXX/V1#BCI
 :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
 :label: this is XXX
-:tagged: []
 :has_state:
   :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfUlM=
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_RS
@@ -56,7 +55,6 @@
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI1
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
   :label: Test
-  :tagged: []
   :mandatory: true
   :collect: false
   :enabled: true
@@ -66,14 +64,12 @@
     :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI1_BCCDTCD
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: CD
-    :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#CD
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGU=
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI1_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: all nodes should change
-      :tagged: []
       :question_text: ''
       :prompt_text: ''
       :format: '8'
@@ -83,7 +79,6 @@
         :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: true
         :ordinal: 1
