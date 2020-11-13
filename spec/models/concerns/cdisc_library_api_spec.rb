@@ -19,7 +19,7 @@ describe "CDISC Library API" do
       load_files(schema_files, [])
     end
 
-    it "mdr products" do
+    it "mdr products", :requires => 'cdisc_library_api' do
       object = CDISCLibraryAPI.new
       result_1 = object.request("mdr/products")
       result_2 = object.request("/mdr/products")
@@ -27,14 +27,14 @@ describe "CDISC Library API" do
       check_file_actual_expected(result_1, sub_dir, "products_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "list CT" do
+    it "list CT", :requires => 'cdisc_library_api' do
       object = CDISCLibraryAPI.new
       result = object.request(CDISCLibraryAPI::C_CT_PACKAGES_URL)
       puts colourize("CT List\n#{result}\n+++++", "blue")
       check_file_actual_expected(result, sub_dir, "ct_list_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "ct packages" do
+    it "ct packages", :requires => 'cdisc_library_api' do
       object = CDISCLibraryAPI.new
       result = object.ct_packages
       check_file_actual_expected(result, sub_dir, "ct_packages_expected_1.yaml", equate_method: :hash_equal)
@@ -46,7 +46,7 @@ describe "CDISC Library API" do
       expect{object.ct_packages}.to raise_error(Errors::ApplicationLogicError, "The CDISC Library API is not enabled.")
     end
 
-    it "ct packages by date" do
+    it "ct packages by date", :requires => 'cdisc_library_api' do
       object = CDISCLibraryAPI.new
       result = object.ct_packages_by_date('2019-03-29')
       check_file_actual_expected(result, sub_dir, "ct_package_by_date_expected_1.yaml", equate_method: :hash_equal)
@@ -62,52 +62,52 @@ describe "CDISC Library API" do
       check_file_actual_expected(result, sub_dir, "ct_package_by_date_expected_6.yaml", equate_method: :hash_equal)
     end
 
-    it "ct packages by date, define" do
+    it "ct packages by date, define", :requires => 'cdisc_library_api' do
       object = CDISCLibraryAPI.new
       result = object.ct_packages_by_date('2019-12-20')
       check_file_actual_expected(result, sub_dir, "ct_package_by_date_expected_7.yaml", equate_method: :hash_equal)
     end
 
-    it "ct packages by date, no date found" do
+    it "ct packages by date, no date found", :requires => 'cdisc_library_api' do
       object = CDISCLibraryAPI.new
       expect{object.ct_packages_by_date("201-11-11")}.to raise_error(Errors::ApplicationLogicError, "No CT release found matching requested date '201-11-11'.")
     end
 
-    it "ct packages by date, not enabled" do
+    it "ct packages by date, not enabled", :requires => 'cdisc_library_api' do
       expect(EnvironmentVariable).to receive(:read).and_return("false")
       object = CDISCLibraryAPI.new
       expect{object.ct_packages_by_date("")}.to raise_error(Errors::ApplicationLogicError, "The CDISC Library API is not enabled.")
     end
 
-    it "ct package" do
+    it "ct package", :requires => 'cdisc_library_api' do
       object = CDISCLibraryAPI.new
       result = object.ct_package("/mdr/ct/packages/protocolct-2019-03-29")
       check_file_actual_expected(result, sub_dir, "ct_package_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "ct package, error" do
+    it "ct package, error", :requires => 'cdisc_library_api' do
       object = CDISCLibraryAPI.new
       expect{object.ct_package("/mdr/ct/packages/protocolct-2019-03-XX")}.to raise_error(Errors::NotFoundError, "Request to CDISC API https://library.cdisc.org/api/mdr/ct/packages/protocolct-2019-03-XX failed, HTTP error: 404.")
     end
 
-    it "ct package tags" do
+    it "ct package tags", :requires => 'cdisc_library_api' do
       object = CDISCLibraryAPI.new
       result = object.ct_package("/mdr/ct/packages/protocolct-2019-03-29")
       expect(object.ct_tags(result[:label])).to eq(["Protocol"])
     end
 
-    it "ct package tags, GLAN-1235" do
+    it "ct package tags, GLAN-1235", :requires => 'cdisc_library_api' do
       object = CDISCLibraryAPI.new
       result = object.ct_package("/mdr/ct/packages/define-xmlct-2019-12-20")
       expect(object.ct_tags(result[:label])).to eq(["Define-XML"])
     end
 
-    it "ct package tags, empty" do
+    it "ct package tags, empty", :requires => 'cdisc_library_api' do
       object = CDISCLibraryAPI.new
       expect(object.ct_tags("XXX")).to eq([])
     end
 
-    it "ct package, not enabled" do
+    it "ct package, not enabled", :requires => 'cdisc_library_api' do
       expect(EnvironmentVariable).to receive(:read).and_return("false")
       object = CDISCLibraryAPI.new
       expect{object.ct_package("/mdr/ct/packages/protocolct-2019-03-29")}.to raise_error(Errors::ApplicationLogicError, "The CDISC Library API is not enabled.")
@@ -134,7 +134,7 @@ describe "CDISC Library API" do
       load_cdisc_term_versions(CdiscCtHelpers.version_range)
     end
 
-    it "ct package, mismatched data" do
+    it "ct package, mismatched data", :requires => 'cdisc_library_api' do
       date = "2017-03-31"
       version = "51"
       code_list = "C65047"
@@ -155,7 +155,7 @@ describe "CDISC Library API" do
       #expect(result_1).to hash_equal(result_2)
     end
 
-    it "ct package, mismatched data" do
+    it "ct package, mismatched data", :requires => 'cdisc_library_api' do
       date = "2017-09-29"
       version = "53"
       code_list = "C66736"
@@ -176,7 +176,7 @@ describe "CDISC Library API" do
       #expect(result_1).to hash_equal(result_2)
     end
 
-    it "ct package, mismatched data" do
+    it "ct package, mismatched data", :requires => 'cdisc_library_api' do
       date = "2017-12-22"
       version = "54"
       code_list = "C128689"
@@ -197,7 +197,7 @@ describe "CDISC Library API" do
       #expect(result_1).to hash_equal(result_2)
     end
 
-    it "ct package, mismatched data" do
+    it "ct package, mismatched data", :requires => 'cdisc_library_api' do
       date = "2018-03-30"
       version = "55"
       code_list = "C120525"
@@ -216,7 +216,7 @@ describe "CDISC Library API" do
       expect(def_1).to_not eq(def_2)
     end
 
-    it "ct package, mismatched data" do
+    it "ct package, mismatched data", :requires => 'cdisc_library_api' do
       date = "2018-03-30"
       version = "55"
       code_list = "C120526"
@@ -235,7 +235,7 @@ describe "CDISC Library API" do
       expect(def_1).to_not eq(def_2)
     end
 
-    it "ct package, mismatched data" do
+    it "ct package, mismatched data", :requires => 'cdisc_library_api' do
       date = "2018-03-30"
       version = "55"
       code_list = "C147069"
@@ -253,7 +253,7 @@ describe "CDISC Library API" do
       expect(def_1).to_not eq(def_2)
     end
 
-    it "ct package, mismatched data" do
+    it "ct package, mismatched data", :requires => 'cdisc_library_api' do
       date = "2018-06-29"
       version = "56"
       code_list = "C128689"
@@ -274,7 +274,7 @@ describe "CDISC Library API" do
       #expect(result_1).to hash_equal(result_2)
     end
 
-    it "ct package, mismatched data" do
+    it "ct package, mismatched data", :requires => 'cdisc_library_api' do
       date = "2018-12-21"
       version = "58"
       code_list = "C66770"
