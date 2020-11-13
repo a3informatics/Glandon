@@ -3,7 +3,6 @@
 :uri: http://www.acme-pharma.com/TEST/V1#TH
 :rdf_type: http://www.assero.co.uk/Thesaurus#Thesaurus
 :label: Test Thesaurus
-:tagged: []
 :has_state:
   :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vVEVTVC9WMSNUSF9SUw==
   :uri: http://www.acme-pharma.com/TEST/V1#TH_RS
@@ -56,7 +55,6 @@
   :uri: http://www.acme-pharma.com/TEST/V1#TH_TMC3
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
   :label: ''
-  :tagged: []
   :enabled: true
   :optional: false
   :ordinal: 3
@@ -66,7 +64,6 @@
   :uri: http://www.acme-pharma.com/TEST/V1#TH_TMC4
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
   :label: ''
-  :tagged: []
   :enabled: true
   :optional: false
   :ordinal: 4
@@ -76,7 +73,6 @@
   :uri: http://www.acme-pharma.com/TEST/V1#TH_TMC5
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
   :label: ''
-  :tagged: []
   :enabled: true
   :optional: false
   :ordinal: 5
@@ -87,11 +83,9 @@
   :uri: http://www.cdisc.org/C66783/V4#C66783
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
   :label: CDISC System Organ Class
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :has_state: http://www.cdisc.org/C66783/V4#C66783_RS
   :has_identifier: http://www.cdisc.org/C66783/V4#C66783_SI
-  :has_previous_version: 
+  :has_previous_version: http://www.cdisc.org/C66783/V2#C66783
   :origin: ''
   :change_description: ''
   :creation_date: '2007-05-31T00:00:00+00:00'
@@ -102,32 +96,32 @@
   :definition: Terms at the highest level of the CDISC system organ class terminology.
   :extensible: false
   :narrower:
-  - http://www.cdisc.org/C66783/V4#C66783_C3371
-  - http://www.cdisc.org/C66783/V4#C66783_C49403
-  - http://www.cdisc.org/C66783/V4#C66783_C27574
-  - http://www.cdisc.org/C66783/V4#C66783_C41198
-  - http://www.cdisc.org/C66783/V4#C66783_C26726
-  - http://www.cdisc.org/C66783/V4#C66783_C35117
-  - http://www.cdisc.org/C66783/V4#C66783_C3009
-  - http://www.cdisc.org/C66783/V4#C66783_C3430
-  - http://www.cdisc.org/C66783/V4#C66783_C49399
-  - http://www.cdisc.org/C66783/V4#C66783_C20188
-  - http://www.cdisc.org/C66783/V4#C66783_C35814
-  - http://www.cdisc.org/C66783/V4#C66783_C3507
-  - http://www.cdisc.org/C66783/V4#C66783_C3262
-  - http://www.cdisc.org/C66783/V4#C66783_C49405
   - http://www.cdisc.org/C66783/V4#C66783_C3079
-  - http://www.cdisc.org/C66783/V4#C66783_C2893
-  - http://www.cdisc.org/C66783/V4#C66783_C26767
-  - http://www.cdisc.org/C66783/V4#C66783_C25218
-  - http://www.cdisc.org/C66783/V4#C66783_C27669
   - http://www.cdisc.org/C66783/V4#C66783_C26835
-  - http://www.cdisc.org/C66783/V4#C66783_C49404
-  - http://www.cdisc.org/C66783/V4#C66783_C49401
-  - http://www.cdisc.org/C66783/V4#C66783_C49402
-  - http://www.cdisc.org/C66783/V4#C66783_C49400
-  - http://www.cdisc.org/C66783/V4#C66783_C2990
+  - http://www.cdisc.org/C66783/V4#C66783_C26726
+  - http://www.cdisc.org/C66783/V4#C66783_C49399
   - http://www.cdisc.org/C66783/V4#C66783_C3959
+  - http://www.cdisc.org/C66783/V4#C66783_C3507
+  - http://www.cdisc.org/C66783/V4#C66783_C49400
+  - http://www.cdisc.org/C66783/V4#C66783_C35814
+  - http://www.cdisc.org/C66783/V4#C66783_C49402
+  - http://www.cdisc.org/C66783/V4#C66783_C49401
+  - http://www.cdisc.org/C66783/V4#C66783_C26767
+  - http://www.cdisc.org/C66783/V4#C66783_C3262
+  - http://www.cdisc.org/C66783/V4#C66783_C27669
+  - http://www.cdisc.org/C66783/V4#C66783_C41198
+  - http://www.cdisc.org/C66783/V4#C66783_C3430
+  - http://www.cdisc.org/C66783/V4#C66783_C3371
+  - http://www.cdisc.org/C66783/V4#C66783_C2990
+  - http://www.cdisc.org/C66783/V4#C66783_C49405
+  - http://www.cdisc.org/C66783/V4#C66783_C35117
+  - http://www.cdisc.org/C66783/V4#C66783_C49403
+  - http://www.cdisc.org/C66783/V4#C66783_C2893
+  - http://www.cdisc.org/C66783/V4#C66783_C3009
+  - http://www.cdisc.org/C66783/V4#C66783_C27574
+  - http://www.cdisc.org/C66783/V4#C66783_C25218
+  - http://www.cdisc.org/C66783/V4#C66783_C49404
+  - http://www.cdisc.org/C66783/V4#C66783_C20188
   :extends: 
   :subsets: 
   :paired_with: 
@@ -141,11 +135,9 @@
   :uri: http://www.cdisc.org/C66737/V4#C66737
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
   :label: Trial Phase
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :has_state: http://www.cdisc.org/C66737/V4#C66737_RS
   :has_identifier: http://www.cdisc.org/C66737/V4#C66737_SI
-  :has_previous_version: 
+  :has_previous_version: http://www.cdisc.org/C66737/V3#C66737
   :origin: ''
   :change_description: ''
   :creation_date: '2007-05-31T00:00:00+00:00'
@@ -161,18 +153,18 @@
     has been licensed and marketed. (NCI)'
   :extensible: true
   :narrower:
-  - http://www.cdisc.org/C66737/V4#C66737_C49686
+  - http://www.cdisc.org/C66737/V4#C66737_C15694
+  - http://www.cdisc.org/C66737/V4#C66737_C15600
   - http://www.cdisc.org/C66737/V4#C66737_C15601
+  - http://www.cdisc.org/C66737/V4#C66737_C49686
+  - http://www.cdisc.org/C66737/V4#C66737_C49689
+  - http://www.cdisc.org/C66737/V4#C66737_C15693
   - http://www.cdisc.org/C66737/V4#C66737_C49688
   - http://www.cdisc.org/C66737/V4#C66737_C47865
   - http://www.cdisc.org/C66737/V4#C66737_C15602
-  - http://www.cdisc.org/C66737/V4#C66737_C49689
-  - http://www.cdisc.org/C66737/V4#C66737_C15600
   - http://www.cdisc.org/C66737/V4#C66737_C49687
-  - http://www.cdisc.org/C66737/V4#C66737_C15694
   - http://www.cdisc.org/C66737/V4#C66737_C15603
   - http://www.cdisc.org/C66737/V4#C66737_C48660
-  - http://www.cdisc.org/C66737/V4#C66737_C15693
   :extends: 
   :subsets: 
   :paired_with: 
@@ -186,7 +178,6 @@
   :uri: http://www.acme-pharma.com/A00001/V1#A00001
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
   :label: London Heathrow
-  :tagged: []
   :has_state: http://www.acme-pharma.com/A00001/V1#A00001_RS
   :has_identifier: http://www.acme-pharma.com/A00001/V1#A00001_SI
   :has_previous_version: 
@@ -217,7 +208,6 @@
   :uri: http://www.acme-pharma.com/TEST/V1#TH_R1
   :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
   :label: ''
-  :tagged: []
   :enabled: true
   :optional: false
   :ordinal: 1
@@ -228,7 +218,6 @@
   :uri: http://www.acme-pharma.com/TEST/V1#TH_R2
   :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
   :label: ''
-  :tagged: []
   :enabled: true
   :optional: false
   :ordinal: 2

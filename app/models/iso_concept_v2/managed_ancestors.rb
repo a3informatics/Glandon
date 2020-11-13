@@ -21,7 +21,7 @@ class IsoConceptV2
       # @raise [Errors::ApplicationLogicError] raised to indicate the class has not configured the method
       # @return [Void] exception always raised
       def managed_ancestors_path
-        Errors.application_error(self.name, the_method, "Method not implemented for class.")
+        Errors.application_error(self.name, "managed_ancestors_path", "Method not implemented for class.")
       end
 
     end

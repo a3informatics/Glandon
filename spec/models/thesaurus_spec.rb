@@ -56,7 +56,6 @@ describe Thesaurus do
           :has_identifier => nil,
           :is_top_concept => [],
           :is_top_concept_reference => [],
-          :tagged => [],
           :reference => nil,
           :baseline_reference => nil,
           :has_previous_version => nil
