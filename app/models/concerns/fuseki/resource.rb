@@ -216,6 +216,14 @@ module Fuseki
         define_method("#{name}_push") do |value|
           @properties.property(name.to_sym).set(value)
         end
+
+        define_method("#{name}_replace") do |old_value, new_value|
+          @properties.property(name.to_sym).replace_value(old_value, new_value)
+        end
+
+        define_method("#{name}_delete") do |value|
+          @properties.property(name.to_sym).delete_value(value)
+        end
       end
 
       define_method "#{name}_links" do
@@ -266,6 +274,11 @@ module Fuseki
         # Define a class method to get the child predicate
         define_singleton_method "children_predicate" do
           @resources["#{name}".to_sym][:predicate]
+        end
+
+        # Define a class method to get the child property name
+        define_singleton_method "children_property_name" do
+          "#{name}".to_sym
         end
 
       else

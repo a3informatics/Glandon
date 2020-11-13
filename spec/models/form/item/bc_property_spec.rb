@@ -103,48 +103,51 @@ describe Form::Item::BcProperty do
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
+    it "make common with clone, error, There is no common group" do
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG2_BP3"))
+      result = bc_property.make_common_with_clone(nil)
+      check_file_actual_expected(bc_property.errors.full_messages, sub_dir, "make_common_expected_2.yaml", equate_method: :hash_equal)
+    end
+
     it "make common I" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
-      result = bc_property.make_common
+      cg = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1"))
+      result = bc_property.make_common(cg)
       check_file_actual_expected(result, sub_dir, "make_common_expected_1.yaml", equate_method: :hash_equal)
-    end
-
-    it "make common II, error, There is no common group" do
-      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG2_BP3"))
-      result = bc_property.make_common
-      check_file_actual_expected(result, sub_dir, "make_common_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "make common III, check terminologies" do 
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
-      normal.add_child({type:"common_group"})
+      cg = normal.add_child({type:"common_group"})
+      cg = Form::Group::Common.find(cg.uri)
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
       bci_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/RACE/V1#BCI"))
       normal.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id, bci_3.id]})
       normal = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
-      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
-      result = bc_property.make_common
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
+      result = bc_property.make_common(cg)
       check_file_actual_expected(result, sub_dir, "make_common_expected_3.yaml", equate_method: :hash_equal)
     end
 
-    it "make common IV, check terminologies" do 
-      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
-      normal.add_child({type:"common_group"})
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
-      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
-      bci_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/RACE/V1#BCI"))
-      normal.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id, bci_3.id]})
-      normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
-      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296"))
-      result = bc_property.make_common
-      check_file_actual_expected(result, sub_dir, "make_common_expected_4.yaml", equate_method: :hash_equal)
-    end
+    # it "make common IV, check terminologies" do 
+    #   allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    #   normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+    #   cg = normal.add_child({type:"common_group"})
+    #   cg = Form::Group::Common.find(cg.uri)
+    #   normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+    #   bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+    #   bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
+    #   bci_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/RACE/V1#BCI"))
+    #   normal.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id, bci_3.id]})
+    #   normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
+    #   bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296"))
+    #   result = bc_property.make_common(cg)
+    #   check_file_actual_expected(result, sub_dir, "make_common_expected_4.yaml", equate_method: :hash_equal)
+    # end
 
     it "make common VI, clone, no errors" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)

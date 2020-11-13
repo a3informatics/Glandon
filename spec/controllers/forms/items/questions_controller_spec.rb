@@ -7,6 +7,13 @@ describe Forms::Items::QuestionsController do
   include UserAccountHelpers
   include IsoHelpers
   include ControllerHelpers
+
+  def make_standard(item)
+    params = {}
+    params[:registration_status] = "Standard"
+    params[:previous_state] = "Incomplete"
+    item.update_status(params)
+  end
   
   describe "Update" do
   	
@@ -113,12 +120,35 @@ describe Forms::Items::QuestionsController do
       audit_count = AuditTrail.count
       token = Token.obtain(@form, @user)
       post :add_child, params:{id: @question.id, question:{type: "tuc_reference",id_set:[{id:cli_1.id, context_id: context_1.id}, {id: cli_2.id, context_id: context_1.id}, {id: cli_3.id, context_id: context_1.id}], form_id: @form.id} }
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "add_child_question_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it 'Add cli with clone' do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      make_standard(form)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      cli_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66789/V4#C66789_C49484"))
+      cli_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66790/V4#C66790_C17998"))
+      cli_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66790/V4#C66790_C43234"))
+      context_1 = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66789/V13#C66789"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      audit_count = AuditTrail.count
+      token = Token.obtain(new_form, @user)
+      post :add_child, params:{id: question.id, question:{type: "tuc_reference",id_set:[{id:cli_1.id, context_id: context_1.id}, {id: cli_2.id, context_id: context_1.id}, {id: cli_3.id, context_id: context_1.id}], form_id: new_form.id} }
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "add_child_question_expected_2.yaml", equate_method: :hash_equal)
+
     end
 
   end
