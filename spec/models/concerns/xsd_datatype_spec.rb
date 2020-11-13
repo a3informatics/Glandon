@@ -41,6 +41,19 @@ describe XSDDatatype do
     expect(item.default.to_s).to eq("2016-01-01 00:00:00 +0000")
   end
 
+  it "default_format" do
+    item = XSDDatatype.new("string")
+    expect(item.default_format).to eq("20")
+    item = XSDDatatype.new("integer")
+    expect(item.default_format).to eq("3")
+    item = XSDDatatype.new("positiveInteger")
+    expect(item.default_format).to eq("3")
+    item = XSDDatatype.new("float")
+    expect(item.default_format).to eq("5.2")
+    item = XSDDatatype.new("boolean")
+    expect(item.default_format).to eq("")
+  end
+
   it "returns as a hash" do
     item = XSDDatatype.new("boolean")
     expect(item.to_h).to eq({:datatype=>"http://www.w3.org/2001/XMLSchema#boolean", :fragment=>"boolean"})

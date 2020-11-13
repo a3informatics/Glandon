@@ -101,6 +101,14 @@ class XSDDatatype
     datatype_configuration[:default].send(datatype_configuration[:default_method])
   end
 
+  # Default format
+  #
+  # @return [Object] return the default format value of the correct datatype.
+  def default_format
+    return "" if datatype_configuration[:default_format].nil?
+    datatype_configuration[:default_format]
+  end
+
   # To Hash. Return as a hash
   #
   # @return [Hash] the object as a hash

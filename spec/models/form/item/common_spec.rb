@@ -124,7 +124,8 @@ describe Form::Item::Common do
     it "Restores (delete) Common item II" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
-      result = bc_property.make_common
+      cg = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1"))
+      result = bc_property.make_common(cg)
       common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/MAKECOMMONTEST/V1#CI_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1"))
       expect(parent.has_item.count).to eq(1)
@@ -134,7 +135,8 @@ describe Form::Item::Common do
       expect{Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1_CI1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1_CI1 in Form::Item::Common.")
       check_file_actual_expected(result, sub_dir, "restore_2.yaml", equate_method: :hash_equal)
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
-      result = bc_property.make_common
+      cg = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1"))
+      result = bc_property.make_common(cg)
       common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/MAKECOMMONTEST/V1#CI_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_CG1"))
       expect(parent.has_item.count).to eq(1)

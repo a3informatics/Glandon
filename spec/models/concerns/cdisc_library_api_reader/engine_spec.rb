@@ -24,7 +24,7 @@ describe CDISCLibraryAPIReader::Engine do
     expect(parent.errors.count).to eq(0)
   end
 
-  it "process protocol" do
+  it "process protocol", :import_test => 'slow', :requires => 'cdisc_library_api' do
     parent = IsoConceptV2.new
     object = CDISCLibraryAPIReader::Engine.new(parent) 
     object.process("/mdr/ct/packages/protocolct-2019-09-27")
@@ -33,7 +33,7 @@ describe CDISCLibraryAPIReader::Engine do
     check_file_actual_expected(result, other_dir, "execute_expected_2.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
-  it "process sdtm", :import_test => 'slow' do
+  it "process sdtm", :import_test => 'slow', :requires => 'cdisc_library_api' do
     parent = IsoConceptV2.new
     object = CDISCLibraryAPIReader::Engine.new(parent) 
     object.process("/mdr/ct/packages/sdtmct-2019-09-27")
@@ -42,7 +42,7 @@ describe CDISCLibraryAPIReader::Engine do
     check_file_actual_expected(result, other_dir, "execute_expected_3.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
-  it "process send", :import_test => 'slow' do
+  it "process send", :import_test => 'slow', :requires => 'cdisc_library_api' do
     parent = IsoConceptV2.new
     object = CDISCLibraryAPIReader::Engine.new(parent) 
     object.process("/mdr/ct/packages/sendct-2019-09-27")
@@ -51,7 +51,7 @@ describe CDISCLibraryAPIReader::Engine do
     check_file_actual_expected(result, other_dir, "execute_expected_4.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
-  it "process adam", :import_test => 'slow' do
+  it "process adam", :import_test => 'slow', :requires => 'cdisc_library_api' do
     parent = IsoConceptV2.new
     object = CDISCLibraryAPIReader::Engine.new(parent) 
     object.process("/mdr/ct/packages/adamct-2019-03-29")
@@ -60,7 +60,7 @@ describe CDISCLibraryAPIReader::Engine do
     check_file_actual_expected(result, other_dir, "execute_expected_5.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
-  it "process cdash" do
+  it "process cdash", :import_test => 'slow', :requires => 'cdisc_library_api' do
     parent = IsoConceptV2.new
     object = CDISCLibraryAPIReader::Engine.new(parent) 
     object.process("/mdr/ct/packages/cdashct-2019-06-28")

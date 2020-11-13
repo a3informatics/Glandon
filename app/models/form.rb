@@ -14,36 +14,21 @@ class Form < IsoManagedV2
 
   include Form::Ordinal
 
+  # Children Ordered. Returns the set of children nodes ordered by ordinal.
+  #
+  # @return [Form::Group::Normal] array of objects
+  def children_ordered
+    self.children_objects.sort_by {|x| x.ordinal}
+  end
+
   def clone
     self.has_group_links
     super
   end
 
-  # Clone the item and create. Use Sparql approach in case of children also need creating
-  #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
-  #   The Children are normally references. Also note the setting of the transaction in the cloned object and
-  #   in the sparql generation, important both are done.
-  def clone_children_and_save(tx, uri = nil)
-    sparql = Sparql::Update.new(tx)
-    new_object = nil
-    set = self.has_group
-    set.each do |child|
-      object = child.clone
-      object.transaction_set(tx)
-      object.generate_uri(self.uri)
-      object.to_sparql(sparql, true)
-      self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
-      unless uri.nil?
-        new_object = object if child.uri == uri
-      end
-    end
-    sparql.create
-    new_object
-  end
-
   def move_up_with_clone(child, managed_ancestor)
     if child.multiple_managed_ancestors?
-      parent_and_child = clone_nodes(child, managed_ancestor)
+      parent_and_child = self.replicate_siblings_with_clone(child, managed_ancestor)
       parent_and_child.first.move_up(parent_and_child.second)
     else
       move_up(child)
@@ -52,22 +37,11 @@ class Form < IsoManagedV2
 
   def move_down_with_clone(child, managed_ancestor)
     if child.multiple_managed_ancestors?
-      parent_and_child = clone_nodes(child, managed_ancestor)
+      parent_and_child = self.replicate_siblings_with_clone(child, managed_ancestor)
       parent_and_child.first.move_down(parent_and_child.second)
     else
       move_down(child)
     end
-  end
-
-  def clone_nodes(child, managed_ancestor)
-    new_parent = nil
-    new_object = nil
-    tx = transaction_begin
-    managed_ancestor.transaction_set(tx)
-    new_object = managed_ancestor.clone_children_and_save(tx, child.uri)
-    transaction_execute
-    new_parent = Form.find_full(managed_ancestor.id)
-    return new_parent, new_object
   end
 
   # Get Items.
@@ -137,10 +111,6 @@ class Form < IsoManagedV2
     child
   end
 
-  def children_ordered
-    self.has_group_objects.sort_by {|x| x.ordinal}
-  end
-
   # Full data
   #
   # @return [Hash] Return the data of the whole Form, all its children + any referenced item data.
@@ -153,45 +123,55 @@ class Form < IsoManagedV2
     form
   end
 
-  private
+private
 
-    # Next Ordinal. Get the next ordinal for a managed item collection
-    #
-    # @param [String] name the name of the property holding the collection
-    # @return [Integer] the next ordinal
-    def next_ordinal(name)
-      predicate = self.properties.property(name).predicate
-      query_string = %Q{
-        SELECT (MAX(?ordinal) AS ?max)
-        {
-          #{self.uri.to_ref} #{predicate.to_ref} ?s .
-          ?s bf:ordinal ?ordinal
-        }
+  # # Clone children within a transaction
+  # def clone_children_and_save(child, managed_ancestor)
+  #   tx = transaction_begin
+  #   managed_ancestor.transaction_set(tx)
+  #   new_object = managed_ancestor.clone_children_and_save_no_tx(managed_ancestor, tx, child.uri)
+  #   transaction_execute
+  #   #new_parent = Form.find_full(managed_ancestor.id)
+  #   return managed_ancestor, new_object
+  # end
+
+  # Next Ordinal. Get the next ordinal for a managed item collection
+  #
+  # @param [String] name the name of the property holding the collection
+  # @return [Integer] the next ordinal
+  def next_ordinal(name)
+    predicate = self.properties.property(name).predicate
+    query_string = %Q{
+      SELECT (MAX(?ordinal) AS ?max)
+      {
+        #{self.uri.to_ref} #{predicate.to_ref} ?s .
+        ?s bf:ordinal ?ordinal
       }
-      query_results = Sparql::Query.new.query(query_string, "", [:bf])
-      return 1 if query_results.empty?
-      query_results.by_object(:max).first.to_i + 1
-    end
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:bf])
+    return 1 if query_results.empty?
+    query_results.by_object(:max).first.to_i + 1
+  end
 
-    def get_css
-      html = "<style>"
-      html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
-      html += "table.crf-input-field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; "
-      html += "vertical-align: center; padding: 5px; }\n"
-      html += "table.crf-input-field td:not(:last-child){border-right: 1px dashed}\n"
-      html += "h4.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 5px; }\n"
-      html += "p.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 5px; }\n"
-      html += "h4.domain-2 {border-radius: 5px; background: #AED6F1; padding: 5px; }\n"
-      html += "p.domain-2 {border-radius: 5px; background: #AED6F1; padding: 5px; }\n"
-      html += "h4.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 5px; }\n"
-      html += "p.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 5px; }\n"
-      html += "h4.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 5px; }\n"
-      html += "p.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 5px; }\n"
-      html += "h4.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
-      html += "p.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
-      html += "h4.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
-      html += "p.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
-      html += "</style>"
-    end
+  def get_css
+    html = "<style>"
+    html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
+    html += "table.crf-input-field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; "
+    html += "vertical-align: center; padding: 5px; }\n"
+    html += "table.crf-input-field td:not(:last-child){border-right: 1px dashed}\n"
+    html += "h4.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 5px; }\n"
+    html += "p.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 5px; }\n"
+    html += "h4.domain-2 {border-radius: 5px; background: #AED6F1; padding: 5px; }\n"
+    html += "p.domain-2 {border-radius: 5px; background: #AED6F1; padding: 5px; }\n"
+    html += "h4.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 5px; }\n"
+    html += "p.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 5px; }\n"
+    html += "h4.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 5px; }\n"
+    html += "p.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 5px; }\n"
+    html += "h4.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
+    html += "p.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
+    html += "h4.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
+    html += "p.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
+    html += "</style>"
+  end
 
 end

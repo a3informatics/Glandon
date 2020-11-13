@@ -280,6 +280,7 @@ describe Form::Item::Question do
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
       tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC2"))
+      question = Form::Item::Question.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
       question.delete_reference(tuc_reference, new_form)
       new_form = Form.find_full(new_form.uri)
       check_dates(new_form, sub_dir, "delete_tuc_reference_expected_3b.yaml", :creation_date, :last_change_date)

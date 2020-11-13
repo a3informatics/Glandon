@@ -223,7 +223,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         fill_in 'identifier', with: 'BC Edit Test'
         fill_in 'label', with: 'BC Label'
         find('#new-item-template').click
-        ip_pick_managed_items(:bct, [ { identifier: 'BASIC OBS', version: '1' } ], 'new-bc')
+        ip_pick_managed_items(:bct, [ { identifier: 'BASIC OBS PQR', version: '1' } ], 'new-bc')
 
         click_on 'Submit'
       end
@@ -239,7 +239,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       # Sort
       find(:xpath, "//th[contains(.,'Alias')]").click
 
-      ui_check_table_info 'editor', 1, 10, 13
+      ui_check_table_info 'editor', 1, 10, 12
       ui_editor_check_value 2, 6, 'DATETIME'
     end
 

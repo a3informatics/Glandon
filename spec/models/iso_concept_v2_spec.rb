@@ -422,8 +422,15 @@ describe "IsoConceptV2" do
       expect{IsoConceptV2.managed_ancestors_path}.to raise_error(Errors::ApplicationLogicError, "Method not implemented for class.")
     end
 
-    it "raises exception unless predicate method overloaded" do
-      expect{IsoConceptV2.managed_ancestors_predicate}.to raise_error(Errors::ApplicationLogicError, "Method not implemented for class.")
+    it "managed ancestors properties" do
+      form = Form.new
+      result = form.managed_ancestors_predicate(Form::Group::Normal)
+      expect(result).to eq([:has_group])
+    end
+
+    it "managed ancestors properties set" do
+      result = Form.new.managed_ancestors_children_set
+      expect(result).to eq([])
     end
 
   end

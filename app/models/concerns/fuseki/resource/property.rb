@@ -169,6 +169,30 @@ module Fuseki
         set(object)
       end
 
+      # Replace Value. Replace a URI or Object with another
+      #
+      # @param [Object] old_value the exisitng value
+      # @param [Object] new_value the new value
+      # @return [Void] no return
+      def replace_value(old_value, new_value)
+        return unless array?
+        property = get
+        uri = old_value.is_a?(Uri) ? old_value : old_value.uri
+        property.delete_if {|x| x.is_a?(Uri) ? x == uri : x.uri == uri}
+        set(new_value)
+      end
+
+      # Delete Value. Delete a URI or Object
+      #
+      # @param [Object] value the exisitng value to be deleted
+      # @return [Void] no return
+      def delete_value(value)
+        return unless array?
+        property = get
+        uri = value.is_a?(Uri) ? value : value.uri
+        property.delete_if {|x| x.is_a?(Uri) ? x == uri : x.uri == uri}
+      end
+
       # Clear
       #
       # @return [Void] no return

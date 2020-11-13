@@ -140,6 +140,14 @@ class IsoConceptV2 < Fuseki::Base
     results
   end
 
+  # Tag labels. Get the ordered tag labels for the items
+  #
+  # @return [Array] set of ordered String items
+  def tag_labels
+    tags = self.tags
+    tags.map{ |x| x.pref_label }.sort
+  end
+
   # Clone. Clone the object
   #
   # @return [Object] the cloned object.

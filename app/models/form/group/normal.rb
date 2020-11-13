@@ -20,6 +20,31 @@ class Form::Group::Normal < Form::Group
 
   validates_with Validator::Field, attribute: :repeating, method: :valid_boolean?
 
+  # Managed Ancestors Predicate. Returns the property(ies) from this instance/class in the managed ancestor path to the child class
+  #
+  # @param [Class] the child klass
+  # @return [Array] array of predicates (symbols)
+  def managed_ancestors_predicate(child_klass)
+    return [:has_common] if child_klass == Form::Group::Common
+    return [:has_sub_group] if [Form::Group::Normal, Form::Group::Bc].include?(child_klass)
+    [:has_item]
+  end
+
+  # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
+  #
+  # @return [Form::Group::Normal] array of objects
+  def managed_ancestors_children_set
+    self.has_sub_group + self.has_item + self.has_common
+  end
+
+  # Children Ordered. Returns the set of children nodes ordered by ordinal.
+  #
+  # @return [Form::Group::Normal] array of objects
+  def children_ordered
+    set = self.has_sub_group_objects + self.has_item_objects
+    set.sort_by {|x| x.ordinal}
+  end
+
   # Get Item
   #
   # @return [Array] Array of hashes, one per group, sub group and item.
@@ -62,32 +87,11 @@ class Form::Group::Normal < Form::Group
 
   def add_child_with_clone(params, managed_ancestor)
     if multiple_managed_ancestors?
-      new_normal = clone_nodes_and_get_new_normal(managed_ancestor)
+      new_normal = self.replicate_with_clone(self, managed_ancestor)
       new_normal.add_child(params)
     else
       add_child(params)
     end
-  end
-
-  def clone_nodes_and_get_new_normal(managed_ancestor)
-    result = nil
-    tx = transaction_begin
-    uris = managed_ancestor_path_uris(managed_ancestor)
-    prev_object = managed_ancestor
-    prev_object.transaction_set(tx)
-    uris.each do |old_uri|
-      old_object = self.class.klass_for(old_uri).find_children(old_uri)
-      if old_object.multiple_managed_ancestors?
-        cloned_object = clone_and_save(old_object, prev_object, tx)
-        result = cloned_object if self.uri == old_object.uri
-        prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-        prev_object = cloned_object
-      else
-        prev_object = old_object
-      end
-    end
-    transaction_execute
-    result
   end
 
   # Add Child.
@@ -113,11 +117,6 @@ class Form::Group::Normal < Form::Group
       self.errors.add(:base, "Attempting to add an invalid child type")
       []
     end
-  end
-
-  def children_ordered
-    set = self.has_sub_group_objects + self.has_item_objects
-    set.sort_by {|x| x.ordinal}
   end
 
   # Is a Question only group
@@ -291,29 +290,7 @@ class Form::Group::Normal < Form::Group
     parent = parent.full_data
   end
 
-  # Clone the item and create. Use Sparql approach in case of children also need creating
-  #   so we need to recruse. Also generate URI for this object and any children to ensure we catch the children.
-  #   The Children are normally references. Also note the setting of the transaction in the cloned object and
-  #   in the sparql generation, important both are done.
-  def clone_children_and_save(tx, uri = nil)
-    sparql = Sparql::Update.new(tx)
-    new_object = nil
-    set = self.has_sub_group + self.has_item + self.has_common
-    set.each do |child|
-      object = child.clone
-      object.transaction_set(tx)
-      object.generate_uri(self.uri)
-      object.to_sparql(sparql, true)
-      self.replace_link(child.managed_ancestors_predicate, child.uri, object.uri)
-      unless uri.nil?
-        new_object = object if child.uri == uri
-      end
-    end
-    sparql.create
-    new_object
-  end
-
-  # Full parent
+  # Full Data
   #
   # @return [Hash] Return the data of the whole parent Normal Group, all its children BC Groups, Common Group + any referenced item data.
   def full_data

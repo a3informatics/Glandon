@@ -13,51 +13,34 @@ describe "Forms", :type => :feature do
     return "features/forms"
   end
 
+
   describe "Forms Editor", :type => :feature, js:true do
 
-    before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..65)
-      load_data_file_into_triple_store("mdr_identification.ttl")
-      load_test_file_into_triple_store("forms/FN000150.ttl")
-      load_test_file_into_triple_store("forms/FN000120.ttl")
-      load_test_file_into_triple_store("forms/CRF TEST 1.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
-      Token.delete_all
-      ua_create
-    end
+  before :all do
+    load_files(schema_files, [])
+    load_cdisc_term_versions(1..65)
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_test_file_into_triple_store("forms/FN000150.ttl")
+    load_test_file_into_triple_store("forms/FN000120.ttl")
+    load_test_file_into_triple_store("forms/CRF TEST 1.ttl")
+    load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    Token.delete_all
+    ua_create
+  end
 
-    after :all do
-      ua_destroy
-      Token.restore_timeout
-      Token.delete_all
-    end
+  after :all do
+    ua_destroy
+    Token.restore_timeout
+    Token.delete_all
+  end
 
-    before :each do
-      ua_curator_login
-    end
+  before :each do
+    ua_curator_login
+  end
 
-    after :each do
-      ua_logoff
-    end
-
-    def edit_form(identifier)
-      click_navbar_forms
-      wait_for_ajax 20
-      find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
-      wait_for_ajax 10
-      context_menu_element_v2 'history', identifier, :edit
-      wait_for_ajax 30
-      expect(page).to have_content 'Form Editor'
-      find('#main_area').scroll_to(:bottom)
-    end
-
-    def refresh_editor
-      page.driver.browser.navigate.refresh
-      wait_for_ajax 20
-      find('#main_area').scroll_to(:bottom)
-    end
+  after :each do
+    ua_logoff
+  end
 
     it "has correct initial state" do
       edit_form('FN000150')
@@ -673,7 +656,7 @@ describe "Forms", :type => :feature do
 
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="normal_group"]').click
-      wait_for_ajax 10
+      wait_for_ajax 20
 
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="bc_group"]').click
@@ -987,6 +970,447 @@ describe "Forms", :type => :feature do
       click_on 'Dismiss'
     end
 
+  end
+
+  describe "Forms Editor, Locked State", :type => :feature, js:true do
+
+  before :all do
+    load_files(schema_files, [])
+    load_cdisc_term_versions(1..65)
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_test_file_into_triple_store("forms/FN000150.ttl")
+    load_test_file_into_triple_store("forms/FN000120.ttl")
+    load_test_file_into_triple_store("forms/CRF TEST 1.ttl")
+    load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    Token.delete_all
+    ua_create
+  end
+
+  after :all do
+    ua_destroy
+    Token.restore_timeout
+    Token.delete_all
+  end
+
+  before :each do
+    ua_curator_login
+  end
+
+  after :each do
+    ua_logoff
+  end
+
+    def set_to_recorded(identifier)
+      click_navbar_forms
+      wait_for_ajax 20
+      find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
+      wait_for_ajax 10
+
+      context_menu_element_v2('history', identifier, :document_control)
+      click_on 'Submit Status Change'
+      click_on 'Submit Status Change'
+      click_on 'Return'
+
+      wait_for_ajax 10
+      # Enable multiple edits
+      find('.registration-state').click
+      wait_for_ajax 10
+    end
+
+    it "Sets Forms to Recorded state" do
+      set_to_recorded 'FN000120'
+      set_to_recorded 'FN000150'
+      set_to_recorded 'CRF TEST 1'
+    end
+
+
+    it "allows to Edit a node, field validation" do
+      edit_form('FN000150')
+
+      find_node('Not Set').click
+      click_action :edit
+
+      # Edit Node data
+      ui_in_modal do
+        within( find('#generic-editor') ) do
+          fill_in 'label', with: 'Height Group'
+          fill_in 'completion', with: 'Test Completion Instruction'
+          click_on 'Save changes'
+          wait_for_ajax 10
+        end
+      end
+
+      check_alert 'Node updated successfully'
+      check_node('Height Group', :normal_group, true)
+      click_action(:edit)
+
+      ui_in_modal do
+        within( find('#generic-editor') ) do
+          expect( find_field( name: 'completion' ).value ).to eq 'Test Completion Instruction'
+          expect( find_field( 'label' ).value ).to eq 'Height Group'
+          click_on 'Close'
+        end
+      end
+
+      find_node('Unit').click
+      ui_press_key :right
+      click_action :edit
+
+      # Field validation
+      ui_in_modal do
+        within( find('#generic-editor') ) do
+          fill_in 'local_label', with: ''
+          click_on 'Save changes'
+
+          expect(page).to have_content 'Field cannot be empty'
+
+          fill_in 'local_label', with: 'ø'
+          click_on 'Save changes'
+          wait_for_ajax 10
+          expect(page).to have_content 'contains invalid characters'
+
+          fill_in 'local_label', with: 'New Inch'
+          click_on 'Save changes'
+          wait_for_ajax 10
+        end
+      end
+
+      check_alert 'Node updated successfully'
+      check_node('New Inch', :tuc_ref, true)
+
+      # Editor rendering of correct inputs
+      find_node('Completion status').click
+      click_action :edit
+
+      ui_in_modal do
+        within( find('#generic-editor') ) do
+          expect( all('textarea').count ).to eq 4
+          expect( all('input[type="text"]').count ).to eq 2
+          expect( all('input[type="checkbox"]').count ).to eq 1
+          expect( find_field( 'datatype', disabled: true ) )
+          expect( find_field( 'format', disabled: true  ) )
+          click_on 'Close'
+        end
+      end
+
+      ui_press_key :down
+      ui_press_key :down
+      ui_press_key 'e'
+
+      ui_in_modal do
+        within( find('#generic-editor') ) do
+          expect( find_field( 'datatype', disabled: false ) )
+          expect( find_field( 'datatype' ).value ).to eq 'float'
+          expect( find_field( 'format', disabled: false ) )
+          expect( find_field( 'format' ).value ).to eq '5.1'
+          expect(page).to have_unchecked_field 'optional'
+
+          find_field( 'optional' ).find(:xpath, '..').click
+
+          fill_in 'label', with: 'Height Q'
+          fill_in 'question_text', with: 'Height Question Text'
+
+          select 'integer', from: 'datatype'
+          expect( find_field( 'format' ).value ).to eq '3'
+
+          select 'date', from: 'datatype'
+          expect( find_field( 'format', disabled: true ) )
+          expect( find_field( 'format', disabled: true ).value ).to eq ''
+
+          click_on 'Save changes'
+          wait_for_ajax 10
+        end
+      end
+
+      check_alert 'Node updated successfully'
+      check_node('Height Q', :question, true)
+      ui_press_key 'e'
+
+      ui_in_modal do
+        within( find('#generic-editor') ) do
+          expect( find_field( 'label' ).value ).to eq 'Height Q'
+          expect( find_field( 'question_text' ).value ).to eq 'Height Question Text'
+          expect(page).to have_checked_field 'optional'
+
+          click_on 'Close'
+        end
+      end
+
+    end
+
+    it "allows to Add a child to a node" do
+      edit_form('FN000150')
+
+      nodes = node_count
+
+      find_node('Height (Pilot)').click
+      click_action :add_child
+
+      # Add Normal Group
+      expect( all('#d3 .node-actions a.option').count ).to eq 1
+      find(:xpath, '//div[@id="d3"]//a[@id="normal_group"]').click
+
+      wait_for_ajax 10
+
+      check_alert 'Added successfully.'
+      ui_press_key 'c' # Center graph
+      expect( node_count ).to eq( nodes + 1 )
+
+      click_action :add_child
+
+      # Add Mapping
+      expect( all('#d3 .node-actions a.option').count ).to eq 7
+      find(:xpath, '//div[@id="d3"]//a[@id="mapping"]').click
+
+      wait_for_ajax 10
+
+      check_alert 'Added successfully.'
+      ui_press_key 'c' # Center graph
+      expect( node_count ).to eq( nodes + 2 )
+
+      # Add Common Group
+      ui_press_key :left
+      click_action :add_child
+      find(:xpath, '//div[@id="d3"]//a[@id="common_group"]').click
+
+      wait_for_ajax 10
+      ui_press_key 'e'
+
+      ui_in_modal do
+        fill_in 'label', with: 'Common Group 1'
+        click_on 'Save changes'
+      end
+
+      # Prevents adding duplicate common group
+      ui_press_key :left
+      click_action :add_child
+      find(:xpath, '//div[@id="d3"]//a[@id="common_group"]').click
+
+      wait_for_ajax 10
+
+      check_alert 'Normal group already contains a Common Group'
+    end
+
+    it "allows to Add a child to a node through Items Picker" do
+      edit_form('FN000150')
+
+      # Add BCs to a Group
+      find_node('Height (Pilot)').click
+      ui_press_key :right
+
+      click_action :add_child
+      find(:xpath, '//div[@id="d3"]//a[@id="bc_group"]').click
+
+      ip_pick_managed_items( :bci, [
+        { identifier: 'WEIGHT', version: '1' }
+      ], 'node-add-child' )
+
+      check_alert 'Added successfully.'
+
+      # Check BC added correctly
+      find_node('Weight').click
+      check_node( 'Weight', :bc, true )
+      ui_press_key :right
+      check_node( '--ORRES', :bc_property, true )
+      ui_press_key :up
+      check_node( '--DTC', :bc_property, true )
+      ui_press_key :down
+      ui_press_key :down
+      check_node( '--ORRESU', :bc_property, true )
+      ui_press_key :right
+      check_node( 'Kilogram', :tuc_ref, true )
+      ui_press_key :down
+      check_node( 'Pound', :tuc_ref, true )
+
+      nodes = node_count
+
+      # Add TUCs to a Question
+      fill_in 'd3-search', with: 'Completion status'
+      ui_press_key :enter
+      click_action :add_child
+      find(:xpath, '//div[@id="d3"]//a[@id="tuc_reference"]').click
+
+      ip_pick_unmanaged_items( :unmanaged_concept, [
+        { parent: 'C100130', version: '62', identifier: 'C25189' },
+        { parent: 'C100130', version: '62', identifier: 'C25174' },
+        { parent: 'C100130', version: '62', identifier: 'C25204' }
+      ], 'node-add-child' )
+
+      check_alert 'Added successfully.'
+
+      # Check TUCs added correctly
+      ui_press_key :right
+
+      expect( node_count ).to eq( nodes + 3 )
+
+      check_node('Mother', :tuc_ref, true)
+      check_node('Father', :tuc_ref)
+      check_node('Sibling', :tuc_ref)
+    end
+
+    it "allows to move node up and down" do
+      edit_form('CRF TEST 1')
+
+      fill_in 'd3-search', with: 'Question 3'
+      ui_press_key :enter
+
+      # Move Question
+      click_action :move_down
+
+      check_alert 'Cannot move Node down'
+
+      click_action :move_up
+      wait_for_ajax 10
+      check_alert 'Moved successfully'
+
+      ui_press_key :up
+      ui_press_key :down
+      check_node('Question 3', :question, true)
+
+      ui_press_key(:up, :shift) # Key shortcut
+      wait_for_ajax 10
+      check_alert 'Moved successfully'
+
+      ui_press_key(:up, :shift) # Key shortcut
+      check_alert 'Cannot move Node up'
+      check_node('Question 3', :question, true)
+
+      # Move Group
+      fill_in 'd3-search', with: 'Q Repeating Group'
+      ui_press_key :enter
+      find('#d3-clear-search').click
+
+      ui_press_key(:down, :shift) # Key shortcut
+      check_alert 'Cannot move Node down'
+
+      click_action :move_up
+      wait_for_ajax 10
+      check_alert 'Moved successfully'
+
+      ui_press_key :down
+      check_node('Q Group', :normal_group, true)
+      ui_press_key :up
+      check_node('Q Repeating Group', :normal_group, true)
+
+      ui_press_key(:down, :shift)
+      wait_for_ajax 10
+      check_alert 'Moved successfully'
+
+      click_action :move_down
+      check_alert 'Cannot move Node down'
+
+      # Prevents moving Common Group
+      fill_in 'd3-search', with: 'common'
+      ui_press_key :enter
+
+      click_action :move_down
+      check_alert 'This Node cannot be moved'
+
+      ui_press_key :down
+      click_action :move_up
+      wait_for_ajax 10
+      check_alert 'Attempting to move up past the first node'
+
+      # Move TUC Ref
+      ui_press_key :up
+      ui_press_key :right
+      ui_press_key :down
+      ui_press_key :right
+
+      click_action :move_up
+      wait_for_ajax 10
+      check_alert 'Moved successfully'
+
+      click_action :move_up
+      wait_for_ajax 10
+      check_alert 'Cannot move Node up'
+
+      ui_press_key(:down, :shift)
+      wait_for_ajax 10
+      check_alert 'Moved successfully'
+    end
+
+    it "allows to remove a node and children" do
+      edit_form('FN000150')
+
+      fill_in 'd3-search', with: 'Mother'
+      ui_press_key :enter
+
+      nodes = node_count
+
+      # Delete TUC Ref
+      click_action :remove
+      ui_confirmation_dialog(true)
+      wait_for_ajax 10
+
+      check_alert 'Node removed successfully'
+      nodes -= 1
+      expect( node_count ).to eq( nodes )
+      check_node('Completion status', :question, true) # Check parent selected after deletion
+
+      # Delete Question with 3 TUC Ref children
+      ui_press_key :delete
+      ui_confirmation_dialog(true)
+      wait_for_ajax 10
+
+      check_alert 'Node removed successfully'
+      nodes -= 4
+      expect( node_count ).to eq( nodes )
+      check_node('Height Group', :normal_group, true)
+
+      # Delete question without children
+      find_node('Height Q').click
+      click_action :remove
+      ui_confirmation_dialog(true)
+      wait_for_ajax 10
+
+      check_alert 'Node removed successfully'
+      nodes -= 1
+      expect( node_count ).to eq( nodes )
+
+      # Delete BC
+      find_node('Weight').click
+      ui_press_key :delete
+      ui_confirmation_dialog(true)
+      wait_for_ajax 10
+
+      check_alert 'Node removed successfully'
+      nodes -= 6
+      expect( node_count ).to eq( nodes )
+
+      # Removes Normal Group with children
+      click_action :remove
+      ui_confirmation_dialog(true)
+      wait_for_ajax 10
+
+      check_alert 'Node removed successfully'
+      nodes -= 5
+      expect( node_count ).to eq( nodes )
+
+      refresh_editor
+
+      check_node_count 4
+      check_node_not_exists 'Placeholder 2'
+      check_node_not_exists 'Height Group'
+    end
+
+  end
+
+  def edit_form(identifier)
+    click_navbar_forms
+    wait_for_ajax 20
+    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
+    wait_for_ajax 10
+    context_menu_element_v2 'history', 1, :edit
+    wait_for_ajax 30
+    expect(page).to have_content 'Form Editor'
+    find('#main_area').scroll_to(:bottom)
+  end
+
+  def refresh_editor
+    page.driver.browser.navigate.refresh
+    wait_for_ajax 20
+    find('#main_area').scroll_to(:bottom)
   end
 
 end

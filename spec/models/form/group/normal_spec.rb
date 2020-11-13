@@ -11,6 +11,13 @@ describe Form::Group::Normal do
     return "models/form/group/normal"
   end
 
+  def make_standard(item)
+    params = {}
+    params[:registration_status] = "Standard"
+    params[:previous_state] = "Incomplete"
+    item.update_status(params)
+  end
+
   describe "Validation tests" do
 
     before :all do
@@ -73,13 +80,6 @@ describe Form::Group::Normal do
   end
 
   describe "Add child" do
-
-    def make_standard(item)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      item.update_status(params)
-    end
 
     def check_normal_group(uri, filename, write_file=false)
       normal = Form::Group::Normal.find_full(uri)
@@ -199,13 +199,6 @@ describe Form::Group::Normal do
 
   describe "Add child, BC Groups" do
 
-    def make_standard(item)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      item.update_status(params)
-    end
-
     def check_normal_group(uri, filename, write_file=false)
       normal = Form::Group::Normal.find_full(uri)
       check_file_actual_expected(normal.to_h, sub_dir, filename, equate_method: :hash_equal, write_file: write_file)
@@ -246,13 +239,14 @@ describe Form::Group::Normal do
       uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal = Form::Group::Normal.find(uri)
-      normal.add_child({type:"common_group"})
+      cg = normal.add_child({type:"common_group"})
+      cg = Form::Group::Common.find(cg.uri)
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       normal = Form::Group::Normal.find(uri)
       normal.add_child({type:"bc_group", id_set:[bci_1.id]})
       normal = Form::Group::Normal.find(uri)
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296"))
-      bc_property.make_common
+      bc_property.make_common(cg)
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
@@ -263,14 +257,15 @@ describe Form::Group::Normal do
       uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal = Form::Group::Normal.find(uri)
-      normal.add_child({type:"common_group"})
+      cg = normal.add_child({type:"common_group"})
+      cg = Form::Group::Common.find(cg.uri)
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
       normal = Form::Group::Normal.find(uri)
       normal.add_child({type:"bc_group", id_set:[bci_1.id]})
       normal = Form::Group::Normal.find(uri)
-      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
-      bc_property.make_common
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
+      bc_property.make_common(cg)
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       normal = Form::Group::Normal.find(uri)
       result = normal.add_child({type:"bc_group", id_set:[bci_2.id]})
