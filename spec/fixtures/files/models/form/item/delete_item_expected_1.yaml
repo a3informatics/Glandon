@@ -3,7 +3,6 @@
 :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1
 :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
 :label: Not Set
-:tagged: []
 :ordinal: 1
 :note: Not Set
 :completion: Not Set
@@ -13,7 +12,6 @@
   :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2
   :rdf_type: http://www.assero.co.uk/BusinessForm#Placeholder
   :label: Placeholder 2
-  :tagged: []
   :ordinal: 1
   :note: ''
   :completion: Not Set
@@ -24,7 +22,6 @@
   :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q3
   :rdf_type: http://www.assero.co.uk/BusinessForm#Question
   :label: Height
-  :tagged: []
   :ordinal: 2
   :note: ''
   :completion: Not Set
@@ -38,7 +35,6 @@
   :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q4
   :rdf_type: http://www.assero.co.uk/BusinessForm#Question
   :label: Unit
-  :tagged: []
   :ordinal: 3
   :note: ''
   :completion: Not Set
@@ -52,7 +48,6 @@
     :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q4_TUC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -61,8 +56,6 @@
       :uri: http://www.cdisc.org/C49675/V1#C49675_C48500
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Inch
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C48500
       :notation: IN
       :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
@@ -77,7 +70,6 @@
     :uri: http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q4_TUC2
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 2
@@ -86,8 +78,6 @@
       :uri: http://www.cdisc.org/C49675/V1#C49675_C49668
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Centimeter
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C49668
       :notation: cm
       :definition: A basic unit of length in the former CGS version of metric system,
