@@ -32,10 +32,7 @@ class Form
     def domain_list
       result = {}
       @annotation_set.each do |uri, annotation|
-        domain_prefix = annotation.domain_prefix.to_sym
-        next if result.key?(domain_prefix)
-        domain_long_name = annotation.domain_long_name
-        result[domain_prefix] = domain_long_name
+        set_domain_prefix_and_long_name(annotation, result)
       end
       result
     end
@@ -63,7 +60,7 @@ class Form
     # @return [Array] Array of annotation objects
     def bc_annotations
       query_string = %Q{
-        SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE
+        SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub ?domain_long_name WHERE
         { 
           ?topic_var bd:hasProperty ?op_ref3 . 
           ?op_ref3 bo:hasProperty ?bc_topic_property .     
@@ -72,11 +69,12 @@ class Form
           ?valueRef bo:hasThesaurusConcept ?sdtmTopicValueObj . 
           #?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub .
           {         
-            SELECT ?form ?group ?item ?bcProperty ?bc_root ?bcIdent ?sdtmVarName ?domain ?sdtmTopicName ?topic_var WHERE 
+            SELECT ?form ?group ?item ?bcProperty ?bc_root ?bcIdent ?sdtmVarName ?domain ?sdtmTopicName ?topic_var ?domain_long_name WHERE 
             {   
               ?var bd:name ?sdtmVarName .              
               ?dataset bd:includesColumn ?var .              
-              ?dataset bd:prefix ?domain .              
+              ?dataset bd:prefix ?domain .
+              ?dataset isoC:label ?domain_long_name .
               ?dataset bd:includesColumn ?topic_var .             
               ?topic_var bd:classifiedAs ?classification .             
               ?classification rdfs:label \"Topic\"^^xsd:string .              
@@ -102,11 +100,11 @@ class Form
           }
         } ORDER BY ?gord ?pord
       }     
-      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoT, :isoI])
-      triples = query_results.by_object_set([:item, :domain, :sdtmVarName, :sdtmTopicName, :sdtmTopicSub])
+      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoT, :isoI, :isoC])
+      triples = query_results.by_object_set([:item, :domain, :sdtmVarName, :sdtmTopicName, :sdtmTopicSub, :domain_long_name])
       triples.each do |entry|
         uri = entry[:item].to_s
-        @annotation_set[uri] = Annotation.new({uri: uri, domain_prefix: entry[:domain], domain_long_name: "domain_long_name", sdtm_variable: entry[:sdtmVarName], sdtm_topic_variable: entry[:sdtmTopicName], sdtm_topic_value: entry[:sdtmTopicSub]})
+        @annotation_set[uri] = Annotation.new({uri: uri, domain_prefix: entry[:domain], domain_long_name: entry[:domain_long_name], sdtm_variable: entry[:sdtmVarName], sdtm_topic_variable: entry[:sdtmTopicName], sdtm_topic_value: entry[:sdtmTopicSub]})
         
       end
     end
@@ -116,7 +114,7 @@ class Form
     # @return [Array] Array of annotation objects
     def item_annotations
       query_string = %Q{         
-        SELECT DISTINCT ?var ?domain ?item ?domain_long_name  WHERE 
+        SELECT DISTINCT ?var ?domain ?item ?domain_long_name WHERE 
         {
           ?col bd:name ?var .
           ?dataset bd:includesColumn ?col .
@@ -142,7 +140,15 @@ class Form
       end
     end
 
-    def asd
+    # def add_annotation(entry)
+    #   uri = entry[:item].to_s
+    #   @annotation_set[uri] = Annotation.new({uri: uri, domain_prefix: entry[:domain], domain_long_name: entry[:domain_long_name], sdtm_variable:entry[:var], sdtm_topic_variable: "", sdtm_topic_value: "" })
+    # end
+
+    def set_domain_prefix_and_long_name(annotation, result)
+      domain_prefix = annotation.domain_prefix.to_sym
+      domain_long_name = annotation.domain_long_name
+      result[domain_prefix] = domain_long_name if !result.key?(domain_prefix)
     end
 
   end
