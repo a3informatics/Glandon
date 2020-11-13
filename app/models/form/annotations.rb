@@ -60,18 +60,47 @@ class Form
     # @return [Array] Array of annotation objects
     def bc_annotations
       results = []
-      query_string = %Q{         
-        SELECT ?group ?item ?bc_property ?bc_root ?bc_ident ?sdtm_var_name ?dataset ?var ?gord ?pord WHERE 
-        { #{@form.uri.to_ref} (bf:hasGroup|bf:hasSubGroup|bf:hasCommon) ?group .
-          ?group bf:ordinal ?gord .
-          ?group bf:hasItem ?item .
-          ?item bf:hasProperty ?op_ref1 .
-          ?op_ref1 bo:reference ?bcProperty .
-          ?op_ref2 bo:reference ?bcProperty .
-          ?var bd:hasProperty ?op_ref2 .
-        }
+      query_string = %Q{
+        SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE
+        { 
+          ?topic_var bd:hasProperty ?op_ref3 . 
+          ?op_ref3 bo:hasProperty ?bc_topic_property     
+          ?bcRoot (bc:hasProperty|bc:hasDatatype|bc:hasItem|bc:hasComplexDatatype) ?bc_topic_property 
+          ?bc_topic_property bc:hasThesaurusConcept ?valueRef 
+          ?valueRef bo:hasThesaurusConcept ?sdtmTopicValueObj   
+          ?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub 
+          {         
+            SELECT ?form ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?domain ?sdtmTopicName ?topic_var WHERE 
+            {   
+              ?var bd:name ?sdtmVarName .              
+              ?dataset bd:includesColumn ?var .              
+              ?dataset bd:prefix ?domain .              
+              ?dataset bd:includesColumn ?topic_var .             
+              ?topic_var bd:classifiedAs ?classification .             
+              ?classification rdfs:label \"Topic\"^^xsd:string .              
+              ?topic_var bd:name ?sdtmTopicName . 
+              {
+                SELECT ?group ?item ?bc_property ?bc_root ?bc_ident ?sdtm_var_name ?dataset ?var ?gord ?pord WHERE 
+                { 
+                  #{@form.uri.to_ref} (bf:hasGroup|bf:hasSubGroup|bf:hasCommon) ?group .
+                  ?group bf:ordinal ?gord .
+                  ?group bf:hasItem ?item .
+                  ?item bf:hasProperty ?op_ref1 .
+                  ?op_ref1 bo:reference ?bcProperty .
+                  ?op_ref2 bo:reference ?bcProperty .
+                  ?var bd:hasProperty ?op_ref2 .
+                        ?bcRoot (bc:hasProperty|bc:hasDatatype|bc:hasItem|bc:hasComplexDatatype) ?bcProperty .
+                        ?bcRoot rdf:type bc:BiomedicalConceptInstance .
+                        ?bcProperty bc:ordinal ?pord .      
+                        ?bcRoot isoT:hasIdentifier ?si .     
+                        ?si isoI:identifier ?bcIdent .
+                }
+              }
+            }
+          }
+        } ORDER BY ?gord ?pord
       }     
-      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc])
+      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoT, :isoI])
       triples = query_results.by_object_set([:item, :domain, :sdtmVarName, :sdtmTopicName, :sdtmTopicSub])
       triples.each do |entry|
         uri = entry[:item].to_s
@@ -105,6 +134,9 @@ class Form
       }     
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc])
       triples = query_results.by_object_set([:var, :domain, :item])
+      # if @@domain_map.has_key?(domain)
+      #   domain_long_name = @@domain_map[domain]
+      # end
       triples.each do |entry|
         uri = entry[:item].to_s
         results << Annotation.new({uri: uri, domain_prefix: entry[:domain], domain_long_name: "entry[:domain_long_name]", sdtm_variable:entry[:var], sdtm_topic_variable: "", sdtm_topic_value: "" })
