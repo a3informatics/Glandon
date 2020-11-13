@@ -54,7 +54,7 @@ class Form::Item::Common < Form::Item::BcProperty
     if self.has_coded_value.length == 0
       html += input_field(property)
     else
-      html += terminology_cell
+      html += terminology_cell(self)
     end
     html += end_row
   end

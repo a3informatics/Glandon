@@ -83,6 +83,7 @@ class Form
           html += mapping_cell(qa, options)
         else
           html += empty_cell
+        end
       end
       html += '</tr>'
     end
@@ -198,7 +199,7 @@ class Form
 
     def terminology_cell(item)
       html = '<td>'
-      item.has_coded_value.sort_by {|x| x.ordinal}.each do |cv|
+      item.has_coded_value_objects.sort_by {|x| x.ordinal}.each do |cv|
         tc = Thesaurus::UnmanagedConcept.find(cv.reference)
         if cv.enabled
           html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
@@ -207,16 +208,16 @@ class Form
       html += '</td>'
     end
 
-    def terminology_cell
-      html = '<td>'
-      self.has_coded_value_objects.sort_by {|x| x.ordinal}.each do |cv|
-        tc = Thesaurus::UnmanagedConcept.find(cv.reference)
-        if cv.enabled
-          html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
-        end
-      end
-      html += '</td>'
-    end
+    # def terminology_cell
+    #   html = '<td>'
+    #   self.has_coded_value_objects.sort_by {|x| x.ordinal}.each do |cv|
+    #     tc = Thesaurus::UnmanagedConcept.find(cv.reference)
+    #     if cv.enabled
+    #       html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
+    #     end
+    #   end
+    #   html += '</td>'
+    # end
 
     def start_row(optional)
       return '<tr class="warning">' if optional

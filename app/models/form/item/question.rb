@@ -52,7 +52,7 @@ class Form::Item::Question < Form::Item
     html += question_cell(self.question_text)
     qa = question_annotations(self.mapping, annotations)
     html += mapping_cell(qa, annotations)
-    html += self.has_coded_value.count == 0 ? input_field(self) : terminology_cell
+    html += self.has_coded_value.count == 0 ? input_field(self) : terminology_cell(self)
     html += end_row
     html
   end
