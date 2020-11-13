@@ -6,6 +6,10 @@ class Form
   
   module CRF
 
+    def domain_count
+      5
+    end
+
     def get_css
       html = "<style>"
       html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
@@ -26,6 +30,118 @@ class Form
       html += "p.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
       html += "</style>"
     end
+
+    # Is a Question only group
+  def is_question_only_group?
+    if self.class == Form::Group::Normal
+      self.has_sub_group.each do |sg|
+        sg.is_question_only_group? if sg.class == Form::Group::Normal
+      end
+    end
+    self.has_item.each do |item|
+      return true if item.class == Form::Item::Question || item.class == Form::Item::Mapping || item.class == Form::Item::TextLabel 
+    end
+    return false
+  end
+
+  # Is a BC only group
+  def is_bc_only_group?
+    self.has_item.each do |item|
+      return false if item.class != Form::Item::BcProperty
+    end
+    if self.class == Form::Group::Normal
+      self.has_sub_group.each do |sg|
+        sg.is_bc_only_group? if sg.class == Form::Group::Normal
+      end
+    end
+    return true
+  end
+
+  # Repeating Question group
+  def repeating_question_group(annotations)
+    html = ""
+    # Put the labels and mappings out first
+    self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
+      html += sg.repeating_question_group
+    end
+    self.has_item.sort_by {|x| x.ordinal}.each do |item|
+      html += item.to_crf unless item.class == Form::Item::Question
+    end
+    # Now the questions
+    html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
+    html += '<tr>'
+    self.has_item.sort_by {|x| x.ordinal}.each do |item|
+      html += item.question_cell(item.question_text) if item.class == Form::Item::Question
+    end
+    html += '</tr>'
+
+    unless annotations.nil?
+      html += '<tr>'
+      self.has_item.sort_by {|x| x.ordinal}.each do |item|
+        if item.class == Form::Item::Question
+          qa = question_annotations(child[:id], child[:mapping], annotations, options)
+          html += mapping_cell(qa, options)
+        else
+          html += empty_cell
+      end
+      html += '</tr>'
+    end
+
+    html += '<tr>'
+    self.has_item.sort_by {|x| x.ordinal}.each do |item|
+      html += input_field(item) if item.class == Form::Item::Question
+    end
+    html += '</tr>'
+    html += '</table></td>' 
+    return html
+  end
+
+  # Repeating BC group
+  def repeating_bc_group
+    html = ""
+    html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
+    html += '<tr>'
+    columns = {}
+    self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
+      sg.has_item.sort_by {|x| x.ordinal}.each do |item|
+        property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
+        #if property.enabled && property.collect
+          if !columns.has_key?(property.is_a.to_s)
+            columns[property.is_a.to_s] = property.is_a.to_s
+          end
+        #end
+      end
+    end
+    # Question text
+    html += start_row(false)
+    self.has_sub_group.first.has_item.sort_by {|x| x.ordinal}.each do |item|
+      property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
+      if columns.has_key?(property.is_a.to_s)
+        html += item.question_cell(property.question_text)
+      end
+    end
+    html += end_row
+    # BCs and the input fields
+    self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
+      html += start_row(false)
+      sg.has_item.sort_by {|x| x.ordinal}.each do |item|
+        property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
+        if columns.has_key?(property.is_a.to_s)
+          if property.has_coded_value.length == 0
+            html += input_field(property)
+          else
+            html += terminology_cell(item)
+          end
+        end
+      end
+      html += end_row
+      html += start_row(false)
+      html += end_row
+    end
+    html += '</tr>'
+    html += '</table></td>'
+    return html
+  end
 
     # Format input field
     def input_field(item)
@@ -119,13 +235,17 @@ class Form
       return "<td>#{text}</td>"
     end
 
-    def mapping_cell(text, options)
-      return "<td>#{text}</td>" if !text.empty? && options[:annotate]
+    def mapping_cell(text, annotations)
+      return "<td>#{text}</td>" if !text.empty? && !annotations.nil?
       return empty_cell
     end
 
     def empty_cell
       return "<td></td>"
+    end
+
+    def text_row(text)
+      return "<tr><td colspan=\"3\"><h5>#{text}</h5></td></tr>"
     end
 
   end

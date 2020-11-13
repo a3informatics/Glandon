@@ -46,7 +46,7 @@ class Form::Item::Common < Form::Item::BcProperty
   # To CRF
   #
   # @return [String] An html string of the Common Item
-  def to_crf
+  def to_crf(annotations)
     html = ""
     property = BiomedicalConcept::PropertyX.find(self.has_property_objects.reference)
     html += start_row(self.optional)

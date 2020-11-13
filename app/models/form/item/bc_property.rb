@@ -51,7 +51,7 @@ class Form::Item::BcProperty < Form::Item
   # To CRF
   #
   # @return [String] An html string of BC Property
-  def to_crf
+  def to_crf(annotations)
     html = ""
     if !is_common?
       if self.has_property_objects.enabled

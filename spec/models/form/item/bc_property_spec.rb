@@ -49,7 +49,7 @@ describe Form::Item::BcProperty do
 
     it "to CRF I" do
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
-      result = bc_property.to_crf
+      result = bc_property.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
     end
 
@@ -65,11 +65,11 @@ describe Form::Item::BcProperty do
 
     it "to CRF II, fix enabled bug" do
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
-      result = bc_property.to_crf
+      result = bc_property.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_3.yaml", equate_method: :hash_equal)
       bc_property.has_property_objects.update(enabled: false)
       bc_property.save
-      result = bc_property.to_crf
+      result = bc_property.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_4.yaml", equate_method: :hash_equal)
     end
 
@@ -77,11 +77,11 @@ describe Form::Item::BcProperty do
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
       bc_property.has_property_objects.update(enabled: true)
       bc_property.save
-      result = bc_property.to_crf
+      result = bc_property.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_5.yaml", equate_method: :hash_equal)
       bc_property.has_property_objects.update(optional: true)
       bc_property.save
-      result = bc_property.to_crf
+      result = bc_property.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_6.yaml", equate_method: :hash_equal)
     end
 

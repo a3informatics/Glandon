@@ -93,10 +93,6 @@ class Form::Group < IsoConceptV2
     end
   end
 
-  def text_row(text)
-    return "<tr><td colspan=\"3\"><h5>#{text}</h5></td></tr>"
-  end
-
   # Next Ordinal. Get the next ordinal for a managed item collection
   #
   # @param [String] name the name of the property holding the collection

@@ -37,9 +37,10 @@ class Form
       result
     end
 
-    def add_domain_class(domain_class)
-
-    end
+    #def add_domain_class(domain, domain_class)
+      #domain[:class] = domain_class
+      #@domain_list[domain[:domain_prefix]] = domain
+    #end
 
     # ---------
     # Test Only  
@@ -105,7 +106,6 @@ class Form
       triples.each do |entry|
         uri = entry[:item].to_s
         @annotation_set[uri] = Annotation.new({uri: uri, domain_prefix: entry[:domain], domain_long_name: entry[:domain_long_name], sdtm_variable: entry[:sdtmVarName], sdtm_topic_variable: entry[:sdtmTopicName], sdtm_topic_value: entry[:sdtmTopicSub]})
-        
       end
     end
 

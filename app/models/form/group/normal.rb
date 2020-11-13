@@ -67,19 +67,19 @@ class Form::Group::Normal < Form::Group
   # To CRF
   #
   # @return [String] An html string of Normal group
-  def to_crf
+  def to_crf(annotations)
     html = ""
     html += text_row(self.label)
     if self.repeating && self.is_question_only_group?
-      html += repeating_question_group(annotations = nil)
+      html += repeating_question_group(annotations)
     elsif self.repeating && self.is_bc_only_group?
-      html += repeating_bc_group(annotations = nil)
+      html += repeating_bc_group
     else
       self.has_common.sort_by {|x| x.ordinal}.each do |cm|
-        html += cm.to_crf
+        html += cm.to_crf(annotations)
       end
       children_ordered.each do |node|
-        html += node.to_crf
+        html += node.to_crf(annotations)
       end
     end
     return html
@@ -119,104 +119,104 @@ class Form::Group::Normal < Form::Group
     end
   end
 
-  # Is a Question only group
-  def is_question_only_group?(annotations = nil)
-    if self.class == Form::Group::Normal
-      self.has_sub_group.each do |sg|
-        sg.is_question_only_group? if sg.class == Form::Group::Normal
-      end
-    end
-    self.has_item.each do |item|
-      return true if item.class == Form::Item::Question || item.class == Form::Item::Mapping || item.class == Form::Item::TextLabel 
-    end
-    return false
-  end
+  # # Is a Question only group
+  # def is_question_only_group?(annotations)
+  #   if self.class == Form::Group::Normal
+  #     self.has_sub_group.each do |sg|
+  #       sg.is_question_only_group? if sg.class == Form::Group::Normal
+  #     end
+  #   end
+  #   self.has_item.each do |item|
+  #     return true if item.class == Form::Item::Question || item.class == Form::Item::Mapping || item.class == Form::Item::TextLabel 
+  #   end
+  #   return false
+  # end
 
-  # Is a BC only group
-  def is_bc_only_group?(annotations = nil)
-    self.has_item.each do |item|
-      return false if item.class != Form::Item::BcProperty
-    end
-    if self.class == Form::Group::Normal
-      self.has_sub_group.each do |sg|
-        sg.is_bc_only_group? if sg.class == Form::Group::Normal
-      end
-    end
-    return true
-  end
+  # # Is a BC only group
+  # def is_bc_only_group?(annotations)
+  #   self.has_item.each do |item|
+  #     return false if item.class != Form::Item::BcProperty
+  #   end
+  #   if self.class == Form::Group::Normal
+  #     self.has_sub_group.each do |sg|
+  #       sg.is_bc_only_group? if sg.class == Form::Group::Normal
+  #     end
+  #   end
+  #   return true
+  # end
 
-  # Repeating Question group
-  def repeating_question_group
-    html = ""
-    # Put the labels and mappings out first
-    self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-      html += sg.repeating_question_group
-    end
-    self.has_item.sort_by {|x| x.ordinal}.each do |item|
-      html += item.to_crf unless item.class == Form::Item::Question
-    end
-    # Now the questions
-    html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
-    html += '<tr>'
-    self.has_item.sort_by {|x| x.ordinal}.each do |item|
-      html += item.question_cell(item.question_text) if item.class == Form::Item::Question
-    end
-    html += '</tr>'
-    html += '<tr>'
-    self.has_item.sort_by {|x| x.ordinal}.each do |item|
-      html += input_field(item) if item.class == Form::Item::Question
-    end
-    html += '</tr>'
-    html += '</table></td>' 
-    return html
-  end
+  # # Repeating Question group
+  # def repeating_question_group
+  #   html = ""
+  #   # Put the labels and mappings out first
+  #   self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
+  #     html += sg.repeating_question_group
+  #   end
+  #   self.has_item.sort_by {|x| x.ordinal}.each do |item|
+  #     html += item.to_crf unless item.class == Form::Item::Question
+  #   end
+  #   # Now the questions
+  #   html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
+  #   html += '<tr>'
+  #   self.has_item.sort_by {|x| x.ordinal}.each do |item|
+  #     html += item.question_cell(item.question_text) if item.class == Form::Item::Question
+  #   end
+  #   html += '</tr>'
+  #   html += '<tr>'
+  #   self.has_item.sort_by {|x| x.ordinal}.each do |item|
+  #     html += input_field(item) if item.class == Form::Item::Question
+  #   end
+  #   html += '</tr>'
+  #   html += '</table></td>' 
+  #   return html
+  # end
 
-  # Repeating BC group
-  def repeating_bc_group
-    html = ""
-    html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
-    html += '<tr>'
-    columns = {}
-    self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-      sg.has_item.sort_by {|x| x.ordinal}.each do |item|
-        property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
-        #if property.enabled && property.collect
-          if !columns.has_key?(property.is_a.to_s)
-            columns[property.is_a.to_s] = property.is_a.to_s
-          end
-        #end
-      end
-    end
-    # Question text
-    html += start_row(false)
-    self.has_sub_group.first.has_item.sort_by {|x| x.ordinal}.each do |item|
-      property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
-      if columns.has_key?(property.is_a.to_s)
-        html += item.question_cell(property.question_text)
-      end
-    end
-    html += end_row
-    # BCs and the input fields
-    self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-      html += start_row(false)
-      sg.has_item.sort_by {|x| x.ordinal}.each do |item|
-        property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
-        if columns.has_key?(property.is_a.to_s)
-          if property.has_coded_value.length == 0
-            html += input_field(property)
-          else
-            html += terminology_cell(item)
-          end
-        end
-      end
-      html += end_row
-      html += start_row(false)
-      html += end_row
-    end
-    html += '</tr>'
-    html += '</table></td>'
-    return html
-  end
+  # # Repeating BC group
+  # def repeating_bc_group
+  #   html = ""
+  #   html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
+  #   html += '<tr>'
+  #   columns = {}
+  #   self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
+  #     sg.has_item.sort_by {|x| x.ordinal}.each do |item|
+  #       property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
+  #       #if property.enabled && property.collect
+  #         if !columns.has_key?(property.is_a.to_s)
+  #           columns[property.is_a.to_s] = property.is_a.to_s
+  #         end
+  #       #end
+  #     end
+  #   end
+  #   # Question text
+  #   html += start_row(false)
+  #   self.has_sub_group.first.has_item.sort_by {|x| x.ordinal}.each do |item|
+  #     property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
+  #     if columns.has_key?(property.is_a.to_s)
+  #       html += item.question_cell(property.question_text)
+  #     end
+  #   end
+  #   html += end_row
+  #   # BCs and the input fields
+  #   self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
+  #     html += start_row(false)
+  #     sg.has_item.sort_by {|x| x.ordinal}.each do |item|
+  #       property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
+  #       if columns.has_key?(property.is_a.to_s)
+  #         if property.has_coded_value.length == 0
+  #           html += input_field(property)
+  #         else
+  #           html += terminology_cell(item)
+  #         end
+  #       end
+  #     end
+  #     html += end_row
+  #     html += start_row(false)
+  #     html += end_row
+  #   end
+  #   html += '</tr>'
+  #   html += '</table></td>'
+  #   return html
+  # end
 
   # Format input field
   # def input_field(item)

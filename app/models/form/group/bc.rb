@@ -34,11 +34,11 @@ class Form::Group::Bc < Form::Group
   # To CRF
   #
   # @return [String] An html string of BC Group
-  def to_crf
+  def to_crf(annotations)
     html = ""
     html += text_row(self.label)
     self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
-      html += item.to_crf
+      html += item.to_crf(annotations)
     end
     return html
   end

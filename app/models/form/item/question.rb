@@ -47,9 +47,11 @@ class Form::Item::Question < Form::Item
   # To CRF
   #
   # @return [String] An html string of Question Item
-  def to_crf
+  def to_crf(annotations)
     html = start_row(self.optional)
     html += question_cell(self.question_text)
+    qa = question_annotations(self.mapping, annotations)
+    html += mapping_cell(qa, annotations)
     html += self.has_coded_value.count == 0 ? input_field(self) : terminology_cell
     html += end_row
     html
@@ -106,34 +108,6 @@ class Form::Item::Question < Form::Item
     end
   end
 
-  # def clone_nodes_and_get_new_parent(child, managed_ancestor)
-  #   new_parent = nil
-  #   new_object = nil
-  #   tx = transaction_begin
-  #   uris = child.managed_ancestor_path_uris(managed_ancestor)
-  #   prev_object = managed_ancestor
-  #   prev_object.transaction_set(tx)
-  #   uris.each do |old_uri|
-  #     old_object = self.class.klass_for(old_uri).find_children(old_uri)
-  #     if old_object.multiple_managed_ancestors?
-  #       cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
-  #       if child.uri == old_object.uri
-  #         prev_object.delete_link(old_object.managed_ancestors_predicate, old_object.uri)
-  #         new_parent = prev_object
-  #         new_parent.clone_children_and_save_no_tx(managed_ancestor, tx) 
-  #       else
-  #         prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-  #       end
-  #       prev_object = cloned_object
-  #     else
-  #       prev_object = old_object
-  #     end
-  #   end
-  #   transaction_execute
-  #   new_parent.reset_ordinals
-  #   new_parent = Form::Item.find_full(new_parent.id)
-  # end
-
   # Reset Ordinals. Reset the ordinals within the enclosing parent
   #
   # @return [Boolean] true if reordered, false otherwise.
@@ -160,6 +134,26 @@ puts "Q: #{query_string}"
   end
 
   private
+
+    def question_annotations(mapping, annotations)
+      return "" if annotations.nil?
+      html = ""
+      #entries = annotations.select {|uri, annotation| uri == self.uri}
+      #entries = annotations.annotation_for_uri(self.uri.to_s)
+      # if entries.count > 0
+      #   first = true
+      #   entries.each do |entry|
+      #     html += "<br/>" if !first
+      #     #p_class = @@domain_map[entry[:domain_prefix]][:class]
+      #     p_class = "domain-other"
+      #     html += "<p class=\"#{p_class}\">#{mapping}</p>"
+      #     first = false
+      #   end
+      # else
+        html = "<p class=\"domain-other\">#{mapping}</p>"
+      #end
+      return html
+    end
 
     # Return URIs of the children objects ordered by ordinal, make sure common group marked and placed first
     def uris_by_ordinal
