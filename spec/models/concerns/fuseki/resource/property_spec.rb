@@ -40,6 +40,8 @@ describe Fuseki::Resource::Property do
     expect(item.default_value).to eq("1")
     item.set_value("XXX")
     expect(item.get).to eq("XXX")
+    item.replace_value("", "YYY")
+    expect(item.get).to eq("YYY")
     item.clear
     expect(item.get).to eq("")
     
@@ -109,10 +111,11 @@ describe Fuseki::Resource::Property do
 
     item.set_uri(uri.to_s)
     expect(item.get).to eq(uri)
-    item.delete_value(ref_4) # Should not do anything
-    expect(item.get).to eq(uri)
-    item.replace_value(uri, ref_4) # Should not do anything
-    expect(item.get).to eq(uri)
+    item.delete_value(uri) 
+    expect(item.get).to eq(nil)
+    item.set_uri(uri.to_s)
+    item.replace_value(uri, uri_5)
+    expect(item.get).to eq(uri_5)
     
     ref_4 = TestFRP.new
     item = Fuseki::Resource::Property.new(ref_4, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: "", base_type: XSDDatatype.new("dateTime")})

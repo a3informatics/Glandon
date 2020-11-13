@@ -163,7 +163,8 @@ describe Form::Item::BcProperty do
       check_file_actual_expected(form.to_h, sub_dir, "make_common_expected_5a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
-      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCP_36d01a04-97fa-4ae9-8f40-9f266a6cdc06"))
+      bc_property = Form::Item::BcProperty.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f"))
+      expect(bc_property.label).to eq("--ORRESU")
       bc_property.make_common_with_clone(new_form)
       new_form = Form.find_full(new_form.uri)
       check_dates(new_form, sub_dir, "make_common_expected_5b.yaml", :creation_date, :last_change_date)
