@@ -29,13 +29,6 @@ class Form::Item < IsoConceptV2
     ]
   end
 
-  # # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
-  # #
-  # # @return [Symbol] the predicate property as a symbol
-  # def managed_ancestors_predicate
-  #   :has_item
-  # end
-
   # Delete. Delete the object. Clone if there are multiple parents.
   #
   # @param [Object] parent_object the parent object
@@ -52,6 +45,11 @@ class Form::Item < IsoConceptV2
     normal_group = normal_group.full_data
   end
 
+  # Move Up With Clone
+  #
+  # @param [Object] child the object to be moved
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Void] no return
   def move_up_with_clone(child, managed_ancestor)
     if multiple_managed_ancestors?
       parent_and_child = self.replicate_siblings_with_clone(child, managed_ancestor)
@@ -61,6 +59,11 @@ class Form::Item < IsoConceptV2
     end
   end
 
+  # Move Down With Clone
+  #
+  # @param [Object] child the object to be moved
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Void] no return
   def move_down_with_clone(child, managed_ancestor)
     if multiple_managed_ancestors?
       parent_and_child = self.replicate_siblings_with_clone(child, managed_ancestor)

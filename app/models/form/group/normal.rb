@@ -389,14 +389,14 @@ class Form::Group::Normal < Form::Group
 
     def add_item(params)
       child = type_to_class[params[:type].to_sym].create(label: "Not set", ordinal: next_ordinal, parent_uri: self.uri)
-      child.save
+      #child.save
       self.add_link(:has_item, child.uri)
       child
     end
 
     def check_if_common(bc_property)
       unless self.has_common.empty?
-        common_group = Form::Group::Common.find(self.has_common.first)
+        common_group = Form::Group::Common.find(self.has_common.first.uri)
         common_group.has_item_objects.each do |common_item|
           if common_property?(bc_property, common_item) && bc_property.has_coded_value.empty?
             make_common(common_item, common_group, bc_property)
