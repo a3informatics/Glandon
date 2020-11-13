@@ -450,7 +450,8 @@ export default class ItemsPicker extends ModalView {
       biomedical_concept_instance: rdfTypesMap.BC,
       biomedical_concept_template: rdfTypesMap.BCT,
       form: rdfTypesMap.FORM,
-      protocol_template: rdfTypesMap.PROTOCOL_TEMPLATE
+      protocol_template: rdfTypesMap.PROTOCOL_TEMPLATE,
+      protocol: rdfTypesMap.PROTOCOL
     }
 
   }

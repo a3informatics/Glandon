@@ -121,7 +121,7 @@ export default class CreateStudyView extends CreateItemView {
 
     return new ItemsPicker({
       id: 'new-study',
-      types: ['protocol_template'],
+      types: ['protocol'],
       onSubmit: selection => this._onSelectTemplate( selection.asObjectsArray()[0] )
     });
 

@@ -13,6 +13,8 @@
 
     index_assessments_url = assessments_path
     history_assessments_url = history_assessments_path(assessment: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_protocols = protocols_path
+    history_protocols = history_protocols_path(protocols: {identifier: "miHistoryId", scope_id: "miScopeId"})
     index_protocol_templates = protocol_templates_path
     history_protocol_templates = history_protocol_templates_path(protocol_template: {identifier: "miHistoryId", scope_id: "miScopeId"})
 %>
@@ -29,31 +31,35 @@
 <%= javascript_tag "var _globalIHUrls = { 
                           thesauri: {
                             index: '#{index_th_url}',
-                            history:  '#{history_th_url}'
+                            history: '#{history_th_url}'
                           },
                           managed_concept: {
                             index: '#{index_cl_url}',
-                            history:  '#{history_cl_url}',
+                            history: '#{history_cl_url}',
                             children: '#{children_cl_url}'
                           },
                           biomedical_concept_instance: {
                             index: '#{index_bc_url}',
-                            history:  '#{history_bc_url}'
+                            history: '#{history_bc_url}'
                           },
                           biomedical_concept_template: {
                             index: '#{index_bct_url}',
-                            history:  '#{history_bct_url}'
+                            history: '#{history_bct_url}'
                           },
                           form: {
                             index: '#{index_form_url}',
-                            history:  '#{history_form_url}'
+                            history: '#{history_form_url}'
                           },
                           assessment: {
                             index: '#{index_assessments_url}',
-                            history:  '#{history_assessments_url}'
+                            history: '#{history_assessments_url}'
                           },
                           protocol_template: {
                             index: '#{index_protocol_templates}',
-                            history:  '#{history_protocol_templates}'
+                            history: '#{history_protocol_templates}'
+                          },
+                          protocol: {
+                            index: '#{index_protocols}',
+                            history: '#{history_protocols}'
                           }
-                        }"%>
+                        } "%>

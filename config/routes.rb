@@ -373,6 +373,10 @@ Rails.application.routes.draw do
       get :objectives
       get :endpoints
     end
+    collection do
+      get :index
+      get :history
+    end
   end
   resources :protocol_templates, only: [:show] do
     collection do
