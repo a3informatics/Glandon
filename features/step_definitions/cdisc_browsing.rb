@@ -153,16 +153,36 @@ end
 
 
 Then('I see the Differences and Changes for the {string} code list for CDISC version {string} and CDISC version {string}') do |string, string2, string3|
-  pending # Write code here that turns the phrase above into concrete actions
+  
+    expect(page).to have_content 'Differences'
+    expect(page).to have_content 'Changes'
+    expect(page).to have_content string
+    #expect(page).to have_content string2
+    expect(page).to have_content string3
+    wait_for_ajax(20)
+    save_screen(TYPE)
+         
 end
 
 Then('I see that {int} new codes were created {string} in version {string}') do |int, string, string2|
-# Then('I see that {float} new codes were created {string} in version {string}') do |float, string, string2|
-  pending # Write code here that turns the phrase above into concrete actions
+   pos_cr = page.all(:xpath, "//table[@id='changes']/thead/tr/th[.='#{string2}']/preceding-sibling::*").length+1
+   i = 1
+   if i < int+1
+     ui_check_table_cell_create('changes',i,pos_cr)
+     i = i+1
+   else
+    ui_check_table_cell_create('changes',int+1,pos_cr, false)
+   end
+
+   wait_for_ajax(20)
+   save_screen(TYPE)
 end
 
 Then('I see that code list and code list items are maked deleted {string} in version {string}') do |string, string2|
-  pending # Write code here that turns the phrase above into concrete actions
+  pos_cr = page.all(:xpath, "//table[@id='changes']/thead/tr/th[.='#{string2}']/preceding-sibling::*").length+1
+  ui_check_table_cell_delete('changes',1,pos_cr)
+  wait_for_ajax(20)
+  save_screen(TYPE)
 end
 
 Then('a PDF report is generated and contains the {int} entires in the Changes panel') do |int|
@@ -171,17 +191,17 @@ Then('a PDF report is generated and contains the {int} entires in the Changes pa
     sleep 10
     expect(current_path).to include("changes_report.pdf")
     expect(current_path).to include("thesauri/managed_concepts")
-   
-     page.execute_script "window.scrollBy(0,10000);"
+       
+    save_screen(TYPE)
+    # var x = document.getElementsByTagName('embed')[0]
+    # x.src = "url/to/your.pdf?page=page_number"
      save_screen(TYPE)
-     
-    page.execute_script "window.close();"
-  end
+      page.execute_script "window.close();"
+      end
+ 
 end
 
 Then('a PDF report is generated and contains the {int} entries in the Submission value changes panel') do |int|
-  # new_window = window_opened_by { click_link 'PDF Report' }
-  # new_window = window_opened_by { find("div", text:"PDF Report").click }
   new_window = window_opened_by { page.find("#report").find(:xpath, '..').click }
   within_window new_window do
     sleep 10
@@ -190,8 +210,7 @@ Then('a PDF report is generated and contains the {int} entries in the Submission
     save_screen(TYPE)
     page.execute_script "window.close();"
   end
-  # find('#home_button').click
-end
+ end
 
 Then('all search terminology fields are cleared') do
 	expect(find('#overall_search').value).to eq ''

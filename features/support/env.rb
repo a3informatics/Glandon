@@ -41,7 +41,18 @@ include ItemsPickerHelpers
 Cucumber::Rails::Database.autorun_database_cleaner = false
 #DatabaseCleaner.strategy = :truncation
 #Cucumber::Rails::Database.javascript_strategy = :truncation
-  
+ 
+ENVIRONMENT = 'TEST'
+#ENVIRONMENT = 'VAL'
+
+if ENVIRONMENT == 'VAL' 
+RemoteServerHelpers.switch_to_remote
+end
+
+if ENVIRONMENT == 'TEST' 
+
+RemoteServerHelpers.switch_to_local
+
 Before do
   log('Clean databse')
  # DatabaseCleaner.clean
@@ -75,16 +86,13 @@ end
 After do |scenario|
   nv_destroy
 end
-
+end
 
 
  #TURN_ON_SCREEN_SHOT=false
  TURN_ON_SCREEN_SHOT=true
 
  TYPE ='Expected'
-
-#RemoteServerHelpers.switch_to_remote
-RemoteServerHelpers.switch_to_local
 
 Capybara::Screenshot.autosave_on_failure = false
 Capybara::Screenshot.append_timestamp = false
@@ -127,61 +135,6 @@ def save_screen(e_or_a,screen_shot_enabled=TURN_ON_SCREEN_SHOT)
      zoom_in
     end
 end
-
-
-
-# module Capybara
-#   module DSL
-#     def my_screenshot_and_save_page(screenshot_name)
-#       Capybara::Screenshot.my_screenshot_and_save_page(screenshot_name)
-#     end
-#   end
-# end
-
-# module Capybara
-#   module Screenshot
-#     def self.my_screenshot_and_save_page(screenshot_name)
-#       saver = new_saver(Capybara, Capybara.page, true, screenshot_name)
-#       if saver.save
-#         {:html => saver.html_path, :image => saver.screenshot_path}
-#       end
-#     end
-#   end
-# end
-
-#Run after each scenario
-
-# AfterStep do |step|
-#   #screenshot_file_name = TYPE+step.name.gsub(' ', '-').gsub(/^.*\/spec\//,'')+'.png'
-#   screenshot_file_name = TYPE+"#{Time.now.strftime("_%d_%m_%Y_%H_%M_%S")}.png"
-#   save_screenshot(screenshot_file_name,:full => true)
-#   screenshot_path = 'cucumber-report/screenshots/expected/'+screenshot_file_name
-#   #screenshot = Base64.encode64(screenshot_path)
-#   image = open(screenshot_path, 'rb', &:read)
-#   encoded_image = Base64.encode64(image)
-#   attach(encoded_image, "image/png;base64")
-#     log(screenshot_path)
-# end
-
-# After do |scenario|
-#   screenshot_file_name = TYPE+'_'+scenario.name.gsub(' ', '-').gsub(/^.*\/spec\//,'')+'.png'
-#   save_screenshot(screenshot_file_name,:full => true)
-#   screenshot_path = './cucumber-report/screenshots/expected/'+screenshot_file_name
-#   #screenshot = Base64.encode64(screenshot_path)
-#   # image = open(screenshot_path, 'rb', &:read)
-#   # encoded_image = Base64.encode64(image)
-#   # attach(encoded_image, "image/png;base64")
-#   attach(screenshot_path,'image/png')
-# end
-
-# AllureCucumber.configure do |config|
-# # config.results_directory = "/cucumber-report"
-#   config.clean_results_directory = true
-#   config.logging_level = Logger::INFO
-#   # these are used for creating links to bugs or test cases where {} is replaced with keys of relevant items
-#   config.link_tms_pattern = "http://www.jira.com/browse/{}"
-#   config.link_issue_pattern = "http://www.jira.com/browse/{}"
-# end
 
 # frozen_string_literal: true
 

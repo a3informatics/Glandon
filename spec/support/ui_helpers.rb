@@ -141,9 +141,13 @@ module UiHelpers
     expect(td.find('div span.icon-edit-circle', visible: :all)).to_not eq(nil)
   end
 
-  def ui_check_table_cell_create(table_id, row, col)
+  def ui_check_table_cell_create(table_id, row, col, exist: true)
     td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
-    expect(td.find('div span.icon-plus-circle', visible: :all)).to_not eq(nil)
+    if exist
+      expect(td).to have_css('.icon-plus-circle', visible: :all)
+    else 
+      expect(td).to_not have_css('.icon-plus-circle')
+    end
   end
 
   def ui_check_table_cell_icon(table_id, row, col, icon)

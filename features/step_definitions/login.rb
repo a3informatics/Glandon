@@ -11,17 +11,36 @@
  C_PASSWORD = "Changeme1?" # on localhost
 #C_PASSWORD = "Changeme10?" #on VAL for community reader
 
-Given('I am signed in successfully as {string}') do |string|
-  visit "/users/sign_in"
-  if string == "Community Reader"
-  fill_in "Email", :with => C_COMM_READER
-  fill_in "Password", :with => C_PASSWORD
-  end 
-  if string == "Curator"
-  fill_in "Email", :with => C_CURATOR
-  fill_in "Password", :with => C_PASSWORD
+if ENVIRONMENT == 'TEST'
+  Given('I am signed in successfully as {string}') do |string|
+    visit "/users/sign_in"
+    if string == "Community Reader"
+    fill_in "Email", :with => C_COMM_READER
+    fill_in "Password", :with => C_PASSWORD
+    end 
+    if string == "Curator"
+    fill_in "Email", :with => C_CURATOR
+    fill_in "Password", :with => C_PASSWORD
+    end
+    click_button "Log in"
+    expect(page).to have_text string
+    expect(page).to have_text 'Signed in successfully'
   end
-  click_button "Log in"
-  expect(page).to have_text string
-  expect(page).to have_text 'Signed in successfully'
+end
+
+if ENVIRONMENT == 'VAL'
+  Given('I am signed in successfully as {string}') do |string|
+    visit "/users/sign_in"
+    if string == "Community Reader"
+    fill_in "Email", :with => C_COMM_READER
+    fill_in "Password", :with => 'Changeme10?'
+    end 
+    if string == "Curator"
+    fill_in "Email", :with => C_CURATOR
+    fill_in "Password", :with => 'Changeme4?'
+    end
+    click_button "Log in"
+    expect(page).to have_text string
+    expect(page).to have_text 'Signed in successfully'
+  end
 end
