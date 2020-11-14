@@ -138,22 +138,18 @@ puts "Q: #{query_string}"
     def question_annotations(mapping, annotations)
       return "" if annotations.nil?
       html = ""
-      #entries = annotations.select {|uri, annotation| uri == self.uri}
+      html += annotation_to_html(annotations)
+      return html
+    end
+
+    def annotation_to_html(annotations)
       annotation = annotations.annotation_for_uri(self.uri.to_s)
       if !annotation.nil?
-      # if entries.count > 0
-      #   first = true
-      #   entries.each do |entry|
-      #     html += "<br/>" if !first
-      #     #p_class = @@domain_map[entry[:domain_prefix]][:class]
-        p_class = annotations.retrieve_domain_class(annotation.domain_prefix)
-        html += "<p class=\"#{p_class}\">#{mapping}</p>"
-      #     first = false
-      #   end
+        p_class = annotations.retrieve_domain_class(annotation.domain_prefix.to_sym)
+        "<p class=\"#{p_class}\">#{mapping}</p>"
       else
-        html = "<p class=\"domain-other\">#{mapping}</p>"
+        "<p class=\"domain-other\">#{mapping}</p>"
       end
-      return html
     end
 
     # Return URIs of the children objects ordered by ordinal, make sure common group marked and placed first

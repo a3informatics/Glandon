@@ -146,7 +146,7 @@ describe Form::Item::Question do
 
   end
 
-  describe "CRF annotations" do
+  describe "aCRF" do
     
     before :all do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
@@ -157,7 +157,7 @@ describe Form::Item::Question do
 
     end
 
-    it "returns the CRF rendition" do
+    it "returns the aCRF rendition" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
       form.add_child({type:"normal_group"})
@@ -165,12 +165,16 @@ describe Form::Item::Question do
       normal_group.add_child({type:"question"})
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
       question.mapping = "VSORRESU"
+      question.datatype = "datetype" 
+      question.question_text = "Question text"
       question.save
       form = Form.find_full(form.uri)
       annotations = Form::Annotations.new(form)
+      annotations.domain_list
+      annotations.preserve_domain_class(:VS, "domain-1")
       item = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
       result = item.to_crf(annotations)
-      check_file_actual_expected(result, sub_dir, "to_acrf_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(result, sub_dir, "to_acrf_expected_1.yaml", equate_method: :hash_equal)
     end
 
     # it "returns the CRF rendition, date datatype" do
