@@ -5,6 +5,7 @@
 /*
 * Params
 ** type [String] type of the panel (thesauri/cls/clitems)
+** errorDiv [JQUery Object] Div for showing errors
 ** multiple [Boolean] enable/disable multiple item selection
 ** parentPanel [Object Instance] Reference to parent panel
 ** columns [Function] Columns definitions function
@@ -19,7 +20,7 @@
 */
 function MISelector(params) {
  this.params = params;
- this.div = $("#selector-" + params.type);
+ this.div = params.parentPanel.modal.find("#selector-" + params.type);
  this.parentPanel = params.parentPanel;
  this.initialized = false;
  this.cache = {};
@@ -88,7 +89,7 @@ MISelector.prototype.markRows = function() {
 /**
  * Fetches data to fill tables with
  *
- * @param params [Object] Request parameters (url count offset)
+ * @param params [Object] Request parameters (url count offset errorDiv)
  * @return [void]
  */
 MISelector.prototype.loadData = function (params) {
@@ -113,7 +114,7 @@ MISelector.prototype.loadData = function (params) {
         this.onTableLoaded(params);
 		},
 		error: function (xhr, status, error) {
-      handleAjaxError(xhr, status, error);
+      handleAjaxError(xhr, status, error, this.params.errorDiv);
 			this.processing(false);
 		}
 	});
@@ -326,7 +327,13 @@ MISelector.prototype.loadDataParams = function(c, o){
     case "thesauri":
       return { thesauri: { count: c, offset: o } };
     case "bcs":
-      return { biomedical_concept: { count: c, offset: o } };
+      return { biomedical_concept_instance: { count: c, offset: o } };
+    case "forms":
+      return { form: { count: c, offset: o } };
+    case "asmnts":
+      return { assessment: { count: c, offset: o } };
+    case "pts":
+      return { protocol_template: { count: c, offset: o } };
   }
 }
 

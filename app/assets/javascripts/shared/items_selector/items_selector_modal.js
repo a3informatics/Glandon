@@ -20,6 +20,7 @@
 function ItemsSelector(params) {
  this.params = this.paramsDefault(params);
  this.modal = $("#selector-modal-" + this.params.id);
+ this.errorDiv = this.modal.find("#selector-modal-error");
 
  this.setDescription(params.description);
  this.initSelection();
@@ -275,7 +276,7 @@ ItemsSelector.prototype.selectionItemString = function(item) {
  */
 ItemsSelector.prototype.updateUI = function() {
   var selText = this.updateSelectionInfo();
-  this.modal.find("#selector-modal-submit").toggleClass("disabled", (selText == "None" || selText == 0))
+  this.modal.find("#selector-modal-submit").toggleClass("disabled", (selText == "None" || selText == 0));
 }
 
 /**
@@ -501,7 +502,10 @@ ItemsSelector.prototype.columns = function (table, type) {
 
   switch(type) {
     case "bcs":
-      // Remove Indicators column for BCs
+    case "pts":
+    case "forms":
+    case "asmts":
+      // Remove Indicators column for BCs and PTs
       columns[3] = {visible: false, "render" : function (data, type, row, meta) {return "" }}
       break;
     case "clitems":
@@ -533,7 +537,8 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           multiple: this.params.multiple,
           columns: this.columns.bind(this),
           parentPanel: this,
-          urls: _globalIHUrls.thesauri,
+          errorDiv: this.errorDiv,
+          urls: {history: miHistoryThesauriUrl, index: miIndexThesauriUrl},
         });
       break;
     case "cls":
@@ -543,7 +548,8 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           multiple: this.params.multiple,
           columns: this.columns.bind(this),
           parentPanel: this,
-          urls: _globalIHUrls.managed_concept,
+          errorDiv: this.errorDiv,
+          urls: _globalIHUrls.managed_concept
         });
       break;
     case "clitems":
@@ -553,7 +559,8 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           multiple: this.params.multiple,
           columns: this.columns.bind(this),
           parentPanel: this,
-          urls: _globalIHUrls.unmanaged_concept,
+          errorDiv: this.errorDiv,
+          urls: _globalIHUrls.unmanaged_concept
         });
       break;
     case "bcs":
@@ -563,7 +570,41 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           multiple: this.params.multiple,
           columns: this.columns.bind(this),
           parentPanel: this,
-          urls: _globalIHUrls.biomedical_concept_instance,
+          errorDiv: this.errorDiv,
+          urls: _globalIHUrls.biomedical_concept_instance
+        });
+      break;
+    case "forms":
+      this.tabs[tabName] = new MISelector(
+        {
+          type: tabName,
+          multiple: this.params.multiple,
+          columns: this.columns.bind(this),
+          parentPanel: this,
+          errorDiv: this.errorDiv,
+          urls: _globalIHUrls.form
+        });
+      break;
+    case "asmnts":
+      this.tabs[tabName] = new MISelector(
+        {
+          type: tabName,
+          multiple: this.params.multiple,
+          columns: this.columns.bind(this),
+          parentPanel: this,
+          errorDiv: this.errorDiv,
+          urls: _globalIHUrls.assessment
+        });
+      break;
+    case "pts":
+      this.tabs[tabName] = new MISelector(
+        {
+          type: tabName,
+          multiple: this.params.multiple,
+          columns: this.columns.bind(this),
+          parentPanel: this,
+          errorDiv: this.errorDiv,
+          urls: _globalIHUrls.protocol_template
         });
       break;
   }
@@ -581,7 +622,10 @@ ItemsSelector.prototype.paramsDefault = function(userParams) {
       thesauri: false,
       cls: false,
       clitems: false,
-      bcs: false
+      bcs: false,
+      forms: false,
+      asmnts: false,
+      pts: false,
     });
 
   return _.defaults(userParams,
