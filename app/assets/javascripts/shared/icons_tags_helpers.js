@@ -182,6 +182,9 @@ function typeIconMap(type) {
   icoMap[C_TH_SUBSET] = 'icon-subset';
   icoMap[C_TH_EXT] = 'icon-extension';
   icoMap[C_TH_CLI] = 'icon-codelist-item';
+  icoMap[C_BC_BCI] = 'icon-biocon';
+  icoMap[C_BC_A] = 'icon-assessment';
+  icoMap[C_FORM] = 'icon-forms';
 
   return icoMap[type];
 }
@@ -206,6 +209,9 @@ function typeToBgColor(type, params) {
   clrMap[C_TH_SUBSET] = '#9dc0cf';
   clrMap[C_TH_EXT] = '#9dc0cf';
   clrMap[C_TH_CLI] = '#9dc0cf';
+  clrMap[C_BC_BCI] = '#a2a6eb';
+  clrMap[C_BC_A] = '#8b8ecc';
+  clrMap[C_FORM] = '#96d6bc';
 
   return clrMap[type];
 }
