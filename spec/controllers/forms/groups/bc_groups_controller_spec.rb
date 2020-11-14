@@ -41,7 +41,7 @@ describe Forms::Groups::BcGroupsController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_bc_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_bc_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it 'update, second update so no audit' do
@@ -54,7 +54,7 @@ describe Forms::Groups::BcGroupsController do
       put :update, params:{id: @bc.id, bc_group: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_bc_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_bc_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it 'update, locked by another user' do
@@ -174,7 +174,7 @@ describe Forms::Groups::BcGroupsController do
       delete :destroy, params:{id: group.id, bc_group: {parent_id: parent.id , form_id: @form.id}}
       expect(AuditTrail.count).to eq(audit_count+1)
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "destroy_bc_group_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "destroy_bc_group_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end
