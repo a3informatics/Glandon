@@ -9,7 +9,7 @@
  *
  * @return [void]
  */
-function StudyMatrix() {
+function StudyMatrix(ItemsPicker) {
   this.tabName = "tab-timeline";
   this.wrapper = $("#tab-timeline-body");
   this.div = this.wrapper.find("#study-matrix");
@@ -17,11 +17,10 @@ function StudyMatrix() {
   this.refreshOnShow = true
   this.newTpModeActive = false;
 
-  this.bcsSelector = new ItemsSelector({
-    id: "1",
+  this.picker = new ItemsPicker({
+    id: "timeline",
     multiple: true,
-    types: {bcs:true, forms: true, asmnts: true},
-    description: "Pick one or more Items to attach to the Time Point.",
+    types: ['biomedical_concept_instance', 'form', 'assessment' ]
   });
 
   this.createTPModal = new NewTimepointModal(this);
@@ -70,6 +69,7 @@ StudyMatrix.prototype.executeRequest = function(params) {
   $.ajax({
     url: params.url,
     type: params.type,
+    contentType: params.contentType,
     dataType: 'json',
     data: params.data,
     context: this,
@@ -115,6 +115,11 @@ StudyMatrix.prototype.actionListeners = function() {
   $("#save-timeline").off("click").on("click", this.saveTps.bind(this, true));
   // New Timepoint
   $("#new-timepoint").off("click").on("click", this.toggleNewTpMode.bind(this, true));
+  $("#new-timepoint").off("contextmenu").on("contextmenu", function(e) {
+    e.preventDefault();
+    this.createTPModal.div.modal('show');
+  }.bind(this));
+
   this.wrapper.on("click", "#timeline-axis", this.onAxisClick.bind(this));
   // New Visit
   // TODO
@@ -134,9 +139,10 @@ StudyMatrix.prototype.saveTps = function() {
     return;
 
   this.executeRequest({
-    url: this.getActiveArm().timeline.tpsSaveUrl(),
+    url: this.getActiveArm().timeline.tpsSaveUrl() + '.json',
     type: "POST",
-    data: { arm: { tp_data: data } },
+    contentType: 'application/json',
+    data: JSON.stringify({ arm: { tp_data: data } }),
     callback: function(result) {
       this.loading(false);
       this.getActiveArm().timeline.data.saveTimepoints = [];

@@ -1,5 +1,6 @@
 import StudyDesign from 'shared/custom/studies/study_design'
 import StudyTable from 'shared/custom/studies/study_table'
+import ItemsPicker from 'shared/ui/items_picker/items_picker'
 
 /**
  * Create a Study Builder Instance
@@ -54,7 +55,7 @@ export default class StudyBuilder {
         enabled: true
       },
       timeline: {
-        instance: new StudyMatrix(),
+        instance: new StudyMatrix(ItemsPicker),
         header: $( '#tab-timeline' ),
         enabled: true
       },

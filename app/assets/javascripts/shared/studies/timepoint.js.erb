@@ -279,7 +279,7 @@ Timepoint.prototype.tpDetailsHTML = function() {
   }.bind(this));
 
   html +=   "</div>";
-  html +=   "<button class='btn btn-xs green' id='add-tp-items'>+ Add</button>";
+  html +=   "<br><button class='btn btn-xs green' id='add-tp-items'>+ Add</button>";
   html += "</div>";
 
   return html;
@@ -332,6 +332,9 @@ Timepoint.prototype.changeTpUnit = function(e) {
  */
 Timepoint.prototype.removeItem = function(e) {
   var itemId = $(e.currentTarget).attr("data-id");
+  var item = this.data.biomedical_concepts.find( function(item) {
+    return item.id === itemId;
+  })
 
   this.executeRequest({
     url: tpRemoveManagedUrl.replace("tpId", this.data.id),
@@ -339,6 +342,8 @@ Timepoint.prototype.removeItem = function(e) {
     data: { timepoint: { managed_ids: [itemId]} },
     callback: function(result) {
       $(e.currentTarget).remove();
+      var itemIndex = this.data.biomedical_concepts.indexOf(item);
+      this.data.biomedical_concepts.splice(itemIndex, 1);
       this.loading(false);
     }.bind(this)
   });
@@ -353,29 +358,26 @@ Timepoint.prototype.addItems = function(e) {
   var _this = this;
   var wrapper = $(e.currentTarget).closest(".timepoint-details");
 
-  this.matrix.bcsSelector.setCallback(function(selection) {
-    var objects = _.chain(selection)
-     .values()
-     .flatten()
-     .value();
-    var ids = objects.map(function(item) { return item.id });
+  this.matrix.picker.onSubmit = function(s) {
+    var ids = s.asIDsArray(),
+        objects = s.asObjectsArray();
 
     this.executeRequest({
       url: tpAddManagedUrl.replace("tpId", this.data.id),
       type: "POST",
       data: { timepoint: { managed_ids: ids} },
       callback: function(result) {
-        $.each(objects, function(i, item){
-          this.data.biomedical_concepts.push(item);
+        objects.forEach( function(o) {
+          this.data.biomedical_concepts.push(o);
         }.bind(this));
 
         this.loading(false);
         this.openTpContextDialog();
       }.bind(this)
     });
-  }.bind(this))
+  }.bind(this)
 
-  this.matrix.bcsSelector.show();
+  this.matrix.picker.show();
 }
 
 
