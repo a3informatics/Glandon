@@ -150,7 +150,7 @@ describe Form::Item::BcProperty do
     #   check_file_actual_expected(result, sub_dir, "make_common_expected_4.yaml", equate_method: :hash_equal)
     # end
 
-    it "make common VI, clone, no errors" do
+    it "make common VI, clone, no errors - WILL CURRENTLY FAIL - Fix in V3.3.0" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
       form.add_child({type:"normal_group"})

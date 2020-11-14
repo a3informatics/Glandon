@@ -773,7 +773,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
-    it "deletes BC group and common item, clone" do
+    it "deletes BC group and common item, clone - WILL CURRENTLY FAIL - Fix in V3.3.0" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
       node = form.add_child({type:"normal_group"})

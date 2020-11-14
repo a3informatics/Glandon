@@ -112,16 +112,12 @@ class Form::Item::BcProperty < Form::Item
   # @param [Object] managed_ancestor the managed ancestor object
   # @return [Object] returns the object. Not saved if errors are returned.      
   def update_with_clone(params, managed_ancestor)
-    # if multiple_managed_ancestors?
-    #   new_bc_property = replicate_with_clone(self, managed_ancestor)
-    #   new_bc_property.has_property_objects.update(params)
-    #   new_bc_property.update(params.except(:enabled, :optional))
-    # else
-    #   self.has_property_objects.update(params)
-    #   self.update(params.except(:enabled, :optional))
-    # end
-    new_bc_property = super(params.except(:enabled, :optional), managed_ancestor)
-    new_bc_property.has_property_objects.update_with_clone(params.slice(:enabled, :optional), managed_ancestor)
+    object = super(params.except(:enabled, :optional), managed_ancestor)
+    return object if object.errors.any? 
+    return object unless params.key?(:enabled) || params.key?(:optional)
+    ref_object = object.has_property_objects.update_with_clone(params.slice(:enabled, :optional), managed_ancestor)
+    object.merge_errors(ref_object)
+    object
   end
   
   # Make Common
