@@ -64,6 +64,10 @@
               <span class="icon-protocol bg-prim-bright"></span>
               <span>Protocols</span>
             </div>
+            <div class="tab-option with-icon" id="tab-assessment">
+              <span class="icon-assessment bg-accent-purple-dark"></span>
+              <span>Assessments</span>
+            </div>
           </div>
 
           <div class="tab-wrap closed" data-tab="tab-thesauri" id="selector-thesauri">
@@ -90,6 +94,9 @@
             <%= render partial: "shared/items_picker/managed_item_selector" %>
           </div>
           <div class="tab-wrap closed" data-tab="tab-protocol" id="selector-protocol">
+            <%= render partial: "shared/items_picker/managed_item_selector" %>
+          </div>
+          <div class="tab-wrap closed" data-tab="tab-assessment" id="selector-assessment">
             <%= render partial: "shared/items_picker/managed_item_selector" %>
           </div>
 

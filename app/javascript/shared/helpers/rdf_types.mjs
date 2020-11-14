@@ -238,6 +238,11 @@ const rdfTypesMap = {
     rdfType: 'http://www.assero.co.uk/Protocol#ProtocolTemplate',
     name: 'Protocol Template',
     param: 'protocol_template'
+  },
+  ASSESSMENT: {
+    rdfType: 'http://www.assero.co.uk/BiomedicalConcept#Assessment',
+    name: 'Assessment',
+    param: 'assessment'
   }
 
 }
