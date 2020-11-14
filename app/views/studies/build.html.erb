@@ -1,5 +1,6 @@
 <% content_for :page_title do %> <%= "Build: #{@study.has_identifier.identifier} (#{@study.semantic_version}) "%> <% end %>
 
+<%= stylesheet_link_tag 'shared/layouts/tabs_layout' %>
 <%= javascript_pack_tag 'studies/build' %>
 <%= javascript_tag "let studyEmpty = #{@study_empty};" %>
 
@@ -29,6 +30,6 @@
 	</div>
 </div>
 
-<%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "1"} %>
-<%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "2", with_refs: false} %>
+<%= render partial: "shared/items_picker/items_picker", :locals => { id: 'protocol-template', description: 'Pick a Protocol Template for this Study.' } %>
+<%= render partial: "shared/items_picker/items_picker", :locals => { id: 'timeline', description: 'Pick one or more Items to attach to the Time Point.' } %>
 <%= render partial: "shared/studies/new_timepoint_modal" %>
