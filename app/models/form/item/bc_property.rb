@@ -54,6 +54,8 @@ class Form::Item::BcProperty < Form::Item
         property = BiomedicalConcept::PropertyX.find(property_ref)
         html += start_row(self.has_property_objects.optional)
         html += question_cell(property.question_text)
+        #pa = property_annotations(annotations)
+        #html += mapping_cell(pa, options)
         if property.has_coded_value.length == 0
           html += input_field(property)
         else
@@ -150,6 +152,21 @@ class Form::Item::BcProperty < Form::Item
   end
 
 private
+  
+  def property_annotations(annotations)
+    return "" if annotations.nil?
+    html = ""
+    html += annotation_to_html(annotations)
+    return html
+  end
+
+  def annotation_to_html(annotations)
+    annotations = annotations.annotation_for_uri(self.uri.to_s)
+    annotations.each do |annotation|
+      p_class = annotations.retrieve_domain_class(annotation.domain_prefix.to_sym)
+      "<p class=\"#{p_class}\">#{entry[:sdtm_variable]} where #{entry[:sdtm_topic_variable]}=#{entry[:sdtm_topic_value]}</p>"
+    end
+  end
 
   def clone_common_group(uri, managed_ancestor)
      cg = Form::Group::Common.find(uri)

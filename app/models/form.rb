@@ -132,15 +132,15 @@ private
     unless annotations.nil?
       html += '<td>' 
       domains = annotations.domain_list
-      domains.each_with_index do |domain, index|
-        domain_annotation = domain[:domain_prefix]
-        if !domain[:domain_long_name].blank?
-          domain_annotation += "=" + domain[:domain_long_name]
+      domains.each_with_index do |(prefix, hash_domain), index|
+        domain_annotation = prefix.to_s
+        if !hash_domain[:long_name].blank?
+          domain_annotation += "=" + hash_domain[:long_name]
         end
         class_suffix = index < domain_count ? "#{index + 1}" : "other"
         class_name = "domain-#{class_suffix}"
         html += "<h4 class=\"#{class_name}\">#{domain_annotation}</h4>"
-        #add_domain_class(domain, class_name)
+        annotations.preserve_domain_class(prefix, class_name)
         #domain[:class] = class_name
         #@@domain_map[domain[:domain_prefix]] = domain
       end

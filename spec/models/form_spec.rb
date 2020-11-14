@@ -140,8 +140,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
   describe "CRF Tests" do
     
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", 
-                    "forms/FN000150.ttl", "forms/CRF TEST 1.ttl","forms/FN000120.ttl" ]
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", "forms/FN000150.ttl", "forms/CRF TEST 1.ttl","forms/FN000120.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -189,6 +188,62 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       result = parent.move_down(item)
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
       check_file_actual_expected(form.crf, sub_dir, "to_crf_6_b.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "aCRF Tests" do
+    
+    before :all do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", "forms/FN000150.ttl", "forms/CRF TEST 1.ttl","forms/FN000120.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V4.ttl")
+    end
+
+    it "to crf I" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "to crf II" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "to crf III" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "to crf IV, bc repeating group, disable property" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+      coded_value_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG2_BCG1_BP3_TUC1"))
+      coded_value_reference.enabled = false
+      coded_value_reference.save
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_4.yaml", equate_method: :hash_equal)
+    end
+
+    it "to crf V, common group, disable property" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+      coded_value_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1_CI2_TUC1"))
+      coded_value_reference.enabled = false
+      coded_value_reference.save
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_5.yaml", equate_method: :hash_equal)
+    end
+
+    it "to crf VI, move node" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+      check_file_actual_expected(form.crf, sub_dir, "to_crf_6_a.yaml", equate_method: :hash_equal)
+      parent = Form::find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+      item = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F_NG3"))
+      result = parent.move_down(item)
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_crf_6_b.yaml", equate_method: :hash_equal)
     end
 
   end

@@ -79,8 +79,8 @@ class Form
       html += '<tr>'
       self.has_item.sort_by {|x| x.ordinal}.each do |item|
         if item.class == Form::Item::Question
-          qa = question_annotations(child[:id], child[:mapping], annotations, options)
-          html += mapping_cell(qa, options)
+          qa = item.question_annotations(annotations)
+          html += mapping_cell(qa, annotations)
         else
           html += empty_cell
         end

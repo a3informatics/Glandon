@@ -50,11 +50,18 @@ class Form::Item::Question < Form::Item
   def to_crf(annotations)
     html = start_row(self.optional)
     html += question_cell(self.question_text)
-    qa = question_annotations(self.mapping, annotations)
+    qa = question_annotations(annotations)
     html += mapping_cell(qa, annotations)
     html += self.has_coded_value.count == 0 ? input_field(self) : terminology_cell(self)
     html += end_row
     html
+  end
+
+  def question_annotations(annotations)
+    return "" if annotations.nil?
+    html = ""
+    html += annotation_to_html(annotations)
+    return html
   end
 
   def add_child_with_clone(params, managed_ancestor)
@@ -135,20 +142,20 @@ puts "Q: #{query_string}"
 
   private
 
-    def question_annotations(mapping, annotations)
-      return "" if annotations.nil?
-      html = ""
-      html += annotation_to_html(annotations)
-      return html
-    end
+    # def question_annotations(annotations)
+    #   return "" if annotations.nil?
+    #   html = ""
+    #   html += annotation_to_html(annotations)
+    #   return html
+    # end
 
     def annotation_to_html(annotations)
       annotation = annotations.annotation_for_uri(self.uri.to_s)
       if !annotation.nil?
         p_class = annotations.retrieve_domain_class(annotation.domain_prefix.to_sym)
-        "<p class=\"#{p_class}\">#{mapping}</p>"
+        "<p class=\"#{p_class}\">#{self.mapping}</p>"
       else
-        "<p class=\"domain-other\">#{mapping}</p>"
+        "<p class=\"domain-other\">#{self.mapping}</p>"
       end
     end
 
