@@ -139,19 +139,20 @@ puts "Q: #{query_string}"
       return "" if annotations.nil?
       html = ""
       #entries = annotations.select {|uri, annotation| uri == self.uri}
-      #entries = annotations.annotation_for_uri(self.uri.to_s)
+      annotation = annotations.annotation_for_uri(self.uri.to_s)
+      if !annotation.nil?
       # if entries.count > 0
       #   first = true
       #   entries.each do |entry|
       #     html += "<br/>" if !first
       #     #p_class = @@domain_map[entry[:domain_prefix]][:class]
-      #     p_class = "domain-other"
-      #     html += "<p class=\"#{p_class}\">#{mapping}</p>"
+        p_class = annotations.retrieve_domain_class(annotation.domain_prefix)
+        html += "<p class=\"#{p_class}\">#{mapping}</p>"
       #     first = false
       #   end
-      # else
+      else
         html = "<p class=\"domain-other\">#{mapping}</p>"
-      #end
+      end
       return html
     end
 

@@ -52,12 +52,21 @@ describe Form::Annotations do
       check_file_actual_expected(result, sub_dir, "domain_list_expected_1.yaml")
     end
 
-    # it "add domain class" do
-    #   form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F"))
-    #   annotations = Form::Annotations.new(form)
-    #   result = annotations.add_domain_class({VS: "Vital Signs"}, "Class name")
-    #   check_file_actual_expected(annotations.domain_list, sub_dir, "add_domain_class_expected_1.yaml", write_file: true)
-    # end
+    it "preserve domain class" do
+      form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F"))
+      annotations = Form::Annotations.new(form)
+      annotations.domain_list
+      result = annotations.preserve_domain_class(:VS, "Class name")
+      check_file_actual_expected(annotations.domain_list, sub_dir, "preserve_domain_class_expected_1.yaml")
+    end
+
+    it "retrieve domain class" do
+      form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F"))
+      annotations = Form::Annotations.new(form)
+      annotations.domain_list
+      annotations.preserve_domain_class(:VS, "Class name")
+      check_file_actual_expected(annotations.retrieve_domain_class(:VS), sub_dir, "retrieve_domain_class_expected_1.yaml")
+    end
 
   end
 

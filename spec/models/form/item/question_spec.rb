@@ -169,7 +169,6 @@ describe Form::Item::Question do
       form = Form.find_full(form.uri)
       annotations = Form::Annotations.new(form)
       item = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
-    byebug
       result = item.to_crf(annotations)
       check_file_actual_expected(result, sub_dir, "to_acrf_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end

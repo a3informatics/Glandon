@@ -15,7 +15,7 @@ class Form
       @annotation_set = {}
       bc_annotations 
       item_annotations
-      @domain_list = domain_list
+      @domain_list = {}
     end
 
     # Annotation for uri
@@ -30,17 +30,19 @@ class Form
     #
     # @return [Hash] Hash of domains, keyed by prefix
     def domain_list
-      result = {}
       @annotation_set.each do |uri, annotation|
-        set_domain_prefix_and_long_name(annotation, result)
+        set_domain_prefix_and_long_name(annotation)
       end
-      result
+      @domain_list
     end
 
-    #def add_domain_class(domain, domain_class)
-      #domain[:class] = domain_class
-      #@domain_list[domain[:domain_prefix]] = domain
-    #end
+    def preserve_domain_class(domain_prefix, domain_class)
+      @domain_list[domain_prefix][:domain_class] = domain_class
+    end
+
+    def retrieve_domain_class(domain_prefix)
+      @domain_list[domain_prefix][:domain_class]
+    end
 
     # ---------
     # Test Only  
@@ -145,10 +147,10 @@ class Form
       @annotation_set[uri] = Annotation.new({uri: uri, domain_prefix: entry[:domain], domain_long_name: entry[:domain_long_name], sdtm_variable:entry[:sdtm_var_name], sdtm_topic_variable: entry[:sdtm_topic_name], sdtm_topic_value: entry[:sdtm_topic_sub] })
     end
 
-    def set_domain_prefix_and_long_name(annotation, result)
+    def set_domain_prefix_and_long_name(annotation)
       domain_prefix = annotation.domain_prefix.to_sym
       domain_long_name = annotation.domain_long_name
-      result[domain_prefix] = domain_long_name if !result.key?(domain_prefix)
+      @domain_list[domain_prefix] = {long_name: domain_long_name} if !@domain_list.key?(domain_prefix)
     end
 
   end
