@@ -81,8 +81,8 @@ describe "Thesaurus::Subsets" do
       result[:is_ordered] = "http://www.assero.co.uk/TS#aef73f0b-3538-4c42-a74b-4c6d346021ec"
       result[:last_change_date] = "2020-02-16T18:31:47+01:00"
       result[:creation_date] = "2020-02-16T18:31:47+01:00"
-      check_file_actual_expected(result, sub_dir, "upgrade_expected_1a.yaml", equate_method: :hash_equal)
-      check_file_actual_expected(item_1.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(result, sub_dir, "upgrade_expected_1a.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(item_1.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1a.yaml", equate_method: :hash_equal, write_file: true)
       item_2 = item_1.upgrade_subset(tc_34)
       item_2 = Thesaurus::ManagedConcept.find(item_2.uri)
       expect(item_2.narrower.count).to eq(2)
@@ -91,8 +91,8 @@ describe "Thesaurus::Subsets" do
       result[:is_ordered] = "http://www.assero.co.uk/TS#aef73f0b-3538-4c42-a74b-4c6d346021ec"
       result[:last_change_date] = "2020-02-16T18:31:47+01:00"
       result[:creation_date] = "2020-02-16T18:31:47+01:00"
-      check_file_actual_expected(result, sub_dir, "upgrade_expected_1b.yaml", equate_method: :hash_equal)
-      check_file_actual_expected(item_2.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(result, sub_dir, "upgrade_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(item_2.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
       item_2.is_ordered_objects.add([uri_3.to_id])
       item_3 = item_1.upgrade_subset(tc_45)
       item_3 = Thesaurus::ManagedConcept.find(item_3.uri)
@@ -102,8 +102,8 @@ describe "Thesaurus::Subsets" do
       result[:is_ordered] = "http://www.assero.co.uk/TS#aef73f0b-3538-4c42-a74b-4c6d346021ec"
       result[:last_change_date] = "2020-02-16T18:31:47+01:00"
       result[:creation_date] = "2020-02-16T18:31:47+01:00"
-      check_file_actual_expected(result, sub_dir, "upgrade_expected_1c.yaml", equate_method: :hash_equal)
-      check_file_actual_expected(item_3.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1c.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(result, sub_dir, "upgrade_expected_1c.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(item_3.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1c.yaml", equate_method: :hash_equal, write_file: true)
       tc_32 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
       expect(tc_32.narrower.count).to eq(7)
       tc_34 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V34#C99079"))
