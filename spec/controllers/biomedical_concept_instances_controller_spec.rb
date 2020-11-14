@@ -133,6 +133,7 @@ describe BiomedicalConceptInstancesController do
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
       load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
     end
 
     it "creates from a template" do

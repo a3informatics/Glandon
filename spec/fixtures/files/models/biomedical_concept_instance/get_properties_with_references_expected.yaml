@@ -13,7 +13,6 @@
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI5_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: ''
       :prompt_text: ''
       :format: ''
@@ -35,7 +34,6 @@
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI6_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: ''
       :prompt_text: ''
       :format: ''
@@ -57,7 +55,6 @@
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: ''
       :prompt_text: ''
       :format: '8'
@@ -67,7 +64,6 @@
         :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: true
         :ordinal: 1
@@ -76,8 +72,6 @@
           :uri: http://www.cdisc.org/C66741/V4#C66741_C25347
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Height
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C25347
           :notation: HEIGHT
           :definition: The vertical measurement or distance from the base to the top
@@ -110,7 +104,6 @@
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI7_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: ''
       :prompt_text: ''
       :format: ''
@@ -132,7 +125,6 @@
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: value
-      :tagged: []
       :question_text: Date and time
       :prompt_text: Date Time
       :format: ''
@@ -154,7 +146,6 @@
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI8_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: ''
       :prompt_text: ''
       :format: ''
@@ -176,7 +167,6 @@
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI3_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: ''
       :prompt_text: ''
       :format: ''
@@ -198,7 +188,6 @@
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: ''
       :prompt_text: ''
       :format: ''
@@ -220,7 +209,6 @@
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI9_BCCDTBL_BCPvalue
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: value
-      :tagged: []
       :question_text: ''
       :prompt_text: ''
       :format: ''
@@ -242,7 +230,6 @@
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI4_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: ''
       :prompt_text: ''
       :format: ''
@@ -264,7 +251,6 @@
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: Unit
       :prompt_text: Unit
       :format: '20'
@@ -274,7 +260,6 @@
         :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC3
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: true
         :ordinal: 3
@@ -283,8 +268,6 @@
           :uri: http://www.cdisc.org/C71620/V6#C71620_C41139
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Meter
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C41139
           :notation: m
           :definition: A meter is defined as the length of the path traveled by light
@@ -306,7 +289,6 @@
         :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC4
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: true
         :ordinal: 4
@@ -315,8 +297,6 @@
           :uri: http://www.cdisc.org/C71620/V6#C71620_C71253
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: International Foot
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C71253
           :notation: ft
           :definition: A unit of length defined by the U.S. National Bureau of Standards
@@ -338,7 +318,6 @@
         :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: true
         :ordinal: 1
@@ -347,9 +326,6 @@
           :uri: http://www.cdisc.org/C66770/V34#C66770_C49668
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Centimeter
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-          - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
           :identifier: C49668
           :notation: cm
           :definition: A basic unit of length equal to one hundredth of a meter or
@@ -370,7 +346,6 @@
         :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC2
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: true
         :ordinal: 2
@@ -379,9 +354,6 @@
           :uri: http://www.cdisc.org/C66770/V42#C66770_C48500
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Inch
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-          - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
           :identifier: C48500
           :notation: in
           :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
@@ -413,7 +385,6 @@
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: value
-      :tagged: []
       :question_text: Result
       :prompt_text: Height
       :format: '5.2'

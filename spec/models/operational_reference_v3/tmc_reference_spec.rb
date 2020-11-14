@@ -44,8 +44,7 @@ describe "OperationalReferenceV3::TmcReference" do
         :enabled => true,
         :reference => "http://www.assero.co.uk/A#ref",
         :context => "http://www.assero.co.uk/A#context",
-        :rdf_type => "http://www.assero.co.uk/BusinessOperational#TmcReference",
-        :tagged => []
+        :rdf_type => "http://www.assero.co.uk/BusinessOperational#TmcReference"
       }
     item = OperationalReferenceV3::TmcReference.from_h(input)
     check_file_actual_expected(item.to_h, sub_dir, "from_h_expected.yaml")

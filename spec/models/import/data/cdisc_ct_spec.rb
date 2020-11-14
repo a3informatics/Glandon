@@ -1866,7 +1866,8 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date, define: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C65047,  status: :no_change},     # LBTESTCD
-        {cl: :C66741,  status: :uodated},       # VSTESTCD
+        {cl: :C66741,  status: :no_change},     # VSTESTCD
+        {cl: :C67153,  status: :updated},       # VSTEST
         {cl: :C66737,  status: :no_change},     # TPHASE
         {cl: :C66738,  status: :no_change},     # TSPARMCD
         {cl: :C66785,  status: :no_change},     # TCNTRL

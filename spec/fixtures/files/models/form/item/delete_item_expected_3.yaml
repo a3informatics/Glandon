@@ -3,7 +3,6 @@
 :uri: http://www.s-cubed.dk/form_test/V1#F_NG1
 :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
 :label: BC Group
-:tagged: []
 :ordinal: 1
 :note: Not Set
 :completion: Not Set
@@ -15,7 +14,6 @@
   :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Systolic Blood Pressure (BC C25298)
-  :tagged: []
   :ordinal: 2
   :note: Not Set
   :completion: Not Set
@@ -25,7 +23,6 @@
     :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP1
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: Date and Time (--DTC)
-    :tagged: []
     :ordinal: 1
     :note: ''
     :completion: Not Set
@@ -35,7 +32,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP1_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -47,7 +43,6 @@
     :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP2
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: Body Position (--POS)
-    :tagged: []
     :ordinal: 2
     :note: ''
     :completion: Not Set
@@ -57,7 +52,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP2_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -68,7 +62,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP2_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -77,8 +70,6 @@
         :uri: http://www.cdisc.org/C25681/V1#C25681_C49507
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Medium
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C49507
         :notation: MEDIUM
         :definition: Mid-way between small and large in number, quantity, magnitude
@@ -93,7 +84,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP2_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 2
@@ -102,8 +92,6 @@
         :uri: http://www.cdisc.org/C25681/V1#C25681_C49508
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Large
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C49508
         :notation: LARGE
         :definition: Of considerable or relatively great size, extent, or capacity.
@@ -118,7 +106,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP2_TUC3
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 3
@@ -127,8 +114,6 @@
         :uri: http://www.cdisc.org/C25681/V1#C25681_C25376
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Small
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C25376
         :notation: SMALL
         :definition: Limited in number, quantity, magnitude or extent. (NCI)
@@ -143,7 +128,6 @@
     :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP3
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: Result Value (--ORRES)
-    :tagged: []
     :ordinal: 3
     :note: ''
     :completion: Not Set
@@ -153,7 +137,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP3_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -165,7 +148,6 @@
     :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP4
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: Result Units (--ORRESU)
-    :tagged: []
     :ordinal: 4
     :note: ''
     :completion: Not Set
@@ -175,7 +157,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP4_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -186,7 +167,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP4_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -195,8 +175,6 @@
         :uri: http://www.cdisc.org/C49675/V1#C49675_C49670
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Millimeter of Mercury
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C49670
         :notation: mmHG
         :definition: A unit of pressure equal to 0.001316 atmosphere and equal to
@@ -215,7 +193,6 @@
     :uri: http://www.s-cubed.dk/SYSBP/V1#BCI
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
     :label: Systolic Blood Pressure
-    :tagged: []
     :has_state:
       :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NZU0JQL1YxI0JDSV9SUw==
       :uri: http://www.s-cubed.dk/SYSBP/V1#BCI_RS
@@ -270,7 +247,6 @@
   :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Diastolic Blood Pressure (BC C25299)
-  :tagged: []
   :ordinal: 3
   :note: Not Set
   :completion: Not Set
@@ -280,7 +256,6 @@
     :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP1
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: Date and Time (--DTC)
-    :tagged: []
     :ordinal: 1
     :note: ''
     :completion: Not Set
@@ -290,7 +265,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP1_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -302,7 +276,6 @@
     :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP2
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: Body Position (--POS)
-    :tagged: []
     :ordinal: 2
     :note: ''
     :completion: Not Set
@@ -312,7 +285,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP2_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -323,7 +295,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP2_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -332,8 +303,6 @@
         :uri: http://www.cdisc.org/C25681/V1#C25681_C49508
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Large
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C49508
         :notation: LARGE
         :definition: Of considerable or relatively great size, extent, or capacity.
@@ -348,7 +317,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP2_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 2
@@ -357,8 +325,6 @@
         :uri: http://www.cdisc.org/C25681/V1#C25681_C49507
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Medium
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C49507
         :notation: MEDIUM
         :definition: Mid-way between small and large in number, quantity, magnitude
@@ -373,7 +339,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP2_TUC3
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 3
@@ -382,8 +347,6 @@
         :uri: http://www.cdisc.org/C25681/V1#C25681_C25376
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Small
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C25376
         :notation: SMALL
         :definition: Limited in number, quantity, magnitude or extent. (NCI)
@@ -398,7 +361,6 @@
     :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP3
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: Result Value (--ORRES)
-    :tagged: []
     :ordinal: 3
     :note: ''
     :completion: Not Set
@@ -408,7 +370,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP3_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -420,7 +381,6 @@
     :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP4
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: Result Units (--ORRESU)
-    :tagged: []
     :ordinal: 4
     :note: ''
     :completion: Not Set
@@ -430,7 +390,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP4_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -441,7 +400,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP4_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -450,8 +408,6 @@
         :uri: http://www.cdisc.org/C49675/V1#C49675_C49670
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Millimeter of Mercury
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C49670
         :notation: mmHG
         :definition: A unit of pressure equal to 0.001316 atmosphere and equal to
@@ -470,7 +426,6 @@
     :uri: http://www.s-cubed.dk/DIABP/V1#BCI
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
     :label: Diastolic Blood Pressure
-    :tagged: []
     :has_state:
       :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0RJQUJQL1YxI0JDSV9SUw==
       :uri: http://www.s-cubed.dk/DIABP/V1#BCI_RS
@@ -526,7 +481,6 @@
   :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_CG1
   :rdf_type: http://www.assero.co.uk/BusinessForm#CommonGroup
   :label: Common Group
-  :tagged: []
   :ordinal: 1
   :note: Not Set
   :completion: Not Set
@@ -536,7 +490,6 @@
     :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI2
     :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
     :label: Body Position (--POS)
-    :tagged: []
     :ordinal: 1
     :note: ''
     :completion: Not Set
@@ -546,7 +499,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI2_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -557,7 +509,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI2_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -566,8 +517,6 @@
         :uri: http://www.cdisc.org/C25681/V1#C25681_C49507
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Medium
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C49507
         :notation: MEDIUM
         :definition: Mid-way between small and large in number, quantity, magnitude
@@ -582,7 +531,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI2_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 2
@@ -591,8 +539,6 @@
         :uri: http://www.cdisc.org/C25681/V1#C25681_C49508
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Large
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C49508
         :notation: LARGE
         :definition: Of considerable or relatively great size, extent, or capacity.
@@ -607,7 +553,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI2_TUC3
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 3
@@ -616,8 +561,6 @@
         :uri: http://www.cdisc.org/C25681/V1#C25681_C25376
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Small
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C25376
         :notation: SMALL
         :definition: Limited in number, quantity, magnitude or extent. (NCI)
@@ -632,7 +575,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP2
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Body Position (--POS)
-      :tagged: []
       :ordinal: 2
       :note: ''
       :completion: Not Set
@@ -642,7 +584,6 @@
         :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP2_R1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -653,7 +594,6 @@
         :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP2_TUC1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -662,8 +602,6 @@
           :uri: http://www.cdisc.org/C25681/V1#C25681_C49508
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Large
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C49508
           :notation: LARGE
           :definition: Of considerable or relatively great size, extent, or capacity.
@@ -678,7 +616,6 @@
         :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP2_TUC2
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 2
@@ -687,8 +624,6 @@
           :uri: http://www.cdisc.org/C25681/V1#C25681_C49507
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Medium
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C49507
           :notation: MEDIUM
           :definition: Mid-way between small and large in number, quantity, magnitude
@@ -703,7 +638,6 @@
         :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG3_BP2_TUC3
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 3
@@ -712,8 +646,6 @@
           :uri: http://www.cdisc.org/C25681/V1#C25681_C25376
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Small
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C25376
           :notation: SMALL
           :definition: Limited in number, quantity, magnitude or extent. (NCI)
@@ -728,7 +660,6 @@
       :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP2
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Body Position (--POS)
-      :tagged: []
       :ordinal: 2
       :note: ''
       :completion: Not Set
@@ -738,7 +669,6 @@
         :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP2_R1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -749,7 +679,6 @@
         :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP2_TUC1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -758,8 +687,6 @@
           :uri: http://www.cdisc.org/C25681/V1#C25681_C49507
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Medium
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C49507
           :notation: MEDIUM
           :definition: Mid-way between small and large in number, quantity, magnitude
@@ -774,7 +701,6 @@
         :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP2_TUC2
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 2
@@ -783,8 +709,6 @@
           :uri: http://www.cdisc.org/C25681/V1#C25681_C49508
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Large
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C49508
           :notation: LARGE
           :definition: Of considerable or relatively great size, extent, or capacity.
@@ -799,7 +723,6 @@
         :uri: http://www.s-cubed.dk/form_test/V1#F_NG1_BCG2_BP2_TUC3
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 3
@@ -808,8 +731,6 @@
           :uri: http://www.cdisc.org/C25681/V1#C25681_C25376
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Small
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C25376
           :notation: SMALL
           :definition: Limited in number, quantity, magnitude or extent. (NCI)

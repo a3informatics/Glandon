@@ -209,7 +209,6 @@ module Fuseki
       opts[:read_exclude] = opts.key?(:read_exclude)
       opts[:delete_exclude] = opts.key?(:delete_exclude)
       opts[:base_type] = ""
-      opts[:extension] = false
       add_to_resources(name, opts)
 
       if opts[:cardinality] != :one 
@@ -321,8 +320,7 @@ module Fuseki
         type: :data, 
         base_type: simple_datatype, 
         read_exclude: false, 
-        delete_exclude: false,
-        extension: false
+        delete_exclude: false
       }
       options[:default] = opts.key?(:default) ? opts[:default] : simple_datatype.default
       add_to_resources(name, options)
@@ -438,12 +436,6 @@ module Fuseki
     def unique_extension
       SecureRandom.uuid
     end
-
-    # def prefix_property_extension(opts)
-    #   return "" if !opts.key?(:prefix) && !opts.key?(:property)
-    #   return "#{opts[:prefix]}" if !opts.key?(:property)
-    #   return "#{opts[:prefix]}#{self.send(opts[:property])}"
-    # end
 
     # Builds the URI for a predicate
     def predicate_uri(name)

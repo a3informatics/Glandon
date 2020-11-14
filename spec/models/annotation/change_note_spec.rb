@@ -46,7 +46,6 @@ describe Annotation::ChangeNote do
         :user_reference => "UR",
         :description => "D",
         :rdf_type => "http://www.assero.co.uk/Annotations#ChangeNote",
-        :tagged => [],
         :current => [],
         :by_authority => nil
       }

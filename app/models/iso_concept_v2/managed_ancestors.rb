@@ -21,7 +21,7 @@ class IsoConceptV2
       # @raise [Errors::ApplicationLogicError] raised to indicate the class has not configured the method
       # @return [Void] exception always raised
       def managed_ancestors_path
-        Errors.application_error(self.name, the_method, "Method not implemented for class.")
+        Errors.application_error(self.name, __method__.to_s, "Method not implemented for class.")
       end
 
     end
@@ -307,7 +307,8 @@ class IsoConceptV2
     def replace_links(parent_object, old_object, new_object, managed_ancestor)
       predicates = parent_object.managed_ancestors_predicate(old_object.class)
       predicates.each do |predicate|
-        if parent_object.uri == managed_ancestor.uri
+        #if parent_object.uri == managed_ancestor.uri
+        if parent_object.persisted?
           parent_object.replace_link(predicate, old_object.uri, new_object.uri)
         else
           parent_object.properties.property(predicate).replace_value(old_object.uri, new_object.uri)
@@ -319,7 +320,8 @@ class IsoConceptV2
     def delete_links(parent_object, old_object, managed_ancestor)
       predicates = parent_object.managed_ancestors_predicate(old_object.class)
       predicates.each do |predicate|
-        if parent_object.uri == managed_ancestor.uri
+        #if parent_object.uri == managed_ancestor.uri
+        if parent_object.persisted?
           parent_object.delete_link(predicate, old_object.uri)
         else
           parent_object.properties.property(predicate).delete_value(old_object.uri)
