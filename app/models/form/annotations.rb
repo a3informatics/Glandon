@@ -61,25 +61,25 @@ class Form
     # @return [Array] Array of annotation objects
     def bc_annotations
       query_string = %Q{
-        SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub ?domain_long_name WHERE
+        SELECT ?item ?domain ?sdtm_var_name ?sdtm_topic_name ?sdtm_topic_sub ?domain_long_name WHERE
         { 
           ?topic_var bd:hasProperty ?op_ref3 . 
           ?op_ref3 bo:hasProperty ?bc_topic_property .     
           ?bc_root (bc:hasProperty|bc:hasDatatype|bc:hasItem|bc:hasComplexDatatype) ?bc_topic_property .
-          ?bc_topic_property bc:hasThesaurusConcept ?valueRef .
-          ?valueRef bo:hasThesaurusConcept ?sdtmTopicValueObj . 
-          #?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub .
+          ?bc_topic_property bc:hasThesaurusConcept ?value_ref .
+          ?value_ref bo:hasThesaurusConcept ?sdtm_topic_value_obj . 
+          #?sdtm_topic_value_obj iso25964:notation ?sdtm_topic_sub .
           {         
-            SELECT ?form ?group ?item ?bcProperty ?bc_root ?bcIdent ?sdtmVarName ?domain ?sdtmTopicName ?topic_var ?domain_long_name WHERE 
+            SELECT ?form ?group ?item ?bc_property ?bc_root ?bc_ident ?sdtm_var_name ?domain ?sdtm_topic_name ?topic_var ?domain_long_name WHERE 
             {   
-              ?var bd:name ?sdtmVarName .              
+              ?var bd:name ?sdtm_var_name .              
               ?dataset bd:includesColumn ?var .              
               ?dataset bd:prefix ?domain .
               ?dataset isoC:label ?domain_long_name .
               ?dataset bd:includesColumn ?topic_var .             
               ?topic_var bd:classifiedAs ?classification .             
               ?classification rdfs:label \"Topic\"^^xsd:string .              
-              ?topic_var bd:name ?sdtmTopicName . 
+              ?topic_var bd:name ?sdtm_topic_name . 
               {
                 SELECT ?group ?item ?bc_property ?bc_root ?bc_ident ?sdtm_var_name ?dataset ?var ?gord ?pord WHERE 
                 { 
@@ -87,14 +87,14 @@ class Form
                   ?group bf:ordinal ?gord .
                   ?group bf:hasItem ?item .
                   ?item bf:hasProperty ?op_ref1 .
-                  ?op_ref1 bo:reference ?bcProperty .
-                  ?op_ref2 bo:reference ?bcProperty .
+                  ?op_ref1 bo:reference ?bc_property .
+                  ?op_ref2 bo:reference ?bc_property .
                   ?var bd:hasProperty ?op_ref2 .
-                    ?bc_root (bc:hasProperty|bc:hasDatatype|bc:hasItem|bc:hasComplexDatatype) ?bcProperty .
+                    ?bc_root (bc:hasProperty|bc:hasDatatype|bc:hasItem|bc:hasComplexDatatype) ?bc_property .
                     ?bc_root rdf:type bc:BiomedicalConceptInstance .
-                    ?bcProperty bc:ordinal ?pord .      
+                    ?bc_property bc:ordinal ?pord .      
                     ?bc_root isoT:hasIdentifier ?si .     
-                    ?si isoI:identifier ?bcIdent .
+                    ?si isoI:identifier ?bc_ident .
                 }
               }
             }
@@ -102,10 +102,9 @@ class Form
         } ORDER BY ?gord ?pord
       }     
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoT, :isoI, :isoC])
-      triples = query_results.by_object_set([:item, :domain, :sdtmVarName, :sdtmTopicName, :sdtmTopicSub, :domain_long_name])
+      triples = query_results.by_object_set([:item, :domain, :sdtm_var_name, :domain_long_name, :sdtm_topic_name, :sdtm_topic_sub])
       triples.each do |entry|
-        uri = entry[:item].to_s
-        @annotation_set[uri] = Annotation.new({uri: uri, domain_prefix: entry[:domain], domain_long_name: entry[:domain_long_name], sdtm_variable: entry[:sdtmVarName], sdtm_topic_variable: entry[:sdtmTopicName], sdtm_topic_value: entry[:sdtmTopicSub]})
+        add_annotation(entry)
       end
     end
 
@@ -114,36 +113,37 @@ class Form
     # @return [Array] Array of annotation objects
     def item_annotations
       query_string = %Q{         
-        SELECT DISTINCT ?var ?domain ?item ?domain_long_name WHERE 
+        SELECT DISTINCT ?sdtm_var_name ?domain ?item ?domain_long_name WHERE 
         {
-          ?col bd:name ?var .
+          ?col bd:name ?sdtm_var_name .
           ?dataset bd:includesColumn ?col .
           ?dataset bd:prefix ?domain .
           ?dataset isoC:label ?domain_long_name .
           { 
-            SELECT ?group ?item ?var ?gord ?pord WHERE
+            SELECT ?group ?item ?sdtm_var_name ?gord ?pord WHERE
             { 
               #{@form.uri.to_ref} (bf:hasGroup|bf:hasSubGroup) ?group .
               ?group bf:ordinal ?gord .
               ?group (bf:hasItem)+ ?item .
-              ?item bf:mapping ?var .
+              ?item bf:mapping ?sdtm_var_name .
               ?item bf:ordinal ?pord .
             }
           }
         } ORDER BY ?gord ?pord
       }     
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoC])
-      triples = query_results.by_object_set([:item, :domain, :var, :domain_long_name])
+      triples = query_results.by_object_set([:item, :domain, :sdtm_var_name, :domain_long_name])
       triples.each do |entry|
-        uri = entry[:item].to_s
-        @annotation_set[uri] = Annotation.new({uri: uri, domain_prefix: entry[:domain], domain_long_name: entry[:domain_long_name], sdtm_variable:entry[:var], sdtm_topic_variable: "", sdtm_topic_value: "" })
+        add_annotation(entry)
       end
     end
 
-    # def add_annotation(entry)
-    #   uri = entry[:item].to_s
-    #   @annotation_set[uri] = Annotation.new({uri: uri, domain_prefix: entry[:domain], domain_long_name: entry[:domain_long_name], sdtm_variable:entry[:var], sdtm_topic_variable: "", sdtm_topic_value: "" })
-    # end
+    def add_annotation(entry)
+      uri = entry[:item].to_s
+      entry[:sdtm_topic_name].nil? ? entry[:sdtm_topic_name] = "" : entry[:sdtm_topic_name]
+      entry[:sdtm_topic_sub].nil? ? entry[:sdtm_topic_sub] = "" : entry[:sdtm_topic_sub]
+      @annotation_set[uri] = Annotation.new({uri: uri, domain_prefix: entry[:domain], domain_long_name: entry[:domain_long_name], sdtm_variable:entry[:sdtm_var_name], sdtm_topic_variable: entry[:sdtm_topic_name], sdtm_topic_value: entry[:sdtm_topic_sub] })
+    end
 
     def set_domain_prefix_and_long_name(annotation, result)
       domain_prefix = annotation.domain_prefix.to_sym
