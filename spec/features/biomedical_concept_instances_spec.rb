@@ -26,6 +26,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
       load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
       ua_create
     end
 
@@ -156,6 +157,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
       ua_create
     end
 
@@ -285,6 +287,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
       ua_create
     end
 

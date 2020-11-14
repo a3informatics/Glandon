@@ -12,12 +12,14 @@ class Form::Item::BcProperty < Form::Item
   object_property :has_property, cardinality: :one, model_class: "OperationalReferenceV3"
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
 
-  # # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
-  # #
-  # # @return [Form::Group::Normal] array of objects
-  # def managed_ancestors_children_set
-  #   self.has_coded_value
-  # end
+  # Managed Ancestors Predicate. Returns the property(ies) from this instance/class in the managed ancestor path to the child class
+  #
+  # @param [Class] the child klass
+  # @return [Array] array of predicates (symbols)
+  def managed_ancestors_predicate(child_klass)
+    return [:has_property] if child_klass == OperationalReferenceV3
+    [:has_coded_value]
+  end
 
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #
@@ -29,13 +31,6 @@ class Form::Item::BcProperty < Form::Item
       "<http://www.assero.co.uk/BusinessForm#hasItem>"
     ]
   end
-
-  # # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
-  # #
-  # # @return [Symbol] the predicate property as a symbol
-  # def managed_ancestors_predicate
-  #   :has_item
-  # end
 
   # Get Item
   #
@@ -70,10 +65,10 @@ class Form::Item::BcProperty < Form::Item
     return html
   end
 
-  def children_ordered
-    self.has_coded_value_objects.sort_by {|x| x.ordinal}
-  end
-
+  # Make Common With Clone
+  # 
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Void] no return
   def make_common_with_clone(managed_ancestor)
     return nil unless common_group_present?
     if multiple_managed_ancestors?
@@ -86,11 +81,49 @@ class Form::Item::BcProperty < Form::Item
     end
   end
 
-  def clone_common_group(uri, managed_ancestor)
-     cg = Form::Group::Common.find(uri)
-     cg.replicate_with_clone(cg, managed_ancestor)
+  # Common Group Present?
+  # 
+  # @return [Boolean] true if common group present, false otherwise
+  def common_group_present?
+    return true if common_group?
+    self.errors.add(:base, "There is no Common group")
+    false
   end
 
+  # Children Ordered
+  # 
+  # @return [Array] array of objects ordered by ordinal
+  def children_ordered
+    self.has_coded_value_objects.sort_by {|x| x.ordinal}
+  end
+
+  # To H
+  # 
+  # @return [Hash] hash representation of the instance
+  def to_h
+    x = super
+    x[:is_common] = is_common?
+    x
+  end
+
+  # Update With Clone
+  # 
+  # @param [Hash] params a hash of properties to be updated
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Object] returns the object. Not saved if errors are returned.      
+  def update_with_clone(params, managed_ancestor)
+    object = super(params.except(:enabled, :optional), managed_ancestor)
+    return object if object.errors.any? 
+    return object unless params.key?(:enabled) || params.key?(:optional)
+    ref_object = object.has_property_objects.update_with_clone(params.slice(:enabled, :optional), managed_ancestor)
+    object.merge_errors(ref_object)
+    object
+  end
+  
+  # Make Common
+  # 
+  # @param [Object] common:group the common group into which the item is to be moved
+  # @return [Object] returns the normal group      
   def make_common(common_group)
     common_bcp = find_common_matches
     property = BiomedicalConcept::PropertyX.find(self.has_property_objects.reference)
@@ -116,145 +149,100 @@ class Form::Item::BcProperty < Form::Item
     normal_group = normal_group.full_data
   end
 
-  def common_group_present?
-    return true if common_group?
-    self.errors.add(:base, "There is no Common group")
-    false
+private
+
+  def clone_common_group(uri, managed_ancestor)
+     cg = Form::Group::Common.find(uri)
+     cg.replicate_with_clone(cg, managed_ancestor)
   end
 
-  # def clone_nodes_and_children(child, managed_ancestor)
-  #   new_parent = nil
-  #   new_object = nil
-  #   new_normal_group = nil
-  #   tx = transaction_begin
-  #   uris = child.managed_ancestor_path_uris(managed_ancestor)
-  #   prev_object = managed_ancestor
-  #   prev_object.transaction_set(tx)
-  #   uris.each do |old_uri|
-  #     old_object = self.class.klass_for(old_uri).find_children(old_uri)
-  #     cloned_object = clone_and_save(managed_ancestor, old_object, prev_object, tx)
-  #      if child.uri == old_object.uri
-  #        new_parent = prev_object
-  #        new_object = new_parent.clone_children_and_save_no_tx(managed_ancestor, tx, child.uri)
-  #        new_normal_group = new_normal_group.clone_children_and_save_no_tx(managed_ancestor, tx) 
-  #      end
-  #     if old_object.class == Form::Group::Normal 
-  #       new_normal_group = cloned_object unless old_object.has_common.empty?
-  #     end
-  #     prev_object.replace_link(old_object.managed_ancestors_predicate, old_object.uri, cloned_object.uri)
-  #     prev_object = cloned_object
-  #   end
-  #   transaction_execute
-  #   new_parent = Form::Item.find_full(new_parent.id)
-  #   return new_parent, new_object
-  # end
-
-  def to_h
-    x = super
-    x[:is_common] = is_common?
-    x
+  def find_common_matches
+    query_string = %Q{         
+      SELECT ?common_bcp WHERE 
+      {
+        #{self.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref .
+        #{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup/bf:hasSubGroup/bf:hasItem ?common_bcp .
+        ?common_bcp bf:hasProperty/bo:reference/bc:isA ?ref
+      }
+    }     
+    query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bc])
+    check_terminologies(query_results.by_object(:common_bcp))
   end
 
-  def update_with_clone(params, managed_ancestor)
-    if multiple_managed_ancestors?
-      new_bc_property = replicate_with_clone(self, managed_ancestor)
-      new_bc_property.has_property_objects.update(params)
-      new_bc_property.update(params.except(:enabled, :optional))
-    else
-      self.has_property_objects.update(params)
-      self.update(params.except(:enabled, :optional))
-    end
-  end
-  
-  private
-
-    def find_common_matches
-      query_string = %Q{         
-        SELECT ?common_bcp WHERE 
+  def check_terminologies(uris)
+    query_string = %Q{
+    SELECT DISTINCT ?s WHERE 
+      {
+        
+        VALUES ?s {#{uris.map{|x| x.to_ref}.join(" ")}}
         {
-          #{self.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref .
-          #{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup/bf:hasSubGroup/bf:hasItem ?common_bcp .
-          ?common_bcp bf:hasProperty/bo:reference/bc:isA ?ref
-        }
-      }     
-      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bc])
-      check_terminologies(query_results.by_object(:common_bcp))
-    end
-
-    def check_terminologies(uris)
-      query_string = %Q{
-      SELECT DISTINCT ?s WHERE 
-        {
-          
-          VALUES ?s {#{uris.map{|x| x.to_ref}.join(" ")}}
-          {
-          #{self.uri.to_ref} bf:hasCodedValue/bo:reference ?cli .
-          ?s bf:hasCodedValue/bo:reference ?cli
-          }
+        #{self.uri.to_ref} bf:hasCodedValue/bo:reference ?cli .
+        ?s bf:hasCodedValue/bo:reference ?cli
         }
       }
-      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo])
-      return uris if query_results.empty?
-      query_results.by_object(:s)
-    end
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo])
+    return uris if query_results.empty?
+    query_results.by_object(:s)
+  end
 
-    # Get the common group
-    def get_common_group
-      query_string = %Q{         
-        SELECT ?common_group WHERE 
-        {
-          #{self.uri.to_ref} ^bf:hasItem ?bc_group. 
-          ?bc_group ^bf:hasSubGroup ?normal_g. 
-          ?normal_g bf:hasCommon ?common_group 
-        }
-      }     
-      query_results = Sparql::Query.new.query(query_string, "", [:bf])
-      query_results.by_object(:common_group)
-    end
+  # Get the common group
+  def get_common_group
+    query_string = %Q{         
+      SELECT ?common_group WHERE 
+      {
+        #{self.uri.to_ref} ^bf:hasItem ?bc_group. 
+        ?bc_group ^bf:hasSubGroup ?normal_g. 
+        ?normal_g bf:hasCommon ?common_group 
+      }
+    }     
+    query_results = Sparql::Query.new.query(query_string, "", [:bf])
+    query_results.by_object(:common_group)
+  end
 
-    # Get the common group
-    def locate_common_group(managed_ancestor)
-      query_string = %Q{         
-        SELECT ?cg WHERE 
-        {
-          #{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup ?ng. 
-          ?g bf:hasCommon ?cg .
-          ?ng ^bf:hasSubGroup*|^bf:hasSubGroup* #{managed_ancestor.uri.to_ref} 
-        }
-      }     
-      query_results = Sparql::Query.new.query(query_string, "", [:bf])
-      query_results.by_object(:cg)
-    end
+  # Get the common group
+  def locate_common_group(managed_ancestor)
+    query_string = %Q{         
+      SELECT ?cg WHERE 
+      {
+        #{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup ?ng. 
+        ?g bf:hasCommon ?cg .
+        ?ng ^bf:hasSubGroup*|^bf:hasSubGroup* #{managed_ancestor.uri.to_ref} 
+      }
+    }     
+    query_results = Sparql::Query.new.query(query_string, "", [:bf])
+    query_results.by_object(:cg)
+  end
 
-    # Do we have a common group?
-    def common_group?
-      Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup/bf:hasCommon ?cg }", "", [:bf]).ask? 
-    end
+  # Do we have a common group?
+  def common_group?
+    Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup/bf:hasCommon ?cg }", "", [:bf]).ask? 
+  end
 
-    def get_normal_group
-      query_string = %Q{         
-        SELECT ?normal_group WHERE 
-        {
-          #{self.uri.to_ref} ^bf:hasItem ?bc_group. 
-          ?bc_group ^bf:hasSubGroup ?normal_group. 
-        }
-      }     
-      query_results = Sparql::Query.new.query(query_string, "", [:bf])
-      query_results.by_object(:normal_group)
-    end
+  def get_normal_group
+    query_string = %Q{         
+      SELECT ?normal_group WHERE 
+      {
+        #{self.uri.to_ref} ^bf:hasItem ?bc_group. 
+        ?bc_group ^bf:hasSubGroup ?normal_group. 
+      }
+    }     
+    query_results = Sparql::Query.new.query(query_string, "", [:bf])
+    query_results.by_object(:normal_group)
+  end
 
-    def is_common?
-      query_string = %Q{         
-        SELECT ?result WHERE {BIND ( EXISTS {#{self.uri.to_ref} ^bf:hasCommonItem ?s} as ?result )}
-      }     
-      query_results = Sparql::Query.new.query(query_string, "", [:bf])
-      query_results.by_object(:result).first.to_bool
-    end
+  def is_common?
+    query_string = %Q{         
+      SELECT ?result WHERE {BIND ( EXISTS {#{self.uri.to_ref} ^bf:hasCommonItem ?s} as ?result )}
+    }     
+    query_results = Sparql::Query.new.query(query_string, "", [:bf])
+    query_results.by_object(:result).first.to_bool
+  end
 
-    def property_to_hash(property)
-      ref = property.to_h
-      ref[:reference] = BiomedicalConcept::PropertyX.find(ref[:id]).to_h
-      ref
-    end
+  def property_to_hash(property)
+    ref = property.to_h
+    ref[:reference] = BiomedicalConcept::PropertyX.find(ref[:id]).to_h
+    ref
+  end
 
  end

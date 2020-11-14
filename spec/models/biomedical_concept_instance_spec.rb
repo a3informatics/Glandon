@@ -240,7 +240,7 @@ describe BiomedicalConceptInstance do
       cli_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C74457/V10#C74457_C41260"))
       cli_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C74457/V10#C74457_C41219"))
       instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      uri = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
+      uri = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode")
       property = BiomedicalConcept::PropertyX.find(uri)
       property = instance.update_property({property_id: property.id, has_coded_value: [{id: cli_1.id, context_id: cl.id}]})
       expect(property.errors.count).to eq(0)
