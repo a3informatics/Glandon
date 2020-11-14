@@ -1,5 +1,5 @@
-// import ItemsPicker from 'shared/ui/items_picker/items_picker'
-// import { managedConceptRef } from 'shared/ui/strings'
+import StudyDesign from 'shared/custom/studies/study_design'
+import StudyTable from 'shared/custom/studies/study_table'
 
 /**
  * Create a Study Builder Instance
@@ -33,11 +33,13 @@ export default class StudyBuilder {
 
   _setListeners() {
 
-    $( this.selector ).find( '.tab-option' ).on( 'tab-switch', tabId => {
+    $( this.selector ).on( 'tab-switch', (e, tabId) => {
 
-      let tabName = tabId.split('-')[1];
+      let tabName = tabId.split('-')[1],
+          enabled = this.tabs[ tabName ].enabled,
+          instance = this.tabs[ tabName ].instance;
 
-      this.tabs[ tabName ].enabled && this.tabs[ tabName ].instance.show();
+      enabled && instance.show();
 
     });
 
@@ -67,12 +69,20 @@ export default class StudyBuilder {
         enabled: studyEmpty
       },
       objectives: {
-        instance: new StudyObjectives(),
+        instance: new StudyTable({
+          type: 'objectives',
+          selector: '#study-objectives #objectives',
+          url: objectivesUrl
+        }),
         header: $( '#tab-objectives' ),
         enabled: true
       },
       endpoints: {
-        instance: new StudyEndpoints(),
+        instance: new StudyTable({
+          type: 'endpoints',
+          selector: '#study-endpoints #endpoints',
+          url: endpointsUrl
+        }),
         header: $( '#tab-endpoints' ),
         enabled: true
       }

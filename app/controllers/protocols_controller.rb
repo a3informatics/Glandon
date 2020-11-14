@@ -47,13 +47,19 @@ class ProtocolsController < ManagedItemsController
   def objectives
     authorize Form, :show?
     protocol = Protocol.find_minimum(protect_from_bad_id(params))
-    render json: {data: protocol.objectives}, status: 200
+    # Merge into a single array where selected is a true/false flag (TODO: change the model method)
+    result = protocol.objectives[:selected].each { |x| x[:selected] = true } |
+             protocol.objectives[:not_selected].each { |x| x[:selected] = false }
+    render json: {data: result}, status: 200
   end
 
   def endpoints
     authorize Form, :show?
     protocol = Protocol.find_minimum(protect_from_bad_id(params))
-    render json: {data: protocol.endpoints}, status: 200
+    # Merge into a single array where selected is a true/false flag (TODO: change the model method)
+    result = protocol.endpoints[:selected].each { |x| x[:selected] = true } |
+             protocol.endpoints[:not_selected].each { |x| x[:selected] = false }
+    render json: {data: result}, status: 200
   end
 
 private
