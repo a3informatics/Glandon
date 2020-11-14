@@ -4,7 +4,6 @@
   :uri: http://www.s-cubed.dk/XXX/V2#Q_b76597f7-972f-40f4-bed7-e134725cf296_TUC1
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
   :label: ''
-  :tagged: []
   :enabled: 'false'
   :optional: 'true'
   :ordinal: 1
@@ -13,8 +12,6 @@
     :uri: http://www.cdisc.org/C25681/V1#C25681_C49508
     :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
     :label: Large
-    :tagged:
-    - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
     :identifier: C49508
     :notation: LARGE
     :definition: Of considerable or relatively great size, extent, or capacity. (NCI)
@@ -27,8 +24,6 @@
     :uri: http://www.cdisc.org/C25681/V1#C25681
     :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
     :label: Size
-    :tagged:
-    - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
     :has_state: http://www.cdisc.org/C25681/V1#C25681_RS
     :has_identifier: http://www.cdisc.org/C25681/V1#C25681_SI
     :has_previous_version: 
@@ -42,13 +37,11 @@
     :definition: The physical magnitude of something. (NCI)
     :extensible: true
     :narrower:
-    - http://www.cdisc.org/C25681/V1#C25681_C49507
+    - http://www.cdisc.org/C25681/V1#C25681_C25376
     - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MV9DNDk1MDg=
       :uri: http://www.cdisc.org/C25681/V1#C25681_C49508
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Large
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C49508
       :notation: LARGE
       :definition: Of considerable or relatively great size, extent, or capacity.
@@ -57,7 +50,7 @@
       :narrower: []
       :preferred_term: http://www.assero.co.uk/PT#738fd1d2452fc31a236c5ad511bfcc46b324365e
       :synonym: []
-    - http://www.cdisc.org/C25681/V1#C25681_C25376
+    - http://www.cdisc.org/C25681/V1#C25681_C49507
     :extends: 
     :subsets: 
     :paired_with: 
