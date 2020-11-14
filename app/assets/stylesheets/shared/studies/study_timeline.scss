@@ -240,23 +240,12 @@
 }
 
 #tab-timeline-body #visits-list .visit{
-  background: $primary-color-bright;
-  color: white;
+  margin-top: 10px;
   z-index: 12;
 }
 
 #tab-timeline-body #visits-list .ui-draggable-dragging{
   z-index: 500;
-}
-
-#tab-timeline-body .btns-wrap a {
-  margin-right: 12px;
-  transition: transform .2s;
-}
-
-#tab-timeline-body .btns-wrap a:hover {
-  transform: translateY(-5px);
-  z-index: 100;
 }
 
 body .dark-overlay {
