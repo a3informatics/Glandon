@@ -795,7 +795,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       bc_property.make_common(node)
       make_standard(form)
       form = Form.find_full(form.uri)
-      #fix_dates(form, sub_dir, "delete_form_10a.yaml", :creation_date, :last_change_date)
+      check_dates(form, sub_dir, "delete_form_10a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_10a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
@@ -804,10 +804,10 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       bc_group.delete(normal_group, new_form)
       saved_form = new_form
       new_form = Form.find_full(new_form.uri)
-      #check_dates(new_form, sub_dir, "delete_form_10b.yaml", :creation_date, :last_change_date)
+      check_dates(new_form, sub_dir, "delete_form_10b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_form.to_h, sub_dir, "delete_form_10b.yaml", equate_method: :hash_equal)
       form = Form.find_full(form.uri)
-      #check_dates(form, sub_dir, "delete_form_10a.yaml", :creation_date, :last_change_date)
+      check_dates(form, sub_dir, "delete_form_10a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_form_10a.yaml", equate_method: :hash_equal)
       check_modified_uris(form, saved_form, "updated_uri_expected_18.yaml")
     end
@@ -1036,10 +1036,12 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       normal_group.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id]})
       make_standard(form)
       form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "extra_100a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "extra_100a.yaml", equate_method: :hash_equal)
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCP_36d01a04-97fa-4ae9-8f40-9f266a6cdc06"))
       bc_property.make_common(node)
       form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "extra_100b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "extra_100b.yaml", equate_method: :hash_equal)
     end
 

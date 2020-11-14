@@ -29,7 +29,7 @@ describe SdtmClass::Variable do
     expect(result).to eq(true)
   end
 
-  it "does not validate an invalid object, ordinal" do
+  it "does not validate an invalid object, ordinal WILL CURRENTLY FAIL - Fails in overall run, passes in isolation (double validation error)" do
     item = SdtmClass::Variable.new
     item.uri = Uri.new(uri: "http://www.example.com/a#b")
     item.ordinal = -1
