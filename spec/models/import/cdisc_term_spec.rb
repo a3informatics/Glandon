@@ -95,8 +95,8 @@ describe "Import::CdiscTerm" do
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1a.ttl")
-    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_1b.ttl")
+    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1a.ttl")
+    copy_file_from_public_files_rename("test", filename, sub_dir, "import_load_1b.ttl")
       check_ttl_fix(filename, "import_expected_1a.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -115,7 +115,7 @@ describe "Import::CdiscTerm" do
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1b.ttl")
+    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1b.ttl")
       check_ttl_fix(filename, "import_expected_1b.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -287,7 +287,7 @@ describe "Import::CdiscTerm" do
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "duplicates_expected_1.txt")
+    copy_file_from_public_files_rename("test", filename, sub_dir, "duplicates_expected_1.txt")
       check_ttl(filename, "duplicates_expected_1.txt")
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -306,7 +306,7 @@ describe "Import::CdiscTerm" do
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "quotes_expected_1.txt")
+    copy_file_from_public_files_rename("test", filename, sub_dir, "quotes_expected_1.txt")
       check_ttl(filename, "quotes_expected_1.txt")
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -326,7 +326,7 @@ describe "Import::CdiscTerm" do
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "characters_expected_1.ttl")
+    copy_file_from_public_files_rename("test", filename, sub_dir, "characters_expected_1.ttl")
       check_ttl(filename, "characters_expected_1.ttl")
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)

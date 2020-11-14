@@ -17,7 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "CDISC Term"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology Quotes 1.xlsx'"^^xsd:string ;
@@ -69,7 +68,6 @@
 <http://www.cdisc.org/C141663/V1#C141663>
 	rdf:type th:ManagedConcept ;
 	isoC:label "4 Stair Ascend Functional Test Test Code"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C141663/V1#C141663_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C141663/V1#C141663_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -110,7 +108,6 @@
 <http://www.cdisc.org/C141663/V1#C141663_C141706>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Unclassified Pleomorphic Sarcoma (Formerly \"Malignant Fibrous Histiocytoma\")"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C141706"^^xsd:string ;
 	th:notation "A4STR101"^^xsd:string ;
 	th:definition "4 Stair Ascend - Time taken to ascend 4 stairs."^^xsd:string ;
@@ -129,7 +126,6 @@
 <http://www.cdisc.org/C141663/V1#C141663_C141707>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Test Grade"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C141707"^^xsd:string ;
 	th:notation "A4STR102"^^xsd:string ;
 	th:definition "4 Stair Ascend - Test grade."^^xsd:string ;
@@ -148,7 +144,6 @@
 <http://www.cdisc.org/C141663/V1#C141663_C147590>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Wear Orthoses"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C147590"^^xsd:string ;
 	th:notation "A4STR103"^^xsd:string ;
 	th:definition "4 Stair Ascend - Did subject wear orthoses?"^^xsd:string ;
@@ -175,7 +170,6 @@
 <http://www.cdisc.org/C141662/V1#C141662>
 	rdf:type th:ManagedConcept ;
 	isoC:label "4 Stair Ascend Functional Test Test Name"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C141662/V1#C141662_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C141662/V1#C141662_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -216,7 +210,6 @@
 <http://www.cdisc.org/C141662/V1#C141662_C141707>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Test Grade"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C141707"^^xsd:string ;
 	th:notation "A4STR1-Test Grade"^^xsd:string ;
 	th:definition "4 Stair Ascend - Test grade."^^xsd:string ;
@@ -227,7 +220,6 @@
 <http://www.cdisc.org/C141662/V1#C141662_C141706>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Time to Ascend 4 Stairs"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C141706"^^xsd:string ;
 	th:notation "A4STR1-Time to Ascend 4 Stairs"^^xsd:string ;
 	th:definition "4 Stair Ascend - Time taken to ascend 4 stairs."^^xsd:string ;
@@ -242,7 +234,6 @@
 <http://www.cdisc.org/C141662/V1#C141662_C147590>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Wear Orthoses"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C147590"^^xsd:string ;
 	th:notation "A4STR1-Wear Orthoses"^^xsd:string ;
 	th:definition "4 Stair Ascend - Did subject wear orthoses?"^^xsd:string ;
@@ -257,4 +248,64 @@
 <http://www.assero.co.uk/SYN#9fa1433b913e068995c38ccb4d63932f9a46ad28>
 	rdf:type th:Synonym ;
 	isoC:label "4 Stair Ascend Functional Test Test Name"^^xsd:string ;
+.
+<http://www.assero.co.uk/CLA#99112b17-89f4-498c-8451-709323dcf2da>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+.
+<http://www.assero.co.uk/CLA#e30cf38d-fd6c-4637-9e75-0db1acb8ea14>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C141663/V1#C141663> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+.
+<http://www.assero.co.uk/CLA#bc4af39f-a451-44f0-ba17-00b700066517>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C141663/V1#C141663_C141706> ;
+	isoC:context <http://www.cdisc.org/C141663/V1#C141663> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+.
+<http://www.assero.co.uk/CLA#71e78f09-75d8-417d-8de8-6115e7623f97>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C141663/V1#C141663_C141707> ;
+	isoC:context <http://www.cdisc.org/C141663/V1#C141663> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+.
+<http://www.assero.co.uk/CLA#ce22e81d-3bbc-4405-8f1b-522918e7a2c0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C141663/V1#C141663_C147590> ;
+	isoC:context <http://www.cdisc.org/C141663/V1#C141663> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+.
+<http://www.assero.co.uk/CLA#e688ab94-2fac-4279-bf05-bfc3f25bdf2b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C141662/V1#C141662> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+.
+<http://www.assero.co.uk/CLA#97b5edd4-4424-4376-89cd-04476b97c298>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C141662/V1#C141662_C141707> ;
+	isoC:context <http://www.cdisc.org/C141662/V1#C141662> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+.
+<http://www.assero.co.uk/CLA#526f9575-93bf-48fb-846f-a5e9bfa024c4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C141662/V1#C141662_C141706> ;
+	isoC:context <http://www.cdisc.org/C141662/V1#C141662> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+.
+<http://www.assero.co.uk/CLA#38ce7895-6e9a-44a1-be39-998efead37ff>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C141662/V1#C141662_C147590> ;
+	isoC:context <http://www.cdisc.org/C141662/V1#C141662> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 .
