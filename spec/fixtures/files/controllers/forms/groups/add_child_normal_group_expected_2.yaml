@@ -3,7 +3,6 @@
   :uri: http://www.s-cubed.dk/FN000120/V1#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Weight
-  :tagged: []
   :ordinal: 3
   :note: ''
   :completion: ''
@@ -13,7 +12,6 @@
     :uri: http://www.s-cubed.dk/FN000120/V1#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--DTC"
-    :tagged: []
     :ordinal: 1
     :note: ''
     :completion: ''
@@ -23,7 +21,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -35,7 +32,6 @@
     :uri: http://www.s-cubed.dk/FN000120/V1#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--ORRES"
-    :tagged: []
     :ordinal: 2
     :note: ''
     :completion: ''
@@ -45,7 +41,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -57,7 +52,6 @@
     :uri: http://www.s-cubed.dk/FN000120/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--ORRESU"
-    :tagged: []
     :ordinal: 3
     :note: ''
     :completion: ''
@@ -67,7 +61,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -78,7 +71,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -87,9 +79,6 @@
         :uri: http://www.cdisc.org/C66770/V49#C66770_C28252
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Kilogram
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
         :identifier: C28252
         :notation: kg
         :definition: The base unit of mass in the International System of Units (SI)
@@ -106,7 +95,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 2
@@ -115,8 +103,6 @@
         :uri: http://www.cdisc.org/C66770/V4#C66770_C48531
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Pound
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C48531
         :notation: LB
         :definition: A traditional unit of mass. By international agreement, one avoirdupois
@@ -135,7 +121,6 @@
     :uri: http://www.s-cubed.dk/FN000120/V1#BCG_1760cbb1-a370-41f6-a3b3-493c1d9c2238_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -144,7 +129,6 @@
       :uri: http://www.s-cubed.dk/WEIGHT/V1#BCI
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
       :label: Weight
-      :tagged: []
       :has_state:
         :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1dFSUdIVC9WMSNCQ0lfUlM=
         :uri: http://www.s-cubed.dk/WEIGHT/V1#BCI_RS
@@ -200,7 +184,6 @@
   :uri: http://www.s-cubed.dk/FN000120/V1#BCG_36d01a04-97fa-4ae9-8f40-9f266a6cdc06
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: BMI
-  :tagged: []
   :ordinal: 4
   :note: ''
   :completion: ''
@@ -210,7 +193,6 @@
     :uri: http://www.s-cubed.dk/FN000120/V1#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--ORRES"
-    :tagged: []
     :ordinal: 1
     :note: ''
     :completion: ''
@@ -220,7 +202,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_0cda6f24-e54d-4724-af79-916d41d9bd7f_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -232,7 +213,6 @@
     :uri: http://www.s-cubed.dk/FN000120/V1#BCP_7948e614-fdba-484a-9dfc-c98ce368d4e7
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--ORRESU"
-    :tagged: []
     :ordinal: 2
     :note: ''
     :completion: ''
@@ -242,7 +222,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_7948e614-fdba-484a-9dfc-c98ce368d4e7_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -253,7 +232,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -262,9 +240,6 @@
         :uri: http://www.cdisc.org/C66770/V38#C66770_C49671
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Kilogram per Square Meter
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
         :identifier: C49671
         :notation: kg/m2
         :definition: A unit expressed as kilogram of mass per square meter of area.(NCI)
@@ -281,7 +256,6 @@
     :uri: http://www.s-cubed.dk/FN000120/V1#BCG_36d01a04-97fa-4ae9-8f40-9f266a6cdc06_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -290,7 +264,6 @@
       :uri: http://www.s-cubed.dk/BMI/V1#BCI
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
       :label: BMI
-      :tagged: []
       :has_state:
         :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfUlM=
         :uri: http://www.s-cubed.dk/BMI/V1#BCI_RS
@@ -346,7 +319,6 @@
   :uri: http://www.s-cubed.dk/FN000120/V1#BCG_c9f7f7de-d227-4e15-b171-06c4306b77f4
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Race
-  :tagged: []
   :ordinal: 5
   :note: ''
   :completion: ''
@@ -356,7 +328,6 @@
     :uri: http://www.s-cubed.dk/FN000120/V1#BCP_f9fe7128-4b63-482d-9a11-62250e24fe0c
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--ORRES"
-    :tagged: []
     :ordinal: 1
     :note: ''
     :completion: ''
@@ -366,7 +337,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_f9fe7128-4b63-482d-9a11-62250e24fe0c_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -377,7 +347,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -386,8 +355,6 @@
         :uri: http://www.cdisc.org/C74457/V49#C74457_C16352
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Black or African American
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C16352
         :notation: BLACK OR AFRICAN AMERICAN
         :definition: A person having origins in any of the black racial groups of
@@ -403,7 +370,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 2
@@ -412,8 +378,6 @@
         :uri: http://www.cdisc.org/C74457/V10#C74457_C41259
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: American Indian or Alaska Native
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C41259
         :notation: AMERICAN INDIAN OR ALASKA NATIVE
         :definition: A person having origins in any of the original peoples of North
@@ -429,7 +393,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC3
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 3
@@ -438,8 +401,6 @@
         :uri: http://www.cdisc.org/C74457/V10#C74457_C41260
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Asian
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C41260
         :notation: ASIAN
         :definition: A person having origins in any of the original peoples of the
@@ -456,7 +417,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC4
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 4
@@ -465,8 +425,6 @@
         :uri: http://www.cdisc.org/C74457/V10#C74457_C41219
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Native Hawaiian or Other Pacific Islander
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C41219
         :notation: NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER
         :definition: Denotes a person having origins in any of the original peoples
@@ -483,7 +441,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC5
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 5
@@ -492,8 +449,6 @@
         :uri: http://www.cdisc.org/C74457/V10#C74457_C41261
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: White
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C41261
         :notation: WHITE
         :definition: Denotes a person with European, Middle Eastern, or North African
@@ -508,7 +463,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC6
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 6
@@ -517,8 +471,6 @@
         :uri: http://www.cdisc.org/C74457/V58#C74457_C17998
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Unknown
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C17998
         :notation: UNKNOWN
         :definition: Not known, not observed, not recorded, or refused. (NCI)
@@ -535,7 +487,6 @@
       :uri: http://www.s-cubed.dk/FN000120/V1#BCP_f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC7
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 7
@@ -544,8 +495,6 @@
         :uri: http://www.cdisc.org/C74457/V58#C74457_C43234
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Not Reported
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C43234
         :notation: NOT REPORTED
         :definition: Not provided or available.
@@ -562,7 +511,6 @@
     :uri: http://www.s-cubed.dk/FN000120/V1#BCG_c9f7f7de-d227-4e15-b171-06c4306b77f4_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -571,7 +519,6 @@
       :uri: http://www.s-cubed.dk/RACE/V1#BCI
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
       :label: Race
-      :tagged: []
       :has_state:
         :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1JBQ0UvVjEjQkNJX1JT
         :uri: http://www.s-cubed.dk/RACE/V1#BCI_RS
