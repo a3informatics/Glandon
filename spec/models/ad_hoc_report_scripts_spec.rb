@@ -204,6 +204,7 @@ RSpec.describe AdHocReport, type: :model do
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
