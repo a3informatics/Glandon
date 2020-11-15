@@ -85,13 +85,14 @@ class Form
               {
                 SELECT ?group ?item ?bc_property ?bc_root ?bc_ident ?sdtm_var_name ?dataset ?var ?gord ?pord WHERE 
                 { 
-                  #{@form.uri.to_ref} (bf:hasGroup|bf:hasSubGroup|bf:hasCommon) ?group .
+                  #{@form.uri.to_ref} (bf:hasGroup) ?normal_group .
+                  ?normal_group (bf:hasSubGroup|bf:hasCommon) ?group .
                   ?group bf:ordinal ?gord .
                   ?group bf:hasItem ?item .
                   ?item bf:hasProperty ?op_ref1 .
                   ?op_ref1 bo:reference ?bc_property .
-                  ?op_ref2 bo:reference ?bc_property .
-                  ?var bd:hasProperty ?op_ref2 .
+                  ?bc_property bc:isA ?ref .
+                  ?var bd:isA ?ref .
                     ?bc_root (bc:hasProperty|bc:hasDatatype|bc:hasItem|bc:hasComplexDatatype) ?bc_property .
                     ?bc_root rdf:type bc:BiomedicalConceptInstance .
                     ?bc_property bc:ordinal ?pord .      
@@ -102,7 +103,8 @@ class Form
             }
           }
         } ORDER BY ?gord ?pord
-      }     
+      }
+    byebug     
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoT, :isoI, :isoC])
       triples = query_results.by_object_set([:item, :domain, :sdtm_var_name, :domain_long_name, :sdtm_topic_name, :sdtm_topic_sub])
       triples.each do |entry|
