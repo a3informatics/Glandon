@@ -122,6 +122,22 @@ class Form
         end
       end
       html += end_row
+
+      # Annotation. Commented out, gives a block of annotations
+      #html += start_row(false)
+      #columns.each do |key, bridg_path|
+      #  pa = ""
+      #  node[:children].each do |bc_node|
+      #    bc_node[:children].each do |property_node|
+      #      if property_node[:bridg_path] == bridg_path
+      #        pa += property_annotations(property_node[:id], annotations, options)
+      #      end
+      #    end
+      #  end
+      #  html += mapping_cell(pa, options)
+      #end
+      #html += end_row
+      
       # BCs and the input fields
       self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
         html += start_row(false)

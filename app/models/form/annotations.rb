@@ -109,8 +109,7 @@ class Form
             }           
           }         
         } ORDER BY ?gord ?pord 
-      }
-    byebug     
+      }    
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoT, :isoI, :isoC, :th])
       triples = query_results.by_object_set([:item, :domain_prefix, :sdtm_var_name, :domain_long_name, :sdtm_topic_name, :sdtm_topic_sub])
       triples.each do |entry|
