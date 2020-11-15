@@ -15,6 +15,7 @@ describe "Sponsor Term Format One Reader" do
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+    load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
   end
 
   it "initialize object, success" do
@@ -56,26 +57,26 @@ describe "Sponsor Term Format One Reader" do
     object = Excel.new(full_path) 
     object.execute(import_type: :sponsor_term_format_one, format: :version_3)
     result = object.engine.parent_set
-    expect(object.errors.count).to eq(17)
-    check_file_actual_expected(object.errors.full_messages, sub_dir, "read_errors_2.yaml", equate_method: :hash_equal)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Harmonized_Terminology_Listing sheet in the excel file, incorrect column count. Expected 19, found 20.")
   end
 
   it "process engine, format check for version 2" do
     full_path = test_file_path(sub_dir, "read_input_2.xlsx")
     object = Excel.new(full_path) 
-    object.execute(import_type: :sponsor_term_format_one, format: :version_3)
+    object.execute(import_type: :sponsor_term_format_one, format: :version_2)
     result = object.engine.parent_set
-    expect(object.errors.count).to eq(1)
-    expect(object.errors.full_messages.to_sentence).to eq("Harmonized_Terminology_Listing sheet in the excel file, incorrect column count. Expected 20, found 18.")
+    expect(object.errors.count).to eq(17)
+    check_file_actual_expected(object.errors.full_messages, sub_dir, "read_errors_2.yaml", equate_method: :hash_equal)
   end
 
   it "process engine, format check for version 3" do
     full_path = test_file_path(sub_dir, "read_input_3.xlsx")
     object = Excel.new(full_path) 
-    object.execute(import_type: :sponsor_term_format_one, format: :version_2)
+    object.execute(import_type: :sponsor_term_format_one, format: :version_3)
     result = object.engine.parent_set
     expect(object.errors.count).to eq(1)
-    expect(object.errors.full_messages.to_sentence).to eq("Harmonized_Terminology_Listing sheet in the excel file, incorrect column count. Expected 18, found 20.")
+    expect(object.errors.full_messages.to_sentence).to eq("Harmonized_Terminology_Listing sheet in the excel file, incorrect column count. Expected 19, found 20.")
   end
 
 end
