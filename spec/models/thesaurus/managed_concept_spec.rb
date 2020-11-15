@@ -2017,10 +2017,14 @@ describe "Thesaurus::ManagedConcept" do
   describe "sets test database" do
 
     before :all do
-      timer_start
       load_files(schema_files, [])
-      load_test_file_into_triple_store("test_db_1.nq.gz")
-      timer_stop("Triple store loaded")
+      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_cdisc_term_versions(1..66)
+      load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
       IsoRegistrationAuthority.clear_scopes
     end
 
