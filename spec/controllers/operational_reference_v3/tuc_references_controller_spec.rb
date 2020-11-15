@@ -7,6 +7,7 @@ describe OperationalReferenceV3::TucReferencesController do
   include UserAccountHelpers
   include IsoHelpers
   include ControllerHelpers
+  include IsoManagedHelpers
 
   def make_standard(item)
     params = {}
@@ -62,6 +63,7 @@ describe OperationalReferenceV3::TucReferencesController do
       question.add_child({type:"tuc_reference", id_set:[{id:cli_1.id, context_id: context_1.id}]})
       make_standard(form)
       form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#F"))
+      check_dates(form, sub_dir, "update_tuc_reference_expected_5a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "update_tuc_reference_expected_5a.yaml", equate_method: :hash_equal)
       new_form = form.create_next_version
       new_form = Form.find_full(new_form.uri)
@@ -75,6 +77,7 @@ describe OperationalReferenceV3::TucReferencesController do
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_tuc_reference_expected_5b.yaml", equate_method: :hash_equal)
       form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#F"))
+      check_dates(form, sub_dir, "update_tuc_reference_expected_5a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "update_tuc_reference_expected_5a.yaml", equate_method: :hash_equal)
     end
 

@@ -133,6 +133,7 @@ describe Thesauri::SubsetsController do
                     delete: false,
                     uri: "http://www.cdisc.org/C66781/V2#C66781_C25529",
                     id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MV9DMjU1Mjk=",
+                    tags: nil,
                     ordinal: 2,
                     member_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFNNI2EyMzBlZWNiLTE1ODAtNGNjOS1hMWFmLTVlMThhNmFhYWFhMw=="},
                   { identifier: "C29846",
@@ -144,6 +145,7 @@ describe Thesauri::SubsetsController do
                     delete: false,
                     uri: "http://www.cdisc.org/C66781/V2#C66781_C29846",
                     id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MV9DMjk4NDY=",
+                    tags: nil,
                     ordinal: 3,
                     member_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFNNI2MyYzcwN2IxLWM3YTItNGVlNS1hOWFlLWJkNjNhNWFhYWFhNA=="}]
       get :list_children, params: { id: subset.uri.to_id, subset: { offset: "1" , count: "2" } }

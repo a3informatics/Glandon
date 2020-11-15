@@ -101,7 +101,7 @@ describe "Import::SponsorTermFormatOne" do
         results[parent.uri.to_s][child.uri.to_s] = child.find_custom_properties(parent).name_value_pairs
       end
     end
-    check_file_actual_expected(results, sub_dir, "custom_properties_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(results, sub_dir, "custom_properties_expected_3.yaml", equate_method: :hash_equal)
   end
 
   it "import, no errors, version 2, short II" do

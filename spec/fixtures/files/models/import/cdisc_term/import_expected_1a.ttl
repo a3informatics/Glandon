@@ -17,7 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "CDASH Test"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'import_input_1a.xlsx'"^^xsd:string ;
@@ -229,7 +228,6 @@
 <http://www.cdisc.org/C78418/V1#C78418>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dose Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78418/V1#C78418_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78418/V1#C78418_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -279,7 +277,6 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42887>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aerosol Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42887"^^xsd:string ;
 	th:notation "AEROSOL"^^xsd:string ;
 	th:definition "A product that is packaged under pressure and contains therapeutically active ingredients that are released upon activation of an appropriate valve system; it is intended for topical application to the skin as well as local application into the nose (nasal aerosols), mouth (lingual aerosols), or lungs (inhalation aerosols)."^^xsd:string ;
@@ -298,7 +295,6 @@
 <http://www.cdisc.org/C78418/V1#C78418_C25158>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capsule Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25158"^^xsd:string ;
 	th:notation "CAPSULE"^^xsd:string ;
 	th:definition "A solid pharmaceutical dosage form that contains medicinal agent within either a hard or soft soluble container or shell, usually used for the oral administration of medicine. The shells are made of a suitable form of gelatin or other substance. (NCI)"^^xsd:string ;
@@ -317,7 +313,6 @@
 <http://www.cdisc.org/C78418/V1#C78418_C28944>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cream Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28944"^^xsd:string ;
 	th:notation "CREAM"^^xsd:string ;
 	th:definition "A semisolid emulsion of either the oil-in-water or the water-in-oil type, ordinarily intended for topical use. (NCI)"^^xsd:string ;
@@ -331,7 +326,6 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42933>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gas Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42933"^^xsd:string ;
 	th:notation "GAS"^^xsd:string ;
 	th:definition "Any elastic aeriform fluid in which the molecules are separated from one another and have free paths. (NCI)"^^xsd:string ;
@@ -345,7 +339,6 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42934>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gel Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42934"^^xsd:string ;
 	th:notation "GEL"^^xsd:string ;
 	th:definition "A semisolid (1) dosage form that contains a gelling agent to provide stiffness to a solution or a colloidal dispersion (2). A gel may contain suspended particles. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: A colloidal dispersion is a system in which particles of colloidal dimension (i.e., typically between 1 nm and 1 micrometer) are distributed uniformly throughout a liquid."^^xsd:string ;
@@ -359,7 +352,6 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42966>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ointment Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42966"^^xsd:string ;
 	th:notation "OINTMENT"^^xsd:string ;
 	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing less than 20 percent water and volatiles (2) and greater than 50 percent hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved."^^xsd:string ;
@@ -378,7 +370,6 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42968>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Patch Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42968"^^xsd:string ;
 	th:notation "PATCH"^^xsd:string ;
 	th:definition "A drug delivery system that often contains an adhesive backing that is usually applied to an external site on the body. Its ingredients either passively diffuse from, or are actively transported from, some portion of the patch. Depending upon the patch, the ingredients are either delivered to the outer surface of the body or into the body. A patch is sometimes synonymous with the terms Extended Release Film and System."^^xsd:string ;
@@ -392,7 +383,6 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42972>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Powder Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42972"^^xsd:string ;
 	th:notation "POWDER"^^xsd:string ;
 	th:definition "An intimate mixture of dry, finely divided drugs and/or chemicals that may be intended for internal or external use. (NCI)"^^xsd:string ;
@@ -406,7 +396,6 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42989>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Spray Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42989"^^xsd:string ;
 	th:notation "SPRAY"^^xsd:string ;
 	th:definition "A liquid minutely divided as by a jet of air or steam. (NCI)"^^xsd:string ;
@@ -420,7 +409,6 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42993>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Suppository Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42993"^^xsd:string ;
 	th:notation "SUPPOSITORY"^^xsd:string ;
 	th:definition "A solid body of various weights and shapes, adapted for introduction into the rectal, vaginal, or urethral orifice of the human body; they usually melt, soften, or dissolve at body temperature."^^xsd:string ;
@@ -439,7 +427,6 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42994>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Suspension Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42994"^^xsd:string ;
 	th:notation "SUSPENSION"^^xsd:string ;
 	th:definition "A liquid dosage form that contains solid particles dispersed in a liquid vehicle. Note: A liquid is pourable; it flows and conforms to its container at room temperature. It displays Newtonian or pseudoplastic flow behavior."^^xsd:string ;
@@ -458,7 +445,6 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tablet Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42998"^^xsd:string ;
 	th:notation "TABLET"^^xsd:string ;
 	th:definition "A solid dosage form containing medicinal substances with or without suitable diluents. (NCI)"^^xsd:string ;
@@ -485,7 +471,6 @@
 <http://www.cdisc.org/C78417/V1#C78417>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dose Units"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78417/V1#C78417_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78417/V1#C78417_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -531,7 +516,6 @@
 <http://www.cdisc.org/C78417/V1#C78417_C48480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capsule Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48480"^^xsd:string ;
 	th:notation "CAPSULE"^^xsd:string ;
 	th:definition "A dosing measurement based on the capsule unit.(NCI)"^^xsd:string ;
@@ -551,7 +535,6 @@
 <http://www.cdisc.org/C78417/V1#C78417_C48155>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gram"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48155"^^xsd:string ;
 	th:notation "g"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a kilogram, the kilogram being the base unit of mass in the International System of Units (SI)."^^xsd:string ;
@@ -570,7 +553,6 @@
 <http://www.cdisc.org/C78417/V1#C78417_C48579>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "International Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48579"^^xsd:string ;
 	th:notation "IU"^^xsd:string ;
 	th:definition "The unitage assigned by the WHO (World Health Organization) to International Biological Standards - substances, classed as biological according to the criteria provided by WHO Expert Committee on Biological Standardization, to enable the results of biological and immunological assay procedures to be expressed in the same way throughout the world. The definition of an international unit is generally arbitrary and technical, and has to be officially approved by the International Conference for Unification of Formulae.(NCI)"^^xsd:string ;
@@ -594,7 +576,6 @@
 <http://www.cdisc.org/C78417/V1#C78417_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milligram"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28253"^^xsd:string ;
 	th:notation "mg"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a gram."^^xsd:string ;
@@ -613,7 +594,6 @@
 <http://www.cdisc.org/C78417/V1#C78417_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliliter"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28254"^^xsd:string ;
 	th:notation "mL"^^xsd:string ;
 	th:definition "A unit of volume equal to one thousandth (1E-3) of a liter."^^xsd:string ;
@@ -637,7 +617,6 @@
 <http://www.cdisc.org/C78417/V1#C78417_C65060>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Puff Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C65060"^^xsd:string ;
 	th:notation "PUFF"^^xsd:string ;
 	th:definition "A means of delivering a defined dose of a therapeutic aerolized solution into either the upper or lower respiratory tract. Metered-dose inhalers or spray pumps are devices that provide a puff dose for delivery into either the oral or the nasal cavity.(NCI)"^^xsd:string ;
@@ -656,7 +635,6 @@
 <http://www.cdisc.org/C78417/V1#C78417_C48542>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tablet Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48542"^^xsd:string ;
 	th:notation "TABLET"^^xsd:string ;
 	th:definition "A dosing measurement based on the tablet unit.(NCI)"^^xsd:string ;
@@ -676,7 +654,6 @@
 <http://www.cdisc.org/C78417/V1#C78417_C48152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48152"^^xsd:string ;
 	th:notation "ug"^^xsd:string ;
 	th:definition "A unit of mass equal to one millionth (1E-6) of a gram."^^xsd:string ;
@@ -708,7 +685,6 @@
 <http://www.cdisc.org/C78419/V1#C78419>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dosing Frequency per Interval"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78419/V1#C78419_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78419/V1#C78419_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -754,7 +730,6 @@
 <http://www.cdisc.org/C78419/V1#C78419_C64496>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Twice Daily"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64496"^^xsd:string ;
 	th:notation "BID"^^xsd:string ;
 	th:definition "Two times per day, at unspecified times. (NCI)"^^xsd:string ;
@@ -778,7 +753,6 @@
 <http://www.cdisc.org/C78419/V1#C78419_C64499>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "As Necessary"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64499"^^xsd:string ;
 	th:notation "PRN"^^xsd:string ;
 	th:definition "As needed. (NCI)"^^xsd:string ;
@@ -797,7 +771,6 @@
 <http://www.cdisc.org/C78419/V1#C78419_C25473>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Daily"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25473"^^xsd:string ;
 	th:notation "QD"^^xsd:string ;
 	th:definition "A rate of occurrences within a period of time equal to one day."^^xsd:string ;
@@ -816,7 +789,6 @@
 <http://www.cdisc.org/C78419/V1#C78419_C64530>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Four Times Daily"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64530"^^xsd:string ;
 	th:notation "QID"^^xsd:string ;
 	th:definition "Four times per day. (NCI)"^^xsd:string ;
@@ -835,7 +807,6 @@
 <http://www.cdisc.org/C78419/V1#C78419_C64498>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Monthly"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64498"^^xsd:string ;
 	th:notation "QM"^^xsd:string ;
 	th:definition "Every month. (NCI)"^^xsd:string ;
@@ -859,7 +830,6 @@
 <http://www.cdisc.org/C78419/V1#C78419_C64525>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Every Other Day"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64525"^^xsd:string ;
 	th:notation "QOD"^^xsd:string ;
 	th:definition "Every other day. (NCI)"^^xsd:string ;
@@ -878,7 +848,6 @@
 <http://www.cdisc.org/C78419/V1#C78419_C64527>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Three Times Daily"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64527"^^xsd:string ;
 	th:notation "TID"^^xsd:string ;
 	th:definition "Three times per day. (NCI)"^^xsd:string ;
@@ -897,7 +866,6 @@
 <http://www.cdisc.org/C78419/V1#C78419_C17998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Unknown"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C17998"^^xsd:string ;
 	th:notation "UNKNOWN"^^xsd:string ;
 	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
@@ -934,7 +902,6 @@
 <http://www.cdisc.org/C78420/V1#C78420>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78420/V1#C78420_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78420/V1#C78420_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -984,7 +951,6 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38250>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intralesional Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38250"^^xsd:string ;
 	th:notation "INTRALESIONAL"^^xsd:string ;
 	th:definition "Administration within or introduced directly into a localized lesion. (FDA)"^^xsd:string ;
@@ -998,7 +964,6 @@
 <http://www.cdisc.org/C78420/V1#C78420_C28161>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intramuscular Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28161"^^xsd:string ;
 	th:notation "INTRAMUSCULAR"^^xsd:string ;
 	th:definition "Administration within a muscle. (FDA)"^^xsd:string ;
@@ -1012,7 +977,6 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38255>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intraocular Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38255"^^xsd:string ;
 	th:notation "INTRAOCULAR"^^xsd:string ;
 	th:definition "Administration within the eye. (FDA)"^^xsd:string ;
@@ -1026,7 +990,6 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38258>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intraperitoneal Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38258"^^xsd:string ;
 	th:notation "INTRAPERITONEAL"^^xsd:string ;
 	th:definition "Administration within the peritoneal cavity. (FDA)"^^xsd:string ;
@@ -1040,7 +1003,6 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38284>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nasal Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38284"^^xsd:string ;
 	th:notation "NASAL"^^xsd:string ;
 	th:definition "Administration to the nose; administered by way of the nose. (FDA)"^^xsd:string ;
@@ -1059,7 +1021,6 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38288>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Oral Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38288"^^xsd:string ;
 	th:notation "ORAL"^^xsd:string ;
 	th:definition "Administration to or by way of the mouth. (FDA)"^^xsd:string ;
@@ -1083,7 +1044,6 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38295>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Rectal Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38295"^^xsd:string ;
 	th:notation "RECTAL"^^xsd:string ;
 	th:definition "Administration to the rectum. (FDA)"^^xsd:string ;
@@ -1097,7 +1057,6 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38216>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Inhalation Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38216"^^xsd:string ;
 	th:notation "RESPIRATORY (INHALATION)"^^xsd:string ;
 	th:definition "Administration within the respiratory tract by inhaling orally or nasally for local or systemic effect. (FDA)"^^xsd:string ;
@@ -1111,7 +1070,6 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38299>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Subcutaneous Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38299"^^xsd:string ;
 	th:notation "SUBCUTANEOUS"^^xsd:string ;
 	th:definition "Administration beneath the skin; hypodermic. Synonymous with the term SUBDERMAL. (FDA)"^^xsd:string ;
@@ -1135,7 +1093,6 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38304>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Topical Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38304"^^xsd:string ;
 	th:notation "TOPICAL"^^xsd:string ;
 	th:definition "Administration to a particular spot on the outer surface of the body. The E2B term TRANSMAMMARY is a subset of the term TOPICAL. (FDA)"^^xsd:string ;
@@ -1154,7 +1111,6 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38305>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Transdermal Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38305"^^xsd:string ;
 	th:notation "TRANSDERMAL"^^xsd:string ;
 	th:definition "Administration through the dermal layer of the skin to the systemic circulation by diffusion. (FDA)"^^xsd:string ;
@@ -1168,7 +1124,6 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38313>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vaginal Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38313"^^xsd:string ;
 	th:notation "VAGINAL"^^xsd:string ;
 	th:definition "Administration into the vagina. (FDA)"^^xsd:string ;
@@ -1190,7 +1145,6 @@
 <http://www.cdisc.org/C78422/V1#C78422>
 	rdf:type th:ManagedConcept ;
 	isoC:label "ECG Original Units"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78422/V1#C78422_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78422/V1#C78422_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1231,7 +1185,6 @@
 <http://www.cdisc.org/C78422/V1#C78422_C49673>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Beats per Minute"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C49673"^^xsd:string ;
 	th:notation "beats/min"^^xsd:string ;
 	th:definition "The number of heartbeats measured per minute time. (NCI)"^^xsd:string ;
@@ -1250,7 +1203,6 @@
 <http://www.cdisc.org/C78422/V1#C78422_C41140>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Millisecond"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41140"^^xsd:string ;
 	th:notation "msec"^^xsd:string ;
 	th:definition "A unit of time, which is equal to one thousandth of a second.(NCI)"^^xsd:string ;
@@ -1269,7 +1221,6 @@
 <http://www.cdisc.org/C78422/V1#C78422_C42535>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Second"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42535"^^xsd:string ;
 	th:notation "sec"^^xsd:string ;
 	th:definition "The base unit of time in the International System of Units (SI) equal to the duration of 9,192,631,770 periods of the specified light radiation corresponding to the transition between the two hyperfine levels of the cesium 133 atom in its ground state at 0 K."^^xsd:string ;
@@ -1296,7 +1247,6 @@
 <http://www.cdisc.org/C128690/V1#C128690>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Ethnicity As Collected"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C128690/V1#C128690_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C128690/V1#C128690_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1349,7 +1299,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C17950>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ashkenazi Jew"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C17950"^^xsd:string ;
 	th:notation "ASHKENAZI JEW"^^xsd:string ;
 	th:definition "A person of Ashkenazi Jewish descent."^^xsd:string ;
@@ -1363,7 +1312,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C67118>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Central American"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67118"^^xsd:string ;
 	th:notation "CENTRAL AMERICAN"^^xsd:string ;
 	th:definition "A person of Central American descent."^^xsd:string ;
@@ -1377,7 +1325,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C107608>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cuban"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C107608"^^xsd:string ;
 	th:notation "CUBAN"^^xsd:string ;
 	th:definition "A person of Cuban descent."^^xsd:string ;
@@ -1391,7 +1338,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C67115>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cuban or Cuban American"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67115"^^xsd:string ;
 	th:notation "CUBAN AMERICAN"^^xsd:string ;
 	th:definition "A person of Cuban and American descent."^^xsd:string ;
@@ -1405,7 +1351,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C17459>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hispanic or Latino"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C17459"^^xsd:string ;
 	th:notation "HISPANIC OR LATINO"^^xsd:string ;
 	th:definition "A person of Mexican, Puerto Rican, Cuban, Central or South American or other Spanish culture or origin, regardless of race. (NCI)"^^xsd:string ;
@@ -1419,7 +1364,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C126531>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Latin American"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C126531"^^xsd:string ;
 	th:notation "LATIN AMERICAN"^^xsd:string ;
 	th:definition "A person of Latin American descent."^^xsd:string ;
@@ -1433,7 +1377,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C67113>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mexican"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67113"^^xsd:string ;
 	th:notation "MEXICAN"^^xsd:string ;
 	th:definition "A person of Mexican descent."^^xsd:string ;
@@ -1447,7 +1390,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C67114>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mexican American"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67114"^^xsd:string ;
 	th:notation "MEXICAN AMERICAN"^^xsd:string ;
 	th:definition "A person of Mexican and American descent."^^xsd:string ;
@@ -1461,7 +1403,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C41222>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Not Hispanic or Latino"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41222"^^xsd:string ;
 	th:notation "NOT HISPANIC OR LATINO"^^xsd:string ;
 	th:definition "A person not of Cuban, Mexican, Puerto Rican, South or Central American, or other Spanish culture or origin, regardless of race. An arbitrary ethnic classification. (NCI)"^^xsd:string ;
@@ -1475,7 +1416,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C43234>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Not Reported"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43234"^^xsd:string ;
 	th:notation "NOT REPORTED"^^xsd:string ;
 	th:definition "Not provided or available."^^xsd:string ;
@@ -1494,7 +1434,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C67112>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Puerto Rican"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67112"^^xsd:string ;
 	th:notation "PUERTO RICAN"^^xsd:string ;
 	th:definition "A person of Puerto Rican descent."^^xsd:string ;
@@ -1508,7 +1447,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C103283>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sephardic Jew"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C103283"^^xsd:string ;
 	th:notation "SEPHARDIC JEW"^^xsd:string ;
 	th:definition "A person of Sephardic Jewish descent."^^xsd:string ;
@@ -1522,7 +1460,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C126532>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "South American"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C126532"^^xsd:string ;
 	th:notation "SOUTH AMERICAN"^^xsd:string ;
 	th:definition "A person of South American descent."^^xsd:string ;
@@ -1536,7 +1473,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C67120>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Spanish"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67120"^^xsd:string ;
 	th:notation "SPANISH"^^xsd:string ;
 	th:definition "A person from Spain or of Spanish descent."^^xsd:string ;
@@ -1550,7 +1486,6 @@
 <http://www.cdisc.org/C128690/V1#C128690_C17998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Unknown"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C17998"^^xsd:string ;
 	th:notation "UNKNOWN"^^xsd:string ;
 	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
@@ -1571,7 +1506,6 @@
 <http://www.cdisc.org/C78426/V1#C78426>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Exposure Dose Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78426/V1#C78426_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78426/V1#C78426_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1621,7 +1555,6 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42887>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aerosol Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42887"^^xsd:string ;
 	th:notation "AEROSOL"^^xsd:string ;
 	th:definition "A product that is packaged under pressure and contains therapeutically active ingredients that are released upon activation of an appropriate valve system; it is intended for topical application to the skin as well as local application into the nose (nasal aerosols), mouth (lingual aerosols), or lungs (inhalation aerosols)."^^xsd:string ;
@@ -1632,7 +1565,6 @@
 <http://www.cdisc.org/C78426/V1#C78426_C25158>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capsule Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25158"^^xsd:string ;
 	th:notation "CAPSULE"^^xsd:string ;
 	th:definition "A solid pharmaceutical dosage form that contains medicinal agent within either a hard or soft soluble container or shell, usually used for the oral administration of medicine. The shells are made of a suitable form of gelatin or other substance. (NCI)"^^xsd:string ;
@@ -1643,7 +1575,6 @@
 <http://www.cdisc.org/C78426/V1#C78426_C28944>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cream Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28944"^^xsd:string ;
 	th:notation "CREAM"^^xsd:string ;
 	th:definition "A semisolid emulsion of either the oil-in-water or the water-in-oil type, ordinarily intended for topical use. (NCI)"^^xsd:string ;
@@ -1653,7 +1584,6 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42933>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gas Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42933"^^xsd:string ;
 	th:notation "GAS"^^xsd:string ;
 	th:definition "Any elastic aeriform fluid in which the molecules are separated from one another and have free paths. (NCI)"^^xsd:string ;
@@ -1663,7 +1593,6 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42934>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gel Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42934"^^xsd:string ;
 	th:notation "GEL"^^xsd:string ;
 	th:definition "A semisolid (1) dosage form that contains a gelling agent to provide stiffness to a solution or a colloidal dispersion (2). A gel may contain suspended particles. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: A colloidal dispersion is a system in which particles of colloidal dimension (i.e., typically between 1 nm and 1 micrometer) are distributed uniformly throughout a liquid."^^xsd:string ;
@@ -1673,7 +1602,6 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42966>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ointment Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42966"^^xsd:string ;
 	th:notation "OINTMENT"^^xsd:string ;
 	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing less than 20 percent water and volatiles (2) and greater than 50 percent hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved."^^xsd:string ;
@@ -1684,7 +1612,6 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42968>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Patch Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42968"^^xsd:string ;
 	th:notation "PATCH"^^xsd:string ;
 	th:definition "A drug delivery system that often contains an adhesive backing that is usually applied to an external site on the body. Its ingredients either passively diffuse from, or are actively transported from, some portion of the patch. Depending upon the patch, the ingredients are either delivered to the outer surface of the body or into the body. A patch is sometimes synonymous with the terms Extended Release Film and System."^^xsd:string ;
@@ -1694,7 +1621,6 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42972>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Powder Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42972"^^xsd:string ;
 	th:notation "POWDER"^^xsd:string ;
 	th:definition "An intimate mixture of dry, finely divided drugs and/or chemicals that may be intended for internal or external use. (NCI)"^^xsd:string ;
@@ -1704,7 +1630,6 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42989>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Spray Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42989"^^xsd:string ;
 	th:notation "SPRAY"^^xsd:string ;
 	th:definition "A liquid minutely divided as by a jet of air or steam. (NCI)"^^xsd:string ;
@@ -1714,7 +1639,6 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42993>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Suppository Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42993"^^xsd:string ;
 	th:notation "SUPPOSITORY"^^xsd:string ;
 	th:definition "A solid body of various weights and shapes, adapted for introduction into the rectal, vaginal, or urethral orifice of the human body; they usually melt, soften, or dissolve at body temperature."^^xsd:string ;
@@ -1725,7 +1649,6 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42994>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Suspension Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42994"^^xsd:string ;
 	th:notation "SUSPENSION"^^xsd:string ;
 	th:definition "A liquid dosage form that contains solid particles dispersed in a liquid vehicle. Note: A liquid is pourable; it flows and conforms to its container at room temperature. It displays Newtonian or pseudoplastic flow behavior."^^xsd:string ;
@@ -1736,7 +1659,6 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tablet Dosage Form"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42998"^^xsd:string ;
 	th:notation "TABLET"^^xsd:string ;
 	th:definition "A solid dosage form containing medicinal substances with or without suitable diluents. (NCI)"^^xsd:string ;
@@ -1755,7 +1677,6 @@
 <http://www.cdisc.org/C78745/V1#C78745>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Exposure Dosing Frequency per Interval"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78745/V1#C78745_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78745/V1#C78745_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1801,7 +1722,6 @@
 <http://www.cdisc.org/C78745/V1#C78745_C64496>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Twice Daily"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64496"^^xsd:string ;
 	th:notation "BID"^^xsd:string ;
 	th:definition "Two times per day, at unspecified times. (NCI)"^^xsd:string ;
@@ -1813,7 +1733,6 @@
 <http://www.cdisc.org/C78745/V1#C78745_C64499>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "As Necessary"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64499"^^xsd:string ;
 	th:notation "PRN"^^xsd:string ;
 	th:definition "As needed. (NCI)"^^xsd:string ;
@@ -1824,7 +1743,6 @@
 <http://www.cdisc.org/C78745/V1#C78745_C25473>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Daily"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25473"^^xsd:string ;
 	th:notation "QD"^^xsd:string ;
 	th:definition "A rate of occurrences within a period of time equal to one day."^^xsd:string ;
@@ -1835,7 +1753,6 @@
 <http://www.cdisc.org/C78745/V1#C78745_C64530>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Four Times Daily"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64530"^^xsd:string ;
 	th:notation "QID"^^xsd:string ;
 	th:definition "Four times per day. (NCI)"^^xsd:string ;
@@ -1846,7 +1763,6 @@
 <http://www.cdisc.org/C78745/V1#C78745_C64498>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Monthly"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64498"^^xsd:string ;
 	th:notation "QM"^^xsd:string ;
 	th:definition "Every month. (NCI)"^^xsd:string ;
@@ -1858,7 +1774,6 @@
 <http://www.cdisc.org/C78745/V1#C78745_C64525>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Every Other Day"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64525"^^xsd:string ;
 	th:notation "QOD"^^xsd:string ;
 	th:definition "Every other day. (NCI)"^^xsd:string ;
@@ -1869,7 +1784,6 @@
 <http://www.cdisc.org/C78745/V1#C78745_C64527>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Three Times Daily"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64527"^^xsd:string ;
 	th:notation "TID"^^xsd:string ;
 	th:definition "Three times per day. (NCI)"^^xsd:string ;
@@ -1880,7 +1794,6 @@
 <http://www.cdisc.org/C78745/V1#C78745_C17998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Unknown"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C17998"^^xsd:string ;
 	th:notation "UNKNOWN"^^xsd:string ;
 	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
@@ -1901,7 +1814,6 @@
 <http://www.cdisc.org/C78425/V1#C78425>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Exposure Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78425/V1#C78425_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78425/V1#C78425_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1951,7 +1863,6 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38250>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intralesional Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38250"^^xsd:string ;
 	th:notation "INTRALESIONAL"^^xsd:string ;
 	th:definition "Administration within or introduced directly into a localized lesion. (FDA)"^^xsd:string ;
@@ -1961,7 +1872,6 @@
 <http://www.cdisc.org/C78425/V1#C78425_C28161>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intramuscular Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28161"^^xsd:string ;
 	th:notation "INTRAMUSCULAR"^^xsd:string ;
 	th:definition "Administration within a muscle. (FDA)"^^xsd:string ;
@@ -1971,7 +1881,6 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38255>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intraocular Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38255"^^xsd:string ;
 	th:notation "INTRAOCULAR"^^xsd:string ;
 	th:definition "Administration within the eye. (FDA)"^^xsd:string ;
@@ -1981,7 +1890,6 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38258>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intraperitoneal Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38258"^^xsd:string ;
 	th:notation "INTRAPERITONEAL"^^xsd:string ;
 	th:definition "Administration within the peritoneal cavity. (FDA)"^^xsd:string ;
@@ -1991,7 +1899,6 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38284>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nasal Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38284"^^xsd:string ;
 	th:notation "NASAL"^^xsd:string ;
 	th:definition "Administration to the nose; administered by way of the nose. (FDA)"^^xsd:string ;
@@ -2002,7 +1909,6 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38288>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Oral Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38288"^^xsd:string ;
 	th:notation "ORAL"^^xsd:string ;
 	th:definition "Administration to or by way of the mouth. (FDA)"^^xsd:string ;
@@ -2014,7 +1920,6 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38295>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Rectal Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38295"^^xsd:string ;
 	th:notation "RECTAL"^^xsd:string ;
 	th:definition "Administration to the rectum. (FDA)"^^xsd:string ;
@@ -2024,7 +1929,6 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38216>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Inhalation Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38216"^^xsd:string ;
 	th:notation "RESPIRATORY (INHALATION)"^^xsd:string ;
 	th:definition "Administration within the respiratory tract by inhaling orally or nasally for local or systemic effect. (FDA)"^^xsd:string ;
@@ -2034,7 +1938,6 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38299>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Subcutaneous Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38299"^^xsd:string ;
 	th:notation "SUBCUTANEOUS"^^xsd:string ;
 	th:definition "Administration beneath the skin; hypodermic. Synonymous with the term SUBDERMAL. (FDA)"^^xsd:string ;
@@ -2046,7 +1949,6 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38304>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Topical Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38304"^^xsd:string ;
 	th:notation "TOPICAL"^^xsd:string ;
 	th:definition "Administration to a particular spot on the outer surface of the body. The E2B term TRANSMAMMARY is a subset of the term TOPICAL. (FDA)"^^xsd:string ;
@@ -2057,7 +1959,6 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38305>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Transdermal Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38305"^^xsd:string ;
 	th:notation "TRANSDERMAL"^^xsd:string ;
 	th:definition "Administration through the dermal layer of the skin to the systemic circulation by diffusion. (FDA)"^^xsd:string ;
@@ -2067,7 +1968,6 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38313>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vaginal Route of Administration"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38313"^^xsd:string ;
 	th:notation "VAGINAL"^^xsd:string ;
 	th:definition "Administration into the vagina. (FDA)"^^xsd:string ;
@@ -2085,7 +1985,6 @@
 <http://www.cdisc.org/C128689/V1#C128689>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Race As Collected"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C128689/V1#C128689_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C128689/V1#C128689_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2204,7 +2103,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C154875>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aboriginal Australian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C154875"^^xsd:string ;
 	th:notation "ABORIGINAL AUSTRALIAN"^^xsd:string ;
 	th:definition "The native people of Australia."^^xsd:string ;
@@ -2218,7 +2116,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C42331>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "African"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42331"^^xsd:string ;
 	th:notation "AFRICAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of sub-Saharan Africa."^^xsd:string ;
@@ -2232,7 +2129,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C128937>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "African American"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C128937"^^xsd:string ;
 	th:notation "AFRICAN AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of sub-Saharan Africa and the United States."^^xsd:string ;
@@ -2246,7 +2142,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C41226>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "African Caribbean"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41226"^^xsd:string ;
 	th:notation "AFRICAN CARIBBEAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of sub-Saharan Africa and the Caribbean."^^xsd:string ;
@@ -2260,7 +2155,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C18237>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Alaska Native"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C18237"^^xsd:string ;
 	th:notation "ALASKA NATIVE"^^xsd:string ;
 	th:definition "The native people of Alaska."^^xsd:string ;
@@ -2274,7 +2168,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43877>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "American Indian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43877"^^xsd:string ;
 	th:notation "AMERICAN INDIAN"^^xsd:string ;
 	th:definition "The native people of North America."^^xsd:string ;
@@ -2288,7 +2181,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C41259>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "American Indian or Alaska Native"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41259"^^xsd:string ;
 	th:notation "AMERICAN INDIAN OR ALASKA NATIVE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of North and South America (including Central America), and who maintains tribal affiliation or community attachment. (FDA)"^^xsd:string ;
@@ -2302,7 +2194,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43876>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Arab"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43876"^^xsd:string ;
 	th:notation "ARAB"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Arabian peninsula and surrounding territories in the Middle East and northern Africa."^^xsd:string ;
@@ -2316,7 +2207,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C41260>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Asian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41260"^^xsd:string ;
 	th:notation "ASIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam. (FDA)"^^xsd:string ;
@@ -2330,7 +2220,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C16310>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Asian American"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C16310"^^xsd:string ;
 	th:notation "ASIAN AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of Asia and the United States."^^xsd:string ;
@@ -2344,7 +2233,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C41262>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Asian Indian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41262"^^xsd:string ;
 	th:notation "ASIAN INDIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Indian subcontinent."^^xsd:string ;
@@ -2358,7 +2246,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C67271>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bahamian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67271"^^xsd:string ;
 	th:notation "BAHAMIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Bahamas."^^xsd:string ;
@@ -2372,7 +2259,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43671>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bangladeshi"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43671"^^xsd:string ;
 	th:notation "BANGLADESHI"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Bangladesh."^^xsd:string ;
@@ -2386,7 +2272,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43823>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Barbadian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43823"^^xsd:string ;
 	th:notation "BARBADIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Barbados."^^xsd:string ;
@@ -2400,7 +2285,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43673>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bhutanese"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43673"^^xsd:string ;
 	th:notation "BHUTANESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Bhutan."^^xsd:string ;
@@ -2414,7 +2298,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C128938>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Black"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C128938"^^xsd:string ;
 	th:notation "BLACK"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of sub-Saharan Africa or the Caribbean."^^xsd:string ;
@@ -2428,7 +2311,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C128991>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Black Central American"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C128991"^^xsd:string ;
 	th:notation "BLACK CENTRAL AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of sub-Saharan Africa and Central America."^^xsd:string ;
@@ -2442,7 +2324,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C16352>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Black or African American"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C16352"^^xsd:string ;
 	th:notation "BLACK OR AFRICAN AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in any of the black racial groups of Africa. Terms such as \"Haitian\" or \"Negro\" can be used in addition to \"Black or African American.\" (FDA)"^^xsd:string ;
@@ -2456,7 +2337,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C128992>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Black South American"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C128992"^^xsd:string ;
 	th:notation "BLACK SOUTH AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of sub-Saharan Africa and South America."^^xsd:string ;
@@ -2470,7 +2350,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43830>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Botswanan"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43830"^^xsd:string ;
 	th:notation "BOTSWANAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Botswana."^^xsd:string ;
@@ -2484,7 +2363,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43674>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Burmese"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43674"^^xsd:string ;
 	th:notation "BURMESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Myanmar (formerly Burma)."^^xsd:string ;
@@ -2498,7 +2376,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43399>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cambodian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43399"^^xsd:string ;
 	th:notation "CAMBODIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Cambodia (formerly Kampuchea)."^^xsd:string ;
@@ -2512,7 +2389,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77810>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Caribbean Indian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77810"^^xsd:string ;
 	th:notation "CARIBBEAN INDIAN"^^xsd:string ;
 	th:definition "The native people of the Caribbean."^^xsd:string ;
@@ -2526,7 +2402,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C44950>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Central American Indian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C44950"^^xsd:string ;
 	th:notation "CENTRAL AMERICAN INDIAN"^^xsd:string ;
 	th:definition "The native people of Central America."^^xsd:string ;
@@ -2540,7 +2415,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43391>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Chinese"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43391"^^xsd:string ;
 	th:notation "CHINESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of China."^^xsd:string ;
@@ -2554,7 +2428,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43824>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dominica Islander"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43824"^^xsd:string ;
 	th:notation "DOMINICA ISLANDER"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Dominica."^^xsd:string ;
@@ -2568,7 +2441,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C67117>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dominican"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67117"^^xsd:string ;
 	th:notation "DOMINICAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Dominican Republic."^^xsd:string ;
@@ -2582,7 +2454,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77819>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Eastern European"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77819"^^xsd:string ;
 	th:notation "EASTERN EUROPEAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Eastern Europe."^^xsd:string ;
@@ -2596,7 +2467,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43831>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ethiopian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43831"^^xsd:string ;
 	th:notation "ETHIOPIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Ethiopia."^^xsd:string ;
@@ -2610,7 +2480,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43851>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "European"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43851"^^xsd:string ;
 	th:notation "EUROPEAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Europe."^^xsd:string ;
@@ -2624,7 +2493,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43393>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Filipino"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43393"^^xsd:string ;
 	th:notation "FILIPINO"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Philippines."^^xsd:string ;
@@ -2638,7 +2506,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C44265>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Greenland Eskimo"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C44265"^^xsd:string ;
 	th:notation "GREENLAND INUIT"^^xsd:string ;
 	th:definition "The native people of Greenland."^^xsd:string ;
@@ -2652,7 +2519,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43825>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Haitian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43825"^^xsd:string ;
 	th:notation "HAITIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Haiti."^^xsd:string ;
@@ -2666,7 +2532,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43398>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hmong"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43398"^^xsd:string ;
 	th:notation "HMONG"^^xsd:string ;
 	th:definition "The native people originating in China around the Yellow River or Hoang Ho."^^xsd:string ;
@@ -2680,7 +2545,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43715>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Indonesian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43715"^^xsd:string ;
 	th:notation "INDONESIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Indonesia."^^xsd:string ;
@@ -2694,7 +2558,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C44268>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Inupiat Eskimo"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C44268"^^xsd:string ;
 	th:notation "INUPIAT INUIT"^^xsd:string ;
 	th:definition "The native people inhabiting the territory spanning the Norton Sound on the Bering Sea to the Canadian border."^^xsd:string ;
@@ -2708,7 +2571,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43718>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Iwo Jiman"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43718"^^xsd:string ;
 	th:notation "IWO JIMAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Iwo Jima."^^xsd:string ;
@@ -2722,7 +2584,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43826>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Jamaican"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43826"^^xsd:string ;
 	th:notation "JAMAICAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Jamaica."^^xsd:string ;
@@ -2736,7 +2597,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43392>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Japanese"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43392"^^xsd:string ;
 	th:notation "JAPANESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Japan."^^xsd:string ;
@@ -2750,7 +2610,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C154874>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Khoisan"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C154874"^^xsd:string ;
 	th:notation "KHOISAN"^^xsd:string ;
 	th:definition "The native people of the Western Cape in southern Africa."^^xsd:string ;
@@ -2764,7 +2623,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43395>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Korean"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43395"^^xsd:string ;
 	th:notation "KOREAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of North and South Korea."^^xsd:string ;
@@ -2778,7 +2636,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43397>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Laotian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43397"^^xsd:string ;
 	th:notation "LAOTIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Laos."^^xsd:string ;
@@ -2792,7 +2649,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43832>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Liberian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43832"^^xsd:string ;
 	th:notation "LIBERIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Liberia."^^xsd:string ;
@@ -2806,7 +2662,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43722>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Malagasy"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43722"^^xsd:string ;
 	th:notation "MALAGASY"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Madagascar."^^xsd:string ;
@@ -2820,7 +2675,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43716>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Malaysian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43716"^^xsd:string ;
 	th:notation "MALAYSIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Malaysia."^^xsd:string ;
@@ -2834,7 +2688,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43719>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Maldivian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43719"^^xsd:string ;
 	th:notation "MALDIVIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Maldives."^^xsd:string ;
@@ -2848,7 +2701,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77811>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mediterranean"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77811"^^xsd:string ;
 	th:notation "MEDITERRANEAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the countries surrounding the Mediterranean sea."^^xsd:string ;
@@ -2862,7 +2714,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43409>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Melanesian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43409"^^xsd:string ;
 	th:notation "MELANESIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Melanesia."^^xsd:string ;
@@ -2876,7 +2727,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43402>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Micronesian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43402"^^xsd:string ;
 	th:notation "MICRONESIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Micronesia."^^xsd:string ;
@@ -2890,7 +2740,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77820>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Middle Eastern"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77820"^^xsd:string ;
 	th:notation "MIDDLE EASTERN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Middle East."^^xsd:string ;
@@ -2904,7 +2753,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43864>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mongolian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43864"^^xsd:string ;
 	th:notation "MONGOLIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Mongolia."^^xsd:string ;
@@ -2918,7 +2766,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43833>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Namibian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43833"^^xsd:string ;
 	th:notation "NAMIBIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Namibia."^^xsd:string ;
@@ -2932,7 +2779,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C41219>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Native Hawaiian or Other Pacific Islander"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41219"^^xsd:string ;
 	th:notation "NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER"^^xsd:string ;
 	th:definition "Denotes a person having origins in any of the original peoples of Hawaii, Guam, Samoa, or other Pacific Islands. The term covers particularly people who identify themselves as part-Hawaiian, Native Hawaiian, Guamanian or Chamorro, Carolinian, Samoan, Chuu. (FDA)"^^xsd:string ;
@@ -2946,7 +2792,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43720>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nepalese"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43720"^^xsd:string ;
 	th:notation "NEPALESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Nepal."^^xsd:string ;
@@ -2960,7 +2805,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43834>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nigerian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43834"^^xsd:string ;
 	th:notation "NIGERIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Nigeria."^^xsd:string ;
@@ -2974,7 +2818,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77813>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "North Coast of Africa"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77813"^^xsd:string ;
 	th:notation "NORTH AFRICAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of North Africa."^^xsd:string ;
@@ -2988,7 +2831,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77814>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Northern European"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77814"^^xsd:string ;
 	th:notation "NORTHERN EUROPEAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Northern Europe."^^xsd:string ;
@@ -3002,7 +2844,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43234>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Not Reported"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43234"^^xsd:string ;
 	th:notation "NOT REPORTED"^^xsd:string ;
 	th:definition "Not provided or available."^^xsd:string ;
@@ -3013,7 +2854,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43717>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Okinawan"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43717"^^xsd:string ;
 	th:notation "OKINAWAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Okinawa."^^xsd:string ;
@@ -3027,7 +2867,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43427>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Pakistani"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43427"^^xsd:string ;
 	th:notation "PAKISTANI"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Pakistan."^^xsd:string ;
@@ -3041,7 +2880,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43405>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Polynesian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43405"^^xsd:string ;
 	th:notation "POLYNESIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Polynesia."^^xsd:string ;
@@ -3055,7 +2893,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43860>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Russian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43860"^^xsd:string ;
 	th:notation "RUSSIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Russia."^^xsd:string ;
@@ -3069,7 +2906,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C44269>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Siberian Eskimo"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C44269"^^xsd:string ;
 	th:notation "SIBERIAN ESKIMO"^^xsd:string ;
 	th:definition "The native Yupik people inhabiting the coast of the Chukchi Peninsula in the far northeast of the Russian Federation and on St. Lawrence Island in Alaska."^^xsd:string ;
@@ -3083,7 +2919,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43721>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Singaporean"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43721"^^xsd:string ;
 	th:notation "SINGAPOREAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Singapore."^^xsd:string ;
@@ -3097,7 +2932,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C44953>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "South American Indian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C44953"^^xsd:string ;
 	th:notation "SOUTH AMERICAN INDIAN"^^xsd:string ;
 	th:definition "The native people of South America."^^xsd:string ;
@@ -3111,7 +2945,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C156583>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Southern African Coloured"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C156583"^^xsd:string ;
 	th:notation "SOUTHERN AFRICAN COLOURED"^^xsd:string ;
 	th:definition "A person of mixed race, whose ancestry is from one or more of the naturalized racial groups of Southern Africa (typically Western European, South Asian, or Southeastern Asian) and one or more of the indigenous Southern African peoples."^^xsd:string ;
@@ -3125,7 +2958,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43672>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sri Lankan"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43672"^^xsd:string ;
 	th:notation "SRI LANKAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Sri Lanka."^^xsd:string ;
@@ -3139,7 +2971,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43675>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Taiwanese"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43675"^^xsd:string ;
 	th:notation "TAIWANESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Taiwan."^^xsd:string ;
@@ -3153,7 +2984,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43400>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Thai"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43400"^^xsd:string ;
 	th:notation "THAI"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Thailand."^^xsd:string ;
@@ -3167,7 +2997,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43827>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tobagoan"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43827"^^xsd:string ;
 	th:notation "TOBAGOAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Tobago."^^xsd:string ;
@@ -3181,7 +3010,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43828>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Trinidadian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43828"^^xsd:string ;
 	th:notation "TRINIDADIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Trinidad."^^xsd:string ;
@@ -3195,7 +3023,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C17998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Unknown"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C17998"^^xsd:string ;
 	th:notation "UNKNOWN"^^xsd:string ;
 	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
@@ -3208,7 +3035,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43396>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vietnamese"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43396"^^xsd:string ;
 	th:notation "VIETNAMESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Viet Nam."^^xsd:string ;
@@ -3222,7 +3048,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43829>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "West Indian"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43829"^^xsd:string ;
 	th:notation "WEST INDIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the West Indies."^^xsd:string ;
@@ -3236,7 +3061,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77817>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Western European"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77817"^^xsd:string ;
 	th:notation "WESTERN EUROPEAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Western Europe."^^xsd:string ;
@@ -3250,7 +3074,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C41261>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "White"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41261"^^xsd:string ;
 	th:notation "WHITE"^^xsd:string ;
 	th:definition "Denotes a person with European, Middle Eastern, or North African ancestral origin who identifies, or is identified, as White. (FDA)"^^xsd:string ;
@@ -3264,7 +3087,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77816>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "White Caribbean"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77816"^^xsd:string ;
 	th:notation "WHITE CARIBBEAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of Europe, the Middle East, or North Africa, and the Caribbean."^^xsd:string ;
@@ -3278,7 +3100,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C128993>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "White Central American"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C128993"^^xsd:string ;
 	th:notation "WHITE CENTRAL AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of Europe, the Middle East, or North Africa, and Central America."^^xsd:string ;
@@ -3292,7 +3113,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C128994>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "White South American"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C128994"^^xsd:string ;
 	th:notation "WHITE SOUTH AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of Europe, the Middle East, or North Africa, and South America."^^xsd:string ;
@@ -3306,7 +3126,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C44270>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Yupik Eskimo"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C44270"^^xsd:string ;
 	th:notation "YUPIK ESKIMO"^^xsd:string ;
 	th:definition "The native people inhabiting western, southwestern, and southcentral Alaska and the Russian Far East."^^xsd:string ;
@@ -3320,7 +3139,6 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43835>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Zairean"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43835"^^xsd:string ;
 	th:notation "ZAIREAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Zaire."^^xsd:string ;
@@ -3342,7 +3160,6 @@
 <http://www.cdisc.org/C83004/V1#C83004>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Substance Use Never/Current/Former Classification"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C83004/V1#C83004_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C83004/V1#C83004_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3383,7 +3200,6 @@
 <http://www.cdisc.org/C83004/V1#C83004_C25471>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Current"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25471"^^xsd:string ;
 	th:notation "CURRENT"^^xsd:string ;
 	th:definition "Occurring in or belonging to the present time. (NCI)"^^xsd:string ;
@@ -3397,7 +3213,6 @@
 <http://www.cdisc.org/C83004/V1#C83004_C25627>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Previous"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25627"^^xsd:string ;
 	th:notation "FORMER"^^xsd:string ;
 	th:definition "Occurring prior to something else. (NCI)"^^xsd:string ;
@@ -3416,7 +3231,6 @@
 <http://www.cdisc.org/C83004/V1#C83004_C70543>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Never"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C70543"^^xsd:string ;
 	th:notation "NEVER"^^xsd:string ;
 	th:definition "Not ever; at no time in the past."^^xsd:string ;
@@ -3438,7 +3252,6 @@
 <http://www.cdisc.org/C78428/V1#C78428>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Total Volume Administration Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78428/V1#C78428_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78428/V1#C78428_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3479,7 +3292,6 @@
 <http://www.cdisc.org/C78428/V1#C78428_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milligram"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28253"^^xsd:string ;
 	th:notation "mg"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a gram."^^xsd:string ;
@@ -3490,7 +3302,6 @@
 <http://www.cdisc.org/C78428/V1#C78428_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliliter"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28254"^^xsd:string ;
 	th:notation "mL"^^xsd:string ;
 	th:definition "A unit of volume equal to one thousandth (1E-3) of a liter."^^xsd:string ;
@@ -3502,7 +3313,6 @@
 <http://www.cdisc.org/C78428/V1#C78428_C48152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48152"^^xsd:string ;
 	th:notation "ug"^^xsd:string ;
 	th:definition "A unit of mass equal to one millionth (1E-6) of a gram."^^xsd:string ;
@@ -3522,7 +3332,6 @@
 <http://www.cdisc.org/C78427/V1#C78427>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit for the Duration of Treatment Interruption"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78427/V1#C78427_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78427/V1#C78427_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3563,7 +3372,6 @@
 <http://www.cdisc.org/C78427/V1#C78427_C25529>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hour"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25529"^^xsd:string ;
 	th:notation "HOURS"^^xsd:string ;
 	th:definition "A unit of measurement of time equal to 60 minutes."^^xsd:string ;
@@ -3592,7 +3400,6 @@
 <http://www.cdisc.org/C78427/V1#C78427_C48154>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Minute"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48154"^^xsd:string ;
 	th:notation "min"^^xsd:string ;
 	th:definition "A unit of measurement of time equal to 60 seconds."^^xsd:string ;
@@ -3611,7 +3418,6 @@
 <http://www.cdisc.org/C78427/V1#C78427_C42535>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Second"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42535"^^xsd:string ;
 	th:notation "sec"^^xsd:string ;
 	th:definition "The base unit of time in the International System of Units (SI) equal to the duration of 9,192,631,770 periods of the specified light radiation corresponding to the transition between the two hyperfine levels of the cesium 133 atom in its ground state at 0 K."^^xsd:string ;
@@ -3630,7 +3436,6 @@
 <http://www.cdisc.org/C78421/V1#C78421>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit of Drug Dispensed or Returned"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78421/V1#C78421_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78421/V1#C78421_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3680,7 +3485,6 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48474>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bag Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48474"^^xsd:string ;
 	th:notation "BAG"^^xsd:string ;
 	th:definition "A dosing measurement based on the bag unit.(NCI)"^^xsd:string ;
@@ -3699,7 +3503,6 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48477>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bottle Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48477"^^xsd:string ;
 	th:notation "BOTTLE"^^xsd:string ;
 	th:definition "A dosing measurement based on the bottle unit.(NCI)"^^xsd:string ;
@@ -3718,7 +3521,6 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48478>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Box Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48478"^^xsd:string ;
 	th:notation "BOX"^^xsd:string ;
 	th:definition "A dosing measurement based on the box unit.(NCI)"^^xsd:string ;
@@ -3737,7 +3539,6 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capsule Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48480"^^xsd:string ;
 	th:notation "CAPSULE"^^xsd:string ;
 	th:definition "A dosing measurement based on the capsule unit.(NCI)"^^xsd:string ;
@@ -3749,7 +3550,6 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48484>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Container Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48484"^^xsd:string ;
 	th:notation "CONTAINER"^^xsd:string ;
 	th:definition "A dosing measurement based on the container unit.(NCI)"^^xsd:string ;
@@ -3768,7 +3568,6 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48490>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Disk Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48490"^^xsd:string ;
 	th:notation "DISK"^^xsd:string ;
 	th:definition "A dosing measurement based on the disk unit.(NCI)"^^xsd:string ;
@@ -3787,7 +3586,6 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48520>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Package Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48520"^^xsd:string ;
 	th:notation "PACKAGE"^^xsd:string ;
 	th:definition "A dosing measurement based on the package unit.(NCI)"^^xsd:string ;
@@ -3811,7 +3609,6 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48521>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Packet Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48521"^^xsd:string ;
 	th:notation "PACKET"^^xsd:string ;
 	th:definition "A dosing measurement based on the packet unit.(NCI)"^^xsd:string ;
@@ -3830,7 +3627,6 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48524>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Patch Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48524"^^xsd:string ;
 	th:notation "PATCH"^^xsd:string ;
 	th:definition "A dosing measurement based on the patch unit.(NCI)"^^xsd:string ;
@@ -3849,7 +3645,6 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48542>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tablet Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48542"^^xsd:string ;
 	th:notation "TABLET"^^xsd:string ;
 	th:definition "A dosing measurement based on the tablet unit.(NCI)"^^xsd:string ;
@@ -3861,7 +3656,6 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48549>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tube Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48549"^^xsd:string ;
 	th:notation "TUBE"^^xsd:string ;
 	th:definition "A dosing measurement based on the tube unit.(NCI)"^^xsd:string ;
@@ -3880,7 +3674,6 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48551>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vial Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48551"^^xsd:string ;
 	th:notation "VIAL"^^xsd:string ;
 	th:definition "A dosing measurement based on the vial unit.(NCI)"^^xsd:string ;
@@ -3907,7 +3700,6 @@
 <http://www.cdisc.org/C78429/V1#C78429>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit of Measure for Flow Rate"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78429/V1#C78429_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78429/V1#C78429_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3950,7 +3742,6 @@
 <http://www.cdisc.org/C78429/V1#C78429_C64777>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliliter per Minute"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64777"^^xsd:string ;
 	th:notation "mL/min"^^xsd:string ;
 	th:definition "A unit of flow rate equal to one milliliter per minute."^^xsd:string ;
@@ -3964,7 +3755,6 @@
 <http://www.cdisc.org/C78429/V1#C78429_C67420>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Millimole per 24 Hours"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67420"^^xsd:string ;
 	th:notation "mmol/day"^^xsd:string ;
 	th:definition "A unit of substance flow rate equal to one millimole per day."^^xsd:string ;
@@ -3978,7 +3768,6 @@
 <http://www.cdisc.org/C78429/V1#C78429_C71205>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram per Day"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C71205"^^xsd:string ;
 	th:notation "ug/day"^^xsd:string ;
 	th:definition "A unit of mass flow rate equal to one microgram per day."^^xsd:string ;
@@ -3997,7 +3786,6 @@
 <http://www.cdisc.org/C78429/V1#C78429_C71211>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram per Minute"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C71211"^^xsd:string ;
 	th:notation "ug/min"^^xsd:string ;
 	th:definition "A unit of mass flow rate equal to one microgram per minute."^^xsd:string ;
@@ -4016,7 +3804,6 @@
 <http://www.cdisc.org/C78429/V1#C78429_C67406>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Micromole per 24 Hours"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67406"^^xsd:string ;
 	th:notation "umol/day"^^xsd:string ;
 	th:definition "A unit of substance flow rate equal to one micromole per day."^^xsd:string ;
@@ -4043,7 +3830,6 @@
 <http://www.cdisc.org/C78423/V1#C78423>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Units for Exposure"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78423/V1#C78423_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78423/V1#C78423_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -4088,7 +3874,6 @@
 <http://www.cdisc.org/C78423/V1#C78423_C48480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capsule Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48480"^^xsd:string ;
 	th:notation "CAPSULE"^^xsd:string ;
 	th:definition "A dosing measurement based on the capsule unit.(NCI)"^^xsd:string ;
@@ -4100,7 +3885,6 @@
 <http://www.cdisc.org/C78423/V1#C78423_C48155>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gram"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48155"^^xsd:string ;
 	th:notation "g"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a kilogram, the kilogram being the base unit of mass in the International System of Units (SI)."^^xsd:string ;
@@ -4111,7 +3895,6 @@
 <http://www.cdisc.org/C78423/V1#C78423_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milligram"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28253"^^xsd:string ;
 	th:notation "mg"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a gram."^^xsd:string ;
@@ -4122,7 +3905,6 @@
 <http://www.cdisc.org/C78423/V1#C78423_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliliter"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28254"^^xsd:string ;
 	th:notation "mL"^^xsd:string ;
 	th:definition "A unit of volume equal to one thousandth (1E-3) of a liter."^^xsd:string ;
@@ -4134,7 +3916,6 @@
 <http://www.cdisc.org/C78423/V1#C78423_C65060>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Puff Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C65060"^^xsd:string ;
 	th:notation "PUFF"^^xsd:string ;
 	th:definition "A means of delivering a defined dose of a therapeutic aerolized solution into either the upper or lower respiratory tract. Metered-dose inhalers or spray pumps are devices that provide a puff dose for delivery into either the oral or the nasal cavity.(NCI)"^^xsd:string ;
@@ -4145,7 +3926,6 @@
 <http://www.cdisc.org/C78423/V1#C78423_C48542>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tablet Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48542"^^xsd:string ;
 	th:notation "TABLET"^^xsd:string ;
 	th:definition "A dosing measurement based on the tablet unit.(NCI)"^^xsd:string ;
@@ -4157,7 +3937,6 @@
 <http://www.cdisc.org/C78423/V1#C78423_C48152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48152"^^xsd:string ;
 	th:notation "ug"^^xsd:string ;
 	th:definition "A unit of mass equal to one millionth (1E-6) of a gram."^^xsd:string ;
@@ -4177,7 +3956,6 @@
 <http://www.cdisc.org/C78430/V1#C78430>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Units for Planned Exposure"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78430/V1#C78430_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78430/V1#C78430_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -4222,7 +4000,6 @@
 <http://www.cdisc.org/C78430/V1#C78430_C48480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capsule Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48480"^^xsd:string ;
 	th:notation "CAPSULE"^^xsd:string ;
 	th:definition "A dosing measurement based on the capsule unit.(NCI)"^^xsd:string ;
@@ -4234,7 +4011,6 @@
 <http://www.cdisc.org/C78430/V1#C78430_C48155>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gram"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48155"^^xsd:string ;
 	th:notation "g"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a kilogram, the kilogram being the base unit of mass in the International System of Units (SI)."^^xsd:string ;
@@ -4245,7 +4021,6 @@
 <http://www.cdisc.org/C78430/V1#C78430_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milligram"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28253"^^xsd:string ;
 	th:notation "mg"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a gram."^^xsd:string ;
@@ -4256,7 +4031,6 @@
 <http://www.cdisc.org/C78430/V1#C78430_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliliter"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28254"^^xsd:string ;
 	th:notation "mL"^^xsd:string ;
 	th:definition "A unit of volume equal to one thousandth (1E-3) of a liter."^^xsd:string ;
@@ -4268,7 +4042,6 @@
 <http://www.cdisc.org/C78430/V1#C78430_C65060>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Puff Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C65060"^^xsd:string ;
 	th:notation "PUFF"^^xsd:string ;
 	th:definition "A means of delivering a defined dose of a therapeutic aerolized solution into either the upper or lower respiratory tract. Metered-dose inhalers or spray pumps are devices that provide a puff dose for delivery into either the oral or the nasal cavity.(NCI)"^^xsd:string ;
@@ -4279,7 +4052,6 @@
 <http://www.cdisc.org/C78430/V1#C78430_C48542>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tablet Dosing Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48542"^^xsd:string ;
 	th:notation "TABLET"^^xsd:string ;
 	th:definition "A dosing measurement based on the tablet unit.(NCI)"^^xsd:string ;
@@ -4291,7 +4063,6 @@
 <http://www.cdisc.org/C78430/V1#C78430_C48152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48152"^^xsd:string ;
 	th:notation "ug"^^xsd:string ;
 	th:definition "A unit of mass equal to one millionth (1E-6) of a gram."^^xsd:string ;
@@ -4311,7 +4082,6 @@
 <http://www.cdisc.org/C78431/V1#C78431>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Vital Signs Position of Subject"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78431/V1#C78431_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78431/V1#C78431_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -4352,7 +4122,6 @@
 <http://www.cdisc.org/C78431/V1#C78431_C62122>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sitting"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C62122"^^xsd:string ;
 	th:notation "SITTING"^^xsd:string ;
 	th:definition "The state or act of one who sits; the posture of one who occupies a seat. (NCI)"^^xsd:string ;
@@ -4371,7 +4140,6 @@
 <http://www.cdisc.org/C78431/V1#C78431_C62166>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Standing"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C62166"^^xsd:string ;
 	th:notation "STANDING"^^xsd:string ;
 	th:definition "The act of assuming or maintaining an erect upright position. (NCI)"^^xsd:string ;
@@ -4390,7 +4158,6 @@
 <http://www.cdisc.org/C78431/V1#C78431_C62167>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Supine Position"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C62167"^^xsd:string ;
 	th:notation "SUPINE"^^xsd:string ;
 	th:definition "A posterior recumbent body position whereby the person lies on its back and faces upward. (NCI)"^^xsd:string ;
@@ -4413,4 +4180,1616 @@
 <http://www.assero.co.uk/SYN#3bf9e4a32ba89a540c3e5df0d0773fdd56d0b556>
 	rdf:type th:Synonym ;
 	isoC:label "Vital Signs Position of Subject"^^xsd:string ;
+.
+<http://www.assero.co.uk/CLA#accca8b6-9bea-4300-b1d7-af7b3eaa4925>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#7d8209a5-cb2a-46f7-ad25-546b757028f8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78418/V1#C78418> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#82ffad59-ce12-4546-abbc-c516984c24cf>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78418/V1#C78418_C42887> ;
+	isoC:context <http://www.cdisc.org/C78418/V1#C78418> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#97b211a5-dd95-4c43-84fd-551f5fddd9e9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78418/V1#C78418_C25158> ;
+	isoC:context <http://www.cdisc.org/C78418/V1#C78418> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d56e6206-7fdd-41c5-a413-75a6925c047c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78418/V1#C78418_C28944> ;
+	isoC:context <http://www.cdisc.org/C78418/V1#C78418> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d53564eb-a673-415c-a3a8-b1f2a27af3a8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78418/V1#C78418_C42933> ;
+	isoC:context <http://www.cdisc.org/C78418/V1#C78418> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#916ef973-83b5-462b-8f52-f0a37c4f92e4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78418/V1#C78418_C42934> ;
+	isoC:context <http://www.cdisc.org/C78418/V1#C78418> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#37f1deda-070c-49e6-ac81-2392873e6f4b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78418/V1#C78418_C42966> ;
+	isoC:context <http://www.cdisc.org/C78418/V1#C78418> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#9411a12e-c8a5-4c9b-bfd5-05f640e7b5bb>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78418/V1#C78418_C42968> ;
+	isoC:context <http://www.cdisc.org/C78418/V1#C78418> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#6247b4c3-7cb0-43a8-bc6a-78acbad71eb3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78418/V1#C78418_C42972> ;
+	isoC:context <http://www.cdisc.org/C78418/V1#C78418> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#dfd0dbba-37d1-43dc-8f98-68b0899cd221>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78418/V1#C78418_C42989> ;
+	isoC:context <http://www.cdisc.org/C78418/V1#C78418> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#81e4f2c8-c574-42f1-9911-6925b2a4210d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78418/V1#C78418_C42993> ;
+	isoC:context <http://www.cdisc.org/C78418/V1#C78418> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#60957213-f0a7-4601-9744-5f806fdecb3f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78418/V1#C78418_C42994> ;
+	isoC:context <http://www.cdisc.org/C78418/V1#C78418> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#92888e8d-52d6-4d84-9297-cb0ace37ac4e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78418/V1#C78418_C42998> ;
+	isoC:context <http://www.cdisc.org/C78418/V1#C78418> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#55ba6d58-5ece-4807-8eb1-7c619345727c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78417/V1#C78417> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#ff56aff0-2d24-4fbd-8196-5afc542a2c42>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78417/V1#C78417_C48480> ;
+	isoC:context <http://www.cdisc.org/C78417/V1#C78417> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#e2ed1e0f-c661-46cc-95b2-1275179a407f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78417/V1#C78417_C48155> ;
+	isoC:context <http://www.cdisc.org/C78417/V1#C78417> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#e09d56f7-7427-498f-887b-9a8c28f45daa>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78417/V1#C78417_C48579> ;
+	isoC:context <http://www.cdisc.org/C78417/V1#C78417> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#dbc523b8-ccec-4b56-a8b3-bb9a33489b79>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78417/V1#C78417_C28253> ;
+	isoC:context <http://www.cdisc.org/C78417/V1#C78417> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#c6a45bfa-5389-4403-a545-839d9540dfa5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78417/V1#C78417_C28254> ;
+	isoC:context <http://www.cdisc.org/C78417/V1#C78417> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#ae7fa2b6-0015-4f0d-a2c5-471026c17b78>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78417/V1#C78417_C65060> ;
+	isoC:context <http://www.cdisc.org/C78417/V1#C78417> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#579bf5b0-572e-4d50-b0ea-5549f1428ac8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78417/V1#C78417_C48542> ;
+	isoC:context <http://www.cdisc.org/C78417/V1#C78417> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#29ddfba2-b20d-45ec-94ec-6e14b53ba9a3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78417/V1#C78417_C48152> ;
+	isoC:context <http://www.cdisc.org/C78417/V1#C78417> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#1b867808-5131-4642-bc7c-742026ba625e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78419/V1#C78419> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#9cb1b410-1bdc-4ab1-9cc3-d2ec7aeb4664>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78419/V1#C78419_C64496> ;
+	isoC:context <http://www.cdisc.org/C78419/V1#C78419> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#441a9960-1349-477a-ae5c-dae6a1c3f134>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78419/V1#C78419_C64499> ;
+	isoC:context <http://www.cdisc.org/C78419/V1#C78419> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#3d02bb28-ec9f-4032-aa5a-4aa2d5128b35>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78419/V1#C78419_C25473> ;
+	isoC:context <http://www.cdisc.org/C78419/V1#C78419> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#9d0939a7-df50-45e8-b2d3-814ebd4184ea>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78419/V1#C78419_C64530> ;
+	isoC:context <http://www.cdisc.org/C78419/V1#C78419> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#a5a70296-82f6-4b6b-a659-13ed74a1c45f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78419/V1#C78419_C64498> ;
+	isoC:context <http://www.cdisc.org/C78419/V1#C78419> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#c7d5f278-283c-415f-91e3-b7270e31338a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78419/V1#C78419_C64525> ;
+	isoC:context <http://www.cdisc.org/C78419/V1#C78419> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#954eff9c-c995-449f-b3d4-2d8e3db05b1b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78419/V1#C78419_C64527> ;
+	isoC:context <http://www.cdisc.org/C78419/V1#C78419> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#53190341-a3ce-4f20-b30f-b4d3b7459968>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78419/V1#C78419_C17998> ;
+	isoC:context <http://www.cdisc.org/C78419/V1#C78419> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#ec2a087d-526e-475c-8757-090349626721>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78420/V1#C78420> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#5797b992-06e2-4844-9311-69c6f8b0a237>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78420/V1#C78420_C38250> ;
+	isoC:context <http://www.cdisc.org/C78420/V1#C78420> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#2840677f-c749-4cdb-a51b-73f6f0266114>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78420/V1#C78420_C28161> ;
+	isoC:context <http://www.cdisc.org/C78420/V1#C78420> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#451a1dda-50ce-40c9-b485-bd9b9ea9bbb6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78420/V1#C78420_C38255> ;
+	isoC:context <http://www.cdisc.org/C78420/V1#C78420> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#97e1a6e9-d8dd-41c5-9785-46142eaa3ec3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78420/V1#C78420_C38258> ;
+	isoC:context <http://www.cdisc.org/C78420/V1#C78420> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#754ddcc8-1206-4368-9bc5-79e8c7049f5f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78420/V1#C78420_C38284> ;
+	isoC:context <http://www.cdisc.org/C78420/V1#C78420> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#dec19642-56c1-45a3-9083-99358e96fed0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78420/V1#C78420_C38288> ;
+	isoC:context <http://www.cdisc.org/C78420/V1#C78420> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#127d526a-a42b-4b92-99af-414c11e2911c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78420/V1#C78420_C38295> ;
+	isoC:context <http://www.cdisc.org/C78420/V1#C78420> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#cfa31d11-200f-47f8-b820-84d131084bf5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78420/V1#C78420_C38216> ;
+	isoC:context <http://www.cdisc.org/C78420/V1#C78420> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#10c1fb34-8f48-4f72-8654-74fe01cc7b85>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78420/V1#C78420_C38299> ;
+	isoC:context <http://www.cdisc.org/C78420/V1#C78420> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#dd739036-5128-4e3a-87de-d451f74ce397>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78420/V1#C78420_C38304> ;
+	isoC:context <http://www.cdisc.org/C78420/V1#C78420> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#00df8a04-ad0e-495e-821a-23098ceb17f4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78420/V1#C78420_C38305> ;
+	isoC:context <http://www.cdisc.org/C78420/V1#C78420> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#e0a92e7e-3c34-48ff-9b2b-f9a8fa2136b9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78420/V1#C78420_C38313> ;
+	isoC:context <http://www.cdisc.org/C78420/V1#C78420> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d37685f3-9d3b-46ab-83d7-c45edf867d7a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78422/V1#C78422> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#2a90d2e8-16f8-4d88-9a85-d07ba3f6413f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78422/V1#C78422_C49673> ;
+	isoC:context <http://www.cdisc.org/C78422/V1#C78422> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#41cde48f-7ee3-4210-bc96-f9916af96f9e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78422/V1#C78422_C41140> ;
+	isoC:context <http://www.cdisc.org/C78422/V1#C78422> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#6b473d19-19fc-4ad9-be5c-c1856eeeee83>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78422/V1#C78422_C42535> ;
+	isoC:context <http://www.cdisc.org/C78422/V1#C78422> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#88e219f4-19b5-41be-b5c3-0f38975b82d0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#52fc3803-d3c9-42eb-86d2-57cacb34c8fe>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C17950> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#9ad000db-8076-4e7b-8575-4f337d46be2f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C67118> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#a2effebb-c749-4ec1-9862-a2fd7902bd81>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C107608> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#0b9c33a3-0fb0-46d9-b79f-e2d86faef59a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C67115> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#63d6822b-77c4-4cb9-8593-f39e072f704f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C17459> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#ffc5d01c-2d38-4743-b367-c644c163d24d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C126531> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d5909754-c255-46c8-a770-a9d56e7f93b8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C67113> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#da387658-84b0-4f37-8d60-30df795f4b41>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C67114> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#e6d571b9-daaa-41d7-ac9b-d34ef739fe61>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C41222> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#afbb0459-50ce-42fd-8ae1-c36d801a63ea>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C43234> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#1ff5036d-ece8-48ab-823a-05dc1694ea94>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C67112> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#5880828b-23be-4ae7-a568-93b9843dc678>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C103283> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#36a01217-35ee-416b-9e3f-c660bd4e195e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C126532> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#23289fc8-335a-439f-bc4f-c07ce59caf7f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C67120> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d1e3dd56-2a5e-471f-8372-101b77789851>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128690/V1#C128690_C17998> ;
+	isoC:context <http://www.cdisc.org/C128690/V1#C128690> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#c7103a5e-8b01-4200-94fa-3bb01d939cc5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78426/V1#C78426> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#ecd1df3e-87cb-425e-a41a-bba9af97b7c1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78426/V1#C78426_C42887> ;
+	isoC:context <http://www.cdisc.org/C78426/V1#C78426> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#39122564-6a24-4eae-860d-24fc57c88c82>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78426/V1#C78426_C25158> ;
+	isoC:context <http://www.cdisc.org/C78426/V1#C78426> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#cc704781-2faa-4cc6-96cd-13a783751098>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78426/V1#C78426_C28944> ;
+	isoC:context <http://www.cdisc.org/C78426/V1#C78426> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#ac134ca0-775a-4f31-babf-5d36d95f3192>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78426/V1#C78426_C42933> ;
+	isoC:context <http://www.cdisc.org/C78426/V1#C78426> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#84807c76-ab42-494d-ae2c-031d9cd24d73>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78426/V1#C78426_C42934> ;
+	isoC:context <http://www.cdisc.org/C78426/V1#C78426> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#b55ad80f-c985-4bdf-af6d-c0398150a92f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78426/V1#C78426_C42966> ;
+	isoC:context <http://www.cdisc.org/C78426/V1#C78426> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#db69312e-bb83-4869-b925-f1435b5d5e96>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78426/V1#C78426_C42968> ;
+	isoC:context <http://www.cdisc.org/C78426/V1#C78426> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d31d59f2-ac73-4e66-b377-b7f7c867486f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78426/V1#C78426_C42972> ;
+	isoC:context <http://www.cdisc.org/C78426/V1#C78426> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#1f218a50-c384-49dc-8bcb-936396cfa62a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78426/V1#C78426_C42989> ;
+	isoC:context <http://www.cdisc.org/C78426/V1#C78426> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#54679c9e-c0df-4fdb-af32-09dcb7bb9349>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78426/V1#C78426_C42993> ;
+	isoC:context <http://www.cdisc.org/C78426/V1#C78426> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#85746b30-3812-46eb-94bb-db3e173ee906>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78426/V1#C78426_C42994> ;
+	isoC:context <http://www.cdisc.org/C78426/V1#C78426> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#ac2a4935-65d6-448a-8c0b-ee2d7180b5d3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78426/V1#C78426_C42998> ;
+	isoC:context <http://www.cdisc.org/C78426/V1#C78426> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#59d3c548-85d5-467a-ab0f-e586e7bc8fb9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78745/V1#C78745> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#85fc9193-0da2-4dd4-a8d6-6977a3c4b11a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78745/V1#C78745_C64496> ;
+	isoC:context <http://www.cdisc.org/C78745/V1#C78745> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#4b068f51-9b4e-4370-a88b-1496c2f38911>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78745/V1#C78745_C64499> ;
+	isoC:context <http://www.cdisc.org/C78745/V1#C78745> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#b714c841-f521-4051-a6c8-afeb989392f1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78745/V1#C78745_C25473> ;
+	isoC:context <http://www.cdisc.org/C78745/V1#C78745> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#710d9115-5934-4dd0-90f5-842b8d4d0eaa>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78745/V1#C78745_C64530> ;
+	isoC:context <http://www.cdisc.org/C78745/V1#C78745> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#fd8067a6-8ba1-4ea7-840f-e4c4922b0eb6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78745/V1#C78745_C64498> ;
+	isoC:context <http://www.cdisc.org/C78745/V1#C78745> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#db82933b-a576-487f-802a-35ef30edb7d4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78745/V1#C78745_C64525> ;
+	isoC:context <http://www.cdisc.org/C78745/V1#C78745> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#b0e9c373-c909-4a4e-aed3-2dab2bb544b4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78745/V1#C78745_C64527> ;
+	isoC:context <http://www.cdisc.org/C78745/V1#C78745> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#4eff3014-a4e8-417a-b277-41dff7a47daf>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78745/V1#C78745_C17998> ;
+	isoC:context <http://www.cdisc.org/C78745/V1#C78745> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#1279beef-0099-4863-80f6-9db1cbc1bcdd>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78425/V1#C78425> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#2a44676c-73cd-48b7-ba17-fc3448485d49>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78425/V1#C78425_C38250> ;
+	isoC:context <http://www.cdisc.org/C78425/V1#C78425> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#a9892182-11e3-4fcc-b4ce-c0c5d9abe52b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78425/V1#C78425_C28161> ;
+	isoC:context <http://www.cdisc.org/C78425/V1#C78425> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#dfeeb7dc-d6d5-4d1f-ac17-66092f4773bc>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78425/V1#C78425_C38255> ;
+	isoC:context <http://www.cdisc.org/C78425/V1#C78425> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#32b5241d-58fe-4b1c-9b98-9c43a208b237>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78425/V1#C78425_C38258> ;
+	isoC:context <http://www.cdisc.org/C78425/V1#C78425> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d5452ac2-7001-482a-bc4e-cbd93479e246>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78425/V1#C78425_C38284> ;
+	isoC:context <http://www.cdisc.org/C78425/V1#C78425> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#ac266761-e6e8-471b-b191-cab45287c9bc>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78425/V1#C78425_C38288> ;
+	isoC:context <http://www.cdisc.org/C78425/V1#C78425> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#1135f5df-f3f0-4ba9-8771-6093ee7b96fb>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78425/V1#C78425_C38295> ;
+	isoC:context <http://www.cdisc.org/C78425/V1#C78425> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#3a8cd275-b71d-4b4d-85ce-4fd9140b994c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78425/V1#C78425_C38216> ;
+	isoC:context <http://www.cdisc.org/C78425/V1#C78425> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#838d05f5-9b6e-4ce0-8be6-fad0c17123ac>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78425/V1#C78425_C38299> ;
+	isoC:context <http://www.cdisc.org/C78425/V1#C78425> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#6512317f-0a27-43d5-abbe-0173540f0764>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78425/V1#C78425_C38304> ;
+	isoC:context <http://www.cdisc.org/C78425/V1#C78425> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#0aa47b63-d00c-43de-b652-d02ba7125f45>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78425/V1#C78425_C38305> ;
+	isoC:context <http://www.cdisc.org/C78425/V1#C78425> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#4418b739-f88e-44e5-8be2-a0d7a41fcc08>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78425/V1#C78425_C38313> ;
+	isoC:context <http://www.cdisc.org/C78425/V1#C78425> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#17b36f06-be6c-46a8-ade5-d33c71f10a47>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#f07a5f10-cedb-401b-9068-e0effd85e613>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C154875> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#3a5c4899-f640-4b4b-bb24-4f00523f884a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C42331> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#5c44ffaf-e029-4de6-a9d4-2d9dad281e8d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C128937> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#ea0d7942-657b-4197-9fb6-48f7523cf9d3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C41226> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#a73737ab-4345-46a1-8afc-5375282717d5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C18237> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#8d37cf65-477c-4889-9181-d655599f6d7f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43877> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#21f8cda4-7d83-445e-969f-5348e53fd023>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C41259> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#593127d7-d4bd-4070-84ce-e47b68297d4f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43876> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d6b6b46f-4e87-4e3e-a179-a8a01540bb56>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C41260> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#84f934f6-565d-4c70-84ec-256b34d0bab6>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C16310> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#07ec23a1-220b-46b1-828f-3cb161fcfcd0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C41262> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#cc9a24af-6289-451d-9ef5-88f2aeb0f2fd>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C67271> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#1c0c4255-7dbb-48a6-9b81-8f9b0726f1b1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43671> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#44b3e9b0-68af-4c20-ab8b-f78e7b762ad5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43823> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#0e5214f6-747b-478e-ba99-1262d442fede>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43673> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#50ae654a-a266-424a-b1d4-7b5630808760>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C128938> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#f095c4cd-96c9-44e3-b490-a5dbd5d4b3dd>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C128991> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#029161d2-f4b7-4677-90df-83fa87173303>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C16352> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#5d0f1adc-ade4-4e29-a153-d9bef36e2152>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C128992> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#ad7aaa28-9218-493a-8725-aa7d2a522e87>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43830> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#79bf40ab-d5fe-4818-b7e1-aacf9f411393>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43674> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#527ad594-8010-4fb4-92a0-b1da23a5229d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43399> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#055939d5-71d5-4c1e-a6cf-8984c4db4913>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C77810> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#4482155d-e06e-4562-ae07-249c12c20e4b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C44950> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#17291f53-aa8e-4159-a2f8-753a0e0af07a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43391> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#0f6b3d1e-9405-4908-ae0e-4737eabfa9c0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43824> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#81db7751-a835-42f2-a3d4-5e1d666c2525>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C67117> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#95c2366c-5cd0-4464-8a07-3ae963d5256c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C77819> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#bbdba9be-b2e1-495f-8264-0067326f9fdb>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43831> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#85455f59-1c3d-4b02-b6d0-1b2e56b5d5ef>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43851> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#49fcbaae-c58f-475f-a8f6-6350c0ec0035>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43393> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#8d2768b6-1146-48c0-97f4-378c435ee779>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C44265> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#51b28fa4-18cf-48f2-9c5d-28cb09a7299e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43825> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d1a3720e-a398-4b5f-aa65-154463dad42c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43398> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#1e1749ff-6442-4df2-abf2-f1bb406397e8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43715> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#f021d5f0-2f74-4cd9-b9b6-8d50042c9cae>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C44268> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#6bfc286a-91fa-421a-9fbc-df4339c8d29d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43718> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#2cb92a99-9f23-4095-9d56-c862dd4736f0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43826> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#33396462-cde5-44a8-87d1-1a1d0437b6f0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43392> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#4cb55a34-e160-4b2d-b9b9-53cd3de41743>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C154874> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#8cf2b6e9-3ba0-44a5-8913-0e1872d70a80>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43395> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d85a8af3-04b7-436d-b11b-2cd503322a70>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43397> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#42ba3e14-51da-4b91-ac9f-a3cf558b8a61>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43832> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#6797ccaf-db3d-4c42-a715-23b5a3c51217>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43722> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#46f113a6-3a46-4ee5-8d14-ad8dc5df67c9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43716> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#1094d51b-86af-4d70-a0d1-d7f0ba3e0d7e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43719> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#92da28f0-4601-4e58-b567-1c39825156d1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C77811> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#f6229b84-f34a-4363-9102-2b37fa15cfb3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43409> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#2e31ce56-3045-49bc-a9be-e7e42cff8b4c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43402> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#5b4ece45-d607-4c9a-ba41-6b3354528990>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C77820> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#594c192f-6e25-4253-a9ce-e5cc743adaf2>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43864> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#b556a8db-6e7f-4693-9fd3-673ba9aee46b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43833> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#f63aeeb4-034c-4fab-91d0-c4fe00648779>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C41219> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#e4d10673-94d5-4e2e-b3b9-c282c74f530c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43720> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#3854c839-281c-4b24-8821-efcc37cadb5f>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43834> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#a1dd5ab2-42fb-4137-980c-748611f2defc>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C77813> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#5ddd7f42-f5a6-433d-8664-3a75a4849b24>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C77814> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#7481fdee-f4d1-4f89-b605-28f5ddeaa9ec>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43234> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#1e0770e0-a3cf-42d3-89ef-39610b33b07a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43717> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#5e6b554c-7301-4bdb-916a-5c95794b992e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43427> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#16b1060e-5e3f-447f-87dc-421941d9d9f8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43405> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#f9e46707-96e2-45bc-8d89-f092c102b777>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43860> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#7a1341f2-0566-4ee5-9e77-6ee336349a1a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C44269> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#c765e69c-6dc1-4a39-a3d4-f3f9c83e4cf7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43721> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#2f75ae41-1258-4b7e-9cda-d4afe8442e22>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C44953> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#e4321026-41b1-4b46-820f-69f644815070>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C156583> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#95120f39-7f76-4cdc-a16a-47fdaa18b9b4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43672> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#ddcddd58-d52d-4b6b-a85e-8a7f9e127ef5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43675> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#66efb193-6302-4108-bdac-172eedb4afa8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43400> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#4717d876-b0e8-4c27-be6f-8fb37c7b64f7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43827> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#c57cac24-1f10-4d80-8426-91c080aa51b4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43828> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#7047e6fb-94a4-4b93-bf4a-c2ae4bab4676>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C17998> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#553ccea4-0229-494a-a664-ee60d838090d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43396> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#fa920acb-97ae-4914-91ab-27f217172130>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43829> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#9ee79ed0-5a4f-4215-830f-a80099650020>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C77817> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#9cc961bc-263a-435f-b533-cfcb7f7fd8a1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C41261> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#c0f0404e-0588-40fc-b023-b9be4230063e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C77816> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#396cc4da-bbef-4d1d-a7ed-fad04bca5050>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C128993> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#302e0b5f-d164-430d-bcc5-99104831b399>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C128994> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#920c1b8e-1a58-4be3-bdf2-b07fc4492a38>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C44270> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#9da8a5d9-3734-420e-a7e6-046399001da2>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C128689/V1#C128689_C43835> ;
+	isoC:context <http://www.cdisc.org/C128689/V1#C128689> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#cc4fb971-fa31-4b2f-8af0-114f89780c3b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C83004/V1#C83004> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#65ab7535-344b-463f-b146-26bfc778724b>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C83004/V1#C83004_C25471> ;
+	isoC:context <http://www.cdisc.org/C83004/V1#C83004> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#45f3bc94-7e84-4c20-a7c6-543295d6b41d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C83004/V1#C83004_C25627> ;
+	isoC:context <http://www.cdisc.org/C83004/V1#C83004> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#64157221-325a-4b38-8a75-39482798e290>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C83004/V1#C83004_C70543> ;
+	isoC:context <http://www.cdisc.org/C83004/V1#C83004> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#b6490fc9-cf31-4c61-bb61-537af2582170>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78428/V1#C78428> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d8cc2957-56b6-433f-8c72-a7df590f847c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78428/V1#C78428_C28253> ;
+	isoC:context <http://www.cdisc.org/C78428/V1#C78428> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#e48ab0fb-7bb0-4163-b0b0-064330d09d76>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78428/V1#C78428_C28254> ;
+	isoC:context <http://www.cdisc.org/C78428/V1#C78428> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#829ae2d8-0a9d-4e94-b94f-e02eab6ba1e9>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78428/V1#C78428_C48152> ;
+	isoC:context <http://www.cdisc.org/C78428/V1#C78428> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#626d4b70-bc73-428d-a84d-4cbe3cea5b99>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78427/V1#C78427> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#dd1475cf-50ec-4ce8-ad33-af7c0d733a3d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78427/V1#C78427_C25529> ;
+	isoC:context <http://www.cdisc.org/C78427/V1#C78427> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#8552955f-2e22-4295-8e02-d1645599397a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78427/V1#C78427_C48154> ;
+	isoC:context <http://www.cdisc.org/C78427/V1#C78427> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#e4984eca-1009-4297-b335-bfae284f9409>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78427/V1#C78427_C42535> ;
+	isoC:context <http://www.cdisc.org/C78427/V1#C78427> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#4e23ed14-ebca-43d6-b075-b1763e441f55>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78421/V1#C78421> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#04aeb0d6-2713-4712-babd-61703f4ecfad>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78421/V1#C78421_C48474> ;
+	isoC:context <http://www.cdisc.org/C78421/V1#C78421> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#e5a1b8a2-3612-4611-9a85-63e7e955d0a3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78421/V1#C78421_C48477> ;
+	isoC:context <http://www.cdisc.org/C78421/V1#C78421> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#4fd85eed-20fb-4ec5-96cc-15365f14e92c>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78421/V1#C78421_C48478> ;
+	isoC:context <http://www.cdisc.org/C78421/V1#C78421> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#ad98ab5e-b191-41f6-acb2-10b35db75b93>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78421/V1#C78421_C48480> ;
+	isoC:context <http://www.cdisc.org/C78421/V1#C78421> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#9ab334ef-8b76-4b8b-a561-9a3cc656a47a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78421/V1#C78421_C48484> ;
+	isoC:context <http://www.cdisc.org/C78421/V1#C78421> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#a45a1d7b-4de5-49ba-be15-de118c098493>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78421/V1#C78421_C48490> ;
+	isoC:context <http://www.cdisc.org/C78421/V1#C78421> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#26aa5472-ea1c-4503-ba31-7d7cfbaebbd4>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78421/V1#C78421_C48520> ;
+	isoC:context <http://www.cdisc.org/C78421/V1#C78421> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#ad947019-a270-481a-8587-a5855f5eaf5e>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78421/V1#C78421_C48521> ;
+	isoC:context <http://www.cdisc.org/C78421/V1#C78421> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#7636f31f-d650-4058-a843-295ef759d99d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78421/V1#C78421_C48524> ;
+	isoC:context <http://www.cdisc.org/C78421/V1#C78421> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#03d07462-d0fa-4460-9592-2845a4ed5813>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78421/V1#C78421_C48542> ;
+	isoC:context <http://www.cdisc.org/C78421/V1#C78421> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#992b7db4-18d1-4450-bd87-9e89048fc00a>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78421/V1#C78421_C48549> ;
+	isoC:context <http://www.cdisc.org/C78421/V1#C78421> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#b29ee6e7-c281-42ea-a3c6-1c9b4d7deb63>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78421/V1#C78421_C48551> ;
+	isoC:context <http://www.cdisc.org/C78421/V1#C78421> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#5c16ab65-f204-4364-a3b4-ab9e69c448b7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78429/V1#C78429> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#6378ab7d-f9dc-45ad-b1ed-c9d3a256a62d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78429/V1#C78429_C64777> ;
+	isoC:context <http://www.cdisc.org/C78429/V1#C78429> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#f99ee923-f43b-4b49-8ae8-85f8a51f09e0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78429/V1#C78429_C67420> ;
+	isoC:context <http://www.cdisc.org/C78429/V1#C78429> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#243fb310-7d0e-4978-87a0-c1c9c4d02fd1>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78429/V1#C78429_C71205> ;
+	isoC:context <http://www.cdisc.org/C78429/V1#C78429> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d72af020-4f89-4bcd-bea8-aeb045fdebd8>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78429/V1#C78429_C71211> ;
+	isoC:context <http://www.cdisc.org/C78429/V1#C78429> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#9e8f4a7c-be46-49c3-b3b6-3bd105a1d284>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78429/V1#C78429_C67406> ;
+	isoC:context <http://www.cdisc.org/C78429/V1#C78429> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#c21a7fe8-32d3-4ef8-a6a7-d2de835c85f7>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78423/V1#C78423> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d74984ed-12c2-4ec6-9f96-72bf88921ed0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78423/V1#C78423_C48480> ;
+	isoC:context <http://www.cdisc.org/C78423/V1#C78423> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#6707268e-3b47-488e-9050-dd34153e9d23>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78423/V1#C78423_C48155> ;
+	isoC:context <http://www.cdisc.org/C78423/V1#C78423> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#3bb22343-7b79-46f0-a5ad-6a549e40b545>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78423/V1#C78423_C28253> ;
+	isoC:context <http://www.cdisc.org/C78423/V1#C78423> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#fe20ca03-ccc4-431b-bdec-675e3950cd77>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78423/V1#C78423_C28254> ;
+	isoC:context <http://www.cdisc.org/C78423/V1#C78423> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#000c9afa-4136-4fb4-b468-49726089db52>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78423/V1#C78423_C65060> ;
+	isoC:context <http://www.cdisc.org/C78423/V1#C78423> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#7551dfde-cfc1-4c75-806c-3a3e470dcb60>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78423/V1#C78423_C48542> ;
+	isoC:context <http://www.cdisc.org/C78423/V1#C78423> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#4f23789a-4682-45e1-83d6-9c88d0145b24>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78423/V1#C78423_C48152> ;
+	isoC:context <http://www.cdisc.org/C78423/V1#C78423> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#4983aefc-0765-49ad-a57d-dea421c323b5>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78430/V1#C78430> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#85037ff4-36ef-430f-b4ec-f8e9c82e3cdc>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78430/V1#C78430_C48480> ;
+	isoC:context <http://www.cdisc.org/C78430/V1#C78430> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#9f0104c6-d5dc-4743-b3bd-7b2c452e4514>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78430/V1#C78430_C48155> ;
+	isoC:context <http://www.cdisc.org/C78430/V1#C78430> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#6d3cba2e-22ae-496a-abb4-2ce8a8835851>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78430/V1#C78430_C28253> ;
+	isoC:context <http://www.cdisc.org/C78430/V1#C78430> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#9548566a-d1b9-4b3e-94df-1be3019bff93>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78430/V1#C78430_C28254> ;
+	isoC:context <http://www.cdisc.org/C78430/V1#C78430> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#be26a177-3223-4d72-9299-26f892bb889d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78430/V1#C78430_C65060> ;
+	isoC:context <http://www.cdisc.org/C78430/V1#C78430> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#8bdc36bc-4dba-49c5-ae0e-cbb7e45ee137>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78430/V1#C78430_C48542> ;
+	isoC:context <http://www.cdisc.org/C78430/V1#C78430> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#f07d9f25-af25-4ef4-b433-7ddae800efb3>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78430/V1#C78430_C48152> ;
+	isoC:context <http://www.cdisc.org/C78430/V1#C78430> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#79cf1e2b-50bb-4c7f-8683-46b5dd8e2ede>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78431/V1#C78431> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#e222bed5-e692-4134-84cd-2915fae3488d>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78431/V1#C78431_C62122> ;
+	isoC:context <http://www.cdisc.org/C78431/V1#C78431> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#dc1f5e77-40eb-40ee-ae5e-226dd7e61a26>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78431/V1#C78431_C62166> ;
+	isoC:context <http://www.cdisc.org/C78431/V1#C78431> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+.
+<http://www.assero.co.uk/CLA#d7b7e3b0-f6b3-450e-bb2e-51b840d04daf>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C78431/V1#C78431_C62167> ;
+	isoC:context <http://www.cdisc.org/C78431/V1#C78431> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 .

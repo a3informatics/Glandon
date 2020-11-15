@@ -741,7 +741,7 @@ private
 
   # Add tag
   def add_tag(object, name, tag)
-    add_tags(object, name, [tag])
+    array_property?(object, name) ? add_tags(object, name, [tag]) : property_set_value(object, name, tag)
   end
 
   # Add tags
@@ -801,6 +801,12 @@ private
   # Set a temporary property
   def get_temporary(object, name)
     object.instance_variable_get("@#{name}")
+  end
+
+  # array property?
+  def array_property?(object, name)
+    return true unless object.respond_to?(:properties) # Temporary properties are assumed to be arrays
+    object.properties.property(name.to_sym).array?
   end
 
 end    
