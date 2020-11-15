@@ -25,23 +25,19 @@ describe Association do
       delete_all_public_test_files
     end
 
-    it "create data, HEIGHT and WEIGHT BC" do
-      association = Association.new()
-      association.uri = association.create_uri(Uri.new(uri: "http://www.example.com/path#a")) 
+    it "create data, HEIGHT and WEIGHT BCs" do
       bc = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      association = Association.create({semantic: "BC SDTM Association"}, bc)
       sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_VS/V4#IGD"))
       association.the_subject = bc
       association.associated_with = [sdtm_ig_domain]
-      association.semantic = "BC SDTM Association"
       results = []
       results << association
-      association2 = Association.new()
-      association2.uri = association2.create_uri(Uri.new(uri: "http://www.example.com/path#b")) 
       bc2 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      association2 = Association.create({semantic: "BC SDTM Association"}, bc2) 
       sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_VS/V4#IGD"))
       association2.the_subject = bc2
       association2.associated_with = [sdtm_ig_domain]
-      association2.semantic = "BC SDTM Association"
       results << association2
       sparql = Sparql::Update.new
       sparql.default_namespace(results.first.uri.namespace)
