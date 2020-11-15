@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-05T15:25:23+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-15T12:03:41+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:isTopConceptReference :TH_TMC1 ;
 	th:isTopConceptReference :TH_TMC2 ;
@@ -97,14 +97,12 @@
 <http://www.acme-pharma.com/S00001/V1#S00001>
 	rdf:type th:ManagedConcept ;
 	isoC:label "London Heathrow"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#41ee371c-1d7c-4d7a-a35a-656b6d3df55e> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#439516a8-5913-4de7-95f7-01d1f45b9d3d> ;
 	isoT:hasState <http://www.acme-pharma.com/S00001/V1#S00001_RS> ;
 	isoT:hasIdentifier <http://www.acme-pharma.com/S00001/V1#S00001_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-05T15:25:23+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-15T12:03:41+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "S00001"^^xsd:string ;
 	th:notation "ONCRSR"^^xsd:string ;
@@ -118,16 +116,6 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a> ;
 	th:synonym <http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472> ;
 	th:synonym <http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3> ;
-.
-<http://www.assero.co.uk/CSN#41ee371c-1d7c-4d7a-a35a-656b6d3df55e>
-	rdf:type isoC:ConceptSystem ;
-	isoC:prefLabel ""^^xsd:string ;
-	isoC:description ""^^xsd:string ;
-.
-<http://www.assero.co.uk/CSN#439516a8-5913-4de7-95f7-01d1f45b9d3d>
-	rdf:type isoC:ConceptSystem ;
-	isoC:prefLabel ""^^xsd:string ;
-	isoC:description ""^^xsd:string ;
 .
 <http://www.acme-pharma.com/S00001/V1#S00001_RS>
 	rdf:type isoR:RegistrationState ;
@@ -185,17 +173,11 @@
 <http://www.acme-pharma.com/S00001/V1#S00001_S000012>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Terminal 1"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#ad5c5f9b-dd57-48ff-a412-2ee7f474cfea> ;
 	th:identifier "S000012"^^xsd:string ;
 	th:notation "T1"^^xsd:string ;
 	th:definition "The oldest LHR Terminal"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#addfdad3bf63ee038b6f1a4709d275fa30732004> ;
-.
-<http://www.assero.co.uk/CSN#ad5c5f9b-dd57-48ff-a412-2ee7f474cfea>
-	rdf:type isoC:ConceptSystem ;
-	isoC:prefLabel ""^^xsd:string ;
-	isoC:description ""^^xsd:string ;
 .
 <http://www.assero.co.uk/PT#addfdad3bf63ee038b6f1a4709d275fa30732004>
 	rdf:type th:PreferredTerm ;
@@ -204,7 +186,6 @@
 <http://www.acme-pharma.com/S00001/V1#S00001_S000013>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Health Screening"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#ad5c5f9b-dd57-48ff-a412-2ee7f474cfea> ;
 	th:identifier "S000013"^^xsd:string ;
 	th:notation "SCREENING"^^xsd:string ;
 	th:definition "Health Screening Terminal"^^xsd:string ;
@@ -235,7 +216,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-05T15:25:23+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-15T12:03:41+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "S00002"^^xsd:string ;
 	th:notation "CPH"^^xsd:string ;
@@ -270,17 +251,17 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-05T15:25:23+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-15T12:03:41+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "S00001E"^^xsd:string ;
 	th:notation "EPOCH"^^xsd:string ;
 	th:definition "Extends Epoch"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:narrower <http://www.cdisc.org/C99079/V28#C99079_C98779> ;
-	th:narrower <http://www.cdisc.org/C99079/V28#C99079_C48262> ;
-	th:narrower <http://www.cdisc.org/C99079/V31#C99079_C102255> ;
-	th:narrower <http://www.cdisc.org/C99079/V31#C99079_C102256> ;
 	th:narrower <http://www.cdisc.org/C99079/V28#C99079_C42872> ;
+	th:narrower <http://www.cdisc.org/C99079/V28#C99079_C48262> ;
+	th:narrower <http://www.cdisc.org/C99079/V31#C99079_C102256> ;
+	th:narrower <http://www.cdisc.org/C99079/V31#C99079_C102255> ;
 	th:narrower <http://www.cdisc.org/C99079/V45#C99079_C123452> ;
 	th:narrower <http://www.cdisc.org/C99079/V45#C99079_C123453> ;
 	th:narrower <http://www.cdisc.org/C99079/V47#C99079_C125938> ;
@@ -322,19 +303,19 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-05T15:25:23+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-15T12:03:41+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "S00002E"^^xsd:string ;
 	th:notation "EPOCH"^^xsd:string ;
 	th:definition "Extends Epoch2"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:narrower <http://www.cdisc.org/C99079/V28#C99079_C98779> ;
-	th:narrower <http://www.cdisc.org/C99079/V28#C99079_C48262> ;
-	th:narrower <http://www.cdisc.org/C99079/V32#C99079_C101526> ;
-	th:narrower <http://www.cdisc.org/C99079/V31#C99079_C102255> ;
-	th:narrower <http://www.cdisc.org/C99079/V31#C99079_C102256> ;
-	th:narrower <http://www.cdisc.org/C99079/V28#C99079_C99158> ;
 	th:narrower <http://www.cdisc.org/C99079/V28#C99079_C42872> ;
+	th:narrower <http://www.cdisc.org/C99079/V28#C99079_C99158> ;
+	th:narrower <http://www.cdisc.org/C99079/V28#C99079_C48262> ;
+	th:narrower <http://www.cdisc.org/C99079/V31#C99079_C102256> ;
+	th:narrower <http://www.cdisc.org/C99079/V31#C99079_C102255> ;
+	th:narrower <http://www.cdisc.org/C99079/V32#C99079_C101526> ;
 	th:narrower <http://www.cdisc.org/C99079/V38#C99079_C16032> ;
 	th:narrower <http://www.cdisc.org/C99079/V45#C99079_C123452> ;
 	th:narrower <http://www.cdisc.org/C99079/V45#C99079_C123453> ;
@@ -365,4 +346,43 @@
 <http://www.assero.co.uk/PT#be7c2085b40343dcdeee013581e3f451f81d4d6f>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Epoch Extension2"^^xsd:string ;
+.
+<http://www.assero.co.uk/CLA#942f8002-6dd9-4d2b-b052-7068aefc969b>
+	rdf:type isoC:Classification ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#fc60fe46-fb1f-42db-90ee-bb71d58cc493> ;
+.
+<http://www.assero.co.uk/CLA#7bd613f4-7c59-414d-85bf-1c53c10bbb45>
+	rdf:type isoC:Classification ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#9c105014-5695-4c86-a8d7-d5d3fed53dcf> ;
+.
+<http://www.assero.co.uk/CLA#d2d53d72-3c27-43a2-8778-08cae3e0bd7d>
+	rdf:type isoC:Classification ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#b260d861-000b-412b-9b69-5bf30564978c> ;
+.
+<http://www.assero.co.uk/CLA#ecbe62b9-6e41-4fa4-9869-a57155a2b644>
+	rdf:type isoC:Classification ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#b260d861-000b-412b-9b69-5bf30564978c> ;
+.
+<http://www.assero.co.uk/CSN#2d0a01be-6d01-4602-a34a-6a63bcae6638>
+	rdf:type isoC:ConceptSystem ;
+	isoC:prefLabel "Ad Hoc Tags"^^xsd:string ;
+	isoC:description "The set of Ad Hoc tags"^^xsd:string ;
+	isoC:isTopConcept <http://www.assero.co.uk/CSN#fc60fe46-fb1f-42db-90ee-bb71d58cc493> ;
+	isoC:isTopConcept <http://www.assero.co.uk/CSN#9c105014-5695-4c86-a8d7-d5d3fed53dcf> ;
+	isoC:isTopConcept <http://www.assero.co.uk/CSN#b260d861-000b-412b-9b69-5bf30564978c> ;
+.
+<http://www.assero.co.uk/CSN#fc60fe46-fb1f-42db-90ee-bb71d58cc493>
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "TAG 1"^^xsd:string ;
+	isoC:description "TAG 1 related tags"^^xsd:string ;
+.
+<http://www.assero.co.uk/CSN#9c105014-5695-4c86-a8d7-d5d3fed53dcf>
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "TAG 2"^^xsd:string ;
+	isoC:description "TAG 2 related information."^^xsd:string ;
+.
+<http://www.assero.co.uk/CSN#b260d861-000b-412b-9b69-5bf30564978c>
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "TAG 3"^^xsd:string ;
+	isoC:description "TAG 3 related information."^^xsd:string ;
 .

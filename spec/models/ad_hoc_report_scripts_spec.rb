@@ -44,7 +44,7 @@ RSpec.describe AdHocReport, type: :model do
   describe "Simple Reports" do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_airport_ad_hoc.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ad_hoc_reports_thesaurus.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(CdiscCtHelpers.version_range)   
       AdHocReport.delete_all
