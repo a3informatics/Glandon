@@ -1908,7 +1908,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     it "blank" do
     end
 
-    it "compare excel and api results", :requires => 'cdisc_library_api' do
+    it "compare excel and api results - WILL CURRENTLY FAIL - API login issue", :requires => 'cdisc_library_api' do
       [40, 42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 57, 59, 60, 61, 62, 63, 65].each do |version|
         excel_file = excel_filename(version)
         api_file = api_filename(version)
@@ -1916,7 +1916,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       end
     end
 
-    it "checks v55 files - WILL CURRENTLY FAIL", :requires => 'cdisc_library_api' do
+    it "checks v55 files - WILL CURRENTLY FAIL - V55 error in CDISC library", :requires => 'cdisc_library_api' do
       [55].each do |version|
         excel_file = excel_filename(version)
         api_file = api_filename(version)
