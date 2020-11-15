@@ -89,8 +89,8 @@ export default class StudyBuilder {
       }
     }
 
-    tabs.design.header
-               .toggleClass( 'disabled perm-disabled', !tabs.design.enabled );
+    if ( !tabs.design.enabled )
+      tabs.design.header.remove();
 
     return tabs;
 

@@ -207,11 +207,10 @@
   position: absolute;
   display: block;
   width: 100px;
-  height: 3px;
+  height: 2px;
   z-index: 1;
   top: 48px;
-  background: $primary-color-bright;
-  border-radius: 4px;
+  background: $primary-color-light;
   box-sizing: border-box;
 }
 
@@ -224,7 +223,7 @@
   opacity: .8;
   font-family: $font-light;
   font-size: 9pt;
-  color: $primary-color-light;
+  color: $primary-color-medium;
 }
 
 #tl-wrapper  .ui-resizable-handle.ui-resizable-w:hover,
