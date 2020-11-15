@@ -1021,7 +1021,6 @@ defaults: &defaults
                 method: set_property_with_tag
                 object: child
                 property: compliance
-                can_be_empty: true
                 additional:
                   path:
                     - "CDISC"
@@ -1180,7 +1179,6 @@ defaults: &defaults
                 method: set_property_with_tag
                 object: child
                 property: compliance
-                can_be_empty: true
                 additional:
                   path:
                     - "CDISC"
