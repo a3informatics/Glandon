@@ -95,9 +95,9 @@ describe "Import::CdiscTerm" do
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1a.ttl")
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_load_1b.ttl")
-      check_ttl_fix(filename, "import_expected_1a.ttl", {last_change_date: true})
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1a.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_1b.ttl")
+      check_ttl_fix_v2(filename, "import_expected_1a.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
   	end
@@ -115,8 +115,8 @@ describe "Import::CdiscTerm" do
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1b.ttl")
-      check_ttl_fix(filename, "import_expected_1b.ttl", {last_change_date: true})
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1b.ttl")
+      check_ttl_fix_v2(filename, "import_expected_1b.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
     end
@@ -244,7 +244,7 @@ describe "Import::CdiscTerm" do
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_version_2012-06-29.txt")
+    copy_file_from_public_files_rename("test", filename, sub_dir, "import_version_2012-06-29.txt")
       check_ttl(filename, "import_version_2012-06-29.txt")
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
