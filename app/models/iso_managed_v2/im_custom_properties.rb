@@ -14,11 +14,15 @@ class IsoManagedV2
       # Empty at present
     end
 
-    def find_custom_properties
+    def populate_custom_properties
       self.find_custom_properties
-      self.class.children_predicate.each do |child|
+      self.children.each do |child|
         child.find_custom_properties(self)
       end
+    end
+
+    def find_custom_properties(context=self)
+      super
     end
 
     # Find Custom Property Values

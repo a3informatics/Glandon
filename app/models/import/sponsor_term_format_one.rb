@@ -192,7 +192,7 @@ private
       add_log("No previous, new item: #{ref.uri}")
     else
       previous = @child_klass.find_full(previous_info.id)
-      previous.find_custom_properties
+      previous.populate_custom_properties
       update_version(ref, previous.version + 1)
       item = check_for_change(ref, previous) 
       add_to_data(item, index, item.uri != previous.uri) # No changes if item = previous
