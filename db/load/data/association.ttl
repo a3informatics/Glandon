@@ -10,7 +10,14 @@
 <http://www.assero.co.uk/ASSOC>
 	rdf:type owl:Ontology ;
 .
-:c2d05e2f-fbd6-4d7d-848c-e9e3384b4d6e
+:c6c15caa-227d-41a2-a4b5-47dff0d367a0
+	rdf:type bo:Association ;
+	isoC:label ""^^xsd:string ;
+	bo:semantic "BC SDTM Association"^^xsd:string ;
+	bo:theSubject <http://www.s-cubed.dk/HEIGHT/V1#BCI> ;
+	bo:associatedWith <http://www.cdisc.org/SDTM_IG_VS/V4#IGD> ;
+.
+:79d9f9b2-3177-4d96-be3f-527c1cf80f01
 	rdf:type bo:Association ;
 	isoC:label ""^^xsd:string ;
 	bo:semantic "BC SDTM Association"^^xsd:string ;

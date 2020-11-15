@@ -25,7 +25,7 @@ describe Association do
       delete_all_public_test_files
     end
 
-    it "create data, HEIGHT BC" do
+    it "create data, HEIGHT and WEIGHT BC" do
       association = Association.new()
       association.uri = association.create_uri(Uri.new(uri: "http://www.example.com/path#a")) 
       bc = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
@@ -35,29 +35,20 @@ describe Association do
       association.semantic = "BC SDTM Association"
       results = []
       results << association
-      sparql = Sparql::Update.new
-      sparql.default_namespace(results.first.uri.namespace)
-      results.each{|x| x.to_sparql(sparql, true)}
-      full_path = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "height_association.ttl")
-  	end
-
-    it "create data, WEIGHT BC" do
-      association = Association.new()
-      association.uri = association.create_uri(Uri.new(uri: "http://www.example.com/path#a")) 
-      bc = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      association2 = Association.new()
+      association2.uri = association2.create_uri(Uri.new(uri: "http://www.example.com/path#b")) 
+      bc2 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
       sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_VS/V4#IGD"))
-      association.the_subject = bc
-      association.associated_with = [sdtm_ig_domain]
-      association.semantic = "BC SDTM Association"
-      results = []
-      results << association
+      association2.the_subject = bc2
+      association2.associated_with = [sdtm_ig_domain]
+      association2.semantic = "BC SDTM Association"
+      results << association2
       sparql = Sparql::Update.new
       sparql.default_namespace(results.first.uri.namespace)
       results.each{|x| x.to_sparql(sparql, true)}
       full_path = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "weight_association.ttl")
-    end
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "association.ttl")
+  	end
 
   end
 
