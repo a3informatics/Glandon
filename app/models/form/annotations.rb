@@ -63,49 +63,54 @@ class Form
     # @return [Array] Array of annotation objects
     def bc_annotations
       query_string = %Q{
-        SELECT ?item ?domain ?sdtm_var_name ?sdtm_topic_name ?sdtm_topic_sub ?domain_long_name WHERE
-        { 
-          ?topic_var bd:hasProperty ?op_ref3 . 
-          ?op_ref3 bo:hasProperty ?bc_topic_property .     
-          ?bc_root (bc:hasProperty|bc:hasDatatype|bc:hasItem|bc:hasComplexDatatype) ?bc_topic_property .
-          ?bc_topic_property bc:hasThesaurusConcept ?value_ref .
-          ?value_ref bo:hasThesaurusConcept ?sdtm_topic_value_obj . 
-          #?sdtm_topic_value_obj iso25964:notation ?sdtm_topic_sub .
-          {         
-            SELECT ?form ?group ?item ?bc_property ?bc_root ?bc_ident ?sdtm_var_name ?domain ?sdtm_topic_name ?topic_var ?domain_long_name WHERE 
-            {   
-              ?var bd:name ?sdtm_var_name .              
-              ?dataset bd:includesColumn ?var .              
-              ?dataset bd:prefix ?domain .
-              ?dataset isoC:label ?domain_long_name .
-              ?dataset bd:includesColumn ?topic_var .             
-              ?topic_var bd:classifiedAs ?classification .             
-              ?classification rdfs:label \"Topic\"^^xsd:string .              
-              ?topic_var bd:name ?sdtm_topic_name . 
-              {
-                SELECT ?group ?item ?bc_property ?bc_root ?bc_ident ?sdtm_var_name ?dataset ?var ?gord ?pord WHERE 
-                { 
-                  #{@form.uri.to_ref} (bf:hasGroup) ?normal_group .
-                  ?normal_group (bf:hasSubGroup|bf:hasCommon) ?group .
-                  ?group bf:ordinal ?gord .
-                  ?group bf:hasItem ?item .
-                  ?item bf:hasProperty ?op_ref1 .
-                  ?op_ref1 bo:reference ?bc_property .
-                  ?bc_property bc:isA ?ref .
-                  ?var bd:isA ?ref .
-                    ?bc_root (bc:hasProperty|bc:hasDatatype|bc:hasItem|bc:hasComplexDatatype) ?bc_property .
-                    ?bc_root rdf:type bc:BiomedicalConceptInstance .
-                    ?bc_property bc:ordinal ?pord .      
-                    ?bc_root isoT:hasIdentifier ?si .     
-                    ?si isoI:identifier ?bc_ident .
-                }
-              }
-            }
-          }
-        } ORDER BY ?gord ?pord
+        SELECT ?item ?domain_prefix ?sdtm_var_name ?sdtm_topic_name ?sdtm_topic_sub ?domain_long_name WHERE         
+        {            
+          ?bc_identifier bc:hasCodedValue ?coded_value_ref .
+          ?coded_value_ref bo:reference ?coded_value .
+          ?coded_value th:notation ?sdtm_topic_sub .                      
+          {                      
+            SELECT ?item ?domain_prefix ?sdtm_var_name ?sdtm_topic_name ?domain_long_name ?bc_property ?bc_identifier ?bc_root ?bc_ident  ?topic_var   WHERE {                  
+      
+      ?sdtm_domain_var bd:name ?sdtm_var_name .                             
+        ?sdtm_domain bd:includesColumn ?sdtm_domain_var .                             
+        ?sdtm_domain bd:prefix ?domain_prefix .               
+        ?sdtm_domain isoC:label ?domain_long_name .
+      ?sdtm_domain bd:basedOnClass ?sdtm_class .
+      ?sdtm_class bd:includesColumn ?topic_var .
+        ?topic_var bd:classifiedAs ?classification .                            
+        ?classification isoC:prefLabel "Topic"^^xsd:string .
+      ?topic_var bd:isA ?canonical_reference .
+      ?bc_root bc:identifiedBy ?item_identifier .
+      ?item_identifier bc:hasComplexDatatype/bc:hasProperty ?bc_identifier .
+      ?bc_identifier bc:isA ?canonical_reference .
+        ?topic_var bd:name ?sdtm_topic_name .                
+      {                 
+        SELECT ?group ?item ?bc_property ?bc_root ?bc_ident ?sdtm_domain_var ?sdtm_domain WHERE {        
+          <http://www.s-cubed.dk/form_test/V1#F> (bf:hasGroup) ?normal_group .                   
+            ?normal_group (bf:hasSubGroup|bf:hasCommon) ?group .                   
+            ?group bf:ordinal ?gord .                   
+            ?group bf:hasItem ?item .                   
+            ?item bf:hasProperty ?op_ref1 .                   
+            ?op_ref1 bo:reference ?bc_property .                   
+            ?bc_property bc:isA ?ref .                   
+            ?sdtm_domain_var bd:isA ?ref .
+          ?sdtm_domain_var rdf:type bd:SdtmDomainVariable .
+        ?sdtm_domain bd:includesColumn ?sdtm_domain_var .
+        ?sdtm_domain ^bo:associatedWith ?assoc .
+      ?bc_root ^bo:theSubject ?assoc .
+            ?bc_root (bc:hasItem/bc:hasComplexDatatype/bc:hasProperty) ?bc_property .                     
+            ?bc_root rdf:type bc:BiomedicalConceptInstance .
+            #?bc_property bc:ordinal ?pord .                           
+            ?bc_root isoT:hasIdentifier ?si .                          
+            ?si isoI:identifier ?bc_ident .                 
+        }               
+      }             
+    }           
+  }         
+} ORDER BY ?gord ?pord 
       }
     byebug     
-      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoT, :isoI, :isoC])
+      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoT, :isoI, :isoC, :th])
       triples = query_results.by_object_set([:item, :domain, :sdtm_var_name, :domain_long_name, :sdtm_topic_name, :sdtm_topic_sub])
       triples.each do |entry|
         add_annotation(entry)
