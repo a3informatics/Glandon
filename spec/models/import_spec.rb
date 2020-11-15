@@ -231,7 +231,7 @@ describe Import do
     expect(result).to hash_equal(expected, error_file: true)
   end
 
-  it "saves the load file, auto load - WILL CURRENTLY FAIL, NEEDS UPDATING" do
+  it "saves the load file, auto load" do
     object = Thesaurus.new
     object.has_identifier = IsoScopedIdentifierV2.new
     object.has_identifier.has_scope = IsoNamespace.find_by_short_name("CDISC")
@@ -245,7 +245,7 @@ describe Import do
     expect(CRUD).to receive(:file)
     item.save_load_file({parent: object, managed_children: [], tags: []})
     result = Import.find(item.id)
-  #write_yaml_file(import_hash(result), sub_dir, "save_load_file_expected_1.yaml")
+  write_yaml_file(import_hash(result), sub_dir, "save_load_file_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "save_load_file_expected_1.yaml")
     compare_import_hash(result, expected, output_file: true)
   end
