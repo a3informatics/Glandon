@@ -121,7 +121,7 @@ module UiHelpers
   end
 
   def ui_child_search(text)
-    input = find(:xpath, '//*[@id="children_table_filter"]/label/input')
+    input = find(:xpath, '//*[@id="children_filter"]/label/input')
     input.set(text)
     #input.native.send_keys(:return)
   end
@@ -163,7 +163,7 @@ module UiHelpers
   end
 
   def ui_check_table_head(table_id, col, text)
-    head = find(:xpath, "//*[@id='#{table_id}']/thead/tr/th[#{col}]").text
+    head = find(:xpath, "//*[@id='#{table_id}']//thead/tr/th[#{col}]").text
     expect(head).to eq(text)
   end
 
@@ -231,23 +231,19 @@ module UiHelpers
 	# Indicators
   def ui_check_table_row_indicators(table_id, row, col, indicators, new_style: false)
 		within("##{table_id}") do
-			Capybara.ignore_hidden_elements = false
 			indicators.each do |i|
-				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/#{ new_style ? 'div/' : '' }span", count: indicators.length)
-				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/#{ new_style ? 'div/' : '' }span", text: "#{i}", count: 1)
+				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/#{ new_style ? 'div/' : '' }span", count: indicators.length, visible: false)
+				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/#{ new_style ? 'div/' : '' }span", text: "#{i}", count: 1, visible: false)
 			end
-			Capybara.ignore_hidden_elements = true
 		end
   end
 
 	def ui_check_indicators(parent, indicators, new_style: false)
 		within(parent) do
-			Capybara.ignore_hidden_elements = false
 			indicators.each do |i|
-				expect(page).to have_xpath("./#{ new_style ? 'div/' : '' }span", count: indicators.length)
-				expect(page).to have_xpath("./#{ new_style ? 'div/' : '' }span", text: "#{i}", count: 1)
+				expect(page).to have_xpath("./#{ new_style ? 'div/' : '' }span", count: indicators.length, visible: false)
+				expect(page).to have_xpath("./#{ new_style ? 'div/' : '' }span", text: "#{i}", count: 1, visible: false)
 			end
-			Capybara.ignore_hidden_elements = true
 		end
 	end
 
@@ -633,10 +629,7 @@ module UiHelpers
 								 ".option" :
 								 ".option.disabled"
 
-		Capybara.ignore_hidden_elements = false
-		result = menu.has_css?( class_list, text: option )
-		Capybara.ignore_hidden_elements = true
-
+		result = menu.has_css?( class_list, text: option, visible: false )
 		result
 	end
 

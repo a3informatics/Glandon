@@ -1,0 +1,67 @@
+@import "shared/vars";
+
+// ALERTS
+
+#alerts {
+  top: 60px;
+  margin: 0 auto;
+  position: fixed;
+  z-index: 9999;
+  padding: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+}
+
+#alerts:empty {
+  display: none;
+}
+
+
+.alert {
+  padding: 6px 16px;
+  padding-right: 26px;
+  margin: 4px auto;
+  font-family: $font-primary;
+  font-size: $font-small;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  background: $accent-aqua;
+  -webkit-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+  -moz-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+  box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+}
+
+.alert.alert-success {
+  background-color: $accent-aqua;
+}
+
+.alert.alert-danger {
+  background: $accent-color-2;
+}
+
+.alert.alert-warning {
+  background-color: $grey-light;
+}
+
+.alert {
+
+  .close {
+    top: -2px;
+    right: -14px;
+    opacity: .7;
+    font-size: $font-small;
+    font-family: $font-light;
+    line-height: inherit;
+    color: white;
+    position: relative;
+  }
+
+  .close:hover, .close:active  {
+    color: white;
+    opacity: 1;
+  }
+
+}

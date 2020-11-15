@@ -36,8 +36,7 @@ describe "Thesaurus::Synonym" do
         :uri => "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1", 
         :id => Uri.new(uri: "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1").to_id, 
         :label => "BC Property Reference",
-        :rdf_type => "http://www.assero.co.uk/Thesaurus#Synonym",
-        :tagged => []
+        :rdf_type => "http://www.assero.co.uk/Thesaurus#Synonym"
       }
     item = Thesaurus::Synonym.from_h(result)
     expect(item.to_h).to eq(result)

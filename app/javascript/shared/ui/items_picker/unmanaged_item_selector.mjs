@@ -24,7 +24,6 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {boolean} params.multiple Enable / disable selection of multiple rows [default = false]
    * @param {SelectionView} params.selectionView Selection View instance reference of the Item Picker
-   * @param {element} params.errorDiv Custom element to display flash errors in, optional
    */
   constructor({
     selector,
@@ -32,7 +31,6 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
     param,
     multiple = false,
     selectionView,
-    errorDiv,
   }) {
     super({ selector, urls, param, multiple, selectionView });
   }
@@ -84,22 +82,24 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
 
     // Initializes Selectable Children Panel
     this.childrenPanel = new IPPanel({
-      selector: `${this.selector} table#children`,
-      param: this._realParam,
-      count: 10000,
-      extraColumns: this._childrenColumns,
+      tablePanelOptions: {
+        selector: `${this.selector} #children`,
+        param: this._realParam,
+        count: 10000,
+        extraColumns: this._childrenColumns,
+        loadCallback: (t) => {
+          this._cacheItemChildren( t.rows().data().toArray() );
+          this._toggleInteractivity(true);
+        }
+      },
       showSelectionInfo: false,
       multiple: this.multiple,
-      errorDiv: this.errorDiv,
       onSelect: (dtRows) => this._onItemSelect(dtRows),
       onDeselect: (dtRows) => this._onItemDeselect(dtRows),
-      loadCallback: (t) => {
-        this._cacheItemChildren( t.rows().data().toArray() );
-        this._toggleInteractivity(true);
-      }
+      allowAll: true
     });
 
-    this._renderBtns();
+    // this._renderBtns();
 
   }
 
@@ -112,20 +112,6 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
 
     // Selection change event, auto-update row selection
     this.selectionView.div.on('selection-change', (e, type) => this._updateRowSelection(this.childrenPanel, type));
-
-    $(this.selector).find('.select-all').on( 'click', () => {
-      if ( !this.multiple )
-        return;
-
-      this.childrenPanel.table.rows().select();
-    });
-
-    $(this.selector).find('.deselect-all').on( 'click', () => {
-      if ( !this.multiple )
-        return;
-
-      this.childrenPanel.table.rows({selected: true}).deselect();
-    });
   }
 
   /**
@@ -187,22 +173,6 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
     const selectedItem = this.indexPanel.selectedData[0];
     $(this.selector).find('.item-placeholder')
                     .text( conceptRef(selectedItem) );
-  }
-
-  /**
-   * Initialize a new DataTable
-   * @return {DataTable instance} An initialized table panel
-   */
-  _renderBtns() {
-
-    if ( !this.multiple )
-      return;
-
-    let filter = $(this.selector).find('#children_filter');
-
-    filter.append('<button class="btn btn-xs white select-all"> Select All </button>')
-          .append('<button class="btn btn-xs white deselect-all"> Deselect All </button>');
-
   }
 
   /**

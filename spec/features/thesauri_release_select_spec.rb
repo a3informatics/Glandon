@@ -215,40 +215,40 @@ describe "Thesauri Release Select", :type => :feature do
       wait_for_ajax 10
     end
 
-    it "edit lock, extend", :type => :feature do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
-      navigate_to_release_sel
-      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
-      page.find("#imh_header")[:class].include?("warning")
-      page.find("#timeout").click
-      wait_for_ajax(120)
-      expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
-      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
-      page.find("#imh_header")[:class].include?("danger")
-      sleep 28
-      page.find("#timeout")[:class].include?("disabled")
-      page.find("#imh_header")[:class].include?("danger")
-      Token.restore_timeout
-    end
-
-    it "expires edit lock, prevents additional changes", :type => :feature do
-      Token.set_timeout(10)
-      navigate_to_release_sel
-      sleep 12
-      find(:xpath, '//*[@id="table-cdisc-cls"]/tbody/tr[contains(.,"C99078")]').click
-      wait_for_ajax 10
-      expect(page).to have_content("The changes were not saved as the edit lock has timed out")
-      Token.restore_timeout
-    end
-
-    it "clears token when leaving page", :type => :feature do
-      navigate_to_release_sel
-      tokens = Token.where(item_uri: "http://www.s-cubed.dk/TST/V1#TH")
-      token = tokens[0]
-      click_link 'Return'
-      tokens = Token.where(item_uri: "http://www.s-cubed.dk/TST/V1#TH")
-      expect(tokens).to match_array([])
-    end
+    # it "edit lock, extend", :type => :feature do
+    #   Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
+    #   navigate_to_release_sel
+    #   sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+    #   page.find("#imh_header")[:class].include?("warning")
+    #   page.find("#timeout").click
+    #   wait_for_ajax(120)
+    #   expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
+    #   sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
+    #   page.find("#imh_header")[:class].include?("danger")
+    #   sleep 28
+    #   page.find("#timeout")[:class].include?("disabled")
+    #   page.find("#imh_header")[:class].include?("danger")
+    #   Token.restore_timeout
+    # end
+    #
+    # it "expires edit lock, prevents additional changes", :type => :feature do
+    #   Token.set_timeout(10)
+    #   navigate_to_release_sel
+    #   sleep 12
+    #   find(:xpath, '//*[@id="table-cdisc-cls"]/tbody/tr[contains(.,"C99078")]').click
+    #   wait_for_ajax 10
+    #   expect(page).to have_content("The changes were not saved as the edit lock has timed out")
+    #   Token.restore_timeout
+    # end
+    #
+    # it "clears token when leaving page", :type => :feature do
+    #   navigate_to_release_sel
+    #   tokens = Token.where(item_uri: "http://www.s-cubed.dk/TST/V1#TH")
+    #   token = tokens[0]
+    #   click_link 'Return'
+    #   tokens = Token.where(item_uri: "http://www.s-cubed.dk/TST/V1#TH")
+    #   expect(tokens).to match_array([])
+    # end
 
   end
 

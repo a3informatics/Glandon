@@ -1,5 +1,5 @@
 <%# ******DEPRECATED****** Use shared/items_picker instead %>
-<%= stylesheet_link_tag 'shared/datatables_loading', 'shared/layouts/tabs_layout', 'shared/table_select' %>
+<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'shared/table_select' %>
 <%= javascript_include_tag 'shared/tabs_layout' %>
 <%= javascript_include_tag 'shared/items_selector/items_selector_modal', 'shared/items_selector/managed_item_selector', 'shared/items_selector/unmanaged_item_selector' %>
 
@@ -17,9 +17,7 @@
       </div>
 
       <div class="modal-body font-light spinner-spread">
-        <div class="table-cardstyle table-minimal all-columns">
-
-          <div id="selector-modal-error"></div>
+        <div class="table-cardstyle table-minimal stack-all all-columns">
 
           <div class="text-centered" id="im-select-modal-description"><%= local_assigns.fetch :description, "To proceed, select one or more items." %></div>
 

@@ -30,26 +30,12 @@ class Form::Group < IsoConceptV2
     ]
   end
 
-  # # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
-  # #
-  # # @return [Form::Group::Normal] array of objects
-  # def managed_ancestors_children_set
-  #   self.has_item
-  # end
-
   # Children Ordered. Returns the set of children nodes ordered by ordinal. Note, will read the objects
   #
   # @return [Form::Group::Normal] array of objects
   def children_ordered
     self.children_objects.sort_by {|x| x.ordinal}
   end
-
-  # # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
-  # #
-  # # @return [Symbol] the predicate property as a symbol
-  # def managed_ancestors_predicate
-  #   top_level_group? ? :has_group : :has_sub_group
-  # end
 
   # Top Level Group? Is this group the top level group
   #
@@ -75,6 +61,11 @@ class Form::Group < IsoConceptV2
     end
   end
 
+  # Move Up With Clone
+  #
+  # @param [Object] child the object to be moved
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Void] no return
   def move_up_with_clone(child, managed_ancestor)
     if multiple_managed_ancestors?
       parent_and_child = self.replicate_siblings_with_clone(child, managed_ancestor)
@@ -84,6 +75,11 @@ class Form::Group < IsoConceptV2
     end
   end
 
+  # Move Down With Clone
+  #
+  # @param [Object] child the object to be moved
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Void] no return
   def move_down_with_clone(child, managed_ancestor)
     if multiple_managed_ancestors?
       parent_and_child = self.replicate_siblings_with_clone(child, managed_ancestor)

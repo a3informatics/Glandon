@@ -1,8 +1,11 @@
 <% content_for :page_title do %> <%= "Edit: #{@thesaurus_concept.notation} (#{@thesaurus_concept.has_identifier.identifier})" %> <% end %>
 
-<% third_level_breadcrumb(:code_lists, @thesaurus_concept, @close_path) %>
-
 <%= javascript_pack_tag 'thesauri/managed_concepts/edit' %>
+
+<%= javascript_tag "let timerTokenId = '#{@token.id}',
+                        timerWarning = '#{current_user.edit_lock_warning}';"%>
+
+<% third_level_breadcrumb(:code_lists, @thesaurus_concept, @close_path) %>
 
 <div class="row">
   <%= render layout: "shared/headers/header_codelist", :locals => { item: @thesaurus_concept, context: @thesaurus, badge: "CL" } do %>
@@ -13,8 +16,8 @@
 
       <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
 
-          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#", id: "edit-properties-button",
-            icon: "icon-edit", text: "Edit properties" } %>
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#edit-properties-modal", id: "edit-properties-button",
+            icon: "icon-edit", text: "Edit properties", toggle: "modal" } %>
           <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
             icon: "icon-tag", text: "Edit tags", new_tab: true } %>
 
@@ -40,9 +43,11 @@
   <%= render partial: "shared/thesauri/managed_concepts/edit/edit_card", locals: { item: @thesaurus_concept, token: @token } %>
 </div>
 
-<%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'codelist', item: @thesaurus_concept} %>
+<%= render partial: "shared/thesauri/managed_concepts/edit/edit_properties", :locals => { item: @thesaurus_concept } %>
 <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @thesaurus_concept.identifier, item_id: @thesaurus_concept.id, item_notes_url: change_notes_iso_concept_path(@thesaurus_concept.id)} %>
 <%= render partial: "shared/thesauri/managed_concepts/rank/edit_ranks", :locals => {item: @thesaurus_concept} %>
+
 <% if !@thesaurus_concept.paired? %>
-  <%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "pair"} %>
+  <%= render partial: "shared/items_picker/items_picker", :locals => { id: "pair",
+      description: "Select another Code List to pair this Code List with." } %>
 <% end %>

@@ -273,8 +273,46 @@
   color: $grey-medium;
 }
 
-.ico-btn-sec.disabled {
-  pointer-events: none;
+.ico-btn-sec .circular-badge {
+  width: 26px;
+  min-width: 26px;
+  height: 26px;
+  min-height: 26px;
+  line-height: 28px;
+  font-size: $font-xtiny;
+}
+
+.ico-btn-sec.small {
+  margin: 0;
+  margin-right: 8px;
+}
+
+.ico-btn-sec.small .circular-badge {
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  min-height: 24px;
+  line-height: 26px;
+  font-size: $font-tiny;
+}
+
+.ico-btn-sec.no-margin {
+  margin-top: 0px;
+}
+
+.ico-btn-sec:hover{
+  text-decoration: none;
+  color: $grey-medium;
+}
+
+.ico-btn-sec .ico-btn-sec-text{
+  font-family: $font-light;
+  margin-left: 6px;
+  font-size: $font-small;
+}
+
+.ico-btn-sec .ico-btn-sec-text:empty{
+  display: none;
 }
 
 .ico-btn-sec:focus{
@@ -285,44 +323,7 @@
   color: $grey-medium;
 }
 
-.ico-btn-sec.disabled .circular-badge{
-  background: $grey-light;
-}
-
-.ico-btn-sec .circular-badge.green{
-  background: $secondary-color-light;
-}
-
-.ico-btn-sec:hover .circular-badge.green{
-  background: $secondary-color-medium;
-}
-
-.ico-btn-sec .circular-badge.blue{
-  background: $primary-color-light;
-}
-
-.ico-btn-sec:hover .circular-badge.blue{
-  background: $primary-color-bright;
-}
-
-.ico-btn-sec .circular-badge.red{
-  background: $accent-color-2-light;
-}
-
-.ico-btn-sec:hover .circular-badge.red{
-  background: $accent-color-2;
-}
-
-.ico-btn-sec .ico-btn-sec-text{
-  font-family: $font-light;
-  margin-left: 6px;
-}
-
-.ico-btn-sec .ico-btn-sec-text:empty{
-  display: none;
-}
-
-.ico-btn-sec .circular-badge{
+.ico-btn-sec .circular-badge {
   background: $accent-color-2;
   color: $grey-white;
 }
@@ -331,25 +332,41 @@
   background: $accent-color-2-light;
 }
 
-.ico-btn-sec:hover{
-  text-decoration: none;
-  color: $grey-medium;
+.ico-btn-sec.disabled {
+  pointer-events: none;
 }
 
-// Icon button secondary, small
-
-.ico-btn-sec.small {
-  margin: 0;
-  margin-right: 8px;
+.ico-btn-sec.disabled .circular-badge{
+  background: $grey-light;
 }
 
-.ico-btn-sec.small .circular-badge {
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
-  min-height: 24px;
-  line-height: 26px;
-  font-size: $font-tiny;
+.ico-btn-sec.green .circular-badge{
+  background: $secondary-color-light;
+}
+
+.ico-btn-sec.green:hover .circular-badge{
+  background: $secondary-color-medium;
+}
+
+.ico-btn-sec.blue .circular-badge{
+  background: $primary-color-bright;
+}
+
+.ico-btn-sec.blue:hover .circular-badge{
+  background: $primary-color-light;
+}
+
+.ico-btn-sec.white .circular-badge{
+  background: white;
+  color: $primary-color-light;
+  -webkit-box-shadow: 1px 1px 7px -3px rgba(0,0,0,0.5);
+  -moz-box-shadow: 1px 1px 7px -3px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 7px -3px rgba(0,0,0,0.5);
+}
+
+.ico-btn-sec.white:hover .circular-badge{
+  background: $primary-color-bright;
+  color: white;
 }
 
 // Token Timer button(s)

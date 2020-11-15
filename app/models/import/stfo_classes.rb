@@ -37,7 +37,7 @@ module Import::STFOClasses
       STFOThesaurus.owner
     end
 
-    # Referenced?. Is the Code List actually referencing one from the quoted thesarus. The code list
+    # Referenced? Is the Code List actually referencing one from the quoted thesarus. The code list
     #   items must match the items in the referenced ManagedConcept or be a subset thereof.
     #
     # @param [Thesaurus] ct the reference thesaurus
@@ -45,6 +45,7 @@ module Import::STFOClasses
     def referenced?(ct)
       return false if !NciThesaurusUtility.c_code?(self.identifier)
       return false if subset?
+      return false if ranked?
       ref_ct = reference(ct)
       return false if ref_ct.nil?
       return true if self.child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
@@ -53,13 +54,14 @@ module Import::STFOClasses
       false
     end
 
-    # Future Referenced?. Is the Code List actually referencing one from a future thesarus. The code list
+    # Future Referenced? Is the Code List actually referencing one from a future thesaurus. The code list
     #   items must match the items in the referenced ManagedConcept or be a subset thereof.
     #
     # @param [Thesaurus] ct the future reference thesaurus
     # @return [Thesaurus::ManagedConcept] either nil if not found or the Managed Concept found.
     def future_referenced?(ct)
-      return false if !STFOCodeListItem.sponsor_referenced_format?(self.identifier)
+      return false unless STFOCodeListItem.sponsor_referenced_format?(self.identifier)
+      return false if subset?
       ref_ct = future_reference(ct, STFOCodeListItem.to_referenced(self.identifier))
       return false if ref_ct.nil?
       return true if self.to_referenced_child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
@@ -76,12 +78,12 @@ module Import::STFOClasses
       return false if !NciThesaurusUtility.c_code?(self.identifier)
       return false if subset?
       ref_ct = reference(ct)
-      if !ref_ct.nil?
-        ref_ct.narrower_objects
-        others = self.child_identifiers - ref_ct.child_identifiers
-        return true if STFOCodeListItem.sponsor_identifier_referenced_or_ncit_set?(others) and others.any?
-        add_log("Extension check failed, the item identifiers for code list #{self.identifier} not matching are: #{others.join(", ")}") 
-      end
+      return false if ref_ct.nil?
+      ref_ct.narrower_objects
+      others = self.child_identifiers - ref_ct.child_identifiers
+      return true if STFOCodeListItem.sponsor_identifier_referenced_or_ncit_set?(others) and others.any?
+      return true if others.empty? && self.ranked?
+      add_log("Extension check failed, the item identifiers for code list #{self.identifier} not matching are: #{others.join(", ")}") 
       false
     end
 
@@ -97,18 +99,49 @@ module Import::STFOClasses
           new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
           # If new_child is NOT nil then already in the CL being extended, nothing else to do.
           # Otherwise try and find it.
-          next if !new_child.nil?
+          copy_properties_from_to(child, new_child) unless new_child.nil?
+          next unless new_child.nil?
           new_child = sponsor_or_referenced(ct, child, fixes)
           next if new_child.nil?
+          copy_properties_from_to(child, new_child) unless new_child.nil?
           new_narrower << new_child 
         end
         self.narrower = new_narrower
       end
       self.update_identifier(self.identifier)
+      self.add_ranking if self.ranked?
       self
     rescue => e
       add_error("Exception in to_extension, #{e}, identifier '#{self.identifier}'.")
       self
+    end
+
+    # Subset? Is the entry a subset code list?
+    #
+    # @return [Boolean] true if a subset, false otherwise
+    def ranked?
+      self.narrower.each do |child|
+        return false unless child.respond_to?(:rank)
+        return false if child.rank.blank?
+      end
+      true
+    end
+
+    def add_ranking
+      list = Thesaurus::Rank.new
+      list.uri = list.create_uri(self.uri)  
+      previous = nil
+      self.narrower.sort_by{|x| x.rank}.each do |child| 
+        rank = Thesaurus::RankMember.new(item: child, rank: child.rank)
+        rank.uri = rank.create_uri(rank.uri)
+        previous.nil? ? list.members = rank : previous.member_next = rank
+        previous = rank
+      end
+      self.is_ranked = list
+      nil
+    rescue => e
+      add_error("Exception in add_ranking, #{e}, identifier '#{self.identifier}'.")
+      nil
     end
 
     # Subset? Is the entry a subset code list?
@@ -182,12 +215,16 @@ module Import::STFOClasses
         if new_child.nil?
           add_error("CDISC Subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
+          #new_child.rank = child.rank 
+          #new_child.tagged = child.tagged
+          copy_properties_from_to(child, new_child)
           new_narrower << new_child
         end
       end
       self.narrower = new_narrower
       self.subsets = ref_ct
       self.add_ordering
+      self.add_ranking if self.ranked?
       self
     rescue => e
       add_error("Exception in to_cdisc_subset, #{e}, identifier '#{self.identifier}'.")
@@ -208,12 +245,16 @@ module Import::STFOClasses
         if new_child.nil?
           add_error("Sponsor subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
+          #new_child.rank = child.rank 
+          #new_child.tagged = child.tagged
+          copy_properties_from_to(child, new_child)
           new_narrower << new_child
         end
       end
       self.narrower = new_narrower
       self.subsets = ref_ct
       self.add_ordering
+      self.add_ranking if self.ranked?
       self
     rescue => e
       add_error("Exception in to_sponsor_subset, #{e}, identifier '#{self.identifier}'.")
@@ -236,12 +277,16 @@ module Import::STFOClasses
         if new_child.nil?
           add_error("Sponsor subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
+          #new_child.rank = child.rank 
+          #new_child.tagged = child.tagged
+          copy_properties_from_to(child, new_child)
           new_narrower << new_child
         end
       end
       self.narrower = new_narrower
       self.subsets = ref_ct
       self.add_ordering
+      self.add_ranking if self.ranked?
       self
     rescue => e
       add_error("Exception in to_existing_subset, #{e}, identifier '#{self.identifier}'.")
@@ -272,15 +317,25 @@ module Import::STFOClasses
       STFOCodeListItem.sponsor_referenced_format?(self.identifier) && sponsor_child_or_referenced_identifiers?
     end
 
+    def to_sponsor
+      self.update_identifier(self.identifier)
+      self.add_ranking if self.ranked?
+      self
+    end
+    
     def to_hybrid_sponsor(ct, fixes)
       new_narrower = []
       self.narrower.each do |child|
         new_child = sponsor_or_referenced(ct, child, fixes)
         next if new_child.nil?
+        #new_child.rank = child.rank 
+        #new_child.tagged = child.tagged
+        copy_properties_from_to(child, new_child)
         new_narrower << new_child 
       end
       self.narrower = new_narrower
       self.update_identifier(self.identifier)
+      self.add_ranking if self.ranked?
       self
     rescue => e
       add_error("Exception in to_hybrid_sponsor, identifier '#{self.identifier}'.")
@@ -320,8 +375,8 @@ module Import::STFOClasses
           return child # We return the imported child item, not the one found
         end
       elsif options.count == 1
-        if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
-          result = Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
+        if options.first[:rdf_type] == ::Thesaurus::UnmanagedConcept.rdf_type.to_s
+          result = ::Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
           add_warning("Fix notation mismatch, fix '#{result.notation}' '#{result.identifier}' versus reqd '#{child.notation}' '#{child.identifier}', identifier '#{self.identifier}'.") if result.notation != child.notation       
           return result 
         else
@@ -333,7 +388,7 @@ module Import::STFOClasses
         return option if !option.nil?
         uri = fixes.qualify(self.identifier, identifier)
         if !uri.nil?
-          result = Thesaurus::UnmanagedConcept.find_children(uri)
+          result = ::Thesaurus::UnmanagedConcept.find_children(uri)
           add_warning("Fix notation mismatch, fix '#{result.notation}' '#{result.identifier}' versus reqd '#{child.notation}' '#{child.identifier}', identifier '#{self.identifier}'.") if result.notation != child.notation       
           return result 
         else
@@ -419,6 +474,10 @@ module Import::STFOClasses
       self.class.find_full(ref_ct[self.identifier])
     end
 
+    # Future Reference. Obtain the Managed Concept from any future CT with the matching identifier (if present)
+    #
+    # @param [Thesaurus] ct the reference thesaurus
+    # @return [Thesaurus::ManagedConcept] either nil if not found or the Managed Concept found.
     def future_reference(ct, identifier)
       items = find_any_referenced(ct, identifier)
       return nil if items.empty?
@@ -431,6 +490,12 @@ module Import::STFOClasses
       results
     end
 
+    def rank_list
+      results = []
+      save_next(results, self.is_ranked.members)
+      results
+    end
+
     def subset_list_equal?(subset)
       other = subset.list_uris.map {|x| x[:uri].to_s}
       this = subset_list.map {|x| x.to_s}
@@ -439,7 +504,30 @@ module Import::STFOClasses
       add_error("Exception in subset_list_equal?")
     end
 
+    def rank_list_equal?(rank)
+      return false unless has_rank?(rank)
+      other = rank.list_uris.map {|x| x[:uri].to_s}
+      this = rank_list.map {|x| x.to_s}
+      return other - this == [] && this - other == []
+    rescue => e
+      add_error("Exception in rank_list_equal?")
+    end
+
   private
+
+    # Copy special properties from to
+    def copy_properties_from_to(source, target)
+      target.rank = source.rank 
+      target.tagged = source.tagged
+      target.custom_properties = source.custom_properties
+    end
+
+    # Has rank?
+    def has_rank?(rank)
+      return true unless rank.nil?
+      add_log("Previous version not ranked")
+      false
+    end
 
     def find_any_referenced(ct, identifier)
       results = {}
@@ -447,7 +535,7 @@ module Import::STFOClasses
         SELECT ?s ?th ?v WHERE 
         {
           ?s th:identifier "#{identifier}" .
-          ?th th:isTopConceptReference/bo:reference/th:narrower ?s .
+          ?s ^th:narrower*/^bo:reference/^th:isTopConceptReference ?th .
           ?th isoT:hasIdentifier/isoI:version ?v .
           FILTER (?v > #{ct.version})
         } ORDER BY ?v
@@ -462,6 +550,8 @@ module Import::STFOClasses
       if results.empty?
         Thesaurus::ManagedConcept.new_identifier
       elsif results.count == 1
+        return results.first.identifier
+      elsif results.count >= 1 && results.map{|x| x.identifier}.uniq.count == 1
         return results.first.identifier
       else
         add_error("Found multiple matching labels/notation for new identifier, identifier #{self.identifier}")

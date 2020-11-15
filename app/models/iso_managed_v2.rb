@@ -23,6 +23,7 @@ class IsoManagedV2 < IsoConceptV2
 
   include IsoManagedV2::Versions
   include IsoManagedV2::PreviousVersion
+  include IsoManagedV2::ImCustomProperties
   include IsoManagedV2::UriManagement
   
   # Initialize
@@ -987,14 +988,14 @@ class IsoManagedV2 < IsoConceptV2
 
   # Find By Tag. Find all managed items based on a tag.
   #
-  # @param id [String] the id of the tag
-  # @return [Array] Array of hash
-  def self.find_by_tag(id)
+  # @param [Uri|String] uri_or_id the URI or the id
+  # @return [object] The object.
+  def self.find_by_tag(uri_or_id) 
     results = []
-    uri = Uri.new(id: id)
+    uri = as_uri(uri_or_id)
     query_string = %Q{
 SELECT ?s ?l ?v ?i ?vl WHERE {
-  #{uri.to_ref} ^isoC:tagged ?s .
+  #{uri.to_ref} ^isoC:classifiedAs/isoC:appliesTo ?s .
   ?s isoC:label ?l .
   ?s isoT:hasIdentifier/isoI:version ?v .
   ?s isoT:hasIdentifier/isoI:semanticVersion ?sv .

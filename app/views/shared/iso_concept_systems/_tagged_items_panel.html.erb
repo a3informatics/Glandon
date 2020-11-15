@@ -1,5 +1,3 @@
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
-
 <%= javascript_tag "let taggedItemsUrl = '#{ find_by_tag_iso_managed_v2_index_path( iso_managed: { tag_id: 'tagId' } ) }'" %>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="tagged-items-modal">
@@ -18,8 +16,6 @@
       </div>
 
       <div class="modal-body font-light">
-
-        <div class="error" style="width: 100%"></div>
 
         <center>
           Showing Managed Items tagged with the <span class="font-regular" id="tag-name"></span> Tag.

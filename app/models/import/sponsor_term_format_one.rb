@@ -6,13 +6,15 @@ class Import::SponsorTermFormatOne < Import
 
   include Import::Utility
   include Import::STFOClasses
+  include Import::ThesaurusExtend
 
   C_V2 = "01/01/1900".to_datetime 
-  C_V3 = "01/01/2100".to_datetime 
+  C_V3 = "01/09/2020".to_datetime 
   C_FORMAT_MAP = [
     {range: (C_V2...C_V3), sheet: :version_2}, 
-    {range: (C_V3...C_V3+1), sheet: :version_3}]
-  C_DEFAULT = :version_2
+    {range: (C_V3...DateTime.now.to_date+1), sheet: :version_3}
+  ]
+  C_DEFAULT = :version_3
 
   # Import. Import the rectangular structure
   #
@@ -90,14 +92,13 @@ private
 
   # Set future  
   def set_thesarus(params)
-    @th = Thesaurus.find_minimum(params[:uri])
+    @th = ::Thesaurus.find_minimum(params[:uri])
   end
 
   # Merge the parent sets. Error if they dont match!
   def merge_reader_data(readers)
     readers.each do |reader|
       reader.engine.parent_set.each do |k, v|
-        v.add_tags_no_save(reader.engine.tags) 
         @parent_set[k] = v
         merge_errors(@parent_set[k], self)
       end
@@ -110,13 +111,15 @@ private
     ref = OperationalReferenceV3.new(reference: @th)
     ref.uri = ref.create_uri(@th.uri)
     @parent.reference = ref
+    #@parent.add_context_tags(@tag_set) 
     results[:managed_children].each_with_index do |child, index| 
       # Order of the checks is important
       existing_ref = false
       if child.referenced?(@th)
         add_log("Reference Sponsor detected: #{child.identifier}")
-        ref = child.reference(@th)
-        existing_ref = true
+        #ref = child.reference(@th)
+        #existing_ref = true
+        ref = child.to_extension(@th, @fixes)
       elsif child.future_referenced?(@th)
         add_log("Future Reference Sponsor detected: #{child.identifier}")
         child.update_identifier(child.identifier)
@@ -136,8 +139,8 @@ private
         @extensions[ref.identifier] = ref if !ref.nil?
       elsif child.sponsor?
         add_log("Sponsor detected: #{child.identifier}")
-        child.update_identifier(child.identifier)
-        ref = child
+        #child.update_identifier(child.identifier)
+        ref = child.to_sponsor
       elsif child.hybrid_sponsor?
         add_log("Hybrid Sponsor detected: #{child.identifier}")
         ref = child.to_hybrid_sponsor(@th, @fixes)
@@ -150,9 +153,10 @@ private
         ref = nil
       end
       next if ref.nil?
+      add_log("***** RANKED #{ref.identifier} *****") if ref.ranked?
       check_and_add(ref, index, existing_ref)
     end
-    return {parent: @parent, managed_children: @filtered, tags: []}
+    return {parent: @parent, managed_children: @filtered, tags: @tag_set}
   end
 
   # Setup data for processing of results
@@ -163,6 +167,7 @@ private
     @scope = klass.owner.ra_namespace
     @filtered = []
     @extensions = {}
+    @tag_set = []
   end
 
   # Check for a change in an item
@@ -183,13 +188,17 @@ private
     previous_info = @child_klass.latest({scope: @scope, identifier: ref.identifier})
     if previous_info.nil?
       add_to_data(ref, index, true)
+      ref.add_context_tags(ref, @tag_set, []) 
       add_log("No previous, new item: #{ref.uri}")
     else
-      previous = @child_klass.find_full(previous_info.id) 
+      previous = @child_klass.find_full(previous_info.id)
+      previous.populate_custom_properties
       update_version(ref, previous.version + 1)
       item = check_for_change(ref, previous) 
-      add_log("New item: #{item.uri}, previous item: #{previous.uri}")
       add_to_data(item, index, item.uri != previous.uri) # No changes if item = previous
+      item.add_context_tags(item, @tag_set, []) 
+      item.has_previous_version = previous.uri if !previous.nil? && item.uri != previous.uri
+      add_log("New item: #{item.uri}, previous item: #{previous.uri}")
     end
   end
 
@@ -199,7 +208,9 @@ private
     ref.extends = stack.push(ref.extends)
     ref.subsets = stack.push(ref.subsets)
     ref.is_ordered = stack.push(ref.is_ordered)
+    ref.is_ranked = stack.push(ref.is_ranked)
     ref.update_version(new_version)
+    ref.is_ranked = stack.pop
     ref.is_ordered = stack.pop
     ref.subsets = stack.pop
     ref.extends = stack.pop
@@ -207,8 +218,9 @@ private
   end
 
   def check_for_change(current, previous)
-    return current if !subset_match?(current, previous)
-    current.replace_if_no_change(previous)
+    return current unless subset_match?(current, previous)
+    return current unless rank_match?(current, previous)
+    current.replace_if_no_change(previous, [:tagged, :custom_properties])
   end
 
   def add_to_data(item, index, new_item)
@@ -231,9 +243,16 @@ private
 
   # Check subset item sets match.
   def subset_match?(ref, previous)
-    return true if !ref.subset?
+    return true unless ref.subset?
     add_log("Checking subset detected: #{ref.identifier}, #{previous.identifier}")
     ref.subset_list_equal?(previous.is_ordered)
+  end
+
+  # Check rank item sets match.
+  def rank_match?(ref, previous)
+    return true unless ref.ranked?
+    add_log("Checking rank detected: #{ref.identifier}, #{previous.identifier}")
+    ref.rank_list_equal?(previous.is_ranked)
   end
 
   # Simple stack class

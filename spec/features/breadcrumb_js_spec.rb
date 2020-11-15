@@ -15,6 +15,7 @@ describe "Breadcrumb", :type => :feature do
     load_data_file_into_triple_store("mdr_identification.ttl")
     load_data_file_into_triple_store("biomedical_concept_templates.ttl")
     load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    AdHocReport.destroy_all
     ua_create
   end
 
@@ -154,7 +155,7 @@ describe "Breadcrumb", :type => :feature do
       context_menu_element_v2('history', '2015-03-27 Release', :show)
       wait_for_ajax(120)
       ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
-      next_link_table("C99079", "Show", "Code Lists Items", "Terminology", "CDISC, C99079", "V38.0.0")
+      next_link_table("C99079", "Show", "Code List Items", "Terminology", "CDISC, C99079", "V38.0.0")
       next_link_crumb(2, "Item History", "Terminology", "CDISC, C99079", "")
     end
 
@@ -169,7 +170,7 @@ describe "Breadcrumb", :type => :feature do
       context_menu_element_v2('history', '2015-03-27 Release', :show)
       wait_for_ajax(120)
       ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
-      next_link_table("C99079", "Show", "Code Lists Items", "Terminology", "CDISC, C99079", "V38.0.0")
+      next_link_table("C99079", "Show", "Code List Items", "Terminology", "CDISC, C99079", "V38.0.0")
       next_link_table("C99158", "Show", "FOLLOW-UP", "Terminology", "CDISC, C99079", "V38.0.0", "Show")
       next_link_crumb(3, 'EPOCH', "Terminology", "CDISC, C99079", "V38.0.0")
     end

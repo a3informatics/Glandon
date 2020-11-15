@@ -1,11 +1,12 @@
 <%= stylesheet_link_tag "shared/tables_editable" %>
-<%= javascript_tag "let editorNewChildUrl = '#{add_child_thesauri_managed_concept_path(item)}',
-                        editorSrcDataUrl = '#{children_thesauri_managed_concept_path(item)}',
-                        editorUpdateDataUrl = '#{thesauri_unmanaged_concept_path(id: '_id_')}',
-                        editorAddChildrenUrl = '#{add_children_thesauri_managed_concept_path(item)}',
-                        codeListId = '#{item.id}',
-                        timerTokenId = '#{token.id}',
-                        timerWarning = '#{current_user.edit_lock_warning}';"%>
+
+<%= javascript_tag "let codelistId = '#{ item.id }',
+                        codelistEditorUrls = {
+                          data: '#{ children_thesauri_managed_concept_path(item) }',
+                          update: '#{ thesauri_unmanaged_concept_path(id: '_id_') }',
+                          addChildren: '#{ add_children_thesauri_managed_concept_path(item) }',
+                          newChild: '#{ add_child_thesauri_managed_concept_path(item) }'
+                        } " %>
 
 <div class="col-md-12 card wide">
 
@@ -35,23 +36,13 @@
       </div>
 
         <div id="editor-panel" class="table-cardstyle">
-          <table id="editor" class="table">
-            <thead>
-              <tr>
-                <th class="fit">Identifier</th>
-                <th>Submission Value</th>
-                <th>Preferred Term</th>
-                <th>Synonyms</th>
-                <th>Definition</th>
-                <th>Tags</th>
-                <th class="ignore fit"></th>
-                <th class="fit"></th>
-              </tr>
-            </thead>
-          </table>
+          <%= render partial: "shared/iso_managed/children/children_panel", locals: { id: "editor",
+              table_classes: '', btn_in_last?: true } %>
         </div>
     </div>
 
 </div>
-<%= render partial: "shared/help_dialogs/codelist_editor_help" %>
-<%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "add-children"} %>
+
+<%= render partial: "shared/help_dialogs/codelist_editor_help", :locals => { title: "How to use Code List Editor" } %>
+<%= render partial: "shared/items_picker/items_picker", :locals => { id: "add-children",
+    description: "Select one or more Code List Items to add to the Code List." } %>

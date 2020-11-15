@@ -142,17 +142,17 @@ describe "Import CDISC ADaM Implementation Guide Data" do
   
   describe "all versions" do
 
-    it "Base create, 1.0.0", :speed => 'slow' do
+    it "Base create, 1.0.0", :import_data => 'slow' do
       release_date = "2009-12-17"
       results = execute_import(release_date, set_write_file)
     end
 
-    it "1.1", :speed => 'slow' do
+    it "1.1", :import_data => 'slow' do
       release_date = "2016-02-12"
       results = execute_import(release_date, set_write_file)
     end
 
-    it "1.2", :speed => 'slow' do
+    it "1.2", :import_data => 'slow' do
       release_date = "2019-10-03"
       results = execute_import(release_date, set_write_file)
     end

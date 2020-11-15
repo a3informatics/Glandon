@@ -5,7 +5,6 @@
 /*
 * Params
 ** type [String] type of the panel (thesauri/cls/clitems)
-** errorDiv [JQUery Object] Div for showing errors
 ** multiple [Boolean] enable/disable multiple item selection
 ** parentPanel [Object Instance] Reference to parent panel
 ** columns [Function] Columns definitions function

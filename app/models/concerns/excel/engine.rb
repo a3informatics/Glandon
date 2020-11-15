@@ -8,7 +8,7 @@ class Excel::Engine
 
   extend ActiveModel::Naming
 
-  attr_reader :parent_set, :classifications, :tags
+  attr_reader :parent_set, :classifications, :sheet_tags
 
   # Initialize. Opens the workbook ready for processing.
   #
@@ -21,8 +21,9 @@ class Excel::Engine
     @errors = owner.errors
     @parent_set = {}
     @classifications = {}
-    @tags = []
+    @sheet_tags = []
     @tag_set = {}
+    @custom_set = {}
   end
 
   # Process. Process a sheet according to the configuration
@@ -163,7 +164,7 @@ class Excel::Engine
   # @option params [Hash] :additional hash containing the tag path
   # @return [Array] the tags, an array of tags
   def tag_from_sheet_name(params)
-    @tags = []
+    @sheet_tags = []
     tags = []
     check_params(__method__.to_s, params, [:mapping])
     params[:mapping][:map].each do |word, tag_set| 
@@ -172,9 +173,9 @@ class Excel::Engine
       break
     end
     tags.each do |tag|
-      @tags << IsoConceptSystem.path(params[:additional][:path] + [tag])
+      @sheet_tags << IsoConceptSystem.path(params[:additional][:path] + [tag])
     end
-    @tags
+    @sheet_tags
   end
     
   # Create Parent
@@ -237,34 +238,15 @@ class Excel::Engine
     params[:object].errors.each {|k, e| @errors.add(:base, "Row #{params[:row]}. #{e}")} if !params[:object].valid?
   end
 
-  # Set Tags
+  # Set Property To Sheet Tags
   #
   # @param [Hash] params the parameters hash
   # @option params [Object] :object the object to tag
+  # @option params [String] :property the name of the property
   # @return [Void] no return
-  def set_tags(params)
-    check_params(__method__.to_s, params, [:object])
-    params[:object].tagged = @tags
-  end
-
-  # Set Column Tag
-  #
-  # @param [Hash] params the parameters hash
-  # @option params [Integer] :row the cell row
-  # @option params [Integer] :col the cell column
-  # @option params [Object] :object the object in which the property is being set
-  # @option params [Hash] :mapping the mapping from spreadsheet values to internal values
-  # @option params [Hash] :additional hash containing the tag path
-  # @return [Void] no return
-  def set_column_tag(params)
-    check_params(__method__.to_s, params, [:row, :col, :mapping, :object, :can_be_empty, :additional])
-    value = check_value(params[:row], params[:col], params[:can_be_empty])
-    return if value.blank? && params[:can_be_empty]
-    value = check_mapped(params[:row], params[:col], params[:mapping][:map])
-    return if value.blank?
-    tag = find_tag(params[:additional][:path], value)
-    return if tag.nil?
-    params[:object].add_tag_no_save(tag)
+  def set_property_to_sheet_tags(params)
+    check_params(__method__.to_s, params, [:object, :property])
+    add_tags(params[:object], params[:property], @sheet_tags)
   end
 
   # Set Property
@@ -322,6 +304,26 @@ class Excel::Engine
     property_set_value(params[:object], params[:property], x)
   end
 
+  # Set Property With Custom. Set a property to a custom value
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :mapping the mapping from spreadsheet values to internal values
+  # @option params [String] :property the name of the property holding the set of custom values
+  # @option params [Hash] :additonal hash containing the tag path, custom name and label
+  # @return [Void] no return
+  def set_property_with_custom(params)
+    check_params(__method__.to_s, params, [:row, :col, :object, :mapping, :property, :additional])
+    value = check_value(params[:row], params[:col], true)
+    value = check_mapped(params[:row], params[:col], params[:mapping][:map]) unless params[:mapping][:map].empty?
+    value = value.blank? ? "" : value
+    definition = find_custom(params[:additional][:definition], params[:row], params[:col])
+    return if definition.blank?
+    add_custom(params[:object], params[:property], value, definition)
+  end
+
   # Set Property With Tag. Set a property to a tag
   #
   # @param [Hash] params the parameters hash
@@ -330,15 +332,18 @@ class Excel::Engine
   # @option params [Object] :object the object in which the property is being set
   # @option params [Hash] :mapping the mapping from spreadsheet values to internal values
   # @option params [String] :property the name of the property
+  # @option params [Boolean] :can_be_empty if true property can be blank.
   # @option params [Hash] :additonal hash containing the tag path
   # @return [Void] no return
   def set_property_with_tag(params)
     check_params(__method__.to_s, params, [:row, :col, :object, :mapping, :property, :can_be_empty, :additional])
-    value = params[:mapping][:map].blank? ? check_value(params[:row], params[:col], false) : check_mapped(params[:row], params[:col], params[:mapping][:map])
+    value = check_value(params[:row], params[:col], params[:can_be_empty])
+    return if value.blank? && params[:can_be_empty]
+    value = check_mapped(params[:row], params[:col], params[:mapping][:map])
     return if value.blank?
     tag = find_tag(params[:additional][:path], value)
     return if tag.blank?
-    property_set_value(params[:object], params[:property], tag)
+    add_tag(params[:object], params[:property], tag)
   end
 
   # Set Property With Reference. Set a property to a canonical reference
@@ -574,8 +579,9 @@ class Excel::Engine
   # @param [Symbol] sheet the import sheet
   # @return [Hash] the sheet info in a hash
   def sheet_info(import, sheet)
-    info = Rails.configuration.imports[:processing][import][:sheets][sheet]
-    {selection: info[:selection], columns: info[:sheet][:header_row]}
+    info = Rails.configuration.imports[:processing].dig(import, :sheets, sheet)
+    return {selection: info[:selection], columns: info[:sheet][:header_row]} unless info.nil?
+    raise Errors::ApplicationLogicError.new("Exception when finding sheet definition for import type: '#{import}'' and sheet: '#{sheet}'.") if info.nil?
   end
  
   #----------
@@ -733,6 +739,42 @@ private
     return item
   end
 
+  # Add tag
+  def add_tag(object, name, tag)
+    array_property?(object, name) ? add_tags(object, name, [tag]) : property_set_value(object, name, tag)
+  end
+
+  # Add tags
+  def add_tags(object, name, tags)
+    current_tags = get_temporary(object, name)
+    current_tags ||= []
+    tags.each {|tag| current_tags << tag unless current_tags.map{|x| x.uri}.include?(tag.uri)}
+    property_set_value(object, name, current_tags)
+  end
+
+  # Find Custom From Label
+  def find_custom(label, row, col)
+    return @custom_set[label] if @custom_set.key?(label)
+    result = CustomPropertyDefinition.where(label: label)
+    unless result.empty?
+      @custom_set[label] = result.first 
+      return result.first
+    else
+      @errors.add(:base, "Failed to find custom property definition for #{label} in #{row} column #{col}.")
+      nil
+    end
+  end
+
+  # Add custom
+  def add_custom(object, property, value, definition)
+    custom_set = get_temporary(object, property)
+    custom_set ||= CustomPropertySet.new
+    item = CustomPropertyValue.new(value: value, custom_property_defined_by: definition, applies_to: nil, context: nil)
+    #item.uri = item.create_uri(item.class.base_uri)
+    custom_set << item
+    property_set_value(object, property, custom_set)
+  end
+
   # Set a property value
   def property_set_value(object, name, value)
     return if only_temporary?(object, name, value)
@@ -741,8 +783,8 @@ private
 
   # Set a temporary property
   def only_temporary?(object, name, value)
-    return false if object.respond_to?(:properties)
-    object.instance_variable_set("@#{name}", value)
+    return false if object.respond_to?(:properties) # This checks if there is a properties method for the object defined
+    set_temporary(object, name, value)              # Method not defined, therefore must be non-schema variable
     true
   end
 
@@ -754,6 +796,17 @@ private
   # Set a temporary property
   def set_temporary(object, name, value)
     object.instance_variable_set("@#{name}", value)
+  end
+
+  # Set a temporary property
+  def get_temporary(object, name)
+    object.instance_variable_get("@#{name}")
+  end
+
+  # array property?
+  def array_property?(object, name)
+    return true unless object.respond_to?(:properties) # Temporary properties are assumed to be arrays
+    object.properties.property(name.to_sym).array?
   end
 
 end    

@@ -11,8 +11,8 @@
       </div>
       <div class="h-inner-wrap mid">
         <div class="text-large"> <%= item.notation %> </div>
-        <div class="label-w-margin">Preferred term: <span class="font-light"> <%= item.preferred_term.label %> </span></div>
-        <div class="label-w-margin">
+        <div class="label-w-margin long-label">Preferred term: <span class="font-light"> <%= item.preferred_term.label %> </span></div>
+        <div class="label-w-margin long-label ">
           <%= render partial: "shared/labels_inline", :locals => {:name => "Synonym(s)", :items => item.synonym.map{|x| x.label} } %>
         </div>
         <div class="long-label justified label-w-margin">

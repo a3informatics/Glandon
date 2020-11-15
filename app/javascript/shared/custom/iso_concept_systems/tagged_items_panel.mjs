@@ -64,7 +64,6 @@ export default class TaggedItemsPanel extends ModalView {
       extraColumns: this.columns,
       deferLoading: true,
       paginated: false,
-      errorDiv: this.$error,
       tableOptions: {
         autoWidth: true,
         scrollY: '350px',
@@ -138,14 +137,6 @@ export default class TaggedItemsPanel extends ModalView {
    */
   get taggedItemsUrl() {
     return this.dataUrl.replace( 'tagId', this.tag.data.id );
-  }
-
-  /**
-   * Get the modal's error element
-   * @return {JQuery Element} Error div of the modal
-   */
-  get $error() {
-    return this.modal.find('.error');
   }
 
 }

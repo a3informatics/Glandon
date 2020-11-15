@@ -3,7 +3,6 @@
 :uri: http://www.example.com/A#X2
 :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
 :label: ''
-:tagged: []
 :ordinal: 1
 :note: OK
 :completion: None
@@ -15,7 +14,6 @@
   :uri: http://www.example.com/A#BCG_f03287d6-23ea-43bb-b3cf-f972761caabd
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Systolic Blood Pressure
-  :tagged: []
   :ordinal: 2
   :note: ''
   :completion: ''
@@ -25,7 +23,6 @@
     :uri: http://www.example.com/A#BCP_4b981364-daf4-4c99-84f0-f7514bd092e7
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--TESTCD"
-    :tagged: []
     :ordinal: 1
     :note: ''
     :completion: ''
@@ -35,7 +32,6 @@
       :uri: http://www.example.com/A#BCP_4b981364-daf4-4c99-84f0-f7514bd092e7_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -46,7 +42,6 @@
       :uri: http://www.example.com/A#BCP_4b981364-daf4-4c99-84f0-f7514bd092e7_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -55,9 +50,6 @@
         :uri: http://www.cdisc.org/C66741/V49#C66741_C25298
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Systolic Blood Pressure
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
         :identifier: C25298
         :notation: SYSBP
         :definition: The maximum blood pressure in the systemic arterial circulation
@@ -74,7 +66,6 @@
     :uri: http://www.example.com/A#BCP_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--DTC"
-    :tagged: []
     :ordinal: 2
     :note: ''
     :completion: ''
@@ -84,7 +75,6 @@
       :uri: http://www.example.com/A#BCP_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -96,7 +86,6 @@
     :uri: http://www.example.com/A#BCP_830fa72c-a59e-475b-9b2c-eb4b5ace264f
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--POS"
-    :tagged: []
     :ordinal: 3
     :note: ''
     :completion: ''
@@ -106,7 +95,6 @@
       :uri: http://www.example.com/A#BCP_830fa72c-a59e-475b-9b2c-eb4b5ace264f_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -117,7 +105,6 @@
       :uri: http://www.example.com/A#BCP_830fa72c-a59e-475b-9b2c-eb4b5ace264f_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -126,9 +113,6 @@
         :uri: http://www.cdisc.org/C71148/V62#C71148_C62166
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Standing
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
         :identifier: C62166
         :notation: STANDING
         :definition: The act of assuming or maintaining an erect upright position.
@@ -145,7 +129,6 @@
       :uri: http://www.example.com/A#BCP_830fa72c-a59e-475b-9b2c-eb4b5ace264f_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 2
@@ -154,8 +137,6 @@
         :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Sitting
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C62122
         :notation: SITTING
         :definition: The state or act of one who sits; the posture of one who occupies
@@ -171,7 +152,6 @@
       :uri: http://www.example.com/A#BCP_830fa72c-a59e-475b-9b2c-eb4b5ace264f_TUC3
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 3
@@ -180,8 +160,6 @@
         :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Supine Position
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
         :identifier: C62167
         :notation: SUPINE
         :definition: A posterior recumbent body position whereby the person lies on
@@ -198,7 +176,6 @@
     :uri: http://www.example.com/A#BCP_242c3d94-f47c-4477-9f51-afa4c18fa949
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--LOC"
-    :tagged: []
     :ordinal: 4
     :note: ''
     :completion: ''
@@ -208,7 +185,6 @@
       :uri: http://www.example.com/A#BCP_242c3d94-f47c-4477-9f51-afa4c18fa949_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -219,7 +195,6 @@
       :uri: http://www.example.com/A#BCP_242c3d94-f47c-4477-9f51-afa4c18fa949_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -228,9 +203,6 @@
         :uri: http://www.cdisc.org/C74456/V58#C74456_C32141
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Arm
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
         :identifier: C32141
         :notation: ARM
         :definition: The portion of the upper extremity between the shoulder and the
@@ -249,7 +221,6 @@
     :uri: http://www.example.com/A#BCP_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--LAT"
-    :tagged: []
     :ordinal: 5
     :note: ''
     :completion: ''
@@ -259,7 +230,6 @@
       :uri: http://www.example.com/A#BCP_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -270,7 +240,6 @@
       :uri: http://www.example.com/A#BCP_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -279,9 +248,6 @@
         :uri: http://www.cdisc.org/C99073/V28#C99073_C25229
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Left
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
         :identifier: C25229
         :notation: LEFT
         :definition: Being or located on or directed toward the side of the body to
@@ -296,7 +262,6 @@
       :uri: http://www.example.com/A#BCP_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 2
@@ -305,9 +270,6 @@
         :uri: http://www.cdisc.org/C99073/V28#C99073_C25228
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Right
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
         :identifier: C25228
         :notation: RIGHT
         :definition: Being or located on or directed toward the side of the body to
@@ -322,7 +284,6 @@
       :uri: http://www.example.com/A#BCP_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_TUC3
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 3
@@ -331,9 +292,6 @@
         :uri: http://www.cdisc.org/C99073/V28#C99073_C13332
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Bilateral
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
         :identifier: C13332
         :notation: BILATERAL
         :definition: Affecting both sides of the body, or a pair of organs.
@@ -348,7 +306,6 @@
     :uri: http://www.example.com/A#BCP_53dd87c3-1c29-4240-ba98-72341896b348
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--ORRES"
-    :tagged: []
     :ordinal: 6
     :note: ''
     :completion: ''
@@ -358,7 +315,6 @@
       :uri: http://www.example.com/A#BCP_53dd87c3-1c29-4240-ba98-72341896b348_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -370,7 +326,6 @@
     :uri: http://www.example.com/A#BCP_9512d1d4-7f6c-4b3c-a330-ff3081f8de24
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
     :label: "--ORRESU"
-    :tagged: []
     :ordinal: 7
     :note: ''
     :completion: ''
@@ -380,7 +335,6 @@
       :uri: http://www.example.com/A#BCP_9512d1d4-7f6c-4b3c-a330-ff3081f8de24_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -391,7 +345,6 @@
       :uri: http://www.example.com/A#BCP_9512d1d4-7f6c-4b3c-a330-ff3081f8de24_TUC1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -400,9 +353,6 @@
         :uri: http://www.cdisc.org/C66770/V38#C66770_C49670
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Millimeter of Mercury
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
         :identifier: C49670
         :notation: mmHg
         :definition: A unit of pressure equal to 0.001316 atmosphere and equal to
@@ -419,7 +369,6 @@
       :uri: http://www.example.com/A#BCP_9512d1d4-7f6c-4b3c-a330-ff3081f8de24_TUC2
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 2
@@ -428,9 +377,6 @@
         :uri: http://www.cdisc.org/C66770/V55#C66770_C42547
         :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
         :label: Pascal
-        :tagged:
-        - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-        - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
         :identifier: C42547
         :notation: Pa
         :definition: A unit of pressure equivalent to one Newton per square meter
@@ -448,7 +394,6 @@
     :uri: http://www.s-cubed.dk/SYSBP/V1#BCI
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
     :label: Systolic Blood Pressure
-    :tagged: []
     :has_state:
       :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NZU0JQL1YxI0JDSV9SUw==
       :uri: http://www.s-cubed.dk/SYSBP/V1#BCI_RS
@@ -504,7 +449,6 @@
   :uri: http://www.example.com/A#CG_1760cbb1-a370-41f6-a3b3-493c1d9c2238
   :rdf_type: http://www.assero.co.uk/BusinessForm#CommonGroup
   :label: Not set
-  :tagged: []
   :ordinal: 1
   :note: ''
   :completion: ''
@@ -514,7 +458,6 @@
     :uri: http://www.example.com/A#CI_16815e87-0141-4de3-b575-f06a729bdf40
     :rdf_type: http://www.assero.co.uk/BusinessForm#CommonItem
     :label: "--DTC"
-    :tagged: []
     :ordinal: 1
     :note: ''
     :completion: ''
@@ -524,7 +467,6 @@
       :uri: http://www.example.com/A#CI_16815e87-0141-4de3-b575-f06a729bdf40_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -536,7 +478,6 @@
       :uri: http://www.example.com/A#BCP_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: "--DTC"
-      :tagged: []
       :ordinal: 2
       :note: ''
       :completion: ''
@@ -546,7 +487,6 @@
         :uri: http://www.example.com/A#BCP_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_R1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1

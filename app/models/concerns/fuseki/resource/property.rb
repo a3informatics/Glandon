@@ -52,6 +52,10 @@ module Fuseki
         @metadata[:model_classes] += klasses.map{|x| "#{x}".constantize}
       end
 
+      def extension?
+        @metadata[:extension]
+      end
+
       # Cardinality
       # 
       # @return [Symbol] the cardinality for the specified property, either :one or :many

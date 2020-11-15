@@ -60,8 +60,9 @@
 
 // Modal Images
 img.modal-img{
+  display: block;
   width: 120px;
-  margin: 10px 0px;
+  margin: 10px auto;
 }
 
 img.modal-img.large{
@@ -73,6 +74,28 @@ img.modal-img.large{
 .modal-content .card {
   min-height: 400px;
   max-height: 80%;
+}
+
+// Items Picker Modal
+
+.modal-items-picker.modal {
+
+  .modal-header {
+    padding-bottom: 0px;
+  }
+
+  .modal-body {
+    padding-top: 6px;
+  }
+
+  .modal-footer {
+    padding-top: 0px;
+  }
+
+  hr {
+    margin: 10px 0px;
+  }
+
 }
 
 

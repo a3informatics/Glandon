@@ -15,7 +15,6 @@ $(document).ready(function() {
 function CIListModal() {
  this.canUserEdit = ciCanEdit;
  this.modal = $("#change-instructions-modal");
- this.errorDiv = this.modal.find("#change-instructions-error");
  this.htmlHelper = new CIHtml();
  this.ready = false;
 
@@ -60,7 +59,7 @@ CIListModal.prototype.executeRequest = function (params) {
       params.callback(result);
 		},
 		error: function (xhr, status, error) {
-      handleAjaxError(xhr, status, error, this.errorDiv);
+      handleAjaxError(xhr, status, error);
       this.processing(false, params.withTable);
 		}
 	});
@@ -125,7 +124,7 @@ CIListModal.prototype.destroy = function (confirm, e) {
     type: "DELETE",
     withTable: true,
     callback: function (result) {
-      displayAlertsInElement(alertSuccess("Change Instruction deleted."), this.errorDiv);
+      displayAlerts(alertSuccess("Change Instruction deleted."));
       itemRow.remove().draw();
       this.processing(false, true);
     }.bind(this)

@@ -3,7 +3,6 @@
 :uri: http://www.acme-pharma.com/TEST/V1#TH
 :rdf_type: http://www.assero.co.uk/Thesaurus#Thesaurus
 :label: Test Thesaurus
-:tagged: []
 :has_state:
   :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vVEVTVC9WMSNUSF9SUw==
   :uri: http://www.acme-pharma.com/TEST/V1#TH_RS
@@ -56,7 +55,6 @@
   :uri: http://www.acme-pharma.com/TEST/V1#TH_TMC5
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
   :label: ''
-  :tagged: []
   :enabled: true
   :optional: false
   :ordinal: 5
@@ -66,7 +64,6 @@
   :uri: http://www.acme-pharma.com/TEST/V1#TH_TMC6
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
   :label: ''
-  :tagged: []
   :enabled: true
   :optional: false
   :ordinal: 6
@@ -76,7 +73,6 @@
   :uri: http://www.acme-pharma.com/TEST/V1#TH_TMC7
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
   :label: ''
-  :tagged: []
   :enabled: true
   :optional: false
   :ordinal: 7
@@ -86,7 +82,6 @@
   :uri: http://www.acme-pharma.com/TEST/V1#TH_TMC8
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
   :label: ''
-  :tagged: []
   :enabled: true
   :optional: false
   :ordinal: 8
@@ -97,11 +92,9 @@
   :uri: http://www.cdisc.org/C66783/V4#C66783
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
   :label: CDISC System Organ Class
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :has_state: http://www.cdisc.org/C66783/V4#C66783_RS
   :has_identifier: http://www.cdisc.org/C66783/V4#C66783_SI
-  :has_previous_version: 
+  :has_previous_version: http://www.cdisc.org/C66783/V2#C66783
   :origin: ''
   :change_description: ''
   :creation_date: '2007-05-31T00:00:00+00:00'
@@ -112,32 +105,32 @@
   :definition: Terms at the highest level of the CDISC system organ class terminology.
   :extensible: false
   :narrower:
-  - http://www.cdisc.org/C66783/V4#C66783_C3371
-  - http://www.cdisc.org/C66783/V4#C66783_C49403
-  - http://www.cdisc.org/C66783/V4#C66783_C27574
-  - http://www.cdisc.org/C66783/V4#C66783_C41198
-  - http://www.cdisc.org/C66783/V4#C66783_C26726
-  - http://www.cdisc.org/C66783/V4#C66783_C35117
-  - http://www.cdisc.org/C66783/V4#C66783_C3009
-  - http://www.cdisc.org/C66783/V4#C66783_C3430
-  - http://www.cdisc.org/C66783/V4#C66783_C49399
-  - http://www.cdisc.org/C66783/V4#C66783_C20188
-  - http://www.cdisc.org/C66783/V4#C66783_C35814
-  - http://www.cdisc.org/C66783/V4#C66783_C3507
-  - http://www.cdisc.org/C66783/V4#C66783_C3262
-  - http://www.cdisc.org/C66783/V4#C66783_C49405
   - http://www.cdisc.org/C66783/V4#C66783_C3079
-  - http://www.cdisc.org/C66783/V4#C66783_C2893
-  - http://www.cdisc.org/C66783/V4#C66783_C26767
-  - http://www.cdisc.org/C66783/V4#C66783_C25218
-  - http://www.cdisc.org/C66783/V4#C66783_C27669
   - http://www.cdisc.org/C66783/V4#C66783_C26835
-  - http://www.cdisc.org/C66783/V4#C66783_C49404
-  - http://www.cdisc.org/C66783/V4#C66783_C49401
-  - http://www.cdisc.org/C66783/V4#C66783_C49402
-  - http://www.cdisc.org/C66783/V4#C66783_C49400
-  - http://www.cdisc.org/C66783/V4#C66783_C2990
+  - http://www.cdisc.org/C66783/V4#C66783_C26726
+  - http://www.cdisc.org/C66783/V4#C66783_C49399
   - http://www.cdisc.org/C66783/V4#C66783_C3959
+  - http://www.cdisc.org/C66783/V4#C66783_C3507
+  - http://www.cdisc.org/C66783/V4#C66783_C49400
+  - http://www.cdisc.org/C66783/V4#C66783_C35814
+  - http://www.cdisc.org/C66783/V4#C66783_C49402
+  - http://www.cdisc.org/C66783/V4#C66783_C49401
+  - http://www.cdisc.org/C66783/V4#C66783_C26767
+  - http://www.cdisc.org/C66783/V4#C66783_C3262
+  - http://www.cdisc.org/C66783/V4#C66783_C27669
+  - http://www.cdisc.org/C66783/V4#C66783_C41198
+  - http://www.cdisc.org/C66783/V4#C66783_C3430
+  - http://www.cdisc.org/C66783/V4#C66783_C3371
+  - http://www.cdisc.org/C66783/V4#C66783_C2990
+  - http://www.cdisc.org/C66783/V4#C66783_C49405
+  - http://www.cdisc.org/C66783/V4#C66783_C35117
+  - http://www.cdisc.org/C66783/V4#C66783_C49403
+  - http://www.cdisc.org/C66783/V4#C66783_C2893
+  - http://www.cdisc.org/C66783/V4#C66783_C3009
+  - http://www.cdisc.org/C66783/V4#C66783_C27574
+  - http://www.cdisc.org/C66783/V4#C66783_C25218
+  - http://www.cdisc.org/C66783/V4#C66783_C49404
+  - http://www.cdisc.org/C66783/V4#C66783_C20188
   :extends: 
   :subsets: 
   :paired_with: 
@@ -151,11 +144,9 @@
   :uri: http://www.cdisc.org/C66737/V9#C66737
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
   :label: Trial Phase
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :has_state: http://www.cdisc.org/C66737/V9#C66737_RS
   :has_identifier: http://www.cdisc.org/C66737/V9#C66737_SI
-  :has_previous_version: 
+  :has_previous_version: http://www.cdisc.org/C66737/V8#C66737
   :origin: ''
   :change_description: ''
   :creation_date: '2008-09-22T00:00:00+00:00'
@@ -171,17 +162,17 @@
     has been licensed and marketed. (NCI)'
   :extensible: true
   :narrower:
-  - http://www.cdisc.org/C66737/V4#C66737_C49686
+  - http://www.cdisc.org/C66737/V4#C66737_C15694
+  - http://www.cdisc.org/C66737/V4#C66737_C15600
   - http://www.cdisc.org/C66737/V4#C66737_C15601
+  - http://www.cdisc.org/C66737/V4#C66737_C49686
+  - http://www.cdisc.org/C66737/V4#C66737_C49689
+  - http://www.cdisc.org/C66737/V4#C66737_C15693
   - http://www.cdisc.org/C66737/V4#C66737_C49688
   - http://www.cdisc.org/C66737/V4#C66737_C47865
-  - http://www.cdisc.org/C66737/V4#C66737_C49689
-  - http://www.cdisc.org/C66737/V4#C66737_C15600
   - http://www.cdisc.org/C66737/V4#C66737_C49687
-  - http://www.cdisc.org/C66737/V4#C66737_C15694
   - http://www.cdisc.org/C66737/V4#C66737_C15603
   - http://www.cdisc.org/C66737/V4#C66737_C48660
-  - http://www.cdisc.org/C66737/V4#C66737_C15693
   - http://www.cdisc.org/C66737/V9#C66737_C15602
   :extends: 
   :subsets: 
@@ -196,11 +187,9 @@
   :uri: http://www.cdisc.org/C71620/V11#C71620
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
   :label: Unit
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :has_state: http://www.cdisc.org/C71620/V11#C71620_RS
   :has_identifier: http://www.cdisc.org/C71620/V11#C71620_SI
-  :has_previous_version: 
+  :has_previous_version: http://www.cdisc.org/C71620/V9#C71620
   :origin: ''
   :change_description: ''
   :creation_date: '2008-09-30T00:00:00+00:00'
@@ -211,205 +200,248 @@
   :definition: Terminology codelist used for units within CDISC.
   :extensible: true
   :narrower:
-  - http://www.cdisc.org/C71620/V6#C71620_C49671
-  - http://www.cdisc.org/C71620/V6#C71620_C71205
-  - http://www.cdisc.org/C71620/V6#C71620_C68687
-  - http://www.cdisc.org/C71620/V6#C71620_C48490
-  - http://www.cdisc.org/C71620/V6#C71620_C70571
-  - http://www.cdisc.org/C71620/V6#C71620_C70509
-  - http://www.cdisc.org/C71620/V6#C71620_C71200
-  - http://www.cdisc.org/C71620/V6#C71620_C68901
-  - http://www.cdisc.org/C71620/V6#C71620_C64553
+  - http://www.cdisc.org/C71620/V6#C71620_C70489
   - http://www.cdisc.org/C71620/V6#C71620_C64566
+  - http://www.cdisc.org/C71620/V6#C71620_C42559
+  - http://www.cdisc.org/C71620/V6#C71620_C68902
+  - http://www.cdisc.org/C71620/V6#C71620_C70485
+  - http://www.cdisc.org/C71620/V6#C71620_C42547
+  - http://www.cdisc.org/C71620/V6#C71620_C48481
+  - http://www.cdisc.org/C71620/V6#C71620_C70535
+  - http://www.cdisc.org/C71620/V6#C71620_C49671
+  - http://www.cdisc.org/C71620/V6#C71620_C67324
+  - http://www.cdisc.org/C71620/V6#C71620_C71205
+  - http://www.cdisc.org/C71620/V6#C71620_C49673
+  - http://www.cdisc.org/C71620/V6#C71620_C68897
+  - http://www.cdisc.org/C71620/V6#C71620_C48590
+  - http://www.cdisc.org/C71620/V6#C71620_C68687
+  - http://www.cdisc.org/C71620/V6#C71620_C67419
+  - http://www.cdisc.org/C71620/V6#C71620_C48490
+  - http://www.cdisc.org/C71620/V6#C71620_C48547
+  - http://www.cdisc.org/C71620/V6#C71620_C68903
+  - http://www.cdisc.org/C71620/V6#C71620_C70571
+  - http://www.cdisc.org/C71620/V6#C71620_C28254
+  - http://www.cdisc.org/C71620/V6#C71620_C70509
+  - http://www.cdisc.org/C71620/V6#C71620_C71211
+  - http://www.cdisc.org/C71620/V6#C71620_C71200
+  - http://www.cdisc.org/C71620/V6#C71620_C68854
+  - http://www.cdisc.org/C71620/V6#C71620_C68894
+  - http://www.cdisc.org/C71620/V6#C71620_C67307
+  - http://www.cdisc.org/C71620/V6#C71620_C42570
+  - http://www.cdisc.org/C71620/V6#C71620_C70511
+  - http://www.cdisc.org/C71620/V6#C71620_C71362
+  - http://www.cdisc.org/C71620/V6#C71620_C42538
+  - http://www.cdisc.org/C71620/V6#C71620_C68901
+  - http://www.cdisc.org/C71620/V6#C71620_C67328
+  - http://www.cdisc.org/C71620/V6#C71620_C64553
+  - http://www.cdisc.org/C71620/V6#C71620_C70528
+  - http://www.cdisc.org/C71620/V6#C71620_C71199
   - http://www.cdisc.org/C71620/V6#C71620_C67194
   - http://www.cdisc.org/C71620/V6#C71620_C70504
+  - http://www.cdisc.org/C71620/V6#C71620_C70565
+  - http://www.cdisc.org/C71620/V6#C71620_C48155
+  - http://www.cdisc.org/C71620/V6#C71620_C68891
   - http://www.cdisc.org/C71620/V6#C71620_C71167
   - http://www.cdisc.org/C71620/V6#C71620_C48503
   - http://www.cdisc.org/C71620/V6#C71620_C67274
   - http://www.cdisc.org/C71620/V6#C71620_C48516
   - http://www.cdisc.org/C71620/V6#C71620_C68855
+  - http://www.cdisc.org/C71620/V6#C71620_C48476
   - http://www.cdisc.org/C71620/V6#C71620_C42545
+  - http://www.cdisc.org/C71620/V6#C71620_C65045
+  - http://www.cdisc.org/C71620/V6#C71620_C68876
   - http://www.cdisc.org/C71620/V6#C71620_C42558
+  - http://www.cdisc.org/C71620/V6#C71620_C67193
+  - http://www.cdisc.org/C71620/V6#C71620_C71196
+  - http://www.cdisc.org/C71620/V6#C71620_C70580
   - http://www.cdisc.org/C71620/V6#C71620_C25613
+  - http://www.cdisc.org/C71620/V6#C71620_C70508
+  - http://www.cdisc.org/C71620/V6#C71620_C48478
   - http://www.cdisc.org/C71620/V6#C71620_C70512
+  - http://www.cdisc.org/C71620/V6#C71620_C54711
   - http://www.cdisc.org/C71620/V6#C71620_C67434
   - http://www.cdisc.org/C71620/V6#C71620_C70525
   - http://www.cdisc.org/C71620/V6#C71620_C71175
-  - http://www.cdisc.org/C71620/V6#C71620_C28254
+  - http://www.cdisc.org/C71620/V6#C71620_C48539
   - http://www.cdisc.org/C71620/V6#C71620_C48511
+  - http://www.cdisc.org/C71620/V6#C71620_C67379
+  - http://www.cdisc.org/C71620/V6#C71620_C42539
   - http://www.cdisc.org/C71620/V6#C71620_C71188
   - http://www.cdisc.org/C71620/V6#C71620_C67282
   - http://www.cdisc.org/C71620/V6#C71620_C48524
   - http://www.cdisc.org/C71620/V6#C71620_C29848
   - http://www.cdisc.org/C71620/V6#C71620_C48537
-  - http://www.cdisc.org/C71620/V6#C71620_C68876
+  - http://www.cdisc.org/C71620/V6#C71620_C67015
+  - http://www.cdisc.org/C71620/V6#C71620_C67420
   - http://www.cdisc.org/C71620/V6#C71620_C42553
+  - http://www.cdisc.org/C71620/V6#C71620_C65060
   - http://www.cdisc.org/C71620/V6#C71620_C66965
   - http://www.cdisc.org/C71620/V6#C71620_C25301
   - http://www.cdisc.org/C71620/V6#C71620_C42566
+  - http://www.cdisc.org/C71620/V6#C71620_C48548
+  - http://www.cdisc.org/C71620/V6#C71620_C70502
+  - http://www.cdisc.org/C71620/V6#C71620_C70470
+  - http://www.cdisc.org/C71620/V6#C71620_C68667
   - http://www.cdisc.org/C71620/V6#C71620_C67388
   - http://www.cdisc.org/C71620/V6#C71620_C70479
   - http://www.cdisc.org/C71620/V6#C71620_C71170
+  - http://www.cdisc.org/C71620/V6#C71620_C42560
+  - http://www.cdisc.org/C71620/V6#C71620_C48571
   - http://www.cdisc.org/C71620/V6#C71620_C62609
   - http://www.cdisc.org/C71620/V6#C71620_C70533
-  - http://www.cdisc.org/C71620/V6#C71620_C48478
+  - http://www.cdisc.org/C71620/V6#C71620_C64554
   - http://www.cdisc.org/C71620/V6#C71620_C71183
-  - http://www.cdisc.org/C71620/V6#C71620_C71196
   - http://www.cdisc.org/C71620/V6#C71620_C48532
   - http://www.cdisc.org/C71620/V6#C71620_C68871
+  - http://www.cdisc.org/C71620/V6#C71620_C67352
   - http://www.cdisc.org/C71620/V6#C71620_C42561
-  - http://www.cdisc.org/C71620/V6#C71620_C68897
+  - http://www.cdisc.org/C71620/V6#C71620_C71191
+  - http://www.cdisc.org/C71620/V6#C71620_C48489
   - http://www.cdisc.org/C71620/V6#C71620_C48460
   - http://www.cdisc.org/C71620/V6#C71620_C67396
   - http://www.cdisc.org/C71620/V6#C71620_C48473
-  - http://www.cdisc.org/C71620/V6#C71620_C71191
+  - http://www.cdisc.org/C71620/V6#C71620_C67326
+  - http://www.cdisc.org/C71620/V6#C71620_C71197
   - http://www.cdisc.org/C71620/V6#C71620_C48499
   - http://www.cdisc.org/C71620/V6#C71620_C41140
   - http://www.cdisc.org/C71620/V6#C71620_C48540
+  - http://www.cdisc.org/C71620/V6#C71620_C70497
   - http://www.cdisc.org/C71620/V6#C71620_C48553
   - http://www.cdisc.org/C71620/V6#C71620_C68892
+  - http://www.cdisc.org/C71620/V6#C71620_C70506
   - http://www.cdisc.org/C71620/V6#C71620_C48579
   - http://www.cdisc.org/C71620/V6#C71620_C71209
-  - http://www.cdisc.org/C71620/V6#C71620_C48481
+  - http://www.cdisc.org/C71620/V6#C71620_C70523
+  - http://www.cdisc.org/C71620/V6#C71620_C64551
+  - http://www.cdisc.org/C71620/V6#C71620_C64564
   - http://www.cdisc.org/C71620/V6#C71620_C67471
   - http://www.cdisc.org/C71620/V6#C71620_C70562
+  - http://www.cdisc.org/C71620/V6#C71620_C66969
   - http://www.cdisc.org/C71620/V6#C71620_C70575
   - http://www.cdisc.org/C71620/V6#C71620_C49670
+  - http://www.cdisc.org/C71620/V6#C71620_C71480
+  - http://www.cdisc.org/C71620/V6#C71620_C42548
   - http://www.cdisc.org/C71620/V6#C71620_C71204
   - http://www.cdisc.org/C71620/V6#C71620_C18064
-  - http://www.cdisc.org/C71620/V6#C71620_C67324
+  - http://www.cdisc.org/C71620/V6#C71620_C70534
   - http://www.cdisc.org/C71620/V6#C71620_C68905
   - http://www.cdisc.org/C71620/V6#C71620_C25529
   - http://www.cdisc.org/C71620/V6#C71620_C68740
   - http://www.cdisc.org/C71620/V6#C71620_C70570
-  - http://www.cdisc.org/C71620/V6#C71620_C70508
+  - http://www.cdisc.org/C71620/V6#C71620_C54703
+  - http://www.cdisc.org/C71620/V6#C71620_C71172
   - http://www.cdisc.org/C71620/V6#C71620_C48507
+  - http://www.cdisc.org/C71620/V6#C71620_C42556
+  - http://www.cdisc.org/C71620/V6#C71620_C69175
+  - http://www.cdisc.org/C71620/V6#C71620_C48527
+  - http://www.cdisc.org/C71620/V6#C71620_C42569
   - http://www.cdisc.org/C71620/V6#C71620_C68900
   - http://www.cdisc.org/C71620/V6#C71620_C42536
   - http://www.cdisc.org/C71620/V6#C71620_C64552
   - http://www.cdisc.org/C71620/V6#C71620_C42549
-  - http://www.cdisc.org/C71620/V6#C71620_C67193
+  - http://www.cdisc.org/C71620/V6#C71620_C29846
+  - http://www.cdisc.org/C71620/V6#C71620_C48552
+  - http://www.cdisc.org/C71620/V6#C71620_C70531
   - http://www.cdisc.org/C71620/V6#C71620_C71166
   - http://www.cdisc.org/C71620/V6#C71620_C48502
   - http://www.cdisc.org/C71620/V6#C71620_C70529
-  - http://www.cdisc.org/C71620/V6#C71620_C48590
+  - http://www.cdisc.org/C71620/V6#C71620_C71173
   - http://www.cdisc.org/C71620/V6#C71620_C67273
-  - http://www.cdisc.org/C71620/V6#C71620_C68854
-  - http://www.cdisc.org/C71620/V6#C71620_C48528
-  - http://www.cdisc.org/C71620/V6#C71620_C42557
-  - http://www.cdisc.org/C71620/V6#C71620_C66969
-  - http://www.cdisc.org/C71620/V6#C71620_C67379
-  - http://www.cdisc.org/C71620/V6#C71620_C67420
-  - http://www.cdisc.org/C71620/V6#C71620_C70511
-  - http://www.cdisc.org/C71620/V6#C71620_C69104
-  - http://www.cdisc.org/C71620/V6#C71620_C70524
-  - http://www.cdisc.org/C71620/V6#C71620_C71174
   - http://www.cdisc.org/C71620/V6#C71620_C28253
+  - http://www.cdisc.org/C71620/V6#C71620_C67475
+  - http://www.cdisc.org/C71620/V6#C71620_C48528
+  - http://www.cdisc.org/C71620/V6#C71620_C71187
+  - http://www.cdisc.org/C71620/V6#C71620_C48512
+  - http://www.cdisc.org/C71620/V6#C71620_C42557
+  - http://www.cdisc.org/C71620/V6#C71620_C70527
+  - http://www.cdisc.org/C71620/V6#C71620_C67399
+  - http://www.cdisc.org/C71620/V6#C71620_C69104
+  - http://www.cdisc.org/C71620/V6#C71620_C48538
+  - http://www.cdisc.org/C71620/V6#C71620_C70524
+  - http://www.cdisc.org/C71620/V6#C71620_C64387
+  - http://www.cdisc.org/C71620/V6#C71620_C69112
+  - http://www.cdisc.org/C71620/V6#C71620_C71174
+  - http://www.cdisc.org/C71620/V6#C71620_C68877
   - http://www.cdisc.org/C71620/V6#C71620_C48510
   - http://www.cdisc.org/C71620/V6#C71620_C70537
-  - http://www.cdisc.org/C71620/V6#C71620_C71187
   - http://www.cdisc.org/C71620/V6#C71620_C48523
+  - http://www.cdisc.org/C71620/V6#C71620_C42554
+  - http://www.cdisc.org/C71620/V6#C71620_C71189
   - http://www.cdisc.org/C71620/V6#C71620_C48536
   - http://www.cdisc.org/C71620/V6#C71620_C68875
+  - http://www.cdisc.org/C71620/V6#C71620_C67402
   - http://www.cdisc.org/C71620/V6#C71620_C48549
   - http://www.cdisc.org/C71620/V6#C71620_C42552
+  - http://www.cdisc.org/C71620/V6#C71620_C48483
   - http://www.cdisc.org/C71620/V6#C71620_C71321
-  - http://www.cdisc.org/C71620/V6#C71620_C69112
+  - http://www.cdisc.org/C71620/V6#C71620_C68904
+  - http://www.cdisc.org/C71620/V6#C71620_C67264
   - http://www.cdisc.org/C71620/V6#C71620_C67441
   - http://www.cdisc.org/C71620/V6#C71620_C70532
   - http://www.cdisc.org/C71620/V6#C71620_C48477
+  - http://www.cdisc.org/C71620/V6#C71620_C48530
   - http://www.cdisc.org/C71620/V6#C71620_C71195
+  - http://www.cdisc.org/C71620/V6#C71620_C71192
   - http://www.cdisc.org/C71620/V6#C71620_C48531
   - http://www.cdisc.org/C71620/V6#C71620_C48544
-  - http://www.cdisc.org/C71620/V6#C71620_C42560
+  - http://www.cdisc.org/C71620/V6#C71620_C71165
   - http://www.cdisc.org/C71620/V6#C71620_C68896
   - http://www.cdisc.org/C71620/V6#C71620_C48152
-  - http://www.cdisc.org/C71620/V6#C71620_C67307
   - http://www.cdisc.org/C71620/V6#C71620_C71190
+  - http://www.cdisc.org/C71620/V6#C71620_C71168
   - http://www.cdisc.org/C71620/V6#C71620_C48498
-  - http://www.cdisc.org/C71620/V6#C71620_C67475
   - http://www.cdisc.org/C71620/V6#C71620_C70566
-  - http://www.cdisc.org/C71620/V6#C71620_C48552
-  - http://www.cdisc.org/C71620/V6#C71620_C68891
-  - http://www.cdisc.org/C71620/V6#C71620_C49674
-  - http://www.cdisc.org/C71620/V6#C71620_C67328
-  - http://www.cdisc.org/C71620/V6#C71620_C48480
-  - http://www.cdisc.org/C71620/V6#C71620_C70510
-  - http://www.cdisc.org/C71620/V6#C71620_C67352
   - http://www.cdisc.org/C71620/V6#C71620_C70501
+  - http://www.cdisc.org/C71620/V6#C71620_C18063
+  - http://www.cdisc.org/C71620/V6#C71620_C49674
+  - http://www.cdisc.org/C71620/V6#C71620_C71203
+  - http://www.cdisc.org/C71620/V6#C71620_C70484
+  - http://www.cdisc.org/C71620/V6#C71620_C71198
+  - http://www.cdisc.org/C71620/V6#C71620_C70510
   - http://www.cdisc.org/C71620/V6#C71620_C67394
-  - http://www.cdisc.org/C71620/V6#C71620_C71165
+  - http://www.cdisc.org/C71620/V6#C71620_C48480
+  - http://www.cdisc.org/C71620/V6#C71620_C42571
+  - http://www.cdisc.org/C71620/V6#C71620_C71210
   - http://www.cdisc.org/C71620/V6#C71620_C42535
   - http://www.cdisc.org/C71620/V6#C71620_C71324
   - http://www.cdisc.org/C71620/V6#C71620_C48506
   - http://www.cdisc.org/C71620/V6#C71620_C44277
   - http://www.cdisc.org/C71620/V6#C71620_C48484
-  - http://www.cdisc.org/C71620/V6#C71620_C70528
-  - http://www.cdisc.org/C71620/V6#C71620_C71168
   - http://www.cdisc.org/C71620/V6#C71620_C67432
   - http://www.cdisc.org/C71620/V6#C71620_C48520
   - http://www.cdisc.org/C71620/V6#C71620_C70500
   - http://www.cdisc.org/C71620/V6#C71620_C71202
-  - http://www.cdisc.org/C71620/V6#C71620_C71197
-  - http://www.cdisc.org/C71620/V6#C71620_C68902
   - http://www.cdisc.org/C71620/V6#C71620_C48505
-  - http://www.cdisc.org/C71620/V6#C71620_C48548
   - http://www.cdisc.org/C71620/V6#C71620_C70581
   - http://www.cdisc.org/C71620/V6#C71620_C48474
   - http://www.cdisc.org/C71620/V6#C71620_C48519
   - http://www.cdisc.org/C71620/V6#C71620_C48497
-  - http://www.cdisc.org/C71620/V6#C71620_C29846
   - http://www.cdisc.org/C71620/V6#C71620_C65104
   - http://www.cdisc.org/C71620/V6#C71620_C28252
   - http://www.cdisc.org/C71620/V6#C71620_C71201
-  - http://www.cdisc.org/C71620/V6#C71620_C70523
-  - http://www.cdisc.org/C71620/V6#C71620_C70485
-  - http://www.cdisc.org/C71620/V6#C71620_C69175
-  - http://www.cdisc.org/C71620/V6#C71620_C64564
-  - http://www.cdisc.org/C71620/V6#C71620_C67402
-  - http://www.cdisc.org/C71620/V6#C71620_C48547
   - http://www.cdisc.org/C71620/V6#C71620_C68915
-  - http://www.cdisc.org/C71620/V6#C71620_C70580
   - http://www.cdisc.org/C71620/V6#C71620_C68893
   - http://www.cdisc.org/C71620/V6#C71620_C48509
-  - http://www.cdisc.org/C71620/V6#C71620_C42554
-  - http://www.cdisc.org/C71620/V6#C71620_C71192
   - http://www.cdisc.org/C71620/V6#C71620_C70505
   - http://www.cdisc.org/C71620/V6#C71620_C48500
   - http://www.cdisc.org/C71620/V6#C71620_C68685
   - http://www.cdisc.org/C71620/V6#C71620_C28251
   - http://www.cdisc.org/C71620/V6#C71620_C70522
-  - http://www.cdisc.org/C71620/V6#C71620_C71480
-  - http://www.cdisc.org/C71620/V6#C71620_C64554
   - http://www.cdisc.org/C71620/V6#C71620_C48492
   - http://www.cdisc.org/C71620/V6#C71620_C69188
-  - http://www.cdisc.org/C71620/V6#C71620_C49673
   - http://www.cdisc.org/C71620/V6#C71620_C67406
-  - http://www.cdisc.org/C71620/V6#C71620_C71210
-  - http://www.cdisc.org/C71620/V6#C71620_C54711
-  - http://www.cdisc.org/C71620/V6#C71620_C48538
   - http://www.cdisc.org/C71620/V6#C71620_C67380
   - http://www.cdisc.org/C71620/V6#C71620_C48513
   - http://www.cdisc.org/C71620/V6#C71620_C48555
   - http://www.cdisc.org/C71620/V6#C71620_C69442
-  - http://www.cdisc.org/C71620/V6#C71620_C68877
   - http://www.cdisc.org/C71620/V6#C71620_C67474
-  - http://www.cdisc.org/C71620/V6#C71620_C67326
-  - http://www.cdisc.org/C71620/V6#C71620_C42538
   - http://www.cdisc.org/C71620/V6#C71620_C70526
-  - http://www.cdisc.org/C71620/V6#C71620_C71173
   - http://www.cdisc.org/C71620/V6#C71620_C48543
-  - http://www.cdisc.org/C71620/V6#C71620_C42548
-  - http://www.cdisc.org/C71620/V6#C71620_C70527
-  - http://www.cdisc.org/C71620/V6#C71620_C70489
   - http://www.cdisc.org/C71620/V6#C71620_C69094
   - http://www.cdisc.org/C71620/V6#C71620_C64572
   - http://www.cdisc.org/C71620/V6#C71620_C70480
-  - http://www.cdisc.org/C71620/V6#C71620_C42571
   - http://www.cdisc.org/C71620/V6#C71620_C42562
-  - http://www.cdisc.org/C71620/V6#C71620_C71172
   - http://www.cdisc.org/C71620/V6#C71620_C48542
-  - http://www.cdisc.org/C71620/V6#C71620_C64387
   - http://www.cdisc.org/C71620/V6#C71620_C70513
   - http://www.cdisc.org/C71620/V6#C71620_C42576
   - http://www.cdisc.org/C71620/V6#C71620_C67397
@@ -417,19 +449,10 @@
   - http://www.cdisc.org/C71620/V6#C71620_C71177
   - http://www.cdisc.org/C71620/V6#C71620_C64783
   - http://www.cdisc.org/C71620/V6#C71620_C67335
-  - http://www.cdisc.org/C71620/V6#C71620_C42547
-  - http://www.cdisc.org/C71620/V6#C71620_C48571
   - http://www.cdisc.org/C71620/V6#C71620_C71194
-  - http://www.cdisc.org/C71620/V6#C71620_C48527
-  - http://www.cdisc.org/C71620/V6#C71620_C67015
   - http://www.cdisc.org/C71620/V6#C71620_C65132
-  - http://www.cdisc.org/C71620/V6#C71620_C70470
-  - http://www.cdisc.org/C71620/V6#C71620_C68904
-  - http://www.cdisc.org/C71620/V6#C71620_C70565
   - http://www.cdisc.org/C71620/V6#C71620_C66967
-  - http://www.cdisc.org/C71620/V6#C71620_C70531
   - http://www.cdisc.org/C71620/V6#C71620_C70493
-  - http://www.cdisc.org/C71620/V6#C71620_C70484
   - http://www.cdisc.org/C71620/V6#C71620_C67401
   - http://www.cdisc.org/C71620/V6#C71620_C71176
   - http://www.cdisc.org/C71620/V6#C71620_C67377
@@ -440,80 +463,46 @@
   - http://www.cdisc.org/C71620/V6#C71620_C70521
   - http://www.cdisc.org/C71620/V6#C71620_C71185
   - http://www.cdisc.org/C71620/V6#C71620_C70578
-  - http://www.cdisc.org/C71620/V6#C71620_C70502
-  - http://www.cdisc.org/C71620/V6#C71620_C70535
-  - http://www.cdisc.org/C71620/V6#C71620_C70497
-  - http://www.cdisc.org/C71620/V6#C71620_C71199
   - http://www.cdisc.org/C71620/V6#C71620_C48551
-  - http://www.cdisc.org/C71620/V6#C71620_C64551
   - http://www.cdisc.org/C71620/V6#C71620_C64777
-  - http://www.cdisc.org/C71620/V6#C71620_C48476
   - http://www.cdisc.org/C71620/V6#C71620_C70498
   - http://www.cdisc.org/C71620/V6#C71620_C69148
-  - http://www.cdisc.org/C71620/V6#C71620_C67264
-  - http://www.cdisc.org/C71620/V6#C71620_C48512
-  - http://www.cdisc.org/C71620/V6#C71620_C71203
-  - http://www.cdisc.org/C71620/V6#C71620_C70534
-  - http://www.cdisc.org/C71620/V6#C71620_C71198
-  - http://www.cdisc.org/C71620/V6#C71620_C71189
-  - http://www.cdisc.org/C71620/V6#C71620_C68903
   - http://www.cdisc.org/C71620/V6#C71620_C68899
   - http://www.cdisc.org/C71620/V6#C71620_C48461
   - http://www.cdisc.org/C71620/V6#C71620_C67306
-  - http://www.cdisc.org/C71620/V6#C71620_C67399
   - http://www.cdisc.org/C71620/V6#C71620_C67330
   - http://www.cdisc.org/C71620/V6#C71620_C70530
   - http://www.cdisc.org/C71620/V6#C71620_C48475
   - http://www.cdisc.org/C71620/V6#C71620_C48466
   - http://www.cdisc.org/C71620/V6#C71620_C68895
   - http://www.cdisc.org/C71620/V6#C71620_C70455
-  - http://www.cdisc.org/C71620/V6#C71620_C42556
-  - http://www.cdisc.org/C71620/V6#C71620_C48155
   - http://www.cdisc.org/C71620/V6#C71620_C70488
-  - http://www.cdisc.org/C71620/V6#C71620_C48489
   - http://www.cdisc.org/C71620/V6#C71620_C66962
   - http://www.cdisc.org/C71620/V6#C71620_C70507
   - http://www.cdisc.org/C71620/V6#C71620_C70469
-  - http://www.cdisc.org/C71620/V6#C71620_C71362
-  - http://www.cdisc.org/C71620/V6#C71620_C65060
-  - http://www.cdisc.org/C71620/V6#C71620_C67419
   - http://www.cdisc.org/C71620/V6#C71620_C48525
-  - http://www.cdisc.org/C71620/V6#C71620_C42570
   - http://www.cdisc.org/C71620/V6#C71620_C71171
   - http://www.cdisc.org/C71620/V6#C71620_C45997
   - http://www.cdisc.org/C71620/V6#C71620_C48541
   - http://www.cdisc.org/C71620/V6#C71620_C71207
-  - http://www.cdisc.org/C71620/V6#C71620_C65045
-  - http://www.cdisc.org/C71620/V6#C71620_C68894
   - http://www.cdisc.org/C71620/V6#C71620_C42546
   - http://www.cdisc.org/C71620/V6#C71620_C67334
   - http://www.cdisc.org/C71620/V6#C71620_C42555
   - http://www.cdisc.org/C71620/V6#C71620_C48154
   - http://www.cdisc.org/C71620/V6#C71620_C71193
   - http://www.cdisc.org/C71620/V6#C71620_C48479
-  - http://www.cdisc.org/C71620/V6#C71620_C70506
-  - http://www.cdisc.org/C71620/V6#C71620_C42569
   - http://www.cdisc.org/C71620/V6#C71620_C48501
-  - http://www.cdisc.org/C71620/V6#C71620_C18063
   - http://www.cdisc.org/C71620/V6#C71620_C70492
   - http://www.cdisc.org/C71620/V6#C71620_C68879
   - http://www.cdisc.org/C71620/V6#C71620_C67376
   - http://www.cdisc.org/C71620/V6#C71620_C68898
-  - http://www.cdisc.org/C71620/V6#C71620_C54703
-  - http://www.cdisc.org/C71620/V6#C71620_C71211
-  - http://www.cdisc.org/C71620/V6#C71620_C42559
   - http://www.cdisc.org/C71620/V6#C71620_C71253
-  - http://www.cdisc.org/C71620/V6#C71620_C68667
-  - http://www.cdisc.org/C71620/V6#C71620_C48539
   - http://www.cdisc.org/C71620/V6#C71620_C49668
   - http://www.cdisc.org/C71620/V6#C71620_C71169
   - http://www.cdisc.org/C71620/V6#C71620_C42550
   - http://www.cdisc.org/C71620/V6#C71620_C68878
-  - http://www.cdisc.org/C71620/V6#C71620_C48483
   - http://www.cdisc.org/C71620/V6#C71620_C48521
-  - http://www.cdisc.org/C71620/V6#C71620_C48530
   - http://www.cdisc.org/C71620/V6#C71620_C67327
-  - http://www.cdisc.org/C71620/V6#C71620_C42539
   - http://www.cdisc.org/C71620/V9#C71620_C68859
   :extends: 
   :subsets: 
@@ -528,7 +517,6 @@
   :uri: http://www.acme-pharma.com/A00001/V1#A00001
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
   :label: London Heathrow
-  :tagged: []
   :has_state: http://www.acme-pharma.com/A00001/V1#A00001_RS
   :has_identifier: http://www.acme-pharma.com/A00001/V1#A00001_SI
   :has_previous_version: 
@@ -559,7 +547,6 @@
   :uri: http://www.acme-pharma.com/TEST/V1#TH_R1
   :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
   :label: ''
-  :tagged: []
   :enabled: true
   :optional: false
   :ordinal: 1
@@ -570,7 +557,6 @@
   :uri: http://www.acme-pharma.com/TEST/V1#TH_R2
   :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
   :label: ''
-  :tagged: []
   :enabled: true
   :optional: false
   :ordinal: 2

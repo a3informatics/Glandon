@@ -1,6 +1,5 @@
 <% content_for :page_title do %> <%= "Show ADaM IG Dataset: #{@adam_ig_dataset.has_identifier.identifier} (#{@adam_ig_dataset.semantic_version})" %> <% end %>
 
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'adam_ig_datasets/show' %>
 
 <% third_level_breadcrumb(:adam_ig_datasets, @adam_ig_dataset, @close_path) %>

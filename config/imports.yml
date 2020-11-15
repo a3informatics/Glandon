@@ -1475,7 +1475,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: CdiscCl
+                klass: Import::CdiscClasses::CdiscCodeList
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -1487,15 +1487,16 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: parent
+                property: :tagged
                 condition:
                   method: column_not_blank?
                   column: 3
               -
                 method: create_child
                 object: child
-                klass: CdiscCli
+                klass: Import::CdiscClasses::CdiscCodeListItem
                 condition:
                   method: column_blank?
                   column: 3
@@ -1507,8 +1508,9 @@ defaults: &defaults
                   method: column_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: child
+                property: :tagged
                 condition:
                   method: column_blank?
                   column: 3
@@ -1687,7 +1689,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: CdiscCl
+                klass: Import::CdiscClasses::CdiscCodeList
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -1699,15 +1701,16 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: parent
+                property: :tagged
                 condition:
                   method: column_not_blank?
                   column: 3
               -
                 method: create_child
                 object: child
-                klass: CdiscCli
+                klass: Import::CdiscClasses::CdiscCodeListItem
                 condition:
                   method: column_blank?
                   column: 3
@@ -1719,8 +1722,9 @@ defaults: &defaults
                   method: column_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: child
+                property: :tagged
                 condition:
                   method: column_blank?
                   column: 3
@@ -1905,7 +1909,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: CdiscCl
+                klass: Import::CdiscClasses::CdiscCodeList
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -1917,15 +1921,16 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: parent
+                property: :tagged
                 condition:
                   method: column_not_blank?
                   column: 3
               -
                 method: create_child
                 object: child
-                klass: CdiscCli
+                klass: Import::CdiscClasses::CdiscCodeListItem
                 condition:
                   method: column_blank?
                   column: 3
@@ -1937,7 +1942,8 @@ defaults: &defaults
                   method: column_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
+                property: :tagged
                 object: child
                 condition:
                   method: column_blank?
@@ -2124,7 +2130,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: CdiscCl
+                klass: Import::CdiscClasses::CdiscCodeList
                 condition:
                   method: column_not_blank?
                   column: 3
@@ -2136,15 +2142,16 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: parent
+                property: :tagged
                 condition:
                   method: column_not_blank?
                   column: 3
               -
                 method: create_child
                 object: child
-                klass: CdiscCli
+                klass: Import::CdiscClasses::CdiscCodeListItem
                 condition:
                   method: column_blank?
                   column: 3
@@ -2156,8 +2163,9 @@ defaults: &defaults
                   method: column_blank?
                   column: 3
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: child
+                property: :tagged
                 condition:
                   method: column_blank?
                   column: 3
@@ -2338,7 +2346,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: CdiscCl
+                klass: Import::CdiscClasses::CdiscCodeList
                 condition:
                   method: column_blank?
                   column: 2
@@ -2350,15 +2358,16 @@ defaults: &defaults
                   method: column_blank?
                   column: 2
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: parent
+                property: :tagged
                 condition:
                   method: column_blank?
                   column: 2
               -
                 method: create_child
                 object: child
-                klass: CdiscCli
+                klass: Import::CdiscClasses::CdiscCodeListItem
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -2370,8 +2379,9 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 2
               -
-                method: set_tags
+                method: set_property_to_sheet_tags
                 object: child
+                property: :tagged
                 condition:
                   method: column_not_blank?
                   column: 2
@@ -2500,19 +2510,7 @@ defaults: &defaults
           selection:
             first: true
           sheet:
-            actions:
-              -
-                method: tag_from_sheet_name
-                additional:
-                  path:
-                    - "Process"
-                    - "Scope"
-                mapping:
-                  map:
-                    Harmonized:
-                      - Global
-                    Study:
-                      - Study
+            actions: []
             header_row:
               - "CODELIST_LONG_NAME"
               - "CODELIST_SHORT_NAME"
@@ -2532,8 +2530,6 @@ defaults: &defaults
               - "SDTM_STAGE"
               - "ADAM_STAGE"
               - "INACTIVE_F"
-              # - "STUDY_USE"
-              # - "GLOBAL_USE"
           columns:
           -
             label: "CODELIST_SHORT_NAME"
@@ -2546,6 +2542,10 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: notation
+              -
+                method: set_property_to_sheet_tags
+                object: parent
+                property: :tagged
           -
             label: "CODELIST_CODE"
             actions:
@@ -2672,6 +2672,14 @@ defaults: &defaults
             label: "CRF_DISPLAY_VALUE"
             actions:
               -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping: 
+                  map: {}
+                additional:
+                  definition: CRF Display Value
+              -
                 method: create_shared
                 object: child
                 property: preferred_term
@@ -2692,129 +2700,59 @@ defaults: &defaults
             actions:  []
           -
             label: "RANK"
-            actions: []
+            actions:
+              -
+                method: set_property
+                object: child
+                property: :rank
+                can_be_empty: true
           -
             label: "DC_STAGE"
             actions:
               -
-                method: set_column_tag
-                object: parent
-                mapping:
-                  map:
-                    "Y": "DC Stage"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Stage
-              -
-                method: set_column_tag
+                method: set_property_with_custom
                 object: child
+                property: :custom_properties
                 mapping:
                   map:
-                    "Y": "DC Stage"
-                    "N": ""
+                    "Y": "true"
+                    "N": "false"
                 additional:
-                  path:
-                    - Process
-                    - Stage
+                  definition: DC Stage
           -
             label: "SDTM_STAGE"
             actions:
               -
-                method: set_column_tag
-                object: parent
-                mapping:
-                  map:
-                    "Y": "SDTM Stage"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Stage
-              -
-                method: set_column_tag
+                method: set_property_with_custom
                 object: child
+                property: :custom_properties
                 mapping:
                   map:
-                    "Y": "SDTM Stage"
-                    "N": ""
+                    "Y": "true"
+                    "N": "false"
                 additional:
-                  path:
-                    - Process
-                    - Stage
+                  definition: SDTM Stage
           -
             label: "ADAM_STAGE"
             actions:
               -
-                method: set_column_tag
-                object: parent
-                mapping:
-                  map:
-                    "Y": "ADaM Stage"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Stage
-              -
-                method: set_column_tag
+                method: set_property_with_custom
                 object: child
+                property: :custom_properties
                 mapping:
                   map:
-                    "Y": "ADaM Stage"
-                    "N": ""
+                    "Y": "true"
+                    "N": "false"
                 additional:
-                  path:
-                    - Process
-                    - Stage
+                  definition: ADaM Stage
           -
             label: "INACTIVE_F"
             actions: []
-          # -
-          #   label: "STUDY_USE"
-          #   actions:
-          #     -
-          #       method: set_column_tag
-          #       object: child
-          #       can_be_empty: true
-          #       mapping:
-          #         "Y": "Study"
-          #       additional:
-          #         path:
-          #           - Process
-          #           - Scope
-          # -
-          #   label: "GLOBAL_USE"
-          #   actions:
-          #     -
-          #       method: set_column_tag
-          #       object: child
-          #       can_be_empty: true
-          #       mapping:
-          #         "Y": "Global"
-          #         "N": ""
-          #       additional:
-          #         path:
-          #           - Process
-          #           - Scope
         version_3:
           selection:
             first: true
           sheet:
-            actions:
-              -
-                method: tag_from_sheet_name
-                additional:
-                  path:
-                    - "Process"
-                    - "Scope"
-                mapping:
-                  map:
-                    Harmonized:
-                      - Global
-                    Study:
-                      - Study
+            actions: []
             header_row:
               - "CODELIST_LONG_NAME"
               - "CODELIST_SHORT_NAME"
@@ -2830,11 +2768,10 @@ defaults: &defaults
               - "CRF_DISPLAY_VALUE"
               - "DISPLAY_ORDER"
               - "RANK"
-              - "CRFGL_USE"
-              - "SDTM_USE"
-              - "ADAM_USE"
+              - "DC_STAGE"
+              - "SDTM_STAGE"
+              - "ADAM_STAGE"
               - "ED_USE"
-              - "STUDY_USE"
               - "INACTIVE_F"
           columns:
           -
@@ -2848,6 +2785,10 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: notation
+              -
+                method: set_property_to_sheet_tags
+                object: parent
+                property: :tagged
           -
             label: "CODELIST_CODE"
             actions:
@@ -2871,6 +2812,7 @@ defaults: &defaults
                 method: create_shared
                 object: parent
                 property: preferred_term
+                can_be_empty: false
           -
             label: "CODELIST_EXTENSIBLE"
             actions:
@@ -2921,6 +2863,15 @@ defaults: &defaults
                   column:
                     - 8
                     - 12
+              -
+                method: set_property
+                object: child
+                property: label
+                condition:
+                  method: column_blank?
+                  column:
+                    - 8
+                    - 12
           -
             label: "DECODE"
             actions:
@@ -2929,6 +2880,15 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 can_be_empty: true
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: true
+                condition:
+                  method: column_blank?
+                  column:
+                    - 12
           -
             label: "SYNONYM"
             actions:
@@ -2955,6 +2915,14 @@ defaults: &defaults
             label: "CRF_DISPLAY_VALUE"
             actions:
               -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping:
+                  map: {}
+                additional:
+                  definition: CRF Display Value
+              -
                 method: create_shared
                 object: child
                 property: preferred_term
@@ -2962,141 +2930,77 @@ defaults: &defaults
                 condition:
                   method: column_blank?
                   column: 8
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: true
+                condition:
+                  method: column_not_blank?
+                  column: 12
           -
             label: "DISPLAY_ORDER"
-            actions: []
+            actions:  []
           -
             label: "RANK"
-            actions: []
-          -
-            label: "CRFGL_USE"
             actions:
               -
-                method: set_column_tag
-                object: parent
-                mapping:
-                  map:
-                    "Y": "CRF GL Use"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Use
-              -
-                method: set_column_tag
+                method: set_property
                 object: child
-                mapping:
-                  map:
-                    "Y": "CRF GL Use"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Use
+                property: :rank
+                can_be_empty: true
           -
-            label: "SDTM_USE"
+            label: "DC_STAGE"
             actions:
               -
-                method: set_column_tag
-                object: parent
-                mapping:
-                  map:
-                    "Y": "SDTM Use"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Use
-              -
-                method: set_column_tag
+                method: set_property_with_custom
                 object: child
+                property: :custom_properties
                 mapping:
                   map:
-                    "Y": "SDTM Use"
-                    "N": ""
+                    "Y": "true"
+                    "N": "false"
                 additional:
-                  path:
-                    - Process
-                    - Use
+                  definition: DC Stage
           -
-            label: "ADAM_USE"
+            label: "SDTM_STAGE"
             actions:
               -
-                method: set_column_tag
-                object: parent
-                mapping:
-                  map:
-                    "Y": "ADaM Use"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Use
-              -
-                method: set_column_tag
+                method: set_property_with_custom
                 object: child
+                property: :custom_properties
                 mapping:
                   map:
-                    "Y": "ADaM Use"
-                    "N": ""
+                    "Y": "true"
+                    "N": "false"
                 additional:
-                  path:
-                    - Process
-                    - Use
+                  definition: SDTM Stage
+          -
+            label: "ADAM_STAGE"
+            actions:
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping:
+                  map:
+                    "Y": "true"
+                    "N": "false"
+                additional:
+                  definition: ADaM Stage
           -
             label: "ED_USE"
             actions:
               -
-                method: set_column_tag
-                object: parent
-                can_be_empty: true
-                mapping:
-                  map:
-                    "Y": "ED Use"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Use
-              -
-                method: set_column_tag
+                method: set_property_with_custom
                 object: child
-                can_be_empty: true
+                property: :custom_properties
                 mapping:
                   map:
-                    "Y": "ED Use"
-                    "N": ""
+                    "Y": "true"
+                    "N": "false"
                 additional:
-                  path:
-                    - Process
-                    - Use
-          -
-            label: "STUDY_USE"
-            actions:
-              -
-                method: set_column_tag
-                object: parent
-                can_be_empty: true
-                mapping:
-                  map:
-                    "Y": "Study Use"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Use
-              -
-                method: set_column_tag
-                object: child
-                can_be_empty: true
-                mapping:
-                  map:
-                    "Y": "Study Use"
-                    "N": ""
-                additional:
-                  path:
-                    - Process
-                    - Use
+                  definition: ED Use
           -
             label: "INACTIVE_F"
             actions: []

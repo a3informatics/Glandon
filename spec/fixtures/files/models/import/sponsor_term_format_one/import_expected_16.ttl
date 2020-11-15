@@ -67,8 +67,6 @@
 <http://www.s-cubed.dk/SN002136/V1#SN002136>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Microscopic Findings Standard Character Result"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoT:hasState <http://www.s-cubed.dk/SN002136/V1#SN002136_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/SN002136/V1#SN002136_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -107,8 +105,6 @@
 <http://www.s-cubed.dk/SN002136/V1#SN002136_SC38757>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	th:identifier "SC38757"^^xsd:string ;
 	th:notation "NEGATIVE"^^xsd:string ;
 	th:definition "A finding of normality following an examination or investigation looking for the presence of a microorganism, disease, or condition."^^xsd:string ;
@@ -122,8 +118,6 @@
 <http://www.s-cubed.dk/SN002136/V1#SN002136_SC38758>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	th:identifier "SC38758"^^xsd:string ;
 	th:notation "POSITIVE"^^xsd:string ;
 	th:definition "An observation confirming something, such as the presence of a disease, condition, or microorganism."^^xsd:string ;
@@ -137,4 +131,60 @@
 <http://www.assero.co.uk/PT#0e2bf58d8bb6e34fce214029b34d32edb3763767>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Microscopic Findings Standard Character Result"^^xsd:string ;
+.
+<http://www.assero.co.uk/CPV#ceb017bd-d5d0-4da9-87cd-95da97c5d7bf>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN002136/V1#SN002136_SC38757> ;
+	isoC:context <http://www.s-cubed.dk/SN002136/V1#SN002136> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
+.
+<http://www.assero.co.uk/CPV#fb783c6b-0bc2-466d-9960-74bac50e8a3d>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN002136/V1#SN002136_SC38757> ;
+	isoC:context <http://www.s-cubed.dk/SN002136/V1#SN002136> ;
+	isoC:value "true"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
+.
+<http://www.assero.co.uk/CPV#86774254-d5b0-4d6a-9c9c-05d90acd79a8>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN002136/V1#SN002136_SC38757> ;
+	isoC:context <http://www.s-cubed.dk/SN002136/V1#SN002136> ;
+	isoC:value "true"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
+.
+<http://www.assero.co.uk/CPV#b8d8cea9-2ffa-439f-a5d8-086e8da9513b>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN002136/V1#SN002136_SC38757> ;
+	isoC:context <http://www.s-cubed.dk/SN002136/V1#SN002136> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
+.
+<http://www.assero.co.uk/CPV#ea1e2246-baf3-47d1-b3b7-cd3c86a6b126>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN002136/V1#SN002136_SC38758> ;
+	isoC:context <http://www.s-cubed.dk/SN002136/V1#SN002136> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
+.
+<http://www.assero.co.uk/CPV#061e28d2-8b60-46c6-a1df-2b9e62d987c7>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN002136/V1#SN002136_SC38758> ;
+	isoC:context <http://www.s-cubed.dk/SN002136/V1#SN002136> ;
+	isoC:value "true"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
+.
+<http://www.assero.co.uk/CPV#aeee9566-81ef-49ab-b9cc-bead95b45334>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN002136/V1#SN002136_SC38758> ;
+	isoC:context <http://www.s-cubed.dk/SN002136/V1#SN002136> ;
+	isoC:value "true"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
+.
+<http://www.assero.co.uk/CPV#b2892b5a-aed3-49b8-8224-6b38a1ff3ab6>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN002136/V1#SN002136_SC38758> ;
+	isoC:context <http://www.s-cubed.dk/SN002136/V1#SN002136> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .

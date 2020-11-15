@@ -3,7 +3,6 @@
 :uri: http://www.s-cubed.dk/XXX/V1#BCI
 :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
 :label: New BC
-:tagged: []
 :has_state:
   :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfUlM=
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_RS
@@ -56,7 +55,6 @@
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI5
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
   :label: Site of Administration
-  :tagged: []
   :mandatory: true
   :collect: true
   :enabled: true
@@ -66,14 +64,12 @@
     :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI5_BCCDTCD
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: CD
-    :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#CD
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfQkNJNV9CQ0NEVENEX0JDUGNvZGU=
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI5_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: Not set
       :prompt_text: ''
       :format: '20'
@@ -91,7 +87,6 @@
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI11
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
   :label: Result
-  :tagged: []
   :mandatory: true
   :collect: true
   :enabled: true
@@ -101,14 +96,12 @@
     :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI11_BCCDTPQR
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: PQR
-    :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#PQR
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQdmFsdWU=
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI11_BCCDTPQR_BCPvalue
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: value
-      :tagged: []
       :question_text: Not set
       :prompt_text: ''
       :format: '5.2'
@@ -126,7 +119,6 @@
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI11_BCCDTPQR_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: Not set
       :prompt_text: ''
       :format: '20'
@@ -144,7 +136,6 @@
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI6
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
   :label: Laterality
-  :tagged: []
   :mandatory: true
   :collect: true
   :enabled: true
@@ -154,14 +145,12 @@
     :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI6_BCCDTCD
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: CD
-    :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#CD
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfQkNJNl9CQ0NEVENEX0JDUGNvZGU=
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI6_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: Not set
       :prompt_text: ''
       :format: '20'
@@ -179,7 +168,6 @@
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI1
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
   :label: Test
-  :tagged: []
   :mandatory: true
   :collect: true
   :enabled: true
@@ -189,14 +177,12 @@
     :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI1_BCCDTCD
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: CD
-    :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#CD
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGU=
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI1_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: Not set
       :prompt_text: ''
       :format: '20'
@@ -214,7 +200,6 @@
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI7
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
   :label: Method
-  :tagged: []
   :mandatory: true
   :collect: true
   :enabled: true
@@ -224,14 +209,12 @@
     :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI7_BCCDTCD
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: CD
-    :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#CD
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfQkNJN19CQ0NEVENEX0JDUGNvZGU=
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI7_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: Not set
       :prompt_text: ''
       :format: '20'
@@ -249,7 +232,6 @@
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI2
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
   :label: Category Code
-  :tagged: []
   :mandatory: true
   :collect: true
   :enabled: true
@@ -259,14 +241,12 @@
     :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI2_BCCDTCD
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: CD
-    :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#CD
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfQkNJMl9CQ0NEVENEX0JDUGNvZGU=
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI2_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: Not set
       :prompt_text: ''
       :format: '20'
@@ -284,7 +264,6 @@
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI8
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
   :label: Date Time
-  :tagged: []
   :mandatory: true
   :collect: true
   :enabled: true
@@ -294,14 +273,12 @@
     :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI8_BCCDTDATETIME
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: DATETIME
-    :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#DATETIME
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfQkNJOF9CQ0NEVERBVEVUSU1FX0JDUHZhbHVl
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI8_BCCDTDATETIME_BCPvalue
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: value
-      :tagged: []
       :question_text: Not set
       :prompt_text: ''
       :format: ''
@@ -319,7 +296,6 @@
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI3
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
   :label: Subcategory Code
-  :tagged: []
   :mandatory: true
   :collect: true
   :enabled: true
@@ -329,14 +305,12 @@
     :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI3_BCCDTCD
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: CD
-    :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#CD
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfQkNJM19CQ0NEVENEX0JDUGNvZGU=
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI3_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: Not set
       :prompt_text: ''
       :format: '20'
@@ -354,7 +328,6 @@
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI10
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
   :label: Reason Not Done
-  :tagged: []
   :mandatory: true
   :collect: true
   :enabled: true
@@ -364,14 +337,12 @@
     :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI10_BCCDTCD
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: CD
-    :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#CD
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfQkNJMTBfQkNDRFRDRF9CQ1Bjb2Rl
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI10_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: Not set
       :prompt_text: ''
       :format: '20'
@@ -389,7 +360,6 @@
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI9
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
   :label: Not Done
-  :tagged: []
   :mandatory: true
   :collect: true
   :enabled: true
@@ -399,14 +369,12 @@
     :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI9_BCCDTBL
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: BL
-    :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#BL
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfQkNJOV9CQ0NEVEJMX0JDUHZhbHVl
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI9_BCCDTBL_BCPvalue
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: value
-      :tagged: []
       :question_text: Not set
       :prompt_text: ''
       :format: ''
@@ -424,7 +392,6 @@
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI4
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
   :label: Position
-  :tagged: []
   :mandatory: true
   :collect: true
   :enabled: true
@@ -434,14 +401,12 @@
     :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI4_BCCDTCD
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: CD
-    :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#CD
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfQkNJNF9CQ0NEVENEX0JDUGNvZGU=
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI4_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: Not set
       :prompt_text: ''
       :format: '20'
@@ -460,7 +425,6 @@
   :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI1
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
   :label: Test
-  :tagged: []
   :mandatory: true
   :collect: true
   :enabled: true
@@ -470,14 +434,12 @@
     :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI1_BCCDTCD
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: CD
-    :tagged: []
     :is_complex_datatype: http://www.s-cubed.dk/CDT#CD
     :has_property:
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGU=
       :uri: http://www.s-cubed.dk/XXX/V1#BCI_BCI1_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
-      :tagged: []
       :question_text: ''
       :prompt_text: ''
       :format: ''

@@ -1,26 +1,11 @@
-<% content_for :page_title do %> <%= "Edit Subset: #{@tc.notation} (#{@tc.has_identifier.identifier})" %> <% end %>
+<% content_for :page_title do %> <%= "Edit Extension: #{@tc.notation} (#{@tc.has_identifier.identifier})" %> <% end %>
 
-<%= stylesheet_link_tag 'homes' %>
-<%= javascript_pack_tag 'thesauri/managed_concepts/edit_extension' %>
-<%= javascript_tag "let showDataUrl = '#{show_data_thesauri_managed_concept_path(@tc, managed_concept: {context_id: @context_id})}',
-                        extensionUrl = '#{extensions_thesauri_managed_concept_path(@tc)}',
-                        searchUrl = '#{search_multiple_thesauri_index_path(thesauri: {filter: "current"})}',
-                        newChildUrl ='#{add_child_thesauri_managed_concept_path(@tc)}',
-                        newChildFromSynUrl ='#{add_children_synonyms_thesauri_managed_concept_path(@tc)}',
-                        destroyChildUrl ='#{thesauri_unmanaged_concept_path("umcid")}',
-                        extensionId = '#{@tc.id}',
-                        is_extended = false,
-                        is_extending = #{@is_extending},
-                        contextId = '#{@context_id}',
-                        timerTokenId = '#{@token.id}',
+<%= javascript_pack_tag 'thesauri/managed_concepts/extensions/edit' %>
+
+<%= javascript_tag "let timerTokenId = '#{@token.id}',
                         timerWarning = '#{current_user.edit_lock_warning}';"%>
 
 <% third_level_breadcrumb(:thesauri, @tc, history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})) %>
-
-<%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
-<%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'child', with_edit_tags: true} %>
-<%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'extension', item: @tc} %>
-<%= render partial: "shared/thesauri/managed_concepts/rank/edit_ranks", :locals => {item: @tc} %>
 
 <div class="row">
   <%= render layout: "shared/headers/header_codelist", :locals => { item: @tc, context: @ct, badge: "CL" } do %>
@@ -31,8 +16,8 @@
 
       <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
 
-          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#", id: "edit-properties-button",
-            icon: "icon-edit", text: "Edit properties" } %>
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#edit-properties-modal", id: "edit-properties-button",
+            icon: "icon-edit", text: "Edit properties", toggle: "modal" } %>
           <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
             icon: "icon-tag", text: "Edit tags", new_tab: true } %>
 
@@ -53,14 +38,23 @@
 
   <% end %>
 </div>
+
 <div class="row">
   <div class="col-md-12 card wide">
-    <%= render partial: "shared/iso_managed/edit_extension_panel" %>
+    <div class="card-header">
+      Extension Editor
+    </div>
+    <div class="card-content">
+      <%= render partial: "shared/thesauri/managed_concepts/extensions/editor", :locals => { item: @tc, context_id: @context_id } %>
+    </div>
   </div>
 </div>
 
+<%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
+<%= render partial: "shared/thesauri/managed_concepts/edit/edit_properties", :locals => { item: @tc } %>
+<%= render partial: "shared/thesauri/managed_concepts/rank/edit_ranks", :locals => {item: @tc} %>
+
 <% if !@tc.paired? %>
-  <%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "pair"} %>
+  <%= render partial: "shared/items_picker/items_picker", :locals => { id: "pair",
+      description: "Select another Code List to pair this Code List with." } %>
 <% end %>
-<input type="hidden" id="edit_lock_token" value="<%= @token.id %>">
-<input type="hidden" id="warning_timeout" value="<%= current_user.edit_lock_warning %>">

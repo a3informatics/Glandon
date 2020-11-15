@@ -94,7 +94,7 @@ ChangeNotesView.prototype.makeAjax = function(note, url, action){
     },
     error: function(xhr,status,error){
       _this.table.processing(false);
-      handleAjaxError(xhr, status, error, $("#change-notes-modal-error"));
+      handleAjaxError(xhr, status, error);
     }
   });
 }

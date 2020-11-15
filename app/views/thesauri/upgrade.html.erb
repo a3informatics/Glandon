@@ -1,7 +1,7 @@
 <% content_for :page_title do %> Upgrade Code Lists <% end %>
 
 <% third_level_breadcrumb(:thesauri, @thesaurus, @close_path) %>
-<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'iso_managed/impact', 'shared/d3/d3_impact_graph', 'shared/datatables_loading' %>
+<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'iso_managed/impact', 'shared/d3/d3_impact_graph' %>
 <%= javascript_include_tag  'd3', 'thesauri/upgrade', 'shared/impact/impact_graph', 'shared/thesauri/upgrade_panel', 'shared/tabs_layout' %>
 <%= javascript_tag "var upgradeDataUrl = '#{upgrade_data_thesauri_managed_concept_path(id: "clId", impact: {sponsor_th_id: @thesaurus.id})}',
                         cdiscChangesUrl = '#{changes_impact_thesauri_path(@base_cdisc_th, thesauri: {thesaurus_id: @ref_cdisc_th.id, sponsor_th_id: @thesaurus.id})}',
@@ -15,7 +15,7 @@
       <div class="btns-wrap">
         <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
       </div>
-      
+
   <% end %>
 </div>
 

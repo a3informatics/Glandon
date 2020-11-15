@@ -42,8 +42,7 @@ describe "IsoConceptV2" do
 	      	:rdf_type => "http://www.assero.co.uk/ISO11179Concepts#Concept",
 	      	:uri => uri.to_s,
 	      	:label => "A Concept",
-          :id => uri.to_id,
-          :tagged => []
+          :id => uri.to_id
 	    	}
       result = IsoConceptV2.find(uri)
 			expect(result.to_h).to eq(expected)
@@ -194,58 +193,43 @@ describe "IsoConceptV2" do
       expect(results.map{|x| x.pref_label}).to match_array([])
     end
 
-    it "add tags with no save" do
-      item_1 = IsoConceptV2.new
-      item_1.uri = Uri.new(uri: "http://www.assero.co.uk/C1")
-      item_2 = IsoConceptV2.new
-      item_2.uri = Uri.new(uri: "http://www.assero.co.uk/C2")
-      cs_1 = IsoConceptSystem.new
-      cs_1.uri = Uri.new(uri: "http://www.assero.co.uk/TAG1")
-      cs_2 = IsoConceptSystem.new
-      cs_2.uri = Uri.new(uri: "http://www.assero.co.uk/TAG2")
-      cs_3 = IsoConceptSystem.new
-      cs_3.uri = Uri.new(uri: "http://www.assero.co.uk/TAG3")
-      expect(item_1.tagged.count).to eq(0)
-      expect(item_2.tagged.count).to eq(0)
-      item_1.add_tag_no_save(cs_1)
-      expect(item_1.tagged.count).to eq(1)
-      expect(item_2.tagged.count).to eq(0)
-      item_1.add_tag_no_save(cs_2)
-      expect(item_1.tagged.count).to eq(2)
-      expect(item_2.tagged.count).to eq(0)
-      item_1.add_tag_no_save(cs_2)
-      expect(item_1.tagged.count).to eq(2)
-      expect(item_2.tagged.count).to eq(0)
-      item_1.add_tags_no_save([cs_1, cs_2])
-      item_2.add_tags_no_save([cs_1, cs_2])
-      expect(item_1.tagged.count).to eq(2)
-      expect(item_2.tagged.count).to eq(2)
-      item_2.add_tags_no_save([cs_1, cs_2])
-      expect(item_1.tagged.count).to eq(2)
-      expect(item_2.tagged.count).to eq(2)
-      item_1.add_tag_no_save(cs_3)
-      item_2.add_tags_no_save([cs_3])
-      expect(item_1.tagged.count).to eq(3)
-      expect(item_2.tagged.count).to eq(3)
-      expect(item_1.tagged.map{|x| x.uri}).to match_array([cs_1.uri, cs_2.uri, cs_3.uri])
-      expect(item_2.tagged.map{|x| x.uri}).to match_array([cs_1.uri, cs_2.uri, cs_3.uri])
-    end
-
     it "Gets tags" do
-      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
-      results = th.tags
-      expect(results.map{|x| x.pref_label}).to eq(["SDTM"])
-      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
-      results = th.tags
+      uri = Uri.new(uri: "http://www.assero.co.uk/C1")
+      item_1 = IsoConceptV2.new
+      item_1.uri = uri
+      item_1.save
+      item_1 = IsoConceptV2.find(uri)
+      results = item_1.tags
+      expect(results.map{|x| x.pref_label}).to match_array([])
+      tag_1 = IsoConceptSystem.path(["CDISC", "SDTM"])
+      tag_2 = IsoConceptSystem.path(["CDISC", "ADaM"])
+      tag_3 = IsoConceptSystem.path(["CDISC", "CDASH"])
+      tag_4 = IsoConceptSystem.path(["CDISC", "SEND"])
+      item_1.add_tag(tag_1.id)
+      item_1.add_tag(tag_2.uri)
+      item_1.add_tag(tag_3.uri)
+      item_1.add_tag(tag_4.uri)
+      results = item_1.tags
       expect(results.map{|x| x.pref_label}).to match_array(["SDTM", "CDASH", "ADaM", "SEND"])
     end
 
 		it "Gets tag labels" do
-			th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
-      results = th.tag_labels
-      expect(results).to eq(["SDTM"])
-      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
-      results = th.tag_labels
+      uri = Uri.new(uri: "http://www.assero.co.uk/C1")
+      item_1 = IsoConceptV2.new
+      item_1.uri = uri
+      item_1.save
+      item_1 = IsoConceptV2.find(uri)
+      results = item_1.tags
+      expect(results.map{|x| x.pref_label}).to match_array([])
+      tag_1 = IsoConceptSystem.path(["CDISC", "SDTM"])
+      tag_2 = IsoConceptSystem.path(["CDISC", "ADaM"])
+      tag_3 = IsoConceptSystem.path(["CDISC", "CDASH"])
+      tag_4 = IsoConceptSystem.path(["CDISC", "SEND"])
+      item_1.add_tag(tag_1.id)
+      item_1.add_tag(tag_2.uri)
+      item_1.add_tag(tag_3.uri)
+      item_1.add_tag(tag_4.uri)
+      results = item_1.tag_labels
       expect(results).to eq(["ADaM", "CDASH", "SDTM", "SEND"])
 		end
 

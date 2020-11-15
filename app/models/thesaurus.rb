@@ -407,7 +407,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
       ?s th:extensible ?e .
       ?s th:preferredTerm/isoC:label ?pt .
       OPTIONAL {?s th:synonym/isoC:label ?sy .}
-      OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
+      OPTIONAL {?s ^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel ?t . #{tag_clause}}
     }
   } ORDER BY ?i ?sy ?t
 } GROUP BY ?i ?n ?d ?pt ?e ?s ORDER BY ?i
@@ -474,7 +474,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
           ?s th:preferredTerm/isoC:label ?pt .
           ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o
           OPTIONAL {?s th:synonym/isoC:label ?sy .}
-          OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
+          OPTIONAL {?s ^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel ?t . #{tag_clause}}
           BIND (EXISTS {?s th:extends ?xe1} as ?eo)
           BIND (EXISTS {?s th:subsets ?xs1} as ?so)
           BIND (EXISTS {?s ^th:extends ?x } AS ?ext )

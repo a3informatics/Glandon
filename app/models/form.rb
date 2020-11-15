@@ -22,6 +22,9 @@ class Form < IsoManagedV2
     self.children_objects.sort_by {|x| x.ordinal}
   end
 
+  # Clone. Clone the Form
+  #
+  # @return [Form] a clone of the object
   def clone
     self.has_group_links
     super
@@ -36,6 +39,11 @@ class Form < IsoManagedV2
     to_crf
   end
 
+  # Move Up With Clone
+  #
+  # @param [Object] child the object to be moved
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Void] no return
   def move_up_with_clone(child, managed_ancestor)
     if child.multiple_managed_ancestors?
       parent_and_child = self.replicate_siblings_with_clone(child, managed_ancestor)
@@ -45,6 +53,11 @@ class Form < IsoManagedV2
     end
   end
 
+  # Move Down With Clone
+  #
+  # @param [Object] child the object to be moved
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Void] no return
   def move_down_with_clone(child, managed_ancestor)
     if child.multiple_managed_ancestors?
       parent_and_child = self.replicate_siblings_with_clone(child, managed_ancestor)
@@ -128,7 +141,6 @@ private
     html += '<table class="table table-striped table-bordered table-condensed" id="crf">'
     html += '<tr>'
     html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
-
     unless annotations.nil?
       html += '<td>' 
       domains = annotations.domain_list
@@ -141,14 +153,11 @@ private
         class_name = "domain-#{class_suffix}"
         html += "<h4 class=\"#{class_name}\">#{domain_annotation}</h4>"
         annotations.preserve_domain_class(prefix, class_name)
-        #domain[:class] = class_name
-        #@@domain_map[domain[:domain_prefix]] = domain
       end
       html += '</td>'
     else
       html += empty_cell
     end
-
     html += '</tr>'
     form.has_group.sort_by {|x| x.ordinal}.each do |group|
       html += group.to_crf(annotations)

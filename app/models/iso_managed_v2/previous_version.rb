@@ -13,7 +13,7 @@ class IsoManagedV2
     def replace_if_no_change(previous, ignore_properties=[])
       return self if previous.nil?
       return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :origin, :change_description,
-        :creation_date, :last_change_date, :explanatory_comment, :tagged] + ignore_properties})
+        :creation_date, :last_change_date, :explanatory_comment] + ignore_properties})
       replace_children_if_no_change(previous)
       self
     end

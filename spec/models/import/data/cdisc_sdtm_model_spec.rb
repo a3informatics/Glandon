@@ -141,37 +141,37 @@ describe "Import CDISC SDTM Model Data" do
   
   describe "all versions" do
 
-    it "Base create, 1-2", :speed => 'slow' do
+    it "Base create, 1-2", :import_data => 'slow' do
       release_date = "2008-11-12"
       results = execute_import(release_date, set_write_file)
     end
 
-    it "1-3", :speed => 'slow' do
+    it "1-3", :import_data => 'slow' do
       release_date = "2012-07-16"
       results = execute_import(release_date, set_write_file)
     end
 
-    it "1-4", :speed => 'slow' do
+    it "1-4", :import_data => 'slow' do
       release_date = "2013-11-26"
       results = execute_import(release_date, set_write_file)
     end
 
-    it "1-5", :speed => 'slow' do
+    it "1-5", :import_data => 'slow' do
       release_date = "2016-07-05"
       results = execute_import(release_date, set_write_file)
     end
 
-    it "1-6", :speed => 'slow' do
+    it "1-6", :import_data => 'slow' do
       release_date = "2017-11-16"
       results = execute_import(release_date, set_write_file)
     end
 
-    it "1-7", :speed => 'slow' do
+    it "1-7", :import_data => 'slow' do
       release_date = "2018-11-20"
       results = execute_import(release_date, set_write_file)
     end
 
-    it "1-8", :speed => 'slow' do
+    it "1-8", :import_data => 'slow' do
       release_date = "2019-09-17"
       results = execute_import(release_date, set_write_file)
     end

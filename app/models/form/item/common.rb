@@ -24,13 +24,6 @@ class Form::Item::Common < Form::Item::BcProperty
     ]
   end
 
-  # # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
-  # #
-  # # @return [Symbol] the predicate property as a symbol
-  # def managed_ancestors_predicate
-  #   :has_item
-  # end
-
   # Get Item
   #
   # @return [Array] An array of Common Item

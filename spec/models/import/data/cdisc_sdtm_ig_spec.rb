@@ -152,22 +152,22 @@ describe "Import CDISC SDTM Implementation Guide Data" do
   
   describe "all versions" do
 
-    it "Base create, 3.1.2", :speed => 'slow' do
+    it "Base create, 3.1.2", :import_data => 'slow' do
       release_date = "2008-11-12"
       results = execute_import(release_date, set_write_file)
     end
 
-    it "3.1.3", :speed => 'slow' do
+    it "3.1.3", :import_data => 'slow' do
       release_date = "2012-07-16"
       results = execute_import(release_date, set_write_file)
     end
 
-    it "3.2", :speed => 'slow' do
+    it "3.2", :import_data => 'slow' do
       release_date = "2013-11-26"
       results = execute_import(release_date, set_write_file)
     end
 
-    it "3.3", :speed => 'slow' do
+    it "3.3", :import_data => 'slow' do
       release_date = "2018-11-20"
       results = execute_import(release_date, set_write_file)
     end

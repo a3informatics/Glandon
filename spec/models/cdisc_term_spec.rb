@@ -48,9 +48,9 @@ describe "CdiscTerm" do
       check_file_actual_expected(actual, sub_dir, "version_dates_expected_1.yaml")
     end
 
-    it "returns child class" do
-      expect(CdiscTerm.child_klass).to eq(::CdiscCl)
-    end
+    # it "returns child class" do
+    #   expect(CdiscTerm.child_klass).to eq(::CdiscCl)
+    # end
 
     it "returns the next version" do
       expect(CdiscTerm.next_integer_version).to eq(11)

@@ -55,7 +55,7 @@ private
         UNION 
         { 
           #{self.uri.to_ref} #{predicate.to_ref}* ?i .
-          ?x isoC:tagged ?i 
+          ?x isoC:classifiedAs ?i 
         }
       }
     }

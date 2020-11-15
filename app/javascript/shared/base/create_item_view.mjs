@@ -76,7 +76,6 @@ export default class CreateItemView extends ModalView {
       $post({
         url: this.createItemUrl,
         data: data,
-        errorDiv: this.modal.find('.error-modal'),
         done: (result) => {
           this.onCreated(result);
           this.hide();

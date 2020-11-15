@@ -14,7 +14,7 @@ const icons = {
    * @return {string} formatted icon HTML
    */
   checkMarkIcon(value, cssClasses = '', focusable = false ) {
-    if (value)
+    if ( value === 'true' || value === true )
       return renderIcon({
         iconName: 'sel-filled text-normal',
         cssClasses: cssClasses || 'text-link',
@@ -43,10 +43,10 @@ const iconsInline = { 
     let cssClasses = `remove in-line clickable text-accent-2 ${disabled ? 'disabled' : ''}`;
 
     return renderIcon({
-      iconName: 'times',
+      iconName: 'times-circle',
       ttip,
       ttipText,
-      ttipClasses: 'ttip-table left',
+      ttipClasses: 'ttip-table left text-small',
       cssClasses
     });
   },
@@ -64,7 +64,7 @@ const iconsInline = { 
       iconName: 'edit',
       ttip,
       ttipText,
-      ttipClasses: 'ttip-table left',
+      ttipClasses: 'ttip-table left text-small',
       cssClasses
     });
   }

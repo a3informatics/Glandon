@@ -20,7 +20,6 @@
 function ItemsSelector(params) {
  this.params = this.paramsDefault(params);
  this.modal = $("#selector-modal-" + this.params.id);
- this.errorDiv = this.modal.find("#selector-modal-error");
 
  this.setDescription(params.description);
  this.initSelection();
@@ -534,7 +533,6 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           multiple: this.params.multiple,
           columns: this.columns.bind(this),
           parentPanel: this,
-          errorDiv: this.errorDiv,
           urls: {history: miHistoryThesauriUrl, index: miIndexThesauriUrl},
         });
       break;
@@ -545,7 +543,6 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           multiple: this.params.multiple,
           columns: this.columns.bind(this),
           parentPanel: this,
-          errorDiv: this.errorDiv,
           urls: {history: miHistoryClUrl, index: miIndexClUrl},
         });
       break;
@@ -556,7 +553,6 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           multiple: this.params.multiple,
           columns: this.columns.bind(this),
           parentPanel: this,
-          errorDiv: this.errorDiv,
           urls: {history: miHistoryClUrl, index: miIndexClUrl, children: miChildrenClUrl},
         });
       break;
@@ -567,7 +563,6 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           multiple: this.params.multiple,
           columns: this.columns.bind(this),
           parentPanel: this,
-          errorDiv: this.errorDiv,
           urls: {history: miHistoryBcUrl, index: miIndexBcUrl},
         });
       break;

@@ -1,6 +1,5 @@
 <% content_for :page_title do %> <%= "Show CDISC SDTM Model: #{@sdtm_model.has_identifier.identifier} (#{@sdtm_model.semantic_version})" %> <% end %>
 
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'sdtm_models/show' %>
 
 <% third_level_breadcrumb(:sdtm_models, @sdtm_model, @close_path) %>

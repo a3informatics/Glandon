@@ -1,6 +1,5 @@
 <% content_for :page_title do %> <%= "Show SDTM IG: #{@sdtm_ig.has_identifier.identifier} (#{@sdtm_ig.semantic_version})" %> <% end %>
 
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'sdtm_igs/show' %>
 
 <% third_level_breadcrumb(:sdtm_igs, @sdtm_ig, @close_path) %>

@@ -1,3 +1,5 @@
+import ItemsPicker from 'shared/ui/items_picker/items_picker'
+
 import { $post } from 'shared/helpers/ajax'
 import { alerts } from 'shared/ui/alerts'
 
@@ -99,11 +101,10 @@ export default class PairHandler {
    * Initializes ItemsSelector for Pairing, sets callback
    */
   _initSelector() {
-    this.selector = new ItemsSelector({
+    this.selector = new ItemsPicker({
       id: this.selectorId,
-      types: { cls: true },
-      description: "Select another Code List to pair this Code List with.",
-      callback: (s) => this.pair(s.cls[0].id)
+      types: ['managed_concept'],
+      onSubmit: s => this.pair( s.asIDsArray()[0] )
     });
   }
 

@@ -31,6 +31,20 @@ module Fuseki
         !@metadata.key?(name)
       end
 
+      def extended?
+        @metadata.each{|key, value| return true if value[:extension]}
+        false
+      end
+
+      def extensions
+        @metadata.map{|key, value| key if value[:extension]}
+      end
+
+      def add_extension(name, data_type)
+        sparql = Sparql::Update.new
+        sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: self.class.rdf_type})
+      end
+
       # Property. Get the class for an individual property
       #
       # @param name [String] the name of the property
