@@ -37,7 +37,7 @@ if ENVIRONMENT == 'VAL'
     end 
     if string == "Curator"
     fill_in "Email", :with => C_CURATOR
-    fill_in "Password", :with => 'Changeme4?'
+    fill_in "Password", :with => 'Changeme5?'
     end
     click_button "Log in"
     expect(page).to have_text string
