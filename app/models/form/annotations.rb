@@ -69,49 +69,50 @@ class Form
           ?coded_value_ref bo:reference ?coded_value .
           ?coded_value th:notation ?sdtm_topic_sub .                      
           {                      
-            SELECT ?item ?domain_prefix ?sdtm_var_name ?sdtm_topic_name ?domain_long_name ?bc_property ?bc_identifier ?bc_root ?bc_ident  ?topic_var   WHERE {                  
-      
-      ?sdtm_domain_var bd:name ?sdtm_var_name .                             
-        ?sdtm_domain bd:includesColumn ?sdtm_domain_var .                             
-        ?sdtm_domain bd:prefix ?domain_prefix .               
-        ?sdtm_domain isoC:label ?domain_long_name .
-      ?sdtm_domain bd:basedOnClass ?sdtm_class .
-      ?sdtm_class bd:includesColumn ?topic_var .
-        ?topic_var bd:classifiedAs ?classification .                            
-        ?classification isoC:prefLabel "Topic"^^xsd:string .
-      ?topic_var bd:isA ?canonical_reference .
-      ?bc_root bc:identifiedBy ?item_identifier .
-      ?item_identifier bc:hasComplexDatatype/bc:hasProperty ?bc_identifier .
-      ?bc_identifier bc:isA ?canonical_reference .
-        ?topic_var bd:name ?sdtm_topic_name .                
-      {                 
-        SELECT ?group ?item ?bc_property ?bc_root ?bc_ident ?sdtm_domain_var ?sdtm_domain WHERE {        
-          <http://www.s-cubed.dk/form_test/V1#F> (bf:hasGroup) ?normal_group .                   
-            ?normal_group (bf:hasSubGroup|bf:hasCommon) ?group .                   
-            ?group bf:ordinal ?gord .                   
-            ?group bf:hasItem ?item .                   
-            ?item bf:hasProperty ?op_ref1 .                   
-            ?op_ref1 bo:reference ?bc_property .                   
-            ?bc_property bc:isA ?ref .                   
-            ?sdtm_domain_var bd:isA ?ref .
-          ?sdtm_domain_var rdf:type bd:SdtmDomainVariable .
-        ?sdtm_domain bd:includesColumn ?sdtm_domain_var .
-        ?sdtm_domain ^bo:associatedWith ?assoc .
-      ?bc_root ^bo:theSubject ?assoc .
-            ?bc_root (bc:hasItem/bc:hasComplexDatatype/bc:hasProperty) ?bc_property .                     
-            ?bc_root rdf:type bc:BiomedicalConceptInstance .
-            #?bc_property bc:ordinal ?pord .                           
-            ?bc_root isoT:hasIdentifier ?si .                          
-            ?si isoI:identifier ?bc_ident .                 
-        }               
-      }             
-    }           
-  }         
-} ORDER BY ?gord ?pord 
+            SELECT ?item ?domain_prefix ?sdtm_var_name ?sdtm_topic_name ?domain_long_name ?bc_identifier WHERE 
+            {                  
+              ?sdtm_domain_var bd:name ?sdtm_var_name .                             
+              ?sdtm_domain bd:includesColumn ?sdtm_domain_var .                             
+              ?sdtm_domain bd:prefix ?domain_prefix .               
+              ?sdtm_domain isoC:label ?domain_long_name .
+              ?sdtm_domain bd:basedOnClass ?sdtm_class .
+              ?sdtm_class bd:includesColumn ?topic_var .
+              ?topic_var bd:classifiedAs ?classification .                            
+              ?classification isoC:prefLabel "Topic"^^xsd:string .
+              ?topic_var bd:isA ?canonical_reference .
+              ?bc_root bc:identifiedBy ?item_identifier .
+              ?item_identifier bc:hasComplexDatatype/bc:hasProperty ?bc_identifier .
+              ?bc_identifier bc:isA ?canonical_reference .
+              ?topic_var bd:name ?sdtm_topic_name .                
+              {                 
+                SELECT ?group ?item ?bc_property ?bc_root ?bc_ident ?sdtm_domain_var ?sdtm_domain WHERE 
+                {        
+                  <http://www.s-cubed.dk/form_test/V1#F> (bf:hasGroup) ?normal_group .                   
+                  ?normal_group (bf:hasSubGroup|bf:hasCommon) ?group .                   
+                  ?group bf:ordinal ?gord .                   
+                  ?group bf:hasItem ?item .                   
+                  ?item bf:hasProperty ?op_ref1 .                   
+                  ?op_ref1 bo:reference ?bc_property .                   
+                  ?bc_property bc:isA ?ref .                   
+                  ?sdtm_domain_var bd:isA ?ref .
+                  ?sdtm_domain_var rdf:type bd:SdtmDomainVariable .
+                  ?sdtm_domain bd:includesColumn ?sdtm_domain_var .
+                  ?sdtm_domain ^bo:associatedWith ?assoc .
+                  ?bc_root ^bo:theSubject ?assoc .
+                  ?bc_root (bc:hasItem/bc:hasComplexDatatype/bc:hasProperty) ?bc_property .                     
+                  ?bc_root rdf:type bc:BiomedicalConceptInstance .
+                  #?bc_property bc:ordinal ?pord .                           
+                  ?bc_root isoT:hasIdentifier ?si .                          
+                  ?si isoI:identifier ?bc_ident .                 
+                }               
+              }             
+            }           
+          }         
+        } ORDER BY ?gord ?pord 
       }
     byebug     
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoT, :isoI, :isoC, :th])
-      triples = query_results.by_object_set([:item, :domain, :sdtm_var_name, :domain_long_name, :sdtm_topic_name, :sdtm_topic_sub])
+      triples = query_results.by_object_set([:item, :domain_prefix, :sdtm_var_name, :domain_long_name, :sdtm_topic_name, :sdtm_topic_sub])
       triples.each do |entry|
         add_annotation(entry)
       end
@@ -122,11 +123,11 @@ class Form
     # @return [Array] Array of annotation objects
     def item_annotations
       query_string = %Q{         
-        SELECT DISTINCT ?sdtm_var_name ?domain ?item ?domain_long_name WHERE 
+        SELECT DISTINCT ?sdtm_var_name ?domain_prefix ?item ?domain_long_name WHERE 
         {
           ?col bd:name ?sdtm_var_name .
           ?dataset bd:includesColumn ?col .
-          ?dataset bd:prefix ?domain .
+          ?dataset bd:prefix ?domain_prefix .
           ?dataset isoC:label ?domain_long_name .
           { 
             SELECT ?group ?item ?sdtm_var_name ?gord ?pord WHERE
@@ -141,7 +142,7 @@ class Form
         } ORDER BY ?gord ?pord
       }     
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoC])
-      triples = query_results.by_object_set([:item, :domain, :sdtm_var_name, :domain_long_name])
+      triples = query_results.by_object_set([:item, :domain_prefix, :sdtm_var_name, :domain_long_name])
       triples.each do |entry|
         add_annotation(entry)
       end
@@ -151,7 +152,7 @@ class Form
       uri = entry[:item].to_s
       entry[:sdtm_topic_name].nil? ? entry[:sdtm_topic_name] = "" : entry[:sdtm_topic_name]
       entry[:sdtm_topic_sub].nil? ? entry[:sdtm_topic_sub] = "" : entry[:sdtm_topic_sub]
-      @annotation_set[uri] = Annotation.new({uri: uri, domain_prefix: entry[:domain], domain_long_name: entry[:domain_long_name], sdtm_variable:entry[:sdtm_var_name], sdtm_topic_variable: entry[:sdtm_topic_name], sdtm_topic_value: entry[:sdtm_topic_sub] })
+      @annotation_set[uri] = Annotation.new({uri: uri, domain_prefix: entry[:domain_prefix], domain_long_name: entry[:domain_long_name], sdtm_variable:entry[:sdtm_var_name], sdtm_topic_variable: entry[:sdtm_topic_name], sdtm_topic_value: entry[:sdtm_topic_sub] })
     end
 
     def set_domain_prefix_and_long_name(annotation)
