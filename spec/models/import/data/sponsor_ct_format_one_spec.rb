@@ -483,7 +483,7 @@ describe "Import::SponsorTermFormatOne" do
       uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
       uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
       uri_31 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH")
-      {"2-6" => {uri: uri_26, count: 197256}, "3-0" => {uri: uri_30, count: 291194}, "3-1" => {uri: uri_31, count: 299823}}.each do |version, data|
+      {"2-6" => {uri: uri_26, count: 197256}, "3-0" => {uri: uri_30, count: 291194}, "3-1" => {uri: uri_31, count: 299824}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
