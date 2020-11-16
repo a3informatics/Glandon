@@ -579,7 +579,7 @@ defaults: &defaults
               -
                 method: set_property_with_tag
                 object: child
-                property: typed_as
+                property: :typed_as
                 additional:
                   path:
                     - "CDISC"
@@ -801,7 +801,7 @@ defaults: &defaults
               -
                 method: set_property_with_tag
                 object: child
-                property: typed_as
+                property: :typed_as
                 additional:
                   path:
                     - "CDISC"
@@ -967,12 +967,6 @@ defaults: &defaults
                 method: set_property
                 object: child
                 property: name
-              -
-                method: set_property_with_reference
-                object: child
-                property: is_a
-                additional:
-                  search: sdtm
           -
             label: "Seq. For Order"
             actions:
@@ -1261,7 +1255,7 @@ defaults: &defaults
               -
                 method: set_property_with_tag
                 object: child
-                property: typed_as
+                property: :typed_as
                 additional:
                   path:
                     - "CDISC"
@@ -1370,7 +1364,7 @@ defaults: &defaults
               -
                 method: set_property_with_tag
                 object: child
-                property: typed_as
+                property: :typed_as
                 additional:
                   path:
                     - "CDISC"
