@@ -262,7 +262,7 @@ RSpec.describe AdHocReport, type: :model do
       expect(results[:data].count).to eq(32806) #32801
       save_selected_results(results, "sponsor_ct_export_selected_results_3.yaml", ["ACN", "AERELA", "AERELDEV_01", "AGEGRPE", "AGEGRPPN", "NORMEDN", "SEVRS", "SHIFT2N", "TOXGR_01", "TOXGRN"], false)
       ranks = extract_ranks(results)
-      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_3.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_3.yaml", equate_method: :hash_equal, write_file: false)
       expect(ranks.count).to eq(31)
     end
   
