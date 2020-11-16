@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag 'shared/layouts/header_card' %>
 
+<%= javascript_tag 'var pageHeaderHasTags = true' %>
+
 <div id="imh_header" class="col-md-12 card">
   <div class="card-content">
     <div class="h-outside-wrap">
@@ -17,25 +19,26 @@
         </div>
       </div>
       <div class="h-inner-wrap mid">
-        <div class="text-large"> <%= item.notation %> </div>
-        <div class="label-w-margin">Preferred term: <span class="font-light"> <%= item.preferred_term.label %> </span></div>
-        <div class="label-w-margin">
-            <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Synonym(s)", :items => item.synonym.map{|x| x.label} } %>
+        <div class="text-large long-label"> <%= item.notation %> </div>
+        <div class="label-w-margin long-label">Preferred term: <span class="font-light"> <%= item.preferred_term.label %> </span></div>
+        <div class="label-w-margin long-label">
+            <%= render partial: "shared/labels_inline", :locals => {:name => "Synonym(s)", :items => item.synonym.map{|x| x.label} } %>
         </div>
-        <div class="definition-label label-w-margin">
+        <div class="label-w-margin long-label">
           Definition: <span class="font-light"><%= item.definition %> </span>
         </div>
-        <% if (local_assigns.fetch :with_tags, true) %>
+
+        <% if local_assigns.fetch :with_tags, true %>
           <%= render layout: "shared/expandable_content", :locals => { size: "tiny" } do %>
-            <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Tags", :items => item.filtered_tag_labels(context)} %>
+            <%= render partial: "shared/labels_inline", :locals => { name: "Tags", css_class: 'tag', items: item.filtered_tag_labels(context)} %>
           <% end %>
         <% end %>
+
       </div>
       <div id="header-indicators" class="h-inner-wrap">
         <%= yield %>
-        <%= render partial: "shared/headers/indicators", locals: {id: item.id, wrap_el: "#header-indicators"} %>
+        <%= render partial: "shared/headers/indicators", locals: { id: item.id, wrap_el: "#header-indicators" } %>
       </div>
     </div>
   </div>
 </div>
-<%= javascript_tag 'colorCodeTagsOutline(".expandable-content", ".tags.bg-label");' %>

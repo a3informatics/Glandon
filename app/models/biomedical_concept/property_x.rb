@@ -19,6 +19,16 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
   validates_with Validator::Field, attribute: :question_text, method: :valid_question?
   validates_with Validator::Field, attribute: :prompt_text, method: :valid_question?
   validates_with Validator::Field, attribute: :format, method: :valid_format?
+  validates_with Validator::BcIdentifier
+
+  # Initialize
+  #
+  # @param attributes [Hash] hash of attributes to set on initialization of the class
+  # @return [Object] the created object
+  def initialize(attributes = {})
+    @identifier_property = false
+    super
+  end
 
   # Clone. Clone the property taking care over the reference objects
   #
@@ -33,6 +43,10 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
     object
   end
 
+  # Update. Update the object with the specified properties if valid. Intercepts to handle the terminology
+  #
+  # @param [Hash] params a hash of properties to be updated
+  # @return [Object] returns the object. Not saved if errors are returned.      
   def update(params)
     if params.key?(:has_coded_value) 
       self.has_coded_value_objects
@@ -55,11 +69,25 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
     ]
   end
 
-  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  # Identifier Property? Is this property the identifier property
   #
-  # @return [Symbol] the predicate property as a symbol
-  def self.managed_ancestors_predicate
-    :has_property
+  # @return [Boolean] true if identifier property
+  def identifier_property?(bc)
+    Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bc:hasProperty/^bc:hasComplexDatatype/^bc:identifiedBy #{bc.uri.to_ref}}", "", [:bc]).ask? 
+  end
+
+  # Identifier Property Setter
+  #
+  # @param [Boolean] value the new value
+  def identifier_property=(value)
+    @identifier_property = value
+  end
+
+  # Identifier Property Getter
+  #
+  # @return [Boolean] the value
+  def identifier_property
+    @identifier_property
   end
 
 end

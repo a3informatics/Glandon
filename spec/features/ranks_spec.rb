@@ -7,6 +7,7 @@ describe "Rank", :type => :feature do
   include WaitForAjaxHelper
   include NameValueHelpers
   include UiHelpers
+  include ItemsPickerHelpers
 
   before :all do
     load_files(schema_files, [])
@@ -80,7 +81,7 @@ describe "Rank", :type => :feature do
       context_menu_element_header :enable_rank
       wait_for_ajax 10
       context_menu_element_header_present? :edit_ranks
-      ui_check_indicators(".indicators-wrap", ["ranked"])
+      ui_check_indicators("#header-indicators .indicators-wrap", ["ranked"])
 
       context_menu_element_header :edit_ranks
       ui_in_modal do
@@ -253,7 +254,7 @@ describe "Rank", :type => :feature do
       context_menu_element_header :enable_rank
       wait_for_ajax 10
       context_menu_element_header_present? :edit_ranks
-      ui_check_indicators(".indicators-wrap", ["extension", "ranked"])
+      ui_check_indicators("#header-indicators .indicators-wrap", ["extension", "ranked"])
 
       context_menu_element_header :edit_ranks
       ui_in_modal do
@@ -271,23 +272,18 @@ describe "Rank", :type => :feature do
       wait_for_ajax 10
 
       click_link 'Add items'
-      ui_in_modal do
-        page.find("#select-all-latest").click
-        click_button "Submit and proceed"
-      end
-      ui_in_modal do
-        ui_term_column_search(:code_list, "C100129")
-        find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
-        find(:xpath, "//*[@id='searchTable']/tbody/tr[5]").click
-        click_button 'Add items'
-        wait_for_ajax(10)
-      end
+
+      ip_pick_unmanaged_items(:unmanaged_concept, [
+        { parent: "C99074", owner: "cdisc", version: "62", identifier: "C98798" },
+        { parent: "C99074", owner: "cdisc", version: "62", identifier: "C94393" }
+      ], 'add-children')
+      wait_for_ajax 10
 
       context_menu_element_header :edit_ranks
       ui_in_modal do
         expect(page).to have_content "Rank Code List Items (C88025)"
-        check_rank("C102111", "325")
-        check_rank("C122371", "324")
+        check_rank("C94393", "325")
+        check_rank("C98798", "324")
         click_on "Close"
       end
 
@@ -304,7 +300,7 @@ describe "Rank", :type => :feature do
       context_menu_element_header :enable_rank
       wait_for_ajax 10
       context_menu_element_header_present? :edit_ranks
-      ui_check_indicators(".indicators-wrap", ["a subset", "ranked"])
+      ui_check_indicators("#header-indicators .indicators-wrap", ["a subset", "ranked"])
 
       context_menu_element_header :edit_ranks
       ui_in_modal do
@@ -321,9 +317,9 @@ describe "Rank", :type => :feature do
       context_menu_element_header :enable_rank
       wait_for_ajax 10
 
-      find(:xpath, "//*[@id='source_children_table']/tbody/tr[contains(.,'C49501')]").click
+      find(:xpath, "//tr[contains(.,'C49501')]").click
       wait_for_ajax 10
-      find(:xpath, "//*[@id='source_children_table']/tbody/tr[contains(.,'C17998')]").click
+      find(:xpath, "//tr[contains(.,'C17998')]").click
       wait_for_ajax 10
 
       context_menu_element_header :edit_ranks

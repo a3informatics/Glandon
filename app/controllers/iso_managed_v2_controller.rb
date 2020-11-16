@@ -52,6 +52,12 @@ class IsoManagedV2Controller < ApplicationController
     @close_path = request.referer
   end
 
+  def custom_properties
+    authorize IsoManaged, :show?
+    item = IsoManagedV2.find_minimum(protect_from_bad_id(params))
+    render json: {data: item.find_custom_property_values, definitions: IsoManagedV2.find_custom_property_definitions_to_h(item.class.children_klass)}
+  end
+
   def make_current
     authorize IsoManaged, :status?
     managed_item = find_item(params)

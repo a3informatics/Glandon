@@ -34,9 +34,9 @@ class Thesaurus
         results =[]
         # Get the final result
         query_string = %Q{
-          SELECT DISTINCT ?i ?n ?d ?pt ?e ?del (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys) ?s WHERE
+          SELECT DISTINCT ?i ?n ?d ?pt ?e ?del (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE
           {
-            SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy WHERE
+            SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t WHERE
             {
               VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
               {
@@ -46,13 +46,14 @@ class Thesaurus
                 ?s th:extensible ?e .
                 OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
                 OPTIONAL {?s th:synonym/isoC:label ?sy .}
+                OPTIONAL {?s ^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel ?t .}
               }
-            } ORDER BY ?i ?sy
+            } ORDER BY ?i ?sy ?t
           } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ORDER BY ?i
           }
         query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
         query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del]).each do |x|
-          results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d], delete: false, uri: x[:s].to_s, id: x[:s].to_id}
+          results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: false, uri: x[:s].to_s, id: x[:s].to_id}
         end
         results
       end
@@ -101,7 +102,6 @@ class Thesaurus
           preferred_term: Thesaurus::PreferredTerm.where_only_or_create(syn.label),
           synonym: synonyms,
           definition: object.definition,
-          tagged: object.tagged,
           transaction: tx
         }, self)
         self.valid_child?(child) # Errors placed into child.
@@ -156,7 +156,7 @@ class Thesaurus
               BIND(EXISTS {#{self.uri.to_ref} th:refersTo ?s} as ?sp)
               OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
               OPTIONAL {?s th:synonym/isoC:label ?sy .}
-              OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
+              OPTIONAL {?s ^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel ?t . #{tag_clause}}
             }
           } ORDER BY ?i ?sy ?t
         } GROUP BY ?i ?n ?d ?pt ?e ?type ?s ?del ?sp ?countci ?countcn ?rank ORDER BY ?i

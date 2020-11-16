@@ -1,15 +1,13 @@
 <% content_for :page_title do %> <%= "Show SDTM IG: #{@sdtm_ig.has_identifier.identifier} (#{@sdtm_ig.semantic_version})" %> <% end %>
 
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'sdtm_igs/show' %>
 
 <% third_level_breadcrumb(:sdtm_igs, @sdtm_ig, @close_path) %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @sdtm_ig, :badge => "icon-sdtm"} do %>
+  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @sdtm_ig, badge: "icon-sdtm" } do %>
     <div class="actions-wrap">
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
   <% end %>
 </div>

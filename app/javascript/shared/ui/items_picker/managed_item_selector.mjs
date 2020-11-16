@@ -22,7 +22,6 @@ export default class ManagedItemSelector extends Cacheable {
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {boolean} params.multiple Enable / disable selection of multiple rows [default = false]
    * @param {SelectionView} params.selectionView Selection View instance reference of the Item Picker
-   * @param {element} params.errorDiv Custom element to display flash errors in, optional
    */
   constructor({
     selector,
@@ -30,11 +29,10 @@ export default class ManagedItemSelector extends Cacheable {
     param,
     multiple = false,
     selectionView,
-    errorDiv
   }) {
     super();
 
-    Object.assign(this, { selector, param, multiple, selectionView, errorDiv });
+    Object.assign(this, { selector, param, multiple, selectionView });
     this.urls = urls[this._realParam];
 
     this._initialize();
@@ -79,33 +77,35 @@ export default class ManagedItemSelector extends Cacheable {
 
     // Initializes Selectable Index Panel
     this.indexPanel = new IPPanel({
-      url: this.urls.index,
-      selector: `${this.selector} table#index`,
-      param: this._realParam,
-      count: 500,
-      extraColumns: this._indexColumns,
+      tablePanelOptions: {
+        url: this.urls.index,
+        selector: `${this.selector} #index`,
+        param: this._realParam,
+        count: 5000,
+        extraColumns: this._indexColumns,
+        loadCallback: () => this._toggleInteractivity(true)
+      },
       showSelectionInfo: false,
       ownershipColorBadge: true,
-      errorDiv: this.errorDiv,
       onSelect: () => this._loadHistoryData(),
       onDeselect: () => this.historyPanel.clear(),
-      loadCallback: () => this._toggleInteractivity(true)
     });
 
     // Initializes Selectable History Panel
     this.historyPanel = new IPPanel({
-      selector: `${this.selector} table#history`,
-      param: this._realParam,
-      count: 100,
-      extraColumns: this._historyColumns,
+      tablePanelOptions: {
+        selector: `${this.selector} #history`,
+        param: this._realParam,
+        count: 100,
+        extraColumns: this._historyColumns,
+        loadCallback: (t) => {
+          this._cacheItemHistory( t.rows().data().toArray() );
+          this._toggleInteractivity(true);
+        }
+      },
       multiple: this.multiple,
-      errorDiv: this.errorDiv,
       onSelect: (dtRows) => this._onItemSelect(dtRows),
       onDeselect: (dtRows) => this._onItemDeselect(dtRows),
-      loadCallback: (t) => {
-        this._cacheItemHistory( t.rows().data().toArray() );
-        this._toggleInteractivity(true);
-      },
     });
   }
 

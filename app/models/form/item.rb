@@ -16,33 +16,61 @@ class Form::Item < IsoConceptV2
 
   include Form::Ordinal
 
-  def delete(parent)
-    update_query = %Q{
-      DELETE DATA
-      {
-        #{parent.uri.to_ref} bf:hasItem #{self.uri.to_ref} 
-      };
-      DELETE {?s ?p ?o} WHERE 
-      { 
-        { BIND (#{self.uri.to_ref} as ?s). 
-          ?s ?p ?o
-        }
-        UNION
-        { #{self.uri.to_ref} bf:hasCodedValue ?o1 . 
-          BIND (?o1 as ?s) . 
-          ?s ?p ?o .
-        }
-        UNION
-        { #{self.uri.to_ref} bf:hasProperty ?o2 . 
-          BIND (?o2 as ?s) . 
-          ?s ?p ?o .
-        }
-      }
-    }
-    partial_update(update_query, [:bf])
-    parent.reset_ordinals
+  # Managed Ancestors Path. Returns the path from the managed ancestor to this class
+  #
+  # @return [String] the path as an expanded set of predicates
+  def self.managed_ancestors_path
+    [
+      "<http://www.assero.co.uk/BusinessForm#hasGroup>",
+      "<http://www.assero.co.uk/BusinessForm#hasSubGroup>*",
+      "<http://www.assero.co.uk/BusinessForm#hasCommon>?",
+      "<http://www.assero.co.uk/BusinessForm#hasItem>",
+      "<http://www.assero.co.uk/BusinessForm#hasCommonItem>*"
+    ]
+  end
+
+  # Delete. Delete the object. Clone if there are multiple parents.
+  #
+  # @param [Object] parent_object the parent object
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Object] the parent object, either new or the cloned new object with updates
+  def delete(parent, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent = delete_with_clone(parent, managed_ancestor)
+      parent.reset_ordinals
+    else
+      delete_node(parent)
+    end
     normal_group = Form::Group::Normal.find_full(parent.uri)
     normal_group = normal_group.full_data
+  end
+
+  # Move Up With Clone
+  #
+  # @param [Object] child the object to be moved
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Void] no return
+  def move_up_with_clone(child, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent_and_child = self.replicate_siblings_with_clone(child, managed_ancestor)
+      parent_and_child.first.move_up(parent_and_child.second)
+    else
+      move_up(child)
+    end
+  end
+
+  # Move Down With Clone
+  #
+  # @param [Object] child the object to be moved
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Void] no return
+  def move_down_with_clone(child, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent_and_child = self.replicate_siblings_with_clone(child, managed_ancestor)
+      parent_and_child.first.move_down(parent_and_child.second)
+    else
+      move_down(child)
+    end
   end
 
   def start_row(optional)
@@ -74,38 +102,45 @@ class Form::Item < IsoConceptV2
   # Format input field
   def input_field(item)
     html = '<td>'
+    datatype = nil
     if item.class == BiomedicalConcept::PropertyX
-      prop = ComplexDatatype::PropertyX.find(item.is_complex_datatype_property)
-      datatype = XSDDatatype.new(prop.simple_datatype)
+      if item.is_complex_datatype_property.nil?
+        datatype = nil
+      else
+        prop = ComplexDatatype::PropertyX.find(item.is_complex_datatype_property)
+        datatype = XSDDatatype.new(prop.simple_datatype)
+      end
     else
       datatype = XSDDatatype.new(item.datatype)
     end
-      if datatype.datetime?
-        html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
-      elsif datatype.date?
-       html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
-      elsif datatype.time?
-       html += field_table(["H", "H", ":", "M", "M"])
-      elsif datatype.float?
-        item.format = "5.1" if item.format.blank?
-        parts = item.format.split('.')
-        major = parts[0].to_i
-        minor = parts[1].to_i
-        pattern = ["#"] * major
-        pattern[major-minor-1] = "."
-        html += field_table(pattern)
-      elsif datatype.integer?
-        count = item.format.to_i
-        html += field_table(["#"]*count)
-      elsif datatype.string?
-        length = item.format.scan /\w/
-        html += field_table([" "]*5 + ["S"] + length + [""]*5)
-      elsif datatype.boolean?
-        html += '<input type="checkbox">'
-      else
-        html += field_table(["?", "?", "?"])
-      end
-      html += '</td>'
+    if datatype.nil?
+      html += field_table(["?", "?", "?"])
+    elsif datatype.datetime?
+      html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
+    elsif datatype.date?
+     html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
+    elsif datatype.time?
+     html += field_table(["H", "H", ":", "M", "M"])
+    elsif datatype.float?
+      item.format = "5.1" if item.format.blank?
+      parts = item.format.split('.')
+      major = parts[0].to_i
+      minor = parts[1].to_i
+      pattern = ["#"] * major
+      pattern[major-minor-1] = "."
+      html += field_table(pattern)
+    elsif datatype.integer?
+      count = item.format.to_i
+      html += field_table(["#"]*count)
+    elsif datatype.string?
+      length = item.format.scan /\w/
+      html += field_table([" "]*5 + ["S"] + length + [""]*5)
+    elsif datatype.boolean?
+      html += '<input type="checkbox">'
+    else
+      html += field_table(["?", "?", "?"])
+    end
+    html += '</td>'
   end
 
   # Format a field
@@ -185,6 +220,37 @@ class Form::Item < IsoConceptV2
     query_results = Sparql::Query.new.query(query_string, "", [:bo])
     return 1 if query_results.empty?
     query_results.by_object(:max).first.to_i + 1
+  end
+
+private
+
+  # Delete the node
+  def delete_node(parent)
+    update_query = %Q{
+      DELETE DATA
+      {
+        #{parent.uri.to_ref} bf:hasItem #{self.uri.to_ref} 
+      };
+      DELETE {?s ?p ?o} WHERE 
+      { 
+        { BIND (#{self.uri.to_ref} as ?s). 
+          ?s ?p ?o
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasCodedValue ?o1 . 
+          BIND (?o1 as ?s) . 
+          ?s ?p ?o .
+        }
+        UNION
+        { #{self.uri.to_ref} bf:hasProperty ?o2 . 
+          BIND (?o2 as ?s) . 
+          ?s ?p ?o .
+        }
+      }
+    }
+    partial_update(update_query, [:bf])
+    parent.reset_ordinals
+    1
   end
 
 end

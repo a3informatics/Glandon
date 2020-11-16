@@ -11,7 +11,6 @@
 */
 function RankModal(lockCallback) {
  this.modal = $("#rank-items-modal");
- this.alertsDiv = this.modal.find("#alerts");
  this.rankTable = this.initTable();
  this.lockCallback = lockCallback;
  this.data = {};
@@ -81,7 +80,7 @@ RankModal.prototype.save = function() {
     type: "PUT",
     callback: function(r) {
       this.data = {};
-      displayAlertsInElement(alertSuccess("Ranks saved."), this.alertsDiv);
+      displayAlerts(alertSuccess("Ranks saved."));
     }.bind(this)
   })
 }
@@ -327,7 +326,7 @@ RankModal.prototype.executeRequest = function(params) {
       this.processing(false);
 		},
 		error: function (xhr, status, error) {
-      handleAjaxError(xhr, status, error, this.alertsDiv);
+      handleAjaxError(xhr, status, error);
 			this.processing(false);
 		}
   })

@@ -1,6 +1,5 @@
 <% content_for :page_title do %> <%= "Edit: #{@form.has_identifier.identifier} (#{@form.semantic_version}) "%> <% end %>
 
-<%= stylesheet_link_tag 'shared/forms/form_editor' %>
 <%= javascript_pack_tag 'forms/edit' %>
 
 <% third_level_breadcrumb(:forms, @form, @close_path) %>
@@ -9,13 +8,18 @@
                         tokenTimerWarning = '#{current_user.edit_lock_warning}';"%>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @form, :badge => "icon-forms"} do %>
+  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @form, badge: "icon-forms" } do %>
 
     <div class="actions-wrap">
-			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
-				icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
+			<%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+      <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+          icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty?, new_tab: true } %>
+      <% end %>
+
     </div>
 
   <% end %>
@@ -23,6 +27,6 @@
 
 <div class="row">
 
-  <%= render partial: "shared/forms/edit/editor_card", :locals => { form: @form } %>
+  <%= render partial: "shared/forms/editor_card", :locals => { form: @form } %>
 
 </div>

@@ -11,6 +11,19 @@ class Form::Item::Common < Form::Item::BcProperty
 
   object_property :has_common_item, cardinality: :many, model_class: "Form::Item::BcProperty"
 
+  # Managed Ancestors Path. Returns the path from the managed ancestor to this class
+  #
+  # @return [String] the path as an expanded set of predicates
+  def self.managed_ancestors_path
+    [
+      "<http://www.assero.co.uk/BusinessForm#hasGroup>",
+      "<http://www.assero.co.uk/BusinessForm#hasSubGroup>*",
+      "<http://www.assero.co.uk/BusinessForm#hasCommon>?",
+      "<http://www.assero.co.uk/BusinessForm#hasItem>",
+      "<http://www.assero.co.uk/BusinessForm#hasCommonItem>*"
+    ]
+  end
+
   # Get Item
   #
   # @return [Array] An array of Common Item
@@ -46,7 +59,24 @@ class Form::Item::Common < Form::Item::BcProperty
     self.has_coded_value_objects.sort_by {|x| x.ordinal}
   end
 
-  def delete(parent)
+  # Delete. Delete the object. Clone if there are multiple parents.
+  #
+  # @param [Object] parent_object the parent object
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Object] the parent object, either new or the cloned new object with updates
+  def delete(parent, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent = delete_with_clone(parent, managed_ancestor)
+      parent.reset_ordinals
+    else
+      delete_node(parent)
+    end    
+    common_group = Form::Group::Common.find(parent.uri)
+    normal_group = Form::Group::Normal.find_full(common_group.get_normal_group)
+    normal_group = normal_group.full_data
+  end
+
+  def delete_node(parent)
     update_query = %Q{
       DELETE DATA
       {
@@ -71,9 +101,7 @@ class Form::Item::Common < Form::Item::BcProperty
     }
     partial_update(update_query, [:bf])
     parent.reset_ordinals
-    common_group = Form::Group::Common.find(parent.uri)
-    normal_group = Form::Group::Normal.find_full(common_group.get_normal_group)
-    normal_group = normal_group.full_data
+    1
   end
 
   def common_item_to_hash(common_items)

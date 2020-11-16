@@ -1,6 +1,5 @@
 <% content_for :page_title do %> <%= "Show ADaM IG: #{@adam_ig.has_identifier.identifier} (#{@adam_ig.semantic_version})" %> <% end %>
 
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'adam_igs/show' %>
 
 <% third_level_breadcrumb(:adam_igs, @adam_ig, @close_path) %>
@@ -8,8 +7,7 @@
 <div class="row">
   <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @adam_ig, :badge => "icon-adam"} do %>
     <div class="actions-wrap">
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
   <% end %>
 </div>

@@ -17,7 +17,6 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2008-09-30.xlsx'"^^xsd:string ;
@@ -529,9 +528,9 @@
 <http://www.cdisc.org/C71620/V11#C71620>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C71620/V11#C71620_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71620/V11#C71620_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/C71620/V9#C71620> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2008-09-30T00:00:00+00:00"^^xsd:dateTime ;
@@ -867,4 +866,16 @@
 	isoI:version "11"^^xsd:positiveInteger ;
 	isoI:semanticVersion "11.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.assero.co.uk/CLA#55360006-b5ec-4da4-9e59-67b835d54d24>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo :TH ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/CLA#d8151957-c464-43ea-8b29-103f48c4fdb0>
+	rdf:type isoC:Classification ;
+	isoC:appliesTo <http://www.cdisc.org/C71620/V11#C71620> ;
+	isoC:context :TH ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 .

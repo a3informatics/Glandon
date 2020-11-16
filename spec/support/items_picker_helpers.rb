@@ -84,7 +84,11 @@ module ItemsPickerHelpers
       ip_click_tab(type, id)
       wait_for_ajax 20
       items.each do |i|
-        ip_search("index", id, i[:identifier])
+        if i.key?:owner # Searches owner + identifier if owner specified
+          ip_search("index", id, "#{ i[:owner] } #{ i[:identifier] }")
+        else              # Searches identifier only
+          ip_search("index", id, i[:identifier])
+        end
         ip_item_click("index", id, i[:identifier])
         ip_search("history", id, i[:version])
         ip_item_click("history", id, i[:version])
@@ -100,7 +104,11 @@ module ItemsPickerHelpers
       ip_click_tab(type, id)
       wait_for_ajax 20
       items.each do |i|
-        ip_search("index", id, i[:parent])
+        if i.key? :owner # Searches owner + parent if owner specified
+          ip_search("index", id, "#{ i[:owner] } #{ i[:parent] }")
+        else              # Searches parent only
+          ip_search("index", id, i[:parent])
+        end
         ip_item_click("index", id, i[:parent])
         ip_search("history", id, i[:version])
         ip_item_click("history", id, i[:version])

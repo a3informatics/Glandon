@@ -1,6 +1,5 @@
 <% content_for :page_title do %> <%= "Show Biomedical Concept: #{@bc.has_identifier.identifier} (#{@bc.semantic_version})" %> <% end %>
 
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'biomedical_concept_instances/show' %>
 
 <% third_level_breadcrumb(:biomedical_concept_instances, @bc, @close_path) %>
@@ -8,9 +7,15 @@
 <div class="row">
   <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @bc, :badge => "icon-biocon"} do %>
     <div class="actions-wrap">
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+      <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left"} do %>
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+          icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty? } %>
+      <% end %>
+
     </div>
+
   <% end %>
 </div>
 

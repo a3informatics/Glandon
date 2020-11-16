@@ -6,10 +6,7 @@ class Form::Group::Bc < Form::Group
 
   object_property :has_biomedical_concept, cardinality: :one, model_class: "OperationalReferenceV3"
 
-  object_property_class :has_item, model_classes: 
-    [ 
-      Form::Item::BcProperty, Form::Item::Common
-    ]
+  object_property_class :has_item, model_classes: [Form::Item::BcProperty, Form::Item::Common]
 
   # Get Item
   #
@@ -46,7 +43,36 @@ class Form::Group::Bc < Form::Group
     return html
   end
 
-  def delete(parent)
+  def delete(parent, managed_ancestor)
+    if multiple_managed_ancestors?
+      parent = delete_with_clone(parent, managed_ancestor)
+      parent = Form::Group.find_full(parent.uri)
+      parent.reset_ordinals
+      parent = parent.full_data
+    else
+      parent = delete_node(parent)
+      parent = Form.find_full(parent.uri)
+      parent = parent.full_data
+    end
+  end
+
+  def delete_with_clone(parent, managed_ancestor)
+    new_parent = super
+    new_parent = Form::Group.find_full(new_parent.id)
+    new_parent.reset_ordinals
+    delete_with_clone_common(managed_ancestor, new_parent) unless new_parent.has_common.empty?
+    new_parent = Form::Group.find_full(new_parent.id)
+  end
+
+  def delete_with_clone_common(managed_ancestor, parent)
+    ty = transaction_begin
+    bc_properties = bc_properties_uris.map{|x| x.to_s}
+    common_group = Form::Group::Common.find_children(parent.has_common_objects.first.uri)
+    common_group.clone_children_common(managed_ancestor, ty, bc_properties)
+    transaction_execute
+  end
+
+  def delete_node(parent)
     unless parent.has_common.empty? #Check if there is a common group
       common_group = Form::Group::Common.find(parent.has_common_objects.first.uri)
       delete_data = ""
@@ -54,9 +80,7 @@ class Form::Group::Bc < Form::Group
         self.has_item_objects.each do |bc_property|
           if common_items_with_terminologies?(bc_property, common_item) || common_items_without_terminologies?(bc_property, common_item)
             delete_data += "#{common_item.uri.to_ref} bf:hasCommonItem #{bc_property.uri.to_ref} . "  
-            if common_item.has_common_item_objects.count == 1
-              common_item.delete(common_group)
-            end
+            common_item.delete(common_group, common_group) if common_item.has_common_item_objects.count == 1
           end
         end
       end
@@ -81,8 +105,7 @@ class Form::Group::Bc < Form::Group
     }
     partial_update(update_query, [:bf])
     super(parent)
-    normal_group = Form::Group::Normal.find_full(parent.uri)
-    normal_group = normal_group.full_data
+    parent
   end
 
 
@@ -112,6 +135,17 @@ class Form::Group::Bc < Form::Group
     }
     query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo])
     query_results.by_object(:result).first.to_bool
+  end
+
+  # Bc Properties Uris
+  #
+  # @return [Array] Array of child property uri.
+  def bc_properties_uris
+    bc_properties = []
+    self.has_item_objects.each do |bc_property|
+      bc_properties << bc_property.uri
+    end
+    bc_properties
   end 
 
   def children_ordered

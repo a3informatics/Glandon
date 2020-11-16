@@ -215,6 +215,14 @@ module Fuseki
         define_method("#{name}_push") do |value|
           @properties.property(name.to_sym).set(value)
         end
+
+        define_method("#{name}_replace") do |old_value, new_value|
+          @properties.property(name.to_sym).replace_value(old_value, new_value)
+        end
+
+        define_method("#{name}_delete") do |value|
+          @properties.property(name.to_sym).delete_value(value)
+        end
       end
 
       define_method "#{name}_links" do
@@ -267,6 +275,11 @@ module Fuseki
           @resources["#{name}".to_sym][:predicate]
         end
 
+        # Define a class method to get the child property name
+        define_singleton_method "children_property_name" do
+          "#{name}".to_sym
+        end
+
       else
 
         # Define a class method to return if children predicate exists
@@ -307,7 +320,7 @@ module Fuseki
         type: :data, 
         base_type: simple_datatype, 
         read_exclude: false, 
-        delete_exclude: false 
+        delete_exclude: false
       }
       options[:default] = opts.key?(:default) ? opts[:default] : simple_datatype.default
       add_to_resources(name, options)
@@ -423,12 +436,6 @@ module Fuseki
     def unique_extension
       SecureRandom.uuid
     end
-
-    # def prefix_property_extension(opts)
-    #   return "" if !opts.key?(:prefix) && !opts.key?(:property)
-    #   return "#{opts[:prefix]}" if !opts.key?(:property)
-    #   return "#{opts[:prefix]}#{self.send(opts[:property])}"
-    # end
 
     # Builds the URI for a predicate
     def predicate_uri(name)

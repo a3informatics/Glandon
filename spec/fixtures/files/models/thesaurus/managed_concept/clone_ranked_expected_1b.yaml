@@ -3,8 +3,6 @@
 :uri: http://www.acme-pharma.com/C66769/V18
 :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
 :label: Severity/Intensity Scale for Adverse Events
-:tagged:
-- http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
 :has_state:
   :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY2NzY5L1YxOCNSUw==
   :uri: http://www.acme-pharma.com/C66769/V18#RS
@@ -61,8 +59,6 @@
   :uri: http://www.cdisc.org/C66769/V4#C66769_C41338
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Mild Adverse Event
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C41338
   :notation: MILD
   :definition: A type of adverse event that is usually transient and may require only
@@ -75,24 +71,19 @@
     :uri: http://www.assero.co.uk/PT#b36642cfa3b8dbfc7f1679284fa5fd56b79f3c24
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
     :label: Mild Adverse Event
-    :tagged: []
   :synonym:
   - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2NmMjRhMTk5ZTViNmUzOTk0NGY0MTAyNmUzOGNmMzE4ZGZiNWE0ODE=
     :uri: http://www.assero.co.uk/SYN#cf24a199e5b6e39944f41026e38cf318dfb5a481
     :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
     :label: Grade 1
-    :tagged: []
   - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzM1NmExOTJiNzkxM2IwNGM1NDU3NGQxOGMyOGQ0NmU2Mzk1NDI4YWI=
     :uri: http://www.assero.co.uk/SYN#356a192b7913b04c54574d18c28d46e6395428ab
     :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
     :label: '1'
-    :tagged: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY5L1Y0I0M2Njc2OV9DNDEzMzk=
   :uri: http://www.cdisc.org/C66769/V4#C66769_C41339
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Moderate Adverse Event
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C41339
   :notation: MODERATE
   :definition: A type of adverse event that is usually alleviated with additional
@@ -106,24 +97,19 @@
     :uri: http://www.assero.co.uk/PT#61bc7a3dea644306d0cec91ad9da4e699457eedf
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
     :label: Moderate Adverse Event
-    :tagged: []
   :synonym:
   - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2EyZDU2MzAzYTM4MmRjOTNlZjg1YTUxNmM1Y2EzMzZlMzBiMjQzNDQ=
     :uri: http://www.assero.co.uk/SYN#a2d56303a382dc93ef85a516c5ca336e30b24344
     :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
     :label: Grade 2
-    :tagged: []
   - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2RhNGI5MjM3YmFjY2NkZjE5YzA3NjBjYWI3YWVjNGE4MzU5MDEwYjA=
     :uri: http://www.assero.co.uk/SYN#da4b9237bacccdf19c0760cab7aec4a8359010b0
     :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
     :label: '2'
-    :tagged: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY5L1YxNyNDNjY3NjlfQzQxMzQw
   :uri: http://www.cdisc.org/C66769/V17#C66769_C41340
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Severe Adverse Event
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C41340
   :notation: SEVERE
   :definition: A type of adverse event that interrupts usual activities of daily living,
@@ -136,18 +122,15 @@
     :uri: http://www.assero.co.uk/PT#ae59b8df1067da31e8d3a8ba924fd505920d079b
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
     :label: Severe Adverse Event
-    :tagged: []
   :synonym:
   - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2Y1NzQxYzRhZDYwM2IwM2E3NmQzOTRmZjI4Nzk4OTlhNDk1N2FhOGI=
     :uri: http://www.assero.co.uk/SYN#f5741c4ad603b03a76d394ff2879899a4957aa8b
     :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
     :label: Grade 3
-    :tagged: []
   - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzc3ZGU2OGRhZWNkODIzYmFiYmI1OGVkYjFjOGUxNGQ3MTA2ZTgzYmI=
     :uri: http://www.assero.co.uk/SYN#77de68daecd823babbb58edb1c8e14d7106e83bb
     :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
     :label: '3'
-    :tagged: []
 :extends: 
 :subsets: 
 :paired_with: 
@@ -157,26 +140,22 @@
   :uri: http://www.assero.co.uk/PT#76edd4e6a61216f70444c66f1177f9755ecc7de9
   :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
   :label: CDISC SDTM Severity Intensity Scale for Adverse Event Terminology
-  :tagged: []
 :synonym:
 - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2RlMzJhYTVlZDFlZDBmNzBiODViZDYxZmY1MWNkYThjZDJhZjE3YTI=
   :uri: http://www.assero.co.uk/SYN#de32aa5ed1ed0f70b85bd61ff51cda8cd2af17a2
   :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
   :label: Severity/Intensity Scale for Adverse Events
-  :tagged: []
 :is_ordered: 
 :is_ranked:
   :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFJDIzgzMGZhNzJjLWE1OWUtNDc1Yi05YjJjLWViNGI1YWNlMjY0Zg==
   :uri: http://www.assero.co.uk/TRC#830fa72c-a59e-475b-9b2c-eb4b5ace264f
   :rdf_type: http://www.assero.co.uk/Thesaurus#RankedCollection
   :label: ''
-  :tagged: []
   :members:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFJNIzI0MmMzZDk0LWY0N2MtNDQ3Ny05ZjUxLWFmYTRjMThmYTk0OQ==
     :uri: http://www.assero.co.uk/TRM#242c3d94-f47c-4477-9f51-afa4c18fa949
     :rdf_type: http://www.assero.co.uk/Thesaurus#RankedMember
     :label: ''
-    :tagged: []
     :rank: 1
     :item: http://www.cdisc.org/C66769/V17#C66769_C41340
     :member_next:
@@ -184,7 +163,6 @@
       :uri: http://www.assero.co.uk/TRM#159a7d7f-1ef5-40f7-808b-d5d66ac7a06e
       :rdf_type: http://www.assero.co.uk/Thesaurus#RankedMember
       :label: ''
-      :tagged: []
       :rank: 2
       :item: http://www.cdisc.org/C66769/V4#C66769_C41339
       :member_next:
@@ -192,7 +170,6 @@
         :uri: http://www.assero.co.uk/TRM#53dd87c3-1c29-4240-ba98-72341896b348
         :rdf_type: http://www.assero.co.uk/Thesaurus#RankedMember
         :label: ''
-        :tagged: []
         :rank: 3
         :item: http://www.cdisc.org/C66769/V4#C66769_C41338
         :member_next: 

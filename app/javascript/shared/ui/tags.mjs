@@ -1,6 +1,6 @@
 import colors from 'shared/ui/colors'
 
-/*** Renderers for Tags ***/
+/*** Tags Helpers and Renderers ***/
 
 /**
  * Master Tag HEX color map
@@ -15,7 +15,8 @@ const tagColorsMap = {
   'ADaM': colors.oliveGreen,
   'Protocol': colors.accentAquaDark,
   'SEND': colors.accentPurple,
-  'CDISC': colors.accent1Dark,
+  'CDISC': colors.accent1,
+  'Define-XML': colors.primaryBright,
   'default': colors.primaryLight
 }
 
@@ -32,17 +33,16 @@ function getColorByTag(tag) {
  * Styles tag elements outline with assgined color
  * @param {string} selector Selector of target elements (with parent)
  */
-function colorizeTagOutlines(selector) {
+function tagOutlines(selector = ".labels-inline-wrap .tag") {
 
   // Iterate over tag elements
   $.each( $(selector), (i, el) => {
 
-    // Get color based on val / text of the tag
-    const tagColor = getColorByTag( $(el).val() || $(el).text() );
+    // Get color based on text of the tag
+    let tagColor = getColorByTag( $(el).text() );
 
-    // Apply CSS
-    $(el).css('background', 'transparent')
-         .css('box-shadow', `inset 0 0 0 2px ${tagColor}`);
+    $( el ).css( 'border-color', tagColor );
+
   });
 
 }
@@ -72,8 +72,24 @@ function renderTagsInline(tagsString) {
   return output;
 }
 
+/**
+ * Get HTML for a single styled Tag label
+ * @param {string} tagLabel Name of the Tag
+ * @return {string} Single Tag label HTML
+ */
+function renderTag(tagLabel, { cssClasses = '', id = '' } = {}) {
+
+  return `<span class='bg-label tag ${ cssClasses }'
+                style='border-color: ${ getColorByTag( tagLabel ) }'
+                data-id='${ id }'>
+            ${ tagLabel }
+          </span>`;
+
+}
+
 export { 
   getColorByTag,
-  colorizeTagOutlines,
-  renderTagsInline
+  tagOutlines,
+  renderTagsInline,
+  renderTag
 }

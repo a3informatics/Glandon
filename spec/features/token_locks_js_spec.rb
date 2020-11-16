@@ -177,7 +177,7 @@ describe "Token Locks", :type => :feature do
         click_navbar_cdisc_terminology
         wait_for_ajax(10)
         ui_table_search("history", "2010-03-05")
-        context_menu_element("history", 5, "2010-03-05 Release", :show)
+        context_menu_element_v2("history", "2010-03-05 Release", :show)
         wait_for_ajax(10)
         expect(page).to have_content '2010-03-05 Release'
         ui_child_search("C85494")
@@ -185,9 +185,9 @@ describe "Token Locks", :type => :feature do
         wait_for_ajax(10)
         context_menu_element_header(:subsets)
         sleep 0.5
-        context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
+        context_menu_element_v2("subsets-index-table", "PK Parameter Units of Measure", :edit)
         wait_for_ajax(10)
-        expect(page).to have_content("Edit Subset")
+        expect(page).to have_content("Subset Editor")
       end
 
       in_browser(:two) do
@@ -195,7 +195,7 @@ describe "Token Locks", :type => :feature do
         click_navbar_cdisc_terminology
         wait_for_ajax(10)
         ui_table_search("history", "2010-03-05")
-        context_menu_element("history", 5, "2010-03-05 Release", :show)
+        context_menu_element_v2("history", "2010-03-05 Release", :show)
         wait_for_ajax(10)
         expect(page).to have_content '2010-03-05 Release'
         ui_child_search("C85494")
@@ -203,7 +203,7 @@ describe "Token Locks", :type => :feature do
         wait_for_ajax(10)
         context_menu_element_header(:subsets)
         sleep 0.5
-        context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
+        context_menu_element_v2("subsets-index-table", "PK Parameter Units of Measure", :edit)
         wait_for_ajax(10)
         expect(page).to have_content 'The item is locked for editing by user: token_user_1@example.com.'
       end
@@ -219,9 +219,9 @@ describe "Token Locks", :type => :feature do
         ui_table_search("index", "Epoch Extension")
         find(:xpath, "//tr[contains(.,'Epoch Extension')][1]/td/a").click
         wait_for_ajax(10)
-        context_menu_element("history", 5, "A00001", :edit)
+        context_menu_element_v2("history", "A00001", :edit)
         wait_for_ajax(10)
-        expect(page).to have_content 'Edit Extension'
+        expect(page).to have_content 'Extension Editor'
       end
 
       in_browser(:two) do
@@ -231,7 +231,7 @@ describe "Token Locks", :type => :feature do
         ui_table_search("index", "Epoch Extension")
         find(:xpath, "//tr[contains(.,'Epoch Extension')][1]/td/a").click
         wait_for_ajax(10)
-        context_menu_element("history", 5, "A00001", :edit)
+        context_menu_element_v2("history", "A00001", :edit)
         wait_for_ajax(10)
         expect(page).to have_content 'The item is locked for editing by user: token_user_1@example.com.'
       end

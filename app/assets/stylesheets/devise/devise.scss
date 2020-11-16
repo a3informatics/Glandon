@@ -106,16 +106,9 @@ form{
   outline: none;
 }
 
-#alerts{
-  position: absolute;
-  z-index: 10;
-  width: 80%;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-
 // MOBILE VIEW
 @media (max-width:768px){
+  
   .m-card{
     flex-direction: column-reverse;
   }
@@ -142,9 +135,10 @@ form{
     width: 150px;
   }
 
-  #alerts{
-    position: relative;
-  }
+}
+
+#alerts{
+  top: 20px;
 }
 
 /* CHROMEFIX */

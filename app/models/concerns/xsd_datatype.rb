@@ -21,6 +21,13 @@ class XSDDatatype
     @fragment
   end
 
+  # String. Return a string object
+  #
+  # @return [XSDDatatype] an object for the string type
+  def self.string
+    self.new(C_XSD_STRING)
+  end
+
   # String?
   #
   # @return [Boolean] true if it is a string
@@ -94,6 +101,14 @@ class XSDDatatype
     datatype_configuration[:default].send(datatype_configuration[:default_method])
   end
 
+  # Default format
+  #
+  # @return [Object] return the default format value of the correct datatype.
+  def default_format
+    return "" if datatype_configuration[:default_format].nil?
+    datatype_configuration[:default_format]
+  end
+
   # To Hash. Return as a hash
   #
   # @return [Hash] the object as a hash
@@ -106,6 +121,13 @@ class XSDDatatype
   # @return [String] the object as a string
   def to_s
     @datatype
+  end
+
+  # To URI. Return as a URI
+  #
+  # @return [URI] the object as a URI
+  def to_uri
+    Uri.new(uri: @datatype)
   end
 
 private

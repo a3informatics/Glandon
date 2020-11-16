@@ -1,0 +1,47 @@
+<%= javascript_tag "let taggedItemsUrl = '#{ find_by_tag_iso_managed_v2_index_path( iso_managed: { tag_id: 'tagId' } ) }'" %>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="tagged-items-modal">
+  <div class="modal-dialog modal-lg wide-screen" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <span class="modal-title text-normal text-medium" id="tableModalLabel">
+          <span id="title-icon" class="icon-tag text-link text-small" style="margin-right: 5px;"></span>
+          <span id="title"> Tagged Items </span>
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body font-light">
+
+        <center>
+          Showing Managed Items tagged with the <span class="font-regular" id="tag-name"></span> Tag.
+        </center>
+
+        <div class="table-cardstyle all-columns">
+          <table id="tagged-items-table" class="table">
+            <thead>
+                <tr>
+                    <th class="fit">Identifier</th>
+                    <th class="fit">Version</th>
+                    <th>Label</th>
+                    <th>Version Label</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn medium light" id="modal-close" data-dismiss="modal" aria-label="Close">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

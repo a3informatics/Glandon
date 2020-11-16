@@ -229,10 +229,15 @@ describe Fuseki::Resource do
       TestR4.object_property(:fred, {cardinality: :one, model_class: "TestRTarget", children: true})
       expect(TestR4.instance_variable_get(:@resources)).to hash_equal({:fred => fred_expected})
       item = TestR4.new
+      expect(TestR4.respond_to?(:children_property_name)).to eq(true)
+      expect(TestR4.children_property_name).to eq(:fred)
       expect(TestR4.respond_to?(:children_klass)).to eq(true)
+      expect(TestR4.children_klass).to eq(TestRTarget)
       expect(TestR4.respond_to?(:children_predicate)).to eq(true)
+      expect(TestR4.children_predicate.to_s).to eq("http://www.example.com/B#fred")
       expect(TestR4.children_predicate?).to eq(true)
       expect(item.respond_to?(:children)).to eq(true)
+      expect(item.children).to eq(nil)
       expect(item.respond_to?(:children_objects)).to eq(true)
     end
 

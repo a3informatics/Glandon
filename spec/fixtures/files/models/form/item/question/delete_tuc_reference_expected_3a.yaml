@@ -1,0 +1,136 @@
+---
+:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNG
+:uri: http://www.s-cubed.dk/XXX/V1#F
+:rdf_type: http://www.assero.co.uk/BusinessForm#Form
+:label: Form1
+:has_state:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNGX1JT
+  :uri: http://www.s-cubed.dk/XXX/V1#F_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Standard
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+      :uri: http://www.assero.co.uk/NS#SCUBED
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: S-cubed
+      :name: S-cubed Aps
+      :authority: www.s-cubed.dk
+:has_identifier:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNGX1NJ
+  :uri: http://www.s-cubed.dk/XXX/V1#F_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: XXX
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+    :uri: http://www.assero.co.uk/NS#SCUBED
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: S-cubed
+    :name: S-cubed Aps
+    :authority: www.s-cubed.dk
+:has_previous_version: 
+:origin: ''
+:change_description: ''
+:creation_date: '2020-10-28T15:02:11+01:00'
+:last_change_date: '2020-10-28T15:02:11+01:00'
+:explanatory_comment: ''
+:note: ''
+:completion: ''
+:has_group:
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNOR18xNzYwY2JiMS1hMzcwLTQxZjYtYTNiMy00OTNjMWQ5YzIyMzg=
+  :uri: http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :label: Not set
+  :ordinal: 1
+  :note: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNRXzQ2NDZiNDdhLTRhZTQtNGYyMS1iNWUyLTU2NTgxNWM4Y2RlZA==
+    :uri: http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+    :label: Not set
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: ''
+    :format: ''
+    :mapping: ''
+    :question_text: ''
+    :has_coded_value:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNRXzQ2NDZiNDdhLTRhZTQtNGYyMS1iNWUyLTU2NTgxNWM4Y2RlZF9UVUMx
+      :uri: http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC1
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :reference: http://www.cdisc.org/C25681/V1#C25681_C49508
+      :context: http://www.cdisc.org/C25681/V1#C25681
+      :local_label: Large
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNRXzQ2NDZiNDdhLTRhZTQtNGYyMS1iNWUyLTU2NTgxNWM4Y2RlZF9UVUMy
+      :uri: http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC2
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :reference: http://www.cdisc.org/C25681/V1#C25681_C49507
+      :context: http://www.cdisc.org/C25681/V1#C25681
+      :local_label: Medium
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNRXzQ2NDZiNDdhLTRhZTQtNGYyMS1iNWUyLTU2NTgxNWM4Y2RlZF9UVUMz
+      :uri: http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC3
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+      :label: ''
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :reference: http://www.cdisc.org/C25681/V1#C25681_C25376
+      :context: http://www.cdisc.org/C25681/V1#C25681
+      :local_label: Small
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNRXzkyYmY4Yjc0LWVjNzgtNDM0OC05YTFiLTE1NGE2Y2NiOWI5Zg==
+    :uri: http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+    :label: Not set
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: ''
+    :format: ''
+    :mapping: ''
+    :question_text: ''
+    :has_coded_value: []
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1hYWC9WMSNRX2I3NjU5N2Y3LTk3MmYtNDBmNC1iZWQ3LWUxMzQ3MjVjZjI5Ng==
+    :uri: http://www.s-cubed.dk/XXX/V1#Q_b76597f7-972f-40f4-bed7-e134725cf296
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+    :label: Not set
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: ''
+    :format: ''
+    :mapping: ''
+    :question_text: ''
+    :has_coded_value: []
+  :repeating: false
+  :has_sub_group: []
+  :has_common: []

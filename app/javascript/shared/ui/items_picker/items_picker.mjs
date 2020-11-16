@@ -23,6 +23,7 @@ export default class ItemsPicker extends ModalView {
    * @param {string} params.description custom text to be rendered in the Items Picker description, optional
    * @param {string} params.submitText custom Submit button text to be rendered in the Items Picker, optional
    * @param {boolean} params.multiple value representing whether multiple selection is enabled or disabled [defaul=false]
+   * @param {array} params.buttons Extra buttons to be added to the footer (defined by objects with properties: id, css, text onClick)
    * @param {boolean} params.emptyEnabled value representing whether submission where no items are selected is allowed, [default=false]
    * @param {boolean} params.hideOnSubmit value representing whether the modal will be hidden on submit [default=true]
    * @param {function} params.onShow callback executed when Items Picker modal is shown
@@ -34,6 +35,7 @@ export default class ItemsPicker extends ModalView {
     types = [],
     description,
     submitText,
+    buttons = [],
     multiple = false,
     emptyEnabled = false,
     hideOnSubmit = true,
@@ -44,8 +46,11 @@ export default class ItemsPicker extends ModalView {
 
     super( { selector: `#items-picker-${id}` } );
 
-    Object.assign(this, { multiple, description, submitText, emptyEnabled,
-      types: [...new Set(types)], onShow, onSubmit, onHide, hideOnSubmit });
+    Object.assign(this, {
+      multiple, description, submitText, emptyEnabled,
+      types: [...new Set(types)], buttons,
+      onShow, onSubmit, onHide, hideOnSubmit
+    });
 
     // Initialization
     this._initialize();
@@ -57,6 +62,7 @@ export default class ItemsPicker extends ModalView {
    * Reset Items Picker to its initial state
    */
   reset() {
+
     // Iterate item selector instances and clear each
     for ( const selector of Object.values(this.selectors) ) {
       selector.clear();
@@ -64,7 +70,7 @@ export default class ItemsPicker extends ModalView {
 
     // Clear selection view
     this.selectionView.clear();
-    this._errorDiv.empty();
+
   }
 
   /**
@@ -72,8 +78,10 @@ export default class ItemsPicker extends ModalView {
    * @param {string} description the new description text, cannot be a falsey value
    */
   setDescription(description) {
+
     if (description)
       this.modal.find('#items-picker-description').html(description);
+
   }
 
   /**
@@ -81,8 +89,21 @@ export default class ItemsPicker extends ModalView {
    * @param {string} subtmiText the new Submit text, cannot be a falsey value
    */
   setSubmitText(submitText) {
+
     if (submitText)
       this.modal.find('#items-picker-submit').html(submitText);
+
+  }
+
+  /**
+   * Set a custom text for the Items Picker Submit button and reneder
+   * @param {string} subtmiText the new Submit text, cannot be a falsey value
+   */
+  setSubmitText(submitText) {
+
+    if (submitText)
+      this.modal.find('#items-picker-submit').html(submitText);
+
   }
 
   /**
@@ -147,6 +168,19 @@ export default class ItemsPicker extends ModalView {
 
   }
 
+  /**
+   * Set and render additional buttons to the Items Picker footer
+   */
+  setButtons(buttons) {
+
+    if ( !buttons || !buttons.length )
+      return;
+
+    this.buttons = buttons;
+    this._renderButtons();
+
+  }
+
 
   /** Private **/
 
@@ -155,6 +189,7 @@ export default class ItemsPicker extends ModalView {
    * Initialize the Tabs layout, Selection view and specified selector instances
    */
   _initialize() {
+
     // Initialize Tabs layout in Items Picker
     TabsLayout.initialize(`${this.selector} #items-picker-tabs`);
 
@@ -175,27 +210,34 @@ export default class ItemsPicker extends ModalView {
     // Enable Submit button if emptyEnabled setting set to true
     if ( this.emptyEnabled )
       this.modal.find('#items-picker-submit').removeClass('disabled');
+
+    if ( this.buttons.length )
+      this._renderButtons();
+
   }
 
   /**
    * Execute user-specified onSubmit callback and pass selectionView's getSelection object as the argument and hide the Items Picker
    */
   _submitSelection() {
+
     // Do not submit an empty selection
-    if (!this.emptyEnabled && this.selectionView.selectionEmpty)
+    if ( !this.emptyEnabled && this.selectionView.selectionEmpty )
       return;
 
-    if (this.onSubmit)
-      this.onSubmit(this.selectionView.getSelection());
+    if ( this.onSubmit )
+      this.onSubmit( this.selectionView.getSelection() );
 
-    if (this.hideOnSubmit)
+    if ( this.hideOnSubmit )
       this.hide();
+
   }
 
   /**
    * Called on modal show, open the first available Tab, render selectionView
    */
   _onShow() {
+
     this.isOpen = true;
 
     // Execute onShow callback
@@ -205,60 +247,76 @@ export default class ItemsPicker extends ModalView {
     this.selectionView._render();
 
     $(`${this.selector} #items-picker-tabs .tab-option:not(.disabled)`)[0].click();
+
   }
 
   /**
    * Called on modal hide, reset Items Picker to initial state, call onHide callback
    */
   _onHide() {
+
     // Execute onHide callback
-    if (this.onHide)
+    if ( this.onHide )
       this.onHide();
 
     this.reset();
 
     this.isOpen = false;
+
   }
 
   /**
    * Set event listeners and handlers
    */
   _setListeners() {
-    // Load the tab contents on tab-switch
-    TabsLayout.onTabSwitch(`${this.selector} #items-picker-tabs`, (optionId) => {
-      // Get item type from the tab id
-      const type = this._tabSelectorToType(optionId);
 
-      if (this.selectors[type])
+    // Load the tab contents on tab-switch
+    TabsLayout.onTabSwitch( `${this.selector} #items-picker-tabs`, optionId => {
+
+      // Get item type from the tab id
+      const type = this._tabSelectorToType( optionId );
+
+      if ( this.selectors[type] )
         this.selectors[type].load();
+
     });
 
     // Selection change event, toggle Submit button's disabled state
-    this.selectionView.div.on('selection-change', (e, type) => {
+    this.selectionView.div.on( 'selection-change', (e, type) => {
+
       if ( !this.emptyEnabled )
-        this.modal.find('#items-picker-submit').toggleClass('disabled', this.selectionView.selectionEmpty);
+        this.modal.find( '#items-picker-submit' )
+                  .toggleClass( 'disabled', this.selectionView.selectionEmpty );
+
     });
 
     // Items Picker submit button click event, call _submitSelection
-    this.modal.find('#items-picker-submit').on('click', () => this._submitSelection() );
+    this.modal.find( '#items-picker-submit' )
+              .on('click', () => this._submitSelection() );
+
   }
 
   /**
    * Initialize selector instances based on the user-defined allowed types, remove the unused ones from DOM
    */
   _initSelectors() {
-    let selectors = { }
+
+    let selectors = {}
 
     for ( const type of Object.keys(this.itemTypes) ) {
+
       // Initialize selector
-      if ( this.types.includes(type) )
-        selectors[type] = this._newSelectorInstance(type)
+      if ( this.types.includes( type ) )
+        selectors[type] = this._newSelectorInstance( type )
+
       // Remove selector from DOM
       else
-        this._removeSelector(type)
+        this._removeSelector( type )
+
     }
 
     return selectors;
+
   }
 
   /**
@@ -266,28 +324,31 @@ export default class ItemsPicker extends ModalView {
    * @param {string} type selector param type to be instantiated
    */
   _newSelectorInstance(type) {
+
     switch (type) {
+
       case 'unmanaged_concept':
         return new UnmanagedItemSelector({
           selector: this._typeToTabSelector(type),
           multiple: this.multiple,
           selectionView: this.selectionView,
           urls: _globalIHUrls,
-          param: type,
-          errorDiv: this._errorDiv
+          param: type
         });
         break;
+
       default:
         return new ManagedItemSelector({
           selector: this._typeToTabSelector(type),
           multiple: this.multiple,
           selectionView: this.selectionView,
           urls: _globalIHUrls,
-          param: type,
-          errorDiv: this._errorDiv
+          param: type
         });
         break;
+
     }
+
   }
 
   /**
@@ -295,10 +356,36 @@ export default class ItemsPicker extends ModalView {
    * @param {string} type selector param type to be removed
    */
   _removeSelector(type) {
+
     type = type.replace(/_/g, '-');
 
     this.modal.find(`#tab-${type}`).detach();
     this.modal.find(`#selector-${type}`).detach();
+
+  }
+
+  /**
+   * Render additional buttons defined in the instance (properties: id, css, text, onClick)
+   */
+  _renderButtons() {
+
+    // Clear
+    this.modal.find( '.extra-btn' )
+              .remove();
+
+    // Render
+    for ( let button of this.buttons ) {
+
+      let $b = $('<button>').addClass( `btn medium extra-btn ${ button.css }` )
+                            .prop( 'id', button.id )
+                            .text( button.text )
+                            .on( 'click', button.onClick );
+
+      this.modal.find('#items-picker-close')
+                .after( $b );
+
+    }
+
   }
 
   /**
@@ -320,11 +407,32 @@ export default class ItemsPicker extends ModalView {
   }
 
   /**
+   * Enable or disable the loading state of the Items Picker
+   * @param {boolean} enable Specifies the target loading state of the IP
+   */
+  _loading(enable) {
+
+    // Enable / Disable all panels
+    Object.values( this.selectors )
+          .forEach( tab => tab._toggleInteractivity( !enable ) );
+
+    // Enable / Disable buttons and tabs
+    this.modal.find( '.btn, .tab-option' )
+              .toggleClass( 'disabled', enable )
+
+              // Add loading state animation to the Submit button
+              .filter( '#items-picker-submit' )
+              .toggleClass( 'el-loading', enable );
+
+  }
+
+  /**
    * Map of item types (param names) and their rdf type map references supported available in Items Picker
    * Add more when needed
    * @return {Object} item types (param names) - rdf types map
    */
   get itemTypes() {
+
     return {
       thesauri: rdfTypesMap.TH,
       managed_concept: rdfTypesMap.TH_CL,
@@ -333,14 +441,7 @@ export default class ItemsPicker extends ModalView {
       biomedical_concept_template: rdfTypesMap.BCT,
       form: rdfTypesMap.FORM
     }
-  }
 
-  /**
-   * Get the error div of the Items Picker modal
-   * @return {JQuery Element} Items Picker's unique error div
-   */
-  get _errorDiv() {
-    return $(`${this.selector} #items-picker-error`)
   }
 
 }

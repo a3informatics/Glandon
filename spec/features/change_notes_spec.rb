@@ -251,7 +251,7 @@ describe "Change Notes", :type => :feature do
       ua_logoff
     end
 
-    it "prevents access to change notes, code list level", js:true do
+    it "prevents access to adding change notes, code list level", js:true do
       click_browse_every_version
       wait_for_ajax(20)
       context_menu_element("history", 5, "2007-04-20 Release", :show)
@@ -259,8 +259,7 @@ describe "Change Notes", :type => :feature do
       find(:xpath, "//tr[contains(.,'C66790')]/td/a", :text => 'Show').click
       wait_for_ajax(20)
       Capybara.ignore_hidden_elements = false
-      expect(page).to have_link("Export CSV")
-      expect(page).to_not have_link("Change notes")
+      expect(page).to have_selector("#change-notes-button.disabled")
       Capybara.ignore_hidden_elements = true
     end
 
@@ -274,8 +273,7 @@ describe "Change Notes", :type => :feature do
       find(:xpath, "//tr[contains(.,'C48275')]/td/a", :text => 'Show').click
       wait_for_ajax(20)
       Capybara.ignore_hidden_elements = false
-      expect(page).to have_link("Return")
-      expect(page).to_not have_link("Change notes")
+      expect(page).to have_selector("#change-notes-button.disabled")
       Capybara.ignore_hidden_elements = true
     end
 
@@ -358,7 +356,7 @@ describe "Change Notes", :type => :feature do
       ua_logoff
     end
 
-    it "allows viewing change notes modalm edit page", js:true do
+    it "allows viewing change notes modal edit page", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax(20)
       context_menu_element("history", 5, "2007-04-20 Release", :show)
@@ -366,10 +364,10 @@ describe "Change Notes", :type => :feature do
       find(:xpath, "//tr[contains(.,'C66790')]/td/a", :text => 'Show').click
       wait_for_ajax(20)
       context_menu_element_header(:extend)
-      sleep 0.5
-      click_button "Do not select"
-      wait_for_ajax(20)
-      expect(page).to have_content("Edit Extension")
+      ui_in_modal do
+        click_on 'Do not select'
+      end
+      expect(page).to have_content("Extension Editor")
       expect(context_menu_element_header_present?(:change_notes)).to eq(true)
       context_menu_element_header(:change_notes)
       sleep 1
@@ -388,7 +386,7 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(10)
       context_menu_element("history", 8, 'C66790E', :edit)
       wait_for_ajax(20)
-      expect(page).to have_content("Edit Extension")
+      expect(page).to have_content("Extension Editor")
       expect(page).to have_content("C66790E")
       context_menu_element_header(:change_notes)
       sleep 1
@@ -431,12 +429,14 @@ describe "Change Notes", :type => :feature do
       find(:xpath, "//tr[contains(.,'C66790')]/td/a", :text => 'Show').click
       wait_for_ajax(20)
       context_menu_element_header(:subsets)
-      sleep 1
-      page.find("#new_subset").click
-      sleep 2
-      click_button "Do not select"
+      ui_in_modal do
+        click_on '+ New Subset'
+      end
+      ui_in_modal do
+        click_on 'Do not select'
+      end
       wait_for_ajax(20)
-      expect(page).to have_content("Edit Subset")
+      expect(page).to have_content("Subset Editor")
       expect(context_menu_element_header_present?(:change_notes)).to eq(true)
       context_menu_element_header(:change_notes)
       sleep 1
@@ -455,7 +455,7 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(10)
       context_menu_element("history", 8, 'NP000011P', :edit)
       wait_for_ajax(20)
-      expect(page).to have_content("Edit Subset")
+      expect(page).to have_content("Subset Editor")
       expect(page).to have_content("NP000011P")
       context_menu_element_header(:change_notes)
       sleep 1

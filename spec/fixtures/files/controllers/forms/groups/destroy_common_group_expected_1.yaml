@@ -4,7 +4,6 @@
   :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1
   :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: BC Group
-  :tagged: []
   :ordinal: 1
   :note: Not Set
   :completion: Not Set
@@ -16,7 +15,6 @@
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
     :label: Systolic Blood Pressure (BC C25298)
-    :tagged: []
     :ordinal: 1
     :note: Not Set
     :completion: Not Set
@@ -26,7 +24,6 @@
       :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP1
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Date and Time (--DTC)
-      :tagged: []
       :ordinal: 1
       :note: ''
       :completion: Not Set
@@ -36,7 +33,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP1_R1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -48,7 +44,6 @@
       :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Body Position (--POS)
-      :tagged: []
       :ordinal: 2
       :note: ''
       :completion: Not Set
@@ -58,7 +53,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_R1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -69,7 +63,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -78,8 +71,6 @@
           :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Sitting
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C62122
           :notation: SITTING
           :definition: The state or act of one who sits; the posture of one who occupies
@@ -95,7 +86,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC2
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 2
@@ -104,8 +94,6 @@
           :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Supine Position
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C62167
           :notation: SUPINE
           :definition: A posterior recumbent body position whereby the person lies
@@ -121,7 +109,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP2_TUC3
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 3
@@ -130,8 +117,6 @@
           :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Standing
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C62166
           :notation: STANDING
           :definition: The act of assuming or maintaining an erect upright position.
@@ -148,7 +133,6 @@
       :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP3
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Value (--ORRES)
-      :tagged: []
       :ordinal: 3
       :note: ''
       :completion: Not Set
@@ -158,7 +142,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP3_R1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -170,7 +153,6 @@
       :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP4
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Units (--ORRESU)
-      :tagged: []
       :ordinal: 4
       :note: ''
       :completion: Not Set
@@ -180,7 +162,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP4_R1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -191,7 +172,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG2_BP4_TUC1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -200,9 +180,6 @@
           :uri: http://www.cdisc.org/C66770/V38#C66770_C49670
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Millimeter of Mercury
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-          - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
           :identifier: C49670
           :notation: mmHg
           :definition: A unit of pressure equal to 0.001316 atmosphere and equal to
@@ -221,7 +198,6 @@
       :uri: http://www.s-cubed.dk/SYSBP/V1#BCI
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
       :label: Systolic Blood Pressure
-      :tagged: []
       :has_state:
         :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NZU0JQL1YxI0JDSV9SUw==
         :uri: http://www.s-cubed.dk/SYSBP/V1#BCI_RS
@@ -276,7 +252,6 @@
     :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3
     :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
     :label: Diastolic Blood Pressure (BC C25299)
-    :tagged: []
     :ordinal: 2
     :note: Not Set
     :completion: Not Set
@@ -286,7 +261,6 @@
       :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Date and Time (--DTC)
-      :tagged: []
       :ordinal: 1
       :note: ''
       :completion: Not Set
@@ -296,7 +270,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP1_R1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -308,7 +281,6 @@
       :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Body Position (--POS)
-      :tagged: []
       :ordinal: 2
       :note: ''
       :completion: Not Set
@@ -318,7 +290,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_R1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -329,7 +300,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -338,8 +308,6 @@
           :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Supine Position
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C62167
           :notation: SUPINE
           :definition: A posterior recumbent body position whereby the person lies
@@ -355,7 +323,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC2
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 2
@@ -364,8 +331,6 @@
           :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Sitting
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C62122
           :notation: SITTING
           :definition: The state or act of one who sits; the posture of one who occupies
@@ -381,7 +346,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP2_TUC3
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 3
@@ -390,8 +354,6 @@
           :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Standing
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
           :identifier: C62166
           :notation: STANDING
           :definition: The act of assuming or maintaining an erect upright position.
@@ -408,7 +370,6 @@
       :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP3
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Value (--ORRES)
-      :tagged: []
       :ordinal: 3
       :note: ''
       :completion: Not Set
@@ -418,7 +379,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP3_R1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -430,7 +390,6 @@
       :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP4
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Units (--ORRESU)
-      :tagged: []
       :ordinal: 4
       :note: ''
       :completion: Not Set
@@ -440,7 +399,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP4_R1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -451,7 +409,6 @@
         :uri: http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_BCG3_BP4_TUC1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
-        :tagged: []
         :enabled: true
         :optional: false
         :ordinal: 1
@@ -460,9 +417,6 @@
           :uri: http://www.cdisc.org/C66770/V38#C66770_C49670
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
           :label: Millimeter of Mercury
-          :tagged:
-          - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-          - http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344
           :identifier: C49670
           :notation: mmHg
           :definition: A unit of pressure equal to 0.001316 atmosphere and equal to
@@ -481,7 +435,6 @@
       :uri: http://www.s-cubed.dk/DIABP/V1#BCI
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
       :label: Diastolic Blood Pressure
-      :tagged: []
       :has_state:
         :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0RJQUJQL1YxI0JDSV9SUw==
         :uri: http://www.s-cubed.dk/DIABP/V1#BCI_RS
@@ -533,3 +486,4 @@
       :identified_by: 
       :based_on: 
   :has_common: []
+:ids: {}

@@ -108,6 +108,14 @@ describe "Thesaurus::Search" do
       check_file_actual_expected(results, sub_dir, "search_2.yaml", equate_method: :hash_equal)
     end
 
+    it "allows a terminology to be searched, code list identifier" do
+      params = standard_params
+      params[:columns][C_TS_PI][:search][:value] = "C100129"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V30#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "search_2b.yaml", equate_method: :hash_equal)
+    end
+
     it "allows a terminology to be searched, code list label" do
       params = standard_params
       params[:columns][C_TS_PL][:search][:value] = "Units for Vital Signs Results"
@@ -200,6 +208,14 @@ describe "Thesaurus::Search" do
       params[:columns][C_TS_TAG][:search][:value] = "SDTM; Protocol"
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_16d.yaml", equate_method: :hash_equal)
+    end 
+
+    it "allows a terminology to be searched, tag" do
+      params = standard_params
+      params[:columns][C_TS_TAG][:search][:value] = "QS"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V30#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "search_16e.yaml", equate_method: :hash_equal)
     end 
 
     it "allows a terminology to be searched, overall" do

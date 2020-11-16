@@ -3,7 +3,8 @@ require 'rails_helper'
 describe Form::Item do
   
   include DataHelpers
-  include OdmHelpers
+  include IsoManagedHelpers
+  include SecureRandomHelpers
 
   def sub_dir
     return "models/form/item"
@@ -76,7 +77,7 @@ describe Form::Item do
     it "Deletes question" do
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1"))
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1"))
-      result = question.delete(parent)
+      result = question.delete(parent, parent)
       expect{OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1_TUC1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1_TUC1 in OperationalReferenceV3::TucReference.")
       expect{Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test_2/V1#F_NG1_Q1 in Form::Item::Question.")
       check_file_actual_expected(result, sub_dir, "delete_item_expected_1.yaml", equate_method: :hash_equal)
@@ -85,7 +86,7 @@ describe Form::Item do
     it "Deletes placeholder" do
       placeholder = Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2"))
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1"))
-      result = placeholder.delete(parent)
+      result = placeholder.delete(parent, parent)
       expect{Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test_2/V1#F_NG1_PL2 in Form::Item::Placeholder.")
       check_file_actual_expected(result, sub_dir, "delete_item_expected_2.yaml", equate_method: :hash_equal)
     end
@@ -94,11 +95,32 @@ describe Form::Item do
       common_item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1"))
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1"))
       expect(parent.has_item.count).to eq(2)
-      result = common_item.delete(parent)
+      result = common_item.delete(parent, parent)
       parent = Form::Group.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1"))
       expect(parent.has_item.count).to eq(1)
       expect{Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1 in Form::Item::Common.")
       check_file_actual_expected(result, sub_dir, "delete_item_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "Deletes Common item" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F"))
+      params = {registration_status: "Standard", previous_state: "Incomplete"}
+      form.update_status(params)
+      form = Form.find_full(form.uri)
+      fix_dates(form, sub_dir, "delete_item_expected_6a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_item_expected_6a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      parent = Form::Group::Common.find_full(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1"))
+      common_item = Form::Item::Common.find_full(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F_NG1_CG1_CI1"))
+      common_item.delete(parent, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "delete_item_expected_6b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "delete_item_expected_6b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      fix_dates(form, sub_dir, "delete_item_expected_6a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "delete_item_expected_6a.yaml", equate_method: :hash_equal)
     end
 
     it "Deletes Mapping" do
@@ -109,7 +131,7 @@ describe Form::Item do
       parent = Form::Group::Normal.find_full(parent.uri)
       parent.has_item_objects
       check_file_actual_expected(parent.to_h, sub_dir, "delete_item_expected_4a.yaml", equate_method: :hash_equal)
-      result = item.delete(parent)
+      result = item.delete(parent, parent)
       check_file_actual_expected(result, sub_dir, "delete_item_expected_4b.yaml", equate_method: :hash_equal)      
     end
 
@@ -121,7 +143,7 @@ describe Form::Item do
       parent = Form::Group::Normal.find_full(parent.uri)
       parent.has_item_objects
       check_file_actual_expected(parent.to_h, sub_dir, "delete_item_expected_5a.yaml", equate_method: :hash_equal)
-      result = item.delete(parent)
+      result = item.delete(parent, parent)
       check_file_actual_expected(result, sub_dir, "delete_item_expected_5b.yaml", equate_method: :hash_equal)      
     end
 
@@ -231,6 +253,85 @@ describe Form::Item do
       check_file_actual_expected(parent.to_h, sub_dir, "move_up_down_expected_3.yaml", equate_method: :hash_equal)       
     end
 
+  end
+
+  describe "Move up/down TUC References" do
+    
+    def make_standard(item)
+      params = {}
+      params[:registration_status] = "Standard"
+      params[:previous_state] = "Incomplete"
+      item.update_status(params)
+    end
+
+    before :each do
+      load_files(schema_files, [])
+      load_cdisc_term_versions(1..1)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "move up I, TUC Reference (Coded value), clone" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      cli_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49508"))
+      cli_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49507"))
+      cli_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C25376"))
+      context_1 = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681"))
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
+      question.add_child({type:"tuc_reference", id_set:[{id:cli_1.id, context_id: context_1.id}, {id: cli_2.id, context_id: context_1.id}, {id: cli_3.id, context_id: context_1.id}]})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_up_tuc_ref_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_up_tuc_ref_1a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      tuc_ref = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC2"))
+      question = Form::Item::Question.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
+      question.move_up_with_clone(tuc_ref, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "move_up_tuc_ref_1b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "move_up_tuc_ref_1b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_up_tuc_ref_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_up_tuc_ref_1a.yaml", equate_method: :hash_equal)
+    end
+
+    it "move down I, TUC Reference (Coded value), clone" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      normal_group.add_child({type:"question"})
+      cli_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49508"))
+      cli_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49507"))
+      cli_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C25376"))
+      context_1 = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681"))
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
+      question.add_child({type:"tuc_reference", id_set:[{id:cli_1.id, context_id: context_1.id}, {id: cli_2.id, context_id: context_1.id}, {id: cli_3.id, context_id: context_1.id}]})
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_down_tuc_ref_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_down_tuc_ref_1a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      tuc_ref = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC2"))
+      question = Form::Item::Question.find_children(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
+      question.move_down_with_clone(tuc_ref, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "move_down_tuc_ref_1b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "move_down_tuc_ref_1b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "move_down_tuc_ref_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "move_down_tuc_ref_1a.yaml", equate_method: :hash_equal)
+    end
+    
   end
   
 end

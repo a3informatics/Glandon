@@ -146,6 +146,14 @@ class IsoScopedIdentifierV2 < Fuseki::Base
     partial_update(update_query(params), [:isoI]) if valid?(:update)
   end
 
+  # Clean Identifier. Cleans unwanted characters from an identifier string
+  #
+  # @param identifier [String] the dirty identifier
+  # @return [String] the clean identifier
+  def self.clean_identifier(identifier)
+    identifier.gsub(/[^A-Z0-9a-z ]/i, ' ').upcase.strip
+  end
+
 private
 
   # The update query

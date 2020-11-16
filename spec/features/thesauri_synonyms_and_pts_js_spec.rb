@@ -59,13 +59,13 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '44.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 504)
+      ui_check_table_info("children", 1, 10, 504)
       ui_child_search("C6674")
-      ui_check_table_info("children_table", 1, 2, 2)
-      ui_check_table_cell("children_table", 1, 1, "C66742")
-      ui_check_table_cell("children_table", 1, 3, "CDISC SDTM Yes No Unknown or Not Applicable Response Terminology")
-      ui_check_table_cell("children_table", 2, 1, "C66741")
-      ui_check_table_cell("children_table", 2, 3, "CDISC SDTM Vital Sign Test Code Terminology")
+      ui_check_table_info("children", 1, 2, 2)
+      ui_check_table_cell("children", 1, 1, "C66742")
+      ui_check_table_cell("children", 1, 3, "CDISC SDTM Yes No Unknown or Not Applicable Response Terminology")
+      ui_check_table_cell("children", 2, 1, "C66741")
+      ui_check_table_cell("children", 2, 3, "CDISC SDTM Vital Sign Test Code Terminology")
     end
 
     it "allows terminology synonyms to be displayed for code list items (REQ-MDR-SY-010)", js:true do
@@ -78,15 +78,15 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '44.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 504)
+      ui_check_table_info("children", 1, 10, 504)
       ui_child_search("C66742")
       find(:xpath, "//tr[contains(.,'No Yes Response')]/td/a", :text => 'Show').click
       wait_for_ajax_long
       expect(page).to have_content 'No Yes Response'
       expect(page).to have_content 'C66742'
-      ui_check_table_info("children_table", 1, 4, 4)
-      ui_check_table_cell("children_table", 1, 3, "Yes")
-      ui_check_table_cell("children_table", 4, 3, "Unknown")
+      ui_check_table_info("children", 1, 4, 4)
+      ui_check_table_cell("children", 1, 3, "Yes")
+      ui_check_table_cell("children", 4, 3, "Unknown")
     end
 
     it "allows to display code lists and code list items with the same synonym (REQ-MDR-SY-020)", js:true do
@@ -99,12 +99,12 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '44.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 504)
+      ui_check_table_info("children", 1, 10, 504)
       ui_child_search("C66742")
       find(:xpath, "//tr[contains(.,'No Yes Response')]/td/a", :text => 'Show').click
       expect(page).to have_content 'No Yes Response'
       expect(page).to have_content 'C66742'
-      ui_check_table_info("children_table", 1, 4, 4)
+      ui_check_table_info("children", 1, 4, 4)
       find(:xpath, "//tr[contains(.,'C17998')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Shared Synonyms'
       expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/a/div/div", :text => 'FREQ (C71113)')
@@ -266,11 +266,11 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '46.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 561)
+      ui_check_table_info("children", 1, 10, 561)
       ui_child_search("C7115")
-      ui_check_table_info("children_table", 1, 4, 4)
-      ui_check_table_cell("children_table", 1, 4, "ECG Test Code")
-      ui_check_table_cell("children_table", 4, 4, "ECG Result")
+      ui_check_table_info("children", 1, 4, 4)
+      ui_check_table_cell("children", 1, 4, "ECG Test Code")
+      ui_check_table_cell("children", 4, 4, "ECG Result")
     end
 
     # Preferred Terms
@@ -283,11 +283,11 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '46.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 561)
+      ui_check_table_info("children", 1, 10, 561)
       ui_child_search("C7115")
-      ui_check_table_info("children_table", 1, 4, 4)
-      ui_check_table_cell("children_table", 1, 3, "CDISC SDTM ECG Test Code Terminology")
-      ui_check_table_cell("children_table", 4, 3, "CDISC SDTM ECG Finding Terminology")
+      ui_check_table_info("children", 1, 4, 4)
+      ui_check_table_cell("children", 1, 3, "CDISC SDTM ECG Test Code Terminology")
+      ui_check_table_cell("children", 4, 3, "CDISC SDTM ECG Finding Terminology")
     end
 
     it "allows to display code lists and code list items with the same preferred term (REQ-MDR-PT-020)", js:true do
@@ -300,14 +300,14 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '47.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 572)
+      ui_check_table_info("children", 1, 10, 572)
       ui_child_search("unit")
       find(:xpath, "//tr[contains(.,'PKUNIT')]/td/a", :text => 'Show').click
       wait_for_ajax(20)
       expect(page).to have_content 'Definition: Units of measure for pharmacokinetic data and parameters.'
       expect(page).to have_content 'C85494'
       wait_for_ajax_long
-      ui_check_table_info("children_table", 1, 10, 671)
+      ui_check_table_info("children", 1, 10, 671)
       find(:xpath, "//tr[contains(.,'C85754')]/td/a", :text => 'Show').click
       wait_for_ajax(20)
       expect(page).to have_content 'Shared Preferred Terms'
@@ -329,7 +329,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '47.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 572)
+      ui_check_table_info("children", 1, 10, 572)
       ui_child_search("C67154")
       find(:xpath, "//tr[contains(.,'C67154')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Definition: Terminology used for laboratory test names of the CDISC Study Data Tabulation Model.'
@@ -357,10 +357,10 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '46.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 561)
+      ui_check_table_info("children", 1, 10, 561)
       ui_child_search("C99075")
-      ui_check_table_info("children_table", 1, 1, 1)
-      ui_check_table_cell("children_table", 1, 7, "SDTM\nSEND")
+      ui_check_table_info("children", 1, 1, 1)
+      ui_check_table_cell("children", 1, 7, "SDTM\nSEND")
     end
 
     it "allows Tags to be displayed, table, managed concept level (REQ-MDR-??????)", js:true do
@@ -372,14 +372,14 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '46.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 561)
+      ui_check_table_info("children", 1, 10, 561)
       ui_child_search("C99075")
-      ui_check_table_cell("children_table", 1, 7, "SDTM\nSEND")
-      ui_check_table_info("children_table", 1, 1, 1)
+      ui_check_table_cell("children", 1, 7, "SDTM\nSEND")
+      ui_check_table_info("children", 1, 1, 1)
       find(:xpath, "//tr[contains(.,'C99075')]/td/a", :text => 'Show').click
       expect(page).to have_content 'PORTOT'
       expect(page).to have_content 'C99075'
-      ui_check_table_cell("children_table", 1, 6, "SDTM\nSEND")
+      ui_check_table_cell("children", 1, 6, "SDTM\nSEND")
     end
 
     it "allows Tags to be displayed, header (REQ-MDR-??????)", js:true do
@@ -392,7 +392,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '46.0.0'
       expect(page).to have_content 'Show more'
-      ui_show_more_tags_th
+      ui_header_show_more_tags
       expect(page).to have_content 'Tags: ADaM CDASH SDTM SEND'
       find(:xpath, "//tr[contains(.,'C99074')]/td/a", :text => 'Show').click
       wait_for_ajax_long
@@ -402,7 +402,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Show more'
       #find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
       #find(:xpath, '//*[@id="imh_header"]/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
-      ui_show_more_tags_cl
+      ui_header_show_more_tags
       expect(page).to have_content 'Tags: SDTM SEND'
       find(:xpath, "//tr[contains(.,'C90069')]/td/a", :text => 'Show').click
       wait_for_ajax_long
@@ -411,7 +411,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'C90069'
       expect(page).to have_content 'Show more'
       #find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
-      ui_show_more_tags_cli
+      ui_header_show_more_tags
       wait_for_ajax_long
       expect(page).to have_content 'Tags: SDTM SEND'
     end
@@ -426,12 +426,12 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '46.0.0'
       ui_child_search("sex")
-      ui_check_table_info("children_table", 1, 3, 3)
+      ui_check_table_info("children", 1, 3, 3)
       find(:xpath, "//tr[contains(.,'C66731')]/td/a", :text => 'Show').click
       wait_for_ajax_long
       expect(page).to have_content 'C66731'
       expect(page).to have_content 'Preferred term: CDISC SDTM Sex of Individual Terminology'
-      ui_check_table_info("children_table", 1, 4, 4)
+      ui_check_table_info("children", 1, 4, 4)
       find(:xpath, "//tr[contains(.,'C17998')]/td/a", :text => 'Show').click
       wait_for_ajax_long
       expect(page).to have_content 'Preferred term: Unknown'
@@ -464,15 +464,14 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
     context_menu_element('history', 5, "#{date} Release", :show)
     wait_for_ajax_long
     expect(page).to have_content "#{version}"
-    ui_show_more_tags_th
+    ui_header_show_more_tags
     expect(page).to have_content "Tags: #{ct_tags}"
-    ui_table_search("children_table", "C100170")
+    ui_table_search("children", "C100170")
     find(:xpath, "//tr[contains(.,'C100170')]/td/a", :text => 'Show').click
     wait_for_ajax_long
     expect(page).to have_content "C100170"
   sleep 1
-    ui_show_more_tags_cl
-  sleep 1
+    ui_header_show_more_tags
     expect(page).to have_content "Tags: #{cl_tags}"
   end
 

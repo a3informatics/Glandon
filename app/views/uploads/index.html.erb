@@ -1,6 +1,6 @@
 <% content_for :page_title do %> Upload <% end %>
 
-<%= stylesheet_link_tag "shared/table_select_simple", "shared/datatables_loading" %>
+<%= stylesheet_link_tag "shared/table_select_simple" %>
 <%= javascript_pack_tag "uploads/index" %>
 
 <%= javascript_tag "let uploadsRemoveUrl = '#{destroy_multiple_uploads_path}',

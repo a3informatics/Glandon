@@ -40,6 +40,8 @@ describe Fuseki::Resource::Property do
     expect(item.default_value).to eq("1")
     item.set_value("XXX")
     expect(item.get).to eq("XXX")
+    item.replace_value("", "YYY")
+    expect(item.get).to eq("YYY")
     item.clear
     expect(item.get).to eq("")
     
@@ -71,6 +73,8 @@ describe Fuseki::Resource::Property do
     uri_1 = Uri.new(uri: "http://wwww.a.com/path#1")
     uri_2 = Uri.new(uri: "http://wwww.a.com/path#2")
     uri_3 = Uri.new(uri: "http://wwww.a.com/path#3")
+    uri_4 = Uri.new(uri: "http://wwww.a.com/path#4")
+    uri_5 = Uri.new(uri: "http://wwww.a.com/path#5")
     item.set_value(uri_1)
     expect(item.get).to eq([uri_1])
     item.set_value(uri_2)
@@ -90,6 +94,15 @@ describe Fuseki::Resource::Property do
     ref_2b.instance_variable_set(:@sid, "YYY")
     item.replace_with_object(ref_2b)
     expect(item.get).to eq([uri_1, ref_2a, ref_2b])
+    ref_4 = TestFRP.new
+    ref_4.instance_variable_set(:@uri, uri_4)
+    ref_4.instance_variable_set(:@sid, "3")
+    item.replace_value(ref_2a, ref_4)
+    expect(item.get).to eq([uri_1, ref_2b, ref_4])
+    item.delete_value(ref_2b)
+    expect(item.get).to eq([uri_1, ref_4])
+    item.delete_value(uri_1)
+    expect(item.get).to eq([ref_4])
 
     ref_3 = TestFRP.new
     item = Fuseki::Resource::Property.new(ref_3, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: nil, base_type: nil})
@@ -98,7 +111,12 @@ describe Fuseki::Resource::Property do
 
     item.set_uri(uri.to_s)
     expect(item.get).to eq(uri)
-
+    item.delete_value(uri) 
+    expect(item.get).to eq(nil)
+    item.set_uri(uri.to_s)
+    item.replace_value(uri, uri_5)
+    expect(item.get).to eq(uri_5)
+    
     ref_4 = TestFRP.new
     item = Fuseki::Resource::Property.new(ref_4, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: "", base_type: XSDDatatype.new("dateTime")})
     time = "1980-03-04"

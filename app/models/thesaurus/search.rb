@@ -99,10 +99,9 @@ class Thesaurus
         end
         if !search[:value].blank?
           overall_filter = Thesaurus::Syntax.new("#{search[:value]}")
-          search_clauses += "  ?uri (th:identifier|th:notation|th:preferredTerm/isoC:label|th:synonym/isoC:label|th:definition|isoC:tagged/isoC:prefLabel) ?x "
+          search_clauses += "  ?uri (th:identifier|th:notation|th:preferredTerm/isoC:label|th:synonym/isoC:label|th:definition|^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel) ?x "
           search_clauses += overall_filter.array_to_sparql("?x") #Advanced overall search
         end
-        #search_clauses += "  ?uri (th:identifier|th:notation|th:preferredTerm/isoC:label|th:synonym/isoC:label|th:definition|isoC:tagged/isoC:prefLabel) ?x . FILTER regex(?x, \"" + search[:value] + "\", 'i') . \n" if !search[:value].blank?
         # Main SPARQL
         main_part = %Q{
           {
@@ -122,7 +121,7 @@ class Thesaurus
                   ?uc th:definition ?d .
                   ?uc th:preferredTerm/isoC:label ?pt .
                   OPTIONAL {?uc th:synonym/isoC:label ?sy .}
-                  OPTIONAL {?uc isoC:tagged/isoC:prefLabel ?t .}
+                  OPTIONAL {?uc ^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel ?t .}
                   BIND (?uc as ?uri)
                 } UNION
                 {
@@ -133,7 +132,7 @@ class Thesaurus
                   ?mc th:definition ?d .    
                   ?mc th:preferredTerm/isoC:label ?pt .
                   OPTIONAL {?mc th:synonym/isoC:label ?sy .}
-                  OPTIONAL {?mc isoC:tagged/isoC:prefLabel ?t .}
+                  OPTIONAL {?mc ^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel ?t .}
                   BIND (?mc as ?uri)
                 }
               }

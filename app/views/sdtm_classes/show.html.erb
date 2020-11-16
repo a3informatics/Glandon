@@ -1,6 +1,5 @@
 <% content_for :page_title do %> <%= "Show SDTM Class: #{@sdtm_class.has_identifier.identifier} (#{@sdtm_class.semantic_version})" %> <% end %>
 
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'sdtm_classes/show' %>
 
 <% third_level_breadcrumb(:sdtm_classes, @sdtm_class, @close_path) %>
@@ -8,8 +7,7 @@
 <div class="row">
   <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @sdtm_class, :badge => "icon-sdtm"} do %>
     <div class="actions-wrap">
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
   <% end %>
 </div>

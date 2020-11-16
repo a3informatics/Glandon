@@ -52,6 +52,10 @@ module Fuseki
         @metadata[:model_classes] += klasses.map{|x| "#{x}".constantize}
       end
 
+      def extension?
+        @metadata[:extension]
+      end
+
       # Cardinality
       # 
       # @return [Symbol] the cardinality for the specified property, either :one or :many
@@ -163,6 +167,34 @@ module Fuseki
           value.delete_if {|x| x.is_a?(Uri) && x == uri}
         end
         set(object)
+      end
+
+      # Replace Value. Replace a URI or Object with another
+      #
+      # @param [Object] old_value the existing value, only used for array values
+      # @param [Object] new_value the new value
+      # @return [Void] no return
+      def replace_value(old_value, new_value)
+        if array?
+          property = get
+          uri = old_value.is_a?(Uri) ? old_value : old_value.uri
+          property.delete_if {|x| x.is_a?(Uri) ? x == uri : x.uri == uri}
+        end
+        set(new_value)
+      end
+
+      # Delete Value. Delete a URI or Object
+      #
+      # @param [Object] value the existing value to be deleted, only required for array values
+      # @return [Void] no return
+      def delete_value(value)
+        if array?
+          property = get
+          uri = value.is_a?(Uri) ? value : value.uri
+          property.delete_if {|x| x.is_a?(Uri) ? x == uri : x.uri == uri}
+        else
+          clear
+        end
       end
 
       # Clear

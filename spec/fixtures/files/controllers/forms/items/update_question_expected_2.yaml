@@ -4,7 +4,6 @@
   :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1
   :rdf_type: http://www.assero.co.uk/BusinessForm#Question
   :label: Completion status
-  :tagged: []
   :ordinal: 1
   :note: note u
   :completion: completion u
@@ -14,4 +13,14 @@
   :mapping: mapping u
   :question_text: question_text u
   :has_coded_value:
-  - http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1ExX1RVQzE=
+    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66789/V4#C66789_C49484
+    :context: http://www.cdisc.org/C66789/V13#C66789
+    :local_label: ''
+:ids: {}

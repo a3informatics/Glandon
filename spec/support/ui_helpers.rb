@@ -3,6 +3,11 @@ module UiHelpers
   # General UI helpers
   # ==================
 
+  def ui_refresh_page(ajax_wait = false)
+    page.driver.browser.navigate.refresh
+    wait_for_ajax 20 if ajax_wait == true
+  end
+
   def ui_check_page_has(text)
     expect(page).to have_content(text)
   end
@@ -120,7 +125,7 @@ module UiHelpers
   end
 
   def ui_child_search(text)
-    input = find(:xpath, '//*[@id="children_table_filter"]/label/input')
+    input = find(:xpath, '//*[@id="children_filter"]/label/input')
     input.set(text)
     #input.native.send_keys(:return)
   end
@@ -171,7 +176,7 @@ module UiHelpers
   end
 
   def ui_check_table_head(table_id, col, text)
-    head = find(:xpath, "//*[@id='#{table_id}']/thead/tr/th[#{col}]").text
+    head = find(:xpath, "//*[@id='#{table_id}']//thead/tr/th[#{col}]").text
     expect(head).to eq(text)
   end
 

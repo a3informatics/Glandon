@@ -407,8 +407,7 @@ describe "Thesaurus Subset General" do
         :id => Uri.new(uri:  "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1").to_id,
         :label => "First member",
         :members => "http://www.assero.co.uk/X/V1#M1",
-        :rdf_type => "http://www.assero.co.uk/Thesaurus#Subset",
-        :tagged => []
+        :rdf_type => "http://www.assero.co.uk/Thesaurus#Subset"
       }
     item = Thesaurus::Subset.from_h(result)
     expect(item.to_h).to eq(result)

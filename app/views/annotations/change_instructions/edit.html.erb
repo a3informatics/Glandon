@@ -12,8 +12,7 @@
     main_text: "Change Instruction <span class='font-light text-medium'>Edit</span>".html_safe,
     sub_text: "Modify instruction's fields or item links." } do %>
       <div class="btns-wrap">
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-           icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+        <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
       </div>
   <% end %>
 </div>

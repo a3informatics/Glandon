@@ -3,8 +3,6 @@
 # @author Dave Iberson-Hurst
 # @since 2.22.0
 class CdiscTerm < Thesaurus
-  
-  C_IDENTIFIER = "CT"
 
   @@cdisc_ra = nil
 
@@ -17,18 +15,11 @@ class CdiscTerm < Thesaurus
     @@cdisc_ra.freeze
   end
 
-  # Child Klass. Return the child class
-  #
-  # @return [Class] the child class
-  def self.child_klass
-    ::CdiscCl
-  end
-
   # Identifier
   #
   # @return [Hash] the configuration hash
   def self.identifier
-    C_IDENTIFIER
+    "CT"
   end
 
   # Version Dates. Get set of version dates
@@ -37,8 +28,8 @@ class CdiscTerm < Thesaurus
   def self.version_dates
     results = []
     query_string = %Q{
-SELECT DISTINCT ?s ?d WHERE 
-{             
+SELECT DISTINCT ?s ?d WHERE
+{
   ?s rdf:type th:Thesaurus .
   ?s isoT:hasIdentifier ?si .
   ?si isoI:hasScope #{owner.ra_namespace.uri.to_ref} .
@@ -55,11 +46,11 @@ SELECT DISTINCT ?s ?d WHERE
   #
   # @return [Integer] the next version for the terminology
   def self.next_integer_version
-    super(C_IDENTIFIER, IsoRegistrationAuthority.cdisc_scope)
+    super(CdiscTerm.identifier, IsoRegistrationAuthority.cdisc_scope)
   end
-  
+
   # ---------
-  # Test Only  
+  # Test Only
   # ---------
   if Rails.env.test?
 

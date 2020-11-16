@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag 'shared/datatables_loading', 'shared/table_select' %>
+<%= stylesheet_link_tag 'shared/table_select' %>
 <%= javascript_include_tag 'shared/iso_managed/managed_items_select_modal' %>
 <%= javascript_tag "var miType = '#{type.to_s}'" %>
 <%= javascript_tag "var selectMultiple = #{(local_assigns.fetch :select_multiple, true)}" %>
@@ -16,9 +16,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body font-light spinner-spread">
-        <div class="table-cardstyle table-minimal all-columns">
-
-          <div id="im-select-modal-error"></div>
+        <div class="table-cardstyle table-minimal stack-all all-columns">
 
           <div class="text-centered" id="im-select-modal-description"><%= local_assigns.fetch :description, "To proceed, select one or more items." %></div>
 

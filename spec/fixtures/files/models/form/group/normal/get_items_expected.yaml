@@ -3,7 +3,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1
   :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: Group
-  :tagged: []
   :ordinal: 1
   :note: Not Set
   :completion: Not Set
@@ -22,7 +21,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG1
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Height
-  :tagged: []
   :ordinal: 1
   :note: Not Set
   :completion: Not Set
@@ -39,7 +37,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG1_BP1
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Value (--ORRES)
-  :tagged: []
   :ordinal: 1
   :note: ''
   :completion: Not Set
@@ -49,7 +46,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG1_BP1_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -58,7 +54,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG1_BP1_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -77,7 +72,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG1_BP2
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Units (--ORRESU)
-  :tagged: []
   :ordinal: 2
   :note: ''
   :completion: Not Set
@@ -87,7 +81,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG1_BP2_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -96,7 +89,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG1_BP2_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -104,41 +96,10 @@
       :context: 
     :context: 
   :has_coded_value:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0cxX0JQMl9UVUMy
-    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG1_BP2_TUC2
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-    :label: ''
-    :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 2
-    :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YyI0M2Njc3MF9DNDg1MDA=
-      :uri: http://www.cdisc.org/C66770/V2#C66770_C48500
-      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Inch
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-      :identifier: C48500
-      :notation: IN
-      :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
-      :extensible: false
-      :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
-      :synonym:
-      - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
-    :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
-      :uri: http://www.cdisc.org/C66770/V59#C66770
-      :identifier: C66770
-      :notation: VSRESU
-      :semantic_version: 59.0.0
-    :local_label: ''
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0cxX0JQMl9UVUMx
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG1_BP2_TUC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -147,8 +108,6 @@
       :uri: http://www.cdisc.org/C66770/V4#C66770_C49668
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Centimeter
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C49668
       :notation: cm
       :definition: A basic unit of length in the former CGS version of metric system,
@@ -165,11 +124,37 @@
       :notation: VSRESU
       :semantic_version: 59.0.0
     :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0cxX0JQMl9UVUMy
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG1_BP2_TUC2
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :enabled: true
+    :optional: false
+    :ordinal: 2
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YyI0M2Njc3MF9DNDg1MDA=
+      :uri: http://www.cdisc.org/C66770/V2#C66770_C48500
+      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :label: Inch
+      :identifier: C48500
+      :notation: IN
+      :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
+      :extensible: false
+      :narrower: []
+      :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+      :synonym:
+      - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+    :context:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
+      :uri: http://www.cdisc.org/C66770/V59#C66770
+      :identifier: C66770
+      :notation: VSRESU
+      :semantic_version: 59.0.0
+    :local_label: ''
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0cxX0JQMl9UVUMz
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG1_BP2_TUC3
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 3
@@ -178,8 +163,6 @@
       :uri: http://www.cdisc.org/C71620/V6#C71620_C41139
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Meter
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C41139
       :notation: m
       :definition: A meter is defined as the length of the path traveled by light
@@ -208,7 +191,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG2
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Weight
-  :tagged: []
   :ordinal: 2
   :note: Not Set
   :completion: Not Set
@@ -225,7 +207,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG2_BP1
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Value (--ORRES)
-  :tagged: []
   :ordinal: 1
   :note: ''
   :completion: Not Set
@@ -235,7 +216,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG2_BP1_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -244,7 +224,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG2_BP1_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -263,7 +242,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG2_BP2
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Units (--ORRESU)
-  :tagged: []
   :ordinal: 2
   :note: ''
   :completion: Not Set
@@ -273,7 +251,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG2_BP2_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -282,7 +259,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG2_BP2_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -290,11 +266,39 @@
       :context: 
     :context: 
   :has_coded_value:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0cyX0JQMl9UVUMx
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG2_BP2_TUC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNDg1MzE=
+      :uri: http://www.cdisc.org/C71620/V6#C71620_C48531
+      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :label: Pound
+      :identifier: C48531
+      :notation: LB
+      :definition: A traditional unit of mass. By international agreement, one avoirdupois
+        pound is equal to exactly 0.453 592 37 kilogram, 16 ounces, or 1.215 28 troy
+        pounds. (NCI)
+      :extensible: false
+      :narrower: []
+      :preferred_term: http://www.assero.co.uk/PT#3470368ac24fd837c677bc8499cf6baf04005fb5
+      :synonym:
+      - http://www.assero.co.uk/SYN#3470368ac24fd837c677bc8499cf6baf04005fb5
+    :context:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2NSNDNzE2MjA=
+      :uri: http://www.cdisc.org/C71620/V65#C71620
+      :identifier: C71620
+      :notation: UNIT
+      :semantic_version: 65.0.0
+    :local_label: ''
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0cyX0JQMl9UVUMy
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG2_BP2_TUC2
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 2
@@ -303,8 +307,6 @@
       :uri: http://www.cdisc.org/C66770/V4#C66770_C28252
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Kilogram
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C28252
       :notation: kg
       :definition: The basic SI unit of mass.  It is defined as the mass of an international
@@ -324,38 +326,6 @@
       :notation: VSRESU
       :semantic_version: 59.0.0
     :local_label: ''
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0cyX0JQMl9UVUMx
-    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG2_BP2_TUC1
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-    :label: ''
-    :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNDg1MzE=
-      :uri: http://www.cdisc.org/C71620/V6#C71620_C48531
-      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Pound
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-      :identifier: C48531
-      :notation: LB
-      :definition: A traditional unit of mass. By international agreement, one avoirdupois
-        pound is equal to exactly 0.453 592 37 kilogram, 16 ounces, or 1.215 28 troy
-        pounds. (NCI)
-      :extensible: false
-      :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#3470368ac24fd837c677bc8499cf6baf04005fb5
-      :synonym:
-      - http://www.assero.co.uk/SYN#3470368ac24fd837c677bc8499cf6baf04005fb5
-    :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2NSNDNzE2MjA=
-      :uri: http://www.cdisc.org/C71620/V65#C71620
-      :identifier: C71620
-      :notation: UNIT
-      :semantic_version: 65.0.0
-    :local_label: ''
   :is_common: false
   :datatype: ''
   :format: ''
@@ -367,7 +337,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG3
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: BMI
-  :tagged: []
   :ordinal: 3
   :note: Not Set
   :completion: Not Set
@@ -384,7 +353,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG3_BP1
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Value (--ORRES)
-  :tagged: []
   :ordinal: 1
   :note: ''
   :completion: Not Set
@@ -394,7 +362,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG3_BP1_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -403,7 +370,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG3_BP1_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -422,7 +388,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG3_BP2
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Units (--ORRESU)
-  :tagged: []
   :ordinal: 2
   :note: ''
   :completion: Not Set
@@ -432,7 +397,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG3_BP2_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -441,7 +405,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG3_BP2_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -453,7 +416,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG3_BP2_TUC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -462,8 +424,6 @@
       :uri: http://www.cdisc.org/C71620/V6#C71620_C49671
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Kilogram Per Square Meter
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C49671
       :notation: kg/m2
       :definition: A unit expressed as kilogram of mass per square meter of area.(NCI)
@@ -490,7 +450,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG4
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Heart Rate
-  :tagged: []
   :ordinal: 4
   :note: Not Set
   :completion: Not Set
@@ -507,7 +466,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG4_BP1
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Value (--ORRES)
-  :tagged: []
   :ordinal: 1
   :note: ''
   :completion: Not Set
@@ -517,7 +475,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG4_BP1_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -526,7 +483,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG4_BP1_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -545,7 +501,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG4_BP2
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Units (--ORRESU)
-  :tagged: []
   :ordinal: 2
   :note: ''
   :completion: Not Set
@@ -555,7 +510,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG4_BP2_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -564,7 +518,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG4_BP2_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -576,7 +529,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG4_BP2_TUC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -585,8 +537,6 @@
       :uri: http://www.cdisc.org/C71620/V6#C71620_C49673
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Beats per Minute
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C49673
       :notation: BEATS/MIN
       :definition: The number of heartbeats measured per minute time.(NCI)
@@ -613,7 +563,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Systolic Blood Pressure
-  :tagged: []
   :ordinal: 5
   :note: Not Set
   :completion: Not Set
@@ -630,7 +579,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP1
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Body Position (--POS)
-  :tagged: []
   :ordinal: 1
   :note: ''
   :completion: Not Set
@@ -640,7 +588,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP1_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -649,7 +596,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP1_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -657,42 +603,10 @@
       :context: 
     :context: 
   :has_coded_value:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c1X0JQMV9UVUMy
-    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP1_TUC2
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-    :label: ''
-    :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 2
-    :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxMjI=
-      :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
-      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Sitting
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-      :identifier: C62122
-      :notation: SITTING
-      :definition: The state or act of one who sits; the posture of one who occupies
-        a seat. (NCI)
-      :extensible: false
-      :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#d79919201623d71b31f2ac9d83bc18e08a779e8a
-      :synonym:
-      - http://www.assero.co.uk/SYN#d79919201623d71b31f2ac9d83bc18e08a779e8a
-    :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2MiNDNzExNDg=
-      :uri: http://www.cdisc.org/C71148/V62#C71148
-      :identifier: C71148
-      :notation: POSITION
-      :semantic_version: 62.0.0
-    :local_label: ''
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c1X0JQMV9UVUMx
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP1_TUC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -701,8 +615,6 @@
       :uri: http://www.cdisc.org/C71148/V6#C71148_C62167
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Supine Position
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C62167
       :notation: SUPINE
       :definition: A posterior recumbent body position whereby the person lies on
@@ -719,11 +631,38 @@
       :notation: POSITION
       :semantic_version: 62.0.0
     :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c1X0JQMV9UVUMy
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP1_TUC2
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :enabled: true
+    :optional: false
+    :ordinal: 2
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2I0M3MTE0OF9DNjIxMjI=
+      :uri: http://www.cdisc.org/C71148/V6#C71148_C62122
+      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :label: Sitting
+      :identifier: C62122
+      :notation: SITTING
+      :definition: The state or act of one who sits; the posture of one who occupies
+        a seat. (NCI)
+      :extensible: false
+      :narrower: []
+      :preferred_term: http://www.assero.co.uk/PT#d79919201623d71b31f2ac9d83bc18e08a779e8a
+      :synonym:
+      - http://www.assero.co.uk/SYN#d79919201623d71b31f2ac9d83bc18e08a779e8a
+    :context:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y2MiNDNzExNDg=
+      :uri: http://www.cdisc.org/C71148/V62#C71148
+      :identifier: C71148
+      :notation: POSITION
+      :semantic_version: 62.0.0
+    :local_label: ''
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c1X0JQMV9UVUMz
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP1_TUC3
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 3
@@ -732,8 +671,6 @@
       :uri: http://www.cdisc.org/C71148/V6#C71148_C62166
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Standing
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C62166
       :notation: STANDING
       :definition: The act of assuming or maintaining an erect upright position. (NCI)
@@ -760,7 +697,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP2
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Value (--ORRES)
-  :tagged: []
   :ordinal: 2
   :note: ''
   :completion: Not Set
@@ -770,7 +706,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP2_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -779,7 +714,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP2_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -798,7 +732,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP3
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Units (--ORRESU)
-  :tagged: []
   :ordinal: 3
   :note: ''
   :completion: Not Set
@@ -808,7 +741,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP3_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -817,7 +749,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP3_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -829,7 +760,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG5_BP3_TUC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -838,8 +768,6 @@
       :uri: http://www.cdisc.org/C66770/V4#C66770_C49670
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Millimeter of Mercury
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C49670
       :notation: mmHg
       :definition: A unit of pressure equal to 0.001316 atmosphere and equal to the
@@ -868,7 +796,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG6
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Diastolic Blood Pressure
-  :tagged: []
   :ordinal: 6
   :note: Not Set
   :completion: Not Set
@@ -885,7 +812,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG6_BP1
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Value (--ORRES)
-  :tagged: []
   :ordinal: 1
   :note: ''
   :completion: Not Set
@@ -895,7 +821,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG6_BP1_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -904,7 +829,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG6_BP1_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -923,7 +847,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG6_BP2
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Units (--ORRESU)
-  :tagged: []
   :ordinal: 2
   :note: ''
   :completion: Not Set
@@ -933,7 +856,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG6_BP2_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -942,7 +864,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG6_BP2_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -954,7 +875,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG6_BP2_TUC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -963,8 +883,6 @@
       :uri: http://www.cdisc.org/C66770/V4#C66770_C49670
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Millimeter of Mercury
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C49670
       :notation: mmHg
       :definition: A unit of pressure equal to 0.001316 atmosphere and equal to the
@@ -993,7 +911,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG7
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Waist circumference
-  :tagged: []
   :ordinal: 7
   :note: Not Set
   :completion: Not Set
@@ -1010,7 +927,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG7_BP1
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Value (--ORRES)
-  :tagged: []
   :ordinal: 1
   :note: ''
   :completion: Not Set
@@ -1020,7 +936,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG7_BP1_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -1029,7 +944,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG7_BP1_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -1048,7 +962,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG7_BP2
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Units (--ORRESU)
-  :tagged: []
   :ordinal: 2
   :note: ''
   :completion: Not Set
@@ -1058,7 +971,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG7_BP2_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -1067,7 +979,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG7_BP2_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -1075,11 +986,37 @@
       :context: 
     :context: 
   :has_coded_value:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c3X0JQMl9UVUMx
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG7_BP2_TUC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YyI0M2Njc3MF9DNDg1MDA=
+      :uri: http://www.cdisc.org/C66770/V2#C66770_C48500
+      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :label: Inch
+      :identifier: C48500
+      :notation: IN
+      :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
+      :extensible: false
+      :narrower: []
+      :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+      :synonym:
+      - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+    :context:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
+      :uri: http://www.cdisc.org/C66770/V59#C66770
+      :identifier: C66770
+      :notation: VSRESU
+      :semantic_version: 59.0.0
+    :local_label: ''
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c3X0JQMl9UVUMy
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG7_BP2_TUC2
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 2
@@ -1088,8 +1025,6 @@
       :uri: http://www.cdisc.org/C66770/V4#C66770_C49668
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Centimeter
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C49668
       :notation: cm
       :definition: A basic unit of length in the former CGS version of metric system,
@@ -1106,41 +1041,10 @@
       :notation: VSRESU
       :semantic_version: 59.0.0
     :local_label: ''
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c3X0JQMl9UVUMx
-    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG7_BP2_TUC1
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-    :label: ''
-    :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YyI0M2Njc3MF9DNDg1MDA=
-      :uri: http://www.cdisc.org/C66770/V2#C66770_C48500
-      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Inch
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-      :identifier: C48500
-      :notation: IN
-      :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
-      :extensible: false
-      :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
-      :synonym:
-      - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
-    :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
-      :uri: http://www.cdisc.org/C66770/V59#C66770
-      :identifier: C66770
-      :notation: VSRESU
-      :semantic_version: 59.0.0
-    :local_label: ''
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c3X0JQMl9UVUMz
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG7_BP2_TUC3
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 3
@@ -1149,8 +1053,6 @@
       :uri: http://www.cdisc.org/C71620/V6#C71620_C41139
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Meter
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C41139
       :notation: m
       :definition: A meter is defined as the length of the path traveled by light
@@ -1179,7 +1081,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG8
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcGroup
   :label: Hip circumference
-  :tagged: []
   :ordinal: 8
   :note: Not Set
   :completion: Not Set
@@ -1196,7 +1097,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG8_BP1
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Value (--ORRES)
-  :tagged: []
   :ordinal: 1
   :note: ''
   :completion: Not Set
@@ -1206,7 +1106,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG8_BP1_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -1215,7 +1114,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG8_BP1_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -1234,7 +1132,6 @@
   :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG8_BP2
   :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
   :label: Result Units (--ORRESU)
-  :tagged: []
   :ordinal: 2
   :note: ''
   :completion: Not Set
@@ -1244,7 +1141,6 @@
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG8_BP2_R1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -1253,7 +1149,6 @@
       :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG8_BP2_R1
       :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
       :label: ''
-      :tagged: []
       :enabled: true
       :optional: false
       :ordinal: 1
@@ -1261,72 +1156,10 @@
       :context: 
     :context: 
   :has_coded_value:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c4X0JQMl9UVUMz
-    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG8_BP2_TUC3
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-    :label: ''
-    :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 3
-    :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YyI0M2Njc3MF9DNDg1MDA=
-      :uri: http://www.cdisc.org/C66770/V2#C66770_C48500
-      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Inch
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-      :identifier: C48500
-      :notation: IN
-      :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
-      :extensible: false
-      :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
-      :synonym:
-      - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
-    :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
-      :uri: http://www.cdisc.org/C66770/V59#C66770
-      :identifier: C66770
-      :notation: VSRESU
-      :semantic_version: 59.0.0
-    :local_label: ''
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c4X0JQMl9UVUMy
-    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG8_BP2_TUC2
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-    :label: ''
-    :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 2
-    :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0I0M2Njc3MF9DNDk2Njg=
-      :uri: http://www.cdisc.org/C66770/V4#C66770_C49668
-      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Centimeter
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-      :identifier: C49668
-      :notation: cm
-      :definition: A basic unit of length in the former CGS version of metric system,
-        equal to one hundredth of a meter or approximately 0.393 700 787 inch. (NCI)
-      :extensible: false
-      :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
-      :synonym:
-      - http://www.assero.co.uk/SYN#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
-    :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
-      :uri: http://www.cdisc.org/C66770/V59#C66770
-      :identifier: C66770
-      :notation: VSRESU
-      :semantic_version: 59.0.0
-    :local_label: ''
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c4X0JQMl9UVUMx
     :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG8_BP2_TUC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
     :label: ''
-    :tagged: []
     :enabled: true
     :optional: false
     :ordinal: 1
@@ -1335,8 +1168,6 @@
       :uri: http://www.cdisc.org/C71620/V6#C71620_C41139
       :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
       :label: Meter
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
       :identifier: C41139
       :notation: m
       :definition: A meter is defined as the length of the path traveled by light
@@ -1353,6 +1184,61 @@
       :identifier: C71620
       :notation: UNIT
       :semantic_version: 65.0.0
+    :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c4X0JQMl9UVUMy
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG8_BP2_TUC2
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :enabled: true
+    :optional: false
+    :ordinal: 2
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0I0M2Njc3MF9DNDk2Njg=
+      :uri: http://www.cdisc.org/C66770/V4#C66770_C49668
+      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :label: Centimeter
+      :identifier: C49668
+      :notation: cm
+      :definition: A basic unit of length in the former CGS version of metric system,
+        equal to one hundredth of a meter or approximately 0.393 700 787 inch. (NCI)
+      :extensible: false
+      :narrower: []
+      :preferred_term: http://www.assero.co.uk/PT#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
+      :synonym:
+      - http://www.assero.co.uk/SYN#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
+    :context:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
+      :uri: http://www.cdisc.org/C66770/V59#C66770
+      :identifier: C66770
+      :notation: VSRESU
+      :semantic_version: 59.0.0
+    :local_label: ''
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZTVEFESUFCRVRFUy9WMSNGX05HMV9CQ0c4X0JQMl9UVUMz
+    :uri: http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1_BCG8_BP2_TUC3
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :enabled: true
+    :optional: false
+    :ordinal: 3
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YyI0M2Njc3MF9DNDg1MDA=
+      :uri: http://www.cdisc.org/C66770/V2#C66770_C48500
+      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :label: Inch
+      :identifier: C48500
+      :notation: IN
+      :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
+      :extensible: false
+      :narrower: []
+      :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+      :synonym:
+      - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
+    :context:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
+      :uri: http://www.cdisc.org/C66770/V59#C66770
+      :identifier: C66770
+      :notation: VSRESU
+      :semantic_version: 59.0.0
     :local_label: ''
   :is_common: false
   :datatype: ''

@@ -10,8 +10,10 @@ describe "Thesaurus", :type => :feature do
   include DownloadHelpers
   include SparqlHelpers
   include NameValueHelpers
+  include TagHelpers
   include EditorHelpers
-
+  include ItemsPickerHelpers
+  
   def sub_dir
     return "features"
   end
@@ -311,14 +313,11 @@ describe "Thesaurus", :type => :feature do
       context_menu_element_header(:edit_properties)
 
       ui_in_modal do
-        expect(page).to have_content "Edit properties of NP000010P"
-        fill_in "ep_input_notation", with: "CODELIST"
-        sleep 0.5
-        fill_in "ep_input_definition", with: "Code List definition here"
-        sleep 0.5
-        fill_in "ep_input_synonym", with: "Syn1; Syn2"
-        sleep 0.5
-        find("#submit-button").click
+        expect(page).to have_content "Edit properties"
+        fill_in "notation", with: "CODELIST"
+        fill_in "definition", with: "Code List definition here"
+        fill_in "synonym", with: "Syn1; Syn2"
+        click_on 'Save changes'
       end
 
       wait_for_ajax(20)
@@ -388,10 +387,10 @@ describe "Thesaurus", :type => :feature do
       go_to_cl_edit "NP000010P"
 
       click_on "Add items"
-      ui_selector_pick_unmanaged_items "Code List Items", [
+      ip_pick_unmanaged_items(:unmanaged_concept, [
         { parent: "C120530", version: "2015-03-27", identifier: "C28224" },
         { parent: "C120530", version: "2015-03-27", identifier: "C14175" }
-      ]
+      ], 'add-children')
       wait_for_ajax 10
       ui_check_table_info "editor", 1, 4, 4
 
@@ -406,9 +405,9 @@ describe "Thesaurus", :type => :feature do
       go_to_cl_edit "NP000010P"
 
       click_on "Add items"
-      ui_selector_pick_unmanaged_items "Code List Items", [
+      ip_pick_unmanaged_items(:unmanaged_concept, [
         { parent: "A00020", version: "Incomplete", identifier: "A00021" }
-      ]
+      ], 'add-children')
       wait_for_ajax 10
       ui_check_table_info "editor", 1, 5, 5
 
@@ -445,13 +444,14 @@ describe "Thesaurus", :type => :feature do
       w = window_opened_by { edit_tags_cell.click }
       within_window w do
         wait_for_ajax 10
-        expect(page).to have_content "Attach / Detach Tags"
-        ui_click_node_name "SDTM"
-        click_button "Add Tag"
+        expect(page).to have_content "Edit Item Tags"
+        attach_tag('SDTM')
         wait_for_ajax 10
       end
 
       click_on "Refresh"
+      wait_for_ajax 10
+
       ui_check_table_cell "editor", 1, 6, "SDTM"
     end
 
@@ -516,7 +516,7 @@ describe "Thesaurus", :type => :feature do
       within_window w do
         wait_for_ajax(10)
         expect(page).to have_content cl_identifier
-        expect(page).to have_content "Attach / Detach Tags"
+        expect(page).to have_content "Edit Item Tags"
       end
       w.close
     end

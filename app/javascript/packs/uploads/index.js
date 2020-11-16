@@ -1,4 +1,4 @@
-import UploadsManager from 'shared/uploads/uploads_manager'
+import UploadsManager from 'shared/custom/uploads/uploads_manager'
 
 $(document).ready( () => {
 

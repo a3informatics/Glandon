@@ -1,4 +1,6 @@
-<%= stylesheet_link_tag 'shared/layouts/header_card', media: 'all' %>
+<%= stylesheet_link_tag 'shared/layouts/header_card' %>
+
+<%= javascript_tag 'var pageHeaderHasTags = true' %>
 
 <div id="imh_header" class="col-md-12 card">
   <div class="card-content">
@@ -10,17 +12,21 @@
       </div>
       <div class="h-inner-wrap mid">
         <div class="text-small font-light"> Owner: <%= item.owner_short_name %> &nbsp; | &nbsp; Identifier: <%= item.scoped_identifier %></div>
-        <div class="text-large"> <%= item.label %> </div>
-        <div class="font-light">
+        <div class="text-large long-label"> <%= item.label %> </div>
+        <div class="font-light long-label">
             <%= render partial: "shared/headers/icon_tooltip", :locals => {:title => item.registration_status, :icon => "icon-info-circle", :description => "Status"} %>
             <%= render partial: "shared/headers/icon_tooltip", :locals => {:title => item.semantic_version, :icon => "icon-version-circle", :description => "Version"} %>
             <%= render partial: "shared/headers/icon_tooltip", :locals => {:title => item.version_label, :icon => "icon-tag-circle", :description => "Version label"} %>
         </div>
-        <% if (local_assigns.fetch :with_tags, true) %>
+
+        <% if local_assigns.fetch :with_tags, true %>
+
           <%= render layout: "shared/expandable_content", :locals => { size: "tiny" } do %>
-            <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Tags", :items => item.tag_labels} %>
+            <%= render partial: "shared/labels_inline", :locals => { name: "Tags", css_class: 'tag', items: item.tag_labels} %>
           <% end %>
+
         <% end %>
+
       </div>
       <div class="h-inner-wrap">
         <%= yield %>
@@ -28,4 +34,3 @@
     </div>
   </div>
 </div>
-<%= javascript_tag 'colorCodeTagsOutline(".expandable-content", ".tags.bg-label");' %>

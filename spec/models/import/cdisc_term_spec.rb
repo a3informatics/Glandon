@@ -39,7 +39,7 @@ describe "Import::CdiscTerm" do
       expected =
       {
         description: "Import of CDISC Terminology",
-        parent_klass: ::CdiscTerm,
+        parent_klass: Import::CdiscClasses::CdiscThesaurus,
         reader_klass: Excel,
         import_type: :cdisc_term,
         version_label: :date,
@@ -56,7 +56,7 @@ describe "Import::CdiscTerm" do
       expected =
       {
         description: "Import of CDISC Terminology",
-        parent_klass: ::CdiscTerm,
+        parent_klass: Import::CdiscClasses::CdiscThesaurus,
         reader_klass: CDISCLibraryAPIReader,
         import_type: :cdisc_term,
         version_label: :date,
@@ -97,7 +97,7 @@ describe "Import::CdiscTerm" do
       copy_file_from_public_files("test", filename, sub_dir)
     #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1a.ttl")
     #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_1b.ttl")
-      check_ttl_fix(filename, "import_expected_1a.ttl", {last_change_date: true})
+      check_ttl_fix_v2(filename, "import_expected_1a.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
   	end
@@ -116,7 +116,7 @@ describe "Import::CdiscTerm" do
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
     #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1b.ttl")
-      check_ttl_fix(filename, "import_expected_1b.ttl", {last_change_date: true})
+      check_ttl_fix_v2(filename, "import_expected_1b.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
     end
@@ -160,7 +160,7 @@ describe "Import::CdiscTerm" do
       expect(@job.status).to include("An exception was detected during the import processes.\nDetails: error.\nBacktrace: ")
     end
 
-    it "excel import, CDISC Version 1 Format, errors detected" do
+    it "excel import, CDISC Version 1 Format, errors detected", :import_test => 'slow' do
       full_path = test_file_path(sub_dir, "SDTM Terminology 2007-03-06.xlsx")
       params = 
       {
@@ -178,7 +178,7 @@ describe "Import::CdiscTerm" do
       delete_data_file(sub_dir, filename)
     end
 
-    it "excel import, CDISC Version 2 Format, errors detected" do
+    it "excel import, CDISC Version 2 Format, errors detected", :import_test => 'slow' do
       full_path = test_file_path(sub_dir, "SDTM Terminology 2007-05-31.xlsx")
       params = 
       {
@@ -196,7 +196,7 @@ describe "Import::CdiscTerm" do
       delete_data_file(sub_dir, filename)
     end
 
-    it "excel import, CDISC Version 3 Format, errors detected" do
+    it "excel import, CDISC Version 3 Format, errors detected", :import_test => 'slow' do
       full_path = test_file_path(sub_dir, "SDTM Terminology 2008-09-22.xlsx")
       params = 
       {
@@ -214,7 +214,7 @@ describe "Import::CdiscTerm" do
       delete_data_file(sub_dir, filename)
     end
 
-    it "excel import, CDISC Version 4 Format, errors detected" do
+    it "excel import, CDISC Version 4 Format, errors detected", :import_test => 'slow' do
       full_path = test_file_path(sub_dir, "SDTM Terminology 2010-04-08.xlsx")
       params = 
       {
@@ -232,7 +232,7 @@ describe "Import::CdiscTerm" do
       delete_data_file(sub_dir, filename)
     end
 
-    it "excel import, CDISC Version 4 Format, no errors" do
+    it "excel import, CDISC Version 4 Format, no errors", :import_test => 'slow' do
       full_path = test_file_path(sub_dir, "SDTM Terminology 2012-06-29.xlsx")
       params = 
       {
@@ -244,13 +244,13 @@ describe "Import::CdiscTerm" do
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_version_2012-06-29.txt")
+    copy_file_from_public_files_rename("test", filename, sub_dir, "import_version_2012-06-29.txt")
       check_ttl(filename, "import_version_2012-06-29.txt")
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
     end
 
-    it "excel import, Multiple Version 4 Format, errors" do
+    it "excel import, Multiple Version 4 Format, errors", :import_test => 'slow' do
       full_path_1 = test_file_path(sub_dir, "SDTM Terminology 2011-06-10.xlsx")
       full_path_2 = test_file_path(sub_dir, "CDASH Terminology 2011-04-08.xlsx")
       full_path_3 = test_file_path(sub_dir, "ADaM Terminology 2011-01-07.xlsx")
@@ -287,7 +287,7 @@ describe "Import::CdiscTerm" do
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "duplicates_expected_1.txt")
+    copy_file_from_public_files_rename("test", filename, sub_dir, "duplicates_expected_1.txt")
       check_ttl(filename, "duplicates_expected_1.txt")
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -306,7 +306,7 @@ describe "Import::CdiscTerm" do
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "quotes_expected_1.txt")
+    copy_file_from_public_files_rename("test", filename, sub_dir, "quotes_expected_1.txt")
       check_ttl(filename, "quotes_expected_1.txt")
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -326,7 +326,7 @@ describe "Import::CdiscTerm" do
       filename = "cdisc_term_#{@object.id}_load.ttl"
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "characters_expected_1.ttl")
+    copy_file_from_public_files_rename("test", filename, sub_dir, "characters_expected_1.ttl")
       check_ttl(filename, "characters_expected_1.ttl")
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)

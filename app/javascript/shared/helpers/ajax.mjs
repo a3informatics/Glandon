@@ -76,8 +76,8 @@ function $getPaginated(offset = 0, params = {}) {
     // One 'page' of data loaded
     params.pageDone( r.data );
 
-    if ( _.isNumber( r.count ) && _.isNumber( r.offset ) && r.count >= params.count )
-      $getPaginated( r.offset + params.count, params );
+    if ( parseInt( r.count ) >= params.count )
+      $getPaginated( offset + params.count, params );
     else
       params.done(); // All data loaded
 
@@ -196,15 +196,15 @@ function $handleError(xhr, status, error, target) {
     return;
   }
 
-  let errors = [];
+  let errors;
 
   try {
 
     let json = JSON.parse( xhr.responseText );
-    errors.push( json.error || json.errors || 'Error communicating with the server.' );
+    errors = json.error || json.errors || 'Error communicating with the server.';
 
   } catch( err ) {
-    errors.push( 'Error communicating with the server.' );
+    errors = 'Error communicating with the server.';
   }
 
   alerts.error( errors, target );

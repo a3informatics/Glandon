@@ -18,6 +18,7 @@ class BiomedicalConceptInstancesController < ManagedItemsController
   def show
     @bc = BiomedicalConceptInstance.find_minimum(protect_from_bad_id(params))
     @show_path = show_data_biomedical_concept_instance_path(@bc)
+    @edit_tags_path = path_for(:edit_tags, @bc)
     @close_path = history_biomedical_concept_instances_path(biomedical_concept_instance: { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope })
   end
 
@@ -46,6 +47,7 @@ class BiomedicalConceptInstancesController < ManagedItemsController
         @bc = @edit.item
         @close_path = history_biomedical_concept_instances_path({ biomedical_concept_instance:
             { identifier: @bc.scoped_identifier, scope_id: @bc.scope } })
+        @edit_tags_path = path_for(:edit_tags, @bc)
       end
       format.json do
         return true unless check_lock_for_item(@bc)
@@ -140,6 +142,8 @@ private
         return edit_biomedical_concept_instance_path(id: object.id)
       when :destroy
         return biomedical_concept_instance_path(object)
+      when :edit_tags
+        return object.supporting_edit? ? edit_tags_iso_concept_path(id: object.id) : ""
       else
         return ""
     end

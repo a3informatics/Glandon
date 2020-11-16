@@ -21,7 +21,9 @@ export default class TablePanel {
    * @param {boolean} params.paginated Specify if the loadData call should be paginated. Optional, default = true
    * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {Array} params.buttons DT buttons definitions objects, empty by default
+   * @param {Object} params.tableOptions Custom DT options object, will be merged with this instance's _tableOpts, optional
    * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
+   * @param {boolean} params.autoHeight Specifies whether the height of the table should match the window size, and add a horizontal scroll, optional
    * @param {element} params.errorDiv Custom element to display flash errors in, optional
    * @param {Object} args Optional additional arguments for extending classes
    */
@@ -36,16 +38,21 @@ export default class TablePanel {
     paginated = true,
     order = [[0, "desc"]],
     buttons = [],
+    tableOptions = {},
     loadCallback = () => {},
+    autoHeight = false,
     errorDiv
   }, args = {}) {
-    Object.assign(this, { selector, url, param, count, extraColumns, cache, paginated, order, buttons, loadCallback, errorDiv, ...args });
 
-    this._initTable();
+    Object.assign(this, {
+      selector, url, param, count, extraColumns, deferLoading, cache,
+      paginated, order, buttons, tableOptions, loadCallback, autoHeight,
+      errorDiv, ...args
+    });
+
+    this.initialize();
     this._setListeners();
 
-    if (!deferLoading)
-      this.loadData();
   }
 
   /**
@@ -54,45 +61,38 @@ export default class TablePanel {
    * @return {self} this instance
    */
   loadData(url) {
+
     // Set new instance data url if specified
-    if (url)
+    if ( url )
       this.url = url;
 
-    this.clear();
-    this._loading(true);
+    this.clear( false );
+    this._loading( true );
 
-    if (this.paginated)
-      this.request = $getPaginated(0, {
-        url: this.url,
-        count: this.count,
-        strictParam: this.param,
-        cache: this.cache,
-        errorDiv: this.errorDiv,
-        pageDone: (data) => this._render(data),
-        done: (data) => this.loadCallback(this.table),
-        always: () => this._loading(false)
-      });
+    if ( this.paginated )
+      this._loadDataPaginated();
+
     else
-      this.request = $get({
-        url: this.url,
-        cache: this.cache,
-        errorDiv: this.errorDiv,
-        done: (data) => {
-          this._render(data)
-          this.loadCallback(this.table)
-        },
-        always: () => this._loading(false)
-      });
+      this._loadData();
 
     return this;
+
   }
 
   /**
    * Clears table data and filters and kills any running requests
+   * @param {boolean} draw Specifies whether the table should redraw on clear, optional [default=true]
    */
-  clear() {
-    this.table.search('').clear().draw();
+  clear(draw = true) {
+
+    this.table.search('')
+              .clear()
+
     this.kill();
+
+    if ( draw )
+      this.table.draw();
+
   }
 
   /**
@@ -100,18 +100,54 @@ export default class TablePanel {
    * @param {string} url optional, specify data source url
    */
   refresh(url) {
-    this.loadData(url);
+    this.loadData( url );
   }
 
   /**
    * Kill any ongoing loading process
    */
   kill() {
+
     if ( this.request )
       this.request.abort();
+
   }
 
+  /**
+   * Get current table rows data as an Array
+   * @return {array} Array of all row data objects
+   */
+  get rowDataToArray() {
+    return this.table.rows().data().toArray();
+  }
+
+  /**
+   * Initialize the Table Panel
+   */
+  initialize() {
+
+    this._initTable();
+
+    if ( !this.deferLoading )
+      this.loadData();
+
+  }
+
+  /**
+   * Destroy the DataTable instance in the Panel
+   */
+  destroy() {
+
+    this.table.clear()
+              .destroy();
+
+    $(`${ this.selector } tbody`).empty();
+
+  }
+
+
   /** Private **/
+
 
   /**
    * Sets event listeners, handlers
@@ -119,12 +155,64 @@ export default class TablePanel {
   _setListeners() { }
 
   /**
+   * Fetch data in a single request, handle loading and updates
+   */
+  _loadData() {
+
+    this.request = $get({
+      url: this.url,
+      cache: this.cache,
+      errorDiv: this.errorDiv,
+      done: data => {
+
+        this._render( data );
+        this._onDataLoaded( this.table );
+
+      },
+      always: () => this._loading( false )
+    });
+
+  }
+
+  /**
+   * Fetch data in a paginated request, handle loading and updates
+   */
+  _loadDataPaginated() {
+
+    this.request = $getPaginated(0, {
+      url: this.url,
+      count: this.count,
+      strictParam: this.param,
+      cache: this.cache,
+      errorDiv: this.errorDiv,
+      pageDone: data => {
+
+        this._render( data )
+        this._loadingExtra( true ); // Show non-intrusive loading-extra animation
+
+      },
+      done: data => {
+
+        this._loadingExtra( false );  // Hide loading-extra animation
+        this._onDataLoaded( this.table );
+
+      },
+      always: () => this._loading( false )
+    });
+
+  }
+
+
+  /** Rows **/
+
+
+  /**
    * Finds DT row data in which element is present
    * @param {HTML Element} el html element that is contained in the table row
    * @return {Object} DT row data object
    */
   _getRowDataFrom$(el) {
-    return this._getRowFrom$(el).data();
+    return this._getRowFrom$( el ).data();
   }
 
   /**
@@ -133,7 +221,7 @@ export default class TablePanel {
    * @return {Object} DT Row instance
    */
   _getRowFrom$(el) {
-    return this.table.row($(el).closest("tr"));
+    return this.table.row( $( el ).closest( 'tr' ) );
   }
 
   /**
@@ -143,7 +231,45 @@ export default class TablePanel {
    * @return {Object} DT Row instance
    */
   _getRowFromData(propertyName, value) {
-    return this.table.row( (i, data) => data[propertyName] === value ? true : false );
+    return this.table.row( ( i, data ) => data[ propertyName ] === value ? true : false );
+  }
+
+
+  /** Render **/
+
+
+  /**
+   * Add data into table and draw
+   * @param {Array} data Sequence of items containing data to be added to the table
+   * @param {boolean} clear Enable clearing the table before rendering, optional, default = false
+   */
+  _render(data, clear = false) {
+
+    // Clear data first if argument set to true
+    if ( clear )
+      this.clear( false );
+
+    for( let item of data ) {
+      this.table.row.add( item );
+    }
+
+    this.table.draw()
+    this.table.columns.adjust();
+
+  }
+
+
+  /** Events **/
+
+
+  /**
+   * Executed when table data fully loaded, calls loadCallback with current table instance as argument
+   */
+  _onDataLoaded() {
+
+    if ( this.loadCallback )
+      this.loadCallback( this.table );
+
   }
 
   /**
@@ -152,33 +278,42 @@ export default class TablePanel {
    * @param {function} handler Function to be executed on click
    */
   _clickListener( { target, handler } ) {
-    $(`${this.selector} tbody`).on("click", target, handler);
+    $( `${ this.selector } tbody` ).on( 'click', target, handler );
   }
 
-  /**
-   * Add data into table and draw
-   * @param {Array} data Sequence of items containing data to be added to the table
-   * @param {boolean} clear Enable clearing the table before rendering, optional, default = false
-   */
-  _render(data, clear = false) {
-    // Clear data first if argument set to true
-    if (clear)
-      this.clear();
 
-    for(let item of data) {
-      this.table.row.add(item);
-    }
+  /** Support **/
 
-    this.table.draw();
-    this.table.columns.adjust();
-  }
 
   /**
-   * Change panel's loading state
+   * Change panel's loading state and update the isProcessing instance variable
    * @param {boolean} enable value corresponding to the desired loading state on/off
    */
   _loading(enable) {
-    this.table.processing(enable);
+
+    this.isProcessing = enable;
+    this.table.processing( enable );
+
+  }
+
+  /**
+   * Change panel's unintrusive loading animation used for indication of extra data load, pagination
+   * @param {boolean} enable value corresponding to the desired loading state on/off
+   */
+  _loadingExtra(enable) {
+
+    this.isProcessing = enable;
+    this.$wrapper.find( '.dataTables_info' )
+                 .toggleClass( 'el-loading', enable );
+
+  }
+
+  /**
+   * Get the wrapper element of the table instance
+   * @return {JQuery Element} Table wrapper div
+   */
+  get $wrapper() {
+    return $( `${ this.selector }_wrapper` );
   }
 
   /**
@@ -194,12 +329,33 @@ export default class TablePanel {
    * @return {DataTable instance} An initialized table panel
    */
   _initTable() {
-    this.table = $(this.selector).DataTable(this._tableOpts);
 
-    // Show buttons if exist
-    if (this.buttons.length)
-      this.table.buttons().container()
-        .appendTo( $('.col-sm-6:eq(0)', this.table.table().container()) );
+    this.table = $( this.selector ).DataTable( this._tableOpts );
+
+    // Append buttons to DOM if any defined
+    if ( this._tableOpts.buttons.length )
+      this.table.buttons()
+                .container()
+                .appendTo( $( '.col-sm-6:eq(0)', this.table.table().container() ) );
+
+  }
+
+  /**
+   * Set of DT options for a horizontally scrollable table with height that fits in the current window
+   * @return {Object} DataTable options object
+   */
+  get _autoHeightOpts() {
+
+    let minHeight = 300,
+        docHeight = $( document ).innerHeight(),
+        yHeight = Math.max( docHeight - 250, minHeight );
+
+    return {
+      autoWidth: true,
+      scrollCollapse: true,
+      scrollY: yHeight
+    }
+
   }
 
   /**
@@ -207,20 +363,33 @@ export default class TablePanel {
    * @return {Object} DataTable initialization options object
    */
   get _tableOpts() {
-    return {
+
+    let opts =  {
       order: this.order,
-      columns: [...this._defaultColumns, ...this.extraColumns],
+      columns: [
+        ...this._defaultColumns,
+        ...this.extraColumns
+      ],
       pageLength: pageLength,
       lengthMenu: pageSettings,
       processing: true,
       autoWidth: false,
       language: {
-        infoFiltered: "",
-        emptyTable: "No data.",
-        processing: renderSpinner('small')
+        infoFiltered: '',
+        emptyTable: 'No data.',
+        processing: renderSpinner( 'small' )
       },
       buttons: this.buttons
     }
+
+    if ( this.autoHeight )
+      Object.assign( opts, this._autoHeightOpts );
+
+    if ( this.tableOptions ) // Merge with custom options
+      Object.assign( opts, this.tableOptions );
+
+    return opts;
+
   }
 
 }

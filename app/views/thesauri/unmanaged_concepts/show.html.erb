@@ -2,7 +2,6 @@
 
 <%= javascript_include_tag 'thesauri/unmanaged_concepts/show', 'shared/thesauri/links_panel' %>
 
-<% item_editable = policy(Thesaurus).edit? && @tc.supporting_edit? %>
 <%= javascript_tag "var synonymsUrl = '#{synonym_links_thesauri_unmanaged_concept_path({id: @tc, unmanaged_concept: {context_id: @context_id}})}',
                         ptsUrl = '#{preferred_term_links_thesauri_unmanaged_concept_path({id: @tc, unmanaged_concept: {context_id: @context_id}})}'
                         childrenUrl = '#{ @has_children ? show_data_thesauri_unmanaged_concept_path(@tc) : ""}';" %>
@@ -12,27 +11,32 @@
     thesauri_managed_concept_path({id: @parent, managed_concept: {context_id: @context_id}}), "Show") %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_unmanaged_item", :locals => {:item => @tc, :context => @ct, :badge => "CI"} do %>
-    <div class="actions-wrap">
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+  <%= render layout: "shared/headers/header_unmanaged_item", :locals => { item: @tc, context: @ct, badge: "CI" } do %>
 
-    <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
-      <% if policy(Thesaurus).edit? %>
-        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @edit_tags_path, id: "edit-tags-button",
-          icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: @edit_tags_path.empty? } %>
-        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
-          icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: !item_editable } %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+      <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
+
+        <% if policy(Thesaurus).edit? %>
+
+          <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+            icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty? } %>
+
+        <% end %>
+
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-notes-modal", id: "change-notes-button",
+          icon: "icon-note", text: "Change notes", toggle: "modal", disabled: !@tc.supporting_edit? } %>
+
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-instructions-modal", id: "ci-modal-button",
+          icon: "icon-instruction", text: "Change instructions", toggle: "modal" } %>
+
       <% end %>
-      <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-instructions-modal", id: "ci-modal-button",
-        icon: "icon-instruction", text: "Change instructions", dt_toggle: "modal", disabled: false } %>
-    <% end %>
+
     </div>
+
   <% end %>
 </div>
-
-<%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc)} if item_editable %>
-<%= render partial: "shared/annotation/change_instructions/change_instructions_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, can_edit: policy(Annotation).edit? } %>
 
 <% if @has_children %>
   <div class="row">
@@ -43,6 +47,12 @@
 <% end %>
 
 <div class="row">
-  <%= render partial: "shared/thesauri/links_panel", locals: {panelId: "pts-panel"} %>
-  <%= render partial: "shared/thesauri/links_panel", locals: {panelId: "synonyms-panel"} %>
+  <%= render partial: "shared/thesauri/links_panel", locals: { panelId: "pts-panel" } %>
+  <%= render partial: "shared/thesauri/links_panel", locals: { panelId: "synonyms-panel" } %>
 </div>
+
+<%= render partial: "shared/annotation/change_instructions/change_instructions_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, can_edit: policy(Annotation).edit? } %>
+
+<% if @tc.supporting_edit? %>
+  <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc)} %>
+<% end %>

@@ -53,8 +53,8 @@ describe "Indicators", :type => :feature do
       wait_for_ajax 10
       context_menu_element("history", 1, "0.1.0", :show)
       wait_for_ajax 10
-      ui_check_table_row_indicators("children_table", 1, 8, ["3 change instructions"])
-      ui_check_table_row_indicators("children_table", 1, 8, ["0 change notes"])
+      ui_check_table_row_indicators("children", 1, 8, ["3 change instructions"], new_style: true)
+      ui_check_table_row_indicators("children", 1, 8, ["0 change notes"], new_style: true)
     end
 
     it "Code List Show (header, children table)", js:true do
@@ -66,8 +66,8 @@ describe "Indicators", :type => :feature do
       wait_for_ajax 10
       context_menu_element("history", 1, "52.0.0", :show)
       wait_for_ajax 10
-      ui_check_table_row_indicators("children_table", 1, 7, ["1 change instruction"])
-      ui_check_indicators(".indicators-wrap", ["subsetted", "extended"])
+      ui_check_table_row_indicators("children", 1, 7, ["1 change instruction"], new_style: true)
+      ui_check_indicators("#header-indicators .indicators-wrap", ["subsetted", "extended"])
       ci.delete
     end
 
@@ -82,7 +82,7 @@ describe "Indicators", :type => :feature do
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'C99158')]/td/a").click
       wait_for_ajax 10
-      ui_check_indicators(".indicators-wrap", ["1 change instruction"])
+      ui_check_indicators("#header-indicators .indicators-wrap", ["1 change instruction"])
       ci.delete
     end
 
@@ -118,7 +118,7 @@ describe "Indicators", :type => :feature do
       wait_for_ajax 10
       context_menu_element_v2("history", "0.1.0", :show)
       wait_for_ajax 10
-      ui_check_table_row_indicators("children_table", 1, 8, ["3 change instructions", "ranked"])
+      ui_check_table_row_indicators("children", 1, 8, ["3 change instructions", "ranked"], new_style: true)
 
         # Code Lists Index
       click_navbar_code_lists

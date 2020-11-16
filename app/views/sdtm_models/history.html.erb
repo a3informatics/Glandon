@@ -5,10 +5,9 @@
 <% second_level_breadcrumb(:sdtm_models, @scope_id, @identifier) %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_item_simple", :locals => {badge: "icon-sdtm", item: @item, header_title: "Item History"} do %>
+  <%= render layout: "shared/headers/header_item_simple", :locals => { badge: "icon-sdtm", item: @item, header_title: "Item History" } do %>
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
   <% end %>
 </div>

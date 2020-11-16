@@ -36,6 +36,7 @@ describe BiomedicalConceptInstancesController do
       bci = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       get :show, params: { :id => bci.id}
       expect(response).to render_template("show")
+      expect(assigns(:edit_tags_path)).to eq("/iso_concept/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=/edit_tags")
     end
 
     it "history, html" do
@@ -132,17 +133,18 @@ describe BiomedicalConceptInstancesController do
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
       load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
     end
 
     it "creates from a template" do
-      template = BiomedicalConceptTemplate.find_full(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS/V1#BCT"))
+      template = BiomedicalConceptTemplate.find_full(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS_PQR/V1#BCT"))
       post :create_from_template, params:{biomedical_concept_instance: {identifier: "NEW1", label: "something", template_id: template.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "create_from_template_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "creates from a template, error" do
-      template = BiomedicalConceptTemplate.find_full(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS/V1#BCT"))
+      template = BiomedicalConceptTemplate.find_full(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS_PQR/V1#BCT"))
       post :create_from_template, params:{biomedical_concept_instance: {identifier: "HEIGHT", label: "something", template_id: template.id}}
       actual = check_error_json_response(response)
       expect(actual[:errors]).to eq(["http://www.s-cubed.dk/HEIGHT/V1#BCI already exists in the database"])
@@ -175,6 +177,7 @@ describe BiomedicalConceptInstancesController do
       get :edit, params:{id: instance.id}
       expect(assigns(:bc).uri).to eq(instance.uri)
       expect(assigns(:close_path)).to eq("/biomedical_concept_instances/history?biomedical_concept_instance%5Bidentifier%5D=HEIGHT&biomedical_concept_instance%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
+      expect(assigns(:edit_tags_path)).to eq("/iso_concept/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=/edit_tags")
       expect(response).to render_template("edit")
     end
 

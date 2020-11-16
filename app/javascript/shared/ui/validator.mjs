@@ -57,8 +57,17 @@ export default class Validator {
 
       // Rule validation did not pass
       if( !Validator.validateFieldRule( field, attr, rule ) ) {
-        Validator._renderError( field, this.allRules[rule].message )
+
+        // Regular error message
+        if ( this.allRules[rule] )
+          Validator._renderError( field, this.allRules[rule].message )
+
+        // Error message with parameter
+        else if ( this.allRules[attr] )
+          Validator._renderError( field, this.allRules[attr].message.replace( 'XXX', rule ) )
+
         success = false;
+
       }
 
     });
@@ -85,6 +94,11 @@ export default class Validator {
                         .regex
                         .test( $( field ).val() );
         break;
+
+      case 'max-length':
+        return $( field ).val().length <= rule;
+        break;
+
       default:
         return Validator.allRules[rule]
                         .regex
@@ -208,6 +222,9 @@ export default class Validator {
       'not-empty': {
           regex: /^(?!\s*$).+/,
           message: "Field cannot be empty"
+      },
+      'max-length': {
+        message: "String too long, max XXX characters"
       }
     }
 

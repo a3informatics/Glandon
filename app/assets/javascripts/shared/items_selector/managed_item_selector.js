@@ -5,7 +5,6 @@
 /*
 * Params
 ** type [String] type of the panel (thesauri/cls/clitems)
-** errorDiv [JQUery Object] Div for showing errors
 ** multiple [Boolean] enable/disable multiple item selection
 ** parentPanel [Object Instance] Reference to parent panel
 ** columns [Function] Columns definitions function
@@ -89,7 +88,7 @@ MISelector.prototype.markRows = function() {
 /**
  * Fetches data to fill tables with
  *
- * @param params [Object] Request parameters (url count offset errorDiv)
+ * @param params [Object] Request parameters (url count offset)
  * @return [void]
  */
 MISelector.prototype.loadData = function (params) {
@@ -114,7 +113,7 @@ MISelector.prototype.loadData = function (params) {
         this.onTableLoaded(params);
 		},
 		error: function (xhr, status, error) {
-      handleAjaxError(xhr, status, error, this.params.errorDiv);
+      handleAjaxError(xhr, status, error);
 			this.processing(false);
 		}
 	});

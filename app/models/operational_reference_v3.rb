@@ -31,4 +31,18 @@ class OperationalReferenceV3 < IsoConceptV2
     super(params)
   end
 
+  # Managed Ancestors Path. Returns the path from the managed ancestor to this class
+  #
+  # @return [String] the path as an expanded set of predicates
+  def self.managed_ancestors_path
+    [
+      "<http://www.assero.co.uk/BusinessForm#hasGroup>",
+      "<http://www.assero.co.uk/BusinessForm#hasSubGroup>*",
+      "<http://www.assero.co.uk/BusinessForm#hasCommon>?",
+      "<http://www.assero.co.uk/BusinessForm#hasItem>",
+      "<http://www.assero.co.uk/BusinessForm#hasCommonItem>*",
+      "<http://www.assero.co.uk/BusinessForm#hasProperty>",  
+    ]
+  end
+
 end

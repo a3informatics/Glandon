@@ -101,8 +101,7 @@ describe "IsoManagedV2" do
           :last_change_date => "2016-01-01T00:00:00+00:00",
           :explanatory_comment => "",
           :has_previous_version => nil,
-          :id => nil,
-          tagged: []
+          :id => nil
         }
       item = IsoManagedV2.new
       expect(item.to_h).to eq(result)

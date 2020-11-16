@@ -208,22 +208,15 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
   #
   # @param previous [Thesaurus::UnmanagedConcept] previous item
   # @return [Thesaurus::UnmanagedConcept] the new object if changes, otherwise the previous object
-  def replace_if_no_change(previous)
+  def replace_if_no_change(previous, add_properties=[])
     return self if previous.nil?
-    return previous if !self.diff?(previous, {ignore: [:tagged]})
-    replace_children_if_no_change(previous)
-    return self
-  end
-
-  # Add additional tags
-  #
-  # @param previous [Thesaurus::UnmanagedConcept] previous item
-  # @param set [Array] set of tags objects
-  # @return [Void] no return
-  def add_additional_tags(previous, set)
-    return if previous.nil?
-    missing =  previous.tagged.map{|x| x.uri.to_s} - self.tagged.map{|x| x.uri.to_s}
-    missing.each {|x| set << {subject: self.uri, object: Uri.new(uri: x)}}
+    if !self.custom_properties_diff?(previous) && !self.diff?(previous, {ignore: []})
+      add_properties.each{|x| previous.instance_variable_set("@#{x}", self.instance_variable_get("@#{x}"))}
+      return previous 
+    else
+      replace_children_if_no_change(previous)
+      return self
+    end
   end
 
   # To CSV No Header. A CSV record with no header
@@ -280,7 +273,7 @@ private
 
   def deleted_from_ct_version(last_item)
     return {deleted: false, ct: nil} if Thesaurus::ManagedConcept.find_minimum(parents.first).owned?
-    ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
+    ct_history = Thesaurus.history_uris(identifier: CdiscTerm.identifier, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
     item_was_deleted = used_in.first != ct_history.first
     return {deleted: item_was_deleted, ct: nil} if !item_was_deleted
@@ -291,7 +284,7 @@ private
 
   def deleted_from_ct?(last_item)
     return false if Thesaurus::ManagedConcept.find_minimum(parents.first).owned?
-    ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
+    ct_history = Thesaurus.history_uris(identifier: CdiscTerm.identifier, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
     used_in.first != ct_history.first
   end
@@ -331,7 +324,7 @@ private
   end
 
   # Replace the child if no change.
-  def replace_children_if_no_change(previous)
+  def replace_children_if_no_change(previous, add_properties=[])
     self.narrower.each_with_index do |child, index|
       previous_child = previous.narrower.select {|x| x.identifier == child.identifier}
       next if previous_child.empty?

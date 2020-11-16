@@ -4,16 +4,13 @@
 <%= javascript_tag "let importsDataUrl = '#{imports_path}',
 												importsDeleteAllUrl= '#{destroy_multiple_imports_path({ imports: { items: "all" } })}';" %>
 
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
-
 <% first_level_breadcrumb (:imports) %>
 
 <div class="row">
 	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-import", header_title: "",
 		main_text: "Current Imports", sub_texts: "Showing all import jobs." } do %>
 
-			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: list_imports_path, id: "close",
-  			icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+			<%= render partial: "shared/buttons/return", :locals => { url: list_imports_path } %>
 
 	<% end %>
 </div>

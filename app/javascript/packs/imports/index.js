@@ -1,4 +1,4 @@
-import ImportsManager from 'shared/imports/imports_manager_panel'
+import ImportsManager from 'shared/custom/imports/imports_manager_panel'
 
 $(document).ready( () => {
 

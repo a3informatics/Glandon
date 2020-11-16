@@ -20,6 +20,31 @@ class Form::Group::Normal < Form::Group
 
   validates_with Validator::Field, attribute: :repeating, method: :valid_boolean?
 
+  # Managed Ancestors Predicate. Returns the property(ies) from this instance/class in the managed ancestor path to the child class
+  #
+  # @param [Class] the child klass
+  # @return [Array] array of predicates (symbols)
+  def managed_ancestors_predicate(child_klass)
+    return [:has_common] if child_klass == Form::Group::Common
+    return [:has_sub_group] if [Form::Group::Normal, Form::Group::Bc].include?(child_klass)
+    [:has_item]
+  end
+
+  # Managed Ancestors Children Set. Returns the set of children nodes. Normally this is children but can be a combination.
+  #
+  # @return [Form::Group::Normal] array of objects
+  def managed_ancestors_children_set
+    self.has_sub_group + self.has_item + self.has_common
+  end
+
+  # Children Ordered. Returns the set of children nodes ordered by ordinal. 
+  #
+  # @return [Form::Group::Normal] array of objects
+  def children_ordered
+    set = self.has_sub_group_objects + self.has_item_objects
+    set.sort_by {|x| x.ordinal}
+  end
+
   # Get Item
   #
   # @return [Array] Array of hashes, one per group, sub group and item.
@@ -50,15 +75,6 @@ class Form::Group::Normal < Form::Group
     elsif self.repeating && self.is_bc_only_group?
       html += repeating_bc_group
     else
-      # self.has_common.sort_by {|x| x.ordinal}.each do |cm|
-      #   html += cm.to_crf
-      # end 
-      # self.has_item.sort_by {|x| x.ordinal}.each do |item|
-      #   html += item.to_crf
-      # end
-      # self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-      #   html += sg.to_crf
-      # end
       self.has_common.sort_by {|x| x.ordinal}.each do |cm|
         html += cm.to_crf
       end
@@ -67,6 +83,15 @@ class Form::Group::Normal < Form::Group
       end
     end
     return html
+  end
+
+  def add_child_with_clone(params, managed_ancestor)
+    if multiple_managed_ancestors?
+      new_normal = self.replicate_with_clone(self, managed_ancestor)
+      new_normal.add_child(params)
+    else
+      add_child(params)
+    end
   end
 
   # Add Child.
@@ -93,15 +118,6 @@ class Form::Group::Normal < Form::Group
       []
     end
   end
-
-  def children_ordered
-    set = self.has_sub_group_objects + self.has_item_objects
-    set.sort_by {|x| x.ordinal}
-  end
-
-  # def items_classes
-  #   items_classes = [Form::Item::Question, Form::Item::Placeholder, Form::Item::Mapping, Form::Item::TextLabel]
-  # end
 
   # Is a Question only group
   def is_question_only_group?
@@ -268,13 +284,13 @@ class Form::Group::Normal < Form::Group
     return "</tr>"
   end
 
-  def delete(parent)
-    super(parent)
+  def delete(parent, managed_ancestor)
+    parent = super(parent, managed_ancestor)
     parent = Form.find_full(parent.uri)
     parent = parent.full_data
   end
 
-  # Full parent
+  # Full Data
   #
   # @return [Hash] Return the data of the whole parent Normal Group, all its children BC Groups, Common Group + any referenced item data.
   def full_data
@@ -373,14 +389,14 @@ class Form::Group::Normal < Form::Group
 
     def add_item(params)
       child = type_to_class[params[:type].to_sym].create(label: "Not set", ordinal: next_ordinal, parent_uri: self.uri)
-      child.save
+      #child.save
       self.add_link(:has_item, child.uri)
       child
     end
 
     def check_if_common(bc_property)
       unless self.has_common.empty?
-        common_group = Form::Group::Common.find(self.has_common.first)
+        common_group = Form::Group::Common.find(self.has_common.first.uri)
         common_group.has_item_objects.each do |common_item|
           if common_property?(bc_property, common_item) && bc_property.has_coded_value.empty?
             make_common(common_item, common_group, bc_property)

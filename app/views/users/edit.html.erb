@@ -32,12 +32,11 @@
      {:title => "Days ago", :value => last_si.nil? ? "Not logged in yet!" : time_ago_in_words(last_si.strftime("%F"))}]%>
 
 
-	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-users", header_title: "",
-		main_text: @user.name, sub_texts: s_texts} do %>
+	<%= render layout: "shared/headers/header_generic", :locals => { badge: "icon-users", header_title: "",
+		main_text: @user.name, sub_texts: s_texts } do %>
 
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: users_path, id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: users_path } %>
     </div>
 
 	<% end %>

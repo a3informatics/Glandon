@@ -53,7 +53,7 @@ describe "Thesauri Release Select", :type => :feature do
       within_window w do
         wait_for_ajax(10)
         expect(page).to have_content "TST"
-        expect(page).to have_content "Attach / Detach Tags"
+        expect(page).to have_content "Edit Item Tags"
       end
       w.close
     end
@@ -150,11 +150,11 @@ describe "Thesauri Release Select", :type => :feature do
       page.find("#table-cdisc-cls-bulk-deselect").click
       ui_confirmation_dialog true
       wait_for_ajax 50
-      ui_check_table_info("table-cdisc-cls", 1, 10, 20)
-      expect(page).to have_content ("891 rows selected")
+      ui_check_table_info("table-cdisc-cls", 1, 10, 16)
+      expect(page).to have_content ("895 rows selected")
       ui_click_tab "Test Terminology"
       ui_table_search("table-selection-overview", "Protocol")
-      ui_check_table_info("table-selection-overview", 1, 1, 1)
+      ui_check_table_info("table-selection-overview", 0, 0, 0)
       ui_table_search("table-selection-overview", "")
       ui_click_tab "Sponsor CLs"
       wait_for_ajax 10
@@ -179,17 +179,18 @@ describe "Thesauri Release Select", :type => :feature do
       ui_confirmation_dialog true
       wait_for_ajax 50
       ui_table_search("table-selection-overview", "")
-      ui_check_table_info("table-selection-overview", 1, 10, 775)
+      ui_check_table_info("table-selection-overview", 1, 10, 811)
       ui_click_tab "CDISC CLs"
-      expect(page).to have_content("773 rows selected")
+      expect(page).to have_content("809 rows selected")
     end
 
     it "changes version of a sponsor multi-versioned codelist, and UI update", :type => :feature do
       navigate_to_release_sel
       ui_click_tab "Test Terminology"
       wait_for_ajax 10
-      ui_check_table_row_indicators("table-selection-overview", 6, 8, ["4 versions", "extension"])
-      ui_check_table_cell("table-selection-overview", 6, 6, "0.3.0")
+      ui_table_search("table-selection-overview", "C96783E")
+      ui_check_table_row_indicators("table-selection-overview", 1, 8, ["4 versions", "extension"])
+      ui_check_table_cell("table-selection-overview", 1, 6, "0.3.0")
       find(:xpath, '//*[@id="table-selection-overview"]/tbody/tr[contains(.,"C96783E")]/td[6]/span').click
       sleep 1
       wait_for_ajax 20
@@ -201,8 +202,9 @@ describe "Thesauri Release Select", :type => :feature do
       click_button "Submit"
       sleep 1
       wait_for_ajax 30
-      ui_check_table_row_indicators("table-selection-overview", 6, 8, ["4 versions", "extension", "Current"])
-      ui_check_table_cell("table-selection-overview", 6, 6, "0.1.0")
+      ui_check_table_row_indicators("table-selection-overview", 1, 8, ["4 versions", "extension", "Current"])
+      ui_check_table_cell("table-selection-overview", 1, 6, "0.1.0")
+      ui_table_search("table-selection-overview", "")
       ui_click_tab "Sponsor Extensions"
       wait_for_ajax 10
       find(:xpath, '//*[@id="table-sponsor-extensions"]/tbody/tr[contains(.,"C96783E")]')[:class].include? "selected"

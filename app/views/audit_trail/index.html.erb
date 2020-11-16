@@ -9,8 +9,8 @@
 		main_text: "Audit Trail", sub_texts: "View, search and export the User Audit Trail." } do %>
 
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_audit_trail_index_path, id: "export-csv-button",
-        icon: "icon-document", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: export_csv_audit_trail_index_path, id: "export-csv-button",
+        icon: "icon-document", text: "Export CSV" } %>
     </div>
 
 

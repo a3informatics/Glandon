@@ -3,7 +3,6 @@
 :uri: http://www.acme-pharma.com/C99079E/V1#C99079E
 :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
 :label: Epoch
-:tagged: []
 :has_state:
   :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzk5MDc5RS9WMSNDOTkwNzlFX1JT
   :uri: http://www.acme-pharma.com/C99079E/V1#C99079E_RS
@@ -60,8 +59,6 @@
   :uri: http://www.cdisc.org/C99079/V28#C99079_C98779
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Run-in Period
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C98779
   :notation: RUN-IN
   :definition: A period in a clinical study that occurs before the commencement of
@@ -76,8 +73,6 @@
   :uri: http://www.cdisc.org/C99079/V28#C99079_C42872
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Washout Period
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C42872
   :notation: WASHOUT
   :definition: A period of time during a clinical study when a participant is taken
@@ -91,8 +86,6 @@
   :uri: http://www.cdisc.org/C99079/V28#C99079_C99158
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Clinical Study Follow-up
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C99158
   :notation: FOLLOW-UP
   :definition: A period in a clinical study during which information about the health
@@ -106,8 +99,6 @@
   :uri: http://www.cdisc.org/C99079/V28#C99079_C48262
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Trial Screening
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C48262
   :notation: SCREENING
   :definition: A period in a clinical study during which subjects are evaluated for
@@ -116,26 +107,10 @@
   :narrower: []
   :preferred_term: http://www.assero.co.uk/PT#716ec4895092b5d6db6f3f01d7cfe670bbf37464
   :synonym: []
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQzEwMjI1NQ==
-  :uri: http://www.cdisc.org/C99079/V31#C99079_C102255
-  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-  :label: Blinded Treatment Epoch
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-  :identifier: C102255
-  :notation: BLINDED TREATMENT
-  :definition: A period in a clinical study during which subjects receive blinded
-    therapeutic treatment.
-  :extensible: false
-  :narrower: []
-  :preferred_term: http://www.assero.co.uk/PT#204f0adcbf15b8bc8e52bd0492fdf621555e427b
-  :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQzEwMjI1Ng==
   :uri: http://www.cdisc.org/C99079/V31#C99079_C102256
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Open Label Treatment Epoch
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C102256
   :notation: OPEN LABEL TREATMENT
   :definition: A period in a clinical study during which subjects receive open label
@@ -144,12 +119,22 @@
   :narrower: []
   :preferred_term: http://www.assero.co.uk/PT#18d02bd881c1d4415a9d80406c925af89445b350
   :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQzEwMjI1NQ==
+  :uri: http://www.cdisc.org/C99079/V31#C99079_C102255
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Blinded Treatment Epoch
+  :identifier: C102255
+  :notation: BLINDED TREATMENT
+  :definition: A period in a clinical study during which subjects receive blinded
+    therapeutic treatment.
+  :extensible: false
+  :narrower: []
+  :preferred_term: http://www.assero.co.uk/PT#204f0adcbf15b8bc8e52bd0492fdf621555e427b
+  :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMiNDOTkwNzlfQzEwMTUyNg==
   :uri: http://www.cdisc.org/C99079/V32#C99079_C101526
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Treatment Epoch
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C101526
   :notation: TREATMENT
   :definition: A period in a clinical study during which subjects receive therapeutic
@@ -166,8 +151,6 @@
   :uri: http://www.cdisc.org/C99079/V28#C99079_C98779
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Run-in Period
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C98779
   :notation: RUN-IN
   :definition: A period in a clinical study that occurs before the commencement of
@@ -182,8 +165,6 @@
   :uri: http://www.cdisc.org/C99079/V28#C99079_C42872
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Washout Period
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C42872
   :notation: WASHOUT
   :definition: A period of time during a clinical study when a participant is taken
@@ -197,8 +178,6 @@
   :uri: http://www.cdisc.org/C99079/V28#C99079_C99158
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Clinical Study Follow-up
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C99158
   :notation: FOLLOW-UP
   :definition: A period in a clinical study during which information about the health
@@ -212,8 +191,6 @@
   :uri: http://www.cdisc.org/C99079/V28#C99079_C48262
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Trial Screening
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C48262
   :notation: SCREENING
   :definition: A period in a clinical study during which subjects are evaluated for
@@ -222,26 +199,10 @@
   :narrower: []
   :preferred_term: http://www.assero.co.uk/PT#716ec4895092b5d6db6f3f01d7cfe670bbf37464
   :synonym: []
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQzEwMjI1NQ==
-  :uri: http://www.cdisc.org/C99079/V31#C99079_C102255
-  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-  :label: Blinded Treatment Epoch
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-  :identifier: C102255
-  :notation: BLINDED TREATMENT
-  :definition: A period in a clinical study during which subjects receive blinded
-    therapeutic treatment.
-  :extensible: false
-  :narrower: []
-  :preferred_term: http://www.assero.co.uk/PT#204f0adcbf15b8bc8e52bd0492fdf621555e427b
-  :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQzEwMjI1Ng==
   :uri: http://www.cdisc.org/C99079/V31#C99079_C102256
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Open Label Treatment Epoch
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C102256
   :notation: OPEN LABEL TREATMENT
   :definition: A period in a clinical study during which subjects receive open label
@@ -250,12 +211,22 @@
   :narrower: []
   :preferred_term: http://www.assero.co.uk/PT#18d02bd881c1d4415a9d80406c925af89445b350
   :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQzEwMjI1NQ==
+  :uri: http://www.cdisc.org/C99079/V31#C99079_C102255
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Blinded Treatment Epoch
+  :identifier: C102255
+  :notation: BLINDED TREATMENT
+  :definition: A period in a clinical study during which subjects receive blinded
+    therapeutic treatment.
+  :extensible: false
+  :narrower: []
+  :preferred_term: http://www.assero.co.uk/PT#204f0adcbf15b8bc8e52bd0492fdf621555e427b
+  :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMiNDOTkwNzlfQzEwMTUyNg==
   :uri: http://www.cdisc.org/C99079/V32#C99079_C101526
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Treatment Epoch
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :identifier: C101526
   :notation: TREATMENT
   :definition: A period in a clinical study during which subjects receive therapeutic
@@ -269,12 +240,10 @@
   :uri: http://www.assero.co.uk/PT#a463a0f52c17c087c783cf05bb22d57dfdf13aa8
   :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
   :label: CDISC SDTM Epoch Terminology
-  :tagged: []
 :synonym:
 - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzJjNWRkNzdjN2ZhZDM2OTE4YmZjMTdiZDU4YWM0ZjljYzI3YzA0ZDE=
   :uri: http://www.assero.co.uk/SYN#2c5dd77c7fad36918bfc17bd58ac4f9cc27c04d1
   :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
   :label: Epoch
-  :tagged: []
 :is_ordered: 
 :is_ranked: 

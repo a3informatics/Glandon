@@ -50,9 +50,55 @@ function fitColumn(name, tableId) {
   }
 }
 
+/**
+ * DataTable Select All button definition
+ * @param {function} action Custom action to execute on button click, optional
+ * @param {boject} filter Custom filter to apply to DT rows scope, optional, defaults to search: applied
+ * @return {Object} Custom Select All button options
+ */
+ function selectAllBtn(action, filter = { search: 'applied' }) {
+  return {
+    text: 'Select All',
+    className: 'btn-xs white',
+    action: action ? action : (e, dt, node, conf) => dt.rows({ selected: false, ...filter }).select()
+  }
+}
+
+/**
+ * DataTable Select All button definition
+ * @param {function} action Custom action to execute on button click, optional
+ * @param {boject} filter Custom filter to apply to DT rows scope, optional, defaults to search: applied
+ * @return {Object} Custom Select All button options
+ */
+ function deselectAllBtn(action, filter = { search: 'applied' }) {
+  return {
+    text: 'Deselect All',
+    className: 'btn-xs white',
+    action: action ? action : (e, dt, node, conf) => dt.rows({ selected: true, ...filter }).deselect()
+  }
+}
+
+/**
+ * DataTable Custom button definition
+ * @param {string} text Custom button text
+ * @param {function} action Custom action to execute on button click
+ * @param {string} cssClasses Custom button css class list, optional
+ * @return {Object} Custom Select All button options
+ */
+ function customBtn({ text, action, cssClasses = 'btn-xs white' }) {
+  return {
+    text,
+    className: cssClasses,
+    action
+  }
+}
+
 export {
+  expandColumn,
+  fitColumn,
   csvExportBtn,
   excelExportBtn,
-  expandColumn,
-  fitColumn
+  selectAllBtn,
+  deselectAllBtn,
+  customBtn
 }

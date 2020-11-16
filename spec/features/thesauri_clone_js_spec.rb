@@ -57,9 +57,9 @@ describe "Thesauri Clone", :type => :feature do
       context_menu_element('history', 8, 'CLONETERM', :show)
       wait_for_ajax 20
       expect(page).to have_content 'Cloned Terminology'
-      expect(page).to have_content '0.1.0' 
-      ui_check_table_info("children_table", 1, 10, 803)
-      ui_check_table_cell("children_table", 2, 2, "UNIT_05")
+      expect(page).to have_content '0.1.0'
+      ui_check_table_info("children", 1, 10, 803)
+      ui_check_table_cell("children", 2, 2, "UNIT_05")
     end
 
     it "does not allow to special characters in a cloned terminology", js: true do

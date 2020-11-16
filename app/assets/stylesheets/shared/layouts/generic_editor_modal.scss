@@ -1,0 +1,119 @@
+@import 'shared/vars';
+
+// Node Editor
+
+.ge-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ge-content .ge-title .ge-icon {
+  font-size: $font-xlarge;
+}
+
+.ge-content .ge-title {
+  font-size: $font-normal;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.ge-content .field-table tr td {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.ge-content .field-table tr td:first-of-type {
+  font-size: $font-xtiny;
+  text-align: right;
+}
+
+.ge-content .field-table tr td:last-of-type {
+  padding-left: 10px;
+}
+
+// Node Editor inputs
+
+.ge-content .form-group {
+  max-width: 80%;
+  margin: 0px;
+}
+
+.ge-content .label-styled {
+  padding: 4px 6px;
+  padding-right: 14px;
+}
+
+.ge-content .form-group {
+  input, textarea {
+    margin: 0px;
+  }
+}
+
+.ge-content .form-group input[type='text'] {
+  min-width: 300px;
+  padding-right: 20px;
+  color: $grey-dark;
+}
+
+.ge-content .form-group input[type='text'].narrow {
+  min-width: 100px;
+}
+
+.ge-content .form-group textarea {
+  min-width: 300px;
+  max-width: 500px;
+  min-height: 50px;
+  max-height: 150px;
+  color: $grey-dark;
+}
+
+.ge-content .form-group textarea.wide {
+  min-width: 400px;
+  min-height: 72px;
+}
+
+.ge-content .form-group select {
+  border: 1px solid $grey-bright;
+  border-bottom-width: 2px;
+  color: $grey-dark;
+}
+
+// Disabled and error styling
+
+.ge-content .form-group.has-error {
+  input, textarea {
+    border-color: $accent-color-2 !important;
+  }
+}
+
+.ge-content .form-group {
+  input:disabled, textarea:disabled, select:disabled {
+    background: $row-highlight-background;
+    opacity: .8;
+  }
+}
+
+// Loading
+
+.ge-content.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+// Fixes
+
+.ge-content .field-table label {
+  margin: 0px;
+}
+
+@media ( max-width: 1000px ) {
+
+  .ge-content .form-group {
+    textarea, input {
+      min-width: 200px !important;
+    }
+  }
+
+}

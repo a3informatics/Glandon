@@ -6,20 +6,22 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
   include DataHelpers
   include UiHelpers
   include WaitForAjaxHelper
-  include DownloadHelpers
   include UserAccountHelpers
-  include AuditTrailHelpers
   include ScenarioHelpers
-  include TagHelper
+  include TagHelpers
+  include D3TreeHelpers
   include NameValueHelpers
   include EditorHelpers
+  include ItemsPickerHelpers
 
   def sub_dir
     return "features/scenarios"
   end
 
   def click_row_contains(table, text)
+    ui_table_search(table, text)
     find(:xpath, "//*[@id='#{table}']/tbody/tr[contains(.,'#{text}')]").click
+    ui_table_search(table, '')
   end
 
   def change_cdisc_version(version)
@@ -31,13 +33,6 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
     wait_for_ajax 20
   end
 
-
-  def in_modal
-    sleep 1
-    yield
-    sleep 1
-  end
-
   describe "Curator User", :type => :feature do
 
     before :all do
@@ -45,10 +40,8 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
+      nv_destroy
+      nv_create({parent: "10", child: "999"})
       Token.destroy_all
       ua_create
       set_transactional_tests false
@@ -61,11 +54,8 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
 
     it "Prepares a tag, system admin", scenario: true, js: true do
       ua_sys_and_content_admin_login
-      click_navbar_tags
-      fill_in 'add_label', with: 'TstTag'
-      fill_in 'add_description', with: 'Tag for Test'
-      click_on 'Create tag'
-      wait_for_ajax 10
+      go_to_tags
+      create_tag('Tags', 'TstTag', 'Tag for Test')
       ua_logoff
     end
 
@@ -95,40 +85,26 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       context_menu_element_v2("history", "52.0.0", :show)
       wait_for_ajax 10
       context_menu_element_header(:extend)
-      in_modal do
-        click_row_contains("thTable", "TST")
-        click_on "Select"
-      end
+      ip_pick_managed_items(:thesauri, [{identifier: "TST", version: "1"}], "thesaurus")
       wait_for_ajax 10
 
       # Edit Extension, Add items
       click_on "Add items"
-      in_modal do
-        click_row_contains("index", "CDISC")
-        wait_for_ajax 10
-        click_row_contains("history", "2017-09-29")
-        click_on "Submit and proceed"
-      end
-      in_modal do
-        ui_term_column_search(:code_list, "C10")
-        find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
-        find(:xpath, "//*[@id='searchTable_paginate']/ul/li[3]/a").click
-        find(:xpath, "//*[@id='searchTable']/tbody/tr[1]").click
-        click_button 'Add items'
-      end
+      ip_pick_unmanaged_items(:unmanaged_concept, [
+        { parent: "C99074", version: "31", identifier: "C98798" },
+        { parent: "C99074", version: "31", identifier: "C94393" }
+      ], "add-children")
+
       wait_for_ajax 10
 
       # Edit Extension, Add a tag
       w = window_opened_by { context_menu_element_header(:edit_tags) }
       within_window w do
-        wait_for_ajax 5
-        ui_click_node_name ("TstTag")
-        wait_for_ajax 5
-        click_button "Add Tag"
         wait_for_ajax 10
+        attach_tag "TstTag"
       end
       w.close
-      click_link "Return"
+      click_on "Return"
       wait_for_ajax 10
 
       # Document Control, Make Extension Standard
@@ -149,27 +125,27 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       context_menu_element_v2("history", "60.0.0", :show)
       wait_for_ajax 10
       context_menu_element_header(:subsets)
-      in_modal do
-        click_on "+ New subset"
+      ui_in_modal do
+        click_on "+ New Subset"
       end
-      in_modal do
+      ui_in_modal do
         click_on "Do not select"
       end
       wait_for_ajax 20
 
       # Edit Subset - Add items
-      click_row_contains("source_children_table", "ABDOMINAL CAVITY")
+      click_row_contains("source-table", "ABDOMINAL CAVITY")
       wait_for_ajax 10
-      click_row_contains("source_children_table", "C139186")
+      click_row_contains("source-table", "C139186")
       wait_for_ajax 10
 
       # Edit Subset - Update properties
       context_menu_element_header(:edit_properties)
-      in_modal do
+      ui_in_modal do
         fill_in "preferred_term", with: "Anatomical Location Subset 1"
         fill_in "notation", with: "ANATOMICAL LOC SUBSET"
         fill_in "synonym", with: "Synonym1; And Number 2"
-        click_button "Save changes"
+        click_on "Save changes"
       end
       wait_for_ajax 10
       click_link "Return"
@@ -227,25 +203,25 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       context_menu_element_v2("history", "0.1.0", :show)
       wait_for_ajax 10
       context_menu_element_header(:subsets)
-      in_modal do
-        click_on "+ New subset"
+      ui_in_modal do
+        click_on "+ New Subset"
       end
-      in_modal do
+      ui_in_modal do
         click_on "Do not select"
       end
       wait_for_ajax 20
 
       # Edit Subset - Add items
-      click_row_contains("source_children_table", "AIMS")
+      click_row_contains("source-table", "VENTROLATERAL")
       wait_for_ajax 10
-      click_row_contains("source_children_table", "Baseline Epoch")
+      click_row_contains("source-table", "Baseline Epoch")
       wait_for_ajax 10
-      click_row_contains("source_children_table", "C99158")
+      click_row_contains("source-table", "C94393")
       wait_for_ajax 10
 
       # Edit Subset - Update properties
       context_menu_element_header(:edit_properties)
-      in_modal do
+      ui_in_modal do
         fill_in "notation", with: "SPONSOR SUBSET"
         click_button "Save changes"
       end
@@ -301,7 +277,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
 
       # Clone Thesaurus
       context_menu_element('history', 8, 'Standard Test TH', :clone)
-      in_modal do
+      ui_in_modal do
         fill_in 'thesauri_identifier', with: "CLONE"
         fill_in 'thesauri_label', with: "Cloned Terminology"
         click_button 'Submit'
@@ -375,15 +351,14 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
+      nv_destroy
+      nv_create({parent: "10", child: "999"})
       Token.destroy_all
       ua_create
     end
 
     after :all do
+      Token.destroy_all
       ua_destroy
     end
 
@@ -413,11 +388,8 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       context_menu_element_v2("history", "52.0.0", :show)
       wait_for_ajax 10
       context_menu_element_header(:extend)
-      in_modal do
-        click_row_contains("thTable", "TST2")
-        click_on "Select"
-      end
-      wait_for_ajax 10
+
+      ip_pick_managed_items(:thesauri, [{identifier: "TST2", version: "1"}], "thesaurus")
 
       # Create a Subset of a Sponsor Extension
       click_navbar_code_lists
@@ -428,19 +400,17 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       context_menu_element_v2("history", "0.1.0", :show)
       wait_for_ajax 10
       context_menu_element_header(:subsets)
-      in_modal do
-        click_on "+ New subset"
+      ui_in_modal do
+        click_on "+ New Subset"
       end
-      in_modal do
-        click_row_contains("thTable", "TST2")
-        click_on "Select"
-      end
+      ip_pick_managed_items(:thesauri, [{identifier: "TST2", version: "1"}], "thesaurus")
+
       wait_for_ajax 20
 
       # Edit Subset - Add items
-      click_row_contains("source_children_table", "Baseline Epoch")
+      click_row_contains("source-table", "Baseline Epoch")
       wait_for_ajax 10
-      click_row_contains("source_children_table", "C99158")
+      click_row_contains("source-table", "C99158")
       wait_for_ajax 10
 
       click_link "Return"

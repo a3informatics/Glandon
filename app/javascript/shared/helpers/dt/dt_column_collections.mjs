@@ -4,6 +4,10 @@ import { termReferences } from 'shared/ui/collections'
 import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn,
          dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn } from 'shared/helpers/dt/dt_columns'
 
+
+/*** Index ***/
+
+
 /**
  * Column definitions for an Index panel
  * @return {Array} DataTables Index panel column definitions collection
@@ -28,6 +32,10 @@ function dtCLIndexColumns() {
   return indexColumns;
 };
 
+
+/*** History ***/
+
+
 /**
  * Column definitions for a simplified History panel with indicators
  * @return {Array} DataTables simplified History panel column definitions collection
@@ -41,6 +49,30 @@ function dtSimpleHistoryColumns() {
   ];
 };
 
+
+/*** Children ***/
+
+
+/**
+ * Column definitions for a Children panel
+ * @param {object} opts Additional column options
+ * @return {Array} DataTables Children panel column definitions collection
+ */
+function dtChildrenColumns(opts = {}) {
+  return [
+    { data: 'identifier', ...opts },
+    { data: 'notation', ...opts },
+    { data: 'preferred_term', ...opts },
+    { data: 'synonym', ...opts },
+    { data: 'definition', ...opts },
+    dtTagsColumn(opts)
+  ];
+};
+
+
+/*** Edit ***/
+
+
 /**
  * Column definitions for a Code List Editor table
  * @return {Array} DataTables Code List Edit column definitions collection
@@ -52,17 +84,15 @@ function dtCLEditColumns() {
     dtInlineEditColumn('preferred_term', '', '18%'),
     dtInlineEditColumn('synonym', '', '18%'),
     dtInlineEditColumn('definition', '', '40%'),
-    dtTagsColumn('8%', 'editable external edit-tags'),
+    dtTagsColumn({ width: '8%', className: 'editable external edit-tags'}),
     dtIndicatorsColumn(),
     {
       className: 'fit',
-      render: (data, type, r, m) => {
-        // const editingDisabled = _.isEmpty(r.edit_path);
-        // iconsInline.editIcon({ disabled: editingDisabled })
-        const actionIcons = iconsInline.removeIcon({ ttip: true, ttipText: 'Remove / unlink item' });
-
-        return type === 'display' ? actionIcons : '';
-      }
+      render: (data, type, r, m) => type === 'display' ?
+          iconsInline.removeIcon({
+            ttip: true,
+            ttipText: 'Remove / unlink item'
+          }) : ''
     }
   ];
 };
@@ -77,7 +107,7 @@ function dtBCEditColumns() {
     dtTrueFalseEditColumn('collect'),
     {
       data: 'has_complex_datatype.has_property.alias',
-      width: '18%' 
+      width: '18%'
     },
     dtInlineEditColumn('has_complex_datatype.has_property.question_text', 'question_text', '25%'),
     dtInlineEditColumn('has_complex_datatype.has_property.prompt_text', 'prompt_text', '25%'),
@@ -94,6 +124,10 @@ function dtBCEditColumns() {
     }
   ];
 };
+
+
+/*** Show ***/
+
 
 /**
  * Column definitions for Biomedical Concept Instance show
@@ -208,6 +242,7 @@ export {
   dtIndexColumns,
   dtSimpleHistoryColumns,
   dtCLIndexColumns,
+  dtChildrenColumns,
   dtCLEditColumns,
   dtBCShowColumns,
   dtBCEditColumns,

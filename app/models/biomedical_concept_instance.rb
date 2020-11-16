@@ -9,6 +9,14 @@ class BiomedicalConceptInstance < BiomedicalConcept
 
   object_property :based_on, cardinality: :one, model_class: BiomedicalConceptTemplate, delete_exclude: true, read_exclude: true
 
+  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  #
+  # @param [Class] the child klass
+  # @return [Array] array of predicates (symbols)
+  def managed_ancestors_predicate(child_klass)
+    identified_by_links.blank? ? [:has_item] : [:has_item, :identified_by]
+  end
+
   # Create From Template. Creates a new instance from the specified template
   #
   # @params [Hash] params a set of initial vaues for any attributes
@@ -23,6 +31,7 @@ class BiomedicalConceptInstance < BiomedicalConcept
     object.based_on = template.uri
     object.set_initial(params[:identifier])
     object.creation_date = object.last_change_date # Will have been set by set_initial, ensures the same one used.
+    object.set_question_text_and_format
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
     object
   end
@@ -34,17 +43,29 @@ class BiomedicalConceptInstance < BiomedicalConcept
   def update_property(params)
     new_params = split_params(params)
     property = BiomedicalConceptInstance::PropertyX.find(params[:property_id])
+    property.identifier_property = true if property.identifier_property?(self)
     if new_params[:property].any?
       property.update_with_clone(new_params[:property], self)
+      property
     elsif new_params[:item].any?
       uris = property.managed_ancestor_path_uris(self)
       item = BiomedicalConceptInstance::Item.find(uris.first)
       item.update_with_clone(new_params[:item].dup, self) if new_params[:item].keys.any?
+      item
     else
       # Nothing to be done, empty parameters submitted
       ConsoleLogger.info(self.class.name, "update_property", "Attempt to update property with empty parameters.")
       self
     end
+  end
+
+  # Identifier required and not multiple. 
+  # @result [Boolean] return true if it required and it has zero or one coded value.
+  def identifier_required_and_not_multiple?
+    property_x = self.identified_by.has_complex_datatype.first.has_property.first
+    property_x.has_coded_value.count <= 1 
+  rescue => e
+    return false
   end
 
   # Clone. Clone the BC Instance
@@ -53,6 +74,20 @@ class BiomedicalConceptInstance < BiomedicalConcept
   def clone
     self.based_on_links
     super
+  end
+
+  # Set question text to Not set as default
+  def set_question_text_and_format
+    self.has_item.each do |item|
+      if item.collect || item.enabled
+        item.has_complex_datatype.each do |cdt|
+          cdt.has_property.each do |property|
+            property.question_text = "Not set" if item.collect
+            property.format = XSDDatatype.new(property.is_complex_datatype_property.simple_datatype).default_format if item.enabled
+          end
+        end
+      end
+    end
   end
 
 private

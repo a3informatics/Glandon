@@ -3,9 +3,9 @@
                         unpairPath = '#{unpair_thesauri_managed_concept_path(item)}';"%>
 
 <% if item.paired_as_parent? %>
-  <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#", id: "unpair-button",
-    icon: "icon-unpair", text: "Unpair", dt_toggle: "", disabled: false } %>
+  <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#", id: "unpair-button",
+    icon: "icon-unpair", text: "Unpair" } %>
 <% elsif !item.paired_as_child? %>
-  <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#", id: "pair-select-button",
-    icon: "icon-pair", text: "Pair", dt_toggle: "", disabled: false } %>
+  <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#", id: "pair-select-button",
+    icon: "icon-pair", text: "Pair" } %>
 <% end %>

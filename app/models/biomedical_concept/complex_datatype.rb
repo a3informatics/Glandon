@@ -21,11 +21,11 @@ class BiomedicalConcept::ComplexDatatype  < IsoConceptV2
     ]
   end
 
-  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
-  #
-  # @return [Symbol] the predicate property as a symbol
-  def self.managed_ancestors_predicate
-    :has_complex_datatype
-  end
+  # # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  # #
+  # # @return [Symbol] the predicate property as a symbol
+  # def managed_ancestors_predicate
+  #   :has_complex_datatype
+  # end
 
 end

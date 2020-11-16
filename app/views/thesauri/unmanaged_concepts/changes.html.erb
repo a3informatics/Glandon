@@ -5,22 +5,22 @@
 <%= javascript_tag "var changes_url_path = '#{changes_data_thesauri_unmanaged_concept_path(@tc)}';" %>
 <%= javascript_tag "var children = #{@tc.children?};" %>
 <%= javascript_tag "var column_count = '#{@version_count}';" %>
+
 <div class="row">
-  <%= render layout: "shared/headers/header_unmanaged_item", :locals => {:item => @tc, :context => nil, :badge => "CI"} do %>
-    <!-- BUTTONS WRAP -->
+  <%= render layout: "shared/headers/header_unmanaged_item", :locals => { item: @tc, context: nil, badge: "CI" } do %>
+
     <div class="actions-wrap">
-      <!-- RETURN BUTTON -->
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
-        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/return", :locals => { url: 'javascript: history.back()'  } %>
     </div>
+
   <% end %>
 </div>
 <div class="row">
-  <%= render partial: "shared/thesauri/differences_panel", :locals => {title: "Differences", column_count: @version_count, links: @links} %>
+  <%= render partial: "shared/thesauri/differences_panel", :locals => { title: "Differences", column_count: @version_count, links: @links } %>
 </div>
 
 <% if @tc.children? %>
   <div class="row">
-    <%= render partial: "shared/thesauri/changes_panel", :locals => {title: "Changes", column_count: @version_count, links: @links} %>
+    <%= render partial: "shared/thesauri/changes_panel", :locals => { title: "Changes", column_count: @version_count, links: @links } %>
   </div>
 <% end %>

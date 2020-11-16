@@ -5,9 +5,17 @@ describe Form::Group::Normal do
   include DataHelpers
   include SparqlHelpers
   include SecureRandomHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "models/form/group/normal"
+  end
+
+  def make_standard(item)
+    params = {}
+    params[:registration_status] = "Standard"
+    params[:previous_state] = "Incomplete"
+    item.update_status(params)
   end
 
   describe "Validation tests" do
@@ -116,6 +124,77 @@ describe Form::Group::Normal do
       check_normal_group(uri, "add_child_expected_6.yaml")
     end
 
+    it "add child items, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "add_child_expected_6a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_6a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      normal_group.add_child_with_clone({type:"question"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "add_child_expected_6b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "add_child_expected_6b.yaml", equate_method: :hash_equal)
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V2#NG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      normal_group.add_child_with_clone({type:"placeholder"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "add_child_expected_6c.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "add_child_expected_6c.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "add_child_expected_6a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_6a.yaml", equate_method: :hash_equal)
+    end
+
+    it "add child normal group, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "add_child_expected_7a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_7a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      normal_group.add_child_with_clone({type:"normal_group"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "add_child_expected_7b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "add_child_expected_7b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "add_child_expected_7a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_7a.yaml", equate_method: :hash_equal)
+    end
+
+
+    it "add child normal and common groups, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "add_child_expected_8a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_8a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      normal_group.add_child_with_clone({type:"normal_group"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "add_child_expected_8b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "add_child_expected_8b.yaml", equate_method: :hash_equal)
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V2#NG_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      normal_group.add_child_with_clone({type:"common_group"}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "add_child_expected_8c.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "add_child_expected_8c.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "add_child_expected_8a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_8a.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "Add child, BC Groups" do
@@ -160,15 +239,17 @@ describe Form::Group::Normal do
       uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal = Form::Group::Normal.find(uri)
-      normal.add_child({type:"common_group"})
+      cg = normal.add_child({type:"common_group"})
+      cg = Form::Group::Common.find(cg.uri)
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      normal = Form::Group::Normal.find(uri)
+      normal = Form::Group::Normal.find_full(uri)
       normal.add_child({type:"bc_group", id_set:[bci_1.id]})
-      normal = Form::Group::Normal.find(uri)
-      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296"))
-      bc_property.make_common
-      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      normal = Form::Group::Normal.find(uri)
+      normal = Form::Group::Normal.find_full(uri)
+      cg = Form::Group::Common.find_full(cg.uri)
+      bc_property = Form::Item::BcProperty.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_b76597f7-972f-40f4-bed7-e134725cf296"))
+      bc_property.make_common(cg)
+      bci_1 = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      normal = Form::Group::Normal.find_full(uri)
       result = normal.add_child({type:"bc_group", id_set:[bci_1.id]})
       check_normal_group(uri, "add_child_expected_11.yaml")
     end
@@ -177,18 +258,41 @@ describe Form::Group::Normal do
       uri = Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1")
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal = Form::Group::Normal.find(uri)
-      normal.add_child({type:"common_group"})
+      cg = normal.add_child({type:"common_group"})
+      cg = Form::Group::Common.find(cg.uri)
       bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
-      normal = Form::Group::Normal.find(uri)
+      normal = Form::Group::Normal.find_full(uri)
       normal.add_child({type:"bc_group", id_set:[bci_1.id]})
-      normal = Form::Group::Normal.find(uri)
-      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
-      bc_property.make_common
-      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      normal = Form::Group::Normal.find(uri)
+      normal = Form::Group::Normal.find_full(uri)
+      cg = Form::Group::Common.find_full(cg.uri)
+      bc_property = Form::Item::BcProperty.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#BCP_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
+      bc_property.make_common(cg)
+      bci_1 = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      normal = Form::Group::Normal.find_full(uri)
       result = normal.add_child({type:"bc_group", id_set:[bci_2.id]})
       check_normal_group(uri, "add_child_expected_12.yaml")
+    end
+
+    it "add child VIII, bc group, clone, no errors" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      make_standard(form)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "add_child_expected_13a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_13a.yaml", equate_method: :hash_equal)
+      new_form = form.create_next_version
+      new_form = Form.find_full(new_form.uri)
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      normal_group.add_child_with_clone({type:"bc_group", id_set:[bci_1.id]}, new_form)
+      new_form = Form.find_full(new_form.uri)
+      check_dates(new_form, sub_dir, "add_child_expected_13b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_form.to_h, sub_dir, "add_child_expected_13b.yaml", equate_method: :hash_equal)
+      form = Form.find_full(form.uri)
+      check_dates(form, sub_dir, "add_child_expected_13a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(form.to_h, sub_dir, "add_child_expected_13a.yaml", equate_method: :hash_equal)
     end
 
   end
@@ -283,7 +387,7 @@ describe Form::Group::Normal do
       normal = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       check_file_actual_expected(normal.to_h, sub_dir, "delete_expected_1.yaml", equate_method: :hash_equal)
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4"))
-      result = question.delete(normal)
+      result = question.delete(normal, normal)
       normal = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       check_file_actual_expected(normal.to_h, sub_dir, "delete_expected_2.yaml", equate_method: :hash_equal)
     end

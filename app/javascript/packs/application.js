@@ -7,11 +7,10 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-import ExpandableContent from 'shared/ui/expandable_content'
+import initialize from 'shared/helpers/application'
 
 $( () => {
 
-  // Handles updates of all Expandable Content elements on page
-  ExpandableContent.initialize();
+  initialize();
 
 });
