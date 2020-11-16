@@ -54,7 +54,7 @@ describe Form::Annotations do
       annotations = Form::Annotations.new(form)
       uri = "http://www.s-cubed.dk/form_test/V1#F_NG4_Q1"
       result = annotations.annotation_for_uri(uri)
-      check_file_actual_expected(result.to_h, sub_dir, "annotation_for_uri_expected_1.yaml")
+      check_file_actual_expected(result.map{|x| x.to_h}, sub_dir, "annotation_for_uri_expected_1.yaml")
     end
 
     it "domain list" do

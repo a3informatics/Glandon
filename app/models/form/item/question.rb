@@ -60,7 +60,7 @@ class Form::Item::Question < Form::Item
   def question_annotations(annotations)
     return "" if annotations.nil?
     html = ""
-    html += annotation_to_html(annotations)
+    html += annotation_to_html(annotations,html)
     return html
   end
 
@@ -149,14 +149,22 @@ puts "Q: #{query_string}"
     #   return html
     # end
 
-    def annotation_to_html(annotations)
+    def annotation_to_html(annotations, html)
       annotation = annotations.annotation_for_uri(self.uri.to_s)
-      if !annotation.nil?
-        p_class = annotations.retrieve_domain_class(annotation.domain_prefix.to_sym)
-        "<p class=\"#{p_class}\">#{self.mapping}</p>"
+      unless annotation.empty?
+        first = true
+        annotation.each do |a|
+          if !first
+            html += "<br/>"
+          end
+          p_class = annotations.retrieve_domain_class(a.domain_prefix.to_sym)
+          html += "<p class=\"#{p_class}\">#{self.mapping}</p>"
+          first = false
+        end
       else
-        "<p class=\"domain-other\">#{self.mapping}</p>"
+        html = "<p class=\"domain-other\">#{self.mapping}</p>"
       end
+      return html
     end
 
     # Return URIs of the children objects ordered by ordinal, make sure common group marked and placed first

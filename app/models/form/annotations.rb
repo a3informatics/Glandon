@@ -12,7 +12,7 @@ class Form
     # @return [Object] 
     def initialize(form)
       @form = form
-      @annotation_set = {}
+      @annotation_set = Hash.new{|h,k| h[k] = [] }
       bc_annotations 
       item_annotations
       @domain_list = {}
@@ -21,9 +21,9 @@ class Form
     # Annotation for uri
     #
     # @param [Uri] uri the uri of the object 
-    # @return [Object] Annotation or nil if there is no match 
+    # @return [Array] Array of Annotation or an empty array if there is no match 
     def annotation_for_uri(uri)
-      @annotation_set.key?(uri) ? @annotation_set[uri] : nil
+      @annotation_set.key?(uri) ? @annotation_set[uri] : []
     end
 
     # Domain list
@@ -51,7 +51,7 @@ class Form
     if Rails.env.test?
 
       def to_h
-        {annotation_set: @annotation_set.map{|k,v| v.to_h}, domain_list: @domain_list}
+        {annotation_set: @annotation_set.map{|k,v| @annotation_set[k] = v.map{|x| x.to_h}}, domain_list: @domain_list}
       end
 
     end
@@ -142,13 +142,15 @@ class Form
       uri = entry[:item].to_s
       entry[:sdtm_topic_name].nil? ? entry[:sdtm_topic_name] = "" : entry[:sdtm_topic_name]
       entry[:sdtm_topic_sub].nil? ? entry[:sdtm_topic_sub] = "" : entry[:sdtm_topic_sub]
-      @annotation_set[uri] = Annotation.new({uri: uri, domain_prefix: entry[:domain_prefix], domain_long_name: entry[:domain_long_name], sdtm_variable:entry[:sdtm_var_name], sdtm_topic_variable: entry[:sdtm_topic_name], sdtm_topic_value: entry[:sdtm_topic_sub] })
+      @annotation_set[uri] << Annotation.new({uri: uri, domain_prefix: entry[:domain_prefix], domain_long_name: entry[:domain_long_name], sdtm_variable:entry[:sdtm_var_name], sdtm_topic_variable: entry[:sdtm_topic_name], sdtm_topic_value: entry[:sdtm_topic_sub] })
     end
 
     def set_domain_prefix_and_long_name(annotation)
-      domain_prefix = annotation.domain_prefix.to_sym
-      domain_long_name = annotation.domain_long_name
-      @domain_list[domain_prefix] = {long_name: domain_long_name} if !@domain_list.key?(domain_prefix)
+      annotation.each do |a|
+        domain_prefix = a.domain_prefix.to_sym
+        domain_long_name = a.domain_long_name
+        @domain_list[domain_prefix] = {long_name: domain_long_name} if !@domain_list.key?(domain_prefix)
+      end
     end
 
   end

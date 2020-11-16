@@ -1,39 +1,39 @@
 ---
 :annotation_set:
-- :uri: http://www.s-cubed.dk/form_test/V1#F_NG2_BCG3_BP1
-  :domain_prefix: VS
-  :domain_long_name: Vital Signs
-  :sdtm_variable: VSDTC
-  :sdtm_topic_variable: VSTESTCD
-  :sdtm_topic_value: HEIGHT
-- :uri: http://www.s-cubed.dk/form_test/V1#F_NG2_BCG3_BP2
-  :domain_prefix: VS
-  :domain_long_name: Vital Signs
-  :sdtm_variable: VSORRESU
-  :sdtm_topic_variable: VSTESTCD
-  :sdtm_topic_value: HEIGHT
-- :uri: http://www.s-cubed.dk/form_test/V1#F_NG2_BCG2_BP1
-  :domain_prefix: VS
-  :domain_long_name: Vital Signs
-  :sdtm_variable: VSDTC
-  :sdtm_topic_variable: VSTESTCD
-  :sdtm_topic_value: WEIGHT
-- :uri: http://www.s-cubed.dk/form_test/V1#F_NG2_BCG2_BP2
-  :domain_prefix: VS
-  :domain_long_name: Vital Signs
-  :sdtm_variable: VSORRESU
-  :sdtm_topic_variable: VSTESTCD
-  :sdtm_topic_value: WEIGHT
-- :uri: http://www.s-cubed.dk/form_test/V1#F_NG4_Q1
-  :domain_prefix: VS
-  :domain_long_name: Vital Signs
-  :sdtm_variable: VSTEST
-  :sdtm_topic_variable: ''
-  :sdtm_topic_value: ''
-- :uri: http://www.s-cubed.dk/form_test/V1#F_NG4_Q3
-  :domain_prefix: VS
-  :domain_long_name: Vital Signs
-  :sdtm_variable: VSORRESU
-  :sdtm_topic_variable: ''
-  :sdtm_topic_value: ''
+- - :uri: http://www.s-cubed.dk/form_test/V1#F_NG2_BCG3_BP1
+    :domain_prefix: VS
+    :domain_long_name: Vital Signs
+    :sdtm_variable: VSDTC
+    :sdtm_topic_variable: VSTESTCD
+    :sdtm_topic_value: HEIGHT
+- - :uri: http://www.s-cubed.dk/form_test/V1#F_NG2_BCG3_BP2
+    :domain_prefix: VS
+    :domain_long_name: Vital Signs
+    :sdtm_variable: VSORRESU
+    :sdtm_topic_variable: VSTESTCD
+    :sdtm_topic_value: HEIGHT
+- - :uri: http://www.s-cubed.dk/form_test/V1#F_NG2_BCG2_BP1
+    :domain_prefix: VS
+    :domain_long_name: Vital Signs
+    :sdtm_variable: VSDTC
+    :sdtm_topic_variable: VSTESTCD
+    :sdtm_topic_value: WEIGHT
+- - :uri: http://www.s-cubed.dk/form_test/V1#F_NG2_BCG2_BP2
+    :domain_prefix: VS
+    :domain_long_name: Vital Signs
+    :sdtm_variable: VSORRESU
+    :sdtm_topic_variable: VSTESTCD
+    :sdtm_topic_value: WEIGHT
+- - :uri: http://www.s-cubed.dk/form_test/V1#F_NG4_Q1
+    :domain_prefix: VS
+    :domain_long_name: Vital Signs
+    :sdtm_variable: VSTEST
+    :sdtm_topic_variable: ''
+    :sdtm_topic_value: ''
+- - :uri: http://www.s-cubed.dk/form_test/V1#F_NG4_Q3
+    :domain_prefix: VS
+    :domain_long_name: Vital Signs
+    :sdtm_variable: VSORRESU
+    :sdtm_topic_variable: ''
+    :sdtm_topic_value: ''
 :domain_list: {}
