@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 describe "Import::CdiscTerm" do
-	
-	include DataHelpers
+  
+  include DataHelpers
   include ImportHelpers
   include PublicFileHelpers
   include SparqlHelpers
 
-	def sub_dir
+  def sub_dir
     return "models/import/cdisc_term"
   end
 
@@ -22,7 +22,7 @@ describe "Import::CdiscTerm" do
 
   describe "basic tests" do
 
-  	before :each do
+    before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl"]
       load_files(schema_files, data_files)
       Import.destroy_all
@@ -100,7 +100,7 @@ describe "Import::CdiscTerm" do
       check_ttl_fix_v2(filename, "import_expected_1a.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
-  	end
+    end
 
     it "excel import, no errors, second version" do
       load_local_file_into_triple_store(sub_dir, "import_load_1b.ttl")
