@@ -36,8 +36,12 @@ export default class StudyBuilder {
 
     $( this.selector ).on( 'tab-switch', (e, tabId) => {
 
-      let tabName = tabId.split('-')[1],
-          enabled = this.tabs[ tabName ].enabled,
+      let tabName = tabId.split('-')[1];
+
+      if ( !this.tabs[ tabName ] )
+        return;
+
+      let enabled = this.tabs[ tabName ].enabled,
           instance = this.tabs[ tabName ].instance;
 
       enabled && instance.show();

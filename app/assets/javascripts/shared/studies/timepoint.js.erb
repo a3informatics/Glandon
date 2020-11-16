@@ -270,7 +270,7 @@ Timepoint.prototype.tpDetailsHTML = function() {
   html +=   "Visit: <span class='text-link'>"+ (this.data.visit_id != "" ? this.matrix.data.visits[this.data.visit_id].data.label : "-") +"</span><br/>";
   html +=   "Unit: " + this.tpUnitsHTML() + "<br/>";
   html +=   "<hr>";
-  html +=   "Attached Assessments: (click to remove)";
+  html +=   "Attached Items: (click to remove)";
   html +=   "<div class='bg-labels-wrap scroll-styled'>";
   html +=     _.isEmpty(this.data.biomedical_concepts) ? "None" : "";
 
@@ -345,6 +345,8 @@ Timepoint.prototype.removeItem = function(e) {
       var itemIndex = this.data.biomedical_concepts.indexOf(item);
       this.data.biomedical_concepts.splice(itemIndex, 1);
       this.loading(false);
+      this.timeline.render(this.timeline.data.renderTimepoints);
+
     }.bind(this)
   });
 }
@@ -373,6 +375,7 @@ Timepoint.prototype.addItems = function(e) {
 
         this.loading(false);
         this.openTpContextDialog();
+        this.timeline.render(this.timeline.data.renderTimepoints);
       }.bind(this)
     });
   }.bind(this)
