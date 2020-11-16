@@ -346,6 +346,7 @@ defaults: &defaults
     policies: {}
     alias:
       crf: show
+      acrf: show
       referenced_items: show
       add_child: update
       move_up: update

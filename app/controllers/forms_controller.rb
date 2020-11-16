@@ -254,8 +254,10 @@ private
         return form_path(object)
       when :edit
         return edit_form_path(object)
-      when :view
+      when :crf
         return crf_form_path(object)
+      when :acrf
+        return acrf_form_path(object)
       when :destroy
         return form_path(object)
       when :edit_tags
