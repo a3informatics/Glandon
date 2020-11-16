@@ -245,7 +245,7 @@ describe Import do
     expect(CRUD).to receive(:file)
     item.save_load_file({parent: object, managed_children: [], tags: []})
     result = Import.find(item.id)
-  write_yaml_file(import_hash(result), sub_dir, "save_load_file_expected_1.yaml")
+  #Xwrite_yaml_file(import_hash(result), sub_dir, "save_load_file_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "save_load_file_expected_1.yaml")
     compare_import_hash(result, expected, output_file: true)
   end
