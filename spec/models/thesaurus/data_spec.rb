@@ -445,7 +445,7 @@ describe Thesaurus::ManagedConcept do
       @classifications.each {|x| x.to_sparql(sparql)}
       @cs.to_sparql(sparql, true)
       full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ad_hoc_reports_thesaurus.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ad_hoc_reports_thesaurus.ttl")
     end 
 
   end
