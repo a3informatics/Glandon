@@ -27,6 +27,18 @@ class Form
       @domain_long_name
     end
 
+    def sdtm_variable
+      @sdtm_variable
+    end
+
+    def sdtm_topic_variable
+      @sdtm_topic_variable
+    end
+
+    def sdtm_topic_value
+      @sdtm_topic_value
+    end
+
     # ---------
     # Test Only  
     # ---------

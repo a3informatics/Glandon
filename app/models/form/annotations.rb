@@ -63,7 +63,7 @@ class Form
     # @return [Array] Array of annotation objects
     def bc_annotations
       query_string = %Q{
-        SELECT ?item ?domain_prefix ?sdtm_var_name ?sdtm_topic_name ?domain_long_name ?sdtm_topic_sub WHERE              
+        SELECT ?item ?domain_prefix ?sdtm_var_name ?domain_long_name ?sdtm_topic_name ?sdtm_topic_sub WHERE              
         {     
           ?sdtm_domain bd:basedOnClass ?sdtm_class .               
           ?sdtm_class bd:includesColumn ?topic_var .               
@@ -100,7 +100,7 @@ class Form
             }                                 
           }                          
         } ORDER BY ?gord ?pord  
-      }    
+      }   
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoT, :isoI, :isoC, :th])
       triples = query_results.by_object_set([:item, :domain_prefix, :sdtm_var_name, :domain_long_name, :sdtm_topic_name, :sdtm_topic_sub])
       triples.each do |entry|
@@ -113,7 +113,7 @@ class Form
     # @return [Array] Array of annotation objects
     def item_annotations
       query_string = %Q{         
-        SELECT DISTINCT ?sdtm_var_name ?domain_prefix ?item ?domain_long_name WHERE 
+        SELECT DISTINCT ?item ?sdtm_var_name ?domain_prefix ?domain_long_name WHERE 
         {
           ?col bd:name ?sdtm_var_name .
           ?dataset bd:includesColumn ?col .
@@ -122,7 +122,7 @@ class Form
           { 
             SELECT ?group ?item ?sdtm_var_name ?gord ?pord WHERE
             { 
-              #{@form.uri.to_ref} (bf:hasGroup|bf:hasSubGroup) ?group .
+              #{@form.uri.to_ref} bf:hasGroup|bf:hasSubGroup ?group .                                                         
               ?group bf:ordinal ?gord .
               ?group (bf:hasItem)+ ?item .
               ?item bf:mapping ?sdtm_var_name .

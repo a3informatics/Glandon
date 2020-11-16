@@ -165,7 +165,7 @@ private
     annotation = annotations.annotation_for_uri(self.uri.to_s)
     #annotations.each do |annotation|
       p_class = annotations.retrieve_domain_class(annotation.domain_prefix.to_sym)
-      "<p class=\"#{p_class}\">#{entry[:sdtm_variable]} where #{entry[:sdtm_topic_variable]}=#{entry[:sdtm_topic_value]}</p>"
+      "<p class=\"#{p_class}\">#{annotation.sdtm_variable} where #{annotation.sdtm_topic_variable}=#{annotation.sdtm_topic_value}</p>"
     #end
   end
 
