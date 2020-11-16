@@ -90,7 +90,7 @@ export default class StudyBuilder {
     }
 
     if ( !tabs.design.enabled )
-      tabs.design.header.remove();
+      tabs.design.header.addClass('disabled');
 
     return tabs;
 
