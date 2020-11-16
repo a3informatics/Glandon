@@ -13,8 +13,9 @@ describe "E - Transcelerate Protocol" do
 
   before :all do
     IsoHelpers.clear_cache
-    load_files(schema_files, [])
-    load_cdisc_term_versions(1..62)
+    schema = [ "protocol.ttl", "enumerated.ttl" ]
+    load_files(schema_files + schema, [])
+    load_cdisc_term_versions(1..66)
     load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
   end
 
@@ -53,49 +54,49 @@ describe "E - Transcelerate Protocol" do
       p_4.to_sparql(sparql, true)
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_parameters.ttl")
-    end 
+    end
 
   end
 
   describe "MDR Data" do
 
     it "End Points" do
-      endpoints = 
+      endpoints =
       [
         {
-          label: "Endpoint 1", 
+          label: "Endpoint 1",
           full_text: "The change from baseline to [[[Timepoint]]] in the Alzheimer’s Disease Assessment Scale – Cognitive Assessment (ADAS-Cog) 14 total score"
         },
         {
-          label: "Endpoint 2", 
+          label: "Endpoint 2",
           full_text: "The change from baseline to Week [[[Timepoint]]] in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)"
         },
         {
-          label: "Endpoint 3",         
+          label: "Endpoint 3",
           full_text: "The change [absolute] in HbA1c from baseline to [[[Timepoint]]]"
         },
         {
-          label: "Endpoint 4", 
+          label: "Endpoint 4",
           full_text: "The change from baseline to [[[Timepoint]]] in the [[[BC]]]"
         },
         {
-          label: "Endpoint 5", 
+          label: "Endpoint 5",
           full_text: "The proportion of participants with adverse events, serious adverse events (SAEs), and adverse events leading to study intervention discontinuation over the [x-week] study intervention period"
         },
         {
-          label: "Endpoint 6", 
+          label: "Endpoint 6",
           full_text: "The change from baseline to [[[Timepoint]]] in continuous laboratory tests: Hepatic Function Panel"
         },
         {
-          label: "Endpoint 7", 
+          label: "Endpoint 7",
           full_text: "The proportion of participants with abnormal (high or low) laboratory measures (urinalysis) during the postrandomization phase"
         },
         {
-          label: "Endpoint 8", 
+          label: "Endpoint 8",
           full_text: "The change from baseline to [[[Timepoint]]] in ECG parameter: QTcF"
         },
         {
-          label: "Endpoint 9", 
+          label: "Endpoint 9",
           full_text: "The change from baseline to [[[Timepoint]]] in the [[[Assessment]]]"
         }
       ]
@@ -132,45 +133,45 @@ describe "E - Transcelerate Protocol" do
       ep8 = Endpoint.where(label: "Endpoint 8").first
       ep9 = Endpoint.where(label: "Endpoint 9").first
 
-      objectives = 
+      objectives =
       [
-        { 
+        {
           label: "Objective 1",
           full_text: "To assess the effect of [[[Intervention]]] on the ADAS-Cog and CIBIC+ scores at [[[Timepoint]]]] in participants with Mild to Moderate Alzheimer’s Disease",
           objective_type: enum_ns.uri,
           is_assessed_by: [ep1.uri, ep2.uri]
         },
-        { 
+        {
           label: "Objective 2",
           full_text: "To evaluate the efficacy of [[[Intervention]]] administered to individuals with Type 2 Diabetes Mellitus (T2DM)",
           objective_type: enum_ns.uri,
           is_assessed_by: []
         },
-        { 
+        {
           label: "Objective 3",
           full_text: "To assess the dose-dependent improvement in behavior. Improved scores on the [[[BC]]] will indicate improvement in these areas",
           objective_type: enum_ns.uri,
           is_assessed_by: [ep9.uri]
         },
-        { 
+        {
           label: "Objective 4",
           full_text: "To document the safety profile of [[[Intervention]]].",
           objective_type: enum_ns.uri,
           is_assessed_by: [ep5.uri, ep6.uri, ep7.uri, ep8.uri]
         },
-        { 
+        {
           label: "Objective 5",
           full_text: "To assess the effect of [[[Intervention]]] [vs. comparator X, if applicable] on the measure of behavioral/neuropsychiatric symptoms in participants with [severity] Alzheimer’s Disease",
           objective_type: enum_ns.uri,
           is_assessed_by: [ep9.uri]
         },
-        { 
+        {
           label: "Objective 6",
           full_text: "To assess the dose-dependent improvements in activities of daily living. Improved scores on the [assessment] will indicate improvement in these areas",
           objective_type: enum_ns.uri,
           is_assessed_by: [ep9.uri]
-        } 
-      ] 
+        }
+      ]
       items = []
       objectives.each_with_index do |ep, index|
         item = Objective.new(ep)
@@ -264,18 +265,18 @@ describe "E - Transcelerate Protocol" do
       load_local_file_into_triple_store(sub_dir, "hackathon_indications.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_tas.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_endpoints.ttl")
-      load_local_file_into_triple_store(sub_dir, "hackathon_bc_instances.ttl")
-      load_local_file_into_triple_store(sub_dir, "hackathon_form_cibic.ttl")
-      load_local_file_into_triple_store(sub_dir, "hackathon_form_dad.ttl")
-      load_local_file_into_triple_store(sub_dir, "hackathon_form_lab_samples.ttl")
-      load_local_file_into_triple_store(sub_dir, "hackathon_form_ecg.ttl")      
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      # load_local_file_into_triple_store(sub_dir, "hackathon_form_cibic.ttl")
+      # load_local_file_into_triple_store(sub_dir, "hackathon_form_dad.ttl")
+      # load_local_file_into_triple_store(sub_dir, "hackathon_form_lab_samples.ttl")
+      # load_local_file_into_triple_store(sub_dir, "hackathon_form_ecg.ttl")
 
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
-      
-      f1 = Form.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/F_CIBIC/V1#F"))
-      f2 = Form.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/F_DAD/V1#F"))
-      f3 = Form.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/F_LAB_SAMPLES/V1#F"))
-      f4 = Form.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/F_ECG/V1#F"))
+
+      # f1 = Form.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/F_CIBIC/V1#F"))
+      # f2 = Form.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/F_DAD/V1#F"))
+      # f3 = Form.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/F_LAB_SAMPLES/V1#F"))
+      # f4 = Form.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/F_ECG/V1#F"))
 
       bc1 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/DAD_C105183/V1#BCI"))
       bc2 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/DAD_C105181/V1#BCI"))
@@ -293,11 +294,12 @@ describe "E - Transcelerate Protocol" do
       ass1.set_initial("ASS DAD")
 
       sass_items = []
-      mdr_items = 
+      mdr_items =
       [
-        ass1, ass1, f1, f1, f1, #  0 -  4
-        f1, f2, f2, f2, f2,     #  5 -  9
-        f3, f3, f4, f4          # 10 - 14
+        ass1, ass1,
+        # f1, f1, f1, #  0 -  4
+        # f1, f2, f2, f2, f2,     #  5 -  9
+        # f3, f3, f4, f4          # 10 - 14
       ]
       mdr_items.each do |mdr_item|
         klass = mdr_item.rdf_type == Form.rdf_type ? StudyForm : StudyAssessment
@@ -307,7 +309,7 @@ describe "E - Transcelerate Protocol" do
       end
 
       # Visits
-      visits = 
+      visits =
       [
         {short_name: "BL", label: "Baseline"},
         {short_name: "Wk8", label: "Week 8"},
@@ -330,27 +332,39 @@ describe "E - Transcelerate Protocol" do
         item.uri = item.create_uri(item.class.base_uri)
         o_items << item
       end
-      tps = 
+      tps =
       [
         {
-          label: "TP1", in_visit: v_items[0].uri, at_offset: o_items[0].uri, 
-          has_planned: [sass_items[0].uri, sass_items[2].uri, sass_items[6].uri, sass_items[10].uri, sass_items[12].uri]
+          label: "TP1", in_visit: v_items[0].uri, at_offset: o_items[0].uri,
+          has_planned: [
+            sass_items[0].uri
+            # sass_items[2].uri, sass_items[6].uri, sass_items[10].uri, sass_items[12].uri
+          ]
         },
         {
-          label: "TP2", in_visit: v_items[1].uri, at_offset: o_items[1].uri, 
-          has_planned: [sass_items[1].uri, sass_items[3].uri, sass_items[7].uri, sass_items[13].uri]
+          label: "TP2", in_visit: v_items[1].uri, at_offset: o_items[1].uri,
+          has_planned: [
+            sass_items[1].uri
+            # sass_items[3].uri, sass_items[7].uri, sass_items[13].uri
+          ]
         },
         {
           label: "TP3", in_visit: v_items[2].uri, at_offset: o_items[2].uri,
-          has_planned: [sass_items[11].uri]
+          has_planned: [
+            # sass_items[11].uri
+          ]
         },
         {
-          label: "TP4", in_visit: v_items[3].uri, at_offset: o_items[3].uri, 
-          has_planned: [sass_items[4].uri, sass_items[8].uri]
+          label: "TP4", in_visit: v_items[3].uri, at_offset: o_items[3].uri,
+          has_planned: [
+            # sass_items[4].uri, sass_items[8].uri
+          ]
         },
         {
-          label: "TP5", in_visit: v_items[4].uri, at_offset: o_items[4].uri, 
-          has_planned: [sass_items[5].uri, sass_items[9].uri]
+          label: "TP5", in_visit: v_items[4].uri, at_offset: o_items[4].uri,
+          has_planned: [
+            # sass_items[5].uri, sass_items[9].uri
+          ]
         }
       ]
       tp_items = []
@@ -361,10 +375,10 @@ describe "E - Transcelerate Protocol" do
       end
 
     # Endpoints
-      endpoints = 
+      endpoints =
       [
         {
-          label: "LY246708 EP1", 
+          label: "LY246708 EP1",
           full_text: "The change from baseline to Week 8, 16 and 24 in the Alzheimer’s Disease Assessment Scale – Cognitive Assessment (ADAS-Cog) 14 total score",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri],
@@ -372,7 +386,7 @@ describe "E - Transcelerate Protocol" do
           is_derived_from: []
         },
         {
-          label: "LY246708 EP2", 
+          label: "LY246708 EP2",
           full_text: "The change from baseline to Week 8, 16 and 24 in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri],
@@ -380,7 +394,7 @@ describe "E - Transcelerate Protocol" do
           is_derived_from: []
         },
         {
-          label: "LY246708 EP3", 
+          label: "LY246708 EP3",
           full_text: "The change from baseline to Week 8 in the Neuropsychiatric Inventory (NPI) total score",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[1].uri],
@@ -388,7 +402,7 @@ describe "E - Transcelerate Protocol" do
           is_derived_from: []
         },
         {
-          label: "LY246708 EP4", 
+          label: "LY246708 EP4",
           full_text: "The proportion of participants with adverse events, serious adverse events (SAEs), and adverse events leading to study intervention discontinuation over the 24-week study intervention period",
           primary_timepoint: tp_items[4].uri,
           secondary_timepoint: [],
@@ -396,7 +410,7 @@ describe "E - Transcelerate Protocol" do
           is_derived_from: []
         },
         {
-          label: "LY246708 EP5", 
+          label: "LY246708 EP5",
           full_text: "The change from baseline to Week 12 in continuous laboratory tests: Hepatic Function Panel",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[2].uri],
@@ -404,7 +418,7 @@ describe "E - Transcelerate Protocol" do
           is_derived_from: []
         },
         {
-          label: "LY246708 EP6", 
+          label: "LY246708 EP6",
           full_text: "The proportion of participants with abnormal (high or low) laboratory measures (urinalysis) during the postrandomization phase",
           primary_timepoint: tp_items[1].uri,
           secondary_timepoint: [tp_items[2].uri, tp_items[3].uri, tp_items[4].uri],
@@ -412,7 +426,7 @@ describe "E - Transcelerate Protocol" do
           is_derived_from: []
         },
         {
-          label: "LY246708 EP7", 
+          label: "LY246708 EP7",
           full_text: "The change from baseline to Week 8 in ECG parameter: QTcF",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[1].uri],
@@ -420,7 +434,7 @@ describe "E - Transcelerate Protocol" do
           is_derived_from: []
         },
         {
-          label: "LY246708 EP8", 
+          label: "LY246708 EP8",
           full_text: "The change from baseline to Week 8 in the Neuropsychiatric Inventory (NPI) total score",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[1].uri],
@@ -428,7 +442,7 @@ describe "E - Transcelerate Protocol" do
           is_derived_from: []
         },
         {
-          label: "LY246708 EP9", 
+          label: "LY246708 EP9",
           full_text: "The change from baseline to Week 8 in the DAD total score",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[1].uri],
@@ -446,38 +460,38 @@ describe "E - Transcelerate Protocol" do
       # Objectives
       enum_p = Enumerated.where(label: "Primary").first
       enum_s = Enumerated.where(label: "Secondary").first
-      objectives = 
+      objectives =
       [
-        { 
-          label: "LY246708 OBJ1", 
+        {
+          label: "LY246708 OBJ1",
           full_text: "To assess the effect of Xanomeline Transdermal Therapeutic System (TTS) on the ADAS-Cog and CIBIC+ scores at Week 24 in participants with Mild to Moderate Alzheimer’s Disease",
           objective_type: enum_p.uri,
           is_assessed_by: [ep_items[0].uri, ep_items[1].uri],
           derived_from_objective: Objective.where(label: "Objective 1").first
         },
-        { 
-          label: "LY246708 OBJ2", 
+        {
+          label: "LY246708 OBJ2",
           full_text: "To assess the dose-dependent improvement in behavior. Improved scores on the Revised Neuropsychiatric Inventory (NPI-X) will indicate improvement in these areas",
           objective_type: enum_p.uri,
           is_assessed_by: [ep_items[2].uri],
           derived_from_objective: Objective.where(label: "Objective 3").first
         },
-        { 
-          label: "LY246708 OBJ3", 
+        {
+          label: "LY246708 OBJ3",
           full_text: "To document the safety profile of the xanomeline TTS.",
           objective_type: enum_s.uri,
           is_assessed_by: [ep_items[3].uri, ep_items[4].uri, ep_items[5].uri, ep_items[6].uri],
           derived_from_objective: Objective.where(label: "Objective 4").first
         },
-        { 
-          label: "LY246708 OBJ4", 
+        {
+          label: "LY246708 OBJ4",
           full_text: "To assess the effect of xanomeline TTS on the measure of behavioral/neuropsychiatric symptoms in participants with  Alzheimer’s Disease",
           objective_type: enum_s.uri,
           is_assessed_by: [ep_items[7].uri],
           derived_from_objective: Objective.where(label: "Objective 5").first
         },
-        { 
-          label: "LY246708 OBJ5", 
+        {
+          label: "LY246708 OBJ5",
           full_text: "To assess the dose-dependent improvements in activities of daily living. Improved scores on the Disability Assessment for Dementia (DAD) will indicate improvement in these areas",
           objective_type: enum_s.uri,
           is_assessed_by: [ep_items[8].uri],
@@ -495,7 +509,7 @@ describe "E - Transcelerate Protocol" do
       e_1 = Epoch.new(label: "Screening", ordinal: 1)
       e_1.uri = e_1.create_uri(e_1.class.base_uri)
       e_2 = Epoch.new(label: "Treatment", ordinal: 2)
-      e_2.uri = e_2.create_uri(e_2.class.base_uri)      
+      e_2.uri = e_2.create_uri(e_2.class.base_uri)
       a_1 = Arm.new(label: "High Dose", description: "High Dose", arm_type: "", ordinal: 1)
       a_1.uri = a_1.create_uri(a_1.class.base_uri)
       a_2 = Arm.new(label: "Low Dose", description: "Low Dose", arm_type: "", ordinal: 2)
@@ -528,10 +542,10 @@ describe "E - Transcelerate Protocol" do
       type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
       ta = TherapeuticArea.where(label: "Nervous system disorders")
       ind = Indication.where(label: "Alzheimer's Disease")
-      p_1 = Protocol.new(label: "LY246708", 
-        title: "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease.", 
-        short_title: "LY246708", acronym: "H2Q-MC-LZZT", 
-        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
+      p_1 = Protocol.new(label: "LY246708",
+        title: "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease.",
+        short_title: "LY246708", acronym: "H2Q-MC-LZZT",
+        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref,
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref,
         specifies_epoch: [e_1.uri, e_2.uri], specifies_arm: [a_1.uri, a_2.uri, a_3.uri],
         specifies_objective: [obj_items[0].uri, obj_items[1].uri, obj_items[2].uri, obj_items[3].uri])
@@ -545,8 +559,8 @@ describe "E - Transcelerate Protocol" do
       type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
       ta = TherapeuticArea.where(label: "Metabolic")
       ind = Indication.where(label: "Diabetes Mellitus")
-      p_2 = Protocol.new(label: "DS8500-A-U202", title: "A made up protocol title", short_title: "DS8500-A-U202", acronym: "MADE UP ACRONYM", 
-        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
+      p_2 = Protocol.new(label: "DS8500-A-U202", title: "A made up protocol title", short_title: "DS8500-A-U202", acronym: "MADE UP ACRONYM",
+        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref,
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
       p_2.set_initial("DS8500")
 
@@ -556,8 +570,8 @@ describe "E - Transcelerate Protocol" do
       type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
       ta = TherapeuticArea.where(label: "Inflammation")
       ind = Indication.where(label: "Rheumatoid Arthritis")
-      p_3 = Protocol.new(label: "CPT_TALib-RA-BWE_V002", title: "A made up protocol title", short_title: "CPT_TALib-RA-BWE_V002", acronym: "MADE UP ACRONYM", 
-        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
+      p_3 = Protocol.new(label: "CPT_TALib-RA-BWE_V002", title: "A made up protocol title", short_title: "CPT_TALib-RA-BWE_V002", acronym: "MADE UP ACRONYM",
+        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref,
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
       p_3.set_initial("CPT TALIB RA BWE")
 
@@ -567,8 +581,8 @@ describe "E - Transcelerate Protocol" do
       type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
       ta = TherapeuticArea.where(label: "Vaccines")
       ind = Indication.where(label: "Influenza")
-      p_4 = Protocol.new(label: "FLU 001", title: "A made up protocol title", short_title: "FLU 001", acronym: "MADE UP ACRONYM", 
-        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
+      p_4 = Protocol.new(label: "FLU 001", title: "A made up protocol title", short_title: "FLU 001", acronym: "MADE UP ACRONYM",
+        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref,
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
       p_4.set_initial("FLU001")
 
