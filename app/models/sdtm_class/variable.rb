@@ -16,7 +16,7 @@ class SdtmClass::Variable < Tabulation::Column
 
   def replace_if_no_change(previous)
     return self if previous.nil?
-    self.diff?(previous, {ignore: [:is_a, :tagged]}) ? self : previous
+    self.diff?(previous, {ignore: [:is_a]}) ? self : previous
   end
 
 end
