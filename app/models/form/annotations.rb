@@ -84,8 +84,7 @@ class Form
           {                                  
             SELECT ?item ?bc_root ?sdtm_domain_var ?sdtm_domain WHERE                  
             {                           
-              #{@form.uri.to_ref} (bf:hasGroup) ?normal_group .                                      
-              ?normal_group (bf:hasSubGroup|bf:hasCommon) ?group .                                      
+              #{@form.uri.to_ref} bf:hasGroup/bf:hasSubGroup* ?group .                                      
               ?group bf:ordinal ?gord .                                      
               ?group bf:hasItem ?item .                                      
               ?item bf:hasProperty ?op_ref1 .                                      
@@ -122,7 +121,7 @@ class Form
           { 
             SELECT ?group ?item ?sdtm_var_name ?gord ?pord WHERE
             { 
-              #{@form.uri.to_ref} bf:hasGroup|bf:hasSubGroup ?group .                                                         
+              #{@form.uri.to_ref} bf:hasGroup/bf:hasSubGroup* ?group .                                                         
               ?group bf:ordinal ?gord .
               ?group (bf:hasItem)+ ?item .
               ?item bf:mapping ?sdtm_var_name .

@@ -71,7 +71,7 @@ class Form::Item::BcProperty < Form::Item
   def property_annotations(annotations)
     return "" if annotations.nil?
     html = ""
-    html += annotation_to_html(annotations)
+    html += annotation_to_html(annotations, html)
     return html
   end
 
@@ -163,10 +163,10 @@ private
 
   def annotation_to_html(annotations)
     annotation = annotations.annotation_for_uri(self.uri.to_s)
-    #annotations.each do |annotation|
-      p_class = annotations.retrieve_domain_class(annotation.domain_prefix.to_sym)
-      "<p class=\"#{p_class}\">#{annotation.sdtm_variable} where #{annotation.sdtm_topic_variable}=#{annotation.sdtm_topic_value}</p>"
-    #end
+    annotation.each do |a|
+      p_class = annotations.retrieve_domain_class(a.domain_prefix.to_sym)
+      html += "<p class=\"#{p_class}\">#{a.sdtm_variable} where #{a.sdtm_topic_variable}=#{a.sdtm_topic_value}</p>"
+    end
   end
 
   def clone_common_group(uri, managed_ancestor)

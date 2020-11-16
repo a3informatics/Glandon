@@ -142,13 +142,6 @@ puts "Q: #{query_string}"
 
   private
 
-    # def question_annotations(annotations)
-    #   return "" if annotations.nil?
-    #   html = ""
-    #   html += annotation_to_html(annotations)
-    #   return html
-    # end
-
     def annotation_to_html(annotations, html)
       annotation = annotations.annotation_for_uri(self.uri.to_s)
       unless annotation.empty?
