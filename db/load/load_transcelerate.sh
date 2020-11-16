@@ -21,6 +21,8 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/tabul
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_transcelerate_identification.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_iso_concept_systems.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_iso_concept_systems_migration_1.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_iso_concept_systems_migration_2.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_iso_concept_systems_migration_3.ttl" $FileEndPoint
 # Load CDISC Terminology
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V1.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V2.ttl" $FileEndPoint
@@ -84,6 +86,13 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/c
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V60.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V61.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V62.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V63.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V64.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V65.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V66.ttl" $FileEndPoint
+# Biomedical Concepts
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/biomedical_concept_instances.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/biomedical_concept_templates.ttl" $FileEndPoint
 # Data
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_thesaurus.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_tas.ttl" $FileEndPoint
@@ -92,9 +101,8 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackath
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_objectives.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_parameters.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_protocols.ttl" $FileEndPoint
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_bc_instances.ttl" $FileEndPoint
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_bc_templates.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_protocol_templates.ttl" $FileEndPoint
+# Forms
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_form_ad.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_form_cibic.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_form_dad.ttl" $FileEndPoint
@@ -107,4 +115,24 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackath
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_form_vs_diabetes.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_form_vs_influenza.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_form_weight.ttl" $FileEndPoint
+# Complex Datatypes and References
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/canonical_references.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/complex_datatypes.ttl" $FileEndPoint
+# SDTM Model
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/sdtm_model/SDTM_MODEL_V1.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/sdtm_model/SDTM_MODEL_V2.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/sdtm_model/SDTM_MODEL_V3.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/sdtm_model/SDTM_MODEL_V4.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/sdtm_model/SDTM_MODEL_V5.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/sdtm_model/SDTM_MODEL_V6.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/sdtm_model/SDTM_MODEL_V7.ttl" $FileEndPoint
+# SDTM IG
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/sdtm_ig/SDTM_IG_V1.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/sdtm_ig/SDTM_IG_V2.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/sdtm_ig/SDTM_IG_V3.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/sdtm_ig/SDTM_IG_V4.ttl" $FileEndPoint
+# ADaM IG
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/adam_ig/ADAM_IG_V1.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/adam_ig/ADAM_IG_V2.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/adam_ig/ADAM_IG_V3.ttl" $FileEndPoint
 set +x
