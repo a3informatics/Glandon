@@ -48,7 +48,7 @@ SELECT DISTINCT ?sclid ?scll ?scln ?sclii ?sclil ?sclin ?t WHERE
       ?scl th:identifier ?sclid .
       ?scl isoC:label ?scll .
       ?scl th:notation ?scln .
-      FILTER NOT EXISTS { ?scl (isoC:tagged) ?sclt }
+      FILTER NOT EXISTS { ?scl ^isoC:appliesTo ?sclt . ?sclit rdf:type isoC:Classification }
       BIND ("Code List" as ?t)          
     }    
     UNION       
@@ -57,7 +57,7 @@ SELECT DISTINCT ?sclid ?scll ?scln ?sclii ?sclil ?sclin ?t WHERE
       ?scli th:identifier ?sclii .
       ?scli isoC:label ?sclil .
       ?scli th:notation ?sclin .
-      FILTER NOT EXISTS { ?scli (isoC:tagged) ?sclit }
+      FILTER NOT EXISTS { ?scli ^isoC:appliesTo ?sclit . ?sclit rdf:type isoC:Classification }
       BIND ("Code List Item" as ?t)             
     } 
   } 

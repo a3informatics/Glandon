@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-15T12:03:41+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-16T14:55:02+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:isTopConceptReference :TH_TMC1 ;
 	th:isTopConceptReference :TH_TMC2 ;
@@ -102,7 +102,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-15T12:03:41+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-16T14:55:01+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "S00001"^^xsd:string ;
 	th:notation "ONCRSR"^^xsd:string ;
@@ -216,7 +216,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-15T12:03:41+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-16T14:55:01+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "S00002"^^xsd:string ;
 	th:notation "CPH"^^xsd:string ;
@@ -251,7 +251,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-15T12:03:41+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-16T14:55:02+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "S00001E"^^xsd:string ;
 	th:notation "EPOCH"^^xsd:string ;
@@ -303,7 +303,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-15T12:03:41+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-16T14:55:02+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "S00002E"^^xsd:string ;
 	th:notation "EPOCH"^^xsd:string ;
@@ -347,41 +347,49 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Epoch Extension2"^^xsd:string ;
 .
-<http://www.assero.co.uk/CLA#942f8002-6dd9-4d2b-b052-7068aefc969b>
+<http://www.assero.co.uk/CLA#14fea407-41bc-44d7-baea-c3e8bd7a741b>
 	rdf:type isoC:Classification ;
-	isoC:classifiedAs <http://www.assero.co.uk/CSN#fc60fe46-fb1f-42db-90ee-bb71d58cc493> ;
+	isoC:appliesTo <http://www.acme-pharma.com/S00001/V1#S00001> ;
+	isoC:context <http://www.acme-pharma.com/S00001/V1#S00001> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#d503c60a-40f1-4f4f-9ee9-721ca64246a8> ;
 .
-<http://www.assero.co.uk/CLA#7bd613f4-7c59-414d-85bf-1c53c10bbb45>
+<http://www.assero.co.uk/CLA#17b39ed2-42f5-48e8-a098-437126d35648>
 	rdf:type isoC:Classification ;
-	isoC:classifiedAs <http://www.assero.co.uk/CSN#9c105014-5695-4c86-a8d7-d5d3fed53dcf> ;
+	isoC:appliesTo <http://www.acme-pharma.com/S00001/V1#S00001> ;
+	isoC:context <http://www.acme-pharma.com/S00001/V1#S00001> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#1203b999-1a44-4e3f-8721-0aaad56d3b2c> ;
 .
-<http://www.assero.co.uk/CLA#d2d53d72-3c27-43a2-8778-08cae3e0bd7d>
+<http://www.assero.co.uk/CLA#438c815f-d3f3-4f98-b5be-1f79d4352d06>
 	rdf:type isoC:Classification ;
-	isoC:classifiedAs <http://www.assero.co.uk/CSN#b260d861-000b-412b-9b69-5bf30564978c> ;
+	isoC:appliesTo <http://www.acme-pharma.com/S00001/V1#S00001_S000012> ;
+	isoC:context <http://www.acme-pharma.com/S00001/V1#S00001_S000012> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#907b46d1-5410-4202-84ba-20bfc4954fe9> ;
 .
-<http://www.assero.co.uk/CLA#ecbe62b9-6e41-4fa4-9869-a57155a2b644>
+<http://www.assero.co.uk/CLA#97804341-9c9e-4c25-9ff6-71e30db7fa90>
 	rdf:type isoC:Classification ;
-	isoC:classifiedAs <http://www.assero.co.uk/CSN#b260d861-000b-412b-9b69-5bf30564978c> ;
+	isoC:appliesTo <http://www.acme-pharma.com/S00001/V1#S00001_S000013> ;
+	isoC:context <http://www.acme-pharma.com/S00001/V1#S00001_S000013> ;
+	isoC:classifiedAs <http://www.assero.co.uk/CSN#907b46d1-5410-4202-84ba-20bfc4954fe9> ;
 .
-<http://www.assero.co.uk/CSN#2d0a01be-6d01-4602-a34a-6a63bcae6638>
+<http://www.assero.co.uk/CSN#fdf56c30-9515-4fa9-9b98-3c3fc8b1d2ba>
 	rdf:type isoC:ConceptSystem ;
 	isoC:prefLabel "Ad Hoc Tags"^^xsd:string ;
 	isoC:description "The set of Ad Hoc tags"^^xsd:string ;
-	isoC:isTopConcept <http://www.assero.co.uk/CSN#fc60fe46-fb1f-42db-90ee-bb71d58cc493> ;
-	isoC:isTopConcept <http://www.assero.co.uk/CSN#9c105014-5695-4c86-a8d7-d5d3fed53dcf> ;
-	isoC:isTopConcept <http://www.assero.co.uk/CSN#b260d861-000b-412b-9b69-5bf30564978c> ;
+	isoC:isTopConcept <http://www.assero.co.uk/CSN#d503c60a-40f1-4f4f-9ee9-721ca64246a8> ;
+	isoC:isTopConcept <http://www.assero.co.uk/CSN#1203b999-1a44-4e3f-8721-0aaad56d3b2c> ;
+	isoC:isTopConcept <http://www.assero.co.uk/CSN#907b46d1-5410-4202-84ba-20bfc4954fe9> ;
 .
-<http://www.assero.co.uk/CSN#fc60fe46-fb1f-42db-90ee-bb71d58cc493>
+<http://www.assero.co.uk/CSN#d503c60a-40f1-4f4f-9ee9-721ca64246a8>
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "TAG 1"^^xsd:string ;
 	isoC:description "TAG 1 related tags"^^xsd:string ;
 .
-<http://www.assero.co.uk/CSN#9c105014-5695-4c86-a8d7-d5d3fed53dcf>
+<http://www.assero.co.uk/CSN#1203b999-1a44-4e3f-8721-0aaad56d3b2c>
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "TAG 2"^^xsd:string ;
 	isoC:description "TAG 2 related information."^^xsd:string ;
 .
-<http://www.assero.co.uk/CSN#b260d861-000b-412b-9b69-5bf30564978c>
+<http://www.assero.co.uk/CSN#907b46d1-5410-4202-84ba-20bfc4954fe9>
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "TAG 3"^^xsd:string ;
 	isoC:description "TAG 3 related information."^^xsd:string ;
