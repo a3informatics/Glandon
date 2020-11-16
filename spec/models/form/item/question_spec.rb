@@ -153,8 +153,7 @@ describe Form::Item::Question do
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..1)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V4.ttl")      
-
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V4.ttl")
     end
 
     it "returns the aCRF rendition" do
@@ -176,54 +175,7 @@ describe Form::Item::Question do
       result = item.to_crf(annotations)
       check_file_actual_expected(result, sub_dir, "to_acrf_expected_1.yaml", equate_method: :hash_equal)
     end
-
-    # it "returns the CRF rendition, date datatype" do
-    #   item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q2"), ordinal: 1, datatype: "date", question_text: "Hello")
-    #   result = item.to_crf(nil)
-    #   check_file_actual_expected(result, sub_dir, "to_crf_expected_3.yaml", equate_method: :hash_equal)
-    # end
-
-    # it "returns the CRF rendition, time datatype" do
-    #   item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q3"), ordinal: 1, datatype: "time", question_text: "Hello")
-    #   result = item.to_crf(nil)
-    #   check_file_actual_expected(result, sub_dir, "to_crf_expected_4.yaml", equate_method: :hash_equal)
-    # end
-
-    # it "returns the CRF rendition, float datatype" do
-    #   item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q4"), ordinal: 1, datatype: "float", format: "6.2", question_text: "Hello")
-    #   result = item.to_crf(nil)
-    #   check_file_actual_expected(result, sub_dir, "to_crf_expected_5.yaml", equate_method: :hash_equal)
-    # end
-
-    # it "returns the CRF rendition, boolean datatype" do
-    #   item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q5"), ordinal: 1, datatype: "boolean", question_text: "Hello")
-    #   result = item.to_crf(nil)
-    #   check_file_actual_expected(result, sub_dir, "to_crf_expected_6.yaml", equate_method: :hash_equal)
-    # end
-
-    # it "returns the CRF rendition, integer datatype" do
-    #   item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q5"), ordinal: 1, datatype: "integer", format: "3", question_text: "Hello")
-    #   result = item.to_crf(nil)
-    #   check_file_actual_expected(result, sub_dir, "to_crf_expected_7.yaml", equate_method: :hash_equal)
-    # end
-
-    # it "returns the CRF rendition, CLI ordered" do
-    #   item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Question1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
-    #   ref_2 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Ref2"), ordinal: 2, reference: Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49507"), local_label: "Ordinal 2")
-    #   ref_2.save
-    #   ref_1 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Ref1"), ordinal: 1, reference: Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C49508"), local_label: "Ordinal 1")
-    #   ref_1.save
-    #   ref_3 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Ref3"), ordinal: 3, reference: Uri.new(uri: "http://www.cdisc.org/C25681/V1#C25681_C25376"), local_label: "Ordinal 3")
-    #   ref_3.save
-    #   item.has_coded_value_push(ref_1)
-    #   item.has_coded_value_push(ref_3)
-    #   item.has_coded_value_push(ref_2)
-    #   item.save
-    #   check_file_actual_expected(item.to_h, sub_dir, "to_crf_expected_2a.yaml", equate_method: :hash_equal)
-    #   result = item.to_crf(nil)
-    #   check_file_actual_expected(result, sub_dir, "to_crf_expected_2b.yaml", equate_method: :hash_equal)
-    # end
-
+    
   end
 
   describe "Add child" do
