@@ -174,21 +174,4 @@ describe Excel do
     expect(object.errors.full_messages.to_sentence).to eq("Exception raised 'StandardError' checking worksheet for import 'import' using sheet 'sheet'.")
   end
 
-  it "process engine - WILL CURRENTLY FAIL - only new scoped identifier logic supported." do
-    full_path = test_file_path(sub_dir, "process_input_2.xlsx")
-    object = Excel.new(full_path)
-    object.process_sheet(:cdisc_adam_ig, :main)
-    result = object.engine.parent_set
-    result.each {|k,v| result[k] = v.to_json}
-  #Xwrite_yaml_file(result, sub_dir, "process_expected_2.yaml")
-    expected = read_yaml_file(sub_dir, "process_expected_2.yaml")
-    result.each do |k,v|
-      expected[k][:creation_date] = v[:creation_date]
-      expected[k][:last_changed_date] = v[:last_changed_date]
-      expected[k][:registration_state][:effective_date] = v[:registration_state][:effective_date]
-    end
-    expect(result).to hash_equal(expected)
-    expect(object.errors.count).to eq(0)
-  end
-
 end

@@ -44,7 +44,7 @@ RSpec.describe AdHocReport, type: :model do
   describe "Simple Reports" do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_airport_ad_hoc.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ad_hoc_reports_thesaurus.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(CdiscCtHelpers.version_range)   
       AdHocReport.delete_all
@@ -204,6 +204,7 @@ RSpec.describe AdHocReport, type: :model do
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")

@@ -19,6 +19,17 @@ describe "IsoScopedIdentifierV2" do
     load_files(schema_files, data_files)
   end
 
+  it "cleans an identifier" do
+    result = IsoScopedIdentifierV2.clean_identifier("ACD123^&*")
+    expect(result).to eq("ACD123")
+    result = IsoScopedIdentifierV2.clean_identifier("acd123^&*")
+    expect(result).to eq("ACD123")
+    result = IsoScopedIdentifierV2.clean_identifier("acd 123^")
+    expect(result).to eq("ACD 123")
+    result = IsoScopedIdentifierV2.clean_identifier("acd@123^&*")
+    expect(result).to eq("ACD 123")
+  end
+
   it "validates a valid object" do
     org = IsoNamespace.find_by_short_name("BBB")
     result = IsoScopedIdentifierV2.new

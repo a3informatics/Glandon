@@ -1,38 +1,13 @@
 ---
-- :identifier: C96783E
-  :notation: TUTEST
-  :label: Tumor or Lesion Identification Test Name
-  :preferred_term: CDISC SDTM Tumor Identification Test Name Terminology
-  :synonym: Tumor or Lesion Identification Test Name
-  :extensible: false
-  :definition: Terminology relevant to the test names that describe tumor or lesion
-    assessments for identification purposes.
-  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0M5Njc4M0UvVjQjQzk2NzgzRQ==
-  :tags: SDTM
-  :indicators:
-    :current: false
-    :extended: false
-    :extends: true
-    :version_count: 4
-    :subsetted: false
-    :subset: false
-    :ranked: false
-    :annotations:
-      :change_notes: 0
-      :change_instructions: 0
-  :owner: S-cubed
-  :scoped_identifier: C96783E
-  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
-- :identifier: C99076E
-  :notation: INTMODEL
-  :label: Intervention Model Response
-  :preferred_term: CDISC SDTM Intervention Model Terminology
-  :synonym: Intervention Model Response
-  :extensible: false
-  :definition: A terminology codelist relevant to the trial design developed to compare
-    treatment groups.
-  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0M5OTA3NkUvVjEjQzk5MDc2RQ==
-  :tags: Protocol; SDTM
+- :identifier: C100129
+  :notation: QSCAT
+  :label: Category of Questionnaire
+  :preferred_term: Category of Questionnaire
+  :synonym: ''
+  :extensible: true
+  :definition: A grouping of observations within the Questionnaire domain.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxMjkvVjEjQzEwMDEyOQ==
+  :tags: ''
   :indicators:
     :current: false
     :extended: false
@@ -44,6 +19,2338 @@
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-  :owner: S-cubed
-  :scoped_identifier: C99076E
-  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+  :owner: Sanofi
+  :scoped_identifier: C100129
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100130
+  :notation: RELSUB
+  :label: Relationship to Subject
+  :preferred_term: Relationship to Subject
+  :synonym: ''
+  :extensible: true
+  :definition: The relationship of a person to a study subject.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxMzAvVjEjQzEwMDEzMA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100130
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100131
+  :notation: ADAS-Cog CDISC Version TEST
+  :label: QS-Alzheimer's Disease Assessment Scale - Cognitive CDISC Version Test Name
+  :preferred_term: QS-Alzheimer's Disease Assessment Scale - Cognitive CDISC Version
+    Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: ADAS-Cog CDISC Version test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxMzEvVjEjQzEwMDEzMQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100131
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100132
+  :notation: ADAS-Cog CDISC Version TESTCD
+  :label: QS-Alzheimer's Disease Assessment Scale - Cognitive CDISC Version Test Code
+  :preferred_term: QS-Alzheimer's Disease Assessment Scale - Cognitive CDISC Version
+    Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: ADAS-Cog CDISC Version test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxMzIvVjEjQzEwMDEzMg==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100132
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100133
+  :notation: BPRS-A TEST
+  :label: QS-Brief Psychiatric Rating Scale-A Test Name
+  :preferred_term: QS-Brief Psychiatric Rating Scale-A Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: The Brief Psychiatric Rating Scale-A test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxMzMvVjEjQzEwMDEzMw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100133
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100134
+  :notation: BPRS-A TESTCD
+  :label: QS-Brief Psychiatric Rating Scale-A Test Code
+  :preferred_term: QS-Brief Psychiatric Rating Scale-A Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: The Brief Psychiatric Rating Scale-A test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxMzQvVjEjQzEwMDEzNA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100134
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100135
+  :notation: EQ-5D-3L TEST
+  :label: QS-European Quality of Life Five Dimension Three Level Scale Test Name
+  :preferred_term: QS-European Quality of Life Five Dimension Three Level Scale Test
+    Name
+  :synonym: ''
+  :extensible: false
+  :definition: European Quality of Life Five Dimension Three Level Scale test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxMzUvVjEjQzEwMDEzNQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100135
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100136
+  :notation: EQ-5D-3L TESTCD
+  :label: QS-European Quality of Life Five Dimension Three Level Scale Test Code
+  :preferred_term: QS-European Quality of Life Five Dimension Three Level Scale Test
+    Code
+  :synonym: ''
+  :extensible: false
+  :definition: European Quality of Life Five Dimension Five Level Scale test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxMzYvVjEjQzEwMDEzNg==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100136
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100137
+  :notation: HAMD 17 TEST
+  :label: QS-Hamilton Depression Rating Scale - 17 Item Test Name
+  :preferred_term: QS-Hamilton Depression Rating Scale - 17 Item Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: The Hamilton Depression Rating Scale - 17 Item test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxMzcvVjEjQzEwMDEzNw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100137
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100138
+  :notation: HAMD 17 TESTCD
+  :label: QS-Hamilton Depression Rating Scale - 17 Item Test Code
+  :preferred_term: QS-Hamilton Depression Rating Scale - 17 Item Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: The Hamilton Depression Rating Scale - 17 Item test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxMzgvVjEjQzEwMDEzOA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100138
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100139
+  :notation: MDS-UPDRS TEST
+  :label: QS-Movement Disorder Society UPDRS Test Name
+  :preferred_term: QS-Movement Disorder Society UPDRS Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: The Movement Disorder Society version of the Unified Parkinson's Disease
+    Rating Scale test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxMzkvVjEjQzEwMDEzOQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100139
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100140
+  :notation: MDS-UPDRS TESTCD
+  :label: QS-Movement Disorder Society UPDRS Test Code
+  :preferred_term: QS-Movement Disorder Society UPDRS Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: The Movement Disorder Society version of the Unified Parkinson's Disease
+    Rating Scale test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNDAvVjEjQzEwMDE0MA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100140
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100143
+  :notation: NPI TEST
+  :label: QS-Neuropsychiatric Inventory Test Name
+  :preferred_term: QS-Neuropsychiatric Inventory Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: The Neuropsychiatric Inventory test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNDMvVjEjQzEwMDE0Mw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100143
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100144
+  :notation: NPI TESTCD
+  :label: QS-Neuropsychiatric Inventory Test Code
+  :preferred_term: QS-Neuropsychiatric Inventory Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: The Neuropsychiatric Inventory test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNDQvVjEjQzEwMDE0NA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100144
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100147
+  :notation: UPDRS TEST
+  :label: QS-Unified Parkinson's Disease Rating Scale Test Name
+  :preferred_term: QS-Unified Parkinson's Disease Rating Scale Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Unified Parkinson's Disease Rating Scale test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNDcvVjEjQzEwMDE0Nw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100147
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100148
+  :notation: UPDRS TESTCD
+  :label: QS-Unified Parkinson's Disease Rating Scale Test Code
+  :preferred_term: QS-Unified Parkinson's Disease Rating Scale Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Unified Parkinson's Disease Rating Scale test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNDgvVjEjQzEwMDE0OA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100148
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100149
+  :notation: CGI TEST
+  :label: QS-Clinical Global Impression Test Name
+  :preferred_term: QS-Clinical Global Impression Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Clinical Global Impression test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNDkvVjEjQzEwMDE0OQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100149
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100150
+  :notation: CGI TESTCD
+  :label: QS-Clinical Global Impression Test Code
+  :preferred_term: QS-Clinical Global Impression Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Clinical Global Impression test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNTAvVjEjQzEwMDE1MA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100150
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100151
+  :notation: MNSI TEST
+  :label: QS-Michigan Neuropathy Screening Instrument Test Name
+  :preferred_term: QS-Michigan Neuropathy Screening Instrument Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Michigan Neuropathy Screening Instrument test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNTEvVjEjQzEwMDE1MQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100151
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100152
+  :notation: MNSI TESTCD
+  :label: QS-Michigan Neuropathy Screening Instrument Test Code
+  :preferred_term: QS-Michigan Neuropathy Screening Instrument Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Michigan Neuropathy Screening Instrument test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNTIvVjEjQzEwMDE1Mg==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100152
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100153
+  :notation: FPSR TEST
+  :label: QS-Faces Pain Scale - Revised Test Name
+  :preferred_term: QS-Faces Pain Scale - Revised Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Faces Pain Scale - Revised test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNTMvVjEjQzEwMDE1Mw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100153
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100154
+  :notation: FPSR TESTCD
+  :label: QS-Faces Pain Scale - Revised Test Code
+  :preferred_term: QS-Faces Pain Scale - Revised Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Faces Pain Scale - Revised test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNTQvVjEjQzEwMDE1NA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100154
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100155
+  :notation: Short-Form MPQ-2 TEST
+  :label: QS-Short-Form McGill Pain Questionnaire-2 Test Name
+  :preferred_term: QS-Short-Form McGill Pain Questionnaire-2 Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Short-Form McGill Pain Questionnaire-2 test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNTUvVjEjQzEwMDE1NQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100155
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100156
+  :notation: Short-Form MPQ-2 TESTCD
+  :label: QS-Short-Form McGill Pain Questionnaire-2 Test Code
+  :preferred_term: QS-Short-Form McGill Pain Questionnaire-2 Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Short-Form McGill Pain Questionnaire-2 test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNTYvVjEjQzEwMDE1Ng==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100156
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100157
+  :notation: COMM TEST
+  :label: QS-Current Opioid Misuse Measure Test Name
+  :preferred_term: QS-Current Opioid Misuse Measure Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Current Opioid Misuse Measure test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNTcvVjEjQzEwMDE1Nw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100157
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100158
+  :notation: COMM TESTCD
+  :label: QS-Current Opioid Misuse Measure Test Code
+  :preferred_term: QS-Current Opioid Misuse Measure Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Current Opioid Misuse Measure test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNTgvVjEjQzEwMDE1OA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100158
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100159
+  :notation: SOAPP-R TEST
+  :label: QS-Screener and Opioid Assessment for Patients with Pain - Revised Test
+    Name
+  :preferred_term: QS-Screener and Opioid Assessment for Patients with Pain - Revised
+    Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Screener and Opioid Assessment for Patients with Pain - Revised test
+    name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNTkvVjEjQzEwMDE1OQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100159
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100160
+  :notation: SOAPP-R TESTCD
+  :label: QS-Screener and Opioid Assessment for Patients with Pain - Revised Test
+    Code
+  :preferred_term: QS-Screener and Opioid Assessment for Patients with Pain - Revised
+    Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Screener and Opioid Assessment for Patients with Pain - Revised test
+    code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNjAvVjEjQzEwMDE2MA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100160
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100161
+  :notation: BPI TEST
+  :label: QS-Brief Pain Inventory Test Name
+  :preferred_term: QS-Brief Pain Inventory Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Brief Pain Inventory test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNjEvVjEjQzEwMDE2MQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100161
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100162
+  :notation: BPI TESTCD
+  :label: QS-Brief Pain Inventory Test Code
+  :preferred_term: QS-Brief Pain Inventory Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Brief Pain Inventory test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNjIvVjEjQzEwMDE2Mg==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100162
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100163
+  :notation: BPI Short Form TEST
+  :label: QS-Brief Pain Inventory Short Form Test Name
+  :preferred_term: QS-Brief Pain Inventory Short Form Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Brief Pain Inventory Short Form test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNjMvVjEjQzEwMDE2Mw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100163
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100164
+  :notation: BPI Short Form TESTCD
+  :label: QS-Brief Pain Inventory Short Form Test Code
+  :preferred_term: QS-Brief Pain Inventory Short Form Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Brief Pain Inventory Short Form test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNjQvVjEjQzEwMDE2NA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100164
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100165
+  :notation: RDQ TEST
+  :label: QS-Roland Morris Disability Questionnaire Test Name
+  :preferred_term: QS-Roland Morris Disability Questionnaire Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Roland Morris Disability Questionnaire test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNjUvVjEjQzEwMDE2NQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100165
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100166
+  :notation: RDQ TESTCD
+  :label: QS-Roland Morris Disability Questionnaire Test Code
+  :preferred_term: QS-Roland Morris Disability Questionnaire Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Roland Morris Disability Questionnaire test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNjYvVjEjQzEwMDE2Ng==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100166
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100167
+  :notation: C-SSRS Baseline TEST
+  :label: QS-Columbia-Suicidality Severity Rating Scale Baseline Test Name
+  :preferred_term: QS-Columbia-Suicidality Severity Rating Scale Baseline Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Columbia-Suicidality Severity Rating Scale Baseline test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNjcvVjEjQzEwMDE2Nw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100167
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100168
+  :notation: C-SSRS Baseline TESTCD
+  :label: QS-Columbia-Suicidality Severity Rating Scale Baseline Test Code
+  :preferred_term: QS-Columbia-Suicidality Severity Rating Scale Baseline Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Columbia-Suicidality Severity Rating Scale Baseline test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNjgvVjEjQzEwMDE2OA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100168
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100175
+  :notation: WPAI-SHP TEST
+  :label: QS-Work Productivity and Activity Impairment Questionnaire - Specific Health
+    Problem V2.0 Test Name
+  :preferred_term: QS-Work Productivity and Activity Impairment Questionnaire - Specific
+    Health Problem V2.0 Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Work Productivity and Activity Impairment Questionnaire - Specific
+    Health Problem V2.0 test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNzUvVjEjQzEwMDE3NQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100175
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C100176
+  :notation: WPAI-SHP TESTCD
+  :label: QS-Work Productivity and Activity Impairment Questionnaire - Specific Health
+    Problem V2.0 Test Code
+  :preferred_term: QS-Work Productivity and Activity Impairment Questionnaire - Specific
+    Health Problem V2.0 Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Work Productivity and Activity Impairment Questionnaire - Specific
+    Health Problem V2.0 test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDAxNzYvVjEjQzEwMDE3Ng==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C100176
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101805
+  :notation: AIMS TESTCD
+  :label: QS-Abnormal Involuntary Movement Scale Test Code
+  :preferred_term: QS-Abnormal Involuntary Movement Scale Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Abnormal Involuntary Movement Scale test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MDUvVjEjQzEwMTgwNQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101805
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101806
+  :notation: AIMS TEST
+  :label: QS-Abnormal Involuntary Movement Scale Test Name
+  :preferred_term: QS-Abnormal Involuntary Movement Scale Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Abnormal Involuntary Movement Scale test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MDYvVjEjQzEwMTgwNg==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101806
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101807
+  :notation: AVLT TESTCD
+  :label: QS-ADNI AVLT Test Code
+  :preferred_term: QS-ADNI AVLT Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: ADNI AVLT test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MDcvVjEjQzEwMTgwNw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101807
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101808
+  :notation: AVLT TEST
+  :label: QS-ADNI AVLT Test Name
+  :preferred_term: QS-ADNI AVLT Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: ADNI AVLT test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MDgvVjEjQzEwMTgwOA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101808
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101809
+  :notation: BARS TESTCD
+  :label: QS-Barnes Akathisia Rating Scale Test Code
+  :preferred_term: QS-Barnes Akathisia Rating Scale Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Barnes Akathisia Rating Scale test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MDkvVjEjQzEwMTgwOQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101809
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101810
+  :notation: BARS TEST
+  :label: QS-Barnes Akathisia Rating Scale Test Name
+  :preferred_term: QS-Barnes Akathisia Rating Scale Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Barnes Akathisia Rating Scale test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MTAvVjEjQzEwMTgxMA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101810
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101811
+  :notation: CDR TESTCD
+  :label: QS-Clinical Dementia Rating Test Code
+  :preferred_term: QS-Clinical Dementia Rating Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Clinical Dementia Rating test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MTEvVjEjQzEwMTgxMQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101811
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101812
+  :notation: CDR TEST
+  :label: QS-Clinical Dementia Rating Test Name
+  :preferred_term: QS-Clinical Dementia Rating Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Clinical Dementia Rating test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MTIvVjEjQzEwMTgxMg==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101812
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101813
+  :notation: COWS TESTCD
+  :label: QS-Clinical Opiate Withdrawal Scale Test Code
+  :preferred_term: QS-Clinical Opiate Withdrawal Scale Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Clinical Opiate Withdrawal Scale test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MTMvVjEjQzEwMTgxMw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101813
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101814
+  :notation: COWS TEST
+  :label: QS-Clinical Opiate Withdrawal Scale Test Name
+  :preferred_term: QS-Clinical Opiate Withdrawal Scale Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Clinical Opiate Withdrawal Scale test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MTQvVjEjQzEwMTgxNA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101814
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101817
+  :notation: EQ-5D-5L TESTCD
+  :label: QS-European Quality of Life Five Dimension Five Level Scale Test Code
+  :preferred_term: QS-European Quality of Life Five Dimension Five Level Scale Test
+    Code
+  :synonym: ''
+  :extensible: false
+  :definition: European Quality of Life Five Dimension Three Level Scale test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MTcvVjEjQzEwMTgxNw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101817
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101818
+  :notation: EQ-5D-5L TEST
+  :label: QS-European Quality of Life Five Dimension Five Level Scale Test Name
+  :preferred_term: QS-European Quality of Life Five Dimension Five Level Scale Test
+    Name
+  :synonym: ''
+  :extensible: false
+  :definition: European Quality of Life Five Dimension Five Level Scale test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MTgvVjEjQzEwMTgxOA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101818
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101819
+  :notation: HAMA TESTCD
+  :label: QS-Hamilton Anxiety Rating Scale Questionnaire Test Code
+  :preferred_term: QS-Hamilton Anxiety Rating Scale Questionnaire Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Hamilton Anxiety Rating Scale test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MTkvVjEjQzEwMTgxOQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101819
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101820
+  :notation: HAMA TEST
+  :label: QS-Hamilton Anxiety Rating Scale Questionnaire Test Name
+  :preferred_term: QS-Hamilton Anxiety Rating Scale Questionnaire Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Hamilton Anxiety Rating Scale test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MjAvVjEjQzEwMTgyMA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101820
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101821
+  :notation: HAMD 21 TESTCD
+  :label: QS-Hamilton Depression Rating Scale 21-Item Questionnaire Test Code
+  :preferred_term: QS-Hamilton Depression Rating Scale 21-Item Questionnaire Test
+    Code
+  :synonym: ''
+  :extensible: false
+  :definition: Hamilton Depression Rating Scale 21-Item test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MjEvVjEjQzEwMTgyMQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101821
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101822
+  :notation: HAMD 21 TEST
+  :label: QS-Hamilton Depression Rating Scale 21-Item Questionnaire Test Name
+  :preferred_term: QS-Hamilton Depression Rating Scale 21-Item Questionnaire Test
+    Name
+  :synonym: ''
+  :extensible: false
+  :definition: Hamilton Depression Rating Scale 21-Item test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MjIvVjEjQzEwMTgyMg==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101822
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101828
+  :notation: SOWS Subjective TESTCD
+  :label: QS-Subjective Opiate Withdrawal Scale Test Code
+  :preferred_term: QS-Subjective Opiate Withdrawal Scale Test Code
+  :synonym: ''
+  :extensible: false
+  :definition: Subjective Opiate Withdrawal Scale test code.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MjgvVjEjQzEwMTgyOA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101828
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101829
+  :notation: SOWS Subjective TEST
+  :label: QS-Subjective Opiate Withdrawal Scale Test Name
+  :preferred_term: QS-Subjective Opiate Withdrawal Scale Test Name
+  :synonym: ''
+  :extensible: false
+  :definition: Subjective Opiate Withdrawal Scale test name.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MjkvVjEjQzEwMTgyOQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101829
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101832
+  :notation: FATESTCD
+  :label: Findings About Test Code
+  :preferred_term: Findings About Test Code
+  :synonym: ''
+  :extensible: true
+  :definition: Terminology relevant to the test codes that describe findings about
+    an event or intervention.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MzIvVjEjQzEwMTgzMg==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101832
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101833
+  :notation: FATEST
+  :label: Findings About Test Name
+  :preferred_term: Findings About Test Name
+  :synonym: ''
+  :extensible: true
+  :definition: Terminology relevant to the test names that describe findings about
+    an event or intervention.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MzMvVjEjQzEwMTgzMw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101833
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101834
+  :notation: NORMABNM
+  :label: Normal Abnormal Response
+  :preferred_term: Normal Abnormal Response
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist to describe a normal or abnormal response.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MzQvVjEjQzEwMTgzNA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101834
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101837
+  :notation: CCRCLS
+  :label: Consensus Cardiac Classification System Test Name
+  :preferred_term: Consensus Cardiac Classification System Test Name
+  :synonym: ''
+  :extensible: true
+  :definition: Classification system test name for cardiac parameters that are authored
+    or endorsed by organizations.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MzcvVjEjQzEwMTgzNw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101837
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101838
+  :notation: CCRCLSCD
+  :label: Consensus Cardiac Classification System Test Code
+  :preferred_term: Consensus Cardiac Classification System Test Code
+  :synonym: ''
+  :extensible: true
+  :definition: Classification system test code for cardiac parameters that are authored
+    or endorsed by organizations.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MzgvVjEjQzEwMTgzOA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101838
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101839
+  :notation: NYHAC
+  :label: New York Heart Association Classification
+  :preferred_term: New York Heart Association Classification
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist based on the functional classification developed
+    by the New York Heart Association (NYHA), for categorizing patients with defined
+    or presumed cardiac disease.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4MzkvVjEjQzEwMTgzOQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101839
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101840
+  :notation: KILLIPC
+  :label: Killip Class Responses
+  :preferred_term: Killip Class Responses
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist based on the classification developed by Killip
+    and Kimball, which classifies patients with myocardial infarction based on routine
+    physical examination parameters, such as the presence or absence of rales, or
+    a decreased systolic blood pressure.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NDAvVjEjQzEwMTg0MA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101840
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101841
+  :notation: TIMIFLRS
+  :label: TIMI Flow Responses
+  :preferred_term: TIMI Flow Responses
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist of acceptable values to describe TIMI Flow.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NDEvVjEjQzEwMTg0MQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101841
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101842
+  :notation: CACRDSC
+  :label: Canadian Cardiovascular Society Classification
+  :preferred_term: Canadian Cardiovascular Society Classification
+  :synonym: ''
+  :extensible: false
+  :definition: The anginal classifications as measured by the Canadian Cardiovascular
+    Society grading scale.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NDIvVjEjQzEwMTg0Mg==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101842
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101843
+  :notation: CADPRSN
+  :label: Coronary Artery Disease Presentation
+  :preferred_term: Coronary Artery Disease Presentation
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist associated with coronary artery disease presentation.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NDMvVjEjQzEwMTg0Mw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101843
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101844
+  :notation: CADSYMP
+  :label: Coronary Artery Disease Symptoms
+  :preferred_term: Coronary Artery Disease Symptoms
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist that contains symptoms associated with coronary
+    artery disease.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NDQvVjEjQzEwMTg0NA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101844
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101845
+  :notation: MCRCSPTM
+  :label: Mechanical Circulatory Support Placement Timing
+  :preferred_term: Mechanical Circulatory Support Placement Timing
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist to describe the timing of mechanical circulatory
+    support placement.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NDUvVjEjQzEwMTg0NQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101845
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101846
+  :notation: CVTEST
+  :label: Cardiovascular Test Name
+  :preferred_term: Cardiovascular Test Name
+  :synonym: ''
+  :extensible: true
+  :definition: A terminology codelist to describe the test name for a physiological
+    examination of the cardiovascular system.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NDYvVjEjQzEwMTg0Ng==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101846
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101847
+  :notation: CVTESTCD
+  :label: Cardiovascular Test Code
+  :preferred_term: Cardiovascular Test Code
+  :synonym: ''
+  :extensible: true
+  :definition: A terminology codelist to describe the test code for a physiological
+    examination of the cardiovascular system.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NDcvVjEjQzEwMTg0Nw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101847
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101848
+  :notation: RSKASMT
+  :label: Risk Assessment
+  :preferred_term: Risk Assessment
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist to describe the risk of a disease, disorder
+    or abnormal condition.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NDgvVjEjQzEwMTg0OA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101848
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101849
+  :notation: CADRISK
+  :label: Coronary Artery Disease Risk
+  :preferred_term: Coronary Artery Disease Risk
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist to describe the relative risk of coronary artery
+    disease.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NDkvVjEjQzEwMTg0OQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101849
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101850
+  :notation: CVSLDEXT
+  :label: Coronary Vessel Disease Extent
+  :preferred_term: Coronary Vessel Disease Extent
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist to describe the extent of coronary artery disease.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NTAvVjEjQzEwMTg1MA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101850
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101851
+  :notation: GRSTNLOC
+  :label: Location of Most Severe Stenosis Within a Graft
+  :preferred_term: Location of Most Severe Stenosis Within a Graft
+  :synonym: ''
+  :extensible: false
+  :definition: Terminology used to describe the part of the graft that is most severely
+    stenotic.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NTEvVjEjQzEwMTg1MQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101851
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101852
+  :notation: SDTHSDTP
+  :label: Sudden Death Syndrome Type
+  :preferred_term: Sudden Death Syndrome Type
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist that describes syndromes or conditions that
+    put a subject at risk for sudden death.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NTIvVjEjQzEwMTg1Mg==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101852
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101853
+  :notation: CVLVRSEV
+  :label: Cardiac Valvular Regurgitation Severity
+  :preferred_term: Cardiac Valvular Regurgitation Severity
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist to describe the severity of cardiac valvular
+    regurgitation.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NTMvVjEjQzEwMTg1Mw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101853
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101854
+  :notation: CVLSTSEV
+  :label: Cardiac Valvular Stenosis Severity
+  :preferred_term: Cardiac Valvular Stenosis Severity
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist to describe the severity of cardiac valvular
+    stenosis.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NTQvVjEjQzEwMTg1NA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101854
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101855
+  :notation: NSYSPCID
+  :label: Non-system Reason for PCI Delay
+  :preferred_term: Non-system Reason for PCI Delay
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist that contains reasons for non-system PCI delay.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NTUvVjEjQzEwMTg1NQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101855
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101856
+  :notation: PRURGNCY
+  :label: Procedure Urgency Status
+  :preferred_term: Procedure Urgency Status
+  :synonym: ''
+  :extensible: false
+  :definition: A terminology codelist that describes the degree of urgency for a procedure.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NTYvVjEjQzEwMTg1Ng==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101856
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101857
+  :notation: DIABTHPY
+  :label: Diabetes Therapy
+  :preferred_term: Diabetes Therapy
+  :synonym: ''
+  :extensible: true
+  :definition: A terminology codelist that describes the treatment method for diabetes.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NTcvVjEjQzEwMTg1Nw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101857
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101858
+  :notation: PROCEDUR
+  :label: Procedure
+  :preferred_term: Procedure
+  :synonym: ''
+  :extensible: true
+  :definition: A terminology codelist to describe any activity considered to be a
+    therapeutic or diagnostic procedure.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NTgvVjEjQzEwMTg1OA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: true
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101858
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101859
+  :notation: CVPRCIND
+  :label: Cardiac Procedure Indication
+  :preferred_term: Cardiac Procedure Indication
+  :synonym: ''
+  :extensible: true
+  :definition: The reason that a subject had a cardiac procedure.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NTkvVjEjQzEwMTg1OQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101859
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101860
+  :notation: CARTDOM
+  :label: Coronary Artery Dominance
+  :preferred_term: Coronary Artery Dominance
+  :synonym: ''
+  :extensible: false
+  :definition: A codelist to describe the pattern of the epicardial vessels supplying
+    the posterior descending artery and the posterolateral branches.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NjAvVjEjQzEwMTg2MA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101860
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101861
+  :notation: LSNCMPX
+  :label: Lesion Complexity
+  :preferred_term: Lesion Complexity
+  :synonym: ''
+  :extensible: false
+  :definition: Terminology related to the risk of percutaneous coronary intervention
+    for a particular lesion.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NjEvVjEjQzEwMTg2MQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101861
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101862
+  :notation: LEADABN
+  :label: Lead Abnormality
+  :preferred_term: Lead Abnormality
+  :synonym: ''
+  :extensible: true
+  :definition: Terminology related to the complications of cardiac lead systems.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NjIvVjEjQzEwMTg2Mg==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101862
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101863
+  :notation: DISCHDX
+  :label: Discharge Disposition
+  :preferred_term: Discharge Disposition
+  :synonym: ''
+  :extensible: true
+  :definition: The destination or circumstance at the time of discharge.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NjMvVjEjQzEwMTg2Mw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101863
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101864
+  :notation: CSLVLNIM
+  :label: Reason CS/LV Lead Not Implanted
+  :preferred_term: Reason CS/LV Lead Not Implanted
+  :synonym: ''
+  :extensible: false
+  :definition: The reason that a Coronary Sinus Access or Left Ventricular (CS/LV)
+    lead was not implanted.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NjQvVjEjQzEwMTg2NA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101864
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101865
+  :notation: ACSPCAT
+  :label: Acute Coronary Syndrome Presentation Category
+  :preferred_term: Acute Coronary Syndrome Presentation Category
+  :synonym: ''
+  :extensible: false
+  :definition: A classification of the presentation of acute coronary syndrome.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NjUvVjEjQzEwMTg2NQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101865
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101866
+  :notation: CRYDFMAN
+  :label: Cardiac Rhythm Device Failure Manifestation
+  :preferred_term: Cardiac Rhythm Device Failure Manifestation
+  :synonym: ''
+  :extensible: true
+  :definition: The effect that a cardiac rhythm device malfunction had on the ability
+    to stimulate the heart.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NjYvVjEjQzEwMTg2Ng==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101866
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101867
+  :notation: LEADSTAT
+  :label: Lead Status
+  :preferred_term: Lead Status
+  :synonym: ''
+  :extensible: true
+  :definition: The status of the lead.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NjcvVjEjQzEwMTg2Nw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101867
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C101868
+  :notation: LVEFMRE
+  :label: Left Ventricular Ejection Fraction Measurement Result
+  :preferred_term: Left Ventricular Ejection Fraction Measurement Result
+  :synonym: ''
+  :extensible: true
+  :definition: Terminology for results of left ventricular ejection fraction assessments.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDE4NjgvVjEjQzEwMTg2OA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C101868
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C102575
+  :notation: CCINVTYP
+  :label: Contact Case Investigation Contact Type
+  :preferred_term: Contact Case Investigation Contact Type
+  :synonym: ''
+  :extensible: true
+  :definition: Terminology relevant to the identification and clinical investigation
+    of disease contacts.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDI1NzUvVjEjQzEwMjU3NQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C102575
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C102576
+  :notation: DOBSTLOC
+  :label: Directly Observed Therapy Location
+  :preferred_term: Directly Observed Therapy Location
+  :synonym: ''
+  :extensible: false
+  :definition: Terminology relevant to the physical location at which the medication
+    or therapy was observed, by the healthcare provider, as being taken by the subject.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDI1NzYvVjEjQzEwMjU3Ng==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C102576
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C102577
+  :notation: DRSTAT
+  :label: Drug Resistance Status
+  :preferred_term: Drug Resistance Status
+  :synonym: ''
+  :extensible: true
+  :definition: Terminology relevant to the state or condition of the microbe or lesion
+    to indicate whether it is resistant to drugs normally used in treatment.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDI1NzcvVjEjQzEwMjU3Nw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C102577
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C102578
+  :notation: DSSOUT
+  :label: Disease Outcome
+  :preferred_term: Disease Outcome
+  :synonym: ''
+  :extensible: true
+  :definition: Terminology relevant to the measurable result or effect of treatment
+    on a disease.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDI1NzgvVjEjQzEwMjU3OA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C102578
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C102579
+  :notation: EVDRETRT
+  :label: Supporting Evidence for Re-Treatment
+  :preferred_term: Supporting Evidence for Re-Treatment
+  :synonym: ''
+  :extensible: true
+  :definition: Terminology relevant to the clinical evidence to support reason for
+    re-treatment of disease.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDI1NzkvVjEjQzEwMjU3OQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C102579
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C102580
+  :notation: LBSTRESC
+  :label: Laboratory Test Standard Character Result
+  :preferred_term: Laboratory Test Standard Character Result
+  :synonym: ''
+  :extensible: true
+  :definition: Terminology relevant to the standardized results, in character format,
+    for laboratory tests.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDI1ODAvVjEjQzEwMjU4MA==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: true
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C102580
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C102581
+  :notation: MCIDCERT
+  :label: Microbial Identification Certainty
+  :preferred_term: Microbial Identification Certainty
+  :synonym: ''
+  :extensible: false
+  :definition: Terminology relevant to the degree of certainty of the correctness
+    of a microbial identification test result.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDI1ODEvVjEjQzEwMjU4MQ==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C102581
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C102582
+  :notation: PRITBCON
+  :label: Priority of Tuberculosis Contact
+  :preferred_term: Priority of Tuberculosis Contact
+  :synonym: ''
+  :extensible: true
+  :definition: Terminology relevant to the prioritization of tuberculosis contacts.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDI1ODIvVjEjQzEwMjU4Mg==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C102582
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ
+- :identifier: C102583
+  :notation: REASTINT
+  :label: Reason for Treatment Interruption
+  :preferred_term: Reason for Treatment Interruption
+  :synonym: ''
+  :extensible: true
+  :definition: Terminology relevant to the reason the drug or therapy was temporarily
+    ceased.
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL0MxMDI1ODMvVjEjQzEwMjU4Mw==
+  :tags: ''
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: true
+    :version_count: 1
+    :subsetted: false
+    :subset: false
+    :ranked: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: Sanofi
+  :scoped_identifier: C102583
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0FOT0ZJ

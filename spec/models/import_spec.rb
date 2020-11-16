@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Import do
 
-	include DataHelpers
+  include DataHelpers
   include ImportHelpers
   include PublicFileHelpers
 
@@ -231,7 +231,7 @@ describe Import do
     expect(result).to hash_equal(expected, error_file: true)
   end
 
-  it "saves the load file, auto load - WILL CURRENTLY FAIL, NEEDS UPDATING" do
+  it "saves the load file, auto load" do
     object = Thesaurus.new
     object.has_identifier = IsoScopedIdentifierV2.new
     object.has_identifier.has_scope = IsoNamespace.find_by_short_name("CDISC")
@@ -245,7 +245,7 @@ describe Import do
     expect(CRUD).to receive(:file)
     item.save_load_file({parent: object, managed_children: [], tags: []})
     result = Import.find(item.id)
-  #write_yaml_file(import_hash(result), sub_dir, "save_load_file_expected_1.yaml")
+  #Xwrite_yaml_file(import_hash(result), sub_dir, "save_load_file_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "save_load_file_expected_1.yaml")
     compare_import_hash(result, expected, output_file: true)
   end
@@ -308,34 +308,34 @@ describe Import do
     expect(item.file_type_humanize).to eq("ALS")
   end
 
-	it "Show data hash" do
-		object = Import.new(:type => "Import::CdiscTerm") # Use this rather than above.
+  it "Show data hash" do
+    object = Import.new(:type => "Import::CdiscTerm") # Use this rather than above.
     job = Background.new
-		job.complete = true
+    job.complete = true
     job.save
     object.background_id = job.id
     object.save
 
-		import_data = object.show_data
-		expect(import_data.keys).to match_array([:import, :errors, :job])
-		expect(import_data[:import][:id]).to eq(object.id)
-		expect(import_data[:job][:id]).to eq(job.id)
-		expect(import_data[:errors]).to eq([])
-		expect(import_data[:import][:complete]).to eq(true)
-		expect(import_data[:job][:complete]).to eq(true)
-	end
+    import_data = object.show_data
+    expect(import_data.keys).to match_array([:import, :errors, :job])
+    expect(import_data[:import][:id]).to eq(object.id)
+    expect(import_data[:job][:id]).to eq(job.id)
+    expect(import_data[:errors]).to eq([])
+    expect(import_data[:import][:complete]).to eq(true)
+    expect(import_data[:job][:complete]).to eq(true)
+  end
 
-	it "Show data hash, errors" do
-		worker = Worker.new
+  it "Show data hash, errors" do
+    worker = Worker.new
     worker.errors.add(:base, "Bad things happened!")
-		item = simple_import
-		item.save_error_file({parent: worker, managed_children:[]})
+    item = simple_import
+    item.save_error_file({parent: worker, managed_children:[]})
 
-		import_data = item.show_data
-		expect(import_data.keys).to match_array([:import, :errors, :job])
-		expect(import_data[:errors]).to eq(["Bad things happened!"])
-		expect(import_data[:job][:id]).to eq(item.background_id)
-		expect(import_data[:import][:id]).to eq(item.id)
-	end
+    import_data = item.show_data
+    expect(import_data.keys).to match_array([:import, :errors, :job])
+    expect(import_data[:errors]).to eq(["Bad things happened!"])
+    expect(import_data[:job][:id]).to eq(item.background_id)
+    expect(import_data[:import][:id]).to eq(item.id)
+  end
 
 end

@@ -99,18 +99,32 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?
 
     ?cli th:preferredTerm/isoC:label ?decode .
     ?cli th:notation ?svalue .
-    OPTIONAL {?cli th:synonym/isoC:label ?clisyn .}
-    ?cli isoC:label ?crfdv
+
+    ?cli ^isoC:appliesTo ?ext1 .
+    ?ext1 isoC:context ?cl . 
+    ?ext1 isoC:customPropertyDefinedBy/isoC:label "SDTM Stage" .
+    ?ext1 isoC:value ?sdtm_stage .
+    ?cli ^isoC:appliesTo ?ext2 .
+    ?ext2 isoC:context ?cl . 
+    ?ext2 isoC:customPropertyDefinedBy/isoC:label "DC Stage" .
+    ?ext2 isoC:value ?dc_stage .
+    ?cli ^isoC:appliesTo ?ext3 .
+    ?ext3 isoC:context ?cl . 
+    ?ext3 isoC:customPropertyDefinedBy/isoC:label "ADaM Stage" .
+    ?ext3 isoC:value ?adam_stage .
+    ?cli ^isoC:appliesTo ?ext4 .
+    ?ext4 isoC:context ?cl . 
+    ?ext4 isoC:customPropertyDefinedBy/isoC:label "CRF Display Value" .
+    ?ext4 isoC:value ?crfdv .
+
     BIND ("" AS ?displayorder)
+    OPTIONAL {?cli th:synonym/isoC:label ?clisyn .}
     OPTIONAL 
     {
       ?cli ^(th:item) ?rank_member . 
       FILTER (EXISTS {?cl th:isRanked/th:members/th:memberNext* ?rank_member })  
       ?rank_member th:rank ?rank 
     }
-    BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "DC Stage"} AS ?dc_stage)
-    BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "SDTM Stage"} AS ?sdtm_stage)
-    BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "ADaM Stage"} AS ?adam_stage)
   }
   UNION
   {
@@ -133,17 +147,31 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?
     ?cli th:identifier ?code .  
     ?cli th:preferredTerm/isoC:label ?decode .
     ?cli th:notation ?svalue .
+
+    ?cli ^isoC:appliesTo ?ext1 .
+    ?ext1 isoC:context ?cl . 
+    ?ext1 isoC:customPropertyDefinedBy/isoC:label "SDTM Stage" .
+    ?ext1 isoC:value ?sdtm_stage .
+    ?cli ^isoC:appliesTo ?ext2 .
+    ?ext2 isoC:context ?cl . 
+    ?ext2 isoC:customPropertyDefinedBy/isoC:label "DC Stage" .
+    ?ext2 isoC:value ?dc_stage .
+    ?cli ^isoC:appliesTo ?ext3 .
+    ?ext3 isoC:context ?cl . 
+    ?ext3 isoC:customPropertyDefinedBy/isoC:label "ADaM Stage" .
+    ?ext3 isoC:value ?adam_stage .
+    ?cli ^isoC:appliesTo ?ext4 .
+    ?ext4 isoC:context ?cl . 
+    ?ext4 isoC:customPropertyDefinedBy/isoC:label "CRF Display Value" .
+    ?ext4 isoC:value ?crfdv .
+
     OPTIONAL {?cli th:synonym/isoC:label ?clisyn .}
-    ?cli isoC:label ?crfdv
     OPTIONAL 
     {
       ?cli ^(th:item) ?rank_member . 
       FILTER (EXISTS {?cl th:isRanked/th:members/th:memberNext* ?rank_member })  
       ?rank_member th:rank ?rank 
     }
-    BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "DC Stage"} AS ?dc_stage)
-    BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "SDTM Stage"} AS ?sdtm_stage)
-    BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "ADaM Stage"} AS ?adam_stage)
   }
 } GROUP BY ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ORDER BY ?clisyn ?clc ?code ?displayorder ?rank'
 :type: Ad Hoc Report Definition

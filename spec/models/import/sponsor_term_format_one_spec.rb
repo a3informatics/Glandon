@@ -280,7 +280,7 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     public_file_exists?("test", filename)
     copy_file_from_public_files("test", filename, sub_dir)
-  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_25b.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_25b.ttl")
     check_ttl_fix_v2(filename, "import_expected_25b.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
@@ -373,7 +373,7 @@ puts colourize("Load 3.0 excel ...", "blue")
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_11.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_11.ttl")
     check_ttl_fix_v2(filename, "import_expected_11.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
