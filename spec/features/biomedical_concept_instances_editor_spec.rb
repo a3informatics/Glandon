@@ -153,7 +153,8 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         ip_submit 'bc-term-ref'
       end
 
-      ui_editor_check_value 6, 8, 'm C41139 (UNIT C71620 v62.0.0) cm C49668 (VSRESU C66770 v59.0.0)'
+      ui_editor_check_value 6, 8, 'm C41139 (UNIT C71620 v62.0.0)'
+      ui_editor_check_value 6, 8, 'cm C49668 (VSRESU C66770 v59.0.0)'
 
       # Remove All Terminology References
 

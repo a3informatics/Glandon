@@ -122,12 +122,8 @@ export default class BCEditor extends EditablePanel {
    */
   _postformatUpdatedData(oldData, newData) {
 
-    // Copy the current focus index object
-    let focusCell = { ...this.table.cell( { focused: true } ).index() };
-
-    // Render new data and re-focus to the copied cell index
+    // Render new data
     this._render( newData, true );
-    this.table.cell( focusCell ).focus();
 
   }
 
@@ -186,7 +182,7 @@ export default class BCEditor extends EditablePanel {
     options.rowId = (d) => {
       return d.has_complex_datatype.has_property.id
     }
-    options.keys.blurable = false;
+    // options.keys.blurable = false;
 
     return options;
 
