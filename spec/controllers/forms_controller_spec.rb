@@ -422,4 +422,56 @@ describe FormsController do
 
   end
 
+  describe "CRF and aCRF" do
+
+    login_curator
+
+    before :all do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", "forms/hackathon_form.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V5.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+      load_data_file_into_triple_store("association.ttl") 
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "crf" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#F"))
+      get :crf, params: { :id => form.id}
+      expect(assigns(:close_path)).to eq("/forms/history?form%5Bidentifier%5D=XXX&form%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
+      actual = assigns(:html)
+      check_file_actual_expected(actual, sub_dir, "crf_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "acrf" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#F"))
+      get :acrf, params: { :id => form.id}
+      expect(assigns(:close_path)).to eq("/forms/history?form%5Bidentifier%5D=XXX&form%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
+      actual = assigns(:html)
+      check_file_actual_expected(actual, sub_dir, "acrf_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end
