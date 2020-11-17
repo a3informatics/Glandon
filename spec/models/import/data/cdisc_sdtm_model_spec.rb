@@ -28,7 +28,6 @@ describe "Import CDISC SDTM Model Data" do
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
     load_data_file_into_triple_store("canonical_references.ttl")
-    load_data_file_into_triple_store("canonical_references_migration_1.ttl")
     setup
   end
 
@@ -40,7 +39,7 @@ describe "Import CDISC SDTM Model Data" do
   # ---------- IMPORTANT SWITCHES ----------
   
   def set_write_file
-    true
+    false
   end
 
   # ----------------------------------------

@@ -1901,7 +1901,14 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
   describe "Compare Excel and API" do
 
-    it "checks files", :cdisc_api => 'true'  do
+    before :all do
+      #
+    end
+
+    it "blank" do
+    end
+
+    it "compare excel and api results - WILL CURRENTLY FAIL - API login issue", :requires => 'cdisc_library_api' do
       [40, 42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 57, 59, 60, 61, 62, 63, 65].each do |version|
         excel_file = excel_filename(version)
         api_file = api_filename(version)
@@ -1909,7 +1916,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       end
     end
 
-    it "checks v55 files, WILL CURRENTLY FAIL", :cdisc_api => 'true' do
+    it "checks v55 files - WILL CURRENTLY FAIL - V55 error in CDISC library", :requires => 'cdisc_library_api' do
       [55].each do |version|
         excel_file = excel_filename(version)
         api_file = api_filename(version)
@@ -2046,27 +2053,28 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       end
     end
 
-    it "misaligned tag analysis" do
-      ct_set.each do |v|
-        print "Processing: #{v[:uri]}, v#{v[:version]}  "
-        query_results = Sparql::Query.new.query(ct_misaligned_tags(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
-        print ".."
-        results = query_results.by_object_set([:v, :d, :clid, :cliid, :cltag, :clitag]).map{|x| {version: x[:v], date: x[:d], code_list: x[:clid], code_list_item: x[:cliid], cl_tag: x[:cltag], cli_tag: x[:clitag]}}
-        print ".."
-        overall = {}
-        overall[:version] = v[:version]
-        overall[:results] = {}
-        results.each do |x|
-          next if x[:cli_tag].empty?
-          key = x[:code_list_item].empty? ? "#{x[:code_list]}" : "#{x[:code_list]}.#{x[:code_list_item]}"
-          overall[:results][key] = [] unless overall[:results].key?(key) 
-          overall[:results][key] << "CL: #{x[:cl_tag]} v CLI: #{x[:cli_tag]}" 
-        end
-        print ".."
-        overall[:results] == {} ? puts("") : puts(" RESULTS ")
-        check_file_actual_expected(overall, sub_dir, "ct_query_tag_misaligned#{v[:version]}.yaml", equate_method: :hash_equal)
-      end
-    end
+    # No longer required
+    # it "misaligned tag analysis" do
+    #   ct_set.each do |v|
+    #     print "Processing: #{v[:uri]}, v#{v[:version]}  "
+    #     query_results = Sparql::Query.new.query(ct_misaligned_tags(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
+    #     print ".."
+    #     results = query_results.by_object_set([:v, :d, :clid, :cliid, :cltag, :clitag]).map{|x| {version: x[:v], date: x[:d], code_list: x[:clid], code_list_item: x[:cliid], cl_tag: x[:cltag], cli_tag: x[:clitag]}}
+    #     print ".."
+    #     overall = {}
+    #     overall[:version] = v[:version]
+    #     overall[:results] = {}
+    #     results.each do |x|
+    #       next if x[:cli_tag].empty?
+    #       key = x[:code_list_item].empty? ? "#{x[:code_list]}" : "#{x[:code_list]}.#{x[:code_list_item]}"
+    #       overall[:results][key] = [] unless overall[:results].key?(key) 
+    #       overall[:results][key] << "CL: #{x[:cl_tag]} v CLI: #{x[:cli_tag]}" 
+    #     end
+    #     print ".."
+    #     overall[:results] == {} ? puts("") : puts(" RESULTS ")
+    #     check_file_actual_expected(overall, sub_dir, "ct_query_tag_misaligned#{v[:version]}.yaml", equate_method: :hash_equal)
+    #   end
+    # end
 
   end
 

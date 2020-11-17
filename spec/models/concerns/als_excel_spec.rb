@@ -3,6 +3,7 @@ require 'rails_helper'
 describe AlsExcel do
 	
 	include DataHelpers
+  include IsoManagedHelpers
 
 	def sub_dir
     return "models/concerns/als_excel"
@@ -41,17 +42,13 @@ describe AlsExcel do
 		expect(object.errors.count).to eq(0)
 	end
 
-  it "gets form, DM example - WILL CURRENTLY FAIL - Finding multiple AGEU entries" do
+  it "gets form, DM example" do
     full_path = test_file_path(sub_dir, "als_1.xlsx")
     object = AlsExcel.new(full_path)
     item = object.form("DM_ALL")
     expect(object.errors.count).to eq(0)
-    result = item.to_json
-  #Xwrite_yaml_file(result, sub_dir, "form_expected_1.yaml")
-    expected = read_yaml_file(sub_dir, "form_expected_1.yaml")
-    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
-    expected[:creation_date] = result[:creation_date]
-    expect(result).to hash_equal(expected)
+    fix_dates(item, sub_dir, "form_expected_1.yaml", :creation_date, :last_change_date)
+    check_file_actual_expected(item.to_h, sub_dir, "form_expected_1.yaml", equate_method: :hash_equal)
   end
 
   # it "gets form, AE example" do

@@ -9,7 +9,7 @@
   :bridg: DefinedObservation.subcategoryCode
   :sdtm: "--SCAT"
 - :label: "Method"
-  :bridg: PerformedObservation.methodCode.CD
+  :bridg: PerformedObservation.methodCode
   :sdtm: "--METHOD"
 - :label: "Position"
   :bridg: PerformedObservation.bodyPositionCode
@@ -30,10 +30,10 @@
   :bridg: PerformedObservation.approachAnatomicSiteLateralityCode
   :sdtm: "--LAT"
 - :label: "Result Value"
-  :bridg: PerformedObservationResult.value
+  :bridg: PerformedObservationResult.result.PQR.value
   :sdtm: "--ORRES"
 - :label: "Result Units"
-  :bridg: PerformedObservationResult.value
+  :bridg: PerformedObservationResult.result.PQR.code
   :sdtm: "--ORRESU"
 - :label: "Baseline"
   :bridg: PerformedClinicalResult.baselineIndicator

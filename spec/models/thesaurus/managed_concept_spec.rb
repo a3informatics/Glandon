@@ -916,13 +916,13 @@ describe "Thesaurus::ManagedConcept" do
     it "to csv" do
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66790/V2#C66790"))
       results = tc.to_csv
-      check_file_actual_expected(results, sub_dir, "csv_expected_1.yaml")
+      check_file_actual_expected(results.split("\n"), sub_dir, "csv_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "to csv 2" do
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66788/V2#C66788"))
       results = tc.to_csv
-      check_file_actual_expected(results, sub_dir, "csv_expected_2.yaml")
+      check_file_actual_expected(results.split("\n"), sub_dir, "csv_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end

@@ -9,7 +9,7 @@ describe Thesaurus::ManagedConcept do
   include ThesauriHelpers
   include NameValueHelpers
   include InstallationHelpers
-  
+
   def sub_dir
     return "models/thesaurus/data"
   end
@@ -80,7 +80,7 @@ describe Thesaurus::ManagedConcept do
       @tc_2.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_airport.ttl")
-    end 
+    end
 
   end
 
@@ -208,7 +208,7 @@ describe Thesaurus::ManagedConcept do
       @tc_3.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_airport_v2.ttl")
-    end 
+    end
 
   end
 
@@ -248,7 +248,7 @@ describe Thesaurus::ManagedConcept do
       tc_.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor_5_state.ttl")
-    end 
+    end
 
   end
 
@@ -292,34 +292,61 @@ describe Thesaurus::ManagedConcept do
       tc_.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor_6_referenced.ttl")
-    end 
+    end
 
   end
 
   describe "for ad hoc reports" do
 
+    def add_classification(subject, tag, context)
+      classification = Classification.new(applies_to: subject, classified_as: tag, context: [context])
+      classification.uri = classification.create_uri(Classification.base_uri)
+      classification
+    end
+
+    def new_node(params, parent)
+      params[:pref_label] = params.delete(:label) # rename lable to pref_label, legacy reasons.
+      child = IsoConceptSystem::Node.new(params)
+      child.uri = child.create_uri(parent.uri)
+      child
+    end
+
+    def add_top_node(params, parent)
+      child = new_node(params, parent)
+      parent.is_top_concept << child
+      child
+    end
+
+    def add_node(params, parent)
+      child = new_node(params, parent)
+      parent.narrower << child
+      child
+    end
+
     def simple_thesaurus_1
+
+      @cs = IsoConceptSystem.create(pref_label: "Ad Hoc Tags", description: "The set of Ad Hoc tags")
+      @cs_1 = add_top_node({label: "TAG 1", description: "TAG 1 related tags"}, @cs)
+      @cs_2 = add_top_node({label: "TAG 2", description: "TAG 2 related information."}, @cs)
+      @cs_3 = add_top_node({label: "TAG 3", description: "TAG 3 related information."}, @cs)
+
+      @classifications = []
       ct = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V50#TH"))
       @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
       @th_1 = Thesaurus.new
       @th_1.label = "Test Terminology"
-      cs_1 = IsoConceptSystem.new
-      cs_1.uri = Uri.new(uri: "http://www.assero.co.uk/TAG1")
-      cs_2 = IsoConceptSystem.new
-      cs_2.uri = Uri.new(uri: "http://www.assero.co.uk/TAG2")
-      cs_3 = IsoConceptSystem.new
-      cs_3.uri = Uri.new(uri: "http://www.assero.co.uk/TAG3")
-      tc_ = Thesaurus::ManagedConcept.from_h({
+
+
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
           label: "London Heathrow",
           identifier: "S00001",
           definition: "A definition",
           notation: "ONCRSR"
         })
-      tc_.synonym << Thesaurus::Synonym.new(label:"Heathrow")
-      tc_.synonym << Thesaurus::Synonym.new(label:"LHR")
-      tc_.preferred_term = Thesaurus::PreferredTerm.new(label:"London Heathrow")
-      tc_.add_tags_no_save([cs_1, cs_2])
-      tc_a = Thesaurus::UnmanagedConcept.from_h({
+      @tc_1.synonym << Thesaurus::Synonym.new(label:"Heathrow")
+      @tc_1.synonym << Thesaurus::Synonym.new(label:"LHR")
+      @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label:"London Heathrow")
+      @tc_1a = Thesaurus::UnmanagedConcept.from_h({
           label: "Terminal 5",
           identifier: "S000011",
           definition: "The 5th LHR Terminal",
@@ -337,7 +364,6 @@ describe Thesaurus::ManagedConcept do
           notation: "T1"
         })
       @tc_1b.preferred_term = Thesaurus::PreferredTerm.new(label:"Terminal 1")
-      @tc_1b.add_tags_no_save([cs_3]) 
       @tc_1c = Thesaurus::UnmanagedConcept.from_h({
           label: "Health Screening",
           identifier: "S000013",
@@ -345,12 +371,11 @@ describe Thesaurus::ManagedConcept do
           notation: "SCREENING"
         })
       @tc_1c.preferred_term = Thesaurus::PreferredTerm.new(label:"Terminal HS")
-      @tc_1c.add_tags_no_save([cs_3]) 
       @tc_1.narrower << @tc_1a
       @tc_1.narrower << @tc_1b
       @tc_1.narrower << @tc_1c
       @tc_1.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V47#C99079_C125938")
-      @tc_1.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079_C99158")            
+      @tc_1.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079_C99158")
       @tc_1.set_initial("S00001")
       @tc_2 = Thesaurus::ManagedConcept.new
       @tc_2.identifier = "S00002"
@@ -394,6 +419,10 @@ describe Thesaurus::ManagedConcept do
       @th_1.is_top_concept << @tc_4.uri
       @th_1.reference = OperationalReferenceV3.new(reference: ct)
       @th_1.set_initial("AIRPORTS")
+      @classifications << add_classification(@tc_1, @cs_1, @tc_1)
+      @classifications << add_classification(@tc_1, @cs_2, @tc_1)
+      @classifications << add_classification(@tc_1b, @cs_3, @tc_1b)
+      @classifications << add_classification(@tc_1c, @cs_3, @tc_1c)
     end
 
     before :all  do
@@ -415,9 +444,11 @@ describe Thesaurus::ManagedConcept do
       @tc_2.to_sparql(sparql, true)
       @tc_3.to_sparql(sparql, true)
       @tc_4.to_sparql(sparql, true)
+      @classifications.each {|x| x.to_sparql(sparql)}
+      @cs.to_sparql(sparql, true)
       full_path = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_airport_ad_hoc.ttl")
-    end 
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ad_hoc_reports_thesaurus.ttl")
+    end
 
   end
 
@@ -461,7 +492,7 @@ describe Thesaurus::ManagedConcept do
       @tc_2.notation = "SUB1"
       @tc_2.subsets = cdisc.uri
       @tc_2.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V47#C99079_C125938")
-      @tc_2.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079_C99158")  
+      @tc_2.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079_C99158")
       @tc_2.set_initial("S00001")
     end
 
@@ -483,7 +514,7 @@ describe Thesaurus::ManagedConcept do
       @tc_2.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_migration_3_1_0.ttl")
-    end 
+    end
 
   end
 end

@@ -806,6 +806,7 @@ private
   # array property?
   def array_property?(object, name)
     return true unless object.respond_to?(:properties) # Temporary properties are assumed to be arrays
+    return true if object.properties.ignore?(name.to_sym) # Make sure we should not ignore the property
     object.properties.property(name.to_sym).array?
   end
 

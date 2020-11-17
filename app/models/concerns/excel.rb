@@ -85,15 +85,6 @@ class Excel
     return false
   end       
 
-  # # Process Sheet
-  # #
-  # # @param [Symbol] import the import
-  # # @param [Symbol] sheet the sheet key as a symbol used in the configuration file
-  # # @return [Void] no return
-  # def process_sheet(import, sheet)
-  #   @engine.process(import, sheet)
-  # end
-
 private
 
   # Select a sheet and return the sheet info

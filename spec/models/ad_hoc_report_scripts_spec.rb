@@ -44,7 +44,7 @@ RSpec.describe AdHocReport, type: :model do
   describe "Simple Reports" do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_airport_ad_hoc.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ad_hoc_reports_thesaurus.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(CdiscCtHelpers.version_range)   
       AdHocReport.delete_all
@@ -88,7 +88,7 @@ RSpec.describe AdHocReport, type: :model do
       report.results_file = "missing_tags_results_1.yaml"
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH").to_id])}
       results = AdHocReportFiles.read("missing_tags_results_1.yaml")
-      check_file_actual_expected(results, sub_dir, "missing_tags_expected_1.yaml", equate_method: :hash_equal, write_file: false)
+      check_file_actual_expected(results, sub_dir, "missing_tags_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end
@@ -204,6 +204,7 @@ RSpec.describe AdHocReport, type: :model do
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
@@ -224,14 +225,14 @@ RSpec.describe AdHocReport, type: :model do
       report.results_file = "sponsor_ct_export_results_1.yaml"
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH").to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_results_1.yaml")
-      expect(results[:data].count).to eq(22322)
+      expect(results[:data].count).to eq(22321)
       save_selected_results(results, "sponsor_ct_export_selected_results_1.yaml", ["ACN_01", "ACN_03", "SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV"], false)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_1.yaml", equate_method: :hash_equal, write_file: false)
       expect(ranks.count).to eq(43)
     end
   
-    it "executes an sponsor CT export report, 2020" do
+    it "executes an sponsor CT export report, 2020 V1" do
       copy_report_to_public_files("sponsor_ct_export_sparql.yaml", "test")
       job = Background.create
       report = AdHocReport.new
@@ -241,11 +242,28 @@ RSpec.describe AdHocReport, type: :model do
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH").to_id])}
       full_path = File.join(AdHocReportFiles.dir_path, "sponsor_ct_export_results_2.yaml")
       results = AdHocReportFiles.read("sponsor_ct_export_results_2.yaml")
-      expect(results[:data].count).to eq(31930)
+      expect(results[:data].count).to eq(31929)
       save_selected_results(results, "sponsor_ct_export_selected_results_2.yaml", ["ACN_01", "ACN_03", "SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV"], false)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_2.yaml", equate_method: :hash_equal, write_file: false)
       expect(ranks.count).to eq(47)
+    end
+  
+    it "executes an sponsor CT export report, 2020 V2" do
+      copy_report_to_public_files("sponsor_ct_export_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "sponsor_ct_export_sparql.yaml"
+      report.results_file = "sponsor_ct_export_results_3.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH").to_id])}
+      full_path = File.join(AdHocReportFiles.dir_path, "sponsor_ct_export_results_3.yaml")
+      results = AdHocReportFiles.read("sponsor_ct_export_results_3.yaml")
+      expect(results[:data].count).to eq(32806) #32801
+      save_selected_results(results, "sponsor_ct_export_selected_results_3.yaml", ["ACN", "AERELA", "AERELDEV_01", "AGEGRPE", "AGEGRPPN", "NORMEDN", "SEVRS", "SHIFT2N", "TOXGR_01", "TOXGRN"], false)
+      ranks = extract_ranks(results)
+      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_3.yaml", equate_method: :hash_equal, write_file: false)
+      expect(ranks.count).to eq(31)
     end
   
   end
@@ -283,7 +301,7 @@ RSpec.describe AdHocReport, type: :model do
       save_selected_results(results, "sponsor_ct_export_subsets_selected_results_1.yaml", ["ACN_01", "ACN_03", "SUAM_01", "LOC_01"], false)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_subsets_rank_results_1.yaml", equate_method: :hash_equal)
-      expect(ranks.count).to eq(2)
+      expect(ranks.count).to eq(3)
     end
   
     it "executes an sponsor CT export subsets report, 2020" do

@@ -83,10 +83,10 @@ class AlsExcel
             read_data_dictionary_entries_sheet(item[:code_list]).each do |entry|
               cli = cl_result[:cl].children.find { |x| x.notation == entry[:code]}
               if !cli.nil?
-                ref = OperationalReferenceV2.new
+                ref = OperationalReferenceV3.new
                 ref.ordinal = entry[:ordinal]
-                ref.subject_ref = cli.uri.to_v2
-                question.tc_refs << ref
+                ref.reference = cli.uri
+                question.has_coded_value << ref
               else
                 question.note += "* Failed to find item with \n" if !cl_result[:note].empty?
               end
@@ -100,6 +100,7 @@ class AlsExcel
     end
     return result
   rescue => e
+byebug
     msg = "Exception raised building form."
     ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
     @errors.add(:base, msg)
@@ -121,7 +122,7 @@ private
   # New form
   def new_form(identifier, label)
     object = Form.new 
-    object.scopedIdentifier.identifier = IsoScopedIdentifier.clean_identifier(identifier) # Make sure we remove anything nasty
+    object.set_initial(IsoScopedIdentifierV2.clean_identifier(identifier))
     object.label = label
     group = Form::Group::Normal.new
     group.label = "Main Group"
@@ -129,7 +130,7 @@ private
     object.children << group
     return object
   end
-    
+
   # Open the workbook
   def open_workbook
     @workbook = Roo::Spreadsheet.open(@filename, extension: :xlsx) 
