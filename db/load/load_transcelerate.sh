@@ -90,6 +90,7 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/c
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V64.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V65.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V66.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V67.ttl" $FileEndPoint
 # Biomedical Concepts
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/biomedical_concept_instances.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/biomedical_concept_templates.ttl" $FileEndPoint
@@ -103,7 +104,8 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackath
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_protocols.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_protocol_templates.ttl" $FileEndPoint
 # Forms
-# curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_form_ad.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_form_vs_acrf.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/association.ttl" $FileEndPoint
 # curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_form_cibic.ttl" $FileEndPoint
 # curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_form_dad.ttl" $FileEndPoint
 # curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_form_dm_pilot.ttl" $FileEndPoint
