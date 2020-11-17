@@ -57,108 +57,108 @@ class Form
     #   return true
     # end
 
-    # Repeating Question group
-    def repeating_question_group(annotations)
-      html = ""
-      # Put the labels and mappings out first
-      self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-        html += sg.repeating_question_group(annotations)
-      end
-      self.has_item.sort_by {|x| x.ordinal}.each do |item|
-        html += item.to_crf unless item.class == Form::Item::Question
-      end
-      # Now the questions
-      html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
-      html += '<tr>'
-      self.has_item.sort_by {|x| x.ordinal}.each do |item|
-        html += item.question_cell(item.question_text) if item.class == Form::Item::Question
-      end
-      html += '</tr>'
+    # # Repeating Question group
+    # def repeating_question_group(annotations)
+    #   html = ""
+    #   # Put the labels and mappings out first
+    #   self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
+    #     html += sg.repeating_question_group(annotations)
+    #   end
+    #   self.has_item.sort_by {|x| x.ordinal}.each do |item|
+    #     html += item.to_crf unless item.class == Form::Item::Question
+    #   end
+    #   # Now the questions
+    #   html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
+    #   html += '<tr>'
+    #   self.has_item.sort_by {|x| x.ordinal}.each do |item|
+    #     html += item.question_cell(item.question_text) if item.class == Form::Item::Question
+    #   end
+    #   html += '</tr>'
 
-      unless annotations.nil?
-        html += '<tr>'
-        self.has_item.sort_by {|x| x.ordinal}.each do |item|
-          if item.class == Form::Item::Question
-            qa = item.question_annotations(annotations)
-            html += mapping_cell(qa, annotations)
-          else
-            html += empty_cell
-          end
-        end
-        html += '</tr>'
-      end
+    #   unless annotations.nil?
+    #     html += '<tr>'
+    #     self.has_item.sort_by {|x| x.ordinal}.each do |item|
+    #       if item.class == Form::Item::Question
+    #         qa = item.question_annotations(annotations)
+    #         html += mapping_cell(qa, annotations)
+    #       else
+    #         html += empty_cell
+    #       end
+    #     end
+    #     html += '</tr>'
+    #   end
 
-      html += '<tr>'
-      self.has_item.sort_by {|x| x.ordinal}.each do |item|
-        html += input_field(item) if item.class == Form::Item::Question
-      end
-      html += '</tr>'
-      html += '</table></td>' 
-      return html
-    end
+    #   html += '<tr>'
+    #   self.has_item.sort_by {|x| x.ordinal}.each do |item|
+    #     html += input_field(item) if item.class == Form::Item::Question
+    #   end
+    #   html += '</tr>'
+    #   html += '</table></td>' 
+    #   return html
+    # end
 
-    # Repeating BC group
-    def repeating_bc_group(annotations)
-      html = ""
-      html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
-      html += '<tr>'
-      columns = {}
-      self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-        sg.has_item.sort_by {|x| x.ordinal}.each do |item|
-          property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
-          #if property.enabled && property.collect
-            if !columns.has_key?(property.is_a.to_s)
-              columns[property.is_a.to_s] = property.is_a.to_s
-            end
-          #end
-        end
-      end
-      # Question text
-      html += start_row(false)
-      self.has_sub_group.first.has_item.sort_by {|x| x.ordinal}.each do |item|
-        property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
-        if columns.has_key?(property.is_a.to_s)
-          html += item.question_cell(property.question_text)
-        end
-      end
-      html += end_row
+    # # Repeating BC group
+    # def repeating_bc_group(annotations)
+    #   html = ""
+    #   html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
+    #   html += '<tr>'
+    #   columns = {}
+    #   self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
+    #     sg.has_item.sort_by {|x| x.ordinal}.each do |item|
+    #       property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
+    #       #if property.enabled && property.collect
+    #         if !columns.has_key?(property.is_a.to_s)
+    #           columns[property.is_a.to_s] = property.is_a.to_s
+    #         end
+    #       #end
+    #     end
+    #   end
+    #   # Question text
+    #   html += start_row(false)
+    #   self.has_sub_group.first.has_item.sort_by {|x| x.ordinal}.each do |item|
+    #     property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
+    #     if columns.has_key?(property.is_a.to_s)
+    #       html += item.question_cell(property.question_text)
+    #     end
+    #   end
+    #   html += end_row
 
-      # Annotation. Commented out, gives a block of annotations
-      #html += start_row(false)
-      #columns.each do |key, bridg_path|
-      #  pa = ""
-      #  node[:children].each do |bc_node|
-      #    bc_node[:children].each do |property_node|
-      #      if property_node[:bridg_path] == bridg_path
-      #        pa += property_annotations(property_node[:id], annotations, options)
-      #      end
-      #    end
-      #  end
-      #  html += mapping_cell(pa, options)
-      #end
-      #html += end_row
+    #   # Annotation. Commented out, gives a block of annotations
+    #   #html += start_row(false)
+    #   #columns.each do |key, bridg_path|
+    #   #  pa = ""
+    #   #  node[:children].each do |bc_node|
+    #   #    bc_node[:children].each do |property_node|
+    #   #      if property_node[:bridg_path] == bridg_path
+    #   #        pa += property_annotations(property_node[:id], annotations, options)
+    #   #      end
+    #   #    end
+    #   #  end
+    #   #  html += mapping_cell(pa, options)
+    #   #end
+    #   #html += end_row
       
-      # BCs and the input fields
-      self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-        html += start_row(false)
-        sg.has_item.sort_by {|x| x.ordinal}.each do |item|
-          property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
-          if columns.has_key?(property.is_a.to_s)
-            if property.has_coded_value.length == 0
-              html += input_field(property)
-            else
-              html += terminology_cell(item)
-            end
-          end
-        end
-        html += end_row
-        html += start_row(false)
-        html += end_row
-      end
-      html += '</tr>'
-      html += '</table></td>'
-      return html
-    end
+    #   # BCs and the input fields
+    #   self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
+    #     html += start_row(false)
+    #     sg.has_item.sort_by {|x| x.ordinal}.each do |item|
+    #       property = BiomedicalConcept::PropertyX.find(item.has_property.reference)
+    #       if columns.has_key?(property.is_a.to_s)
+    #         if property.has_coded_value.length == 0
+    #           html += input_field(property)
+    #         else
+    #           html += terminology_cell(item)
+    #         end
+    #       end
+    #     end
+    #     html += end_row
+    #     html += start_row(false)
+    #     html += end_row
+    #   end
+    #   html += '</tr>'
+    #   html += '</table></td>'
+    #   return html
+    # end
 
     # Format input field
     def input_field(item)
