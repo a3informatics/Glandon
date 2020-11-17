@@ -31,31 +31,31 @@ class Form
       html += "</style>"
     end
 
-    # Is a Question only group
-    def is_question_only_group?
-      if self.class == Form::Group::Normal
-        self.has_sub_group.each do |sg|
-          sg.is_question_only_group? if sg.class == Form::Group::Normal
-        end
-      end
-      self.has_item.each do |item|
-        return true if item.class == Form::Item::Question || item.class == Form::Item::Mapping || item.class == Form::Item::TextLabel 
-      end
-      return false
-    end
+    # # Is a Question only group
+    # def is_question_only_group?
+    #   if self.class == Form::Group::Normal
+    #     self.has_sub_group.each do |sg|
+    #       sg.is_question_only_group? if sg.class == Form::Group::Normal
+    #     end
+    #   end
+    #   self.has_item.each do |item|
+    #     return true if item.class == Form::Item::Question || item.class == Form::Item::Mapping || item.class == Form::Item::TextLabel 
+    #   end
+    #   return false
+    # end
 
-    # Is a BC only group
-    def is_bc_only_group?
-      self.has_item.each do |item|
-        return false if item.class != Form::Item::BcProperty
-      end
-      if self.class == Form::Group::Normal
-        self.has_sub_group.each do |sg|
-          sg.is_bc_only_group? if sg.class == Form::Group::Normal
-        end
-      end
-      return true
-    end
+    # # Is a BC only group
+    # def is_bc_only_group?
+    #   self.has_item.each do |item|
+    #     return false if item.class != Form::Item::BcProperty
+    #   end
+    #   if self.class == Form::Group::Normal
+    #     self.has_sub_group.each do |sg|
+    #       sg.is_bc_only_group? if sg.class == Form::Group::Normal
+    #     end
+    #   end
+    #   return true
+    # end
 
     # Repeating Question group
     def repeating_question_group(annotations)
@@ -98,7 +98,7 @@ class Form
     end
 
     # Repeating BC group
-    def repeating_bc_group
+    def repeating_bc_group(annotations)
       html = ""
       html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
       html += '<tr>'

@@ -30,11 +30,17 @@ class Form < IsoManagedV2
     super
   end
 
+  # aCRF.
+  #
+  # @return [String] String of HTML form representation with annotations
   def acrf
     annotations = Annotations.new(self)
     to_crf(annotations)
   end
 
+  # CRF.
+  #
+  # @return [String] String of HTML form representation
   def crf
     to_crf
   end
