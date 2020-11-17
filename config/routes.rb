@@ -416,6 +416,7 @@ Rails.application.routes.draw do
     member do
       get :show_data
       get :crf
+      get :acrf
       get :referenced_items
       post :add_child
     end

@@ -38,7 +38,7 @@ describe Form::Item::TextLabel do
 
   it "returns the CRF rendition" do
     item = Form::Item::TextLabel.new(uri: Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001"), label_text: "A label", ordinal: 1)
-    result = item.to_crf
+    result = item.to_crf(nil)
     check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
   end
   # it "allows an object to be exported as XML" do

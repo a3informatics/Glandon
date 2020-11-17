@@ -49,7 +49,7 @@ describe Form::Item::BcProperty do
 
     it "to CRF I" do
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
-      result = bc_property.to_crf
+      result = bc_property.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
     end
 
@@ -65,11 +65,11 @@ describe Form::Item::BcProperty do
 
     it "to CRF II, fix enabled bug" do
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
-      result = bc_property.to_crf
+      result = bc_property.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_3.yaml", equate_method: :hash_equal)
       bc_property.has_property_objects.update(enabled: false)
       bc_property.save
-      result = bc_property.to_crf
+      result = bc_property.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_4.yaml", equate_method: :hash_equal)
     end
 
@@ -77,12 +77,55 @@ describe Form::Item::BcProperty do
       bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/MAKE_COMMON_TEST/V1#F_NG1_BCG2_BP2"))
       bc_property.has_property_objects.update(enabled: true)
       bc_property.save
-      result = bc_property.to_crf
+      result = bc_property.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_5.yaml", equate_method: :hash_equal)
       bc_property.has_property_objects.update(optional: true)
       bc_property.save
-      result = bc_property.to_crf
+      result = bc_property.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_6.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "To aCRF tests" do
+
+    before :all do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V5.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+      load_data_file_into_triple_store("association.ttl")    
+    end
+
+    it "to aCRF I" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id]})
+      form = Form.find_full(form.uri)
+      annotations = Form::Annotations.new(form)
+      annotations.domain_list
+      annotations.preserve_domain_class(:VS, "domain-1")
+      bc_property = Form::Item::BcProperty.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCP_36d01a04-97fa-4ae9-8f40-9f266a6cdc06"))
+      result = bc_property.to_crf(annotations)
+      check_file_actual_expected(result, sub_dir, "to_acrf_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

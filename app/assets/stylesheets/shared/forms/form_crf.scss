@@ -24,10 +24,16 @@
 
   }
 
+
   // All tables tds
   table > tbody > tr > td {
     vertical-align: middle;
     font-family: $font-light;
+  }
+
+  // Hide empty cells
+  table td:empty {
+    display: none;
   }
 
   // All tables except crf-input-fields
@@ -43,6 +49,14 @@
 
   h4, h5 {
     font-family: $font-primary;
+  }
+
+  h4 {
+    padding: 4px 6px;
+  }
+
+  h5 {
+    padding: 2px 4px;
   }
 
   strong {

@@ -12,19 +12,21 @@ describe Form do
     return "models/form/data"
   end
 
-  before :all do
-    IsoHelpers.clear_cache
-    load_files(schema_files, [])
-    load_cdisc_term_versions(1..65)
-    load_data_file_into_triple_store("mdr_identification.ttl")
-    @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V65#TH"))
-  end
 
-  after :each do
-    delete_all_public_test_files
-  end
 
   describe "Convert old forms" do
+
+    before :all do
+      IsoHelpers.clear_cache
+      load_files(schema_files, [])
+      load_cdisc_term_versions(1..65)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V65#TH"))
+    end
+
+    after :each do
+      delete_all_public_test_files
+    end
 
     def query_form
       query_string = %Q{
@@ -492,6 +494,63 @@ describe Form do
       end
     end
 
+  end
+
+  describe "Create simple form" do
+    before :all do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V5.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+      load_data_file_into_triple_store("association.ttl")
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "create simple form" do
+      form = Form.create(label: "Form", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      form = Form.find_full(form.uri)
+      bci_1 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      bci_2 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.add_child({type:"question"})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
+      question.mapping = "VSORRESU"
+      question.datatype = "datetype"
+      question.question_text = "Question text 1"
+      question.save
+      normal_group.add_child({type:"question"})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      question = Form::Item::Question.find_full(normal_group.has_item.second.uri)
+      question.mapping = "VSORRES"
+      question.datatype = "datetype"
+      question.question_text = "Question text 2"
+      question.save
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id]})
+      simple_form = Form.find_full(form.uri)
+      full_path = simple_form.to_ttl
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_form.ttl")
+    end
   end
 
 end

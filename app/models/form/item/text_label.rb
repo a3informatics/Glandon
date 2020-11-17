@@ -25,7 +25,7 @@ class Form::Item::TextLabel < Form::Item
   # To CRF
   #
   # @return [String] An html string of Text Label Item
-  def to_crf
+  def to_crf(annotations)
     markdown_row(self.label_text)
   end
 

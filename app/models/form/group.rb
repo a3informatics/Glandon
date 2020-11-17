@@ -17,6 +17,7 @@ class Form::Group < IsoConceptV2
   validates :optional, inclusion: { in: [ true, false ] }
 
   include Form::Ordinal
+  include Form::CRF
 
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #
@@ -86,10 +87,6 @@ class Form::Group < IsoConceptV2
     else
       move_down(child)
     end
-  end
-
-  def text_row(text)
-    return "<tr><td colspan=\"3\"><h5>#{text}</h5></td></tr>"
   end
 
   # Next Ordinal. Get the next ordinal for a managed item collection

@@ -39,7 +39,7 @@ class Form::Item::Common < Form::Item::BcProperty
   # To CRF
   #
   # @return [String] An html string of the Common Item
-  def to_crf
+  def to_crf(annotations)
     html = ""
     property = BiomedicalConcept::PropertyX.find(self.has_property_objects.reference)
     html += start_row(self.optional)
@@ -47,7 +47,7 @@ class Form::Item::Common < Form::Item::BcProperty
     if self.has_coded_value.length == 0
       html += input_field(property)
     else
-      html += terminology_cell
+      html += terminology_cell(self)
     end
     html += end_row
   end
