@@ -235,6 +235,39 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
   end
 
+  describe "aCRF hackathon Test" do
+    
+    before :all do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", "forms/hackathon_form.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V5.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+      load_data_file_into_triple_store("association.ttl") 
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+    end
+
+    it "to acrf I" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_hackathon_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
   describe "Get referenced items Tests" do
     
     before :all do
