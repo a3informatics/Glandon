@@ -159,7 +159,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
     it "to crf III" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
-      check_file_actual_expected(form.crf, sub_dir, "to_crf_3.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(form.crf, sub_dir, "to_crf_3.yaml", equate_method: :hash_equal)
     end
 
     it "to crf IV, bc repeating group, disable property" do
@@ -168,7 +168,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       coded_value_reference.enabled = false
       coded_value_reference.save
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
-      check_file_actual_expected(form.crf, sub_dir, "to_crf_4.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(form.crf, sub_dir, "to_crf_4.yaml", equate_method: :hash_equal)
     end
 
     it "to crf V, common group, disable property" do
@@ -177,7 +177,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       coded_value_reference.enabled = false
       coded_value_reference.save
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F"))
-      check_file_actual_expected(form.crf, sub_dir, "to_crf_5.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(form.crf, sub_dir, "to_crf_5.yaml", equate_method: :hash_equal)
     end
 
     it "to crf VI, move node" do
