@@ -288,7 +288,7 @@ describe "Import::CdiscTerm" do
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
     #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "duplicates_expected_1.txt")
-      check_ttl(filename, "duplicates_expected_1.txt")
+      check_ttl_fix_v2(filename, "duplicates_expected_1.txt", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
     end
@@ -307,7 +307,7 @@ describe "Import::CdiscTerm" do
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
     #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "quotes_expected_1.txt")
-      check_ttl(filename, "quotes_expected_1.txt")
+      check_ttl_fix_v2(filename, "quotes_expected_1.txt", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
     end
@@ -327,7 +327,7 @@ describe "Import::CdiscTerm" do
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
     #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "characters_expected_1.ttl")
-      check_ttl(filename, "characters_expected_1.ttl")
+      check_ttl_fix_v2(filename, "characters_expected_1.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
     end

@@ -301,7 +301,7 @@ RSpec.describe AdHocReport, type: :model do
       save_selected_results(results, "sponsor_ct_export_subsets_selected_results_1.yaml", ["ACN_01", "ACN_03", "SUAM_01", "LOC_01"], false)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_subsets_rank_results_1.yaml", equate_method: :hash_equal)
-      expect(ranks.count).to eq(2)
+      expect(ranks.count).to eq(3)
     end
   
     it "executes an sponsor CT export subsets report, 2020" do
