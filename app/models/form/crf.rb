@@ -62,7 +62,7 @@ class Form
       html = ""
       # Put the labels and mappings out first
       self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
-        html += sg.repeating_question_group
+        html += sg.repeating_question_group(annotations)
       end
       self.has_item.sort_by {|x| x.ordinal}.each do |item|
         html += item.to_crf unless item.class == Form::Item::Question
