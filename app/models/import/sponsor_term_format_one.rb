@@ -146,8 +146,9 @@ private
         ref = child.to_hybrid_sponsor(@th, @fixes)
       elsif child.future_hybrid_sponsor?  
         add_log("Future Hybrid Sponsor detected: #{child.identifier}")
-        child.update_identifier(child.identifier)
-        ref = child
+        #child.update_identifier(child.identifier)
+        #ref = child
+        ref = child.to_sponsor
       else
         add_error(@parent, "Code list type not detected, identifier '#{child.identifier}'.")
         ref = nil

@@ -328,6 +328,46 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
   end
 
+  it "import, EPOCH code list" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
+    full_path = test_file_path(sub_dir, "import_input_30a.xlsx")
+    params = {identifier: "EPOCHTEST", version: "1", date: "2018-12-01", files: [full_path], version_label: "1", label: "ABTESTCD TEST", semantic_version: "0.0.1", job: @job, uri: ct.uri}
+    result = @object.import(params)
+    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+    public_file_exists?("test", filename)
+    #public_file_does_not_exist?("test", filename)
+    actual = read_public_yaml_file("test", filename)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_30a.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_30a.yaml")
+    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+    public_file_exists?("test", filename)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_30a.ttl")
+    check_ttl_fix_v2(filename, "import_expected_30a.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import, SEVRS code list" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
+    full_path = test_file_path(sub_dir, "import_input_31a.xlsx")
+    params = {identifier: "SEVRSTEST", version: "1", date: "2020-09-10", files: [full_path], version_label: "1", label: "ABTESTCD TEST", semantic_version: "0.0.1", job: @job, uri: ct.uri}
+    result = @object.import(params)
+    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+    public_file_exists?("test", filename)
+    #public_file_does_not_exist?("test", filename)
+    actual = read_public_yaml_file("test", filename)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_31a.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_31a.yaml")
+    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+    public_file_exists?("test", filename)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_31a.ttl")
+    check_ttl_fix_v2(filename, "import_expected_31a.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
   it "paths test" do
     tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
     check_file_actual_expected(tc.to_h, sub_dir, "find_full_paths_expected_1.yaml", equate_method: :hash_equal)

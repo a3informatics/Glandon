@@ -297,7 +297,7 @@ describe Thesaurus::ManagedConcept do
   describe "for ad hoc reports" do
 
     def add_classification(subject, tag, context)
-      classification = Classification.new(applies_to: subject.uri, classified_as: tag.uri, context: context.uri)
+      classification = Classification.new(applies_to: subject, classified_as: tag, context: [context])
       classification.uri = classification.create_uri(Classification.base_uri)
       classification
     end
@@ -324,9 +324,9 @@ describe Thesaurus::ManagedConcept do
     def simple_thesaurus_1
 
       @cs = IsoConceptSystem.create(pref_label: "Ad Hoc Tags", description: "The set of Ad Hoc tags")
-      cs_1 = add_top_node({label: "TAG 1", description: "TAG 1 related tags"}, @cs)
-      cs_2 = add_top_node({label: "TAG 2", description: "TAG 2 related information."}, @cs)
-      cs_3 = add_top_node({label: "TAG 3", description: "TAG 3 related information."}, @cs)
+      @cs_1 = add_top_node({label: "TAG 1", description: "TAG 1 related tags"}, @cs)
+      @cs_2 = add_top_node({label: "TAG 2", description: "TAG 2 related information."}, @cs)
+      @cs_3 = add_top_node({label: "TAG 3", description: "TAG 3 related information."}, @cs)
 
       @classifications = []
       ct = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V50#TH"))
@@ -344,8 +344,6 @@ describe Thesaurus::ManagedConcept do
       @tc_1.synonym << Thesaurus::Synonym.new(label:"Heathrow")
       @tc_1.synonym << Thesaurus::Synonym.new(label:"LHR")
       @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label:"London Heathrow")
-      @classifications << add_classification(@tc_1, cs_1, @tc_1)
-      @classifications << add_classification(@tc_1, cs_2, @tc_1)
       @tc_1a = Thesaurus::UnmanagedConcept.from_h({
           label: "Terminal 5",
           identifier: "S000011",
@@ -364,7 +362,6 @@ describe Thesaurus::ManagedConcept do
           notation: "T1"
         })
       @tc_1b.preferred_term = Thesaurus::PreferredTerm.new(label:"Terminal 1")
-      @classifications << add_classification(@tc_1b, cs_3, @tc_1b)
       @tc_1c = Thesaurus::UnmanagedConcept.from_h({
           label: "Health Screening",
           identifier: "S000013",
@@ -372,7 +369,6 @@ describe Thesaurus::ManagedConcept do
           notation: "SCREENING"
         })
       @tc_1c.preferred_term = Thesaurus::PreferredTerm.new(label:"Terminal HS")
-      @classifications << add_classification(@tc_1c, cs_3, @tc_1c)
       @tc_1.narrower << @tc_1a
       @tc_1.narrower << @tc_1b
       @tc_1.narrower << @tc_1c
@@ -421,6 +417,10 @@ describe Thesaurus::ManagedConcept do
       @th_1.is_top_concept << @tc_4.uri
       @th_1.reference = OperationalReferenceV3.new(reference: ct)
       @th_1.set_initial("AIRPORTS")
+      @classifications << add_classification(@tc_1, @cs_1, @tc_1)
+      @classifications << add_classification(@tc_1, @cs_2, @tc_1)
+      @classifications << add_classification(@tc_1b, @cs_3, @tc_1b)
+      @classifications << add_classification(@tc_1c, @cs_3, @tc_1c)
     end
 
     before :all  do
