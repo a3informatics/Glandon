@@ -82,6 +82,8 @@ class FormsController < ManagedItemsController
       format.html do
         return true unless edit_lock(@form)
         @form = @edit.item
+        @crf_path = path_for :crf, @form
+        @acrf_path = path_for :acrf, @form
         @close_path = history_forms_path({ form:
             { identifier: @form.scoped_identifier, scope_id: @form.scope } })
         @edit_tags_path = path_for(:edit_tags, @form)
