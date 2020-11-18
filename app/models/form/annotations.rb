@@ -51,7 +51,9 @@ class Form
     if Rails.env.test?
 
       def to_h
-        {annotation_set: @annotation_set.map{|k,v| @annotation_set[k] = v.map{|x| x.to_h}}, domain_list: @domain_list}
+        annotations = Hash.new{|h,k| h[k] = [] }
+        @annotation_set.each{|k,v| annotations[k] = v.map{|x| x.to_h}}
+        {annotation_set: annotations, domain_list: @domain_list}
       end
 
     end
@@ -65,40 +67,37 @@ class Form
       query_string = %Q{
         SELECT ?item ?domain_prefix ?sdtm_var_name ?domain_long_name ?sdtm_topic_name ?sdtm_topic_sub WHERE              
         {     
-          ?sdtm_domain bd:basedOnClass ?sdtm_class .               
-          ?sdtm_class bd:includesColumn ?topic_var .               
-          ?topic_var bd:classifiedAs ?classification .                                           
-          ?classification isoC:prefLabel "Topic"^^xsd:string .               
-          ?topic_var bd:isA ?canonical_reference .               
-          ?bc_root bc:identifiedBy ?item_identifier .               
-          ?item_identifier bc:hasComplexDatatype/bc:hasProperty ?bc_identifier .
-          ?bc_identifier bc:isA ?canonical_reference .  
-          ?bc_identifier bc:hasCodedValue/bo:reference/th:notation ?sdtm_topic_sub .           
-          ?sdtm_domain bd:prefix ?domain_prefix .                              
-          ?sdtm_domain bd:includesColumn ?sdtm_domain_var .                                            
-          ?sdtm_domain isoC:label ?domain_long_name .
-          ?sdtm_domain_var bd:name ?sdtm_var_name .
-          ?domain_variable bd:isA ?canonical_reference . 
-          ?sdtm_domain bd:includesColumn ?domain_variable .
-          ?domain_variable bd:name ?sdtm_topic_name .
+          ?sdtm_domain bd:basedOnClass/bd:includesColumn ?topic_var .                          
+          ?topic_var bd:classifiedAs/isoC:prefLabel "Topic"^^xsd:string .
+          ?sdtm_domain bd:includesColumn ?sdtm_topic_var .                          
+          ?sdtm_topic_var bd:basedOnClassVariable ?topic_var .
+          ?sdtm_topic_var bd:name ?sdtm_topic_name . 
+          ?topic_var bd:isA ?canonical_reference .                          
+          ?bc_root bc:identifiedBy/bc:hasComplexDatatype/bc:hasProperty ?bc_identifier .           
+          ?bc_identifier bc:isA ?canonical_reference .             
+          ?bc_identifier bc:hasCodedValue/bo:reference/th:notation ?sdtm_topic_sub .                      
+          ?sdtm_domain bd:prefix ?domain_prefix .                                         
+          ?sdtm_domain isoC:label ?domain_long_name .           
           {                                  
-            SELECT ?item ?bc_root ?sdtm_domain_var ?sdtm_domain WHERE                  
+            SELECT ?item ?bc_root ?sdtm_domain_var ?sdtm_var_name ?sdtm_domain WHERE                  
             {                           
               #{@form.uri.to_ref} bf:hasGroup/bf:hasSubGroup* ?group .                                      
               ?group bf:ordinal ?gord .                                      
-              ?group bf:hasItem ?item .                                      
-              ?item bf:hasProperty ?op_ref1 .                                      
-              ?op_ref1 bo:reference ?bc_property .
-              ?bc_property bc:isA ?ref .                                      
-              ?sdtm_domain_var bd:isA ?ref .                                      
-              ?sdtm_domain bd:includesColumn ?sdtm_domain_var .                   
-              ?sdtm_domain ^bo:associatedWith ?assoc .                   
-              ?bc_root ^bo:theSubject ?assoc .                   
-              ?bc_root (bc:hasItem/bc:hasComplexDatatype/bc:hasProperty) ?bc_property .                  
-              #?bc_property bc:ordinal ?pord .                                  
-            }                                 
+              ?group bf:hasItem ?item .
+              ?item bf:ordinal ?pord .
+              ?item bf:hasProperty ?op_ref1 .
+              ?group bf:hasItem/bf:hasProperty ?op_ref1 .                                                     
+              ?op_ref1 bo:reference ?bc_property .               
+              ?bc_property bc:isA ?ref .                                                     
+              ?sdtm_domain_var bd:isA ?ref .                                                     
+              ?sdtm_domain_var bd:name ?sdtm_var_name .           
+              ?sdtm_domain bd:includesColumn ?sdtm_domain_var .                                   
+              ?sdtm_domain ^bo:associatedWith ?assoc .                                  
+              ?bc_root ^bo:theSubject ?assoc .                                  
+              ?bc_root (bc:hasItem/bc:hasComplexDatatype/bc:hasProperty) ?bc_property .         
+            } ORDER BY ?gord ?pord                             
           }                          
-        } ORDER BY ?gord ?pord  
+        } 
       }   
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoT, :isoI, :isoC, :th])
       triples = query_results.by_object_set([:item, :domain_prefix, :sdtm_var_name, :domain_long_name, :sdtm_topic_name, :sdtm_topic_sub])

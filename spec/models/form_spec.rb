@@ -218,10 +218,10 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       load_data_file_into_triple_store("complex_datatypes.ttl")
     end
 
-    # it "to acrf I" do
-    #   form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
-    #   check_file_actual_expected(form.acrf, sub_dir, "to_acrf_1.yaml", equate_method: :hash_equal, write_file: true)
-    # end
+    it "to acrf I" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_1.yaml", equate_method: :hash_equal)
+    end
 
     it "to acrf II" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
