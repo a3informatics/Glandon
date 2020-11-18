@@ -24,7 +24,6 @@
 
   }
 
-
   // All tables tds
   table > tbody > tr > td {
     vertical-align: middle;
@@ -39,6 +38,14 @@
   // All tables except crf-input-fields
   table:not(.crf-input-field), table:not(.crf-input-field) > tbody > tr > td {
     border: none;
+  }
+
+  table.crf-input-field {
+      width: auto !important ; 
+  }
+
+  table.crf-input-field td.no-border {
+      border: none !important ; 
   }
 
   h4 {
