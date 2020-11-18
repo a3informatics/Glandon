@@ -140,8 +140,8 @@ export default class HistoryPanel extends TablePanel {
       { url: data.current_path, icon: "icon-current", text: "Make current", disabled: (data.indicators.current), endOffset: 2, types: ["all"] },
       { url: data.clone_path, target: "#newTerminologyModal", icon: "icon-copy", text: "Clone", endOffset: 2, types: ["thesauri"], dataToggle: "modal" },
       { url: data.compare_path, target: "#", icon: "icon-compare", text: "Compare", dataToggle: "modal", endOffset: 2, types: ["thesauri", "cdisc_term"] },
-      { url: data.crf_path, icon: "icon-forms", text: "CRF", endOffset: 1, types: ["form"] },
-      { url: data.acrf_path, icon: "icon-forms", text: "aCRF", endOffset: 1, types: ["form"] }
+      { url: data.crf_path, icon: "icon-form-view", text: "CRF", endOffset: 1, types: ["form"] },
+      { url: data.acrf_path, icon: "icon-form-view", text: "aCRF", endOffset: 1, types: ["form"] }
     ]
   }
 
