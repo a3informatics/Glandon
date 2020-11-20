@@ -369,6 +369,13 @@ class Form::Group::Normal < Form::Group
         html += start_row(false)
         sg.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
           next if item.to_h[:is_common] == true
+          pa = item.property_annotations(annotations)
+          html += mapping_cell(pa, annotations)
+        end
+        html += end_row
+        html += start_row(false)
+        sg.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
+          next if item.to_h[:is_common] == true
           bc_property_ref = Form::Item::BcProperty.find(item.has_property).reference
           property = BiomedicalConcept::PropertyX.find(bc_property_ref)
           if property.has_coded_value.length == 0
@@ -376,13 +383,6 @@ class Form::Group::Normal < Form::Group
           else
             html += terminology_cell(item)
           end
-        end
-        html += end_row
-        html += start_row(false)
-        sg.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
-          next if item.to_h[:is_common] == true
-          pa = item.property_annotations(annotations)
-          html += mapping_cell(pa, annotations)
         end
         html += end_row
       end
