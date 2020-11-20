@@ -166,9 +166,4 @@ class Form::Group::Bc < Form::Group
     group
   end
 
-  # Is a BC only group
-  def is_bc_only_group?
-    return true
-  end
-
 end
