@@ -55,7 +55,7 @@ class Form::Group::Normal < Form::Group
     group.delete(:has_item)
     group[:has_common] = []
     results = [group]
-    self.has_common.sort_by {|x| x.ordinal}.each do |cm|
+    self.has_common_objects.sort_by {|x| x.ordinal}.each do |cm|
       results += cm.get_item
     end
     children_ordered.each do |node|
@@ -379,6 +379,11 @@ class Form::Group::Normal < Form::Group
         end
         html += end_row
         html += start_row(false)
+        sg.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
+          next if item.to_h[:is_common] == true
+          pa = item.property_annotations(annotations)
+          html += mapping_cell(pa, annotations)
+        end
         html += end_row
       end
       html += '</tr>'
