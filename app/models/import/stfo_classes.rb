@@ -70,6 +70,22 @@ module Import::STFOClasses
       false
     end
 
+    # CDISC Subset?. Is the Code List a subset of a CDISC one?
+    #
+    # @param [Thesaurus] ct the reference thesaurus
+    # @return [Thesaurus::ManagedConcept] either nil if not an extension or the extension item.
+    def cdisc_subset?(ct)
+      return false if !NciThesaurusUtility.c_code?(self.identifier)
+      return false if subset?
+      ref_ct = reference(ct)
+      return false if ref_ct.nil?
+      ref_ct.narrower_objects
+      extra = ref_ct.child_identifiers - self.child_identifiers
+      return true if extra.any?
+      add_log("CDISC subset check failed, the item identifiers for code list #{self.identifier}}") 
+      false
+    end
+
     # Extension?. Is the Code List an extension code list?
     #
     # @param [Thesaurus] ct the reference thesaurus
@@ -80,6 +96,9 @@ module Import::STFOClasses
       ref_ct = reference(ct)
       return false if ref_ct.nil?
       ref_ct.narrower_objects
+      extra = ref_ct.child_identifiers - self.child_identifiers
+      #return false if extra.any?
+      return false if STFOCodeListItem.ncit_set?(self.child_identifiers) and extra.any?
       others = self.child_identifiers - ref_ct.child_identifiers
       return true if STFOCodeListItem.sponsor_identifier_referenced_or_ncit_set?(others) and others.any?
       return true if others.empty? && self.ranked?
@@ -120,18 +139,26 @@ module Import::STFOClasses
     #
     # @return [Boolean] true if a subset, false otherwise
     def ranked?
-      self.narrower.each do |child|
-        return false unless child.respond_to?(:rank)
-        return false if child.rank.blank?
-      end
+      return false if self.narrower.empty?
+      ranks = self.narrower.map {|child| child.respond_to?(:rank) ? child.rank : ""}.reject{|x| x.blank?}
+      return false if ranks.empty?
       true
     end
 
     def add_ranking
+      return unless ranked?
       list = Thesaurus::Rank.new
       list.uri = list.create_uri(self.uri)  
       previous = nil
-      self.narrower.sort_by{|x| x.rank}.each do |child| 
+      ranked_items = []
+      self.narrower.each do |child| 
+        next unless child.respond_to?(:rank)
+        next if child.rank.blank?
+        ranked_items << child
+      end
+      missing = child_identifiers - ranked_items.map{|x| x.identifier}
+      add_warning("Missing items while adding ranks, identifiers missing: #{missing}.") if missing.any?
+      ranked_items.sort_by{|x| x.rank}.each do |child| 
         rank = Thesaurus::RankMember.new(item: child, rank: child.rank)
         rank.uri = rank.create_uri(rank.uri)
         previous.nil? ? list.members = rank : previous.member_next = rank
@@ -201,14 +228,13 @@ module Import::STFOClasses
       nil
     end
 
-    def to_cdisc_subset(ct)
+    def to_cdisc_subset(ct, keep_identifier=false)
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
       ref_ct = reference(ct) # do early before identifier updated.
       new_narrower = []
-      #self.identifier = Thesaurus::ManagedConcept.new_identifier
-      self.identifier = new_identifier(self.label, self.notation)
       old_narrower = self.narrower.dup
       self.narrower = []
+      self.identifier = new_identifier(self.label, self.notation) unless keep_identifier
       self.update_identifier(self.identifier)
       old_narrower.each do |child|
         new_child = find_in_cl(ref_ct, child.identifier)
@@ -544,7 +570,7 @@ module Import::STFOClasses
       triples = query_results.by_object_set([:s, :th, :v]).map{|x| {uri: x[:s], version: x[:v]}}
     end
 
-    # Find a new identifier. Match on label and notaiton or generate a new one.
+    # Find a new identifier. Match on label and notation or generate a new one.
     def new_identifier(label, notation)
       results = Thesaurus::ManagedConcept.where(label: label, notation: notation)
       if results.empty?
@@ -555,9 +581,11 @@ module Import::STFOClasses
         return results.first.identifier
       else
         add_error("Found multiple matching labels/notation for new identifier, identifier #{self.identifier}")
+        identifier
       end
     rescue => e
       add_error("Exception in new_identifier, #{e}. Label: #{label}, identifier: #{identifier}.")
+      identifier
     end
 
     # Add error
@@ -610,6 +638,22 @@ module Import::STFOClasses
     # @return [Boolean] true if the set of identifier matches the sponsor or referenced format, otherwise false.
     def self.sponsor_identifier_referenced_or_ncit_set?(set)
       set.each {|x| return false if !sponsor_child_identifier_format?(x) && !sponsor_referenced_format?(x) && !ncit_format?(x)}
+      true
+    end
+
+    # NCIt Set? Check set of identifiers match the sponsor or referenced format
+    #
+    # @return [Boolean] true if the set of identifier matches the sponsor or referenced format, otherwise false.
+    def self.ncit_set?(set)
+      set.each {|x| return false unless ncit_format?(x)}
+      true
+    end
+
+    # NCIt Set? Check set of identifiers match the sponsor or referenced format
+    #
+    # @return [Boolean] true if the set of identifier matches the sponsor or referenced format, otherwise false.
+    def self.referenced_or_ncit_set?(set)
+      set.each {|x| return false unless sponsor_referenced_format?(x) || ncit_format?(x)}
       true
     end
 

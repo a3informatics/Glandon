@@ -149,6 +149,9 @@ private
         #child.update_identifier(child.identifier)
         #ref = child
         ref = child.to_sponsor
+      elsif child.cdisc_subset?(@th)
+        add_log("CDISC subset detected: #{child.identifier}")
+        ref = child.to_cdisc_subset(@th, true)
       else
         add_error(@parent, "Code list type not detected, identifier '#{child.identifier}'.")
         ref = nil
