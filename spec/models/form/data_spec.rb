@@ -496,7 +496,7 @@ describe Form do
 
   end
 
-  describe "Create simple form" do
+  describe "Create hackathon form" do
     before :all do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -525,11 +525,12 @@ describe Form do
     end
 
     it "create simple form" do
-      form = Form.create(label: "Form", identifier: "XXX")
+      form = Form.create(label: "Form", identifier: "AAA")
       form.add_child({type:"normal_group"})
       form = Form.find_full(form.uri)
       bci_1 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       bci_2 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      bci_3 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       normal_group.add_child({type:"question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -551,6 +552,63 @@ describe Form do
       full_path = simple_form.to_ttl
   #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_form.ttl")
     end
+  end
+
+  describe "Create simple forms" do
+    before :all do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")   
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "Bc only group" do
+      form = Form.create(label: "Form", identifier: "F001")
+      form.add_child({type:"normal_group"})
+      bci_1 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      bci_2 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      bci_3 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
+      bci_4 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/RACE/V1#BCI"))
+      form = Form.find_full(form.uri)
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id, bci_3.id, bci_4.id]})
+      simple_form = Form.find_full(form.uri)
+      uri = simple_form.has_identifier.has_scope.uri
+      simple_form.has_identifier.has_scope = uri
+      #simple_form = Form.find_full(form.uri)
+      full_path = simple_form.to_ttl
+  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "bc_only_group_form.ttl")
+    end
+
+    it "Question only group" do
+      form = Form.create(label: "Form", identifier: "F002")
+      form.add_child({type:"normal_group"})
+      form = Form.find_full(form.uri)
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.add_child({type:"question"})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
+      question.mapping = "VSORRESU"
+      question.datatype = "datetype" 
+      question.question_text = "Question text 1"
+      question.save
+      normal_group.add_child({type:"question"})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      question = Form::Item::Question.find_full(normal_group.has_item.second.uri)
+      question.mapping = "VSORRES"
+      question.datatype = "datetype" 
+      question.question_text = "Question text 2"
+      question.save
+      simple_form = Form.find_full(form.uri)
+      full_path = simple_form.to_ttl
+  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "question_only_group_form.ttl")
+    end
+
+
   end
 
 end
