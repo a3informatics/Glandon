@@ -157,7 +157,7 @@ module Import::STFOClasses
         ranked_items << child
       end
       missing = child_identifiers - ranked_items.map{|x| x.identifier}
-      add_warning("Missing items while adding ranks, identifiers missing: #{missing}.") if missing.any?
+      add_warning("Identifiers in #{self.identifier} for which no rank is set: #{missing.join(", ")}.") if missing.any?
       ranked_items.sort_by{|x| x.rank}.each do |child| 
         rank = Thesaurus::RankMember.new(item: child, rank: child.rank)
         rank.uri = rank.create_uri(rank.uri)

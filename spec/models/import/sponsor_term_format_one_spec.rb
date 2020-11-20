@@ -322,7 +322,7 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     public_file_exists?("test", filename)
     copy_file_from_public_files("test", filename, sub_dir)
-  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_26b.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_26b.ttl")
     check_ttl_fix_v2(filename, "import_expected_26b.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
@@ -382,7 +382,7 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     public_file_exists?("test", filename)
     copy_file_from_public_files("test", filename, sub_dir)
-  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_32a.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_32a.ttl")
     check_ttl_fix_v2(filename, "import_expected_32a.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
@@ -567,7 +567,7 @@ puts colourize("Load 3.0 excel ...", "blue")
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
     actual = read_public_yaml_file("test", filename)
-   #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_20.yaml")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_20.yaml")
     check_file_actual_expected(actual, sub_dir, "import_errors_expected_20.yaml")
     #copy_file_from_public_files("test", filename, sub_dir)
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
