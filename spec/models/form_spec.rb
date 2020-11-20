@@ -192,6 +192,49 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
   end
 
+  describe "CRF Tests (new forms)" do
+    
+    before :all do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", 
+        "forms/bc_only_group_form.ttl", "forms/question_only_group_form.ttl", "forms/complex_form.ttl", "forms/simple_form.ttl", "forms/repeating_bc_only_group_form.ttl", "forms/repeating_question_only_group_form.ttl"  ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+    end
+
+    it "to crf, bc only group" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F001/V1#F"))
+      check_file_actual_expected(form.crf, sub_dir, "to_crf_7.yaml", equate_method: :hash_equal)
+    end
+
+    it "to crf, question only group" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F002/V1#F"))
+      check_file_actual_expected(form.crf, sub_dir, "to_crf_8.yaml", equate_method: :hash_equal)
+    end
+
+    it "to crf, simple form" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F003/V1#F"))
+      check_file_actual_expected(form.crf, sub_dir, "to_crf_9.yaml", equate_method: :hash_equal)
+    end
+
+    it "to crf, complex form" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F004/V1#F"))
+      check_file_actual_expected(form.crf, sub_dir, "to_crf_10.yaml", equate_method: :hash_equal)
+    end
+    
+    it "to crf, repeating bc only group" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F005/V1#F"))
+      check_file_actual_expected(form.crf, sub_dir, "to_crf_11.yaml", equate_method: :hash_equal)
+    end
+    
+    it "to crf, repeating question only group" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F006/V1#F"))
+      check_file_actual_expected(form.crf, sub_dir, "to_crf_12.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
   describe "aCRF Tests" do
     
     before :all do
@@ -236,6 +279,65 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
     it "to acrf hackathon" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#F"))
       check_file_actual_expected(form.acrf, sub_dir, "to_acrf_hackathon_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "aCRF Tests (new forms)" do
+    
+    before :all do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", 
+        "forms/bc_only_group_form.ttl", "forms/question_only_group_form.ttl", "forms/complex_form.ttl", "forms/simple_form.ttl", "forms/repeating_bc_only_group_form.ttl", "forms/repeating_question_only_group_form.ttl"  ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V5.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+      load_data_file_into_triple_store("association.ttl") 
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+    end
+
+    it "to crf, bc only group" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F001/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_4.yaml", equate_method: :hash_equal)
+    end
+
+    it "to crf, question only group" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F002/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_5.yaml", equate_method: :hash_equal)
+    end
+
+    it "to crf, simple form" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F003/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_6.yaml", equate_method: :hash_equal)
+    end
+
+    it "to crf, complex form" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F004/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_7.yaml", equate_method: :hash_equal)
+    end
+    
+    it "to crf, repeating bc only group" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F005/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_8.yaml", equate_method: :hash_equal)
+    end
+    
+    it "to crf, repeating question only group" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F006/V1#F"))
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_9.yaml", equate_method: :hash_equal)
     end
 
   end
