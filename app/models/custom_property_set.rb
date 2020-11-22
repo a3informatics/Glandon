@@ -11,6 +11,10 @@ class CustomPropertySet
     @items = []
   end
 
+  def clear
+    @items = []
+  end
+
   # <<
   #
   # @param [Object] item the object to be added

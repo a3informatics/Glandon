@@ -90,6 +90,7 @@ class IsoConceptV2
         x.applies_to = self
         @custom_properties << x
       end
+      other.custom_properties.clear
     end
 
   end
