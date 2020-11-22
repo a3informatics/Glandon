@@ -21,6 +21,32 @@ describe "Import::SponsorTermFormatOne" do
     @object.save
   end
 
+  def ct_custom_properties(uri)
+    query_string = %Q{
+      SELECT ?cl ?clid ?cln ?cli ?cliid ?clin ?custname ?custvalue WHERE  
+      {
+          VALUES ?s {#{uri.to_ref}}
+          ?s th:isTopConceptReference/bo:reference ?cl .
+          ?cl th:identifier ?clid .  
+          ?cl th:notation ?cln .
+          ?cl th:narrower ?cli .
+          ?cli th:identifier ?cliid .  
+          ?cli th:notation ?clin .
+          OPTIONAL {
+            ?cli ^isoC:appliesTo ?ext . 
+            ?ext rdf:type isoC:CustomProperty .
+            ?ext isoC:context ?cl . 
+            ?ext isoC:value ?custvalue .
+            ?ext isoC:customPropertyDefinedBy ?def .
+            ?def isoC:label ?custname .
+        }
+      } ORDER BY ?cln ?clin ?custname
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+    query_results.by_object_set([:cl, :clid, :cln, :cli, :cliid, :clin, :custname, :custvalue]).map{|x| {cl_uri: x[:cl].to_s, cl_identifier: x[:clid], 
+      cl_notation: x[:cln], cli_uri: x[:cli].to_s, cli_identifier: x[:cliid], cli_notation: x[:clin], cust_def_name: x[:custname], cust_def_value: x[:custvalue]}}
+  end
+
 	before :each do
     load_files(schema_files, [])
     load_data_file_into_triple_store("mdr_identification.ttl")
@@ -136,10 +162,13 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_6.ttl")
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_6.ttl")
     check_ttl_fix_v2(filename, "import_expected_6.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
+    load_local_file_into_triple_store(sub_dir, "import_expected_6.ttl")
+    actual = ct_custom_properties(Uri.new(uri: "http://www.s-cubed.dk/V2_III/V1#TH"))
+    check_file_actual_expected(actual, sub_dir, "custom_properties_expected_6.yaml", write_file: true)
   end
 
   it "import, no errors, version 2, short IV" do

@@ -85,6 +85,13 @@ class IsoConceptV2
       self.custom_properties.diff?(previous.custom_properties)
     end
 
+    def custom_properties_add(other)
+      other.custom_properties.each do |x| 
+        x.applies_to = self
+        @custom_properties << x
+      end
+    end
+
   end
 
 end

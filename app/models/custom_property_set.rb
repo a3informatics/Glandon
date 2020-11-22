@@ -40,12 +40,12 @@ class CustomPropertySet
     @items.map{|x| {name: x.custom_property_defined_by.label, value: x.value}}
   end
 
-  # Each. Iterate over the proprites
+  # Each. Iterate over the items
   #
   # @return [Enumerator] returns the enumerator for the collection
   def each
-    @items.each do |property| 
-      yield(property)
+    @items.each do |item| 
+      yield(item)
     end
   end
 

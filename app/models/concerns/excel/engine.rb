@@ -49,6 +49,7 @@ class Excel::Engine
             params.merge!({row: row, col: col})
             params[:mapping] ||= {map: {}, exact: true}
             params[:can_be_empty] ||= false
+            params[:parent] = parent
             action_object == :parent ? params[:object] = parent : params[:object] = child
             if action_method == :create_parent
               create_parent(params) {|result| parent = result}
@@ -310,18 +311,19 @@ class Excel::Engine
   # @option params [Integer] :row the cell row
   # @option params [Integer] :col the cell column
   # @option params [Object] :object the object in which the property is being set
+  # @option params [Object] :parent the parent object
   # @option params [Hash] :mapping the mapping from spreadsheet values to internal values
   # @option params [String] :property the name of the property holding the set of custom values
-  # @option params [Hash] :additonal hash containing the tag path, custom name and label
+  # @option params [Hash] :additonal hash containing the custom name and label
   # @return [Void] no return
   def set_property_with_custom(params)
-    check_params(__method__.to_s, params, [:row, :col, :object, :mapping, :property, :additional])
+    check_params(__method__.to_s, params, [:row, :col, :object, :parent, :mapping, :property, :additional])
     value = check_value(params[:row], params[:col], true)
     value = check_mapped(params[:row], params[:col], params[:mapping][:map]) unless params[:mapping][:map].empty?
     value = value.blank? ? "" : value
     definition = find_custom(params[:additional][:definition], params[:row], params[:col])
     return if definition.blank?
-    add_custom(params[:object], params[:property], value, definition)
+    add_custom(params[:object], params[:parent], params[:property], value, definition)
   end
 
   # Set Property With Tag. Set a property to a tag
@@ -766,10 +768,11 @@ private
   end
 
   # Add custom
-  def add_custom(object, property, value, definition)
+  def add_custom(object, parent, property, value, definition)
     custom_set = get_temporary(object, property)
     custom_set ||= CustomPropertySet.new
-    item = CustomPropertyValue.new(value: value, custom_property_defined_by: definition, applies_to: nil, context: nil)
+byebug
+    item = CustomPropertyValue.new(value: value, custom_property_defined_by: definition, applies_to: object, context: [parent])
     #item.uri = item.create_uri(item.class.base_uri)
     custom_set << item
     property_set_value(object, property, custom_set)

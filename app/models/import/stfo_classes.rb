@@ -198,6 +198,7 @@ module Import::STFOClasses
         if new_child.nil?
           add_error("Subset of extension, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
+          new_child.custom_properties_add(child)
           new_narrower << new_child
         end
       end
