@@ -434,6 +434,7 @@ describe "Import::SponsorTermFormatOne" do
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       load_cdisc_term_versions(1..62)
       load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
       load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
@@ -541,23 +542,26 @@ describe "Import::SponsorTermFormatOne" do
       query_results.by_object_set([:s, :v]).map{|x| {uri: x[:s], version: x[:v]}}
     end
 
-    def ct_tags(uri)
+    def ct_custom_properties(uri)
       %Q{
-        SELECT DISTINCT ?l ?v ?d ?clid ?cln ?cll ?cliid ?tag WHERE
+        SELECT ?cl ?clid ?cln ?cli ?cliid ?clin ?custname ?custvalue WHERE  
         {
-          #{uri.to_ref} isoC:label ?l .
-          #{uri.to_ref} isoT:creationDate ?d .
-          #{uri.to_ref} isoT:hasIdentifier/isoI:version ?v .
-          #{uri.to_ref} th:isTopConceptReference/bo:reference ?cl .
-          ?cl th:identifier ?clid . 
-          ?cl th:notation ?cln . 
-          ?cl isoC:label ?cll . 
-          ?cl th:narrower ?cli .
-          ?cli th:identifier ?cliid .             
-          ?cli ^isoC:appliesTo ?y .
-          ?y isoC:context ?cl .
-          ?y isoC:classifiedAs/isoC:prefLabel ?tag .
-        } ORDER BY ?cll ?cliid ?tag
+            VALUES ?s {#{uri.to_ref}}
+            ?s th:isTopConceptReference/bo:reference ?cl .
+            ?cl th:identifier ?clid .  
+            ?cl th:notation ?cln .
+            ?cl th:narrower ?cli .
+            ?cli th:identifier ?cliid .  
+            ?cli th:notation ?clin .
+            OPTIONAL {
+              ?cli ^isoC:appliesTo ?ext . 
+              ?ext rdf:type isoC:CustomProperty .
+              ?ext isoC:context ?cl . 
+              ?ext isoC:value ?custvalue .
+              ?ext isoC:customPropertyDefinedBy ?def .
+              ?def isoC:label ?custname .
+          }
+        } ORDER BY ?cln ?clin ?custname
       }
     end
 
@@ -573,41 +577,46 @@ describe "Import::SponsorTermFormatOne" do
       results
     end
 
-    # Test removed, tags no longer used.
-    # it "tag analysis" do
-    #   ct_set.each_with_index do |v, index|
-    #     print "Processing: #{v[:uri]}, v#{v[:version]}  "
-    #     query_results = Sparql::Query.new.query(ct_tags(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
-    #     print ".."
-    #     results = query_results.by_object_set([:l, :v, :d, :clid, :cliid, :tag]).map{|x| {label: x[:l], version: x[:v], date: x[:d], code_list: x[:clid], code_list_notation: x[:cln], code_list_label: x[:cll], code_list_item: x[:cliid], tag: x[:tag]}}
-    #     print ".."
-    #     overall = {}
-    #     results.each do |x|
-    #       key = "#{x[:code_list_notation]}"
-    #       if !overall.key?(key) 
-    #         overall[key] = {}
-    #         overall[key][:name] = x[:code_list_label]
-    #         overall[key][:short_name] = x[:code_list_notation]
-    #         overall[key][:identifier] = x[:code_list]
-    #         overall[key][:items] = {}
-    #       end
-    #       overall[key][:items][x[:code_list_item]] = [] unless overall[key][:items].key?(x[:code_list_item]) 
-    #       overall[key][:items][x[:code_list_item]] << x[:tag]
-    #     end
-    #     puts ".."
-    #     check_file_actual_expected(overall, sub_dir, "tags_actual_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
-    #     #check_file_actual_expected(overall, sub_dir, "tags_expected_#{index+1}.yaml", equate_method: :hash_equal)
-        
-    #     actual = read_yaml_file(sub_dir, "tags_actual_#{index+1}.yaml")
-    #     expected = read_yaml_file(sub_dir, "tags_expected_#{index+1}.yaml")
-    #     expected_minus_empty = expected.keys - empty_code_lists(expected)
-    #     missing = expected_minus_empty - actual.keys
-    #     extra = actual.keys - expected_minus_empty
-    #     check_file_actual_expected(missing, sub_dir, "tags_missing_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
-    #     check_file_actual_expected(extra, sub_dir, "tags_extra_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
-    #   end
+    it "custom property analysis" do
+      counts = [
+        {cl: 803, cli: 22322},
+        {cl: 1080, cli: 31930},
+        {cl: 1174, cli: 32800},
+      ]
+      ct_set.each_with_index do |v, index|
+        print "Processing: #{v[:uri]}, v#{v[:version]}  "
+        query_results = Sparql::Query.new.query(ct_custom_properties(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
+        print ".."
+        results = query_results.by_object_set([:cl, :clid, :cln, :cli, :cliid, :clin, :custname, :custvalue]).map{|x| {cl_uri: x[:cl], cl_identifier: x[:clid], 
+          cl_notation: x[:cln], cli_uri: x[:cli], cli_identifier: x[:cliid], cli_notation: x[:clin], cust_def_name: x[:custname], cust_def_value: x[:custvalue]}}
+        print ".."
+        overall = {}
+        cl_count = 0
+        cli_count = 0
+        results.each do |x|
+          key = x[:cl_identifier].to_sym
+          if !overall.key?(key) 
+            overall[key] = {}
+            overall[key][:notation] = x[:cl_notation]
+            overall[key][:items] = {}
+            cl_count += 1
+          end
+          second_key = x[:cli_identifier].to_sym
+          if !overall[key][:items].key?(second_key) 
+            overall[key][:items][second_key] = {} 
+            overall[key][:items][second_key][:notation] = x[:cli_notation]
+            cli_count += 1
+          end
+          third_key = x[:cust_def_name].to_variable_style.to_sym
+          overall[key][:items][second_key][third_key] = x[:cust_def_value]
+        end
+        puts ".."
+        check_file_actual_expected(overall, sub_dir, "custom_properties_expected_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)        
+        expect(cl_count).to eq(counts[index][:cl])
+        expect(cli_count).to eq(counts[index][:cli])
+      end
   
-    # end
+    end
 
   end
 
