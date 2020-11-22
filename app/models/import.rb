@@ -108,6 +108,8 @@ class Import < ApplicationRecord
     parent.to_sparql(sparql, true)
     objects[:managed_children].each do |child|
       child.to_sparql(sparql, true)
+    end
+    objects[:managed_children].each do |child|
       process_custom_properties(child, child, sparql)  
       child.children.each do |item|
         process_custom_properties(item, child, sparql)  
@@ -250,10 +252,10 @@ private
     return if item.custom_properties.nil?
     item.custom_properties.each do |custom_value|
       custom_value.uri = custom_value.create_uri(custom_value.class.base_uri)
-      custom_value.applies_to = item.uri
-      custom_value.context = [context.uri]
+      custom_value.applies_to = item if custom_value.applies_to.nil?
       custom_value.to_sparql(sparql)
     end
+    item.custom_properties.clear
   end
 
   # Get the owner short name
