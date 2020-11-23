@@ -138,9 +138,7 @@ export default class TablePanel {
    */
   destroy() {
 
-    this.table.clear()
-              .destroy();
-
+    this.table.destroy();
     $(`${ this.selector } tbody`).empty();
 
   }
@@ -348,7 +346,7 @@ export default class TablePanel {
 
     let minHeight = 300,
         docHeight = $( document ).innerHeight(),
-        yHeight = Math.max( docHeight - 250, minHeight );
+        yHeight = Math.max( docHeight - 200, minHeight );
 
     return {
       autoWidth: true,
@@ -379,7 +377,7 @@ export default class TablePanel {
         emptyTable: 'No data.',
         processing: renderSpinner( 'small' )
       },
-      buttons: this.buttons
+      buttons: [...this.buttons]
     }
 
     if ( this.autoHeight )
