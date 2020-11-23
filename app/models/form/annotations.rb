@@ -140,7 +140,7 @@ class Form
       uri = entry[:item].to_s
       entry[:sdtm_topic_name].nil? ? entry[:sdtm_topic_name] = "" : entry[:sdtm_topic_name]
       entry[:sdtm_topic_sub].nil? ? entry[:sdtm_topic_sub] = "" : entry[:sdtm_topic_sub]
-      @annotation_set[uri] << Annotation.new({uri: uri, domain_prefix: entry[:domain_prefix], domain_long_name: entry[:domain_long_name], sdtm_variable:entry[:sdtm_var_name], sdtm_topic_variable: entry[:sdtm_topic_name], sdtm_topic_value: entry[:sdtm_topic_sub] })
+      @annotation_set[uri] << Form::Annotation.new({uri: uri, domain_prefix: entry[:domain_prefix], domain_long_name: entry[:domain_long_name], sdtm_variable:entry[:sdtm_var_name], sdtm_topic_variable: entry[:sdtm_topic_name], sdtm_topic_value: entry[:sdtm_topic_sub] })
     end
 
     def set_domain_prefix_and_long_name(annotation)

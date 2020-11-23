@@ -34,7 +34,7 @@ class Form < IsoManagedV2
   #
   # @return [String] String of HTML form representation with annotations
   def acrf
-    annotations = Annotations.new(self)
+    annotations = Form::Annotations.new(self)
     to_crf(annotations)
   end
 
