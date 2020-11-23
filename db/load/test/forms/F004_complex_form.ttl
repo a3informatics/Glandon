@@ -21,15 +21,15 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2020-11-20T15:10:16+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-20T15:10:16+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2020-11-23T11:37:00+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-23T11:37:00+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
-	bf:hasGroup :NG_9681a298-f175-4e85-8673-0064620ddf0e ;
-	bf:hasGroup :NG_d263865e-0d17-47e3-af80-d41732a57561 ;
-	bf:hasGroup :NG_09612846-070c-4f95-be13-33349c13df15 ;
-	bf:hasGroup :NG_49b9eb7c-4b53-4c89-9a25-88cc6abe8ebf ;
+	bf:hasGroup :NG_2024c24f-b75d-41d8-882c-b9777539a66d ;
+	bf:hasGroup :NG_ba50bff2-41e4-4f05-84a3-f01b18abfca9 ;
+	bf:hasGroup :NG_61219503-7f00-4ccd-8e25-ba96853209a7 ;
+	bf:hasGroup :NG_0726ac59-a96c-4a3f-8660-045a5709c1e3 ;
 .
 :F_RS
 	rdf:type isoR:RegistrationState ;
@@ -43,19 +43,6 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
-<http://www.assero.co.uk/RA#DUNS123456789>
-	rdf:type isoR:RegistrationAuthority ;
-	isoR:organizationIdentifier "123456789"^^xsd:string ;
-	isoR:internationalCodeDesignator "DUNS"^^xsd:string ;
-	isoR:owner "true"^^xsd:boolean ;
-	isoR:raNamespace <http://www.assero.co.uk/NS#SCUBED> ;
-.
-<http://www.assero.co.uk/NS#SCUBED>
-	rdf:type isoI:Namespace ;
-	isoI:shortName "S-cubed"^^xsd:string ;
-	isoI:name "S-cubed Aps"^^xsd:string ;
-	isoI:authority "www.s-cubed.dk"^^xsd:string ;
-.
 :F_SI
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "F004"^^xsd:string ;
@@ -64,18 +51,18 @@
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-:NG_9681a298-f175-4e85-8673-0064620ddf0e
+:NG_2024c24f-b75d-41d8-882c-b9777539a66d
 	rdf:type bf:NormalGroup ;
 	isoC:label "Not set"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :Q_925f1bd1-c594-475e-ab9b-cd1f78968956 ;
-	bf:hasItem :Q_cae44486-0ca7-44ab-a1d8-2b8dd132aa33 ;
+	bf:hasItem :Q_a5038807-9cd8-41ef-bea1-b1432829db1d ;
+	bf:hasItem :Q_b4131a11-a21f-4dcc-b412-2954ee02dacf ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-:Q_925f1bd1-c594-475e-ab9b-cd1f78968956
+:Q_a5038807-9cd8-41ef-bea1-b1432829db1d
 	rdf:type bf:Question ;
 	isoC:label "Question 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -87,7 +74,7 @@
 	bf:mapping "VSORRESU"^^xsd:string ;
 	bf:questionText "Question text 1"^^xsd:string ;
 .
-:Q_cae44486-0ca7-44ab-a1d8-2b8dd132aa33
+:Q_b4131a11-a21f-4dcc-b412-2954ee02dacf
 	rdf:type bf:Question ;
 	isoC:label "Question 2"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
@@ -99,19 +86,19 @@
 	bf:mapping "VSORRES"^^xsd:string ;
 	bf:questionText "Question text 2"^^xsd:string ;
 .
-:NG_d263865e-0d17-47e3-af80-d41732a57561
+:NG_ba50bff2-41e4-4f05-84a3-f01b18abfca9
 	rdf:type bf:NormalGroup ;
 	isoC:label "Not set"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :Q_40888ca2-83ee-4167-be48-eacb02adef98 ;
-	bf:hasItem :PL_d34bf2ca-eba9-43de-8387-ea2ad6b280dc ;
-	bf:hasItem :TL_b199bed3-f974-4504-b3cb-5b85278a7711 ;
+	bf:hasItem :Q_f1f71075-8959-43b5-9a26-3b0e92b584a2 ;
+	bf:hasItem :PL_627e6edf-8cc7-4c79-b064-e615afb1f2aa ;
+	bf:hasItem :TL_8cc1bd36-a1b8-440c-ac91-4c02ceb1efbe ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-:Q_40888ca2-83ee-4167-be48-eacb02adef98
+:Q_f1f71075-8959-43b5-9a26-3b0e92b584a2
 	rdf:type bf:Question ;
 	isoC:label "Question 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -122,11 +109,11 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "VSORRESU"^^xsd:string ;
 	bf:questionText "Question text 1"^^xsd:string ;
-	bf:hasCodedValue :Q_40888ca2-83ee-4167-be48-eacb02adef98_TUC1 ;
-	bf:hasCodedValue :Q_40888ca2-83ee-4167-be48-eacb02adef98_TUC2 ;
-	bf:hasCodedValue :Q_40888ca2-83ee-4167-be48-eacb02adef98_TUC3 ;
+	bf:hasCodedValue :Q_f1f71075-8959-43b5-9a26-3b0e92b584a2_TUC1 ;
+	bf:hasCodedValue :Q_f1f71075-8959-43b5-9a26-3b0e92b584a2_TUC2 ;
+	bf:hasCodedValue :Q_f1f71075-8959-43b5-9a26-3b0e92b584a2_TUC3 ;
 .
-:Q_40888ca2-83ee-4167-be48-eacb02adef98_TUC1
+:Q_f1f71075-8959-43b5-9a26-3b0e92b584a2_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -136,7 +123,7 @@
 	bo:context <http://www.cdisc.org/C25681/V1#C25681> ;
 	bo:localLabel "Large"^^xsd:string ;
 .
-:Q_40888ca2-83ee-4167-be48-eacb02adef98_TUC2
+:Q_f1f71075-8959-43b5-9a26-3b0e92b584a2_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -146,7 +133,7 @@
 	bo:context <http://www.cdisc.org/C25681/V1#C25681> ;
 	bo:localLabel "Medium"^^xsd:string ;
 .
-:Q_40888ca2-83ee-4167-be48-eacb02adef98_TUC3
+:Q_f1f71075-8959-43b5-9a26-3b0e92b584a2_TUC3
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -156,7 +143,7 @@
 	bo:context <http://www.cdisc.org/C25681/V1#C25681> ;
 	bo:localLabel "Small"^^xsd:string ;
 .
-:PL_d34bf2ca-eba9-43de-8387-ea2ad6b280dc
+:PL_627e6edf-8cc7-4c79-b064-e615afb1f2aa
 	rdf:type bf:Placeholder ;
 	isoC:label "Not set"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
@@ -165,7 +152,7 @@
 	bf:optional "false"^^xsd:boolean ;
 	bf:freeText ""^^xsd:string ;
 .
-:TL_b199bed3-f974-4504-b3cb-5b85278a7711
+:TL_8cc1bd36-a1b8-440c-ac91-4c02ceb1efbe
 	rdf:type bf:TextLabel ;
 	isoC:label "Not set"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
@@ -174,7 +161,7 @@
 	bf:optional "false"^^xsd:boolean ;
 	bf:labelText ""^^xsd:string ;
 .
-:NG_09612846-070c-4f95-be13-33349c13df15
+:NG_61219503-7f00-4ccd-8e25-ba96853209a7
 	rdf:type bf:NormalGroup ;
 	isoC:label "Not set"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
@@ -182,32 +169,32 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:repeating "false"^^xsd:boolean ;
-	bf:hasSubGroup :BCG_f2f5ef50-91bb-486b-b1e0-43c8fe8a01c4 ;
-	bf:hasSubGroup :BCG_aa992af0-5c06-47aa-888d-e9bb5c9824e6 ;
-	bf:hasSubGroup :BCG_6548471e-9d20-445a-8ff2-14487a6ca661 ;
+	bf:hasSubGroup :BCG_c5342e17-e143-46af-84aa-8ff7dfa15bff ;
+	bf:hasSubGroup :BCG_b246ebc6-0eba-4b40-98b1-4ac73c3f2637 ;
+	bf:hasSubGroup :BCG_5479b94f-385e-4637-8ea6-59785cea8687 ;
 .
-:BCG_f2f5ef50-91bb-486b-b1e0-43c8fe8a01c4
+:BCG_c5342e17-e143-46af-84aa-8ff7dfa15bff
 	rdf:type bf:BcGroup ;
 	isoC:label "Height"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :BCP_2652dede-3bb2-450d-bdd0-eed950765da9 ;
-	bf:hasItem :BCP_280d693d-873f-47d4-a4fb-2901381c2c4f ;
-	bf:hasItem :BCP_d5b9f26c-eea1-457f-9b9a-fe3808c331dc ;
-	bf:hasBiomedicalConcept :BCG_f2f5ef50-91bb-486b-b1e0-43c8fe8a01c4_R1 ;
+	bf:hasItem :BCP_5c4d9579-a22e-486e-850b-c33e02d500d0 ;
+	bf:hasItem :BCP_13078dea-cdac-4e86-b8a0-3f0bb4f490a3 ;
+	bf:hasItem :BCP_8f51c50a-6b54-4a68-ad3f-fef887b2f2de ;
+	bf:hasBiomedicalConcept :BCG_c5342e17-e143-46af-84aa-8ff7dfa15bff_R1 ;
 .
-:BCP_2652dede-3bb2-450d-bdd0-eed950765da9
+:BCP_5c4d9579-a22e-486e-850b-c33e02d500d0
 	rdf:type bf:BcProperty ;
 	isoC:label "--DTC"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_2652dede-3bb2-450d-bdd0-eed950765da9_R1 ;
+	bf:hasProperty :BCP_5c4d9579-a22e-486e-850b-c33e02d500d0_R1 ;
 .
-:BCP_2652dede-3bb2-450d-bdd0-eed950765da9_R1
+:BCP_5c4d9579-a22e-486e-850b-c33e02d500d0_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -215,16 +202,16 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
-:BCP_280d693d-873f-47d4-a4fb-2901381c2c4f
+:BCP_13078dea-cdac-4e86-b8a0-3f0bb4f490a3
 	rdf:type bf:BcProperty ;
 	isoC:label "--ORRES"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_280d693d-873f-47d4-a4fb-2901381c2c4f_R1 ;
+	bf:hasProperty :BCP_13078dea-cdac-4e86-b8a0-3f0bb4f490a3_R1 ;
 .
-:BCP_280d693d-873f-47d4-a4fb-2901381c2c4f_R1
+:BCP_13078dea-cdac-4e86-b8a0-3f0bb4f490a3_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -232,20 +219,20 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
-:BCP_d5b9f26c-eea1-457f-9b9a-fe3808c331dc
+:BCP_8f51c50a-6b54-4a68-ad3f-fef887b2f2de
 	rdf:type bf:BcProperty ;
 	isoC:label "--ORRESU"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_d5b9f26c-eea1-457f-9b9a-fe3808c331dc_R1 ;
-	bf:hasCodedValue :BCP_d5b9f26c-eea1-457f-9b9a-fe3808c331dc_TUC1 ;
-	bf:hasCodedValue :BCP_d5b9f26c-eea1-457f-9b9a-fe3808c331dc_TUC2 ;
-	bf:hasCodedValue :BCP_d5b9f26c-eea1-457f-9b9a-fe3808c331dc_TUC3 ;
-	bf:hasCodedValue :BCP_d5b9f26c-eea1-457f-9b9a-fe3808c331dc_TUC4 ;
+	bf:hasProperty :BCP_8f51c50a-6b54-4a68-ad3f-fef887b2f2de_R1 ;
+	bf:hasCodedValue :BCP_8f51c50a-6b54-4a68-ad3f-fef887b2f2de_TUC1 ;
+	bf:hasCodedValue :BCP_8f51c50a-6b54-4a68-ad3f-fef887b2f2de_TUC2 ;
+	bf:hasCodedValue :BCP_8f51c50a-6b54-4a68-ad3f-fef887b2f2de_TUC3 ;
+	bf:hasCodedValue :BCP_8f51c50a-6b54-4a68-ad3f-fef887b2f2de_TUC4 ;
 .
-:BCP_d5b9f26c-eea1-457f-9b9a-fe3808c331dc_R1
+:BCP_8f51c50a-6b54-4a68-ad3f-fef887b2f2de_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -253,7 +240,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
-:BCP_d5b9f26c-eea1-457f-9b9a-fe3808c331dc_TUC1
+:BCP_8f51c50a-6b54-4a68-ad3f-fef887b2f2de_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -263,7 +250,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Centimeter"^^xsd:string ;
 .
-:BCP_d5b9f26c-eea1-457f-9b9a-fe3808c331dc_TUC2
+:BCP_8f51c50a-6b54-4a68-ad3f-fef887b2f2de_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -273,7 +260,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Inch"^^xsd:string ;
 .
-:BCP_d5b9f26c-eea1-457f-9b9a-fe3808c331dc_TUC3
+:BCP_8f51c50a-6b54-4a68-ad3f-fef887b2f2de_TUC3
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -283,7 +270,7 @@
 	bo:context <http://www.cdisc.org/C71620/V62#C71620> ;
 	bo:localLabel "Meter"^^xsd:string ;
 .
-:BCP_d5b9f26c-eea1-457f-9b9a-fe3808c331dc_TUC4
+:BCP_8f51c50a-6b54-4a68-ad3f-fef887b2f2de_TUC4
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -293,7 +280,7 @@
 	bo:context <http://www.cdisc.org/C71620/V62#C71620> ;
 	bo:localLabel "International Foot"^^xsd:string ;
 .
-:BCG_f2f5ef50-91bb-486b-b1e0-43c8fe8a01c4_R1
+:BCG_c5342e17-e143-46af-84aa-8ff7dfa15bff_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -301,28 +288,28 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI> ;
 .
-:BCG_aa992af0-5c06-47aa-888d-e9bb5c9824e6
+:BCG_b246ebc6-0eba-4b40-98b1-4ac73c3f2637
 	rdf:type bf:BcGroup ;
 	isoC:label "Weight"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :BCP_90b23d29-3dce-4b2a-9b1b-afcffd4bf788 ;
-	bf:hasItem :BCP_8488eb56-7226-4d70-8ea8-ac062e4b35f0 ;
-	bf:hasItem :BCP_a2967f33-1c4d-46be-8670-52a0cd80d977 ;
-	bf:hasBiomedicalConcept :BCG_aa992af0-5c06-47aa-888d-e9bb5c9824e6_R1 ;
+	bf:hasItem :BCP_e073c697-1ee5-4bb8-8a68-771dd3987c98 ;
+	bf:hasItem :BCP_7ce04a11-71df-434c-9ec0-bdffd44037d4 ;
+	bf:hasItem :BCP_6ec06842-7d36-414b-9fc2-f91268626d8b ;
+	bf:hasBiomedicalConcept :BCG_b246ebc6-0eba-4b40-98b1-4ac73c3f2637_R1 ;
 .
-:BCP_90b23d29-3dce-4b2a-9b1b-afcffd4bf788
+:BCP_e073c697-1ee5-4bb8-8a68-771dd3987c98
 	rdf:type bf:BcProperty ;
 	isoC:label "--DTC"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_90b23d29-3dce-4b2a-9b1b-afcffd4bf788_R1 ;
+	bf:hasProperty :BCP_e073c697-1ee5-4bb8-8a68-771dd3987c98_R1 ;
 .
-:BCP_90b23d29-3dce-4b2a-9b1b-afcffd4bf788_R1
+:BCP_e073c697-1ee5-4bb8-8a68-771dd3987c98_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -330,16 +317,16 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
-:BCP_8488eb56-7226-4d70-8ea8-ac062e4b35f0
+:BCP_7ce04a11-71df-434c-9ec0-bdffd44037d4
 	rdf:type bf:BcProperty ;
 	isoC:label "--ORRES"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_8488eb56-7226-4d70-8ea8-ac062e4b35f0_R1 ;
+	bf:hasProperty :BCP_7ce04a11-71df-434c-9ec0-bdffd44037d4_R1 ;
 .
-:BCP_8488eb56-7226-4d70-8ea8-ac062e4b35f0_R1
+:BCP_7ce04a11-71df-434c-9ec0-bdffd44037d4_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -347,18 +334,18 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
-:BCP_a2967f33-1c4d-46be-8670-52a0cd80d977
+:BCP_6ec06842-7d36-414b-9fc2-f91268626d8b
 	rdf:type bf:BcProperty ;
 	isoC:label "--ORRESU"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_a2967f33-1c4d-46be-8670-52a0cd80d977_R1 ;
-	bf:hasCodedValue :BCP_a2967f33-1c4d-46be-8670-52a0cd80d977_TUC1 ;
-	bf:hasCodedValue :BCP_a2967f33-1c4d-46be-8670-52a0cd80d977_TUC2 ;
+	bf:hasProperty :BCP_6ec06842-7d36-414b-9fc2-f91268626d8b_R1 ;
+	bf:hasCodedValue :BCP_6ec06842-7d36-414b-9fc2-f91268626d8b_TUC1 ;
+	bf:hasCodedValue :BCP_6ec06842-7d36-414b-9fc2-f91268626d8b_TUC2 ;
 .
-:BCP_a2967f33-1c4d-46be-8670-52a0cd80d977_R1
+:BCP_6ec06842-7d36-414b-9fc2-f91268626d8b_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -366,7 +353,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
-:BCP_a2967f33-1c4d-46be-8670-52a0cd80d977_TUC1
+:BCP_6ec06842-7d36-414b-9fc2-f91268626d8b_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -376,7 +363,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Kilogram"^^xsd:string ;
 .
-:BCP_a2967f33-1c4d-46be-8670-52a0cd80d977_TUC2
+:BCP_6ec06842-7d36-414b-9fc2-f91268626d8b_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -386,7 +373,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Pound"^^xsd:string ;
 .
-:BCG_aa992af0-5c06-47aa-888d-e9bb5c9824e6_R1
+:BCG_b246ebc6-0eba-4b40-98b1-4ac73c3f2637_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -394,27 +381,27 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI> ;
 .
-:BCG_6548471e-9d20-445a-8ff2-14487a6ca661
+:BCG_5479b94f-385e-4637-8ea6-59785cea8687
 	rdf:type bf:BcGroup ;
 	isoC:label "BMI"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :BCP_603b5f58-bea9-458d-9783-3a9e28b4a818 ;
-	bf:hasItem :BCP_e863d3a9-1624-4c0e-b611-95fa0a43545b ;
-	bf:hasBiomedicalConcept :BCG_6548471e-9d20-445a-8ff2-14487a6ca661_R1 ;
+	bf:hasItem :BCP_22be2159-f234-470f-8aed-69a2df3064a6 ;
+	bf:hasItem :BCP_9c497b62-24fc-4c9b-a76e-97b9e4641727 ;
+	bf:hasBiomedicalConcept :BCG_5479b94f-385e-4637-8ea6-59785cea8687_R1 ;
 .
-:BCP_603b5f58-bea9-458d-9783-3a9e28b4a818
+:BCP_22be2159-f234-470f-8aed-69a2df3064a6
 	rdf:type bf:BcProperty ;
 	isoC:label "--ORRES"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_603b5f58-bea9-458d-9783-3a9e28b4a818_R1 ;
+	bf:hasProperty :BCP_22be2159-f234-470f-8aed-69a2df3064a6_R1 ;
 .
-:BCP_603b5f58-bea9-458d-9783-3a9e28b4a818_R1
+:BCP_22be2159-f234-470f-8aed-69a2df3064a6_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -422,17 +409,17 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
 .
-:BCP_e863d3a9-1624-4c0e-b611-95fa0a43545b
+:BCP_9c497b62-24fc-4c9b-a76e-97b9e4641727
 	rdf:type bf:BcProperty ;
 	isoC:label "--ORRESU"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_e863d3a9-1624-4c0e-b611-95fa0a43545b_R1 ;
-	bf:hasCodedValue :BCP_e863d3a9-1624-4c0e-b611-95fa0a43545b_TUC1 ;
+	bf:hasProperty :BCP_9c497b62-24fc-4c9b-a76e-97b9e4641727_R1 ;
+	bf:hasCodedValue :BCP_9c497b62-24fc-4c9b-a76e-97b9e4641727_TUC1 ;
 .
-:BCP_e863d3a9-1624-4c0e-b611-95fa0a43545b_R1
+:BCP_9c497b62-24fc-4c9b-a76e-97b9e4641727_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -440,7 +427,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
 .
-:BCP_e863d3a9-1624-4c0e-b611-95fa0a43545b_TUC1
+:BCP_9c497b62-24fc-4c9b-a76e-97b9e4641727_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -450,7 +437,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Kilogram per Square Meter"^^xsd:string ;
 .
-:BCG_6548471e-9d20-445a-8ff2-14487a6ca661_R1
+:BCG_5479b94f-385e-4637-8ea6-59785cea8687_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -458,7 +445,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/BMI/V1#BCI> ;
 .
-:NG_49b9eb7c-4b53-4c89-9a25-88cc6abe8ebf
+:NG_0726ac59-a96c-4a3f-8660-045a5709c1e3
 	rdf:type bf:NormalGroup ;
 	isoC:label "Not set"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
@@ -466,32 +453,32 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:repeating "false"^^xsd:boolean ;
-	bf:hasSubGroup :BCG_021159e5-6a93-4207-b7fb-313a1541efc4 ;
-	bf:hasSubGroup :BCG_8390d1dc-7f25-44d3-9131-91ec6759b6c1 ;
-	bf:hasCommon :CG_84a83696-5395-40ef-b2b5-bcece2ae771a ;
+	bf:hasSubGroup :BCG_ab168f60-6ba1-49b5-9dc4-35d7da527034 ;
+	bf:hasSubGroup :BCG_240d3e80-962a-47cf-a9c3-b82d12124357 ;
+	bf:hasCommon :CG_ac8d961b-a876-42d3-9555-c815a573f183 ;
 .
-:BCG_021159e5-6a93-4207-b7fb-313a1541efc4
+:BCG_ab168f60-6ba1-49b5-9dc4-35d7da527034
 	rdf:type bf:BcGroup ;
 	isoC:label "Height"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :BCP_958abb50-95d7-4af7-8add-c20a51b16890 ;
-	bf:hasItem :BCP_fb170197-6aee-4f37-82a7-609c0592a9bd ;
-	bf:hasItem :BCP_2de27f5c-cc94-4e47-8943-36f98d40590b ;
-	bf:hasBiomedicalConcept :BCG_021159e5-6a93-4207-b7fb-313a1541efc4_R1 ;
+	bf:hasItem :BCP_947b1c5c-5292-499e-8b16-0d3af0331c35 ;
+	bf:hasItem :BCP_9750ef07-3bc1-4bd9-a91a-697a8b7ab6b4 ;
+	bf:hasItem :BCP_d60c43cb-9cbb-4dbf-9e39-07f7fcad444d ;
+	bf:hasBiomedicalConcept :BCG_ab168f60-6ba1-49b5-9dc4-35d7da527034_R1 ;
 .
-:BCP_958abb50-95d7-4af7-8add-c20a51b16890
+:BCP_947b1c5c-5292-499e-8b16-0d3af0331c35
 	rdf:type bf:BcProperty ;
 	isoC:label "--DTC"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_958abb50-95d7-4af7-8add-c20a51b16890_R1 ;
+	bf:hasProperty :BCP_947b1c5c-5292-499e-8b16-0d3af0331c35_R1 ;
 .
-:BCP_958abb50-95d7-4af7-8add-c20a51b16890_R1
+:BCP_947b1c5c-5292-499e-8b16-0d3af0331c35_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -499,16 +486,16 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
-:BCP_fb170197-6aee-4f37-82a7-609c0592a9bd
+:BCP_9750ef07-3bc1-4bd9-a91a-697a8b7ab6b4
 	rdf:type bf:BcProperty ;
 	isoC:label "--ORRES"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_fb170197-6aee-4f37-82a7-609c0592a9bd_R1 ;
+	bf:hasProperty :BCP_9750ef07-3bc1-4bd9-a91a-697a8b7ab6b4_R1 ;
 .
-:BCP_fb170197-6aee-4f37-82a7-609c0592a9bd_R1
+:BCP_9750ef07-3bc1-4bd9-a91a-697a8b7ab6b4_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -516,20 +503,20 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
-:BCP_2de27f5c-cc94-4e47-8943-36f98d40590b
+:BCP_d60c43cb-9cbb-4dbf-9e39-07f7fcad444d
 	rdf:type bf:BcProperty ;
 	isoC:label "--ORRESU"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_2de27f5c-cc94-4e47-8943-36f98d40590b_R1 ;
-	bf:hasCodedValue :BCP_2de27f5c-cc94-4e47-8943-36f98d40590b_TUC1 ;
-	bf:hasCodedValue :BCP_2de27f5c-cc94-4e47-8943-36f98d40590b_TUC2 ;
-	bf:hasCodedValue :BCP_2de27f5c-cc94-4e47-8943-36f98d40590b_TUC3 ;
-	bf:hasCodedValue :BCP_2de27f5c-cc94-4e47-8943-36f98d40590b_TUC4 ;
+	bf:hasProperty :BCP_d60c43cb-9cbb-4dbf-9e39-07f7fcad444d_R1 ;
+	bf:hasCodedValue :BCP_d60c43cb-9cbb-4dbf-9e39-07f7fcad444d_TUC1 ;
+	bf:hasCodedValue :BCP_d60c43cb-9cbb-4dbf-9e39-07f7fcad444d_TUC2 ;
+	bf:hasCodedValue :BCP_d60c43cb-9cbb-4dbf-9e39-07f7fcad444d_TUC3 ;
+	bf:hasCodedValue :BCP_d60c43cb-9cbb-4dbf-9e39-07f7fcad444d_TUC4 ;
 .
-:BCP_2de27f5c-cc94-4e47-8943-36f98d40590b_R1
+:BCP_d60c43cb-9cbb-4dbf-9e39-07f7fcad444d_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -537,7 +524,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
-:BCP_2de27f5c-cc94-4e47-8943-36f98d40590b_TUC1
+:BCP_d60c43cb-9cbb-4dbf-9e39-07f7fcad444d_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -547,7 +534,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Centimeter"^^xsd:string ;
 .
-:BCP_2de27f5c-cc94-4e47-8943-36f98d40590b_TUC2
+:BCP_d60c43cb-9cbb-4dbf-9e39-07f7fcad444d_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -557,7 +544,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Inch"^^xsd:string ;
 .
-:BCP_2de27f5c-cc94-4e47-8943-36f98d40590b_TUC3
+:BCP_d60c43cb-9cbb-4dbf-9e39-07f7fcad444d_TUC3
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -567,7 +554,7 @@
 	bo:context <http://www.cdisc.org/C71620/V62#C71620> ;
 	bo:localLabel "Meter"^^xsd:string ;
 .
-:BCP_2de27f5c-cc94-4e47-8943-36f98d40590b_TUC4
+:BCP_d60c43cb-9cbb-4dbf-9e39-07f7fcad444d_TUC4
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -577,7 +564,7 @@
 	bo:context <http://www.cdisc.org/C71620/V62#C71620> ;
 	bo:localLabel "International Foot"^^xsd:string ;
 .
-:BCG_021159e5-6a93-4207-b7fb-313a1541efc4_R1
+:BCG_ab168f60-6ba1-49b5-9dc4-35d7da527034_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -585,28 +572,28 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/HEIGHT/V1#BCI> ;
 .
-:BCG_8390d1dc-7f25-44d3-9131-91ec6759b6c1
+:BCG_240d3e80-962a-47cf-a9c3-b82d12124357
 	rdf:type bf:BcGroup ;
 	isoC:label "Weight"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :BCP_bb8eb231-cb47-47d2-808b-51fbbec15331 ;
-	bf:hasItem :BCP_74d37973-4226-4c6c-a506-8f298c5d6cad ;
-	bf:hasItem :BCP_a0a562b9-19e0-4a0d-9406-3a89861eade2 ;
-	bf:hasBiomedicalConcept :BCG_8390d1dc-7f25-44d3-9131-91ec6759b6c1_R1 ;
+	bf:hasItem :BCP_ad8eec2f-4472-4a00-802f-cf58dc1de309 ;
+	bf:hasItem :BCP_5817d418-04d7-470c-bb95-bd5b5fa556d5 ;
+	bf:hasItem :BCP_47f400b8-2d23-456c-9ee3-c1a503625efa ;
+	bf:hasBiomedicalConcept :BCG_240d3e80-962a-47cf-a9c3-b82d12124357_R1 ;
 .
-:BCP_bb8eb231-cb47-47d2-808b-51fbbec15331
+:BCP_ad8eec2f-4472-4a00-802f-cf58dc1de309
 	rdf:type bf:BcProperty ;
 	isoC:label "--DTC"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_bb8eb231-cb47-47d2-808b-51fbbec15331_R1 ;
+	bf:hasProperty :BCP_ad8eec2f-4472-4a00-802f-cf58dc1de309_R1 ;
 .
-:BCP_bb8eb231-cb47-47d2-808b-51fbbec15331_R1
+:BCP_ad8eec2f-4472-4a00-802f-cf58dc1de309_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -614,16 +601,16 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
-:BCP_74d37973-4226-4c6c-a506-8f298c5d6cad
+:BCP_5817d418-04d7-470c-bb95-bd5b5fa556d5
 	rdf:type bf:BcProperty ;
 	isoC:label "--ORRES"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_74d37973-4226-4c6c-a506-8f298c5d6cad_R1 ;
+	bf:hasProperty :BCP_5817d418-04d7-470c-bb95-bd5b5fa556d5_R1 ;
 .
-:BCP_74d37973-4226-4c6c-a506-8f298c5d6cad_R1
+:BCP_5817d418-04d7-470c-bb95-bd5b5fa556d5_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -631,18 +618,18 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
 .
-:BCP_a0a562b9-19e0-4a0d-9406-3a89861eade2
+:BCP_47f400b8-2d23-456c-9ee3-c1a503625efa
 	rdf:type bf:BcProperty ;
 	isoC:label "--ORRESU"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :BCP_a0a562b9-19e0-4a0d-9406-3a89861eade2_R1 ;
-	bf:hasCodedValue :BCP_a0a562b9-19e0-4a0d-9406-3a89861eade2_TUC1 ;
-	bf:hasCodedValue :BCP_a0a562b9-19e0-4a0d-9406-3a89861eade2_TUC2 ;
+	bf:hasProperty :BCP_47f400b8-2d23-456c-9ee3-c1a503625efa_R1 ;
+	bf:hasCodedValue :BCP_47f400b8-2d23-456c-9ee3-c1a503625efa_TUC1 ;
+	bf:hasCodedValue :BCP_47f400b8-2d23-456c-9ee3-c1a503625efa_TUC2 ;
 .
-:BCP_a0a562b9-19e0-4a0d-9406-3a89861eade2_R1
+:BCP_47f400b8-2d23-456c-9ee3-c1a503625efa_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -650,7 +637,7 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
-:BCP_a0a562b9-19e0-4a0d-9406-3a89861eade2_TUC1
+:BCP_47f400b8-2d23-456c-9ee3-c1a503625efa_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -660,7 +647,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Kilogram"^^xsd:string ;
 .
-:BCP_a0a562b9-19e0-4a0d-9406-3a89861eade2_TUC2
+:BCP_47f400b8-2d23-456c-9ee3-c1a503625efa_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -670,7 +657,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Pound"^^xsd:string ;
 .
-:BCG_8390d1dc-7f25-44d3-9131-91ec6759b6c1_R1
+:BCG_240d3e80-962a-47cf-a9c3-b82d12124357_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -678,27 +665,27 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/WEIGHT/V1#BCI> ;
 .
-:CG_84a83696-5395-40ef-b2b5-bcece2ae771a
+:CG_ac8d961b-a876-42d3-9555-c815a573f183
 	rdf:type bf:CommonGroup ;
 	isoC:label "Not set"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :CI_76a15e20-4652-4158-9d82-fe0c692f0d38 ;
+	bf:hasItem :CI_5eb1d6e1-bda1-499b-a869-6235a3d27807 ;
 .
-:CI_76a15e20-4652-4158-9d82-fe0c692f0d38
+:CI_5eb1d6e1-bda1-499b-a869-6235a3d27807
 	rdf:type bf:CommonItem ;
 	isoC:label "--DTC"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasProperty :CI_76a15e20-4652-4158-9d82-fe0c692f0d38_R1 ;
-	bf:hasCommonItem :BCP_958abb50-95d7-4af7-8add-c20a51b16890 ;
-	bf:hasCommonItem :BCP_bb8eb231-cb47-47d2-808b-51fbbec15331 ;
+	bf:hasProperty :CI_5eb1d6e1-bda1-499b-a869-6235a3d27807_R1 ;
+	bf:hasCommonItem :BCP_947b1c5c-5292-499e-8b16-0d3af0331c35 ;
+	bf:hasCommonItem :BCP_ad8eec2f-4472-4a00-802f-cf58dc1de309 ;
 .
-:CI_76a15e20-4652-4158-9d82-fe0c692f0d38_R1
+:CI_5eb1d6e1-bda1-499b-a869-6235a3d27807_R1
 	rdf:type bo:Reference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;

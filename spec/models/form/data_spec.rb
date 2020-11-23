@@ -555,6 +555,15 @@ describe Form do
   end
 
   describe "Create forms" do
+
+    def form_to_ttl(form)
+      uri = form.has_identifier.has_scope.uri
+      form.has_identifier.has_scope = uri
+      uri = form.has_state.by_authority.uri
+      form.has_state.by_authority = uri
+      form.to_ttl
+    end
+
     before :all do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -577,10 +586,8 @@ describe Form do
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       normal_group.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id, bci_3.id, bci_4.id]})
       simple_form = Form.find_full(form.uri)
-      uri = simple_form.has_identifier.has_scope.uri
-      simple_form.has_identifier.has_scope = uri
-      full_path = simple_form.to_ttl
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "bc_only_group_form.ttl")
+      full_path = form_to_ttl(simple_form)
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "F001_bc_only_group_form.ttl")
     end
 
     it "Question only group" do
@@ -603,8 +610,8 @@ describe Form do
       question.question_text = "Question text 2"
       question.save
       simple_form = Form.find_full(form.uri)
-      full_path = simple_form.to_ttl
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "question_only_group_form.ttl")
+      full_path = form_to_ttl(simple_form)
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "F002_question_only_group_form.ttl")
     end
 
     it "simple form" do
@@ -629,8 +636,8 @@ describe Form do
       normal_group.add_child({type:"placeholder"})
       normal_group.add_child({type:"text_label"})
       simple_form = Form.find_full(form.uri)
-      full_path = simple_form.to_ttl
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "simple_form.ttl")
+      full_path = form_to_ttl(simple_form)
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "F003_simple_form.ttl")
     end
 
     it "complex form" do
@@ -692,8 +699,8 @@ describe Form do
       bc_property.make_common(cg)
 
       simple_form = Form.find_full(form.uri)
-      full_path = simple_form.to_ttl
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "complex_form.ttl")
+      full_path = form_to_ttl(simple_form)
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "F004_complex_form.ttl")
     end
 
     it "Repeating Bc only group" do
@@ -708,10 +715,8 @@ describe Form do
       normal_group.save
       normal_group.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id, bci_3.id]})
       simple_form = Form.find_full(form.uri)
-      uri = simple_form.has_identifier.has_scope.uri
-      simple_form.has_identifier.has_scope = uri
-      full_path = simple_form.to_ttl
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "repeating_bc_only_group_form.ttl")
+      full_path = form_to_ttl(simple_form)
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "F005_repeating_bc_only_group_form.ttl")
     end
 
     it "Repeating Question only group" do
@@ -736,8 +741,8 @@ describe Form do
       question.question_text = "Question text 2"
       question.save
       simple_form = Form.find_full(form.uri)
-      full_path = simple_form.to_ttl
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "repeating_question_only_group_form.ttl")
+      full_path = form_to_ttl(simple_form)
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "F006_repeating_question_only_group_form.ttl")
     end
 
 

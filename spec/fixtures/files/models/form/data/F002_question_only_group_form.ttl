@@ -1,4 +1,4 @@
-@prefix : <http://www.s-cubed.dk/F003/V1#> .
+@prefix : <http://www.s-cubed.dk/F002/V1#> .
 @prefix bf: <http://www.assero.co.uk/BusinessForm#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -10,7 +10,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.s-cubed.dk/F003/V1>
+<http://www.s-cubed.dk/F002/V1>
 	rdf:type owl:Ontology ;
 .
 :F
@@ -20,12 +20,12 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2020-11-20T15:03:35+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-20T15:03:35+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2020-11-23T11:37:00+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-23T11:37:00+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
-	bf:hasGroup :NG_c2b7a15f-2e06-4e0b-bf29-548861b851f8 ;
+	bf:hasGroup :NG_5dd5f20d-7c79-429c-881f-5f631dde867c ;
 .
 :F_RS
 	rdf:type isoR:RegistrationState ;
@@ -39,41 +39,26 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
-<http://www.assero.co.uk/RA#DUNS123456789>
-	rdf:type isoR:RegistrationAuthority ;
-	isoR:organizationIdentifier "123456789"^^xsd:string ;
-	isoR:internationalCodeDesignator "DUNS"^^xsd:string ;
-	isoR:owner "true"^^xsd:boolean ;
-	isoR:raNamespace <http://www.assero.co.uk/NS#SCUBED> ;
-.
-<http://www.assero.co.uk/NS#SCUBED>
-	rdf:type isoI:Namespace ;
-	isoI:shortName "S-cubed"^^xsd:string ;
-	isoI:name "S-cubed Aps"^^xsd:string ;
-	isoI:authority "www.s-cubed.dk"^^xsd:string ;
-.
 :F_SI
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "F003"^^xsd:string ;
+	isoI:identifier "F002"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-:NG_c2b7a15f-2e06-4e0b-bf29-548861b851f8
+:NG_5dd5f20d-7c79-429c-881f-5f631dde867c
 	rdf:type bf:NormalGroup ;
 	isoC:label "Not set"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :Q_3c47da4b-2078-4130-9be9-96e669d0f8d9 ;
-	bf:hasItem :Q_94811597-4ab4-4983-9af3-773c1d1c5c45 ;
-	bf:hasItem :PL_2023714e-1758-4158-b4e1-3d4864ecee2e ;
-	bf:hasItem :TL_0621cb87-e5dd-4a89-9640-72885fbfa60c ;
+	bf:hasItem :Q_f8a615b8-37c2-4b57-a828-2f237f6cad2a ;
+	bf:hasItem :Q_e29d0ee0-4f96-4cfc-8f05-c04f5a989f27 ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-:Q_3c47da4b-2078-4130-9be9-96e669d0f8d9
+:Q_f8a615b8-37c2-4b57-a828-2f237f6cad2a
 	rdf:type bf:Question ;
 	isoC:label "Not set"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -85,7 +70,7 @@
 	bf:mapping "VSORRESU"^^xsd:string ;
 	bf:questionText "Question text 1"^^xsd:string ;
 .
-:Q_94811597-4ab4-4983-9af3-773c1d1c5c45
+:Q_e29d0ee0-4f96-4cfc-8f05-c04f5a989f27
 	rdf:type bf:Question ;
 	isoC:label "Not set"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
@@ -96,22 +81,4 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "VSORRES"^^xsd:string ;
 	bf:questionText "Question text 2"^^xsd:string ;
-.
-:PL_2023714e-1758-4158-b4e1-3d4864ecee2e
-	rdf:type bf:Placeholder ;
-	isoC:label "Not set"^^xsd:string ;
-	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:freeText ""^^xsd:string ;
-.
-:TL_0621cb87-e5dd-4a89-9640-72885fbfa60c
-	rdf:type bf:TextLabel ;
-	isoC:label "Not set"^^xsd:string ;
-	bf:ordinal "4"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:labelText ""^^xsd:string ;
 .
