@@ -196,7 +196,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
     
     before :all do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", 
-        "forms/bc_only_group_form.ttl", "forms/question_only_group_form.ttl", "forms/complex_form.ttl", "forms/simple_form.ttl", "forms/repeating_bc_only_group_form.ttl", "forms/repeating_question_only_group_form.ttl"  ]
+        "forms/F001_bc_only_group_form.ttl", "forms/F002_question_only_group_form.ttl", "forms/F004_complex_form.ttl", "forms/F003_simple_form.ttl", "forms/F005_repeating_bc_only_group_form.ttl", "forms/F006_repeating_question_only_group_form.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -287,7 +287,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
     
     before :all do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", 
-        "forms/bc_only_group_form.ttl", "forms/question_only_group_form.ttl", "forms/complex_form.ttl", "forms/simple_form.ttl", "forms/repeating_bc_only_group_form.ttl", "forms/repeating_question_only_group_form.ttl"  ]
+        "forms/F001_bc_only_group_form.ttl", "forms/F002_question_only_group_form.ttl", "forms/F004_complex_form.ttl", "forms/F003_simple_form.ttl", "forms/F005_repeating_bc_only_group_form.ttl", "forms/F006_repeating_question_only_group_form.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
