@@ -11,7 +11,7 @@ $(document).ready( () => {
     param: "managed_concept",
     count: 1000,
     cache: false,
-    cpEnabled: customPropsEnabled
+    customPropsEnabled
   });
 
   // Subsets Index and Create manager
