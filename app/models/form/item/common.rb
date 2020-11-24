@@ -46,7 +46,7 @@ class Form::Item::Common < Form::Item::BcProperty
     html += start_row(self.optional)
     html += question_cell(property.question_text)
     unless annotations.nil?
-      self.has_common_item_objects.each do |ci|
+      self.has_common_item_objects.sort_by {|x| x.ordinal}.each do |ci|
         pa += ci.property_annotations(annotations)
       end
       html += mapping_cell(pa, annotations)

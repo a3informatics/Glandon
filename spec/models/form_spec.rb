@@ -270,32 +270,32 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       check_file_actual_expected(form.acrf, sub_dir, "to_acrf_hackathon_1.yaml", equate_method: :hash_equal)
     end
 
-    it "to crf, bc only group" do
+    it "to acrf, bc only group" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F001/V1#F"))
       check_file_actual_expected(form.acrf, sub_dir, "to_acrf_4.yaml", equate_method: :hash_equal)
     end
 
-    it "to crf, question only group" do
+    it "to acrf, question only group" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F002/V1#F"))
       check_file_actual_expected(form.acrf, sub_dir, "to_acrf_5.yaml", equate_method: :hash_equal)
     end
 
-    it "to crf, simple form" do
+    it "to acrf, simple form" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F003/V1#F"))
       check_file_actual_expected(form.acrf, sub_dir, "to_acrf_6.yaml", equate_method: :hash_equal)
     end
 
-    it "to crf, complex form" do
+    it "to acrf, complex form" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F004/V1#F"))
       check_file_actual_expected(form.acrf, sub_dir, "to_acrf_7.yaml", equate_method: :hash_equal)
     end
     
-    it "to crf, repeating bc only group" do
+    it "to acrf, repeating bc only group" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F005/V1#F"))
       check_file_actual_expected(form.acrf, sub_dir, "to_acrf_8.yaml", equate_method: :hash_equal)
     end
     
-    it "to crf, repeating question only group" do
+    it "to acrf, repeating question only group" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F006/V1#F"))
       check_file_actual_expected(form.acrf, sub_dir, "to_acrf_9.yaml", equate_method: :hash_equal)
     end
