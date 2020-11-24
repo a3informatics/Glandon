@@ -15,8 +15,7 @@ describe "Forms", :type => :feature do
   describe "Forms", :type => :feature do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
       load_cdisc_term_versions(1..65)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_test_file_into_triple_store("forms/FN000150.ttl")
@@ -151,8 +150,7 @@ describe "Forms", :type => :feature do
   describe "Create, Delete a Form", :type => :feature, js:true do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
       load_cdisc_term_versions(1..65)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_test_file_into_triple_store("forms/FN000150.ttl")
