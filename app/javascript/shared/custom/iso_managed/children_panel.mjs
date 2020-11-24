@@ -1,4 +1,4 @@
-import CustomPropsTablePanel from 'shared/base/custom_props_table_panel'
+import CustomPropsTablePanel from 'shared/base/custom_properties/cp_table_panel'
 
 import { dtButtonColumn, dtIndicatorsColumn } from 'shared/helpers/dt/dt_columns'
 import { dtChildrenColumns } from 'shared/helpers/dt/dt_column_collections'
