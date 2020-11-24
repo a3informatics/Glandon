@@ -90,7 +90,7 @@ describe "Forms", :type => :feature do
       find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'FN000150\''
-      context_menu_element('history', 4, 'Height (Pilot)', :crf)
+      context_menu_element_v2('history', 'Height (Pilot)', :crf)
       wait_for_ajax 10
       expect(page).to have_content 'Not Set'
       expect(page).to have_content 'Compltion Status'
