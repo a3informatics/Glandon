@@ -178,7 +178,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain  [ a owl:Class ;
-    owl:unionOf (:SdtmModelVariable :SdtmDomainVariable :ADaMDatasetVariable)
+    owl:unionOf ( :SdtmDomainVariable :ADaMDatasetVariable)
     ] ;
   rdfs:range xsd:string ;
   skos:definition "The variable name."^^xsd:string ;
@@ -270,7 +270,7 @@
   rdfs:range xsd:string ;
   skos:definition "Comments regarding the variable."^^xsd:string ;
 .
-:non_standard
+:nonStandard
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Non standard / supplemental qualifier."^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
@@ -288,7 +288,7 @@
   rdfs:range xsd:boolean ;
   skos:definition "Variable is used/not used."^^xsd:string ;
 .
-:key_ordinal
+:keyOrdinal
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Ordinal"^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
