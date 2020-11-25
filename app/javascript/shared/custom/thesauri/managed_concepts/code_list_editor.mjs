@@ -1,4 +1,4 @@
-import EditablePanel from 'shared/base/editable_panel'
+import CustomPropsEditablePanel from 'shared/base/custom_properties/cp_editable_panel'
 
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
 import { $ajax } from 'shared/helpers/ajax'
@@ -14,7 +14,7 @@ import { dtCLEditFields } from 'shared/helpers/dt/dt_field_collections'
  * @extends EditablePanel class from shared/base/editable_panel
  * @author Samuel Banas <sab@s-cubed.dk>
  */
-export default class CLEditor extends EditablePanel {
+export default class CLEditor extends CustomPropsEditablePanel {
 
   /**
    * Create a Panel
@@ -28,18 +28,21 @@ export default class CLEditor extends EditablePanel {
   constructor({
     id,
     urls,
-    selector = "#editor-panel table#editor",
+    selector = "#editor-panel #editor",
     helpDialogId = 'cl-edit',
     onEdited = () => {}
   }) {
 
     super({
-      selector,
-      dataUrl: urls.data,
-      updateUrl: urls.update,
-      param: "managed_concept",
-      columns: dtCLEditColumns(),
-      fields: dtCLEditFields()
+      tablePanelOpts: {
+        selector,
+        dataUrl: urls.data,
+        updateUrl: urls.update,
+        param: "managed_concept",
+        columns: dtCLEditColumns(),
+        fields: dtCLEditFields()
+      },
+      enabled: true
     });
 
     Object.assign(this, {
@@ -136,21 +139,38 @@ export default class CLEditor extends EditablePanel {
 
   /**
    * Sets event listeners, handlers
+   * Used for table related listeners only
    */
-  _setListeners() {
+  _setTableListeners() {
 
-    // Call super's _setListeners first
-    super._setListeners();
+    // Call super's _setTableListeners first
+    super._setTableListeners();
 
     // Edit tags
-    $( this.selector ).on( 'click', 'tbody td.editable.edit-tags', e => {
+    $( `${ this.selector } tbody` ).on( 'click', 'td.editable.edit-tags', e => {
 
       const editTagsUrl = this._getRowDataFrom$( e.target ).edit_tags_path;
 
       if ( editTagsUrl )
         window.open( editTagsUrl, '_blank' ).focus();
 
-    })
+    });
+
+    // Remove item
+    $( `${ this.selector } tbody` ).on( 'click', '.remove', e =>
+          this.removeChild( this._getRowFrom$( e.target ) )
+    );
+
+  }
+
+  /**
+   * Sets event listeners, handlers
+   * Used for non-table related listeners only!
+   */
+  _setListeners() {
+
+    // Call super's _setListeners first
+    super._setListeners();
 
     // Add New Child
     $( '#new-item-button' ).on( 'click', () => this.newChild() );
@@ -160,11 +180,6 @@ export default class CLEditor extends EditablePanel {
 
     // Refresh
     $( '#refresh-button' ).on( 'click', () => this.refresh() );
-
-    // Remove item
-    $( this.selector ).on( 'click', 'tbody .remove', e =>
-          this.removeChild( this._getRowFrom$( e.target ) )
-    );
 
     // Help dialog
     $('#editor-help').on('click', () =>
@@ -207,6 +222,22 @@ export default class CLEditor extends EditablePanel {
   }
 
   /**
+   * Update Definition column width, called on Custom Properties columns visiblity change
+   * @override parent
+   * @param {boolean} visible New state of the Custom Property columns, false if invisible
+   */
+  _onColumnsToggle(visible) {
+
+    super._onColumnsToggle( visible );
+
+    // Retain definition column width (otherwise shrinks width too much)
+    this.$wrapper.find( 'th:contains("Definition")' )
+                 .toggleClass( 'th-xwide', visible );
+
+
+  }
+
+  /**
    * Initialize Items Selector for adding Code List Items to the Code List
    */
   _initSelector() {
@@ -238,9 +269,6 @@ export default class CLEditor extends EditablePanel {
   get _tableOpts() {
 
     let options = super._tableOpts;
-
-    options.scrollX = true;
-    options.autoWidth = true;
 
     // CSS Styling for editable rows
     options.createdRow = (row, data) => {
