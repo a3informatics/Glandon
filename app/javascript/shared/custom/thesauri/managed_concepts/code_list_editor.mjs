@@ -196,12 +196,18 @@ export default class CLEditor extends CustomPropsEditablePanel {
    */
   _preformatUpdateData(d) {
 
-    const itemId = Object.keys( d.data )[0];
+    let fData = super._preformatUpdateData( d );
 
-    d.edit = d.data[itemId];
-    d.edit.parent_id = this.id;
+    if ( !d.data )
+      return fData;
+
+    d.edit = {
+      ...fData[0],
+      parent_id: this.id
+    }
 
     delete d.data;
+    return fData;
 
   }
 
