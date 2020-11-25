@@ -21,6 +21,7 @@ When('I enter\/select the values that defines the BC') do |table|
         if "#{hash['Enable']}" == 'false'
           ui_press_key :enter 
           ui_press_key :arrow_right
+          wait_for_ajax 10
           ui_press_key :enter
           wait_for_ajax 10
           ui_check_table_cell_icon 'editor', i, 1, 'times-circle'
@@ -32,6 +33,7 @@ When('I enter\/select the values that defines the BC') do |table|
         if "#{hash['Collect']}" == 'false' 
           ui_press_key :enter
           ui_press_key :arrow_right
+          wait_for_ajax 10
           ui_press_key :enter
           wait_for_ajax 10
           ui_check_table_cell_icon 'editor', i, 2, 'times-circle'
@@ -44,18 +46,20 @@ When('I enter\/select the values that defines the BC') do |table|
         ui_editor_fill_inline "format", hash['Format']
         if !hash['Codelist'].blank?
           ui_editor_select_by_location(i,8)
+          wait_for_ajax 20
           ui_press_key :enter
           ui_in_modal do
           ip_check_tabs [:unmanaged_concept], 'bc-term-ref'
           ip_pick_unmanaged_items :unmanaged_concept, [
-          { parent: "#{hash['Codelist']}", version: hash['Version'], identifier: "#{hash['Terminology']}" }], 'bc-term-ref', false
+          { parent: "#{hash['Codelist']}", owner: 'CDISC', version: hash['Version'], identifier: "#{hash['Terminology']}" }], 'bc-term-ref', false
           ip_submit 'bc-term-ref'
           end
         end
       i = i + 1
     end
-  wait_for_ajax(20)
+  wait_for_ajax 20
 end
+
 
 
 ##################### Then statements 

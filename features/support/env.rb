@@ -22,9 +22,11 @@ require 'watir'
 #include DataHelpers
 #load_files(schema_files, [])
 
+
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 #include NameValueHelpers
 #Latest version settings for CDISC terminology
+
 
 include NameValueHelpers
 include PauseHelpers
@@ -42,16 +44,23 @@ Cucumber::Rails::Database.autorun_database_cleaner = false
 #DatabaseCleaner.strategy = :truncation
 #Cucumber::Rails::Database.javascript_strategy = :truncation
  
-ENVIRONMENT = 'TEST'
-#ENVIRONMENT = 'VAL'
+#ENVIRONMENT = 'TEST'
+
+ENVIRONMENT = 'VAL'
+
+#ENVIRONMENT = 'REMOTE_TEST'
 
 if ENVIRONMENT == 'VAL' 
 RemoteServerHelpers.switch_to_remote
 end
 
-if ENVIRONMENT == 'TEST' 
+if ENVIRONMENT == 'REMOTE_TEST' 
+RemoteServerHelpers.switch_to_remote_test
+end
 
+if ENVIRONMENT == 'TEST' 
 RemoteServerHelpers.switch_to_local
+
 
 Before do
   log('Clean databse')
@@ -64,17 +73,26 @@ Before do
   #Load in the CDISC Terminology and recreate users
     log('loading terminology and users')
     load_files(schema_files, [])
+    
     load_data_file_into_triple_store("mdr_identification.ttl")
+    load_test_file_into_triple_store("forms/FN000150.ttl")
     load_data_file_into_triple_store("biomedical_concept_templates.ttl")
     #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     #full_path = Rails.root.join("db/load/")
     #load_file_into_triple_store(full_path)
+    load_data_file_into_triple_store("complex_datatypes.ttl")
+    #load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+    #load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    #load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+    #load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+    #load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+    #load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_cdisc_term_versions(1..LST_VERSION)
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
-    quh_destroy
+    #quh_destroy
     quh_create
     Token.destroy_all
     AuditTrail.destroy_all

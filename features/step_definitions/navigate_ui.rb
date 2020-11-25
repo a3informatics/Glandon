@@ -2,7 +2,6 @@
 
 
 
-
 ##################### When statements #####################
 
 ### Navigation bar ###
@@ -24,6 +23,10 @@ When('I access the {string} in the navigation bar') do |string|
 	  click_navbar_bc
 	  wait_for_ajax(20)
   end
+  if string == 'Forms'
+    click_navbar_forms
+    wait_for_ajax(20)
+  end
 end
 
 When('I click {string} in/at the top/bottom of the page') do |string|
@@ -35,13 +38,38 @@ When('I click {string} in/at the top/bottom of the page') do |string|
   if string =='Start'
     find('#fb_s_button').click 
   end
-  if string =='View Changes'
-   click_link 'View Changes'
+  if string =='Changes'
+   click_link 'Changes'
   end
   wait_for_ajax(20)
 
 end
 
+When('I click History on the index page for {string}') do |string|
+   ui_table_search("index", string)
+   find(:xpath, "//tr[contains(.,string)]/td/a").click
+  end
+
+def check_version_info(*args)
+      args.each do |a|
+        expect( find('#imh_header') ).to have_content a
+      end
+end
+
+When('I advance the status to {string}') do |string|
+  check_version_info('Incomplete')
+  click_on 'Submit Status Change'
+  find('#version-label-edit').click
+  fill_in 'Version label', with: 'Form Version Label'
+  click_on 'Update Version Label'
+  find('#version-edit').click
+  select 'Major', from: 'select-release'
+  click_on 'Update Version'
+  click_on 'Submit Status Change'
+  click_on 'Submit Status Change'
+  click_on 'Submit Status Change'
+    check_version_info(string, 'Form Version Label')
+end
 
 ### Context menu ###
 
@@ -55,31 +83,22 @@ When('I click Context menu for {string}') do |string|
 end
 
 When('I click {string} in context menu for {string}') do |string, string2|
+  ui_table_search("history", string2)
+  find(".icon-context-menu").click
+  context_menu_element_v3("history", string2, string)
+  wait_for_ajax(20)
+ end
 
-  row = find("table#history tr", text: string2)
-        within(row) do
-        ui_table_search("history", string2)
-        find(".icon-context-menu").click
-          if string.downcase! == 'edit'
-            context_menu_element('history', 4, string2, :edit)
-          end
-          if string.downcase! == 'show'
-            context_menu_element('history', 4, string2, :show)
-          end
-          if string.downcase! == 'search'
-            context_menu_element('history', 4, string2, :search)
-          end
-        end
-        wait_for_ajax(20)
+
+When('I click {string} in the confirmation box') do |string|
+  ui_confirmation_dialog('string')
 end
 
 When('I enter {string} in the search area and click {string} in the context menu') do |string, string2|
-
   ui_table_search("history", string)
   find(".icon-context-menu").click
   context_menu_element_v3("history", string, string2)
-  wait_for_ajax(20)
-        
+  wait_for_ajax(20)      
 end
 
 When('I click {string} in context menu for {string} on the History page') do |string, string2|
@@ -88,6 +107,20 @@ When('I click {string} in context menu for {string} on the History page') do |st
 	context_menu_element_v3("history", string2, string)
 	wait_for_ajax(20)
 end
+
+When('I click {string} in context menu for {string} {string} version on the History page') do |string, string2, string3|
+  ui_table_search("history", string3)
+  find(".icon-context-menu").click
+  context_menu_element_v3("history", string2, string)
+  wait_for_ajax(20)
+end
+
+When('I enter {string} in the search area and click {string} on the Code List page') do |string, string2|
+  ui_child_search(string)
+  find(:xpath, "//tr[contains(.,string)]/td/a", :text => string2).click
+    wait_for_ajax(20)      
+end
+
 
 When('I click {string} in the context menu \(on top left corner of the page)') do |string|
   context_menu_element_header_v2(string)
@@ -103,11 +136,6 @@ end
   
 When /[cC]lose/ do
   click_button "Close"
-  wait_for_ajax(20)
-end
-                
-When /[hH]ome/ do
- click_link 'Home'
  wait_for_ajax(20)
 end
 
@@ -115,6 +143,11 @@ When('I click Return') do
   click_link 'Return'
   # click_on 'Return'
   wait_for_ajax(20)
+end
+
+When /[hH]ome/ do
+ click_link 'Home'
+ wait_for_ajax(20)
 end
 
 When('I click {string} button') do |string|
@@ -201,8 +234,18 @@ Then /History page is displayed/ do
 	save_screen(TYPE)
 end
 
+Then('I see {int} code lists') do |int|
+ ui_check_table_info("children", 1, 10, int)
+  if int < 10
+    ui_check_table_info("children", 1, int, int)
+  else
+    ui_check_table_info("children", 1, 10, int)
+  end
+  wait_for_ajax(20)
+  save_screen(TYPE)
+end
+
 Then('code list item {string} differences is displayed') do |string|
-  expect_page('Preferred term: EPIC-CP - Pain or Burning With Urination')
   expect(page).to have_content string
   expect(page).to have_content "Differences"
   wait_for_ajax(20)
@@ -216,9 +259,23 @@ Then('I see {string} Index page is displayed') do |string|
 end
 
 Then('the list has {int} entries') do |int|
-	ui_check_table_info("children_table", 1, 10, int)
+	if int < 10
+    ui_check_table_info("children", 1, int, int)
+  else
+    ui_check_table_info("children", 1, 10, int)
+  end
 	wait_for_ajax(20)
 	save_screen(TYPE)
+end
+
+Then('the form list has {int} entries') do |int|
+  if int < 10
+    ui_check_table_info("show", 1, int, int)
+  else
+    ui_check_table_info("show", 1, 10, int)
+  end
+  wait_for_ajax(20)
+  save_screen(TYPE)
 end
 
 Then('I see that {string}') do |string|
@@ -239,5 +296,18 @@ Then('the {string} has been deleted') do |string|
   save_screen(TYPE)
 end
 
+Then('I see the {string} page') do |string|
+  expect(page).to have_content string
+  wait_for_ajax(20)
+  save_screen(TYPE)
+end
+
+
+Then('the status for {string} is {string}') do |string, string2|
+ expect(page).to have_content string
+   expect(page).to have_content string2
+  wait_for_ajax(20)
+  save_screen(TYPE)
+end
 
 

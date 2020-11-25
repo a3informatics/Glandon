@@ -13,8 +13,29 @@ end
 
 Then('I see the list of code lists for the {string}') do |string|
   expect(page).to have_content string
+  expect(page).to have_content 'Code Lists'
   save_screen(TYPE)
   wait_for_ajax(20)
+end
+
+Then('I see code list {string} is displayed') do |string|
+  expect(page).to have_content string
+  save_screen(TYPE)
+  wait_for_ajax(20)  
+  end
+
+Then('I see that the code list {string} is not extensible') do |string|
+  ui_child_search(string)
+  ui_check_table_cell_extensible('children', 1, 5, false)
+  save_screen(TYPE)
+  wait_for_ajax(20) 
+end
+
+Then('I see that the code list {string} is extensible') do |string|
+  ui_child_search(string)
+  ui_check_table_cell_extensible('children', 1, 5, true)
+  save_screen(TYPE)
+  wait_for_ajax(20) 
 end
 
 Then('I see the list of code lists included in the latest release version as specified in pre-condition') do
@@ -24,12 +45,18 @@ Then('I see the list of code lists included in the latest release version as spe
 end
 
 Then('the release has {int} entries\/code lists') do |int|
-  ui_check_table_info("children_table", 1, 10, int)
+  ui_check_table_info("children", 1, 10, int)
   wait_for_ajax(20)
   save_screen(TYPE)
 end
 
 Then('I see the items in the {string} code list is displayed') do |string|
+       expect(page).to have_content string
+       wait_for_ajax(20)
+       save_screen(TYPE)
+end
+
+Then('I see the items in the {string} form displayed') do |string|
        expect(page).to have_content string
        wait_for_ajax(20)
        save_screen(TYPE)
@@ -63,13 +90,13 @@ end
 
 Then('I see {int} code lists with following synonyms') do |int, table|
   if int < 10
-  ui_check_table_info("children_table", 1, int, int)
+  ui_check_table_info("children", 1, int, int)
   else
-   ui_check_table_info("children_table", 1, 10, int)
+   ui_check_table_info("children", 1, 10, int)
   end
     table.hashes.each do |hash|
-    ui_check_table_cell("children_table", hash['No'], 1,"#{hash['CodeList']}")
-    ui_check_table_cell("children_table", hash['No'], 4,"#{hash['Synonym']}")
+    ui_check_table_cell("children", hash['No'], 1,"#{hash['CodeList']}")
+    ui_check_table_cell("children", hash['No'], 4,"#{hash['Synonym']}")
   end
   wait_for_ajax(20)
   save_screen(TYPE)
@@ -77,13 +104,13 @@ end
 
 Then('I see {int} code lists with following preferred terms') do |int, table|
   if int < 10
-  ui_check_table_info("children_table", 1, int, int)
+  ui_check_table_info("children", 1, int, int)
   else
-   ui_check_table_info("children_table", 1, 10, int)
+   ui_check_table_info("children", 1, 10, int)
   end
     table.hashes.each do |hash|
-    ui_check_table_cell("children_table", hash['No'], 1,"#{hash['CodeList']}")
-    ui_check_table_cell("children_table", hash['No'], 3,"#{hash['PreferredTerm']}")
+    ui_check_table_cell("children", hash['No'], 1,"#{hash['CodeList']}")
+    ui_check_table_cell("children", hash['No'], 3,"#{hash['PreferredTerm']}")
   end
   wait_for_ajax(20)
   save_screen(TYPE)
@@ -91,13 +118,13 @@ end
 
 Then('I see {int} code list items with following synonyms') do |int, table|
   if int < 10
-  ui_check_table_info("children_table", 1, int, int)
+  ui_check_table_info("children", 1, int, int)
   else
-   ui_check_table_info("children_table", 1, 10, int)
+   ui_check_table_info("children", 1, 10, int)
   end
     table.hashes.each do |hash|
-    ui_check_table_cell("children_table", hash['No'], 1,"#{hash['CodeListItem']}")
-    ui_check_table_cell("children_table", hash['No'], 4,"#{hash['Synonym']}")
+    ui_check_table_cell("children", hash['No'], 1,"#{hash['CodeListItem']}")
+    ui_check_table_cell("children", hash['No'], 4,"#{hash['Synonym']}")
   end
   wait_for_ajax(20)
   save_screen(TYPE)
@@ -105,13 +132,13 @@ end
 
 Then('I see {int} code list items with following preferred terms') do |int, table|
   if int < 10
-  ui_check_table_info("children_table", 1, int, int)
+  ui_check_table_info("children", 1, int, int)
   else
-   ui_check_table_info("children_table", 1, 10, int)
+   ui_check_table_info("children", 1, 10, int)
   end
     table.hashes.each do |hash|
-    ui_check_table_cell("children_table", hash['No'], 1,"#{hash['CodeListItem']}")
-    ui_check_table_cell("children_table", hash['No'], 3,"#{hash['PreferredTerm']}")
+    ui_check_table_cell("children", hash['No'], 1,"#{hash['CodeListItem']}")
+    ui_check_table_cell("children", hash['No'], 3,"#{hash['PreferredTerm']}")
   end
   wait_for_ajax(20)
   save_screen(TYPE)
@@ -119,9 +146,9 @@ end
 
 Then('I see {int} code list items') do |int|
 if int < 10
-  ui_check_table_info("children_table", 1, int, int)
+  ui_check_table_info("children", 1, int, int)
   else
-   ui_check_table_info("children_table", 1, 10, int)
+   ui_check_table_info("children", 1, 10, int)
   end
    wait_for_ajax(20)
    save_screen(TYPE)
@@ -220,3 +247,67 @@ Then('I see Preferred Term is empty') do
   wait_for_ajax(20)
   save_screen(TYPE)
 end
+
+Then('the following types of attributes for the code list is displayed:') do |table|
+  table.hashes.each do |hash|
+    check_table_headers('children', [hash])
+    end
+    wait_for_ajax(20)
+    save_screen(TYPE)
+  end
+
+  def check_table_headers(table, headers)
+    theaders = all(:xpath, "//div[@id='#{ table }_wrapper']//thead/tr/td", visible: false)
+
+    theaders.each do |th|
+      puts th.text
+      expect(headers).to include(th.text)
+    end
+  end
+
+  def check_cell_content(table, row, col, data, icon = false)
+    cell = find(:xpath, "//table[@id='#{ table }']//tbody/tr[#{ row }]/td[ #{ col }]", visible: false)
+
+    if data.is_a? String
+      expect(cell).to have_content data
+    else
+      expect(cell).to have_selector(data ? ".icon-sel-filled" : ".icon-times-circle")
+    end
+  end
+
+ Then('I see the following attributes for {string}:') do |string,table|
+    ui_table_search('children',string)
+     table.hashes.each do |hash|
+      check_cell_content('children', 1, 1, "#{hash['Identifier']}")
+      check_cell_content('children', 1, 2, "#{hash['SubmissionValue']}")
+      check_cell_content('children', 1, 3, "#{hash['PreferredTerm']}")
+      check_cell_content('children', 1, 4, "#{hash['Synonyms']}")
+      check_cell_content('children', 1, 5, "#{hash['Definition']}")
+      check_cell_content('children', 1, 6, "#{hash['Tags']}")
+      check_cell_content('children', 1, 7, "#{hash['CRFDisplayValue']}") # CRF Display Value
+      
+      if hash['ADaMStage'] == 'false'  # Adam stage
+         check_cell_content('children', 1, 8, false)  # Adam stage
+      else 
+         check_cell_content('children', 1, 8, true)
+      end
+      if hash['DCStage'] == 'false'
+         check_cell_content('children', 1, 9, false) # DC stage
+      else
+         check_cell_content('children', 1, 9, true) # DC stage
+      end
+      if hash['EDUse'] == 'false'
+         check_cell_content('children', 1, 10, false)  # ED use
+      else
+        check_cell_content('children', 1, 10, true)  # ED use
+      end
+      if hash['SDTMStage'] == 'false'
+         check_cell_content('children', 1, 11, false) # SDTM stage
+      else
+         check_cell_content('children', 1, 11, true) # SDTM stage
+      end
+    end
+    wait_for_ajax(20)
+    save_screen(TYPE)
+end
+      

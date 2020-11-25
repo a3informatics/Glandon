@@ -145,10 +145,14 @@ Then('the code list item {string}, c-code: {string} and {string}, c-code: {strin
   ui_check_table_cell('changes', 1, 2, string)
   ui_check_table_cell('changes', 2, 1, string4)
   ui_check_table_cell('changes', 2, 2, string3)
+  wait_for_ajax(20)
+  save_screen(TYPE)
 end
 
 Then('the Differences panel is displayed') do
   expect(page).to have_content 'Differences'
+  wait_for_ajax(20)
+  save_screen(TYPE)
 end
 
 
@@ -195,9 +199,8 @@ Then('a PDF report is generated and contains the {int} entires in the Changes pa
     save_screen(TYPE)
     # var x = document.getElementsByTagName('embed')[0]
     # x.src = "url/to/your.pdf?page=page_number"
-     save_screen(TYPE)
-      page.execute_script "window.close();"
-      end
+    page.execute_script "window.close();"
+    end
  
 end
 

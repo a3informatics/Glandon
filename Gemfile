@@ -112,8 +112,7 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
   # stuff for use of cucumber testing
-  gem 'cucumber'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails' , require: false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   # Allure support - for nice testing reports

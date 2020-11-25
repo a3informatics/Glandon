@@ -32,11 +32,15 @@ end
 
 Then('I see the "Select Terminology" selector window') do 
   expect(page).to have_content("Select Terminology")
+  wait_for_ajax(20)
+  save_screen(TYPE)
 end
 
 
-Then('I see the "Search current" page') do 
-  expect(page).to have_content("Search Current")
+Then('I see the Search current page') do 
+  expect(page).to have_content('Search Current')
+  wait_for_ajax(20)
+  save_screen(TYPE)
 end
 
 
@@ -52,4 +56,6 @@ Then('I see {int} search results') do |int|
     ui_check_table_info("searchTable", 1, 10, int)
     end
   end
+  wait_for_ajax(20)
+  save_screen(TYPE)
 end
