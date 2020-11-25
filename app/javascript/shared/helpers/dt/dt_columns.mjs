@@ -126,47 +126,48 @@ function dtTrueFalseColumn(name, opts = {}) {
 
 /**
  * Returns column definition for a true/false editable column
- * @param {string} field editField name
  * @param {string} name data property name
+ * @param {object} opts additional column opts
  * @return {object} DataTables true/false editable column definition
  */
-function dtTrueFalseEditColumn(field, name) {
-  let inlineEditColumn = dtInlineEditColumn(field, name);
-
-  inlineEditColumn.className += " text-center"
-  inlineEditColumn.render = dtTrueFalseColumn().render
-
-  return inlineEditColumn;
+function dtTrueFalseEditColumn(name, opts = {}) {
+  return {
+    className: "editable inline text-center",
+    data: name,
+    editField: (opts.editField || name),
+    render: dtTrueFalseColumn().render,
+    ...opts
+  }
 };
 
 /**
  * Returns column definition for a generic inline editable column
- * @param {string} field editField name
  * @param {string} name data property name
- * @param {string} width width of column in %
+ * @param {object} opts additional column opts
  * @return {object} DataTables inline editable column definition
  */
-function dtInlineEditColumn(name, field, width) {
+function dtInlineEditColumn(name, opts = {}) {
   return {
     className: "editable inline",
     data: name,
-    editField: (field || name),
-    width: width
+    editField: (opts.editField || name),
+    ...opts
   }
 };
 
 /**
  * Returns column definition for an externally editable column
- * @param {string} field editField name
  * @param {string} name data property name
- * @param {string} width width of column in %
+ * @param {object} opts additional column opts
  * @return {object} DataTables externally editable column definition
  */
-function dtExternalEditColumn(name, field, width) {
-  let definition = dtInlineEditColumn(name, field, width);
-  definition.className = "editable external"
-
-  return definition;
+function dtExternalEditColumn(name, opts = {}) {
+  return {
+    className: "editable external",
+    data: name,
+    editField: (opts.editField || name),
+    ...opts
+  }
 };
 
 export {
