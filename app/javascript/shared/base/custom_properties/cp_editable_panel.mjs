@@ -1,13 +1,13 @@
-import TablePanel from 'shared/base/table_panel'
+import EditablePanel from 'shared/base/editable_panel'
 
-import CustomPropsHandler from 'shared/helpers/custom_properties/cp_handler'
+import CustomPropsEditableHandler from 'shared/helpers/custom_properties/cp_editable_handler'
 
 /**
- * Custom Properties Table Panel
- * @description Simple Table Panel extension with Custom Properties functionality
+ * Custom Properties Editable Panel
+ * @description Editable Panel extension with Custom Properties functionality
  * @author Samuel Banas <sab@s-cubed.dk>
  */
-export default class CustomPropsTablePanel extends TablePanel {
+export default class CustomPropsEditablePanel extends EditablePanel {
 
   /**
    * Create a Custom Properties Table Panel instance
@@ -28,7 +28,7 @@ export default class CustomPropsTablePanel extends TablePanel {
       ...tablePanelOpts,
       autoHeight: true
     }, {
-      handler: new CustomPropsHandler({
+      handler: new CustomPropsEditableHandler({
         enabled,
         afterColumn,
         onColumnsToggle: visible => this._onColumnsToggle( visible )
@@ -89,6 +89,21 @@ export default class CustomPropsTablePanel extends TablePanel {
 
   /*** Support ***/
 
+
+  /**
+   * Custom Editor initialization options
+   * @return {Object} Editor options object
+   */
+  get _editorOpts() {
+
+    let options = super._editorOpts;
+
+    if ( this.handler.enabled && this.handler.customProps )
+      options.fields = this.handler.mergeFields( options.fields );
+
+    return options;
+
+  }
 
   /**
    * Custom DataTable initialization options

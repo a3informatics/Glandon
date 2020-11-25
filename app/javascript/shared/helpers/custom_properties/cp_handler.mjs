@@ -1,4 +1,4 @@
-import { columnByDataType } from 'shared/helpers/dt/dt_custom_property_columns'
+import { columnByDataType } from 'shared/helpers/dt/dt_custom_properties'
 import { $get } from 'shared/helpers/ajax'
 import { alerts } from 'shared/ui/alerts'
 import CPButton from 'shared/helpers/custom_properties/cp_button'
@@ -25,7 +25,7 @@ export default class CustomPropsHandler {
 
     Object.assign( this, {
       button: CPButton,
-      enabled,
+      enabled: enabled && customPropsOpts.accessPolicy,
       afterColumn,
       onColumnsToggle,
       visible: false
@@ -42,13 +42,50 @@ export default class CustomPropsHandler {
    */
   set table(table) {
 
-    if ( !table )
+    if ( !table || !this.enabled )
       return;
 
     this.tablePanel = table;
 
     // Set the CPButton unique selector
     this.button.selector = `${ table.selector }_wrapper`;
+
+  }
+
+  /**
+   * Check if Handler custom property data and definitions are present
+   * @return {boolean} True if CP data is loaded and definitions are not empty
+   */
+  get hasData() {
+    return this.customProps && this.customProps.definitions.length;
+  }
+
+  /**
+   * Reset Custom Props handler to initial state - remove cp columns and data
+   * Destroys and reinits TablePanel
+   */
+  reset() {
+
+    if ( !this.enabled || !this.hasData )
+      return;
+
+    this._destroyExecuteInit( () => {
+
+      // Delete customProps data
+      delete this.customProps;
+
+      // Remove Custom Property header columns
+      $( `${ this.tablePanel.selector } thead th.custom-prop` ).remove();
+
+    });
+
+  }
+
+  addButton(oButtons) {
+
+    return this.enabled ?
+      [ ...oButtons, this.button.definition ] :
+      oButtons;
 
   }
 
@@ -64,7 +101,7 @@ export default class CustomPropsHandler {
     this.button.loading( true );
 
     $get({
-      url: customPropsUrl,
+      url: customPropsOpts.dataUrl,
       rawResult: true,
       done: r => {
 
@@ -90,19 +127,18 @@ export default class CustomPropsHandler {
    */
   mergeColumns(oColumns) {
 
-    if ( !this.customProps || !this.customProps.definitions )
+    if ( !this.hasData )
       return;
-
-    // Map CP definitions to DT columns
-    let { definitions } = this.customProps,
-        columns = definitions.map( def => columnByDataType( def.datatype )( def.name ) ),
-        index = this.afterColumn + 1;
 
     // Make a copy of the original columns array
     oColumns = [...oColumns];
 
     // Insert CP columns into the columns array
-    oColumns.splice( index, 0, ...columns );
+    oColumns.splice(
+      this.afterColumn + 1,
+      0,
+      ...this._columns
+    );
 
     return oColumns;
 
@@ -115,13 +151,16 @@ export default class CustomPropsHandler {
    */
   mergeData(tableData) {
 
-    if ( !this.customProps || !this.customProps.data )
+    if ( !this.hasData )
       return;
 
-    tableData.forEach( dataItem => Object.assign(
-      dataItem,
-      this.customProps.data.find( d => d.id === dataItem.id )
-    ));
+    tableData.forEach( dataItem => {
+
+      let itemCustomProps = this.customProps.data.find( d => d.id === dataItem.id );
+
+      itemCustomProps && Object.assign( dataItem, { customProps: itemCustomProps } );
+
+    });
 
   }
 
@@ -130,25 +169,20 @@ export default class CustomPropsHandler {
 
 
   /**
-   * Render Custom Properties in this instance's table panel
+   * Render Custom Properties in this instance's table panel (destroys and reinits table)
+   * Destroys and reinits TablePanel
    */
   _render() {
 
-    // Cache table data
-    const tableData = this.tablePanel.rowDataToArray;
+    this._destroyExecuteInit( tableData => {
 
-    // Destroy DataTable instance
-    this.tablePanel.destroy();
+      // Render Custom Property header columns
+      this._renderHeaders();
 
-    // Render Custom Property header columns
-    this._renderHeaders();
+      // Merge table data with cp data
+      this.mergeData( tableData );
 
-    // Merge table data with cp data
-    this.mergeData( tableData );
-
-    // Re-initialize table and render data
-    this.tablePanel._initTable();
-    this.tablePanel._render( tableData );
+    });
 
   }
 
@@ -214,7 +248,7 @@ export default class CustomPropsHandler {
       return;
 
     // Toggle CP columns visibility if customProps data is available
-    if ( this.customProps )
+    if ( this.hasData )
       this._toggleColumns( !this.visible );
 
     // Load CP data if none present
@@ -226,6 +260,28 @@ export default class CustomPropsHandler {
 
   /*** Support ***/
 
+
+  /**
+   * Destroys the current DataTable instance, performs specified action and re-initializes DataTable with cached data
+   * @param {function} action Function to execute while TablePanel instance destroyed, passed cached tableData as argument
+   */
+  _destroyExecuteInit(action = () => {}) {
+
+    // Cache table data
+    const tableData = this.tablePanel.rowDataToArray;
+
+    // Destroy DataTable instance
+    this.tablePanel.destroy();
+
+    // Run action
+    action( tableData );
+
+    // Re-initialize table and render data
+    this.tablePanel.deferLoading = true;
+    this.tablePanel.initialize();
+    this.tablePanel._render( tableData );
+
+  }
 
   /**
    * Toggle Custom Propety columns visibility and update UI
@@ -251,6 +307,18 @@ export default class CustomPropsHandler {
     // Adjust column widths
     this.tablePanel.table.columns
                          .adjust();
+
+  }
+
+  /**
+   * Get Custom Property column definitions (mapped from CP definitions)
+   * @return {Array} Custom Property DT column definitions
+   */
+  get _columns() {
+
+    return this.customProps.definitions.map( def =>
+      columnByDataType( def.datatype )( def.name )
+    );
 
   }
 
