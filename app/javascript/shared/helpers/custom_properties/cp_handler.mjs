@@ -25,7 +25,7 @@ export default class CustomPropsHandler {
 
     Object.assign( this, {
       button: CPButton,
-      enabled: enabled && customPropsOpts.accessPolicy,
+      enabled: (enabled && customPropsOpts.accessPolicy),
       afterColumn,
       onColumnsToggle,
       visible: false
@@ -57,7 +57,7 @@ export default class CustomPropsHandler {
    * @return {boolean} True if CP data is loaded and definitions are not empty
    */
   get hasData() {
-    return this.customProps && this.customProps.definitions.length;
+    return ( this.customProps != null ) && ( this.customProps.definitions.length > 0 );
   }
 
   /**
@@ -83,9 +83,10 @@ export default class CustomPropsHandler {
 
   addButton(oButtons) {
 
-    return this.enabled ?
-      [ ...oButtons, this.button.definition ] :
-      oButtons;
+    if ( this.enabled )
+      return [...oButtons, this.button.definition ]
+    else
+      return oButtons;
 
   }
 

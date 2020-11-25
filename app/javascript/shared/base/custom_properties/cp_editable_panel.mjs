@@ -59,7 +59,10 @@ export default class CustomPropsEditablePanel extends EditablePanel {
   refresh(url) {
 
     super.refresh(url);
+
     this.handler.reset();
+    // Disable CP Button until the data fully loads
+    this.handler.button.disable();
 
   }
 
@@ -86,9 +89,50 @@ export default class CustomPropsEditablePanel extends EditablePanel {
    */
   _onColumnsToggle(visible) { }
 
+  /**
+   * Formats the update data to be compatible with server
+   * Applies special formatting if the edited field is a Custom Property
+   * @param {object} d DataTables Editor data object being altered
+   * @return {Array} Formatted data
+   */
+  _preformatUpdateData(d) {
+
+    let fData = super._preformatUpdateData( d ),
+        field = this.currentField;
+
+    // Check if Custom Property value was updated
+    if ( this._isCustomProperty( field ) ) {
+
+      // Format the data object and clear
+      d.custom_property = {
+        id: fData[0].id,
+        value: fData[0][field]
+      }
+      delete d.data;
+
+    }
+
+    return fData;
+
+  }
+
 
   /*** Support ***/
 
+
+  /**
+   * Check if given field is a Custom Property
+   * @param {string} field Field to check
+   * @return {boolean} True if given field is a Custom Property
+   */
+  _isCustomProperty(field) {
+
+    return ( this.handler.hasData ) &&
+           ( this.handler.customProps
+                       .definitions
+                       .find( def => def.name === field ) != undefined )
+
+  }
 
   /**
    * Custom Editor initialization options

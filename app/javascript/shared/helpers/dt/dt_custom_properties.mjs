@@ -77,6 +77,7 @@ function eColumnByDataType(datatype) {
     case 'float':
       return (name, props) => dtInlineEditColumn( getName( name ), {
         className: 'editable inline',
+        editField: name,
         ...props
       });
       break;
@@ -84,6 +85,7 @@ function eColumnByDataType(datatype) {
     case 'boolean':
       return (name, props) => dtTrueFalseEditColumn( getName( name ), {
         className: 'editable inline text-center',
+        editField: name,
         ...props
       });
       break;
@@ -107,11 +109,11 @@ function fieldByDataType(datatype) {
     case 'string':
     case 'integer':
     case 'float':
-      return (name, props) => dtField( 'textarea', getName( name ), props );
+      return (name, props) => dtField( 'textarea', name, props );
       break;
 
     case 'boolean':
-      return (name, props) => dtField( 'truefalse', getName( name ), props );
+      return (name, props) => dtField( 'truefalse', name, props );
       break;
 
   }
@@ -128,7 +130,8 @@ function fieldByDataType(datatype) {
 function dtField(type, name, props = {}) {
 
   return {
-    name, type,
+    type, name,
+    data: getName( name ),
     ...props
   }
 
@@ -137,7 +140,7 @@ function dtField(type, name, props = {}) {
 /**
  * Get data property name with prefix
  * @param {string} name Data property name of the field
- * @return {string} Custom Property data property name 
+ * @return {string} Custom Property data property name
  */
 function getName(name) {
   return `customProps.${ name }`;

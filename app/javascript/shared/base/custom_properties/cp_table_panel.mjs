@@ -59,7 +59,10 @@ export default class CustomPropsTablePanel extends TablePanel {
   refresh(url) {
 
     super.refresh(url);
+
     this.handler.reset();
+    // Disable CP Button until the data fully loads
+    this.handler.button.disable();
 
   }
 

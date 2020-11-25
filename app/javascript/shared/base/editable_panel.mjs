@@ -121,6 +121,14 @@ export default class EditablePanel extends TablePanel {
 
   }
 
+  /**
+   * Get the currently edited field name
+   * @return {string} name of the field, undefined if none
+   */
+  get currentField() {
+    return this.editor.displayed()[0];
+  }
+
 
   /** Private **/
 
@@ -211,11 +219,21 @@ export default class EditablePanel extends TablePanel {
   }
 
   /**
-   * Formats the update data to be compatible with server
+   * Formats the update data to be compatible with server, maps to a simple array
+   * To change data format, alter the d object
    * @override for custom behavior
-   * @param {object} d DataTables Editor data object
+   * @param {object} d DataTables Editor data object to be altered
+   * @return {Array} Simple formatted data
    */
-  _preformatUpdateData(d) { }
+  _preformatUpdateData(d) {
+
+    let fData = Object.keys( d.data ).map( id =>
+      Object.assign( {}, d.data[ id ], { id } )
+    );
+
+    return fData;
+
+  }
 
   /**
    * Formats the updated data returned from the server before being added to Editor
