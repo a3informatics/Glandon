@@ -46,7 +46,7 @@ class Form::Item::BcProperty < Form::Item
   # To CRF
   #
   # @return [String] An html string of BC Property
-  def to_crf
+  def to_crf(annotations)
     html = ""
     if !is_common?
       if self.has_property_objects.enabled
@@ -54,14 +54,23 @@ class Form::Item::BcProperty < Form::Item
         property = BiomedicalConcept::PropertyX.find(property_ref)
         html += start_row(self.has_property_objects.optional)
         html += question_cell(property.question_text)
+        pa = property_annotations(annotations)
+        html += mapping_cell(pa, annotations)
         if property.has_coded_value.length == 0
           html += input_field(property)
         else
-          html += terminology_cell
+          html += terminology_cell(self)
         end
         html += end_row
       end
     end
+    return html
+  end
+
+  def property_annotations(annotations)
+    return "" if annotations.nil?
+    html = ""
+    html += annotation_to_html(annotations, html)
     return html
   end
 
@@ -150,6 +159,15 @@ class Form::Item::BcProperty < Form::Item
   end
 
 private
+
+  def annotation_to_html(annotations, html)
+    annotation = annotations.annotation_for_uri(self.uri.to_s)
+    annotation.each do |a|
+      p_class = annotations.retrieve_domain_class(a.domain_prefix.to_sym)
+      html += "<p class=\"#{p_class}\">#{a.sdtm_variable} where #{a.sdtm_topic_variable}=#{a.sdtm_topic_value}</p>"
+    end
+    return html
+  end
 
   def clone_common_group(uri, managed_ancestor)
      cg = Form::Group::Common.find(uri)

@@ -54,13 +54,16 @@ describe Form::Item::Mapping do
 
   it "returns the CRF rendition" do
     item = Form::Item::Mapping.new(uri: Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001"), mapping: "AAAAA", ordinal: 1)
-    result = item.to_crf
+    result = item.to_crf(nil)
     check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
   end
 
-  # it "allows an object to be exported as XML" do
-  # 	expect(true).to be(true) # No test required, noting in the code
-  # end
+  it "returns the aCRF rendition" do
+    item = Form::Item::Mapping.new(uri: Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001"), mapping: "AAAAA", ordinal: 1)
+    annotations = {}
+    result = item.to_crf(annotations)
+    check_file_actual_expected(result, sub_dir, "to_crf_expected_2.yaml", equate_method: :hash_equal)
+  end
 
 end
   

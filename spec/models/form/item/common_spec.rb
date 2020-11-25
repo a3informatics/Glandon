@@ -55,7 +55,7 @@ describe Form::Item::Common do
       item = Form::Item::Common.create(uri: Uri.new(uri: "http://www.s-cubed.dk/CI1"), ordinal: 1, has_property: ref.uri)
       item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CI1"))
       item.has_property_objects
-      result = item.to_crf
+      result = item.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
     end
   
@@ -72,7 +72,7 @@ describe Form::Item::Common do
       item.save
       item = Form::Item::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CI2"))
       item.has_property_objects
-      result = item.to_crf
+      result = item.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_2.yaml", equate_method: :hash_equal)
     end
   

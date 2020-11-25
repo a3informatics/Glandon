@@ -24,7 +24,7 @@ class Form::Item::Placeholder < Form::Item
   # To CRF
   #
   # @return [String] An html string of Placeholder item
-  def to_crf
+  def to_crf(annotations)
     markdown_row(self.free_text)
   end
 

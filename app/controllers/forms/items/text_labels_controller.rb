@@ -55,7 +55,7 @@ class Forms::Items::TextLabelsController < ManagedItemsController
     parent = class_for_id(the_params[:parent_id]).find_full(Uri.new(id:the_params[:parent_id]))
     form = Form.find_minimum(the_params[:form_id])
     return true unless check_lock_for_item(form)
-    result = text_label.delete(parent)
+    result = text_label.delete(parent, form)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, form, "Form updated, item #{text_label.label} deleted.") if @lock.token.refresh == 1
     render json: {data: result, ids: form.modified_uris_as_ids}, status: 200
