@@ -26,6 +26,8 @@ export default class EditablePanel extends TablePanel {
    * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {boolean} params.cache Specify if the panel data should be cached. Optional
    * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
+   * @param {boolean} params.autoHeight Specifies whether the height of the table should match the window size, and add a horizontal scroll, optional
+   * @param {Object} args Optional additional arguments for extending classes
    */
   constructor({
     selector,
@@ -39,10 +41,17 @@ export default class EditablePanel extends TablePanel {
     deferLoading = false,
     order = [[0, "desc"]],
     cache = true,
-    loadCallback = () => {}
-  }) {
-    super({ selector, url: dataUrl, param, count, extraColumns: columns, deferLoading, cache, loadCallback, order },
-          { updateUrl, fields, idSrc });
+    loadCallback = () => {},
+    autoHeight = false
+  }, args = {}) {
+
+    super({
+      selector, param, count, deferLoading, cache, loadCallback, order,
+      autoHeight, url: dataUrl, extraColumns: columns
+    }, {
+      updateUrl, fields, idSrc, ...args
+    });
+
   }
 
   /**
@@ -102,15 +111,25 @@ export default class EditablePanel extends TablePanel {
     this.editor.ajax(newOpts);
   }
 
+  /**
+   * Destroy the DataTable instance in the Panel
+   */
+  destroy() {
+
+    super.destroy();
+    this.editor.destroy();
+
+  }
+
 
   /** Private **/
 
 
   /**
    * Sets event listeners, handlers
+   * Used for table related listeners only
    */
-  _setListeners() {
-
+  _setTableListeners() {
     // Before editing - check _editable condition first
     this.editor.on('preOpen', () => {
 
@@ -161,7 +180,7 @@ export default class EditablePanel extends TablePanel {
     });
 
     // Update UI on keypress in TA. Handle Submit.
-    $(this.selector).on('keydown', 'textarea', (e, dt, c) => {
+    $(`${ this.selector } tbody`).on('keydown', 'textarea', (e, dt, c) => {
 
       this._updateUI('input');
 
@@ -261,17 +280,7 @@ export default class EditablePanel extends TablePanel {
    * Initialize a new DataTable Editor
    */
   _initEditor() {
-    this.editor = new $.fn.dataTable.Editor({
-      ajax: this._editorAjaxOpts,
-      table: this.selector,
-      fields: this.fields,
-      idSrc: this.idSrc,
-      formOptions:{
-        inline: {
-          drawType: 'page'
-        }
-      }
-    });
+    this.editor = new $.fn.dataTable.Editor( this._editorOpts );
   }
 
   /**
@@ -288,7 +297,7 @@ export default class EditablePanel extends TablePanel {
    * @param {boolean} enable True/false ~~ enable/disable processing state
    */
   _inlineProcessing(e, enable) {
-    
+
     let modifier = e.currentTarget.s.modifier,
         targetNode = this.table.cell(modifier).node();
 
@@ -303,7 +312,7 @@ export default class EditablePanel extends TablePanel {
     // Initialize Editor first
     this._initEditor();
     // Initialize DataTable after
-    this.table = $(this.selector).DataTable(this._tableOpts);
+    super._initTable();
     // Initialize Pickers last
     this._initPickers();
   }
@@ -323,6 +332,26 @@ export default class EditablePanel extends TablePanel {
     }
 
     return options;
+  }
+
+  /**
+   * Default Editor init options
+   * @return {Object} DataTable Editor init object
+   */
+  get _editorOpts() {
+
+    return {
+      ajax: this._editorAjaxOpts,
+      table: this.selector,
+      fields: this.fields,
+      idSrc: this.idSrc,
+      formOptions:{
+        inline: {
+          drawType: 'page'
+        }
+      }
+    }
+
   }
 
   /**

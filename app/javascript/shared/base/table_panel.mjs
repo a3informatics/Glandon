@@ -50,7 +50,7 @@ export default class TablePanel {
       errorDiv, ...args
     });
 
-    this.initialize();
+    this.initialize( deferLoading );
     this._setListeners();
 
   }
@@ -122,11 +122,12 @@ export default class TablePanel {
   }
 
   /**
-   * Initialize the Table Panel
+   * Initialize the Table Panel and listeners
    */
   initialize() {
 
     this._initTable();
+    this._setTableListeners();
 
     if ( !this.deferLoading )
       this.loadData();
@@ -139,7 +140,8 @@ export default class TablePanel {
   destroy() {
 
     this.table.destroy();
-    $(`${ this.selector } tbody`).empty();
+    $(`${ this.selector } tbody`).unbind()
+                                 .empty();
 
   }
 
@@ -149,8 +151,15 @@ export default class TablePanel {
 
   /**
    * Sets event listeners, handlers
+   * Used for non-table related listeners only!
    */
   _setListeners() { }
+
+  /**
+   * Sets event listeners, handlers
+   * Used for table related listeners only!
+   */
+  _setTableListeners() { }
 
   /**
    * Fetch data in a single request, handle loading and updates
