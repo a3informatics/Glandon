@@ -1,335 +1,334 @@
-@prefix : <http://www.assero.co.uk/MDRForms/ACME/V1#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix : <http://www.acme-pharma.com/F_BASELINE/V1#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
-@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
-@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.assero.co.uk/MDRForms/ACME/V1>
+<http://www.acme-pharma.com/F_BASELINE/V1>
 	rdf:type owl:Ontology ;
 .
-:F-ACME_FBASELINE
-	rdf:type <http://www.assero.co.uk/BusinessForm#Form> ;
-	rdfs:label "Baseline Visit Form"^^xsd:string ;
-	isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_FBASELINE-1> ;
-	isoT:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> ;
-	isoT:creationDate "2019-03-24T06:54:55+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-03-24T06:54:55+00:00"^^xsd:dateTime ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:explanatoryComment ""^^xsd:string ;
+:F
+	rdf:type bf:Form ;
+	isoC:label "Baseline Visit Form"^^xsd:string ;
+	isoT:hasState :F_RS ;
+	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2020-11-25T18:31:02+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-25T18:31:02+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
-	bf:hasGroup :F-ACME_FBASELINE_G1 ;
-	bf:hasGroup :F-ACME_FBASELINE_G2 ;
-	bf:hasGroup :F-ACME_FBASELINE_G3 ;
-	bf:hasGroup :F-ACME_FBASELINE_G4 ;
-	bf:hasGroup :F-ACME_FBASELINE_G5 ;
+	bf:completion ""^^xsd:string ;
+	bf:hasGroup <http://www.acme-pharma.com/FBASELINE/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238> ;
+	bf:hasGroup <http://www.acme-pharma.com/FBASELINE/V1#NG_36d01a04-97fa-4ae9-8f40-9f266a6cdc06> ;
+	bf:hasGroup <http://www.acme-pharma.com/FBASELINE/V1#NG_f9fe7128-4b63-482d-9a11-62250e24fe0c> ;
+	bf:hasGroup <http://www.acme-pharma.com/FBASELINE/V1#NG_4b981364-daf4-4c99-84f0-f7514bd092e7> ;
+	bf:hasGroup <http://www.acme-pharma.com/FBASELINE/V1#NG_830fa72c-a59e-475b-9b2c-eb4b5ace264f> ;
 .
-<http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1>
+:F_RS
 	rdf:type isoR:RegistrationState ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
-<http://www.assero.co.uk/MDRItems#SI-ACME_FBASELINE-1>
-	isoI:identifier "F BASELINE"^^xsd:string ;
+:F_SI
 	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "F BASELINE"^^xsd:string ;
+	isoI:versionLabel "0.1.0"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:versionLabel ""^^xsd:string ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
 .
-:F-ACME_FBASELINE_G1
-	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
-	rdfs:label "Common"^^xsd:string ;
-	bf:ordinal "1"^^xsd:positiveInteger ;
-	bf:optional "false"^^xsd:boolean ;
+<http://www.acme-pharma.com/FBASELINE/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238>
+	rdf:type bf:NormalGroup ;
+	isoC:label "Common"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
-	bf:hasItem :F-ACME_FBASELINE_G1_I1 ;
-	bf:hasItem :F-ACME_FBASELINE_G1_I2 ;
-	bf:hasItem :F-ACME_FBASELINE_G1_I3 ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded> ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f> ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_b76597f7-972f-40f4-bed7-e134725cf296> ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-:F-ACME_FBASELINE_G1_I1
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Site Number"^^xsd:string ;
-	bf:ordinal "1"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded>
+	rdf:type bf:Question ;
+	isoC:label "Site Number"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "3"^^xsd:string ;
-	bf:question_text "Site #"^^xsd:string ;
 	bf:mapping "SITEID"^^xsd:string ;
+	bf:questionText "Site #"^^xsd:string ;
 .
-:F-ACME_FBASELINE_G1_I2
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Subject ID"^^xsd:string ;
-	bf:ordinal "2"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f>
+	rdf:type bf:Question ;
+	isoC:label "Subject ID"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "11"^^xsd:string ;
-	bf:question_text "Subject ID #"^^xsd:string ;
 	bf:mapping "USUBJID"^^xsd:string ;
+	bf:questionText "Subject ID #"^^xsd:string ;
 .
-:F-ACME_FBASELINE_G1_I3
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Visit Date"^^xsd:string ;
-	bf:ordinal "3"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_b76597f7-972f-40f4-bed7-e134725cf296>
+	rdf:type bf:Question ;
+	isoC:label "Visit Date"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "date"^^xsd:string ;
 	bf:format ""^^xsd:string ;
-	bf:question_text "Visit Date"^^xsd:string ;
 	bf:mapping "RFSTDTC"^^xsd:string ;
+	bf:questionText "Visit Date"^^xsd:string ;
 .
-:F-ACME_FBASELINE_G2
-	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
-	rdfs:label "Demographics"^^xsd:string ;
-	bf:ordinal "2"^^xsd:positiveInteger ;
-	bf:optional "false"^^xsd:boolean ;
+<http://www.acme-pharma.com/FBASELINE/V1#NG_36d01a04-97fa-4ae9-8f40-9f266a6cdc06>
+	rdf:type bf:NormalGroup ;
+	isoC:label "Demographics"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
-	bf:hasItem :F-ACME_FBASELINE_G2_I1 ;
-	bf:hasItem :F-ACME_FBASELINE_G2_I2 ;
-	bf:hasItem :F-ACME_FBASELINE_G2_I3 ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_0cda6f24-e54d-4724-af79-916d41d9bd7f> ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7> ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_c9f7f7de-d227-4e15-b171-06c4306b77f4> ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-:F-ACME_FBASELINE_G2_I1
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Date of Birth"^^xsd:string ;
-	bf:ordinal "1"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_0cda6f24-e54d-4724-af79-916d41d9bd7f>
+	rdf:type bf:Question ;
+	isoC:label "Date of Birth"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "date"^^xsd:string ;
 	bf:format ""^^xsd:string ;
-	bf:question_text "Date of Birth"^^xsd:string ;
 	bf:mapping "BRTHDTC"^^xsd:string ;
+	bf:questionText "Date of Birth"^^xsd:string ;
 .
-:F-ACME_FBASELINE_G2_I2
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "DM - Sex"^^xsd:string ;
-	bf:ordinal "2"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7>
+	rdf:type bf:Question ;
+	isoC:label "DM - Sex"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "1"^^xsd:string ;
-	bf:question_text "Sex"^^xsd:string ;
 	bf:mapping "SEX"^^xsd:string ;
-	bf:hasThesaurusConcept :F-ACME_FBASELINE_G2_I2_TCR1 ;
-	bf:hasThesaurusConcept :F-ACME_FBASELINE_G2_I2_TCR2 ;
+	bf:questionText "Sex"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R1> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R2> ;
 .
-:F-ACME_FBASELINE_G2_I2_TCR1
-	rdf:type <http://www.assero.co.uk/BusinessOperational#TcReference> ;
-	rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
-	bo:hasThesaurusConcept <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C66731_C20197> ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:local_label ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66731/V16#C66731_C20197> ;
 .
-:F-ACME_FBASELINE_G2_I2_TCR2
-	rdf:type <http://www.assero.co.uk/BusinessOperational#TcReference> ;
-	rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
-	bo:hasThesaurusConcept <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C66731_C16576> ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:local_label ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66731/V4#C66731_C16576> ;
 .
-:F-ACME_FBASELINE_G2_I3
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "DM - Race"^^xsd:string ;
-	bf:ordinal "3"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_c9f7f7de-d227-4e15-b171-06c4306b77f4>
+	rdf:type bf:Question ;
+	isoC:label "DM - Race"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
 	bf:note "* No entries found in code list 'C74457' for item with submission value: 'CAUCASIAN' or preferred term: 'Caucasian'.\n* No entries found in code list 'C74457' for item with submission value: 'BLACK' or preferred term: 'Black'.\n* No entries found in code list 'C74457' for item with submission value: 'OTHER' or preferred term: 'Other'.\n"^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
-	bf:question_text "Race"^^xsd:string ;
 	bf:mapping "RACE"^^xsd:string ;
-	bf:hasThesaurusConcept :F-ACME_FBASELINE_G2_I3_TCR1 ;
+	bf:questionText "Race"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/FBASELINE/V1#Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R1> ;
 .
-:F-ACME_FBASELINE_G2_I3_TCR1
-	rdf:type <http://www.assero.co.uk/BusinessOperational#TcReference> ;
-	rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
-	bo:hasThesaurusConcept <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C74457_C41260> ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:local_label ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41260> ;
 .
-:F-ACME_FBASELINE_G3
-	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
-	rdfs:label "Smoking History"^^xsd:string ;
-	bf:ordinal "3"^^xsd:positiveInteger ;
-	bf:optional "false"^^xsd:boolean ;
+<http://www.acme-pharma.com/FBASELINE/V1#NG_f9fe7128-4b63-482d-9a11-62250e24fe0c>
+	rdf:type bf:NormalGroup ;
+	isoC:label "Smoking History"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
-	bf:hasItem :F-ACME_FBASELINE_G3_I1 ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_f03287d6-23ea-43bb-b3cf-f972761caabd> ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-:F-ACME_FBASELINE_G3_I1
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Smoking"^^xsd:string ;
-	bf:ordinal "1"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_f03287d6-23ea-43bb-b3cf-f972761caabd>
+	rdf:type bf:Question ;
+	isoC:label "Smoking"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
 	bf:note "* No entries found for code list, parameters ['notation=SMOKE'].\n* No entries found for code list, parameters ['notation=CLSMOKING'].\n"^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
-	bf:question_text "Number of cigarettes per day"^^xsd:string ;
 	bf:mapping "SUDOSE"^^xsd:string ;
+	bf:questionText "Number of cigarettes per day"^^xsd:string ;
 .
-:F-ACME_FBASELINE_G4
-	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
-	rdfs:label "Drinking History"^^xsd:string ;
-	bf:ordinal "4"^^xsd:positiveInteger ;
-	bf:optional "false"^^xsd:boolean ;
+<http://www.acme-pharma.com/FBASELINE/V1#NG_4b981364-daf4-4c99-84f0-f7514bd092e7>
+	rdf:type bf:NormalGroup ;
+	isoC:label "Drinking History"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
-	bf:hasItem :F-ACME_FBASELINE_G4_I1 ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb> ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-:F-ACME_FBASELINE_G4_I1
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Drinking"^^xsd:string ;
-	bf:ordinal "1"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb>
+	rdf:type bf:Question ;
+	isoC:label "Drinking"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
 	bf:note "* No entries found for code list, parameters ['notation=DRINK'].\n* No entries found for code list, parameters ['notation=CLDRINKING'].\n"^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
-	bf:question_text "Number of alcoholic drinks per day"^^xsd:string ;
 	bf:mapping "SUDOSE"^^xsd:string ;
+	bf:questionText "Number of alcoholic drinks per day"^^xsd:string ;
 .
-:F-ACME_FBASELINE_G5
-	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
-	rdfs:label "Physical Exam"^^xsd:string ;
-	bf:ordinal "5"^^xsd:positiveInteger ;
-	bf:optional "false"^^xsd:boolean ;
+<http://www.acme-pharma.com/FBASELINE/V1#NG_830fa72c-a59e-475b-9b2c-eb4b5ace264f>
+	rdf:type bf:NormalGroup ;
+	isoC:label "Physical Exam"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
-	bf:hasItem :F-ACME_FBASELINE_G5_I1 ;
-	bf:hasItem :F-ACME_FBASELINE_G5_I2 ;
-	bf:hasItem :F-ACME_FBASELINE_G5_I3 ;
-	bf:hasItem :F-ACME_FBASELINE_G5_I4 ;
-	bf:hasItem :F-ACME_FBASELINE_G5_I5 ;
-	bf:hasItem :F-ACME_FBASELINE_G5_I6 ;
-	bf:hasItem :F-ACME_FBASELINE_G5_I7 ;
-	bf:hasItem :F-ACME_FBASELINE_G5_I8 ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949> ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e> ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348> ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_9512d1d4-7f6c-4b3c-a330-ff3081f8de24> ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_16815e87-0141-4de3-b575-f06a729bdf40> ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_f79069ba-85a0-4c75-a2b1-987b90fadd9d> ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520> ;
+	bf:hasItem <http://www.acme-pharma.com/FBASELINE/V1#Q_46e0d9c5-c6c2-4331-9716-d82e3edfa837> ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-:F-ACME_FBASELINE_G5_I1
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Height"^^xsd:string ;
-	bf:ordinal "1"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949>
+	rdf:type bf:Question ;
+	isoC:label "Height"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "integer"^^xsd:string ;
 	bf:format "3"^^xsd:string ;
-	bf:question_text "Height"^^xsd:string ;
 	bf:mapping "VSORRES"^^xsd:string ;
+	bf:questionText "Height"^^xsd:string ;
 .
-:F-ACME_FBASELINE_G5_I2
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Height units"^^xsd:string ;
-	bf:ordinal "2"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e>
+	rdf:type bf:Question ;
+	isoC:label "Height units"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
 	bf:note "* Multiple entries [C48500,C48500] found for parameters ['notation=in'], ignored.\n"^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
-	bf:question_text "Height units"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "Height units"^^xsd:string ;
 .
-:F-ACME_FBASELINE_G5_I3
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Weight"^^xsd:string ;
-	bf:ordinal "3"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348>
+	rdf:type bf:Question ;
+	isoC:label "Weight"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "integer"^^xsd:string ;
 	bf:format "3"^^xsd:string ;
-	bf:question_text "Weight"^^xsd:string ;
 	bf:mapping "VSORRES"^^xsd:string ;
+	bf:questionText "Weight"^^xsd:string ;
 .
-:F-ACME_FBASELINE_G5_I4
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Weight units"^^xsd:string ;
-	bf:ordinal "4"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_9512d1d4-7f6c-4b3c-a330-ff3081f8de24>
+	rdf:type bf:Question ;
+	isoC:label "Weight units"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
 	bf:note "* No entries found for parameters ['notation=lbs'].\n"^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
-	bf:question_text "Weight units"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "Weight units"^^xsd:string ;
 .
-:F-ACME_FBASELINE_G5_I5
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Systolic BP"^^xsd:string ;
-	bf:ordinal "5"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_16815e87-0141-4de3-b575-f06a729bdf40>
+	rdf:type bf:Question ;
+	isoC:label "Systolic BP"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "integer"^^xsd:string ;
 	bf:format "3"^^xsd:string ;
-	bf:question_text "Systolic BP"^^xsd:string ;
 	bf:mapping "VSORRES"^^xsd:string ;
+	bf:questionText "Systolic BP"^^xsd:string ;
 .
-:F-ACME_FBASELINE_G5_I6
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Systolic BP units"^^xsd:string ;
-	bf:ordinal "6"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_f79069ba-85a0-4c75-a2b1-987b90fadd9d>
+	rdf:type bf:Question ;
+	isoC:label "Systolic BP units"^^xsd:string ;
+	bf:ordinal "6"^^xsd:integer ;
 	bf:note "* No entries found for parameters ['notation=mm Hg'].\n"^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
-	bf:question_text "Systolic BP units"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "Systolic BP units"^^xsd:string ;
 .
-:F-ACME_FBASELINE_G5_I7
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Diastolic BP"^^xsd:string ;
-	bf:ordinal "7"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520>
+	rdf:type bf:Question ;
+	isoC:label "Diastolic BP"^^xsd:string ;
+	bf:ordinal "7"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "integer"^^xsd:string ;
 	bf:format "3"^^xsd:string ;
-	bf:question_text "Diastolic BP"^^xsd:string ;
 	bf:mapping "VSORRES"^^xsd:string ;
+	bf:questionText "Diastolic BP"^^xsd:string ;
 .
-:F-ACME_FBASELINE_G5_I8
-	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
-	rdfs:label "Diastolic BP units"^^xsd:string ;
-	bf:ordinal "8"^^xsd:positiveInteger ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_46e0d9c5-c6c2-4331-9716-d82e3edfa837>
+	rdf:type bf:Question ;
+	isoC:label "Diastolic BP units"^^xsd:string ;
+	bf:ordinal "8"^^xsd:integer ;
 	bf:note "* No entries found for parameters ['notation=mm Hg'].\n"^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
-	bf:question_text "Diastolic BP units"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "Diastolic BP units"^^xsd:string ;
 .

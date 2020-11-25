@@ -278,7 +278,7 @@ private
 
   # Buid the result hash
   def result_hash(object)
-    return {parent: object, managed_children: []}
+    return {parent: object, managed_children: [], tags: []}
   end
 
   # Merge all errors
