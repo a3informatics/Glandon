@@ -1,4 +1,4 @@
-import TablePanel from 'shared/base/table_panel'
+import CustomPropsEditablePanel from 'shared/base/custom_properties/cp_editable_panel'
 import SelectablePanel from 'shared/base/selectable_panel'
 
 import { $ajax } from 'shared/helpers/ajax'
@@ -181,7 +181,7 @@ export default class SubsetEditor {
 
     this.source = new SelectablePanel( this._sourcePanelOpts );
 
-    this.subset = new TablePanel( this._subsetPanelOpts );
+    this.subset = new CustomPropsEditablePanel( this._subsetPanelOpts );
 
     // Override behavior for deselecting all rows
     this.source._deselectAll = () => this.removeAllItems();
@@ -258,25 +258,26 @@ export default class SubsetEditor {
   get _subsetPanelOpts() {
 
     return {
-      selector: `${this.selector} #subset-table`,
-      url: this.urls.subsetData,
-      param: 'subset',
-      count: 1000,
-      order: [[ 0,'asc' ]],
-      extraColumns: [
-        { data: 'ordinal', orderable: false },
-        ...dtChildrenColumns({ orderable: false })
-      ],
-      tableOptions: {
-        rowReorder: {
-          dataSrc: 'ordinal',
-          selector: 'td:first-child',
-          snapX: true
+      tablePanelOpts: {
+        selector: `${this.selector} #subset-table`,
+        dataUrl: this.urls.subsetData,
+        param: 'subset',
+        count: 1000,
+        order: [[ 0,'asc' ]],
+        columns: [
+          { data: 'ordinal', orderable: false },
+          ...dtChildrenColumns({ orderable: false })
+        ],
+        tableOptions: {
+          rowReorder: {
+            dataSrc: 'ordinal',
+            selector: 'td:first-child',
+            snapX: true
+          }
         },
-        scrollX: true,
-        autoWidth: true
+        loadCallback: () => this._onSubsetsLoaded()
       },
-      loadCallback: () => this._onSubsetsLoaded()
+      afterColumn: 6
     }
 
   }

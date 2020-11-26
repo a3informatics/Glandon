@@ -25,6 +25,7 @@ export default class EditablePanel extends TablePanel {
    * @param {boolean} params.deferLoading Set to true if data load should be deferred. Load data has to be called manually in this case
    * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {boolean} params.cache Specify if the panel data should be cached. Optional
+   * @param {Object} params.tableOptions Custom DT options object, will be merged with this instance's _tableOpts, optional
    * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
    * @param {boolean} params.autoHeight Specifies whether the height of the table should match the window size, and add a horizontal scroll, optional
    * @param {Object} args Optional additional arguments for extending classes
@@ -41,13 +42,14 @@ export default class EditablePanel extends TablePanel {
     deferLoading = false,
     order = [[0, "desc"]],
     cache = true,
+    tableOptions = {},
     loadCallback = () => {},
     autoHeight = false
   }, args = {}) {
 
     super({
-      selector, param, count, deferLoading, cache, loadCallback, order,
-      autoHeight, url: dataUrl, extraColumns: columns
+      selector, param, count, deferLoading, cache, tableOptions, loadCallback,
+      order, autoHeight, url: dataUrl, extraColumns: columns
     }, {
       updateUrl, fields, idSrc, ...args
     });

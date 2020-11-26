@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "shared/tables_editable" %>
+
 <%= javascript_tag "let subsetEditorUrls = {
                           sourceData: '#{ children_thesauri_managed_concept_path(source) }',
                           subsetData: '#{ list_children_thesauri_subset_path(subset) }',
@@ -51,7 +53,7 @@
 
     <div class="table-cardstyle all-columns">
       <%= render partial: "shared/iso_managed/children/children_panel", locals: { id: "subset-table",
-          table_classes: '', indicators?: false, first_column: 'Ordinal' } %>
+          table_classes: '', indicators?: false, first_column: 'Ordinal', custom_props?: true, item: @subset_mc } %>
     </div>
   </div>
 
