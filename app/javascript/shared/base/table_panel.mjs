@@ -274,6 +274,9 @@ export default class TablePanel {
    */
   _onDataLoaded() {
 
+    // Update processing flag so that loadCallback can refer to the correct processing state
+    this.isProcessing = false;
+
     if ( this.loadCallback )
       this.loadCallback( this.table );
 

@@ -35,7 +35,7 @@ export default class EditablePanel extends TablePanel {
     dataUrl,
     updateUrl,
     param,
-    count = 500,
+    count = 1000,
     columns = [],
     fields = [],
     idSrc = "id",
@@ -353,7 +353,6 @@ export default class EditablePanel extends TablePanel {
   get _tableOpts() {
     const options = super._tableOpts;
 
-    options.columns = [...this.extraColumns];
     // Excel-like Keys navigation functionality
     options.keys = {
       columns: '.editable.inline',

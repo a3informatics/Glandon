@@ -153,7 +153,6 @@ export default class SelectablePanel extends TablePanel {
   get _tableOpts() {
     const options = super._tableOpts;
 
-    options.columns = [...this.extraColumns];
     options.language.emptyTable = "No items found.";
 
     // Selection settings
