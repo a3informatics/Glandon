@@ -1,100 +1,127 @@
 @import "shared/vars.scss";
 
-
-.table-cardstyle table tbody tr td {
-  height: 60px !important;
-}
+$editable-color: $primary-color-bright;
 
 // Editable cell styling
 
-.table-cardstyle table tbody td.editable {
-  transition: padding .2s, background .2s;
-  position: relative;
+.table-cardstyle table tbody {
+
+  tr td {
+    height: 60px !important;
+  }
+
+  td.editable {
+    transition: padding .2s, background .2s;
+    position: relative;
+  }
+
+  td.editable:hover, td.focus {
+    background: $grey-bright !important;
+    box-shadow: none !important;
+  }
+
+  td.editable:hover::before {
+    font-family: 'icomoon';
+    position: absolute;
+    display: block;
+    right: 2px;
+    top: 1px;
+    font-size: $font-tiny;
+    color: $editable-color;
+  }
+
+  tr.row-disabled, tr.row-cdisc {
+
+    td.editable::before {
+      color: $grey-light;
+    }
+
+  }
+
 }
 
-.table-cardstyle table td.editable:hover,
-  .table-cardstyle table td.focus {
-  background: $grey-bright !important;
-  box-shadow: none !important;
+.table-cardstyle table tbody {
+
+  // Editable inline
+  td.editable.inline:hover::before {
+    content: "\e931";
+  }
+
+  // Editable external
+  td.editable.external:hover::before {
+    content: "\e929";
+    transform: rotate(45deg);
+  }
+
+  // Editable pickable
+  td.editable.pickable:hover::before {
+    content: "\e95a";
+  }
+
+  // Custom Property Cell
+  tr.row-disabled, tr.row-cdisc {
+
+    td.editable.custom-property::before {
+      color: $editable-color;
+    }
+
+  }
+
+  // Fade
+  tr.highlight {
+   background-color: white !important;
+  }
+
 }
 
-.table-cardstyle table td.editable:hover::before {
-  font-family: 'icomoon';
-  position: absolute;
-  display: block;
-  right: 2px;
-  top: 1px;
-  font-size: $font-tiny;
-  color: $primary-color-bright;
-}
+.table-cardstyle table tbody {
 
-.table-cardstyle table tr.row-disabled td.editable::before,
-  .table-cardstyle table tr.row-cdisc td.editable::before {
-    color: $grey-light;
-}
+  // Input fields styling
+  td {
 
-// Editable inline
+    textarea.form-control {
+      width: 100%;
+      height: 1px;
+      min-height: 34px;
+      transition: height .2s;
+      resize: none;
+    }
 
-.table-cardstyle table td.editable.inline:hover::before {
-  content: "\e931";
-}
+    input.form-control:focus, textarea.form-control:focus {
+      outline: none;
+      box-shadow: none;
+      border-width: 2px;
+    }
 
-// Editable external
-.table-cardstyle table td.editable.external:hover::before {
-  content: "\e929";
-  transform: rotate(45deg);
-}
+  }
 
-// Editable pickable
-.table-cardstyle table td.editable.pickable:hover::before {
-  content: "\e95a";
-}
+  // Handle labels styling on hover
+  td.editable:hover, td.editable.focus {
+     a.bg-label {
+       background: white;
+     }
+  }
 
-// Fade
-
-.table-cardstyle table tbody tr.highlight {
-  background-color: white !important;
-}
-
-// Input fields styling
-
-.table-cardstyle table textarea.form-control {
-  width: 100%;
-  height: 1px;
-  min-height: 34px;
-  transition: height .2s;
-  resize: none;
-}
-
-.table-cardstyle table input.form-control:focus,
-  .table-cardstyle table textarea.form-control:focus {
-  outline: none;
-  box-shadow: none;
-  border-width: 2px;
-}
-
-// Handle labels styling on hover
-
-.table-cardstyle table td.editable:hover a.bg-label,
-  .table-cardstyle table td.editable.focus a.bg-label {
-  background: white;
 }
 
 // Processing styling
+.table-cardstyle tbody tr {
 
-.table-cardstyle tbody tr td.processing {
-  padding-left: 30px;
-  pointer-events: none;
-}
+  td.processing {
+    padding-left: 30px;
+    pointer-events: none;
+  }
 
-.table-cardstyle tbody tr td.processing::before {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  background: url(image_path("loading_inline.gif")) no-repeat;
-  background-size: contain;
-  background-position: center;
-  width: 20px;
-  height: 20px;
-  content: " ";
+  td.processing::before {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: url(image_path("loading_inline.gif")) no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    content: " ";
+  }
+
 }

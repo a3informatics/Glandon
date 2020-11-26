@@ -37,7 +37,7 @@ function dtTextColumn(name, props = {}) {
 
   return {
     data: getName( name ),
-    className: 'custom-prop-column',
+    className: 'custom-property',
     defaultContent: '',
     ...props,
   }
@@ -53,7 +53,7 @@ function dtTextColumn(name, props = {}) {
 function dtBooleanColumn(name, props = {}) {
 
   return dtTrueFalseColumn( getName( name ), {
-    className: 'text-center custom-prop-column',
+    className: 'text-center custom-property',
     defaultContent: '',
     ...props
   });
@@ -76,7 +76,7 @@ function eColumnByDataType(datatype) {
     case 'integer':
     case 'float':
       return (name, props) => dtInlineEditColumn( getName( name ), {
-        className: 'editable inline',
+        className: 'editable inline custom-property',
         editField: name,
         ...props
       });
@@ -84,7 +84,7 @@ function eColumnByDataType(datatype) {
 
     case 'boolean':
       return (name, props) => dtTrueFalseEditColumn( getName( name ), {
-        className: 'editable inline text-center',
+        className: 'editable inline custom-property text-center',
         editField: name,
         ...props
       });
