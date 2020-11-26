@@ -49,6 +49,18 @@
   rdfs:subClassOf :Column ;
   skos:definition "A variable as defined within an implementation guide."^^xsd:string ;
 .
+:SdtmSponsorDomain
+  rdf:type owl:Class ;
+  rdfs:label "SDTM Sponsor Domain"^^xsd:string ;
+  rdfs:subClassOf :SdtmDomain ;
+  skos:definition "A Sponsor domain."^^xsd:string ;
+.
+:SdtmSponsorDomainVariable
+  rdf:type owl:Class ;
+  rdfs:label "SDTM Sponsor Domain Variable"^^xsd:string ;
+  rdfs:subClassOf :SdtmDomainVariable ;
+  skos:definition "A Sponsor variable."^^xsd:string ;
+.
 :ADaMDataset
   rdf:type owl:Class ;
   rdfs:label "SDTM Domain"^^xsd:string ;
@@ -115,6 +127,14 @@
   rdfs:range :SdtmClassVariable ;
   skos:definition "Notes which domain class variable a variable is based on."^^xsd:string ;
 .
+:basedOnIgVariable
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Based on IG variable relationship"^^xsd:string ;
+  rdfs:domain :SdtmSponsorDomainVariable ;
+  rdfs:range :SdtmDomainVariable ;
+  skos:definition "Notes which domain variable a Sponsor variable is based on."^^xsd:string ;
+.
 :classifiedAs
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -128,7 +148,7 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Type as relationship"^^xsd:string ;
   rdfs:domain  [ a owl:Class ;
-    owl:unionOf (:SdtmDomainVariable :ADaMDatasetVariable)
+    owl:unionOf (:SdtmSponsorDomainVariable :ADaMDatasetVariable)
     ] ;
   rdfs:range isoC:Concept ;
   skos:definition "The variable datatype."^^xsd:string ;
@@ -143,13 +163,13 @@
   rdfs:range isoC:Concept ;
   skos:definition "The variable compliance."^^xsd:string ;
 .
-:hasBiomedicalConcept
+:byAssociation
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Has Biomedical Concept relationship"^^xsd:string ;
+  rdfs:label "By Association relationship"^^xsd:string ;
   rdfs:domain :SdtmDomain ;
-  rdfs:range bo:BcReference ;
-  skos:definition "Reference to a Biomedical Concept."^^xsd:string ;
+  rdfs:range isoC:Concept ;
+  skos:definition "Reference to an Association."^^xsd:string ;
 .
 :rule
   rdf:type owl:DatatypeProperty ;
@@ -209,7 +229,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain  [ a owl:Class ;
-    owl:unionOf (:SdtmDomainVariable :ADaMDatasetVariable)
+    owl:unionOf (:SdtmSponsorDomainVariable :ADaMDatasetVariable)
     ] ;
   rdfs:range xsd:string ;
   skos:definition "Notes on the variable."^^xsd:string ;
@@ -266,7 +286,7 @@
   rdfs:label "Comments"^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
-  rdfs:domain :SdtmDomainVariable ;
+  rdfs:domain :SdtmSponsorDomainVariable ;
   rdfs:range xsd:string ;
   skos:definition "Comments regarding the variable."^^xsd:string ;
 .
@@ -284,7 +304,7 @@
   rdfs:label "Variable used"^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
-  rdfs:domain :SdtmDomainVariable ;
+  rdfs:domain :SdtmSponsorDomainVariable ;
   rdfs:range xsd:boolean ;
   skos:definition "Variable is used/not used."^^xsd:string ;
 .
