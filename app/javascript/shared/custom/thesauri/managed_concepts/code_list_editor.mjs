@@ -11,13 +11,13 @@ import { dtCLEditFields } from 'shared/helpers/dt/dt_field_collections'
 /**
  * Code List Editor
  * @description DataTable-based Editor of a Code List (CRUD actions)
- * @extends EditablePanel class from shared/base/editable_panel
+ * @extends CustomPropsEditablePanel module
  * @author Samuel Banas <sab@s-cubed.dk>
  */
 export default class CLEditor extends CustomPropsEditablePanel {
 
   /**
-   * Create a Panel
+  * Create a CL Editor instance 
    * @param {Object} params Instance parameters
    * @param {string} params.id ID of the currently edited item
    * @param {object} params.urls Must contain urls for 'data', 'update', 'newChild' and 'addChildren'
