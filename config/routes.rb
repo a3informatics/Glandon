@@ -474,6 +474,14 @@ Rails.application.routes.draw do
       # get :export_ttl
     end
   end
+  resources :sdtm_sponsor_domains, :only => [:show, :index] do
+    collection do
+      get :history
+    end
+    member do
+      get :show_data
+    end
+  end
 
   #ADAM
   resources :adam_igs, :only => [:show, :index] do
