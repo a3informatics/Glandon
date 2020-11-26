@@ -109,6 +109,12 @@
   padding: 0 6px;
 }
 
+// Disabled Table
+table.table-disabled {
+  pointer-events: none !important;
+  opacity: .5 !important;
+}
+
 table th.nowrap {
   white-space: nowrap;
 }
