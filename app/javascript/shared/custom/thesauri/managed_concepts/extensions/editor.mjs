@@ -96,6 +96,7 @@ export default class ExtensionEditor extends CLEditor {
 
   /**
    * Sets event listeners, handlers
+   * Used for non-table related listeners only!
    */
   _setListeners() {
 
@@ -106,6 +107,16 @@ export default class ExtensionEditor extends CLEditor {
 
     // New Items from synonyms cancel
     $( '#nifs-cancel' ).on( 'click', () => this._toggleNifs( false ) );
+
+  }
+
+  /**
+   * Sets event listeners, handlers
+   * Used for table related listeners only
+   */
+  _setTableListeners() {
+
+    super._setTableListeners();
 
     // New Items from synonyms select row
     $( this.selector ).on( 'click', 'tbody tr', e => {
