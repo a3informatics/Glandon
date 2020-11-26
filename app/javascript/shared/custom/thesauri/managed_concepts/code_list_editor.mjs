@@ -228,22 +228,6 @@ export default class CLEditor extends CustomPropsEditablePanel {
   }
 
   /**
-   * Update Definition column width, called on Custom Properties columns visiblity change
-   * @override parent
-   * @param {boolean} visible New state of the Custom Property columns, false if invisible
-   */
-  _onColumnsToggle(visible) {
-
-    super._onColumnsToggle( visible );
-
-    // Retain definition column width (otherwise shrinks width too much)
-    this.$wrapper.find( 'th:contains("Definition")' )
-                 .toggleClass( 'th-xwide', visible );
-
-
-  }
-
-  /**
    * Initialize Items Selector for adding Code List Items to the Code List
    */
   _initSelector() {
