@@ -129,6 +129,15 @@ export default class EditablePanel extends TablePanel {
     return this.editor.displayed()[0];
   }
 
+  /**
+   * Get the field name from column index
+   * @param {integer} column Column index
+   * @returns {string} Name of the editField of the given column
+   */
+  fieldFromColumn(column) {
+    return this.table.settings()[0].aoColumns[column].editField;
+  }
+
 
   /** Private **/
 

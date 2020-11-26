@@ -135,6 +135,15 @@ export default class CustomPropsEditablePanel extends EditablePanel {
   }
 
   /**
+   * Check if current field is editable - true for custom properties
+   * @param {object} modifier Contains the reference to the cell being edited
+   * @returns {boolean} true/false ~~ enable/disable editing for the cell
+   */
+  _editable(modifier) {
+    return this._isCustomProperty( this.fieldFromColumn( modifier.column ) );
+  }
+
+  /**
    * Custom Editor initialization options
    * @return {Object} Editor options object
    */

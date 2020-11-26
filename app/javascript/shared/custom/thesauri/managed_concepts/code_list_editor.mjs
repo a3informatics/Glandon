@@ -258,13 +258,17 @@ export default class CLEditor extends CustomPropsEditablePanel {
   }
 
   /**
-   * Check if item editable - must have referenced data property set to true
-   * @override super's _editable
+   * Check if item editable - item must a custom property or not be referenced
+   * @extends _editable parent implementation
    * @param {object} modifier Contains the reference to the cell being edited
    * @returns {boolean} true/false ~~ enable/disable editing for the cell
    */
   _editable(modifier) {
-    return !this.table.row( modifier.row ).data().referenced;
+
+    const referenced = this.table.row( modifier.row ).data().referenced;
+
+    return super._editable( modifier ) || !referenced;
+
   }
 
 
