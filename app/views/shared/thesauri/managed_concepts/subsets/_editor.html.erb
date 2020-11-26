@@ -2,11 +2,12 @@
 
 <%= javascript_tag "let subsetEditorUrls = {
                           sourceData: '#{ children_thesauri_managed_concept_path(source) }',
-                          subsetData: '#{ list_children_thesauri_subset_path(subset) }',
+                          data: '#{ list_children_thesauri_subset_path(subset) }',
                           add: '#{ add_thesauri_subset_path(subset) }',
                           remove: '#{ remove_thesauri_subset_path(subset) }',
                           moveAfter: '#{ move_after_thesauri_subset_path(subset) }',
                           removeAll: '#{ remove_all_thesauri_subset_path(subset) }',
+                          update: '#{ thesauri_unmanaged_concept_path(id: '_id_') }'
                         } " %>
 
 <style>

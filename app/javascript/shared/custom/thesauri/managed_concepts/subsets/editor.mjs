@@ -1,9 +1,7 @@
-import CustomPropsEditablePanel from 'shared/base/custom_properties/cp_editable_panel'
-import SelectablePanel from 'shared/base/selectable_panel'
+import SubsetPanel from 'shared/custom/thesauri/managed_concepts/subsets/subset_panel'
+import SourcePanel from 'shared/custom/thesauri/managed_concepts/subsets/source_panel'
 
 import { $ajax } from 'shared/helpers/ajax'
-import { dtChildrenColumns } from 'shared/helpers/dt/dt_column_collections'
-import { dtIndicatorsColumn } from 'shared/helpers/dt/dt_columns'
 import { tableInteraction } from 'shared/helpers/utils'
 import { alerts } from 'shared/ui/alerts'
 
@@ -95,8 +93,10 @@ export default class SubsetEditor {
       url: this.urls.removeAll,
       type: 'DELETE',
       callback: () => {
+
         this.source.deselectWithoutCallback();
         this.subset.clear();
+        
       }
     });
 
@@ -131,6 +131,24 @@ export default class SubsetEditor {
 
 
   /**
+   * Initialize the Source and Subset panels with parameters, init UI
+   */
+  _initialize() {
+
+    // Initialize Panels
+    Object.assign( this, {
+
+      source: new SourcePanel( this._sourcePanelOpts ),
+      subset: new SubsetPanel( this._subsetPanelOpts )
+
+    })
+
+    // Disable interactivity on Source panel initially
+    tableInteraction.disable( this.source.selector );
+
+  }
+
+  /**
    * Perform a server request based on given parameters
    * @param {string} url Url of the request
    * @param {string} type Type of the request
@@ -161,10 +179,6 @@ export default class SubsetEditor {
    */
   _setListeners() {
 
-    // On Subset row reordered event handler
-    this.subset.table.on('row-reordered', (e, d, c) =>
-            this._onSubsetReordered( d, c.triggerRow ));
-
     // Align table columns on tab switch (handling responsivness)
     $( this.selector ).on( 'tab-switch', (e, tab) =>
             tab === 'tab-source' ?
@@ -174,25 +188,9 @@ export default class SubsetEditor {
 
   }
 
-  /**
-   * Initialize the Source and Subset panels with parameters, init UI
-   */
-  _initialize() {
-
-    this.source = new SelectablePanel( this._sourcePanelOpts );
-
-    this.subset = new CustomPropsEditablePanel( this._subsetPanelOpts );
-
-    // Override behavior for deselecting all rows
-    this.source._deselectAll = () => this.removeAllItems();
-
-    // Disable interactivity on Source panel initially
-    tableInteraction.disable( this.source.selector );
-
-  }
-
 
   /*** Events ***/
+
 
   /**
    * On Subset panel row reordered, find target & previous table row data, pass to moveAfter
@@ -214,13 +212,11 @@ export default class SubsetEditor {
   /**
    * On Subset panel loaded callback, mark rows in Source panel as selected
    */
-  _onSubsetsLoaded() {
+  _onDataLoaded() {
 
-    // Wait and retry if Source panel has not finished loading data
-    if ( this.source.isProcessing ) {
-      setTimeout( () => this._onSubsetsLoaded(), 200 );
+    // Return if either panel is still loading data
+    if ( this.source.isProcessing || this.subset.isProcessing )
       return;
-    }
 
     // Mark rows present in Subset panel as selected initially in the Source panel
     for ( let itemData of this.subset.rowDataToArray ) {
@@ -238,7 +234,7 @@ export default class SubsetEditor {
   }
 
 
-  /*** Events ***/
+  /*** Support ***/
 
 
   /**
@@ -258,27 +254,13 @@ export default class SubsetEditor {
   get _subsetPanelOpts() {
 
     return {
-      tablePanelOpts: {
         selector: `${this.selector} #subset-table`,
-        dataUrl: this.urls.subsetData,
-        param: 'subset',
-        count: 1000,
-        order: [[ 0,'asc' ]],
-        columns: [
-          { data: 'ordinal', orderable: false },
-          ...dtChildrenColumns({ orderable: false })
-        ],
-        tableOptions: {
-          rowReorder: {
-            dataSrc: 'ordinal',
-            selector: 'td:first-child',
-            snapX: true
-          }
-        },
-        loadCallback: () => this._onSubsetsLoaded()
-      },
-      afterColumn: 6
-    }
+        urls: this.urls,
+        loadCallback: () =>
+          this._onDataLoaded(),
+        onReorder: ( a, t ) =>
+          this._onSubsetReordered( a, t )
+      }
 
   }
 
@@ -288,21 +270,16 @@ export default class SubsetEditor {
   get _sourcePanelOpts() {
 
     return {
-      tablePanelOptions: {
-        selector: `${this.selector} #source-table`,
-        url: this.urls.sourceData,
-        param: 'managed_concept',
-        count: 1000,
-        extraColumns: [ ...dtChildrenColumns(), dtIndicatorsColumn() ],
-        tableOptions: {
-          scrollX: true,
-          autoWidth: true
-        }
-      },
-      multiple: true,
-      allowAll: true,
-      onSelect: r => this.addItems( r.data().toArray() ),
-      onDeselect: r => this.removeItem( r.data().toArray()[0] )
+      selector: `${this.selector} #source-table`,
+      url: this.urls.sourceData,
+      onSelect: r =>
+        this.addItems( r.data().toArray() ),
+      onDeselect: r =>
+        this.removeItem( r.data().toArray()[0] ),
+      loadCallback: () =>
+        this._onDataLoaded(),
+      onDeselectAll: () =>
+        this.removeAllItems()
     }
 
   }
