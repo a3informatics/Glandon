@@ -35,7 +35,7 @@ export default class SourcePanel extends SelectablePanel {
       // Selectable Panel options
       multiple: true,
       allowAll: true,
-      onSelect, onDeselect, loadCallback
+      onSelect, onDeselect, loadCallback,
 
       // Default Table Panel options
       tablePanelOptions: {
