@@ -96,7 +96,7 @@ export default class SubsetEditor {
 
         this.source.deselectWithoutCallback();
         this.subset.clear();
-        
+
       }
     });
 
@@ -214,9 +214,9 @@ export default class SubsetEditor {
    */
   _onDataLoaded() {
 
-    // Return if either panel is still loading data
-    if ( this.source.isProcessing || this.subset.isProcessing )
-      return;
+    // Wait and retry if source panel is fetching data
+    if ( this.source.isProcessing )
+      return setTimeout( () => this._onDataLoaded(), 200 );
 
     // Mark rows present in Subset panel as selected initially in the Source panel
     for ( let itemData of this.subset.rowDataToArray ) {
@@ -276,8 +276,6 @@ export default class SubsetEditor {
         this.addItems( r.data().toArray() ),
       onDeselect: r =>
         this.removeItem( r.data().toArray()[0] ),
-      loadCallback: () =>
-        this._onDataLoaded(),
       onDeselectAll: () =>
         this.removeAllItems()
     }
