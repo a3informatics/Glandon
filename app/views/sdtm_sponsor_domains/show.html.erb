@@ -1,0 +1,24 @@
+<% content_for :page_title do %> <%= "Show SDTM Sponsor Domain: #{@sdtm_sponsor_domain.has_identifier.identifier} (#{@sdtm_sponsor_domain.semantic_version})" %> <% end %>
+
+<%= javascript_pack_tag 'sdtm_sponsor_domains/show' %>
+
+<% third_level_breadcrumb(:sdtm_sponsor_domains, @sdtm_sponsor_domain, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @sdtm_sponsor_domain, :badge => "icon-sdtm"} do %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div id="show-panel" class="col-md-12 card wide">
+    <div class="card-header">
+      Show: SDTM Sponsor Domain
+    </div>
+    <div class="card-content">
+      <%= render partial: "shared/sdtm_sponsor_domains/show_panel", locals: { show_url: @show_path } %>
+    </div>
+  </div>
+</div>
