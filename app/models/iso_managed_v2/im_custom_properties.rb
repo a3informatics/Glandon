@@ -15,13 +15,13 @@ class IsoManagedV2
     end
 
     def populate_custom_properties
-      self.find_custom_properties
+      self.load_custom_properties
       self.children.each do |child|
-        child.find_custom_properties(self)
+        child.load_custom_properties(self)
       end
     end
 
-    def find_custom_properties(context=self)
+    def load_custom_properties(context=self)
       super
     end
 
@@ -49,6 +49,28 @@ class IsoManagedV2
         results[id][x[:l].to_variable_style] = x[:v]
       end
       results.values
+    end
+
+    # Add Custom Property Context.
+    #
+    # @param [Array] uris_or_ids array of uris or ids of the items for which the custom properties are to be updated
+    # @param [Object|Uri] context the new context, either an object or a uri
+    # @return [Boolean] true 
+    def add_custom_property_context(uris_or_ids)
+      update_query = %Q{ 
+        INSERT 
+        { 
+          ?e isoC:context #{self.uri.to_ref} . 
+        }
+        WHERE 
+        { 
+          VALUES ?s { #{uris_or_ids.map{|x| self.class.as_uri(x).to_ref}.join(" ")} }
+          ?e isoC:appliesTo ?s . 
+          ?e rdf:type isoC:CustomProperty .
+        }
+      }      
+      partial_update(update_query, [:isoC])
+      true
     end
 
   end

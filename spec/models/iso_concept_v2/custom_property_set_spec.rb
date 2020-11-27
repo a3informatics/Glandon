@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CustomPropertySet do
+describe IsoConceptV2::CustomPropertySet do
 	
 	include DataHelpers
   include SecureRandomHelpers
@@ -32,7 +32,7 @@ describe CustomPropertySet do
        uri: {}
       }
     ]
-    item = CustomPropertySet.new
+    item = IsoConceptV2::CustomPropertySet.new
     item << IsoConceptV2.new(label: "1")
     item << IsoConceptV2.new(label: "1")
     item << IsoConceptV2.new(label: "1")

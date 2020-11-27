@@ -17,8 +17,18 @@ class IsoConceptV2 < Fuseki::Base
   include IcCustomProperties
 
   def initialize(attributes = {})
-    @custom_properties = ::CustomPropertySet.new
+    @custom_properties = IsoConceptV2::CustomPropertySet.new
     super
+  end
+
+  def self.create(params, parent)
+    tx = sparql::Transaction.new 
+    params[:transaction] = tx
+    params[:parent_uri] = parent.uri
+    object = super(params)
+    create_custom_properties(object, tx, parent) if self.custom_properties?
+    object.transaction_execute
+    object
   end
 
   # Where Only Or Create
@@ -151,9 +161,13 @@ class IsoConceptV2 < Fuseki::Base
   # Clone. Clone the object
   #
   # @return [Object] the cloned object.
-  def clone
+  def clone(context=self)
     #self.tagged_links 
-    super
+    object = super()
+    return object unless self.custom_properties?
+    self.load_custom_properties(context)
+    object.custom_properties = self.custom_properties
+    object
   end
   
   # Replace If No Change. Replace the current item with the previous one if there are no differences.

@@ -41,14 +41,55 @@ class IsoConceptV2
         results.sort { |a, b| [b[:datatype], a[:name]] <=> [a[:datatype], b[:name]] }
       end
 
+      # Custom Properties? Does the object have custom properties set (note this is defined not data values present)
+      #
+      # @return [Boolean] true if data present, false otherwise
+      def custom_properties?
+        Sparql::Query.new.query("ASK {#{self.rdf_type.to_ref} ^isoC:customPropertyOf ?o}", "", [:isoC]).ask? 
+      end
+
     end
 
+    # Custom Properties? Does the object have custom properties set (note this is defined not data values present)
+    #
+    # @return [Boolean] true if data present, false otherwise
     def custom_properties?
-      Sparql::Query.new.query("ASK {#{self.uri.rdf_type.to_ref} ^isoC:customPropertyOf ?o}", "", [:isoC]).ask? 
+      self.class.custom_properties?
     end
 
-    def find_custom_properties(context=self)
-      @custom_properties = ::CustomPropertySet.new
+    def create_custom_properties(new_object, tx=nil, context=self)
+      definitions = find_custom_property_definitions(new_object.class)
+      return if properties.empty?
+      definitions.each do |definition|
+        new_onject.custom_properties << CustomPropertyValue.create(parent_uri: CustomPropertyValue.base_uri, transaction: tx, 
+          value: definition.default, custom_property_defined_by: definition.uri)
+      end
+      new_object.custom_properties
+    end
+
+    def clone_custom_properties(new_object, context=self)
+      context_uri = context.is_a?(Uri) ? context : context.uri
+      properties = load_custom_properties(context)
+      properties.each do |property|
+        if property_multiple_contexts_include?(property, context_uri)
+          property.applies_to = new_object
+          new_object.custom_properties << property
+        else
+          object = property.clone
+          object.context = [context_uri]
+          object.applies_to = new_object
+          new_object.custom_properties << object
+        end
+      end
+      new_object.custom_properties
+    end
+
+    # Load Custom Properties. Load the custom property values for this object, if any
+    #
+    # @param [object] contaxt the context
+    # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
+    def load_custom_properties(context=self)
+      @custom_properties = IsoConceptV2::CustomPropertySet.new
       query_string = %Q{
         SELECT ?s ?p ?o ?e WHERE 
         {            
@@ -73,16 +114,32 @@ class IsoConceptV2
       @custom_properties
     end
 
+    # Custom Properties Getter. Return the custom property values for this object
+    #
+    # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties. Can be empty.
     def custom_properties
       @custom_properties
     end
 
+    # Custom Properties Setter. Only really useful in copying of objects
+    #
+    # @return [Void] no return
     def custom_properties=(value)
       @custom_properties = value
     end
 
+    # Custom Properties Diff. Custom Properties in object different to another object's properties
+    #
+    # @return [Boolean] true if different, false otherwise
     def custom_properties_diff?(previous)
       self.custom_properties.diff?(previous.custom_properties)
+    end
+
+  private
+
+    def property_multiple_contexts_include?(property, context)
+      contexts = property.context.map{|x| x.uri.to_s}
+      return context.count > 1 && contexts.include?(context_uri)
     end
 
   end
