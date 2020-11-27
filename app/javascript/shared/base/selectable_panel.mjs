@@ -30,12 +30,12 @@ export default class SelectablePanel extends TablePanel {
     allowAll = false,
     onSelect = () => { },
     onDeselect = () => { }
-  }) {
+  }, args = {}) {
 
     super(
       { ...tablePanelOptions },
       { multiple, showSelectionInfo, ownershipColorBadge, onSelect,
-        onDeselect, allowAll }
+        onDeselect, allowAll, ...args }
     );
 
   }

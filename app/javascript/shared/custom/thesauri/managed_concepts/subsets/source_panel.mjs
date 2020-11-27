@@ -1,5 +1,6 @@
 import SelectablePanel from 'shared/base/selectable_panel'
 
+import CustomPropsHandler from 'shared/helpers/custom_properties/cp_handler'
 import { dtChildrenColumns } from 'shared/helpers/dt/dt_column_collections'
 import { dtIndicatorsColumn } from 'shared/helpers/dt/dt_columns'
 
@@ -39,17 +40,61 @@ export default class SourcePanel extends SelectablePanel {
       multiple: true,
       allowAll: true,
       onSelect, onDeselect, loadCallback
+    }, {
+      onDeselectAll,
+      handler: new CustomPropsHandler({
+        selector,
+        enabled: true,
+        afterColumn: 5
+      })
     });
 
-    Object.assign( this, {
-      onDeselectAll
-    });
+    // Disable CP Button inititally, until the data fully loads
+    this.handler.button.disable();
+
+  }
+
+  /**
+   * Initialize the Table Panel
+   */
+  initialize() {
+
+    super.initialize();
+
+    // Pass this instance to customPropsHandler
+    this.handler.table = this;
+
+  }
+
+  /**
+   * Refresh (reload) table data, resets handler to initial state
+   * @param {string} url optional, specify data source url
+   */
+  refresh(url) {
+
+    super.refresh(url);
+
+    this.handler.reset();
+    // Disable CP Button until the data fully loads
+    this.handler.button.disable();
 
   }
 
 
   /*** Private ***/
 
+
+  /**
+   * Executed when table data fully loaded, enable Custom Properties button
+   */
+  _onDataLoaded() {
+
+    super._onDataLoaded();
+
+    // Enable CP Button after data loaded
+    this.handler.button.enable();
+
+  }
 
   /**
    * Custom deselectAll callback
@@ -84,6 +129,13 @@ export default class SourcePanel extends SelectablePanel {
     const options = super._tableOpts;
 
     options.scrollX = true;
+
+    // Add Custom Properties button to table buttons
+    options.buttons = this.handler.addButton( options.buttons );
+
+    // Add Custom Properties columns if CP data available
+    if ( this.handler.hasData )
+      options.columns = this.handler.mergeColumns( options.columns );
 
     return options;
 
