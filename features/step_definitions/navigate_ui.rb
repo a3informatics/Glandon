@@ -177,13 +177,15 @@ When('I access the created {string}, c-code:{string} by right-clicking and open 
   if ENVIRONMENT == 'TEST'
   tit = 'Changes: '+string+' ('+string2+') - Glandon MDR'
   else 
-  tit = 'Changes: '+string+' ('+string2+') - A3'
+  tit = 'Changes: '+string+' ('+string2+') - A3 MDR'
   end
 
   find("#created_div a", text: string).click(:command, :shift)
   wait_for_ajax(20)
+pause
   page.switch_to_window { title == tit }
   wait_for_ajax(20)
+
  end
 
 
@@ -191,7 +193,7 @@ When('I access the updated {string}, c-code:{string} by right-clicking and open 
   if ENVIRONMENT == 'TEST'
   tit = 'Changes summary: '+string+' ('+string2+') - Glandon MDR'
   else 
-  tit = 'Changes summary: '+string+' ('+string2+') - A3'
+  tit = 'Changes summary: '+string+' ('+string2+') - A3 MDR'
   end
 
   find("#updated_div a", text: string).click(:command, :shift)
@@ -205,7 +207,7 @@ When('I access the deleted {string}, c-code:{string} by right-clicking and open 
   if ENVIRONMENT == 'TEST'
   tit = 'Changes: '+string+' ('+string2+') - Glandon MDR'
   else 
-  tit = 'Changes: '+string+' ('+string2+') - A3'
+  tit = 'Changes: '+string+' ('+string2+') - A3 MDR'
   end
 
   find("#deleted_div a", text: string).click(:command, :shift)

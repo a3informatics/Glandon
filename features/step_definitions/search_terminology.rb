@@ -24,8 +24,12 @@ end
 
 When ('I enter {string} in the Definition') do |string|
   ui_term_column_search(:definition, string)
+  wait_for_ajax(20)
 end
 
+When('I click Clear All') do
+  click_button 'clear_button' 
+end
 
 ##################### Then statements 
 

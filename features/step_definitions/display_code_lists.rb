@@ -82,6 +82,7 @@ Then('I see that the shared Synonyms are displayed as {string} and {string}') do
 end
 
 Then('the changes to the {string} code list items') do |string|
+      find('#main_area').scroll_to find('#changes')
       expect(page).to have_content 'Changes'
       expect(page).to have_content string
       wait_for_ajax(20)

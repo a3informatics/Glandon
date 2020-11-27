@@ -83,9 +83,5 @@ When('I enter {string} in the Tags search field') do |string|
          wait_for_ajax(20)
 end
 
-When('I click Clear All') do
-         find('#clear_button').send_keys(:return)
-         wait_for_ajax(20)
-end
 
 

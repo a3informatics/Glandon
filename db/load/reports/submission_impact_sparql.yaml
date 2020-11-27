@@ -71,7 +71,7 @@ SELECT DISTINCT ?scll ?sclid ?sclil ?scliid ?sn ?cll ?clid ?clil ?cliid ?cn WHER
     ?scl isoT:hasState/isoR:byAuthority ?auth1 . 
     ?scl th:narrower ?scli .
     ?scli th:identifier ?scliid . 
-    FILTER (STRSTARTS( ?scliid, "S"))
+    FILTER (STRSTARTS( ?scliid, "N"))
     ?scli th:notation ?sn . 
     FILTER (STRLEN(STR(?sn))>2)
     ?clis th:notation ?sn . 

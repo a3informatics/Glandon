@@ -38,6 +38,7 @@ When('I select CDISC version {string} and CDISC version {string} by dragging the
   ui_dashboard_slider(string,string2)
   click_link 'Display'
   wait_for_ajax(10)
+pause
 end
 
 ##################### Then statements #####################
@@ -108,6 +109,7 @@ Then('the Differences panel has {int} entries and no updates to Submission Value
 end
 
 Then('the Changes panel displays {int} entries') do |int|
+   find('#main_area').scroll_to find('#changes')
   if int < 10
     ui_check_table_info("changes", 1, int, int)
   else
@@ -159,6 +161,9 @@ end
 Then('I see the Differences and Changes for the {string} code list for CDISC version {string} and CDISC version {string}') do |string, string2, string3|
   
     expect(page).to have_content 'Differences'
+    wait_for_ajax(20)
+    save_screen(TYPE)
+    find('#main_area').scroll_to find('#changes')
     expect(page).to have_content 'Changes'
     expect(page).to have_content string
     #expect(page).to have_content string2
