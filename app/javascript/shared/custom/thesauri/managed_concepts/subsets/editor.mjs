@@ -277,7 +277,9 @@ export default class SubsetEditor {
       onDeselect: r =>
         this.removeItem( r.data().toArray()[0] ),
       onDeselectAll: () =>
-        this.removeAllItems()
+        this.removeAllItems(),
+      loadCallback: () =>
+        this._onDataLoaded()
     }
 
   }

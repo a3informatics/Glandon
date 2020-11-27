@@ -32,20 +32,26 @@ export default class SourcePanel extends SelectablePanel {
   }) {
 
     super({
+      // Selectable Panel options
+      multiple: true,
+      allowAll: true,
+      onSelect, onDeselect, loadCallback
+
+      // Default Table Panel options
       tablePanelOptions: {
         selector, url,
         param: 'managed_concept',
         autoHeight: true
-      },
-      multiple: true,
-      allowAll: true,
-      onSelect, onDeselect, loadCallback
+      }
     }, {
       onDeselectAll,
+
+      // Custom Props Handler init
       handler: new CustomPropsHandler({
         selector,
         enabled: true,
-        afterColumn: 5
+        afterColumn: 5,
+        onColumnsToggle: visible => loadCallback()
       })
     });
 
