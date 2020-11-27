@@ -38,7 +38,7 @@ private
   def path_for(action, object)
     case action
       when :show
-        return sdtm_sponsor_domain(object)
+        return sdtm_sponsor_domain_path(object)
       when :edit
         return ""
       else
