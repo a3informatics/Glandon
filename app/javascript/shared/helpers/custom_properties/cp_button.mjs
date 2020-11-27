@@ -1,26 +1,42 @@
 import { customBtn } from 'shared/helpers/dt/utils'
 
-export default {
+/**
+ * Custom Properties Button module
+ * @description Custom-property button related functionality and renderers
+ * @author Samuel Banas <sab@s-cubed.dk>
+ */
+export default class CPButton {
 
-  // Unique parent selector
-  selector: $(),
+  /**
+   * Create a Custom Properties Button instance
+   * @param {string} selector Unique selector of table to which the button belongs to
+   * @param {function} onClick Callback to CP button click event
+   */
+  constructor({
+    selector,
+    onClick = () => {}
+  }) {
 
-  // On button click callback
-  onClick() { },
+    Object.assign( this, {
+      selector: `${ selector }_wrapper`,
+      onClick
+    });
+
+  }
 
   /**
    * Enable CP button
    */
   enable() {
     this.$.removeClass( 'disabled' );
-  },
+  }
 
   /**
    * Disable CP button
    */
   disable() {
     this.$.addClass( 'disabled' );
-  },
+  }
 
   /**
    * Toggle CP button loading state
@@ -33,7 +49,7 @@ export default {
     if ( enable )
       this.text = this.strings.loading;
 
-  },
+  }
 
   /**
    * Change CP button text
@@ -41,7 +57,7 @@ export default {
    */
   set text(text) {
     this.$.text( text );
-  },
+  }
 
   /**
    * Get the button element
@@ -49,7 +65,7 @@ export default {
    */
   get $() {
     return $( this.selector ).find( '.custom-props-btn' );
-  },
+  }
 
   /**
    * Get Custom Property button definition
@@ -63,7 +79,7 @@ export default {
       action: e => this.onClick()
     });
 
-  },
+  }
 
   /**
    * Get Custom Property button strings

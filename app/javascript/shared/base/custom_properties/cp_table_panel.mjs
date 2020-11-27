@@ -29,8 +29,8 @@ export default class CustomPropsTablePanel extends TablePanel {
       autoHeight: true
     }, {
       handler: new CustomPropsHandler({
-        enabled,
-        afterColumn,
+        enabled, afterColumn,
+        selector: tablePanelOpts.selector,
         onColumnsToggle: visible => this._onColumnsToggle( visible )
       })
     });

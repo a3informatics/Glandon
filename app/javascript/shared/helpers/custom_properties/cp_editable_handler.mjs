@@ -14,18 +14,20 @@ export default class CustomPropsEditableHandler extends CustomPropsHandler {
   /**
    * Create a Custom Properties Editable Handler instance
    * @param {Object} params Instance parameters
+   * @param {string} params.selector Unique Table selector (which includes the target table id denoted by #)
    * @param {boolean} params.enabled Enables or disables Custom Properties functionality [default = true]
    * @param {integer} params.afterColumn Column index to insert Custom Property columns after
    * @param {function} params.onColumnsToggle Function to execute when the CP columns are toggled, visibility boolean passed as the first argument
    */
   constructor({
+    selector,
     enabled = true,
     afterColumn,
     onColumnsToggle = () => {}
   }) {
 
     super({
-      enabled, afterColumn, onColumnsToggle
+      selector, enabled, afterColumn, onColumnsToggle
     });
 
   }

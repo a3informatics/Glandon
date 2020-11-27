@@ -1,7 +1,8 @@
+import CPButton from 'shared/helpers/custom_properties/cp_button'
 import { columnByDataType } from 'shared/helpers/dt/dt_custom_properties'
 import { $get } from 'shared/helpers/ajax'
 import { alerts } from 'shared/ui/alerts'
-import CPButton from 'shared/helpers/custom_properties/cp_button'
+import { selectorToId } from 'shared/helpers/utils'
 
 /**
  * Custom Properties Handler module
@@ -13,26 +14,29 @@ export default class CustomPropsHandler {
   /**
    * Create a Custom Properties Handler instance
    * @param {Object} params Instance parameters
+   * @param {string} params.selector Unique Table selector (which includes the target table id denoted by #)
    * @param {boolean} params.enabled Enables or disables Custom Properties functionality [default = true]
    * @param {integer} params.afterColumn Column index to insert Custom Property columns after
    * @param {function} params.onColumnsToggle Function to execute when the CP columns are toggled, visibility boolean passed as the first argument
    */
   constructor({
+    selector,
     enabled = true,
     afterColumn,
     onColumnsToggle = () => {}
   }) {
 
-    Object.assign( this, {
-      button: CPButton,
-      enabled: (enabled && customPropsOpts.accessPolicy),
-      afterColumn,
-      onColumnsToggle,
-      visible: false
-    });
+    const { accessPolicy, dataUrl } = this._getOptions( selectorToId( selector ) );
 
-    // Set CP Button's onClick handler to this instances'
-    this.button.onClick = () => this._onBtnClick();
+    Object.assign( this, {
+      dataUrl, afterColumn, onColumnsToggle,
+      enabled: (enabled && accessPolicy),
+      visible: false,
+      button: new CPButton({
+        selector,
+        onClick: () => this._onBtnClick()
+      })
+    });
 
   }
 
@@ -46,9 +50,6 @@ export default class CustomPropsHandler {
       return;
 
     this.tablePanel = table;
-
-    // Set the CPButton unique selector
-    this.button.selector = `${ table.selector }_wrapper`;
 
   }
 
@@ -81,6 +82,11 @@ export default class CustomPropsHandler {
 
   }
 
+  /**
+   * Add the Custom Properties button to a given set of DT buttons
+   * @param {Array} oButtons Source set of DT buttons (will not be altered)
+   * @return A copy of the oButtons collection with the CP button attached at the end
+   */
   addButton(oButtons) {
 
     if ( this.enabled )
@@ -102,7 +108,7 @@ export default class CustomPropsHandler {
     this.button.loading( true );
 
     $get({
-      url: customPropsOpts.dataUrl,
+      url: this.dataUrl,
       rawResult: true,
       done: r => {
 
@@ -320,6 +326,22 @@ export default class CustomPropsHandler {
     return this.customProps.definitions.map( def =>
       columnByDataType( def.datatype )( def.name )
     );
+
+  }
+
+  /**
+   * Get Custom Property options from the hidden input element from DOM
+   * Should only be called once as DOM can change
+   * @return {object} Custom property options containing 'dataUrl' and 'accessPolicy' values
+   */
+  _getOptions(id) {
+
+    const $opts = $( `input#custom-props-opts-${id}` );
+
+    return {
+      dataUrl: $opts.attr( 'data-url' ),
+      accessPolicy: $opts.attr( 'data-access-policy' ) == 'true'
+    }
 
   }
 

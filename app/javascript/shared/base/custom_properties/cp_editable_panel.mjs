@@ -29,8 +29,8 @@ export default class CustomPropsEditablePanel extends EditablePanel {
       autoHeight: true
     }, {
       handler: new CustomPropsEditableHandler({
-        enabled,
-        afterColumn,
+        enabled, afterColumn,
+        selector: tablePanelOpts.selector,
         onColumnsToggle: visible => this._onColumnsToggle( visible )
       })
     });

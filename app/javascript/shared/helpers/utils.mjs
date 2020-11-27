@@ -61,9 +61,22 @@ function isInViewport(parent, element, portion = 2) {
 
 }
 
+/**
+ * Convert selector to just id of the target element
+ * @param {string} selector Selector string to convert
+ * @return {string} ID of the target element from the selector (without #)
+ */
+function selectorToId(selector) {
+
+  const [id] = selector.split('#').slice(-1);
+  return id;
+
+}
+
 export {
   compareRefItems,
   isCDISC,
   tableInteraction,
-  isInViewport
+  isInViewport,
+  selectorToId
 }
