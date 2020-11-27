@@ -1,0 +1,2 @@
+class SdtmSponsorDomainPolicy < ApplicationPolicy
+end
