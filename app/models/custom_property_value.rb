@@ -30,19 +30,17 @@ class CustomPropertyValue < IsoContextualRelationship
 
   # Update And Clone
   #
+  # @param [Hash] params the params, may include a transaction
   # @param [Uri|Object] context the context object or uri
-  # @param [Sparql::Transaction] tx the transaction if one is to be used, defaults to nil if none specified
   # @return [CustomPropertyValue] the updated object
-  def update_and_clone(params, context=self, tx=nil)
+  def update_and_clone(params, context)
     context_uri = context.is_a?(Uri) ? context : context.uri
-    self.transaction_set(tx) unless tx.nil?
-    if self.context.count > 1
-      self.context.delete(context_uri)
-      object = self.new(value: params[:value], custom_property_defined_by: self.custom_property_defined_by, context: [context_uri], applies_to: self.applies_to)
-    else
-      super(params)
-    end
-    self
+    self.transaction_begin(params)
+    return update(params) if self.context.count == 1
+    self.context_delete(context_uri)
+    object = self.class.new(value: params[:value], custom_property_defined_by: self.custom_property_defined_by, 
+      context: [context_uri], applies_to: self.applies_to, transaction: params[:transaction])
+    object
   end
 
 end
