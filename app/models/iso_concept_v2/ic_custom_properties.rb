@@ -57,14 +57,21 @@ class IsoConceptV2
       self.class.custom_properties?
     end
 
-    def create_custom_properties(new_object, tx=nil, context=self)
-      definitions = find_custom_property_definitions(new_object.class)
-      return if properties.empty?
+    # Create Custom Properties. Create the custom property values for this object, if any
+    #
+    # @param [object] context the context, defaults to self
+    # @param [Sparql::Transaction] tx the transaction, defaults to nil
+    # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
+    def create_custom_properties(context=self, tx=nil)
+      context_uri = context.is_a?(Uri) ? context : context.uri
+      definitions = self.class.find_custom_property_definitions(self.class)
+      return if definitions.empty?
+      self.custom_properties.clear
       definitions.each do |definition|
-        new_onject.custom_properties << CustomPropertyValue.create(parent_uri: CustomPropertyValue.base_uri, transaction: tx, 
-          value: definition.default, custom_property_defined_by: definition.uri)
+        self.custom_properties << CustomPropertyValue.create(parent_uri: CustomPropertyValue.base_uri, transaction: tx, 
+          value: definition.default, custom_property_defined_by: definition.uri, applies_to: self.uri, context: [context_uri])
       end
-      new_object.custom_properties
+      self.custom_properties
     end
 
     def clone_custom_properties(new_object, context=self)
@@ -89,13 +96,14 @@ class IsoConceptV2
     # @param [object] contaxt the context
     # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
     def load_custom_properties(context=self)
+      context_uri = context.is_a?(Uri) ? context : context.uri
       @custom_properties = IsoConceptV2::CustomPropertySet.new
       query_string = %Q{
         SELECT ?s ?p ?o ?e WHERE 
         {            
           ?e rdf:type isoC:CustomProperty .
           ?e isoC:appliesTo #{self.uri.to_ref} .          
-          ?e isoC:context #{context.uri.to_ref} . 
+          ?e isoC:context #{context_uri.to_ref} . 
           {             
             ?e isoC:customPropertyDefinedBy ?s .
             ?s ?p ?o .             

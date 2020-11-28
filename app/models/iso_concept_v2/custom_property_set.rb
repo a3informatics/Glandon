@@ -51,6 +51,25 @@ class IsoConceptV2
       end
     end
 
+    # Clear. Clear the set
+    #
+    # @return [CustomPropertySet] the new empty object
+    def clear
+      @items = []
+    end
+
+    # -----------------
+    # Test Only Methods
+    # -----------------
+
+    if Rails.env.test?
+
+      def items
+        @items
+      end
+      
+    end
+
   end
 
 end
