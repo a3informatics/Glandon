@@ -769,7 +769,7 @@ private
   def add_custom(object, property, value, definition)
     custom_set = get_temporary(object, property)
     custom_set ||= IsoConceptV2::CustomPropertySet.new
-    item = CustomPropertyValue.new(value: value, custom_property_defined_by: definition, applies_to: nil, context: nil)
+    item = CustomPropertyValue.new(value: "#{value}", custom_property_defined_by: definition, applies_to: nil, context: nil)
     #item.uri = item.create_uri(item.class.base_uri)
     custom_set << item
     property_set_value(object, property, custom_set)

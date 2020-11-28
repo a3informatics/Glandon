@@ -21,12 +21,10 @@ class IsoConceptV2 < Fuseki::Base
     super
   end
 
-  def self.create(params, parent)
-    tx = sparql::Transaction.new 
-    params[:transaction] = tx
-    params[:parent_uri] = parent.uri
+  def self.create(params={})
+    tx = transaction_begin(params)
     object = super(params)
-    create_custom_properties(object, tx, parent) if self.custom_properties?
+    object.create_custom_properties(tx, parent) if self.custom_properties?
     object.transaction_execute
     object
   end
@@ -160,9 +158,9 @@ class IsoConceptV2 < Fuseki::Base
 
   # Clone. Clone the object
   #
+  # @param [Object] context the context for the custom properties. Defaults to self.
   # @return [Object] the cloned object.
   def clone(context=self)
-    #self.tagged_links 
     object = super()
     return object unless self.custom_properties?
     self.load_custom_properties(context)
