@@ -74,18 +74,23 @@ class IsoConceptV2
       self.custom_properties
     end
 
+    # Clone Custom Properties. Clone the custom property values for this object and add to specified object
+    #
+    # @param [Object] new_object the new object to which properties are to be added
+    # @param [Object] context the context, defaults to self
+    # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
     def clone_custom_properties(new_object, context=self)
       context_uri = context.is_a?(Uri) ? context : context.uri
       properties = load_custom_properties(context)
       properties.each do |property|
         if property_multiple_contexts_include?(property, context_uri)
-          property.applies_to = new_object
-          new_object.custom_properties << property
-        else
           object = property.clone
           object.context = [context_uri]
           object.applies_to = new_object
           new_object.custom_properties << object
+        else
+          property.applies_to = new_object
+          new_object.custom_properties << property          
         end
       end
       new_object.custom_properties
@@ -145,9 +150,9 @@ class IsoConceptV2
 
   private
 
-    def property_multiple_contexts_include?(property, context)
-      contexts = property.context.map{|x| x.uri.to_s}
-      return context.count > 1 && contexts.include?(context_uri)
+    def property_multiple_contexts_include?(property, context_uri)
+      contexts = property.context.map{|x| x.to_s}
+      return contexts.count > 1 && contexts.include?(context_uri)
     end
 
   end

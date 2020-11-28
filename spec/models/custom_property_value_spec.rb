@@ -31,7 +31,7 @@ describe CustomPropertyValue do
   end
 
   it "valid property, errors II" do
-    item = CustomPropertyValue.new(value: "1", )
+    item = CustomPropertyValue.new(value: "1")
     item.uri = item.create_uri(item.class.base_uri)
     item.valid?
     expect(item.errors.count).to eq(1)

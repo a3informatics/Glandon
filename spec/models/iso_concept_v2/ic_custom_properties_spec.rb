@@ -36,7 +36,14 @@ describe IsoConceptV2::IcCustomProperties do
   end
 
   def create_value(value, applies_to, context, definition)
-    object = CustomPropertyValue.new(value: value, custom_property_defined_by: definition.uri, applies_to: applies_to.uri, context: [context.uri])
+    object = CustomPropertyValue.new(value: "#{value}", custom_property_defined_by: definition.uri, applies_to: applies_to.uri, context: [context.uri])
+    object.uri = object.create_uri(object.class.base_uri)
+    object.save
+    object
+  end
+
+  def create_value_array(value, applies_to, context, definition)
+    object = CustomPropertyValue.new(value: "#{value}", custom_property_defined_by: definition.uri, applies_to: applies_to.uri, context: context)
     object.uri = object.create_uri(object.class.base_uri)
     object.save
     object
@@ -214,6 +221,39 @@ describe IsoConceptV2::IcCustomProperties do
       check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_3a.yaml")
       results = object.load_custom_properties(context)
       check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_3b.yaml")
+    end
+
+  end
+
+  describe "clone custom properties" do
+
+    before :each do
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
+      load_files(schema_files, data_files)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    after :each do
+    end
+
+    it "with context" do
+      object = IsoConceptV2.new(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
+      object.save
+      new_object = IsoConceptV2.new(label: "Object 2", uri: Uri.new(uri: "http://www.example.com/A#object2"))
+      new_object.save
+      create_definition_1
+      create_definition_2
+      context_1 = Uri.new(uri: "http://www.example.com/A#context1")
+      context_2 = Uri.new(uri: "http://www.example.com/A#context2")
+      cp_1 = create_value_array("Object 1 String", object, [context_1, context_2], @definition_1)
+      cp_2 = create_value_array(true, object, [context_1], @definition_2)
+      cp_3 = create_value_array(false, object, [context_2], @definition_2)
+      results = object.load_custom_properties(context_1)
+      check_file_actual_expected(results.to_h, sub_dir, "clone_custom_properties_expected_1a.yaml")
+      results = object.load_custom_properties(context_2)
+      check_file_actual_expected(results.to_h, sub_dir, "clone_custom_properties_expected_1b.yaml")
+      results = object.clone_custom_properties(new_object, context_2)
+      check_file_actual_expected(results.to_h, sub_dir, "clone_custom_properties_expected_1c.yaml")
     end
 
   end
