@@ -135,6 +135,15 @@ module Fuseki
         object
       end
 
+      # Transaction Begin. Class version to create a transaction if not currently present in params hash.
+      #
+      # @params [Hash] params a hash of parameters
+      # @return [Sparql::Transaction] the transaction instance
+      def transaction_begin(params)
+        params[:transaction] = Sparql::Transaction.new if !params.key?(:transaction)
+        params[:transaction]
+      end
+
       def object_results(query_string, params)
         default_namespace = params.key?(:default_namespace) ? params[:default_namespace] : ""
         prefixes = params.key?(:prefixes) ? params[:prefixes] : []

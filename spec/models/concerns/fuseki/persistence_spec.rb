@@ -345,6 +345,17 @@ describe Fuseki::Persistence do
 
   describe "transaction tests" do
     
+    it "class transaction" do
+      params = {}
+      result = FusekiBaseHelpers::TestAdministeredItem.transaction_begin(params)
+      expect(result.is_a?(Sparql::Transaction)).to eq(true)
+      expect(result).to eq(params[:transaction])
+      result_2 = FusekiBaseHelpers::TestAdministeredItem.transaction_begin(params)
+      expect(result.is_a?(Sparql::Transaction)).to eq(true)
+      expect(result).to eq(result_2)
+      expect(params.keys.count).to eq(1)
+    end
+
     it "begin and active?" do
       item = FusekiBaseHelpers::TestAdministeredItem.new
       expect(item.transaction_active?).to eq(false)
