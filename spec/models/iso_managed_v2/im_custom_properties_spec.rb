@@ -54,4 +54,25 @@ describe IsoManagedV2::ImCustomProperties do
 
   end
 
+  describe "populate custom properties" do
+
+    before :each do
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
+      load_files(schema_files, data_files)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      create_data
+    end
+
+    after :each do
+    end
+
+    it "populate and load" do
+      item = CustomPropertyHelpers::TestParent.find_full(@parent.uri)
+      item.populate_custom_properties
+      expect(@parent.custom_properties.items).to eq([])
+      check_file_actual_expected(item.narrower.map{|x| x.custom_properties.to_h}, sub_dir, "populate_custom_properties_expected_1.yaml")
+    end
+
+  end
+
 end

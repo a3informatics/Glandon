@@ -14,6 +14,9 @@ class IsoManagedV2
       # Empty at present
     end
 
+    # Populate Custom Properties. Load all the properties for the managed item
+    #
+    # @return [Void] no return
     def populate_custom_properties
       self.load_custom_properties
       self.children.each do |child|
@@ -21,6 +24,10 @@ class IsoManagedV2
       end
     end
 
+    # Load Custom Properties. Load the custom property values for this object, if any
+    #
+    # @param [object] contaxt the context, defaults to self
+    # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
     def load_custom_properties(context=self)
       super
     end
