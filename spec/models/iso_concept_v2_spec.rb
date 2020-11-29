@@ -404,12 +404,46 @@ describe "IsoConceptV2" do
     end
 
     it "clone custom proprties" do
-      create_definitions
       create_data
       item_2 = @child_1.clone(@parent)
       expect(@child_1.label).to eq(item_2.label)
       check_file_actual_expected(item_2.to_h, sub_dir, "clone_expected_2a.yaml")
       check_file_actual_expected(item_2.custom_properties.to_h, sub_dir, "clone_expected_2b.yaml")
+    end
+
+  end
+
+  describe "Create" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "create" do
+      uri_1 = Uri.new(uri: "http://www.assero.co.uk/C1")
+      item_1 = IsoConceptV2.create(uri: uri_1, label: "1")
+      check_file_actual_expected(item_1.to_h, sub_dir, "create_expected_1.yaml")
+    end
+
+    it "create custom proprties" do
+      @definition_1 = CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
+        description: "A description XXX", default: "Default String",
+        custom_property_of: Uri.new(uri: "http://www.assero.co.uk/ISO11179Concepts#Concept"), 
+        uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
+      @definition_2 = CustomPropertyDefinition.create(datatype: "boolean", label: "A Flag", 
+        description: "A description YYY", default: "false",
+        custom_property_of: Uri.new(uri: "http://www.assero.co.uk/ISO11179Concepts#Concept"), 
+        uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD2"))
+      uri_1 = Uri.new(uri: "http://www.assero.co.uk/C1")
+      item_1 = IsoConceptV2.create(uri: uri_1, label: "1")
+      check_file_actual_expected(item_1.to_h, sub_dir, "create_expected_2a.yaml")
+      check_file_actual_expected(item_1.custom_properties.to_h, sub_dir, "create_expected_2b.yaml")
     end
 
   end

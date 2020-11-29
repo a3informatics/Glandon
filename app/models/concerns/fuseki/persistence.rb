@@ -144,6 +144,14 @@ module Fuseki
         params[:transaction]
       end
 
+      # Transaction Present?
+      #
+      # @params [Hash] params a hash of parameters
+      # @return [Boolean] true if transaction key is present, false otherwise
+      def transaction_present?(params)
+        params.key?(:transaction) && params[:transaction].is_a?(Sparql::Transaction)
+      end
+
       def object_results(query_string, params)
         default_namespace = params.key?(:default_namespace) ? params[:default_namespace] : ""
         prefixes = params.key?(:prefixes) ? params[:prefixes] : []
@@ -347,6 +355,14 @@ module Fuseki
     alias :my_type :find_rdf_type
     alias :true_type :find_rdf_type
 
+    # Transaction Present?
+    #
+    # @params [Hash] params a hash of parameters
+    # @return [Boolean] true if transaction key is present, false otherwise
+    def transaction_present?(params)
+      self.class.transaction_present?(params)
+    end
+
     # Transaction Begin. Begin a transaction. If one already is in progress it will be used or can be set
     #   via the params parameter.
     #
@@ -354,8 +370,8 @@ module Fuseki
     # @option transaction [Sparql::Transaction] a transaction object if already created. Need not be present.
     # @return [Sparql::Transaction] the transaction instance
     def transaction_begin(params={})
-      @transaction = Sparql::Transaction.new if !params.key?(:transaction) && @transaction.nil?
-      @transaction = params[:transaction] if params.key?(:transaction) && @transaction.nil?
+      @transaction = Sparql::Transaction.new if !transaction_present?(params) && @transaction.nil?
+      @transaction = params[:transaction] if transaction_present?(params) && @transaction.nil?
       @transaction.register(self)
       @transaction
     end
@@ -653,9 +669,13 @@ module Fuseki
 
       # Check if cache has a key.
       def inspect_persistence
-        return {new: @new_record, destroyed: @destroyed}
+        {new: @new_record, destroyed: @destroyed}
       end
 
+      # Transaction
+      def transaction
+        @transaction
+      end
     end
 
   private

@@ -18,7 +18,6 @@ describe IsoManagedV2::ImCustomProperties do
       data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
       load_files(schema_files, data_files)
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
-      create_definitions
       create_data
     end
 
@@ -38,7 +37,6 @@ describe IsoManagedV2::ImCustomProperties do
       data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
       load_files(schema_files, data_files)
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
-      create_definitions
       create_data
     end
 
@@ -46,7 +44,7 @@ describe IsoManagedV2::ImCustomProperties do
     end
 
     it "add context" do
-      other_parent = TestParent.create(identifier: "XXX", label: "Parent")
+      other_parent = CustomPropertyHelpers::TestParent.create(identifier: "XXX", label: "Parent")
       other_parent.narrower = [@child_1, @child_2, @child_3]
       other_parent.save
       other_parent.add_custom_property_context([@child_1.id, @child_2.uri, @child_3.id])

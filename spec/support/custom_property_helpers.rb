@@ -41,6 +41,7 @@ module CustomPropertyHelpers
     @child_3 = TestChild.create(label: "Child 3")
     @parent.narrower = [@child_1, @child_2, @child_3]
     @parent.save
+    create_definitions
     create_custom(@parent, @child_1, "String 1", @definition_1, 1)
     create_custom(@parent, @child_1, "true", @definition_2, 2)
     create_custom(@parent, @child_2, "String 2", @definition_1, 3)

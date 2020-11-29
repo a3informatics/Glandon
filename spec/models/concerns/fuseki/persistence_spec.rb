@@ -347,8 +347,10 @@ describe Fuseki::Persistence do
     
     it "class transaction" do
       params = {}
+      expect(FusekiBaseHelpers::TestAdministeredItem.transaction_present?(params)).to eq(false)
       result = FusekiBaseHelpers::TestAdministeredItem.transaction_begin(params)
       expect(result.is_a?(Sparql::Transaction)).to eq(true)
+      expect(FusekiBaseHelpers::TestAdministeredItem.transaction_present?(params)).to eq(true)
       expect(result).to eq(params[:transaction])
       result_2 = FusekiBaseHelpers::TestAdministeredItem.transaction_begin(params)
       expect(result.is_a?(Sparql::Transaction)).to eq(true)
@@ -358,10 +360,13 @@ describe Fuseki::Persistence do
 
     it "begin and active?" do
       item = FusekiBaseHelpers::TestAdministeredItem.new
+      expect(item.transaction_present?({})).to eq(false)
       expect(item.transaction_active?).to eq(false)
       expect(item.transaction_not_active?).to eq(true)
       expect_any_instance_of(Sparql::Transaction).to receive(:register).with(item)
       result = item.transaction_begin
+      expect(item.transaction_present?({transaction: true})).to eq(false)
+      expect(item.transaction_present?({transaction: result})).to eq(true)
       expect(item.transaction_active?).to eq(true)
       expect(item.transaction_not_active?).to eq(false)
       expect(result).to_not be(nil)

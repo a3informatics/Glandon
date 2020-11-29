@@ -16,16 +16,26 @@ class IsoConceptV2 < Fuseki::Base
   include ClassifiedAs
   include IcCustomProperties
 
+  # Initialize
+  #
+  # @param [Hash] attributes hash of attributes to set on initialization of the class
+  # @return [Object] the created object
   def initialize(attributes = {})
     @custom_properties = IsoConceptV2::CustomPropertySet.new
     super
   end
 
-  def self.create(params={})
+  # Create
+  #
+  # @param [Hash] params hash of attributes to set on initialization of the class
+  # @return [Object] the created object
+  def self.create(params={}, context=nil)
+    tx_exists = transaction_present?(params)
     tx = transaction_begin(params)
     object = super(params)
-    object.create_custom_properties(tx, parent) if self.custom_properties?
-    object.transaction_execute
+    use_context = context.nil? ? object : context
+    object.create_custom_properties(use_context, tx) if self.custom_properties?
+    object.transaction_execute unless tx_exists
     object
   end
 
