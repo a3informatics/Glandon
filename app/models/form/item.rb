@@ -15,6 +15,7 @@ class Form::Item < IsoConceptV2
   validates :optional, inclusion: { in: [ true, false ] }
 
   include Form::Ordinal
+  include Form::CRF
 
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #
@@ -71,96 +72,6 @@ class Form::Item < IsoConceptV2
     else
       move_down(child)
     end
-  end
-
-  def start_row(optional)
-    return '<tr class="warning">' if optional
-    return '<tr>'
-  end
-
-  def end_row
-    return "</tr>"
-  end
-
-  def markdown_row(markdown)
-    return "<tr><td colspan=\"3\"><p>#{MarkdownEngine::render(markdown)}</p></td></tr>"
-  end
-
-  def question_cell(text)
-    return "<td>#{text}</td>"
-  end
-
-  def mapping_cell(text, options)
-    return "<td>#{text}</td>" if !text.empty? && options[:annotate]
-    return empty_cell
-  end
-
-  def empty_cell
-    return "<td></td>"
-  end
-
-  # Format input field
-  def input_field(item)
-    html = '<td>'
-    datatype = nil
-    if item.class == BiomedicalConcept::PropertyX
-      if item.is_complex_datatype_property.nil?
-        datatype = nil
-      else
-        prop = ComplexDatatype::PropertyX.find(item.is_complex_datatype_property)
-        datatype = XSDDatatype.new(prop.simple_datatype)
-      end
-    else
-      datatype = XSDDatatype.new(item.datatype)
-    end
-    if datatype.nil?
-      html += field_table(["?", "?", "?"])
-    elsif datatype.datetime?
-      html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
-    elsif datatype.date?
-     html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
-    elsif datatype.time?
-     html += field_table(["H", "H", ":", "M", "M"])
-    elsif datatype.float?
-      item.format = "5.1" if item.format.blank?
-      parts = item.format.split('.')
-      major = parts[0].to_i
-      minor = parts[1].to_i
-      pattern = ["#"] * major
-      pattern[major-minor-1] = "."
-      html += field_table(pattern)
-    elsif datatype.integer?
-      count = item.format.to_i
-      html += field_table(["#"]*count)
-    elsif datatype.string?
-      length = item.format.scan /\w/
-      html += field_table([" "]*5 + ["S"] + length + [""]*5)
-    elsif datatype.boolean?
-      html += '<input type="checkbox">'
-    else
-      html += field_table(["?", "?", "?"])
-    end
-    html += '</td>'
-  end
-
-  # Format a field
-  def field_table(cell_content)
-    html = "<table class=\"crf-input-field\"><tr>"
-    cell_content.each do |cell|
-      html += "<td>#{cell}</td>"
-    end
-    html += "</tr></table>"
-  end
-
-  def terminology_cell
-    html = '<td>'
-    self.has_coded_value_objects.sort_by {|x| x.ordinal}.each do |cv|
-      tc = Thesaurus::UnmanagedConcept.find(cv.reference)
-      if cv.enabled
-        html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
-      end
-    end
-    html += '</td>'
   end
 
   def coded_values_to_hash(coded_values)

@@ -57,9 +57,9 @@ describe Form::Item::Question do
   describe "Basic tests" do
     
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
       load_cdisc_term_versions(1..1)
+      load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
     it "returns the item array" do
@@ -70,37 +70,37 @@ describe Form::Item::Question do
 
     it "returns the CRF rendition" do
       item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
-      result = item.to_crf
+      result = item.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "returns the CRF rendition, date datatype" do
       item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q2"), ordinal: 1, datatype: "date", question_text: "Hello")
-      result = item.to_crf
+      result = item.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "returns the CRF rendition, time datatype" do
       item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q3"), ordinal: 1, datatype: "time", question_text: "Hello")
-      result = item.to_crf
+      result = item.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "returns the CRF rendition, float datatype" do
       item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q4"), ordinal: 1, datatype: "float", format: "6.2", question_text: "Hello")
-      result = item.to_crf
+      result = item.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_5.yaml", equate_method: :hash_equal)
     end
 
     it "returns the CRF rendition, boolean datatype" do
       item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q5"), ordinal: 1, datatype: "boolean", question_text: "Hello")
-      result = item.to_crf
+      result = item.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_6.yaml", equate_method: :hash_equal)
     end
 
     it "returns the CRF rendition, integer datatype" do
       item = Form::Item::Question.new(uri: Uri.new(uri: "http://www.s-cubed.dk/Q5"), ordinal: 1, datatype: "integer", format: "3", question_text: "Hello")
-      result = item.to_crf
+      result = item.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_7.yaml", equate_method: :hash_equal)
     end
 
@@ -117,7 +117,7 @@ describe Form::Item::Question do
       item.has_coded_value_push(ref_2)
       item.save
       check_file_actual_expected(item.to_h, sub_dir, "to_crf_expected_2a.yaml", equate_method: :hash_equal)
-      result = item.to_crf
+      result = item.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_2b.yaml", equate_method: :hash_equal)
     end
   
@@ -144,6 +144,38 @@ describe Form::Item::Question do
       check_file_actual_expected(result.map{|x| x.to_h}, sub_dir, "children_ordered_expected_2.yaml", equate_method: :hash_equal)
     end
 
+  end
+
+  describe "aCRF" do
+    
+    before :all do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..1)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V4.ttl")
+    end
+
+    it "returns the aCRF rendition" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      question.mapping = "VSORRESU"
+      question.datatype = "datetype" 
+      question.question_text = "Question text"
+      question.save
+      form = Form.find_full(form.uri)
+      annotations = Form::Annotations.new(form)
+      annotations.domain_list
+      annotations.preserve_domain_class(:VS, "domain-1")
+      item = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      result = item.to_crf(annotations)
+      check_file_actual_expected(result, sub_dir, "to_acrf_expected_1.yaml", equate_method: :hash_equal)
+    end
+    
   end
 
   describe "Add child" do

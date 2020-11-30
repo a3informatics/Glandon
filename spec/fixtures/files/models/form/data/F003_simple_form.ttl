@@ -1,0 +1,104 @@
+@prefix : <http://www.s-cubed.dk/F003/V1#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/F003/V1>
+	rdf:type owl:Ontology ;
+.
+:F
+	rdf:type bf:Form ;
+	isoC:label "Form"^^xsd:string ;
+	isoT:hasState :F_RS ;
+	isoT:hasIdentifier :F_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2020-11-23T11:37:00+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-23T11:37:00+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasGroup :NG_63dfd013-5cf5-4526-bc83-025ab33cace0 ;
+.
+:F_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:F_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "F003"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:NG_63dfd013-5cf5-4526-bc83-025ab33cace0
+	rdf:type bf:NormalGroup ;
+	isoC:label "Not set"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :Q_d541e9ae-802c-43d4-ae9f-322bb9072d7e ;
+	bf:hasItem :Q_2cd54d39-975c-4b2a-86c6-5891415c4f8a ;
+	bf:hasItem :PL_fb85e229-410f-4e9e-91b8-c65f7632bf01 ;
+	bf:hasItem :TL_66e999dc-62e6-4965-b187-528e05c6e617 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:Q_d541e9ae-802c-43d4-ae9f-322bb9072d7e
+	rdf:type bf:Question ;
+	isoC:label "Not set"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "datetype"^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "VSORRESU"^^xsd:string ;
+	bf:questionText "Question text 1"^^xsd:string ;
+.
+:Q_2cd54d39-975c-4b2a-86c6-5891415c4f8a
+	rdf:type bf:Question ;
+	isoC:label "Not set"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "datetype"^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "VSORRES"^^xsd:string ;
+	bf:questionText "Question text 2"^^xsd:string ;
+.
+:PL_fb85e229-410f-4e9e-91b8-c65f7632bf01
+	rdf:type bf:Placeholder ;
+	isoC:label "Not set"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:freeText ""^^xsd:string ;
+.
+:TL_66e999dc-62e6-4965-b187-528e05c6e617
+	rdf:type bf:TextLabel ;
+	isoC:label "Not set"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:labelText ""^^xsd:string ;
+.

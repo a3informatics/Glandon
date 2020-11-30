@@ -15,8 +15,7 @@ describe "Forms", :type => :feature do
   describe "Forms", :type => :feature do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
       load_cdisc_term_versions(1..65)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_test_file_into_triple_store("forms/FN000150.ttl")
@@ -90,7 +89,7 @@ describe "Forms", :type => :feature do
       find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'FN000150\''
-      context_menu_element('history', 4, 'Height (Pilot)', :crf)
+      context_menu_element_v2('history', 'Height (Pilot)', :crf)
       wait_for_ajax 10
       expect(page).to have_content 'Not Set'
       expect(page).to have_content 'Compltion Status'
@@ -151,8 +150,7 @@ describe "Forms", :type => :feature do
   describe "Create, Delete a Form", :type => :feature, js:true do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
       load_cdisc_term_versions(1..65)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_test_file_into_triple_store("forms/FN000150.ttl")

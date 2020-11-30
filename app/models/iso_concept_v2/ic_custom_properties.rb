@@ -41,20 +41,74 @@ class IsoConceptV2
         results.sort { |a, b| [b[:datatype], a[:name]] <=> [a[:datatype], b[:name]] }
       end
 
+      # Custom Properties? Does the object have custom properties set (note this is defined not data values present)
+      #
+      # @return [Boolean] true if data present, false otherwise
+      def custom_properties?
+        Sparql::Query.new.query("ASK {#{self.rdf_type.to_ref} ^isoC:customPropertyOf ?o}", "", [:isoC]).ask? 
+      end
+
     end
 
+    # Custom Properties? Does the object have custom properties set (note this is defined not data values present)
+    #
+    # @return [Boolean] true if data present, false otherwise
     def custom_properties?
-      Sparql::Query.new.query("ASK {#{self.uri.rdf_type.to_ref} ^isoC:customPropertyOf ?o}", "", [:isoC]).ask? 
+      self.class.custom_properties?
     end
 
-    def find_custom_properties(context=self)
-      @custom_properties = ::CustomPropertySet.new
+    # Create Custom Properties. Create the custom property values for this object, if any
+    #
+    # @param [object] context the context, defaults to self
+    # @param [Sparql::Transaction] tx the transaction, defaults to nil
+    # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
+    def create_custom_properties(context=self, tx=nil)
+      context_uri = context.is_a?(Uri) ? context : context.uri
+      definitions = self.class.find_custom_property_definitions(self.class)
+      return if definitions.empty?
+      self.custom_properties.clear
+      definitions.each do |definition|
+        self.custom_properties << CustomPropertyValue.create(parent_uri: CustomPropertyValue.base_uri, transaction: tx, 
+          value: definition.default, custom_property_defined_by: definition.uri, applies_to: self.uri, context: [context_uri])
+      end
+      self.custom_properties
+    end
+
+    # Clone Custom Properties. Clone the custom property values for this object and add to specified object
+    #
+    # @param [Object] new_object the new object to which properties are to be added
+    # @param [Object] context the context, defaults to self
+    # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
+    def clone_custom_properties(new_object, context=self)
+      context_uri = context.is_a?(Uri) ? context : context.uri
+      properties = load_custom_properties(context)
+      properties.each do |property|
+        if property_multiple_contexts_include?(property, context_uri)
+          object = property.clone
+          object.context = [context_uri]
+          object.applies_to = new_object
+          new_object.custom_properties << object
+        else
+          property.applies_to = new_object
+          new_object.custom_properties << property          
+        end
+      end
+      new_object.custom_properties
+    end
+
+    # Load Custom Properties. Load the custom property values for this object, if any
+    #
+    # @param [object] contaxt the context
+    # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
+    def load_custom_properties(context=self)
+      context_uri = context.is_a?(Uri) ? context : context.uri
+      @custom_properties = IsoConceptV2::CustomPropertySet.new
       query_string = %Q{
         SELECT ?s ?p ?o ?e WHERE 
         {            
           ?e rdf:type isoC:CustomProperty .
           ?e isoC:appliesTo #{self.uri.to_ref} .          
-          ?e isoC:context #{context.uri.to_ref} . 
+          ?e isoC:context #{context_uri.to_ref} . 
           {             
             ?e isoC:customPropertyDefinedBy ?s .
             ?s ?p ?o .             
@@ -73,16 +127,32 @@ class IsoConceptV2
       @custom_properties
     end
 
+    # Custom Properties Getter. Return the custom property values for this object
+    #
+    # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties. Can be empty.
     def custom_properties
       @custom_properties
     end
 
+    # Custom Properties Setter. Only really useful in copying of objects
+    #
+    # @return [Void] no return
     def custom_properties=(value)
       @custom_properties = value
     end
 
+    # Custom Properties Diff. Custom Properties in object different to another object's properties
+    #
+    # @return [Boolean] true if different, false otherwise
     def custom_properties_diff?(previous)
       self.custom_properties.diff?(previous.custom_properties)
+    end
+
+  private
+
+    def property_multiple_contexts_include?(property, context_uri)
+      contexts = property.context.map{|x| x.to_s}
+      return contexts.count > 1 && contexts.include?(context_uri)
     end
 
   end
