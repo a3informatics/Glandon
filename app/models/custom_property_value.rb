@@ -11,7 +11,7 @@ class CustomPropertyValue < IsoContextualRelationship
   data_property :value
   object_property :custom_property_defined_by, cardinality: :one, model_class: "CustomPropertyDefinition"
 
-  validates :value, presence: true, allow_blank: false
+  validates :value, presence: true, allow_blank: true
   validates_with Validator::Klass, property: :custom_property_defined_by, level: :uri
 
   # Coded but not tested as not yet used
