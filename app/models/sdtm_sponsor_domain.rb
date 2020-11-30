@@ -12,7 +12,7 @@ class SdtmSponsorDomain < SdtmIgDomain
     object.structure = ig_domain.structure
     object.based_on_class = ig_domain.based_on_class.uri
     ig_domain.includes_column.sort_by {|x| x.ordinal}.each do |domain_variable|
-      sponsor_variable = SdtmSponsorDomain::Var.create(label: domain_variable.label, name: domain_variable.name, ordinal: domain_variable.ordinal)
+      sponsor_variable = SdtmSponsorDomain::Var.create(parent_uri: object.uri, label: domain_variable.label, name: domain_variable.name, ordinal: domain_variable.ordinal)
       sponsor_variable.format = domain_variable.format
       sponsor_variable.ct_and_format = domain_variable.ct_and_format
       sponsor_variable.used = true

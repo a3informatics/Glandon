@@ -7,6 +7,7 @@ class SdtmIgDomain < Tabulation
   data_property :structure
 
   object_property :has_biomedical_concept, cardinality: :many, model_class: "OperationalReferenceV3"
+  #object_property :by_association, cardinality: :one, model_class: "Association"
   object_property :based_on_class, cardinality: :one, model_class: "SdtmClass"
 
   object_property_class :includes_column, model_class: "SdtmIgDomain::Variable"
