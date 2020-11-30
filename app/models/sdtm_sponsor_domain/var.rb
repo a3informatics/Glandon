@@ -1,8 +1,7 @@
 class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
 
   configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable",
-            uri_suffix: "SPDV",  
-            uri_unique: true
+            uri_property: :name
 
   data_property :comment
   data_property :used

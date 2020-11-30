@@ -41,6 +41,13 @@ describe SdtmSponsorDomain do
     expect(result).to eq(false)
   end
 
+  it "does create a Sponsor Domain based on a specified IG domain" do
+    params = {label:"Sponsor Adverse Events", prefix:"AE"}
+    ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+    sponsor_domain = SdtmSponsorDomain.create_from_ig(params, ig_domain)
+    check_file_actual_expected(sponsor_domain.to_h, sub_dir, "create_from_ig_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+  end
+
   # it "allows an IG Domain to be found" do
   #   item = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
   #   check_file_actual_expected(item.to_h, sub_dir, "find_expected.yaml", equate_method: :hash_equal)

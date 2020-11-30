@@ -1,0 +1,1421 @@
+---
+:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUEQ=
+:uri: http://www.s-cubed.dk/AE_Domain/V1#SPD
+:rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomain
+:label: Sponsor Adverse Events
+:has_state:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfUlM=
+  :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+      :uri: http://www.assero.co.uk/NS#SCUBED
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: S-cubed
+      :name: S-cubed Aps
+      :authority: www.s-cubed.dk
+:has_identifier:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfU0k=
+  :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: AE Domain
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+    :uri: http://www.assero.co.uk/NS#SCUBED
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: S-cubed
+    :name: S-cubed Aps
+    :authority: www.s-cubed.dk
+:has_previous_version: 
+:origin: ''
+:change_description: ''
+:creation_date: '2020-11-30T12:37:04+01:00'
+:last_change_date: '2020-11-30T12:37:04+01:00'
+:explanatory_comment: ''
+:rule: ''
+:ordinal: 1
+:includes_column:
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjU1RVRFlJRA==
+  :uri: http://www.assero.co.uk/IC#STUDYID
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Study Identifier
+  :rule: ''
+  :ordinal: 1
+  :name: STUDYID
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :uri: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Required
+    :description: Any variable that is basic to the identification of a data record
+      (i.e., essential key variables and a topic variable) or is necessary to make
+      the record meaningful. Required variables must always be included in the dataset
+      and cannot be null for any record
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_STUDYID
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjRE9NQUlO
+  :uri: http://www.assero.co.uk/IC#DOMAIN
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Domain Abbreviation
+  :rule: ''
+  :ordinal: 2
+  :name: DOMAIN
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :uri: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Required
+    :description: Any variable that is basic to the identification of a data record
+      (i.e., essential key variables and a topic variable) or is necessary to make
+      the record meaningful. Required variables must always be included in the dataset
+      and cannot be null for any record
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_DOMAIN
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjVVNVQkpJRA==
+  :uri: http://www.assero.co.uk/IC#USUBJID
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Unique Subject Identifier
+  :rule: ''
+  :ordinal: 3
+  :name: USUBJID
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :uri: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Required
+    :description: Any variable that is basic to the identification of a data record
+      (i.e., essential key variables and a topic variable) or is necessary to make
+      the record meaningful. Required variables must always be included in the dataset
+      and cannot be null for any record
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_USUBJID
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTRVE=
+  :uri: http://www.assero.co.uk/IC#AESEQ
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Sequence Number
+  :rule: ''
+  :ordinal: 4
+  :name: AESEQ
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :uri: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Required
+    :description: Any variable that is basic to the identification of a data record
+      (i.e., essential key variables and a topic variable) or is necessary to make
+      the record meaningful. Required variables must always be included in the dataset
+      and cannot be null for any record
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEQ
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVHUlBJRA==
+  :uri: http://www.assero.co.uk/IC#AEGRPID
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Group ID
+  :rule: ''
+  :ordinal: 5
+  :name: AEGRPID
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEGRPID
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVSRUZJRA==
+  :uri: http://www.assero.co.uk/IC#AEREFID
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Reference ID
+  :rule: ''
+  :ordinal: 6
+  :name: AEREFID
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEREFID
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTUElE
+  :uri: http://www.assero.co.uk/IC#AESPID
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Sponsor-Defined Identifier
+  :rule: ''
+  :ordinal: 7
+  :name: AESPID
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESPID
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVURVJN
+  :uri: http://www.assero.co.uk/IC#AETERM
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Reported Term for the Adverse Event
+  :rule: ''
+  :ordinal: 8
+  :name: AETERM
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :uri: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Required
+    :description: Any variable that is basic to the identification of a data record
+      (i.e., essential key variables and a topic variable) or is necessary to make
+      the record meaningful. Required variables must always be included in the dataset
+      and cannot be null for any record
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AETERM
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVNT0RJRlk=
+  :uri: http://www.assero.co.uk/IC#AEMODIFY
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Modified Reported Term
+  :rule: ''
+  :ordinal: 9
+  :name: AEMODIFY
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEMODIFY
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVERUNPRA==
+  :uri: http://www.assero.co.uk/IC#AEDECOD
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Dictionary-Derived Term
+  :rule: ''
+  :ordinal: 10
+  :name: AEDECOD
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :uri: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Required
+    :description: Any variable that is basic to the identification of a data record
+      (i.e., essential key variables and a topic variable) or is necessary to make
+      the record meaningful. Required variables must always be included in the dataset
+      and cannot be null for any record
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEDECOD
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVDQVQ=
+  :uri: http://www.assero.co.uk/IC#AECAT
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Category for Adverse Event
+  :rule: ''
+  :ordinal: 11
+  :name: AECAT
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECAT
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTQ0FU
+  :uri: http://www.assero.co.uk/IC#AESCAT
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Subcategory for Adverse Event
+  :rule: ''
+  :ordinal: 12
+  :name: AESCAT
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAT
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVQUkVTUA==
+  :uri: http://www.assero.co.uk/IC#AEPRESP
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Pre-Specified Adverse Event
+  :rule: ''
+  :ordinal: 13
+  :name: AEPRESP
+  :description: ''
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVQUkVTUF9UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVCT0RTWVM=
+  :uri: http://www.assero.co.uk/IC#AEBODSYS
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Body System or Organ Class
+  :rule: ''
+  :ordinal: 14
+  :name: AEBODSYS
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
+    :uri: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Expected
+    :description: Any variable necessary to make a record useful in the context of
+      a specific domain. Expected variables may contain some null values, but in most
+      cases will not contain null values for every record. When no data has been collected
+      for an expected variable, however, a null column must still be included in the
+      dataset, and a comment must be included in the define.xml to state that data
+      was not collected.
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEBODSYS
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVMT0M=
+  :uri: http://www.assero.co.uk/IC#AELOC
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Location of Event
+  :rule: ''
+  :ordinal: 15
+  :name: AELOC
+  :description: ''
+  :format: ''
+  :ct_and_format: "(LOC)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVMT0NfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AELOC_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: LOC
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C74456/V8#C74456
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AELOC
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTRVY=
+  :uri: http://www.assero.co.uk/IC#AESEV
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Severity/Intensity
+  :rule: ''
+  :ordinal: 16
+  :name: AESEV
+  :description: ''
+  :format: ''
+  :ct_and_format: "(AESEV)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRVZfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEV_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: AESEV
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66769/V4#C66769
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEV
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTRVI=
+  :uri: http://www.assero.co.uk/IC#AESER
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Serious Event
+  :rule: ''
+  :ordinal: 17
+  :name: AESER
+  :description: ''
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
+    :uri: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Expected
+    :description: Any variable necessary to make a record useful in the context of
+      a specific domain. Expected variables may contain some null values, but in most
+      cases will not contain null values for every record. When no data has been collected
+      for an expected variable, however, a null column must still be included in the
+      dataset, and a comment must be included in the define.xml to state that data
+      was not collected.
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRVJfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESER_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESER
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVBQ04=
+  :uri: http://www.assero.co.uk/IC#AEACN
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Action Taken with Study Treatment
+  :rule: ''
+  :ordinal: 18
+  :name: AEACN
+  :description: ''
+  :format: ''
+  :ct_and_format: "(ACN)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
+    :uri: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Expected
+    :description: Any variable necessary to make a record useful in the context of
+      a specific domain. Expected variables may contain some null values, but in most
+      cases will not contain null values for every record. When no data has been collected
+      for an expected variable, however, a null column must still be included in the
+      dataset, and a comment must be included in the define.xml to state that data
+      was not collected.
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVBQ05fVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACN_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: ACN
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66767/V4#C66767
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACN
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVBQ05PVEg=
+  :uri: http://www.assero.co.uk/IC#AEACNOTH
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Other Action Taken
+  :rule: ''
+  :ordinal: 19
+  :name: AEACNOTH
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACNOTH
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVSRUw=
+  :uri: http://www.assero.co.uk/IC#AEREL
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Causality
+  :rule: ''
+  :ordinal: 20
+  :name: AEREL
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
+    :uri: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Expected
+    :description: Any variable necessary to make a record useful in the context of
+      a specific domain. Expected variables may contain some null values, but in most
+      cases will not contain null values for every record. When no data has been collected
+      for an expected variable, however, a null column must still be included in the
+      dataset, and a comment must be included in the define.xml to state that data
+      was not collected.
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEREL
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVSRUxOU1Q=
+  :uri: http://www.assero.co.uk/IC#AERELNST
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Relationship to Non-Study Treatment
+  :rule: ''
+  :ordinal: 21
+  :name: AERELNST
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AERELNST
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVQQVRU
+  :uri: http://www.assero.co.uk/IC#AEPATT
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Pattern of Adverse Event
+  :rule: ''
+  :ordinal: 22
+  :name: AEPATT
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPATT
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVPVVQ=
+  :uri: http://www.assero.co.uk/IC#AEOUT
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Outcome of Adverse Event
+  :rule: ''
+  :ordinal: 23
+  :name: AEOUT
+  :description: ''
+  :format: ''
+  :ct_and_format: "(OUT)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVPVVRfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEOUT_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: OUT
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66768/V4#C66768
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEOUT
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTQ0FO
+  :uri: http://www.assero.co.uk/IC#AESCAN
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Involves Cancer
+  :rule: ''
+  :ordinal: 24
+  :name: AESCAN
+  :description: ''
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTQ0FOX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAN_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAN
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTQ09ORw==
+  :uri: http://www.assero.co.uk/IC#AESCONG
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Congenital Anomaly or Birth Defect
+  :rule: ''
+  :ordinal: 25
+  :name: AESCONG
+  :description: ''
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTQ09OR19UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCONG_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCONG
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTRElTQUI=
+  :uri: http://www.assero.co.uk/IC#AESDISAB
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Persist or Signif Disability/Incapacity
+  :rule: ''
+  :ordinal: 26
+  :name: AESDISAB
+  :description: ''
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRElTQUJfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDISAB_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDISAB
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTRFRI
+  :uri: http://www.assero.co.uk/IC#AESDTH
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Results in Death
+  :rule: ''
+  :ordinal: 27
+  :name: AESDTH
+  :description: ''
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRFRIX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDTH_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDTH
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTSE9TUA==
+  :uri: http://www.assero.co.uk/IC#AESHOSP
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Requires or Prolongs Hospitalization
+  :rule: ''
+  :ordinal: 28
+  :name: AESHOSP
+  :description: ''
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTSE9TUF9UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESHOSP_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESHOSP
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTTElGRQ==
+  :uri: http://www.assero.co.uk/IC#AESLIFE
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Is Life Threatening
+  :rule: ''
+  :ordinal: 29
+  :name: AESLIFE
+  :description: ''
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTTElGRV9UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESLIFE_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESLIFE
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTT0Q=
+  :uri: http://www.assero.co.uk/IC#AESOD
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Occurred with Overdose
+  :rule: ''
+  :ordinal: 30
+  :name: AESOD
+  :description: ''
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTT0RfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESOD_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESOD
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTTUlF
+  :uri: http://www.assero.co.uk/IC#AESMIE
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Other Medically Important Serious Event
+  :rule: ''
+  :ordinal: 31
+  :name: AESMIE
+  :description: ''
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTTUlFX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESMIE_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESMIE
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVDT05UUlQ=
+  :uri: http://www.assero.co.uk/IC#AECONTRT
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Concomitant or Additional Trtmnt Given
+  :rule: ''
+  :ordinal: 32
+  :name: AECONTRT
+  :description: ''
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVDT05UUlRfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECONTRT_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECONTRT
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVUT1hHUg==
+  :uri: http://www.assero.co.uk/IC#AETOXGR
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Standard Toxicity Grade
+  :rule: ''
+  :ordinal: 33
+  :name: AETOXGR
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AETOXGR
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTVERUQw==
+  :uri: http://www.assero.co.uk/IC#AESTDTC
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Start Date/Time of Adverse Event
+  :rule: ''
+  :ordinal: 34
+  :name: AESTDTC
+  :description: ''
+  :format: ISO 8601
+  :ct_and_format: ISO 8601
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
+    :uri: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Expected
+    :description: Any variable necessary to make a record useful in the context of
+      a specific domain. Expected variables may contain some null values, but in most
+      cases will not contain null values for every record. When no data has been collected
+      for an expected variable, however, a null column must still be included in the
+      dataset, and a comment must be included in the define.xml to state that data
+      was not collected.
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESTDTC
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVFTkRUQw==
+  :uri: http://www.assero.co.uk/IC#AEENDTC
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: End Date/Time of Adverse Event
+  :rule: ''
+  :ordinal: 35
+  :name: AEENDTC
+  :description: ''
+  :format: ISO 8601
+  :ct_and_format: ISO 8601
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
+    :uri: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Expected
+    :description: Any variable necessary to make a record useful in the context of
+      a specific domain. Expected variables may contain some null values, but in most
+      cases will not contain null values for every record. When no data has been collected
+      for an expected variable, however, a null column must still be included in the
+      dataset, and a comment must be included in the define.xml to state that data
+      was not collected.
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENDTC
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVTVERZ
+  :uri: http://www.assero.co.uk/IC#AESTDY
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Study Day of Start of Adverse Event
+  :rule: ''
+  :ordinal: 36
+  :name: AESTDY
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESTDY
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVFTkRZ
+  :uri: http://www.assero.co.uk/IC#AEENDY
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Study Day of End of Adverse Event
+  :rule: ''
+  :ordinal: 37
+  :name: AEENDY
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENDY
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVEVVI=
+  :uri: http://www.assero.co.uk/IC#AEDUR
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Duration of Adverse Event
+  :rule: ''
+  :ordinal: 38
+  :name: AEDUR
+  :description: ''
+  :format: ISO 8601
+  :ct_and_format: ISO 8601
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEDUR
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVFTlJG
+  :uri: http://www.assero.co.uk/IC#AEENRF
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: End Relative to Reference Period
+  :rule: ''
+  :ordinal: 39
+  :name: AEENRF
+  :description: ''
+  :format: ''
+  :ct_and_format: "(STENRF)"
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVFTlJGX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRF_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: STENRF
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66728/V4#C66728
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRF
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVFTlJUUFQ=
+  :uri: http://www.assero.co.uk/IC#AEENRTPT
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: End Relative to Reference Time Point
+  :rule: ''
+  :ordinal: 40
+  :name: AEENRTPT
+  :description: ''
+  :format: BEFORE, AFTER, COINCIDENT, ONGOING, U
+  :ct_and_format: BEFORE, AFTER, COINCIDENT, ONGOING, U
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRTPT
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjQUVFTlRQVA==
+  :uri: http://www.assero.co.uk/IC#AEENTPT
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: End Reference Time Point
+  :rule: ''
+  :ordinal: 41
+  :name: AEENTPT
+  :description: ''
+  :format: ''
+  :ct_and_format: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: 
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENTPT
+:prefix: AE
+:structure: One record per adverse event per subject
+:has_biomedical_concept: []
+:based_on_class: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL
