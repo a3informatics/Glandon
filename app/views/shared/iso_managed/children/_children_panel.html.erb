@@ -4,7 +4,7 @@
 
 <% panel_id = local_assigns.fetch :id, 'children' %>
 
-<% if local_assigns.fetch :custom_props?, false %>
+<% if (local_assigns.fetch :custom_props?, false) && Thesaurus::UnmanagedConcept.custom_properties? %>
 
   <%= render partial: "shared/iso_managed/custom_properties", locals: { item: item, id: panel_id } %>
 
