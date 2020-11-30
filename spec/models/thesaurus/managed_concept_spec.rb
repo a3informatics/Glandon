@@ -2170,5 +2170,113 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+ describe "custom propertry" do
+
+    def simple_thesaurus_1
+      @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      @th_1 = Thesaurus.new
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow",
+          identifier: "A00001",
+          definition: "A definition",
+          notation: "LHR"
+        })
+      @tc_1.synonym << Thesaurus::Synonym.where_only_or_create("Heathrow")
+      @tc_1.synonym << Thesaurus::Synonym.where_only_or_create("LHR")
+      @tc_1.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
+      @tc_1a = Thesaurus::UnmanagedConcept.from_h({
+          label: "Terminal 5",
+          identifier: "A000011",
+          definition: "The 5th LHR Terminal",
+          notation: "T5"
+        })
+      @tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("T5")
+      @tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("Terminal Five")
+      @tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("BA Terminal")
+      @tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("British Airways Terminal")
+      @tc_1a.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 5")
+      @tc_1b = Thesaurus::UnmanagedConcept.from_h({
+          label: "Terminal 1",
+          identifier: "A000012",
+          definition: "The oldest LHR Terminal",
+          notation: "T1"
+        })
+      @tc_1b.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 1")
+      @tc_1.narrower << @tc_1a
+      @tc_1.narrower << @tc_1b
+      @tc_2 = Thesaurus::ManagedConcept.new
+      @tc_2.identifier = "A00002"
+      @tc_2.definition = "Copenhagen"
+      @tc_2.extensible = false
+      @tc_2.notation = "CPH"
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      sparql = Sparql::Update.new
+      @th_1.set_initial("NEW_TH")
+      @tc_1.set_initial(@tc_1.identifier)
+      @tc_2.set_initial(@tc_2.identifier)
+      sparql.default_namespace(@th_1.uri.namespace)
+      @th_1.to_sparql(sparql, true)
+      @tc_1.to_sparql(sparql, true)
+      @tc_2.to_sparql(sparql, true)
+      full_path = sparql.upload
+    end
+
+    def add_cp_1
+      CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
+      description: "A description XXX", default: "Default String",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..5)
+      simple_thesaurus_1
+      nv_destroy
+      nv_create(parent: "123", child: "456")
+    end
+
+    it "allows a new child TC to be added, no custom property" do
+      params =
+      {
+        definition: "The Queen's Terminal, the second terminal at Heathrow",
+        identifier: "A00014",
+        label: "Terminal 2",
+        notation: "T2"
+      }
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_object = tc.add_child(params)
+      expect(new_object.errors.count).to eq(0)
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_custom_property_expected_1.yaml")
+      result = tc.populate_custom_properties
+      expect(result).to eq({})
+    end
+
+    it "allows a new child TC to be added, no custom proerty" do
+      add_cp_1
+      params =
+      {
+        definition: "The Queen's Terminal, the second terminal at Heathrow",
+        identifier: "A00014",
+        label: "Terminal 2",
+        notation: "T2"
+      }
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_object = tc.add_child(params)
+      expect(new_object.errors.count).to eq(0)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      result = tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_child_custom_property_expected_2.yaml", write_file: true)
+    end
+
+  end
+
 
 end
