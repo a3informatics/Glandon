@@ -159,7 +159,7 @@ end
 
 
 Then('I see the Differences and Changes for the {string} code list for CDISC version {string} and CDISC version {string}') do |string, string2, string3|
-  
+    find('#main_area').scroll_to find('#Differences')
     expect(page).to have_content 'Differences'
     wait_for_ajax(20)
     save_screen(TYPE)
