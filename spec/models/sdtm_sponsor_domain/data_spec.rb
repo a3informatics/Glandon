@@ -51,17 +51,20 @@ describe SdtmSponsorDomain do
 
     it "create Sponsor Domain" do
       domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
-      sp = SdtmSponsorDomain.create(label: "SDTM Sp", identifier: "AAA")
-      sp.includes_column = domain.includes_column
-      sp.save
-      #sp = SdtmSponsorDomain.from_h(domain.to_h)
-      #bd:prefix "CO"^^xsd:string ;
-      #bd:structure "One record per comment per subject"^^xsd:string ;
-      #bd:basedOnClass <http://www.cdisc.org/SDTM_MODEL_CO/V6#CL> ;
-      sponsor = SdtmSponsorDomain.find_full(sp.uri)
-      full_path = sdtm_to_ttl(sponsor)
-      full_path = sponsor.to_ttl
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "SDTM_Sponsor_Domain.ttl")
+      domain_columns = domain.includes_column
+      sponsor_domain = SdtmSponsorDomain.create(label: "SDTM Sponsor Domain", identifier: "AAA")
+      sponsor_columns = []
+      #sponsor_domain.includes_column = domain.includes_column
+      sponsor_domain.save
+      domain_columns.each_with_index do |dv, index|
+        sponsor_columns << SdtmSponsorDomain::Var.create(label: dv.label, ordinal: index+1, description: dv.description, name: dv.name, bassed_on_ig_variable: dv.uri)
+      end
+      sponsor_domain.includes_column = sponsor_columns
+      sponsor_domain.save
+      sponsor_domain = SdtmSponsorDomain.find_full(sponsor_domain.uri)
+      full_path = sdtm_to_ttl(sponsor_domain)
+      full_path = sponsor_domain.to_ttl
+  #copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "SDTM_Sponsor_Domain.ttl")
     end
   end
 
