@@ -2276,7 +2276,7 @@ describe "Thesaurus::ManagedConcept" do
       check_thesaurus_concept_actual_expected(result, sub_dir, "add_child_custom_property_expected_2.yaml")
     end
 
-    it "add and delete children to an extension" do
+    it "add and delete children to an extension, single" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       add_cp_1
       expect(tc.narrower.count).to eq(0)
@@ -2295,7 +2295,7 @@ describe "Thesaurus::ManagedConcept" do
       check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1b.yaml")
     end
 
-    it "add and delete children to an extension" do
+    it "add and delete children to an extension, several" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       expect(tc.narrower.count).to eq(0)

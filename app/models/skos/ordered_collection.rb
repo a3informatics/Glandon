@@ -254,8 +254,8 @@ module SKOS::OrderedCollection
       sparql.add({uri: subset_members[index].uri}, {prefix: :th, fragment: "memberNext"}, {uri: subset_members[index+1].uri})
     end
     last_sm.nil? ? sparql.add({uri: self.uri}, {prefix: :th, fragment: "members"}, {uri: subset_members.first.uri}) : sparql.add({uri: last_sm.uri}, {prefix: :th, fragment: "memberNext"}, {uri: subset_members.first.uri})
+    mc.add_custom_property_context(arr)
     set_ranks(arr, mc) if mc.ranked?
-    #filename = sparql.to_file
     sparql.create
   end
 
