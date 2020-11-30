@@ -15,13 +15,13 @@ describe SdtmSponsorDomain::Variable do
   end
 
   it "validates a valid object" do
-    result = SdtmSponsorDomain::Variable.new
+    result = SdtmSponsorDomain::Var.new
     result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
     expect(result.valid?).to eq(true)
   end
 
   it "does not validate an invalid object" do
-    item = SdtmSponsorDomain::Variable.new
+    item = SdtmSponsorDomain::Var.new
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("Uri can't be blank")
     expect(result).to eq(false)
