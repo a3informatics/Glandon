@@ -342,6 +342,10 @@ defaults: &defaults
       edit_data: edit
       edit_another: edit
       update_property: update
+  SdtmSponsorDomainPolicy:
+    policies: {}
+    alias:
+      create_from_ig: create
   FormPolicy:
     policies: {}
     alias:

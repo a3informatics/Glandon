@@ -27,11 +27,28 @@ class SdtmSponsorDomainsController < ManagedItemsController
     items = sdtm_sponsor_domain.get_children
     render json: {data: items}, status: 200
   end
+
+  def create_from_ig
+    sdtm_ig_domain = SdtmIgDomain.find_full(protect_from_bad_id(sdtm_ig_domain_id))
+    sdtm_sponsor_domain = SdtmSponsorDomain.create_from_ig(the_params, sdtm_ig_domain)
+    if sdtm_sponsor_domain.errors.empty?
+      AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain created from #{sdtm_ig_domain.scoped_identifier}.")
+      path = history_sdtm_sponsor_domains_path({sdtm_sponsor_domain: {identifier: sdtm_sponsor_domain.scoped_identifier, scope_id: sdtm_sponsor_domain.scope.id}})
+      render :json => {data: {history_path: path, id: sdtm_sponsor_domain.id}}, :status => 200
+    else
+      render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
+    end
+  end
   
 private
   
   def the_params
-    params.require(:sdtm_sponsor_domain).permit(:identifier, :scope_id, :count, :offset)
+    params.require(:sdtm_sponsor_domain).permit(:identifier, :scope_id, :count, :offset, :sdtm_ig_domain_id, :label, :prefix)
+  end
+
+  # Get the ig domain id from the params
+  def sdtm_ig_domain_id
+    {id: the_params[:sdtm_ig_domain_id]}
   end
 
   # Path for given action

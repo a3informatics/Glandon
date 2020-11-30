@@ -8,14 +8,14 @@ describe SdtmSponsorDomainsController do
   include UserAccountHelpers
   include IsoHelpers
   include ControllerHelpers
-  
-  describe "Reader User" do
-  	
-    login_reader
 
-    def sub_dir
+  def sub_dir
       return "controllers/sdtm_sponsor_domains"
-    end
+  end
+  
+  describe "Simple actions" do
+  	
+    login_curator
 
     before :all do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
@@ -64,6 +64,33 @@ describe SdtmSponsorDomainsController do
       expect(assigns(:identifier)).to eq("AAA")
       expect(assigns(:scope_id)).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
       expect(response).to render_template("history")
+    end
+
+  end
+
+  describe "create actions" do
+
+    login_curator
+
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+    end
+
+    it "creates from IG" do
+      sdtm_ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+      post :create_from_ig, params:{sdtm_sponsor_domain: {identifier: "NEW1", label: "Something", prefix: sdtm_ig_domain.prefix, sdtm_ig_domain_id: sdtm_ig_domain.id}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "create_from_ig_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "creates from IG, error" do
+      sdtm_ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+      post :create_from_ig, params:{sdtm_sponsor_domain: {identifier: "HEIGHT", label: "something", prefix: sdtm_ig_domain.prefix, sdtm_ig_domain_id: sdtm_ig_domain.id}}
+      actual = check_error_json_response(response)
+      expect(actual[:errors]).to eq(["http://www.s-cubed.dk/AE_Domain/V1#SPD already exists in the database"])
     end
 
   end

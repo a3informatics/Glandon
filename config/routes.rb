@@ -477,6 +477,7 @@ Rails.application.routes.draw do
   resources :sdtm_sponsor_domains, :only => [:show, :index] do
     collection do
       get :history
+      post :create_from_ig
     end
     member do
       get :show_data
