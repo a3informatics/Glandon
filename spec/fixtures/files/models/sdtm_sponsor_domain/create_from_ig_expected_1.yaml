@@ -47,8 +47,8 @@
 :has_previous_version: 
 :origin: ''
 :change_description: ''
-:creation_date: '2020-11-30T13:57:49+01:00'
-:last_change_date: '2020-11-30T13:57:49+01:00'
+:creation_date: '2020-11-30T13:59:42+01:00'
+:last_change_date: '2020-11-30T13:59:42+01:00'
 :explanatory_comment: ''
 :rule: ''
 :ordinal: 1
@@ -60,7 +60,7 @@
   :rule: ''
   :ordinal: 1
   :name: STUDYID
-  :description: ''
+  :description: Unique identifier for a study.
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
@@ -79,7 +79,7 @@
   :rule: ''
   :ordinal: 2
   :name: DOMAIN
-  :description: ''
+  :description: Two-character abbreviation for the domain.
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
@@ -98,7 +98,8 @@
   :rule: ''
   :ordinal: 3
   :name: USUBJID
-  :description: ''
+  :description: Identifier used to uniquely identify a subject across all studies
+    for all applications or submissions involving the product.
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
@@ -117,7 +118,8 @@
   :rule: ''
   :ordinal: 4
   :name: AESEQ
-  :description: ''
+  :description: Sequence Number given to ensure uniqueness of subject records within
+    a domain. May be any valid number.
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
@@ -136,7 +138,8 @@
   :rule: ''
   :ordinal: 5
   :name: AEGRPID
-  :description: ''
+  :description: Used to tie together a block of related records in a single domain
+    for a subject.
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -155,7 +158,8 @@
   :rule: ''
   :ordinal: 6
   :name: AEREFID
-  :description: ''
+  :description: Internal or external identifier such as a serial number on an SAE
+    reporting form
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -174,7 +178,9 @@
   :rule: ''
   :ordinal: 7
   :name: AESPID
-  :description: ''
+  :description: 'Sponsor-defined identifier. It may be pre-printed on the CRF as an
+    explicit line identifier or defined in the sponsor''s operational database. Example:
+    Line number on an Adverse Events page.'
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -193,7 +199,7 @@
   :rule: ''
   :ordinal: 8
   :name: AETERM
-  :description: ''
+  :description: Verbatim name of the event.
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
@@ -212,7 +218,8 @@
   :rule: ''
   :ordinal: 9
   :name: AEMODIFY
-  :description: ''
+  :description: If AETERM is modified to facilitate coding, then AEMODIFY will contain
+    the modified text.
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -231,7 +238,10 @@
   :rule: ''
   :ordinal: 10
   :name: AEDECOD
-  :description: ''
+  :description: Dictionary-derived text description of AETERM or AEMODIFY. Equivalent
+    to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
+    name and version used to map the terms utilizing the define.xml external codelist
+    attributes
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
@@ -250,7 +260,8 @@
   :rule: ''
   :ordinal: 11
   :name: AECAT
-  :description: ''
+  :description: 'Used to define a category of related records. Example: BLEEDING,
+    NEUROPSYCHIATRIC.'
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -269,7 +280,7 @@
   :rule: ''
   :ordinal: 12
   :name: AESCAT
-  :description: ''
+  :description: 'A further categorization of adverse event. Example: NEUROLOGIC.'
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -288,7 +299,9 @@
   :rule: ''
   :ordinal: 13
   :name: AEPRESP
-  :description: ''
+  :description: A value of 'Y' indicates that this adverse event was pre-specified
+    on the CRF. Values are null for spontaneously reported events (i.e., those collected
+    as free-text verbatim terms)
   :format: ''
   :ct_and_format: "(NY)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -316,7 +329,10 @@
   :rule: ''
   :ordinal: 14
   :name: AEBODSYS
-  :description: ''
+  :description: Dictionary derived. Body system or organ class used by the sponsor
+    from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary
+    such as MedDRA, this should contain the SOC used for the sponsor's analyses and
+    summary tables which may not necessarily be the primary SOC.
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
@@ -335,7 +351,8 @@
   :rule: ''
   :ordinal: 15
   :name: AELOC
-  :description: ''
+  :description: Describes anatomical location relevant for the event (e.g., LEFT ARM
+    for skin rash).
   :format: ''
   :ct_and_format: "(LOC)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -363,7 +380,8 @@
   :rule: ''
   :ordinal: 16
   :name: AESEV
-  :description: ''
+  :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
+    SEVERE.'
   :format: ''
   :ct_and_format: "(AESEV)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -391,7 +409,7 @@
   :rule: ''
   :ordinal: 17
   :name: AESER
-  :description: ''
+  :description: Is this a serious event?
   :format: ''
   :ct_and_format: "(NY)"
   :compliance: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
@@ -419,7 +437,11 @@
   :rule: ''
   :ordinal: 18
   :name: AEACN
-  :description: ''
+  :description: 'Describes changes to the study treatment as a result of the event.
+    AEACN is specifically for the relationship to study treatment. AEACNOTH is for
+    actions unrelated to dose adjustments of study treatment. Examples of AEACN values
+    include ICH E2B values: DRUG WITHDRAWN, DOSE REDUCED, DOSE INCREASED, DOSE NOT
+    CHANGED, UNKNOWN or NOT APPLICABLE'
   :format: ''
   :ct_and_format: "(ACN)"
   :compliance: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
@@ -447,7 +469,9 @@
   :rule: ''
   :ordinal: 19
   :name: AEACNOTH
-  :description: ''
+  :description: 'Describes other actions taken as a result of the event that are unrelated
+    to dose adjustments of study treatment. Usually reported as free text. Example:
+    ''TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.'''
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -466,7 +490,10 @@
   :rule: ''
   :ordinal: 20
   :name: AEREL
-  :description: ''
+  :description: Records the investigator's opinion as to the causality of the event
+    to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED,
+    POSSIBLY RELATED, RELATED. Controlled Terminology may be defined in the future.
+    Check with regulatory authority for population of this variable
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
@@ -485,7 +512,9 @@
   :rule: ''
   :ordinal: 21
   :name: AERELNST
-  :description: ''
+  :description: 'Records the investigator''s opinion as to whether the event may have
+    been due to a treatment other than study drug. May be reported as free text. Example:
+    ''MORE LIKELY RELATED TO ASPIRIN USE.''.'
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -504,7 +533,8 @@
   :rule: ''
   :ordinal: 22
   :name: AEPATT
-  :description: ''
+  :description: 'Used to indicate the pattern of the event over time. Examples: INTERMITTENT,
+    CONTINUOUS, SINGLE EVENT.'
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -523,7 +553,7 @@
   :rule: ''
   :ordinal: 23
   :name: AEOUT
-  :description: ''
+  :description: Description of the outcome of an event.
   :format: ''
   :ct_and_format: "(OUT)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -551,7 +581,7 @@
   :rule: ''
   :ordinal: 24
   :name: AESCAN
-  :description: ''
+  :description: Was the serious event associated with the development of cancer?
   :format: ''
   :ct_and_format: "(NY)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -579,7 +609,8 @@
   :rule: ''
   :ordinal: 25
   :name: AESCONG
-  :description: ''
+  :description: Was the serious event associated with congenital anomaly or birth
+    defect?
   :format: ''
   :ct_and_format: "(NY)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -607,7 +638,7 @@
   :rule: ''
   :ordinal: 26
   :name: AESDISAB
-  :description: ''
+  :description: Did the serious event result in persistent or significant disability/incapacity?
   :format: ''
   :ct_and_format: "(NY)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -635,7 +666,7 @@
   :rule: ''
   :ordinal: 27
   :name: AESDTH
-  :description: ''
+  :description: Did the serious event result in death?
   :format: ''
   :ct_and_format: "(NY)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -663,7 +694,7 @@
   :rule: ''
   :ordinal: 28
   :name: AESHOSP
-  :description: ''
+  :description: Did the serious event require or prolong hospitalization?
   :format: ''
   :ct_and_format: "(NY)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -691,7 +722,7 @@
   :rule: ''
   :ordinal: 29
   :name: AESLIFE
-  :description: ''
+  :description: Was the serious event life threatening?
   :format: ''
   :ct_and_format: "(NY)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -719,7 +750,7 @@
   :rule: ''
   :ordinal: 30
   :name: AESOD
-  :description: ''
+  :description: Did the serious event occur with an overdose?
   :format: ''
   :ct_and_format: "(NY)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -747,7 +778,7 @@
   :rule: ''
   :ordinal: 31
   :name: AESMIE
-  :description: ''
+  :description: Do additional categories for seriousness apply?
   :format: ''
   :ct_and_format: "(NY)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -775,7 +806,7 @@
   :rule: ''
   :ordinal: 32
   :name: AECONTRT
-  :description: ''
+  :description: Was another treatment given because of the occurrence of the event?
   :format: ''
   :ct_and_format: "(NY)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -803,7 +834,11 @@
   :rule: ''
   :ordinal: 33
   :name: AETOXGR
-  :description: ''
+  :description: Toxicity grade according to a standard toxicity scale such as Common
+    Terminology Criteria for Adverse Events v3.0 (CTCAE). Sponsor should specify name
+    of the scale and version used in the metadata (see 6.2.1.1, Assumption 6c). If
+    value is from a numeric scale, represent only the number (e.g., '2' and not 'Grade
+    2').
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -860,7 +895,8 @@
   :rule: ''
   :ordinal: 36
   :name: AESTDY
-  :description: ''
+  :description: Study day of start of adverse event relative to the sponsor-defined
+    RFSTDTC.
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -879,7 +915,7 @@
   :rule: ''
   :ordinal: 37
   :name: AEENDY
-  :description: ''
+  :description: Study day of end of event relative to the sponsor-defined RFSTDTC.
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -898,7 +934,9 @@
   :rule: ''
   :ordinal: 38
   :name: AEDUR
-  :description: ''
+  :description: 'Collected duration and unit of an adverse event. Used only if collected
+    on the CRF and not derived from start and end date/times. Example: P1DT2H (for
+    1 day, 2 hours).'
   :format: ISO 8601
   :ct_and_format: ISO 8601
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -917,7 +955,10 @@
   :rule: ''
   :ordinal: 39
   :name: AEENRF
-  :description: ''
+  :description: Describes the end of the event relative to the sponsor-defined reference
+    period. The sponsor-defined reference period is a continuous period of time defined
+    by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of
+    the trial.
   :format: ''
   :ct_and_format: "(STENRF)"
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -945,7 +986,8 @@
   :rule: ''
   :ordinal: 40
   :name: AEENRTPT
-  :description: ''
+  :description: Identifies the end of the event as being before or after the reference
+    time point defined by variable AEENTPT.
   :format: BEFORE, AFTER, COINCIDENT, ONGOING, U
   :ct_and_format: BEFORE, AFTER, COINCIDENT, ONGOING, U
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
@@ -964,7 +1006,8 @@
   :rule: ''
   :ordinal: 41
   :name: AEENTPT
-  :description: ''
+  :description: 'Description of date/time in ISO 8601 character format of the reference
+    point referred to by AEENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
   :format: ''
   :ct_and_format: ''
   :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
