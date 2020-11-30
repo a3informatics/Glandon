@@ -1,0 +1,624 @@
+@prefix : <http://www.s-cubed.dk/AAA/V1#> .
+@prefix bd: <http://www.assero.co.uk/Tabulation#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/AAA/V1>
+	rdf:type owl:Ontology ;
+.
+:SPD
+	rdf:type bd:SdtmSponsorDomain ;
+	isoC:label "SDTM Sponsor Domain"^^xsd:string ;
+	isoT:hasState :SPD_RS ;
+	isoT:hasIdentifier :SPD_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2020-11-30T08:50:54+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-11-30T08:50:54+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_fda706d6-2efa-44c0-8980-c132f490874f> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_18062d23-7c51-446e-b9b9-2fc36259fd0b> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_c700fa2b-54fb-41fb-8cb0-9b02946fd775> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_57e48942-535d-4c23-b3f6-67d5f24d29af> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_85ef7275-02b1-4908-9307-f3473f853a86> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_f74dd15b-b38a-4f63-80c6-53eb3dddf811> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_efcfe98c-4e97-420a-8345-b54664bb0aad> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_031f72d7-b6f7-4495-9084-5b7a880b943c> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_6d1ee1d3-5565-4a62-b985-bc8341f17fec> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_b917826b-b073-4e72-b0e5-033a9003210d> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_72b07725-ec00-47e3-90f2-ac09d1f39bc4> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_a95440aa-df99-4907-a5a8-776c89c470fb> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_f213591a-77d0-480e-a6bd-cf628c58bfee> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_875f2758-686b-4839-8eb9-3a25759cb067> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_f86a78b4-151c-4f36-96b4-3029f4480a91> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_ccacd09f-4c0c-4da2-a00e-e479b8381800> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_4c91e0c2-e3dc-457a-8ecb-46be6e9434a9> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_49a77d49-7559-41f7-93d6-e74ff4048233> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_393a2f21-3eac-4064-8077-fde2ab0abe11> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_3eb59815-4231-42e3-97ae-d29e7c8b6d72> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_9125983d-3b2a-4431-84aa-e26a1f963a0c> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_dcfef1b6-fe92-4228-803e-7f2f53a51893> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_ddb78b07-c939-4f2a-8669-de070bcb35f7> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_c65ff41a-965c-492e-bafa-e637cd0f7391> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_222827dc-99ac-4dd3-85ca-91c882ea1aa7> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_521af27c-82c1-478f-9c4e-9d7f37639440> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_5c75e7d1-fec5-455e-8114-e51ed4a349c6> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_f1d2b330-c72c-486a-a237-72bbf398a640> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_347ca185-d748-4b6f-ba4c-8cc6f8b505a6> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_30b4c6b5-866b-458c-a549-cff798f359b1> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_b3989668-5a33-4c26-8b6a-b7263302bcf8> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_86d6a12d-9254-4e35-9e83-b29e51c2c049> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_00d21934-6a4d-4257-a7bb-5bcf5dd9372e> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_f206e5b9-9d7a-4913-8ad3-4cc1805b5d39> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_5db68916-eca7-47b9-9ab2-15bd7f0ff5bb> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_d2dea085-0b45-470d-8ddd-5e89457454d0> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_2cb88aca-0926-4551-b8f6-2a8e80e7726e> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_feceb5bf-089c-4d48-88a7-433744a89445> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_08d1f4a1-4b43-4333-8a00-799ba9d75c41> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_65e4e972-2999-4f97-b510-c2c7e88870f7> ;
+	bd:includesColumn <http://www.assero.co.uk/IC#SPDV_03d23c5f-f5fe-4e8b-843a-7ec7819c84da> ;
+	bd:prefix ""^^xsd:string ;
+	bd:structure ""^^xsd:string ;
+.
+:SPD_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:SPD_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "AAA"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.assero.co.uk/IC#SPDV_fda706d6-2efa-44c0-8980-c132f490874f>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Results in Death"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:name "AESDTH"^^xsd:string ;
+	bd:description "Did the serious event result in death?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_18062d23-7c51-446e-b9b9-2fc36259fd0b>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Other Medically Important Serious Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:name "AESMIE"^^xsd:string ;
+	bd:description "Do additional categories for seriousness apply?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_c700fa2b-54fb-41fb-8cb0-9b02946fd775>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Is Life Threatening"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:name "AESLIFE"^^xsd:string ;
+	bd:description "Was the serious event life threatening?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_57e48942-535d-4c23-b3f6-67d5f24d29af>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "End Reference Time Point"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:name "AEENTPT"^^xsd:string ;
+	bd:description "Description of date/time in ISO 8601 character format of the reference point referred to by AEENRTPT. Examples: '2003-12-25' or 'VISIT 2'."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_85ef7275-02b1-4908-9307-f3473f853a86>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Standard Toxicity Grade"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "AETOXGR"^^xsd:string ;
+	bd:description "Toxicity grade according to a standard toxicity scale such as Common Terminology Criteria for Adverse Events v3.0 (CTCAE). Sponsor should specify name of the scale and version used in the metadata (see 6.2.1.1, Assumption 6c). If value is from a numeric scale, represent only the number (e.g., '2' and not 'Grade 2')."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_f74dd15b-b38a-4f63-80c6-53eb3dddf811>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Group ID"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:name "AEGRPID"^^xsd:string ;
+	bd:description "Used to tie together a block of related records in a single domain for a subject."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_efcfe98c-4e97-420a-8345-b54664bb0aad>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Body System or Organ Class"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:name "AEBODSYS"^^xsd:string ;
+	bd:description "Dictionary derived. Body system or organ class used by the sponsor from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary such as MedDRA, this should contain the SOC used for the sponsor's analyses and summary tables which may not necessarily be the primary SOC."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_031f72d7-b6f7-4495-9084-5b7a880b943c>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Outcome of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:name "AEOUT"^^xsd:string ;
+	bd:description "Description of the outcome of an event."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_6d1ee1d3-5565-4a62-b985-bc8341f17fec>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Duration of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:name "AEDUR"^^xsd:string ;
+	bd:description "Collected duration and unit of an adverse event. Used only if collected on the CRF and not derived from start and end date/times. Example: P1DT2H (for 1 day, 2 hours)."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_b917826b-b073-4e72-b0e5-033a9003210d>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Domain Abbreviation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:name "DOMAIN"^^xsd:string ;
+	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_72b07725-ec00-47e3-90f2-ac09d1f39bc4>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Location of Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "11"^^xsd:positiveInteger ;
+	bd:name "AELOC"^^xsd:string ;
+	bd:description "Describes anatomical location relevant for the event (e.g., LEFT ARM for skin rash)."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_a95440aa-df99-4907-a5a8-776c89c470fb>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "End Date/Time of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "12"^^xsd:positiveInteger ;
+	bd:name "AEENDTC"^^xsd:string ;
+	bd:description ""^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_f213591a-77d0-480e-a6bd-cf628c58bfee>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Pattern of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "13"^^xsd:positiveInteger ;
+	bd:name "AEPATT"^^xsd:string ;
+	bd:description "Used to indicate the pattern of the event over time. Examples: INTERMITTENT, CONTINUOUS, SINGLE EVENT."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_875f2758-686b-4839-8eb9-3a25759cb067>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Congenital Anomaly or Birth Defect"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "14"^^xsd:positiveInteger ;
+	bd:name "AESCONG"^^xsd:string ;
+	bd:description "Was the serious event associated with congenital anomaly or birth defect?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_f86a78b4-151c-4f36-96b4-3029f4480a91>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Study Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "15"^^xsd:positiveInteger ;
+	bd:name "STUDYID"^^xsd:string ;
+	bd:description "Unique identifier for a study."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_ccacd09f-4c0c-4da2-a00e-e479b8381800>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Reported Term for the Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "16"^^xsd:positiveInteger ;
+	bd:name "AETERM"^^xsd:string ;
+	bd:description "Verbatim name of the event."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_4c91e0c2-e3dc-457a-8ecb-46be6e9434a9>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "End Relative to Reference Period"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "17"^^xsd:positiveInteger ;
+	bd:name "AEENRF"^^xsd:string ;
+	bd:description "Describes the end of the event relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of the trial."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_49a77d49-7559-41f7-93d6-e74ff4048233>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Other Action Taken"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "18"^^xsd:positiveInteger ;
+	bd:name "AEACNOTH"^^xsd:string ;
+	bd:description "Describes other actions taken as a result of the event that are unrelated to dose adjustments of study treatment. Usually reported as free text. Example: 'TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.'"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_393a2f21-3eac-4064-8077-fde2ab0abe11>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Relationship to Non-Study Treatment"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "19"^^xsd:positiveInteger ;
+	bd:name "AERELNST"^^xsd:string ;
+	bd:description "Records the investigator's opinion as to whether the event may have been due to a treatment other than study drug. May be reported as free text. Example: 'MORE LIKELY RELATED TO ASPIRIN USE.'."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_3eb59815-4231-42e3-97ae-d29e7c8b6d72>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Serious Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "20"^^xsd:positiveInteger ;
+	bd:name "AESER"^^xsd:string ;
+	bd:description "Is this a serious event?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_9125983d-3b2a-4431-84aa-e26a1f963a0c>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Unique Subject Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "21"^^xsd:positiveInteger ;
+	bd:name "USUBJID"^^xsd:string ;
+	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_dcfef1b6-fe92-4228-803e-7f2f53a51893>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Subcategory for Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "22"^^xsd:positiveInteger ;
+	bd:name "AESCAT"^^xsd:string ;
+	bd:description "A further categorization of adverse event. Example: NEUROLOGIC."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_ddb78b07-c939-4f2a-8669-de070bcb35f7>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Causality"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "23"^^xsd:positiveInteger ;
+	bd:name "AEREL"^^xsd:string ;
+	bd:description "Records the investigator's opinion as to the causality of the event to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED, POSSIBLY RELATED, RELATED. Controlled Terminology may be defined in the future. Check with regulatory authority for population of this variable"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_c65ff41a-965c-492e-bafa-e637cd0f7391>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Study Day of Start of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "24"^^xsd:positiveInteger ;
+	bd:name "AESTDY"^^xsd:string ;
+	bd:description "Study day of start of adverse event relative to the sponsor-defined RFSTDTC."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_222827dc-99ac-4dd3-85ca-91c882ea1aa7>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "End Relative to Reference Time Point"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "25"^^xsd:positiveInteger ;
+	bd:name "AEENRTPT"^^xsd:string ;
+	bd:description "Identifies the end of the event as being before or after the reference time point defined by variable AEENTPT."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_521af27c-82c1-478f-9c4e-9d7f37639440>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Start Date/Time of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "26"^^xsd:positiveInteger ;
+	bd:name "AESTDTC"^^xsd:string ;
+	bd:description ""^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_5c75e7d1-fec5-455e-8114-e51ed4a349c6>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Occurred with Overdose"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "27"^^xsd:positiveInteger ;
+	bd:name "AESOD"^^xsd:string ;
+	bd:description "Did the serious event occur with an overdose?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_f1d2b330-c72c-486a-a237-72bbf398a640>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Category for Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "28"^^xsd:positiveInteger ;
+	bd:name "AECAT"^^xsd:string ;
+	bd:description "Used to define a category of related records. Example: BLEEDING, NEUROPSYCHIATRIC."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_347ca185-d748-4b6f-ba4c-8cc6f8b505a6>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Persist or Signif Disability/Incapacity"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "29"^^xsd:positiveInteger ;
+	bd:name "AESDISAB"^^xsd:string ;
+	bd:description "Did the serious event result in persistent or significant disability/incapacity?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_30b4c6b5-866b-458c-a549-cff798f359b1>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Sequence Number"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "30"^^xsd:positiveInteger ;
+	bd:name "AESEQ"^^xsd:string ;
+	bd:description "Sequence Number given to ensure uniqueness of subject records within a domain. May be any valid number."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_b3989668-5a33-4c26-8b6a-b7263302bcf8>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Concomitant or Additional Trtmnt Given"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "31"^^xsd:positiveInteger ;
+	bd:name "AECONTRT"^^xsd:string ;
+	bd:description "Was another treatment given because of the occurrence of the event?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_86d6a12d-9254-4e35-9e83-b29e51c2c049>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Reference ID"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "32"^^xsd:positiveInteger ;
+	bd:name "AEREFID"^^xsd:string ;
+	bd:description "Internal or external identifier such as a serial number on an SAE reporting form"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_00d21934-6a4d-4257-a7bb-5bcf5dd9372e>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Pre-Specified Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "33"^^xsd:positiveInteger ;
+	bd:name "AEPRESP"^^xsd:string ;
+	bd:description "A value of 'Y' indicates that this adverse event was pre-specified on the CRF. Values are null for spontaneously reported events (i.e., those collected as free-text verbatim terms)"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_f206e5b9-9d7a-4913-8ad3-4cc1805b5d39>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Sponsor-Defined Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "34"^^xsd:positiveInteger ;
+	bd:name "AESPID"^^xsd:string ;
+	bd:description "Sponsor-defined identifier. It may be pre-printed on the CRF as an explicit line identifier or defined in the sponsor's operational database. Example: Line number on an Adverse Events page."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_5db68916-eca7-47b9-9ab2-15bd7f0ff5bb>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Severity/Intensity"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "35"^^xsd:positiveInteger ;
+	bd:name "AESEV"^^xsd:string ;
+	bd:description "The severity or intensity of the event. Examples: MILD, MODERATE, SEVERE."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_d2dea085-0b45-470d-8ddd-5e89457454d0>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Modified Reported Term"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "36"^^xsd:positiveInteger ;
+	bd:name "AEMODIFY"^^xsd:string ;
+	bd:description "If AETERM is modified to facilitate coding, then AEMODIFY will contain the modified text."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_2cb88aca-0926-4551-b8f6-2a8e80e7726e>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Requires or Prolongs Hospitalization"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "37"^^xsd:positiveInteger ;
+	bd:name "AESHOSP"^^xsd:string ;
+	bd:description "Did the serious event require or prolong hospitalization?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_feceb5bf-089c-4d48-88a7-433744a89445>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "38"^^xsd:positiveInteger ;
+	bd:name "AEACN"^^xsd:string ;
+	bd:description "Describes changes to the study treatment as a result of the event. AEACN is specifically for the relationship to study treatment. AEACNOTH is for actions unrelated to dose adjustments of study treatment. Examples of AEACN values include ICH E2B values: DRUG WITHDRAWN, DOSE REDUCED, DOSE INCREASED, DOSE NOT CHANGED, UNKNOWN or NOT APPLICABLE"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_08d1f4a1-4b43-4333-8a00-799ba9d75c41>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Involves Cancer"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "39"^^xsd:positiveInteger ;
+	bd:name "AESCAN"^^xsd:string ;
+	bd:description "Was the serious event associated with the development of cancer?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_65e4e972-2999-4f97-b510-c2c7e88870f7>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Dictionary-Derived Term"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "40"^^xsd:positiveInteger ;
+	bd:name "AEDECOD"^^xsd:string ;
+	bd:description "Dictionary-derived text description of AETERM or AEMODIFY. Equivalent to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary name and version used to map the terms utilizing the define.xml external codelist attributes"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
+<http://www.assero.co.uk/IC#SPDV_03d23c5f-f5fe-4e8b-843a-7ec7819c84da>
+	rdf:type bd:SdtmSponsorDomainVariable ;
+	isoC:label "Study Day of End of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "41"^^xsd:positiveInteger ;
+	bd:name "AEENDY"^^xsd:string ;
+	bd:description "Study day of end of event relative to the sponsor-defined RFSTDTC."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+.
