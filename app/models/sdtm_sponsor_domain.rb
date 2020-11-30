@@ -16,7 +16,7 @@ class SdtmSponsorDomain < SdtmIgDomain
       sponsor_variable.format = domain_variable.format
       sponsor_variable.ct_and_format = domain_variable.ct_and_format
       sponsor_variable.used = true
-      sponsor_variable.compliance = domain_variable.compliance
+      sponsor_variable.compliance = domain_variable.compliance.uri
       sponsor_variable.ct_reference = domain_variable.ct_reference
       sponsor_variable.based_on_ig_variable = domain_variable.uri
       object.includes_column << sponsor_variable
