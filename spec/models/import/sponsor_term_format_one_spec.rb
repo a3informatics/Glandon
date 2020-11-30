@@ -417,6 +417,32 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
   end
 
+  it "import, AERELA and Subset code list" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
+    full_path = test_file_path(sub_dir, "import_input_33.xlsx")
+    params = {identifier: "AERELATEST", version: "1", date: "2018-12-10", files: [full_path], version_label: "1", label: "AERELA TEST", semantic_version: "0.0.1", job: @job, uri: ct.uri}
+    result = @object.import(params)
+    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+    public_file_exists?("test", filename)
+    #public_file_does_not_exist?("test", filename)
+    actual = read_public_yaml_file("test", filename)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_33.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_33.yaml")
+    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+    public_file_exists?("test", filename)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_33.ttl")
+    check_ttl_fix_v2(filename, "import_expected_33.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+    load_local_file_into_triple_store(sub_dir, "import_expected_33.ttl")
+    tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/SN000012/V1#SN000012"))
+byebug
+    results = tc.find_custom_properties_values.name_value_pairs
+    tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/NP001000P/V1#NP001000P"))
+    results = tc.find_custom_properties.name_value_pairs
+  end
+
   it "paths test" do
     tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
     check_file_actual_expected(tc.to_h, sub_dir, "find_full_paths_expected_1.yaml", equate_method: :hash_equal)
