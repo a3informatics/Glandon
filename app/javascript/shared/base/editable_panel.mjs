@@ -51,27 +51,30 @@ export default class EditablePanel extends TablePanel {
       selector, param, count, deferLoading, cache, tableOptions, loadCallback,
       order, autoHeight, url: dataUrl, extraColumns: columns
     }, {
-      updateUrl, fields, idSrc, ...args
+      updateUrl, fields, idSrc, 
+      ...args
     });
 
   }
 
   /**
    * Add items (rows) to a table.
-   * @param {?} data Item data object. Can be an array of multiple
+   * @param {array | object} data Item data object. Can be an array of multiple
    */
   addItems(data) {
-    if ( Array.isArray(data) ) {
-      for(const item in data) {
-        this.table.row.add(item);
-      }
-    }
-    else
-      this.table.row.add(data);
 
+    if ( !Array.isArray( data ) ) 
+      this.table.row.add( data );
+
+    else
+      data.forEach( dataItem => 
+        this.table.row.add( dataItem )
+      );
+
+    // Redraw and callback to onEdited 
     this.table.draw();
-    // Item edited callback
     this._onEdited();
+
   }
 
   /**
@@ -79,17 +82,19 @@ export default class EditablePanel extends TablePanel {
    * @param {?} data Reference to the row to be removed. Can be an array of multiple
    */
   removeItems(data) {
-    if ( Array.isArray(data) ) {
-      for(const item in data) {
-        this.table.row(item).remove();
-      }
-    }
-    else
-      this.table.row(data).remove();
 
+    if ( !Array.isArray( data ) ) 
+      this.table.row( data ).remove();
+
+    else
+      data.forEach( dataItem => 
+        this.table.row( dataItem ).remove()
+      );
+
+    // Redraw and callback to onEdited 
     this.table.draw();
-    // Item edited callback
     this._onEdited();
+
   }
 
   /**
@@ -105,12 +110,14 @@ export default class EditablePanel extends TablePanel {
    * @param {string} newUrl new update data url
    */
   setUpdateUrl(newUrl) {
+
     this.updateUrl = newUrl;
 
-    let newOpts = this._editorAjaxOpts;
+    const newOpts = this._editorAjaxOpts;
     newOpts.url = this.updateUrl;
 
-    this.editor.ajax(newOpts);
+    this.editor.ajax( newOpts );
+
   }
 
   /**
@@ -150,7 +157,7 @@ export default class EditablePanel extends TablePanel {
    */
   _setTableListeners() {
     // Before editing - check _editable condition first
-    this.editor.on('preOpen', () => {
+    this.editor.on( 'preOpen', () => {
 
       if ( this._editable( this.editor.modifier() ) )
         this.editor.enable();
@@ -160,46 +167,51 @@ export default class EditablePanel extends TablePanel {
     });
 
     // Editing started - update UI
-    this.editor.on('open', () => this._updateUI('open') );
+    this.editor.on( 'open', () => 
+      this._updateUI('open') 
+    );
 
     // Editing finished/closed - update UI
-    this.editor.on('preClose', e => this._updateUI('close') );
+    this.editor.on( 'preClose', () => 
+      this._updateUI( 'close' ) 
+    );
 
     // Loading animation
-    this.editor.on('processing', (ev, enable) => this._inlineProcessing(ev, enable));
+    this.editor.on( 'processing', (ev, enable) => 
+      this._inlineProcessing( ev, enable )
+    );
 
     // Pre-data-submit, change data format
-    this.editor.on('preSubmit', (e, d, type) => {
+    this.editor.on( 'preSubmit', (e, d, type) => {
 
-      if ( type === 'edit' )
-        this._preformatUpdateData(d);
+      type === 'edit' && this._preformatUpdateData( d );
 
     });
 
     // Post-data-submit, change data format before adding to Editor
-    this.editor.on('postSubmit', (e, json, data) => {
+    this.editor.on( 'postSubmit', (e, json, data) => {
 
-      if ( json.data )
-        this._postformatUpdatedData( data, json.data );
+      json.data && this._postformatUpdatedData( data, json.data );
 
     });
 
     // Data submit server error
-    this.editor.on('submitError', (x, s, e) => $handleError(x, s, e));
+    this.editor.on( 'submitError', (x, s, e) => 
+      $handleError(x, s, e)
+    );
 
     // Data submitted - Item Edited callback
-    this.editor.on('submitSuccess submitUnsuccessful', (e, json) => {
+    this.editor.on( 'submitSuccess submitUnsuccessful', (e, json) => {
 
       // Handle any errors thrown by the server
-      if ( json.errors )
-        alerts.error( json.errors.join(' & ') );
+      json.errors && alerts.error( json.errors.join(' & ') );
 
       this._onEdited();
 
     });
 
     // Update UI on keypress in TA. Handle Submit.
-    $(`${ this.selector } tbody`).on('keydown', 'textarea', (e, dt, c) => {
+    $(`${ this.selector } tbody`).on( 'keydown', 'textarea', e => {
 
       this._updateUI('input');
 
@@ -212,16 +224,15 @@ export default class EditablePanel extends TablePanel {
     });
 
     // Custom inline editing with no onBlur action event for Pickable fields, bugfix
-    this.table.on( 'click', 'td.editable.inline.pickable', (e) => {
+    this.table.on( 'click', 'td.editable.inline.pickable', e => {
 
-      if ( e.detail === 2 )
-        this.editor.inline( e.currentTarget, { onBlur: 'none' } );
+      e.detail === 2 && this.editor.inline( e.currentTarget, { onBlur: 'none' });
 
     });
 
-    this.table.on( 'key', ( e, dt, key, cell, oe) => {
+    this.table.on( 'key', ( e, dt, key, cell ) => {
 
-      if ( $( cell.node() ).hasClass('editable inline pickable') )
+      if ( $( cell.node() ).hasClass( 'editable inline pickable' ) )
         this.editor.close()
                    .inline( cell.node(), { onBlur: 'none' } );
 
@@ -267,9 +278,7 @@ export default class EditablePanel extends TablePanel {
   /**
    * Invoked on any edit action. Override if you need to do anything onEdit, e.g. extend the Token Timer.
    */
-  _onEdited() {
-    // Empty by default
-  }
+  _onEdited() { }
 
   /**
    * Updates the UI on Editing start/input/end
@@ -277,32 +286,42 @@ export default class EditablePanel extends TablePanel {
    * @param {string} type Event type - open/close/input
    */
   _updateUI(type) {
+
     switch (type) {
+
       case 'open':
       case 'input':
         this._resizeTA();
         break;
+
       case 'close':
         this._resetTA();
         break;
     }
+
   }
 
   /**
    * Resets textarea to its original size
    */
   _resetTA() {
-    $(`${this.selector} td.editable textarea`).css('height', '');
+    $( `${ this.selector } td.editable textarea` ).css( 'height', '' );
   }
 
   /**
    * Resizes textarea to to fit its contents
    */
   _resizeTA() {
-    if ( $(`${this.selector} td.editable textarea`).length ) {
-      let newHeight = $(`${this.selector} td.editable textarea`)[0].scrollHeight + 4;
-      $(`${this.selector} td.editable textarea`).css('height', newHeight);
+
+    const $textArea = $( `${ this.selector } td.editable textarea` );
+
+    if ( $textArea.length ) {
+
+      const { scrollHeight } = $textArea[0];
+      $textArea.css( 'height', scrollHeight + 4 );
+
     }
+
   }
 
   /**
@@ -330,7 +349,8 @@ export default class EditablePanel extends TablePanel {
     let modifier = e.currentTarget.s.modifier,
         targetNode = this.table.cell(modifier).node();
 
-    $(this.selector).find(targetNode).toggleClass("processing", enable);
+    $( this.selector ).find( targetNode )
+                      .toggleClass( 'processing', enable );
 
   }
 
@@ -338,12 +358,14 @@ export default class EditablePanel extends TablePanel {
    * Initialize Editor and DataTable
    */
   _initTable() {
+
     // Initialize Editor first
     this._initEditor();
     // Initialize DataTable after
     super._initTable();
     // Initialize Pickers last
     this._initPickers();
+
   }
 
   /**
@@ -351,6 +373,7 @@ export default class EditablePanel extends TablePanel {
    * @return {Object} DataTable options object
    */
   get _tableOpts() {
+
     const options = super._tableOpts;
 
     // Excel-like Keys navigation functionality
@@ -360,6 +383,7 @@ export default class EditablePanel extends TablePanel {
     }
 
     return options;
+
   }
 
   /**
@@ -387,14 +411,16 @@ export default class EditablePanel extends TablePanel {
    * @return {Object} DataTable Editor AJAX options object
    */
   get _editorAjaxOpts() {
+
     return {
       edit: {
         type: 'PUT',
         url: this.updateUrl,
         contentType: 'application/json',
-        data: (d) => JSON.stringify(d)
+        data: d => JSON.stringify( d )
       }
     }
+
   }
 
 }

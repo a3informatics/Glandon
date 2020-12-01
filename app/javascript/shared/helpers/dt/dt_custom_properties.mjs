@@ -1,5 +1,4 @@
 import { dtTrueFalseColumn, dtInlineEditColumn, dtTrueFalseEditColumn } from 'shared/helpers/dt/dt_columns'
-import { dtFieldsInit } from 'shared/helpers/dt/dt_fields'
 
 
 /*** Columns ***/
@@ -143,7 +142,7 @@ function dtField(type, name, props = {}) {
  * @return {string} Custom Property data property name
  */
 function getName(name) {
-  return `customProps.${ name }`;
+  return `custom_properties.${ name }.value`;
 }
 
 export {

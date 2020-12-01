@@ -15,7 +15,7 @@ export default class CustomPropsEditablePanel extends EditablePanel {
    * @param {Object} params.tablePanelOpts Specify general Table Panel options
    * @param {boolean} params.enabled Enables or disables Custom Properties functionality [default = true]
    * @param {integer} params.afterColumn Column index to insert Custom Property columns after [default = 5]
-   * @param {function} params.onColumnsToggle Function to execute when the CP columns are toggled, visibility boolean passed as the first argument
+   * @param {function} params.onColumnsToggle Callback to when the CP columns are toggled, visible {boolean} passed as argument
    */
   constructor({
     tablePanelOpts = {},
@@ -28,10 +28,14 @@ export default class CustomPropsEditablePanel extends EditablePanel {
       ...tablePanelOpts,
       autoHeight: true
     }, {
+      onColumnsToggle,
+      
       handler: new CustomPropsEditableHandler({
-        enabled, afterColumn,
+        enabled, 
+        afterColumn,
         selector: tablePanelOpts.selector,
-        onColumnsToggle: visible => this._onColumnsToggle( visible )
+        onColumnsToggle: visible => 
+          this._onColumnsToggle( visible )
       })
     });
 
@@ -82,12 +86,17 @@ export default class CustomPropsEditablePanel extends EditablePanel {
 
   }
 
-  /**
+   /**
    * Callback to when Custom Property columns are toggled
    * @override for custom functionality
    * @param {boolean} visible New state of the Custom Property columns, false if invisible
    */
-  _onColumnsToggle(visible) { }
+  _onColumnsToggle(visible) { 
+
+    if ( this.onColumnsToggle )
+      this.onColumnsToggle( visible );
+  
+  }
 
   /**
    * Formats the update data to be compatible with server
@@ -100,14 +109,11 @@ export default class CustomPropsEditablePanel extends EditablePanel {
     let fData = super._preformatUpdateData( d ),
         field = this.currentField;
 
-    // Check if Custom Property value was updated
+    // Check if Custom Property value is being updated
     if ( this._isCustomProperty( field ) ) {
 
-      // Format the data object and clear
-      d.custom_property = {
-        id: fData[0].id,
-        value: fData[0][field]
-      }
+      // Format the data object and clear other data from the d object
+      d.edit = this._formatData( fData[0], field );
       delete d.data;
 
     }
@@ -119,6 +125,23 @@ export default class CustomPropsEditablePanel extends EditablePanel {
 
   /*** Support ***/
 
+
+  /**
+   * Format update data of a Custom Property 
+   * @param {object} data Preformatted, data object containing the edits and the id of the item 
+   * @param {string} field Name of the currently edited field 
+   * @return {object} Formatted CP data
+   */
+  _formatData(data, field) {
+  
+    return {
+      custom_property: {
+        id: data.id,
+        value: data[field]
+      }
+    }
+  
+  }
 
   /**
    * Check if given field is a Custom Property
@@ -151,7 +174,7 @@ export default class CustomPropsEditablePanel extends EditablePanel {
 
     let options = super._editorOpts;
 
-    if ( this.handler.enabled && this.handler.customProps )
+    if ( this.handler.hasData )
       options.fields = this.handler.mergeFields( options.fields );
 
     return options;

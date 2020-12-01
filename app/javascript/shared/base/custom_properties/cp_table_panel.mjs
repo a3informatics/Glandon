@@ -28,6 +28,7 @@ export default class CustomPropsTablePanel extends TablePanel {
       ...tablePanelOpts,
       autoHeight: true
     }, {
+      onColumnsToggle,
       handler: new CustomPropsHandler({
         enabled, afterColumn,
         selector: tablePanelOpts.selector,
@@ -87,7 +88,12 @@ export default class CustomPropsTablePanel extends TablePanel {
    * @override for custom functionality
    * @param {boolean} visible New state of the Custom Property columns, false if invisible
    */
-  _onColumnsToggle(visible) { }
+  _onColumnsToggle(visible) { 
+
+    if ( this.onColumnsToggle )
+      this.onColumnsToggle( visible );
+  
+  }
 
 
   /*** Support ***/
