@@ -438,9 +438,9 @@ describe "Import::SponsorTermFormatOne" do
     load_local_file_into_triple_store(sub_dir, "import_expected_33.ttl")
     tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/SN000012/V1#SN000012"))
 byebug
-    results = tc.find_custom_properties_values.name_value_pairs
+    results = tc.find_custom_properties_values
     tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/NP001000P/V1#NP001000P"))
-    results = tc.find_custom_properties.name_value_pairs
+    results = tc.find_custom_properties_values
   end
 
   it "paths test" do
