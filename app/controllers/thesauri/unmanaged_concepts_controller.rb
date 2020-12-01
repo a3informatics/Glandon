@@ -230,7 +230,7 @@ private
   end
 
   def edit_params
-    params.require(:edit).permit(:notation, :synonym, :definition, :preferred_term, :label, :parent_id).to_h
+    params.require(:edit).permit(:notation, :synonym, :definition, :preferred_term, :label, :parent_id, :with_custom_props, :custom_property => [:id, :value]).to_h
   end
 
 end
