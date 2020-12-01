@@ -53,8 +53,10 @@ class IsoManagedV2
       query_results.by_object_set([:e, :c, :l, :v]).each do |x|
         id = x[:c].to_id
         results[id] = {item_id: id} unless results.key?(id)
-        results[id][:id] = x[:e].to_id
-        results[id][x[:l].to_variable_style.to_sym] = x[:v]
+        inner_key = x[:l].to_variable_style.to_sym
+        results[id][inner_key] = {} unless results[id].key?(inner_key)
+        results[id][inner_key][:id] = x[:e].to_id
+        results[id][inner_key][:value] = x[:v]
       end
       results.values
     end
