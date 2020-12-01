@@ -356,6 +356,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       add_link(:refers_to, uri)
     end
     add_custom_property_context(uris)
+    add_missing_custom_properties(uris, Thesaurus::UnmanagedConcept, transaction)
     set_ranks(uris, self) if self.ranked?
     transaction_execute
   end

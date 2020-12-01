@@ -50,4 +50,19 @@ module CustomPropertyHelpers
     create_custom(@parent, @child_3, "false", @definition_2, 6)
   end
 
+  def create_missing_data
+    @parent = TestParent.create(identifier: "XXX", label: "Parent")
+    @child_1 = TestChild.create(label: "Child 1")
+    @child_2 = TestChild.create(label: "Child 2")
+    @child_3 = TestChild.create(label: "Child 3")
+    @parent.narrower = [@child_1, @child_2, @child_3]
+    @parent.save
+    create_definitions
+    create_custom(@parent, @child_1, "String 1", @definition_1, 1)
+    create_custom(@parent, @child_2, "String 2", @definition_1, 2)
+    create_custom(@parent, @child_2, "false", @definition_2, 3)
+    create_custom(@parent, @child_3, "true", @definition_2, 4)
+  end
+
+
 end

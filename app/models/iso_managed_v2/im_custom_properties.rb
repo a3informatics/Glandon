@@ -64,7 +64,6 @@ class IsoManagedV2
     # Add Custom Property Context.
     #
     # @param [Array] uris_or_ids array of uris or ids of the items for which the custom properties are to be updated
-    # @param [Object|Uri] context the new context, either an object or a uri
     # @return [Boolean] true 
     def add_custom_property_context(uris_or_ids)
       update_query = %Q{ 
@@ -80,6 +79,43 @@ class IsoManagedV2
         }
       }      
       partial_update(update_query, [:isoC])
+      true
+    end
+
+    # Missing Custom Properties
+    #
+    # @param [Array] uris_or_ids array of uris or ids of the items for which the custom properties are to be updated
+    # @param [Class] klass klass for the definitions
+    # @return [Array] array of hash containing subject definition pairs
+    def missing_custom_properties(uris_or_ids, klass)
+      query_string = %Q{ 
+        SELECT DISTINCT ?subject ?definition WHERE
+        { 
+          VALUES ?subject { #{uris_or_ids.map{|x| self.class.as_uri(x).to_ref}.join(" ")} }
+          ?e rdf:type isoC:CustomProperty .
+          ?e isoC:customPropertyDefinedBy ?definition .
+          ?d isoC:customPropertyOf #{klass.rdf_type.to_ref} .
+          FILTER ( NOT EXISTS {?subject ^isoC:appliesTo/isoC:customPropertyDefinedBy ?definition})
+        }
+      }      
+      query_results = Sparql::Query.new.query(query_string, "", [:isoC])
+      query_results.by_object_set([:subject, :definition])
+    end
+
+    # Add Missing Custom Properties
+    #
+    # @param [Array] uris_or_ids array of uris or ids of the items for which the custom properties are to be updated
+    # @param [Class] klass klass for the definitions
+    # @param [Sparql::Transaction] tx the transaction, defaults to nil
+    # @return [Boolean] true
+    def add_missing_custom_properties(uris_or_ids, klass, tx)
+      items = missing_custom_properties(uris_or_ids, klass)
+      definitions = klass.find_custom_property_definitions(klass)
+      items.each do |item|
+        definition = definitions.find{|x| x.uri == item[:definition]}
+        self.custom_properties << CustomPropertyValue.create(parent_uri: CustomPropertyValue.base_uri, transaction: tx, 
+          value: definition.default, custom_property_defined_by: definition.uri, applies_to: item[:subject], context: [self.uri])
+      end
       true
     end
 

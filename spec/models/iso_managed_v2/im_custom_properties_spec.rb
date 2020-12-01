@@ -75,4 +75,39 @@ describe IsoManagedV2::ImCustomProperties do
 
   end
 
+  describe "missing custom properties" do
+
+    before :each do
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
+      load_files(schema_files, data_files)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      create_missing_data
+    end
+
+    after :each do
+    end
+
+    it "definitions" do
+      defs = @parent.class.find_custom_property_definitions(CustomPropertyHelpers::TestChild)
+    end
+
+    it "missing" do
+      items = @parent.missing_custom_properties([@child_1.id, @child_2.uri, @child_3.id], CustomPropertyHelpers::TestChild)
+      check_file_actual_expected(items.map{|x| {subject: x[:subject].to_s, definition: x[:definition].to_s}}, sub_dir, "missing_custom_properties_expected_1.yaml")
+    end
+
+    it "add missing" do
+      items = @parent.missing_custom_properties([@child_1.id, @child_2.uri, @child_3.id], CustomPropertyHelpers::TestChild)
+      check_file_actual_expected(items.map{|x| {subject: x[:subject].to_s, definition: x[:definition].to_s}}, sub_dir, "missing_custom_properties_expected_1.yaml")
+      tx = @parent.transaction_begin
+      @parent.add_missing_custom_properties([@child_1.id, @child_2.uri, @child_3.id], CustomPropertyHelpers::TestChild, tx)
+      tx.execute
+      items = @parent.missing_custom_properties([@child_1.id, @child_2.uri, @child_3.id], CustomPropertyHelpers::TestChild)
+      check_file_actual_expected(items.map{|x| {subject: x[:subject].to_s, definition: x[:definition].to_s}}, sub_dir, "add_missing_custom_properties_expected_1a.yaml")
+      results = @parent.find_custom_property_values 
+      check_file_actual_expected(results, sub_dir, "add_missing_custom_properties_expected_1b.yaml")
+    end
+
+  end
+
 end

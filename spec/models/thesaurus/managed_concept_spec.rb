@@ -2226,7 +2226,14 @@ describe "Thesaurus::ManagedConcept" do
       CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
       description: "A description XXX", default: "Default String",
       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
-      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CPD1"))
+    end
+
+    def add_cp_2
+      CustomPropertyDefinition.create(datatype: "boolean", label: "Logical", 
+      description: "Boolean Description", default: "false",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CPD2"))
     end
 
     before :all  do
@@ -2240,6 +2247,7 @@ describe "Thesaurus::ManagedConcept" do
       simple_thesaurus_1
       nv_destroy
       nv_create(parent: "123", child: "456")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     end
 
     it "allows a new child TC to be added, no custom property" do
@@ -2253,10 +2261,9 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       new_object = tc.add_child(params)
       expect(new_object.errors.count).to eq(0)
-      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_custom_property_expected_1.yaml")
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       result = tc.populate_custom_properties
-      expect(result).to eq({})
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_child_custom_property_expected_1.yaml")
     end
 
     it "allows a new child TC to be added, custom property" do
@@ -2273,7 +2280,7 @@ describe "Thesaurus::ManagedConcept" do
       expect(new_object.errors.count).to eq(0)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_child_custom_property_expected_2.yaml")
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_child_custom_property_expected_2.yaml", write_file: false)
     end
 
     it "add and delete children to an extension, single" do
@@ -2287,12 +2294,12 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(2)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1a.yaml")
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1a.yaml", write_file: false)
       tc.add_referenced_children([tc_3.uri.to_id])
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(3)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1b.yaml")
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1b.yaml", write_file: false)
     end
 
     it "add and delete children to an extension, several" do
@@ -2306,12 +2313,65 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(2)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2a.yaml")
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2a.yaml", write_file: false)
       tc.add_referenced_children([tc_3.uri.to_id])
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(3)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2b.yaml")
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2b.yaml", write_file: false)
+    end
+
+    it "add and delete children to an extension, values" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      add_cp_1
+      add_cp_2
+      expect(tc.narrower.count).to eq(0)
+      tc_1 = Thesaurus::UnmanagedConcept.create({label: "Terminal 1", identifier: "A00023", definition: "A definition", notation: "T1"}, tc)
+      tc_2 = Thesaurus::UnmanagedConcept.create({label: "Terminal 2A", identifier: "A00024", definition: "A definition", notation: "T2A"}, tc)
+      tc_3 = Thesaurus::UnmanagedConcept.create({label: "Cow Shed", identifier: "A00025", definition: "A definition", notation: "T2B"}, tc)
+      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id])
+      cpv_uri = CustomPropertyValue.where_unique(tc_1, tc, :some_string)
+      cpv = CustomPropertyValue.find(cpv_uri)
+      cpv.value = "Something new and wonderful"
+      cpv.save
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      expect(tc.narrower.count).to eq(2)
+      result = tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_3a.yaml", write_file: false)
+      cpv_uri = CustomPropertyValue.where_unique(tc_3, tc, :Logical)
+      cpv = CustomPropertyValue.find(cpv_uri)
+      cpv.value = "true"
+      cpv.save
+      tc.add_referenced_children([tc_3.uri.to_id])
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      expect(tc.narrower.count).to eq(3)
+      result = tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_3b.yaml", write_file: false)
+    end
+
+    it "clone a code list, next version" do
+      add_cp_1
+      add_cp_2
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      tc_1 = Thesaurus::UnmanagedConcept.create({label: "Terminal 1", identifier: "A00023", definition: "A definition", notation: "T1"}, tc)
+      tc_2 = Thesaurus::UnmanagedConcept.create({label: "Terminal 2A", identifier: "A00024", definition: "A definition", notation: "T2A"}, tc)
+      tc_3 = Thesaurus::UnmanagedConcept.create({label: "Cow Shed", identifier: "A00025", definition: "A definition", notation: "T2B"}, tc)
+      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id, tc_3.uri.to_id])
+      params = {}
+      params[:registration_status] = "Standard"
+      params[:previous_state] = "Incomplete"
+      tc.update_status(params)
+      new_tc = tc.create_next_version
+      cpv_uri = CustomPropertyValue.where_unique(tc_1, new_tc, :some_string)
+      cpv = CustomPropertyValue.find(cpv_uri)
+      cpv.value = "Something new and wonderful"
+      cpv.save
+      tc = Thesaurus::ManagedConcept.find(tc.uri)
+      result = tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_4a.yaml", write_file: false)
+      new_tc = Thesaurus::ManagedConcept.find(new_tc.uri)
+      result = new_tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_4b.yaml", write_file: false)
     end
 
   end
