@@ -163,9 +163,15 @@ export default class CustomPropsHandler {
 
     tableData.forEach( dataItem => {
 
-      let itemCustomProps = this.customProps.data.find( d => d.id === dataItem.id );
+      // Find Custom Property data for current Code List Item
+      const itemCustomProps = this.customProps.data.find( d => 
+        d.item_id === dataItem.id 
+      );
 
-      itemCustomProps && Object.assign( dataItem, { customProps: itemCustomProps } );
+      // Assign Custom Property data to Code List Item if found 
+      itemCustomProps && Object.assign( dataItem, { 
+        custom_properties: itemCustomProps 
+      });
 
     });
 

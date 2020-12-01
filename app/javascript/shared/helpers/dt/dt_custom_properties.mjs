@@ -143,7 +143,7 @@ function dtField(type, name, props = {}) {
  * @return {string} Custom Property data property name
  */
 function getName(name) {
-  return `customProps.${ name }`;
+  return `custom_properties.${ name }.value`;
 }
 
 export {
