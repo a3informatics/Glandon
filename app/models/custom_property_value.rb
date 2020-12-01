@@ -11,6 +11,7 @@ class CustomPropertyValue < IsoContextualRelationship
   data_property :value
   object_property :custom_property_defined_by, cardinality: :one, model_class: "CustomPropertyDefinition"
 
+  validates_with Validator::Field, attribute: :value, method: :valid_label?
   validates :value, presence: true, allow_blank: true
   validates_with Validator::Klass, property: :custom_property_defined_by, level: :uri
 
@@ -41,6 +42,32 @@ class CustomPropertyValue < IsoContextualRelationship
     object = self.class.new(value: params[:value], custom_property_defined_by: self.custom_property_defined_by, 
       context: [context_uri], applies_to: self.applies_to, transaction: params[:transaction])
     object
+  end
+
+  # Where Unique
+  #
+  # @param [Uri|Object] applies_to the variable the property applies to
+  # @param [Uri|Object] context the context object or uri
+  # @param [String] name the name of the property being searched for
+  # @return [CustomPropertyValue] the updated object
+  def self.where_unique(applies_to, context, name)
+    applies_to_uri = applies_to.is_a?(Uri) ? applies_to : applies_to.uri
+    context_uri = context.is_a?(Uri) ? context : context.uri
+    query_string = %Q{
+      SELECT ?s WHERE 
+      {            
+        ?s rdf:type isoC:CustomProperty .
+        ?s isoC:appliesTo #{applies_to_uri.to_ref} .          
+        ?s isoC:context #{context_uri.to_ref} . 
+        ?s isoC:customPropertyDefinedBy/isoC:label ?l .
+        FILTER (ucase(?l) = '#{name.from_variable_style}')
+      }   
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC])
+    results = query_results.by_object(:s)
+    return results.first if results.count == 1
+    msg_root = results.empty? ? "Cannot find property" : "Found multiple properties for"
+    Errors.application_error(self.class.name, __method__.to_s, "#{msg_root} #{name} for #{applies_to_uri} in context #{context_uri}.")
   end
 
 end
