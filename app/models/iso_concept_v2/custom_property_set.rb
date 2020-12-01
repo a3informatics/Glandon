@@ -37,9 +37,20 @@ class IsoConceptV2
 
     # Name Value Pairs. Returns the property set as an array of hashes containing the name value pairs
     #
-    # @return [Boolean] returns true if different, false otherwise
+    # @return [Array] array of name value pairs
     def name_value_pairs
       @items.map{|x| {name: x.custom_property_defined_by.label, value: x.value}}
+    end
+
+    # Return Values. 
+    #
+    # @return [Boolean] returns true if different, false otherwise
+    def return_values
+      results = {}
+      @items.each do |item| 
+        results[item.custom_property_defined_by.label.to_variable_style.to_sym] = {id: item.uri.to_id, value: item.value}
+      end
+      results
     end
 
     # Each. Iterate over the proprites
