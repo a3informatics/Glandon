@@ -48,7 +48,7 @@ describe IsoConceptV2::CustomPropertySet do
 
   def create_definition_2
     @definition_2 = CustomPropertyDefinition.create(datatype: "string", label: "Other", 
-      description: "A description", default: "Default String",
+      description: "A description other", default: "Default Other",
       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
       uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD2"))
   end
@@ -69,6 +69,20 @@ describe IsoConceptV2::CustomPropertySet do
     custom_set << create_value("String 2", 2)
     custom_set << create_value("String 3", 3)
     expect(custom_set.name_value_pairs).to eq(expected)
+  end
+
+  it "return_values" do
+    create_definition_1
+    create_definition_2
+    expected = 
+    {
+      name: {:id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1BWIzE=", :value=>"String 1"},
+      other: {:id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1BWIzI=", :value=>"String 2"}
+    }
+    custom_set = IsoConceptV2::CustomPropertySet.new
+    custom_set << create_value("String 1", 1)
+    custom_set << create_value("String 2", 2, @definition_2)
+    expect(custom_set.return_values).to eq(expected)
   end
 
   it "clear" do
