@@ -1,5 +1,4 @@
 import { dtTrueFalseColumn, dtInlineEditColumn, dtTrueFalseEditColumn } from 'shared/helpers/dt/dt_columns'
-import { dtFieldsInit } from 'shared/helpers/dt/dt_fields'
 
 
 /*** Columns ***/

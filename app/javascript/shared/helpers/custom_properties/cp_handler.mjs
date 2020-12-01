@@ -29,7 +29,9 @@ export default class CustomPropsHandler {
     const { accessPolicy, dataUrl } = this._getOptions( selectorToId( selector ) );
 
     Object.assign( this, {
-      dataUrl, afterColumn, onColumnsToggle,
+      dataUrl, 
+      afterColumn, 
+      onColumnsToggle,
       enabled: (enabled && accessPolicy),
       visible: false,
       button: new CPButton({
@@ -89,10 +91,9 @@ export default class CustomPropsHandler {
    */
   addButton(oButtons) {
 
-    if ( this.enabled )
-      return [...oButtons, this.button.definition ]
-    else
-      return oButtons;
+    return this.enabled ? 
+        [ ...oButtons, this.button.definition ] :
+        oButtons;
 
   }
 
@@ -104,6 +105,9 @@ export default class CustomPropsHandler {
    * Fetch Custom Property data from the server
    */
   loadData() {
+
+    if ( !this.enabled )
+      return; 
 
     this.button.loading( true );
 
@@ -236,12 +240,12 @@ export default class CustomPropsHandler {
 
   /**
    * Process and render data on CP data, executed on CP data fetch
-   * @param {object} result Raw data result object with definitions and data properties
+   * @param {object} data Raw data result object with definitions and data properties
    */
-  _onDataLoaded(result) {
+  _onDataLoaded(data) {
 
     Object.assign( this, {
-      customProps: result
+      customProps: data
     });
 
     this._render();
@@ -317,9 +321,7 @@ export default class CustomPropsHandler {
     // On columns toggle callback
     this.onColumnsToggle && this.onColumnsToggle( visible );
 
-    // Adjust column widths
-    this.tablePanel.table.columns
-                         .adjust();
+    this.tablePanel.table.columns.adjust();
 
   }
 
