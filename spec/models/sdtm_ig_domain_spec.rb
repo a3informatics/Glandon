@@ -33,6 +33,16 @@ describe SdtmIgDomain do
     check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)
   end
 
+  it "unique var name in domain, false" do
+    ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+    expect(ig_domain.unique_in_domain?("aaa")).to eq(true)
+  end
+
+  it "unique var name in domain, true" do
+    ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+    expect(ig_domain.unique_in_domain?("AESTDTC")).to eq(false)
+  end
+
  #  it "creates a new domain" do
  #  	item = SdtmIgDomain.new
  #  #Xwrite_yaml_file(item.to_json, sub_dir, "new_expected.yaml")

@@ -57,4 +57,23 @@ class SdtmIgDomain < Tabulation
     SdtmIg.owner
   end
 
+  def unique_in_domain?(name)
+    var_names = get_variables_name
+    return false if var_names.include? name
+    return true
+  end
+
+  private
+
+    # Get all variables name as an array
+    #
+    # @return [Array] the new sponsor domain object
+    def get_variables_name
+      query_string = %Q{         
+        SELECT ?var_name WHERE {#{self.uri.to_ref} bd:includesColumn ?var . ?var bd:name ?var_name}
+      }     
+      query_results = Sparql::Query.new.query(query_string, "", [:bd])
+      query_results.by_object(:var_name)
+    end
+
 end
