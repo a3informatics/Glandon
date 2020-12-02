@@ -48,9 +48,28 @@ describe SdtmSponsorDomain do
     check_file_actual_expected(sponsor_domain.to_h, sub_dir, "create_from_ig_expected_1.yaml", equate_method: :hash_equal, write_file: true)
   end
 
-  # it "allows an IG Domain to be found" do
-  #   item = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
-  #   check_file_actual_expected(item.to_h, sub_dir, "find_expected.yaml", equate_method: :hash_equal)
-  # end
+  it "does add a non standard variable" do
+    params = {label:"Sponsor Adverse Events", prefix:"AE"}
+    ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+    sponsor_domain = SdtmSponsorDomain.create_from_ig(params, ig_domain)
+    sponsor_domain.save
+    sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#SPD"))
+    params2 = {name:"NEWVAR"}
+    sponsor_domain.add_non_standard_variable(params2)
+    check_file_actual_expected(sponsor_domain.to_h, sub_dir, "add_non_standard_variable_expected_1.yaml", equate_method: :hash_equal)
+  end
+
+  it "does add a non standard variable, error" do
+    params = {identifier:"XXX", label:"Sponsor Adverse Events", prefix:"AE"}
+    ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+    sponsor_domain = SdtmSponsorDomain.create_from_ig(params, ig_domain)
+    sponsor_domain.save
+    sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#SPD"))
+    params2 = {name:"SDISAB"}
+    result = sponsor_domain.add_non_standard_variable(params2)
+    expect(result.errors.count).to eq(1)
+    expect(result.errors.full_messages.to_sentence).to eq("http://www.s-cubed.dk/XXX/V1#SPD_AESDISAB already exists in the database")
+    #check_file_actual_expected(sponsor_domain.to_h, sub_dir, "add_non_standard_variable_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+  end
 
 end
