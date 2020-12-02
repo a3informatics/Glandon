@@ -69,18 +69,14 @@ class IsoConceptV2
       @items = []
     end
 
-    # -----------------
-    # Test Only Methods
-    # -----------------
-
-    if Rails.env.test?
-
-      def items
-        @items
-      end
-      
+    def merge(other)
+      @items += other.items
     end
 
+    def items
+      @items
+    end
+      
   end
 
 end

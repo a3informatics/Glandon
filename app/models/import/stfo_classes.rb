@@ -244,6 +244,7 @@ module Import::STFOClasses
         else
           #new_child.rank = child.rank 
           #new_child.tagged = child.tagged
+add_log("Copying properties #{child.identifier}")
           copy_properties_from_to(child, new_child)
           new_narrower << new_child
         end
@@ -274,6 +275,7 @@ module Import::STFOClasses
         else
           #new_child.rank = child.rank 
           #new_child.tagged = child.tagged
+add_log("Copying properties #{child.identifier}")
           copy_properties_from_to(child, new_child)
           new_narrower << new_child
         end
@@ -306,6 +308,7 @@ module Import::STFOClasses
         else
           #new_child.rank = child.rank 
           #new_child.tagged = child.tagged
+add_log("Copying properties #{child.identifier}")
           copy_properties_from_to(child, new_child)
           new_narrower << new_child
         end
@@ -355,8 +358,7 @@ module Import::STFOClasses
       self.narrower.each do |child|
         new_child = sponsor_or_referenced(ct, child, fixes)
         next if new_child.nil?
-        #new_child.rank = child.rank 
-        #new_child.tagged = child.tagged
+add_log("Copying properties #{child.identifier}")
         copy_properties_from_to(child, new_child)
         new_narrower << new_child 
       end
@@ -544,9 +546,10 @@ module Import::STFOClasses
 
     # Copy special properties from to
     def copy_properties_from_to(source, target)
+      return if source == target
       target.rank = source.rank 
       target.tagged = source.tagged
-      target.custom_properties = source.custom_properties
+      target.custom_properties.merge(source.custom_properties)
     end
 
     # Has rank?
