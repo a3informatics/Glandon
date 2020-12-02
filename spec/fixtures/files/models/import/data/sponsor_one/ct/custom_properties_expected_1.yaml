@@ -5383,7 +5383,10 @@
       :sdtm_stage: 'true'
     :S000090:
       :notation: NOT RELATED
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Not Related
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S000092:
       :notation: POSSIBLY RELATED
       :adam_stage: 'true'
@@ -5392,7 +5395,10 @@
       :sdtm_stage: 'true'
     :S000093:
       :notation: RELATED
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Related
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S000094:
       :notation: UNLIKELY RELATED
       :adam_stage: 'true'
@@ -5446,10 +5452,16 @@
   :items:
     :S000038:
       :notation: ADMINISTRATION SITE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Administration Site
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S000062:
       :notation: SYSTEMIC
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Systemic
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
 :SN003080:
   :notation: AESCAT_01
   :items:
@@ -5491,34 +5503,61 @@
   :items:
     :C41338:
       :notation: MILD
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Grade 1
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :C41339:
       :notation: MODERATE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Grade 2
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :C41132:
       :notation: NONE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: None
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :C41340:
       :notation: SEVERE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Grade 3
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :C17998:
       :notation: UNKNOWN
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Unknown
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
 :SN003077:
   :notation: AESEVMD_01
   :items:
     :C41338:
       :notation: MILD
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Grade 1
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :C41339:
       :notation: MODERATE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Grade 2
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :C41340:
       :notation: SEVERE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Grade 3
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :C17998:
       :notation: UNKNOWN
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Unknown
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
 :SN003078:
   :notation: AESEVMD_02
   :items:
@@ -5578,16 +5617,28 @@
   :items:
     :S000103:
       :notation: ACCIDENTAL OVERDOSE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Accidental Overdose
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S000104:
       :notation: INTENTIONAL OVERDOSE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Intentional Overdose
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S000105:
       :notation: PARTNER PREGNANCY
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Partner Pregnancy
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :C25742:
       :notation: PREGNANCY
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Pregnancy
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
 :SN003060:
   :notation: AETERM_01
   :items:
@@ -17843,25 +17894,46 @@
   :items:
     :S000001:
       :notation: GREATER THAN OR EQUAL TO 10 MINUTES
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: ">= 10 Minutes"
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S000003:
       :notation: GREATER THAN OR EQUAL TO 20 MINUTES
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: ">= 20 Minutes"
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S001603:
       :notation: GREATER THAN OR EQUAL TO 24 HOURS
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: ">=24 Hours"
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S000002:
       :notation: LESS THAN 10 MINUTES
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: "< 10 Minutes"
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S000004:
       :notation: LESS THAN 20 MINUTES
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: "< 20 Minutes"
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S001604:
       :notation: LESS THAN 24 HOURS
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: "< 24 Hours"
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :C17998:
       :notation: UNKNOWN
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Unknown
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
 :SN003031:
   :notation: CEDURATI_01
   :items:
@@ -17879,7 +17951,10 @@
       :sdtm_stage: 'false'
     :C17998:
       :notation: UNKNOWN
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Unknown
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
 :SN003032:
   :notation: CEDURATI_02
   :items:
@@ -17897,7 +17972,10 @@
       :sdtm_stage: 'false'
     :C17998:
       :notation: UNKNOWN
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Unknown
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
 :SN003033:
   :notation: CEDURATI_03
   :items:
@@ -18739,19 +18817,34 @@
   :items:
     :S004919:
       :notation: NOT APPLICABLE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Not Applicable
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S004918:
       :notation: UNABLE TO DO
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: UNABLE To Do
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S004917:
       :notation: WITH MUCH DIFFICULTY
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: With MUCH Difficulty
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S004916:
       :notation: WITH SOME DIFFICULTY
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: With SOME Difficulty
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S004915:
       :notation: WITHOUT ANY DIFFICULTY
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Without ANY Difficulty
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
 :SN003015:
   :notation: CHAQABIL_01
   :items:
@@ -19688,14 +19781,23 @@
     :S030063:
       :notation: MEDICATIONS IMPACTING OR THAT MAY HAVE AN IMPACT ON BOTH THE SAFETY
         AND THE IMMUNE RESPONSE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Category 3
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S030061:
       :notation: MEDICATIONS IMPACTING OR THAT MAY HAVE AN IMPACT ON THE EVALUATION
         OF THE SAFETY
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Category 1
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S030062:
       :notation: MEDICATIONS IMPACTING OR THAT MAY HAVE AN IMPACT ON THE IMMUNE RESPONSE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Category 2
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S007100:
       :notation: NON-MEDICATION THERAPY
       :adam_stage: 'true'
@@ -19760,28 +19862,52 @@
   :items:
     :S007161:
       :notation: ANTIBIOTIC
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Antibiotic
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S004825:
       :notation: DIPHTHERIA VACCINE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Diphtheria Vaccine
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S004855:
       :notation: HIGHLIGHTED DOSE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Highlighted Dose
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S004823:
       :notation: JAPANESE ENCEPHALITIS VACCINE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Japanese Encephalitis Vaccine
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S004829:
       :notation: LICENSED DENGUE VACCINE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Licensed Dengue Vaccine
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S004828:
       :notation: MENINGOCOCCAL VACCINE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Meningococcal Vaccine
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003105:
       :notation: NON-STUDY VACCINES
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Non-Study Vaccines
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S004827:
       :notation: PNEUMOCOCCAL VACCINE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Pneumococcal Vaccine
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S030350:
       :notation: POST STUDY TREATMENT
       :adam_stage: 'true'
@@ -19796,13 +19922,22 @@
       :sdtm_stage: 'true'
     :S004822:
       :notation: SEASONAL INFLUENZA VACCINE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Seasonal Influenza Vaccine
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S004826:
       :notation: TETANUS VACCINE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Tetanus Vaccine
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S005332:
       :notation: YELLOW FEVER VACCINE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Yellow Fever Vaccine
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
 :SN003081:
   :notation: CMSCAT_01
   :items:
@@ -26649,13 +26784,22 @@
       :sdtm_stage: 'true'
     :C25936:
       :notation: INVESTIGATOR
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Investigator
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S001998:
       :notation: PHARMACIST
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Pharmacist
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S001999:
       :notation: STUDY NURSE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Study Nurse
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
 :SN003016:
   :notation: DSCBWHOR_01
   :items:
@@ -26703,13 +26847,22 @@
       :sdtm_stage: 'true'
     :C17649:
       :notation: OTHER
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Other
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S000911:
       :notation: PHONE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Phone
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S000989:
       :notation: SCHEDULED VISIT
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Scheduled Visit
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S006876:
       :notation: STUDY SITE
       :adam_stage: 'false'
@@ -27842,19 +27995,40 @@
   :items:
     :S002088:
       :notation: '0'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 0-Fully active, able to carry on all pre-disease performance
+        without restriction
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S002089:
       :notation: '1'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 1-Restricted in physically strenuous activity but ambulatory
+        and able to carry out work of a light or sedentary nature, e.g., light house
+        work, office work
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S002084:
       :notation: '2'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 2-Ambulatory and capable of all selfcare but unable to carry
+        out any work activities. Up and about more than 50% of waking hours
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S002085:
       :notation: '3'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 3-Capable of only limited selfcare, confined to bed or chair
+        more than 50% of waking hours
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S002086:
       :notation: '4'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 4-Completely disabled. Cannot carry on any selfcare. Totally
+        confined to bed or chair
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S000214:
       :notation: '5'
       :adam_stage: 'true'
@@ -39913,13 +40087,22 @@
   :items:
     :S001868:
       :notation: GROUP 1
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Group 1
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S001869:
       :notation: GROUP 2
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Group 2
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S001870:
       :notation: GROUP 3
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Group 3
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S001871:
       :notation: HEPATIC IMPAIRMENT
       :adam_stage: 'false'
@@ -43681,10 +43864,16 @@
   :items:
     :S001355:
       :notation: CONDUCTIVE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Conductive
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S001356:
       :notation: MIXED
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Mixed
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :C48660:
       :notation: NOT APPLICABLE
       :adam_stage: 'false'
@@ -43693,7 +43882,10 @@
       :sdtm_stage: 'true'
     :S001357:
       :notation: SENSORINEURAL
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Sensorineural
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :C17998:
       :notation: UNKNOWN
       :adam_stage: 'false'
@@ -43726,24 +43918,45 @@
   :items:
     :S000047:
       :notation: ADMISSION TO EMERGENCY ROOM ONLY (IE NOT FOLLOWED BY HOSPITALIZATION)
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Admission to Emergency Room Only (ie Not Followed by Hospitalization)
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S000284:
       :notation: ADMISSION TO HOSPITAL OR TO EMERGENCY ROOM FOLLOWED BY HOSPITALIZATION
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Admission to Hospital or to Emergency Room, Followed by
+        Hospitalization
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S000358:
       :notation: LED TO UNPLANNED HOSPITALIZATION
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Led to Unplanned Hospitalization
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S000091:
       :notation: LED TO URGENT/UNSCHEDULED VISIT TO EMERGENCY ROOM (ER) OR AN URGENT/UNSCHEDULED
         OUTPATIENT HEART FAILURE TREATMENT UNIT- OR INFUSION CENTER- OR OFFICE/PRACTICE
         VISIT- NOT FOLLOWED BY HOSPITALIZATION
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Led to Urgent/Unscheduled Visit to Emergency Room (ER) or
+        an Urgent/Unscheduled Outpatient Heart Failure Treatment Unit, or Infusion
+        Center, or Office/Practice Visit, Not Followed by Hospitalization
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :C41132:
       :notation: NONE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: None of the Above
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S009908:
       :notation: OCCURRED WHILE SUBJECT WAS HOSPITALIZED FOR ANOTHER REASON
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Occurred while Subject Was Hospitalized for Another Reason
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
 :SN003075:
   :notation: HOSP_01
   :items:
@@ -47765,34 +47978,71 @@
       :sdtm_stage: 'true'
     :S002690:
       :notation: '10'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 10-Moribund; fatal processes progressing rapidly
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S002692:
       :notation: '100'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 100-Normal no complaints; no evidence of disease
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S002696:
       :notation: '20'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 20-Very sick; hospital admission necessary; active supportive
+        treatment necessary
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S002695:
       :notation: '30'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 30-Severely disabled; hospital admission is indicated although
+        death not imminent
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S002689:
       :notation: '40'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 40-Disabled; requires special care and assistance
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S002693:
       :notation: '50'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 50-Requires considerable assistance and frequent medical
+        care
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S002694:
       :notation: '60'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 60-Requires occasional assistance, but is able to care for
+        most of his personal needs
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S002688:
       :notation: '70'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 70-Cares for self; unable to carry on normal activity or
+        to do active work
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S002691:
       :notation: '80'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 80-Normal activity with effort; some signs or symptoms of
+        disease
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S002687:
       :notation: '90'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 90-Able to carry on normal activity; minor signs or symptoms
+        of disease
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
 :SN003037:
   :notation: KPSSR_01
   :items:
@@ -88920,10 +89170,16 @@
   :items:
     :S001386:
       :notation: TYPE 1 DIABETES MELLITUS
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Type 1 Diabetes Mellitus
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S001387:
       :notation: TYPE 2 DIABETES MELLITUS
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Type 2 Diabetes Mellitus
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
 :SN003062:
   :notation: MHTERM_01
   :items:
@@ -115059,19 +115315,34 @@
       :sdtm_stage: 'true'
     :S003179:
       :notation: STAGE I
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Stage I
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003180:
       :notation: STAGE II
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Stage II
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003183:
       :notation: STAGE III
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Stage III
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003187:
       :notation: STAGE IV
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Stage IV
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003331:
       :notation: STAGE V
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Stage V
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :C17998:
       :notation: UNKNOWN
       :adam_stage: 'false'
@@ -115323,19 +115594,34 @@
       :sdtm_stage: 'false'
     :S004863:
       :notation: CLINICAL INVESTIGATION
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Clinical Investigation
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003206:
       :notation: PROPHYLAXIS PROCEDURE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Prophylaxis Procedure
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003207:
       :notation: SPECIALIST CONSULTATION
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Specialist Consultation
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003208:
       :notation: SURGERY
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Surgery
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003209:
       :notation: THERAPEUTIC MEASURE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Therapeutic Measure
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
 :SN003083:
   :notation: PRSCAT_01
   :items:
@@ -123871,40 +124157,73 @@
   :items:
     :S003728:
       :notation: 2 HOURS AFTER BREAKFAST
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 2 Hours After Breakfast
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003729:
       :notation: 2 HOURS AFTER DINNER
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 2 Hours After Dinner
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003730:
       :notation: 2 HOURS AFTER LUNCH
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: 2 Hours After Lunch
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003734:
       :notation: BEDTIME
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Bedtime
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003735:
       :notation: BEFORE BREAKFAST
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Before Breakfast
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003736:
       :notation: BEFORE DINNER
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Before Dinner
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003737:
       :notation: BEFORE LUNCH
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Before Lunch
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003739:
       :notation: FASTING PRE-BREAKFAST
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Fasting Pre-Breakfast
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S010835:
       :notation: POST-MEAL
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Post-Meal
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S010834:
       :notation: PRE-MEAL
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Pre-Meal
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
 :SN003073:
   :notation: SMPGTIME_01
   :items:
     :S003734:
       :notation: BEDTIME
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Bedtime
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003739:
       :notation: FASTING PRE-BREAKFAST
       :adam_stage: 'false'
@@ -126152,10 +126471,16 @@
   :items:
     :SC37987:
       :notation: ALIVE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Life
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :SC28554:
       :notation: DEAD
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Dead
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :SC17998:
       :notation: UNKNOWN
       :adam_stage: 'true'
@@ -126356,10 +126681,16 @@
   :items:
     :S001121:
       :notation: 1 OR 2
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: 1 or 2
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003703:
       :notation: GREATER THAN 2
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Greater Than 2
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
 :SN003002:
   :notation: SUAM_01
   :items:
@@ -127154,19 +127485,34 @@
       :sdtm_stage: 'true'
     :C84263:
       :notation: '1'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Grade 1
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :C84264:
       :notation: '2'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Grade 2
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :C84265:
       :notation: '3'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Grade 3
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :C84266:
       :notation: '4'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Grade 4
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :C48275:
       :notation: '5'
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Grade 5
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
 :SN001073:
   :notation: TOXGRA
   :items:
@@ -127976,91 +128322,175 @@
   :items:
     :S030001:
       :notation: ADJUVANT
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Adjuvant
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003001:
       :notation: ADVANCED
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Advanced
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :C41331:
       :notation: ADVERSE EVENT
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Adverse Event
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003002:
       :notation: CONDITIONING THERAPY
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Conditioning Therapy
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003003:
       :notation: CONSOLIDATION
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Consolidation
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :SC62220:
       :notation: CURATIVE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Curative
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003005:
       :notation: INDUCTION
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Induction
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003006:
       :notation: MAINTENANCE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Maintenance
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003007:
       :notation: MEDICAL HISTORY
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Medical History
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003008:
       :notation: NEOADJUVANT
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Neoadjuvant
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :C17649:
       :notation: OTHER
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Other
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :SC101516:
       :notation: PALLIATIVE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Palliative
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S000037:
       :notation: PER-PROTOCOL
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Per-Protocol
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003010:
       :notation: PRE-EXISTING CONDITION
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Pre-Existing Condition
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003011:
       :notation: PROPHYLAXIS
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Prophylaxis
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003012:
       :notation: RADIO-SENSITIZER
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Radio-Sensitizer
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003013:
       :notation: RE-INDUCTION
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Re-Induction
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003014:
       :notation: RESCUE THERAPY
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Rescue Therapy
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003320:
       :notation: SUPPORTIVE CARE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Supportive Care
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S003321:
       :notation: TRANSPLANT
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Transplant
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :C17998:
       :notation: UNKNOWN
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Unknown
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
 :SN003063:
   :notation: TRTRSN_01
   :items:
     :S030001:
       :notation: ADJUVANT
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Adjuvant
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :C41331:
       :notation: ADVERSE EVENT
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Adverse Event
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003007:
       :notation: MEDICAL HISTORY
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Medical History
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :C17649:
       :notation: OTHER
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Other
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S000037:
       :notation: PER-PROTOCOL
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Per-Protocol
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003010:
       :notation: PRE-EXISTING CONDITION
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Pre-Existing Condition
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003011:
       :notation: PROPHYLAXIS
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Prophylaxis
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003014:
       :notation: RESCUE THERAPY
       :adam_stage: 'false'
@@ -128102,7 +128532,10 @@
       :sdtm_stage: 'false'
     :SC62220:
       :notation: CURATIVE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Curative
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003005:
       :notation: INDUCTION
       :adam_stage: 'false'
@@ -128135,7 +128568,10 @@
       :sdtm_stage: 'false'
     :SC101516:
       :notation: PALLIATIVE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Palliative
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S000037:
       :notation: PER-PROTOCOL
       :adam_stage: 'false'
@@ -128150,7 +128586,10 @@
       :sdtm_stage: 'false'
     :S003011:
       :notation: PROPHYLAXIS
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Prophylaxis
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :S003012:
       :notation: RADIO-SENSITIZER
       :adam_stage: 'false'
@@ -128186,7 +128625,10 @@
   :items:
     :SC62220:
       :notation: CURATIVE
-      !ruby/symbol '': ''
+      :adam_stage: 'false'
+      :crf_display_value: Curative
+      :dc_stage: 'true'
+      :sdtm_stage: 'false'
     :SC101516:
       :notation: PALLIATIVE
       :adam_stage: 'false'
@@ -129212,13 +129654,23 @@
       :sdtm_stage: 'true'
     :S006248:
       :notation: NO ASSISTANCE
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: No Assistance
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S006740:
       :notation: RECEIVED ASSISTANCE BUT SUBJECT WAS CAPABLE OF HELPING SELF
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Received Assistance but Subject Was Capable of Helping Self
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
     :S006741:
       :notation: REQUIRED ASSISTANCE BECAUSE SUBJECT WAS NOT CAPABLE OF HELPING SELF
-      !ruby/symbol '': ''
+      :adam_stage: 'true'
+      :crf_display_value: Required Assistance Because Subject Was Not Capable of Helping
+        Self
+      :dc_stage: 'true'
+      :sdtm_stage: 'true'
 :SN003013:
   :notation: TXASSIST_01
   :items:
