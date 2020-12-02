@@ -55,7 +55,7 @@ class IsoManagedV2Controller < ApplicationController
   def custom_properties
     authorize IsoManaged, :show?
     item = IsoManagedV2.find_minimum(protect_from_bad_id(params))
-    render json: {data: item.find_custom_property_values, definitions: IsoManagedV2.find_custom_property_definitions_to_h(item.class.children_klass)}
+    render json: {data: item.find_custom_property_values, definitions: item.find_custom_property_definitions_to_h}
   end
 
   def make_current

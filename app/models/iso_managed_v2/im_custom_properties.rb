@@ -14,6 +14,42 @@ class IsoManagedV2
       # Empty at present
     end
 
+    # ----------------
+    # Instance Methods
+    # ----------------
+
+    # Find Custom Property Definitions. Find the custom property definitions for a specified klass
+    #
+    # @return [Array] array of CustomPropertyDefinition objects
+    def find_custom_property_definitions
+        results = []
+        query_string = %Q{
+          SELECT ?s ?p ?o WHERE 
+          {            
+            #{self.uri.to_ref} #{self.class.children_predicate.to_ref} ?c .
+            ?c ^isoC:appliesTo/isoC:customPropertyDefinedBy ?s .
+            ?s rdf:type isoC:CustomPropertyDefinition .
+            ?c rdf:type ?rc .
+            ?s isoC:customPropertyOf ?rc .
+            ?s ?p ?o
+          }   
+        }
+        query_results = Sparql::Query.new.query(query_string, "", [:isoC])
+        query_results.by_subject.each do |subject, triples|
+          results << CustomPropertyDefinition.from_results(Uri.new(uri: subject), triples)
+        end
+        results
+    end
+
+    # Find Custom Property Definitions To H. Find the custom property definitions for a specified klass as a hash
+    #
+    # @return [Array] array of hash
+    def find_custom_property_definitions_to_h
+        results = find_custom_property_definitions
+        results = results.map{|x| x.to_h.slice(:id, :datatype, :label).merge({name: x.label.to_variable_style})}
+        results.sort { |a, b| [b[:datatype], a[:name]] <=> [a[:datatype], b[:name]] }
+    end
+
     # Populate Custom Properties. Load all the properties for the managed item
     #
     # @return [Void] no return

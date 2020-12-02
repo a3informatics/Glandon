@@ -128,4 +128,25 @@ describe IsoManagedV2::ImCustomProperties do
 
   end
 
+  describe "custom properties definitions" do
+
+    before :each do
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
+      load_files(schema_files, data_files)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      create_data
+    end
+
+    after :each do
+    end
+
+    it "existing custom property set" do
+      results = @parent.find_custom_property_definitions
+      check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "custom_property_definitions_expected_1a.yaml", write_file: true)
+      results = @parent.find_custom_property_definitions_to_h
+      check_file_actual_expected(results, sub_dir, "custom_property_definitions_expected_1b.yaml", write_file: true)
+    end
+
+  end
+
 end
