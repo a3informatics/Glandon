@@ -36,11 +36,14 @@ class CustomPropertyValue < IsoContextualRelationship
   # @return [CustomPropertyValue] the updated object
   def update_and_clone(params, context)
     context_uri = context.is_a?(Uri) ? context : context.uri
-    self.transaction_begin(params)
     return update(params) if self.context.count == 1
+    tx_exists = transaction_present?(params)
+    tx = self.transaction_begin(params)
     self.context_delete(context_uri)
     object = self.class.new(value: params[:value], custom_property_defined_by: self.custom_property_defined_by, 
-      context: [context_uri], applies_to: self.applies_to, transaction: params[:transaction])
+      context: [context_uri], applies_to: self.applies_to, transaction: tx)
+    object.save
+    object.transaction_execute unless tx_exists
     object
   end
 
