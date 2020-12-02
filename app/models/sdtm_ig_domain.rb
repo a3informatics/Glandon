@@ -56,18 +56,22 @@ class SdtmIgDomain < Tabulation
     SdtmIg.owner
   end
 
+  # unique_in_domain? Check if the variable name is unique in the domain
+  #
+  # @params [String] name the variable domain name
+  # @return [Boolean] true if valid, false otherwise
   def unique_in_domain?(name)
-    var_names = get_variables_name
+    var_names = get_variable_names
     return false if var_names.include? name
     return true
   end
 
   private
 
-    # Get all variables name as an array
+    # Get variable names
     #
-    # @return [Array] the new sponsor domain object
-    def get_variables_name
+    # @return [Array] array with all variable names
+    def get_variable_names
       query_string = %Q{         
         SELECT ?var_name WHERE {#{self.uri.to_ref} bd:includesColumn ?var . ?var bd:name ?var_name}
       }     
