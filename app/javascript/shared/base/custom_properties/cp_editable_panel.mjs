@@ -109,6 +109,9 @@ export default class CustomPropsEditablePanel extends EditablePanel {
     let fData = super._preformatUpdateData( d ),
         field = this.currentField;
 
+    // console.log('fdata', d);
+    // return false;
+
     // Check if Custom Property value is being updated
     if ( this._isCustomProperty( field ) ) {
 
@@ -133,10 +136,14 @@ export default class CustomPropsEditablePanel extends EditablePanel {
    * @return {object} Formatted CP data
    */
   _formatData(data, field) {
-  
+    
+    const customProp = this._getRowFromData( 'id', data.id )
+                           .data()
+                           .custom_properties[ field ];
+    
     return {
       custom_property: {
-        id: data.id,
+        id: customProp.id,
         value: data[field]
       },
       with_custom_props: true

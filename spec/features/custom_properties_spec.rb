@@ -9,6 +9,15 @@ describe "Custom Properties", type: :feature  do
   include WaitForAjaxHelper
   include EditorHelpers
   include NameValueHelpers
+  include ItemsPickerHelpers
+
+  after :all do
+    ua_destroy
+  end
+
+  after :each do
+    ua_logoff
+  end
 
   describe "Show Custom Properties, Curator user", type: :feature, js:true do
 
@@ -26,16 +35,8 @@ describe "Custom Properties", type: :feature  do
       nv_create(parent: '10', child: '999')
     end
 
-    after :all do
-      ua_destroy
-    end
-
     before :each do
       ua_curator_login
-    end
-
-    after :each do
-      ua_logoff
     end
 
     it "allows to load, show and hide Custom Properties in a Code List" do
@@ -50,23 +51,16 @@ describe "Custom Properties", type: :feature  do
 
       expect(page).to have_button 'Show Custom Properties'
       ui_check_table_info('children', 1, 10, 55)
-      check_table_headers('children', ['Identifier', 'Submission Value', 'Preferred Term', 'Synonyms', 'Definition', 'Tags'])
+      check_table_headers('children', cl_standard_columns)
 
       # Show CPs
-      click_on 'Show Custom Properties'
-      wait_for_ajax 20
+      show_custom_props
 
       # Check CP Columns
-      check_table_headers('children', [
-        'Identifier', 'Submission Value', 'Preferred Term',
-        'Synonyms', 'Definition', 'Tags',
-        'CRF Display Value', 'ED Use', 'ADaM Stage', 'SDTM Stage', 'DC Stage'
-      ])
-      expect(page).to have_button 'Hide Custom Properties'
-
+      check_table_headers('children', cl_sponsor_cps_columns)
       ui_table_search('children', 'C96658')
 
-      # Check CP data
+      # Check standard and CP data
       check_cell_content('children', 1, 1, 'C96658')
       check_cell_content('children', 1, 2, 'SISTER, BIOLOGICAL MATERNAL HALF')
       check_cell_content('children', 1, 6, 'SDTM')
@@ -77,19 +71,15 @@ describe "Custom Properties", type: :feature  do
       check_cell_content('children', 1, 11, true) # SDTM stage
 
       # Hide CPs
-      click_on 'Hide Custom Properties'
-      check_table_headers('children', ['Identifier', 'Submission Value', 'Preferred Term', 'Synonyms', 'Definition', 'Tags'])
-      click_on 'Show Custom Properties'
+      hide_custom_props
+      check_table_headers('children', cl_standard_columns)
 
       # Show CPs again without server load
+      show_custom_props
       expect(page).to have_button 'Hide Custom Properties'
 
       # Check CP Columns
-      check_table_headers('children', [
-        'Identifier', 'Submission Value', 'Preferred Term',
-        'Synonyms', 'Definition', 'Tags',
-        'CRF Display Value', 'ED Use', 'ADaM Stage', 'SDTM Stage', 'DC Stage'
-      ])
+      check_table_headers('children', cl_sponsor_cps_columns)
       check_cell_content('children', 1, 7, 'Biological Maternal Half Sister') # CRF Display Value
     end
 
@@ -110,39 +100,73 @@ describe "Custom Properties", type: :feature  do
       ua_create
     end
 
-    after :all do
-      ua_destroy
-    end
-
     before :each do
       ua_curator_login
     end
 
-    after :each do
-      ua_logoff
+    ### Code List
+
+    it "allows to show Custom Properties, CL Editor" do
+      new_codelist_and_edit
+      show_custom_props
+      # Check CP Columns
+      check_table_headers('editor', cl_sponsor_cps_columns)
+      hide_custom_props
+      check_table_headers('editor', cl_standard_columns)
     end
 
-    # Code List
-    it "allows to edit Custom Properties in Code List editor" do
-      click_navbar_code_lists
-      identifier = ui_new_code_list
-      context_menu_element_v2('history', identifier, :edit)
-      wait_for_ajax 10
 
+    it "allows to add Referenced Items, copies CP values and sets missing CP values to default, CL Editor" do
+      new_codelist_and_edit
+
+      click_on 'Add items'
+      ip_pick_unmanaged_items(:unmanaged_concept, [
+        { parent: 'C100130', owner: 'Sanofi', version: '2', identifier: 'C96587' }
+      ])
+      wait_for_ajax 20 
+
+      show_custom_props
+      check_cell_content('editor', 1, 7, 'Biological Uncle') 
+      check_cell_content('editor', 1, 8, false)
+      check_cell_content('editor', 1, 9, true)
+      # ED Use - missing value in source CL - check set to default 
+      check_cell_content('editor', 1, 10, false)
+      check_cell_content('editor', 1, 11, true)
+    end
+
+    it "allows to edit Custom Properties, CL Editor" do
+      new_codelist_and_edit
       click_on 'New item'
       wait_for_ajax 10 
-      click_on 'Show Custom Properties'
-      wait_for_ajax 10 
-      ui_editor_select_by_location 1, 7
-      ui_editor_fill_inline "crf_display_value", "Some CRF value\n"
 
-      ui_editor_check_value 1, 7, 'Some CRF value'
+      show_custom_props
+      # Check default values are set 
+      check_cell_content('editor', 1, 7, '') 
+      check_cell_content('editor', 1, 8, false)
+      check_cell_content('editor', 1, 9, false)
+      check_cell_content('editor', 1, 10, false)
+      check_cell_content('editor', 1, 11, false)
 
-      # Test input validation 
+      # Inline editing of CPs
+      ui_editor_select_by_location(1, 7)
+      ui_editor_fill_inline("crf_display_value", "Some CRF value\n")
+      check_cell_content('editor', 1, 7, 'Some CRF value')
+
+      ui_editor_select_by_location(1, 8)
+      ui_press_key :arrow_right
+      ui_press_key :return
+      check_cell_content('editor', 1, 8, true)
+
+      # Validates input for entered CP values 
+      ui_editor_select_by_location(1, 7)
+      ui_editor_fill_inline("crf_display_value", "æææ\n")
+      ui_editor_check_error('crf_display_value', 'contains invalid characters')
+      ui_press_key :escape
     end
 
-    # Code List Extension
-    it "allows to edit Custom Properties in Code List Extension editor" do
+    ### Code List Extension
+
+    it "allows to edit Custom Properties, CL Extension editor" do
       click_navbar_code_lists
       wait_for_ajax 20
 
@@ -156,8 +180,9 @@ describe "Custom Properties", type: :feature  do
       # click_on 'New item'
     end
 
-    # Code List Subset
-    it "allows to edit Custom Properties in Code List Subset editor" do
+    ### Code List Subset
+
+    it "allows to edit Custom Properties, CL Subset editor" do
       click_navbar_code_lists
       wait_for_ajax 20
 
@@ -179,14 +204,6 @@ describe "Custom Properties", type: :feature  do
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..45)
       ua_create
-    end
-
-    after :all do
-      ua_destroy
-    end
-
-    after :each do
-      ua_logoff
     end
 
     it "does not show the CP button without CP data, Curator User" do
@@ -230,19 +247,43 @@ describe "Custom Properties", type: :feature  do
     theaders = all(:xpath, "//div[@id='#{ table }_wrapper']//thead/tr/td", visible: false)
 
     theaders.each do |th|
-      puts th.text
       expect(headers).to include(th.text)
     end
   end
 
-  def check_cell_content(table, row, col, data, icon = false)
-    cell = find(:xpath, "//table[@id='#{ table }']//tbody/tr[#{ row }]/td[ #{ col }]", visible: false)
+  def check_cell_content(table, row, col, data)
+    cell = find(:xpath, "//table[@id='#{ table }']//tbody/tr[#{ row }]/td[#{ col }]", visible: false)
 
     if data.is_a? String
       expect(cell).to have_content data
     else
       expect(cell).to have_selector(data ? ".icon-sel-filled" : ".icon-times-circle")
     end
+  end
+
+  def new_codelist_and_edit
+    click_navbar_code_lists
+    identifier = ui_new_code_list
+    context_menu_element_v2('history', identifier, :edit)
+    wait_for_ajax 10
+    identifier 
+  end
+  
+  def cl_standard_columns
+    ['Identifier', 'Submission Value', 'Preferred Term', 'Synonyms', 'Definition', 'Tags']
+  end 
+
+  def cl_sponsor_cps_columns
+    cl_standard_columns + ['CRF Display Value', 'ED Use', 'ADaM Stage', 'SDTM Stage', 'DC Stage']
+  end
+
+  def show_custom_props 
+    click_on 'Show Custom Properties'
+    wait_for_ajax 10 
+  end
+
+  def hide_custom_props
+    click_on 'Hide Custom Properties'
   end
 
 end
