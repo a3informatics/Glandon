@@ -128,7 +128,7 @@ export default class EditablePanel extends TablePanel {
     this.editor.on('preClose', e => this._updateUI('close') );
 
     // Loading animation
-    this.editor.on('processing', (ev, enable) => this._inlineProcessing(enable));
+    this.editor.on('processing', (ev, enable) => this._inlineProcessing(ev, enable));
 
     // Pre-data-submit, change data format
     this.editor.on('preSubmit', (e, d, type) => {
@@ -265,7 +265,12 @@ export default class EditablePanel extends TablePanel {
       ajax: this._editorAjaxOpts,
       table: this.selector,
       fields: this.fields,
-      idSrc: this.idSrc
+      idSrc: this.idSrc,
+      formOptions:{
+        inline: {
+          drawType: 'page'
+        }
+      }
     });
   }
 
@@ -279,10 +284,16 @@ export default class EditablePanel extends TablePanel {
 
   /**
    * Change processing state of a focused cell
+   * @param {Event} e Original DT Event
    * @param {boolean} enable True/false ~~ enable/disable processing state
    */
-  _inlineProcessing(enable) {
-    $(this.selector).find("td.inline.focus").toggleClass("processing", enable);
+  _inlineProcessing(e, enable) {
+    
+    let modifier = e.currentTarget.s.modifier,
+        targetNode = this.table.cell(modifier).node();
+
+    $(this.selector).find(targetNode).toggleClass("processing", enable);
+
   }
 
   /**

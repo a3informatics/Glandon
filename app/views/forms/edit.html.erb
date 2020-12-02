@@ -12,7 +12,12 @@
 
     <div class="actions-wrap">
 
-			<%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: @crf_path, id: 'crf-button',
+          icon: "icon-form-view", text: "CRF", new_tab: true } %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: @acrf_path, id: 'acrf-button',
+          icon: "icon-form-view", text: "aCRF", new_tab: true } %>
+
+      <%= render partial: "shared/buttons/timeout" %>
       <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
 
       <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>

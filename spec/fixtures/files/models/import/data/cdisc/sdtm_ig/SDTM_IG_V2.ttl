@@ -621,7 +621,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66781/V28#C66781> ;
+	bo:reference <http://www.cdisc.org/C90009/V26#C90009_C50400> ;
 	bo:context <http://www.cdisc.org/CT/V31#TH> ;
 .
 <http://www.cdisc.org/SDTM_IG_DM/V2#IGD_SEX>
@@ -5319,7 +5319,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C96784/V26#C96784_C94523> ;
+	bo:reference <http://www.cdisc.org/C96780/V26#C96780> ;
 	bo:context <http://www.cdisc.org/CT/V31#TH> ;
 .
 <http://www.cdisc.org/SDTM_IG_TU/V2#IGD_TUNAM>
@@ -5841,7 +5841,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_TR/V2#IGD_TRORRESU_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--ORRESU> ;
-	bd:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
+	bd:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
 <http://www.cdisc.org/SDTM_IG_TR/V2#IGD_TRORRESU_TMC1>
 	rdf:type bo:TMcReference ;

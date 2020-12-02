@@ -483,7 +483,7 @@ describe "Import::SponsorTermFormatOne" do
       uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
       uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
       uri_31 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH")
-      {"2-6" => {uri: uri_26, count: 197256}, "3-0" => {uri: uri_30, count: 291194}, "3-1" => {uri: uri_31, count: 299823}}.each do |version, data|
+      {"2-6" => {uri: uri_26, count: 197256}, "3-0" => {uri: uri_30, count: 291194}, "3-1" => {uri: uri_31, count: 299824}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
@@ -573,40 +573,41 @@ describe "Import::SponsorTermFormatOne" do
       results
     end
 
-    it "tag analysis" do
-      ct_set.each_with_index do |v, index|
-        print "Processing: #{v[:uri]}, v#{v[:version]}  "
-        query_results = Sparql::Query.new.query(ct_tags(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
-        print ".."
-        results = query_results.by_object_set([:l, :v, :d, :clid, :cliid, :tag]).map{|x| {label: x[:l], version: x[:v], date: x[:d], code_list: x[:clid], code_list_notation: x[:cln], code_list_label: x[:cll], code_list_item: x[:cliid], tag: x[:tag]}}
-        print ".."
-        overall = {}
-        results.each do |x|
-          key = "#{x[:code_list_notation]}"
-          if !overall.key?(key) 
-            overall[key] = {}
-            overall[key][:name] = x[:code_list_label]
-            overall[key][:short_name] = x[:code_list_notation]
-            overall[key][:identifier] = x[:code_list]
-            overall[key][:items] = {}
-          end
-          overall[key][:items][x[:code_list_item]] = [] unless overall[key][:items].key?(x[:code_list_item]) 
-          overall[key][:items][x[:code_list_item]] << x[:tag]
-        end
-        puts ".."
-        check_file_actual_expected(overall, sub_dir, "tags_actual_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
-        #check_file_actual_expected(overall, sub_dir, "tags_expected_#{index+1}.yaml", equate_method: :hash_equal)
+    # Test removed, tags no longer used.
+    # it "tag analysis" do
+    #   ct_set.each_with_index do |v, index|
+    #     print "Processing: #{v[:uri]}, v#{v[:version]}  "
+    #     query_results = Sparql::Query.new.query(ct_tags(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
+    #     print ".."
+    #     results = query_results.by_object_set([:l, :v, :d, :clid, :cliid, :tag]).map{|x| {label: x[:l], version: x[:v], date: x[:d], code_list: x[:clid], code_list_notation: x[:cln], code_list_label: x[:cll], code_list_item: x[:cliid], tag: x[:tag]}}
+    #     print ".."
+    #     overall = {}
+    #     results.each do |x|
+    #       key = "#{x[:code_list_notation]}"
+    #       if !overall.key?(key) 
+    #         overall[key] = {}
+    #         overall[key][:name] = x[:code_list_label]
+    #         overall[key][:short_name] = x[:code_list_notation]
+    #         overall[key][:identifier] = x[:code_list]
+    #         overall[key][:items] = {}
+    #       end
+    #       overall[key][:items][x[:code_list_item]] = [] unless overall[key][:items].key?(x[:code_list_item]) 
+    #       overall[key][:items][x[:code_list_item]] << x[:tag]
+    #     end
+    #     puts ".."
+    #     check_file_actual_expected(overall, sub_dir, "tags_actual_#{index+1}.yaml", equate_method: :hash_equal, write_file: true)
+    #     #check_file_actual_expected(overall, sub_dir, "tags_expected_#{index+1}.yaml", equate_method: :hash_equal)
         
-        actual = read_yaml_file(sub_dir, "tags_actual_#{index+1}.yaml")
-        expected = read_yaml_file(sub_dir, "tags_expected_#{index+1}.yaml")
-        expected_minus_empty = expected.keys - empty_code_lists(expected)
-        missing = expected_minus_empty - actual.keys
-        extra = actual.keys - expected_minus_empty
-        check_file_actual_expected(missing, sub_dir, "tags_missing_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
-        check_file_actual_expected(extra, sub_dir, "tags_extra_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
-      end
+    #     actual = read_yaml_file(sub_dir, "tags_actual_#{index+1}.yaml")
+    #     expected = read_yaml_file(sub_dir, "tags_expected_#{index+1}.yaml")
+    #     expected_minus_empty = expected.keys - empty_code_lists(expected)
+    #     missing = expected_minus_empty - actual.keys
+    #     extra = actual.keys - expected_minus_empty
+    #     check_file_actual_expected(missing, sub_dir, "tags_missing_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
+    #     check_file_actual_expected(extra, sub_dir, "tags_extra_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
+    #   end
   
-    end
+    # end
 
   end
 

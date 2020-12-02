@@ -970,6 +970,22 @@ describe "Forms", :type => :feature do
       click_on 'Dismiss'
     end
 
+    it "allows to access CRF and aCRF views from Form Editor" do
+      edit_form('FN000150')
+
+      w = window_opened_by { click_on 'CRF' }
+      within_window w do
+        expect(page).to have_content 'CRF View'
+      end
+      w.close
+
+      w = window_opened_by { click_on 'aCRF' }
+      within_window w do
+        expect(page).to have_content 'aCRF View'
+      end
+      w.close
+    end
+
   end
 
   describe "Forms Editor, Locked State", :type => :feature, js:true do

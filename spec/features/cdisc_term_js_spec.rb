@@ -228,9 +228,11 @@ describe "CDISC Term", :type => :feature do
       wait_for_ajax_v_long
       expect(page).to have_content 'Submission'
       ui_check_table_info("changes", 1, 10, 68)
-      ui_check_table_cell("changes", 1, 1, "C100391")
+      ui_check_table_cell("changes", 1, 1, "C100391") # Two entries returned, TEST and TESTCD, order not predictable
       ui_check_table_cell("changes", 1, 2, "Corrected QT Interval")
-      ui_check_table_cell("changes", 1, 3, "QTc Correction Method Unspecified")
+      ui_check_table_cell("changes", 2, 1, "C100391")
+      ui_check_table_cell("changes", 2, 2, "Corrected QT Interval")
+      #ui_check_table_cell("changes", 1, 3, "QTc Correction Method Unspecified")
       ui_check_table_cell_no_change_right("changes", 1, 4)
       ui_check_table_cell_no_change_right("changes", 1, 5)
       ui_check_table_cell_edit("changes", 1, 6)

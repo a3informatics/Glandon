@@ -1,8 +1,28 @@
-<% fourth_level_managed_item_breadcrumb(@form, "Forms", forms_path, history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id), "View:", 
-  view_forms_path(id: @form.id, namespace: @form.namespace), "aCRF") %>
-<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Annotated CRF:", :item => @form} %>
-<div class="col-md-8">
-    <%= @html.html_safe %>
-    <%= link_to "Report", acrf_forms_path(:id => @form.id, :namespace => @form.namespace, :format => 'pdf'), :class => "btn ", :target => "_blank" %>
-    <%= link_to "Close", @close_path, :class => "btn " %>
+<% content_for :page_title do %> <%= "aCRF: #{@form.has_identifier.identifier} (#{@form.semantic_version})" %> <% end %>
+
+<%= stylesheet_link_tag 'shared/forms/form_crf' %>
+
+<% third_level_breadcrumb(:forms, @form, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @form, badge: "icon-form-view" } do %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+
+  <div id="crf-panel" class="card col-md-12">
+
+    <div class="card-header">
+      aCRF View
+    </div>
+
+    <div class="card-content">
+      <%= raw @html %>
+    </div>
+
+  </div>
 </div>
