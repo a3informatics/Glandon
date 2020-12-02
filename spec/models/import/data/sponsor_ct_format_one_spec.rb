@@ -634,30 +634,29 @@ describe "Import::SponsorTermFormatOne" do
         puts "Index #{index+1}"
         puts "-------"
         puts ""
-        actual = read_yaml_file(sub_dir, "custom_actual_#{index+1}.yaml")                 # Actual is Excel file
-        expected = read_yaml_file(sub_dir, "custom_properties_expected_#{index+1}.yaml")  # Expected is actual TTL load file
-        actual.each do |key, actual_result|
-          expected_result = expected.find{|k,v| v[:notation] == key}
-          actual_items = actual_result[:items]
-          actual_keys = actual_items.keys.map{|x| x.to_sym}
-          actual_keys = actual_keys.map{|x| "#{x}".start_with?("SC") ? "#{x}"[1..-1].to_sym : x}
-          expected_items = expected_result.last[:items]
+        expected = read_yaml_file(sub_dir, "custom_actual_#{index+1}.yaml")             # Actual yaml file is export from Excel source file
+        actual = read_yaml_file(sub_dir, "custom_properties_expected_#{index+1}.yaml")  # Expected is actual query on TTL load file created above
+        expected.each do |key, expected_result|
+          actual_result = actual.find{|k,v| v[:notation] == key}
+          expected_items = expected_result[:items]
           expected_keys = expected_items.keys.map{|x| x.to_sym}
           expected_keys = expected_keys.map{|x| "#{x}".start_with?("SC") ? "#{x}"[1..-1].to_sym : x}
-          they_match = expected_keys - actual_keys == [] && actual_keys - expected_keys == []
-          puts colourize("Mismatch on children: #{key} ... Missing: #{expected_keys - actual_keys}, Extra: #{actual_keys - expected_keys}", "red") unless they_match
-          actual_items.each do |id, actual_item|
+          actual_items = actual_result.last[:items]
+          actual_keys = actual_items.keys.map{|x| x.to_sym}
+          actual_keys = actual_keys.map{|x| "#{x}".start_with?("SC") ? "#{x}"[1..-1].to_sym : x}
+          they_match = actual_keys - expected_keys == [] && expected_keys - actual_keys == []
+          puts colourize("Mismatch on children: #{key} ... Extra: #{actual_keys - expected_keys}, Missing: #{expected_keys - actual_keys}", "red") unless they_match
+          expected_items.each do |id, expected_item|
             ref = id.start_with?("SC") ? id[1..-1].to_sym : id
-            expected_item = expected_items[ref.to_sym] if expected_items.key?(ref.to_sym)
-            expected_item = expected_items[id.to_sym] if expected_items.key?(id.to_sym)
-            expected_flags = []
-            expected_item.each{|k,v| expected_flags << k if v == 'true'}
-            actual_flags = actual_item.map{|x| x.to_variable_style.to_sym}
-            actual_flags = actual.nil? ? [] : actual_flags
-            they_match = expected_flags - actual_flags == [] && actual_flags - expected_flags == []
-            puts colourize("Mismatch on flags: #{key}, #{id} ... Expected: #{expected_flags}, Actual: #{actual_flags}" , "red") unless they_match
+            actual_item = actual_items[ref.to_sym] if actual_items.key?(ref.to_sym)
+            actual_item = actual_items[id.to_sym] if actual_items.key?(id.to_sym)
+            actual_flags = []
+            actual_item.each{|k,v| actual_flags << k if v == 'true'}
+            expected_flags = expected_item.map{|x| x.to_variable_style.to_sym}
+            expected_flags = expected.nil? ? [] : expected_flags
+            they_match = actual_flags - expected_flags == [] && expected_flags - actual_flags == []
+            puts colourize("Mismatch on flags: #{key}, #{id} ... Actual: #{actual_flags}, Expected: #{expected_flags}" , "red") unless they_match
           rescue => e
-byebug
             puts colourize("Missing child: #{key}, #{id}", "red")
           end
         end
