@@ -1,4 +1,5 @@
 
+
 ##################### Pre-conditions - Given statements
 
 Given /on Community [dD]ashboard/ do
@@ -194,30 +195,39 @@ Then('I see that code list and code list items are maked deleted {string} in ver
   save_screen(TYPE)
 end
 
-Then('a PDF report is generated and contains the {int} entires in the Changes panel') do |int|
-  new_window = window_opened_by { click_link 'PDF Report' }
-  within_window new_window do
-    sleep 10
-    expect(current_path).to include("changes_report.pdf")
-    expect(current_path).to include("thesauri/managed_concepts")
-       
-    save_screen(TYPE)
-    # var x = document.getElementsByTagName('embed')[0]
-    # x.src = "url/to/your.pdf?page=page_number"
-    page.execute_script "window.close();"
-    end
- 
+Then('a PDF report for C-code: {string} is generated and contains the {int} entries in the Changes panel') do |string, int|
+   new_window = window_opened_by { click_link 'PDF Report' }
+   within_window new_window do
+      sleep 10
+      page.execute_script "window.close();"
+     end
+     filename = "#{Rails.root}/cucumber-report/downloads/CDISC_CL_#{string}.pdf"
+    PDF::Reader.open(filename) do |reader| 
+        reader.pages.each do |page|  
+        expect(reader.page(1)).to have_content 'CDISC Terminology Change Report'
+        attach(page.text, 'text/plain')
+        end
+      end
 end
-
+   
 Then('a PDF report is generated and contains the {int} entries in the Submission value changes panel') do |int|
   new_window = window_opened_by { page.find("#report").find(:xpath, '..').click }
   within_window new_window do
     sleep 10
-    expect(current_path).to include("submission_report.pdf")
-    expect(current_path).to include("thesauri/")
-    save_screen(TYPE)
     page.execute_script "window.close();"
   end
+   filename = "#{Rails.root}/cucumber-report/downloads/CDISC_submission.pdf"
+    PDF::Reader.open(filename) do |reader| 
+        log(reader.pdf_version)
+        log(reader.info)
+        log(reader.metadata)
+        log(reader.page_count) 
+        reader.pages.each do |page|  
+        expect(reader.page(1)).to have_content 'CDISC Submission Value Change Report'
+        attach(page.text, 'text/plain')
+         end
+     end
+
  end
 
 Then('all search terminology fields are cleared') do

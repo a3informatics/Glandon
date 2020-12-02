@@ -1,3 +1,12 @@
+##################### Pre-conditions - Given statements
+Given('the Sanofi terminology {string} has been loaded and owner is Sanofi') do |string|
+    click_navbar_terminology
+    wait_for_ajax(20)
+    expect(page).to have_content 'Index: Terminology'
+    expect(page).to have_content string
+    expect( find('//*[@id="index_wrapper"]/div[2]') ).to have_content string
+end
+
 ##################### Then statements #####################
 
 Then('I see {int} code lists created, {int} code lists updated, {int} code list deleted') do |int, int2, int3|

@@ -16,6 +16,8 @@ require 'base64'
 require 'selenium-webdriver'
 require 'nokogiri'
 require 'watir'
+require 'pdf-reader'
+require 'open-uri'
 
 # Load the schema. This is so it is available at class load/elaboration
 #require Rails.root.join('spec/support/data_helpers.rb')
@@ -26,7 +28,6 @@ require 'watir'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 #include NameValueHelpers
 #Latest version settings for CDISC terminology
-
 
 include NameValueHelpers
 include PauseHelpers
@@ -44,9 +45,9 @@ Cucumber::Rails::Database.autorun_database_cleaner = false
 #DatabaseCleaner.strategy = :truncation
 #Cucumber::Rails::Database.javascript_strategy = :truncation
  
-#ENVIRONMENT = 'TEST'
+ENVIRONMENT = 'TEST'
 
-ENVIRONMENT = 'VAL'
+#ENVIRONMENT = 'VAL'
 
 #ENVIRONMENT = 'REMOTE_TEST'
 
@@ -112,9 +113,32 @@ end
 
  TYPE ='Expected'
 
+ download_path="#{Rails.root}/cucumber-report/downloads"
+
 Capybara::Screenshot.autosave_on_failure = false
 Capybara::Screenshot.append_timestamp = false
+
+Capybara.register_driver :selenium_chrome do |app|
+  # Download. The options method has stopped working. Use profile as temp fix (but deprecated)
+  profile = Selenium::WebDriver::Chrome::Profile.new
+
+  profile["download.default_directory"] = download_path
+  # Download. The options method has stopped working. Use profile as temp fix (but deprecated)
+  profile["plugins.always_open_pdf_externally"] = true
+  
+  # options = Selenium::WebDriver::Chrome::Options.new
+  # options.add_preference(:download, {
+  #   prompt_for_download: false,
+  #   default_directory: DownloadHelpers::PATH
+  # })
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  client.timeout = 120
+  Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client, :profile => profile)
+  #Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client, :options => options)
+end
 Capybara.default_driver = :selenium_chrome
+
+
 
 # Keep only the screenshots generated from the last failing test suite
 #Capybara::Screenshot.prune_strategy = :keep_last_run
@@ -131,6 +155,9 @@ else
   # Clean out the screenshot folder before run
   FileUtils.rm_rf(Dir[Capybara::save_path])
 end
+
+ #clean out downloads
+ FileUtils.rm_rf(Dir[download_path])
 
 def zoom_in
   page.execute_script("document.body.style.zoom='100%'")
