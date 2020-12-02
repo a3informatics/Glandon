@@ -88,7 +88,7 @@ describe IsoManagedV2::ImCustomProperties do
     end
 
     it "definitions" do
-      defs = @parent.class.find_custom_property_definitions(CustomPropertyHelpers::TestChild)
+      defs = @parent.class.find_custom_property_definitions
     end
 
     it "missing" do

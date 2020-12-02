@@ -120,7 +120,7 @@ class IsoManagedV2
     # @return [Boolean] true
     def add_missing_custom_properties(uris_or_ids, klass, tx)
       items = missing_custom_properties(uris_or_ids, klass)
-      definitions = klass.find_custom_property_definitions(klass)
+      definitions = klass.find_custom_property_definitions
       items.each do |item|
         definition = definitions.find{|x| x.uri == item[:definition]}
         self.custom_properties << CustomPropertyValue.create(parent_uri: CustomPropertyValue.base_uri, transaction: tx, 

@@ -59,25 +59,52 @@ describe IsoConceptV2::IcCustomProperties do
     after :each do
     end
 
-    it "custom property definitons" do
+    it "custom property definitons, class" do
       create_definition_1
-      results = IsoConceptV2.find_custom_property_definitions(IsoConceptV2)
+      results = IsoConceptV2.find_custom_property_definitions
       check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "find_custom_property_definitions_expected_1.yaml")
       create_definition_2
-      results = IsoConceptV2.find_custom_property_definitions(IsoConceptV2)
+      results = IsoConceptV2.find_custom_property_definitions
       check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "find_custom_property_definitions_expected_2.yaml")
     end
 
-    it "custom property definitons to h" do
+    it "custom property definitons to h, class" do
       create_definition_1
-      results = IsoConceptV2.find_custom_property_definitions_to_h(IsoConceptV2)
+      results = IsoConceptV2.find_custom_property_definitions_to_h
       check_file_actual_expected(results, sub_dir, "find_custom_property_definitions_to_h_expected_1.yaml")
       create_definition_2
-      results = IsoConceptV2.find_custom_property_definitions_to_h(IsoConceptV2)
+      results = IsoConceptV2.find_custom_property_definitions_to_h
       check_file_actual_expected(results, sub_dir, "find_custom_property_definitions_to_h_expected_2.yaml")
       create_definition_3_and_4
-      results = IsoConceptV2.find_custom_property_definitions_to_h(IsoConceptV2)
+      results = IsoConceptV2.find_custom_property_definitions_to_h
       check_file_actual_expected(results, sub_dir, "find_custom_property_definitions_to_h_expected_3.yaml")
+    end
+
+    it "custom property definitons, instance" do
+      create_definition_1
+      create_definition_2
+      object = IsoConceptV2.new(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
+      object.save
+      cp_1 = create_value("Def 1 Value", object, object, @definition_1)
+      results = object.find_custom_property_definitions
+      check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "find_custom_property_definitions_expected_4.yaml")
+      cp_2 = create_value("Def 2 Value", object, object, @definition_2)
+      results = object.find_custom_property_definitions
+      check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "find_custom_property_definitions_expected_5.yaml")
+    end
+
+    it "custom property definitons to h, instance" do
+      create_definition_1
+      create_definition_2
+      object = IsoConceptV2.new(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
+      object.save
+      cp_1 = create_value("Def 1 Value", object, object, @definition_1)
+      results = object.find_custom_property_definitions_to_h
+      check_file_actual_expected(results, sub_dir, "find_custom_property_definitions_expected_6.yaml")
+      cp_2 = create_value("Def 2 Value", object, object, @definition_2)
+      results = object.find_custom_property_definitions_to_h
+      check_file_actual_expected(results, sub_dir, "find_custom_property_definitions_expected_7.yaml")
+
     end
 
   end
@@ -195,7 +222,7 @@ describe IsoConceptV2::IcCustomProperties do
       check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_1a.yaml")
       create_definition_1
       create_definition_2
-      results = IsoConceptV2.find_custom_property_definitions(IsoConceptV2)
+      results = IsoConceptV2.find_custom_property_definitions
       results = object.create_custom_properties
       results = object.load_custom_properties
       check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_1b.yaml")
