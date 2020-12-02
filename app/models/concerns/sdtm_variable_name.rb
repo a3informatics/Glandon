@@ -35,6 +35,13 @@ class SdtmVariableName
     @prefixed ? "#{C_GENERIC_PREFIX}#{@stem}" : @stem
   end
 
+  # Prefix Match
+  #
+  # @return returns true if the domain prefix matches the first two characters of the variable name
+  def prefix_match?
+    self.name[0,2] == @domain_prefix  ? true : false
+  end
+
   # With Prefix
   #
   # @param [String] prefix the new prefix
