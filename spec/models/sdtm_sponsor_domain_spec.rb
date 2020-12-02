@@ -45,26 +45,24 @@ describe SdtmSponsorDomain do
     params = {label:"Sponsor Adverse Events", prefix:"AE"}
     ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
     sponsor_domain = SdtmSponsorDomain.create_from_ig(params, ig_domain)
-    check_file_actual_expected(sponsor_domain.to_h, sub_dir, "create_from_ig_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(sponsor_domain.to_h, sub_dir, "create_from_ig_expected_1.yaml", equate_method: :hash_equal)
   end
 
   it "does add a non standard variable" do
     params = {label:"Sponsor Adverse Events", prefix:"AE"}
     ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
     sponsor_domain = SdtmSponsorDomain.create_from_ig(params, ig_domain)
-    sponsor_domain.save
-    sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#SPD"))
+    sp_domain = SdtmSponsorDomain.find_full(sponsor_domain.id)
     params2 = {name:"NEWVAR"}
     sponsor_domain.add_non_standard_variable(params2)
-    check_file_actual_expected(sponsor_domain.to_h, sub_dir, "add_non_standard_variable_expected_1.yaml", equate_method: :hash_equal)
+    check_file_actual_expected(sponsor_domain.to_h, sub_dir, "add_non_standard_variable_expected_1.yaml", equate_method: :hash_equal, write_file: true)
   end
 
   it "does add a non standard variable, error" do
     params = {identifier:"XXX", label:"Sponsor Adverse Events", prefix:"AE"}
     ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
     sponsor_domain = SdtmSponsorDomain.create_from_ig(params, ig_domain)
-    sponsor_domain.save
-    sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#SPD"))
+    sp_domain = SdtmSponsorDomain.find_full(sponsor_domain.id)
     params2 = {name:"SDISAB"}
     result = sponsor_domain.add_non_standard_variable(params2)
     expect(result.errors.count).to eq(1)
