@@ -30,12 +30,12 @@ export default class SelectablePanel extends TablePanel {
     allowAll = false,
     onSelect = () => { },
     onDeselect = () => { }
-  }) {
+  }, args = {}) {
 
     super(
       { ...tablePanelOptions },
       { multiple, showSelectionInfo, ownershipColorBadge, onSelect,
-        onDeselect, allowAll }
+        onDeselect, allowAll, ...args }
     );
 
   }
@@ -153,7 +153,6 @@ export default class SelectablePanel extends TablePanel {
   get _tableOpts() {
     const options = super._tableOpts;
 
-    options.columns = [...this.extraColumns];
     options.language.emptyTable = "No items found.";
 
     // Selection settings

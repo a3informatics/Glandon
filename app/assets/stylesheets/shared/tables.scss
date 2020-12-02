@@ -109,12 +109,18 @@
   padding: 0 6px;
 }
 
+// Disabled Table
+table.table-disabled {
+  pointer-events: none !important;
+  opacity: .5 !important;
+}
+
 table th.nowrap {
   white-space: nowrap;
 }
 
 table th.th-xwide {
-  min-width: 320px;
+  min-width: 360px;
 }
 
 table th.th-wide {

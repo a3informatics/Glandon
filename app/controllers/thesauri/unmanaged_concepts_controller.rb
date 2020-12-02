@@ -25,30 +25,15 @@ class Thesauri::UnmanagedConceptsController < ManagedItemsController
     render json: {data: tc.differences}
   end
 
-  # Will be required for Hierarchical terminologies
-  # def edit
-  #   authorize Thesaurus
-  #   @thesaurus_concept = Thesaurus::UnmanagedConcept.find_minimum(params[:id])
-  #   parent = Thesaurus::ManagedConcept.find_minimum(the_params[:parent_id])
-  #   @token = get_token(parent)
-  #   if @token.nil?
-  #     flash[:error] = "The edit lock has timed out."
-  #     redirect_to edit_lock_lost_link(parent)
-  #   else
-  #     @close_path = edit_lock_lost_link(parent)
-  #     @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
-  #   end
-  # end
-
   def update
     authorize Thesaurus
     tc = Thesaurus::UnmanagedConcept.find_children(protect_from_bad_id(params))
     parent = Thesaurus::ManagedConcept.find_minimum(edit_params[:parent_id])
     return true unless check_lock_for_item(parent)
-    tc = tc.update_with_clone(edit_params, parent)
+    tc = handle_update_with_clone(tc, edit_params, parent)
     if tc.errors.empty?
       AuditTrail.update_item_event(current_user, parent, "Code list updated.") if @lock.token.refresh == 1
-      result = tc.simple_to_h
+      result = tc.simple_to_h(parent, edit_params[:with_custom_props])
       edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: tc.id, unmanaged_concept: {parent_id: parent.id}})
       delete_path = thesauri_unmanaged_concept_path({id: tc.id, unmanaged_concept: {parent_id: parent.id}})
       result.reverse_merge!({edit_path: edit_path, delete_path: delete_path})
@@ -58,17 +43,17 @@ class Thesauri::UnmanagedConceptsController < ManagedItemsController
     end
   end
 
-  def update_properties
-    authorize Thesaurus, :edit?
-    tc = Thesaurus::UnmanagedConcept.find_children(protect_from_bad_id(params))
-    parent = Thesaurus::ManagedConcept.find_minimum(edit_params[:parent_id])
-    return true unless check_lock_for_item(parent)
-    tc = tc.update_with_clone(edit_params, parent)
-    return true if item_errors(tc)
-    return true if lock_item_errors 
-    AuditTrail.update_item_event(current_user, parent, "Code list updated.") if @lock.token.refresh == 1
-    render :json => {:data => [tc.simple_to_h]}, :status => 200
-  end
+  # def update_properties
+  #   authorize Thesaurus, :edit?
+  #   tc = Thesaurus::UnmanagedConcept.find_children(protect_from_bad_id(params))
+  #   parent = Thesaurus::ManagedConcept.find_minimum(edit_params[:parent_id])
+  #   return true unless check_lock_for_item(parent)
+  #   tc = tc.update_with_clone(edit_params, parent)
+  #   return true if item_errors(tc)
+  #   return true if lock_item_errors 
+  #   AuditTrail.update_item_event(current_user, parent, "Code list updated.") if @lock.token.refresh == 1
+  #   render :json => {:data => [tc.simple_to_h]}, :status => 200
+  # end
 
   def destroy
     authorize Thesaurus
@@ -110,32 +95,6 @@ class Thesauri::UnmanagedConceptsController < ManagedItemsController
     render json: {data: results, offset: params[:offset], count: results.count}, status: 200
   end
 
-  # def cross_reference_start
-  # 	authorize ThesaurusConcept, :show?
-  # 	results = []
-  # 	@direction = the_params[:direction].to_sym
-  #   refs = ThesaurusConcept.cross_references(params[:id], the_params[:namespace], @direction)
-  #   refs.each { |x| results << x[:uri].to_s }
-  #   render json: results
-  # end
-
-  # def cross_reference_details
-  # 	authorize ThesaurusConcept, :show?
-  # 	results = []
-  # 	direction = the_params[:direction].to_sym
-  #   item = ThesaurusConcept.find(params[:id], the_params[:namespace])
-  #   item.set_parent
-  #   item.parentIdentifier = item.identifier if item.parentIdentifier.empty?
-  #   item.cross_reference_details(direction).each do |detail|
-  #   	cr_items = []
-  #   	detail[:cross_references].each do |uri|
-  #   		cr_items << ThesaurusConcept.find(uri.id, uri.namespace).to_json
-  #   	end
-  #   	results << { item: item.to_json, comments: detail[:comments], cross_references: cr_items }
-  #   end
-  #   render json: results
-  # end
-
   def synonym_links
     authorize Thesaurus, :show?
     tc = Thesaurus::UnmanagedConcept.find_children(protect_from_bad_id(params))
@@ -161,6 +120,16 @@ class Thesauri::UnmanagedConceptsController < ManagedItemsController
   end
 
 private
+
+  # Handle update with clone.
+  def handle_update_with_clone(tc, params, parent)
+    return tc.update_with_clone(edit_params, parent) unless params.key?(:custom_property)
+    params = params[:custom_property]
+    cp = CustomPropertyValue.find(protect_from_bad_id(params))
+    cp.update_with_clone(params, parent)
+    tc.merge_errors(cp, "Custom")
+    tc
+  end
 
   def add_link_paths(results)
     results.each do |syn, syn_results|
@@ -195,30 +164,6 @@ private
     return history_thesauri_index_path(identifier: thesaurus.identifier, scope_id: thesaurus.scope.id)
   end
 
-  # def audit_and_respond(thesaurus, thesaurus_concept, token)
-  #   if thesaurus_concept.errors.empty?
-  #     AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
-  #     results = []
-  #     results << thesaurus_concept.to_json
-  #     render :json => {:data => results}, :status => 200
-  #   else
-  #     render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
-  #   endz
-  # end
-
-  # def get_parent_link(thesaurus_concept)
-  #   link = ""
-  #   info = IsoConcept.find_parent(thesaurus_concept.uri)
-  #   if !info.nil?
-  #     if info[:rdf_type] == Thesaurus::C_RDF_TYPE_URI.to_s
-  #       link = edit_thesauri_path(id: info[:uri].id, namespace: info[:uri].namespace)
-  #     else
-  #       link = edit_thesaurus_concept_path(id: info[:uri].id, namespace: info[:uri].namespace)
-  #     end
-  #   end
-  #   return link
-  # end
-
   def link_params
     return {} if params.dig(:unmanaged_concept, :context_id).nil?
     return {} if params.dig(:unmanaged_concept, :context_id).empty?
@@ -230,7 +175,7 @@ private
   end
 
   def edit_params
-    params.require(:edit).permit(:notation, :synonym, :definition, :preferred_term, :label, :parent_id).to_h
+    params.require(:edit).permit(:notation, :synonym, :definition, :preferred_term, :label, :parent_id, :with_custom_props, :custom_property => [:id, :value]).to_h
   end
 
 end

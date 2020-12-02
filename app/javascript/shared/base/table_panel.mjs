@@ -50,7 +50,7 @@ export default class TablePanel {
       errorDiv, ...args
     });
 
-    this.initialize();
+    this.initialize( deferLoading );
     this._setListeners();
 
   }
@@ -122,11 +122,12 @@ export default class TablePanel {
   }
 
   /**
-   * Initialize the Table Panel
+   * Initialize the Table Panel and listeners
    */
   initialize() {
 
     this._initTable();
+    this._setTableListeners();
 
     if ( !this.deferLoading )
       this.loadData();
@@ -138,10 +139,9 @@ export default class TablePanel {
    */
   destroy() {
 
-    this.table.clear()
-              .destroy();
-
-    $(`${ this.selector } tbody`).empty();
+    this.table.destroy();
+    $(`${ this.selector } tbody`).unbind()
+                                 .empty();
 
   }
 
@@ -151,8 +151,15 @@ export default class TablePanel {
 
   /**
    * Sets event listeners, handlers
+   * Used for non-table related listeners only!
    */
   _setListeners() { }
+
+  /**
+   * Sets event listeners, handlers
+   * Used for table related listeners only!
+   */
+  _setTableListeners() { }
 
   /**
    * Fetch data in a single request, handle loading and updates
@@ -267,6 +274,9 @@ export default class TablePanel {
    */
   _onDataLoaded() {
 
+    // Update processing flag so that loadCallback can refer to the correct processing state
+    this.isProcessing = false;
+
     if ( this.loadCallback )
       this.loadCallback( this.table );
 
@@ -348,7 +358,7 @@ export default class TablePanel {
 
     let minHeight = 300,
         docHeight = $( document ).innerHeight(),
-        yHeight = Math.max( docHeight - 250, minHeight );
+        yHeight = Math.max( docHeight - 200, minHeight );
 
     return {
       autoWidth: true,
@@ -379,7 +389,7 @@ export default class TablePanel {
         emptyTable: 'No data.',
         processing: renderSpinner( 'small' )
       },
-      buttons: this.buttons
+      buttons: [...this.buttons]
     }
 
     if ( this.autoHeight )

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CustomPropertySet do
+describe IsoConceptV2::CustomPropertySet do
 	
 	include DataHelpers
   include SecureRandomHelpers
@@ -32,7 +32,7 @@ describe CustomPropertySet do
        uri: {}
       }
     ]
-    item = CustomPropertySet.new
+    item = IsoConceptV2::CustomPropertySet.new
     item << IsoConceptV2.new(label: "1")
     item << IsoConceptV2.new(label: "1")
     item << IsoConceptV2.new(label: "1")
@@ -48,7 +48,7 @@ describe CustomPropertySet do
 
   def create_definition_2
     @definition_2 = CustomPropertyDefinition.create(datatype: "string", label: "Other", 
-      description: "A description", default: "Default String",
+      description: "A description other", default: "Default Other",
       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
       uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD2"))
   end
@@ -64,20 +64,50 @@ describe CustomPropertySet do
       {name: "Name", :value=>"String 2"},
       {name: "Name", :value=>"String 3"}
     ]
-    custom_set = CustomPropertySet.new
+    custom_set = IsoConceptV2::CustomPropertySet.new
     custom_set << create_value("String 1", 1)
     custom_set << create_value("String 2", 2)
     custom_set << create_value("String 3", 3)
     expect(custom_set.name_value_pairs).to eq(expected)
   end
 
+  it "return_values" do
+    create_definition_1
+    create_definition_2
+    expected = 
+    {
+      name: {:id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1BWIzE=", :value=>"String 1"},
+      other: {:id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1BWIzI=", :value=>"String 2"}
+    }
+    custom_set = IsoConceptV2::CustomPropertySet.new
+    custom_set << create_value("String 1", 1)
+    custom_set << create_value("String 2", 2, @definition_2)
+    expect(custom_set.return_values).to eq(expected)
+  end
+
+  it "clear" do
+    create_definition_1
+    expected = [
+      {name: "Name", :value=>"String 1"},
+      {name: "Name", :value=>"String 2"},
+      {name: "Name", :value=>"String 3"}
+    ]
+    custom_set = IsoConceptV2::CustomPropertySet.new
+    custom_set << create_value("String 1", 1)
+    custom_set << create_value("String 2", 2)
+    custom_set << create_value("String 3", 3)
+    expect(custom_set.name_value_pairs).to eq(expected)
+    custom_set.clear
+    expect(custom_set.name_value_pairs).to eq([])
+  end
+
   it "diff? same" do
     create_definition_1
     create_definition_2
-    custom_set_1 = CustomPropertySet.new
+    custom_set_1 = IsoConceptV2::CustomPropertySet.new
     custom_set_1 << create_value("First", 1, @definition_1)
     custom_set_1 << create_value("Second", 2, @definition_2)
-    custom_set_2 = CustomPropertySet.new
+    custom_set_2 = IsoConceptV2::CustomPropertySet.new
     custom_set_2 << create_value("First", 1, @definition_1)
     custom_set_2 << create_value("Second", 2, @definition_2)
     expect(custom_set_1.diff?(custom_set_2)).to eq(false)
@@ -86,10 +116,10 @@ describe CustomPropertySet do
   it "diff? different I" do
     create_definition_1
     create_definition_2
-    custom_set_1 = CustomPropertySet.new
+    custom_set_1 = IsoConceptV2::CustomPropertySet.new
     custom_set_1 << create_value("First", 1, @definition_1)
     custom_set_1 << create_value("Second Diff", 2, @definition_2)
-    custom_set_2 = CustomPropertySet.new
+    custom_set_2 = IsoConceptV2::CustomPropertySet.new
     custom_set_2 << create_value("First", 1, @definition_1)
     custom_set_2 << create_value("Second", 2, @definition_2)
     expect(custom_set_1.diff?(custom_set_2)).to eq(true)
@@ -98,11 +128,11 @@ describe CustomPropertySet do
   it "diff? different II" do
     create_definition_1
     create_definition_2
-    custom_set_1 = CustomPropertySet.new
+    custom_set_1 = IsoConceptV2::CustomPropertySet.new
     custom_set_1 << create_value("First", 1, @definition_1)
     custom_set_1 << create_value("Second", 2, @definition_2)
     custom_set_1 << create_value("Third", 2, @definition_2)
-    custom_set_2 = CustomPropertySet.new
+    custom_set_2 = IsoConceptV2::CustomPropertySet.new
     custom_set_2 << create_value("First", 1, @definition_1)
     custom_set_2 << create_value("Second", 2, @definition_2)
     expect(custom_set_1.diff?(custom_set_2)).to eq(true)

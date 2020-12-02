@@ -80,12 +80,23 @@ function dtChildrenColumns(opts = {}) {
 function dtCLEditColumns() {
   return [
     { data: 'identifier' },
-    dtInlineEditColumn('notation', '', '16%'),
-    dtInlineEditColumn('preferred_term', '', '18%'),
-    dtInlineEditColumn('synonym', '', '18%'),
-    dtInlineEditColumn('definition', '', '40%'),
-    dtTagsColumn({ width: '8%', className: 'editable external edit-tags'}),
+    dtInlineEditColumn('notation', {
+      width: '16%'
+    }),
+    dtInlineEditColumn('preferred_term', {
+      width: '18%'
+    }),
+    dtInlineEditColumn('synonym', { width: '18%' }),
+    dtInlineEditColumn('definition', {
+      width: '40%'
+    }),
+    dtTagsColumn({
+      width: '8%',
+      className: 'editable external edit-tags'
+    }),
     dtIndicatorsColumn(),
+
+    // Remove / unlink button
     {
       className: 'fit',
       render: (data, type, r, m) => type === 'display' ?
@@ -105,14 +116,26 @@ function dtBCEditColumns() {
   return [
     dtTrueFalseEditColumn('enabled'),
     dtTrueFalseEditColumn('collect'),
+
     {
       data: 'has_complex_datatype.has_property.alias',
       width: '18%'
     },
-    dtInlineEditColumn('has_complex_datatype.has_property.question_text', 'question_text', '25%'),
-    dtInlineEditColumn('has_complex_datatype.has_property.prompt_text', 'prompt_text', '25%'),
+
+    dtInlineEditColumn('has_complex_datatype.has_property.question_text', {
+      editField: 'question_text',
+      width: '25%'
+    }),
+
+    dtInlineEditColumn('has_complex_datatype.has_property.prompt_text', {
+      editField: 'prompt_text',
+      width: '25%'
+    }),
     { data: "has_complex_datatype.label" },
-    dtInlineEditColumn('has_complex_datatype.has_property.format', 'format'),
+
+    dtInlineEditColumn('has_complex_datatype.has_property.format', {
+      editField: 'format'
+    }),
 
     // Items Picker column
     {

@@ -19,4 +19,11 @@ class String
     self.gsub(/( )/, '_').downcase
   end
 
+  # Variable style to uppercase, space separated
+  #
+  # @example "so_this" turns into "SO THIS"
+  def from_variable_style
+    self.gsub(/(_)/, ' ').upcase
+  end
+
 end

@@ -43,7 +43,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   # @return [Thesaurus::UnmanagedConcept] the resulting object
   def self.create(params, parent)
     params[:parent_uri] = parent.uri
-    super(params)
+    super(params, parent)
   end
   
   # Delete or Unlink. Delete or Unlink child

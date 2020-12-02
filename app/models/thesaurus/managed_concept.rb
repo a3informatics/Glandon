@@ -37,6 +37,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   include Thesaurus::Validation
   include Thesaurus::Ranked
   include Thesaurus::Paired
+  include Thesaurus::McCustomProperties
 
   # Replace If No Change. Replace the current with the previous if no differences.
   #
@@ -342,18 +343,6 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     results
   end
 
-  # See Add Referenced Children below. Doing the same thing.
-  # # Add Extensions
-  # #
-  # # @param uris [Array] set of uris of the items to be added
-  # # @return [Void] no return
-  # def add_extensions(uris)
-  #   transaction = transaction_begin
-  #   uris.each {|x| add_link(:narrower, x)}
-  #   set_ranks(uris, self) if self.ranked?
-  #   transaction_execute
-  # end
-
   # Add Referenced Children. Add children to a code list that are referenced from other code lists. 
   #   Only allow for standard or extension codelists. Subsets use other methods?
   #
@@ -367,6 +356,8 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       add_link(:narrower, uri)
       add_link(:refers_to, uri)
     end
+    add_custom_property_context(uris)
+    add_missing_custom_properties(uris, Thesaurus::UnmanagedConcept, transaction)
     set_ranks(uris, self) if self.ranked?
     transaction_execute
   end
@@ -534,6 +525,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     object.set_initial(object.identifier)
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
     object.add_link(:extends, source.uri)
+    object.add_custom_property_context(source.narrower)
     object
   end
 

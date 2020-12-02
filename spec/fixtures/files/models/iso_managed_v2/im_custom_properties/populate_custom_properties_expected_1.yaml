@@ -1,0 +1,97 @@
+---
+- - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1AjMQ==
+    :uri: http://www.assero.co.uk/CP#1
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomProperty
+    :applies_to: http://www.assero.co.uk/UC#4646b47a-4ae4-4f21-b5e2-565815c8cded
+    :context:
+    - http://www.assero.co.uk/MC#1760cbb1-a370-41f6-a3b3-493c1d9c2238
+    :value: String 1
+    :custom_property_defined_by:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNDVkQx
+      :uri: http://www.assero.co.uk/Test#CVD1
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomPropertyDefinition
+      :datatype: string
+      :default: Default String
+      :label: Some String
+      :description: A description XXX
+      :custom_property_of: http://www.assero.co.uk/Test#UnmanagedConcept
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1AjMg==
+    :uri: http://www.assero.co.uk/CP#2
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomProperty
+    :applies_to: http://www.assero.co.uk/UC#4646b47a-4ae4-4f21-b5e2-565815c8cded
+    :context:
+    - http://www.assero.co.uk/MC#1760cbb1-a370-41f6-a3b3-493c1d9c2238
+    :value: 'true'
+    :custom_property_defined_by:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNDVkQy
+      :uri: http://www.assero.co.uk/Test#CVD2
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomPropertyDefinition
+      :datatype: boolean
+      :default: 'false'
+      :label: A Flag
+      :description: A description YYY
+      :custom_property_of: http://www.assero.co.uk/Test#UnmanagedConcept
+- - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1AjMw==
+    :uri: http://www.assero.co.uk/CP#3
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomProperty
+    :applies_to: http://www.assero.co.uk/UC#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
+    :context:
+    - http://www.assero.co.uk/MC#1760cbb1-a370-41f6-a3b3-493c1d9c2238
+    :value: String 2
+    :custom_property_defined_by:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNDVkQx
+      :uri: http://www.assero.co.uk/Test#CVD1
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomPropertyDefinition
+      :datatype: string
+      :default: Default String
+      :label: Some String
+      :description: A description XXX
+      :custom_property_of: http://www.assero.co.uk/Test#UnmanagedConcept
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1AjNA==
+    :uri: http://www.assero.co.uk/CP#4
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomProperty
+    :applies_to: http://www.assero.co.uk/UC#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
+    :context:
+    - http://www.assero.co.uk/MC#1760cbb1-a370-41f6-a3b3-493c1d9c2238
+    :value: 'false'
+    :custom_property_defined_by:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNDVkQy
+      :uri: http://www.assero.co.uk/Test#CVD2
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomPropertyDefinition
+      :datatype: boolean
+      :default: 'false'
+      :label: A Flag
+      :description: A description YYY
+      :custom_property_of: http://www.assero.co.uk/Test#UnmanagedConcept
+- - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1AjNQ==
+    :uri: http://www.assero.co.uk/CP#5
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomProperty
+    :applies_to: http://www.assero.co.uk/UC#b76597f7-972f-40f4-bed7-e134725cf296
+    :context:
+    - http://www.assero.co.uk/MC#1760cbb1-a370-41f6-a3b3-493c1d9c2238
+    :value: String 3
+    :custom_property_defined_by:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNDVkQx
+      :uri: http://www.assero.co.uk/Test#CVD1
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomPropertyDefinition
+      :datatype: string
+      :default: Default String
+      :label: Some String
+      :description: A description XXX
+      :custom_property_of: http://www.assero.co.uk/Test#UnmanagedConcept
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1AjNg==
+    :uri: http://www.assero.co.uk/CP#6
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomProperty
+    :applies_to: http://www.assero.co.uk/UC#b76597f7-972f-40f4-bed7-e134725cf296
+    :context:
+    - http://www.assero.co.uk/MC#1760cbb1-a370-41f6-a3b3-493c1d9c2238
+    :value: 'false'
+    :custom_property_defined_by:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNDVkQy
+      :uri: http://www.assero.co.uk/Test#CVD2
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomPropertyDefinition
+      :datatype: boolean
+      :default: 'false'
+      :label: A Flag
+      :description: A description YYY
+      :custom_property_of: http://www.assero.co.uk/Test#UnmanagedConcept

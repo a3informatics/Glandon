@@ -1,4 +1,4 @@
-import EditablePanel from 'shared/base/editable_panel'
+import CustomPropsEditablePanel from 'shared/base/custom_properties/cp_editable_panel'
 
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
 import { $ajax } from 'shared/helpers/ajax'
@@ -11,13 +11,13 @@ import { dtCLEditFields } from 'shared/helpers/dt/dt_field_collections'
 /**
  * Code List Editor
  * @description DataTable-based Editor of a Code List (CRUD actions)
- * @extends EditablePanel class from shared/base/editable_panel
+ * @extends CustomPropsEditablePanel module
  * @author Samuel Banas <sab@s-cubed.dk>
  */
-export default class CLEditor extends EditablePanel {
+export default class CLEditor extends CustomPropsEditablePanel {
 
   /**
-   * Create a Panel
+  * Create a CL Editor instance 
    * @param {Object} params Instance parameters
    * @param {string} params.id ID of the currently edited item
    * @param {object} params.urls Must contain urls for 'data', 'update', 'newChild' and 'addChildren'
@@ -28,18 +28,21 @@ export default class CLEditor extends EditablePanel {
   constructor({
     id,
     urls,
-    selector = "#editor-panel table#editor",
+    selector = "#editor-panel #editor",
     helpDialogId = 'cl-edit',
     onEdited = () => {}
   }) {
 
     super({
-      selector,
-      dataUrl: urls.data,
-      updateUrl: urls.update,
-      param: "managed_concept",
-      columns: dtCLEditColumns(),
-      fields: dtCLEditFields()
+      tablePanelOpts: {
+        selector,
+        dataUrl: urls.data,
+        updateUrl: urls.update,
+        param: "managed_concept",
+        columns: dtCLEditColumns(),
+        fields: dtCLEditFields()
+      },
+      enabled: true
     });
 
     Object.assign(this, {
@@ -73,13 +76,12 @@ export default class CLEditor extends EditablePanel {
    */
   addChildren(childrenIds, param = 'set_ids') {
 
-    let data = {}
-    data[param] = childrenIds;
-
     this._executeRequest({
       url: this.urls.addChildren,
       type: 'POST',
-      data,
+      data: {
+        [param]: childrenIds
+      },
       callback: () => this.refresh()
     });
 
@@ -110,6 +112,110 @@ export default class CLEditor extends EditablePanel {
 
 
   /**
+   * Sets event listeners, handlers
+   * Used for table related listeners only
+   */
+  _setTableListeners() {
+
+    super._setTableListeners();
+
+    // Find table body selector 
+    const $tableBody = $( `${ this.selector } tbody` );
+
+    // Edit tags cell click
+    $tableBody.on( 'click', 'td.editable.edit-tags', e => {
+
+      const tagsUrl = this._getRowDataFrom$( e.target ).edit_tags_path;
+
+      tagsUrl && window.open( tagsUrl, '_blank' ).focus();
+
+    });
+
+    // Remove item button click
+    $tableBody.on( 'click', '.remove', e =>
+          this.removeChild( this._getRowFrom$( e.target ) )
+    );
+
+  }
+
+  /**
+   * Sets event listeners, handlers
+   * Used for non-table related listeners only!
+   */
+  _setListeners() {
+
+    super._setListeners();
+
+    // Add New Child button click
+    $( '#new-item-button' ).on( 'click', () => 
+      this.newChild() 
+    );
+
+    // Add Existing Child button click
+    $( '#add-existing-button' ).on( 'click', () => 
+      this.itemSelector.show() 
+    );
+
+    // Refresh button click
+    $( '#refresh-button' ).on( 'click', () => 
+      this.refresh() 
+    );
+
+    // Help dialog button click
+    $( '#editor-help' ).on( 'click', () =>
+          new InformationDialog({
+            div: $( `#information-dialog-${ this.helpDialogId }` )
+          }).show()
+    );
+
+  }
+
+  /**
+   * Formats the update data to be compatible with server
+   * @param {object} d DataTables Editor data object
+   */
+  _preformatUpdateData(d) {
+
+    let fData = super._preformatUpdateData( d );
+
+    // If data present, the edited field is *not* a custom property 
+    if ( d.data ) 
+      d.edit = { 
+        ...fData[0],
+        with_custom_props: this.handler.visible 
+      }
+
+    // Provide the parent (code list) id to the server 
+    Object.assign( d.edit, { 
+      parent_id: this.id
+    });
+
+    delete d.data;
+    return fData;
+
+  }
+
+  /**
+   * Formats the updated data returned from the server before being added to Editor
+   * @override for custom behavior
+   * @param {object} _oldData Data object sent to the server
+   * @param {object} newData Data returned from the server
+   */
+  _postformatUpdatedData(_oldData, newData) {
+
+    // Merge and update edited row data
+    const editedRow = this.table.row( this.editor.modifier().row ),
+          mergedData = Object.assign( {}, editedRow.data(), newData[0] );
+
+    editedRow.data( mergedData );
+
+  }
+
+  
+  /*** Support ***/
+
+
+  /**
    * Perform a server request based on given parameters
    * @param {string} url Url of the request
    * @param {string} type Type of the request
@@ -135,78 +241,6 @@ export default class CLEditor extends EditablePanel {
   }
 
   /**
-   * Sets event listeners, handlers
-   */
-  _setListeners() {
-
-    // Call super's _setListeners first
-    super._setListeners();
-
-    // Edit tags
-    $( this.selector ).on( 'click', 'tbody td.editable.edit-tags', e => {
-
-      const editTagsUrl = this._getRowDataFrom$( e.target ).edit_tags_path;
-
-      if ( editTagsUrl )
-        window.open( editTagsUrl, '_blank' ).focus();
-
-    })
-
-    // Add New Child
-    $( '#new-item-button' ).on( 'click', () => this.newChild() );
-
-    // Add Existing Child
-    $( '#add-existing-button' ).on( 'click', () => this.itemSelector.show() );
-
-    // Refresh
-    $( '#refresh-button' ).on( 'click', () => this.refresh() );
-
-    // Remove item
-    $( this.selector ).on( 'click', 'tbody .remove', e =>
-          this.removeChild( this._getRowFrom$( e.target ) )
-    );
-
-    // Help dialog
-    $('#editor-help').on('click', () =>
-          new InformationDialog({
-            div: $( `#information-dialog-${ this.helpDialogId }` )
-          }).show()
-    );
-
-  }
-
-  /**
-   * Formats the update data to be compatible with server
-   * @param {object} d DataTables Editor data object
-   */
-  _preformatUpdateData(d) {
-
-    const itemId = Object.keys( d.data )[0];
-
-    d.edit = d.data[itemId];
-    d.edit.parent_id = this.id;
-
-    delete d.data;
-
-  }
-
-  /**
-   * Formats the updated data returned from the server before being added to Editor
-   * @override for custom behavior
-   * @param {object} oldData Data object sent to the server
-   * @param {object} newData Data returned from the server
-   */
-  _postformatUpdatedData(oldData, newData) {
-
-    // Merge and update edited row data
-    let editedRow = this.table.row( this.editor.modifier().row );
-        newData = Object.assign( editedRow.data(), newData[0] );
-
-    editedRow.data( newData );
-
-  }
-
-  /**
    * Initialize Items Selector for adding Code List Items to the Code List
    */
   _initSelector() {
@@ -221,13 +255,17 @@ export default class CLEditor extends EditablePanel {
   }
 
   /**
-   * Check if item editable - must have referenced data property set to true
-   * @override super's _editable
+   * Check if item editable - item must a custom property or not be referenced
+   * @extends _editable parent implementation
    * @param {object} modifier Contains the reference to the cell being edited
    * @returns {boolean} true/false ~~ enable/disable editing for the cell
    */
   _editable(modifier) {
-    return !this.table.row( modifier.row ).data().referenced;
+
+    const { referenced } = this.table.row( modifier.row ).data();
+
+    return super._editable( modifier ) || !referenced;
+
   }
 
 
@@ -238,9 +276,6 @@ export default class CLEditor extends EditablePanel {
   get _tableOpts() {
 
     let options = super._tableOpts;
-
-    options.scrollX = true;
-    options.autoWidth = true;
 
     // CSS Styling for editable rows
     options.createdRow = (row, data) => {

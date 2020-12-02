@@ -50,11 +50,6 @@
   background: $grey-bright !important;
 }
 
-table.table-disabled {
-  pointer-events: none !important;
-  opacity: .5 !important;
-}
-
 // Colored TR selects
 
 .table-row-clickable tr.selected.r td:first-of-type::before,
