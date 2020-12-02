@@ -60,6 +60,48 @@ export default class SubsetPanel extends CustomPropsEditablePanel {
 
   }
 
+  /**
+   * Formats the update data to be compatible with server
+   * @param {object} d DataTables Editor data object
+   */
+  _preformatUpdateData(d) {
+
+    let fData = super._preformatUpdateData( d );
+
+    // If data present, the edited field is *not* a custom property 
+    if ( d.data ) 
+      d.edit = { 
+        ...fData[0],
+        with_custom_props: this.handler.visible 
+      }
+
+    // Provide the parent (code list) id to the server 
+    Object.assign( d.edit, { 
+      parent_id: this.id 
+    });
+
+    delete d.data;
+    return fData;
+
+  }
+
+  /**
+   * Formats the updated data returned from the server before being added to Editor
+   * @override for custom behavior
+   * @param {object} _oldData Data object sent to the server
+   * @param {object} newData Data returned from the server
+   */
+  _postformatUpdatedData(_oldData, newData) {
+
+    // Merge and update edited row data
+    const editedRow = this.table.row( this.editor.modifier().row ),
+          { ordinal } = editedRow.data(),
+          mergedData = Object.assign( {}, editedRow.data(), newData[0], { ordinal } );
+
+    editedRow.data( mergedData );
+
+  }
+
 
   /*** Support ***/
 

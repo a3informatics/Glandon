@@ -281,22 +281,31 @@ export default class CustomPropsHandler {
   /**
    * Destroys the current DataTable instance, performs specified action and re-initializes DataTable with cached data
    * @param {function} action Function to execute while TablePanel instance destroyed, passed cached tableData as argument
+   * @param {boolean} restorePaging Specifies whether the page and settings should be restored to previous state, optional
    */
-  _destroyExecuteInit(action = () => {}) {
+  _destroyExecuteInit(action = () => {}, restorePaging = true) {
 
     // Cache table data
-    const tableData = this.tablePanel.rowDataToArray;
+    const tp = this.tablePanel,
+          data = tp.rowDataToArray, 
+          { page, length } = tp.table.page.info();
 
     // Destroy DataTable instance
-    this.tablePanel.destroy();
+    tp.destroy();
 
     // Run action
-    action( tableData );
+    action( data );
 
     // Re-initialize table and render data
-    this.tablePanel.deferLoading = true;
-    this.tablePanel.initialize();
-    this.tablePanel._render( tableData );
+    tp.deferLoading = true;
+    tp.initialize();
+    tp._render( data );
+
+    // Restore the paging state 
+    if ( restorePaging )
+      tp.table.page.len( length )
+                   .page( page )
+                   .draw( 'page' );
 
   }
 

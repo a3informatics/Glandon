@@ -138,7 +138,8 @@ export default class CustomPropsEditablePanel extends EditablePanel {
       custom_property: {
         id: data.id,
         value: data[field]
-      }
+      },
+      with_custom_props: true
     }
   
   }

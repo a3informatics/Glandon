@@ -76,13 +76,12 @@ export default class CLEditor extends CustomPropsEditablePanel {
    */
   addChildren(childrenIds, param = 'set_ids') {
 
-    let data = {}
-    data[param] = childrenIds;
-
     this._executeRequest({
       url: this.urls.addChildren,
       type: 'POST',
-      data,
+      data: {
+        [param]: childrenIds
+      },
       callback: () => this.refresh()
     });
 
@@ -113,6 +112,110 @@ export default class CLEditor extends CustomPropsEditablePanel {
 
 
   /**
+   * Sets event listeners, handlers
+   * Used for table related listeners only
+   */
+  _setTableListeners() {
+
+    super._setTableListeners();
+
+    // Find table body selector 
+    const $tableBody = $( `${ this.selector } tbody` );
+
+    // Edit tags cell click
+    $tableBody.on( 'click', 'td.editable.edit-tags', e => {
+
+      const tagsUrl = this._getRowDataFrom$( e.target ).edit_tags_path;
+
+      tagsUrl && window.open( tagsUrl, '_blank' ).focus();
+
+    });
+
+    // Remove item button click
+    $tableBody.on( 'click', '.remove', e =>
+          this.removeChild( this._getRowFrom$( e.target ) )
+    );
+
+  }
+
+  /**
+   * Sets event listeners, handlers
+   * Used for non-table related listeners only!
+   */
+  _setListeners() {
+
+    super._setListeners();
+
+    // Add New Child button click
+    $( '#new-item-button' ).on( 'click', () => 
+      this.newChild() 
+    );
+
+    // Add Existing Child button click
+    $( '#add-existing-button' ).on( 'click', () => 
+      this.itemSelector.show() 
+    );
+
+    // Refresh button click
+    $( '#refresh-button' ).on( 'click', () => 
+      this.refresh() 
+    );
+
+    // Help dialog button click
+    $( '#editor-help' ).on( 'click', () =>
+          new InformationDialog({
+            div: $( `#information-dialog-${ this.helpDialogId }` )
+          }).show()
+    );
+
+  }
+
+  /**
+   * Formats the update data to be compatible with server
+   * @param {object} d DataTables Editor data object
+   */
+  _preformatUpdateData(d) {
+
+    let fData = super._preformatUpdateData( d );
+
+    // If data present, the edited field is *not* a custom property 
+    if ( d.data ) 
+      d.edit = { 
+        ...fData[0],
+        with_custom_props: this.handler.visible 
+      }
+
+    // Provide the parent (code list) id to the server 
+    Object.assign( d.edit, { 
+      parent_id: this.id
+    });
+
+    delete d.data;
+    return fData;
+
+  }
+
+  /**
+   * Formats the updated data returned from the server before being added to Editor
+   * @override for custom behavior
+   * @param {object} _oldData Data object sent to the server
+   * @param {object} newData Data returned from the server
+   */
+  _postformatUpdatedData(_oldData, newData) {
+
+    // Merge and update edited row data
+    const editedRow = this.table.row( this.editor.modifier().row ),
+          mergedData = Object.assign( {}, editedRow.data(), newData[0] );
+
+    editedRow.data( mergedData );
+
+  }
+
+  
+  /*** Support ***/
+
+
+  /**
    * Perform a server request based on given parameters
    * @param {string} url Url of the request
    * @param {string} type Type of the request
@@ -138,96 +241,6 @@ export default class CLEditor extends CustomPropsEditablePanel {
   }
 
   /**
-   * Sets event listeners, handlers
-   * Used for table related listeners only
-   */
-  _setTableListeners() {
-
-    // Call super's _setTableListeners first
-    super._setTableListeners();
-
-    // Edit tags
-    $( `${ this.selector } tbody` ).on( 'click', 'td.editable.edit-tags', e => {
-
-      const editTagsUrl = this._getRowDataFrom$( e.target ).edit_tags_path;
-
-      if ( editTagsUrl )
-        window.open( editTagsUrl, '_blank' ).focus();
-
-    });
-
-    // Remove item
-    $( `${ this.selector } tbody` ).on( 'click', '.remove', e =>
-          this.removeChild( this._getRowFrom$( e.target ) )
-    );
-
-  }
-
-  /**
-   * Sets event listeners, handlers
-   * Used for non-table related listeners only!
-   */
-  _setListeners() {
-
-    // Call super's _setListeners first
-    super._setListeners();
-
-    // Add New Child
-    $( '#new-item-button' ).on( 'click', () => this.newChild() );
-
-    // Add Existing Child
-    $( '#add-existing-button' ).on( 'click', () => this.itemSelector.show() );
-
-    // Refresh
-    $( '#refresh-button' ).on( 'click', () => this.refresh() );
-
-    // Help dialog
-    $('#editor-help').on('click', () =>
-          new InformationDialog({
-            div: $( `#information-dialog-${ this.helpDialogId }` )
-          }).show()
-    );
-
-  }
-
-  /**
-   * Formats the update data to be compatible with server
-   * @param {object} d DataTables Editor data object
-   */
-  _preformatUpdateData(d) {
-
-    let fData = super._preformatUpdateData( d );
-
-    if ( !d.data )
-      return fData;
-
-    d.edit = {
-      ...fData[0],
-      parent_id: this.id
-    }
-
-    delete d.data;
-    return fData;
-
-  }
-
-  /**
-   * Formats the updated data returned from the server before being added to Editor
-   * @override for custom behavior
-   * @param {object} oldData Data object sent to the server
-   * @param {object} newData Data returned from the server
-   */
-  _postformatUpdatedData(oldData, newData) {
-
-    // Merge and update edited row data
-    let editedRow = this.table.row( this.editor.modifier().row );
-        newData = Object.assign( editedRow.data(), newData[0] );
-
-    editedRow.data( newData );
-
-  }
-
-  /**
    * Initialize Items Selector for adding Code List Items to the Code List
    */
   _initSelector() {
@@ -249,7 +262,7 @@ export default class CLEditor extends CustomPropsEditablePanel {
    */
   _editable(modifier) {
 
-    const referenced = this.table.row( modifier.row ).data().referenced;
+    const { referenced } = this.table.row( modifier.row ).data();
 
     return super._editable( modifier ) || !referenced;
 

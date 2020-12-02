@@ -159,12 +159,11 @@ export default class SubsetEditor {
 
     this._loading( true );
 
-    let dataObj = {}
-    dataObj[ this.param ] = data;
-
     $ajax({
       url, type,
-      data: dataObj,
+      data: {
+        [ this.param ]: data
+      },
       done: d => {
         callback( d );
         this.onEdit();

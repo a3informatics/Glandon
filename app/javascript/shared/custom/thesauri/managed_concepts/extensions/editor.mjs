@@ -35,9 +35,9 @@ export default class ExtensionEditor extends CLEditor {
   /**
    * Add one or more existing Code List Items to Code List
    * @param {Array} childrenIds Set of Unmanaged Concept IDs to be added to Code List
-   * @param {string} param Name of the UC IDs parameter
+   * @param {string} _param Name of the UC IDs parameter
    */
-  addChildren(childrenIds, param) {
+  addChildren(childrenIds, _param) {
     super.addChildren( childrenIds, 'extension_ids' );
   }
 
@@ -49,7 +49,7 @@ export default class ExtensionEditor extends CLEditor {
 
     childRow.data().delete === true ?
         super.removeChild( childRow ) :
-        alerts.error( 'This item cannot be removed as it is native to the extension.');
+        alerts.error( 'This item cannot be removed as it is native to the extension.' );
 
   }
 
@@ -72,7 +72,7 @@ export default class ExtensionEditor extends CLEditor {
 
     // Item has no synonyms
     if ( count < 1 ) {
-      alerts.warning( 'Selected item has no synonyms.');
+      alerts.warning( 'Selected item has no synonyms.' );
       return;
     }
 
@@ -80,12 +80,15 @@ export default class ExtensionEditor extends CLEditor {
     $confirm({
       subtitle: `${count} new item(s) will be created in this extension based
                  on the selected synonyms.`,
-      callback: () => this._executeRequest({
-        url: this.urls.newChildSynonym,
-        type: 'POST',
-        data: { reference_id: item.id },
-        callback: () => this.refresh()
-      })
+      callback: () => 
+        this._executeRequest({
+          url: this.urls.newChildSynonym,
+          type: 'POST',
+          data: { 
+            reference_id: item.id 
+          },
+          callback: () => this.refresh()
+        })
     });
 
   }
@@ -103,10 +106,14 @@ export default class ExtensionEditor extends CLEditor {
     super._setListeners();
 
     // New Items from synonyms enable
-    $( '#nifs-button' ).on( 'click', () => this._toggleNifs( true ) );
+    $( '#nifs-button' ).on( 'click', () => 
+      this._toggleNifs( true ) 
+    );
 
     // New Items from synonyms cancel
-    $( '#nifs-cancel' ).on( 'click', () => this._toggleNifs( false ) );
+    $( '#nifs-cancel' ).on( 'click', () => 
+      this._toggleNifs( false ) 
+    );
 
   }
 
@@ -119,10 +126,9 @@ export default class ExtensionEditor extends CLEditor {
     super._setTableListeners();
 
     // New Items from synonyms select row
-    $( this.selector ).on( 'click', 'tbody tr', e => {
+    $( this.selector ).on( 'click', 'tbody tr', ({target}) => {
 
-      if ( this.nifsEnabled )
-        this.newItemsFromSynonyms( this._getRowDataFrom$( e.target ) );
+      this.nifsEnabled && this.newItemsFromSynonyms( this._getRowDataFrom$( target ) );
 
     });
 
