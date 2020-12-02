@@ -8,6 +8,8 @@ module CustomPropertyHelpers
 
     object_property :narrower, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", children: true
 
+    include Thesaurus::McCustomProperties
+
   end
 
   class TestChild < IsoConceptV2

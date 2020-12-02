@@ -110,4 +110,22 @@ describe IsoManagedV2::ImCustomProperties do
 
   end
 
+  describe "missing custom properties" do
+
+    before :each do
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
+      load_files(schema_files, data_files)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    after :each do
+    end
+
+    it "existing custom property set" do
+      object = IsoManagedV2.new
+      expect(object.existing_custom_property_set).to eq([])
+    end
+
+  end
+
 end

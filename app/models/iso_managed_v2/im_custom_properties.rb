@@ -66,6 +66,7 @@ class IsoManagedV2
     # @param [Array] uris_or_ids array of uris or ids of the items for which the custom properties are to be updated
     # @return [Boolean] true 
     def add_custom_property_context(uris_or_ids)
+      return true if uris_or_ids.empty?
       update_query = %Q{ 
         INSERT 
         { 
@@ -80,6 +81,15 @@ class IsoManagedV2
       }      
       partial_update(update_query, [:isoC])
       true
+    end
+
+    # Existing Custom Property Set. The set of uris that [may] contain custom properties
+    #   THis version should be overloaded as needed by application classes.
+    #
+    # @param [object] contaxt the context, defaults to self
+    # @return [Array] array of URIs for items having context. Always empty.
+    def existing_custom_property_set
+      []
     end
 
     # Missing Custom Properties

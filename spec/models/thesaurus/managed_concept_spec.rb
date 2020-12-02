@@ -2209,6 +2209,7 @@ describe "Thesaurus::ManagedConcept" do
       @tc_2.definition = "Copenhagen"
       @tc_2.extensible = false
       @tc_2.notation = "CPH"
+      @tc_2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Kobenhavn")
       @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
       @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
       sparql = Sparql::Update.new
@@ -2352,7 +2353,7 @@ describe "Thesaurus::ManagedConcept" do
     it "clone a code list, next version" do
       add_cp_1
       add_cp_2
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       tc_1 = Thesaurus::UnmanagedConcept.create({label: "Terminal 1", identifier: "A00023", definition: "A definition", notation: "T1"}, tc)
       tc_2 = Thesaurus::UnmanagedConcept.create({label: "Terminal 2A", identifier: "A00024", definition: "A definition", notation: "T2A"}, tc)
       tc_3 = Thesaurus::UnmanagedConcept.create({label: "Cow Shed", identifier: "A00025", definition: "A definition", notation: "T2B"}, tc)

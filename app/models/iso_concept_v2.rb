@@ -172,9 +172,9 @@ class IsoConceptV2 < Fuseki::Base
   # @return [Object] the cloned object.
   def clone(context=self)
     object = super()
-    return object unless self.custom_properties?
-    self.load_custom_properties(context)
-    object.custom_properties = self.custom_properties
+    #return object unless self.custom_properties?
+    #self.load_custom_properties(context)
+    #object.custom_properties = self.custom_properties
     object
   end
   
