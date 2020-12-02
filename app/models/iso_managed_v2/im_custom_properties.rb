@@ -138,8 +138,7 @@ class IsoManagedV2
         SELECT DISTINCT ?subject ?definition WHERE
         { 
           VALUES ?subject { #{uris_or_ids.map{|x| self.class.as_uri(x).to_ref}.join(" ")} }
-          ?e rdf:type isoC:CustomProperty .
-          ?e isoC:customPropertyDefinedBy ?definition .
+          ?definition rdf:type isoC:CustomPropertyDefinition .
           ?d isoC:customPropertyOf #{klass.rdf_type.to_ref} .
           FILTER ( NOT EXISTS {?subject ^isoC:appliesTo/isoC:customPropertyDefinedBy ?definition})
         }

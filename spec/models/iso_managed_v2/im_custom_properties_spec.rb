@@ -142,9 +142,9 @@ describe IsoManagedV2::ImCustomProperties do
 
     it "existing custom property set" do
       results = @parent.find_custom_property_definitions
-      check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "custom_property_definitions_expected_1a.yaml", write_file: true)
+      check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "custom_property_definitions_expected_1a.yaml")
       results = @parent.find_custom_property_definitions_to_h
-      check_file_actual_expected(results, sub_dir, "custom_property_definitions_expected_1b.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "custom_property_definitions_expected_1b.yaml")
     end
 
   end
