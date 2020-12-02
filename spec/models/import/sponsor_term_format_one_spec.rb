@@ -122,9 +122,9 @@ describe "Import::SponsorTermFormatOne" do
     ["http://www.s-cubed.dk/C66767/V1#C66767", "http://www.s-cubed.dk/SN000001/V1#SN000001", 
       "http://www.s-cubed.dk/NP001002P/V1#NP001002P"].each do |uri|
       parent = Thesaurus::ManagedConcept.find_full(Uri.new(uri: uri))
-      results[parent.uri.to_s][""] = parent.find_custom_properties.name_value_pairs
+      results[parent.uri.to_s][""] = parent.load_custom_properties.name_value_pairs
       parent.narrower.each do |child|
-        results[parent.uri.to_s][child.uri.to_s] = child.find_custom_properties(parent).name_value_pairs
+        results[parent.uri.to_s][child.uri.to_s] = child.load_custom_properties(parent).name_value_pairs
       end
     end
     check_file_actual_expected(results, sub_dir, "custom_properties_expected_3.yaml", equate_method: :hash_equal)

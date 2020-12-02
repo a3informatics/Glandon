@@ -198,7 +198,7 @@ module Import::STFOClasses
         if new_child.nil?
           add_error("Subset of extension, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
-          new_child.custom_properties_add(child)
+          new_child.custom_properties.merge(child.custom_properties)
           new_narrower << new_child
         end
       end
@@ -242,9 +242,6 @@ module Import::STFOClasses
         if new_child.nil?
           add_error("CDISC Subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
-          #new_child.rank = child.rank 
-          #new_child.tagged = child.tagged
-add_log("Copying properties #{child.identifier}")
           copy_properties_from_to(child, new_child)
           new_narrower << new_child
         end
@@ -273,9 +270,6 @@ add_log("Copying properties #{child.identifier}")
         if new_child.nil?
           add_error("Sponsor subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
-          #new_child.rank = child.rank 
-          #new_child.tagged = child.tagged
-add_log("Copying properties #{child.identifier}")
           copy_properties_from_to(child, new_child)
           new_narrower << new_child
         end
@@ -306,9 +300,6 @@ add_log("Copying properties #{child.identifier}")
         if new_child.nil?
           add_error("Sponsor subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
-          #new_child.rank = child.rank 
-          #new_child.tagged = child.tagged
-add_log("Copying properties #{child.identifier}")
           copy_properties_from_to(child, new_child)
           new_narrower << new_child
         end
@@ -358,7 +349,6 @@ add_log("Copying properties #{child.identifier}")
       self.narrower.each do |child|
         new_child = sponsor_or_referenced(ct, child, fixes)
         next if new_child.nil?
-add_log("Copying properties #{child.identifier}")
         copy_properties_from_to(child, new_child)
         new_narrower << new_child 
       end
