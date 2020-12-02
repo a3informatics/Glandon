@@ -76,18 +76,22 @@ describe SdtmSponsorDomainsController do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
     end
 
     it "creates from IG" do
-      sdtm_ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+      sdtm_ig_domain = SdtmIgDomain.find(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
       post :create_from_ig, params:{sdtm_sponsor_domain: {identifier: "NEW1", label: "Something", prefix: sdtm_ig_domain.prefix, sdtm_ig_domain_id: sdtm_ig_domain.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "create_from_ig_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "creates from IG, error" do
-      sdtm_ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+      sdtm_ig_domain = SdtmIgDomain.find(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
       post :create_from_ig, params:{sdtm_sponsor_domain: {identifier: "HEIGHT", label: "something", prefix: sdtm_ig_domain.prefix, sdtm_ig_domain_id: sdtm_ig_domain.id}}
       actual = check_error_json_response(response)
       expect(actual[:errors]).to eq(["http://www.s-cubed.dk/AE_Domain/V1#SPD already exists in the database"])
