@@ -126,7 +126,7 @@ private
     return tc.update_with_clone(edit_params, parent) unless params.key?(:custom_property)
     params = params[:custom_property]
     cp = CustomPropertyValue.find(protect_from_bad_id(params))
-    cp.update_with_clone(params, parent)
+    cp.update_and_clone(params, parent)
     tc.merge_errors(cp, "Custom")
     tc
   end
