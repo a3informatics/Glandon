@@ -116,8 +116,6 @@ class Import < ApplicationRecord
       end
     end
     process_tags(objects, sparql)
-
-
     filename = sparql.to_file
     response = CRUD.file(filename) if self.auto_load
     self.update(output_file: ImportFileHelpers.move(filename, "#{configuration[:import_type]}_#{self.id}_load.ttl"),
@@ -251,9 +249,13 @@ private
   def process_custom_properties(item, context, sparql)
     return if item.custom_properties.nil?
     item.custom_properties.each do |custom_value|
-      custom_value.uri = custom_value.create_uri(custom_value.class.base_uri)
-      custom_value.applies_to = item if custom_value.applies_to.nil?
-      custom_value.to_sparql(sparql)
+      begin
+        custom_value.uri = custom_value.create_uri(custom_value.class.base_uri)
+        custom_value.applies_to = item if custom_value.applies_to.nil?
+        custom_value.to_sparql(sparql)
+      rescue => e
+        byebug
+      end
     end
     item.custom_properties.clear
   end

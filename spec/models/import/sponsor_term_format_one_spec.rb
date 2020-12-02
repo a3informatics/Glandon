@@ -435,13 +435,13 @@ describe "Import::SponsorTermFormatOne" do
     check_ttl_fix_v2(filename, "import_expected_33.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
-    load_local_file_into_triple_store(sub_dir, "import_expected_33.ttl")
-    tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/SN000012/V1#SN000012"))
-    results = tc.find_custom_property_values
-    check_file_actual_expected(results, sub_dir, "import_errors_custom_expected_33a.yaml")
-    tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/NP001000P/V1#NP001000P"))
-    results = tc.find_custom_property_values
-    check_file_actual_expected(results, sub_dir, "import_errors_custom_expected_33b.yaml")
+    # load_local_file_into_triple_store(sub_dir, "import_expected_33.ttl")
+    # tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/SN000012/V1#SN000012"))
+    # results = tc.find_custom_property_values
+    # check_file_actual_expected(results, sub_dir, "import_errors_custom_expected_33a.yaml")
+    # tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/NP001000P/V1#NP001000P"))
+    # results = tc.find_custom_property_values
+    # check_file_actual_expected(results, sub_dir, "import_errors_custom_expected_33b.yaml")
   end
 
   it "paths test" do
