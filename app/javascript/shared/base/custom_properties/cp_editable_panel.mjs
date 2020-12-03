@@ -109,9 +109,6 @@ export default class CustomPropsEditablePanel extends EditablePanel {
     let fData = super._preformatUpdateData( d ),
         field = this.currentField;
 
-    // console.log('fdata', d);
-    // return false;
-
     // Check if Custom Property value is being updated
     if ( this._isCustomProperty( field ) ) {
 

@@ -182,7 +182,7 @@ export default class CLEditor extends CustomPropsEditablePanel {
     if ( d.data ) 
       d.edit = { 
         ...fData[0],
-        with_custom_props: this.handler.visible 
+        with_custom_props: this.handler.hasData 
       }
 
     // Provide the parent (code list) id to the server 
