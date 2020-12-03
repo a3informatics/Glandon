@@ -139,7 +139,9 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Classified as relationship"^^xsd:string ;
-  rdfs:domain  :SdtmClassVariable ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf (:SdtmSponsorDomainVariable :SdtmClassVariable)
+    ] ;
   rdfs:range isoC:Concept ;
   skos:definition "The variable classification."^^xsd:string ;
 .
@@ -148,7 +150,7 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Type as relationship"^^xsd:string ;
   rdfs:domain  [ a owl:Class ;
-    owl:unionOf (:SdtmSponsorDomainVariable :ADaMDatasetVariable)
+    owl:unionOf (:SdtmSponsorDomainVariable :ADaMDatasetVariable :SdtmClassVariable)
     ] ;
   rdfs:range isoC:Concept ;
   skos:definition "The variable datatype."^^xsd:string ;
@@ -198,7 +200,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain  [ a owl:Class ;
-    owl:unionOf ( :SdtmDomainVariable :ADaMDatasetVariable)
+    owl:unionOf ( :SdtmDomainVariable :ADaMDatasetVariable :SdtmClassVariable)
     ] ;
   rdfs:range xsd:string ;
   skos:definition "The variable name."^^xsd:string ;
