@@ -13,12 +13,14 @@ export default class SubsetPanel extends CustomPropsEditablePanel {
   /**
    * Create a SubsetPanel instance
    * @param {Object} params Instance parameters
+   * @param {string} params.id ID of the Subset Managed Concept
    * @param {string} params.selector JQuery selector of the subset table
    * @param {object} params.urls Must contain urls for 'data' and 'update'
    * @param {function} params.loadCallback Callback executed on data loaded
    * @param {function} params.onReorder Callback executed on row reorder
    */
   constructor({
+    id,
     selector,
     urls,
     loadCallback = () => {},
@@ -36,7 +38,7 @@ export default class SubsetPanel extends CustomPropsEditablePanel {
     });
 
     Object.assign(this, {
-      onReorder
+      id, onReorder
     });
 
   }

@@ -167,6 +167,12 @@ table th.th-xsmall{
   background: #f5f5f5 !important;
 }
 
+// Reorderable 
+
+.table-cardstyle .table-reorderable tbody tr td:first-of-type {
+  cursor: ns-resize;
+}
+
 // Width Wrapper
 .table-width-wrapper{
   width: 100%;

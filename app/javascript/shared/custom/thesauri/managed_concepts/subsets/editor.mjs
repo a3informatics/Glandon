@@ -17,18 +17,20 @@ export default class SubsetEditor {
    * @param {Object} params Instance parameters
    * @param {string} params.selector JQuery selector of the editor parent
    * @param {string} params.param Name of the strong controller parameter
+   * @param {object} params.ids Ids object containing the 'subset' and 'source' item id 
    * @param {object} params.urls Urls for data and updates
    * @param {function} params.onEdit Callback executed after every edit operation
    */
    constructor({
      selector = '#subset-editor',
      param = 'subset',
+     ids, 
      urls,
      onEdit = () => {}
    }) {
 
     Object.assign(this, {
-      selector, param, urls, onEdit
+      ids, selector, param, urls, onEdit
     });
 
     this._initialize();
@@ -253,6 +255,7 @@ export default class SubsetEditor {
   get _subsetPanelOpts() {
 
     return {
+        id: this.ids.subset,
         selector: `${this.selector} #subset-table`,
         urls: this.urls,
         loadCallback: () =>
@@ -269,6 +272,7 @@ export default class SubsetEditor {
   get _sourcePanelOpts() {
 
     return {
+      id: this.ids.source,
       selector: `${this.selector} #source-table`,
       url: this.urls.sourceData,
       onSelect: r =>

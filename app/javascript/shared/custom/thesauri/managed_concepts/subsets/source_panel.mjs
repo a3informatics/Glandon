@@ -15,6 +15,7 @@ export default class SourcePanel extends SelectablePanel {
   /**
    * Create a SourcePanel instance
    * @param {Object} params Instance parameters
+   * @param {string} params.id ID of the Source Managed Concept
    * @param {string} params.selector JQuery selector of the subset table
    * @param {string} params.url Source Panel data url
    * @param {function} params.loadCallback Callback executed on data loaded
@@ -23,6 +24,7 @@ export default class SourcePanel extends SelectablePanel {
    * @param {function} params.onDeselectAll Callback executed on all rows deselect
    */
   constructor({
+    id,
     selector,
     url,
     loadCallback = () => {},
@@ -44,6 +46,7 @@ export default class SourcePanel extends SelectablePanel {
         autoHeight: true
       }
     }, {
+      id,
       onDeselectAll,
 
       // Custom Props Handler init

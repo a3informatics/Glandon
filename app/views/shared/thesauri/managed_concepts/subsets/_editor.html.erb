@@ -1,22 +1,19 @@
 <%= stylesheet_link_tag "shared/tables_editable" %>
 
-<%= javascript_tag "let subsetEditorUrls = {
-                          sourceData: '#{ children_thesauri_managed_concept_path(source) }',
-                          data: '#{ list_children_thesauri_subset_path(subset) }',
-                          add: '#{ add_thesauri_subset_path(subset) }',
-                          remove: '#{ remove_thesauri_subset_path(subset) }',
-                          moveAfter: '#{ move_after_thesauri_subset_path(subset) }',
-                          removeAll: '#{ remove_all_thesauri_subset_path(subset) }',
-                          update: '#{ thesauri_unmanaged_concept_path(id: '_id_') }'
+<%= javascript_tag "const subsetEditorUrls = {
+                            sourceData: '#{ children_thesauri_managed_concept_path(source) }',
+                            data: '#{ list_children_thesauri_subset_path(subset) }',
+                            add: '#{ add_thesauri_subset_path(subset) }',
+                            remove: '#{ remove_thesauri_subset_path(subset) }',
+                            moveAfter: '#{ move_after_thesauri_subset_path(subset) }',
+                            removeAll: '#{ remove_all_thesauri_subset_path(subset) }',
+                            update: '#{ thesauri_unmanaged_concept_path(id: '_id_') }'
                         } " %>
 
-<style>
-
-  #subset-table tbody tr td:first-of-type {
-    cursor: ns-resize;
-  }
-
-</style>
+<%= javascript_tag "const subsetEditorIds = {
+                            subset: '#{@subset_mc.id}', 
+                            source: '#{@source_mc.id}',
+                          } " %>
 
 <div class="tabs-layout text-small" id="subset-editor">
 
@@ -54,7 +51,7 @@
 
     <div class="table-cardstyle all-columns loading-with-btns">
       <%= render partial: "shared/iso_managed/children/children_panel", locals: { id: "subset-table",
-          table_classes: '', indicators?: false, first_column: 'Ordinal', custom_props?: true, item: @subset_mc } %>
+          table_classes: 'table-reorderable', indicators?: false, first_column: 'Ordinal', custom_props?: true, item: @subset_mc } %>
     </div>
   </div>
 
