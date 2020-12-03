@@ -65,8 +65,8 @@ describe SdtmSponsorDomain do
     sp_domain = SdtmSponsorDomain.find_full(sponsor_domain.id)
     params2 = {name:"SDISAB"}
     result = sponsor_domain.add_non_standard_variable(params2)
-    expect(result.errors.count).to eq(1)
-    expect(result.errors.full_messages.to_sentence).to eq("http://www.s-cubed.dk/XXX/V1#SPD_AESDISAB already exists in the database")
+    expect(result.errors.count).to eq(2)
+    expect(result.errors.full_messages.to_sentence).to eq("http://www.s-cubed.dk/AE_Domain/V1#SPD_AESDISAB already exists in the database and Name duplicate detected 'AESDISAB'")
     #check_file_actual_expected(sponsor_domain.to_h, sub_dir, "add_non_standard_variable_expected_2.yaml", equate_method: :hash_equal, write_file: true)
   end
 
