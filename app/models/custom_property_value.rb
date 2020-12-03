@@ -36,18 +36,23 @@ class CustomPropertyValue < IsoContextualRelationship
   # @return [CustomPropertyValue] the updated object
   def update_and_clone(params, context)
     params[:value] = to_literal(params[:value]) # Make sure a literal string and is not typed
-    return update(params) if self.context.count == 1
-    tx_exists = transaction_present?(params)
-    tx = self.transaction_begin(params)
-    context_uri = context.is_a?(Uri) ? context : context.uri
-    self.context_delete(context_uri)
-    object = self.class.new(value: params[:value], custom_property_defined_by: self.custom_property_defined_by, 
-      context: [context_uri], applies_to: self.applies_to, transaction: tx)
-    object.uri = object.create_uri(self.class.base_uri)
-    object.save
-    object.transaction_execute unless tx_exists
-    object.fix_errors
-    object
+    if self.context.count == 1
+      update(params) 
+      self.fix_errors
+      self
+    else
+      tx_exists = transaction_present?(params)
+      tx = self.transaction_begin(params)
+      context_uri = context.is_a?(Uri) ? context : context.uri
+      self.context_delete(context_uri)
+      object = self.class.new(value: params[:value], custom_property_defined_by: self.custom_property_defined_by, 
+        context: [context_uri], applies_to: self.applies_to, transaction: tx)
+      object.uri = object.create_uri(self.class.base_uri)
+      object.save
+      object.transaction_execute unless tx_exists
+      object.fix_errors
+      object
+    end
   end
 
   # Where Unique. Find the custom property for the specified main node, context and name

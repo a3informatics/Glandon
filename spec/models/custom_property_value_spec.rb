@@ -71,6 +71,31 @@ describe CustomPropertyValue do
     check_file_actual_expected(item.to_h, sub_dir, "update_and_clone_expected_1b.yaml")
   end
 
+  it "updates and clones, errors" do
+    c_1 = Uri.new(uri: "http://www.assero.co.uk/Test#Context1")
+    c_2 = Uri.new(uri: "http://www.assero.co.uk/Test#Context2")
+    definition_1 = CustomPropertyDefinition.create(datatype: "string", label: "Name", 
+      description: "A description", default: "Default String",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
+    item = CustomPropertyValue.create(value: "step 1", 
+      custom_property_defined_by: definition_1.uri,
+      applies_to: Uri.new(uri: "http://www.assero.co.uk/Test#Target1"),
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#A"),
+      context: [c_1])
+    item = CustomPropertyValue.find_full(item.uri) # Make sure definition read
+    result = item.update_and_clone({value: "§§§§§§§"}, c_1)
+    expect(result.errors.full_messages.to_sentence).to eq("Name [\"contains invalid characters\"]")
+    item = CustomPropertyValue.create(value: "step 1", 
+      custom_property_defined_by: definition_1.uri,
+      applies_to: Uri.new(uri: "http://www.assero.co.uk/Test#Target1"),
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#B"),
+      context: [c_1, c_2])
+    item = CustomPropertyValue.find_full(item.uri) # Make sure definition read
+    result = item.update_and_clone({value: "§§§§§§§"}, c_1)
+    expect(result.errors.full_messages.to_sentence).to eq("Name [\"contains invalid characters\"]")
+  end
+
   it "updates and clone II" do
     c_1 = Uri.new(uri: "http://www.assero.co.uk/Test#Context1")
     c_2 = Uri.new(uri: "http://www.assero.co.uk/Test#Context2")
