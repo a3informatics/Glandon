@@ -41,7 +41,7 @@ class IsoConceptV2
       # @return [Array] array of hash
       def find_custom_property_definitions_to_h
         results = find_custom_property_definitions
-        results = results.map{|x| x.to_h.slice(:id, :datatype, :label).merge({name: x.label.to_variable_style})}
+        results = results.map{|x| x.to_h.slice(:id, :datatype, :label).merge({name: x.label_to_variable})}
         results.sort { |a, b| [b[:datatype], a[:name]] <=> [a[:datatype], b[:name]] }
       end
 
@@ -85,7 +85,7 @@ class IsoConceptV2
     # @return [Array] array of hash
     def find_custom_property_definitions_to_h
         results = find_custom_property_definitions
-        results = results.map{|x| x.to_h.slice(:id, :datatype, :label).merge({name: x.label.to_variable_style})}
+        results = results.map{|x| x.to_h.slice(:id, :datatype, :label).merge({name: x.label_to_variable})}
         results.sort { |a, b| [b[:datatype], a[:name]] <=> [a[:datatype], b[:name]] }
     end
 

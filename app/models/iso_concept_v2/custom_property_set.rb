@@ -48,7 +48,7 @@ class IsoConceptV2
     def return_values
       results = {}
       @items.each do |item| 
-        results[item.custom_property_defined_by.label.to_variable_style.to_sym] = { id: item.uri.to_id, value: item.to_typed }
+        results[item.custom_property_defined_by.label_to_variable.to_sym] = { id: item.uri.to_id, value: item.to_typed }
       end
       results
     end

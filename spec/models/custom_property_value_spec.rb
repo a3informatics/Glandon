@@ -159,5 +159,20 @@ describe CustomPropertyValue do
     expect(value_3.to_typed).to eq(true)
   end
 
+  it "fix errors" do
+    definition_1 = CustomPropertyDefinition.create(datatype: "string", label: "Name This", 
+      description: "A description", default: "Default String",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
+    value_1 = CustomPropertyValue.create(value: "value", custom_property_defined_by: definition_1, uri: Uri.new(uri: "http://www.assero.co.uk/CPV#1"))
+    value_1.errors.add(:base, "single")
+    expected = value_1.errors.full_messages
+    value_1.fix_errors
+    expect(value_1.errors.full_messages).to eq(expected)
+    value_1.errors.add(:value, "big error")
+    value_1.fix_errors
+    expect(value_1.errors.full_messages).to eq(expected + ["Name this [\"big error\"]"])
+    expect(value_1.errors.key?(:name_this)).to eq(true)
+  end
 
 end

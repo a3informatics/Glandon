@@ -46,6 +46,7 @@ class CustomPropertyValue < IsoContextualRelationship
     object.uri = object.create_uri(self.class.base_uri)
     object.save
     object.transaction_execute unless tx_exists
+    object.fix_errors
     object
   end
 
@@ -82,6 +83,16 @@ class CustomPropertyValue < IsoContextualRelationship
   def to_typed
     dt = XSDDatatype.new(self.custom_property_defined_by.datatype)
     dt.to_typed(self.value)
+  end
+
+  # Fix Errors
+  #
+  # @return [ActiveModel::Errors] the updated set of errors
+  def fix_errors
+    return self.errors unless self.errors.has_key?(:value)
+    self.errors.add(self.custom_property_defined_by.label_to_variable.to_sym, self.errors[:value])
+    self.errors.delete(:value)
+    self.errors
   end
 
 private

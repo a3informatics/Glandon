@@ -22,4 +22,11 @@ class CustomPropertyDefinition < Fuseki::Base
   validates :default, presence: true, allow_blank: false
   validates_with Validator::Klass, property: :custom_property_of, level: :uri
 
+  # Label To Variable
+  #
+  # @return [String] the lable in variable style format
+  def label_to_variable
+    self.label.to_variable_style
+  end
+
 end
