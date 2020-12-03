@@ -223,7 +223,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
         check_ttl_fix_v2(filename, "CT_V2-6.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -270,7 +270,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
         check_ttl_fix_v2(filename, "CT_V3-0.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -319,7 +319,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-1.ttl")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-1.ttl")
         check_ttl_fix_v2(filename, "CT_V3-1.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -484,7 +484,7 @@ describe "Import::SponsorTermFormatOne" do
       uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
       uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
       uri_31 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH")
-      {"2-6" => {uri: uri_26, count: 197257}, "3-0" => {uri: uri_30, count: 291196}, "3-1" => {uri: uri_31, count: 299824}}.each do |version, data|
+      {"2-6" => {uri: uri_26, count: 197257}, "3-0" => {uri: uri_30, count: 291383}, "3-1" => {uri: uri_31, count: 300068}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
@@ -546,20 +546,21 @@ describe "Import::SponsorTermFormatOne" do
       %Q{
         SELECT ?cl ?clid ?cln ?cli ?cliid ?clin ?custname ?custvalue WHERE  
         {
-            VALUES ?s {#{uri.to_ref}}
-            ?s th:isTopConceptReference/bo:reference ?cl .
-            ?cl th:identifier ?clid .  
-            ?cl th:notation ?cln .
-            ?cl th:narrower ?cli .
-            ?cli th:identifier ?cliid .  
-            ?cli th:notation ?clin .
-            OPTIONAL {
-              ?cli ^isoC:appliesTo ?ext . 
-              ?ext rdf:type isoC:CustomProperty .
-              ?ext isoC:context ?cl . 
-              ?ext isoC:value ?custvalue .
-              ?ext isoC:customPropertyDefinedBy ?def .
-              ?def isoC:label ?custname .
+          VALUES ?s {#{uri.to_ref}}
+          ?s th:isTopConceptReference/bo:reference ?cl .
+          ?cl th:identifier ?clid .  
+          ?cl th:notation ?cln .
+          ?cl th:narrower ?cli .
+          ?cli th:identifier ?cliid .  
+          ?cli th:notation ?clin .
+          OPTIONAL 
+          {
+            ?cli ^isoC:appliesTo ?ext . 
+            ?ext rdf:type isoC:CustomProperty .
+            ?ext isoC:context ?cl . 
+            ?ext isoC:value ?custvalue .
+            ?ext isoC:customPropertyDefinedBy ?def .
+            ?def isoC:label ?custname .
           }
         } ORDER BY ?cln ?clin ?custname
       }
@@ -629,7 +630,7 @@ describe "Import::SponsorTermFormatOne" do
     end
 
     it "custom property comparison" do
-      (1..2).each_with_index do |v, index|
+      (1..3).each_with_index do |v, index|
         puts "-------"
         puts "Index #{index+1}"
         puts "-------"
