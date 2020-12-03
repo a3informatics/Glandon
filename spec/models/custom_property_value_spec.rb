@@ -98,4 +98,26 @@ describe CustomPropertyValue do
     expect{CustomPropertyValue.where_unique(applies_to, context_2, definition.label.to_variable_style)}.to raise_error(Errors::ApplicationLogicError, "Found multiple properties for a_definition for http://www.assero.co.uk/Test#Target1 in context http://www.assero.co.uk/Test#Context2.")
   end
 
+  it "to typed" do
+    definition_1 = CustomPropertyDefinition.create(datatype: "string", label: "Name", 
+      description: "A description", default: "Default String",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
+    definition_2 = CustomPropertyDefinition.create(datatype: "integer", label: "Other", 
+      description: "A description integer", default: "1",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD2"))
+    definition_3 = CustomPropertyDefinition.create(datatype: "boolean", label: "Switch", 
+      description: "A description of switch", default: "false",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD3"))
+    value_1 = CustomPropertyValue.create(value: "value", custom_property_defined_by: definition_1, uri: Uri.new(uri: "http://www.assero.co.uk/CPV#1"))
+    value_2 = CustomPropertyValue.create(value: "12", custom_property_defined_by: definition_2, uri: Uri.new(uri: "http://www.assero.co.uk/CPV#2"))
+    value_3 = CustomPropertyValue.create(value: "true", custom_property_defined_by: definition_3, uri: Uri.new(uri: "http://www.assero.co.uk/CPV#3"))
+    expect(value_1.to_typed).to eq("value")
+    expect(value_2.to_typed).to eq(12)
+    expect(value_3.to_typed).to eq(true)
+  end
+
+
 end

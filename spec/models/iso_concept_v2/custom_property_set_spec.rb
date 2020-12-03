@@ -53,6 +53,13 @@ describe IsoConceptV2::CustomPropertySet do
       uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD2"))
   end
 
+  def create_definition_3
+    @definition_3 = CustomPropertyDefinition.create(datatype: "boolean", label: "Switch", 
+      description: "A description of switch", default: "false",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD3"))
+  end
+
   def create_value(value, index, definition=@definition_1)
     CustomPropertyValue.create(value: value, custom_property_defined_by: definition, uri: Uri.new(uri: "http://www.assero.co.uk/CPV##{index}"))
   end
@@ -68,6 +75,15 @@ describe IsoConceptV2::CustomPropertySet do
     custom_set << create_value("String 1", 1)
     custom_set << create_value("String 2", 2)
     custom_set << create_value("String 3", 3)
+    expect(custom_set.name_value_pairs).to eq(expected)
+  end
+
+  it "name_values_pairs II" do
+    create_definition_3
+    expected = [{:name=>"Switch", :value=>true}, {:name=>"Switch", :value=>false}]
+    custom_set = IsoConceptV2::CustomPropertySet.new
+    custom_set << create_value("true", 1, @definition_3)
+    custom_set << create_value("false", 2, @definition_3)
     expect(custom_set.name_value_pairs).to eq(expected)
   end
 

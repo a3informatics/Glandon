@@ -74,4 +74,12 @@ class CustomPropertyValue < IsoContextualRelationship
     Errors.application_error(self.class.name, __method__.to_s, "#{msg_root} #{name} for #{applies_to_uri} in context #{context_uri}.")
   end
 
+  # To Typed
+  #
+  # @return [Object] the value as a typed variable
+  def to_typed
+    dt = XSDDatatype.new(self.custom_property_defined_by.datatype)
+    dt.to_typed(self.value)
+  end
+
 end

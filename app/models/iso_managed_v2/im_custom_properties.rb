@@ -74,7 +74,7 @@ class IsoManagedV2
     def find_custom_property_values
       results = {}
       query_string = %Q{
-        SELECT ?e ?c ?l ?v WHERE 
+        SELECT ?e ?c ?l ?v ?dt WHERE 
         {            
           #{self.uri.to_ref} #{self.class.children_predicate.to_ref} ?c .
           ?e rdf:type isoC:CustomProperty .
@@ -82,17 +82,19 @@ class IsoManagedV2
           ?e isoC:context #{self.uri.to_ref} . 
           ?e isoC:customPropertyDefinedBy ?d .
           ?d isoC:label ?l .
+          ?d isoC:datatype ?dt .
           ?e isoC:value ?v .
         } ORDER BY ?c ?l   
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoC])
-      query_results.by_object_set([:e, :c, :l, :v]).each do |x|
+      query_results.by_object_set([:e, :c, :l, :v, :dt]).each do |x|
         id = x[:c].to_id
         results[id] = {item_id: id} unless results.key?(id)
         inner_key = x[:l].to_variable_style.to_sym
         results[id][inner_key] = {} unless results[id].key?(inner_key)
         results[id][inner_key][:id] = x[:e].to_id
-        results[id][inner_key][:value] = x[:v]
+        dt = XSDDatatype.new(x[:dt])
+        results[id][inner_key][:value] = dt.to_typed(x[:v])
       end
       results.values
     end

@@ -39,7 +39,7 @@ class IsoConceptV2
     #
     # @return [Array] array of name value pairs
     def name_value_pairs
-      @items.map{|x| {name: x.custom_property_defined_by.label, value: x.value}}
+      @items.map { |item| { name: item.custom_property_defined_by.label, value: item.to_typed } }
     end
 
     # Return Values. 
@@ -48,7 +48,7 @@ class IsoConceptV2
     def return_values
       results = {}
       @items.each do |item| 
-        results[item.custom_property_defined_by.label.to_variable_style.to_sym] = {id: item.uri.to_id, value: item.value}
+        results[item.custom_property_defined_by.label.to_variable_style.to_sym] = { id: item.uri.to_id, value: item.to_typed }
       end
       results
     end
