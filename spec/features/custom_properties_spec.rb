@@ -121,17 +121,21 @@ describe "Custom Properties", type: :feature  do
 
       click_on 'Add items'
       ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: 'C100130', owner: 'Sanofi', version: '2', identifier: 'C96587' }
-      ])
+        { parent: 'C100130', owner: 'Sanofi', version: '1', identifier: 'C96587' }
+      ], 'add-children')
       wait_for_ajax 20 
 
       show_custom_props
       check_cell_content('editor', 1, 7, 'Biological Uncle') 
       check_cell_content('editor', 1, 8, false)
       check_cell_content('editor', 1, 9, true)
-      # ED Use - missing value in source CL - check set to default 
-      check_cell_content('editor', 1, 10, false)
+      check_cell_content('editor', 1, 10, false) # ed_use is a missing value in source CL - check it set to default (false)
       check_cell_content('editor', 1, 11, true)
+
+      # Edit Referenced CPs 
+      ui_editor_select_by_location(1, 7)
+      ui_editor_fill_inline("crf_display_value", "Some CRF value\n")
+      check_cell_content('editor', 1, 7, 'Some CRF value')
     end
 
     it "allows to edit Custom Properties, CL Editor" do
