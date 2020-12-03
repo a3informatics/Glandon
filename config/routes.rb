@@ -481,6 +481,7 @@ Rails.application.routes.draw do
     end
     member do
       get :show_data
+      post :add_non_standard_variable
     end
   end
 

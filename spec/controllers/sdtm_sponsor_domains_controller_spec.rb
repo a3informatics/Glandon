@@ -73,7 +73,8 @@ describe SdtmSponsorDomainsController do
     login_curator
 
     before :all do
-      load_files(schema_files, [])
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -95,6 +96,20 @@ describe SdtmSponsorDomainsController do
       post :create_from_ig, params:{sdtm_sponsor_domain: {identifier: "HEIGHT", label: "something", prefix: sdtm_ig_domain.prefix, sdtm_ig_domain_id: sdtm_ig_domain.id}}
       actual = check_error_json_response(response)
       expect(actual[:errors]).to eq(["http://www.s-cubed.dk/AE_Domain/V1#SPD already exists in the database"])
+    end
+
+    it "add non standard variable" do
+      sdtm_sponsor_domain = SdtmSponsorDomain.find(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      post :add_non_standard_variable, params:{id: sdtm_sponsor_domain.id, sdtm_sponsor_domain: {name: "AENEWVAR"}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "add_non_standard_variable_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "add non standard variable, error" do
+      sdtm_sponsor_domain = SdtmSponsorDomain.find(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      post :add_non_standard_variable, params:{id: sdtm_sponsor_domain.id, sdtm_sponsor_domain: {name: "AECAT"}}
+      actual = check_error_json_response(response)
+      expect(actual[:errors]).to eq(["http://www.s-cubed.dk/AAA/V1#SPD_AECAT already exists in the database", "Name duplicate detected 'AECAT'"])
     end
 
   end

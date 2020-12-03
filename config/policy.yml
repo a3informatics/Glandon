@@ -346,6 +346,7 @@ defaults: &defaults
     policies: {}
     alias:
       create_from_ig: create
+      add_non_standard_variable: update
   FormPolicy:
     policies: {}
     alias:
