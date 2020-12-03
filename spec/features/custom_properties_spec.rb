@@ -96,6 +96,8 @@ describe "Custom Properties", type: :feature  do
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
       load_cdisc_term_versions(1..45)
       ua_create
     end
@@ -116,12 +118,12 @@ describe "Custom Properties", type: :feature  do
     end
 
 
-    it "allows to add Referenced Items, copies CP values and sets missing CP values to default, CL Editor" do
+    it "allows to add and edit Referenced Items with Custom Properties, CL Editor" do
       new_codelist_and_edit
 
       click_on 'Add items'
       ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: 'C100130', owner: 'Sanofi', version: '1', identifier: 'C96587' }
+        { parent: 'C100130', owner: 'Sanofi', version: '2', identifier: 'C96587' }
       ], 'add-children')
       wait_for_ajax 20 
 
@@ -136,6 +138,10 @@ describe "Custom Properties", type: :feature  do
       ui_editor_select_by_location(1, 7)
       ui_editor_fill_inline("crf_display_value", "Some CRF value\n")
       check_cell_content('editor', 1, 7, 'Some CRF value')
+
+      
+
+      # Check referenced items normal fields cannot be edited 
     end
 
     it "allows to edit Custom Properties, CL Editor" do
@@ -163,7 +169,7 @@ describe "Custom Properties", type: :feature  do
 
       # Validates input for entered CP values 
       ui_editor_select_by_location(1, 7)
-      ui_editor_fill_inline("crf_display_value", "æææ\n")
+      ui_editor_fill_inline("crf_display_value", "æø\n")
       ui_editor_check_error('crf_display_value', 'contains invalid characters')
       ui_press_key :escape
     end
