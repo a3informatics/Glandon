@@ -45,6 +45,7 @@ class CustomPropertyValue < IsoContextualRelationship
       tx = self.transaction_begin(params)
       context_uri = context.is_a?(Uri) ? context : context.uri
       self.context_delete(context_uri)
+      self.save
       object = self.class.new(value: params[:value], custom_property_defined_by: self.custom_property_defined_by, 
         context: [context_uri], applies_to: self.applies_to, transaction: tx)
       object.uri = object.create_uri(self.class.base_uri)

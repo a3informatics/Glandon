@@ -261,7 +261,7 @@ class Thesaurus
       result = {identifier: self.identifier, definition: self.definition, label: self.label, notation: self.notation, preferred_term: preferred_term_to_s, synonym: synonyms_to_s, extensible: self.extensible, id: self.uri.to_id}
       return result unless add_custom
       custom_properties = load_custom_properties(parent)
-      result[:custom_properties] = self.load_custom_properties(parent).return_values
+      result[:custom_properties] = custom_properties.return_values
       result
     end
 
