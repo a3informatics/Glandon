@@ -191,7 +191,7 @@ export default class EditablePanel extends TablePanel {
     // Post-data-submit, change data format before adding to Editor
     this.editor.on( 'postSubmit', (e, json, data) => {
 
-      json.data && this._postformatUpdatedData( data, json.data );
+      json && json.data && this._postformatUpdatedData( data, json.data );
 
     });
 
@@ -204,7 +204,7 @@ export default class EditablePanel extends TablePanel {
     this.editor.on( 'submitSuccess submitUnsuccessful', (e, json) => {
 
       // Handle any errors thrown by the server
-      json.errors && alerts.error( json.errors.join(' & ') );
+      json && json.errors && alerts.error( json.errors.join(' & ') );
 
       this._onEdited();
 
