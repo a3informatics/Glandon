@@ -629,7 +629,7 @@ describe "Import::SponsorTermFormatOne" do
     end
 
     it "custom property comparison" do
-      (1..3).each_with_index do |v, index|
+      (1..2).each_with_index do |v, index|
         puts "-------"
         puts "Index #{index+1}"
         puts "-------"
