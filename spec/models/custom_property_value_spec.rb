@@ -48,11 +48,16 @@ describe CustomPropertyValue do
   it "updates and clones" do
     c_1 = Uri.new(uri: "http://www.assero.co.uk/Test#Context1")
     c_2 = Uri.new(uri: "http://www.assero.co.uk/Test#Context2")
+    definition_1 = CustomPropertyDefinition.create(datatype: "string", label: "Name", 
+      description: "A description", default: "Default String",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
     item = CustomPropertyValue.create(value: "step 1", 
-      custom_property_defined_by: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"),
+      custom_property_defined_by: definition_1.uri,
       applies_to: Uri.new(uri: "http://www.assero.co.uk/Test#Target1"),
       uri: Uri.new(uri: "http://www.assero.co.uk/Test#A"),
       context: [c_1])
+    item = CustomPropertyValue.find_full(item.uri) # Make sure definition read
     result = item.update_and_clone({value: "step 2"}, c_1)
     expect(item.value).to eq("step 2")
     expect(item.context).to match_array([c_1])
@@ -64,6 +69,41 @@ describe CustomPropertyValue do
     expect(result.value).to eq("step 3")
     check_file_actual_expected(result.to_h, sub_dir, "update_and_clone_expected_1a.yaml")
     check_file_actual_expected(item.to_h, sub_dir, "update_and_clone_expected_1b.yaml")
+  end
+
+  it "updates and clone II" do
+    c_1 = Uri.new(uri: "http://www.assero.co.uk/Test#Context1")
+    c_2 = Uri.new(uri: "http://www.assero.co.uk/Test#Context2")
+    definition_1 = CustomPropertyDefinition.create(datatype: "string", label: "Name", 
+      description: "A description", default: "Default String",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
+    definition_2 = CustomPropertyDefinition.create(datatype: "integer", label: "Other", 
+      description: "A description integer", default: "1",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD2"))
+    definition_3 = CustomPropertyDefinition.create(datatype: "boolean", label: "Switch", 
+      description: "A description of switch", default: "false",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD3"))
+    value_1 = CustomPropertyValue.create(value: "value", custom_property_defined_by: definition_1, uri: Uri.new(uri: "http://www.assero.co.uk/CPV#1"), context: [c_1])
+    value_2 = CustomPropertyValue.create(value: "12", custom_property_defined_by: definition_2, uri: Uri.new(uri: "http://www.assero.co.uk/CPV#2"), context: [c_1])
+    value_3 = CustomPropertyValue.create(value: "true", custom_property_defined_by: definition_3, uri: Uri.new(uri: "http://www.assero.co.uk/CPV#3"), context: [c_1])
+    result = value_1.update_and_clone({value: "xxx"}, c_1)
+    result = CustomPropertyValue.find_children(value_1.uri)
+    expect(result.to_typed).to eq("xxx")
+    result = value_2.update_and_clone({value: 999}, c_1)
+    result = CustomPropertyValue.find_children(value_2.uri)
+    expect(result.to_typed).to eq(999)
+    result = value_3.update_and_clone({value: false}, c_1)
+    result = CustomPropertyValue.find_children(value_3.uri)
+    expect(result.to_typed).to eq(false)
+    value_4 = CustomPropertyValue.create(value: "true", custom_property_defined_by: definition_3, uri: Uri.new(uri: "http://www.assero.co.uk/CPV#4"), context: [c_1, c_2])
+    result = value_4.update_and_clone({value: false}, c_1)
+    result = CustomPropertyValue.find_children(result.uri)
+    expect(result.to_typed).to eq(false)
+    result = CustomPropertyValue.find_children(value_4.uri)
+    expect(result.to_typed).to eq(true)
   end
 
   it "where unique" do

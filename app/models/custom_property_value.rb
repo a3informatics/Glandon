@@ -35,13 +35,15 @@ class CustomPropertyValue < IsoContextualRelationship
   # @param [Uri|Object] context the context object or uri
   # @return [CustomPropertyValue] the updated object
   def update_and_clone(params, context)
-    context_uri = context.is_a?(Uri) ? context : context.uri
+    params[:value] = to_literal(params[:value]) # Make sure a literal string and is not typed
     return update(params) if self.context.count == 1
     tx_exists = transaction_present?(params)
     tx = self.transaction_begin(params)
+    context_uri = context.is_a?(Uri) ? context : context.uri
     self.context_delete(context_uri)
     object = self.class.new(value: params[:value], custom_property_defined_by: self.custom_property_defined_by, 
       context: [context_uri], applies_to: self.applies_to, transaction: tx)
+    object.uri = object.create_uri(self.class.base_uri)
     object.save
     object.transaction_execute unless tx_exists
     object
@@ -80,6 +82,14 @@ class CustomPropertyValue < IsoContextualRelationship
   def to_typed
     dt = XSDDatatype.new(self.custom_property_defined_by.datatype)
     dt.to_typed(self.value)
+  end
+
+private
+
+  # To literal
+  def to_literal(value)
+    dt = XSDDatatype.new(self.custom_property_defined_by.datatype)
+    dt.to_literal(value)
   end
 
 end
