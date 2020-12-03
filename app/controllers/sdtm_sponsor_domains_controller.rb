@@ -39,11 +39,26 @@ class SdtmSponsorDomainsController < ManagedItemsController
       render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
     end
   end
+
+  def add_non_standard_variable
+    sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
+    non_standard_variable = sdtm_sponsor_domain.add_non_standard_variable(non_standard_var_params)
+    if non_standard_variable.errors.empty?
+      AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "Non standard variable #{non_standard_variable.name} added to SDTM Sponsor Domain.")
+      render :json => {data: non_standard_variable.to_h}, :status => 200
+    else
+      render :json => {errors: non_standard_variable.errors.full_messages}, :status => 422
+    end
+  end
   
 private
   
   def the_params
     params.require(:sdtm_sponsor_domain).permit(:identifier, :scope_id, :count, :offset, :sdtm_ig_domain_id, :label, :prefix)
+  end
+
+  def non_standard_var_params
+    params.require(:sdtm_sponsor_domain).permit(:name, :compliance, :typed_as, :classified_as)
   end
 
   # Get the ig domain id from the params
