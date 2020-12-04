@@ -126,13 +126,13 @@
   :short_name: ACN
   :identifier: C66767
   :items:
-  - C49504
-  - C49505
+  - C17998
+  - C48660
   - C49501
   - C49502
   - C49503
-  - C17998
-  - C48660
+  - C49504
+  - C49505
   - SC78728
 - :name: Action Taken with Study Treatment Subset 01
   :short_name: ACN_01
@@ -159,29 +159,18 @@
   - C49502
   - C49504
   - C49505
-- :name: Action Taken with Study Treatment Collected
-  :short_name: ACNC
-  :identifier: SN000730
-  :items:
-  - SC49504
-  - SC49505
-  - SC49501
-  - SC49502
-  - SC49503
-  - S011612
-  - SC48660
 - :name: Action Taken with Study Treatment Numeric
   :short_name: ACNN
   :identifier: SN000005
   :items:
+  - S000012
   - S000029
   - S000030
   - S000031
   - S000032
   - S000033
-  - S003958
-  - S000012
   - S000036
+  - S003958
 - :name: Asthma Control - 6 Item Questionnaire Results for Question Type 1
   :short_name: ACQ6091R
   :identifier: SN000187
@@ -1037,18 +1026,18 @@
   - S011289
   - S030065
   - S030068
+  - S031110
   - SC17649
   - SC25742
   - SC41331
-  - S031110
 - :name: Relationship to Study Treatment
   :short_name: AERELA
   :identifier: SN000012
   :items:
   - S000090
-  - S000094
   - S000092
   - S000093
+  - S000094
   - SC78728
 - :name: Relationship to Study Treatment Subset 01
   :short_name: AERELA_01
@@ -1064,7 +1053,7 @@
   - S000097
   - S000098
   - S000099
-  - S016485
+  - S017488
 - :name: Relationship to Device
   :short_name: AERELDEV
   :identifier: SN001877
@@ -1152,14 +1141,14 @@
   :short_name: AGEGRPE
   :identifier: SN000018
   :items:
-  - S000113
-  - S000117
-  - S000115
-  - S000114
-  - S000110
   - S000109
+  - S000110
   - S000111
   - S000112
+  - S000113
+  - S000114
+  - S000115
+  - S000117
   - S009907
 - :name: Age Group (EudraCT) Numeric
   :short_name: AGEGRPEN
@@ -1178,35 +1167,35 @@
   :short_name: AGEGRPP
   :identifier: SN000020
   :items:
-  - S000142
-  - S000141
-  - S000144
-  - S000143
   - S000140
+  - S000141
+  - S000142
+  - S000143
+  - S000144
 - :name: Age Group (Pediatric) Numeric
   :short_name: AGEGRPPN
   :identifier: SN000021
   :items:
-  - S000145
   - S000127
   - S000132
+  - S000145
   - S000146
   - S000147
 - :name: Age Range
   :short_name: AGERANG
   :identifier: SN001909
   :items:
-  - S012887
-  - S012888
   - S004830
   - S004832
+  - S012887
+  - S012888
   - S016557
 - :name: Age Range Subset 01
   :short_name: AGERANG_01
   :identifier: SN003602
   :items:
-  - S012888
   - S012887
+  - S012888
 - :name: Age Unit
   :short_name: AGEU
   :identifier: C66781
@@ -1474,7 +1463,7 @@
   - C124721
 - :name: Assistive Device
   :short_name: ASSTDV
-  :identifier: SN001578
+  :identifier: SN001753
   :items:
   - S016554
   - S016555
@@ -1488,7 +1477,7 @@
   - S016556
 - :name: Assistance Type
   :short_name: ASSTTYP
-  :identifier: SN001579
+  :identifier: SN001752
   :items:
   - S016552
   - S016553
@@ -2159,7 +2148,7 @@
 - :name: Beck Depression Inventory, Second Edition (BDI-II) Questionnaire STRESC for
     BDI0220
   :short_name: BDI0220R
-  :identifier: SN001572
+  :identifier: SN001751
   :items:
   - S001488
   - S001489
@@ -2330,6 +2319,8 @@
   - C17201
   - C23010
   - C25219
+  - C25453
+  - C25639
   - C40353
   - C48160
   - C48163
@@ -2339,8 +2330,6 @@
   - C63521
   - C68769
   - C85856
-  - C25453
-  - C25639
 - :name: Bladder Control Scale Questionnaire Test Code
   :short_name: BLCS01TC
   :identifier: C113852
@@ -2357,37 +2346,6 @@
   - C113954
   - C113955
   - C113956
-- :name: Bleeding Symptoms
-  :short_name: BLSYMP
-  :identifier: SN001628
-  :items:
-  - S003642
-  - S009471
-  - S016605
-  - S016606
-  - S016607
-  - S016608
-  - S016609
-  - S016610
-  - SC17649
-- :name: Bleeding Symptoms Subset 01
-  :short_name: BLSYMP_01
-  :identifier: SN003605
-  :items:
-  - S003642
-  - S009471
-  - S016605
-  - S016606
-  - S016607
-  - S016608
-  - S016609
-  - S016610
-  - SC17649
-- :name: Bleeding Symptoms Subset 02
-  :short_name: BLSYMP_02
-  :identifier: SN003606
-  :items:
-  - S009471
 - :name: Bleeding Clinical Event
   :short_name: BLTERM
   :identifier: SN001652
@@ -2673,14 +2631,14 @@
   - C25206
   - C25244
   - C25283
-  - C41145
-  - C41185
-  - C43246
-  - C63637
   - C25334
   - C25335
   - C25345
   - C25681
+  - C41145
+  - C41185
+  - C43246
+  - C63637
 - :name: Biospecimen Characteristics Test Code
   :short_name: BSTESTCD
   :identifier: C124300
@@ -2696,14 +2654,14 @@
   - C25206
   - C25244
   - C25283
-  - C41145
-  - C41185
-  - C43246
-  - C63637
   - C25334
   - C25335
   - C25345
   - C25681
+  - C41145
+  - C41185
+  - C43246
+  - C63637
 - :name: Brooke Upper Extremity Rating Scale Clinical Classification Test Code
   :short_name: BUERS1TC
   :identifier: C130239
@@ -3048,6 +3006,7 @@
   - S000048
   - S000059
   - S000061
+  - S000879
   - S004075
   - S004237
   - S004839
@@ -3061,13 +3020,12 @@
   - S006400
   - S007037
   - S007040
-  - S016482
-  - S016483
-  - S000879
   - S007152
   - S011050
   - S011051
   - S015647
+  - S016482
+  - S016483
   - S016563
   - S031110
   - SC13044
@@ -3077,14 +3035,14 @@
   :short_name: CECEDIAG
   :identifier: SN001915
   :items:
-  - S004908
-  - SC95802
   - S001617
-  - SC95803
-  - S030800
-  - S004909
-  - S004907
   - S001630
+  - S004907
+  - S004908
+  - S004909
+  - S030800
+  - SC95802
+  - SC95803
 - :name: Outcome of Clinical Event
   :short_name: CECVOUT
   :identifier: SN002088
@@ -3163,18 +3121,18 @@
   - S000062
   - S002328
   - S004716
-  - S007973
-  - S010785
-  - S010963
-  - S010964
-  - SC4876
   - S005107
   - S007152
   - S007164
+  - S007973
   - S008607
   - S008608
+  - S010785
+  - S010963
+  - S010964
   - S016321
   - SC17649
+  - SC4876
 - :name: Subcategory of Clinical Event Subset 01
   :short_name: CESCAT_01
   :identifier: SN003515
@@ -3274,8 +3232,8 @@
   - S002381
   - S006579
   - S006580
-  - S030798
   - S014067
+  - S030798
 - :name: Childhood Health Assessment Questionnaire Test Name
   :short_name: CHAQ01TN
   :identifier: SN000080
@@ -3334,8 +3292,8 @@
   - S002381
   - S006579
   - S006580
-  - S030798
   - S014067
+  - S030798
 - :name: Child Health Assessment Questionnaire Abilities to Function in Daily Life
   :short_name: CHAQABIL
   :identifier: SN001918
@@ -3551,7 +3509,7 @@
   - SC48660
 - :name: Concomitant Medication Type of the Dose Subset 01
   :short_name: CMDOSTYP_01
-  :identifier: SN003607
+  :identifier: SN003605
   :items:
   - S007729
   - S007730
@@ -3571,9 +3529,9 @@
   - S004855
   - S005332
   - S007161
+  - S016583
   - S030350
   - S030351
-  - S016583
 - :name: Subcategory for Medication Subset 01
   :short_name: CMSCAT_01
   :identifier: SN003081
@@ -4178,7 +4136,14 @@
   :short_name: CSS02TN
   :identifier: C103460
   :items:
+  - C103532
+  - C103533
+  - C103534
   - C103535
+  - C103772
+  - C103773
+  - C103774
+  - C103775
   - C103776
   - C103777
   - C103778
@@ -4196,6 +4161,7 @@
   - C103790
   - C103791
   - C103792
+  - C103793
   - C103794
   - C103795
   - C103796
@@ -4204,14 +4170,6 @@
   - C103799
   - C103800
   - C103801
-  - C103532
-  - C103533
-  - C103534
-  - C103772
-  - C103773
-  - C103774
-  - C103775
-  - C103793
 - :name: Columbia-Suicide Severity Rating Scale Baseline/Screening Version Phase 1
     Study Questionnaire Test Code
   :short_name: CSS03TC
@@ -5367,6 +5325,7 @@
   - C123442
   - C20080
   - C25153
+  - C2885
   - C2998
   - C3036
   - C3390
@@ -5375,7 +5334,6 @@
   - C78262
   - C95802
   - C95803
-  - C2885
 - :name: Cardiovascular Findings About Test Name
   :short_name: CVFATS
   :identifier: C119014
@@ -5445,6 +5403,7 @@
   - C15306
   - C15712
   - C17998
+  - C26726
   - C34830
   - C50799
   - C64251
@@ -5461,7 +5420,6 @@
   - C99983
   - C99999
   - S003515
-  - C26726
 - :name: Coronary Vessel Disease Extent
   :short_name: CVSLDEXT
   :identifier: C101850
@@ -5613,6 +5571,9 @@
   - C139062
   - C139063
   - C25208
+  - C25333
+  - C25334
+  - C25345
   - C38020
   - C41255
   - C43246
@@ -5652,9 +5613,6 @@
   - S010793
   - S016422
   - SC135381
-  - C25333
-  - C25334
-  - C25345
 - :name: Cardiovascular Test Code
   :short_name: CVTESTCD
   :identifier: C101847
@@ -5795,6 +5753,9 @@
   - C139062
   - C139063
   - C25208
+  - C25333
+  - C25334
+  - C25345
   - C38020
   - C41255
   - C43246
@@ -5834,13 +5795,15 @@
   - S010793
   - S016422
   - SC135381
-  - C25333
-  - C25334
-  - C25345
 - :name: Type 1 Diabetes Findings About Test Name
   :short_name: D1FATS
   :identifier: SC163028
   :items:
+  - S007969
+  - S008534
+  - S008536
+  - S008537
+  - S008538
   - S010794
   - S010795
   - S010796
@@ -5848,22 +5811,22 @@
   - S010798
   - S010799
   - S010800
-  - S010980
-  - SC25676
-  - S007969
-  - S008534
-  - S008536
-  - S008537
-  - S008538
   - S010974
+  - S010980
   - S011311
   - S012306
   - S013842
   - SC127786
+  - SC25676
 - :name: Type 1 Diabetes Findings About Test Code
   :short_name: D1FATSCD
   :identifier: SC163027
   :items:
+  - S007969
+  - S008534
+  - S008536
+  - S008537
+  - S008538
   - S010794
   - S010795
   - S010796
@@ -5871,18 +5834,13 @@
   - S010798
   - S010799
   - S010800
-  - S010980
-  - SC127786
-  - SC25676
-  - S007969
-  - S008534
-  - S008536
-  - S008537
-  - S008538
   - S010974
+  - S010980
   - S011311
   - S012306
   - S013842
+  - SC127786
+  - SC25676
 - :name: Disability Assessment for Dementia Questionnaire Test Code
   :short_name: DAD01TC
   :identifier: C105130
@@ -6060,7 +6018,7 @@
   - S010876
 - :name: Device Events Dictionary Derived Term Subset 01
   :short_name: DEDECOD_01
-  :identifier: SN003608
+  :identifier: SN003606
   :items:
   - S010865
   - S010866
@@ -6084,7 +6042,7 @@
   - SC48660
 - :name: Device Type Used Subset 01
   :short_name: DEVTYP_01
-  :identifier: SN003609
+  :identifier: SN003607
   :items:
   - S007500
   - S016372
@@ -6099,16 +6057,16 @@
   - S016613
 - :name: Diagnosis Confirmation Method Subset 01
   :short_name: DGCONFRM_01
-  :identifier: SN003610
+  :identifier: SN003608
   :items:
   - S001994
   - S016613
 - :name: Diagnosis Confirmation Method Subset 02
   :short_name: DGCONFRM_02
-  :identifier: SN003611
+  :identifier: SN003609
   :items:
-  - S001995
   - S001994
+  - S001995
 - :name: Diabetes Therapy
   :short_name: DIABTHPY
   :identifier: C101857
@@ -6128,9 +6086,11 @@
   - C49475
   - C49476
   - C53489
-  - SC163417
+  - SC134003
+  - SC154331
   - SC163415
   - SC163416
+  - SC163417
   - SC49704
 - :name: Device Identifier Long Name
   :short_name: DIPARM
@@ -6140,13 +6100,13 @@
   - C106570
   - C111191
   - C112279
+  - C25392
   - C53265
   - C70848
   - C71898
   - C73518
   - C99285
   - C99286
-  - C25392
 - :name: Device Identifier Short Name
   :short_name: DIPARMCD
   :identifier: C106481
@@ -6155,13 +6115,13 @@
   - C106570
   - C111191
   - C112279
+  - C25392
   - C53265
   - C70848
   - C71898
   - C73518
   - C99285
   - C99286
-  - C25392
 - :name: Directionality
   :short_name: DIR
   :identifier: C99074
@@ -6177,6 +6137,13 @@
   - C25239
   - C25240
   - C25245
+  - C25309
+  - C25353
+  - C25355
+  - C25423
+  - C25445
+  - C25622
+  - C27958
   - C37936
   - C37980
   - C38166
@@ -6192,13 +6159,6 @@
   - C90393
   - C94393
   - C98798
-  - C25309
-  - C25353
-  - C25355
-  - C25423
-  - C25445
-  - C25622
-  - C27958
   - S016602
   - S016603
   - S016604
@@ -6212,7 +6172,7 @@
   - C25355
 - :name: Directionality Subset 02
   :short_name: DIR_02
-  :identifier: SN003612
+  :identifier: SN003610
   :items:
   - C25309
   - C25355
@@ -6230,6 +6190,7 @@
   - C102247
   - C102248
   - C135382
+  - C28554
   - C53536
   - C99909
   - C99910
@@ -6244,7 +6205,6 @@
   - C99960
   - C99969
   - C99984
-  - C28554
 - :name: Disease Staging
   :short_name: DISSTG
   :identifier: SN000713
@@ -6432,18 +6392,19 @@
   - S002750
   - S015634
   - S016584
-  - S016648
   - S016643
   - S016644
   - S016645
   - S016646
   - S016647
+  - S016648
   - S016649
   - S016650
   - SC117466
   - SC117655
   - SC117699
   - SC147173
+  - SC147175
   - SC147180
   - SC147182
   - SC147185
@@ -6480,7 +6441,6 @@
   - SC147264
   - SC147268
   - SC165871
-  - SC147175
 - :name: Device Properties Test Name
   :short_name: DOTEST
   :identifier: C111112
@@ -6495,11 +6455,11 @@
   - C116120
   - C120606
   - C25206
+  - C25681
   - C41145
   - C41184
   - C53414
   - C70855
-  - C25681
 - :name: Device Properties Test Code
   :short_name: DOTESTCD
   :identifier: C111111
@@ -6514,11 +6474,11 @@
   - C116120
   - C120606
   - C25206
+  - C25681
   - C41145
   - C41184
   - C53414
   - C70855
-  - C25681
 - :name: Disability Rating Scale Questionnaire Test Code
   :short_name: DRS01TC
   :identifier: C115402
@@ -6625,7 +6585,7 @@
   - SC17649
 - :name: Contact Method Subset 02
   :short_name: DSMETHOD_02
-  :identifier: SN003613
+  :identifier: SN003611
   :items:
   - S006876
   - SC18002
@@ -6634,9 +6594,9 @@
   :identifier: C127268
   :items:
   - C127606
+  - C2885
   - C3003
   - C4958
-  - C2885
 - :name: Subcategory for Disposition Event
   :short_name: DSSCAT
   :identifier: SC170443
@@ -6646,9 +6606,9 @@
   - S001900
   - S001904
   - S010967
-  - SC170570
   - S016763
   - S016764
+  - SC170570
 - :name: Disease Outcome
   :short_name: DSSOUT
   :identifier: C102578
@@ -6676,9 +6636,9 @@
   - C112329
   - C114146
   - C117758
+  - C25639
   - C40353
   - C80457
-  - C25639
 - :name: SDTM Death Diagnosis Test Name
   :short_name: DTHDX
   :identifier: C116107
@@ -8318,6 +8278,7 @@
   - S001306
   - S001309
   - S001310
+  - S014031
   - S015893
   - S015894
   - S015895
@@ -8479,7 +8440,7 @@
   - S013611
   - S013612
   - S013613
-  - S013614
+  - S017816
 - :name: Exposure Summary Parameter Test Code
   :short_name: ESPARMCD
   :identifier: SN001379
@@ -8492,7 +8453,7 @@
   - S013611
   - S013612
   - S013613
-  - S013614
+  - S017816
 - :name: Extrapyramidal Symptom Rating Scale-Abbreviated Clinical Classification Test
     Code
   :short_name: ESRSA1TC
@@ -8649,6 +8610,8 @@
   - C119264
   - C119265
   - C17445
+  - C25465
+  - C25936
   - C41189
   - C42708
   - C42709
@@ -8664,8 +8627,6 @@
   - C78720
   - C78726
   - C96561
-  - C25465
-  - C25936
   - S012933
 - :name: Supporting Evidence for Re-Treatment
   :short_name: EVDRETRT
@@ -9694,9 +9655,9 @@
   - S014032
   - S016482
   - S016483
+  - S017021
   - S030095
   - S030132
-  - S017021
   - S031110
 - :name: Functional Assessment of Multiple Sclerosis Version 4 Questionnaire Test
     Code
@@ -9894,12 +9855,12 @@
   - S010969
   - S010970
   - S010975
+  - S010976
   - S010978
   - S010979
   - S011271
   - S012141
   - S030133
-  - S010976
 - :name: Framingham Heart Study Cardiovascular Disease 10-Year Risk Score Clinical
     Classification Test Code
   :short_name: FCVD1TC
@@ -9922,6 +9883,7 @@
   - SC161476
   - SC165874
   - SC170572
+  - SC174287
 - :name: Tumor Complete Metabolic Response by Positron Emission Tomography
   :short_name: FDGPETSC
   :identifier: SN000237
@@ -10015,6 +9977,7 @@
   - C139182
   - C139183
   - C17998
+  - C25473
   - C53279
   - C64496
   - C64497
@@ -10092,7 +10055,6 @@
   - S001887
   - S001888
   - SC17649
-  - C25473
 - :name: Frequency Subset 01
   :short_name: FREQ_01
   :identifier: SN003035
@@ -10108,6 +10070,10 @@
   :items:
   - C17423
   - C25158
+  - C25394
+  - C28944
+  - C29167
+  - C29269
   - C42678
   - C42679
   - C42763
@@ -10271,10 +10237,6 @@
   - C61005
   - C61006
   - C97197
-  - C25394
-  - C28944
-  - C29167
-  - C29269
 - :name: Fatigue Severity Scale Questionnaire Test Code
   :short_name: FSS01TC
   :identifier: C113850
@@ -10327,17 +10289,17 @@
   :items:
   - S002374
   - S002375
-  - SC17649
   - S016538
+  - SC17649
 - :name: Reason Functional Test Assessment Not Performed Subset 01
   :short_name: FTREASND_01
-  :identifier: SN003614
+  :identifier: SN003612
   :items:
   - S016538
   - SC17649
 - :name: Reason Functional Test Assessment Not Performed Subset 02
   :short_name: FTREASND_02
-  :identifier: SN003615
+  :identifier: SN003613
   :items:
   - S002374
   - S002375
@@ -10560,6 +10522,10 @@
   - C111316
   - C1292
   - C2191
+  - C25966
+  - C25967
+  - C28454
+  - C28512
   - C324
   - C449
   - C754
@@ -10578,10 +10544,6 @@
   - C95952
   - C95953
   - C95954
-  - C25966
-  - C25967
-  - C28454
-  - C28512
 - :name: Glasgow Scale Total Score
   :short_name: GLASGWTS
   :identifier: SN000646
@@ -11017,7 +10979,7 @@
 - :name: Health Assessment Questionnaire Disability Index With Pain Visual Analog
     Scale Questionnaire STRESC for HAQ0101 to HAQ0109 and HAQ0123 to HAQ0133
   :short_name: HAQ0101R
-  :identifier: SN001580
+  :identifier: SN001750
   :items:
   - S016314
   - S016315
@@ -11026,7 +10988,7 @@
 - :name: Health Assessment Questionnaire Disability Index Questionnaire STRESC for
     HAQ0110 to HAQ0122 and HAQ0134 to HAQ0145
   :short_name: HAQ0102R
-  :identifier: SN001581
+  :identifier: SN001749
   :items:
   - S012755
   - S012756
@@ -11548,7 +11510,7 @@
   - SC41132
 - :name: Healthcare Encounter Term
   :short_name: HOTERM
-  :identifier: SN001574
+  :identifier: SN001748
   :items:
   - S016579
   - S016580
@@ -11925,36 +11887,6 @@
   - S002926
   - S002927
   - S002928
-  - S006561
-  - S007021
-  - S007022
-  - S007023
-  - S007024
-  - S007025
-  - S007026
-  - S007027
-  - S007028
-  - S007029
-  - S007030
-  - S007031
-  - S007032
-  - S007033
-  - S007034
-  - S007035
-  - S007036
-  - S009093
-  - S010952
-  - S011971
-  - S011972
-  - S011973
-  - S011974
-  - S011975
-  - S011976
-  - S030464
-  - S030465
-  - S030466
-  - S030467
-  - S030468
   - S004443
   - S004444
   - S004445
@@ -11981,12 +11913,29 @@
   - S006368
   - S006369
   - S006377
+  - S006561
   - S006897
   - S006898
   - S006899
   - S006900
   - S006901
   - S006917
+  - S007021
+  - S007022
+  - S007023
+  - S007024
+  - S007025
+  - S007026
+  - S007027
+  - S007028
+  - S007029
+  - S007030
+  - S007031
+  - S007032
+  - S007033
+  - S007034
+  - S007035
+  - S007036
   - S007245
   - S007246
   - S007247
@@ -12022,6 +11971,7 @@
   - S007551
   - S007552
   - S008001
+  - S009093
   - S010804
   - S010805
   - S010806
@@ -12036,6 +11986,7 @@
   - S010816
   - S010817
   - S010820
+  - S010952
   - S011118
   - S011119
   - S011120
@@ -12090,6 +12041,12 @@
   - S011968
   - S011969
   - S011970
+  - S011971
+  - S011972
+  - S011973
+  - S011974
+  - S011975
+  - S011976
   - S011977
   - S011978
   - S011979
@@ -12182,6 +12139,11 @@
   - S013772
   - S013773
   - S013774
+  - S030464
+  - S030465
+  - S030466
+  - S030467
+  - S030468
   - S031013
 - :name: Category for Inclusion/Exclusion
   :short_name: IECAT
@@ -12433,7 +12395,6 @@
   :short_name: IIFATS
   :identifier: SN001116
   :items:
-  - SC127786
   - S011273
   - S011275
   - S011276
@@ -12448,12 +12409,12 @@
   - S011288
   - S013425
   - S013426
+  - SC127786
   - SC25285
 - :name: Immunology and Inflammation Findings About Test Code
   :short_name: IIFATSCD
   :identifier: SN001115
   :items:
-  - SC127786
   - S011273
   - S011275
   - S011276
@@ -12468,6 +12429,7 @@
   - S011288
   - S013425
   - S013426
+  - SC127786
   - SC25285
 - :name: Informed Consent
   :short_name: INFCST
@@ -12500,7 +12462,7 @@
   - SC48660
 - :name: Influenza Infection Symptoms
   :short_name: INSYMP
-  :identifier: SN001576
+  :identifier: SN001747
   :items:
   - S016564
   - S016565
@@ -12514,6 +12476,7 @@
   - S016573
   - S016574
   - S016575
+  - S018001
 - :name: Intervention Model Response
   :short_name: INTMODEL
   :identifier: C99076
@@ -12522,6 +12485,7 @@
   - C82638
   - C82639
   - C82640
+  - SC142568
 - :name: Intervention Type Response
   :short_name: INTTYPE
   :identifier: C99078
@@ -12835,9 +12799,9 @@
   - C25228
   - C25229
   - C25230
-  - C68598
   - C25307
   - C25308
+  - C68598
   - SC48660
 - :name: Laterality Subset 01
   :short_name: LAT_01
@@ -12854,7 +12818,7 @@
   - C68598
 - :name: Laterality Subset 04
   :short_name: LAT_04
-  :identifier: SN003616
+  :identifier: SN003614
   :items:
   - C25228
   - C25229
@@ -14240,6 +14204,8 @@
   - C139091
   - C16790
   - C17634
+  - C25377
+  - C25747
   - C38037
   - C38462
   - C45781
@@ -15289,7 +15255,37 @@
   - S010956
   - S010957
   - S010958
+  - S012783
+  - S012784
+  - S012785
+  - S012786
+  - S012787
+  - S012788
+  - S012789
+  - S012790
   - S013059
+  - S013060
+  - S013061
+  - S013062
+  - S013063
+  - S013064
+  - S013065
+  - S013067
+  - S013068
+  - S013069
+  - S013070
+  - S013071
+  - S013072
+  - S013073
+  - S013074
+  - S013075
+  - S013076
+  - S013077
+  - S013078
+  - S013079
+  - S013080
+  - S013081
+  - S013082
   - S013775
   - S014048
   - S014049
@@ -15302,7 +15298,10 @@
   - S014056
   - S014057
   - S014277
+  - S016048
+  - S016050
   - S016311
+  - S016802
   - S030396
   - S030397
   - S030398
@@ -15316,6 +15315,11 @@
   - S031000
   - S031004
   - S031005
+  - S031116
+  - S032187
+  - S032348
+  - S032349
+  - S032350
   - S900001
   - S900002
   - S900003
@@ -15824,76 +15828,36 @@
   - S900553
   - S900554
   - S900555
+  - SC123557
   - SC138970
   - SC142275
   - SC142287
+  - SC142330
   - SC147286
+  - SC147302
+  - SC147322
   - SC147328
   - SC147377
   - SC147424
+  - SC147450
   - SC150637
+  - SC154724
+  - SC154748
   - SC154769
   - SC156509
+  - SC156512
+  - SC156528
+  - SC156529
   - SC158238
+  - SC161352
   - SC161360
   - SC163435
   - SC163437
   - SC163541
   - SC163544
   - SC165947
-  - SC172491
-  - S016802
-  - C25377
-  - C25747
-  - S012783
-  - S012784
-  - S012785
-  - S012786
-  - S012787
-  - S012788
-  - S012789
-  - S012790
-  - S013060
-  - S013061
-  - S013062
-  - S013063
-  - S013064
-  - S013065
-  - S013067
-  - S013068
-  - S013069
-  - S013070
-  - S013071
-  - S013072
-  - S013073
-  - S013074
-  - S013075
-  - S013076
-  - S013077
-  - S013078
-  - S013079
-  - S013080
-  - S013081
-  - S013082
-  - S016048
-  - S016050
-  - S031116
-  - S032187
-  - S032348
-  - S032349
-  - S032350
-  - SC123557
-  - SC142330
-  - SC147302
-  - SC147322
-  - SC147450
-  - SC154724
-  - SC154748
-  - SC156512
-  - SC156528
-  - SC156529
-  - SC161352
   - SC170579
+  - SC172491
 - :name: Laboratory Test Name Subset 01
   :short_name: LBTEST_01
   :identifier: SN003038
@@ -16355,6 +16319,8 @@
   - C135441
   - C16790
   - C17634
+  - C25377
+  - C25747
   - C45781
   - C45997
   - C51947
@@ -17167,8 +17133,6 @@
   - S016311
   - SC163435
   - SC163437
-  - C25377
-  - C25747
 - :name: Laboratory Test Name Subset 03
   :short_name: LBTEST_03
   :identifier: SN003039
@@ -18024,6 +17988,8 @@
   - C139091
   - C16790
   - C17634
+  - C25377
+  - C25747
   - C38037
   - C38462
   - C45781
@@ -19073,7 +19039,37 @@
   - S010956
   - S010957
   - S010958
+  - S012783
+  - S012784
+  - S012785
+  - S012786
+  - S012787
+  - S012788
+  - S012789
+  - S012790
   - S013059
+  - S013060
+  - S013061
+  - S013062
+  - S013063
+  - S013064
+  - S013065
+  - S013067
+  - S013068
+  - S013069
+  - S013070
+  - S013071
+  - S013072
+  - S013073
+  - S013074
+  - S013075
+  - S013076
+  - S013077
+  - S013078
+  - S013079
+  - S013080
+  - S013081
+  - S013082
   - S013775
   - S014048
   - S014049
@@ -19086,7 +19082,10 @@
   - S014056
   - S014057
   - S014277
+  - S016048
+  - S016050
   - S016311
+  - S016802
   - S030396
   - S030397
   - S030398
@@ -19100,6 +19099,11 @@
   - S031000
   - S031004
   - S031005
+  - S031116
+  - S032187
+  - S032348
+  - S032349
+  - S032350
   - S900001
   - S900002
   - S900003
@@ -19608,76 +19612,36 @@
   - S900553
   - S900554
   - S900555
+  - SC123557
   - SC138970
   - SC142275
   - SC142287
+  - SC142330
   - SC147286
+  - SC147302
+  - SC147322
   - SC147328
   - SC147377
   - SC147424
+  - SC147450
   - SC150637
+  - SC154724
+  - SC154748
   - SC154769
   - SC156509
+  - SC156512
+  - SC156528
+  - SC156529
   - SC158238
+  - SC161352
   - SC161360
   - SC163435
   - SC163437
   - SC163541
   - SC163544
   - SC165947
-  - SC172491
-  - S016802
-  - C25377
-  - C25747
-  - S012783
-  - S012784
-  - S012785
-  - S012786
-  - S012787
-  - S012788
-  - S012789
-  - S012790
-  - S013060
-  - S013061
-  - S013062
-  - S013063
-  - S013064
-  - S013065
-  - S013067
-  - S013068
-  - S013069
-  - S013070
-  - S013071
-  - S013072
-  - S013073
-  - S013074
-  - S013075
-  - S013076
-  - S013077
-  - S013078
-  - S013079
-  - S013080
-  - S013081
-  - S013082
-  - S016048
-  - S016050
-  - S031116
-  - S032187
-  - S032348
-  - S032349
-  - S032350
-  - SC123557
-  - SC142330
-  - SC147302
-  - SC147322
-  - SC147450
-  - SC154724
-  - SC154748
-  - SC156512
-  - SC156528
-  - SC156529
-  - SC161352
   - SC170579
+  - SC172491
 - :name: Lab Type
   :short_name: LBTYPE
   :identifier: SN000342
@@ -20510,6 +20474,11 @@
   - C15609
   - C25177
   - C25203
+  - C25389
+  - C25724
+  - C26465
+  - C26470
+  - C28401
   - C32038
   - C32041
   - C32042
@@ -20870,11 +20839,6 @@
   - SC142369
   - SC17649
   - SC17998
-  - C25389
-  - C25724
-  - C26465
-  - C26470
-  - C28401
   - SC48660
   - SC78205
 - :name: Anatomical Location Subset 01
@@ -21253,7 +21217,7 @@
   - C12674
 - :name: Anatomical Location Subset 12
   :short_name: LOC_12
-  :identifier: SN003617
+  :identifier: SN003615
   :items:
   - C32078
   - C32497
@@ -21263,7 +21227,7 @@
   - C53075
 - :name: Anatomical Location Subset 13
   :short_name: LOC_13
-  :identifier: SN003618
+  :identifier: SN003616
   :items:
   - C102306
   - C12378
@@ -21304,7 +21268,7 @@
   - SC78205
 - :name: Anatomical Location Subset 14
   :short_name: LOC_14
-  :identifier: SN003619
+  :identifier: SN003617
   :items:
   - C12419
   - C12799
@@ -21314,7 +21278,7 @@
   - SC48660
 - :name: Anatomical Location Subset 15
   :short_name: LOC_15
-  :identifier: SN003620
+  :identifier: SN003618
   :items:
   - C139186
   - C32141
@@ -21459,8 +21423,8 @@
   - S012077
   - S012078
   - S012079
-  - SC41132
   - S016808
+  - SC41132
 - :name: Medical Evaluator
   :short_name: MEDEVAL
   :identifier: C96777
@@ -21479,6 +21443,7 @@
   - C17821
   - C17822
   - C17824
+  - C28747
   - C94530
   - C94531
   - C94532
@@ -21488,7 +21453,6 @@
   - C96611
   - C96612
   - C96692
-  - C28747
 - :name: Model for End Stage Liver Disease Clinical Classification Test Code
   :short_name: MELD01TC
   :identifier: C120991
@@ -21714,6 +21678,8 @@
   - C23020
   - C23041
   - C25300
+  - C25598
+  - C28408
   - C29934
   - C38036
   - C38054
@@ -21859,31 +21825,29 @@
   - S004752
   - S004753
   - S007061
-  - S016833
   - S007435
   - S007436
-  - S016834
   - S009972
   - S010178
+  - S013604
+  - S016536
+  - S016558
+  - S016833
+  - S016834
   - S030123
   - S030140
   - S030410
   - S030411
+  - S031033
   - SC142340
   - SC147468
   - SC15361
+  - SC166090
   - SC172554
   - SC172559
-  - SC17649
-  - C25598
-  - C28408
-  - S013604
-  - S016536
-  - S016558
-  - S031033
-  - SC166090
   - SC172596
   - SC172597
+  - SC17649
 - :name: Method Subset 03
   :short_name: METHOD_03
   :identifier: SN003047
@@ -22733,6 +22697,8 @@
   - C14347
   - C14378
   - C17998
+  - C28165
+  - C28266
   - C50921
   - C53454
   - C53468
@@ -23645,8 +23611,6 @@
   - C96527
   - C97156
   - C97157
-  - C28165
-  - C28266
 - :name: Microorganism Subset 01
   :short_name: MICROORG_01
   :identifier: SN003049
@@ -24584,7 +24548,7 @@
   - S016562
 - :name: Musculoskeletal System Finding Test Name Subset 01
   :short_name: MUSCTS_01
-  :identifier: SN003621
+  :identifier: SN003619
   :items:
   - C139210
   - C139215
@@ -24640,7 +24604,7 @@
   - S016562
 - :name: Musculoskeletal System Finding Test Code Subset 01
   :short_name: MUSCTSCD_01
-  :identifier: SN003622
+  :identifier: SN003620
   :items:
   - C139210
   - C139215
@@ -24661,9 +24625,9 @@
   :short_name: NCF
   :identifier: C78738
   :items:
-  - C70543
   - C25471
   - C25627
+  - C70543
 - :name: NCI CTCAE Dictionary Version
   :short_name: NCIDICTV
   :identifier: SN001061
@@ -24689,6 +24653,9 @@
   - C16735
   - C17649
   - C25250
+  - C25742
+  - C25746
+  - C28554
   - C35571
   - C38155
   - C41331
@@ -24710,12 +24677,9 @@
   - S001284
   - S001285
   - S016582
+  - S016680
   - SC132447
   - SC142742
-  - C25742
-  - C25746
-  - C28554
-  - S016680
 - :name: Completion/Reason for Non-Completion Subset 01
   :short_name: NCOMPLT_01
   :identifier: SN003021
@@ -24811,7 +24775,7 @@
   - S001277
 - :name: Completion/Reason for Non-Completion Subset 12
   :short_name: NCOMPLT_12
-  :identifier: SN003623
+  :identifier: SN003621
   :items:
   - C17649
   - C35571
@@ -25170,9 +25134,9 @@
   - S011937
   - S011938
   - SC17649
-- :name: Nine-Hole Peg Test Functional Test ORRES for NHPT0102
+- :name: Nine-Hole Peg Test Functional Test STRESC for NHPT0102
   :short_name: NHPT01R
-  :identifier: SN001582
+  :identifier: SN001746
   :items:
   - S016534
   - S016535
@@ -25196,9 +25160,9 @@
   :items:
   - C14165
   - C17998
+  - C25401
   - C48658
   - C62222
-  - C25401
 - :name: Normal Abnormal Response Subset 01
   :short_name: NORMABNM_01
   :identifier: SN003054
@@ -25209,20 +25173,20 @@
   :short_name: NORMED
   :identifier: SN000393
   :items:
-  - S008888
   - S008884
   - S008885
   - S008887
-  - S008886
+  - S008888
+  - S017281
 - :name: Normalized Identifier Numeric
   :short_name: NORMEDN
   :identifier: SN000394
   :items:
   - S003126
-  - S003130
-  - S003129
   - S003127
   - S003128
+  - S003129
+  - S003130
 - :name: Neuropsychiatric Inventory Questionnaire Test Code
   :short_name: NPI1TC
   :identifier: C100144
@@ -25697,9 +25661,9 @@
   - C117887
   - C117888
   - C130185
+  - C25335
   - C41145
   - S009955
-  - C25335
 - :name: Nervous System Physiology Test Code
   :short_name: NVTESTCD
   :identifier: C116104
@@ -25710,9 +25674,9 @@
   - C117887
   - C117888
   - C130185
+  - C25335
   - C41145
   - S009955
-  - C25335
 - :name: No Yes Response
   :short_name: NY
   :identifier: C66742
@@ -25981,14 +25945,14 @@
   - C132432
   - C139242
   - C25285
+  - C25637
+  - C25677
   - C37927
   - C41145
   - C87143
   - C96684
   - S009956
   - SC41255
-  - C25637
-  - C25677
 - :name: Ophthalmic Exam Test Code
   :short_name: OETESTCD
   :identifier: C117743
@@ -26015,14 +25979,14 @@
   - C132432
   - C139242
   - C25285
+  - C25637
+  - C25677
   - C37927
   - C41145
   - C87143
   - C96684
   - S009956
   - SC41255
-  - C25637
-  - C25677
 - :name: Category of Oncology Response Assessment
   :short_name: ONCRSCAT
   :identifier: C124298
@@ -26317,22 +26281,22 @@
   :short_name: OUT
   :identifier: C66768
   :items:
-  - C49498
+  - C17998
+  - C48275
+  - C49494
   - C49495
   - C49496
-  - C49494
-  - C48275
-  - C17998
+  - C49498
 - :name: Outcome of Event Numeric
   :short_name: OUTN
   :identifier: SN000407
   :items:
-  - S009915
-  - S009914
   - S003153
-  - S009913
-  - S009912
   - S003156
+  - S009912
+  - S009913
+  - S009914
+  - S009915
 - :name: Pregnancy Outcome
   :short_name: OUTPRG
   :identifier: SN000408
@@ -26579,6 +26543,7 @@
   - S016520
   - S016521
   - S016522
+  - S016523
   - S016524
   - S016525
   - S016526
@@ -26587,11 +26552,10 @@
   - S016529
   - S016530
   - S016531
-  - S016632
-  - S016633
-  - S016523
   - S016532
   - S016533
+  - S016632
+  - S016633
 - :name: Potentially Clinical Significant Abnormality Direction of Criteria
   :short_name: PCSAHLO
   :identifier: SN000412
@@ -26766,18 +26730,18 @@
     for Health Assessment Questionnaire Disability Index With Pain Visual Analog Scale
     Test Code
   :short_name: PGA03TC
-  :identifier: SN001573
+  :identifier: SN001770
   :items:
-  - S016344
   - S014067
+  - S016344
 - :name: Patient Global Assessment of Disease Activity on a Visual Analogue Scale
     for Health Assessment Questionnaire Disability Index With Pain Visual Analog Scale
     Test Name
   :short_name: PGA03TN
-  :identifier: SN001577
+  :identifier: SN001744
   :items:
-  - S016344
   - S014067
+  - S016344
 - :name: Patient Global Impression Generic Modification Version Questionnaire Test
     Code
   :short_name: PGI01TC
@@ -26816,20 +26780,20 @@
   :short_name: PHFATS
   :identifier: SN001365
   :items:
-  - SC127786
   - S008583
   - S009861
   - S010971
   - S012306
+  - SC127786
 - :name: Pharma Findings About Test Code
   :short_name: PHFATSCD
   :identifier: SN001364
   :items:
-  - SC127786
   - S008583
   - S009861
   - S010971
   - S012306
+  - SC127786
 - :name: Patient Health Questionnaire - 9 Item Questionnaire Test Code
   :short_name: PHQ01TC
   :identifier: C103481
@@ -27031,29 +26995,29 @@
   :identifier: C95120
   :items:
   - C25285
-  - C37927
-  - C95109
-  - C95110
   - C25333
   - C25334
   - C25345
   - C25365
   - C25677
   - C25757
+  - C37927
+  - C95109
+  - C95110
 - :name: Physical Properties Test Code
   :short_name: PHSPRPCD
   :identifier: C95121
   :items:
   - C25285
-  - C37927
-  - C95109
-  - C95110
   - C25333
   - C25334
   - C25345
   - C25365
   - C25677
   - C25757
+  - C37927
+  - C95109
+  - C95110
 - :name: Pain Intensity Questionnaire Test Code
   :short_name: PI01TC
   :identifier: C105134
@@ -28182,6 +28146,12 @@
   - C123561
   - C123562
   - C123563
+  - C25301
+  - C25473
+  - C25529
+  - C25613
+  - C28253
+  - C28254
   - C42539
   - C42576
   - C44256
@@ -28286,11 +28256,6 @@
   - S012066
   - S012067
   - S012068
-  - C25473
-  - C25529
-  - C25613
-  - C28253
-  - C28254
 - :name: PK Units of Measure - Weight g
   :short_name: PKUWG
   :identifier: C128684
@@ -29022,13 +28987,13 @@
   :short_name: PORTOT
   :identifier: C99075
   :items:
+  - C25326
+  - C25378
   - C45312
   - C48440
   - C64916
   - C78728
   - C81009
-  - C25326
-  - C25378
 - :name: Position
   :short_name: POSITION
   :identifier: C71148
@@ -30201,6 +30166,7 @@
   - C16035
   - C16135
   - C20985
+  - C28049
   - C38044
   - C40030
   - C50815
@@ -30242,7 +30208,6 @@
   - S005204
   - SC17649
   - SC70909
-  - C28049
 - :name: Procedure Subset 01
   :short_name: PROCEDUR_01
   :identifier: SN003058
@@ -30345,7 +30310,6 @@
   - S003195
   - S003196
   - S003197
-  - S003198
   - S003199
   - S003200
   - S003201
@@ -31150,9 +31114,6 @@
   - S004874
   - S004878
   - S005280
-  - S016284
-  - S016287
-  - S016587
   - S012775
   - S012776
   - S012777
@@ -31161,12 +31122,15 @@
   - S013099
   - S013100
   - S016283
+  - S016284
+  - S016287
   - S016511
   - S016512
   - S016513
   - S016514
   - S016515
   - S016516
+  - S016587
 - :name: Questionnaire Test Name
   :short_name: QSTEST
   :identifier: SN000733
@@ -31486,6 +31450,33 @@
   - C100802
   - C100803
   - C100804
+- :name: Reason for Subject Not Treated
+  :short_name: REASNT
+  :identifier: SN001775
+  :items:
+  - S011005
+  - S016600
+  - S016601
+  - S016614
+  - SC17649
+  - SC41331
+  - SC91752
+- :name: Reason for Subject Not Treated Subset 01
+  :short_name: REASNT_01
+  :identifier: SN003622
+  :items:
+  - S016600
+  - S016601
+  - SC17649
+- :name: Reason for Subject Not Treated Subset 02
+  :short_name: REASNT_02
+  :identifier: SN003623
+  :items:
+  - S011005
+  - S016614
+  - SC17649
+  - SC41331
+  - SC91752
 - :name: Reason for Treatment Interruption
   :short_name: REASTINT
   :identifier: C102583
@@ -31496,28 +31487,6 @@
   - C71437
   - C80227
   - C91752
-  - S011005
-  - S016600
-  - S016601
-  - S016614
-  - SC17649
-  - SC41331
-- :name: Reason for Treatment Interruption Subset 01
-  :short_name: REASTINT_01
-  :identifier: SN003624
-  :items:
-  - S016600
-  - S016601
-  - SC17649
-- :name: Reason for Treatment Interruption Subset 02
-  :short_name: REASTINT_02
-  :identifier: SN003625
-  :items:
-  - C91752
-  - S011005
-  - S016614
-  - SC17649
-  - SC41331
 - :name: Reason Treatment Not Fully Administered
   :short_name: REASTNFA
   :identifier: SN001626
@@ -31528,7 +31497,7 @@
   - SC91752
 - :name: Reason Treatment Not Fully Administered Subset 01
   :short_name: REASTNFA_01
-  :identifier: SN003626
+  :identifier: SN003624
   :items:
   - S011005
   - SC17649
@@ -31583,7 +31552,7 @@
   - S003255
 - :name: Respiratory Infection Clinical Event
   :short_name: REITERM
-  :identifier: SN001575
+  :identifier: SN001743
   :items:
   - S016366
   - S016576
@@ -31670,7 +31639,7 @@
   - C78728
 - :name: Response Modality
   :short_name: RESPMOD
-  :identifier: SN001583
+  :identifier: SN001742
   :items:
   - S016509
   - S016510
@@ -31907,6 +31876,7 @@
   - C128995
   - C128996
   - C128997
+  - C28161
   - C38192
   - C38193
   - C38194
@@ -32020,6 +31990,7 @@
   - C48623
   - C64906
   - C64984
+  - C64987
   - C65138
   - C78373
   - C78374
@@ -32028,12 +31999,11 @@
   - C94636
   - S003258
   - SC17649
-  - C28161
-  - C64987
 - :name: Route of Administration Response Subset 01
   :short_name: ROUTE_01
   :identifier: SN003509
   :items:
+  - C28161
   - C38238
   - C38276
   - C38284
@@ -32041,7 +32011,6 @@
   - C38299
   - C38305
   - C38675
-  - C28161
 - :name: Route of Administration Response Subset 02
   :short_name: ROUTE_02
   :identifier: SN003510
@@ -32062,12 +32031,12 @@
   :short_name: ROUTE_05
   :identifier: SN003512
   :items:
+  - C28161
   - C38238
   - C38299
-  - C28161
 - :name: Route of Administration Response Subset 06
   :short_name: ROUTE_06
-  :identifier: SN003627
+  :identifier: SN003625
   :items:
   - C38216
   - C38288
@@ -32307,6 +32276,7 @@
   - S012182
   - S012183
   - S012184
+  - S012307
   - S013098
   - S016592
   - S016593
@@ -32317,7 +32287,6 @@
   - S016612
   - S016636
   - S016637
-  - S012307
 - :name: Type of Sample
   :short_name: SAMTYPE
   :identifier: SN000536
@@ -32329,8 +32298,8 @@
   :identifier: C124296
   :items:
   - C25250
-  - C53279
   - C25484
+  - C53279
 - :name: Subject Characteristic Test Name
   :short_name: SCTEST
   :identifier: C103330
@@ -32362,6 +32331,7 @@
   - C17953
   - C25188
   - C25193
+  - C28407
   - C4876
   - C74563
   - C74565
@@ -32369,7 +32339,6 @@
   - C74580
   - S000786
   - S009963
-  - C28407
   - S015808
 - :name: Subject Characteristic Test Code
   :short_name: SCTESTCD
@@ -32402,6 +32371,7 @@
   - C17953
   - C25188
   - C25193
+  - C28407
   - C4876
   - C74563
   - C74565
@@ -32409,7 +32379,6 @@
   - C74580
   - S000786
   - S009963
-  - C28407
   - S015808
 - :name: Symbol Digit Modalities Test Functional Test Test Code
   :short_name: SDMT01TC
@@ -32506,22 +32475,22 @@
   :short_name: SEVRS
   :identifier: SC165643
   :items:
-  - SC70666
-  - S011103
-  - SC61376
   - S011102
-  - SC70667
+  - S011103
   - SC17998
+  - SC61376
+  - SC70666
+  - SC70667
 - :name: Severity Response Subset 01
   :short_name: SEVRS_01
-  :identifier: SN003628
+  :identifier: SN003626
   :items:
-  - SC70666
   - SC61376
+  - SC70666
   - SC70667
 - :name: Severity Response Subset 02
   :short_name: SEVRS_02
-  :identifier: SN003629
+  :identifier: SN003627
   :items:
   - S011102
   - S011103
@@ -32536,7 +32505,7 @@
   - C45908
 - :name: Sex Subset 01
   :short_name: SEX_01
-  :identifier: SN003630
+  :identifier: SN003628
   :items:
   - C16576
   - C20197
@@ -32549,7 +32518,7 @@
   - C49636
 - :name: Short Form 12 Health Survey RCH, Version 2.0 Questionnaire STRESC for SF12101
   :short_name: SF12101R
-  :identifier: SN001584
+  :identifier: SN001741
   :items:
   - S016271
   - S016273
@@ -32559,7 +32528,7 @@
 - :name: Short Form 12 Health Survey RCH, Version 2.0 Questionnaire STRESC for SF12102
     to SF12103
   :short_name: SF12102R
-  :identifier: SN001585
+  :identifier: SN001740
   :items:
   - S016267
   - S016269
@@ -33177,14 +33146,14 @@
   :short_name: SHIFT
   :identifier: SN000548
   :items:
-  - S005180
   - S003274
+  - S005180
 - :name: Shift of Normality from Baseline
   :short_name: SHIFT2
   :identifier: SN000549
   :items:
-  - S008890
   - S008889
+  - S008890
 - :name: Shift of Normality from Baseline Numeric
   :short_name: SHIFT2N
   :identifier: SN000550
@@ -33273,9 +33242,9 @@
   :short_name: SIZE
   :identifier: C66733
   :items:
+  - C25376
   - C49507
   - C49508
-  - C25376
 - :name: Fitzpatrick Skin Classification Response
   :short_name: SKINCLAS
   :identifier: C76351
@@ -33676,6 +33645,7 @@
   - C13325
   - C13356
   - C18009
+  - C27958
   - C32293
   - C32348
   - C32705
@@ -33712,9 +33682,8 @@
   - S012178
   - S012179
   - SC12435
-  - SC17649
-  - C27958
   - SC150895
+  - SC17649
 - :name: Specimen Type Subset 02
   :short_name: SPECTYPE_02
   :identifier: SN003079
@@ -33762,26 +33731,26 @@
   :identifier: C124304
   :items:
   - C17998
-  - C37987
   - C28554
+  - C37987
 - :name: Subject Status Response Subset 01
   :short_name: SSTATRS_01
   :identifier: SN003084
   :items:
-  - C37987
   - C28554
+  - C37987
 - :name: Subject Status Test Name
   :short_name: SSTEST
   :identifier: C124306
   :items:
-  - S009965
   - C25717
+  - S009965
 - :name: Subject Status Test Code
   :short_name: SSTESTCD
   :identifier: C124305
   :items:
-  - S009965
   - C25717
+  - S009965
 - :name: Stage Which the Initially Error Occurred
   :short_name: STAOCC
   :identifier: SN001105
@@ -33822,12 +33791,12 @@
   :identifier: C66728
   :items:
   - C17998
-  - C38008
-  - C49640
-  - C53279
   - C25456
   - C25490
   - C25629
+  - C38008
+  - C49640
+  - C53279
 - :name: Relation to Reference Period Subset 01
   :short_name: STENRF_01
   :identifier: SN003067
@@ -33924,7 +33893,7 @@
   - C124444
   - C127786
   - C35461
-- :name: Timed 25-Foot Walk Test Functional Test ORRES for T25FW102
+- :name: Timed 25-Foot Walk Test Functional Test STRESC for T25FW102
   :short_name: T25FW1R
   :identifier: SN001605
   :items:
@@ -33997,8 +33966,8 @@
   :identifier: C66735
   :items:
   - C15228
-  - C49659
   - C28233
+  - C49659
 - :name: Control Type Response
   :short_name: TCNTRL
   :identifier: C66785
@@ -34065,7 +34034,6 @@
   - C49657
   - C71485
   - C71486
-  - C48262
 - :name: Trail Making Test Functional Test Test Code
   :short_name: TMT01TC
   :identifier: C124688
@@ -34103,22 +34071,22 @@
   :short_name: TOXGRA
   :identifier: SN001073
   :items:
-  - S003307
-  - S030801
   - S003309
   - S003310
   - S003311
+  - S017113
+  - S030801
   - S030802
 - :name: Common Terminology Criteria for Adverse Events Numeric
   :short_name: TOXGRN
   :identifier: SN001072
   :items:
-  - S011600
-  - S011601
-  - S011602
-  - S011603
-  - S011604
-  - S011605
+  - S017114
+  - S017640
+  - S017641
+  - S017642
+  - S017643
+  - S017644
 - :name: Trial Phase Response
   :short_name: TPHASE
   :identifier: C66737
@@ -34150,13 +34118,13 @@
   - C124445
   - C126054
   - C126055
+  - C25606
+  - C25610
+  - C25626
   - C48190
   - C73432
   - C86071
   - C96644
-  - C25606
-  - C25610
-  - C25626
 - :name: Assessment of Treatment Efficacy
   :short_name: TRTEFFIC
   :identifier: SN001082
@@ -34216,6 +34184,7 @@
   - C139128
   - C25244
   - C25285
+  - C25335
   - C96566
   - C96621
   - C96622
@@ -34232,7 +34201,6 @@
   - C99723
   - S009966
   - SC132261
-  - C25335
 - :name: Tumor or Lesion Properties Test Code
   :short_name: TRTESTCD
   :identifier: C96779
@@ -34277,6 +34245,7 @@
   - C139128
   - C25244
   - C25285
+  - C25335
   - C96566
   - C96621
   - C96622
@@ -34293,7 +34262,6 @@
   - C99723
   - S009966
   - SC132261
-  - C25335
 - :name: Treatment Intent
   :short_name: TRTINTNT
   :identifier: C124307
@@ -34315,6 +34283,11 @@
   - S003013
   - S003014
   - S003321
+  - S016598
+  - S016599
+  - S016638
+  - S016639
+  - S016642
   - SC101516
   - SC124450
   - SC156595
@@ -34326,11 +34299,6 @@
   - SC17998
   - SC41331
   - SC62220
-  - S016598
-  - S016599
-  - S016638
-  - S016639
-  - S016642
 - :name: Reason for Treatment Use Subset 01
   :short_name: TRTRSN_01
   :identifier: SN003063
@@ -34381,7 +34349,7 @@
   - SC62220
 - :name: Reason for Treatment Use Subset 05
   :short_name: TRTRSN_05
-  :identifier: SN003631
+  :identifier: SN003629
   :items:
   - S016598
   - S016599
@@ -34465,6 +34433,7 @@
   - C15320
   - C16153
   - C25196
+  - C25488
   - C38114
   - C41161
   - C48281
@@ -34511,7 +34480,6 @@
   - SC156603
   - SC156604
   - SC156605
-  - C25488
 - :name: Trial Summary Parameter Test Code
   :short_name: TSPARMCD
   :identifier: C66738
@@ -34580,6 +34548,7 @@
   - C15320
   - C16153
   - C25196
+  - C25488
   - C38114
   - C41161
   - C48281
@@ -34626,7 +34595,6 @@
   - SC156603
   - SC156604
   - SC156605
-  - C25488
 - :name: Treatment Satisfaction Questionnaire for Medication Version 1.4 Questionnaire
     Test Code
   :short_name: TSQM01TC
@@ -34725,14 +34693,14 @@
   - C139126
   - C139127
   - C14172
+  - C25321
+  - C25388
+  - C25643
   - C48190
   - C67263
   - C94520
   - C94521
   - C94522
-  - C25321
-  - C25388
-  - C25643
 - :name: Tumor or Lesion Identification Test Results Subset 01
   :short_name: TUIDRS_01
   :identifier: SN003517
@@ -34984,6 +34952,17 @@
   - C18063
   - C18064
   - C25301
+  - C25397
+  - C25473
+  - C25529
+  - C25613
+  - C28251
+  - C28252
+  - C28253
+  - C28254
+  - C29844
+  - C29846
+  - C29848
   - C41139
   - C41140
   - C42535
@@ -35488,6 +35467,7 @@
   - S004534
   - S004535
   - S004536
+  - S004539
   - S004595
   - S004881
   - S004882
@@ -35501,21 +35481,33 @@
   - S007236
   - S007244
   - S007257
+  - S009431
   - S009900
   - S010223
   - S010766
   - S010831
+  - S011608
+  - S011609
+  - S011610
+  - S011611
   - S012066
   - S012067
   - S012068
+  - S012778
+  - S012779
   - S012899
   - S013066
+  - S013083
+  - S013084
+  - S016401
+  - S016402
   - S016679
   - S016681
   - S030019
   - S030288
   - S030289
   - S031548
+  - S032345
   - S900556
   - S900557
   - S900558
@@ -36082,35 +36074,6 @@
   - S901290
   - S901291
   - S901292
-  - SC158291
-  - SC172606
-  - SC17649
-  - SC41132
-  - SC85624
-  - C25397
-  - C25473
-  - C25529
-  - C25613
-  - C28251
-  - C28252
-  - C28253
-  - C28254
-  - C29844
-  - C29846
-  - C29848
-  - S004539
-  - S009431
-  - S011608
-  - S011609
-  - S011610
-  - S011611
-  - S012778
-  - S012779
-  - S013083
-  - S013084
-  - S016401
-  - S016402
-  - S032345
   - SC106528
   - SC106529
   - SC106543
@@ -36295,7 +36258,11 @@
   - SC123561
   - SC123562
   - SC123563
+  - SC158291
+  - SC172606
+  - SC17649
   - SC25301
+  - SC41132
   - SC73681
   - SC85583
   - SC85584
@@ -36323,6 +36290,7 @@
   - SC85618
   - SC85621
   - SC85622
+  - SC85624
   - SC85632
   - SC85635
   - SC85640
@@ -36381,6 +36349,7 @@
   :short_name: UNIT_05
   :identifier: SN003093
   :items:
+  - C25613
   - C67015
   - C67306
   - C67326
@@ -36392,21 +36361,20 @@
   - S001211
   - S004595
   - S010223
-  - C25613
 - :name: Unit Subset 06
   :short_name: UNIT_06
-  :identifier: SN003632
+  :identifier: SN003630
   :items:
   - C25301
-  - C42535
-  - C48154
   - C25529
   - C29844
   - C29846
   - C29848
+  - C42535
+  - C48154
 - :name: Unit Subset 07
   :short_name: UNIT_07
-  :identifier: SN003633
+  :identifier: SN003631
   :items:
   - C25301
   - C29844
@@ -36414,7 +36382,7 @@
   - C29848
 - :name: Unit Subset 08
   :short_name: UNIT_08
-  :identifier: SN003634
+  :identifier: SN003632
   :items:
   - C28253
   - C48152
@@ -36733,8 +36701,8 @@
   - C130195
   - C130196
   - C135522
-  - C64546
   - C25334
+  - C64546
 - :name: Urinary System Test Code
   :short_name: URNSTSCD
   :identifier: C129942
@@ -36742,8 +36710,8 @@
   - C130195
   - C130196
   - C135522
-  - C64546
   - C25334
+  - C64546
 - :name: Vaccination Evidence Source
   :short_name: VCNEVD
   :identifier: C102590
@@ -36954,15 +36922,13 @@
   :identifier: SC142189
   :items:
   - S002094
-  - S013519
-  - SC25676
-  - SC96684
   - S011285
   - S011288
   - S012306
   - S013482
   - S013483
   - S013484
+  - S013519
   - S013520
   - S013521
   - S013522
@@ -36974,31 +36940,33 @@
   - S016674
   - SC124727
   - SC127786
+  - SC25676
+  - SC96684
 - :name: Vaccines Findings About Test Code
   :short_name: VNFATSCD
   :identifier: SC142187
   :items:
   - S002094
-  - S013519
-  - S013814
-  - SC127786
-  - SC25676
-  - SC96684
   - S011285
   - S011288
   - S012306
   - S013482
   - S013483
   - S013484
+  - S013519
   - S013520
   - S013521
   - S013522
+  - S013814
   - S014045
   - S014046
   - S014047
   - S014065
   - S016674
   - SC124727
+  - SC127786
+  - SC25676
+  - SC96684
 - :name: Category of Vital Signs
   :short_name: VSCAT
   :identifier: SN000743
@@ -37095,6 +37063,9 @@
   :identifier: C66770
   :items:
   - C139135
+  - C25613
+  - C28251
+  - C28252
   - C42549
   - C42559
   - C42569
@@ -37107,9 +37078,6 @@
   - C49671
   - C49673
   - C49674
-  - C25613
-  - C28251
-  - C28252
 - :name: Subcategory of Vital Signs
   :short_name: VSSCAT
   :identifier: SN002054
@@ -37138,6 +37106,7 @@
   - C25208
   - C25298
   - C25299
+  - C25347
   - C49676
   - C49677
   - C49678
@@ -37153,7 +37122,6 @@
   - C98793
   - S009925
   - S010959
-  - C25347
 - :name: Vital Signs Test Code
   :short_name: VSTESTCD
   :identifier: C66741
@@ -37176,6 +37144,7 @@
   - C25208
   - C25298
   - C25299
+  - C25347
   - C49676
   - C49677
   - C49678
@@ -37191,7 +37160,6 @@
   - C98793
   - S009925
   - S010959
-  - C25347
 - :name: World Health Organization Disability Assessment Schedule 2.0 - 12-Item Interviewer
     Questionnaire Test Code
   :short_name: WD1TC
@@ -37763,13 +37731,13 @@
   - S013589
 - :name: Technical Codelist for Reference Time Subset 01
   :short_name: WKREFTIM_01
-  :identifier: SN003635
+  :identifier: SN003633
   :items:
   - S013587
   - S013588
 - :name: Technical Codelist for Reference Time Subset 02
   :short_name: WKREFTIM_02
-  :identifier: SN003636
+  :identifier: SN003634
   :items:
   - S013587
   - S013588

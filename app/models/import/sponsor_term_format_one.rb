@@ -149,6 +149,9 @@ private
         #child.update_identifier(child.identifier)
         #ref = child
         ref = child.to_sponsor
+      elsif child.cdisc_subset?(@th)
+        add_log("CDISC subset detected: #{child.identifier}")
+        ref = child.to_cdisc_subset(@th, true)
       else
         add_error(@parent, "Code list type not detected, identifier '#{child.identifier}'.")
         ref = nil
@@ -221,6 +224,7 @@ private
   def check_for_change(current, previous)
     return current unless subset_match?(current, previous)
     return current unless rank_match?(current, previous)
+    return current unless custom_properties_match?(current, previous)
     current.replace_if_no_change(previous, [:tagged, :custom_properties])
   end
 
@@ -254,6 +258,18 @@ private
     return true unless ref.ranked?
     add_log("Checking rank detected: #{ref.identifier}, #{previous.identifier}")
     ref.rank_list_equal?(previous.is_ranked)
+  end
+
+  # Check custom properties match.
+  def custom_properties_match?(ref, previous)
+    add_log("Checking custom properties: #{ref.identifier}, #{previous.identifier}")
+    return false if ref.narrower.count != previous.narrower.count
+    ref.narrower.each do |current_child|
+      previous_child = previous.narrower.find{|x| current_child.identifier == x.identifier}
+      return false if previous_child.nil?
+      return false if current_child.custom_properties.name_value_pairs != previous_child.custom_properties.name_value_pairs
+    end
+    true
   end
 
   # Simple stack class
