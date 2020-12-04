@@ -95,8 +95,7 @@ describe "Import::SponsorTermFormatOne" do
         {
           #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s1 .
           ?s1 th:notation ?notation .
-          ?s1 th:narrower ?s2 .
-          ?s2 th:identifier ?identifier .
+          ?s1 th:identifier ?identifier .
         } ORDER BY ?notation ?identifier
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo]) 
@@ -241,7 +240,7 @@ describe "Import::SponsorTermFormatOne" do
       it "import 2.6 QC", :import_data => 'slow' do
         load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
         th = Thesaurus.find_minimum(@uri_2_6)
-        build_identifier_map(th, "identifier_map_2-6.yaml", true)
+        build_identifier_map(th, "identifier_map_2-6.yaml", false)
         results = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
         actual = cl_identifiers(th).map{|x| x[:notation]}
         expected = results.map{|x| x[:short_name]}
@@ -295,7 +294,7 @@ describe "Import::SponsorTermFormatOne" do
         load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
         load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
         th = Thesaurus.find_minimum(@uri_3_0)
-        build_identifier_map(th, "identifier_map_3-0.yaml", true)
+        build_identifier_map(th, "identifier_map_3-0.yaml", false)
         results = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
         actual = cl_identifiers(th).map{|x| x[:notation]}
         expected = results.map{|x| x[:short_name]}
@@ -351,7 +350,7 @@ describe "Import::SponsorTermFormatOne" do
         load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
         load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
         th = Thesaurus.find_minimum(@uri_3_1)
-        build_identifier_map(th, "identifier_map_3-1.yaml", true)
+        build_identifier_map(th, "identifier_map_3-1.yaml", false)
         results = read_yaml_file(sub_dir, "import_results_expected_3-1.yaml")
         actual = cl_identifiers(th).map{|x| x[:notation]}
         expected = results.map{|x| x[:short_name]}
@@ -477,10 +476,14 @@ describe "Import::SponsorTermFormatOne" do
       results = []
       ct = Thesaurus.find_minimum(uri)
       code_lists.each do |identifier|
-        cls = ct.find_by_identifiers([identifier])
-        cl = Thesaurus::ManagedConcept.find_minimum(cls[identifier])
-        results << cl.uri if cl.owned? 
-        puts colourize("CL: #{cl.uri}", cl.owned? ? "blue" : "red")
+        begin
+          cls = ct.find_by_identifiers([identifier])
+          cl = Thesaurus::ManagedConcept.find_with_properties(cls[identifier])
+          results << cl.uri if cl.owned? 
+          puts colourize("CL: #{cl.notation} (#{cl.identifier})", cl.owned? ? "blue" : "red")
+        rescue => e
+          byebug
+        end
       end
       results
     end
@@ -510,7 +513,7 @@ describe "Import::SponsorTermFormatOne" do
       uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
       uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
       uri_31 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH")
-      {"2-6" => {uri: uri_26, count: 197257}, "3-0" => {uri: uri_30, count: 291383}, "3-1" => {uri: uri_31, count: 300068}}.each do |version, data|
+      {"2-6" => {uri: uri_26, count: 197257}, "3-0" => {uri: uri_30, count: 291383}, "3-1" => {uri: uri_31, count: 299947}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
@@ -536,7 +539,7 @@ describe "Import::SponsorTermFormatOne" do
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
       result = query_results.by_object_set([:d, :v, :count]).map{|x| {date: x[:d], version: x[:v], count: x[:count], uri: x[:s].to_s}}
-      check_file_actual_expected(result, sub_dir, "ct_query_cl_count_1.yaml", equate_method: :hash_equal, write_file: false)
+      check_file_actual_expected(result, sub_dir, "ct_query_cl_count_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "code list items count by version" do
@@ -552,7 +555,7 @@ describe "Import::SponsorTermFormatOne" do
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
       result = query_results.by_object_set([:d, :v, :count]).map{|x| {date: x[:d], version: x[:v], count: x[:count], uri: x[:s].to_s}}
-      check_file_actual_expected(result, sub_dir, "ct_query_cli_count_1.yaml", equate_method: :hash_equal, write_file: false)
+      check_file_actual_expected(result, sub_dir, "ct_query_cli_count_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     def ct_set

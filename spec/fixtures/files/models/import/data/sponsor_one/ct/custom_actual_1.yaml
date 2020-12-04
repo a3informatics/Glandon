@@ -263,7 +263,7 @@ AGEU:
 AJCCGRD:
   :name: AJCC Tumor Grade Response
   :short_name: AJCCGRD
-  :identifier: C135012
+  :identifier: SC135012
   :items:
     SC113730:
     - SDTM Stage
@@ -4814,7 +4814,7 @@ BCLCSTG:
 BRDGMOOD:
   :name: BRIDG Activity Mood
   :short_name: BRDGMOOD
-  :identifier: C125923
+  :identifier: SC125923
   :items:
     SC125937:
     - SDTM Stage
@@ -6326,7 +6326,7 @@ MICAT:
 ONCRSCAT:
   :name: Category of Oncology Response Assessment
   :short_name: ONCRSCAT
-  :identifier: C124298
+  :identifier: SC124298
   :items:
     S004880:
     - DC Stage
@@ -8470,7 +8470,7 @@ NCOMPLTN:
 NCOMPLT_SCR01:
   :name: Completion/Reason for Non-Completion Screening Subset 01
   :short_name: NCOMPLT_SCR01
-  :identifier: C66727
+  :identifier: SN003018
   :items:
     S001275:
     - DC Stage
@@ -8487,7 +8487,7 @@ NCOMPLT_SCR01:
 NCOMPLT_SCR02:
   :name: Completion/Reason for Non-Completion Screening Subset 02
   :short_name: NCOMPLT_SCR02
-  :identifier: C66727
+  :identifier: SN003019
   :items:
     C25250:
     - DC Stage
@@ -8496,7 +8496,7 @@ NCOMPLT_SCR02:
 NCOMPLT_SCR03:
   :name: Completion/Reason for Non-Completion Screening Subset 03
   :short_name: NCOMPLT_SCR03
-  :identifier: C66727
+  :identifier: SN003020
   :items:
     C25250:
     - DC Stage
@@ -8611,7 +8611,7 @@ NCOMPLT_06:
 NCOMPLT_TS04:
   :name: Completion/Reason for Non-Completion Treatment Subset 04
   :short_name: NCOMPLT_TS04
-  :identifier: C66727
+  :identifier: SN003027
   :items:
     C17649:
     - DC Stage
@@ -8628,7 +8628,7 @@ NCOMPLT_TS04:
 NCOMPLT_TS05:
   :name: Completion/Reason for Non-Completion Treatment Subset 05
   :short_name: NCOMPLT_TS05
-  :identifier: C66727
+  :identifier: SN003028
   :items:
     C17649:
     - DC Stage
@@ -9567,7 +9567,7 @@ DTYPE:
 DLQI1TC:
   :name: Dermatology Life Quality Index Questionnaire Test Code
   :short_name: DLQI1TC
-  :identifier: C119070
+  :identifier: SC119070
   :items:
     SC119163:
     - DC Stage
@@ -9620,7 +9620,7 @@ DLQI1TC:
 DLQI1TN:
   :name: Dermatology Life Quality Index Questionnaire Test Name
   :short_name: DLQI1TN
-  :identifier: C119069
+  :identifier: SC119069
   :items:
     SC119163:
     - DC Stage
@@ -11332,7 +11332,7 @@ ECOG1TC:
   :name: Eastern Cooperative Oncology Group Performance Status Questionnaire Test
     Code
   :short_name: ECOG1TC
-  :identifier: C101815
+  :identifier: SC101815
   :items:
     SC102408:
     - DC Stage
@@ -11342,7 +11342,7 @@ ECOG1TN:
   :name: Eastern Cooperative Oncology Group Performance Status Questionnaire Test
     Name
   :short_name: ECOG1TN
-  :identifier: C101816
+  :identifier: SC101816
   :items:
     SC102408:
     - DC Stage
@@ -12073,7 +12073,7 @@ EGPARMCD:
 EGRDMETH:
   :name: ECG Read Method
   :short_name: EGRDMETH
-  :identifier: SC172333
+  :identifier: SN001024
   :items:
     S002082:
     - SDTM Stage
@@ -13974,7 +13974,7 @@ EQ5D01TC:
   :name: European Quality of Life Five Dimension Three Level Scale Questionnaire Test
     Code
   :short_name: EQ5D01TC
-  :identifier: C100136
+  :identifier: SC100136
   :items:
     SC100392:
     - DC Stage
@@ -14004,7 +14004,7 @@ EQ5D01TN:
   :name: European Quality of Life Five Dimension Three Level Scale Questionnaire Test
     Name
   :short_name: EQ5D01TN
-  :identifier: C100135
+  :identifier: SC100135
   :items:
     SC100392:
     - DC Stage
@@ -15368,7 +15368,7 @@ GNRLOBSC:
 GAD01TC:
   :name: Generalized Anxiety Disorder - 7 Questionnaire Test Code
   :short_name: GAD01TC
-  :identifier: C103467
+  :identifier: SC103467
   :items:
     SC103565:
     - DC Stage
@@ -15409,7 +15409,7 @@ GAD01TC:
 GAD01TN:
   :name: Generalized Anxiety Disorder - 7 Questionnaire Test Name
   :short_name: GAD01TN
-  :identifier: C103466
+  :identifier: SC103466
   :items:
     SC103565:
     - DC Stage
@@ -15450,7 +15450,7 @@ GAD01TN:
 GENRTYP:
   :name: Genetic Region of Interest Type
   :short_name: GENRTYP
-  :identifier: C132317
+  :identifier: SC132317
   :items:
     S010121:
     - DC Stage
@@ -18246,7 +18246,7 @@ KPSSR_01:
 KPSSTC:
   :name: Karnofsky Performance Status Scale Questionnaire Test Code
   :short_name: KPSSTC
-  :identifier: C100170
+  :identifier: SC100170
   :items:
     SC100417:
     - DC Stage
@@ -18255,7 +18255,7 @@ KPSSTC:
 KPSSTN:
   :name: Karnofsky Performance Status Scale Questionnaire Test Name
   :short_name: KPSSTN
-  :identifier: C100169
+  :identifier: SC100169
   :items:
     SC100417:
     - DC Stage
@@ -31374,7 +31374,7 @@ LPPSS1R:
 LPPSS1TC:
   :name: Lansky Play-Performance Status Scale Clinical Classification Test Code
   :short_name: LPPSS1TC
-  :identifier: C138215
+  :identifier: SC138215
   :items:
     SC138364:
     - DC Stage
@@ -31383,7 +31383,7 @@ LPPSS1TC:
 LPPSS1TN:
   :name: Lansky Play-Performance Status Scale Clinical Classification Test Name
   :short_name: LPPSS1TN
-  :identifier: C138214
+  :identifier: SC138214
   :items:
     SC138364:
     - DC Stage
@@ -31618,7 +31618,7 @@ MARISTAT:
 MARISTAT_01:
   :name: Marital Status Subset 01
   :short_name: MARISTAT_01
-  :identifier: C76348
+  :identifier: SN003044
   :items:
     C51773:
     - DC Stage
@@ -31735,7 +31735,7 @@ MEDEVAL:
 MHEDTTYP:
   :name: Medical History Event Date Type
   :short_name: MHEDTTYP
-  :identifier: C124301
+  :identifier: SC124301
   :items:
     S007098:
     - DC Stage
@@ -33031,7 +33031,7 @@ DSCBMETH:
 METHOD_01:
   :name: Method Subset 01
   :short_name: METHOD_01
-  :identifier: C85492
+  :identifier: SN003045
   :items:
     C103400:
     - DC Stage
@@ -33082,7 +33082,7 @@ METHOD_01:
 METHOD_02:
   :name: Method Subset 02
   :short_name: METHOD_02
-  :identifier: C85492
+  :identifier: SN003046
   :items:
     C15189:
     - DC Stage
@@ -33138,7 +33138,7 @@ METHOD_03:
 METHOD_06:
   :name: Method Subset 06
   :short_name: METHOD_06
-  :identifier: C85492
+  :identifier: SN003048
   :items:
     C15189:
     - DC Stage
@@ -36578,7 +36578,7 @@ MRS01R:
 MRS01TC:
   :name: Modified Rankin Scale Questionnaire Test Code
   :short_name: MRS01TC
-  :identifier: C111348
+  :identifier: SC111348
   :items:
     SC111520:
     - SDTM Stage
@@ -36586,7 +36586,7 @@ MRS01TC:
 MRS01TN:
   :name: Modified Rankin Scale Questionnaire Test Name
   :short_name: MRS01TN
-  :identifier: C111347
+  :identifier: SC111347
   :items:
     SC111520:
     - SDTM Stage
@@ -36603,7 +36603,7 @@ MOOD:
 MOTESTCD:
   :name: Morphology Test Code
   :short_name: MOTESTCD
-  :identifier: SN001098
+  :identifier: C114117
   :items:
     C114183:
     - DC Stage
@@ -36720,7 +36720,7 @@ MOTESTCD:
 MOTEST:
   :name: Morphology Test Name
   :short_name: MOTEST
-  :identifier: SN001097
+  :identifier: C114116
   :items:
     C114183:
     - DC Stage
@@ -36935,7 +36935,7 @@ MKCAT:
 MUSCTSCD:
   :name: Musculoskeletal System Finding Test Code
   :short_name: MUSCTSCD
-  :identifier: C127269
+  :identifier: SC127269
   :items:
     S006411:
     - DC Stage
@@ -36954,7 +36954,7 @@ MUSCTSCD:
 MUSCTS:
   :name: Musculoskeletal System Finding Test Name
   :short_name: MUSCTS
-  :identifier: C127270
+  :identifier: SC127270
   :items:
     S006411:
     - DC Stage
@@ -37023,7 +37023,7 @@ NCIDICTV:
 NEOPLASM:
   :name: Neoplasm Type
   :short_name: NEOPLASM
-  :identifier: SN001102
+  :identifier: C88025
   :items:
     C103391:
     - DC Stage
@@ -38787,7 +38787,7 @@ PROGSTG_01:
 PI01TC:
   :name: Pain Intensity Questionnaire Test Code
   :short_name: PI01TC
-  :identifier: C105134
+  :identifier: SC105134
   :items:
     SC105261:
     - SDTM Stage
@@ -38810,7 +38810,7 @@ PI01TC:
 PI01TN:
   :name: Pain Intensity Questionnaire Test Name
   :short_name: PI01TN
-  :identifier: C105133
+  :identifier: SC105133
   :items:
     SC105261:
     - DC Stage
@@ -38846,7 +38846,7 @@ PARAMTYP:
 PHQ01TC:
   :name: Patient Health Questionnaire - 9 Item Questionnaire Test Code
   :short_name: PHQ01TC
-  :identifier: C103481
+  :identifier: SC103481
   :items:
     SC103705:
     - DC Stage
@@ -38895,7 +38895,7 @@ PHQ01TC:
 PHQ01TN:
   :name: Patient Health Questionnaire - 9 Item Questionnaire Test Name
   :short_name: PHQ01TN
-  :identifier: C103480
+  :identifier: SC103480
   :items:
     SC103705:
     - DC Stage
@@ -43885,7 +43885,7 @@ POSITION_01:
 POSITION_02:
   :name: Position Subset 02
   :short_name: POSITION_02
-  :identifier: C71148
+  :identifier: SN003057
   :items:
     C62122:
     - DC Stage
@@ -67308,7 +67308,7 @@ RACE:
 RACEC:
   :name: Race As Collected
   :short_name: RACEC
-  :identifier: C128689
+  :identifier: SC128689
   :items:
     SC128937:
     - DC Stage
@@ -69669,7 +69669,7 @@ ROUTE:
 ROUTE_01:
   :name: Route of Administration Subset 01
   :short_name: ROUTE_01
-  :identifier: SN003509
+  :identifier: SN003069
   :items:
     C38288:
     - DC Stage
@@ -69690,7 +69690,7 @@ ROUTE_01:
 ROUTE_02:
   :name: Route of Administration Subset 02
   :short_name: ROUTE_02
-  :identifier: SN003510
+  :identifier: SN003070
   :items:
     C38272:
     - DC Stage
@@ -69703,7 +69703,7 @@ ROUTE_02:
 ROUTE_03:
   :name: Route of Administration Subset 03
   :short_name: ROUTE_03
-  :identifier: SN003511
+  :identifier: SN003071
   :items:
     C38238:
     - DC Stage
@@ -69716,7 +69716,7 @@ ROUTE_03:
 ROUTE_05:
   :name: Route of Administration Subset 05
   :short_name: ROUTE_05
-  :identifier: SN003512
+  :identifier: SN003072
   :items:
     C28161:
     - DC Stage
@@ -70845,7 +70845,7 @@ RISKSOC:
 CLMETH:
   :name: Specimen Collection Method
   :short_name: CLMETH
-  :identifier: C132314
+  :identifier: SC132314
   :items:
     S000902:
     - SDTM Stage
@@ -71463,7 +71463,7 @@ AESCAT:
 AESCAT_01:
   :name: Subcategory for Adverse Event Subset 01
   :short_name: AESCAT_01
-  :identifier: SN000107
+  :identifier: SN003080
   :items:
     S000038:
     - DC Stage
@@ -71485,7 +71485,7 @@ TTSCAT:
 DSSCAT:
   :name: Subcategory for Disposition Event
   :short_name: DSSCAT
-  :identifier: SC170443
+  :identifier: SN000640
   :items:
     S001510:
     - DC Stage
@@ -72192,7 +72192,7 @@ SUBWREA:
 SSTATRS:
   :name: Subject Status Response
   :short_name: SSTATRS
-  :identifier: C124304
+  :identifier: SC124304
   :items:
     SC17998:
     - DC Stage
@@ -72222,7 +72222,7 @@ SSTATRS_01:
 SSTESTCD:
   :name: Subject Status Test Code
   :short_name: SSTESTCD
-  :identifier: C124305
+  :identifier: SC124305
   :items:
     S009965:
     - SDTM Stage
@@ -72231,7 +72231,7 @@ SSTESTCD:
 SSTEST:
   :name: Subject Status Test Name
   :short_name: SSTEST
-  :identifier: C124306
+  :identifier: SC124306
   :items:
     S009965:
     - SDTM Stage
@@ -72347,7 +72347,7 @@ CDTSTAGE:
 TANN02TC:
   :name: Tanner Scale Boy Clinical Classification Test Code
   :short_name: TANN02TC
-  :identifier: C124662
+  :identifier: SC124662
   :items:
     SC124716:
     - DC Stage
@@ -72360,7 +72360,7 @@ TANN02TC:
 TANN02TN:
   :name: Tanner Scale Boy Clinical Classification Test Name
   :short_name: TANN02TN
-  :identifier: C124661
+  :identifier: SC124661
   :items:
     SC124716:
     - DC Stage
@@ -72373,7 +72373,7 @@ TANN02TN:
 TANN01TC:
   :name: Tanner Scale Girl Clinical Classification Test Code
   :short_name: TANN01TC
-  :identifier: C124664
+  :identifier: SC124664
   :items:
     SC124718:
     - DC Stage
@@ -72386,7 +72386,7 @@ TANN01TC:
 TANN01TN:
   :name: Tanner Scale Girl Clinical Classification Test Name
   :short_name: TANN01TN
-  :identifier: C124663
+  :identifier: SC124663
   :items:
     SC124718:
     - DC Stage
@@ -72496,7 +72496,7 @@ REASTRTF:
 TRTINTNT:
   :name: Treatment Intent
   :short_name: TRTINTNT
-  :identifier: C124307
+  :identifier: SC124307
   :items:
     SC101516:
     - SDTM Stage
@@ -73013,7 +73013,7 @@ TUMIDENT:
 TUMIDENT_01:
   :name: Tumor and Lesion Identification Results Subset 01
   :short_name: TUMIDENT_01
-  :identifier: C96780
+  :identifier: SN003085
   :items:
     C94520:
     - DC Stage
@@ -73496,7 +73496,7 @@ RSSTRESC:
 RSSTRESC_01:
   :name: Tumor Response Result Subset 01
   :short_name: RSSTRESC_01
-  :identifier: C96785
+  :identifier: SN003086
   :items:
     C35571:
     - DC Stage
@@ -73513,7 +73513,7 @@ RSSTRESC_01:
 RSSTRESC_02:
   :name: Tumor Response Result Subset 02
   :short_name: RSSTRESC_02
-  :identifier: C96785
+  :identifier: SN003087
   :items:
     C62222:
     - DC Stage
@@ -73553,7 +73553,7 @@ HLTYPE:
 HLTYPE_01:
   :name: Type of Hearing Damage Subset 01
   :short_name: HLTYPE_01
-  :identifier: SN000311
+  :identifier: SN003088
   :items:
     S001355:
     - DC Stage
@@ -76268,7 +76268,7 @@ VSRESU:
 VSRESU_TEMP:
   :name: Units for Vital Signs Results for Temperature Subset
   :short_name: VSRESU_TEMP
-  :identifier: C66770
+  :identifier: SN003094
   :items:
     C42559:
     - DC Stage
