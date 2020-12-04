@@ -24,7 +24,7 @@ class IsoManagedV2
     def find_custom_property_definitions
         results = []
         query_string = %Q{
-          SELECT ?s ?p ?o WHERE 
+          SELECT DISTINCT ?s ?p ?o WHERE 
           {            
             #{self.uri.to_ref} #{self.class.children_predicate.to_ref} ?c .
             ?c ^isoC:appliesTo/isoC:customPropertyDefinedBy ?s .

@@ -15,6 +15,7 @@ class IsoConceptV2 < Fuseki::Base
   include ManagedAncestors
   include ClassifiedAs
   include IcCustomProperties
+  include Delete
 
   # Initialize
   #
