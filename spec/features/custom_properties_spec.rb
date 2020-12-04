@@ -59,7 +59,6 @@ describe "Custom Properties", type: :feature  do
       # Check CP Columns
       check_table_headers('children', cl_sponsor_cps_columns)
       ui_table_search('children', 'C96658')
-
       # Check standard and CP data
       check_cell_content('children', 1, 1, 'C96658')
       check_cell_content('children', 1, 2, 'SISTER, BIOLOGICAL MATERNAL HALF')
@@ -67,8 +66,7 @@ describe "Custom Properties", type: :feature  do
       check_cell_content('children', 1, 7, 'Biological Maternal Half Sister') # CRF Display Value
       check_cell_content('children', 1, 8, false)  # Adam stage
       check_cell_content('children', 1, 9, true) # DC stage
-      check_cell_content('children', 1, 10, false)  # ED use
-      check_cell_content('children', 1, 11, true) # SDTM stage
+      check_cell_content('children', 1, 10, true) # SDTM stage
 
       # Hide CPs
       hide_custom_props
@@ -110,6 +108,9 @@ describe "Custom Properties", type: :feature  do
 
     it "allows to show Custom Properties, CL Editor" do
       new_codelist_and_edit
+      click_on 'New item'
+      wait_for_ajax 10
+
       show_custom_props
       # Check CP Columns
       check_table_headers('editor', cl_sponsor_cps_columns)
@@ -176,34 +177,34 @@ describe "Custom Properties", type: :feature  do
 
     ### Code List Extension
 
-    it "allows to edit Custom Properties, CL Extension editor" do
-      click_navbar_code_lists
-      wait_for_ajax 20
+    # it "allows to edit Custom Properties, CL Extension editor" do
+    #   click_navbar_code_lists
+    #   wait_for_ajax 20
 
-      ui_table_search('index', 'C99079')
-      find(:xpath, "//tr[contains(.,'Sanofi')]/td/a").click
-      wait_for_ajax 10
-      context_menu_element_v2('history', '1.0.0', :edit)
-      wait_for_ajax 20
-      #
+    #   ui_table_search('index', 'C99079')
+    #   find(:xpath, "//tr[contains(.,'Sanofi')]/td/a").click
+    #   wait_for_ajax 10
+    #   context_menu_element_v2('history', '1.0.0', :edit)
+    #   wait_for_ajax 20
+    #   #
 
-      # click_on 'New item'
-    end
+    #   # click_on 'New item'
+    # end
 
-    ### Code List Subset
+    # ### Code List Subset
 
-    it "allows to edit Custom Properties, CL Subset editor" do
-      click_navbar_code_lists
-      wait_for_ajax 20
+    # it "allows to edit Custom Properties, CL Subset editor" do
+    #   click_navbar_code_lists
+    #   wait_for_ajax 20
 
-      ui_table_search('index', 'SN003093')
-      find(:xpath, "//tr[contains(.,'SN003093')]/td/a").click
-      wait_for_ajax 10
-      context_menu_element_v2('history', '1.0.0', :edit)
-      wait_for_ajax 20
-      #pause
+    #   ui_table_search('index', 'SN003093')
+    #   find(:xpath, "//tr[contains(.,'SN003093')]/td/a").click
+    #   wait_for_ajax 10
+    #   context_menu_element_v2('history', '1.0.0', :edit)
+    #   wait_for_ajax 20
+    #   #pause
 
-    end
+    # end
 
   end
 
