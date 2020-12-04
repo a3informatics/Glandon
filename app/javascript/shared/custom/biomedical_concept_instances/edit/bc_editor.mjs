@@ -2,6 +2,7 @@ import EditablePanel from 'shared/base/editable_panel'
 
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
 import { $post } from 'shared/helpers/ajax'
+import { alerts } from 'shared/ui/alerts'
 
 import { dtFieldsInit } from 'shared/helpers/dt/dt_fields'
 import { dtBCEditColumns } from 'shared/helpers/dt/dt_column_collections'
@@ -142,6 +143,22 @@ export default class BCEditor extends EditablePanel {
 
     if ( this.onEdited )
       this.onEdited();
+
+  }
+
+  /**
+   * Displays Terminology picker error as alert because inline error cannot be shown in that case (editor closes) 
+   * @extends _onSubmitted parent implementation
+   * @param {object} json JSON data returned from the server
+   */
+  _onSubmitted(json) {
+
+    const name = json?.fieldErrors[0]?.name;
+
+    if ( name === 'has_coded_value' )
+      alerts.error( `Terminology: ${ json.fieldErrors[0].status }` );
+
+    super._onSubmitted( json );
 
   }
 

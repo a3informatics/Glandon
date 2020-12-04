@@ -201,14 +201,9 @@ export default class EditablePanel extends TablePanel {
     );
 
     // Data submitted - Item Edited callback
-    this.editor.on( 'submitSuccess submitUnsuccessful', (e, json) => {
-
-      // Handle any errors thrown by the server
-      json && json.errors && alerts.error( json.errors.join(' & ') );
-
-      this._onEdited();
-
-    });
+    this.editor.on( 'submitSuccess submitUnsuccessful', (e, json) => 
+      this._onSubmitted( json )
+    );
 
     // Update UI on keypress in TA. Handle Submit.
     $(`${ this.selector } tbody`).on( 'keydown', 'textarea', e => {
@@ -279,6 +274,19 @@ export default class EditablePanel extends TablePanel {
    * Invoked on any edit action. Override if you need to do anything onEdit, e.g. extend the Token Timer.
    */
   _onEdited() { }
+
+  /**
+   * Invoked on Editor submitSuccessful & submitUnsuccessful events
+   * @param {object} json JSON data returned from the server
+   */
+  _onSubmitted(json) {
+
+    // Handle any errors thrown by the server
+    json && json.errors && alerts.error( json.errors.join(' & ') );
+
+    this._onEdited();
+
+  }
 
   /**
    * Updates the UI on Editing start/input/end
