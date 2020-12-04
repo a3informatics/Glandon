@@ -172,7 +172,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
     it "prevents adding more than one Terminology Reference to a TESTCD BC Property" do
       go_to_edit 'HEIGHT'
 
-      ui_editor_check_value 1, 8 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
+      ui_editor_check_value 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
       ui_editor_select_by_location 1, 8
 
       # Attemp to add more Terminology References
@@ -182,7 +182,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         ], 'bc-term-ref'
       end
 
-      ui_editor_check_value 1, 8 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
+      ui_editor_check_value 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
       ui_editor_check_error 'has_coded_value', 'attempting to add multiple coded values'
       ui_press_key :escape 
     end 
