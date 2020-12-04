@@ -332,9 +332,15 @@ describe "Import::SponsorTermFormatOne" do
         load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
         th = Thesaurus.find_minimum(@uri_3_1)
         results = read_yaml_file(sub_dir, "import_results_expected_3-1.yaml")
-        expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
+        actual = cl_identifiers(th).map{|x| x[:identifier]}
+        expected = results.map{|x| x[:identifier]}
+byebug
+        missing = expected - actual
+        extra = actual - expected
+        expect(missing).to eq([])
+        expect(extra).to eq([])
         expect(count_cl(th)).to eq(results.count)
-        expect(count_cli(th)).to eq(32800)
+        expect(count_cli(th)).to eq(32780)
         expect(count_distinct_cli(th)).to eq(30215)
         results.each do |x|
           check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
@@ -582,7 +588,7 @@ describe "Import::SponsorTermFormatOne" do
       counts = [
         {cl: 803, cli: 22322},
         {cl: 1080, cli: 31930},
-        {cl: 1174, cli: 32800},
+        {cl: 1171, cli: 32780},
       ]
       ct_set.each_with_index do |v, index|
         print "Processing: #{v[:uri]}, v#{v[:version]}  "
