@@ -5,6 +5,7 @@ class SdtmSponsorDomain < SdtmIgDomain
 
   # Create a Sponsor Domain based on a specified IG domain
   #
+  # @param [Hash] params the parameters to create the new sponsor domain
   # @params [SdtmIgDomain] the template IG domain
   # @return [SdtmSponsorDomain] the new sponsor domain object
   def self.create_from_ig(params, ig_domain)
@@ -30,22 +31,22 @@ class SdtmSponsorDomain < SdtmIgDomain
     object
   end
 
+  # Add non standard variable
+  #
+  # @param [Hash] params the parameters to add the new variable
+  # @params [params] the template IG domain
+  # @return [SdtmSponsorDomain] the new sponsor domain object
   def add_non_standard_variable(params)
     non_standard_variable = SdtmSponsorDomain::Var.new
-    var_name = "#{self.prefix}"+"#{params[:name]}" 
-    non_standard_variable.set_name(var_name, self)
+    non_standard_variable.set_name(params[:name], self)
     non_standard_variable.ordinal = next_ordinal
     non_standard_variable.uri = non_standard_variable.create_uri(self.uri)
-    #Add datatype --> should I use the typedAs property?
-    #Add classification (qualifier etc) --> which attribute should be used? Because a Sponsor Variable doesn't have the classifiedAs property.
-    #non_standard_variable.compliance = params[:compliance] #Permissible, required, expected
+    non_standard_variable.typed_as = params[:typed_as] #Character, Numeric
+    non_standard_variable.classified_as = params[:classified_as]
+    non_standard_variable.compliance = params[:compliance] #Permissible, required, expected
     non_standard_variable.save
-    self.includes_column <<  non_standard_variable
+    self.add_link(:includes_column, non_standard_variable.uri)
     non_standard_variable
-  end
-
-  def delete_non_standard_variable
-
   end
 
   private
