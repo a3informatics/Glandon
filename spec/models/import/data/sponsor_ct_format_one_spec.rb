@@ -539,7 +539,7 @@ describe "Import::SponsorTermFormatOne" do
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
       result = query_results.by_object_set([:d, :v, :count]).map{|x| {date: x[:d], version: x[:v], count: x[:count], uri: x[:s].to_s}}
-      check_file_actual_expected(result, sub_dir, "ct_query_cl_count_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(result, sub_dir, "ct_query_cl_count_1.yaml", equate_method: :hash_equal, write_file: false)
     end
 
     it "code list items count by version" do
@@ -555,7 +555,7 @@ describe "Import::SponsorTermFormatOne" do
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
       result = query_results.by_object_set([:d, :v, :count]).map{|x| {date: x[:d], version: x[:v], count: x[:count], uri: x[:s].to_s}}
-      check_file_actual_expected(result, sub_dir, "ct_query_cli_count_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(result, sub_dir, "ct_query_cli_count_1.yaml", equate_method: :hash_equal, write_file: false)
     end
 
     def ct_set
