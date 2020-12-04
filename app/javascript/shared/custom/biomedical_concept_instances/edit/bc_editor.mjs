@@ -153,7 +153,9 @@ export default class BCEditor extends EditablePanel {
    */
   _onSubmitted(json) {
 
-    if ( json && json.fieldErrors && json.fieldErrors[0].name === 'has_coded_value' )
+    const name = json?.fieldErrors[0]?.name;
+
+    if ( name === 'has_coded_value' )
       alerts.error( `Terminology: ${ json.fieldErrors[0].status }` );
 
     super._onSubmitted( json );
