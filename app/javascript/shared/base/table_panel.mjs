@@ -140,6 +140,8 @@ export default class TablePanel {
   destroy() {
 
     this.table.destroy();
+    // Unbind all event handlers
+    $( this.selector ).unbind();
     $(`${ this.selector } tbody`).unbind()
                                  .empty();
 
