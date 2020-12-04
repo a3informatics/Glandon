@@ -190,7 +190,7 @@ describe "Custom Properties", type: :feature  do
       ui_table_search('index', 'C100130')
       find(:xpath, "//tr[contains(.,'Sanofi')]/td/a").click
       wait_for_ajax 10
-      context_menu_element_v2('history', '2.0.0', :edit)
+      context_menu_element_v2('history', '3.0.0', :edit)
       wait_for_ajax 20
 
       # If error still there, this step will cause Datatables error, will pass otherwise  
@@ -219,6 +219,22 @@ describe "Custom Properties", type: :feature  do
       show_custom_props
 
     end 
+
+    it "Attempting to extend SN003055 freezes server" do
+      click_navbar_code_lists
+      wait_for_ajax 20
+      ui_table_search('index', 'SN003055')
+      find(:xpath, "//tr[contains(.,'Sanofi')]/td/a").click
+      wait_for_ajax 10
+      context_menu_element_v2('history', '2019-08-08', :show)
+      wait_for_ajax 10
+      context_menu_element_header(:extend)
+      ui_in_modal do 
+        click_on 'Do not select'
+      end 
+      wait_for_ajax 10 # Will time out as server freezes
+      expect(page).to have_content "Extension Editor"
+    end
 
     ### Code List Extension
 
