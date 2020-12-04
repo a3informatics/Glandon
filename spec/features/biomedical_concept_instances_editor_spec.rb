@@ -183,8 +183,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       end
 
       ui_editor_check_value 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
-      ui_editor_check_error 'has_coded_value', 'attempting to add multiple values when the property is the identifier'
-      ui_press_key :escape 
+      expect(page).to have_content 'attempting to add multiple values when the property is the identifier'
     end 
 
     it "allows adding BCs to Editor, prevents duplicates" do
