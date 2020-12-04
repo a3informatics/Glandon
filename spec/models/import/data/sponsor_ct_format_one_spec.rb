@@ -77,15 +77,16 @@ describe "Import::SponsorTermFormatOne" do
 
     def cl_identifiers(th)
       query_string = %Q{
-        SELECT DISTINCT ?identifier ?label WHERE 
+        SELECT DISTINCT ?identifier ?label ?notation WHERE 
         {
           #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
           ?s th:identifier ?identifier .
+          ?s th:notation ?notation .
           ?s isoC:label ?label .
         }
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo]) 
-      query_results.by_object_set([:identifier, :label])
+      query_results.by_object_set([:notation, :identifier, :label])
     end
 
     def cl_items_unique(th)
@@ -100,6 +101,13 @@ describe "Import::SponsorTermFormatOne" do
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo]) 
       query_results.by_object_set([:notation, :identifier])
+    end
+
+    def build_identifier_map(th, filename, write_file=false)
+      final_results = {}
+      results = cl_items_unique(th)
+      results.each.each { |e| final_results[e[:notation]] = e[:identifier] }
+      check_file_actual_expected(final_results, sub_dir, "#{filename}", equate_method: :hash_equal, write_file: write_file)
     end
 
     def cl_info(th, key)
@@ -233,8 +241,14 @@ describe "Import::SponsorTermFormatOne" do
       it "import 2.6 QC", :import_data => 'slow' do
         load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
         th = Thesaurus.find_minimum(@uri_2_6)
+        build_identifier_map(th, "identifier_map_2-6.yaml", true)
         results = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
-        expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
+        actual = cl_identifiers(th).map{|x| x[:notation]}
+        expected = results.map{|x| x[:short_name]}
+        missing = expected - actual
+        extra = actual - expected
+        expect(missing).to eq([])
+        expect(extra).to eq([])
         expect(count_cl(th)).to eq(results.count)
         expect(count_cli(th)).to eq(22322)
         expect(count_distinct_cli(th)).to eq(20097)
@@ -281,8 +295,14 @@ describe "Import::SponsorTermFormatOne" do
         load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
         load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
         th = Thesaurus.find_minimum(@uri_3_0)
+        build_identifier_map(th, "identifier_map_3-0.yaml", true)
         results = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
-        expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
+        actual = cl_identifiers(th).map{|x| x[:notation]}
+        expected = results.map{|x| x[:short_name]}
+        missing = expected - actual
+        extra = actual - expected
+        expect(missing).to eq([])
+        expect(extra).to eq([])
         expect(count_cl(th)).to eq(results.count)
         expect(count_cli(th)).to eq(31930)
         expect(count_distinct_cli(th)).to eq(29515)
@@ -331,17 +351,17 @@ describe "Import::SponsorTermFormatOne" do
         load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
         load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
         th = Thesaurus.find_minimum(@uri_3_1)
+        build_identifier_map(th, "identifier_map_3-1.yaml", true)
         results = read_yaml_file(sub_dir, "import_results_expected_3-1.yaml")
-        actual = cl_identifiers(th).map{|x| x[:identifier]}
-        expected = results.map{|x| x[:identifier]}
-byebug
+        actual = cl_identifiers(th).map{|x| x[:notation]}
+        expected = results.map{|x| x[:short_name]}
         missing = expected - actual
         extra = actual - expected
         expect(missing).to eq([])
         expect(extra).to eq([])
         expect(count_cl(th)).to eq(results.count)
         expect(count_cli(th)).to eq(32780)
-        expect(count_distinct_cli(th)).to eq(30215)
+        expect(count_distinct_cli(th)).to eq(30211)
         results.each do |x|
           check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
         end    
