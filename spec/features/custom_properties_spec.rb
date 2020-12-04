@@ -12,7 +12,9 @@ describe "Custom Properties", type: :feature  do
   include ItemsPickerHelpers
 
   after :all do
+    Token.destroy_all
     ua_destroy
+    set_transactional_tests true
   end
 
   after :each do
@@ -31,8 +33,11 @@ describe "Custom Properties", type: :feature  do
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
       load_cdisc_term_versions(1..45)
       ua_create
+      Token.destroy_all
       nv_destroy
       nv_create(parent: '10', child: '999')
+
+      set_transactional_tests false
     end
 
     before :each do
@@ -96,8 +101,13 @@ describe "Custom Properties", type: :feature  do
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
-      load_cdisc_term_versions(1..45)
+      load_cdisc_term_versions(1..65)
       ua_create
+      Token.destroy_all
+      nv_destroy
+      nv_create(parent: '10', child: '999')
+
+      set_transactional_tests false
     end
 
     before :each do
@@ -140,9 +150,7 @@ describe "Custom Properties", type: :feature  do
       ui_editor_fill_inline("crf_display_value", "Some CRF value\n")
       check_cell_content('editor', 1, 7, 'Some CRF value')
 
-      
-
-      # Check referenced items normal fields cannot be edited 
+      # Todo: Check referenced items normal fields cannot be edited 
     end
 
     it "allows to edit Custom Properties, CL Editor" do
@@ -174,6 +182,43 @@ describe "Custom Properties", type: :feature  do
       ui_editor_check_error('crf_display_value', 'contains invalid characters')
       ui_press_key :escape
     end
+
+    it "Editing a Standard Sanofi extension sets up CPs incorrectly - extra property on 5 items, CL Extension Editor" do
+      click_navbar_code_lists
+      wait_for_ajax 20
+
+      ui_table_search('index', 'C100130')
+      find(:xpath, "//tr[contains(.,'Sanofi')]/td/a").click
+      wait_for_ajax 10
+      context_menu_element_v2('history', '2.0.0', :edit)
+      wait_for_ajax 20
+
+      # If error still there, this step will cause Datatables error, will pass otherwise  
+      show_custom_props
+      ui_check_table_info 'editor', 1, 10, 69 
+    end
+
+    it "sets up wrong custom properties when extending a CDISC Code List" do 
+      click_navbar_code_lists
+      wait_for_ajax 20
+
+      ui_table_search('index', 'C99079')
+      find(:xpath, "//tr[contains(.,'CDISC')]/td/a").click
+      wait_for_ajax 10
+      context_menu_element_v2('history', '62', :show)
+      wait_for_ajax 10
+      context_menu_element_header(:extend)
+      ui_in_modal do 
+        click_on 'Do not select'
+      end 
+      wait_for_ajax 10
+
+      # After the following step DT throws dialog with error because values are missing
+      # The Custom Properties of this extension are not matching the extended CL, some are missing and some values come from other sponsor Code Lists I think. 
+    #pause
+      show_custom_props
+
+    end 
 
     ### Code List Extension
 
