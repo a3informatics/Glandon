@@ -169,23 +169,23 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
     end
 
-    # it "prevents adding more than one Terminology Reference to a TESTCD BC Property" do
-    #   go_to_edit 'HEIGHT'
+    it "prevents adding more than one Terminology Reference to a TESTCD BC Property" do
+      go_to_edit 'HEIGHT'
 
-    #   ui_editor_check_value 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
-    #   ui_editor_select_by_location 1, 8, true
+      ui_editor_check_value 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
+      ui_editor_select_by_location 1, 8, true
 
-    #   # Attemp to add more Terminology References
-    #   ui_in_modal do
-    #     ip_pick_unmanaged_items :unmanaged_concept, [
-    #       { parent: 'C100130', version: '62', identifier: 'C96587' }
-    #     ], 'bc-term-ref'
-    #   end
+      # Attemp to add more Terminology References
+      ui_in_modal do
+        ip_pick_unmanaged_items :unmanaged_concept, [
+          { parent: 'C100130', version: '62', identifier: 'C96587' }
+        ], 'bc-term-ref'
+      end
 
-    #   ui_editor_check_value 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
-    #   ui_editor_check_error 'has_coded_value', 'attempting to add multiple coded values'
-    #   ui_press_key :escape 
-    # end 
+      ui_editor_check_value 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
+      ui_editor_check_error 'has_coded_value', 'attempting to add multiple values when the property is the identifier'
+      ui_press_key :escape 
+    end 
 
     it "allows adding BCs to Editor, prevents duplicates" do
       go_to_edit 'HEIGHT'
