@@ -28,6 +28,10 @@ module UiHelpers
     find(:xpath, "//tr[contains(.,'#{content}')]/td/a", :text => "#{link_text}").click
   end
 
+  def ui_table_sort(table,column_name)
+    find(:xpath, "//table[@id='#{table}']/thead/tr/th[contains(.,'#{column_name}')]").click 
+ end
+
   def ui_table_row_click(table, content)
     within "##{table}" do
       find('td', :text => "#{content}").click
@@ -135,6 +139,15 @@ module UiHelpers
   def ui_check_table_cell(table_id, row, col, text)
     cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").text
     expect(cell).to eq(text)
+  end
+
+  def ui_check_table_cell_create(table_id, row, col, exist: true)
+    td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+    if exist
+      expect(td).to have_css('.icon-plus-circle', visible: :all)
+    else 
+      expect(td).to_not have_css('.icon-plus-circle')
+    end
   end
 
   def ui_check_table_cell_edit(table_id, row, col)
@@ -612,6 +625,11 @@ module UiHelpers
 		end
 	end
 
+  def context_menu_element_v3(table, text, option)
+    find(:xpath, "//table[@id='#{table}']//tr[contains(.,'#{text}')]//span[contains(@class, 'icon-context-menu')]").click
+    find(:xpath, "//a[contains(.,'#{option}')]").click
+  end
+
 	def context_menu_element_header (action)
 		option = context_menu_actions_map[action]
 		menu = find( '#header-con-menu' )
@@ -633,6 +651,11 @@ module UiHelpers
 		result = menu.has_css?( class_list, exact_text: option, visible: false )
 		result
 	end
+
+  def context_menu_element_header_v2 (option) 
+    find(:xpath, "//*[@id='header-con-menu']").click
+    find(:xpath, "//a[contains(.,'#{option}')]").click
+  end
 
   def ui_dashboard_slider (start_date, end_date)
     slider = "var tl_slider = $('.timeline-container').data(); "

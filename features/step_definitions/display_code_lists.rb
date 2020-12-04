@@ -4,7 +4,7 @@ Given('the Sanofi terminology {string} has been loaded and owner is Sanofi') do 
     wait_for_ajax(20)
     expect(page).to have_content 'Index: Terminology'
     expect(page).to have_content string
-    expect( find('//*[@id="index_wrapper"]/div[2]') ).to have_content string
+    expect(page).to have_content 'Sanofi'
 end
 
 ##################### Then statements #####################
@@ -160,6 +160,16 @@ if int < 10
   else
    ui_check_table_info("children", 1, 10, int)
   end
+   wait_for_ajax(20)
+   save_screen(TYPE)
+end
+
+Then('I see {int} code list items in the editor') do |int|
+    if int < 10
+      ui_check_table_info "editor", 1, int, int
+    else
+      ui_check_table_info "editor", 1, 10, int
+    end
    wait_for_ajax(20)
    save_screen(TYPE)
 end

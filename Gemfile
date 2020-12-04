@@ -123,6 +123,8 @@ group :test do
   gem 'google-protobuf'
   gem 'protobuf-cucumber'
   gem 'watir'
+  gem 'pdf-reader'
+  gem 'pdftoimage'
 end
 
 

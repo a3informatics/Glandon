@@ -160,7 +160,7 @@ end
 
 
 Then('I see the Differences and Changes for the {string} code list for CDISC version {string} and CDISC version {string}') do |string, string2, string3|
-    find('#main_area').scroll_to find('#Differences')
+    #find('#main_area').scroll_to find('#differences')
     expect(page).to have_content 'Differences'
     wait_for_ajax(20)
     save_screen(TYPE)
@@ -196,38 +196,39 @@ Then('I see that code list and code list items are maked deleted {string} in ver
 end
 
 Then('a PDF report for C-code: {string} is generated and contains the {int} entries in the Changes panel') do |string, int|
+  #Ensure that no report and old screenshots already exists in folder for changes report
+  FileUtils.rm_rf("#{Rails.root}/cucumber-report/downloads/CDISC_CL_*", secure: true)
+  FileUtils.rm_rf("#{Rails.root}/cucumber-report/downloads/changes_report_page*", secure: true)
+
    new_window = window_opened_by { click_link 'PDF Report' }
    within_window new_window do
       sleep 10
       page.execute_script "window.close();"
      end
      filename = "#{Rails.root}/cucumber-report/downloads/CDISC_CL_#{string}.pdf"
-    PDF::Reader.open(filename) do |reader| 
-        reader.pages.each do |page|  
-        expect(reader.page(1)).to have_content 'CDISC Terminology Change Report'
-        attach(page.text, 'text/plain')
-        end
-      end
+     images = PDFToImage.open(filename)
+     images.each do |img|
+     img.resize('50%').save("#{Rails.root}/cucumber-report/downloads/changes_report_page-#{img.page}.png")
+     attach(File.open("#{Rails.root}/cucumber-report/downloads/changes_report_page-#{img.page}.png"), "image/png")  
+     end
 end
    
 Then('a PDF report is generated and contains the {int} entries in the Submission value changes panel') do |int|
+  #Ensure that no report and old screenshots already exists in folder for submission report
+  FileUtils.rm_rf("#{Rails.root}/cucumber-report/downloads/cdisc_submission*", secure: true)
+  FileUtils.rm_rf("#{Rails.root}/cucumber-report/downloads/submission*", secure: true)
+
   new_window = window_opened_by { page.find("#report").find(:xpath, '..').click }
   within_window new_window do
     sleep 10
     page.execute_script "window.close();"
   end
    filename = "#{Rails.root}/cucumber-report/downloads/CDISC_submission.pdf"
-    PDF::Reader.open(filename) do |reader| 
-        log(reader.pdf_version)
-        log(reader.info)
-        log(reader.metadata)
-        log(reader.page_count) 
-        reader.pages.each do |page|  
-        expect(reader.page(1)).to have_content 'CDISC Submission Value Change Report'
-        attach(page.text, 'text/plain')
-         end
+    images = PDFToImage.open(filename)
+     images.each do |img|
+     img.resize('50%').save("#{Rails.root}/cucumber-report/downloads/submission_report_page-#{img.page}.png")
+     attach(File.open("#{Rails.root}/cucumber-report/downloads/submission_report_page-#{img.page}.png"), "image/png")  
      end
-
  end
 
 Then('all search terminology fields are cleared') do

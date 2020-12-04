@@ -18,6 +18,7 @@ require 'nokogiri'
 require 'watir'
 require 'pdf-reader'
 require 'open-uri'
+require 'pdftoimage'
 
 # Load the schema. This is so it is available at class load/elaboration
 #require Rails.root.join('spec/support/data_helpers.rb')
@@ -75,19 +76,19 @@ Before do
     log('loading terminology and users')
     load_files(schema_files, [])
     
-    load_data_file_into_triple_store("mdr_identification.ttl")
+    #load_data_file_into_triple_store("mdr_identification.ttl")
     load_test_file_into_triple_store("forms/FN000150.ttl")
     load_data_file_into_triple_store("biomedical_concept_templates.ttl")
     #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     #full_path = Rails.root.join("db/load/")
     #load_file_into_triple_store(full_path)
     load_data_file_into_triple_store("complex_datatypes.ttl")
-    #load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
-    #load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-    #load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
-    #load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
-    #load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
-    #load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+    load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+    load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_cdisc_term_versions(1..LST_VERSION)
     clear_iso_concept_object
     clear_iso_namespace_object
@@ -120,22 +121,21 @@ Capybara::Screenshot.append_timestamp = false
 
 Capybara.register_driver :selenium_chrome do |app|
   # Download. The options method has stopped working. Use profile as temp fix (but deprecated)
-  profile = Selenium::WebDriver::Chrome::Profile.new
-
-  profile["download.default_directory"] = download_path
+  #profile = Selenium::WebDriver::Chrome::Profile.new
+  #profile["download.default_directory"] = download_path
   # Download. The options method has stopped working. Use profile as temp fix (but deprecated)
-  profile["plugins.always_open_pdf_externally"] = true
+  #profile["plugins.always_open_pdf_externally"] = true
   
-  # options = Selenium::WebDriver::Chrome::Options.new
-  # options.add_preference(:download, {
-  #   prompt_for_download: false,
-  #   default_directory: DownloadHelpers::PATH
-  # })
+  profile = Selenium::WebDriver::Chrome::Options.new
+  profile.add_preference('download.default_directory', download_path)
+  profile.add_preference(:plugins, always_open_pdf_externally: true)
   client = Selenium::WebDriver::Remote::Http::Default.new
+  #client.read_timeout = 120
+  #client.open_timeout= 120
   client.timeout = 120
-  Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client, :profile => profile)
-  #Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client, :options => options)
+  Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client, :options => profile)
 end
+
 Capybara.default_driver = :selenium_chrome
 
 
@@ -157,7 +157,7 @@ else
 end
 
  #clean out downloads
- FileUtils.rm_rf(Dir[download_path])
+ FileUtils.rm_rf("#{download_path}/.", secure: true)
 
 def zoom_in
   page.execute_script("document.body.style.zoom='100%'")

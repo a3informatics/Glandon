@@ -89,6 +89,11 @@ When('I click {string} in context menu for {string}') do |string, string2|
   wait_for_ajax(20)
  end
 
+ When('I click Edit in context menu for the latest version of the {string} code list') do |string|
+  context_menu_element("history", 5, string, :edit, 1)
+    wait_for_ajax(20)
+end
+
 
 When('I click {string} in the confirmation box') do |string|
   ui_confirmation_dialog('string')
@@ -262,19 +267,20 @@ end
 
 Then('the list has {int} entries') do |int|
 	if int < 10
-    ui_check_table_info("children", 1, int, int)
+    ui_check_table_info('children', 1, int, int)
   else
-    ui_check_table_info("children", 1, 10, int)
+    ui_check_table_info('children', 1, 10, int)
   end
 	wait_for_ajax(20)
 	save_screen(TYPE)
 end
 
+
 Then('the form list has {int} entries') do |int|
   if int < 10
-    ui_check_table_info("show", 1, int, int)
+    ui_check_table_info('show', 1, int, int)
   else
-    ui_check_table_info("show", 1, 10, int)
+    ui_check_table_info('show', 1, 10, int)
   end
   wait_for_ajax(20)
   save_screen(TYPE)
