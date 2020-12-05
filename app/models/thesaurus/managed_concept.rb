@@ -793,14 +793,24 @@ private
   # Delete with all child items (extensions, subset and child code list items)
   def delete_with(parent_object=nil)
     delete_rank(self) if self.ranked?
+    base = "OPTIONAL { #{self.uri.to_ref} th:narrower ?c }"
     parts = []
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
-    parts << "{ #{uri.to_ref} ^isoC:appliesTo ?s . ?s ?p ?o }" # All Tags and Custom Property references
+    parts << "{ #{uri.to_ref} ^isoC:appliesTo ?s . ?s ?p ?o }" # All Tags and Custom Property references to the code list (no CPs currently)
     parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}"
     parts << "{ #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} (th:isOrdered*/th:members*/th:memberNext*) ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} th:narrower ?s . ?s ?p ?o . FILTER NOT EXISTS { ?e th:narrower ?s . }}"
-    parts << "{ #{self.uri.to_ref} th:narrower ?c . ?c ^isoC:appliesTo ?s . ?s ?p ?o }" # All Tags and Custom Property references
+    parts << "{{ SELECT ?s (count(?o) as ?count) WHERE { ?s isoC:appliesTo ?c . ?s isoC:context ?o } GROUP BY ?s }
+      FILTER (?count = 1)
+      { ?s isoC:context #{self.uri.to_ref} } UNION { ?s isoC:context ?c }
+      ?s ?p ?o }"
+    parts << "{{ SELECT ?s (count(?o) as ?count) WHERE { ?s isoC:appliesTo ?c . ?s isoC:context ?o } GROUP BY ?s }
+      FILTER (?count > 1)
+      ?s isoC:context #{self.uri.to_ref} . 
+      BIND (isoC:context as ?p)
+      BIND (#{self.uri.to_ref} as ?o) }"
+    parts << "{  }" # All Tags and Custom Property references
     parts << "{ #{self.uri.to_ref} th:refersTo ?s . }"
     if !parent_object.nil?
       parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?s . ?s rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?s bo:reference #{uri.to_ref} . ?s ?p ?o }"
@@ -808,7 +818,7 @@ private
         BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) .}"
       parts << "{ BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) . BIND (#{uri.to_ref} as ?o) }"
     end
-    query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
+    query_string = "DELETE { ?s ?p ?o } WHERE { #{base} \n{ #{parts.join(" UNION\n")} }}"
     results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [:isoC, :isoT, :th, :bo])
     1
   end

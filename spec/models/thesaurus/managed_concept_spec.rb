@@ -10,6 +10,7 @@ describe "Thesaurus::ManagedConcept" do
   include IsoManagedHelpers
   include TimeHelpers
   include NameValueHelpers
+  include TripleStoreHelpers
 
   def sub_dir
     return "models/thesaurus/managed_concept"
@@ -2377,7 +2378,7 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
-  describe "custom property" do
+  describe "custom property bug fix checks I" do
 
     def add_cp_1
       CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
@@ -2422,7 +2423,7 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
-  describe "custom property bug fix" do
+  describe "custom property bug fix checks II" do
 
     def add_cp_1
       CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
@@ -2471,6 +2472,18 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2d.yaml", equate_method: :hash_equal)
     end
 
+    it "check preservation of custom properties after delete" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.sanofi.com/SN003055/V1#SN003055"))
+      results = tc.find_custom_property_values
+      before_count = triple_store.triple_count
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_3a.yaml", equate_method: :hash_equal)
+      item = tc.create_extension
+      results = item.delete_or_unlink
+      results = tc.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_3a.yaml", equate_method: :hash_equal)
+      expect(triple_store.triple_count).to eq(before_count)
+    end
+      
   end
 
 end
