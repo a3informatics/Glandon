@@ -403,7 +403,7 @@ describe "IsoConceptV2" do
       check_file_actual_expected(item_2.to_h, sub_dir, "clone_expected_1.yaml")
     end
 
-    it "clone custom proprties" do
+    it "clone custom proprties - WILL CURRENTLY FAIL - Left as a reminder to check this, may not be needed" do
       create_data
       item_2 = @child_1.clone(@parent)
       expect(@child_1.label).to eq(item_2.label)
