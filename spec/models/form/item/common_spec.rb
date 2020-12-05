@@ -77,19 +77,19 @@ describe Form::Item::Common do
     end
   
     it "returns the children in ordinal order" do
-      item = Form::Item::Common.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1)
+      item = Form::Item::Common.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q2"), ordinal: 1)
       expect(item.children_ordered).to eq([])
-      ref_2 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R2"), ordinal: 2, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 2")
+      ref_2 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R12"), ordinal: 2, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI12"), local_label: "Ordinal 2")
       ref_2.save
       item.has_coded_value_push(ref_2.uri)
       item.save
       result = item.children_ordered
       check_file_actual_expected(result.map{|x| x.to_h}, sub_dir, "children_ordered_expected_1.yaml", equate_method: :hash_equal)
-      ref_1 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R1"), ordinal: 1, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 1")
+      ref_1 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R11"), ordinal: 1, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI11"), local_label: "Ordinal 1")
       ref_1.save
-      ref_4 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R4"), ordinal: 4, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 4")
+      ref_4 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R14"), ordinal: 4, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI14"), local_label: "Ordinal 4")
       ref_4.save
-      ref_3 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R3"), ordinal: 3, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI2"), local_label: "Ordinal 3")
+      ref_3 = OperationalReferenceV3::TucReference.new(uri: Uri.new(uri: "http://www.s-cubed.dk/R13"), ordinal: 3, reference: Uri.new(uri: "http://www.s-cubed.dk/CLI13"), local_label: "Ordinal 3")
       ref_3.save
       item.has_coded_value_push(ref_1)
       item.has_coded_value_push(ref_4)
