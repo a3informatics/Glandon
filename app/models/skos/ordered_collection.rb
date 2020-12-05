@@ -134,7 +134,6 @@ module SKOS::OrderedCollection
     query_string = %Q{
       SELECT DISTINCT ?s ?p ?o WHERE
       {
-        ?s ?p ?o .
         {
           SELECT ?s (COUNT(?mid) as ?ordinal) WHERE 
           {
@@ -142,6 +141,7 @@ module SKOS::OrderedCollection
             ?mid th:memberNext* ?s .
           } GROUP BY ?s ORDER BY ?ordinal
         }
+        ?s ?p ?o .
       }
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th])
