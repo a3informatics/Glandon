@@ -2170,7 +2170,7 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
- describe "custom propertry" do
+  describe "custom property" do
 
     def simple_thesaurus_1
       @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
@@ -2373,6 +2373,51 @@ describe "Thesaurus::ManagedConcept" do
       new_tc = Thesaurus::ManagedConcept.find(new_tc.uri)
       result = new_tc.find_custom_property_values
       check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_4b.yaml", write_file: false)
+    end
+
+  end
+
+  describe "custom property" do
+
+    def add_cp_1
+      CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
+      description: "String Description", default: "Default String",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CPD1"))
+    end
+
+    def add_cp_2
+      CustomPropertyDefinition.create(datatype: "boolean", label: "Logical", 
+      description: "Boolean Description", default: "false",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CPD2"))
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..31)
+      nv_destroy
+      nv_create(parent: "123", child: "456")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "extend a code list" do
+      add_cp_1
+      add_cp_2
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
+      item = tc.create_extension
+      item = Thesaurus::UnmanagedConcept.find(item.uri)
+      results = item.children_pagination(count: 100, offset: 0)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_1a.yaml", equate_method: :hash_equal)
+      results = item.find_custom_property_definitions_to_h
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_1b.yaml", equate_method: :hash_equal)
+      results = item.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_1c.yaml", equate_method: :hash_equal)
     end
 
   end

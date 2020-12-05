@@ -155,7 +155,7 @@ class IsoManagedV2
     # @param [Class] klass klass for the definitions
     # @param [Sparql::Transaction] tx the transaction, defaults to nil
     # @return [Boolean] true
-    def add_missing_custom_properties(uris_or_ids, klass, tx)
+    def add_missing_custom_properties(uris_or_ids, klass, tx=nil)
       items = missing_custom_properties(uris_or_ids, klass)
       definitions = klass.find_custom_property_definitions
       items.each do |item|

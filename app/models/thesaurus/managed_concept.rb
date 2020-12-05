@@ -526,6 +526,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
     object.add_link(:extends, source.uri)
     object.add_custom_property_context(source.narrower)
+    object.add_missing_custom_properties(source.narrower, Thesaurus::UnmanagedConcept)
     object
   end
 
