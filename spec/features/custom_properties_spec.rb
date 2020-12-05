@@ -116,7 +116,7 @@ describe "Custom Properties", type: :feature  do
 
     ### Code List
 
-    it "allows to show Custom Properties, CL Editor" do
+    it "allows to display Custom Properties, CL Editor" do
       new_codelist_and_edit
       click_on 'New item'
       wait_for_ajax 10
@@ -126,6 +126,49 @@ describe "Custom Properties", type: :feature  do
       check_table_headers('editor', cl_sponsor_cps_columns)
       hide_custom_props
       check_table_headers('editor', cl_standard_columns)
+    end
+
+    it "allows to edit Custom Properties, CL Editor" do
+      new_codelist_and_edit
+      click_on 'New item'
+      wait_for_ajax 10 
+
+      show_custom_props
+
+      # Check default values are set 
+      check_cell_content('editor', 1, 7, '') 
+      check_cell_content('editor', 1, 8, false)
+      check_cell_content('editor', 1, 9, false)
+      check_cell_content('editor', 1, 10, false)
+      check_cell_content('editor', 1, 11, false)
+
+      # Inline editing of CPs, text
+      ui_editor_select_by_location(1, 7)
+      ui_editor_fill_inline("crf_display_value", "Some CRF value\n")
+      check_cell_content('editor', 1, 7, 'Some CRF value')
+      ui_press_key :return 
+      ui_editor_fill_inline("crf_display_value", "Changed CRF\t")
+      check_cell_content('editor', 1, 7, 'Changed CRF')
+
+      # Inline editing of CPs, text, input validation
+      ui_editor_select_by_content('Changed CRF')
+      ui_editor_fill_inline("crf_display_value", "æø\n")
+      ui_editor_check_error('crf_display_value', 'contains invalid characters')
+      ui_press_key :escape
+
+      # Inline editing of CPs, booleans
+      ui_editor_select_by_location(1, 8)
+      ui_press_key :arrow_right
+      ui_press_key :return
+      wait_for_ajax 10
+      check_cell_content('editor', 1, 8, true)
+
+      ui_press_key :tab
+      ui_press_key :return
+      ui_press_key :arrow_left
+      ui_press_key :return
+      wait_for_ajax 10
+      check_cell_content('editor', 1, 9, true)
     end
 
 
@@ -153,36 +196,6 @@ describe "Custom Properties", type: :feature  do
       # Todo: Check referenced items normal fields cannot be edited 
     end
 
-    it "allows to edit Custom Properties, CL Editor" do
-      new_codelist_and_edit
-      click_on 'New item'
-      wait_for_ajax 10 
-
-      show_custom_props
-      # Check default values are set 
-      check_cell_content('editor', 1, 7, '') 
-      check_cell_content('editor', 1, 8, false)
-      check_cell_content('editor', 1, 9, false)
-      check_cell_content('editor', 1, 10, false)
-      check_cell_content('editor', 1, 11, false)
-
-      # Inline editing of CPs
-      ui_editor_select_by_location(1, 7)
-      ui_editor_fill_inline("crf_display_value", "Some CRF value\n")
-      check_cell_content('editor', 1, 7, 'Some CRF value')
-
-      ui_editor_select_by_location(1, 8)
-      ui_press_key :arrow_right
-      ui_press_key :return
-      check_cell_content('editor', 1, 8, true)
-
-      # Validates input for entered CP values 
-      ui_editor_select_by_location(1, 7)
-      ui_editor_fill_inline("crf_display_value", "æø\n")
-      ui_editor_check_error('crf_display_value', 'contains invalid characters')
-      ui_press_key :escape
-    end
-
     it "Editing a Standard Sanofi extension sets up CPs incorrectly - extra property on 5 items, CL Extension Editor" do
       click_navbar_code_lists
       wait_for_ajax 20
@@ -198,26 +211,63 @@ describe "Custom Properties", type: :feature  do
       ui_check_table_info 'editor', 1, 10, 69 
     end
 
-    it "sets up wrong custom properties when extending a CDISC Code List" do 
+    it "Extending a CDISC Code List, CP default values bug, should be a model/controller test not feature" do 
+      # Extend CDISC CL
       click_navbar_code_lists
       wait_for_ajax 20
 
       ui_table_search('index', 'C99079')
       find(:xpath, "//tr[contains(.,'CDISC')]/td/a").click
       wait_for_ajax 10
+
       context_menu_element_v2('history', '62', :show)
       wait_for_ajax 10
       context_menu_element_header(:extend)
+
       ui_in_modal do 
         click_on 'Do not select'
       end 
       wait_for_ajax 10
 
-      # After the following step DT throws dialog with error because values are missing
-      # The Custom Properties of this extension are not matching the extended CL, some are missing and some values come from other sponsor Code Lists I think. 
-    #pause
+      # Check default values picked up from other sponsor Code Lists
       show_custom_props
+      check_cell_content('editor', 2, 7, 'Run-In') 
+      check_cell_content('editor', 2, 8, false)
+      check_cell_content('editor', 2, 9, true)
+      check_cell_content('editor', 2, 10, false) 
+      check_cell_content('editor', 2, 11, true)
 
+      # Delete Extension 
+      click_link 'Sanofi, C99079E'
+      wait_for_ajax 10 
+      context_menu_element_v2('history', '0.1.0', :delete)
+      ui_confirmation_dialog true 
+      wait_for_ajax 10 
+
+      # Re-extend CDISC CL 
+      click_navbar_code_lists
+      wait_for_ajax 20
+
+      ui_table_search('index', 'C99079')
+      find(:xpath, "//tr[contains(.,'CDISC')]/td/a").click
+      wait_for_ajax 10
+
+      context_menu_element_v2('history', '62', :show)
+      wait_for_ajax 10
+      context_menu_element_header(:extend)
+
+      ui_in_modal do 
+        click_on 'Do not select'
+      end 
+      wait_for_ajax 10
+
+      # Check default values picked up from other sponsor Code Lists
+      show_custom_props
+      check_cell_content('editor', 2, 7, 'Run-In') 
+      check_cell_content('editor', 2, 8, false)
+      check_cell_content('editor', 2, 9, true)
+      check_cell_content('editor', 2, 10, false) 
+      check_cell_content('editor', 2, 11, true)
     end 
 
     it "Attempting to extend SN003055 freezes server" do
