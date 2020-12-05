@@ -148,12 +148,20 @@ private
       previous = previous_info.nil? ? nil : child_klass.find_full(previous_info.id) 
       actual = child.replace_if_no_change(previous, [:tagged])
       parent.add(actual, index + 1) # Parent needs ref to child whatever new or previous
-      actual.has_previous_version = previous.uri if !previous.nil? && actual.uri != previous.uri
+      handle_version_update(actual, previous)
       child.add_context_tags(actual, tag_set, parent.uri) 
       next if actual.uri != child.uri # No changes if actual = previous, so skip next
       filtered << child 
     end
     return {parent: parent, managed_children: filtered, tags: tag_set}
+  end
+
+  # Handle version update. Set previous pointer and invcrement version
+  def handle_version_update(actual, previous)
+    return if previous.nil? 
+    return if actual.uri == previous.uri
+    actual.has_previous_version = previous.uri
+    actual.has_identifier.amend_to_next_version(previous.version)
   end
 
 end

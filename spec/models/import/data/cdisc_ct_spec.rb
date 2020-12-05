@@ -36,7 +36,7 @@ describe "Import::CdiscTerm CT Data" do
   # ---------- IMPORTANT SWITCHES ----------
   
   def set_write_file
-    false
+    true
   end
 
   def use_api
