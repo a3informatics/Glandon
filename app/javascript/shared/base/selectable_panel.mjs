@@ -100,8 +100,8 @@ export default class SelectablePanel extends TablePanel {
   /**
    * Sets event listeners, handlers
    */
-  _setListeners() {
-    super._setListeners();
+  _setTableListeners() {
+    super._setTableListeners();
 
     // Row(s) selected
     this.table.on('select', (e, dt, t, indexes) => this._onSelect(indexes));
