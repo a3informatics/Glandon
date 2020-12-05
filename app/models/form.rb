@@ -15,6 +15,17 @@ class Form < IsoManagedV2
   include Form::Ordinal
   include Form::CRF
 
+  @@owner_ra = nil
+
+  # Owner
+  #
+  # @return [IsoRegistrationAuthority] the owner
+  def self.owner
+    return @@owner_ra if !@@owner_ra.nil?
+    @@owner_ra = IsoRegistrationAuthority.owner
+    @@owner_ra.freeze
+  end
+
   # Children Ordered. Returns the set of children nodes ordered by ordinal. 
   #
   # @return [Form::Group::Normal] array of objects

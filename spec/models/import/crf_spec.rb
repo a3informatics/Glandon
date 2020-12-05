@@ -6,7 +6,8 @@ describe Import::Crf do
   include ImportHelpers
   include PublicFileHelpers
   include SparqlHelpers
-
+  include SecureRandomHelpers
+  
 	def sub_dir
     return "models/import/crf"
   end
@@ -29,6 +30,7 @@ describe Import::Crf do
   end
 
   before :each do
+    allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     Import.destroy_all
     delete_all_public_test_files
   end
@@ -68,7 +70,7 @@ describe Import::Crf do
     expect(result).to eq(expected)
   end
 
-  it "gets form, AE example, ODM - WILL CURRENTLY FAIL" do
+  it "gets form, AE example, ODM" do
     simple_setup
     full_path = test_file_path(sub_dir, "odm_1.xml")
     @object.import({identifier: "F_AE", files: [full_path], file_type: "1", job: @job})
@@ -83,7 +85,7 @@ describe Import::Crf do
     delete_data_file(sub_dir, filename)
   end
 
-  it "gets form, BASELINE example - WILL CURRENTLY FAIL" do
+  it "gets form, BASELINE example, ODM" do
     simple_setup
     full_path = test_file_path(sub_dir, "odm_1.xml")
     @object.import({identifier: "F_BASELINE", files: [full_path], file_type: "1", job: @job})
