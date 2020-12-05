@@ -2422,4 +2422,55 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "custom property bug fix" do
+
+    def add_cp_1
+      CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
+      description: "String Description", default: "Default String",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CPD1"))
+    end
+
+    def add_cp_2
+      CustomPropertyDefinition.create(datatype: "boolean", label: "Logical", 
+      description: "Boolean Description", default: "false",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CPD2"))
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+      load_cdisc_term_versions(1..43)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+      nv_destroy
+      nv_create(parent: "123", child: "456")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "extend a code list" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.sanofi.com/SN003055/V1#SN003055"))
+      results = tc.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2a.yaml", equate_method: :hash_equal)
+      item = tc.create_extension
+      item = Thesaurus::UnmanagedConcept.find(item.uri)
+      results = item.children_pagination(count: 100, offset: 0)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2b.yaml", equate_method: :hash_equal)
+      results = item.find_custom_property_definitions_to_h
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2c.yaml", equate_method: :hash_equal)
+      results = item.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2d.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end
