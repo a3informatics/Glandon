@@ -134,7 +134,7 @@ describe "Custom Properties", type: :feature  do
 
       click_on 'Add items'
       ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: 'C100130', owner: 'Sanofi', version: '2', identifier: 'C96587' }
+        { parent: 'C100130', owner: 'Sanofi', version: '2.0.0', identifier: 'C96587' }
       ], 'add-children')
       wait_for_ajax 20 
 
