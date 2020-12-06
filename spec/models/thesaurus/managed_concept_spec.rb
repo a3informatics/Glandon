@@ -934,7 +934,7 @@ describe "Thesaurus::ManagedConcept" do
       IsoHelpers.clear_cache
     end
 
-    before :all do
+    before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "change_instructions_test.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..31)
@@ -1007,7 +1007,7 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_7.yaml", equate_method: :hash_equal)
       ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", 
         :definition=>"The definition.", :preferred_term=>Thesaurus::PreferredTerm.where_only_or_create("Not Set")}, tc)
-      item.add_referenced_children([{id: ext.uri.to_id, context_id: nil}])
+      item.add_referenced_children(tc.full_contexts([ext.uri.to_id]))
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_8.yaml", equate_method: :hash_equal)
     end
@@ -1023,7 +1023,7 @@ describe "Thesaurus::ManagedConcept" do
         :definition=>"The definition.", :preferred_term=>Thesaurus::PreferredTerm.where_only_or_create("Not Set")}, item)
       ext2 = Thesaurus::UnmanagedConcept.create({:label=>"A label2", :identifier=>"A00022", :notation=>"NOTATION2", 
         :definition=>"The definition2.", :preferred_term=>Thesaurus::PreferredTerm.where_only_or_create("Not Set")}, item)
-      item.add_referenced_children([ext.uri.to_id, ext2.uri.to_id])
+      item.add_referenced_children(tc.full_contexts([ext.uri.to_id, ext2.uri.to_id]))
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_10.yaml", equate_method: :hash_equal)
     end
@@ -1381,8 +1381,8 @@ describe "Thesaurus::ManagedConcept" do
       item = thesaurus.add_subset(tc.id)
       item.is_ordered_objects
       subset = item.is_ordered
-      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
-      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id], tc)
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id], tc)
       uri_check_set_1[11][:present] = true
       uri_check_set_1 << { uri: subset.uri, present: true}
       uri_check_set_1 << { uri: subset.members_objects.uri, present: true}
@@ -1534,7 +1534,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.create
       new_1 = tc.add_child({notation: "NEW1", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("A")})
       new_2 = tc.add_child({notation: "NEW2", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("B")})
-      tc.add_referenced_children([uri_1.to_id])
+      tc.add_referenced_children(tc.full_contexts([uri_1.to_id]))
       uri_check_set << {uri: new_1.uri, present: true}
       uri_check_set << {uri: new_2.uri, present: true}
       expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
@@ -1736,10 +1736,10 @@ describe "Thesaurus::ManagedConcept" do
         })
       tc_3.set_initial("A00005")
       tc_3.save
-      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(4)
-      tc.add_referenced_children([tc_3.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(5)
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
@@ -1765,8 +1765,8 @@ describe "Thesaurus::ManagedConcept" do
       new_rank = item.add_rank
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       subset = item.is_ordered
-      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
-      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id], tc)
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id], tc)
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       first_member = Thesaurus::RankMember.find(actual_rank.members)
       second_member = Thesaurus::RankMember.find(first_member.member_next)
@@ -1783,8 +1783,8 @@ describe "Thesaurus::ManagedConcept" do
       new_rank = item.add_rank
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       subset = item.is_ordered
-      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
-      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id], tc)
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id], tc)
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       first_member = Thesaurus::RankMember.find(actual_rank.members)
       second_member = Thesaurus::RankMember.find(first_member.member_next)
@@ -1814,8 +1814,8 @@ describe "Thesaurus::ManagedConcept" do
       new_rank = item.add_rank
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       subset = item.is_ordered
-      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
-      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id], tc)
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id], tc)
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       first_member = Thesaurus::RankMember.find(actual_rank.members)
       second_member = Thesaurus::RankMember.find(first_member.member_next)
@@ -2126,7 +2126,7 @@ describe "Thesaurus::ManagedConcept" do
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_referenced_children([uc_1.uri.to_id])
+      mc.add_referenced_children(mc.full_contexts([uc_1.uri.to_id]))
       expect(mc.errors.empty?).to eq(true)
       mc = Thesaurus::ManagedConcept.find_full(mc.uri)
       expect(mc.narrower.count).to eq(9)
@@ -2139,7 +2139,7 @@ describe "Thesaurus::ManagedConcept" do
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_referenced_children([uc_1.uri.to_id, uc_2.uri.to_id])
+      mc.add_referenced_children(mc.full_contexts([uc_1.uri.to_id, uc_2.uri.to_id]))
       expect(mc.errors.empty?).to eq(true)
       mc = Thesaurus::ManagedConcept.find_full(mc.uri)
       expect(mc.narrower.count).to eq(10)
@@ -2153,7 +2153,7 @@ describe "Thesaurus::ManagedConcept" do
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_referenced_children([uc_1.uri.to_id, uc_2.uri.to_id])
+      mc.add_referenced_children(mc.full_contexts([uc_1.uri.to_id, uc_2.uri.to_id]))
       expect(mc.errors.empty?).to eq(false)
       expect(mc.narrower_links.count).to eq(8)
       expect(mc.errors.full_messages.to_sentence).to eq("Code list is a subset.")
@@ -2165,7 +2165,7 @@ describe "Thesaurus::ManagedConcept" do
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_referenced_children([uc_1.uri.to_id, uc_2.uri.to_id])
+      mc.add_referenced_children(mc.full_contexts([uc_1.uri.to_id, uc_2.uri.to_id]))
       expect(mc.errors.empty?).to eq(true)
       expect(mc.narrower_links.count).to eq(10)
     end
@@ -2332,7 +2332,7 @@ describe "Thesaurus::ManagedConcept" do
       tc_1 = Thesaurus::UnmanagedConcept.create({label: "Terminal 1", identifier: "A00023", definition: "A definition", notation: "T1"}, tc)
       tc_2 = Thesaurus::UnmanagedConcept.create({label: "Terminal 2A", identifier: "A00024", definition: "A definition", notation: "T2A"}, tc)
       tc_3 = Thesaurus::UnmanagedConcept.create({label: "Cow Shed", identifier: "A00025", definition: "A definition", notation: "T2B"}, tc)
-      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id]))
       cpv_uri = CustomPropertyValue.where_unique(tc_1, tc, :some_string)
       cpv = CustomPropertyValue.find(cpv_uri)
       cpv.value = "Something new and wonderful"
@@ -2345,7 +2345,7 @@ describe "Thesaurus::ManagedConcept" do
       cpv = CustomPropertyValue.find(cpv_uri)
       cpv.value = "true"
       cpv.save
-      tc.add_referenced_children([tc_3.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(3)
       result = tc.find_custom_property_values
@@ -2359,7 +2359,7 @@ describe "Thesaurus::ManagedConcept" do
       tc_1 = Thesaurus::UnmanagedConcept.create({label: "Terminal 1", identifier: "A00023", definition: "A definition", notation: "T1"}, tc)
       tc_2 = Thesaurus::UnmanagedConcept.create({label: "Terminal 2A", identifier: "A00024", definition: "A definition", notation: "T2A"}, tc)
       tc_3 = Thesaurus::UnmanagedConcept.create({label: "Cow Shed", identifier: "A00025", definition: "A definition", notation: "T2B"}, tc)
-      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id, tc_3.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id, tc_3.uri.to_id]))
       params = {}
       params[:registration_status] = "Standard"
       params[:previous_state] = "Incomplete"
