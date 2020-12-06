@@ -255,10 +255,10 @@ module SKOS::OrderedCollection
       sparql.add({uri: subset_members[index].uri}, {prefix: :th, fragment: "memberNext"}, {uri: subset_members[index+1].uri})
     end
     last_sm.nil? ? sparql.add({uri: self.uri}, {prefix: :th, fragment: "members"}, {uri: subset_members.first.uri}) : sparql.add({uri: last_sm.uri}, {prefix: :th, fragment: "memberNext"}, {uri: subset_members.first.uri})
-    mc.add_custom_property_context(parent.full_contexts(arr))
-    mc.add_missing_custom_properties(arr, Thesaurus::UnmanagedConcept, nil)
     set_ranks(arr, mc) if mc.ranked?
     sparql.create
+    mc.add_custom_property_context(parent.full_contexts(arr))
+    mc.add_missing_custom_properties(parent.full_contexts(arr), Thesaurus::UnmanagedConcept, nil)
   end
 
   # Remove all. Removes all the subset members and narrower from Subset

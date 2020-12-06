@@ -357,7 +357,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       add_link(:refers_to, uri)
     end
     add_custom_property_context(ids_and_contexts)
-    add_missing_custom_properties(uris, Thesaurus::UnmanagedConcept, transaction)
+    add_missing_custom_properties(ids_and_contexts, Thesaurus::UnmanagedConcept, transaction)
     set_ranks(uris, self) if self.ranked?
     transaction_execute
   end
@@ -526,7 +526,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
     object.add_link(:extends, source.uri)
     object.add_custom_property_context(source.full_contexts(source.narrower))
-    object.add_missing_custom_properties(source.narrower, Thesaurus::UnmanagedConcept)
+    object.add_missing_custom_properties(source.full_contexts(source.narrower), Thesaurus::UnmanagedConcept)
     object
   end
 
