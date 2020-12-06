@@ -148,7 +148,7 @@ private
       previous = previous_info.nil? ? nil : child_klass.find_full(previous_info.id) 
       actual = child.replace_if_no_change(previous, [:tagged])
       parent.add(actual, index + 1) # Parent needs ref to child whatever new or previous
-      handle_version_update(actual, previous)
+      handle_version(actual, previous)
       child.add_context_tags(actual, tag_set, parent.uri) 
       next if actual.uri != child.uri # No changes if actual = previous, so skip next
       filtered << child 
@@ -157,11 +157,24 @@ private
   end
 
   # Handle version update. Set previous pointer and invcrement version
+  def handle_version(actual, previous)
+    return handle_version_initial(actual) if previous.nil? 
+    return true if actual.uri == previous.uri
+    handle_version_update(actual, previous)
+  end
+
+  # Handle version update. Set previous pointer and invcrement version
   def handle_version_update(actual, previous)
-    return if previous.nil? 
-    return if actual.uri == previous.uri
     actual.has_previous_version = previous.uri
     actual.has_identifier.amend_to_next_version(previous.version)
+    true
+  end
+
+  # Handle version update. Set previous pointer and invcrement version
+  def handle_version_initial(actual)
+    actual.has_previous_version = nil
+    actual.has_identifier.amend_to_next_version(IsoScopedIdentifier::C_FIRST_VERSION)
+    true
   end
 
 end

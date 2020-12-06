@@ -2031,6 +2031,21 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       }
     end
 
+    def versions
+      query = %Q{
+        SELECT DISTINCT ?e ?l ?i ?v WHERE
+        {
+          ?e rdf:type <http://www.assero.co.uk/Thesaurus#ManagedConcept> .
+          ?e isoC:label ?l .
+          ?e isoT:hasIdentifier/isoI:identifier ?i .
+          ?e isoT:hasIdentifier/isoI:version ?v .
+          ?e isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?sn .
+        } ORDER BY ?i ?v
+      }
+      query_results = Sparql::Query.new.query(query, "", [:isoI, :isoT, :isoC, :th, :bo])
+      query_results.by_object_set([:e, :l, :i, :v]).map{|x| {uri: x[:s].to_s, label: x[:l], code_list: x[:i], version: x[:v]}}
+    end
+
     it "tag analysis" do
       ct_set.each do |v|
         #next if v[:version] != "26"
@@ -2053,28 +2068,10 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       end
     end
 
-    # No longer required
-    # it "misaligned tag analysis" do
-    #   ct_set.each do |v|
-    #     print "Processing: #{v[:uri]}, v#{v[:version]}  "
-    #     query_results = Sparql::Query.new.query(ct_misaligned_tags(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
-    #     print ".."
-    #     results = query_results.by_object_set([:v, :d, :clid, :cliid, :cltag, :clitag]).map{|x| {version: x[:v], date: x[:d], code_list: x[:clid], code_list_item: x[:cliid], cl_tag: x[:cltag], cli_tag: x[:clitag]}}
-    #     print ".."
-    #     overall = {}
-    #     overall[:version] = v[:version]
-    #     overall[:results] = {}
-    #     results.each do |x|
-    #       next if x[:cli_tag].empty?
-    #       key = x[:code_list_item].empty? ? "#{x[:code_list]}" : "#{x[:code_list]}.#{x[:code_list_item]}"
-    #       overall[:results][key] = [] unless overall[:results].key?(key) 
-    #       overall[:results][key] << "CL: #{x[:cl_tag]} v CLI: #{x[:cli_tag]}" 
-    #     end
-    #     print ".."
-    #     overall[:results] == {} ? puts("") : puts(" RESULTS ")
-    #     check_file_actual_expected(overall, sub_dir, "ct_query_tag_misaligned#{v[:version]}.yaml", equate_method: :hash_equal)
-    #   end
-    # end
+    it "versions" do
+      results = versions
+      check_file_actual_expected(results, sub_dir, "ct_versions_check.yaml", equate_method: :hash_equal)
+    end
 
   end
 
