@@ -882,10 +882,10 @@ describe "Thesaurus::ManagedConcept" do
         })
       tc_3.set_initial("A00005")
       tc_3.save
-      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(4)
-      tc.add_referenced_children([tc_3.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(5)
     end
@@ -982,8 +982,9 @@ describe "Thesaurus::ManagedConcept" do
       item = thesaurus.add_extension(tc.id)
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_3.yaml", equate_method: :hash_equal)
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99078/V28#C99078"))
       ext = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C99078/V28#C99078_C307"))
-      item.add_referenced_children([ext.uri.to_id])
+      item.add_referenced_children(parent.full_contexts([ext.uri.to_id]))
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_4.yaml", equate_method: :hash_equal)
     end
@@ -1006,7 +1007,7 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_7.yaml", equate_method: :hash_equal)
       ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", 
         :definition=>"The definition.", :preferred_term=>Thesaurus::PreferredTerm.where_only_or_create("Not Set")}, tc)
-      item.add_referenced_children([ext.uri.to_id])
+      item.add_referenced_children([{id: ext.uri.to_id, context_id: nil}])
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_8.yaml", equate_method: :hash_equal)
     end
@@ -2292,12 +2293,12 @@ describe "Thesaurus::ManagedConcept" do
       tc_1 = Thesaurus::UnmanagedConcept.create({label: "Terminal 1", identifier: "A00023", definition: "A definition", notation: "T1"}, tc)
       tc_2 = Thesaurus::UnmanagedConcept.create({label: "Terminal 2A", identifier: "A00024", definition: "A definition", notation: "T2A"}, tc)
       tc_3 = Thesaurus::UnmanagedConcept.create({label: "Cow Shed", identifier: "A00025", definition: "A definition", notation: "T2B"}, tc)
-      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(2)
       result = tc.find_custom_property_values
       check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1a.yaml", write_file: false)
-      tc.add_referenced_children([tc_3.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(3)
       result = tc.find_custom_property_values
@@ -2311,12 +2312,12 @@ describe "Thesaurus::ManagedConcept" do
       tc_1 = Thesaurus::UnmanagedConcept.create({label: "Terminal 1", identifier: "A00023", definition: "A definition", notation: "T1"}, tc)
       tc_2 = Thesaurus::UnmanagedConcept.create({label: "Terminal 2A", identifier: "A00024", definition: "A definition", notation: "T2A"}, tc)
       tc_3 = Thesaurus::UnmanagedConcept.create({label: "Cow Shed", identifier: "A00025", definition: "A definition", notation: "T2B"}, tc)
-      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(2)
       result = tc.find_custom_property_values
       check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2a.yaml", write_file: false)
-      tc.add_referenced_children([tc_3.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(3)
       result = tc.find_custom_property_values

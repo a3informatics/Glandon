@@ -43,16 +43,21 @@ describe IsoManagedV2::ImCustomProperties do
     after :each do
     end
 
-    it "add context" do
+    it "add context I" do
       other_parent = CustomPropertyHelpers::TestParent.create(identifier: "XXX", label: "Parent")
       other_parent.narrower = [@child_1, @child_2, @child_3]
       other_parent.save
-      other_parent.add_custom_property_context([@child_1.id, @child_2.uri, @child_3.id], @parent)
+      id_array = [
+        {id: @child_1.id, context_id: @parent.id}, 
+        {id: @child_2.uri, context_id: @parent.id}, 
+        {id: @child_3.id, context_id: @parent.uri}
+      ]
+      other_parent.add_custom_property_context(id_array)
       results = other_parent.find_custom_property_values 
       check_file_actual_expected(results, sub_dir, "add_custom_property_context_expected_1.yaml")
     end
 
-    it "add context" do
+    it "add context II" do
       parent_1 = CustomPropertyHelpers::TestParent.create(identifier: "XXX", label: "Parent1")
       parent_2 = CustomPropertyHelpers::TestParent.create(identifier: "YYY", label: "Parent2")
       parent_1.narrower = [@child_1, @child_2]
@@ -60,13 +65,22 @@ describe IsoManagedV2::ImCustomProperties do
       create_custom(parent_1, @child_1, "String 2", @definition_1, 100)
       parent_2.narrower = [@child_1]
       parent_2.save
-      parent_2.add_custom_property_context([@child_1.id], @parent)
+      id_array = [{id: @child_1.id, context_id: @parent.id}]
+      parent_2.add_custom_property_context(id_array)
       results = parent_1.find_custom_property_values 
       check_file_actual_expected(results, sub_dir, "add_custom_property_context_expected_2a.yaml")
       results = parent_2.find_custom_property_values 
       check_file_actual_expected(results, sub_dir, "add_custom_property_context_expected_2b.yaml")
       results = find_custom_properties_for(@child_1, "Some String")
       check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "add_custom_property_context_expected_2c.yaml")
+    end
+
+    it "builds full contexts" do
+      parent_1 = CustomPropertyHelpers::TestParent.create(identifier: "XXX", label: "Parent1")
+      parent_1.narrower = [@child_1, @child_2]
+      parent_1.save
+      results = parent_1.full_contexts(parent_1.narrower_links)
+      check_file_actual_expected(results.map{|x| {id: x[:id].to_s, context_id: x[:context_id]}}, sub_dir, "full_contexts_expected_1.yaml")
     end
 
   end

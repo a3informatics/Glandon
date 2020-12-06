@@ -346,17 +346,17 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   # Add Referenced Children. Add children to a code list that are referenced from other code lists. 
   #   Only allow for standard or extension codelists. Subsets use other methods?
   #
-  # @params [Array] ids the set of ids to be actioned
+  # @params [Array] ids array of hash containing the ids and contexts of items to be actioned
   # @return [Void] no return. Errors in the error object.
-  def add_referenced_children(ids)
+  def add_referenced_children(ids_and_contexts)
     return unless check_for_standard_or_extension?
     transaction = transaction_begin
-    uris = ids.map{|x| Uri.new(id: x)}
+    uris = ids_and_contexts.map{|x| Uri.new(id: x[:id])}
     uris.each do |uri| 
       add_link(:narrower, uri)
       add_link(:refers_to, uri)
     end
-    add_custom_property_context(uris, self)
+    add_custom_property_context(ids_and_contexts)
     add_missing_custom_properties(uris, Thesaurus::UnmanagedConcept, transaction)
     set_ranks(uris, self) if self.ranked?
     transaction_execute
@@ -525,7 +525,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     object.set_initial(object.identifier)
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
     object.add_link(:extends, source.uri)
-    object.add_custom_property_context(source.narrower)
+    object.add_custom_property_context(source.full_contexts(source.narrower))
     object.add_missing_custom_properties(source.narrower, Thesaurus::UnmanagedConcept)
     object
   end
