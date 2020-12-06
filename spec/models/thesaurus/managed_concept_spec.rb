@@ -2470,7 +2470,7 @@ describe "Thesaurus::ManagedConcept" do
       results = item.find_custom_property_definitions_to_h
       check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2c.yaml", equate_method: :hash_equal)
       results = item.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2d.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2d.yaml", equate_method: :hash_equal)
     end
 
     it "check preservation of custom properties after delete" do
