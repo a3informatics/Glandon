@@ -655,7 +655,7 @@ class IsoManagedV2 < IsoConceptV2
     return self if !self.new_version? || self.has_state.multiple_edit
     ra = IsoRegistrationAuthority.owner
     sv = in_released_state? ? self.next_semantic_version.to_s : self.semantic_version
-    custom_properties = self.existing_custom_property_set
+    custom_property_items = self.existing_custom_property_set
     object = self.clone
     object.has_identifier = IsoScopedIdentifierV2.from_h(identifier: self.scoped_identifier, version: self.next_integer_version, semantic_version: sv, has_scope: ra.ra_namespace)
     object.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: self.state_on_edit, previous_state: self.registration_status)
@@ -665,7 +665,7 @@ class IsoManagedV2 < IsoConceptV2
     object.set_uris(ra)
     object.transaction_begin
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
-#object.add_custom_property_context(custom_properties, self)
+    object.add_custom_property_context(self.full_contexts(custom_property_items))
     object.transaction_execute
     object
   end
