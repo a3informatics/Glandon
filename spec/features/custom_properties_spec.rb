@@ -164,7 +164,6 @@ describe "Custom Properties", type: :feature  do
     end
 
     it "allows to add and edit Referenced Items with Custom Properties, CL Editor" do
-pause
       new_codelist_and_edit
 
       click_on 'Add items'
@@ -174,7 +173,6 @@ pause
       ], 'add-children')
       wait_for_ajax 20 
 
-pause
       # Check default values copied from source 
       show_custom_props
       check_cell_content('editor', 1, 7, 'Biological Uncle') 
