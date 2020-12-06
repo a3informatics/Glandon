@@ -141,8 +141,9 @@ describe "IsoRegistrationStateV2" do
   	end
   end
   
-  it "allows the released state to be retrieved" do
+  it "allows the released and draft states to be retrieved" do
     expect(IsoRegistrationStateV2.released_state).to eq("Standard")
+    expect(IsoRegistrationStateV2.draft_state).to eq("Incomplete")
   end
   
   it "allows the item to be checked for a release state" do

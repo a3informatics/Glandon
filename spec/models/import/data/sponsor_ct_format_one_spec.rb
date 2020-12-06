@@ -15,6 +15,12 @@ describe "Import::SponsorTermFormatOne" do
     return "models/import/data/sponsor_one/ct"
   end
 
+  def release_uris
+    @uri_2_6 = Uri.new(uri: "http://www.sanofi.com/2019_Release_1/V1#TH")
+    @uri_3_0 = Uri.new(uri: "http://www.sanofi.com/2020_Release_1/V1#TH")
+    @uri_3_1 = Uri.new(uri: "http://www.sanofi.com/2020_Release_2/V1#TH")
+  end
+
   describe "Main Tests" do
 
     def setup
@@ -25,13 +31,11 @@ describe "Import::SponsorTermFormatOne" do
       @object.save
       @release_details =
       [
-        {identifier: "2019 R1", label: "2019 Release 1", date: "2019-08-08", uri: "http://www.sanofi.com/2019_R1/V1#TH"},
-        {identifier: "2020 R1", label: "2020 Release 1", date: "2020-03-26", uri: "http://www.sanofi.com/2020_R1/V1#TH"},
-        {identifier: "2020 R1", label: "2020 Release 1", date: "2020-09-26", uri: "http://www.sanofi.com/2020_R1/V2#TH"}
+        {identifier: "2019 Release 1", label: "CT 2.6 2015-03-27", date: "2019-08-08", release: true},
+        {identifier: "2020 Release 1", label: "CT 3.0 2017-09-27", date: "2020-03-26", release: true},
+        {identifier: "2020 Release 2", label: "CT 3.1 2017-09-27", date: "2020-09-26", release: false}
       ]
-      @uri_2_6 = Uri.new(uri: "#{@release_details[0][:uri]}")
-      @uri_3_0 = Uri.new(uri: "#{@release_details[1][:uri]}")
-      @uri_3_1 = Uri.new(uri: "#{@release_details[2][:uri]}")
+      release_uris
     end
 
     def read_installation(installation)
@@ -218,7 +222,8 @@ describe "Import::SponsorTermFormatOne" do
           identifier: @release_details[0][:identifier], version: "1", 
           date: @release_details[0][:date], files: [full_path], fixes: fixes, 
           version_label: "1.0.0", label: @release_details[0][:label], 
-          semantic_version: "1.0.0", job: @job, uri: ct.uri
+          semantic_version: "1.0.0", job: @job, uri: ct.uri,
+          release: @release_details[0][:release]
         }
         result = @object.import(params)
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
@@ -271,7 +276,8 @@ describe "Import::SponsorTermFormatOne" do
           identifier: @release_details[1][:identifier], version: "1", 
           date: @release_details[1][:date], files: [full_path], fixes: fixes, 
           version_label: "1.0.0", label: @release_details[1][:label], 
-          semantic_version: "1.0.0", job: @job, uri: ct.uri
+          semantic_version: "1.0.0", job: @job, uri: ct.uri,
+          release: @release_details[1][:release]
         }
         result = @object.import(params)
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
@@ -323,10 +329,11 @@ describe "Import::SponsorTermFormatOne" do
         fixes = db_load_file_path("sponsor_one/ct", "fixes_v3-1.yaml")
         params = 
         {
-          identifier: @release_details[2][:identifier], version: "2", 
+          identifier: @release_details[2][:identifier], version: "1", 
           date: @release_details[2][:date], files: [full_path], fixes: fixes, 
-          version_label: "2.0.0", label: @release_details[2][:label], 
-          semantic_version: "2.0.0", job: @job, uri: ct.uri
+          version_label: "1.0.0", label: @release_details[2][:label], 
+          semantic_version: "1.0.0", job: @job, uri: ct.uri,
+          release: @release_details[2][:release]
         }
         result = @object.import(params)
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
@@ -384,9 +391,7 @@ describe "Import::SponsorTermFormatOne" do
       load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
       load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
       delete_all_public_test_files
-      @uri_2_6 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
-      @uri_3_0 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
-      @uri_3_1 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH")
+      release_uris
     end
 
     after :all do
@@ -412,7 +417,7 @@ describe "Import::SponsorTermFormatOne" do
       th_3_0 = Thesaurus.find_minimum(@uri_3_0)
       th_3_1 = Thesaurus.find_minimum(@uri_3_1)
       results = th_3_0.differences(th_3_1)
-      check_file_actual_expected(results, sub_dir, "import_differences_expected_2.yaml", equate_method: :hash_equal, write_file: false)
+      check_file_actual_expected(results, sub_dir, "import_differences_expected_2.yaml", equate_method: :hash_equal, write_file: true)
       r_3_0 = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
       r_3_1 = read_yaml_file(sub_dir, "import_results_expected_3-1.yaml")
       prev = r_3_0.map{|x| x[:identifier].to_sym}.uniq
@@ -465,6 +470,7 @@ describe "Import::SponsorTermFormatOne" do
       load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
       load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
       delete_all_public_test_files
+      release_uris
     end
 
     after :all do
@@ -510,15 +516,12 @@ describe "Import::SponsorTermFormatOne" do
     end
 
     it "counts and ranks" do
-      uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
-      uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
-      uri_31 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH")
-      {"2-6" => {uri: uri_26, count: 197257}, "3-0" => {uri: uri_30, count: 291383}, "3-1" => {uri: uri_31, count: 299947}}.each do |version, data|
+      {"2-6" => {uri: @uri_2_6, count: 197257}, "3-0" => {uri: @uri_3_0, count: 291383}, "3-1" => {uri: @uri_3_1, count: 299947}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
       results = {}
-      {"rank_V2-6.yaml" => uri_26, "rank_V3-0.yaml" => uri_30, "rank_V3-1.yaml" => uri_31}.each do |file, uri|
+      {"rank_V2-6.yaml" => @uri_2_6, "rank_V3-0.yaml" => @uri_3_0, "rank_V3-1.yaml" => @uri_3_1}.each do |file, uri|
         config = read_yaml_file(sub_dir, file)
         code_lists = config[:codelists].map{|x| x[:codelist_code]}
         results[uri.to_s] = check_cls(code_lists, uri).map{|x| x.to_s}
@@ -650,7 +653,7 @@ describe "Import::SponsorTermFormatOne" do
 
   end
 
-  describe "Final Statistics & Checks" do
+  describe "Custom Property Checks" do
 
     before :all do
     end

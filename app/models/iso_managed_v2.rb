@@ -786,14 +786,15 @@ class IsoManagedV2 < IsoConceptV2
   # @option params [String] :version the items's version (integer as a string)
   # @option params [String] :date the items's release date
   # @option params [Integer] :ordinal the ordinal for the item
+  # @option params [Boolean] :release true if released state, otherwise draft. Defaults to released state
   # @return [Void] no return
   def set_import(params)
     ra = self.class.owner
+    state = set_released_or_draft(params)
     self.label = params[:label] if self.label.blank?
     self.has_identifier = IsoScopedIdentifierV2.from_h(identifier: params[:identifier], version: params[:version], version_label: params[:version_label],
       semantic_version: params[:semantic_version], has_scope: ra.ra_namespace)
-    self.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: IsoRegistrationStateV2.released_state,
-      previous_state: IsoRegistrationStateV2.released_state)
+    self.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: state, previous_state: state)
     self.creation_date = params[:date].to_time_with_default
     self.last_change_date = params[:date].to_time_with_default
     set_uris(ra)
@@ -1038,6 +1039,12 @@ SELECT ?s ?l ?v ?i ?vl WHERE {
 
 private
 
+  # Set state depending on params
+  def set_released_or_draft(params)
+    return IsoRegistrationStateV2.released_state unless params.key?(:release)
+    params[:release] ? IsoRegistrationStateV2.released_state : IsoRegistrationStateV2.draft_state
+  end
+    
   # Clear Current, if any
   def clear_current
     current_item = self.class.current(identifier: self.scoped_identifier, scope: self.scope)
