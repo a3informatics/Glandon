@@ -2297,12 +2297,12 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(2)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1a.yaml", write_file: false)
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1a.yaml")
       tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(3)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1b.yaml", write_file: false)
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1b.yaml")
     end
 
     it "add and delete children to an extension, several" do
@@ -2316,12 +2316,12 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(2)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2a.yaml", write_file: false)
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2a.yaml")
       tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(3)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2b.yaml", write_file: false)
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2b.yaml")
     end
 
     it "add and delete children to an extension, values" do
@@ -2340,7 +2340,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(2)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_3a.yaml", write_file: false)
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_3a.yaml")
       cpv_uri = CustomPropertyValue.where_unique(tc_3, tc, :Logical)
       cpv = CustomPropertyValue.find(cpv_uri)
       cpv.value = "true"
@@ -2349,7 +2349,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(3)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_3b.yaml", write_file: false)
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_3b.yaml")
     end
 
     it "clone a code list, next version" do
@@ -2371,10 +2371,10 @@ describe "Thesaurus::ManagedConcept" do
       cpv.save
       tc = Thesaurus::ManagedConcept.find(tc.uri)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_4a.yaml", write_file: false)
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_4a.yaml")
       new_tc = Thesaurus::ManagedConcept.find(new_tc.uri)
       result = new_tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_4b.yaml", write_file: false)
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_4b.yaml")
     end
 
   end
