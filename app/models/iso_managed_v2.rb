@@ -665,7 +665,7 @@ class IsoManagedV2 < IsoConceptV2
     object.set_uris(ra)
     object.transaction_begin
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
-    object.add_custom_property_context(custom_properties)
+    object.add_custom_property_context(custom_properties, self)
     object.transaction_execute
     object
   end

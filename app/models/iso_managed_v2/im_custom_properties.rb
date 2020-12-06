@@ -103,8 +103,9 @@ class IsoManagedV2
     #
     # @param [Array] uris_or_ids array of uris or ids of the items for which the custom properties are to be updated
     # @return [Boolean] true 
-    def add_custom_property_context(uris_or_ids)
+    def add_custom_property_context(uris_or_ids, from_context)
       return true if uris_or_ids.empty?
+      from_context_uri = from_context.is_a?(Uri) ? from_context : from_context.uri
       update_query = %Q{ 
         INSERT 
         { 
@@ -115,6 +116,7 @@ class IsoManagedV2
           VALUES ?s { #{uris_or_ids.map{|x| self.class.as_uri(x).to_ref}.join(" ")} }
           ?e isoC:appliesTo ?s . 
           ?e rdf:type isoC:CustomProperty .
+          ?e isoC:context #{from_context_uri.to_ref} . 
         }
       }      
       partial_update(update_query, [:isoC])
