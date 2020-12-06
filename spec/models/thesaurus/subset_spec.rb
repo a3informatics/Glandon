@@ -90,11 +90,12 @@ describe "Thesaurus Subset General" do
     it "allows add a new item to the list, empty" do
       uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#f5d17523-104f-412c-a652-b98ae6666666")
       subset = init_subset(Thesaurus::Subset.find(uri_1))
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781"))
       tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
-      result = subset.add([tc_2.uri.to_id])
+      result = subset.add([tc_2.uri.to_id], parent)
       expect(subset.last.item).to eq(tc_2.uri)
       tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
-      result = subset.add([tc_4.uri.to_id])
+      result = subset.add([tc_4.uri.to_id], parent)
       expect(subset.last.item).to eq(tc_4.uri)
       actual = subset.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
       check_file_actual_expected(actual, sub_dir, "list_pagination_expected_10.yaml")
@@ -102,12 +103,13 @@ describe "Thesaurus Subset General" do
 
     it "allows add a new item to the list, 3 items" do
       uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781"))
       subset = init_subset(Thesaurus::Subset.find(uri_1))
       tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
-      result = subset.add([tc_2.uri.to_id])
+      result = subset.add([tc_2.uri.to_id], parent)
       expect(subset.last.item).to eq(tc_2.uri)
       tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
-      result = subset.add([tc_4.uri.to_id])
+      result = subset.add([tc_4.uri.to_id], parent)
       expect(subset.last.item).to eq(tc_4.uri)
       actual = subset.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
       check_file_actual_expected(actual, sub_dir, "list_pagination_expected_11.yaml")
@@ -115,12 +117,13 @@ describe "Thesaurus Subset General" do
 
     it "allows add a new item/items to the list, initial 3 items" do
       uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834")
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781"))
       subset = Thesaurus::Subset.find(uri_1)
       mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
       tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
       tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
       expect(mc.narrower.count).to eq(3)
-      result = subset.add([tc_2.id, tc_4.id])
+      result = subset.add([tc_2.id, tc_4.id], parent)
       subset = Thesaurus::Subset.find(uri_1)
       mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
       expect(mc.narrower.count).to eq(5)
@@ -353,7 +356,7 @@ describe "Thesaurus Subset General" do
       tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
       tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
       expect(mc.narrower.count).to eq(3)
-      result = subset.add([tc_2.id, tc_4.id])
+      result = subset.add([tc_2.id, tc_4.id], mc)
       subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834"))
       mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
       expect(mc.narrower.count).to eq(5)
@@ -483,6 +486,7 @@ describe "Thesaurus Subset General" do
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     end
 
     after :all do
@@ -494,7 +498,7 @@ describe "Thesaurus Subset General" do
       simple_thesaurus_1
       subset = add_subset
       tc = subset.find_mc
-      result = subset.add([@tc_1a.uri.to_id])
+      result = subset.add([@tc_1a.uri.to_id], @tc_1)
       expect(subset.last.item).to eq(@tc_1a.uri)
       result = tc.find_custom_property_values
       check_file_actual_expected(result, sub_dir, "add_custom_property_expected_1.yaml")
