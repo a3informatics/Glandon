@@ -2077,7 +2077,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
-      (1..28).each do |version|
+      (1..50).each do |version|
       #CdiscCtHelpers.version_range.each do |version|
         load_local_file_into_triple_store(sub_dir, excel_filename(version))
       end
