@@ -56,8 +56,6 @@ class IsoManagedV2Controller < ApplicationController
     authorize IsoManaged, :show?
     item = find_item(params)
     owned = item.owned?
-puts "Values: #{item.find_custom_property_values}"
-puts "Defs: #{item.find_custom_property_definitions_to_h}"
     render json: {data: owned ? item.find_custom_property_values : {}, definitions: owned ? item.find_custom_property_definitions_to_h : {}}
   end
 

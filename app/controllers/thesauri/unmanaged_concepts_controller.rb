@@ -34,9 +34,6 @@ class Thesauri::UnmanagedConceptsController < ManagedItemsController
     if tc.errors.empty?
       AuditTrail.update_item_event(current_user, parent, "Code list updated.") if @lock.token.refresh == 1
       result = tc.simple_to_h(parent, edit_params[:with_custom_props])
-
-puts "RESULT: #{result}"
-
       edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: tc.id, unmanaged_concept: {parent_id: parent.id}})
       delete_path = thesauri_unmanaged_concept_path({id: tc.id, unmanaged_concept: {parent_id: parent.id}})
       result.reverse_merge!({edit_path: edit_path, delete_path: delete_path})
@@ -131,11 +128,6 @@ private
     cp = CustomPropertyValue.find_children(protect_from_bad_id(params))
     cp.update_and_clone(params, parent)
     tc.errors.merge!(cp.errors)
-
-puts "Children: #{parent.narrower_links.map{|x| x.to_s}}"
-puts "Values: #{parent.find_custom_property_values}"
-puts "Defs: #{parent.find_custom_property_definitions_to_h}"
-
     tc
   end
 
