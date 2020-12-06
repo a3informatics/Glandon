@@ -2,123 +2,123 @@
 http://www.s-cubed.dk/C66767/V1#C66767:
   '': []
   http://www.cdisc.org/C66767/V4#C66767_C49504:
-  - :name: SDTM Stage
-    :value: 'true'
   - :name: ADaM Stage
-    :value: 'true'
-  - :name: DC Stage
-    :value: 'true'
+    :value: true
   - :name: CRF Display Value
     :value: Dose Not Changed
+  - :name: SDTM Stage
+    :value: true
+  - :name: DC Stage
+    :value: true
   http://www.cdisc.org/C66767/V4#C66767_C49505:
+  - :name: SDTM Stage
+    :value: true
   - :name: CRF Display Value
     :value: Dose Reduced
   - :name: ADaM Stage
-    :value: 'true'
-  - :name: SDTM Stage
-    :value: 'true'
+    :value: true
   - :name: DC Stage
-    :value: 'true'
+    :value: true
   http://www.cdisc.org/C66767/V4#C66767_C49501:
+  - :name: SDTM Stage
+    :value: true
   - :name: CRF Display Value
     :value: Drug Interrupted
-  - :name: SDTM Stage
-    :value: 'true'
   - :name: DC Stage
-    :value: 'true'
+    :value: true
   - :name: ADaM Stage
-    :value: 'true'
+    :value: true
   http://www.cdisc.org/C66767/V4#C66767_C49502:
-  - :name: DC Stage
-    :value: 'true'
   - :name: ADaM Stage
-    :value: 'true'
+    :value: true
+  - :name: SDTM Stage
+    :value: true
   - :name: CRF Display Value
     :value: Drug Withdrawn
-  - :name: SDTM Stage
-    :value: 'true'
+  - :name: DC Stage
+    :value: true
   http://www.cdisc.org/C66767/V4#C66767_C49503:
   - :name: ADaM Stage
-    :value: 'true'
-  - :name: SDTM Stage
-    :value: 'true'
+    :value: true
   - :name: DC Stage
-    :value: 'true'
+    :value: true
   - :name: CRF Display Value
     :value: Dose Increased
+  - :name: SDTM Stage
+    :value: true
 http://www.s-cubed.dk/SN000001/V1#SN000001:
   '': []
   http://www.cdisc.org/C66767/V4#C66767_C49504:
+  - :name: DC Stage
+    :value: false
   - :name: CRF Display Value
     :value: ''
   - :name: ADaM Stage
-    :value: 'true'
+    :value: true
   - :name: SDTM Stage
-    :value: 'false'
-  - :name: DC Stage
-    :value: 'false'
+    :value: false
   http://www.cdisc.org/C66767/V4#C66767_C49505:
-  - :name: DC Stage
-    :value: 'false'
   - :name: CRF Display Value
     :value: ''
+  - :name: DC Stage
+    :value: false
   - :name: ADaM Stage
-    :value: 'true'
+    :value: true
   - :name: SDTM Stage
-    :value: 'false'
+    :value: false
   http://www.cdisc.org/C66767/V4#C66767_C49501:
+  - :name: DC Stage
+    :value: false
   - :name: CRF Display Value
     :value: ''
-  - :name: DC Stage
-    :value: 'false'
   - :name: ADaM Stage
-    :value: 'true'
+    :value: true
   - :name: SDTM Stage
-    :value: 'false'
+    :value: false
   http://www.cdisc.org/C66767/V4#C66767_C49502:
   - :name: SDTM Stage
-    :value: 'false'
-  - :name: DC Stage
-    :value: 'false'
-  - :name: ADaM Stage
-    :value: 'true'
+    :value: false
   - :name: CRF Display Value
     :value: ''
+  - :name: ADaM Stage
+    :value: true
+  - :name: DC Stage
+    :value: false
   http://www.cdisc.org/C66767/V4#C66767_C49503:
   - :name: SDTM Stage
-    :value: 'false'
+    :value: false
+  - :name: ADaM Stage
+    :value: true
   - :name: CRF Display Value
     :value: ''
   - :name: DC Stage
-    :value: 'false'
-  - :name: ADaM Stage
-    :value: 'true'
+    :value: false
   http://www.s-cubed.dk/SN000001/V1#SN000001_S000010:
-  - :name: SDTM Stage
-    :value: 'false'
   - :name: DC Stage
-    :value: 'false'
+    :value: false
   - :name: CRF Display Value
     :value: ''
   - :name: ADaM Stage
-    :value: 'true'
+    :value: true
+  - :name: SDTM Stage
+    :value: false
   http://www.s-cubed.dk/SN000001/V1#SN000001_S000011:
+  - :name: ADaM Stage
+    :value: true
   - :name: SDTM Stage
-    :value: 'false'
+    :value: false
   - :name: DC Stage
-    :value: 'false'
+    :value: false
   - :name: CRF Display Value
     :value: ''
-  - :name: ADaM Stage
-    :value: 'true'
 http://www.s-cubed.dk/NP001002P/V1#NP001002P:
   '': []
   http://www.cdisc.org/C66767/V4#C66767_C49502:
   - :name: CRF Display Value
     :value: Drug Withdrawn
-  - :name: DC Stage
-    :value: 'true'
-  - :name: SDTM Stage
-    :value: 'false'
   - :name: ADaM Stage
-    :value: 'false'
+    :value: false
+  - :name: SDTM Stage
+    :value: false
+  - :name: DC Stage
+    :value: true

@@ -80,6 +80,13 @@ class IsoRegistrationStateV2 < Fuseki::Base
     return info[:definition]
   end
 
+  # Get the draft state
+  #
+  # @return [String] The released state
+  def self.draft_state
+    return :Incomplete.to_s
+  end
+  
   # Get the released state
   #
   # @return [String] The released state
