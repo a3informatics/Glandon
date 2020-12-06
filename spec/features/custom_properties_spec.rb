@@ -186,6 +186,7 @@ describe "Custom Properties", type: :feature  do
       ui_editor_fill_inline("crf_display_value", "Some CRF value\n")
       check_cell_content('editor', 1, 7, 'Some CRF value')
 
+      ui_press_key :return
       ui_editor_fill_inline("crf_display_value", "Another CRF value\t")
       check_cell_content('editor', 1, 7, 'Another CRF value')
 
