@@ -372,7 +372,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2007-05-31", :import_data => 'slow' do
       release_date = "2007-05-31"
-      version = 4
+      #version = 4
       results = execute_import(release_date, {sdtm: "2007-05-31"}, set_write_file, use_api)
       expected = [
         {cl: :C66785, status: :updated},
@@ -2031,21 +2031,6 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       }
     end
 
-    def versions
-      query = %Q{
-        SELECT DISTINCT ?e ?l ?i ?v WHERE
-        {
-          ?e rdf:type <http://www.assero.co.uk/Thesaurus#ManagedConcept> .
-          ?e isoC:label ?l .
-          ?e isoT:hasIdentifier/isoI:identifier ?i .
-          ?e isoT:hasIdentifier/isoI:version ?v .
-          ?e isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?sn .
-        } ORDER BY ?i ?v
-      }
-      query_results = Sparql::Query.new.query(query, "", [:isoI, :isoT, :isoC, :th, :bo])
-      query_results.by_object_set([:e, :l, :i, :v]).map{|x| {uri: x[:s].to_s, label: x[:l], code_list: x[:i], version: x[:v]}}
-    end
-
     it "tag analysis" do
       ct_set.each do |v|
         #next if v[:version] != "26"
@@ -2068,9 +2053,48 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       end
     end
 
+  end
+
+  describe "Version Check" do
+
+    def versions
+      query = %Q{
+        SELECT DISTINCT ?e ?l ?i ?v WHERE
+        {
+          ?e rdf:type <http://www.assero.co.uk/Thesaurus#ManagedConcept> .
+          ?e isoC:label ?l .
+          ?e isoT:hasIdentifier/isoI:identifier ?i .
+          ?e isoT:hasIdentifier/isoI:version ?v .
+          ?e isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?sn .
+        } ORDER BY ?i ?v
+      }
+      query_results = Sparql::Query.new.query(query, "", [:isoI, :isoT, :isoC, :th, :bo])
+      query_results.by_object_set([:e, :l, :i, :v]).map{|x| {uri: x[:e].to_s, label: x[:l], code_list: x[:i], version: x[:v]}}
+    end
+
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      (1..28).each do |version|
+      #CdiscCtHelpers.version_range.each do |version|
+        load_local_file_into_triple_store(sub_dir, excel_filename(version))
+      end
+    end
+
     it "versions" do
       results = versions
-      check_file_actual_expected(results, sub_dir, "ct_versions_check.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "ct_versions_check.yaml", equate_method: :hash_equal, write_file: true)
+      processed = Hash.new{ |k,v| k[v] = [] }
+      results.each {|item| processed[item[:code_list]] << item[:version]}
+      processed.each do |cl, ver_set|
+        puts "Code list: #{cl}"
+        ver_set.each_with_index do |ver, index|
+          puts "Version: #{ver}"
+          expect(ver.to_i).to eq(index+1)
+        end
+      end
     end
 
   end

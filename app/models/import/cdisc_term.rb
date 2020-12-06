@@ -170,10 +170,10 @@ private
     true
   end
 
-  # Handle version update. Set previous pointer and invcrement version
+  # Handle version initial. Set the first version
   def handle_version_initial(actual)
     actual.has_previous_version = nil
-    actual.has_identifier.amend_to_next_version(IsoScopedIdentifier::C_FIRST_VERSION)
+    actual.has_identifier.amend_version(IsoScopedIdentifierV2::C_FIRST_VERSION)
     true
   end
 
