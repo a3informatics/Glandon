@@ -28,7 +28,7 @@ describe 'R3.1.0 data migration' do
       ]
       clear_triple_store
       schema_files.each {|x| load_local_file_into_triple_store(schema_dir, x)}
-      load_cdisc_term_versions(1..65)
+      (1..65).each {|x| load_local_file_into_triple_store(sub_dir, "CT_V#{x}.ttl")} # Local copy of CDISC CT as per V3.1.0
       load_local_file_into_triple_store(sub_dir, "thesaurus_migration_3_1_0.ttl")
     end
 

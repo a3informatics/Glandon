@@ -341,6 +341,9 @@ jQuery.fn.dataTable.Api.register( 'processing()', function ( show ) {
   });
 });
 
+// Set DataTables error mode to throw errors to console instead of alerts  
+$.fn.dataTable.ext.errMode = 'throw';
+
 // Returns true if browser is IE
 function isIE() {
   ua = navigator.userAgent;
