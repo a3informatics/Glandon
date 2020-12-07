@@ -36,7 +36,7 @@ describe "Import::CdiscTerm CT Data" do
   # ---------- IMPORTANT SWITCHES ----------
   
   def set_write_file
-    true
+    false
   end
 
   def use_api
@@ -2077,15 +2077,14 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
-      (1..50).each do |version|
-      #CdiscCtHelpers.version_range.each do |version|
+      CdiscCtHelpers.version_range.each do |version|
         load_local_file_into_triple_store(sub_dir, excel_filename(version))
       end
     end
 
     it "versions" do
       results = versions
-      check_file_actual_expected(results, sub_dir, "ct_versions_check.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "ct_versions_check.yaml", equate_method: :hash_equal, write_file: false)
       processed = Hash.new{ |k,v| k[v] = [] }
       results.each {|item| processed[item[:code_list]] << item[:version]}
       processed.each do |cl, ver_set|
