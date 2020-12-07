@@ -23,6 +23,16 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
     ]
   end
 
+  # Clone. Clone the Sponsor Domain Variable Instance
+  #
+  # @return [SdtmSponsorDomain::Var] a clone of the object
+  def clone
+    self.typed_as_links
+    self.based_on_ig_variable_links
+    self.classified_as_links
+    super
+  end
+
   def set_name(var_name, domain)
     @parent_for_validation= domain
     self.name = var_name
@@ -46,10 +56,14 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
     @parent_for_validation.duplicate_name_in_domain?(self)
   end
 
-  # Toggle. Toggles Used attribute
-  def toggle
-    self.used == true ? self.used = false : self.used = true
-    self.save
+  # Toggle with clone. Toggles Used attribute, clone if there are multiple parents
+  def toggle_with_clone(managed_ancestor)
+    if multiple_managed_ancestors?
+      update_with_clone(toggle_used, managed_ancestor)
+    else
+      self.update(toggle_used)
+    end
+    
   end
 
   # Delete. Delete the object. Clone if there are multiple parents.
@@ -57,7 +71,7 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
   # @param [Object] parent_object the parent object
   # @param [Object] managed_ancestor the managed ancestor object
   # @return [Object] the parent object, either new or the cloned new object with updates
-  def delete_or_unlink(parent, managed_ancestor)
+  def delete(parent, managed_ancestor)
     if multiple_managed_ancestors?
       parent = delete_with_clone(parent, managed_ancestor)
     else
@@ -66,5 +80,11 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
     parent.reset_ordinals
     1
   end
+
+  private
+    
+    def toggle_used
+      self.used == true ? {used: false} : {used: true}
+    end
 
 end

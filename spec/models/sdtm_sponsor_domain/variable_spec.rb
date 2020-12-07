@@ -133,6 +133,47 @@ describe SdtmSponsorDomain::Var do
 
   end
 
+  describe "Toggle Tests" do
+
+    before :each do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "toggle single parent" do
+      parent = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
+      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      expect(sponsor_variable.used).to eq(true)
+      sponsor_variable.toggle_with_clone(parent)
+      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      expect(sponsor_variable.used).to eq(false)
+    end
+
+    it "toggle multiple parent" do
+      parent = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
+      make_standard(parent)
+      #check_dates(parent, sub_dir, "toggle_var_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(parent.to_h, sub_dir, "toggle_var_1a.yaml", equate_method: :hash_equal)
+      new_parent = parent.create_next_version
+      new_parent = SdtmSponsorDomain.find_full(new_parent.uri)
+      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      expect(sponsor_variable.used).to eq(true)
+      sponsor_variable.toggle_with_clone(new_parent)
+      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      expect(sponsor_variable.used).to eq(true)
+      new_sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V2#SPD_STUDYID"))
+      expect(new_sponsor_variable.used).to eq(false)
+      parent = SdtmSponsorDomain.find_full(parent.id)
+      #check_dates(parent, sub_dir, "toggle_var_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(parent.to_h, sub_dir, "toggle_var_1a.yaml", equate_method: :hash_equal)
+      new_parent = SdtmSponsorDomain.find_full(new_parent.uri)
+      #check_dates(new_parent, sub_dir, "toggle_var_1b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(new_parent.to_h, sub_dir, "toggle_var_1b.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 
 
 end
