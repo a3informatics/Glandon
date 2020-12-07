@@ -523,7 +523,7 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     public_file_exists?("test", filename)
     copy_file_from_public_files("test", filename, sub_dir)
-  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_35b.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_35b.ttl")
     check_ttl_fix_v2(filename, "import_expected_35b.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)

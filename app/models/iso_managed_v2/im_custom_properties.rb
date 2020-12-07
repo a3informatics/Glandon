@@ -156,7 +156,7 @@ class IsoManagedV2
           FILTER ( NOT EXISTS {
             ?context ^isoC:context ?cpv .
             ?cpv rdf:type isoC:CustomProperty . 
-            ?cpv isoC:applies_to ?subject .
+            ?cpv isoC:appliesTo ?subject .
             ?cpv isoC:customPropertyDefinedBy ?definition
           })  
         } ORDER BY ?subject ?definition

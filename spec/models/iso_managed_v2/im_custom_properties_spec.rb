@@ -122,18 +122,27 @@ describe IsoManagedV2::ImCustomProperties do
       defs = @parent.class.find_custom_property_definitions
     end
 
-    it "missing" do
-      items = @parent.missing_custom_properties([@child_1.id, @child_2.uri, @child_3.id], CustomPropertyHelpers::TestChild)
+    it "contexts" do
+      contexts = @parent.full_contexts([@child_1.id, @child_2.uri, @child_3.id])
+      check_file_actual_expected(contexts.map{|x| {id: x[:id].to_s, context_id: x[:context_id].to_s}}, sub_dir, "contexts_custom_properties_expected_1.yaml")
+    end
+
+    it "find missing" do
+      contexts = @parent.full_contexts([@child_1.id, @child_2.uri, @child_3.id])
+      items = @parent.missing_custom_properties(contexts, CustomPropertyHelpers::TestChild)
       check_file_actual_expected(items.map{|x| {subject: x[:subject].to_s, definition: x[:definition].to_s}}, sub_dir, "missing_custom_properties_expected_1.yaml")
     end
 
     it "add missing" do
-      items = @parent.missing_custom_properties([@child_1.id, @child_2.uri, @child_3.id], CustomPropertyHelpers::TestChild)
+      contexts = @parent.full_contexts([@child_1.id, @child_2.uri, @child_3.id])
+      items = @parent.missing_custom_properties(contexts, CustomPropertyHelpers::TestChild)
       check_file_actual_expected(items.map{|x| {subject: x[:subject].to_s, definition: x[:definition].to_s}}, sub_dir, "missing_custom_properties_expected_1.yaml")
       tx = @parent.transaction_begin
-      @parent.add_missing_custom_properties([@child_1.id, @child_2.uri, @child_3.id], CustomPropertyHelpers::TestChild, tx)
+      contexts = @parent.full_contexts([@child_1.id, @child_2.uri, @child_3.id])
+      @parent.add_missing_custom_properties(contexts, CustomPropertyHelpers::TestChild, tx)
       tx.execute
-      items = @parent.missing_custom_properties([@child_1.id, @child_2.uri, @child_3.id], CustomPropertyHelpers::TestChild)
+      contexts = @parent.full_contexts([@child_1.id, @child_2.uri, @child_3.id])
+      items = @parent.missing_custom_properties(contexts, CustomPropertyHelpers::TestChild)
       check_file_actual_expected(items.map{|x| {subject: x[:subject].to_s, definition: x[:definition].to_s}}, sub_dir, "add_missing_custom_properties_expected_1a.yaml")
       results = @parent.find_custom_property_values 
       check_file_actual_expected(results, sub_dir, "add_missing_custom_properties_expected_1b.yaml")
