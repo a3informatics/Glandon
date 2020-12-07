@@ -16,6 +16,7 @@ describe Thesauri::SubsetsController do
     mc = ct.add_child({})
     mc = Thesaurus::ManagedConcept.find_minimum(mc.id)
     mc.add_link(:is_ordered, subset.uri)
+    mc.add_link(:subsets, Uri.new(uri: "http://www.cdisc.org/C66726/V19#C66726"))
     mc.save
     @token = Token.obtain(mc, @user)
     subset
