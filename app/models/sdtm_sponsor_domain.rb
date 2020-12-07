@@ -5,6 +5,15 @@ class SdtmSponsorDomain < SdtmIgDomain
 
   include Tabulation::Ordinal
 
+  # Clone. Clone the Sponsor SDTM Domain
+  #
+  # @return [SDTM Sponsor Domain] a clone of the object
+  def clone
+    self.based_on_class_links
+    self.includes_column_links
+    super
+  end
+
   # Create a Sponsor Domain based on a specified IG domain
   #
   # @param [Hash] params the parameters to create the new sponsor domain
