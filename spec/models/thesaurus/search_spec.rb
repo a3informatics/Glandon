@@ -310,7 +310,7 @@ describe "Thesaurus::Search" do
 
   describe "Advanced Search" do
 
-    before :each do
+    before :all do
       IsoHelpers.clear_cache
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
