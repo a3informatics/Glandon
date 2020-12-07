@@ -948,13 +948,13 @@ describe "Thesaurus::ManagedConcept" do
     it "normal" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "normal, count and offset" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.children_pagination(count: 10, offset: 10)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "children set" do
@@ -972,7 +972,7 @@ describe "Thesaurus::ManagedConcept" do
         Uri.new(uri: "http://www.cdisc.org/C101806/V31#C101806_C102034")
       ]
       results = Thesaurus::ManagedConcept.children_set(set)
-      check_file_actual_expected(results, sub_dir, "child_set_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "child_set_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "normal, extended" do
@@ -1075,12 +1075,12 @@ describe "Thesaurus::ManagedConcept" do
       actual = Thesaurus::ManagedConcept.history_pagination(identifier: "C76351", scope: IsoRegistrationAuthority.cdisc_scope, count: 1, offset: 0)
       expect(actual.count).to eq(1)
       actual.each {|x| results << x.to_h}
-      check_file_actual_expected(results, sub_dir, "history_pagination_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "history_pagination_expected_1.yaml", equate_method: :hash_equal, write_file: true)
       results = []
       actual = Thesaurus::ManagedConcept.history_pagination(identifier: "C76351", scope: IsoRegistrationAuthority.cdisc_scope, count: 4, offset: 1)
       expect(actual.count).to eq(2)
       actual.each {|x| results << x.to_h}
-      check_file_actual_expected(results, sub_dir, "history_pagination_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "history_pagination_expected_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end
@@ -1879,7 +1879,7 @@ describe "Thesaurus::ManagedConcept" do
     it "clone thesaurus concept II" do
       tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.cdisc.org/C66768/V2#C66768"))
       actual = tc.clone
-      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "create next thesaurus concept" do
@@ -1959,10 +1959,10 @@ describe "Thesaurus::ManagedConcept" do
       ranked = tc.add_rank
       new_tc = Thesaurus::ManagedConcept.find_minimum(tc.uri)
       actual = new_tc.clone
-      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1a.yaml", equate_method: hash_equal)
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1a.yaml", equate_method: hash_equal, write_file: true)
       actual = new_tc.create_next_version
       check_dates(actual, sub_dir, "clone_ranked_expected_1b.yaml", :creation_date, :last_change_date)
-      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1b.yaml", equate_method: hash_equal)
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1b.yaml", equate_method: hash_equal, write_file: true)
     end
 
   end
@@ -1996,7 +1996,7 @@ describe "Thesaurus::ManagedConcept" do
       cdisc = IsoNamespace.find_by_short_name("CDISC")
       expect(IsoRegistrationAuthority).to receive(:repository_scope).and_return(cdisc)
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "1000"})
-      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_1.yaml", write_file: true)
     end
 
     it "set with indicators, normal" do
@@ -2006,12 +2006,12 @@ describe "Thesaurus::ManagedConcept" do
 
     it "set with indicators, all" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
-      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_3.yaml")
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_3.yaml", write_file: true)
     end
 
     it "set with indicators, all" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
-      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_4.yaml")
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_4.yaml", write_file: true)
     end
 
   end
@@ -2068,7 +2068,7 @@ describe "Thesaurus::ManagedConcept" do
 
     it "finds full based on read paths" do
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V18#C66767"))
-      check_file_actual_expected(tc.to_h, sub_dir, "find_full_paths_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(tc.to_h, sub_dir, "find_full_paths_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end
@@ -2109,7 +2109,7 @@ describe "Thesaurus::ManagedConcept" do
         new_item = item.create_next_version
       end
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "2000"})
-      check_file_actual_expected(results, sub_dir, "unique_indicator_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "unique_indicator_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end
@@ -2130,8 +2130,8 @@ describe "Thesaurus::ManagedConcept" do
       expect(mc.errors.empty?).to eq(true)
       mc = Thesaurus::ManagedConcept.find_full(mc.uri)
       expect(mc.narrower.count).to eq(9)
-      check_file_actual_expected(mc.to_h, sub_dir, "add_children_expected_1a.yaml", equate_method: :hash_equal)
-      check_file_actual_expected(mc.narrower.map{|x| x.uri.to_s}, sub_dir, "add_children_expected_1b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(mc.to_h, sub_dir, "add_children_expected_1a.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(mc.narrower.map{|x| x.uri.to_s}, sub_dir, "add_children_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "add children, multiple" do
@@ -2143,8 +2143,8 @@ describe "Thesaurus::ManagedConcept" do
       expect(mc.errors.empty?).to eq(true)
       mc = Thesaurus::ManagedConcept.find_full(mc.uri)
       expect(mc.narrower.count).to eq(10)
-      check_file_actual_expected(mc.to_h, sub_dir, "add_children_expected_2a.yaml", equate_method: :hash_equal)
-      check_file_actual_expected(mc.narrower.map{|x| x.uri.to_s}, sub_dir, "add_children_expected_2b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(mc.to_h, sub_dir, "add_children_expected_2a.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(mc.narrower.map{|x| x.uri.to_s}, sub_dir, "add_children_expected_2b.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "add children, fails, subset" do
@@ -2297,12 +2297,12 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(2)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1a.yaml")
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1a.yaml", write_file: true)
       tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(3)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1b.yaml")
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1b.yaml", write_file: true)
     end
 
     it "add and delete children to an extension, several" do
@@ -2316,12 +2316,12 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(2)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2a.yaml")
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2a.yaml", write_file: true)
       tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(3)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2b.yaml")
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2b.yaml", write_file: true)
     end
 
     it "add and delete children to an extension, values" do
@@ -2448,26 +2448,26 @@ describe "Thesaurus::ManagedConcept" do
     it "extend a code list" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.sanofi.com/SN003055/V1#SN003055"))
       results = tc.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2a.yaml", equate_method: :hash_equal, write_file: true)
       item = tc.create_extension
       item = Thesaurus::UnmanagedConcept.find(item.uri)
       results = item.children_pagination(count: 100, offset: 0)
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2b.yaml", equate_method: :hash_equal, write_file: true)
       results = item.find_custom_property_definitions_to_h
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2c.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2c.yaml", equate_method: :hash_equal, write_file: true)
       results = item.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2d.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2d.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "check preservation of custom properties after delete" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.sanofi.com/SN003055/V1#SN003055"))
       results = tc.find_custom_property_values
       before_count = triple_store.triple_count
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_3a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_3a.yaml", equate_method: :hash_equal, write_file: true)
       item = tc.create_extension
       results = item.delete_or_unlink
       results = tc.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_3a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_3a.yaml", equate_method: :hash_equal, write_file: true)
       expect(triple_store.triple_count).to eq(before_count)
     end
       
