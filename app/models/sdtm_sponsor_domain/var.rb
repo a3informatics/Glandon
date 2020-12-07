@@ -19,7 +19,6 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
   # @return [String] the path as an expanded set of predicates
   def self.managed_ancestors_path
     [
-      "<http://www.assero.co.uk/Tabulation#SdtmSponsorDomain>",
       "<http://www.assero.co.uk/Tabulation#includesColumn>"
     ]
   end
@@ -47,14 +46,20 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
     @parent_for_validation.duplicate_name_in_domain?(self)
   end
 
+  # Toggle. Toggles Used attribute
+  def toggle
+    self.used == true ? self.used = false : self.used = true
+    self.save
+  end
+
   # Delete. Delete the object. Clone if there are multiple parents.
   #
   # @param [Object] parent_object the parent object
   # @param [Object] managed_ancestor the managed ancestor object
   # @return [Object] the parent object, either new or the cloned new object with updates
-  def delete_or_unlink(parent)
+  def delete_or_unlink(parent, managed_ancestor)
     if multiple_managed_ancestors?
-      parent_object.delete_link(:includes_column, self.uri)
+      parent = delete_with_clone(parent, managed_ancestor)
     else
       self.delete_with_links
     end

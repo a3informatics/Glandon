@@ -3,6 +3,8 @@ class SdtmSponsorDomain < SdtmIgDomain
   configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmSponsorDomain",
             uri_suffix: "SPD"
 
+  include Tabulation::Ordinal
+
   # Create a Sponsor Domain based on a specified IG domain
   #
   # @param [Hash] params the parameters to create the new sponsor domain
