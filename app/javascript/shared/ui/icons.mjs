@@ -43,7 +43,7 @@ const iconsInline = { 
     let cssClasses = `remove in-line clickable text-accent-2 ${disabled ? 'disabled' : ''}`;
 
     return renderIcon({
-      iconName: 'times-circle',
+      iconName: 'trash',
       ttip,
       ttipText,
       ttipClasses: 'ttip-table left text-small',

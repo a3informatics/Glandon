@@ -3,15 +3,13 @@ import SubsetsManager from 'shared/custom/thesauri/managed_concepts/subsets/mana
 
 $(document).ready( () => {
 
-  let customPropsEnabled = typeof customPropsUrl !== 'undefined';
-
   // Code List Children show panel
   let cp = new ChildrenPanel({
     url: childrenDataUrl,
     param: "managed_concept",
     count: 1000,
     cache: false,
-    cpEnabled: customPropsEnabled
+    customPropsEnabled: true
   });
 
   // Subsets Index and Create manager

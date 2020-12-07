@@ -15,6 +15,12 @@ describe "Import::SponsorTermFormatOne" do
     return "models/import/data/sponsor_one/ct"
   end
 
+  def release_uris
+    @uri_2_6 = Uri.new(uri: "http://www.sanofi.com/2019_Release_1/V1#TH")
+    @uri_3_0 = Uri.new(uri: "http://www.sanofi.com/2020_Release_1/V1#TH")
+    @uri_3_1 = Uri.new(uri: "http://www.sanofi.com/2020_Release_2/V1#TH")
+  end
+
   describe "Main Tests" do
 
     def setup
@@ -25,13 +31,11 @@ describe "Import::SponsorTermFormatOne" do
       @object.save
       @release_details =
       [
-        {identifier: "2019 R1", label: "2019 Release 1", date: "2019-08-08", uri: "http://www.sanofi.com/2019_R1/V1#TH"},
-        {identifier: "2020 R1", label: "2020 Release 1", date: "2020-03-26", uri: "http://www.sanofi.com/2020_R1/V1#TH"},
-        {identifier: "2020 R1", label: "2020 Release 1", date: "2020-09-26", uri: "http://www.sanofi.com/2020_R1/V2#TH"}
+        {identifier: "2019 Release 1", label: "CT 2.6 2015-03-27", date: "2019-08-08", release: true},
+        {identifier: "2020 Release 1", label: "CT 3.0 2017-09-27", date: "2020-03-26", release: true},
+        {identifier: "2020 Release 2", label: "CT 3.1 2017-09-27", date: "2020-09-26", release: false}
       ]
-      @uri_2_6 = Uri.new(uri: "#{@release_details[0][:uri]}")
-      @uri_3_0 = Uri.new(uri: "#{@release_details[1][:uri]}")
-      @uri_3_1 = Uri.new(uri: "#{@release_details[2][:uri]}")
+      release_uris
     end
 
     def read_installation(installation)
@@ -77,15 +81,16 @@ describe "Import::SponsorTermFormatOne" do
 
     def cl_identifiers(th)
       query_string = %Q{
-        SELECT DISTINCT ?identifier ?label WHERE 
+        SELECT DISTINCT ?identifier ?label ?notation WHERE 
         {
           #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
           ?s th:identifier ?identifier .
+          ?s th:notation ?notation .
           ?s isoC:label ?label .
         }
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo]) 
-      query_results.by_object_set([:identifier, :label])
+      query_results.by_object_set([:notation, :identifier, :label])
     end
 
     def cl_items_unique(th)
@@ -94,12 +99,18 @@ describe "Import::SponsorTermFormatOne" do
         {
           #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s1 .
           ?s1 th:notation ?notation .
-          ?s1 th:narrower ?s2 .
-          ?s2 th:identifier ?identifier .
+          ?s1 th:identifier ?identifier .
         } ORDER BY ?notation ?identifier
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo]) 
       query_results.by_object_set([:notation, :identifier])
+    end
+
+    def build_identifier_map(th, filename, write_file=false)
+      final_results = {}
+      results = cl_items_unique(th)
+      results.each.each { |e| final_results[e[:notation]] = e[:identifier] }
+      check_file_actual_expected(final_results, sub_dir, "#{filename}", equate_method: :hash_equal, write_file: write_file)
     end
 
     def cl_info(th, key)
@@ -211,7 +222,8 @@ describe "Import::SponsorTermFormatOne" do
           identifier: @release_details[0][:identifier], version: "1", 
           date: @release_details[0][:date], files: [full_path], fixes: fixes, 
           version_label: "1.0.0", label: @release_details[0][:label], 
-          semantic_version: "1.0.0", job: @job, uri: ct.uri
+          semantic_version: "1.0.0", job: @job, uri: ct.uri,
+          release: @release_details[0][:release]
         }
         result = @object.import(params)
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
@@ -233,8 +245,14 @@ describe "Import::SponsorTermFormatOne" do
       it "import 2.6 QC", :import_data => 'slow' do
         load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
         th = Thesaurus.find_minimum(@uri_2_6)
+        build_identifier_map(th, "identifier_map_2-6.yaml", false)
         results = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
-        expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
+        actual = cl_identifiers(th).map{|x| x[:notation]}
+        expected = results.map{|x| x[:short_name]}
+        missing = expected - actual
+        extra = actual - expected
+        expect(missing).to eq([])
+        expect(extra).to eq([])
         expect(count_cl(th)).to eq(results.count)
         expect(count_cli(th)).to eq(22322)
         expect(count_distinct_cli(th)).to eq(20097)
@@ -258,7 +276,8 @@ describe "Import::SponsorTermFormatOne" do
           identifier: @release_details[1][:identifier], version: "1", 
           date: @release_details[1][:date], files: [full_path], fixes: fixes, 
           version_label: "1.0.0", label: @release_details[1][:label], 
-          semantic_version: "1.0.0", job: @job, uri: ct.uri
+          semantic_version: "1.0.0", job: @job, uri: ct.uri,
+          release: @release_details[1][:release]
         }
         result = @object.import(params)
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
@@ -281,8 +300,14 @@ describe "Import::SponsorTermFormatOne" do
         load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
         load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
         th = Thesaurus.find_minimum(@uri_3_0)
+        build_identifier_map(th, "identifier_map_3-0.yaml", false)
         results = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
-        expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
+        actual = cl_identifiers(th).map{|x| x[:notation]}
+        expected = results.map{|x| x[:short_name]}
+        missing = expected - actual
+        extra = actual - expected
+        expect(missing).to eq([])
+        expect(extra).to eq([])
         expect(count_cl(th)).to eq(results.count)
         expect(count_cli(th)).to eq(31930)
         expect(count_distinct_cli(th)).to eq(29515)
@@ -304,10 +329,11 @@ describe "Import::SponsorTermFormatOne" do
         fixes = db_load_file_path("sponsor_one/ct", "fixes_v3-1.yaml")
         params = 
         {
-          identifier: @release_details[2][:identifier], version: "2", 
+          identifier: @release_details[2][:identifier], version: "1", 
           date: @release_details[2][:date], files: [full_path], fixes: fixes, 
-          version_label: "2.0.0", label: @release_details[2][:label], 
-          semantic_version: "2.0.0", job: @job, uri: ct.uri
+          version_label: "1.0.0", label: @release_details[2][:label], 
+          semantic_version: "1.0.0", job: @job, uri: ct.uri,
+          release: @release_details[2][:release]
         }
         result = @object.import(params)
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
@@ -331,11 +357,17 @@ describe "Import::SponsorTermFormatOne" do
         load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
         load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
         th = Thesaurus.find_minimum(@uri_3_1)
+        build_identifier_map(th, "identifier_map_3-1.yaml", false)
         results = read_yaml_file(sub_dir, "import_results_expected_3-1.yaml")
-        expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
+        actual = cl_identifiers(th).map{|x| x[:notation]}
+        expected = results.map{|x| x[:short_name]}
+        missing = expected - actual
+        extra = actual - expected
+        expect(missing).to eq([])
+        expect(extra).to eq([])
         expect(count_cl(th)).to eq(results.count)
-        expect(count_cli(th)).to eq(32800)
-        expect(count_distinct_cli(th)).to eq(30245)
+        expect(count_cli(th)).to eq(32780)
+        expect(count_distinct_cli(th)).to eq(30211)
         results.each do |x|
           check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
         end    
@@ -359,9 +391,7 @@ describe "Import::SponsorTermFormatOne" do
       load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
       load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
       delete_all_public_test_files
-      @uri_2_6 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
-      @uri_3_0 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
-      @uri_3_1 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH")
+      release_uris
     end
 
     after :all do
@@ -387,7 +417,7 @@ describe "Import::SponsorTermFormatOne" do
       th_3_0 = Thesaurus.find_minimum(@uri_3_0)
       th_3_1 = Thesaurus.find_minimum(@uri_3_1)
       results = th_3_0.differences(th_3_1)
-      check_file_actual_expected(results, sub_dir, "import_differences_expected_2.yaml", equate_method: :hash_equal, write_file: false)
+      check_file_actual_expected(results, sub_dir, "import_differences_expected_2.yaml", equate_method: :hash_equal, write_file: true)
       r_3_0 = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
       r_3_1 = read_yaml_file(sub_dir, "import_results_expected_3-1.yaml")
       prev = r_3_0.map{|x| x[:identifier].to_sym}.uniq
@@ -434,11 +464,13 @@ describe "Import::SponsorTermFormatOne" do
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       load_cdisc_term_versions(1..62)
       load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
       load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
       load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
       delete_all_public_test_files
+      release_uris
     end
 
     after :all do
@@ -450,10 +482,14 @@ describe "Import::SponsorTermFormatOne" do
       results = []
       ct = Thesaurus.find_minimum(uri)
       code_lists.each do |identifier|
-        cls = ct.find_by_identifiers([identifier])
-        cl = Thesaurus::ManagedConcept.find_minimum(cls[identifier])
-        results << cl.uri if cl.owned? 
-        puts colourize("CL: #{cl.uri}", cl.owned? ? "blue" : "red")
+        begin
+          cls = ct.find_by_identifiers([identifier])
+          cl = Thesaurus::ManagedConcept.find_with_properties(cls[identifier])
+          results << cl.uri if cl.owned? 
+          puts colourize("CL: #{cl.notation} (#{cl.identifier})", cl.owned? ? "blue" : "red")
+        rescue => e
+          byebug
+        end
       end
       results
     end
@@ -480,15 +516,12 @@ describe "Import::SponsorTermFormatOne" do
     end
 
     it "counts and ranks" do
-      uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
-      uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
-      uri_31 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V2#TH")
-      {"2-6" => {uri: uri_26, count: 197256}, "3-0" => {uri: uri_30, count: 291194}, "3-1" => {uri: uri_31, count: 299824}}.each do |version, data|
+      {"2-6" => {uri: @uri_2_6, count: 197257}, "3-0" => {uri: @uri_3_0, count: 291383}, "3-1" => {uri: @uri_3_1, count: 299947}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
       results = {}
-      {"rank_V2-6.yaml" => uri_26, "rank_V3-0.yaml" => uri_30, "rank_V3-1.yaml" => uri_31}.each do |file, uri|
+      {"rank_V2-6.yaml" => @uri_2_6, "rank_V3-0.yaml" => @uri_3_0, "rank_V3-1.yaml" => @uri_3_1}.each do |file, uri|
         config = read_yaml_file(sub_dir, file)
         code_lists = config[:codelists].map{|x| x[:codelist_code]}
         results[uri.to_s] = check_cls(code_lists, uri).map{|x| x.to_s}
@@ -541,23 +574,27 @@ describe "Import::SponsorTermFormatOne" do
       query_results.by_object_set([:s, :v]).map{|x| {uri: x[:s], version: x[:v]}}
     end
 
-    def ct_tags(uri)
+    def ct_custom_properties(uri)
       %Q{
-        SELECT DISTINCT ?l ?v ?d ?clid ?cln ?cll ?cliid ?tag WHERE
+        SELECT ?cl ?clid ?cln ?cli ?cliid ?clin ?custname ?custvalue WHERE  
         {
-          #{uri.to_ref} isoC:label ?l .
-          #{uri.to_ref} isoT:creationDate ?d .
-          #{uri.to_ref} isoT:hasIdentifier/isoI:version ?v .
-          #{uri.to_ref} th:isTopConceptReference/bo:reference ?cl .
-          ?cl th:identifier ?clid . 
-          ?cl th:notation ?cln . 
-          ?cl isoC:label ?cll . 
+          VALUES ?s {#{uri.to_ref}}
+          ?s th:isTopConceptReference/bo:reference ?cl .
+          ?cl th:identifier ?clid .  
+          ?cl th:notation ?cln .
           ?cl th:narrower ?cli .
-          ?cli th:identifier ?cliid .             
-          ?cli ^isoC:appliesTo ?y .
-          ?y isoC:context ?cl .
-          ?y isoC:classifiedAs/isoC:prefLabel ?tag .
-        } ORDER BY ?cll ?cliid ?tag
+          ?cli th:identifier ?cliid .  
+          ?cli th:notation ?clin .
+          OPTIONAL 
+          {
+            ?cli ^isoC:appliesTo ?ext . 
+            ?ext rdf:type isoC:CustomProperty .
+            ?ext isoC:context ?cl . 
+            ?ext isoC:value ?custvalue .
+            ?ext isoC:customPropertyDefinedBy ?def .
+            ?def isoC:label ?custname .
+          }
+        } ORDER BY ?cln ?clin ?custname
       }
     end
 
@@ -573,41 +610,94 @@ describe "Import::SponsorTermFormatOne" do
       results
     end
 
-    # Test removed, tags no longer used.
-    # it "tag analysis" do
-    #   ct_set.each_with_index do |v, index|
-    #     print "Processing: #{v[:uri]}, v#{v[:version]}  "
-    #     query_results = Sparql::Query.new.query(ct_tags(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
-    #     print ".."
-    #     results = query_results.by_object_set([:l, :v, :d, :clid, :cliid, :tag]).map{|x| {label: x[:l], version: x[:v], date: x[:d], code_list: x[:clid], code_list_notation: x[:cln], code_list_label: x[:cll], code_list_item: x[:cliid], tag: x[:tag]}}
-    #     print ".."
-    #     overall = {}
-    #     results.each do |x|
-    #       key = "#{x[:code_list_notation]}"
-    #       if !overall.key?(key) 
-    #         overall[key] = {}
-    #         overall[key][:name] = x[:code_list_label]
-    #         overall[key][:short_name] = x[:code_list_notation]
-    #         overall[key][:identifier] = x[:code_list]
-    #         overall[key][:items] = {}
-    #       end
-    #       overall[key][:items][x[:code_list_item]] = [] unless overall[key][:items].key?(x[:code_list_item]) 
-    #       overall[key][:items][x[:code_list_item]] << x[:tag]
-    #     end
-    #     puts ".."
-    #     check_file_actual_expected(overall, sub_dir, "tags_actual_#{index+1}.yaml", equate_method: :hash_equal, write_file: true)
-    #     #check_file_actual_expected(overall, sub_dir, "tags_expected_#{index+1}.yaml", equate_method: :hash_equal)
-        
-    #     actual = read_yaml_file(sub_dir, "tags_actual_#{index+1}.yaml")
-    #     expected = read_yaml_file(sub_dir, "tags_expected_#{index+1}.yaml")
-    #     expected_minus_empty = expected.keys - empty_code_lists(expected)
-    #     missing = expected_minus_empty - actual.keys
-    #     extra = actual.keys - expected_minus_empty
-    #     check_file_actual_expected(missing, sub_dir, "tags_missing_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
-    #     check_file_actual_expected(extra, sub_dir, "tags_extra_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)
-    #   end
+    it "custom property analysis" do
+      counts = [
+        {cl: 803, cli: 22322},
+        {cl: 1080, cli: 31930},
+        {cl: 1171, cli: 32780},
+      ]
+      ct_set.each_with_index do |v, index|
+        print "Processing: #{v[:uri]}, v#{v[:version]}  "
+        query_results = Sparql::Query.new.query(ct_custom_properties(v[:uri]), "", [:isoI, :isoT, :isoC, :th, :bo])
+        print ".."
+        results = query_results.by_object_set([:cl, :clid, :cln, :cli, :cliid, :clin, :custname, :custvalue]).map{|x| {cl_uri: x[:cl], cl_identifier: x[:clid], 
+          cl_notation: x[:cln], cli_uri: x[:cli], cli_identifier: x[:cliid], cli_notation: x[:clin], cust_def_name: x[:custname], cust_def_value: x[:custvalue]}}
+        print ".."
+        overall = {}
+        cl_count = 0
+        cli_count = 0
+        results.each do |x|
+          key = x[:cl_identifier].to_sym
+          if !overall.key?(key) 
+            overall[key] = {}
+            overall[key][:notation] = x[:cl_notation]
+            overall[key][:items] = {}
+            cl_count += 1
+          end
+          second_key = x[:cli_identifier].to_sym
+          if !overall[key][:items].key?(second_key) 
+            overall[key][:items][second_key] = {} 
+            overall[key][:items][second_key][:notation] = x[:cli_notation]
+            cli_count += 1
+          end
+          third_key = x[:cust_def_name].to_variable_style.to_sym
+          overall[key][:items][second_key][third_key] = x[:cust_def_value]
+        end
+        puts ".."
+        check_file_actual_expected(overall, sub_dir, "custom_properties_expected_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)        
+        expect(cl_count).to eq(counts[index][:cl])
+        expect(cli_count).to eq(counts[index][:cli])
+      end
   
-    # end
+    end
+
+  end
+
+  describe "Custom Property Checks" do
+
+    before :all do
+    end
+
+    after :all do
+    end
+
+    it "custom property comparison" do
+      (1..3).each_with_index do |v, index|
+        puts "-------"
+        puts "Index #{index+1}"
+        puts "-------"
+        puts ""
+        expected = read_yaml_file(sub_dir, "custom_actual_#{index+1}.yaml")             # Actual yaml file is export from Excel source file
+        actual = read_yaml_file(sub_dir, "custom_properties_expected_#{index+1}.yaml")  # Expected is actual query on TTL load file created above
+        expected.each do |key, expected_result|
+          actual_result = actual.find{|k,v| v[:notation] == key}
+          expected_items = expected_result[:items]
+          expected_keys = expected_items.keys.map{|x| x.to_sym}
+          expected_keys = expected_keys.map{|x| "#{x}".start_with?("SC") ? "#{x}"[1..-1].to_sym : x}
+          actual_items = actual_result.last[:items]
+          actual_keys = actual_items.keys.map{|x| x.to_sym}
+          actual_keys = actual_keys.map{|x| "#{x}".start_with?("SC") ? "#{x}"[1..-1].to_sym : x}
+          they_match = actual_keys - expected_keys == [] && expected_keys - actual_keys == []
+          puts colourize("Mismatch on children: #{key} ... Extra: #{actual_keys - expected_keys}, Missing: #{expected_keys - actual_keys}", "red") unless they_match
+          expected_items.each do |id, expected_item|
+            ref = id.start_with?("SC") ? id[1..-1].to_sym : id
+            actual_item = actual_items[ref.to_sym] if actual_items.key?(ref.to_sym)
+            actual_item = actual_items[id.to_sym] if actual_items.key?(id.to_sym)
+            actual_flags = []
+            actual_item.each{|k,v| actual_flags << k if v == 'true'}
+            expected_flags = expected_item.map{|x| x.to_variable_style.to_sym}
+            expected_flags = expected.nil? ? [] : expected_flags
+            they_match = actual_flags - expected_flags == [] && expected_flags - actual_flags == []
+            puts colourize("Mismatch on flags: #{key}, #{id} ... Actual: #{actual_flags}, Expected: #{expected_flags}" , "red") unless they_match
+          rescue => e
+            puts colourize("Missing child: #{key}, #{id}", "red")
+          end
+        end
+        puts ""
+        puts ""
+      end
+  
+    end
 
   end
 

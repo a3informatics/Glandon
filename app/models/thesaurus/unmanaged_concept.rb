@@ -43,7 +43,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   # @return [Thesaurus::UnmanagedConcept] the resulting object
   def self.create(params, parent)
     params[:parent_uri] = parent.uri
-    super(params)
+    super(params, parent)
   end
   
   # Delete or Unlink. Delete or Unlink child
@@ -54,17 +54,20 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
     #return 0 if self.has_children? # @todo will be required for hierarchical terminologies
     Errors.application_error(self.class.name, __method__.to_s, "Attempting to delete from code list that is not owned.") unless parent_object.owned?
     if multiple_parents?
+      delete_or_unlink_references(parent_object)
       delete_rank_member(self, parent_object) if parent_object.ranked?
       parent_object.delete_link(:narrower, self.uri)
       #parent_object.delete_link(:refers_to, self.uri)
       1
     elsif referred_to?(parent_object)
+      delete_or_unlink_references(parent_object)
       delete_rank_member(self, parent_object) if parent_object.ranked?
       parent_object.delete_link(:narrower, self.uri)
       parent_object.delete_link(:refers_to, self.uri)
       1
     else
       Errors.application_error(self.class.name, __method__.to_s, "Attempting to delete an code list item that is not owned.") if not_owned?
+      self.delete_references
       delete_rank_member(self, parent_object) if parent_object.ranked?
       self.delete_with_links
     end

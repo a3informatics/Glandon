@@ -317,7 +317,8 @@ describe "IsoManagedV2" do
       end
 
       item = IMV2Klass.new
-      params = {label: "Label", identifier: "XXX", version_label: "v l", semantic_version: "1.1.1", version: 5, date: "1989-07-07", ordinal: 1}
+      params = {label: "Label", identifier: "XXX", version_label: "v l", semantic_version: "1.1.1", 
+        version: 5, date: "1989-07-07", ordinal: 1}
       item.set_import(params)
       expected_date = "1989-07-07".to_time_with_default
       expect(item.version).to eq(5)
@@ -327,6 +328,18 @@ describe "IsoManagedV2" do
       expect(item.last_change_date.iso8601).to eq("#{expected_date.iso8601}")
       expect(item.uri.to_s).to eq("http://www.acme-pharma.com/XXX/V5")
       expect(item.registration_status).to eq("Standard")
+      item = IMV2Klass.new
+      params = {label: "Label", identifier: "XXX", version_label: "v l", semantic_version: "1.1.1", 
+        version: 5, date: "1989-07-07", ordinal: 1, release: false}
+      item.set_import(params)
+      expected_date = "1989-07-07".to_time_with_default
+      expect(item.version).to eq(5)
+      expect(item.scoped_identifier).to eq("XXX")
+      expect(item.owner_short_name).to eq("ACME")
+      expect(item.creation_date.iso8601).to eq("#{expected_date.iso8601}")
+      expect(item.last_change_date.iso8601).to eq("#{expected_date.iso8601}")
+      expect(item.uri.to_s).to eq("http://www.acme-pharma.com/XXX/V5")
+      expect(item.registration_status).to eq("Incomplete")
     end
 
     it "update the identifier" do

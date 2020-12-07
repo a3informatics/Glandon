@@ -204,7 +204,7 @@ describe BiomedicalConcept::PropertyX do
       bc = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCI"))
       result = bc.update_property({property_id: property.id, has_coded_value: [{id: cli_1.id, context_id: cl.id}, {id: cli_2.id, context_id: cl.id}]})
       expect(result.errors.count).to eq(1)
-      expect(result.errors.full_messages).to eq(["attempting to add multiple coded values"])
+      expect(result.errors.full_messages).to eq(["Has coded value attempting to add multiple values when the property is the identifier"])
       bc = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCI"))
       expect(bc.has_item.first.has_complex_datatype.first.has_property.first.has_coded_value.count).to eq(1)
     end

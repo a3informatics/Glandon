@@ -8,13 +8,13 @@ describe IsoManagedV2Controller do
   include UserAccountHelpers
   include ControllerHelpers
 
+  def sub_dir
+    return "controllers/iso_managed_v2"
+  end
+
   describe "Curator User" do
 
     login_curator
-
-    def sub_dir
-      return "controllers/iso_managed_v2"
-    end
 
     def current_status
       current_uri = CdiscTerm.current_uri(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
@@ -217,10 +217,6 @@ describe IsoManagedV2Controller do
 
     login_content_admin
 
-    def sub_dir
-      return "controllers"
-    end
-
     before :all do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
@@ -238,6 +234,14 @@ describe IsoManagedV2Controller do
       get :custom_properties, params:{id: uri.to_id}
       data = check_good_json_response(response)
       check_file_actual_expected(data, sub_dir, "custom_properties_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it 'custom properties' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      uri = Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047")
+      get :custom_properties, params:{id: uri.to_id}
+      data = check_good_json_response(response)
+      check_file_actual_expected(data, sub_dir, "custom_properties_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end

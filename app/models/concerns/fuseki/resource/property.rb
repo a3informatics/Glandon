@@ -192,6 +192,7 @@ module Fuseki
           property = get
           uri = value.is_a?(Uri) ? value : value.uri
           property.delete_if {|x| x.is_a?(Uri) ? x == uri : x.uri == uri}
+          @to_be_saved = true # Needs setting. Path not calling any lower-level method to set it
         else
           clear
         end

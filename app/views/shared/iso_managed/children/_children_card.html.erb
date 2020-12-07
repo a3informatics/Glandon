@@ -1,13 +1,16 @@
+<% custom_properties = (local_assigns.fetch :custom_props?, false) %>
+
 <div class="col-md-12 card wide">
   <div class="card-header">
     <%= local_assigns.fetch :title, "Children" %>
   </div>
   <div class="card-content">
 
-    <div id="children-panel" class="table-cardstyle">
+    <div id="children-panel" class="table-cardstyle <%= "loading-with-btns" if custom_properties %>">
+
       <%= render layout: "shared/iso_managed/children/children_panel", locals: {
           children_url: url, btn_in_last?: true, extensible?: (local_assigns.fetch :extensible?, false),
-          custom_props?: (local_assigns.fetch :custom_props?, false)
+          custom_props?: custom_properties, item: (local_assigns.fetch :item, nil)
       } do %>
 
         <%# Extra columns %>
@@ -15,6 +18,7 @@
 
       <% end %>
     </div>
+
 
   </div>
 </div>

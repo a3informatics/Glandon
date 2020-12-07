@@ -64,7 +64,7 @@ class OdmXml::Forms < OdmXml
         parent.error(self.class.name, __method__.to_s, "Failed to find the form, possible identifier mismatch.") 
       else
         @form = Form.new 
-        @form.scopedIdentifier.identifier = IsoScopedIdentifier.clean_identifier(identifier) # Make sure we remove anything nasty
+        @form.set_initial(IsoScopedIdentifierV2.clean_identifier(identifier)) # Make sure we remove anything nasty
         @form.label = source_form[:label]
       end
     end
@@ -275,10 +275,10 @@ class OdmXml::Forms < OdmXml
     end
 
     def add_op_ref(cli, question, ordinal)
-      ref = OperationalReferenceV2.new
+      ref = OperationalReferenceV3.new
       ref.ordinal = ordinal.value
-      ref.subject_ref = cli.uri.to_v2
-      question.tc_refs << ref
+      ref.reference = cli.uri
+      question.has_coded_value << ref
       ordinal.increment
       return true
     end      

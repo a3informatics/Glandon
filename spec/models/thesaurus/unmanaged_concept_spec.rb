@@ -1142,15 +1142,16 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     it "not owned?" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
       uri_1 = Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475")
       tc_1 = Thesaurus::ManagedConcept.create
       new_1 = tc_1.add_child({notation: "NEW1", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("A")})
       new_2 = tc_1.add_child({notation: "NEW2", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("B")})
-      tc_1.add_referenced_children([uri_1.to_id])
+      tc_1.add_referenced_children(tc.full_contexts([uri_1.to_id]))
       tc_2 = Thesaurus::ManagedConcept.create
       new_3 = tc_2.add_child({notation: "NEW1", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("A")})
       new_4 = tc_2.add_child({notation: "NEW2", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("B")})
-      tc_2.add_referenced_children([uri_1.to_id])
+      tc_2.add_referenced_children(tc.full_contexts([uri_1.to_id]))
       cdisc_1 = Thesaurus::UnmanagedConcept.find(uri_1)
       expect(new_1.not_owned?).to eq(false)
       expect(new_2.not_owned?).to eq(false)
@@ -1164,6 +1165,65 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(new_3.not_owned?).to eq(false)
       expect(new_4.not_owned?).to eq(false)
       expect(cdisc_1.not_owned?).to eq(true)
+    end
+
+  end
+
+  describe "custom properties" do
+
+    def simple_thesaurus_1
+      @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      @th_1 = Thesaurus.new
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow",
+          identifier: "A00001",
+          definition: "A definition",
+          notation: "LHR"
+        })
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      sparql = Sparql::Update.new
+      @th_1.set_initial("NEW_TH")
+      @tc_1.set_initial(@tc_1.identifier)
+      sparql.default_namespace(@th_1.uri.namespace)
+      @th_1.to_sparql(sparql, true)
+      @tc_1.to_sparql(sparql, true)
+      full_path = sparql.upload
+      @tc_1a = Thesaurus::UnmanagedConcept.create({label: "Terminal 5", identifier: "A00011", definition: "A definition", notation: "T5"}, @tc_1)
+      @tc_1b = Thesaurus::UnmanagedConcept.create({label: "Terminal 1", identifier: "A00012", definition: "A definition", notation: "T1"}, @tc_1)
+      @tc_1.narrower << @tc_1a
+      @tc_1.narrower << @tc_1b
+      @tc_1.save
+    end
+
+    def add_cp_1
+      cpd = CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
+       description: "A description XXX", default: "Default String",
+       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+       uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
+      cpd
+    end
+
+    def add_cp_2
+      cpd = CustomPropertyDefinition.create(datatype: "boolean", label: "A Toggle", 
+       description: "A description YYY", default: "false",
+       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+       uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD2"))
+      cpd
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "simple_to_h" do
+      add_cp_1
+      add_cp_2
+      tc_1 = Thesaurus::ManagedConcept.create
+      new_1 = tc_1.add_child({notation: "NEW1", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("A")})
+      result = new_1.simple_to_h(tc_1, true)
+      check_file_actual_expected(result, sub_dir, "simlpe_to_h_expected_1.yaml")
     end
 
   end

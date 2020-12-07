@@ -128,7 +128,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
     it "allows to edit a single BC, terminology selection" do
       go_to_edit 'HEIGHT'
 
-      ui_editor_select_by_location 7, 8
+      ui_editor_select_by_location 7, 8, true
 
       # Add Terminology References
       ui_in_modal do
@@ -168,6 +168,23 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       ui_editor_check_value 6, 8, ''
 
     end
+
+    it "prevents adding more than one Terminology Reference to a TESTCD BC Property" do
+      go_to_edit 'HEIGHT'
+
+      ui_editor_check_value 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
+      ui_editor_select_by_location 1, 8, true
+
+      # Attemp to add more Terminology References
+      ui_in_modal do
+        ip_pick_unmanaged_items :unmanaged_concept, [
+          { parent: 'C100130', version: '62', identifier: 'C96587' }
+        ], 'bc-term-ref'
+      end
+
+      ui_editor_check_value 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v61.0.0)'
+      expect(page).to have_content 'attempting to add multiple values when the property is the identifier'
+    end 
 
     it "allows adding BCs to Editor, prevents duplicates" do
       go_to_edit 'HEIGHT'

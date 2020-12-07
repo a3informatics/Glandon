@@ -27,7 +27,7 @@ class Import::Crf < Import
     model = odm?(params[:file_type]) ? OdmXml::Forms.new(params[:files].first) : AlsExcel.new(params[:files].first)
     if model.errors.empty? 
       object = model.form(params[:identifier]) # , job) @todo progress
-      object = do_import(object)
+      do_import(object)
       object.errors.empty? ? save_load_file(result_hash(object)) : save_error_file(result_hash(object))
     else
       save_error_file(result_hash(model))
@@ -60,8 +60,10 @@ private
 
   # Do the import.
   def do_import(object)
-    return object unless object.errors.empty?
-    return Form.create_no_load(object.to_operation)
+    return unless object.errors.empty?
+    object.set_import(identifier: object.scoped_identifier, label: object.label, 
+      semantic_version: object.semantic_version, version_label: object.semantic_version, 
+      version: object.version, date: Time.now.to_s)
   end
 
 end
