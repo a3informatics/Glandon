@@ -474,7 +474,7 @@ Rails.application.routes.draw do
       # get :export_ttl
     end
   end
-  resources :sdtm_sponsor_domains, :only => [:show, :index] do
+  resources :sdtm_sponsor_domains, :only => [:show, :index, :edit] do
     collection do
       get :history
       post :create_from_ig
@@ -482,6 +482,8 @@ Rails.application.routes.draw do
     member do
       get :show_data
       post :add_non_standard_variable
+      put :toggle_used
+      delete :delete_non_standard_variable
     end
   end
 
