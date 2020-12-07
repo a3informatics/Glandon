@@ -1,5 +1,6 @@
-import { $getPaginated, $get } from 'shared/helpers/ajax';
+import { $getPaginated, $get } from 'shared/helpers/ajax'
 import { renderSpinner } from 'shared/ui/spinners'
+import { setOnErrorHandler } from 'shared/helpers/dt/utils'
 
 /**
  * Base Table Panel
@@ -343,6 +344,9 @@ export default class TablePanel {
   _initTable() {
 
     this.table = $( this.selector ).DataTable( this._tableOpts );
+
+    // Generic table error handler
+    setOnErrorHandler( this.table );
 
     // Append buttons to DOM if any defined
     if ( this._tableOpts.buttons.length )

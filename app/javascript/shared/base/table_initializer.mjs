@@ -1,3 +1,5 @@
+import { setOnErrorHandler } from 'shared/helpers/dt/utils'
+
 /**
  * Simple DataTable initializer
  * @description Initializes a DataTable pre-filled with data in HTML (no data fetching)
@@ -17,7 +19,7 @@ export default class TableInitializer {
     order = [0, 'asc']
   } = {} ) {
 
-    return $( selector ).DataTable({
+    const table = $( selector ).DataTable({
       columnDefs: [],
       pageLength: pageLength,     // Global variable
       lengthMenu: pageSettings,   // Global variable
@@ -27,6 +29,11 @@ export default class TableInitializer {
         emptyTable: 'No data available'
       }
     });
+
+    // Generic table error handler
+    setOnErrorHandler( table );
+
+    return table;
 
   }
 
