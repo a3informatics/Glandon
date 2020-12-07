@@ -1,3 +1,17 @@
+import { alerts } from 'shared/ui/alerts'
+
+/**
+ * Set a generic error handler to a DataTable instance 
+ * @param {DataTable} table Table to attach error handler to
+ */
+function setOnErrorHandler(table) {
+
+  table.on( 'error.dt', ( e, settings, techNote, message ) => 
+    alerts.error( 'An error has occurred while processing table data. Please report it to the system administrators.' )
+  );
+
+}
+
 /**
  * Removes the "fit" class from a DataTable column header
  * @param {string} name Text which the target column header contains
@@ -94,6 +108,7 @@ function fitColumn(name, tableId) {
 }
 
 export {
+  setOnErrorHandler,
   expandColumn,
   fitColumn,
   csvExportBtn,

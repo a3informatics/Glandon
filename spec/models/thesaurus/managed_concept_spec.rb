@@ -2485,6 +2485,50 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_4d.yaml", equate_method: :hash_equal)
     end
 
+    it "delete draft code list" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.sanofi.com/SN000200/V1#SN000200"))
+      before_count = triple_store.triple_count
+      new_tc = tc.create_next_version
+      result = new_tc.delete_or_unlink
+      expect(triple_store.triple_count).to eq(before_count)
+    end
+
+  end
+
+  describe "custom property bug fix checks III" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
+      nv_destroy
+      nv_create(parent: "123", child: "456")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "delete draft code list" do
+      tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.sanofi.com/C100130/V3#C100130"))
+      before_count = triple_store.triple_count
+      new_tc = tc.create_next_version
+      new_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.sanofi.com/C100130/V4#C100130"))
+      results = new_tc.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "delete_draft_code_list_custom_property_expected_1.yaml", equate_method: :hash_equal)
+      result = new_tc.delete_or_unlink
+      expect(triple_store.triple_count).to eq(before_count)
+    end
+
   end
 
 end

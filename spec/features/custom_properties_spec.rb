@@ -168,8 +168,8 @@ describe "Custom Properties", type: :feature  do
 
       click_on 'Add items'
       ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: 'C100130', owner: 'Sanofi', version: '2.0.0', identifier: 'C96587' },
-        { parent: 'C100130', owner: 'Sanofi', version: '2.0.0', identifier: 'C96586' }
+        { parent: 'C100130', owner: 'Sanofi', version: '3', identifier: 'C96587' },
+        { parent: 'C100130', owner: 'Sanofi', version: '3', identifier: 'C96586' }
       ], 'add-children')
       wait_for_ajax 20 
 
@@ -184,6 +184,7 @@ describe "Custom Properties", type: :feature  do
       # Edit Referenced CPs, text
       ui_editor_select_by_location(1, 7)
       ui_editor_fill_inline("crf_display_value", "Some CRF value\n")
+      wait_for_ajax 10 
       check_cell_content('editor', 1, 7, 'Some CRF value')
 
       ui_press_key :return
@@ -247,8 +248,8 @@ describe "Custom Properties", type: :feature  do
 
     ### Code List Subset
 
-    it "allows to edit Custom Properties, CL Subset editor" do
-      go_to_codelist 'SN003628', 'Sanofi', '2.0.0', :show
+    it "allows to display Custom Properties, CL Subset editor" do
+      go_to_codelist 'SN003628', 'Sanofi', '1.0.0', :show
 
       # Create Subset off a Sanofi Subset 
       context_menu_element_header :subsets
@@ -294,7 +295,7 @@ describe "Custom Properties", type: :feature  do
     end
 
     it "allows to edit Custom Properties, CL Subset editor" do
-      go_to_codelist 'SN003628', 'Sanofi', '2.0.0', :show
+      go_to_codelist 'SN003628', 'Sanofi', '1.0.0', :show
 
       # Create Subset off a Sanofi Subset 
       context_menu_element_header :subsets
@@ -322,7 +323,7 @@ describe "Custom Properties", type: :feature  do
       ui_press_key :arrow_left
       ui_press_key :return
       wait_for_ajax 10
-      check_cell_content 'subset-table', 3, 12, true
+      check_cell_content 'subset-table', 1, 12, true
     end
 
     ### Bugs 
