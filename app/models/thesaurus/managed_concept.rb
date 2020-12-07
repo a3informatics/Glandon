@@ -796,21 +796,20 @@ private
     base = "OPTIONAL { #{self.uri.to_ref} th:narrower ?c }"
     parts = []
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
-    parts << "{ #{uri.to_ref} ^isoC:appliesTo ?s . ?s ?p ?o }" # All Tags and Custom Property references to the code list (no CPs currently)
+    #parts << "{ #{uri.to_ref} ^isoC:appliesTo ?s . ?s ?p ?o }" # All Tags and Custom Property references to the code list (no CPs currently)
     parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}"
     parts << "{ #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} (th:isOrdered*/th:members*/th:memberNext*) ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} th:narrower ?s . ?s ?p ?o . FILTER NOT EXISTS { ?e th:narrower ?s . }}"
-    parts << "{{ SELECT ?s (count(?o) as ?count) WHERE { ?s isoC:appliesTo ?c . ?s isoC:context ?o } GROUP BY ?s }
+    parts << "{{ SELECT ?s (count(?o) as ?count) WHERE { ?s isoC:appliesTo ?c . ?s isoC:context #{self.uri.to_ref} . ?s isoC:context ?o } GROUP BY ?s }
       FILTER (?count = 1)
       { ?s isoC:context #{self.uri.to_ref} } UNION { ?s isoC:context ?c }
       ?s ?p ?o }"
-    parts << "{{ SELECT ?s (count(?o) as ?count) WHERE { ?s isoC:appliesTo ?c . ?s isoC:context ?o } GROUP BY ?s }
+    parts << "{{ SELECT ?s (count(?o) as ?count) WHERE { ?s isoC:appliesTo ?c . ?s isoC:context #{self.uri.to_ref} . ?s isoC:context ?o } GROUP BY ?s }
       FILTER (?count > 1)
       ?s isoC:context #{self.uri.to_ref} . 
       BIND (isoC:context as ?p)
       BIND (#{self.uri.to_ref} as ?o) }"
-    parts << "{  }" # All Tags and Custom Property references
     parts << "{ #{self.uri.to_ref} th:refersTo ?s . }"
     if !parent_object.nil?
       parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?s . ?s rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?s bo:reference #{uri.to_ref} . ?s ?p ?o }"
