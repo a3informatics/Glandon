@@ -45,14 +45,7 @@ describe "Custom Properties", type: :feature  do
     end
 
     it "allows to load, show and hide Custom Properties in a Code List" do
-      click_navbar_code_lists
-      wait_for_ajax 20
-
-      ui_table_search('index', 'C100130')
-      find(:xpath, "//tr[contains(.,'Sanofi')]/td/a").click
-      wait_for_ajax 10
-      context_menu_element_v2('history', '1.0.0', :show)
-      wait_for_ajax 20
+      go_to_codelist 'C100130', 'Sanofi', '1.0.0', :show
 
       expect(page).to have_button 'Show Custom Properties'
       ui_check_table_info('children', 1, 10, 55)
@@ -88,7 +81,6 @@ describe "Custom Properties", type: :feature  do
 
   end
 
-
   describe "Edit Custom Properties, Curator user", type: :feature, js:true do
 
     before :all do
@@ -116,7 +108,7 @@ describe "Custom Properties", type: :feature  do
 
     ### Code List
 
-    it "allows to show Custom Properties, CL Editor" do
+    it "allows to display Custom Properties, CL Editor" do
       new_codelist_and_edit
       click_on 'New item'
       wait_for_ajax 10
@@ -128,37 +120,13 @@ describe "Custom Properties", type: :feature  do
       check_table_headers('editor', cl_standard_columns)
     end
 
-
-    it "allows to add and edit Referenced Items with Custom Properties, CL Editor" do
-      new_codelist_and_edit
-
-      click_on 'Add items'
-      ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: 'C100130', owner: 'Sanofi', version: '2', identifier: 'C96587' }
-      ], 'add-children')
-      wait_for_ajax 20 
-
-      show_custom_props
-      check_cell_content('editor', 1, 7, 'Biological Uncle') 
-      check_cell_content('editor', 1, 8, false)
-      check_cell_content('editor', 1, 9, true)
-      check_cell_content('editor', 1, 10, false) # ed_use is a missing value in source CL - check it set to default (false)
-      check_cell_content('editor', 1, 11, true)
-
-      # Edit Referenced CPs 
-      ui_editor_select_by_location(1, 7)
-      ui_editor_fill_inline("crf_display_value", "Some CRF value\n")
-      check_cell_content('editor', 1, 7, 'Some CRF value')
-
-      # Todo: Check referenced items normal fields cannot be edited 
-    end
-
     it "allows to edit Custom Properties, CL Editor" do
       new_codelist_and_edit
       click_on 'New item'
       wait_for_ajax 10 
 
       show_custom_props
+
       # Check default values are set 
       check_cell_content('editor', 1, 7, '') 
       check_cell_content('editor', 1, 8, false)
@@ -166,68 +134,258 @@ describe "Custom Properties", type: :feature  do
       check_cell_content('editor', 1, 10, false)
       check_cell_content('editor', 1, 11, false)
 
-      # Inline editing of CPs
+      # Inline editing of CPs, text
+      ui_editor_select_by_location(1, 7)
+      ui_editor_fill_inline("crf_display_value", "Some CRF value\n")
+      check_cell_content('editor', 1, 7, 'Some CRF value')
+      ui_press_key :return 
+      ui_editor_fill_inline("crf_display_value", "Changed CRF\t")
+      check_cell_content('editor', 1, 7, 'Changed CRF')
+
+      # Inline editing of CPs, text, input validation
+      ui_editor_select_by_content('Changed CRF')
+      ui_editor_fill_inline("crf_display_value", "æø\n")
+      ui_editor_check_error('crf_display_value', 'contains invalid characters')
+      ui_press_key :escape
+
+      # Inline editing of CPs, booleans
+      ui_editor_select_by_location(1, 8)
+      ui_press_key :arrow_right
+      ui_press_key :return
+      wait_for_ajax 10
+      check_cell_content('editor', 1, 8, true)
+
+      ui_press_key :tab
+      ui_press_key :return
+      ui_press_key :arrow_left
+      ui_press_key :return
+      wait_for_ajax 10
+      check_cell_content('editor', 1, 9, true)
+    end
+
+    it "allows to add and edit Referenced Items with Custom Properties, CL Editor" do
+      new_codelist_and_edit
+
+      click_on 'Add items'
+      ip_pick_unmanaged_items(:unmanaged_concept, [
+        { parent: 'C100130', owner: 'Sanofi', version: '2.0.0', identifier: 'C96587' },
+        { parent: 'C100130', owner: 'Sanofi', version: '2.0.0', identifier: 'C96586' }
+      ], 'add-children')
+      wait_for_ajax 20 
+
+      # Check default values copied from source 
+      show_custom_props
+      check_cell_content('editor', 1, 7, 'Biological Uncle') 
+      check_cell_content('editor', 1, 8, false)
+      check_cell_content('editor', 1, 9, true)
+      check_cell_content('editor', 1, 10, false) # ed_use is a missing value in source CL - check it set to default (false)
+      check_cell_content('editor', 1, 11, true)
+
+      # Edit Referenced CPs, text
       ui_editor_select_by_location(1, 7)
       ui_editor_fill_inline("crf_display_value", "Some CRF value\n")
       check_cell_content('editor', 1, 7, 'Some CRF value')
 
-      ui_editor_select_by_location(1, 8)
+      ui_press_key :return
+      ui_editor_fill_inline("crf_display_value", "Another CRF value\t")
+      check_cell_content('editor', 1, 7, 'Another CRF value')
+
+      # Edit Referenced CPs, boolean
+      ui_editor_select_by_location(2, 9)
       ui_press_key :arrow_right
       ui_press_key :return
-      check_cell_content('editor', 1, 8, true)
+      wait_for_ajax 10 
+      check_cell_content('editor', 2, 9, false)
 
-      # Validates input for entered CP values 
-      ui_editor_select_by_location(1, 7)
-      ui_editor_fill_inline("crf_display_value", "æø\n")
-      ui_editor_check_error('crf_display_value', 'contains invalid characters')
-      ui_press_key :escape
+      ui_editor_select_by_location(2, 10)
+      ui_press_key :arrow_left
+      ui_press_key :return
+      wait_for_ajax 10 
+      check_cell_content('editor', 2, 10, true)
+
+      # Check referenced items standard fields cannot be edited 
+      ui_editor_select_by_location(2, 2)
+      ui_editor_check_disabled('notation')
+      ui_editor_select_by_location(2, 5)
+      ui_editor_check_disabled('definition')
     end
 
-    it "Editing a Standard Sanofi extension sets up CPs incorrectly - extra property on 5 items, CL Extension Editor" do
-      click_navbar_code_lists
-      wait_for_ajax 20
+    ### Code List Extension
 
-      ui_table_search('index', 'C100130')
-      find(:xpath, "//tr[contains(.,'Sanofi')]/td/a").click
+    it "allows to display Custom Properties, CL Extension Editor" do
+      go_to_codelist 'C99073', 'Sanofi', '3.0.0', :edit
+
+      show_custom_props
+      # Check CP Columns
+      check_table_headers('editor', cl_sponsor_cps_columns)
+      hide_custom_props
+      check_table_headers('editor', cl_standard_columns)
+    end
+
+    it "allows to edit Custom Properties, CL Extension editor" do
+      go_to_codelist 'C99079', 'Sanofi', '3.0.0', :edit
+
+      ui_table_search('editor', 'screening')
+      ui_check_table_info 'editor', 1, 3, 3
+
+      show_custom_props
+      # Check showing CPs maintains filtering 
+      ui_check_table_info 'editor', 1, 3, 3
+
+      # Inline CP editing, text
+      ui_editor_select_by_location 3, 7
+      ui_editor_fill_inline 'crf_display_value', "Screening CRF\n"
+      check_cell_content 'editor', 3, 7, 'Screening CRF'
+
+      # Inline CP editing, boolean
+      ui_editor_select_by_location 3, 10
+      ui_press_key :arrow_right
+      ui_press_key :return
       wait_for_ajax 10
-      context_menu_element_v2('history', '3.0.0', :edit)
-      wait_for_ajax 20
+      check_cell_content 'editor', 3, 10, true
+    end
 
-      # If error still there, this step will cause Datatables error, will pass otherwise  
+    ### Code List Subset
+
+    it "allows to edit Custom Properties, CL Subset editor" do
+      go_to_codelist 'SN003628', 'Sanofi', '2.0.0', :show
+
+      # Create Subset off a Sanofi Subset 
+      context_menu_element_header :subsets
+      ui_in_modal do 
+        click_on '+ New Subset'
+      end 
+      ui_in_modal do
+        click_on 'Do not select'
+      end
+      wait_for_ajax 10
+
+      # Check CPs in Source Code List
+      show_custom_props
+      check_table_headers('source-table', cl_sponsor_cps_columns)
+
+      check_cell_content('source-table', 1, 7, 'Male') 
+      check_cell_content('source-table', 1, 8, false)
+      check_cell_content('source-table', 1, 9, true)
+      check_cell_content('source-table', 1, 10, false)
+      check_cell_content('source-table', 1, 11, false)
+
+      hide_custom_props
+      check_table_headers('source-table', cl_standard_columns)
+
+      click_on 'Select All'
+      wait_for_ajax 10 
+
+      # Check CPs in Subset Code List
+      find('.tab-option', text: 'Ordered Subset').click 
+
+      show_custom_props
+      check_table_headers('subset-table', cl_sponsor_cps_columns)
+
+      # Check CP values copied from Source Code List 
+      check_cell_content('subset-table', 1, 8, 'Male') 
+      check_cell_content('subset-table', 1, 9, false)
+      check_cell_content('subset-table', 1, 10, true)
+      check_cell_content('subset-table', 1, 11, false)
+      check_cell_content('subset-table', 1, 12, false)
+
+      hide_custom_props
+      check_table_headers('subset-table', cl_standard_columns)
+    end
+
+    it "allows to edit Custom Properties, CL Subset editor" do
+      go_to_codelist 'SN003628', 'Sanofi', '2.0.0', :show
+
+      # Create Subset off a Sanofi Subset 
+      context_menu_element_header :subsets
+      ui_in_modal do 
+        click_on '+ New Subset'
+      end 
+      ui_in_modal do
+        click_on 'Do not select'
+      end
+      wait_for_ajax 10
+
+      click_on 'Select All'
+      wait_for_ajax 10 
+
+      find('.tab-option', text: 'Ordered Subset').click 
+      show_custom_props 
+
+      # Inline CP editing, text
+      ui_editor_select_by_location 1, 8, false, 'subset-table'
+      ui_editor_fill_inline 'crf_display_value', "Male CRF\n"
+      check_cell_content 'subset-table', 1, 8, 'Male CRF'
+
+      # Inline CP editing, boolean
+      ui_editor_select_by_location 1, 12, false, 'subset-table'
+      ui_press_key :arrow_left
+      ui_press_key :return
+      wait_for_ajax 10
+      check_cell_content 'subset-table', 3, 12, true
+    end
+
+    ### Bugs 
+
+    it "Editing a Standard Sanofi extension sets up CPs incorrectly, FIXED, CL Extension Editor" do
+      go_to_codelist 'C100130', 'Sanofi', '3.0.0', :edit
+
       show_custom_props
       ui_check_table_info 'editor', 1, 10, 69 
+      # Check CPs copied from prev version 
+      check_cell_content('editor', 1, 7, 'Biological Maternal Half Sister') 
+      check_cell_content('editor', 1, 8, false)
+      check_cell_content('editor', 1, 9, true)
+      check_cell_content('editor', 1, 10, false)
+      check_cell_content('editor', 1, 11, true)
     end
 
-    it "sets up wrong custom properties when extending a CDISC Code List" do 
-      click_navbar_code_lists
-      wait_for_ajax 20
+    it "Extending a CDISC Code List, CP default values bug, should be a model/controller test not feature" do 
+      go_to_codelist 'C99079', 'CDISC', '62', :show
 
-      ui_table_search('index', 'C99079')
-      find(:xpath, "//tr[contains(.,'CDISC')]/td/a").click
-      wait_for_ajax 10
-      context_menu_element_v2('history', '62', :show)
-      wait_for_ajax 10
+      # Extend CDISC CL
       context_menu_element_header(:extend)
       ui_in_modal do 
         click_on 'Do not select'
       end 
       wait_for_ajax 10
 
-      # After the following step DT throws dialog with error because values are missing
-      # The Custom Properties of this extension are not matching the extended CL, some are missing and some values come from other sponsor Code Lists I think. 
-    #pause
+      # Check default values picked up from other sponsor Code Lists
       show_custom_props
+      check_cell_content('editor', 2, 7, 'Run-In') 
+      check_cell_content('editor', 2, 8, false)
+      check_cell_content('editor', 2, 9, true)
+      check_cell_content('editor', 2, 10, false) 
+      check_cell_content('editor', 2, 11, true)
 
+      # Delete Extension 
+      click_link 'Sanofi, C99079E'
+      wait_for_ajax 10 
+      context_menu_element_v2('history', '0.1.0', :delete)
+      ui_confirmation_dialog true 
+      wait_for_ajax 10 
+
+      go_to_codelist 'C99079', 'CDISC', '62', :show
+     
+      # Re-extend CDISC CL 
+      context_menu_element_header(:extend)
+      ui_in_modal do 
+        click_on 'Do not select'
+      end 
+      wait_for_ajax 10
+
+      # Check default values picked up from other sponsor Code Lists
+      show_custom_props
+      check_cell_content('editor', 2, 7, 'Run-In') 
+      check_cell_content('editor', 2, 8, false)
+      check_cell_content('editor', 2, 9, true)
+      check_cell_content('editor', 2, 10, false) 
+      check_cell_content('editor', 2, 11, true)
     end 
 
-    it "Attempting to extend SN003055 freezes server" do
-      click_navbar_code_lists
-      wait_for_ajax 20
-      ui_table_search('index', 'SN003055')
-      find(:xpath, "//tr[contains(.,'Sanofi')]/td/a").click
-      wait_for_ajax 10
-      context_menu_element_v2('history', '2019-08-08', :show)
-      wait_for_ajax 10
+    it "Attempting to extend a specific Sanofi CL freezes server, FIXED" do
+      go_to_codelist 'SN003055', 'Sanofi', '2019-08-08', :show
+
       context_menu_element_header(:extend)
       ui_in_modal do 
         click_on 'Do not select'
@@ -235,37 +393,6 @@ describe "Custom Properties", type: :feature  do
       wait_for_ajax 10 # Will time out as server freezes
       expect(page).to have_content "Extension Editor"
     end
-
-    ### Code List Extension
-
-    # it "allows to edit Custom Properties, CL Extension editor" do
-    #   click_navbar_code_lists
-    #   wait_for_ajax 20
-
-    #   ui_table_search('index', 'C99079')
-    #   find(:xpath, "//tr[contains(.,'Sanofi')]/td/a").click
-    #   wait_for_ajax 10
-    #   context_menu_element_v2('history', '1.0.0', :edit)
-    #   wait_for_ajax 20
-    #   #
-
-    #   # click_on 'New item'
-    # end
-
-    # ### Code List Subset
-
-    # it "allows to edit Custom Properties, CL Subset editor" do
-    #   click_navbar_code_lists
-    #   wait_for_ajax 20
-
-    #   ui_table_search('index', 'SN003093')
-    #   find(:xpath, "//tr[contains(.,'SN003093')]/td/a").click
-    #   wait_for_ajax 10
-    #   context_menu_element_v2('history', '1.0.0', :edit)
-    #   wait_for_ajax 20
-    #   #pause
-
-    # end
 
   end
 
@@ -281,13 +408,7 @@ describe "Custom Properties", type: :feature  do
     it "does not show the CP button without CP data, Curator User" do
       ua_curator_login
 
-      click_navbar_code_lists
-      wait_for_ajax 10
-      ui_table_search('index', 'C100130')
-      find(:xpath, "//tr[contains(.,'C100130')]/td/a").click
-      wait_for_ajax 10
-      context_menu_element_v2('history', 1, :show)
-      wait_for_ajax 20
+      go_to_codelist 'C100130', 'CDISC', 1, :show
 
       expect(page).not_to have_button 'Show Custom Properties'
       expect(page).not_to have_selector '.custom-props-btn'
@@ -313,7 +434,7 @@ describe "Custom Properties", type: :feature  do
 
   end
 
-  # Helpers
+  ### Helpers
 
   def check_table_headers(table, headers)
     theaders = all(:xpath, "//div[@id='#{ table }_wrapper']//thead/tr/td", visible: false)
@@ -339,6 +460,18 @@ describe "Custom Properties", type: :feature  do
     context_menu_element_v2('history', identifier, :edit)
     wait_for_ajax 10
     identifier 
+  end
+
+  def go_to_codelist(identifier, owner, ver, action)
+    click_navbar_code_lists
+    wait_for_ajax 20
+
+    ui_table_search('index', identifier)
+    find(:xpath, "//tr[contains(.,'#{ owner }')]/td/a").click
+    wait_for_ajax 10
+
+    context_menu_element_v2('history', ver, action)
+    wait_for_ajax 20
   end
   
   def cl_standard_columns

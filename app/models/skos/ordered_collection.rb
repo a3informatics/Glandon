@@ -134,7 +134,6 @@ module SKOS::OrderedCollection
     query_string = %Q{
       SELECT DISTINCT ?s ?p ?o WHERE
       {
-        ?s ?p ?o .
         {
           SELECT ?s (COUNT(?mid) as ?ordinal) WHERE 
           {
@@ -142,6 +141,7 @@ module SKOS::OrderedCollection
             ?mid th:memberNext* ?s .
           } GROUP BY ?s ORDER BY ?ordinal
         }
+        ?s ?p ?o .
       }
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th])
@@ -234,9 +234,10 @@ module SKOS::OrderedCollection
 
   # Add. Add new subset members to the Subset
   #
-  # @param arr [Array] Array of the ids of the unmanaged concept to be added to the Subset
+  # @param [Array] arr Array of the ids of the unmanaged concept to be added to the Subset
+  # @param [Object] parent the parent from which the items are being added
   # @return [Object] the created Subset Member
-  def add(arr)
+  def add(arr, parent)
     subset_members = []
     sparql = Sparql::Update.new
     sparql.default_namespace(self.uri.namespace)
@@ -254,10 +255,10 @@ module SKOS::OrderedCollection
       sparql.add({uri: subset_members[index].uri}, {prefix: :th, fragment: "memberNext"}, {uri: subset_members[index+1].uri})
     end
     last_sm.nil? ? sparql.add({uri: self.uri}, {prefix: :th, fragment: "members"}, {uri: subset_members.first.uri}) : sparql.add({uri: last_sm.uri}, {prefix: :th, fragment: "memberNext"}, {uri: subset_members.first.uri})
-    mc.add_custom_property_context(arr)
-    mc.add_missing_custom_properties(arr, Thesaurus::UnmanagedConcept, nil)
     set_ranks(arr, mc) if mc.ranked?
     sparql.create
+    mc.add_custom_property_context(parent.full_contexts(arr))
+    mc.add_missing_custom_properties(parent.full_contexts(arr), Thesaurus::UnmanagedConcept, nil)
   end
 
   # Remove all. Removes all the subset members and narrower from Subset

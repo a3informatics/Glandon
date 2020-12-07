@@ -66,5 +66,21 @@ module CustomPropertyHelpers
     create_custom(@parent, @child_3, "true", @definition_2, 4)
   end
 
+  def find_custom_properties_for(item, label)
+    results = []
+    query_string = %Q{SELECT DISTINCT ?s ?p ?o WHERE        
+      {                
+       #{item.uri.to_ref} ^isoC:appliesTo ?s .
+       ?s isoC:value ?value .
+       ?s isoC:customPropertyDefinedBy/isoC:label "#{label}" .
+       ?s ?p ?o
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC])
+    query_results.by_subject.each do |subject, triples|
+      results << CustomPropertyValue.from_results(Uri.new(uri: subject), triples)
+    end
+    results
+  end
 
 end

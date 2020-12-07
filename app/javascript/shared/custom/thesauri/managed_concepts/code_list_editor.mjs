@@ -71,16 +71,24 @@ export default class CLEditor extends CustomPropsEditablePanel {
 
   /**
    * Add one or more existing Code List Items to Code List
-   * @param {Array} childrenIds Set of Unmanaged Concept IDs to be added to Code List
+   * @param {Array} children Set of objects containing properties: id - Unmanaged Concept id and contextI to be added to Code List
    * @param {string} param Name of the UC IDs parameter
    */
-  addChildren(childrenIds, param = 'set_ids') {
+  addChildren(children, param = 'set_ids') {
+
+    // Map children to array of objects with id and context_id props
+    const data = children.map( d => {
+      return { 
+        context_id: d.context.id, 
+        id: d.id 
+      } 
+    });
 
     this._executeRequest({
       url: this.urls.addChildren,
       type: 'POST',
-      data: {
-        [param]: childrenIds
+      data: { 
+        [param]: data 
       },
       callback: () => this.refresh()
     });
@@ -216,7 +224,7 @@ export default class CLEditor extends CustomPropsEditablePanel {
 
 
   /**
-   * Perform a server request based on given parameters
+   * Perform a JSON server request based on given parameters
    * @param {string} url Url of the request
    * @param {string} type Type of the request
    * @param {objet} data Request data object (without strong parameter), optional
@@ -227,8 +235,11 @@ export default class CLEditor extends CustomPropsEditablePanel {
     this._loading( true );
 
     $ajax({
-      url, type,
-      data: { managed_concept: data },
+      url, type, 
+      contentType: 'application/json',
+      data: JSON.stringify({ 
+        managed_concept: data 
+      }),
       done: d => {
 
         callback( d );
@@ -249,7 +260,7 @@ export default class CLEditor extends CustomPropsEditablePanel {
       id: "add-children",
       multiple: true,
       types: ['unmanaged_concept'],
-      onSubmit: s => this.addChildren( s.asIDsArray() )
+      onSubmit: s => this.addChildren( s.asObjectsArray() )
     });
 
   }

@@ -111,6 +111,11 @@ describe Import::STFOClasses do
 
   it "extension? III, CDISC with rank" do
     object = Import::STFOClasses::STFOCodeList.new
+
+    Import::STFOClasses::STFOCodeListItem.define_method(:rank) do
+      instance_variable_get("@rank")
+    end
+
     object.identifier = "C76351"
     object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     ["C74569", "C74570", "C74571", "C74572", "C74573", "C74574"].each_with_index do |x, index|
@@ -155,14 +160,16 @@ describe Import::STFOClasses do
   end
 
   it "not ranked?" do
+    Import::STFOClasses::STFOCodeListItem.define_method(:rank) do
+      instance_variable_get("@rank")
+    end
+
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
     object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     ["C74571", "C12345", "C45678"].each do |x|
       item = Import::STFOClasses::STFOCodeListItem.new(identifier: x)
       object.narrower << item
-      next if x == "C12345"
-      item.instance_variable_set("@rank", "1")
     end
     expect(object.ranked?).to eq(false)
   end

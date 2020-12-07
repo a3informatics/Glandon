@@ -33,15 +33,6 @@ export default class ExtensionEditor extends CLEditor {
   }
 
   /**
-   * Add one or more existing Code List Items to Code List
-   * @param {Array} childrenIds Set of Unmanaged Concept IDs to be added to Code List
-   * @param {string} _param Name of the UC IDs parameter
-   */
-  addChildren(childrenIds, _param) {
-    super.addChildren( childrenIds, 'extension_ids' );
-  }
-
-  /**
    * Override removeChild in parent, check if deletion allowed
    * @param {DataTable Row} childRow Reference to the DT Row instance to be removed
    */

@@ -288,7 +288,8 @@ export default class CustomPropsHandler {
     // Cache table data
     const tp = this.tablePanel,
           data = tp.rowDataToArray, 
-          { page, length } = tp.table.page.info();
+          { page, length } = tp.table.page.info(),
+          search = tp.table.search();
 
     // Destroy DataTable instance
     tp.destroy();
@@ -303,9 +304,10 @@ export default class CustomPropsHandler {
 
     // Restore the paging state 
     if ( restorePaging )
-      tp.table.page.len( length )
-                   .page( page )
-                   .draw( 'page' );
+      tp.table.search(search)
+              .page.len( length )
+              .page( page )
+              .draw( 'page' );
 
   }
 

@@ -101,10 +101,11 @@ class IsoManagedV2
 
     # Add Custom Property Context.
     #
-    # @param [Array] uris_or_ids array of uris or ids of the items for which the custom properties are to be updated
+    # @param [Array] uris_or_ids array of hashes of items for which the custom properties are to be updated and their contexts
     # @return [Boolean] true 
     def add_custom_property_context(uris_or_ids)
       return true if uris_or_ids.empty?
+      pairs = uris_or_ids.map{|x| {applies_to: self.class.as_uri(x[:id]), context: self.class.as_uri(x[:context_id])}}
       update_query = %Q{ 
         INSERT 
         { 
@@ -112,13 +113,21 @@ class IsoManagedV2
         }
         WHERE 
         { 
-          VALUES ?s { #{uris_or_ids.map{|x| self.class.as_uri(x).to_ref}.join(" ")} }
+          VALUES (?s ?c) {#{pairs.map{|x| "( #{x[:applies_to].to_ref} #{x[:context].to_ref} )" }.join(" ")}}
           ?e isoC:appliesTo ?s . 
           ?e rdf:type isoC:CustomProperty .
+          ?e isoC:context ?c . 
         }
       }      
       partial_update(update_query, [:isoC])
       true
+    end
+
+    # Full Contexts. Construct hash of ids and context ids from existing set
+    #
+    # @return [Array] array of hashes each containing the id and the context id
+    def full_contexts(uris_or_ids)
+      uris_or_ids.map{|x| {id: x, context_id: self.id}}
     end
 
     # Existing Custom Property Set. The set of uris that [may] contain custom properties
@@ -132,18 +141,25 @@ class IsoManagedV2
 
     # Missing Custom Properties
     #
-    # @param [Array] uris_or_ids array of uris or ids of the items for which the custom properties are to be updated
+    # @param [Array] uris_or_ids array of hashes of items for which the custom properties are to be updated and their contexts
     # @param [Class] klass klass for the definitions
     # @return [Array] array of hash containing subject definition pairs
     def missing_custom_properties(uris_or_ids, klass)
+      return [] if uris_or_ids.empty?
+      pairs = uris_or_ids.map{|x| {applies_to: self.class.as_uri(x[:id]), context: self.class.as_uri(x[:context_id])}}
       query_string = %Q{ 
         SELECT DISTINCT ?subject ?definition WHERE
         { 
-          VALUES ?subject { #{uris_or_ids.map{|x| self.class.as_uri(x).to_ref}.join(" ")} }
-          ?definition rdf:type isoC:CustomPropertyDefinition .
-          ?d isoC:customPropertyOf #{klass.rdf_type.to_ref} .
-          FILTER ( NOT EXISTS {?subject ^isoC:appliesTo/isoC:customPropertyDefinedBy ?definition})
-        }
+          VALUES (?subject ?context) {#{pairs.map{|x| "( #{x[:applies_to].to_ref} #{x[:context].to_ref} )" }.join(" ")}}
+          ?definition rdf:type isoC:CustomPropertyDefinition .           
+          ?definition isoC:customPropertyOf #{klass.rdf_type.to_ref} .
+          FILTER ( NOT EXISTS {
+            ?context ^isoC:context ?cpv .
+            ?cpv rdf:type isoC:CustomProperty . 
+            ?cpv isoC:appliesTo ?subject .
+            ?cpv isoC:customPropertyDefinedBy ?definition
+          })  
+        } ORDER BY ?subject ?definition
       }      
       query_results = Sparql::Query.new.query(query_string, "", [:isoC])
       query_results.by_object_set([:subject, :definition])
@@ -151,11 +167,12 @@ class IsoManagedV2
 
     # Add Missing Custom Properties
     #
-    # @param [Array] uris_or_ids array of uris or ids of the items for which the custom properties are to be updated
+    # @param [Array] uris_or_ids array of hashes of items for which the custom properties are to be updated and their contexts
     # @param [Class] klass klass for the definitions
     # @param [Sparql::Transaction] tx the transaction, defaults to nil
     # @return [Boolean] true
-    def add_missing_custom_properties(uris_or_ids, klass, tx)
+    def add_missing_custom_properties(uris_or_ids, klass, tx=nil)
+      return true if uris_or_ids.empty?
       items = missing_custom_properties(uris_or_ids, klass)
       definitions = klass.find_custom_property_definitions
       items.each do |item|

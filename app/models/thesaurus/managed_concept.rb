@@ -346,18 +346,18 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   # Add Referenced Children. Add children to a code list that are referenced from other code lists. 
   #   Only allow for standard or extension codelists. Subsets use other methods?
   #
-  # @params [Array] ids the set of ids to be actioned
+  # @params [Array] ids array of hash containing the ids and contexts of items to be actioned
   # @return [Void] no return. Errors in the error object.
-  def add_referenced_children(ids)
+  def add_referenced_children(ids_and_contexts)
     return unless check_for_standard_or_extension?
     transaction = transaction_begin
-    uris = ids.map{|x| Uri.new(id: x)}
+    uris = ids_and_contexts.map{|x| Uri.new(id: x[:id])}
     uris.each do |uri| 
       add_link(:narrower, uri)
       add_link(:refers_to, uri)
     end
-    add_custom_property_context(uris)
-    add_missing_custom_properties(uris, Thesaurus::UnmanagedConcept, transaction)
+    add_custom_property_context(ids_and_contexts)
+    add_missing_custom_properties(ids_and_contexts, Thesaurus::UnmanagedConcept, transaction)
     set_ranks(uris, self) if self.ranked?
     transaction_execute
   end
@@ -525,7 +525,8 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     object.set_initial(object.identifier)
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
     object.add_link(:extends, source.uri)
-    object.add_custom_property_context(source.narrower)
+    object.add_custom_property_context(source.full_contexts(source.narrower))
+    object.add_missing_custom_properties(source.full_contexts(source.narrower), Thesaurus::UnmanagedConcept)
     object
   end
 
@@ -792,14 +793,24 @@ private
   # Delete with all child items (extensions, subset and child code list items)
   def delete_with(parent_object=nil)
     delete_rank(self) if self.ranked?
+    base = "OPTIONAL { #{self.uri.to_ref} th:narrower ?c }"
     parts = []
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
-    parts << "{ #{uri.to_ref} ^isoC:appliesTo ?s . ?s ?p ?o }" # All Tags and Custom Property references
+    parts << "{ #{uri.to_ref} ^isoC:appliesTo ?s . ?s ?p ?o }" # All Tags and Custom Property references to the code list (no CPs currently)
     parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}"
     parts << "{ #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} (th:isOrdered*/th:members*/th:memberNext*) ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} th:narrower ?s . ?s ?p ?o . FILTER NOT EXISTS { ?e th:narrower ?s . }}"
-    parts << "{ #{self.uri.to_ref} th:narrower ?c . ?c ^isoC:appliesTo ?s . ?s ?p ?o }" # All Tags and Custom Property references
+    parts << "{{ SELECT ?s (count(?o) as ?count) WHERE { ?s isoC:appliesTo ?c . ?s isoC:context ?o } GROUP BY ?s }
+      FILTER (?count = 1)
+      { ?s isoC:context #{self.uri.to_ref} } UNION { ?s isoC:context ?c }
+      ?s ?p ?o }"
+    parts << "{{ SELECT ?s (count(?o) as ?count) WHERE { ?s isoC:appliesTo ?c . ?s isoC:context ?o } GROUP BY ?s }
+      FILTER (?count > 1)
+      ?s isoC:context #{self.uri.to_ref} . 
+      BIND (isoC:context as ?p)
+      BIND (#{self.uri.to_ref} as ?o) }"
+    parts << "{  }" # All Tags and Custom Property references
     parts << "{ #{self.uri.to_ref} th:refersTo ?s . }"
     if !parent_object.nil?
       parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?s . ?s rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?s bo:reference #{uri.to_ref} . ?s ?p ?o }"
@@ -807,7 +818,7 @@ private
         BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) .}"
       parts << "{ BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) . BIND (#{uri.to_ref} as ?o) }"
     end
-    query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
+    query_string = "DELETE { ?s ?p ?o } WHERE { #{base} \n{ #{parts.join(" UNION\n")} }}"
     results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [:isoC, :isoT, :th, :bo])
     1
   end

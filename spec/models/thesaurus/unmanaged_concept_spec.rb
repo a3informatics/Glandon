@@ -1142,15 +1142,16 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     it "not owned?" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
       uri_1 = Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475")
       tc_1 = Thesaurus::ManagedConcept.create
       new_1 = tc_1.add_child({notation: "NEW1", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("A")})
       new_2 = tc_1.add_child({notation: "NEW2", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("B")})
-      tc_1.add_referenced_children([uri_1.to_id])
+      tc_1.add_referenced_children(tc.full_contexts([uri_1.to_id]))
       tc_2 = Thesaurus::ManagedConcept.create
       new_3 = tc_2.add_child({notation: "NEW1", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("A")})
       new_4 = tc_2.add_child({notation: "NEW2", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("B")})
-      tc_2.add_referenced_children([uri_1.to_id])
+      tc_2.add_referenced_children(tc.full_contexts([uri_1.to_id]))
       cdisc_1 = Thesaurus::UnmanagedConcept.find(uri_1)
       expect(new_1.not_owned?).to eq(false)
       expect(new_2.not_owned?).to eq(false)

@@ -370,10 +370,10 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def add_extensions
     authorize Thesaurus, :edit?
-    if Thesaurus::ManagedConcept.same_type(the_params[:extension_ids], Thesaurus::UnmanagedConcept.rdf_type)
+    if Thesaurus::ManagedConcept.same_type(children_params[:set_ids].map {|d| d[:id]}, Thesaurus::UnmanagedConcept.rdf_type)
       tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
       return true unless check_lock_for_item(tc)
-      tc.add_referenced_children(the_params[:extension_ids])
+      tc.add_referenced_children(children_params[:set_ids])
       return true if lock_item_errors
       AuditTrail.create_item_event(current_user, tc, tc.audit_message(:updated))
       render json: {data: {}, errors: []}
@@ -532,11 +532,11 @@ private
   end
 
   def the_params
-    params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :reference_id, :extension_ids => [])
+    params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :reference_id)
   end
 
   def children_params
-    params.require(:managed_concept).permit(:set_ids => [])
+    params.require(:managed_concept).permit(:set_ids => [:id, :context_id])
   end
 
   def pairs_params

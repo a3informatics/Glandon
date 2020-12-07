@@ -21,7 +21,7 @@ class Thesaurus
       object.refers_to = uris
       object.save
       subset.delete
-      subset.add(uris.map{|x| x.to_id}) if uris.any?
+      subset.add(uris.map{|x| x.to_id}, self) if uris.any?
       transaction_execute
       object
     end
