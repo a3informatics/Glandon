@@ -114,4 +114,120 @@ describe SdtmSponsorDomainsController do
 
   end
 
+  describe "edit actions" do
+
+    login_curator
+
+    before :all do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+      Token.delete_all
+    end
+
+    it "edit, html request" do
+      instance = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      get :edit, params:{id: instance.id}
+      expect(assigns(:sdtm_sponsor_domain).uri).to eq(instance.uri)
+      expect(assigns(:close_path)).to eq("/sdtm_sponsor_domains/history?sdtm_sponsor_domain%5Bidentifier%5D=AAA&sdtm_sponsor_domain%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
+      expect(response).to render_template("edit")
+    end
+
+    it "edit, json request" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      instance = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      token = Token.obtain(instance, @user)
+      get :edit, params:{id: instance.id}
+      actual = check_good_json_response(response)
+      expect(assigns[:lock].token.id).to eq(Token.all.last.id)  # Will change each test run
+      actual[:token_id] = 9999                                  # So, fix for file compare
+      check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    # it "edit, json request, already locked" do
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   instance = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+    #   token = Token.obtain(instance, @user)
+    #   get :edit, params:{id: instance.id}
+    #   actual = check_good_json_response(response)
+    #   expect(assigns[:lock].token.id).to eq(Token.all.last.id)  # Will change each test run
+    #   actual[:token_id] = 9999                                  # So, fix for file compare
+    #   check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal) # Note same result as above
+    # end
+
+    it "edit, html request, standard and creates new draft" do
+      instance = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      instance.has_state.registration_status = "Standard"
+      instance.has_state.save
+      get :edit, params:{id: instance.id}
+      expect(assigns[:sdtm_sponsor_domain].uri).to eq(Uri.new(uri: "http://www.s-cubed.dk/AAA/V2#SPD"))
+      expect(assigns[:edit].lock.token.id).to eq(Token.all.last.id)
+    end
+
+    it "edit, json, locked by another user" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      instance = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      token = Token.obtain(instance, @lock_user)
+      get :edit, params:{id: instance.id}
+      actual = check_error_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "edit_json_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "toggle actions" do
+
+    before :all do
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    login_curator
+
+    before :each do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "toggle" do
+      @request.env['HTTP_REFERER'] = '/path'
+      sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      token = Token.obtain(sdtm_sponsor_domain, @user)
+      sponsor_variable = SdtmSponsorDomain::Var.find(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      put :toggle_used, params:{id: sdtm_sponsor_domain.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable.id}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "toggle_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "toggle, locked by another user" do
+      @request.env['HTTP_REFERER'] = '/path'
+      sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      sponsor_variable = SdtmSponsorDomain::Var.find(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      token = Token.obtain(sdtm_sponsor_domain, @lock_user)
+      put :toggle_used, params:{id: sdtm_sponsor_domain.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable.id}}
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
+    end
+
+
+
+  end
+
 end

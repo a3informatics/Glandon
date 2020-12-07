@@ -28,6 +28,24 @@ class SdtmSponsorDomainsController < ManagedItemsController
     render json: {data: items}, status: 200
   end
 
+  def edit
+    authorize SdtmSponsorDomain
+    @sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(protect_from_bad_id(params))
+    respond_to do |format|
+      format.html do
+        return true unless edit_lock(@sdtm_sponsor_domain)
+        @sdtm_sponsor_domain = @edit.item
+        @close_path = history_sdtm_sponsor_domains_path({ sdtm_sponsor_domain:
+            { identifier: @sdtm_sponsor_domain.scoped_identifier, scope_id: @sdtm_sponsor_domain.scope } })
+      end
+      format.json do
+        @sdtm_sponsor_domain = SdtmSponsorDomain.find_full(@sdtm_sponsor_domain.id)
+        return true unless check_lock_for_item(@sdtm_sponsor_domain)
+        render :json => { data: @sdtm_sponsor_domain.to_h }, :status => 200
+      end
+    end
+  end
+
   def create_from_ig
     sdtm_ig_domain = SdtmIgDomain.find_full(protect_from_bad_id(sdtm_ig_domain_id))
     sdtm_sponsor_domain = SdtmSponsorDomain.create_from_ig(the_params, sdtm_ig_domain)
@@ -50,11 +68,31 @@ class SdtmSponsorDomainsController < ManagedItemsController
       render :json => {errors: non_standard_variable.errors.full_messages}, :status => 422
     end
   end
+
+  def delete_non_standard_variable
+    sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
+    non_standard_variable = SdtmSponsorDomain::Var.find_full(the_params[:non_standard_var_id])
+    return true unless check_lock_for_item(sdtm_sponsor_domain)
+    result = non_standard_variable.delete(sdtm_sponsor_domain, sdtm_sponsor_domain)
+    return true if lock_item_errors
+    AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain updated, variable #{non_standard_variable.label} deleted.") if @lock.token.refresh == 1
+    render json: {data: ""}, status: 200
+  end
+
+  def toggle_used
+    sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
+    non_standard_variable = SdtmSponsorDomain::Var.find_full(the_params[:non_standard_var_id])
+    return true unless check_lock_for_item(sdtm_sponsor_domain)
+    result = non_standard_variable.toggle_with_clone(sdtm_sponsor_domain)
+    return true if lock_item_errors
+    AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain updated, variable #{non_standard_variable.label} updated.") if @lock.token.refresh == 1
+    render json: {data: ""}, status: 200
+  end
   
 private
   
   def the_params
-    params.require(:sdtm_sponsor_domain).permit(:identifier, :scope_id, :count, :offset, :sdtm_ig_domain_id, :label, :prefix)
+    params.require(:sdtm_sponsor_domain).permit(:identifier, :scope_id, :count, :offset, :sdtm_ig_domain_id, :non_standard_var_id, :label, :prefix)
   end
 
   def non_standard_var_params
@@ -72,7 +110,7 @@ private
       when :show
         return sdtm_sponsor_domain_path(object)
       when :edit
-        return ""
+        return edit_sdtm_sponsor_domain_path(object)
       else
         return ""
     end
