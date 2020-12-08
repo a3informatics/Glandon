@@ -105,7 +105,7 @@ describe Thesaurus do
       results = []
       result = Thesaurus.history(:identifier => "CT", :scope => IsoNamespace.find_by_short_name("CDISC"))
       result.each {|x| results << x.to_h}
-      check_file_actual_expected(results, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal, )
     end
 
     it "allows the current item to be retrived" do
@@ -182,7 +182,7 @@ describe Thesaurus do
       new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
       sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Q4_2019/V1#TH"))
       actual = th.changes_impact_v2(new_th, sponsor)
-      check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_1.yaml", equate_method: :hash_equal, )
     end
 
     it "calculates changes_impact v2 II" do
@@ -190,7 +190,7 @@ describe Thesaurus do
       new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V13#TH"))
       sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSOR/V1#TH"))
       actual = th.changes_impact_v2(new_th, sponsor)
-      check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_2.yaml", equate_method: :hash_equal, )
     end
 
     it "calculates changes_impact v2 III" do
@@ -198,7 +198,7 @@ describe Thesaurus do
       new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
       sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSOR/V1#TH"))
       actual = th.changes_impact_v2(new_th, sponsor)
-      check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_3.yaml", equate_method: :hash_equal, )
     end
 
     it "calculates changes_impact v2 IV" do
@@ -206,14 +206,14 @@ describe Thesaurus do
       new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
       sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSOR2/V1#TH"))
       actual = th.changes_impact_v2(new_th, sponsor)
-      check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_4.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_4.yaml", equate_method: :hash_equal, )
     end
 
     it "report Compare" do
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V35#TH"))
       th_to = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
       actual = Thesaurus.compare_to_csv(th, th_to)
-      check_file_actual_expected(actual, sub_dir, "compare_to_csv_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "compare_to_csv_expected_1.yaml", equate_method: :hash_equal, )
     end
 
     it "report Impact" do
@@ -221,7 +221,7 @@ describe Thesaurus do
       new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
       sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSORTHTEST2/V1#TH"))
       actual = Thesaurus.impact_to_csv(th, new_th, sponsor)
-      check_file_actual_expected(actual, sub_dir, "impact_to_csv_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "impact_to_csv_expected_1.yaml", equate_method: :hash_equal, )
     end
 
     it "report Impact II" do
@@ -467,7 +467,7 @@ describe Thesaurus do
       item = ct.add_extension(uri2.to_id)
       actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
       expect(actual.count).to eq(35)
-      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_3.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_3.yaml", )
     end
 
     it "get children with indicators CI and CN, V3 all items" do
@@ -485,7 +485,7 @@ describe Thesaurus do
       ci.add_references(previous: [uri2.to_id], current: [])
       actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
       expect(actual.count).to eq(35)
-      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_4.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_4.yaml", equate_method: :hash_equal, )
     end
 
     it "get children with indicators, speed" do
@@ -501,7 +501,7 @@ describe Thesaurus do
       uri_1 = Uri.new(uri: "http://www.cdisc.org/C99079/V47#C99079")
       s_th.select_children({id_set: [uri_1.to_id]})
       actual = ct.managed_children_pagination(offset: 0, count: 1000)
-      check_file_actual_expected(actual, sub_dir, "select_children_expected_4.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "select_children_expected_4.yaml", equate_method: :hash_equal, )
       expect(actual.count).to eq(ct.is_top_concept_links.count)
     end
 
