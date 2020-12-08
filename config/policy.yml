@@ -346,6 +346,7 @@ defaults: &defaults
     policies: {}
     alias:
       create_from_ig: create
+      create_from_class: create
       add_non_standard_variable: update
       delete_non_standard_variable: update
       toggle_used: update

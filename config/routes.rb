@@ -478,6 +478,7 @@ Rails.application.routes.draw do
     collection do
       get :history
       post :create_from_ig
+      post :create_from_class
     end
     member do
       get :show_data

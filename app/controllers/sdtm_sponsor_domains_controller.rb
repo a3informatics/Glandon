@@ -58,6 +58,18 @@ class SdtmSponsorDomainsController < ManagedItemsController
     end
   end
 
+  def create_from_class
+    sdtm_class = SdtmClass.find_full(protect_from_bad_id(sdtm_class_id))
+    sdtm_sponsor_domain = SdtmSponsorDomain.create_from_class(the_params, sdtm_class)
+    if sdtm_sponsor_domain.errors.empty?
+      AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain created from #{sdtm_class.scoped_identifier}.")
+      path = history_sdtm_sponsor_domains_path({sdtm_sponsor_domain: {identifier: sdtm_sponsor_domain.scoped_identifier, scope_id: sdtm_sponsor_domain.scope.id}})
+      render :json => {data: {history_path: path, id: sdtm_sponsor_domain.id}}, :status => 200
+    else
+      render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
+    end
+  end
+
   def add_non_standard_variable
     sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
     non_standard_variable = sdtm_sponsor_domain.add_non_standard_variable(non_standard_var_params)
@@ -92,7 +104,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
 private
   
   def the_params
-    params.require(:sdtm_sponsor_domain).permit(:identifier, :scope_id, :count, :offset, :sdtm_ig_domain_id, :non_standard_var_id, :label, :prefix)
+    params.require(:sdtm_sponsor_domain).permit(:identifier, :scope_id, :count, :offset, :sdtm_ig_domain_id, :sdtm_class_id, :non_standard_var_id, :label, :prefix)
   end
 
   def non_standard_var_params
@@ -102,6 +114,11 @@ private
   # Get the ig domain id from the params
   def sdtm_ig_domain_id
     {id: the_params[:sdtm_ig_domain_id]}
+  end
+
+  # Get the class id from the params
+  def sdtm_class_id
+    {id: the_params[:sdtm_class_id]}
   end
 
   # Path for given action
