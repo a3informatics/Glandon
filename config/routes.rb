@@ -104,7 +104,7 @@ Rails.application.routes.draw do
     end
     member do
       get :status
-      get :impact
+      # get :impact
       get :make_current
       post :update_status
       put :update_semantic_version
@@ -275,6 +275,7 @@ Rails.application.routes.draw do
       get :compare_data
       get :compare_csv
       get :upgrade
+      get :impact
     end
   end
 

@@ -1,18 +1,18 @@
-<% content_for :page_title do %> <%= "Impact Analysis: #{@managed_item.scoped_identifier} (#{@managed_item.semantic_version})" %> <% end %>
+<% content_for :page_title do %> <%= "Impact Analysis: #{@thesaurus.scoped_identifier} (#{@thesaurus.semantic_version})" %> <% end %>
 
-<% third_level_breadcrumb(:thesauri, @managed_item, @close_path) %>
+<% third_level_breadcrumb(:thesauri, @thesaurus, @close_path) %>
 <%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'iso_managed/impact' %>
 <%= javascript_include_tag  'd3', 'iso_managed/impact', 'shared/tabs_layout' %>
 
-<%= javascript_tag "var cdiscChangesUrl = '#{changes_impact_thesauri_path(@ref_cdisc_th, thesauri: {thesaurus_id: @new_cdisc_th.id, sponsor_th_id: @managed_item.id})}'" %>
+<%= javascript_tag "var cdiscChangesUrl = '#{changes_impact_thesauri_path(@ref_th, thesauri: {thesaurus_id: @target_th.id, sponsor_th_id: @thesaurus.id})}'" %>
 
 <div class="row">
   <%= render layout: "shared/headers/header_minimal", :locals => { badge: "icon-impact",
-    main_text: "Impact Analysis <span class='font-light text-medium'>#{@managed_item.scoped_identifier} v#{@managed_item.semantic_version}</span>".html_safe,
-    sub_text: "CDISC CT update from: #{@ref_cdisc_th.version_label} - to: #{@new_cdisc_th.version_label}." } do %>
+    main_text: "Impact Analysis <span class='font-light text-medium'>#{@thesaurus.scoped_identifier} v#{@thesaurus.semantic_version}</span>".html_safe,
+    sub_text: "CDISC CT update from: #{@ref_th.version_label} - to: #{@target_th.version_label}." } do %>
 
       <div class="btns-wrap">
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: export_csv_thesauri_path(@ref_cdisc_th, thesauri: {sponsor_th_id: @managed_item.id, thesaurus_id: @new_cdisc_th.id}),
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: export_csv_thesauri_path(@ref_th, thesauri: {sponsor_th_id: @thesaurus.id, thesaurus_id: @target_th.id}),
             id: "report", icon: "icon-file", text: "CSV Report" } %>
         <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
       </div
@@ -64,7 +64,7 @@
             To move the graph, click and drag. To zoom, use your mouse wheel.
           </div>
           <br/>
-          <%= render partial: "shared/impact/impact_graph", locals: { th_id: @managed_item.id } %>
+          <%= render partial: "shared/impact/impact_graph", locals: { th_id: @thesaurus.id } %>
         </div>
 
       </div>
