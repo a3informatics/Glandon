@@ -1,8 +1,8 @@
 <% content_for :page_title do %> <%= "Impact Analysis: #{@thesaurus.scoped_identifier} (#{@thesaurus.semantic_version})" %> <% end %>
 
 <% third_level_breadcrumb(:thesauri, @thesaurus, @close_path) %>
-<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'iso_managed/impact' %>
-<%= javascript_include_tag  'd3', 'iso_managed/impact', 'shared/tabs_layout' %>
+<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'thesauri/impact' %>
+<%= javascript_include_tag  'd3', 'thesauri/impact', 'shared/tabs_layout' %>
 
 <%= javascript_tag "var cdiscChangesUrl = '#{changes_impact_thesauri_path(@ref_th, thesauri: {thesaurus_id: @target_th.id, sponsor_th_id: @thesaurus.id})}'" %>
 
