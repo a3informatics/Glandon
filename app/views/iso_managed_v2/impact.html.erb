@@ -1,0 +1,12 @@
+<% content_for :page_title do %> <%= "Impact Analysis: #{@managed_item.scoped_identifier} (#{@managed_item.semantic_version})" %> <% end %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => { badge: "icon-impact",
+    main_text: "Impact Analysis",
+    sub_text: "Showing Managed Items impacted by #{@managed_item.scoped_identifier} v#{@managed_item.semantic_version}." } do %>
+
+      <div class="btns-wrap">
+        <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+      </div>
+  <% end %>
+</div>

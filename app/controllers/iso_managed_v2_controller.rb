@@ -40,6 +40,12 @@ class IsoManagedV2Controller < ApplicationController
     render json: {data: comments}
   end
 
+  def impact 
+    authorize IsoManaged, :show?
+    @managed_item = find_item(params)
+    @close_path = request.referrer
+  end
+
   def custom_properties
     authorize IsoManaged, :show?
     item = find_item(params)
