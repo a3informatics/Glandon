@@ -42,6 +42,39 @@ class SdtmSponsorDomain < SdtmIgDomain
     object
   end
 
+  # Create a Sponsor Domain based on a specified Class
+  #
+  # @param [Hash] params the parameters to create the new sponsor domain
+  # @params [SdtmClass] the template class
+  # @return [SdtmSponsorDomain] the new sponsor domain object
+  def self.create_from_class(params, sdtm_class)
+    object = SdtmSponsorDomain.new
+    object.label = sdtm_class.label
+    object.prefix = params[:prefix]
+    object.ordinal = 1
+    object.set_initial("#{params[:prefix]} Domain")
+    #object.structure = ig_domain.structure
+    #object.based_on_class = ig_domain.based_on_class.uri
+    sdtm_class.includes_column.sort_by {|x| x.ordinal}.each do |class_variable|
+      #sponsor_variable_name = sponsor_variable_name(params[:prefix], class_variable.name)
+      sponsor_variable_name = SdtmVariableName.new(class_variable.name, params[:prefix]).prefixed? ? class_variable.name.gsub('--', params[:prefix]) : params[:prefix]+class_variable.name
+      sponsor_variable = SdtmSponsorDomain::Var.create({parent_uri: object.uri, label: class_variable.label, name: sponsor_variable_name, ordinal: class_variable.ordinal})
+      sponsor_variable.description = class_variable.description
+      #sponsor_variable.format = domain_variable.format
+      #sponsor_variable.ct_and_format = domain_variable.ct_and_format
+      sponsor_variable.used = true
+      sponsor_variable.compliance = Uri.new(uri:"http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d") #Permissible node
+      sponsor_variable.typed_as = class_variable.typed_as.uri 
+      sponsor_variable.classified_as = class_variable.classified_as.uri
+      #sponsor_variable.ct_reference = domain_variable.ct_reference
+      #sponsor_variable.based_on_ig_variable = domain_variable.uri
+      sponsor_variable.based_on_class_variable = class_variable.uri
+      object.includes_column << sponsor_variable
+    end
+    object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
+    object
+  end
+
   # Add non standard variable
   #
   # @param [Hash] params the parameters to add the new variable

@@ -48,6 +48,13 @@ describe SdtmSponsorDomain do
     check_file_actual_expected(sponsor_domain.to_h, sub_dir, "create_from_ig_expected_1.yaml", equate_method: :hash_equal)
   end
 
+  it "does create a Sponsor Domain based on a specified Class" do
+    params = {label:"Sponsor Adverse Events", prefix:"AE"}
+    sdtm_class = SdtmClass.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL"))
+    sponsor_domain = SdtmSponsorDomain.create_from_class(params, sdtm_class)
+    check_file_actual_expected(sponsor_domain.to_h, sub_dir, "create_from_class_expected_1.yaml", equate_method: :hash_equal)
+  end
+
   it "does add a non standard variable" do
     params = {label:"Sponsor Adverse Events", prefix:"AE"}
     ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
@@ -55,7 +62,7 @@ describe SdtmSponsorDomain do
     sp_domain = SdtmSponsorDomain.find_full(sponsor_domain.id)
     params2 = {name:"AENEWVAR"}
     sponsor_domain.add_non_standard_variable(params2)
-    check_file_actual_expected(sponsor_domain.to_h, sub_dir, "add_non_standard_variable_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(sponsor_domain.to_h, sub_dir, "add_non_standard_variable_expected_1.yaml", equate_method: :hash_equal)
   end
 
   it "does add a non standard variable, error" do
