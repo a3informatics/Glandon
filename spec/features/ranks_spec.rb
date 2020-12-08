@@ -57,7 +57,7 @@ describe "Rank", :type => :feature do
   # Navigates to an edit page of a code list identifier and version
   def go_to_edit(identifier, version)
     click_navbar_code_lists
-    wait_for_ajax 20
+    wait_for_ajax 30
     ui_table_search("index", identifier)
     find(:xpath, "//tr[contains(.,'Sanofi')]/td/a").click
     wait_for_ajax 20
@@ -274,8 +274,8 @@ describe "Rank", :type => :feature do
       click_link 'Add items'
 
       ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: "C99074", owner: "cdisc", version: "62", identifier: "C98798" },
-        { parent: "C99074", owner: "cdisc", version: "62", identifier: "C94393" }
+        { parent: "C99074", owner: "cdisc", version: "9", identifier: "C98798" },
+        { parent: "C99074", owner: "cdisc", version: "9", identifier: "C94393" }
       ], 'add-children')
       wait_for_ajax 10
 
