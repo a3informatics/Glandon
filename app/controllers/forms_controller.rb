@@ -265,7 +265,7 @@ private
       when :edit_tags
         return object.supporting_edit? ? edit_tags_iso_concept_path(id: object.id) : ""
       else
-        return ""
+        return super
     end
   end
 
