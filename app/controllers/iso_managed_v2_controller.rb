@@ -40,18 +40,6 @@ class IsoManagedV2Controller < ApplicationController
     render json: {data: comments}
   end
 
-  def impact
-    authorize IsoManaged, :show?
-    @managed_item = find_item(params)
-    @new_cdisc_th = Thesaurus.find_minimum(the_params[:new_th_id])
-    @ref_cdisc_th = Thesaurus.find_minimum(protect_from_bad_id(params)).get_referenced_thesaurus
-    if Date.parse(@new_cdisc_th.version_label) <= Date.parse(@ref_cdisc_th.version_label)
-      flash[:error] = "You must choose a CDISC release newer than #{@ref_cdisc_th.version_label} to view Impact Analysis."
-      redirect_to request.referer
-    end
-    @close_path = request.referer
-  end
-
   def custom_properties
     authorize IsoManaged, :show?
     item = find_item(params)
@@ -59,7 +47,7 @@ class IsoManagedV2Controller < ApplicationController
     render json: {data: owned ? item.find_custom_property_values : {}, definitions: owned ? item.find_custom_property_definitions_to_h : {}}
   end
 
-  def make_current
+  def make_current 
     authorize IsoManaged, :status?
     managed_item = find_item(params)
     managed_item.make_current
@@ -150,7 +138,7 @@ private
   def the_params
     # Strong parameter using iso_managed not V2 version.
     params.require(:iso_managed).permit(:identifier, :scope_id, :current_id, :tag_id, :registration_status, :previous_state, 
-      :administrative_note, :unresolved_issue, :sv_type, :offset, :count, :new_th_id, 
+      :administrative_note, :unresolved_issue, :sv_type, :offset, :count, 
       :change_description, :explanatory_comment, :origin, :referer)
   end
 
