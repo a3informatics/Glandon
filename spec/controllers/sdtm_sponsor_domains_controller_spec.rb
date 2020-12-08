@@ -98,6 +98,13 @@ describe SdtmSponsorDomainsController do
       expect(actual[:errors]).to eq(["http://www.s-cubed.dk/AE_Domain/V1#SPD already exists in the database"])
     end
 
+    it "creates from class" do
+      sdtm_class = SdtmClass.find(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL"))
+      post :create_from_class, params:{sdtm_sponsor_domain: {prefix: "AE", sdtm_class_id: sdtm_class.id}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "create_from_class_expected_1.yaml", equate_method: :hash_equal)
+    end
+
     it "add non standard variable" do
       sdtm_sponsor_domain = SdtmSponsorDomain.find(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
       post :add_non_standard_variable, params:{id: sdtm_sponsor_domain.id, sdtm_sponsor_domain: {name: "AENEWVAR"}}
