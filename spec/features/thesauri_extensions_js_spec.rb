@@ -193,7 +193,7 @@ describe "Thesauri Extensions", :type => :feature do
       # Add
       click_on 'Add items'
       ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: 'C100129', version: '46', identifier: 'C102111' }
+        { parent: 'C100129', version: '16', identifier: 'C102111' }
       ], 'add-children')
       wait_for_ajax 10
       # Check added
@@ -205,9 +205,9 @@ describe "Thesauri Extensions", :type => :feature do
       # Add
       click_on 'Add items'
       ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: 'C66786', version: '45', identifier: 'C16496' },
-        { parent: 'C66786', version: '45', identifier: 'C16636' },
-        { parent: 'C66786', version: '45', identifier: 'C16773' }
+        { parent: 'C66786', version: '16', identifier: 'C16496' },
+        { parent: 'C66786', version: '16', identifier: 'C16636' },
+        { parent: 'C66786', version: '16', identifier: 'C16773' }
       ], 'add-children')
       wait_for_ajax 10
       # Check added
@@ -299,7 +299,7 @@ describe "Thesauri Extensions", :type => :feature do
       # Add referenced
       click_on 'Add items'
       ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: 'C100129', version: '46', identifier: 'C102111' }
+        { parent: 'C100129', version: '16', identifier: 'C102111' }
       ], 'add-children')
       wait_for_ajax 10
 
