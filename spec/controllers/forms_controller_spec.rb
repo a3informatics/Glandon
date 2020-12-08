@@ -21,7 +21,7 @@ describe FormsController do
     before :all do
       data_files = ["forms/FN000150.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..59)
+      #load_cdisc_term_versions(1..59)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -43,16 +43,6 @@ describe FormsController do
       get :show, params: { :id => form.id}
       expect(response).to render_template("show")
       expect(assigns(:edit_tags_path)).to eq("/iso_concept/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=/edit_tags")
-    end
-
-    it "show, json" do
-      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :show_data, params:{id: form.id}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "show_results_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "history, html" do
@@ -92,7 +82,7 @@ describe FormsController do
     before :all do
       data_files = ["forms/FN000150.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..59)
+      #load_cdisc_term_versions(1..59)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -132,6 +122,16 @@ describe FormsController do
     after :all do
       ua_remove_user("lock@example.com")
       Token.delete_all
+    end
+
+    it "show, json" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :show_data, params:{id: form.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "show_results_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "edit, html request" do
