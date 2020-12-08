@@ -41,15 +41,16 @@ class Form::Item::Common < Form::Item::BcProperty
   # @return [String] An html string of the Common Item
   def to_crf(annotations)
     html = ""
-    pa = ""
+    pa = []
     property = BiomedicalConcept::PropertyX.find(self.has_property_objects.reference)
     html += start_row(self.optional)
     html += question_cell(property.question_text)
     unless annotations.nil?
       self.has_common_item_objects.sort_by {|x| x.ordinal}.each do |ci|
-        pa += ci.property_annotations(annotations)
+        pa << ci.property_annotations(annotations)
       end
-      html += mapping_cell(pa, annotations)
+      annotation_text = pa.sort.join("")
+      html += mapping_cell(annotation_text, annotations)
     end
     if self.has_coded_value.length == 0
       html += input_field(property)
