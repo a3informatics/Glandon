@@ -1,0 +1,17 @@
+defaults: &defaults
+  "Thesaurus::ManagedConcept": 
+    - "Thesaurus::ManagedConcept"
+  "BiomedicalConceptInstance":
+    - "Thesaurus::ManagedConcept"
+  "Form":
+    - "BiomedicalConceptInstance"
+    - "Thesaurus::ManagedConcept"
+
+development:
+  <<: *defaults
+
+production: 
+  <<: *defaults
+  
+test: 
+  <<: *defaults
