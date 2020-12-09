@@ -2109,7 +2109,7 @@ describe "Thesaurus::ManagedConcept" do
         new_item = item.create_next_version
       end
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "2000"})
-      check_file_actual_expected(results, sub_dir, "unique_indicator_expected_1.yaml", equate_method: :hash_equal, )
+      check_file_actual_expected(results, sub_dir, "unique_indicator_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

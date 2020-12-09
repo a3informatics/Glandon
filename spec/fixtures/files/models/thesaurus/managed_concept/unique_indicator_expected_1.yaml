@@ -11036,10 +11036,10 @@
   :label: Race
   :preferred_term: CDISC SDTM Race Terminology
   :synonym: Race
-  :extensible: true
+  :extensible: false
   :definition: Terminology codelist used to identify the race of an individual within
     the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU3L1YxMCNDNzQ0NTc=
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU3L1YzNCNDNzQ0NTc=
   :tags: ''
   :indicators:
     :current: false
@@ -11080,13 +11080,13 @@
   :scoped_identifier: C74558
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C74559
-  :notation: SCCD
-  :label: Subject Characteristic Code
-  :preferred_term: CDISC SDTM Subject Characteristic Code Terminology
-  :synonym: Subject Characteristic Code
+  :notation: SCTESTCD
+  :label: Subject Characteristic Test Code
+  :preferred_term: CDISC SDTM Subject Characteristic Test Code Terminology
+  :synonym: Subject Characteristic Test Code
   :extensible: true
-  :definition: A unique code representing each Subject Characteristic.
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTU5L1YxMCNDNzQ1NTk=
+  :definition: The test code representing each subject characteristic.
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTU5L1YzOCNDNzQ1NTk=
   :tags: ''
   :indicators:
     :current: false
@@ -11153,11 +11153,11 @@
 - :identifier: C76348
   :notation: MARISTAT
   :label: Marital Status
-  :preferred_term: Marital Status Terminology
+  :preferred_term: CDISC SDTM Marital Status Terminology
   :synonym: Marital Status
   :extensible: true
   :definition: A demographic parameter indicating a person's current conjugal status.
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzQ4L1YxMCNDNzYzNDg=
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzQ4L1YzMCNDNzYzNDg=
   :tags: ''
   :indicators:
     :current: false
@@ -11176,12 +11176,12 @@
 - :identifier: C76351
   :notation: SKINCLAS
   :label: Skin Classification
-  :preferred_term: CDISC SDTM Fitzpatrick Skin Classification Terminology
+  :preferred_term: CDISC Skin Classification Terminology
   :synonym: Skin Classification
   :extensible: true
   :definition: A classification system used to categorize the sensitivity of a subject's
     skin to sunlight.
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTE=
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YzMyNDNzYzNTE=
   :tags: ''
   :indicators:
     :current: false
