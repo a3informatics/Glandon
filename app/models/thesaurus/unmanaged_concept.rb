@@ -148,22 +148,22 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
 #       raw_results[uri][:children] << DiffResult[key: entry[:i], uri: entry[:cl], label: entry[:l], notation: entry[:n]]
 #     end
 
-    # Get the version array
-    raw_results.sort_by {|k,v| v[:version]}
-    raw_results.each {|k,v| versions << v[:date]}
-    versions = versions.drop(1)
+#     # Get the version array
+#     raw_results.sort_by {|k,v| v[:version]}
+#     raw_results.each {|k,v| versions << v[:date]}
+#     versions = versions.drop(1)
 
-    # Build the skeleton final results with a default value.
-    initial_status = [{ status: :not_present}] * versions.length
-    raw_results.each do |uri, version|
-      version[:children].each do |entry|
-        key = entry[:key].to_sym
-        next if final_results.key?(key)
-        final_results[key] = {key: entry[:key], identifier: entry[:key], id: entry[:uri].to_id, label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
-      end
-    end
-    final_results
-  end
+#     # Build the skeleton final results with a default value.
+#     initial_status = [{ status: :not_present}] * versions.length
+#     raw_results.each do |uri, version|
+#       version[:children].each do |entry|
+#         key = entry[:key].to_sym
+#         next if final_results.key?(key)
+#         final_results[key] = {key: entry[:key], identifier: entry[:key], id: entry[:uri].to_id, label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
+#       end
+#     end
+#     final_results
+#   end
 
   # Differences
   #
