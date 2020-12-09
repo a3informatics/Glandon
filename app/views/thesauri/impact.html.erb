@@ -26,7 +26,7 @@
       Changed CDISC Terms
     </div>
     <div class="card-content">
-      <%= render partial: 'shared/impact/changes_cdisc_panel' %>
+      <%= render partial: 'shared/thesauri/impact/changes_cdisc_panel' %>
     </div>
   </div>
 
@@ -55,7 +55,7 @@
         </div>
 
         <div class="tab-wrap closed scroll-styled" data-tab="tab-changes">
-          <%= render partial: "shared/impact/changes_differences_panel" %>
+          <%= render partial: "shared/thesauri/impact/changes_differences_panel" %>
         </div>
 
         <div class="tab-wrap closed scroll-styled" data-tab="tab-graph">
@@ -64,7 +64,7 @@
             To move the graph, click and drag. To zoom, use your mouse wheel.
           </div>
           <br/>
-          <%= render partial: "shared/impact/impact_graph", locals: { th_id: @thesaurus.id } %>
+          <%= render partial: "shared/thesauri/impact/impact_graph", locals: { th_id: @thesaurus.id } %>
         </div>
 
       </div>
