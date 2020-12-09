@@ -104,7 +104,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Version History of \'FN000150\''
       context_menu_element('history', 4, 'Height (Pilot)', :show)
       wait_for_ajax 10
-      click_on "NOT DONE C49484 (ND C66789 v13.0.0)"
+      click_on "NOT DONE C49484 (ND C66789 v3.0.0)"
       wait_for_ajax 10
       expect(page).to have_content 'Shared Preferred Terms'
       expect(page).to have_content 'C49484'

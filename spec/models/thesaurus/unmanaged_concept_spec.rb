@@ -537,13 +537,13 @@ describe "Thesaurus::UnmanagedConcept" do
       check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml")
     end
 
-    it "finds changes non-CDISC" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      results = tc.changes(4)
-      check_file_actual_expected(results, sub_dir, "changes_expected_5.yaml", equate_method: :hash_equal)
-      results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_5.yaml", equate_method: :hash_equal)
-    end
+    # it "finds changes non-CDISC" do
+    #   tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+    #   results = tc.changes(4)
+    #   check_file_actual_expected(results, sub_dir, "changes_expected_5.yaml", equate_method: :hash_equal)
+    #   results = tc.differences
+    #   check_file_actual_expected(results, sub_dir, "differences_expected_5.yaml", equate_method: :hash_equal)
+    # end
 
   end
 

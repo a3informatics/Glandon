@@ -501,7 +501,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       ua_destroy
     end
 
-    it "Check on filtered tags", js:true do
+    it "Check on filtered tags - CHECK TAGS!!", js:true do
       check_tags("2012-03-23", "30.0.0", "ADaM CDASH QS SDTM SEND", "QS SDTM")
       check_tags("2014-06-27", "39.0.0", "ADaM CDASH QS-FT SDTM SEND", "QS-FT SDTM")
       check_tags("2014-12-19", "42.0.0", "ADaM CDASH COA SDTM SEND", "SDTM")
