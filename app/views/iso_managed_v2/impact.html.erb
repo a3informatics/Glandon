@@ -1,5 +1,7 @@
 <% content_for :page_title do %> <%= "Impact Analysis: #{@managed_item.scoped_identifier} (#{@managed_item.semantic_version})" %> <% end %>
 
+<%= javascript_pack_tag 'iso_managed/impact' %>
+
 <div class="row">
   <%= render layout: "shared/headers/header_minimal", :locals => { badge: "icon-impact",
     main_text: "Impact Analysis",
@@ -9,4 +11,20 @@
         <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
       </div>
   <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-12 card wide">
+    
+    <div class="card-header">
+      Impact
+    </div>
+    
+    <div class="card-content card-with-tabs">
+
+      <%= render partial: "shared/iso_managed/impact/impact_panel" %>  
+
+    </div>
+
+  </div>
 </div>

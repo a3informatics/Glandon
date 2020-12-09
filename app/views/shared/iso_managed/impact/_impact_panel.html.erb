@@ -1,0 +1,26 @@
+<%= stylesheet_link_tag 'shared/layouts/tabs_layout' %>
+
+<div id="<%= local_assigns.fetch :id, 'impact-panel' %>">
+
+    <div class="tabs-layout">
+
+        <div class="tabs-sel">
+            <div class="tab-option active" id="tab-graph">
+                Graph View
+            </div>
+            <div class="tab-option" id="tab-table">
+                Table View
+            </div>
+        </div>
+
+        <div class="tab-wrap" data-tab="tab-graph">
+            Graph 
+        </div>
+
+        <div class="tab-wrap closed" data-tab="tab-table">
+            Table 
+        </div>
+
+    </div>
+
+</div>
