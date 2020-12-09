@@ -10,7 +10,7 @@ describe SdtmSponsorDomain do
   end
 
   before :all do
-    data_files = []
+    data_files = ["SDTM_Sponsor_Domain.ttl"]
     load_files(schema_files, data_files)
     load_data_file_into_triple_store("mdr_identification.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -39,6 +39,14 @@ describe SdtmSponsorDomain do
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("Uri can't be blank, Has identifier empty object, and Has state empty object")
     expect(result).to eq(false)
+  end
+
+  it "allows an Sponsor Domain to get children (variables)" do
+    actual = []
+    item = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
+    children = item.get_children
+    children.each {|x| actual << x.to_h}
+    check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal, write_file: true)
   end
 
   it "does create a Sponsor Domain based on a specified IG domain" do

@@ -26,18 +26,20 @@ class SdtmIgDomain < Tabulation
         ?c bd:name ?name .
         ?c bd:description ?description .
         ?c bd:ctAndFormat ?format .
-        ?c bd:basedOnClassVariable/bd:typedAs/isoC:prefLabel ?typedas .
+        OPTIONAL {?c bd:basedOnClassVariable/bd:typedAs/isoC:prefLabel ?typedas .}
         ?c bd:compliance/isoC:prefLabel ?compliance .
-        {           
-          ?c bd:basedOnClassVariable/bd:classifiedAs/isoC:prefLabel ?sub_class .             
-          ?c bd:basedOnClassVariable/bd:classifiedAs/^isoC:narrower/isoC:prefLabel ?class .
-          NOT EXISTS {?c bd:basedOnClassVariable/bd:classifiedAs/^isoC:narrower/isoC:prefLabel 'Classification'} 
-        }         
-        UNION         
-        {           
-          ?c bd:basedOnClassVariable/bd:classifiedAs/isoC:prefLabel ?class . 
-          BIND ("" as ?sub_class)
-          EXISTS {?c bd:basedOnClassVariable/bd:classifiedAs/^isoC:narrower/isoC:prefLabel 'Classification'} 
+        OPTIONAL{
+          {           
+            ?c bd:basedOnClassVariable/bd:classifiedAs/isoC:prefLabel ?sub_class .             
+            ?c bd:basedOnClassVariable/bd:classifiedAs/^isoC:narrower/isoC:prefLabel ?class .
+            NOT EXISTS {?c bd:basedOnClassVariable/bd:classifiedAs/^isoC:narrower/isoC:prefLabel 'Classification'} 
+          }         
+          UNION         
+          {           
+            ?c bd:basedOnClassVariable/bd:classifiedAs/isoC:prefLabel ?class . 
+            BIND ("" as ?sub_class)
+            EXISTS {?c bd:basedOnClassVariable/bd:classifiedAs/^isoC:narrower/isoC:prefLabel 'Classification'} 
+          }
         }      
       } ORDER BY ?ordinal
     }
