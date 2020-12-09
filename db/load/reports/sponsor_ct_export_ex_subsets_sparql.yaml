@@ -89,5 +89,5 @@ WHERE
   BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "DC Stage"} AS ?dc_stage)
   BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "SDTM Stage"} AS ?sdtm_stage)
   BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "ADaM Stage"} AS ?adam_stage)
-} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ORDER BY ?clc ?code'
+} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ORDER BY ?clc ?code ?clisyn'
 :type: Ad Hoc Report Definition
