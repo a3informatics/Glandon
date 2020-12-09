@@ -50,6 +50,7 @@ describe "Community Dashboard JS", :type => :feature do
       click_browse_every_version
       expect(page).to have_content 'Item History'
       expect(page).to have_content 'Controlled Terminology'
+      wait_for_ajax 10 
       dates = CdiscCtHelpers.date_version_map
       expect(page).to have_content "#{dates.last} Release"
       expect(page).to have_content "#{dates[-10]} Release"

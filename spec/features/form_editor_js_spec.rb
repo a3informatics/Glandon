@@ -478,9 +478,9 @@ describe "Forms", :type => :feature do
       find(:xpath, '//div[@id="d3"]//a[@id="tuc_reference"]').click
 
       ip_pick_unmanaged_items( :unmanaged_concept, [
-        { parent: 'C100130', version: '10', identifier: 'C25189' },
-        { parent: 'C100130', version: '10', identifier: 'C25174' },
-        { parent: 'C100130', version: '10', identifier: 'C25204' }
+        { parent: 'C100130', version: '2019-12-20', identifier: 'C25189' },
+        { parent: 'C100130', version: '2019-12-20', identifier: 'C25174' },
+        { parent: 'C100130', version: '2019-12-20', identifier: 'C25204' }
       ], 'node-add-child' )
 
       check_alert 'Added successfully.'
@@ -1247,9 +1247,9 @@ describe "Forms", :type => :feature do
       find(:xpath, '//div[@id="d3"]//a[@id="tuc_reference"]').click
 
       ip_pick_unmanaged_items( :unmanaged_concept, [
-        { parent: 'C100130', version: '10', identifier: 'C25189' },
-        { parent: 'C100130', version: '10', identifier: 'C25174' },
-        { parent: 'C100130', version: '10', identifier: 'C25204' }
+        { parent: 'C100130', version: '2019-12-20', identifier: 'C25189' },
+        { parent: 'C100130', version: '2019-12-20', identifier: 'C25174' },
+        { parent: 'C100130', version: '2019-12-20', identifier: 'C25204' }
       ], 'node-add-child' )
 
       check_alert 'Added successfully.'

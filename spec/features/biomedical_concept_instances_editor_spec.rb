@@ -134,8 +134,8 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       ui_in_modal do
         ip_check_tabs [:unmanaged_concept], 'bc-term-ref'
         ip_pick_unmanaged_items :unmanaged_concept, [
-          { parent: 'C100130', version: '10', identifier: 'C96587' },
-          { parent: 'C100130', version: '10', identifier: 'C96586' }
+          { parent: 'C100130', version: '2019-12-20', identifier: 'C96587' },
+          { parent: 'C100130', version: '2019-12-20', identifier: 'C96586' }
         ], 'bc-term-ref', false
         ip_check_selected_info '2', 'bc-term-ref'
         ip_submit 'bc-term-ref'
@@ -153,8 +153,8 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         ip_submit 'bc-term-ref'
       end
 
-      ui_editor_check_value 6, 8, 'm C41139 (UNIT C71620 v62.0.0)'
-      ui_editor_check_value 6, 8, 'cm C49668 (VSRESU C66770 v59.0.0)'
+      ui_editor_check_value 6, 8, 'm C41139 (UNIT C71620 v45.0.0)'
+      ui_editor_check_value 6, 8, 'cm C49668 (VSRESU C66770 v18.0.0)'
 
       # Remove All Terminology References
 
@@ -178,7 +178,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       # Attemp to add more Terminology References
       ui_in_modal do
         ip_pick_unmanaged_items :unmanaged_concept, [
-          { parent: 'C100130', version: '10', identifier: 'C96587' }
+          { parent: 'C100130', version: '2019-12-20', identifier: 'C96587' }
         ], 'bc-term-ref'
       end
 
@@ -323,12 +323,12 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
       ui_in_modal do
           ip_pick_unmanaged_items :unmanaged_concept, [
-            { parent: 'C74456', version: '38', identifier: 'C32974' }
+            { parent: 'C74456', version: '2019-12-20', identifier: 'C32974' }
           ], 'bc-term-ref'
       end
 
-      ui_editor_check_value 9, 8, 'ARM C32141 (LOC C74456 v62.0.0)'
-      ui_editor_check_value 9, 8, 'LEG C32974 (LOC C74456 v62.0.0)'
+      ui_editor_check_value 9, 8, 'ARM C32141 (LOC C74456 v38.0.0)'
+      ui_editor_check_value 9, 8, 'LEG C32974 (LOC C74456 v38.0.0)'
 
       # Remove Term Reference
 
@@ -339,7 +339,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         ip_submit 'bc-term-ref'
       end
 
-      ui_editor_check_value 9, 8, 'LEG C32974 (LOC C74456 v62.0.0)'
+      ui_editor_check_value 9, 8, 'LEG C32974 (LOC C74456 v38.0.0)'
 
       click_bc 'HEIGHT', :edit
 
@@ -593,11 +593,11 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
       ui_in_modal do
           ip_pick_unmanaged_items :unmanaged_concept, [
-            { parent: 'C74456', version: '38', identifier: 'C32974' }
+            { parent: 'C74456', version: '2019-12-20', identifier: 'C32974' }
           ], 'bc-term-ref'
       end
 
-      ui_editor_check_value 2, 8, 'LEG C32974 (LOC C74456 v62.0.0)'
+      ui_editor_check_value 2, 8, 'LEG C32974 (LOC C74456 v38.0.0)'
 
       click_on 'Return'
       wait_for_ajax 20
