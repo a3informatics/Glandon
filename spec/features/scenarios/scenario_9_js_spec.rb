@@ -82,7 +82,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       ui_table_search("index", "Epoch")
       find(:xpath, "//tr[contains(.,'CDISC')]/td/a").click
       wait_for_ajax 10
-      context_menu_element_v2("history", "52.0.0", :show)
+      context_menu_element_v2("history", "2017-06-30", :show)
       wait_for_ajax 10
       context_menu_element_header(:extend)
       ip_pick_managed_items(:thesauri, [{identifier: "TST", version: "1"}], "thesaurus")
@@ -91,8 +91,8 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       # Edit Extension, Add items
       click_on "Add items"
       ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: "C99074", version: "31", identifier: "C98798" },
-        { parent: "C99074", version: "31", identifier: "C94393" }
+        { parent: "C99074", version: "2017-06-30", identifier: "C98798" },
+        { parent: "C99074", version: "2017-06-30", identifier: "C94393" }
       ], "add-children")
 
       wait_for_ajax 10
@@ -122,7 +122,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       ui_table_search("index", "Anatomical")
       find(:xpath, "//tr[contains(.,'CDISC')]/td/a").click
       wait_for_ajax 10
-      context_menu_element_v2("history", "60.0.0", :show)
+      context_menu_element_v2("history", "2019-06-28", :show)
       wait_for_ajax 10
       context_menu_element_header(:subsets)
       ui_in_modal do
@@ -385,7 +385,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       ui_table_search("index", "Epoch")
       find(:xpath, "//tr[contains(.,'CDISC')]/td/a").click
       wait_for_ajax 10
-      context_menu_element_v2("history", "52.0.0", :show)
+      context_menu_element_v2("history", "2017-06-30", :show)
       wait_for_ajax 10
       context_menu_element_header(:extend)
 

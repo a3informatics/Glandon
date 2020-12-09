@@ -274,8 +274,8 @@ describe "Rank", :type => :feature do
       click_link 'Add items'
 
       ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: "C99074", owner: "cdisc", version: "9", identifier: "C98798" },
-        { parent: "C99074", owner: "cdisc", version: "9", identifier: "C94393" }
+        { parent: "C99074", owner: "cdisc", version: "2019-12-20", identifier: "C98798" },
+        { parent: "C99074", owner: "cdisc", version: "2019-12-20", identifier: "C94393" }
       ], 'add-children')
       wait_for_ajax 10
 
