@@ -35,8 +35,8 @@
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
   :identifier: C66767
   :version_label: 2013-06-28 Release
-  :version: 35
-  :semantic_version: 35.0.0
+  :version: 5
+  :semantic_version: 5.0.0
   :has_scope:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
     :uri: http://www.assero.co.uk/NS#CDISC
@@ -56,21 +56,21 @@
   an adverse event.
 :extensible: false
 :narrower:
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDI=
-  :uri: http://www.cdisc.org/C66767/V4#C66767_C49502
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDU=
+  :uri: http://www.cdisc.org/C66767/V4#C66767_C49505
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-  :label: Drug Withdrawn
-  :identifier: C49502
-  :notation: DRUG WITHDRAWN
-  :definition: An indication that a medication schedule was modified through termination
-    of a prescribed regimen of medication. (NCI)
+  :label: Dose Reduced
+  :identifier: C49505
+  :notation: DOSE REDUCED
+  :definition: An indication that a medication schedule was modified by subtraction,
+    either by changing the frequency, strength or amount. (NCI)
   :extensible: false
   :narrower: []
   :preferred_term:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjM2MzMDFkMjQ3MTgxMGFjOTI0ZDBhYmFjOGE3YzJkMTQ0NmY4M2VhMQ==
-    :uri: http://www.assero.co.uk/PT#3c301d2471810ac924d0abac8a7c2d1446f83ea1
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMmNjOTU0MDBhMzVhNTU5OGFiMWZkODljMTQ0MzM2MTFmMTVmZTVmZA==
+    :uri: http://www.assero.co.uk/PT#2cc95400a35a5598ab1fd89c14433611f15fe5fd
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-    :label: Drug Withdrawn
+    :label: Dose Reduced
   :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDQ=
   :uri: http://www.cdisc.org/C66767/V4#C66767_C49504
@@ -110,21 +110,21 @@
     :uri: http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6
     :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
     :label: U
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDE=
-  :uri: http://www.cdisc.org/C66767/V4#C66767_C49501
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDI=
+  :uri: http://www.cdisc.org/C66767/V4#C66767_C49502
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-  :label: Drug Interrupted
-  :identifier: C49501
-  :notation: DRUG INTERRUPTED
-  :definition: An indication that a medication schedule was modified by temporarily
-    terminating a prescribed regimen of medication. (NCI)
+  :label: Drug Withdrawn
+  :identifier: C49502
+  :notation: DRUG WITHDRAWN
+  :definition: An indication that a medication schedule was modified through termination
+    of a prescribed regimen of medication. (NCI)
   :extensible: false
   :narrower: []
   :preferred_term:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMzI0N2Q3YjhjMjMyMjZkMTcwY2IwZTRlNTFlZGNiY2IzYWVhNThkZg==
-    :uri: http://www.assero.co.uk/PT#3247d7b8c23226d170cb0e4e51edcbcb3aea58df
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjM2MzMDFkMjQ3MTgxMGFjOTI0ZDBhYmFjOGE3YzJkMTQ0NmY4M2VhMQ==
+    :uri: http://www.assero.co.uk/PT#3c301d2471810ac924d0abac8a7c2d1446f83ea1
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-    :label: Drug Interrupted
+    :label: Drug Withdrawn
   :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDM=
   :uri: http://www.cdisc.org/C66767/V4#C66767_C49503
@@ -142,21 +142,21 @@
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
     :label: Dose Increased
   :synonym: []
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDU=
-  :uri: http://www.cdisc.org/C66767/V4#C66767_C49505
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDE=
+  :uri: http://www.cdisc.org/C66767/V4#C66767_C49501
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-  :label: Dose Reduced
-  :identifier: C49505
-  :notation: DOSE REDUCED
-  :definition: An indication that a medication schedule was modified by subtraction,
-    either by changing the frequency, strength or amount. (NCI)
+  :label: Drug Interrupted
+  :identifier: C49501
+  :notation: DRUG INTERRUPTED
+  :definition: An indication that a medication schedule was modified by temporarily
+    terminating a prescribed regimen of medication. (NCI)
   :extensible: false
   :narrower: []
   :preferred_term:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMmNjOTU0MDBhMzVhNTU5OGFiMWZkODljMTQ0MzM2MTFmMTVmZTVmZA==
-    :uri: http://www.assero.co.uk/PT#2cc95400a35a5598ab1fd89c14433611f15fe5fd
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMzI0N2Q3YjhjMjMyMjZkMTcwY2IwZTRlNTFlZGNiY2IzYWVhNThkZg==
+    :uri: http://www.assero.co.uk/PT#3247d7b8c23226d170cb0e4e51edcbcb3aea58df
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-    :label: Dose Reduced
+    :label: Drug Interrupted
   :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1YyOCNDNjY3NjdfQzQ4NjYw
   :uri: http://www.cdisc.org/C66767/V28#C66767_C48660
