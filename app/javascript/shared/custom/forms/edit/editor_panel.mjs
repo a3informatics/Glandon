@@ -8,7 +8,6 @@ import { $get } from 'shared/helpers/ajax'
 import { D3Tooltip } from 'shared/helpers/d3/renderers/tooltip'
 import { D3Actions } from 'shared/helpers/d3/renderers/actions'
 
-import colors from 'shared/ui/colors'
 import { iconBtn } from 'shared/ui/buttons'
 import { cropText } from 'shared/helpers/strings'
 import { alerts } from 'shared/ui/alerts'
@@ -204,6 +203,7 @@ export default class FormEditor extends TreeGraph {
    * @param {Object} rawData Graph data fetched from the server
    */
   _preprocessData(rawData) {
+
     let data = this.d3.hierarchy( rawData, d => [
         ...d.has_group||[],
         ...d.has_common||[],
