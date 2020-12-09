@@ -13,11 +13,12 @@ class Thesauri::UnmanagedConceptsController < ManagedItemsController
     @close_path = request.referer
   end
 
-  def changes_data
-    authorize Thesaurus, :show?
-    tc = Thesaurus::UnmanagedConcept.find(protect_from_bad_id(params))
-    render json: {data: tc.changes(current_user.max_term_display.to_i)}
-  end
+  # TAKE CARE WITH NEXT ACTION. Commented out as does not appear to be be used
+  # def changes_data
+  #   authorize Thesaurus, :show?
+  #   tc = Thesaurus::UnmanagedConcept.find(protect_from_bad_id(params))
+  #   render json: {data: tc.changes(current_user.max_term_display.to_i)}
+  # end
 
   def differences
     authorize Thesaurus, :show?

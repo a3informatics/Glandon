@@ -488,29 +488,30 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(tc.changes_count(4)).to eq(2)
     end
 
-    it "finds changes, 4 - NEEDS WORK" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
-      results = tc.changes(4)
-      check_file_actual_expected(results, sub_dir, "changes_expected_1.yaml")
-    end
+    # TAKE CARE WITH NEXT FOUR TESTS. The changes method has been commented out as does not appear to be be used
+    # it "finds changes, 4 - NEEDS WORK" do
+    #   tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+    #   results = tc.changes(4)
+    #   check_file_actual_expected(results, sub_dir, "changes_expected_1.yaml")
+    # end
 
-    it "finds changes, 8 - NEEDS WORK" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
-      results = tc.changes(8)
-      check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml")
-    end
+    # it "finds changes, 8 - NEEDS WORK" do
+    #   tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+    #   results = tc.changes(8)
+    #   check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml")
+    # end
 
-    it "finds changes, 4 - NEEDS WORK" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C124661/V46#C124661_C124716"))
-      results = tc.changes(4)
-      check_file_actual_expected(results, sub_dir, "changes_expected_3.yaml")
-    end
+    # it "finds changes, 4 - NEEDS WORK" do
+    #   tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C124661/V46#C124661_C124716"))
+    #   results = tc.changes(4)
+    #   check_file_actual_expected(results, sub_dir, "changes_expected_3.yaml")
+    # end
 
-    it "finds changes, 4 - NEEDS WORK" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V55#C100129_C147585"))
-      results = tc.changes(4)
-      check_file_actual_expected(results, sub_dir, "changes_expected_4.yaml")
-    end
+    # it "finds changes, 4 - NEEDS WORK" do
+    #   tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V55#C100129_C147585"))
+    #   results = tc.changes(4)
+    #   check_file_actual_expected(results, sub_dir, "changes_expected_4.yaml")
+    # end
 
     it "differences, I" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))

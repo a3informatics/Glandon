@@ -65,16 +65,17 @@ describe Thesauri::UnmanagedConceptsController do
       expect(response).to render_template("changes")
     end
 
-    it "changes data" do
-      @user.write_setting("max_term_display", 2)
-      request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
-      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:changes).and_return({a: "1", b: "2"})
-      get :changes_data, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({a: "1", b: "2"})
-    end
+    # TAKE CARE WITH NEXT ACTION. Commented out as does not appear to be be used
+    # it "changes data" do
+    #   @user.write_setting("max_term_display", 2)
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
+    #   expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:changes).and_return({a: "1", b: "2"})
+    #   get :changes_data, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")
+    #   expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({a: "1", b: "2"})
+    # end
 
     it "differences" do
       @user.write_setting("max_term_display", 2)
