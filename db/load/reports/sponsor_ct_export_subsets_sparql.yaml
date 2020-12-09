@@ -65,14 +65,15 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?clisyn;separator=";") as ?synonym) ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage WHERE  
 {
   {
-    SELECT ?cl ?cli (COUNT(?mid) as ?displayorder) WHERE 
+    SELECT ?cl ?cli ?clisyn (COUNT(?mid) as ?displayorder) WHERE 
     {
       VALUES ?s {[[[parameter_1]]]}
       ?s th:isTopConceptReference/bo:reference ?cl .
       ?cl th:isOrdered/th:members/th:memberNext* ?mid . 
       ?mid th:memberNext* ?m .
       ?m th:item ?cli .
-    } GROUP BY ?cl ?cli ORDER BY ?cl
+      OPTIONAL {?cli th:synonym/isoC:label ?clisyn}
+    } GROUP BY ?cl ?cli ?clisyn ORDER BY ?cl ?cli ?clisyn
   }
   ?cl th:subsets ?clp .
   ?clp th:identifier ?clc .  
@@ -83,7 +84,6 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?
   ?cli th:identifier ?code .  
   ?cli th:preferredTerm/isoC:label ?decode .
   ?cli th:notation ?svalue .
-  OPTIONAL {?cli th:synonym/isoC:label ?clisyn .}
   ?cli isoC:label ?crfdv
   OPTIONAL 
   {
