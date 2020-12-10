@@ -256,7 +256,7 @@ describe "Thesauri Search", :type => :feature do
       ui_check_table_info("searchTable", 0, 0, 0)
     end
 
-    it "Search, advanced syntax", js:true do
+    it "Search, advanced syntax - NOTE - CHECK FOR TAGS", js:true do
       search_latest
 
       ui_term_overall_search("blood OR muscle")
@@ -279,7 +279,7 @@ describe "Thesauri Search", :type => :feature do
 
       ui_term_column_search(:item, 'C17634')
       ui_term_column_search(:tags, 'SEND')
-      ui_check_table_info("searchTable", 0, 0, 0)
+      ui_check_table_info("searchTable", 1, 2, 2)
       ui_term_column_search(:tags, 'SDTM')
       ui_check_table_info("searchTable", 1, 2, 2)
       click_button "clear_button"
