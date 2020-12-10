@@ -167,9 +167,10 @@ describe "Custom Properties", type: :feature  do
       new_codelist_and_edit
 
       click_on 'Add items'
+      pause
       ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: 'C100130', owner: 'Sanofi', version: '3', identifier: 'C96587' },
-        { parent: 'C100130', owner: 'Sanofi', version: '3', identifier: 'C96586' }
+        { parent: 'C100130', owner: 'Sanofi', version: '3.1', identifier: 'C96587' },
+        { parent: 'C100130', owner: 'Sanofi', version: '3.1', identifier: 'C96586' }
       ], 'add-children')
       wait_for_ajax 20 
 
