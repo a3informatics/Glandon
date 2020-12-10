@@ -29,9 +29,9 @@ class IsoManagedV2
     # Instance Methods
     # ----------------
 
-    # Dependency Required By. Return the URIs of the managed items that require this managed item.
+    # Dependency Required By. Return the info for the managed items that require this managed item.
     #
-    # @return [Array] array of URIs of the managed items using this managed item
+    # @return [Array] array of MI minimum info of the managed items using this managed item
     def dependency_required_by
       results = []
       paths = paths_for_klass
