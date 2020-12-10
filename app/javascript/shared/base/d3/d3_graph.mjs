@@ -253,11 +253,9 @@ export default class D3Graph {
     $( this.selector ).find( '#d3-clear-search' )
                       .on( 'click', () => this.clearSearch( true ) );
 
-    // Search graph on input key up event, enable / disable graph keys controls on focus out / in
+    // Search graph on input key up event
     $( this.selector ).find( '#d3-search' )
-                      .on( 'keyup', e => this._onSearchInput(e) )
-                      .on( 'focusin', e => this.keysDisable() )
-                      .on( 'focusout', e => this.keysEnable() );
+                      .on( 'keyup', e => this._onSearchInput(e) );
 
   }
 

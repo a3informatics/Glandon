@@ -184,6 +184,12 @@ export default class TreeGraph extends D3Graph {
     if ( this.keyControls )
       $( 'body' ).on( 'keydown', e => this._onKeyPress(e) );
 
+    // Search graph enable / disable graph keys controls on focus out / in
+    if ( this.keyControls )
+      $( this.selector ).find( '#d3-search' )
+                        .on( 'focusin', e => this.keysDisable() )
+                        .on( 'focusout', e => this.keysEnable() );
+
   }
 
   /**
