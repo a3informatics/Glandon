@@ -1,7 +1,7 @@
-import TabsLayout from 'shared/ui/tabs_layout'
+import ImpactPanel from 'shared/custom/iso_managed/impact/impact_panel'
 
 $(document).ready(() => {
 
-  TabsLayout.initialize();
+  const ip = new ImpactPanel()
 
 });
