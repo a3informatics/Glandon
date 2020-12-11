@@ -64,6 +64,14 @@ export default class D3Node {
   }
 
   /**
+   * Get value that the Node is found by (same as label by default)
+   * @return {string} Node search value
+   */
+  get searchLabel() {
+    return this.label;
+  }
+
+  /**
    * Get node element bounding client rectangle
    * @return {Object} Node Element bounding rectangle object
    */

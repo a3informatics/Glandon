@@ -319,7 +319,7 @@ export default class D3Graph {
 
     // Find matches
     let matches = this.d3.selectAll( `${this.selector} .node` )
-                         .filter( d => findInString( searchText, new this.Node(d).label ) )
+                         .filter( d => findInString( searchText, new this.Node(d).searchLabel ) )
                          .nodes();
 
     $( matches ).addClass( 'search-match' ); // Mark matching nodes
