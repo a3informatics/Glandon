@@ -31,11 +31,27 @@ export default class ImpactNode extends D3Node {
   }
 
   /**
+   * Get value that the Node is found by
+   * @return {string} Node search value (identifier)
+   */
+  get searchLabel() {
+    return this.data.identifier;
+  }
+
+  /**
    * Get Node's RDF Type
    * @return {string} Value representing Node's RDF type data flag equal to false
    */
   get rdf() {
     return this.data.rdf_type;
+  }
+
+  /**
+   * Get Node's name
+   * @return {string} Value representing Node's name corresponding to its RDF type
+   */
+  get rdfName() {
+    return getRdfNameByType( this.rdf );
   }
 
   /**

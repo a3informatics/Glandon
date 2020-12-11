@@ -1,5 +1,5 @@
 import TabsLayout from 'shared/ui/tabs_layout'
-import ForceGraph from '../../../base/d3/force_graph/force_graph.mjs'
+import ImpactGraph from './impact_graph.mjs'
 
 /**
  * Impact Panel
@@ -14,13 +14,14 @@ export default class ImpactPanel {
      * @param {string} params.selector JQuery selector of the panel 
      */
     constructor({
-        selector = '#impact-panel #d3'
+        selector = '#impact-panel'
     } = {}) {
 
         Object.assign( this, { 
             selector,
-            impactGraph: new ForceGraph({
-                selector
+            impactGraph: new ImpactGraph({
+                selector: `${ selector } #impact-graph`,
+                dataUrl: impactDataUrl
             })
         })
 
