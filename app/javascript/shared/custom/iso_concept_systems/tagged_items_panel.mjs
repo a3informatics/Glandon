@@ -1,6 +1,6 @@
 import ModalView from 'shared/base/modal_view'
 
-import TablePanel from 'shared/base/table_panel'
+import ManagedItemsPanel from 'shared/custom/iso_managed/managed_items_panel'
 
 /**
  * Tagged Items Panel module
@@ -59,9 +59,8 @@ export default class TaggedItemsPanel extends ModalView {
    */
   _initialize() {
 
-    this.tp = new TablePanel({
-      selector: `${ this.selector } #tagged-items-table`,
-      extraColumns: this.columns,
+    this.tp = new ManagedItemsPanel({
+      selector: this.selector,
       deferLoading: true,
       paginated: false,
       tableOptions: {
@@ -117,19 +116,6 @@ export default class TaggedItemsPanel extends ModalView {
 
   /*** Support ***/
 
-
-  /**
-   * Get the panel column definitions
-   * @return {array} DT column definitions
-   */
-  get columns() {
-    return [
-      { data: 'identifier' },
-      { data: 'version' },
-      { data: 'label', width: '50%' },
-      { data: 'version_label' }
-    ]
-  }
 
   /**
    * Get the data url to fetch tagged items for current Tag instance
