@@ -221,7 +221,7 @@ describe "Import::SponsorTermFormatOne" do
         {
           identifier: @release_details[0][:identifier], version: "1", 
           date: @release_details[0][:date], files: [full_path], fixes: fixes, 
-          version_label: "1.0.0", label: @release_details[0][:label], 
+          version_label: @release_details[0][:label], label: @release_details[0][:label], 
           semantic_version: "1.0.0", job: @job, uri: ct.uri,
           release: @release_details[0][:release]
         }
@@ -254,8 +254,8 @@ describe "Import::SponsorTermFormatOne" do
         expect(missing).to eq([])
         expect(extra).to eq([])
         expect(count_cl(th)).to eq(results.count)
-        expect(count_cli(th)).to eq(22322)
-        expect(count_distinct_cli(th)).to eq(20097)
+        expect(count_cli(th)).to eq(22321) 
+        expect(count_distinct_cli(th)).to eq(20096)
         results.each do |x|
           check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
         end
@@ -275,7 +275,7 @@ describe "Import::SponsorTermFormatOne" do
         {
           identifier: @release_details[1][:identifier], version: "1", 
           date: @release_details[1][:date], files: [full_path], fixes: fixes, 
-          version_label: "1.0.0", label: @release_details[1][:label], 
+          version_label: @release_details[1][:label], label: @release_details[1][:label], 
           semantic_version: "1.0.0", job: @job, uri: ct.uri,
           release: @release_details[1][:release]
         }
@@ -309,8 +309,8 @@ describe "Import::SponsorTermFormatOne" do
         expect(missing).to eq([])
         expect(extra).to eq([])
         expect(count_cl(th)).to eq(results.count)
-        expect(count_cli(th)).to eq(31930)
-        expect(count_distinct_cli(th)).to eq(29515)
+        expect(count_cli(th)).to eq(31929)
+        expect(count_distinct_cli(th)).to eq(29514)
         results.each do |x|
           check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
         end    
@@ -331,7 +331,7 @@ describe "Import::SponsorTermFormatOne" do
         {
           identifier: @release_details[2][:identifier], version: "1", 
           date: @release_details[2][:date], files: [full_path], fixes: fixes, 
-          version_label: "1.0.0", label: @release_details[2][:label], 
+          version_label: @release_details[2][:label], label: @release_details[2][:label], 
           semantic_version: "1.0.0", job: @job, uri: ct.uri,
           release: @release_details[2][:release]
         }
@@ -366,8 +366,8 @@ describe "Import::SponsorTermFormatOne" do
         expect(missing).to eq([])
         expect(extra).to eq([])
         expect(count_cl(th)).to eq(results.count)
-        expect(count_cli(th)).to eq(32780)
-        expect(count_distinct_cli(th)).to eq(30211)
+        expect(count_cli(th)).to eq(32779)
+        expect(count_distinct_cli(th)).to eq(30210)
         results.each do |x|
           check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
         end    
@@ -417,7 +417,7 @@ describe "Import::SponsorTermFormatOne" do
       th_3_0 = Thesaurus.find_minimum(@uri_3_0)
       th_3_1 = Thesaurus.find_minimum(@uri_3_1)
       results = th_3_0.differences(th_3_1)
-      check_file_actual_expected(results, sub_dir, "import_differences_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "import_differences_expected_2.yaml", equate_method: :hash_equal, write_file: false)
       r_3_0 = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
       r_3_1 = read_yaml_file(sub_dir, "import_results_expected_3-1.yaml")
       prev = r_3_0.map{|x| x[:identifier].to_sym}.uniq
@@ -516,7 +516,7 @@ describe "Import::SponsorTermFormatOne" do
     end
 
     it "counts and ranks" do
-      {"2-6" => {uri: @uri_2_6, count: 197257}, "3-0" => {uri: @uri_3_0, count: 291383}, "3-1" => {uri: @uri_3_1, count: 299947}}.each do |version, data|
+      {"2-6" => {uri: @uri_2_6, count: 197248}, "3-0" => {uri: @uri_3_0, count: 291375}, "3-1" => {uri: @uri_3_1, count: 299939}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
@@ -612,9 +612,9 @@ describe "Import::SponsorTermFormatOne" do
 
     it "custom property analysis" do
       counts = [
-        {cl: 803, cli: 22322},
-        {cl: 1080, cli: 31930},
-        {cl: 1171, cli: 32780},
+        {cl: 803, cli: 22321},
+        {cl: 1080, cli: 31929},
+        {cl: 1171, cli: 32779},
       ]
       ct_set.each_with_index do |v, index|
         print "Processing: #{v[:uri]}, v#{v[:version]}  "

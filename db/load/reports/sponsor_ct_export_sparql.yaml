@@ -64,79 +64,83 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   
 SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?clisyn;separator=";") as ?synonym) ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage WHERE  
 {
-  { 
-    VALUES ?s {[[[parameter_1]]]}
-    ?s th:isTopConceptReference/bo:reference ?cl .
-    FILTER (NOT EXISTS {?cl th:isOrdered ?x})
-    ?cl th:identifier ?clc .  
-    ?cl th:notation ?clsn .
-    ?cl th:extensible ?cle .
-    ?cl th:definition ?cld .
-    ?cl th:preferredTerm/isoC:label ?clln .
-    
+  {
+    SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue ?clisyn ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage WHERE  
     {
-      FILTER (EXISTS {?cl ^th:pairedWith ?y})
-      ?cl th:narrower ?cli .
-      ?cli th:definition ?clid .
-      ?cl ^th:pairedWith ?clp .
-      ?clp th:narrower ?clpi .
-      ?clpi th:definition ?clid .
-      ?clpi th:identifier ?code .  
-    } 
-    UNION 
-    {
-      FILTER (EXISTS {?cl th:pairedWith ?y})
-      ?cl th:narrower ?cli .
-      ?cli th:definition ?clid .
-      ?cli th:identifier ?code .  
-    }
-    UNION
-    {
-      FILTER (NOT EXISTS {?cl th:pairedWith ?y} && NOT EXISTS {?cl ^th:pairedWith ?z})
-      ?cl th:narrower ?cli .
-      ?cli th:identifier ?code .  
-    }
+      VALUES ?s {[[[parameter_1]]]}
+      ?s th:isTopConceptReference/bo:reference ?cl .
+      FILTER (NOT EXISTS {?cl th:isOrdered ?x})
+      ?cl th:identifier ?clc .  
+      ?cl th:notation ?clsn .
+      ?cl th:extensible ?cle .
+      ?cl th:definition ?cld .
+      ?cl th:preferredTerm/isoC:label ?clln .
+      
+      {
+        FILTER (EXISTS {?cl ^th:pairedWith ?y})
+        ?cl th:narrower ?cli .
+        ?cli th:definition ?clid .
+        ?cl ^th:pairedWith ?clp .
+        ?clp th:narrower ?clpi .
+        ?clpi th:definition ?clid .
+        ?clpi th:identifier ?code .  
+      } 
+      UNION 
+      {
+        FILTER (EXISTS {?cl th:pairedWith ?y})
+        ?cl th:narrower ?cli .
+        ?cli th:definition ?clid .
+        ?cli th:identifier ?code .  
+      }
+      UNION
+      {
+        FILTER (NOT EXISTS {?cl th:pairedWith ?y} && NOT EXISTS {?cl ^th:pairedWith ?z})
+        ?cl th:narrower ?cli .
+        ?cli th:identifier ?code .  
+      }
 
-    ?cli th:preferredTerm/isoC:label ?decode .
-    ?cli th:notation ?svalue .
+      ?cli th:preferredTerm/isoC:label ?decode .
+      ?cli th:notation ?svalue .
 
-    ?cli ^isoC:appliesTo ?ext1 .
-    ?ext1 isoC:context ?cl . 
-    ?ext1 isoC:customPropertyDefinedBy/isoC:label "SDTM Stage" .
-    ?ext1 isoC:value ?sdtm_stage .
-    ?cli ^isoC:appliesTo ?ext2 .
-    ?ext2 isoC:context ?cl . 
-    ?ext2 isoC:customPropertyDefinedBy/isoC:label "DC Stage" .
-    ?ext2 isoC:value ?dc_stage .
-    ?cli ^isoC:appliesTo ?ext3 .
-    ?ext3 isoC:context ?cl . 
-    ?ext3 isoC:customPropertyDefinedBy/isoC:label "ADaM Stage" .
-    ?ext3 isoC:value ?adam_stage .
-    ?cli ^isoC:appliesTo ?ext4 .
-    ?ext4 isoC:context ?cl . 
-    ?ext4 isoC:customPropertyDefinedBy/isoC:label "CRF Display Value" .
-    ?ext4 isoC:value ?crfdv .
+      ?cli ^isoC:appliesTo ?ext1 .
+      ?ext1 isoC:context ?cl . 
+      ?ext1 isoC:customPropertyDefinedBy/isoC:label "SDTM Stage" .
+      ?ext1 isoC:value ?sdtm_stage .
+      ?cli ^isoC:appliesTo ?ext2 .
+      ?ext2 isoC:context ?cl . 
+      ?ext2 isoC:customPropertyDefinedBy/isoC:label "DC Stage" .
+      ?ext2 isoC:value ?dc_stage .
+      ?cli ^isoC:appliesTo ?ext3 .
+      ?ext3 isoC:context ?cl . 
+      ?ext3 isoC:customPropertyDefinedBy/isoC:label "ADaM Stage" .
+      ?ext3 isoC:value ?adam_stage .
+      ?cli ^isoC:appliesTo ?ext4 .
+      ?ext4 isoC:context ?cl . 
+      ?ext4 isoC:customPropertyDefinedBy/isoC:label "CRF Display Value" .
+      ?ext4 isoC:value ?crfdv .
 
-    BIND ("" AS ?displayorder)
-    OPTIONAL {?cli th:synonym/isoC:label ?clisyn .}
-    OPTIONAL 
-    {
-      ?cli ^(th:item) ?rank_member . 
-      FILTER (EXISTS {?cl th:isRanked/th:members/th:memberNext* ?rank_member })  
-      ?rank_member th:rank ?rank 
-    }
+      BIND ("" AS ?displayorder)
+      OPTIONAL {?cli th:synonym/isoC:label ?clisyn .}
+      OPTIONAL 
+      {
+        ?cli ^(th:item) ?rank_member . 
+        FILTER (EXISTS {?cl th:isRanked/th:members/th:memberNext* ?rank_member })  
+        ?rank_member th:rank ?rank 
+      }
+    } ORDER BY ?cl ?cli ?clisyn
   }
   UNION
   {
     {
-      SELECT ?cl ?cli (COUNT(?mid) as ?displayorder) WHERE 
+      SELECT ?cl ?cli ?clisyn (COUNT(?mid) as ?displayorder) WHERE 
       {
         VALUES ?s {[[[parameter_1]]]}
         ?s th:isTopConceptReference/bo:reference ?cl .
         ?cl th:isOrdered/th:members/th:memberNext* ?mid . 
         ?mid th:memberNext* ?m .
         ?m th:item ?cli .
-      } GROUP BY ?cl ?cli ORDER BY ?cl
+        OPTIONAL {?cli th:synonym/isoC:label ?clisyn}
+      } GROUP BY ?cl ?cli ?clisyn ORDER BY ?cl ?cli ?clisyn
     }
     ?cl th:subsets ?clp .
     ?clp th:identifier ?clc .  
@@ -165,7 +169,6 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?
     ?ext4 isoC:customPropertyDefinedBy/isoC:label "CRF Display Value" .
     ?ext4 isoC:value ?crfdv .
 
-    OPTIONAL {?cli th:synonym/isoC:label ?clisyn .}
     OPTIONAL 
     {
       ?cli ^(th:item) ?rank_member . 
@@ -173,5 +176,5 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?
       ?rank_member th:rank ?rank 
     }
   }
-} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ORDER BY ?clisyn ?clc ?code ?displayorder ?rank'
+} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ORDER BY ?clc ?code ?displayorder ?rank'
 :type: Ad Hoc Report Definition

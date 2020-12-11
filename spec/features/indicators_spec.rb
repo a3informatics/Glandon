@@ -64,7 +64,7 @@ describe "Indicators", :type => :feature do
       ui_table_search("index", "cdisc Epoch")
       find(:xpath, "//tr[contains(.,'Epoch')]/td/a").click
       wait_for_ajax 10
-      context_menu_element("history", 1, "52.0.0", :show)
+      context_menu_element("history", 1, "8.0.0", :show)
       wait_for_ajax 10
       ui_check_table_row_indicators("children", 1, 7, ["1 change instruction"], new_style: true)
       ui_check_indicators("#header-indicators .indicators-wrap", ["subsetted", "extended"])
@@ -78,7 +78,7 @@ describe "Indicators", :type => :feature do
       ui_table_search("index", "cdisc Epoch")
       find(:xpath, "//tr[contains(.,'Epoch')]/td/a").click
       wait_for_ajax 10
-      context_menu_element("history", 1, "52.0.0", :show)
+      context_menu_element("history", 1, "8.0.0", :show)
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'C99158')]/td/a").click
       wait_for_ajax 10

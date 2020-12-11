@@ -113,16 +113,15 @@ module Import::STFOClasses
         add_error("Failed to find referenced code list for an extension, identifier '#{self.identifier}'.")
       else
         self.extends = ref_ct
-        new_narrower = ref_ct.narrower
+        new_narrower = []
         self.narrower.each do |child|
           new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
-          # If new_child is NOT nil then already in the CL being extended, nothing else to do.
-          # Otherwise try and find it.
-          copy_properties_from_to(child, new_child) unless new_child.nil?
-          next unless new_child.nil?
-          new_child = sponsor_or_referenced(ct, child, fixes)
+          if new_child.nil?
+            new_child = sponsor_or_referenced(ct, child, fixes) if new_child.nil?
+            add_error("To extension, cannot find a code list item, identifier '#{child.identifier}', for extension '#{self.identifier}'.") if new_child.nil?
+          end
           next if new_child.nil?
-          copy_properties_from_to(child, new_child) unless new_child.nil?
+          copy_properties_from_to(child, new_child)
           new_narrower << new_child 
         end
         self.narrower = new_narrower

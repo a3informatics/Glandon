@@ -154,6 +154,24 @@ class IsoScopedIdentifierV2 < Fuseki::Base
     identifier.gsub(/[^A-Z0-9a-z ]/i, ' ').upcase.strip
   end
 
+  # Amend Version. Set the version to that specified and align the semantic version.
+  #
+  # @param [Integer] version the version
+  # @return [ScopedIdentifierV2] the amended object
+  def amend_version(version)
+    self.version = version
+    self.semantic_version = SemanticVersion.new(major: version).to_s
+    self
+  end
+
+  # Amend To Next Version. Set the version to the next version to that specified and align the semantic version.
+  #
+  # @param [Integer] version the version
+  # @return [ScopedIdentifierV2] the amended object
+  def amend_to_next_version(version)
+    amend_version(version + 1)
+  end
+
 private
 
   # The update query

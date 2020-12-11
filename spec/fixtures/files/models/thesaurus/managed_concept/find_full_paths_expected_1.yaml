@@ -35,8 +35,8 @@
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
   :identifier: C66767
   :version_label: 2009-10-06 Release
-  :version: 18
-  :semantic_version: 18.0.0
+  :version: 3
+  :semantic_version: 3.0.0
   :has_scope:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
     :uri: http://www.assero.co.uk/NS#CDISC
@@ -55,41 +55,6 @@
 :definition: Action Taken with Study Treatment
 :extensible: false
 :narrower:
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDg2NjA=
-  :uri: http://www.cdisc.org/C66767/V4#C66767_C48660
-  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-  :label: Not Applicable
-  :identifier: C48660
-  :notation: NOT APPLICABLE
-  :definition: Determination of a value is not relevant in the current context. (NCI)
-  :extensible: false
-  :narrower: []
-  :preferred_term:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjNjY3MmI4MTVkYzM4N2I2MmQ5ZDVlYzhmZWJhNTM3ZDc3Y2IyYjIwZQ==
-    :uri: http://www.assero.co.uk/PT#6672b815dc387b62d9d5ec8feba537d77cb2b20e
-    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-    :label: Not Applicable
-  :synonym:
-  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzNmZWRhMDE1M2VlZTEzODBiNDk2Mjk4NDUwZGM1YTc0MzI0ZWI4YzE=
-    :uri: http://www.assero.co.uk/SYN#3feda0153eee1380b496298450dc5a74324eb8c1
-    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
-    :label: NA
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDI=
-  :uri: http://www.cdisc.org/C66767/V4#C66767_C49502
-  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-  :label: Drug Withdrawn
-  :identifier: C49502
-  :notation: DRUG WITHDRAWN
-  :definition: An indication that a medication schedule was modified through termination
-    of a prescribed regimen of medication. (NCI)
-  :extensible: false
-  :narrower: []
-  :preferred_term:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjM2MzMDFkMjQ3MTgxMGFjOTI0ZDBhYmFjOGE3YzJkMTQ0NmY4M2VhMQ==
-    :uri: http://www.assero.co.uk/PT#3c301d2471810ac924d0abac8a7c2d1446f83ea1
-    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-    :label: Drug Withdrawn
-  :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDQ=
   :uri: http://www.cdisc.org/C66767/V4#C66767_C49504
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -104,6 +69,22 @@
     :uri: http://www.assero.co.uk/PT#bf82840444a6d601eab6624724049c5c03206aa7
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
     :label: Dose Not Changed
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDU=
+  :uri: http://www.cdisc.org/C66767/V4#C66767_C49505
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Dose Reduced
+  :identifier: C49505
+  :notation: DOSE REDUCED
+  :definition: An indication that a medication schedule was modified by subtraction,
+    either by changing the frequency, strength or amount. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMmNjOTU0MDBhMzVhNTU5OGFiMWZkODljMTQ0MzM2MTFmMTVmZTVmZA==
+    :uri: http://www.assero.co.uk/PT#2cc95400a35a5598ab1fd89c14433611f15fe5fd
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Dose Reduced
   :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DMTc5OTg=
   :uri: http://www.cdisc.org/C66767/V4#C66767_C17998
@@ -128,6 +109,25 @@
     :uri: http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6
     :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
     :label: U
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDg2NjA=
+  :uri: http://www.cdisc.org/C66767/V4#C66767_C48660
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Not Applicable
+  :identifier: C48660
+  :notation: NOT APPLICABLE
+  :definition: Determination of a value is not relevant in the current context. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjNjY3MmI4MTVkYzM4N2I2MmQ5ZDVlYzhmZWJhNTM3ZDc3Y2IyYjIwZQ==
+    :uri: http://www.assero.co.uk/PT#6672b815dc387b62d9d5ec8feba537d77cb2b20e
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Not Applicable
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzNmZWRhMDE1M2VlZTEzODBiNDk2Mjk4NDUwZGM1YTc0MzI0ZWI4YzE=
+    :uri: http://www.assero.co.uk/SYN#3feda0153eee1380b496298450dc5a74324eb8c1
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: NA
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDE=
   :uri: http://www.cdisc.org/C66767/V4#C66767_C49501
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -144,6 +144,22 @@
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
     :label: Drug Interrupted
   :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDI=
+  :uri: http://www.cdisc.org/C66767/V4#C66767_C49502
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Drug Withdrawn
+  :identifier: C49502
+  :notation: DRUG WITHDRAWN
+  :definition: An indication that a medication schedule was modified through termination
+    of a prescribed regimen of medication. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjM2MzMDFkMjQ3MTgxMGFjOTI0ZDBhYmFjOGE3YzJkMTQ0NmY4M2VhMQ==
+    :uri: http://www.assero.co.uk/PT#3c301d2471810ac924d0abac8a7c2d1446f83ea1
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Drug Withdrawn
+  :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDM=
   :uri: http://www.cdisc.org/C66767/V4#C66767_C49503
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -159,22 +175,6 @@
     :uri: http://www.assero.co.uk/PT#cdb61a440dff1686bc210a2eaabbee71b93aff35
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
     :label: Dose Increased
-  :synonym: []
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDU=
-  :uri: http://www.cdisc.org/C66767/V4#C66767_C49505
-  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-  :label: Dose Reduced
-  :identifier: C49505
-  :notation: DOSE REDUCED
-  :definition: An indication that a medication schedule was modified by subtraction,
-    either by changing the frequency, strength or amount. (NCI)
-  :extensible: false
-  :narrower: []
-  :preferred_term:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMmNjOTU0MDBhMzVhNTU5OGFiMWZkODljMTQ0MzM2MTFmMTVmZTVmZA==
-    :uri: http://www.assero.co.uk/PT#2cc95400a35a5598ab1fd89c14433611f15fe5fd
-    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-    :label: Dose Reduced
   :synonym: []
 :extends: 
 :subsets: 

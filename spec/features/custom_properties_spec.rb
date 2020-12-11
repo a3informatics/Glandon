@@ -168,8 +168,8 @@ describe "Custom Properties", type: :feature  do
 
       click_on 'Add items'
       ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: 'C100130', owner: 'Sanofi', version: '3', identifier: 'C96587' },
-        { parent: 'C100130', owner: 'Sanofi', version: '3', identifier: 'C96586' }
+        { parent: 'C100130', owner: 'Sanofi', version: '3.1', identifier: 'C96587' },
+        { parent: 'C100130', owner: 'Sanofi', version: '3.1', identifier: 'C96586' }
       ], 'add-children')
       wait_for_ajax 20 
 
@@ -328,7 +328,7 @@ describe "Custom Properties", type: :feature  do
 
     ### Bugs 
 
-    it "Editing a Standard Sanofi extension sets up CPs incorrectly, FIXED, CL Extension Editor" do
+    it "Editing a Standard Sanofi extension sets up CPs, CL Extension Editor - NOTE, sets to defaults" do
       go_to_codelist 'C100130', 'Sanofi', '3.0.0', :edit
 
       show_custom_props
@@ -342,7 +342,7 @@ describe "Custom Properties", type: :feature  do
     end
 
     it "Extending a CDISC Code List, CP default values bug, should be a model/controller test not feature" do 
-      go_to_codelist 'C99079', 'CDISC', '62', :show
+      go_to_codelist 'C99079', 'CDISC', '10', :show
 
       # Extend CDISC CL
       context_menu_element_header(:extend)
@@ -353,11 +353,11 @@ describe "Custom Properties", type: :feature  do
 
       # Check default values picked up from other sponsor Code Lists
       show_custom_props
-      check_cell_content('editor', 2, 7, 'Run-In') 
+      check_cell_content('editor', 2, 7, '') 
       check_cell_content('editor', 2, 8, false)
-      check_cell_content('editor', 2, 9, true)
+      check_cell_content('editor', 2, 9, false)
       check_cell_content('editor', 2, 10, false) 
-      check_cell_content('editor', 2, 11, true)
+      check_cell_content('editor', 2, 11, false)
 
       # Delete Extension 
       click_link 'Sanofi, C99079E'
@@ -366,7 +366,7 @@ describe "Custom Properties", type: :feature  do
       ui_confirmation_dialog true 
       wait_for_ajax 10 
 
-      go_to_codelist 'C99079', 'CDISC', '62', :show
+      go_to_codelist 'C99079', 'CDISC', '10', :show
      
       # Re-extend CDISC CL 
       context_menu_element_header(:extend)
@@ -377,11 +377,11 @@ describe "Custom Properties", type: :feature  do
 
       # Check default values picked up from other sponsor Code Lists
       show_custom_props
-      check_cell_content('editor', 2, 7, 'Run-In') 
+      check_cell_content('editor', 2, 7, '') 
       check_cell_content('editor', 2, 8, false)
-      check_cell_content('editor', 2, 9, true)
+      check_cell_content('editor', 2, 9, false)
       check_cell_content('editor', 2, 10, false) 
-      check_cell_content('editor', 2, 11, true)
+      check_cell_content('editor', 2, 11, false)
     end 
 
     it "Attempting to extend a specific Sanofi CL freezes server, FIXED" do

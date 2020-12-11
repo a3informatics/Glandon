@@ -9,18 +9,18 @@ module EditorHelpers
   end
 
   def ui_editor_select_by_location(row, col, with_offset = false, table = 'editor')
-    target = find(:xpath, "//table[@id='#{ table }']//tr[#{ row }]/td[#{ col }]")
+    target = find(:xpath, "//table[@id='#{ table }']//tbody/tr[#{ row }]/td[#{ col }]")
     if with_offset
-      target.double_click(x: 5, y: 5)
+      target.double_click(x: 10, y: 10)
     else
       target.double_click()
     end
   end
 
   def ui_editor_select_by_content(text, with_offset = false, table = 'editor')
-    target = find(:xpath, "//table[@id='#{ table }']//tr/td[contains(.,'#{ text }')]")
+    target = find(:xpath, "//table[@id='#{ table }']//tbody/tr/td[contains(.,'#{ text }')]")
     if with_offset
-      target.double_click(x: 5, y: 5)
+      target.double_click(x: 10, y: 10)
     else
       target.double_click()
     end
