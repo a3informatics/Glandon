@@ -47,8 +47,8 @@
 :has_previous_version: 
 :origin: ''
 :change_description: ''
-:creation_date: '2020-11-30T13:59:42+01:00'
-:last_change_date: '2020-11-30T13:59:42+01:00'
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2020-12-11T07:59:22+01:00'
 :explanatory_comment: ''
 :rule: ''
 :ordinal: 1
@@ -72,6 +72,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_STUDYID
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfRE9NQUlO
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_DOMAIN
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -91,6 +92,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_DOMAIN
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfVVNVQkpJRA==
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_USUBJID
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -111,6 +113,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_USUBJID
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTRVE=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESEQ
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -131,6 +134,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEQ
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVHUlBJRA==
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEGRPID
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -151,6 +155,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEGRPID
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVSRUZJRA==
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEREFID
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -171,6 +176,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEREFID
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTUElE
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESPID
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -192,6 +198,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESPID
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVURVJN
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AETERM
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -211,6 +218,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AETERM
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVNT0RJRlk=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEMODIFY
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -231,6 +239,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEMODIFY
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVERUNPRA==
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEDECOD
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -253,6 +262,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEDECOD
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVDQVQ=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AECAT
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -273,6 +283,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECAT
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTQ0FU
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESCAT
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -292,6 +303,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAT
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVQUkVTUA==
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEPRESP
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -322,6 +334,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVCT0RTWVM=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEBODSYS
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -344,6 +357,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEBODSYS
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVMT0M=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AELOC
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -373,6 +387,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AELOC
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTRVY=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESEV
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -402,6 +417,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEV
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTRVI=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESER
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -430,6 +446,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESER
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVBQ04=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEACN
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -462,6 +479,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACN
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVBQ05PVEg=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEACNOTH
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -483,6 +501,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACNOTH
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVSRUw=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEREL
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -505,6 +524,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEREL
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVSRUxOU1Q=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AERELNST
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -526,6 +546,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AERELNST
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVQQVRU
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEPATT
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -546,6 +567,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPATT
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVPVVQ=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEOUT
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -574,6 +596,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEOUT
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTQ0FO
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESCAN
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -602,6 +625,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAN
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTQ09ORw==
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESCONG
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -631,6 +655,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCONG
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTRElTQUI=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESDISAB
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -659,6 +684,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDISAB
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTRFRI
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESDTH
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -687,6 +713,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDTH
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTSE9TUA==
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESHOSP
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -715,6 +742,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESHOSP
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTTElGRQ==
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESLIFE
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -743,6 +771,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESLIFE
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTT0Q=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESOD
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -771,6 +800,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESOD
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTTUlF
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESMIE
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -799,6 +829,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESMIE
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVDT05UUlQ=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AECONTRT
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -827,6 +858,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECONTRT
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVUT1hHUg==
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AETOXGR
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -850,6 +882,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AETOXGR
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTVERUQw==
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESTDTC
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -869,6 +902,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESTDTC
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVFTkRUQw==
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEENDTC
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -888,6 +922,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENDTC
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVTVERZ
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AESTDY
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -908,6 +943,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESTDY
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVFTkRZ
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEENDY
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -927,6 +963,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENDY
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVEVVI=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEDUR
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -948,6 +985,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEDUR
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVFTlJG
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEENRF
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -979,6 +1017,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRF
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVFTlJUUFQ=
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEENRTPT
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -999,6 +1038,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRTPT
+  :classified_as: 
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FFX0RvbWFpbi9WMSNTUERfQUVFTlRQVA==
   :uri: http://www.s-cubed.dk/AE_Domain/V1#SPD_AEENTPT
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
@@ -1019,6 +1059,7 @@
   :notes: ''
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENTPT
+  :classified_as: 
 :prefix: AE
 :structure: One record per adverse event per subject
 :has_biomedical_concept: []

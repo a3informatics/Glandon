@@ -4,6 +4,7 @@ describe SdtmSponsorDomain do
 
   include DataHelpers
   include SparqlHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "models/sdtm_sponsor_domain"
@@ -46,13 +47,14 @@ describe SdtmSponsorDomain do
     item = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
     children = item.get_children
     children.each {|x| actual << x.to_h}
-    check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)
   end
 
   it "does create a Sponsor Domain based on a specified IG domain" do
     params = {label:"Sponsor Adverse Events", prefix:"AE"}
     ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
     sponsor_domain = SdtmSponsorDomain.create_from_ig(params, ig_domain)
+    check_dates(sponsor_domain, sub_dir, "create_from_ig_expected_1.yaml", :creation_date, :last_change_date)
     check_file_actual_expected(sponsor_domain.to_h, sub_dir, "create_from_ig_expected_1.yaml", equate_method: :hash_equal)
   end
 
