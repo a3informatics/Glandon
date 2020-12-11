@@ -154,7 +154,7 @@ describe SdtmSponsorDomainsController do
       actual = check_good_json_response(response)
       expect(assigns[:lock].token.id).to eq(Token.all.last.id)  # Will change each test run
       actual[:token_id] = 9999                                  # So, fix for file compare
-      check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal)
     end
 
     # it "edit, json request, already locked" do
