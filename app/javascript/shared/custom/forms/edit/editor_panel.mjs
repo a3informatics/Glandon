@@ -12,7 +12,7 @@ import { iconBtn } from 'shared/ui/buttons'
 import { cropText } from 'shared/helpers/strings'
 import { alerts } from 'shared/ui/alerts'
 
-import { renderIconsLabels } from 'shared/helpers/d3/renderers/nodes'
+import { renderWithIconsLabels } from 'shared/helpers/d3/renderers/nodes'
 
 /**
  * Form Editor
@@ -443,7 +443,7 @@ export default class FormEditor extends TreeGraph {
   _renderNodes() {
 
     // Add Icons and Labels to rendered Nodes
-    this.graph.nodes = renderIconsLabels({
+    this.graph.nodes = renderWithIconsLabels({
       nodes: this.graph.nodes,
       nodeIcon: this.Node.icon,
       nodeColor: this.Node.color,

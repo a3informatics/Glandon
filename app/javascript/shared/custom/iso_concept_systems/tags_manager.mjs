@@ -10,7 +10,7 @@ import { iconBtn } from 'shared/ui/buttons'
 import { cropText } from 'shared/helpers/strings'
 import { alerts } from 'shared/ui/alerts'
 
-import { renderLabels } from 'shared/helpers/d3/renderers/nodes'
+import { renderWithBadgesLabels } from 'shared/helpers/d3/renderers/nodes'
 
 /**
  * Tags Manager
@@ -289,7 +289,7 @@ export default class TagsManager extends TreeGraph {
   _renderNodes() {
 
     // Custom render nodes with labels and colored circles
-    this.graph.nodes = renderLabels({
+    this.graph.nodes = renderWithBadgesLabels({
       nodes: this.graph.nodes,
       nodeColor: this.Node.color,
 
