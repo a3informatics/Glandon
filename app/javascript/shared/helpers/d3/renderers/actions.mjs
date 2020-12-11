@@ -32,16 +32,18 @@ const D3Actions = { 
   /**
    * Show (render) the actions and update its position
    * @param {string} html Tooltip HTML content to render
+   * @param {int} offsetX Tooltip X coordinate offset, optional
+   * @param {int} offsetY Tooltip Y coordinate offset, optional
    */
-  show(node) {
+  show(node, offsetX = 0, offsetY = 0) {
 
     if ( !node )
       return;
 
     let coords = this._coords(node);
 
-    this.actions.css( 'left', `${ coords.x }px`  )
-                .css( 'top', `${ coords.y }px` )
+    this.actions.css( 'left', `${ coords.x + offsetX }px`  )
+                .css( 'top', `${ coords.y + offsetY }px` )
                 .css( 'border-color', node.color )
                 .show();
 
