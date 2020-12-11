@@ -71,7 +71,11 @@ export default class D3Graph {
    * @return {D3Graph} This instance for method chaining
    */
   render() {
+
+    // Initialize graph 
+    this._initGraph();
     return this; 
+
   }
 
   /**
@@ -214,12 +218,7 @@ export default class D3Graph {
    * Get all nodes visible in the graph
    * @return {array} Collection of all nodes cast to Node instances
    */
-  get allNodes() {
-
-    return this.graph.root.descendants()
-                          .map( d => new this.Node(d) );
-
-  }
+  get allNodes() { }
 
 
   /******* Private *******/
@@ -279,8 +278,8 @@ export default class D3Graph {
   _focusOn(node, zoom, select) {
 
     let scale = zoom ? 1.15 : this.graph.lastTransform.k,
-        tX = (this._props.svg.width / 2) - ( node.d.y + (node.width / 2) ) * scale,
-        tY = (this._props.svg.height / 2) - node.d.x * scale,
+        tX = (this._props.svg.width / 2) - ( node.d.x + (node.width / 2) ) * scale,
+        tY = (this._props.svg.height / 2) - node.d.y * scale,
         transform = this.d3.zoomIdentity.translate( tX, tY ).scale( scale );
 
     // Call transform to given node
@@ -293,15 +292,17 @@ export default class D3Graph {
 
   /**
    * Re-center the graph
+   * @param {int} tX X target offset, optional
+   * @param {int} tY Y target offset, optional 
    */
-  _reCenter() {
-
-    let tX = this._props.svg.margin,
-        tY = this._props.svg.height / 2;
+  _reCenter(
+    tX = this._props.svg.margin, 
+    tY = this._props.svg.height 
+  ) {
 
     this.graph.svg.call(
       this.graph.zoom.transform,
-      this.d3.zoomIdentity.translate( tX, tY )
+      this.d3.zoomIdentity.translate( tX, tY / 2 )
     );
 
   }
@@ -490,10 +491,19 @@ export default class D3Graph {
 
 
   /**
-   * Initialize Graph
+   * Initialize Graph, called before each re-render
    * @override for custom behavior
    */
-  _initGraph() { }
+  _initGraph() {
+
+    // Extend to initialize other features 
+
+    // Initialize Zoom functionality
+    this.graph.zoom = this._newZoom();
+
+    return this;
+
+   }
 
   /**
    * Restore graph to the state before re-draw (zoom and selection), call only on re-draw
@@ -531,7 +541,7 @@ export default class D3Graph {
                      .attr( 'height', height )
                      .attr( 'viewBox', `0 0 ${ width } ${ height }` )
                      .attr( 'preserveAspectRatio', 'xMinYMin meet' )
-
+                     
     if ( this.zoomable )
       svg.call( this.graph.zoom );
 

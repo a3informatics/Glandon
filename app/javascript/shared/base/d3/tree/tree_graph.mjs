@@ -1,8 +1,8 @@
 import D3Graph from 'shared/base/d3/d3_graph'
 import TreeNode from 'shared/base/d3/tree/tree_node'
 
-import { renderLinksSimple as renderLinks } from 'shared/helpers/d3/renderers/links'
-import { renderNodesSimple as renderNodes } from 'shared/helpers/d3/renderers/nodes'
+import { renderTreeLinks as renderLinks } from 'shared/helpers/d3/renderers/links'
+import { renderNodesTree as renderNodes } from 'shared/helpers/d3/renderers/nodes'
 
 import { isInViewport } from 'shared/helpers/utils'
 
@@ -59,8 +59,7 @@ export default class TreeGraph extends D3Graph {
    */
   render() {
 
-    // Initialize graph 
-    this._initGraph();
+    super.render();
 
     // Map the node data to the tree
     this.graph.root = this.graph.tree( this.graph.root );
@@ -158,6 +157,21 @@ export default class TreeGraph extends D3Graph {
   }
 
 
+  /** Getters **/
+
+
+  /**
+   * Get all nodes visible in the graph
+   * @return {array} Collection of all nodes cast to Node instances
+   */
+  get allNodes() {
+
+    return this.graph.root.descendants()
+                          .map( d => new this.Node(d) );
+
+  }
+
+
   /******* Private *******/
 
 
@@ -206,6 +220,25 @@ export default class TreeGraph extends D3Graph {
 
   /** Graph Control **/
 
+
+  /**
+   * Focus a given node into view, specifiable zoom and select
+   * @override parent implementation, reverses node x and y coords 
+   */
+  _focusOn(node, zoom, select) {
+
+    let scale = zoom ? 1.15 : this.graph.lastTransform.k,
+        tX = (this._props.svg.width / 2) - ( node.d.y + (node.width / 2) ) * scale,
+        tY = (this._props.svg.height / 2) - node.d.x * scale,
+        transform = this.d3.zoomIdentity.translate( tX, tY ).scale( scale );
+
+    // Call transform to given node
+    this.graph.svg.call( this.graph.zoom.transform, transform );
+
+    if ( select )
+      this.selectNode( node, false );
+
+  }
 
   /**
    * Expand all nodes in the Graph
@@ -401,15 +434,15 @@ export default class TreeGraph extends D3Graph {
 
 
   /**
-   * Initialize Tree and Zoom instances, call only on Graph reset
+   * Initialize Graph functionalities, called on each re-render
    * @return {TreeGraph} This instance for method chaining
    */
   _initGraph() {
 
+    super._initGraph();
+
     // Initialize a new D3 Tree graph
     this.graph.tree = this._newTree();
-    // Initialize Zoom functionality
-    this.graph.zoom = this._newZoom();
 
     return this;
 
