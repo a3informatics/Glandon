@@ -1,4 +1,4 @@
-import { getRdfType, getRdfName } from 'shared/helpers/rdf_types'
+import { getRdfType, getRdfNameByType } from 'shared/helpers/rdf_types'
 import { isCDISC } from 'shared/helpers/utils'
 import colors from 'shared/ui/colors'
 import { isCharLetter } from 'shared/helpers/strings'
@@ -106,7 +106,7 @@ const iconTypes = { 
 
     output += `<span class="${iconParams.icon} ${size} ${params.ttip ? 'ttip' : ''}" style="color: ${iconParams.color}">`
     if (params.ttip)
-      output +=   `<span class="ttip-text ttip-table shadow-small text-medium text-small">${getRdfName(type)}</span>`
+      output +=   `<span class="ttip-text ttip-table shadow-small text-medium text-small">${getRdfNameByType(type)}</span>`
     output += `</span>`
 
     return output;
@@ -128,7 +128,7 @@ const iconTypes = { 
     output += `<span class="circular-badge text-white ${size} ${params.ttip ? 'ttip' : ''}" style="background: ${iconParams.color}">`
     output +=   `<span class="${iconParams.icon} text-xnormal"></span>`
     if (params.ttip)
-      output += `<span class="ttip-text shadow-small text-medium text-small">${getRdfName(type)}</span>`
+      output += `<span class="ttip-text shadow-small text-medium text-small">${getRdfNameByType(type)}</span>`
     output += `</span>`
 
     return output;
