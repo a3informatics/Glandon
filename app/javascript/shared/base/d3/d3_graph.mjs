@@ -19,6 +19,7 @@ export default class D3Graph {
    * @param {boolean} params.autoScale Determines whether the graph container should scale height to fit window height, optional [default=true]
    * @param {boolean} params.zoomable Determines whether the graph can be zoomed and dragged, optional [default=true]
    * @param {boolean} params.selectable Determines whether the nodes can be selected by clicking, optional [default=true]
+   * @param {function} params.onDataLoaded Data load completed callback, receives raw data as first argument, optional
    */
   constructor({
     selector,
@@ -27,11 +28,12 @@ export default class D3Graph {
     autoScale = true,
     zoomable = true,
     selectable = true,
+    onDataLoaded = () => {}
   }) {
 
     Object.assign( this, {
       dataUrl, selector, autoScale,
-      zoomable, selectable,
+      zoomable, selectable, onDataLoaded,
       Node: nodeModule
     });
 
@@ -381,6 +383,10 @@ export default class D3Graph {
 
     // Save reference to the raw data structure
     this.rawData = rawData;
+
+    if ( this.onDataLoaded ) {
+      this.onDataLoaded( rawData );
+    }
 
   }
 

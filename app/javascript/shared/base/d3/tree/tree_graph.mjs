@@ -24,6 +24,7 @@ export default class TreeGraph extends D3Graph {
    * @param {boolean} params.zoomable Determines whether the graph can be zoomed and dragged, optional [default=true]
    * @param {boolean} params.selectable Determines whether the nodes can be selected by clicking, optional [default=true]
    * @param {boolean} params.keyControls Determines whether the nodes can be selected with keyboard arrow keys, optional [default=true]
+   * @param {function} params.onDataLoaded Data load completed callback, receives raw data as first argument, optional
    */
   constructor({
     selector,
@@ -32,7 +33,8 @@ export default class TreeGraph extends D3Graph {
     autoScale = true,
     zoomable = true,
     selectable = true,
-    keyControls = true
+    keyControls = true,
+    onDataLoaded = () => {}
   }) {
 
     super({
@@ -41,7 +43,8 @@ export default class TreeGraph extends D3Graph {
       nodeModule,
       autoScale,
       zoomable,
-      selectable
+      selectable,
+      onDataLoaded
     })
 
     Object.assign( this, {

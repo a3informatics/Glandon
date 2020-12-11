@@ -21,6 +21,7 @@ export default class ForceGraph extends D3Graph {
   * @param {boolean} params.autoScale Determines whether the graph container should scale height to fit window height, optional [default=true]
   * @param {boolean} params.zoomable Determines whether the graph can be zoomed and dragged, optional [default=true]
   * @param {boolean} params.selectable Determines whether the nodes can be selected by clicking, optional [default=true]
+   * @param {function} params.onDataLoaded Data load completed callback, receives raw data as first argument, optional
   */
   constructor({
     selector,
@@ -28,7 +29,8 @@ export default class ForceGraph extends D3Graph {
     nodeModule = D3Node,
     autoScale = true,
     zoomable = true,
-    selectable = true
+    selectable = true,
+    onDataLoaded = () => {}
   }) {
 
     super({
@@ -37,7 +39,8 @@ export default class ForceGraph extends D3Graph {
       nodeModule,
       autoScale,
       zoomable,
-      selectable
+      selectable,
+      onDataLoaded
     });
 
   }
