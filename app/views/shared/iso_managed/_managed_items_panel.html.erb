@@ -1,0 +1,19 @@
+<% if !local_assigns[:data_url].nil? %>
+  <%= javascript_tag "let managedItemsDataUrl = '#{data_url}'" %>
+<% end %>
+
+<div class="table-cardstyle all-columns">
+  <table id="managed-items" class="table <%= local_assigns.fetch :table_classes, '' %>">
+    <thead>
+      <tr>
+        <% if local_assigns.fetch :with_icons?, false %>
+          <th class="fit">Type</th>
+        <% end %>
+        <th class="fit">Identifier</th>
+        <th class="fit">Version</th>
+        <th>Label</th>
+        <th>Version Label</th>
+      </tr>
+    </thead>
+  </table>
+</div>
