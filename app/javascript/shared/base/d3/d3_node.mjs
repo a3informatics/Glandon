@@ -1,5 +1,8 @@
 import * as d3 from 'd3-selection'
 
+import colors from 'shared/ui/colors'
+import { defaultProps } from 'shared/helpers/d3/renderers/nodes'
+
 /**
  * D3 Graph Node
  * @description Extensible D3-based Node module
@@ -41,7 +44,7 @@ export default class D3Node {
    * @return {Object} Node Data Object
    */
   get data() {
-    return this.d.data;
+    return this.d;
   }
 
   /**
@@ -73,7 +76,7 @@ export default class D3Node {
    * @return {boolean} Value representing whether Node data is valid
    */
   get exists() {
-    return this.d && this.data;
+    return this.d !== null && this.d !== undefined;
   }
 
   /**
@@ -142,7 +145,14 @@ export default class D3Node {
    * @param {boolean} selected Target selected state
    * @override for custom implementation
    */
-  toggleSelectStyles(selected) { }
+  toggleSelectStyles(selected) {
+    
+    if ( selected )
+      this.$.find('circle').css( 'fill', colors.accent2 );
+    else
+      this.$.find('circle').css( 'fill', defaultProps.color );
+
+  }
 
   /**
    * Node comparator function to determine whether node matches (compared by ids by default)
@@ -150,7 +160,7 @@ export default class D3Node {
    * @return {boolean} True if nodes are the same
    */
   _nodeMatches(node) {
-    return node.data.id === this.d.data.id;
+    return node.id === this.data.id;
   }
 
 }

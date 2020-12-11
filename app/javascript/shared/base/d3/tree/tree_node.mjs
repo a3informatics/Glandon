@@ -1,8 +1,5 @@
 import D3Node from 'shared/base/d3/d3_node'
 
-import colors from 'shared/ui/colors'
-import { defaultProps } from 'shared/helpers/d3/renderers/nodes'
-
 /**
  * D3 Tree Graph Node
  * @description Extensible D3-based Node module
@@ -11,6 +8,15 @@ import { defaultProps } from 'shared/helpers/d3/renderers/nodes'
 export default class TreeNode extends D3Node {
 
   /** Getters **/
+
+  
+  /**
+   * Get data
+   * @return {Object} Node Data Object
+   */
+  get data() {
+    return this.d.data;
+  }
 
   /**
    * Get node label
@@ -184,20 +190,6 @@ export default class TreeNode extends D3Node {
 
 
   /**
-   * Toggle node selected styles depending on target selected state
-   * @param {boolean} selected Target selected state
-   * @override for custom implementation
-   */
-  toggleSelectStyles(selected) {
-
-    if ( selected )
-      this.$.find('circle').css( 'fill', colors.accent2 );
-    else
-      this.$.find('circle').css( 'fill', defaultProps.color );
-
-  }
-
-  /**
    * Node comparator function to determine whether node matches 
    * @param {TreeNode} node Node to compare with this instance
    * @return {boolean} True if nodes are the same
@@ -209,7 +201,7 @@ export default class TreeNode extends D3Node {
       return node.parent.data.id === this.d.parent.data.id &&
              node.data.id === this.d.data.id;
 
-    return super._nodeMatches( node )
+    return node.data.id === this.data.id;
 
   }
 
