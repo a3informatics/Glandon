@@ -54,7 +54,7 @@ describe SdtmSponsorDomain do
     params = {label:"Sponsor Adverse Events", prefix:"AE"}
     ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
     sponsor_domain = SdtmSponsorDomain.create_from_ig(params, ig_domain)
-    check_dates(sponsor_domain, sub_dir, "create_from_ig_expected_1.yaml", :creation_date, :last_change_date)
+    check_dates(sponsor_domain, sub_dir, "create_from_ig_expected_1.yaml", :last_change_date)
     check_file_actual_expected(sponsor_domain.to_h, sub_dir, "create_from_ig_expected_1.yaml", equate_method: :hash_equal)
   end
 
