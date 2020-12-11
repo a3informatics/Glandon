@@ -100,7 +100,7 @@ describe SdtmSponsorDomainsController do
 
     it "creates from class" do
       sdtm_class = SdtmClass.find(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL"))
-      post :create_from_class, params:{sdtm_sponsor_domain: {prefix: "AE", sdtm_class_id: sdtm_class.id}}
+      post :create_from_class, params:{sdtm_sponsor_domain: {prefix: "DS", sdtm_class_id: sdtm_class.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "create_from_class_expected_1.yaml", equate_method: :hash_equal)
     end
@@ -154,7 +154,7 @@ describe SdtmSponsorDomainsController do
       actual = check_good_json_response(response)
       expect(assigns[:lock].token.id).to eq(Token.all.last.id)  # Will change each test run
       actual[:token_id] = 9999                                  # So, fix for file compare
-      check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     # it "edit, json request, already locked" do
