@@ -62,6 +62,7 @@ describe SdtmSponsorDomain do
     params = {label:"Sponsor Adverse Events", prefix:"AE"}
     sdtm_class = SdtmClass.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL"))
     sponsor_domain = SdtmSponsorDomain.create_from_class(params, sdtm_class)
+    check_dates(sponsor_domain, sub_dir, "create_from_class_expected_1.yaml", :last_change_date)
     check_file_actual_expected(sponsor_domain.to_h, sub_dir, "create_from_class_expected_1.yaml", equate_method: :hash_equal)
   end
 
