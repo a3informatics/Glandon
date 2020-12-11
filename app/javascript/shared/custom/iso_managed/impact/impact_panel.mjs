@@ -1,5 +1,6 @@
 import TabsLayout from 'shared/ui/tabs_layout'
 import ImpactGraph from './impact_graph.mjs'
+import ManagedItemsPanel from '../managed_items_panel'
 
 /**
  * Impact Panel
@@ -19,9 +20,17 @@ export default class ImpactPanel {
 
         Object.assign( this, { 
             selector,
+            // Impact Graph instance
             impactGraph: new ImpactGraph({
                 selector: `${ selector } #impact-graph`,
-                dataUrl: impactDataUrl
+                dataUrl: impactDataUrl,
+                onDataLoaded: () => 
+                    this.impactTable._render(this.impactGraph.rawData.nodes, true)
+            }),
+            // Impact table instance
+            impactTable: new ManagedItemsPanel({
+                selector: selector,
+                deferLoading: true 
             })
         })
 

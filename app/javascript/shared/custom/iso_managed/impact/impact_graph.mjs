@@ -25,18 +25,21 @@ export default class ImpactGraph extends ForceGraph {
   * @param {string} params.selector JQuery selector of the editor panel
   * @param {string} params.dataUrl Url to fetch the graph data from
   * @param {module} params.nodeModule Custom Node module class (wrapper), optional [default=TreeNode]
+  * @param {function} params.onDataLoaded Data load completed callback, receives raw data as first argument, optional
   */
   constructor({
     selector,
     dataUrl,
-    nodeModule = ImpactNode
+    nodeModule = ImpactNode,
+    onDataLoaded = () => {}
   }) {
 
     super({
       selector,
       dataUrl,
-      nodeModule
-    });
+      nodeModule,
+      onDataLoaded
+    })
 
   }
 

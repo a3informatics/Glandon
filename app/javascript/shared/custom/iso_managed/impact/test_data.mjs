@@ -4,6 +4,7 @@ export default {
         id: 1,
         identifier: 'A1ID',
         semantic_version: '1.0.0',
+        version_label: 'Some label',
         label: "A word that is quite long",
         rdf_type: "http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance"
       },
@@ -11,6 +12,7 @@ export default {
         id: 2,
         identifier: 'B2ID',
         semantic_version: '1.0.0',
+        version_label: 'Some label',
         label: "B word",
         rdf_type: "http://www.assero.co.uk/BusinessForm#Form"
       },
@@ -18,6 +20,7 @@ export default {
         id: 3,
         identifier: 'C3ID',
         semantic_version: '1.0.0',
+        version_label: 'Some label',
         label: "C word",
         rdf_type: "http://www.assero.co.uk/BusinessForm#Form"
       },
@@ -25,6 +28,7 @@ export default {
         id: 4,
         identifier: 'D4ID',
         semantic_version: '1.0.0',
+        version_label: 'Some label',
         label: "D word",
         rdf_type: "http://www.assero.co.uk/BusinessForm#Form"
       },
@@ -32,6 +36,7 @@ export default {
         id: 5,
         identifier: 'XYID',
         semantic_version: '1.0.0',
+        version_label: 'Some label',
         label: "E word",
         rdf_type: "http://www.assero.co.uk/BusinessForm#Form"
       },
@@ -39,6 +44,7 @@ export default {
         id: 6,
         identifier: 'XYID',
         semantic_version: '1.0.0',
+        version_label: 'Some label',
         label: "F word",
         rdf_type: "http://www.assero.co.uk/BusinessForm#Form"
       },
@@ -46,6 +52,7 @@ export default {
         id: 7,
         identifier: 'XYID',
         semantic_version: '1.0.0',
+        version_label: 'Some label',
         label: "G word",
         rdf_type: "http://www.assero.co.uk/BusinessForm#Form"
       },
@@ -53,6 +60,7 @@ export default {
         id: 8,
         identifier: 'XYID',
         semantic_version: '1.0.0',
+        version_label: 'Some label',
         label: "H word",
         rdf_type: "http://www.assero.co.uk/BusinessForm#Form"
       },
@@ -60,6 +68,7 @@ export default {
         id: 9,
         identifier: 'XYID',
         semantic_version: '1.0.0',
+        version_label: 'Some label',
         label: "I word",
         rdf_type: "http://www.assero.co.uk/BusinessForm#Form"
       },
@@ -67,6 +76,7 @@ export default {
         id: 10,
         identifier: 'XYID',
         semantic_version: '1.0.0',
+        version_label: 'Some label',
         label: "J word",
         rdf_type: "http://www.assero.co.uk/BusinessForm#Form"
       }
