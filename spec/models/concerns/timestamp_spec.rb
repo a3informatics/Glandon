@@ -13,8 +13,8 @@ describe Timestamp do
   end
 
 	it "allows for the class to be created with an initial value, time" do
-		input = Time.now
-		expected = "#{input}".to_time(:utc).strftime("%Y-%b-%d").to_s
+		input = "2020-12-10 09:52:22 +0100"
+		expected = "2020-Dec-10"
     timestamp = Timestamp.new(input)
     expect(timestamp.time.strftime("%Y-%b-%d").to_s).to eq(expected)
   end

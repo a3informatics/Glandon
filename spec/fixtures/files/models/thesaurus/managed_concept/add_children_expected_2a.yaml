@@ -35,8 +35,8 @@
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
   :identifier: C66780
   :version_label: 2007-05-31 Release
-  :version: 4
-  :semantic_version: 4.0.0
+  :version: 2
+  :semantic_version: 2.0.0
   :has_scope:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
     :uri: http://www.assero.co.uk/NS#CDISC
@@ -55,55 +55,6 @@
 :definition: Subgroups of populations based on age. (NCI)
 :extensible: true
 :narrower:
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DNDk2NDI=
-  :uri: http://www.cdisc.org/C66780/V4#C66780_C49642
-  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-  :label: Preterm Newborn Infant
-  :identifier: C49642
-  :notation: PRETERM NEWBORN INFANTS
-  :definition: An infant born prior to completion of the normal gestation period.
-    (NCI)
-  :extensible: false
-  :narrower: []
-  :preferred_term:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMjRiM2JkYmRjYzE4NzNkOTk3NjgwOWQyYWUzMmQ5ZTFkODZkNzMwZA==
-    :uri: http://www.assero.co.uk/PT#24b3bdbdcc1873d9976809d2ae32d9e1d86d730d
-    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-    :label: Preterm Newborn Infant
-  :synonym: []
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MV9DMjUzMDE=
-  :uri: http://www.cdisc.org/C66781/V4#C66781_C25301
-  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-  :label: Day
-  :identifier: C25301
-  :notation: DAYS
-  :definition: The time for Earth to make a complete rotation on its axis; ordinarily
-    divided into twenty-four hours.  This also refers to a specific day. (NCI)
-  :extensible: false
-  :narrower: []
-  :preferred_term:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjOTg3YjljZWQwOGQ0YWM1ZDExZDI4NmNhNGI1NGI5OWE0ZjY5MTY0Yg==
-    :uri: http://www.assero.co.uk/PT#987b9ced08d4ac5d11d286ca4b54b99a4f69164b
-    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-    :label: Day
-  :synonym: []
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DNDk2NDE=
-  :uri: http://www.cdisc.org/C66780/V4#C66780_C49641
-  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-  :label: In Utero
-  :identifier: C49641
-  :notation: IN UTERO
-  :definition: The period of time during which the embryo or foetus is present in
-    the uterus of the female. Also describes the location of the embryo or foetus
-    as being in the uterus in contrast to outside the uterus (ex utero). (NCI)
-  :extensible: false
-  :narrower: []
-  :preferred_term:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMzM3MDFlNmY2ZWQ5NmUzMjE4NDA4MTJjMTVlOTNhOWRiNzAyMGUzNA==
-    :uri: http://www.assero.co.uk/PT#33701e6f6ed96e321840812c15e93a9db7020e34
-    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-    :label: In Utero
-  :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DNDk2NDM=
   :uri: http://www.cdisc.org/C66780/V4#C66780_C49643
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -149,6 +100,22 @@
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
     :label: Newborn
   :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DNDk2NDI=
+  :uri: http://www.cdisc.org/C66780/V4#C66780_C49642
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Preterm Newborn Infant
+  :identifier: C49642
+  :notation: PRETERM NEWBORN INFANTS
+  :definition: An infant born prior to completion of the normal gestation period.
+    (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMjRiM2JkYmRjYzE4NzNkOTk3NjgwOWQyYWUzMmQ5ZTFkODZkNzMwZA==
+    :uri: http://www.assero.co.uk/PT#24b3bdbdcc1873d9976809d2ae32d9e1d86d730d
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Preterm Newborn Infant
+  :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DMjc5NTQ=
   :uri: http://www.cdisc.org/C66780/V4#C66780_C27954
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -180,6 +147,23 @@
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
     :label: Adult 18-65 Years Old
   :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DNDk2NDE=
+  :uri: http://www.cdisc.org/C66780/V4#C66780_C49641
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: In Utero
+  :identifier: C49641
+  :notation: IN UTERO
+  :definition: The period of time during which the embryo or foetus is present in
+    the uterus of the female. Also describes the location of the embryo or foetus
+    as being in the uterus in contrast to outside the uterus (ex utero). (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMzM3MDFlNmY2ZWQ5NmUzMjE4NDA4MTJjMTVlOTNhOWRiNzAyMGUzNA==
+    :uri: http://www.assero.co.uk/PT#33701e6f6ed96e321840812c15e93a9db7020e34
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: In Utero
+  :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9DMTYyNjg=
   :uri: http://www.cdisc.org/C66780/V4#C66780_C16268
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -194,6 +178,22 @@
     :uri: http://www.assero.co.uk/PT#994558b6302bab816e4b5f9bab254d4c3eb2fec6
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
     :label: Elderly
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MV9DMjUzMDE=
+  :uri: http://www.cdisc.org/C66781/V4#C66781_C25301
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Day
+  :identifier: C25301
+  :notation: DAYS
+  :definition: The time for Earth to make a complete rotation on its axis; ordinarily
+    divided into twenty-four hours.  This also refers to a specific day. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjOTg3YjljZWQwOGQ0YWM1ZDExZDI4NmNhNGI1NGI5OWE0ZjY5MTY0Yg==
+    :uri: http://www.assero.co.uk/PT#987b9ced08d4ac5d11d286ca4b54b99a4f69164b
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Day
   :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MV9DMjU1Mjk=
   :uri: http://www.cdisc.org/C66781/V4#C66781_C25529

@@ -467,7 +467,7 @@ describe Thesaurus do
       item = ct.add_extension(uri2.to_id)
       actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
       expect(actual.count).to eq(35)
-      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_3.yaml")
+      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_3.yaml", )
     end
 
     it "get children with indicators CI and CN, V3 all items" do

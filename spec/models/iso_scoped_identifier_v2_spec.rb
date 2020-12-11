@@ -452,5 +452,24 @@ describe "IsoScopedIdentifierV2" do
     expect(object.version_label).to eq("step 2")
   end
 
+  it "amend the version" do
+    org = IsoNamespace.find_by_short_name("BBB")
+    object = IsoScopedIdentifierV2.create(identifier: "NEW 1", version: 1, version_label: "0.1", semantic_version: "1.2.3", has_scope: org)
+    (4..6).each do |v|
+      object.amend_version(v)
+      object.save
+      object = IsoScopedIdentifierV2.find(object.uri)
+      expect(object.version).to eq(v)
+      expect(object.semantic_version).to eq("#{v}.0.0")    
+    end
+    (6..12).each do |v|
+      object.amend_to_next_version(v)
+      object.save
+      object = IsoScopedIdentifierV2.find(object.uri)
+      expect(object.version).to eq(v+1)
+      expect(object.semantic_version).to eq("#{v+1}.0.0")    
+    end
+  end
+
 end
   

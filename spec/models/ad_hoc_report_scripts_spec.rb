@@ -225,14 +225,14 @@ RSpec.describe AdHocReport, type: :model do
       report.results_file = "sponsor_ct_export_results_1.yaml"
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_Release_1/V1#TH").to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_results_1.yaml")
-      expect(results[:data].count).to eq(22321) # 22322
+      expect(results[:data].count).to eq(22321) 
       save_selected_results(results, "sponsor_ct_export_selected_results_1.yaml", ["ACN_01", "ACN_03", "AERELA","SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV"], false)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_1.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(44)
     end
   
-    it "executes an sponsor CT export report, 2020 V1" do
+    it "executes an sponsor CT export report, 2020 R1" do
       copy_report_to_public_files("sponsor_ct_export_sparql.yaml", "test")
       job = Background.create
       report = AdHocReport.new
@@ -242,14 +242,14 @@ RSpec.describe AdHocReport, type: :model do
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_Release_1/V1#TH").to_id])}
       full_path = File.join(AdHocReportFiles.dir_path, "sponsor_ct_export_results_2.yaml")
       results = AdHocReportFiles.read("sponsor_ct_export_results_2.yaml")
-      expect(results[:data].count).to eq(31929) # 31930
+      expect(results[:data].count).to eq(31929) 
       save_selected_results(results, "sponsor_ct_export_selected_results_2.yaml", ["ACN_01", "ACN_03", "AERELA", "SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV"], false)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_2.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(47)
     end
   
-    it "executes an sponsor CT export report, 2020 V2" do
+    it "executes an sponsor CT export report, 2020 R2" do
       copy_report_to_public_files("sponsor_ct_export_sparql.yaml", "test")
       job = Background.create
       report = AdHocReport.new

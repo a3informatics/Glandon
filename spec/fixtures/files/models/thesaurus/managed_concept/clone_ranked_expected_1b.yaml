@@ -1,11 +1,11 @@
 ---
-:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY2NzY5L1YxOA==
-:uri: http://www.acme-pharma.com/C66769/V18
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY2NzY5L1Y0
+:uri: http://www.acme-pharma.com/C66769/V4
 :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
 :label: Severity/Intensity Scale for Adverse Events
 :has_state:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY2NzY5L1YxOCNSUw==
-  :uri: http://www.acme-pharma.com/C66769/V18#RS
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY2NzY5L1Y0I1JT
+  :uri: http://www.acme-pharma.com/C66769/V4#RS
   :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
   :registration_status: Incomplete
   :administrative_note: ''
@@ -30,13 +30,13 @@
       :name: ACME Pharma
       :authority: www.acme-pharma.com
 :has_identifier:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY2NzY5L1YxOCNTSQ==
-  :uri: http://www.acme-pharma.com/C66769/V18#SI
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY2NzY5L1Y0I1NJ
+  :uri: http://www.acme-pharma.com/C66769/V4#SI
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
   :identifier: C66769
   :version_label: ''
-  :version: 18
-  :semantic_version: 17.1.0
+  :version: 4
+  :semantic_version: 3.1.0
   :has_scope:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
     :uri: http://www.assero.co.uk/NS#ACME
@@ -55,31 +55,6 @@
 :definition: ''
 :extensible: false
 :narrower:
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY5L1Y0I0M2Njc2OV9DNDEzMzg=
-  :uri: http://www.cdisc.org/C66769/V4#C66769_C41338
-  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-  :label: Mild Adverse Event
-  :identifier: C41338
-  :notation: MILD
-  :definition: A type of adverse event that is usually transient and may require only
-    minimal treatment or therapeutic intervention. The event does not generally interfere
-    with usual activities of daily living.
-  :extensible: false
-  :narrower: []
-  :preferred_term:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYjM2NjQyY2ZhM2I4ZGJmYzdmMTY3OTI4NGZhNWZkNTZiNzlmM2MyNA==
-    :uri: http://www.assero.co.uk/PT#b36642cfa3b8dbfc7f1679284fa5fd56b79f3c24
-    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-    :label: Mild Adverse Event
-  :synonym:
-  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2NmMjRhMTk5ZTViNmUzOTk0NGY0MTAyNmUzOGNmMzE4ZGZiNWE0ODE=
-    :uri: http://www.assero.co.uk/SYN#cf24a199e5b6e39944f41026e38cf318dfb5a481
-    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
-    :label: Grade 1
-  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzM1NmExOTJiNzkxM2IwNGM1NDU3NGQxOGMyOGQ0NmU2Mzk1NDI4YWI=
-    :uri: http://www.assero.co.uk/SYN#356a192b7913b04c54574d18c28d46e6395428ab
-    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
-    :label: '1'
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY5L1Y0I0M2Njc2OV9DNDEzMzk=
   :uri: http://www.cdisc.org/C66769/V4#C66769_C41339
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -106,6 +81,31 @@
     :uri: http://www.assero.co.uk/SYN#da4b9237bacccdf19c0760cab7aec4a8359010b0
     :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
     :label: '2'
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY5L1Y0I0M2Njc2OV9DNDEzMzg=
+  :uri: http://www.cdisc.org/C66769/V4#C66769_C41338
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Mild Adverse Event
+  :identifier: C41338
+  :notation: MILD
+  :definition: A type of adverse event that is usually transient and may require only
+    minimal treatment or therapeutic intervention. The event does not generally interfere
+    with usual activities of daily living.
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYjM2NjQyY2ZhM2I4ZGJmYzdmMTY3OTI4NGZhNWZkNTZiNzlmM2MyNA==
+    :uri: http://www.assero.co.uk/PT#b36642cfa3b8dbfc7f1679284fa5fd56b79f3c24
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Mild Adverse Event
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2NmMjRhMTk5ZTViNmUzOTk0NGY0MTAyNmUzOGNmMzE4ZGZiNWE0ODE=
+    :uri: http://www.assero.co.uk/SYN#cf24a199e5b6e39944f41026e38cf318dfb5a481
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Grade 1
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzM1NmExOTJiNzkxM2IwNGM1NDU3NGQxOGMyOGQ0NmU2Mzk1NDI4YWI=
+    :uri: http://www.assero.co.uk/SYN#356a192b7913b04c54574d18c28d46e6395428ab
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: '1'
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY5L1YxNyNDNjY3NjlfQzQxMzQw
   :uri: http://www.cdisc.org/C66769/V17#C66769_C41340
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
