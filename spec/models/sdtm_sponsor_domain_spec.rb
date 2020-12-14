@@ -99,4 +99,14 @@ describe SdtmSponsorDomain do
     expect(result.errors.full_messages.to_sentence).to eq("Name prefix does not match 'AE'")
   end
 
+  it "return datatypes" do
+    datatypes = SdtmSponsorDomain.datatypes
+    check_file_actual_expected(datatypes, sub_dir, "datatypes_expected_1.yaml", equate_method: :hash_equal)
+  end
+
+  it "return compliance" do
+    compliance = SdtmSponsorDomain.compliance
+    check_file_actual_expected(compliance, sub_dir, "compliance_expected_1.yaml", equate_method: :hash_equal)
+  end
+
 end
