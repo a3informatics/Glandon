@@ -2,6 +2,7 @@ import EditablePanel from 'shared/base/editable_panel'
 
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
 import { $post } from 'shared/helpers/ajax'
+import { alerts } from 'shared/ui/alerts'
 
 import { dtFieldsInit } from 'shared/helpers/dt/dt_fields'
 import { dtBCEditColumns } from 'shared/helpers/dt/dt_column_collections'
@@ -95,19 +96,26 @@ export default class BCEditor extends EditablePanel {
    */
   _preformatUpdateData(d) {
 
-    let id = Object.keys(d.data)[0],
-        data = Object.values(d.data)[0],
-        fieldName = this.editor.displayed()[0];
+    let [data] = super._preformatUpdateData( d ),
+        field = this.currentField;
 
     // Map item references to an array of ids
-    if ( fieldName === 'has_coded_value' && Array.isArray( data.has_coded_value ) )
-      data.has_coded_value = data.has_coded_value.map( (i) =>
-        Object.assign( {}, { id: i.reference.id, context_id: i.context.id } )
-      )
+    if ( field === 'has_coded_value' && Array.isArray( data.has_coded_value ) )
+
+      data.has_coded_value = data.has_coded_value.map( i => {
+
+        return {
+          id: i.reference.id,
+          context_id: i.context.id
+        }
+
+      });
 
     // Format update data
-    d[this.param] = {}
-    Object.assign(d[this.param], { property_id: id }, data )
+    d[ this.param ] = {
+      property_id: data.id,
+      ...data
+    }
 
     // Clear unused structures
     delete d.data;
@@ -135,6 +143,22 @@ export default class BCEditor extends EditablePanel {
 
     if ( this.onEdited )
       this.onEdited();
+
+  }
+
+  /**
+   * Displays Terminology picker error as alert because inline error cannot be shown in that case (editor closes) 
+   * @extends _onSubmitted parent implementation
+   * @param {object} json JSON data returned from the server
+   */
+  _onSubmitted(json) {
+
+    const name = json?.fieldErrors[0]?.name;
+
+    if ( name === 'has_coded_value' )
+      alerts.error( `Terminology: ${ json.fieldErrors[0].status }` );
+
+    super._onSubmitted( json );
 
   }
 

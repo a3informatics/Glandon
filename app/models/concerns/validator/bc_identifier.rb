@@ -11,7 +11,8 @@ class Validator::BcIdentifier < Validator::Base
   def validate(record)
     return true unless record.identifier_property
     return true if record.has_coded_value.count <= 1 
-    failed(record, 'attempting to add multiple coded values')
+    record.errors.add(:has_coded_value, 'attempting to add multiple values when the property is the identifier')
+    false
   end
   
 end

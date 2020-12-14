@@ -1,23 +1,7 @@
 ---
 :ignore:
-  - AERELA
-  - AERELAN
-  - AESEVN
-  - AGEGRPE
-  - AGEGRPP
-  - AGEGRPPN
-  - ECOG1R
-  - OUTN
-  - SHIFT
-  - SHIFT2
-  - SHIFT2N
-  - SHIFTN
-  - TOXGRA
-  - POEM9R
-  - SMQSCPN
-  - INVASSND
-  - OUT
-  - AESEV
+  - SEVRS
+  - SEVRS_01
 :codelists:
   - :codelist_long_name: Action Taken with Study Treatment
     :codelist_short_name: ACN
@@ -47,37 +31,6 @@
     - :code: C48660
       :submission_value: NOT APPLICABLE
       :rank: '8'
-  - :codelist_long_name: Action Taken with Study Treatment Collected
-    :codelist_short_name: ACNC
-    :codelist_code: SN000730
-    :items:
-    - :code: SC49504
-      :submission_value: DOSE NOT CHANGED
-      :rank: '1'
-    - :code: SC49505
-      :submission_value: DOSE REDUCED
-      :rank: '2'
-    - :code: SC49501
-      :submission_value: DRUG INTERRUPTED
-      :rank: '3'
-    - :code: SC49502
-      :submission_value: DRUG WITHDRAWN
-      :rank: '4'
-    - :code: SC49503
-      :submission_value: DOSE INCREASED
-      :rank: '5'
-    - :code: S000010
-      :submission_value: DOSE DELAYED
-      :rank: '6'
-    - :code: S000011
-      :submission_value: DOSE DELAYED AND REDUCED
-      :rank: '7'
-    - :code: S011612
-      :submission_value: DISCONTINUATION OF STUDY VACCINATION
-      :rank: '8'
-    - :code: SC48660
-      :submission_value: NOT APPLICABLE
-      :rank: '9'
   - :codelist_long_name: Action Taken with Study Treatment Numeric
     :codelist_short_name: ACNN
     :codelist_code: SN000005
@@ -181,94 +134,6 @@
     - :code: S000147
       :submission_value: '5'
       :rank: '5'
-  - :codelist_long_name: Child-Pugh Classification Clinical Classification Test Results for Ascites
-    :codelist_short_name: CPS0102R
-    :codelist_code: SN001260
-    :items:
-    - :code: S000243
-      :submission_value: '1'
-      :rank: '1'
-    - :code: S001739
-      :submission_value: '2'
-      :rank: '2'
-    - :code: S001745
-      :submission_value: '3'
-      :rank: '3'
-  - :codelist_long_name: >-
-      Child-Pugh Classification Clinical Classification Test Results for
-      Encephalopathy Grade
-    :codelist_short_name: CPS0101R
-    :codelist_code: SN001259
-    :items:
-    - :code: S000244
-      :submission_value: '1'
-      :rank: '1'
-    - :code: S001740
-      :submission_value: '2'
-      :rank: '2'
-    - :code: S001746
-      :submission_value: '3'
-      :rank: '3'
-  - :codelist_long_name: >-
-      Child-Pugh Classification Clinical Classification Test Results for
-      Prothrombin Time International Normalized Ratio
-    :codelist_short_name: CPS0106R
-    :codelist_code: SN001264
-    :items:
-    - :code: S000245
-      :submission_value: '1'
-      :rank: '1'
-    - :code: S001741
-      :submission_value: '2'
-      :rank: '2'
-    - :code: S001747
-      :submission_value: '3'
-      :rank: '3'
-  - :codelist_long_name: >-
-      Child-Pugh Classification Clinical Classification Test Results for
-      Prothrombin Time Sec Prolonged
-    :codelist_short_name: CPS0105R
-    :codelist_code: SN001263
-    :items:
-    - :code: S000246
-      :submission_value: '1'
-      :rank: '1'
-    - :code: S001742
-      :submission_value: '2'
-      :rank: '2'
-    - :code: S001748
-      :submission_value: '3'
-      :rank: '3'
-  - :codelist_long_name: >-
-      Child-Pugh Classification Clinical Classification Test Results for Serum
-      Albumin
-    :codelist_short_name: CPS0104R
-    :codelist_code: SN001262
-    :items:
-    - :code: S000247
-      :submission_value: '1'
-      :rank: '1'
-    - :code: S001743
-      :submission_value: '2'
-      :rank: '2'
-    - :code: S001749
-      :submission_value: '3'
-      :rank: '3'
-  - :codelist_long_name: >-
-      Child-Pugh Classification Clinical Classification Test Results for Serum
-      Bilirubin
-    :codelist_short_name: CPS0103R
-    :codelist_code: SN001261
-    :items: 
-    - :code: S000248
-      :submission_value: '1'
-      :rank: '1'
-    - :code: S001744
-      :submission_value: '2'
-      :rank: '2'
-    - :code: S001750
-      :submission_value: '3'
-      :rank: '3'
   - :codelist_long_name: Common Terminology Criteria for Adverse Events
     :codelist_short_name: TOXGR
     :codelist_code: SN001030
@@ -413,229 +278,6 @@
     - :code: S001630
       :submission_value: NO CEREBROVASCULAR EVENT
       :rank: '8'
-  - :codelist_long_name: Eastern Cooperative Oncology Group Performance Status Questionnaire Results
-    :codelist_short_name: ECOG1R
-    :codelist_code: SN000193
-    :items:
-    - :code: S002088
-      :submission_value: '0'
-      :rank: '1'
-    - :code: S002089
-      :submission_value: '1'
-      :rank: '2'
-    - :code: S002084
-      :submission_value: '2'
-      :rank: '3'
-    - :code: S002085
-      :submission_value: '3'
-      :rank: '4'
-    - :code: S002086
-      :submission_value: '4'
-      :rank: '5'
-    - :code: S000214
-      :submission_value: '5'
-      :rank: '6'
-  - :codelist_long_name: >-
-      Eastern Cooperative Oncology Group Performance Status Questionnaire Results
-      Subset 01
-    :codelist_short_name: ECOG1R_01
-    :codelist_code: SN000193
-    :items:
-    - :code: S002088
-      :submission_value: '0'
-      :rank: '1'
-    - :code: S002089
-      :submission_value: '1'
-      :rank: '2'
-    - :code: S002084
-      :submission_value: '2'
-      :rank: '3'
-    - :code: S002085
-      :submission_value: '3'
-      :rank: '4'
-    - :code: S002086
-      :submission_value: '4'
-      :rank: '5'
-  - :codelist_long_name: >-
-      European Quality of Life Five Dimension Five Level Scale Questionnaire
-      Results for Question Type 1
-    :codelist_short_name: EQ5D021R
-    :codelist_code: SN000155
-    :items:
-    - :code: S012915
-      :submission_value: I HAVE NO PROBLEMS WALKING
-      :rank: '1'
-    - :code: S012916
-      :submission_value: I HAVE SLIGHT PROBLEMS WALKING
-      :rank: '2'
-    - :code: S012917
-      :submission_value: I HAVE MODERATE PROBLEMS WALKING
-      :rank: '3'
-    - :code: S012918
-      :submission_value: I HAVE SEVERE PROBLEMS WALKING
-      :rank: '4'
-    - :code: S012919
-      :submission_value: I AM UNABLE TO WALK
-      :rank: '5'
-  - :codelist_long_name: >-
-      European Quality of Life Five Dimension Five Level Scale Questionnaire
-      Results for Question Type 2
-    :codelist_short_name: EQ5D022R
-    :codelist_code: SN000156
-    :items: 
-    - :code: S012920
-      :submission_value: I HAVE NO PROBLEMS WASHING OR DRESSING MYSELF
-      :rank: '1'
-    - :code: S012921
-      :submission_value: I HAVE SLIGHT PROBLEMS WASHING OR DRESSING MYSELF
-      :rank: '2'
-    - :code: S012922
-      :submission_value: I HAVE MODERATE PROBLEMS WASHING OR DRESSING MYSELF
-      :rank: '3'
-    - :code: S012923
-      :submission_value: I HAVE SEVERE PROBLEMS WASHING OR DRESSING MYSELF
-      :rank: '4'
-    - :code: S012905
-      :submission_value: I AM UNABLE TO WASH OR DRESS MYSELF
-      :rank: '5'
-  - :codelist_long_name: >-
-      European Quality of Life Five Dimension Five Level Scale Questionnaire
-      Results for Question Type 3
-    :codelist_short_name: EQ5D023R
-    :codelist_code: SN000157
-    :items:
-    - :code: S012924
-      :submission_value: I HAVE NO PROBLEMS DOING MY USUAL ACTIVITIES
-      :rank: '1'
-    - :code: S012925
-      :submission_value: I HAVE SLIGHT PROBLEMS DOING MY USUAL ACTIVITIES
-      :rank: '2'
-    - :code: S012926
-      :submission_value: I HAVE MODERATE PROBLEMS DOING MY USUAL ACTIVITIES
-      :rank: '3'
-    - :code: S012927
-      :submission_value: I HAVE SEVERE PROBLEMS DOING MY USUAL ACTIVITIES
-      :rank: '4'
-    - :code: S012928
-      :submission_value: I AM UNABLE TO DO MY USUAL ACTIVITIES
-      :rank: '5'
-  - :codelist_long_name: >-
-      European Quality of Life Five Dimension Five Level Scale Questionnaire
-      Results for Question Type 4
-    :codelist_short_name: EQ5D024R
-    :codelist_code: SN000158
-    :items:
-    - :code: S012909
-      :submission_value: I HAVE NO PAIN OR DISCOMFORT
-      :rank: '1'
-    - :code: S012929
-      :submission_value: I HAVE SLIGHT PAIN OR DISCOMFORT
-      :rank: '2'
-    - :code: S012910
-      :submission_value: I HAVE MODERATE PAIN OR DISCOMFORT
-      :rank: '3'
-    - :code: S012930
-      :submission_value: I HAVE SEVERE PAIN OR DISCOMFORT
-      :rank: '4'
-    - :code: S012911
-      :submission_value: I HAVE EXTREME PAIN OR DISCOMFORT
-      :rank: '5'
-  - :codelist_long_name: >-
-      European Quality of Life Five Dimension Five Level Scale Questionnaire
-      Results for Question Type 5
-    :codelist_short_name: EQ5D025R
-    :codelist_code: SN000159
-    :items:
-    - :code: S012912
-      :submission_value: I AM NOT ANXIOUS OR DEPRESSED
-      :rank: '1'
-    - :code: S012931
-      :submission_value: I AM SLIGHTLY ANXIOUS OR DEPRESSED
-      :rank: '2'
-    - :code: S012913
-      :submission_value: I AM MODERATELY ANXIOUS OR DEPRESSED
-      :rank: '3'
-    - :code: S012932
-      :submission_value: I AM SEVERELY ANXIOUS OR DEPRESSED
-      :rank: '4'
-    - :code: S012914
-      :submission_value: I AM EXTREMELY ANXIOUS OR DEPRESSED
-      :rank: '5'
-  - :codelist_long_name: >-
-      European Quality of Life Five Dimension Three Level Scale Questionnaire
-      Results for Question Type 1
-    :codelist_short_name: EQ5D011R
-    :codelist_code: SN000919
-    :items:
-    - :code: S012900
-      :submission_value: I HAVE NO PROBLEMS IN WALKING ABOUT
-      :rank: '1'
-    - :code: S012901
-      :submission_value: I HAVE SOME PROBLEMS IN WALKING ABOUT
-      :rank: '2'
-    - :code: S012902
-      :submission_value: I AM CONFINED TO BED
-      :rank: '3'
-  - :codelist_long_name: >-
-      European Quality of Life Five Dimension Three Level Scale Questionnaire
-      Results for Question Type 2
-    :codelist_short_name: EQ5D012R
-    :codelist_code: SN000920
-    :items:
-    - :code: S012903
-      :submission_value: I HAVE NO PROBLEMS WITH SELF-CARE
-      :rank: '1'
-    - :code: S012904
-      :submission_value: I HAVE SOME PROBLEMS WASHING OR DRESSING MYSELF
-      :rank: '2'
-    - :code: S012905
-      :submission_value: I AM UNABLE TO WASH OR DRESS MYSELF
-      :rank: '3'
-  - :codelist_long_name: >-
-      European Quality of Life Five Dimension Three Level Scale Questionnaire
-      Results for Question Type 3
-    :codelist_short_name: EQ5D013R
-    :codelist_code: SN000921
-    :items:
-    - :code: S012906
-      :submission_value: I HAVE NO PROBLEMS WITH PERFORMING MY USUAL ACTIVITIES
-      :rank: '1'
-    - :code: S012907
-      :submission_value: I HAVE SOME PROBLEMS WITH PERFORMING MY USUAL ACTIVITIES
-      :rank: '2'
-    - :code: S012908
-      :submission_value: I AM UNABLE TO PERFORM MY USUAL ACTIVITIES
-      :rank: '3'
-  - :codelist_long_name: >-
-      European Quality of Life Five Dimension Three Level Scale Questionnaire
-      Results for Question Type 4
-    :codelist_short_name: EQ5D014R
-    :codelist_code: SN000922
-    :items:
-    - :code: S012909
-      :submission_value: I HAVE NO PAIN OR DISCOMFORT
-      :rank: '1'
-    - :code: S012910
-      :submission_value: I HAVE MODERATE PAIN OR DISCOMFORT
-      :rank: '2'
-    - :code: S012911
-      :submission_value: I HAVE EXTREME PAIN OR DISCOMFORT
-      :rank: '3'
-  - :codelist_long_name: >-
-      European Quality of Life Five Dimension Three Level Scale Questionnaire
-      Results for Question Type 5
-    :codelist_short_name: EQ5D015R
-    :codelist_code: SN000923
-    :items:
-    - :code: S012912
-      :submission_value: I AM NOT ANXIOUS OR DEPRESSED
-      :rank: '1'
-    - :code: S012913
-      :submission_value: I AM MODERATELY ANXIOUS OR DEPRESSED
-      :rank: '2'
-    - :code: S012914
-      :submission_value: I AM EXTREMELY ANXIOUS OR DEPRESSED
-      :rank: '3'
   - :codelist_long_name: Investigator Assessment Reason Not Done of Blood Measurement
     :codelist_short_name: INVASSND
     :codelist_code: SN000737
@@ -658,18 +300,6 @@
     - :code: SC17649
       :submission_value: OTHER
       :rank: '6'
-  - :codelist_long_name: >-
-      Kurtzke Functional Systems Scores Questionnaire Test Results for Check Box
-      Questions
-    :codelist_short_name: KFSS19R
-    :codelist_code: SN001226
-    :items:
-    - :code: S012755
-      :submission_value: CHECKED
-      :rank: '1'
-    - :code: S012756
-      :submission_value: 'NOT CHECKED '
-      :rank: '2'
   - :codelist_long_name: Normalized Identifier
     :codelist_short_name: NORMED
     :codelist_code: SN000393
@@ -752,25 +382,6 @@
     - :code: S003156
       :submission_value: '6'
       :rank: '6'
-  - :codelist_long_name: Patient-Oriented Eczema Measure Questionnaire Test Results
-    :codelist_short_name: POEM9R
-    :codelist_code: SN000924
-    :items:
-    - :code: S008577
-      :submission_value: '0'
-      :rank: '1'
-    - :code: S008578
-      :submission_value: '1'
-      :rank: '2'
-    - :code: S008579
-      :submission_value: '2'
-      :rank: '3'
-    - :code: S008580
-      :submission_value: '3'
-      :rank: '4'
-    - :code: S008581
-      :submission_value: '4'
-      :rank: '5'
   - :codelist_long_name: Relationship to Study Treatment
     :codelist_short_name: AERELA
     :codelist_code: SN000012
@@ -889,3 +500,58 @@
     - :code: S003278
       :submission_value: '2'
       :rank: '2'
+  - :codelist_long_name: Relationship to Device
+    :codelist_short_name: AERELDEV
+    :codelist_code: SN001877
+    :items:
+    - :code: S000090
+      :submission_value: 'NOT RELATED'
+      :rank: '1'
+    - :code: S000093
+      :submission_value: 'RELATED'
+      :rank: '2'
+  - :codelist_long_name: Relationship to Device Subset 01
+    :codelist_short_name: AERELDEV_01
+    :codelist_code: SN003601
+    :items:
+    - :code: S000090
+      :submission_value: 'NOT RELATED'
+      :rank: '1'
+    - :code: S000093
+      :submission_value: 'RELATED'
+      :rank: '2'
+
+  - :codelist_long_name: Completion/Reason for Non-Completion Numeric  
+    :codelist_short_name: NCOMPLTN  
+    :codelist_code: SN001020  
+    :items:
+    - :code: S009928 
+      :submission_value: '1' 
+      :rank: '1'
+    - :code: S009929 
+      :submission_value: '2' 
+      :rank: '2'
+    - :code: S009930 
+      :submission_value: '3' 
+      :rank: '3'
+    - :code: S009931 
+      :submission_value: '4' 
+      :rank: '4'
+    - :code: S009932 
+      :submission_value: '5' 
+      :rank: '5'
+    - :code: S009933 
+      :submission_value: '6' 
+      :rank: '6'
+    - :code: S009934 
+      :submission_value: '7' 
+      :rank: '7'
+    - :code: S009935 
+      :submission_value: '8' 
+      :rank: '8'
+    - :code: S009936 
+      :submission_value: '9' 
+      :rank: '9'
+
+
+

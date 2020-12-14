@@ -58,7 +58,7 @@ describe "Change Instructions", :type => :feature do
       ui_table_search("index", "EPOCH")
       find(:xpath, "//tr[contains(.,'EPOCH')]/td/a").click
       wait_for_ajax(10)
-      context_menu_element("history", 5, "58.0.0", :show)
+      context_menu_element("history", 5, "9.0.0", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_instructions)
       ui_in_modal do
@@ -74,7 +74,7 @@ describe "Change Instructions", :type => :feature do
       ui_table_search("index", "EPOCH")
       find(:xpath, "//tr[contains(.,'EPOCH')]/td/a").click
       wait_for_ajax(10)
-      context_menu_element("history", 5, "58.0.0", :show)
+      context_menu_element("history", 5, "9.0.0", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_instructions)
       ui_in_modal do
@@ -99,7 +99,7 @@ describe "Change Instructions", :type => :feature do
       ui_table_search("index", "EPOCH")
       find(:xpath, "//tr[contains(.,'EPOCH')]/td/a").click
       wait_for_ajax(10)
-      context_menu_element("history", 5, "58.0.0", :show)
+      context_menu_element("history", 5, "9.0.0", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_instructions)
       ui_in_modal do
@@ -125,7 +125,7 @@ describe "Change Instructions", :type => :feature do
         ui_selector_check_tabs(["Code Lists", "Code List Items"])
         ui_selector_check_tabs_gone(["Terminologies"])
         ui_selector_item_click("index", "C100129")
-        ui_selector_item_click("history", "60.0.0")
+        ui_selector_item_click("history", "29.0.0")
         click_on "Submit and proceed"
       end
       wait_for_ajax 10
@@ -138,7 +138,7 @@ describe "Change Instructions", :type => :feature do
         ui_selector_tab_click("Code List Items")
         wait_for_ajax 20
         ui_selector_item_click("index", "RELSUB")
-        ui_selector_item_click("history", "57.0.0")
+        ui_selector_item_click("history", "8.0.0")
         ui_selector_item_click("children", "C96658")
         ui_selector_item_click("children", "C96657")
         ui_selector_item_click("children", "C96656")
@@ -178,7 +178,7 @@ describe "Change Instructions", :type => :feature do
       ui_table_search("index", "QSCAT")
       find(:xpath, "//tr[contains(.,'QSCAT')]/td/a").click
       wait_for_ajax(10)
-      context_menu_element("history", 5, "57.0.0", :show)
+      context_menu_element("history", 5, "27.0.0", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_instructions)
       ui_in_modal do
@@ -191,7 +191,7 @@ describe "Change Instructions", :type => :feature do
       find("#add-previous").click
       ui_in_modal do
         ui_selector_item_click("index", "QSCAT")
-        ui_selector_item_click("history", "57.0.0")
+        ui_selector_item_click("history", "27.0.0")
         click_on "Submit and proceed"
       end
       wait_for_ajax 10
@@ -201,7 +201,7 @@ describe "Change Instructions", :type => :feature do
         ui_selector_tab_click("Code List Items")
         wait_for_ajax 20
         ui_selector_item_click("index", "C100132")
-        ui_selector_item_click("history", "47.0.0")
+        ui_selector_item_click("history", "5.0.0")
         ui_selector_item_click("children", "ADCMZ02")
         click_on "Submit and proceed"
       end
@@ -327,7 +327,7 @@ describe "Change Instructions", :type => :feature do
       ui_table_search("index", "PKUWKG")
       find(:xpath, "//tr[contains(.,'C128683')]/td/a").click
       wait_for_ajax(10)
-      context_menu_element("history", 5, "56.0.0", :show)
+      context_menu_element("history", 5, "3.0.0", :show)
       wait_for_ajax(10)
       find(:xpath, "//tr[contains(.,'C85754')]/td/a").click
       wait_for_ajax(10)
@@ -345,7 +345,7 @@ describe "Change Instructions", :type => :feature do
       ui_table_search("index", "PKUWKG")
       find(:xpath, "//tr[contains(.,'C128683')]/td/a").click
       wait_for_ajax(10)
-      context_menu_element("history", 5, "56.0.0", :show)
+      context_menu_element("history", 5, "3.0.0", :show)
       wait_for_ajax(10)
       find(:xpath, "//tr[contains(.,'C85754')]/td/a").click
       wait_for_ajax(10)
@@ -363,7 +363,7 @@ describe "Change Instructions", :type => :feature do
         wait_for_ajax 20
         ui_table_search("index", "PKUWKG")
         ui_selector_item_click("index", "PKUWKG")
-        ui_selector_item_click("history", "56.0.0")
+        ui_selector_item_click("history", "3.0.0")
         ui_selector_item_click("children", "C85754")
         click_on "Submit and proceed"
       end

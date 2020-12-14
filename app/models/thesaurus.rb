@@ -407,7 +407,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
       ?s th:extensible ?e .
       ?s th:preferredTerm/isoC:label ?pt .
       OPTIONAL {?s th:synonym/isoC:label ?sy .}
-      OPTIONAL {?s ^isoC:appliesTo/isoC:classifiedAs/isoC:prefLabel ?t . #{tag_clause}}
+      OPTIONAL {?s ^isoC:appliesTo ?cla . ?cla isoC:context #{self.uri.to_ref} . ?cla isoC:classifiedAs/isoC:prefLabel ?t . #{tag_clause}}
     }
   } ORDER BY ?i ?sy ?t
 } GROUP BY ?i ?n ?d ?pt ?e ?s ORDER BY ?i

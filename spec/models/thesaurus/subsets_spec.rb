@@ -70,7 +70,7 @@ describe "Thesaurus::Subsets" do
       uri_1 = Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079_C42872")
       uri_2 = Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079_C48262")
       uri_3 = Uri.new(uri: "http://www.cdisc.org/C99079/V34#C99079_C16032")
-      item_1.is_ordered.add([uri_1.to_id, uri_2.to_id])
+      item_1.is_ordered.add([uri_1.to_id, uri_2.to_id], tc_32)
       item_1 = Thesaurus::ManagedConcept.find_with_properties(item_1.id)
       item_1.synonyms_and_preferred_terms
       expect(item_1.subsets_links.to_s).to eq("http://www.cdisc.org/C99079/V32#C99079")
@@ -93,7 +93,7 @@ describe "Thesaurus::Subsets" do
       result[:creation_date] = "2020-02-16T18:31:47+01:00"
       check_file_actual_expected(result, sub_dir, "upgrade_expected_1b.yaml", equate_method: :hash_equal)
       check_file_actual_expected(item_2.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1b.yaml", equate_method: :hash_equal)
-      item_2.is_ordered_objects.add([uri_3.to_id])
+      item_2.is_ordered_objects.add([uri_3.to_id], tc_32)
       item_3 = item_1.upgrade_subset(tc_45)
       item_3 = Thesaurus::ManagedConcept.find(item_3.uri)
       expect(item_3.narrower.count).to eq(3)

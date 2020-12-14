@@ -805,7 +805,7 @@ describe Thesauri::ManagedConceptsController do
       extended_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079"))
       child_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
       token = Token.obtain(tc, @user)
-      post :add_extensions, params:{id: tc.id, managed_concept: {extension_ids: [child_1.id]}}
+      post :add_extensions, params:{id: tc.id, managed_concept: {set_ids: [{id: child_1.id, context_id: extended_tc.id}]}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
     end
@@ -817,7 +817,7 @@ describe Thesauri::ManagedConceptsController do
       extended_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079"))
       child_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
       token = Token.obtain(tc, @lock_user)
-       post :add_extensions, params:{id: tc.id, managed_concept: {extension_ids: [child_1.id]}}
+       post :add_extensions, params:{id: tc.id, managed_concept: {set_ids: [{id: child_1.id, context_id: extended_tc.id}]}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
       expect(actual[0]).to eq("The item is locked for editing by user: lock@example.com.")
       expect(AuditTrail.count).to eq(audit_count)

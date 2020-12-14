@@ -6,8 +6,9 @@ class Thesauri::SubsetsController < ManagedItemsController
     authorize Thesaurus, :edit?
     subset = Thesaurus::Subset.find(protect_from_bad_id(params))
     parent_mc = Thesaurus::ManagedConcept.find_minimum(subset.find_mc.id)
+    source =  Thesaurus::ManagedConcept.find_minimum(parent_mc.subsets_links)
     return true unless check_lock_for_item(parent_mc)
-    subset.add(the_params[:cli_ids])
+    subset.add(the_params[:cli_ids], source)
     return true if lock_item_errors
     render json: { }, status: 200
   end

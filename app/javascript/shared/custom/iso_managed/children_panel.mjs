@@ -1,17 +1,17 @@
-import CPTablePanel from 'shared/base/custom_props_table_panel'
+import CustomPropsTablePanel from 'shared/base/custom_properties/cp_table_panel'
 
 import { dtButtonColumn, dtIndicatorsColumn } from 'shared/helpers/dt/dt_columns'
 import { dtChildrenColumns } from 'shared/helpers/dt/dt_column_collections'
 import { dtCLExtensibleColumn } from 'shared/helpers/dt/dt_columns'
 
 /**
- * Children Panel
- * @description Lists children items of a managed item.
- * @extends TablePanel class from shared/base/table_panel
+ * Children Table Panel
+ * @description Lists children items of a managed item, supports Custom Properties
+ * @extends CustomPropsTablePanel module
  * @requires table [@id = 'children']
  * @author Samuel Banas <sab@s-cubed.dk>
  */
-export default class ChildrenPanel extends CPTablePanel {
+export default class ChildrenPanel extends CustomPropsTablePanel {
 
   /**
    * Create a Children Panel
@@ -19,10 +19,12 @@ export default class ChildrenPanel extends CPTablePanel {
    * @param {string} params.selector JQuery selector of the target table (Optional)
    * @param {string} params.url Url of source data
    * @param {string} params.param Strict parameter name required for the controller params
-   * @param {int} params.count Count of items fetched in one request [default = 5000]
+   * @param {integer} params.count Count of items fetched in one request [default = 5000]
    * @param {Array} params.extraColumns Additional column definitions besides owner, identifier, or label. Optional
    * @param {boolean} params.deferLoading Set to true if data load should be deferred. Load data has to be called manually in this case. Optional
    * @param {boolean} params.cache Specify if the panel data should be cached. Optional.
+   * @param {Array} params.buttons DT buttons definitions objects, optional
+   * @param {boolean} params.customPropsEnabled Enables or disables Custom Properties functionality [default = false]
    */
   constructor({
     selector = "#children-panel #children",
@@ -33,12 +35,15 @@ export default class ChildrenPanel extends CPTablePanel {
     deferLoading = false,
     cache = true,
     buttons = [],
-    cpEnabled = false
+    customPropsEnabled = false
   }) {
 
     super({
-      selector, url, param, count,
-      extraColumns, cache, buttons, cpEnabled
+      tablePanelOpts: {
+        selector, url, param, count, extraColumns,
+        deferLoading, cache, buttons
+      },
+      enabled: customPropsEnabled
     });
 
   }
@@ -46,21 +51,6 @@ export default class ChildrenPanel extends CPTablePanel {
 
   /** Private **/
 
-
-  /**
-   * Toggle Custom Propety columns UI, maintain width of the item definition column
-   * @param {boolean} visible Target Custom Property columns visibility state
-   */
-  _toggleCPColumns(visible) {
-
-    // Retain definition column width (otherwise shrinks width too much)
-    this.$wrapper.find( 'th:contains("Definition")' )
-                 .toggleClass( 'th-xwide', visible );
-
-    super._toggleCPColumns( visible );
-
-
-  }
 
   /**
    * Get default column definitions for Children items
@@ -93,7 +83,6 @@ export default class ChildrenPanel extends CPTablePanel {
     ];
 
     options.language.emptyTable = 'No child items.';
-
     return options;
 
   }

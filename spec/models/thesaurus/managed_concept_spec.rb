@@ -10,6 +10,7 @@ describe "Thesaurus::ManagedConcept" do
   include IsoManagedHelpers
   include TimeHelpers
   include NameValueHelpers
+  include TripleStoreHelpers
 
   def sub_dir
     return "models/thesaurus/managed_concept"
@@ -881,10 +882,10 @@ describe "Thesaurus::ManagedConcept" do
         })
       tc_3.set_initial("A00005")
       tc_3.save
-      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(4)
-      tc.add_referenced_children([tc_3.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(5)
     end
@@ -933,7 +934,7 @@ describe "Thesaurus::ManagedConcept" do
       IsoHelpers.clear_cache
     end
 
-    before :all do
+    before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "change_instructions_test.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..31)
@@ -981,8 +982,9 @@ describe "Thesaurus::ManagedConcept" do
       item = thesaurus.add_extension(tc.id)
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_3.yaml", equate_method: :hash_equal)
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99078/V28#C99078"))
       ext = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C99078/V28#C99078_C307"))
-      item.add_referenced_children([ext.uri.to_id])
+      item.add_referenced_children(parent.full_contexts([ext.uri.to_id]))
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_4.yaml", equate_method: :hash_equal)
     end
@@ -1005,7 +1007,7 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_7.yaml", equate_method: :hash_equal)
       ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", 
         :definition=>"The definition.", :preferred_term=>Thesaurus::PreferredTerm.where_only_or_create("Not Set")}, tc)
-      item.add_referenced_children([ext.uri.to_id])
+      item.add_referenced_children(tc.full_contexts([ext.uri.to_id]))
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_8.yaml", equate_method: :hash_equal)
     end
@@ -1021,7 +1023,7 @@ describe "Thesaurus::ManagedConcept" do
         :definition=>"The definition.", :preferred_term=>Thesaurus::PreferredTerm.where_only_or_create("Not Set")}, item)
       ext2 = Thesaurus::UnmanagedConcept.create({:label=>"A label2", :identifier=>"A00022", :notation=>"NOTATION2", 
         :definition=>"The definition2.", :preferred_term=>Thesaurus::PreferredTerm.where_only_or_create("Not Set")}, item)
-      item.add_referenced_children([ext.uri.to_id, ext2.uri.to_id])
+      item.add_referenced_children(tc.full_contexts([ext.uri.to_id, ext2.uri.to_id]))
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_10.yaml", equate_method: :hash_equal)
     end
@@ -1379,8 +1381,8 @@ describe "Thesaurus::ManagedConcept" do
       item = thesaurus.add_subset(tc.id)
       item.is_ordered_objects
       subset = item.is_ordered
-      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
-      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id], tc)
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id], tc)
       uri_check_set_1[11][:present] = true
       uri_check_set_1 << { uri: subset.uri, present: true}
       uri_check_set_1 << { uri: subset.members_objects.uri, present: true}
@@ -1532,7 +1534,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.create
       new_1 = tc.add_child({notation: "NEW1", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("A")})
       new_2 = tc.add_child({notation: "NEW2", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("B")})
-      tc.add_referenced_children([uri_1.to_id])
+      tc.add_referenced_children(tc.full_contexts([uri_1.to_id]))
       uri_check_set << {uri: new_1.uri, present: true}
       uri_check_set << {uri: new_2.uri, present: true}
       expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
@@ -1734,10 +1736,10 @@ describe "Thesaurus::ManagedConcept" do
         })
       tc_3.set_initial("A00005")
       tc_3.save
-      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(4)
-      tc.add_referenced_children([tc_3.uri.to_id])
+      tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(5)
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
@@ -1763,8 +1765,8 @@ describe "Thesaurus::ManagedConcept" do
       new_rank = item.add_rank
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       subset = item.is_ordered
-      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
-      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id], tc)
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id], tc)
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       first_member = Thesaurus::RankMember.find(actual_rank.members)
       second_member = Thesaurus::RankMember.find(first_member.member_next)
@@ -1781,8 +1783,8 @@ describe "Thesaurus::ManagedConcept" do
       new_rank = item.add_rank
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       subset = item.is_ordered
-      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
-      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id], tc)
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id], tc)
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       first_member = Thesaurus::RankMember.find(actual_rank.members)
       second_member = Thesaurus::RankMember.find(first_member.member_next)
@@ -1812,8 +1814,8 @@ describe "Thesaurus::ManagedConcept" do
       new_rank = item.add_rank
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       subset = item.is_ordered
-      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
-      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id], tc)
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id], tc)
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       first_member = Thesaurus::RankMember.find(actual_rank.members)
       second_member = Thesaurus::RankMember.find(first_member.member_next)
@@ -2124,7 +2126,7 @@ describe "Thesaurus::ManagedConcept" do
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_referenced_children([uc_1.uri.to_id])
+      mc.add_referenced_children(mc.full_contexts([uc_1.uri.to_id]))
       expect(mc.errors.empty?).to eq(true)
       mc = Thesaurus::ManagedConcept.find_full(mc.uri)
       expect(mc.narrower.count).to eq(9)
@@ -2137,7 +2139,7 @@ describe "Thesaurus::ManagedConcept" do
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_referenced_children([uc_1.uri.to_id, uc_2.uri.to_id])
+      mc.add_referenced_children(mc.full_contexts([uc_1.uri.to_id, uc_2.uri.to_id]))
       expect(mc.errors.empty?).to eq(true)
       mc = Thesaurus::ManagedConcept.find_full(mc.uri)
       expect(mc.narrower.count).to eq(10)
@@ -2151,7 +2153,7 @@ describe "Thesaurus::ManagedConcept" do
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_referenced_children([uc_1.uri.to_id, uc_2.uri.to_id])
+      mc.add_referenced_children(mc.full_contexts([uc_1.uri.to_id, uc_2.uri.to_id]))
       expect(mc.errors.empty?).to eq(false)
       expect(mc.narrower_links.count).to eq(8)
       expect(mc.errors.full_messages.to_sentence).to eq("Code list is a subset.")
@@ -2163,12 +2165,370 @@ describe "Thesaurus::ManagedConcept" do
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_referenced_children([uc_1.uri.to_id, uc_2.uri.to_id])
+      mc.add_referenced_children(mc.full_contexts([uc_1.uri.to_id, uc_2.uri.to_id]))
       expect(mc.errors.empty?).to eq(true)
       expect(mc.narrower_links.count).to eq(10)
     end
 
   end
 
+  describe "custom property" do
+
+    def simple_thesaurus_1
+      @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      @th_1 = Thesaurus.new
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow",
+          identifier: "A00001",
+          definition: "A definition",
+          notation: "LHR"
+        })
+      @tc_1.synonym << Thesaurus::Synonym.where_only_or_create("Heathrow")
+      @tc_1.synonym << Thesaurus::Synonym.where_only_or_create("LHR")
+      @tc_1.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
+      @tc_1a = Thesaurus::UnmanagedConcept.from_h({
+          label: "Terminal 5",
+          identifier: "A000011",
+          definition: "The 5th LHR Terminal",
+          notation: "T5"
+        })
+      @tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("T5")
+      @tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("Terminal Five")
+      @tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("BA Terminal")
+      @tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("British Airways Terminal")
+      @tc_1a.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 5")
+      @tc_1b = Thesaurus::UnmanagedConcept.from_h({
+          label: "Terminal 1",
+          identifier: "A000012",
+          definition: "The oldest LHR Terminal",
+          notation: "T1"
+        })
+      @tc_1b.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 1")
+      @tc_1.narrower << @tc_1a
+      @tc_1.narrower << @tc_1b
+      @tc_2 = Thesaurus::ManagedConcept.new
+      @tc_2.identifier = "A00002"
+      @tc_2.definition = "Copenhagen"
+      @tc_2.extensible = false
+      @tc_2.notation = "CPH"
+      @tc_2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Kobenhavn")
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      sparql = Sparql::Update.new
+      @th_1.set_initial("NEW_TH")
+      @tc_1.set_initial(@tc_1.identifier)
+      @tc_2.set_initial(@tc_2.identifier)
+      sparql.default_namespace(@th_1.uri.namespace)
+      @th_1.to_sparql(sparql, true)
+      @tc_1.to_sparql(sparql, true)
+      @tc_2.to_sparql(sparql, true)
+      full_path = sparql.upload
+    end
+
+    def add_cp_1
+      CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
+      description: "A description XXX", default: "Default String",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CPD1"))
+    end
+
+    def add_cp_2
+      CustomPropertyDefinition.create(datatype: "boolean", label: "Logical", 
+      description: "Boolean Description", default: "false",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CPD2"))
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..5)
+      simple_thesaurus_1
+      nv_destroy
+      nv_create(parent: "123", child: "456")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "allows a new child TC to be added, no custom property" do
+      params =
+      {
+        definition: "The Queen's Terminal, the second terminal at Heathrow",
+        identifier: "A00014",
+        label: "Terminal 2",
+        notation: "T2"
+      }
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_object = tc.add_child(params)
+      expect(new_object.errors.count).to eq(0)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      result = tc.populate_custom_properties
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_child_custom_property_expected_1.yaml")
+    end
+
+    it "allows a new child TC to be added, custom property" do
+      add_cp_1
+      params =
+      {
+        definition: "The Queen's Terminal, the second terminal at Heathrow",
+        identifier: "A00014",
+        label: "Terminal 2",
+        notation: "T2"
+      }
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_object = tc.add_child(params)
+      expect(new_object.errors.count).to eq(0)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      result = tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_child_custom_property_expected_2.yaml", write_file: false)
+    end
+
+    it "add and delete children to an extension, single" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      add_cp_1
+      expect(tc.narrower.count).to eq(0)
+      tc_1 = Thesaurus::UnmanagedConcept.create({label: "Terminal 1", identifier: "A00023", definition: "A definition", notation: "T1"}, tc)
+      tc_2 = Thesaurus::UnmanagedConcept.create({label: "Terminal 2A", identifier: "A00024", definition: "A definition", notation: "T2A"}, tc)
+      tc_3 = Thesaurus::UnmanagedConcept.create({label: "Cow Shed", identifier: "A00025", definition: "A definition", notation: "T2B"}, tc)
+      tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id]))
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      expect(tc.narrower.count).to eq(2)
+      result = tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1a.yaml")
+      tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      expect(tc.narrower.count).to eq(3)
+      result = tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_1b.yaml")
+    end
+
+    it "add and delete children to an extension, several" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      expect(tc.narrower.count).to eq(0)
+      tc_1 = Thesaurus::UnmanagedConcept.create({label: "Terminal 1", identifier: "A00023", definition: "A definition", notation: "T1"}, tc)
+      tc_2 = Thesaurus::UnmanagedConcept.create({label: "Terminal 2A", identifier: "A00024", definition: "A definition", notation: "T2A"}, tc)
+      tc_3 = Thesaurus::UnmanagedConcept.create({label: "Cow Shed", identifier: "A00025", definition: "A definition", notation: "T2B"}, tc)
+      tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id]))
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      expect(tc.narrower.count).to eq(2)
+      result = tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2a.yaml")
+      tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      expect(tc.narrower.count).to eq(3)
+      result = tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2b.yaml")
+    end
+
+    it "add and delete children to an extension, values" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      add_cp_1
+      add_cp_2
+      expect(tc.narrower.count).to eq(0)
+      tc_1 = Thesaurus::UnmanagedConcept.create({label: "Terminal 1", identifier: "A00023", definition: "A definition", notation: "T1"}, tc)
+      tc_2 = Thesaurus::UnmanagedConcept.create({label: "Terminal 2A", identifier: "A00024", definition: "A definition", notation: "T2A"}, tc)
+      tc_3 = Thesaurus::UnmanagedConcept.create({label: "Cow Shed", identifier: "A00025", definition: "A definition", notation: "T2B"}, tc)
+      tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id]))
+      cpv_uri = CustomPropertyValue.where_unique(tc_1, tc, :some_string)
+      cpv = CustomPropertyValue.find(cpv_uri)
+      cpv.value = "Something new and wonderful"
+      cpv.save
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      expect(tc.narrower.count).to eq(2)
+      result = tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_3a.yaml")
+      cpv_uri = CustomPropertyValue.where_unique(tc_3, tc, :Logical)
+      cpv = CustomPropertyValue.find(cpv_uri)
+      cpv.value = "true"
+      cpv.save
+      tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      expect(tc.narrower.count).to eq(3)
+      result = tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_3b.yaml")
+    end
+
+    it "clone a code list, next version" do
+      add_cp_1
+      add_cp_2
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      tc_1 = Thesaurus::UnmanagedConcept.create({label: "Terminal 1", identifier: "A00023", definition: "A definition", notation: "T1"}, tc)
+      tc_2 = Thesaurus::UnmanagedConcept.create({label: "Terminal 2A", identifier: "A00024", definition: "A definition", notation: "T2A"}, tc)
+      tc_3 = Thesaurus::UnmanagedConcept.create({label: "Cow Shed", identifier: "A00025", definition: "A definition", notation: "T2B"}, tc)
+      tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id, tc_3.uri.to_id]))
+      params = {}
+      params[:registration_status] = "Standard"
+      params[:previous_state] = "Incomplete"
+      tc.update_status(params)
+      new_tc = tc.create_next_version
+      cpv_uri = CustomPropertyValue.where_unique(tc_1, new_tc, :some_string)
+      cpv = CustomPropertyValue.find(cpv_uri)
+      cpv.value = "Something new and wonderful"
+      cpv.save
+      tc = Thesaurus::ManagedConcept.find(tc.uri)
+      result = tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_4a.yaml")
+      new_tc = Thesaurus::ManagedConcept.find(new_tc.uri)
+      result = new_tc.find_custom_property_values
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_4b.yaml")
+    end
+
+  end
+
+  describe "custom property bug fix checks I" do
+
+    def add_cp_1
+      CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
+      description: "String Description", default: "Default String",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CPD1"))
+    end
+
+    def add_cp_2
+      CustomPropertyDefinition.create(datatype: "boolean", label: "Logical", 
+      description: "Boolean Description", default: "false",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CPD2"))
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..31)
+      nv_destroy
+      nv_create(parent: "123", child: "456")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "extend a code list" do
+      add_cp_1
+      add_cp_2
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
+      item = tc.create_extension
+      item = Thesaurus::UnmanagedConcept.find(item.uri)
+      results = item.children_pagination(count: 100, offset: 0)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_1a.yaml", equate_method: :hash_equal)
+      results = item.find_custom_property_definitions_to_h
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_1b.yaml", equate_method: :hash_equal)
+      results = item.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_1c.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "custom property bug fix checks II" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+      nv_destroy
+      nv_create(parent: "123", child: "456")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "extend a code list" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.sanofi.com/SN003055/V1#SN003055"))
+      results = tc.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2a.yaml", equate_method: :hash_equal)
+      item = tc.create_extension
+      item = Thesaurus::UnmanagedConcept.find(item.uri)
+      results = item.children_pagination(count: 100, offset: 0)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2b.yaml", equate_method: :hash_equal)
+      results = item.find_custom_property_definitions_to_h
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2c.yaml", equate_method: :hash_equal)
+      results = item.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2d.yaml", equate_method: :hash_equal)
+    end
+
+    it "check preservation of custom properties after delete" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.sanofi.com/SN003055/V1#SN003055"))
+      results = tc.find_custom_property_values
+      before_count = triple_store.triple_count
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_3a.yaml", equate_method: :hash_equal)
+      item = tc.create_extension
+      results = item.delete_or_unlink
+      results = tc.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_3a.yaml", equate_method: :hash_equal)
+      expect(triple_store.triple_count).to eq(before_count)
+    end
+      
+    it "extend a code list" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V62#C99079"))
+      results = tc.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_4a.yaml", equate_method: :hash_equal)
+      item = tc.create_extension
+      item = Thesaurus::UnmanagedConcept.find(item.uri)
+      results = item.children_pagination(count: 100, offset: 0)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_4b.yaml", equate_method: :hash_equal)
+      results = item.find_custom_property_definitions_to_h
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_4c.yaml", equate_method: :hash_equal)
+      results = item.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_4d.yaml", equate_method: :hash_equal)
+    end
+
+    it "delete draft code list" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.sanofi.com/SN000200/V1#SN000200"))
+      before_count = triple_store.triple_count
+      new_tc = tc.create_next_version
+      result = new_tc.delete_or_unlink
+      expect(triple_store.triple_count).to eq(before_count)
+    end
+
+  end
+
+  describe "custom property bug fix checks III" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
+      nv_destroy
+      nv_create(parent: "123", child: "456")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "delete draft code list" do
+      tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.sanofi.com/C100130/V3#C100130"))
+      before_count = triple_store.triple_count
+      new_tc = tc.create_next_version
+      new_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.sanofi.com/C100130/V4#C100130"))
+      results = new_tc.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "delete_draft_code_list_custom_property_expected_1.yaml", equate_method: :hash_equal)
+      result = new_tc.delete_or_unlink
+      expect(triple_store.triple_count).to eq(before_count)
+    end
+
+  end
 
 end

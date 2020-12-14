@@ -24,7 +24,7 @@ class IsoConceptV2
     def add_tag(uri_or_id)
       uri = self.class.as_uri(uri_or_id)
       return false unless find_classification(self.uri, uri).nil?
-      Classification.create(applies_to: self.uri, classified_as: uri, context: nil)
+      Classification.create(applies_to: self.uri, classified_as: uri, context: [self.uri])
       true
     end
 

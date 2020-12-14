@@ -16,6 +16,7 @@ $(document).ready(() => {
 
   // Subset Editor init
   let se = new SubsetEditor({
+    ids: subsetEditorIds,
     urls: subsetEditorUrls,
     onEdit: () => tt.extend()
   })

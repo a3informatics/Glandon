@@ -172,6 +172,10 @@ function _getPaginationParams(offset, params) {
  */
 function _jsonizeUrl(url) {
 
+  if ( !url ) {
+    throw new TypeError( 'Request url is in invalid format.' );
+  }
+
   // Prepends ? with .json
   if ( url.includes( '?' ) && !url.includes( '.json' ) )
     return url.replace( '?', '.json?' )

@@ -13,6 +13,18 @@ class Form < IsoManagedV2
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
 
   include Form::Ordinal
+  include Form::CRF
+
+  @@owner_ra = nil
+
+  # Owner
+  #
+  # @return [IsoRegistrationAuthority] the owner
+  def self.owner
+    return @@owner_ra if !@@owner_ra.nil?
+    @@owner_ra = IsoRegistrationAuthority.owner
+    @@owner_ra.freeze
+  end
 
   # Children Ordered. Returns the set of children nodes ordered by ordinal. 
   #
@@ -27,6 +39,21 @@ class Form < IsoManagedV2
   def clone
     self.has_group_links
     super
+  end
+
+  # aCRF.
+  #
+  # @return [String] String of HTML form representation with annotations
+  def acrf
+    annotations = Form::Annotations.new(self)
+    to_crf(annotations)
+  end
+
+  # CRF.
+  #
+  # @return [String] String of HTML form representation
+  def crf
+    to_crf
   end
 
   # Move Up With Clone
@@ -67,23 +94,6 @@ class Form < IsoManagedV2
       results += group.get_item
     end
     return results
-  end
-
-  # To CRF.
-  #
-  # @return [String] String of HTML form representation
-  def to_crf
-    form = self.class.find_full(self.uri)
-    html = ''
-    html += get_css
-    html += '<table class="table table-striped table-bordered table-condensed" id="crf">'
-    html += '<tr>'
-    html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
-    html += '</tr>'
-    form.has_group.sort_by {|x| x.ordinal}.each do |group|
-      html += group.to_crf
-    end
-    html += '</table>'
   end
 
   # Get Referenced Items.
@@ -137,6 +147,40 @@ class Form < IsoManagedV2
   end
 
 private
+  
+  # To CRF.
+  #
+  # @return [String] String of HTML form representation
+  def to_crf(annotations = nil) 
+    form = self.class.find_full(self.uri)
+    html = ''
+    html += get_css
+    html += '<table class="table table-striped table-bordered table-condensed" id="crf">'
+    html += '<tr>'
+    html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
+    unless annotations.nil?
+      html += '<td>' 
+      domains = annotations.domain_list
+      domains.each_with_index do |(prefix, hash_domain), index|
+        domain_annotation = prefix.to_s
+        if !hash_domain[:long_name].blank?
+          domain_annotation += "=" + hash_domain[:long_name]
+        end
+        class_suffix = index < domain_count ? "#{index + 1}" : "other"
+        class_name = "domain-#{class_suffix}"
+        html += "<h4 class=\"#{class_name}\">#{domain_annotation}</h4>"
+        annotations.preserve_domain_class(prefix, class_name)
+      end
+      html += '</td>'
+    else
+      html += empty_cell
+    end
+    html += '</tr>'
+    form.has_group.sort_by {|x| x.ordinal}.each do |group|
+      html += group.to_crf(annotations)
+    end
+    html += '</table>'
+  end
 
   # Next Ordinal. Get the next ordinal for a managed item collection
   #
@@ -154,27 +198,6 @@ private
     query_results = Sparql::Query.new.query(query_string, "", [:bf])
     return 1 if query_results.empty?
     query_results.by_object(:max).first.to_i + 1
-  end
-
-  def get_css
-    html = "<style>"
-    html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
-    html += "table.crf-input-field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; "
-    html += "vertical-align: center; padding: 5px; }\n"
-    html += "table.crf-input-field td:not(:last-child){border-right: 1px dashed}\n"
-    html += "h4.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 5px; }\n"
-    html += "p.domain-1 {border-radius: 5px; background: #A3E4D7; padding: 5px; }\n"
-    html += "h4.domain-2 {border-radius: 5px; background: #AED6F1; padding: 5px; }\n"
-    html += "p.domain-2 {border-radius: 5px; background: #AED6F1; padding: 5px; }\n"
-    html += "h4.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 5px; }\n"
-    html += "p.domain-3 {border-radius: 5px; background: #D2B4DE; padding: 5px; }\n"
-    html += "h4.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 5px; }\n"
-    html += "p.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 5px; }\n"
-    html += "h4.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
-    html += "p.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
-    html += "h4.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
-    html += "p.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
-    html += "</style>"
   end
 
 end

@@ -155,7 +155,7 @@ describe "Breadcrumb", :type => :feature do
       context_menu_element_v2('history', '2015-03-27 Release', :show)
       wait_for_ajax(120)
       ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
-      next_link_table("C99079", "Show", "Code List Items", "Terminology", "CDISC, C99079", "V38.0.0")
+      next_link_table("C99079", "Show", "Code List Items", "Terminology", "CDISC, C99079", "V5.0.0")
       next_link_crumb(2, "Item History", "Terminology", "CDISC, C99079", "")
     end
 
@@ -170,9 +170,9 @@ describe "Breadcrumb", :type => :feature do
       context_menu_element_v2('history', '2015-03-27 Release', :show)
       wait_for_ajax(120)
       ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
-      next_link_table("C99079", "Show", "Code List Items", "Terminology", "CDISC, C99079", "V38.0.0")
-      next_link_table("C99158", "Show", "FOLLOW-UP", "Terminology", "CDISC, C99079", "V38.0.0", "Show")
-      next_link_crumb(3, 'EPOCH', "Terminology", "CDISC, C99079", "V38.0.0")
+      next_link_table("C99079", "Show", "Code List Items", "Terminology", "CDISC, C99079", "V5.0.0")
+      next_link_table("C99158", "Show", "FOLLOW-UP", "Terminology", "CDISC, C99079", "V5.0.0", "Show")
+      next_link_crumb(3, 'EPOCH', "Terminology", "CDISC, C99079", "V5.0.0")
     end
 
     it "has CDISC Terminology breadcrumbs"

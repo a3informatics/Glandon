@@ -58,4 +58,10 @@ describe CustomPropertyDefinition do
     expect(item.errors.count).to eq(0)
   end
 
+  it "label as variable" do
+    item = CustomPropertyDefinition.new(datatype: "boolean", label: "A definition", description: "A description", default: "true",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"))
+    expect(item.label_to_variable).to eq("a_definition")
+  end
+
 end

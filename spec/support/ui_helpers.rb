@@ -589,7 +589,8 @@ module UiHelpers
 			pair: "Pair",
 			unpair: "Unpair",
 			show_paired: "Show Paired",
-      crf: "CRF"
+      crf: "CRF",
+      acrf: "aCRF"
     }
 	end
 
@@ -607,7 +608,7 @@ module UiHelpers
 		within( row ) do
 			find(".icon-context-menu").click
 			sleep 0.2
-			find( "a.option", text: option ).click
+			find( "a.option", exact_text: option ).click
 		end
 	end
 
@@ -618,7 +619,7 @@ module UiHelpers
 		sleep 0.2
 
 		within( menu ) do
-			find( "a.option", text: option ).click
+			find( "a.option", exact_text: option ).click
 		end
 	end
 
@@ -629,7 +630,7 @@ module UiHelpers
 								 ".option" :
 								 ".option.disabled"
 
-		result = menu.has_css?( class_list, text: option, visible: false )
+		result = menu.has_css?( class_list, exact_text: option, visible: false )
 		result
 	end
 

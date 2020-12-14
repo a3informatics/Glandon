@@ -478,9 +478,9 @@ describe "Forms", :type => :feature do
       find(:xpath, '//div[@id="d3"]//a[@id="tuc_reference"]').click
 
       ip_pick_unmanaged_items( :unmanaged_concept, [
-        { parent: 'C100130', version: '62', identifier: 'C25189' },
-        { parent: 'C100130', version: '62', identifier: 'C25174' },
-        { parent: 'C100130', version: '62', identifier: 'C25204' }
+        { parent: 'C100130', version: '2019-12-20', identifier: 'C25189' },
+        { parent: 'C100130', version: '2019-12-20', identifier: 'C25174' },
+        { parent: 'C100130', version: '2019-12-20', identifier: 'C25204' }
       ], 'node-add-child' )
 
       check_alert 'Added successfully.'
@@ -970,6 +970,22 @@ describe "Forms", :type => :feature do
       click_on 'Dismiss'
     end
 
+    it "allows to access CRF and aCRF views from Form Editor" do
+      edit_form('FN000150')
+
+      w = window_opened_by { click_on 'CRF' }
+      within_window w do
+        expect(page).to have_content 'CRF View'
+      end
+      w.close
+
+      w = window_opened_by { click_on 'aCRF' }
+      within_window w do
+        expect(page).to have_content 'aCRF View'
+      end
+      w.close
+    end
+
   end
 
   describe "Forms Editor, Locked State", :type => :feature, js:true do
@@ -1231,9 +1247,9 @@ describe "Forms", :type => :feature do
       find(:xpath, '//div[@id="d3"]//a[@id="tuc_reference"]').click
 
       ip_pick_unmanaged_items( :unmanaged_concept, [
-        { parent: 'C100130', version: '62', identifier: 'C25189' },
-        { parent: 'C100130', version: '62', identifier: 'C25174' },
-        { parent: 'C100130', version: '62', identifier: 'C25204' }
+        { parent: 'C100130', version: '2019-12-20', identifier: 'C25189' },
+        { parent: 'C100130', version: '2019-12-20', identifier: 'C25174' },
+        { parent: 'C100130', version: '2019-12-20', identifier: 'C25204' }
       ], 'node-add-child' )
 
       check_alert 'Added successfully.'

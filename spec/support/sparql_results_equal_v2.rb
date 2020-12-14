@@ -257,7 +257,7 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
       e_results = @e_subjects.custom_items(e_value)
       this_result = a_results == e_results
       result = result && this_result 
-      @mismatches << "***** Classification mismatch #{key}" unless this_result
+      @mismatches << "***** Custom value mismatch #{key}" unless this_result
     end
     result
   end

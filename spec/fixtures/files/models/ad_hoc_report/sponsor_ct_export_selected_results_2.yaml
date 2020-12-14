@@ -14,8 +14,8 @@ ACN_01:
   - '6'
   - ''
   - 'true'
-  - 'true'
-  - 'true'
+  - 'false'
+  - 'false'
 - - Action Taken with Study Treatment Subset 01
   - C66767
   - ACN_01
@@ -30,8 +30,8 @@ ACN_01:
   - '3'
   - ''
   - 'true'
-  - 'true'
-  - 'true'
+  - 'false'
+  - 'false'
 - - Action Taken with Study Treatment Subset 01
   - C66767
   - ACN_01
@@ -46,8 +46,8 @@ ACN_01:
   - '4'
   - ''
   - 'true'
-  - 'true'
-  - 'true'
+  - 'false'
+  - 'false'
 - - Action Taken with Study Treatment Subset 01
   - C66767
   - ACN_01
@@ -62,8 +62,8 @@ ACN_01:
   - '5'
   - ''
   - 'true'
-  - 'true'
-  - 'true'
+  - 'false'
+  - 'false'
 - - Action Taken with Study Treatment Subset 01
   - C66767
   - ACN_01
@@ -78,8 +78,8 @@ ACN_01:
   - '1'
   - ''
   - 'true'
-  - 'true'
-  - 'true'
+  - 'false'
+  - 'false'
 - - Action Taken with Study Treatment Subset 01
   - C66767
   - ACN_01
@@ -94,8 +94,8 @@ ACN_01:
   - '2'
   - ''
   - 'true'
-  - 'true'
-  - 'true'
+  - 'false'
+  - 'false'
 ACN_03:
 - - Action Taken with Study Treatment Subset 03
   - C66767
@@ -111,8 +111,8 @@ ACN_03:
   - '1'
   - ''
   - 'true'
-  - 'true'
-  - 'true'
+  - 'false'
+  - 'false'
 - - Action Taken with Study Treatment Subset 03
   - C66767
   - ACN_03
@@ -126,6 +126,82 @@ ACN_03:
   - Drug Withdrawn
   - '2'
   - ''
+  - 'true'
+  - 'false'
+  - 'false'
+AERELA:
+- - Relationship to Study Treatment
+  - SN000012
+  - AERELA
+  - 'false'
+  - Used to determine the relationship of Adverse Event to study treatment.
+  - C78728
+  - Many
+  - MULTIPLE
+  - Many;Several
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'true'
+  - 'true'
+- - Relationship to Study Treatment
+  - SN000012
+  - AERELA
+  - 'false'
+  - Used to determine the relationship of Adverse Event to study treatment.
+  - S000090
+  - Not Related
+  - NOT RELATED
+  - ''
+  - Not Related
+  - ''
+  - '1'
+  - 'true'
+  - 'true'
+  - 'true'
+- - Relationship to Study Treatment
+  - SN000012
+  - AERELA
+  - 'false'
+  - Used to determine the relationship of Adverse Event to study treatment.
+  - S000092
+  - Possibly Related
+  - POSSIBLY RELATED
+  - ''
+  - Possibly Related
+  - ''
+  - '3'
+  - 'true'
+  - 'true'
+  - 'true'
+- - Relationship to Study Treatment
+  - SN000012
+  - AERELA
+  - 'false'
+  - Used to determine the relationship of Adverse Event to study treatment.
+  - S000093
+  - Related
+  - RELATED
+  - ''
+  - Related
+  - ''
+  - '4'
+  - 'true'
+  - 'true'
+  - 'true'
+- - Relationship to Study Treatment
+  - SN000012
+  - AERELA
+  - 'false'
+  - Used to determine the relationship of Adverse Event to study treatment.
+  - S000094
+  - Unlikely Related
+  - UNLIKELY RELATED
+  - ''
+  - Unlikely Related
+  - ''
+  - '2'
   - 'true'
   - 'true'
   - 'true'
@@ -204,8 +280,8 @@ LOC_01:
   - '3'
   - ''
   - 'true'
-  - 'true'
-  - 'true'
+  - 'false'
+  - 'false'
 RACEC:
 - - Race As Collected
   - C128689
@@ -360,7 +436,7 @@ RACEC:
   - C17998
   - Unknown
   - UNKNOWN
-  - Unknown;U
+  - U;Unknown
   - Unknown
   - ''
   - ''
@@ -1881,7 +1957,7 @@ TRTEST:
   - C132261
   - Sum of Products of Perpendicular Diameters
   - Sum of Products of Perpendicular Diameters
-  - Sum of Products of Perpendicular Diameters;SPD
+  - SPD;Sum of Products of Perpendicular Diameters
   - Sum of Products of Perpendicular Diameters
   - ''
   - ''
@@ -1961,8 +2037,8 @@ TRTEST:
   - C132465
   - Two or More Persisting New Bone Lesions Indicator
   - Two or More Persist New Bone Lesions Ind
-  - Two or More Persisting New Bone Lesions Indicator;Two or More Persist New Bone
-    Lesions Ind
+  - Two or More Persist New Bone Lesions Ind;Two or More Persisting New Bone Lesions
+    Indicator
   - Two or More Persisting New Bone Lesions Indicator
   - ''
   - ''
@@ -1994,7 +2070,7 @@ TRTEST:
   - C135506
   - Absolute Change from Nadir in Organ Enlargement
   - Absolute Change Nadir in Organ Enlarge
-  - Absolute Change Nadir in Organ Enlargement;Absolute Change Nadir in Organ Enlarge
+  - Absolute Change Nadir in Organ Enlarge;Absolute Change Nadir in Organ Enlargement
   - Absolute Change from Nadir in Organ Enlargement
   - ''
   - ''
@@ -2058,8 +2134,7 @@ TRTEST:
   - C135510
   - Percent Change from Baseline in Organ Enlargement
   - Percent Change Baseline in Organ Enlarge
-  - Percent Change Baseline in Organ Enlargement;Percent Change Baseline in Organ
-    Enlarge
+  - Percent Change Baseline in Organ Enlarge;Percent Change Baseline in Organ Enlargement
   - Percent Change from Baseline in Organ Enlargement
   - ''
   - ''
@@ -2123,7 +2198,7 @@ TRTEST:
   - C139128
   - Overall Tracer Uptake Compared to Baseline
   - Overall Tracer Uptake Compared to BL
-  - Overall Tracer Uptake Compared to Baseline;Overall Tracer Uptake Compared to BL
+  - Overall Tracer Uptake Compared to BL;Overall Tracer Uptake Compared to Baseline
   - Overall Tracer Uptake Compared to BL
   - ''
   - ''
@@ -2430,7 +2505,7 @@ OUT:
   - C17998
   - Unknown
   - UNKNOWN
-  - Unknown;U
+  - U;Unknown
   - Unknown
   - ''
   - '6'
@@ -2446,7 +2521,7 @@ OUT:
   - C48275
   - Death Related to Adverse Event
   - FATAL
-  - FATAL;Grade 5;5
+  - 5;FATAL;Grade 5
   - Fatal
   - ''
   - '5'
@@ -2527,7 +2602,7 @@ AESEV:
   - C41338
   - Mild Adverse Event
   - MILD
-  - Grade 1;1
+  - 1;Grade 1
   - Mild
   - ''
   - '1'
@@ -2543,7 +2618,7 @@ AESEV:
   - C41339
   - Moderate Adverse Event
   - MODERATE
-  - Grade 2;2
+  - 2;Grade 2
   - Moderate
   - ''
   - '2'
@@ -2559,7 +2634,7 @@ AESEV:
   - C41340
   - Severe Adverse Event
   - SEVERE
-  - Grade 3;3
+  - 3;Grade 3
   - Severe
   - ''
   - '3'

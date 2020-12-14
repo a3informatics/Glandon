@@ -39,7 +39,7 @@ describe "Thesauri Clone", :type => :feature do
       expect(page).to have_content "Index: Terminology"
       find(:xpath, "//tr[contains(.,'2019 Release 1')]/td/a").click
       wait_for_ajax 20
-      expect(page).to have_content 'Version History of \'2019 R1\''
+      expect(page).to have_content 'Version History of \'2019 Release 1\''
       Capybara.ignore_hidden_elements = false
       expect(page).to have_link("Clone")
       Capybara.ignore_hidden_elements = true
@@ -68,11 +68,11 @@ describe "Thesauri Clone", :type => :feature do
       expect(page).to have_content "Index: Terminology"
       find(:xpath, "//tr[contains(.,'2019 Release 1')]/td/a").click
       wait_for_ajax 20
-      expect(page).to have_content 'Version History of \'2019 R1\''
+      expect(page).to have_content 'Version History of \'2019 Release 1\''
       Capybara.ignore_hidden_elements = false
       expect(page).to have_link("Clone")
       Capybara.ignore_hidden_elements = true
-      context_menu_element('history', 8, '2019 R1', :clone)
+      context_menu_element('history', 8, '2019 Release 1', :clone)
       sleep 1
       expect(page).to have_content "Clone Terminology"
       fill_in 'thesauri_identifier', with: "!€&(=!)"

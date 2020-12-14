@@ -54,9 +54,8 @@ module Import::Utility
   def add_parent(params)
     klass = configuration[:parent_klass]
     parent = klass.new
-    parent.set_import(identifier: params[:identifier], label: params[:label], 
-      semantic_version: params[:semantic_version], version_label: params[:version_label], version: params[:version], 
-      date: params[:date], ordinal: 1)
+    params[:ordinal] = 1
+    parent.set_import(params)
     parent.origin = import_files(params)
     parent.instance_variable_set("@tagged", @tags)
     return {parent: parent, managed_children: []}
