@@ -24,8 +24,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
 
   def show_data
     sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(protect_from_bad_id(params))
-    items = sdtm_sponsor_domain.get_children
-    render json: {data: items}, status: 200
+    render json: {data: sdtm_sponsor_domain.get_children}, status: 200
   end
 
   def edit
@@ -41,7 +40,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
       format.json do
         @sdtm_sponsor_domain = SdtmSponsorDomain.find_full(@sdtm_sponsor_domain.id)
         return true unless check_lock_for_item(@sdtm_sponsor_domain)
-        render :json => { data: @sdtm_sponsor_domain.to_h }, :status => 200
+        render :json => { data: @sdtm_sponsor_domain.get_children }, :status => 200
       end
     end
   end
