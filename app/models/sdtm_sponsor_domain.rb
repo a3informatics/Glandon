@@ -109,7 +109,7 @@ class SdtmSponsorDomain < SdtmIgDomain
     query_results = Sparql::Query.new.query(query_string, "", [:isoC])
     triples = query_results.by_object_set([:node, :node_label])
     triples.each do |datatype|
-      result << {uri: datatype[:node].to_s, label: datatype[:node_label]}
+      result << {id: datatype[:node].to_id, label: datatype[:node_label]}
     end
     result
   end
@@ -130,7 +130,7 @@ class SdtmSponsorDomain < SdtmIgDomain
     query_results = Sparql::Query.new.query(query_string, "", [:isoC])
     triples = query_results.by_object_set([:node, :node_label])
     triples.each do |compliance|
-      result << {uri: compliance[:node].to_s, label: compliance[:node_label]}
+      result << {id: compliance[:node].to_id, label: compliance[:node_label]}
     end
     result
   end
