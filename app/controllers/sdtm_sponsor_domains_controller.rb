@@ -100,6 +100,12 @@ class SdtmSponsorDomainsController < ManagedItemsController
     AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain updated, variable #{non_standard_variable.label} updated.") if @lock.token.refresh == 1
     render json: {data: ""}, status: 200
   end
+
+  def editor_metadata
+    datatypes = SdtmSponsorDomain.datatypes
+    compliance = SdtmSponsorDomain.compliance
+    render json: {data: {compliance: compliance, datatype: datatypes}}, status: 200
+  end
   
 private
   

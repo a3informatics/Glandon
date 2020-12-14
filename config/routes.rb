@@ -480,13 +480,13 @@ Rails.application.routes.draw do
       get :history
       post :create_from_ig
       post :create_from_class
+      get :editor_metadata
     end
     member do
       get :show_data
       post :add_non_standard_variable
       put :toggle_used
       delete :delete_non_standard_variable
-      get :editor_metadata
     end
   end
 

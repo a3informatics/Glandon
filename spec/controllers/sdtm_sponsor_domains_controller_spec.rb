@@ -233,7 +233,29 @@ describe SdtmSponsorDomainsController do
       expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
     end
 
+  end
 
+  describe "editor metadata" do
+
+    login_curator
+
+    before :all do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+    end
+
+    it "editor metadata" do
+      get :editor_metadata
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "editor_metadata_expected_1.yaml", equate_method: :hash_equal)
+    end
 
   end
 
