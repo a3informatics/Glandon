@@ -486,6 +486,7 @@ Rails.application.routes.draw do
       post :add_non_standard_variable
       put :toggle_used
       delete :delete_non_standard_variable
+      get :editor_metadata
     end
   end
 
