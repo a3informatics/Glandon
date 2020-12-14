@@ -17,7 +17,7 @@ class SdtmIgDomain < Tabulation
   def get_children
     results = []
     query_string = %Q{
-      SELECT DISTINCT ?ordinal ?c ?type ?label ?name ?format ?description ?compliance ?typedas ?class ?sub_class WHERE
+      SELECT DISTINCT ?ordinal ?c ?type ?label ?name ?format ?description ?compliance ?typed_as ?class ?sub_class WHERE
       {
         #{self.uri.to_ref} bd:includesColumn ?c .
         ?c bd:ordinal ?ordinal .
@@ -26,8 +26,10 @@ class SdtmIgDomain < Tabulation
         ?c bd:name ?name .
         ?c bd:description ?description .
         ?c bd:ctAndFormat ?format .
-        OPTIONAL {?c bd:basedOnClassVariable/bd:typedAs/isoC:prefLabel ?typedas .}
         ?c bd:compliance/isoC:prefLabel ?compliance .
+        OPTIONAL {
+                  ?c bd:basedOnClassVariable/bd:typedAs/isoC:prefLabel ?typed_as .
+        }
         OPTIONAL{
           {           
             ?c bd:basedOnClassVariable/bd:classifiedAs/isoC:prefLabel ?sub_class .             
@@ -44,9 +46,12 @@ class SdtmIgDomain < Tabulation
       } ORDER BY ?ordinal
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bd])
-    query_results.by_object_set([:ordinal, :var, :type, :label, :name, :format, :notes, :compliance]).each do |x|
-      results << {uri: x[:c].to_s, ordinal: x[:ordinal].to_i, rdf_type: x[:type].to_s, label: x[:label], name: x[:name],
-                  format: x[:format], description: x[:description], typed_as: x[:typedas], compliance: x[:compliance], classified_as: x[:class], sub_classified_as: x[:sub_class]}
+    query_results.by_object_set([:ordinal, :var, :type, :label, :name, :format, :notes, :compliance, :class, :sub_class, :typed_as]).each do |x|
+      x[:class].nil? ? x[:class] = "" : x[:class]
+      x[:sub_class].nil? ? x[:sub_class] = "" : x[:sub_class]
+      x[:typed_as].nil? ? x[:typed_as] = "" : x[:typed_as]
+      results << {id: x[:c].to_id ,uri: x[:c].to_s, ordinal: x[:ordinal].to_i, rdf_type: x[:type].to_s, label: x[:label], name: x[:name],
+                  format: x[:format], description: x[:description], typed_as: x[:typed_as], compliance: x[:compliance], classified_as: x[:class], sub_classified_as: x[:sub_class]}
     end
     results
   end
