@@ -1,0 +1,48 @@
+ <%= stylesheet_link_tag "shared/tables_editable" %>
+
+<%= javascript_tag "let sdtmSDEditorUrls = {
+                          data: '#{ edit_sdtm_sponsor_domain_path(item) }',
+                          update: '#{ thesauri_unmanaged_concept_path(id: '_id_') }',
+                          metadata: '#{ editor_metadata_sdtm_sponsor_domains_path }',
+                          new: '#{ add_child_thesauri_managed_concept_path(item) }'
+                        } " %>
+
+ <div class="col-md-12 card wide">
+    
+    <div class="card-header">
+      SDTM Sponsor Domain Editor
+    </div>
+
+    <div class="card-content" id="editor-panel">
+    
+      <div class="btns-wrap">
+
+        <a href="#" class="btn medium green ttip" id="new-variable-button">
+          <span class="ttip-text shadow-small text-medium">Create a blank new Variable</span>
+          <span class="icon-plus text-tiny"></span> New Variable
+        </a>
+
+      </div>
+
+      <div class="table-cardstyle all-columns loading-with-btns">
+        
+        <table id="editor" class="table">
+          <thead>
+            <tr>
+              <th class="fit">Ordinal</th>
+              <th>Name</th>
+              <th>Label</th>
+              <th>Datatype</th>
+              <th>CT or Format</th>
+              <th>Role</th>
+              <th>Notes</th>
+              <th>Core</th>
+            </tr>
+          </thead>
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
