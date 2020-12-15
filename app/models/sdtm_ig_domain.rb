@@ -17,41 +17,36 @@ class SdtmIgDomain < Tabulation
   def get_children
     results = []
     query_string = %Q{
-      SELECT DISTINCT ?ordinal ?c ?type ?label ?name ?format ?description ?compliance ?typed_as ?class ?sub_class WHERE
-      {
-        #{self.uri.to_ref} bd:includesColumn ?c .
-        ?c bd:ordinal ?ordinal .
-        ?c rdf:type ?type .
-        ?c isoC:label ?label . 
-        ?c bd:name ?name .
-        ?c bd:description ?description .
+      SELECT DISTINCT ?ordinal ?c ?type ?label ?name ?format ?description ?compliance ?compliance_label ?typed_as ?typed_as_label ?classification ?classification_label ?standard WHERE       
+      {         
+        #{self.uri.to_ref} bd:includesColumn ?c .         
+        ?c bd:ordinal ?ordinal .         
+        ?c rdf:type ?type .         
+        ?c isoC:label ?label .          
+        ?c bd:name ?name .         
+        ?c bd:description ?description .         
         ?c bd:ctAndFormat ?format .
-        ?c bd:compliance/isoC:prefLabel ?compliance .
-        OPTIONAL {
-                  ?c bd:basedOnClassVariable/bd:typedAs/isoC:prefLabel ?typed_as .
+        ?c bd:compliance ?compliance .
+        ?compliance isoC:prefLabel ?compliance_label .
+        BIND (EXISTS {?c bd:basedOnIgVariable|bd:basedOnClassVariable ?o} as ?standard)
+        OPTIONAL {                   
+          ?c bd:basedOnClassVariable/bd:typedAs ?typed_as .
+          ?typed_as isoC:prefLabel ?typed_as_label .         
         }
-        OPTIONAL{
-          {           
-            ?c bd:basedOnClassVariable/bd:classifiedAs/isoC:prefLabel ?sub_class .             
-            ?c bd:basedOnClassVariable/bd:classifiedAs/^isoC:narrower/isoC:prefLabel ?class .
-            NOT EXISTS {?c bd:basedOnClassVariable/bd:classifiedAs/^isoC:narrower/isoC:prefLabel 'Classification'} 
-          }         
-          UNION         
-          {           
-            ?c bd:basedOnClassVariable/bd:classifiedAs/isoC:prefLabel ?class . 
-            BIND ("" as ?sub_class)
-            EXISTS {?c bd:basedOnClassVariable/bd:classifiedAs/^isoC:narrower/isoC:prefLabel 'Classification'} 
-          }
-        }      
+        OPTIONAL {                   
+          ?c bd:basedOnClassVariable/bd:classifiedAs ?classification .
+          ?classification isoC:prefLabel ?classification_label .         
+        }             
       } ORDER BY ?ordinal
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bd])
-    query_results.by_object_set([:ordinal, :var, :type, :label, :name, :format, :notes, :compliance, :class, :sub_class, :typed_as]).each do |x|
-      x[:class].nil? ? x[:class] = "" : x[:class]
-      x[:sub_class].nil? ? x[:sub_class] = "" : x[:sub_class]
-      x[:typed_as].nil? ? x[:typed_as] = "" : x[:typed_as]
-      results << {id: x[:c].to_id ,uri: x[:c].to_s, ordinal: x[:ordinal].to_i, rdf_type: x[:type].to_s, label: x[:label], name: x[:name],
-                  format: x[:format], description: x[:description], typed_as: x[:typed_as], compliance: x[:compliance], classified_as: x[:class], sub_classified_as: x[:sub_class]}
+    query_results.by_object_set([:ordinal, :c, :type, :label, :name, :format, :description, :compliance, :compliance_label, :typed_as, :typed_as_label, :classification, :classification_label, :standard]).each do |x|
+      x[:classification] = x[:classification].to_id unless x[:classification].empty?
+      x[:classification_label].nil? ? x[:classification_label] = "" : x[:classification_label]
+      x[:typed_as] = x[:typed_as].to_id unless x[:typed_as].empty?
+      x[:typed_as_label].nil? ? x[:typed_as_label] = "" : x[:typed_as_label]
+      results << {id: x[:c].to_id ,uri: x[:c].to_s, ordinal: x[:ordinal].to_i, rdf_type: x[:type].to_s, standard: x[:standard], label: x[:label], name: x[:name],
+                  format: x[:format], description: x[:description], compliance: {id: x[:compliance].to_id, label: x[:compliance_label]}, typed_as: {id: x[:typed_as], label:x[:typed_as_label]}, classified_as: {id:x[:classification], label: x[:classification_label]} }
     end
     results
   end
