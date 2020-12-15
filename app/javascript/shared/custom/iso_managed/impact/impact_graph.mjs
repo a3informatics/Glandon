@@ -178,8 +178,8 @@ export default class ImpactGraph extends ForceGraph {
   get _actionButtons() {
 
     return [
-      iconBtn({ icon: 'plus', color: 'light', id: 'load-impact', ttip: 'Load Data' }),
-      iconBtn({ icon: 'history', color: 'light', id: 'show-history', ttip: 'Item History' }),
+      iconBtn({ icon: 'view', color: 'light', id: 'load-impact', ttip: 'Show Impact' }),
+      iconBtn({ icon: 'old', color: 'light', id: 'show-history', ttip: 'Item History' }),
     ]
 
   }
