@@ -81,7 +81,7 @@ describe SdtmSponsorDomain::Var do
       non_standard_variable = parent.add_non_standard_variable(params2)
       parent = SdtmSponsorDomain.find_full(parent.id)
       expect(triple_store.check_uris(uri_check_set_1)).to be(true)
-      expect(non_standard_variable.delete_or_unlink(parent, parent)).to eq(1)
+      expect(non_standard_variable.delete(parent, parent)).to eq(1)
       parent = SdtmSponsorDomain.find_full(parent.id)
       expect(triple_store.check_uris(uri_check_set_2)).to be(true)
     end
@@ -119,7 +119,7 @@ describe SdtmSponsorDomain::Var do
       new_parent = SdtmSponsorDomain.find_full(new_parent.uri)
       expect(new_parent.includes_column.count).to eq(43)
       non_standard_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_AEVARX"))
-      expect(non_standard_variable.delete_or_unlink(new_parent, new_parent)).to eq(1)
+      expect(non_standard_variable.delete(new_parent, new_parent)).to eq(1)
       parent = SdtmSponsorDomain.find_full(parent.id)
       expect(parent.includes_column.count).to eq(43)
       #check_dates(parent, sub_dir, "delete_var_1a.yaml", :creation_date, :last_change_date)
@@ -168,7 +168,7 @@ describe SdtmSponsorDomain::Var do
       #check_dates(parent, sub_dir, "toggle_var_1a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(parent.to_h, sub_dir, "toggle_var_1a.yaml", equate_method: :hash_equal)
       new_parent = SdtmSponsorDomain.find_full(new_parent.uri)
-      #check_dates(new_parent, sub_dir, "toggle_var_1b.yaml", :creation_date, :last_change_date)
+      check_dates(new_parent, sub_dir, "toggle_var_1b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(new_parent.to_h, sub_dir, "toggle_var_1b.yaml", equate_method: :hash_equal)
     end
 
