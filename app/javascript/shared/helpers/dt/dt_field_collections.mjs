@@ -40,10 +40,8 @@ function dtSDTMSDEditFields() {
     { name: 'label', type: 'textarea' },
     _selectField({ name: 'typed_as' }),     
     { name: 'format', type: 'textarea' },
-    { name: 'classified_as', type: 'textarea' },
     _selectField({ name: 'classified_as' }),     
     { name: 'description', type: 'textarea' },
-    { name: 'compliance', type: 'textarea' },
     _selectField({ name: 'compliance' }),  
   ]
 }

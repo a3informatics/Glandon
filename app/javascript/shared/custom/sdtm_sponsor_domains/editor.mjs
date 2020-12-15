@@ -38,7 +38,7 @@ export default class SDTMSDEditor extends EditablePanel {
       order: [[0, 'asc']],
       requiresMetadata: true
     }, {
-      id, urls, onEdited
+      urls, onEdited
     })
 
   }
