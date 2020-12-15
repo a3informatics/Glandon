@@ -63,7 +63,6 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
     else
       self.update(toggle_used)
     end
-    
   end
 
   # Delete. Delete the object. Clone if there are multiple parents.
@@ -79,6 +78,13 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
     end
     parent.reset_ordinals
     1
+  end
+
+  # Standard? Is this an standard variable
+  #
+  # @result [Boolean] return true if this variable is standard or false if it is a non standard variable
+  def standard?
+    Sparql::Query.new.query("ASK {#{self.uri.to_ref} bd:basedOnIgVariable|bd:basedOnClassVariable ?o}", "", [:bd]).ask? 
   end
 
   private

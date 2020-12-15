@@ -174,6 +174,25 @@ describe SdtmSponsorDomain::Var do
 
   end
 
+  describe "Standard? Tests" do
 
+    before :all do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "standard true" do
+      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      expect(sponsor_variable.standard?).to eq(true)
+    end
+
+    it "standard false" do
+      sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
+      params2 = {name:"AENEWVAR"}
+      non_standard = sponsor_domain.add_non_standard_variable(params2)
+      expect(non_standard.standard?).to eq(false)
+    end
+
+  end
 
 end
