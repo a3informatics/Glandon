@@ -19,7 +19,7 @@ class IsoManagedV2
       # @raise [Errors::ApplicationLogicError] raised to indicate the class has not configured the method
       # @return [Array] array of strings suitable for inclusion in a sparql query
       def dependency_paths
-        Errors.application_error(self.name, __method__.to_s, "Method not implemented for class.")
+        Errors.application_error(self.name, __method__.to_s, "Method not implemented for class #{self}.")
       end
 
     end

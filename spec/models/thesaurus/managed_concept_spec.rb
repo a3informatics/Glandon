@@ -2531,4 +2531,28 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "dependency paths" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+    end
+
+    it "dependency paths" do
+      paths = Form.dependency_paths
+      check_file_actual_expected(paths, sub_dir, "dependency_paths_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+    it "dependencies" do
+      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66781/V2#C66781"))
+      results = item.dependency_required_by
+      expect(results).to eq([])
+    end
+  end
+
 end

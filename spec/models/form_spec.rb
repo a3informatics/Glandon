@@ -1156,4 +1156,24 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
   end
 
+  describe "Depednency Tests" do
+    
+    before :each do
+      data_files = ["forms/FN000150.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      load_files(schema_files, data_files)
+    end
+
+    it "dependency paths" do
+      paths = Form.dependency_paths
+      check_file_actual_expected(paths, sub_dir, "dependency_paths_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+    it "dependencies" do
+      item = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      results = item.dependency_required_by
+      expect(results).to eq([])
+    end
+
+  end
+
 end

@@ -42,8 +42,9 @@ class IsoManagedV2Controller < ApplicationController
 
   def impact 
     authorize IsoManaged, :show?
-    @managed_item = find_item(params)
-    @close_path = request.referrer
+    item = find_item(params)
+    results = item.dependency_required_by
+    render json: impact_d3(item, results)
   end
 
   def custom_properties
@@ -148,4 +149,12 @@ private
       :change_description, :explanatory_comment, :origin, :referer)
   end
 
+  def impact_d3(item, nodes)
+    result = {nodes: [], links: []}
+    nodes.each {|x| result[:links] << { source: item.id, target: x.id } } 
+    nodes.insert(0, item) 
+    result[:nodes] = nodes.map {|x| { uri: x.uri.to_s, id: x.uri.to_id, identifier: x.scoped_identifier, semantic_version: x.semantic_version, 
+        version_label: x.version_label, label: x.label, rdf_type: x.rdf_type.to_s, history_path: TypePathManagement.history_url_v2(x, true)}}
+    result
+  end
 end
