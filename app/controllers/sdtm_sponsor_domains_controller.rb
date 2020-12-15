@@ -101,9 +101,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
   end
 
   def editor_metadata
-    datatypes = SdtmSponsorDomain.datatypes
-    compliance = SdtmSponsorDomain.compliance
-    render json: {data: {compliance: compliance, datatype: datatypes}}, status: 200
+    render json: {data: {compliance: SdtmIgDomain::Variable.compliance, typed_as: SdtmClass::Variable.datatypes, classified_as: SdtmClass::Variable.classification} }, status: 200
   end
   
 private
