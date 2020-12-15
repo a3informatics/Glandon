@@ -46,16 +46,17 @@ class SdtmClass::Variable < Tabulation::Column
   def self.classification
     result = []
     query_string = %Q{
-      SELECT DISTINCT ?node ?node_label WHERE {
-        ?s isoC:prefLabel "Classification"^^xsd:string .
-        ?s rdf:type isoC:ConceptSystemNode .
+      SELECT DISTINCT ?node ?node_label WHERE {         
+        ?s isoC:prefLabel "Classification"^^xsd:string .         
+        ?s rdf:type isoC:ConceptSystemNode .         
         ?s isoC:narrower ?node .
-        ?node isoC:prefLabel ?node_label .
+        ?node isoC:prefLabel|(isoC:narrower/isoC:prefLabel) ?node_label .
       }
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC])
     triples = query_results.by_object_set([:node, :node_label])
     triples.each do |classification|
+      next if classification[:node_label] == "Qualifier"
       result << {id: classification[:node].to_id, label: classification[:node_label]}
     end
     result

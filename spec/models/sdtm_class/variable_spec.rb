@@ -51,8 +51,7 @@ describe SdtmClass::Variable do
 
   it "return classification" do
     classification = SdtmClass::Variable.classification
-  byebug
-    check_file_actual_expected(classification, sub_dir, "datatypes_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(classification, sub_dir, "classification_expected_1.yaml", equate_method: :hash_equal)
   end
 
 end
