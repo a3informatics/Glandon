@@ -23,7 +23,7 @@ function dtButtonColumn(name) {
       }
     }
   }
-};
+}
 
 /**
  * Returns column definition for the last change date column
@@ -37,7 +37,7 @@ function dtDateTimeColumn(name) {
       return type === "display" ? dateTimeHTML(date) : date.getTime()
     }
   }
-};
+}
 
 /**
  * Returns column definition for item version / semantic version column
@@ -47,7 +47,7 @@ function dtVersionColumn() {
   return {
     render: (data, type, r, m) => type === "display" ? r.has_identifier.semantic_version : r.has_identifier.version
   }
-};
+}
 
 /**
  * Returns column definition for the tags column
@@ -61,7 +61,7 @@ function dtTagsColumn(opts = {}) {
     ...opts,
     render: (data, type, r, m) => type === 'display' ? renderTagsInline(data) : data
   }
-};
+}
 
 /**
  * Returns column definition for the indicators column
@@ -74,7 +74,7 @@ function dtIndicatorsColumn(filter) {
     // width: "90px",
     render: (data, type, r, m) => renderIndicators(data, type, filter)
   }
-};
+}
 
 /**
  * Returns column definition for an extensible / not-extensible CL icon column
@@ -96,7 +96,7 @@ function dtCLExtensibleColumn() {
 
     }
   }
-};
+}
 
 /**
  * Returns column definition for the context menu column
@@ -108,7 +108,7 @@ function dtContextMenuColumn(renderer) {
     className: "text-right",
     render: (data, type, r, m) => type === "display" ? renderer(r, m.row) : ""
   }
-};
+}
 
 /**
  * Returns column definition for a true/false icon column
@@ -122,7 +122,7 @@ function dtTrueFalseColumn(name, opts = {}) {
     ...opts,
     render: (data, type, r, m) => type === "display" ? icons.checkMarkIcon(data) : data
   }
-};
+}
 
 /**
  * Returns column definition for a true/false editable column
@@ -138,7 +138,7 @@ function dtTrueFalseEditColumn(name, opts = {}) {
     render: dtTrueFalseColumn().render,
     ...opts
   }
-};
+}
 
 /**
  * Returns column definition for a generic inline editable column
@@ -153,7 +153,7 @@ function dtInlineEditColumn(name, opts = {}) {
     editField: (opts.editField || name),
     ...opts
   }
-};
+}
 
 /**
  * Returns column definition for an externally editable column
@@ -168,7 +168,29 @@ function dtExternalEditColumn(name, opts = {}) {
     editField: (opts.editField || name),
     ...opts
   }
-};
+}
+
+/**
+ * Returns column definition for a select editable column
+ * Requires the data attribute to be an object which contains 'label' and 'id' props
+ * @param {string} name data property name
+ * @param {string} valueProp Name of the data value property (what is edited) [default='id']
+ * @param {string} labelProp Name of the data label property (what is displayed) [default='label']
+ * @param {object} opts additional column opts
+ * @return {object} DataTables inline editable column definition
+ */
+function dtSelectEditColumn(name, { 
+  valueProp = 'id', 
+  labelProp = 'label',
+  opts = {} 
+} = {}) {
+  return { 
+    className: "editable inline",
+    data: `${ name }.${ valueProp }`,
+    render: (data, type, row) => row[name][labelProp],
+    editField: (opts.editField || name),
+  }
+}
 
 export {
   dtButtonColumn,
@@ -182,5 +204,6 @@ export {
   // Editable columns
   dtTrueFalseEditColumn,
   dtInlineEditColumn,
-  dtExternalEditColumn
+  dtExternalEditColumn,
+  dtSelectEditColumn
 }

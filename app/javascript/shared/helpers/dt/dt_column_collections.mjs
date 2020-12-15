@@ -2,7 +2,8 @@ import { iconsInline } from 'shared/ui/icons'
 import { termReferences } from 'shared/ui/collections'
 
 import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn,
-         dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn } from 'shared/helpers/dt/dt_columns'
+         dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn, dtSelectEditColumn } 
+         from 'shared/helpers/dt/dt_columns'
 
 
 /*** Index ***/
@@ -148,6 +149,25 @@ function dtBCEditColumns() {
   ];
 };
 
+/**
+ * Column definitions for SDTM IG Domain edit
+ * @return {Array} DataTables SDTM IG Domain edit column definitions collection
+ */
+function dtSDTMIGDomainEditColumns() {
+
+  return [
+    { data: "ordinal" },
+    dtInlineEditColumn('name'),
+    dtInlineEditColumn('label'),
+    dtSelectEditColumn( 'typed_as' ),
+    dtInlineEditColumn( 'format' ),
+    dtSelectEditColumn( 'classified_as' ),
+    dtInlineEditColumn( 'description' ),
+    dtSelectEditColumn( 'compliance' ),
+  ]
+
+}
+
 
 /*** Show ***/
 
@@ -271,6 +291,7 @@ export {
   dtBCEditColumns,
   dtFormShowColumns,
   dtSDTMClassShowColumns,
+  dtSDTMIGDomainEditColumns,
   dtSDTMShowColumns,
   dtSDTMIGDomainShowColumns,
   dtADaMIGDatasetShowColumns
