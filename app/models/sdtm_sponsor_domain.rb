@@ -93,48 +93,6 @@ class SdtmSponsorDomain < SdtmIgDomain
     non_standard_variable
   end
 
-  # Datatypes. Get the datatypes for the class
-  #
-  # @return [Array] set of IsoConceptSystem::Node items
-  def self.datatypes
-    result = []
-    query_string = %Q{
-      SELECT DISTINCT ?node ?node_label WHERE {
-        ?s isoC:prefLabel "Datatype"^^xsd:string .
-        ?s rdf:type isoC:ConceptSystemNode .
-        ?s isoC:narrower ?node .
-        ?node isoC:prefLabel ?node_label .
-      }
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoC])
-    triples = query_results.by_object_set([:node, :node_label])
-    triples.each do |datatype|
-      result << {id: datatype[:node].to_id, label: datatype[:node_label]}
-    end
-    result
-  end
-
-  # Compliance. Get the compliance for the class
-  #
-  # @return [Array] set of IsoConceptSystem::Node items
-  def self.compliance
-    result = []
-    query_string = %Q{
-      SELECT DISTINCT ?node ?node_label WHERE {
-        ?s isoC:prefLabel "Compliance"^^xsd:string .
-        ?s rdf:type isoC:ConceptSystemNode .
-        ?s isoC:narrower ?node .
-        ?node isoC:prefLabel ?node_label .
-      }
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoC])
-    triples = query_results.by_object_set([:node, :node_label])
-    triples.each do |compliance|
-      result << {id: compliance[:node].to_id, label: compliance[:node_label]}
-    end
-    result
-  end
-
   private
 
     # Next Ordinal. Get the next ordinal for a domain variable

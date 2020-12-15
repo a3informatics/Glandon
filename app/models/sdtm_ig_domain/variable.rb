@@ -21,4 +21,28 @@ class SdtmIgDomain::Variable < Tabulation::Column
     self.diff?(previous, {ignore: [:ct_reference, :based_on_class_variable, :is_a]}) ? self : previous
   end
 
+  # Compliance. Get the compliance for the class
+  #
+  # @return [Array] set of IsoConceptSystem::Node items
+  def self.compliance
+    result = []
+    query_string = %Q{
+      SELECT DISTINCT ?node ?node_label WHERE {
+        ?s rdf:type isoC:ConceptSystemNode .
+        ?s isoC:prefLabel "SDTM-STD"^^xsd:string .
+        ?s isoC:narrower ?variable .
+        ?variable isoC:narrower ?compliance .
+        ?compliance isoC:prefLabel "Compliance"^^xsd:string .
+        ?compliance isoC:narrower ?node .
+        ?node isoC:prefLabel ?node_label
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC])
+    triples = query_results.by_object_set([:node, :node_label])
+    triples.each do |compliance|
+      result << {id: compliance[:node].to_id, label: compliance[:node_label]}
+    end
+    result
+  end
+
 end
