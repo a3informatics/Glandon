@@ -12,6 +12,11 @@ describe SdtmIgDomain::Variable do
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
   end
 
   it "validates a valid object" do
@@ -27,16 +32,10 @@ describe SdtmIgDomain::Variable do
     expect(result).to eq(false)
   end
 
-  # it "returns the compliance label" do
-  #   variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-  #   expect(variable.compliance_label).to eq("Required")
-  # end
-
-  # it "returns blank compliance label if none present" do
-  #   variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-  #   variable.compliance = nil
-  #   expect(variable.compliance_label).to eq("")
-  # end
+  it "return compliance" do
+    compliance = SdtmIgDomain::Variable.compliance
+    check_file_actual_expected(compliance, sub_dir, "compliance_expected_1.yaml", equate_method: :hash_equal)
+  end
 
   # it "allows object to be initialized from triples" do
   #   result = 
