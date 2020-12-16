@@ -3,121 +3,176 @@
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_STUDYID
   :ordinal: 1
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Study Identifier
   :name: STUDYID
   :format: ''
   :description: Unique identifier for a study.
-  :typed_as: Character
-  :compliance: Required
-  :classified_as: Identifier
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :label: Required
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfRE9NQUlO
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_DOMAIN
   :ordinal: 2
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Domain Abbreviation
   :name: DOMAIN
   :format: ''
   :description: Two-character abbreviation for the domain.
-  :typed_as: Character
-  :compliance: Required
-  :classified_as: Identifier
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :label: Required
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfVVNVQkpJRA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_USUBJID
   :ordinal: 3
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Unique Subject Identifier
   :name: USUBJID
   :format: ''
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
-  :typed_as: Character
-  :compliance: Required
-  :classified_as: Identifier
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :label: Required
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRVE=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEQ
   :ordinal: 4
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Sequence Number
   :name: AESEQ
   :format: ''
   :description: Sequence Number given to ensure uniqueness of subject records within
     a domain. May be any valid number.
-  :typed_as: Numeric
-  :compliance: Required
-  :classified_as: Identifier
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :label: Required
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzE3OGY4ZGJlLWMzYmEtNGRjMC04YTJhLTE4MDgxNjQ0YjRjNg==
+    :label: Numeric
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVHUlBJRA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEGRPID
   :ordinal: 5
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Group ID
   :name: AEGRPID
   :format: ''
   :description: Used to tie together a block of related records in a single domain
     for a subject.
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Identifier
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVSRUZJRA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEREFID
   :ordinal: 6
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Reference ID
   :name: AEREFID
   :format: ''
   :description: Internal or external identifier such as a serial number on an SAE
     reporting form
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Identifier
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTUElE
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESPID
   :ordinal: 7
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Sponsor-Defined Identifier
   :name: AESPID
   :format: ''
   :description: 'Sponsor-defined identifier. It may be pre-printed on the CRF as an
     explicit line identifier or defined in the sponsor''s operational database. Example:
     Line number on an Adverse Events page.'
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Identifier
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVURVJN
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AETERM
   :ordinal: 8
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Reported Term for the Adverse Event
   :name: AETERM
   :format: ''
   :description: Verbatim name of the event.
-  :typed_as: Character
-  :compliance: Required
-  :classified_as: Topic
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :label: Required
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzY5MmNhZmJmLTY1OGEtNDNmMC05N2EyLWYwNDBlY2IxYTIwZA==
+    :label: Topic
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVNT0RJRlk=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEMODIFY
   :ordinal: 9
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Modified Reported Term
   :name: AEMODIFY
   :format: ''
   :description: If AETERM is modified to facilitate coding, then AEMODIFY will contain
     the modified text.
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: None
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
+    :label: None
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVERUNPRA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEDECOD
   :ordinal: 10
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Dictionary-Derived Term
   :name: AEDECOD
   :format: ''
@@ -125,53 +180,77 @@
     to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
     name and version used to map the terms utilizing the define.xml external codelist
     attributes
-  :typed_as: Character
-  :compliance: Required
-  :classified_as: None
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :label: Required
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
+    :label: None
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVDQVQ=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECAT
   :ordinal: 11
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Category for Adverse Event
   :name: AECAT
   :format: ''
   :description: 'Used to define a category of related records. Example: BLEEDING,
     NEUROPSYCHIATRIC.'
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Grouping
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzlmYjI5ZjhiLTUwNWEtNGM0Zi1iNTUwLTE3NWZiZmVjOTMyZA==
+    :label: Grouping
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTQ0FU
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAT
   :ordinal: 12
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Subcategory for Adverse Event
   :name: AESCAT
   :format: ''
   :description: 'A further categorization of adverse event. Example: NEUROLOGIC.'
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Grouping
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzlmYjI5ZjhiLTUwNWEtNGM0Zi1iNTUwLTE3NWZiZmVjOTMyZA==
+    :label: Grouping
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVQUkVTUA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP
   :ordinal: 13
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Pre-Specified Adverse Event
   :name: AEPRESP
   :format: "(NY)"
   :description: A value of 'Y' indicates that this adverse event was pre-specified
     on the CRF. Values are null for spontaneously reported events (i.e., those collected
     as free-text verbatim terms)
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVCT0RTWVM=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEBODSYS
   :ordinal: 14
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Body System or Organ Class
   :name: AEBODSYS
   :format: ''
@@ -179,52 +258,76 @@
     from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary
     such as MedDRA, this should contain the SOC used for the sponsor's analyses and
     summary tables which may not necessarily be the primary SOC.
-  :typed_as: Character
-  :compliance: Expected
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
+    :label: Expected
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVMT0M=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AELOC
   :ordinal: 15
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Location of Event
   :name: AELOC
   :format: "(LOC)"
   :description: Describes anatomical location relevant for the event (e.g., LEFT ARM
     for skin rash).
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRVY=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEV
   :ordinal: 16
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Severity/Intensity
   :name: AESEV
   :format: "(AESEV)"
   :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
     SEVERE.'
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRVI=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESER
   :ordinal: 17
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Serious Event
   :name: AESER
   :format: "(NY)"
   :description: Is this a serious event?
-  :typed_as: Character
-  :compliance: Expected
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
+    :label: Expected
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVBQ04=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACN
   :ordinal: 18
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Action Taken with Study Treatment
   :name: AEACN
   :format: "(ACN)"
@@ -233,28 +336,40 @@
     actions unrelated to dose adjustments of study treatment. Examples of AEACN values
     include ICH E2B values: DRUG WITHDRAWN, DOSE REDUCED, DOSE INCREASED, DOSE NOT
     CHANGED, UNKNOWN or NOT APPLICABLE'
-  :typed_as: Character
-  :compliance: Expected
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
+    :label: Expected
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVBQ05PVEg=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACNOTH
   :ordinal: 19
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Other Action Taken
   :name: AEACNOTH
   :format: ''
   :description: 'Describes other actions taken as a result of the event that are unrelated
     to dose adjustments of study treatment. Usually reported as free text. Example:
     ''TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.'''
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVSRUw=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEREL
   :ordinal: 20
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Causality
   :name: AEREL
   :format: ''
@@ -262,162 +377,240 @@
     to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED,
     POSSIBLY RELATED, RELATED. Controlled Terminology may be defined in the future.
     Check with regulatory authority for population of this variable
-  :typed_as: Character
-  :compliance: Expected
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
+    :label: Expected
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVSRUxOU1Q=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AERELNST
   :ordinal: 21
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Relationship to Non-Study Treatment
   :name: AERELNST
   :format: ''
   :description: 'Records the investigator''s opinion as to whether the event may have
     been due to a treatment other than study drug. May be reported as free text. Example:
     ''MORE LIKELY RELATED TO ASPIRIN USE.''.'
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVQQVRU
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPATT
   :ordinal: 22
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Pattern of Adverse Event
   :name: AEPATT
   :format: ''
   :description: 'Used to indicate the pattern of the event over time. Examples: INTERMITTENT,
     CONTINUOUS, SINGLE EVENT.'
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVPVVQ=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEOUT
   :ordinal: 23
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Outcome of Adverse Event
   :name: AEOUT
   :format: "(OUT)"
   :description: Description of the outcome of an event.
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTQ0FO
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAN
   :ordinal: 24
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Involves Cancer
   :name: AESCAN
   :format: "(NY)"
   :description: Was the serious event associated with the development of cancer?
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTQ09ORw==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCONG
   :ordinal: 25
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Congenital Anomaly or Birth Defect
   :name: AESCONG
   :format: "(NY)"
   :description: Was the serious event associated with congenital anomaly or birth
     defect?
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRElTQUI=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDISAB
   :ordinal: 26
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Persist or Signif Disability/Incapacity
   :name: AESDISAB
   :format: "(NY)"
   :description: Did the serious event result in persistent or significant disability/incapacity?
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRFRI
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDTH
   :ordinal: 27
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Results in Death
   :name: AESDTH
   :format: "(NY)"
   :description: Did the serious event result in death?
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTSE9TUA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESHOSP
   :ordinal: 28
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Requires or Prolongs Hospitalization
   :name: AESHOSP
   :format: "(NY)"
   :description: Did the serious event require or prolong hospitalization?
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTTElGRQ==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESLIFE
   :ordinal: 29
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Is Life Threatening
   :name: AESLIFE
   :format: "(NY)"
   :description: Was the serious event life threatening?
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTT0Q=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESOD
   :ordinal: 30
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Occurred with Overdose
   :name: AESOD
   :format: "(NY)"
   :description: Did the serious event occur with an overdose?
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTTUlF
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESMIE
   :ordinal: 31
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Other Medically Important Serious Event
   :name: AESMIE
   :format: "(NY)"
   :description: Do additional categories for seriousness apply?
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVDT05UUlQ=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECONTRT
   :ordinal: 32
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Concomitant or Additional Trtmnt Given
   :name: AECONTRT
   :format: "(NY)"
   :description: Was another treatment given because of the occurrence of the event?
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVUT1hHUg==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AETOXGR
   :ordinal: 33
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Standard Toxicity Grade
   :name: AETOXGR
   :format: ''
@@ -426,77 +619,113 @@
     of the scale and version used in the metadata (see 6.2.1.1, Assumption 6c). If
     value is from a numeric scale, represent only the number (e.g., '2' and not 'Grade
     2').
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTVERUQw==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESTDTC
   :ordinal: 34
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Start Date/Time of Adverse Event
   :name: AESTDTC
   :format: ISO 8601
   :description: ''
-  :typed_as: Character
-  :compliance: Expected
-  :classified_as: Timing
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
+    :label: Expected
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVFTkRUQw==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENDTC
   :ordinal: 35
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: End Date/Time of Adverse Event
   :name: AEENDTC
   :format: ISO 8601
   :description: ''
-  :typed_as: Character
-  :compliance: Expected
-  :classified_as: Timing
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
+    :label: Expected
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTVERZ
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESTDY
   :ordinal: 36
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Study Day of Start of Adverse Event
   :name: AESTDY
   :format: ''
   :description: Study day of start of adverse event relative to the sponsor-defined
     RFSTDTC.
-  :typed_as: Numeric
-  :compliance: Permissible
-  :classified_as: Timing
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzE3OGY4ZGJlLWMzYmEtNGRjMC04YTJhLTE4MDgxNjQ0YjRjNg==
+    :label: Numeric
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVFTkRZ
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENDY
   :ordinal: 37
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Study Day of End of Adverse Event
   :name: AEENDY
   :format: ''
   :description: Study day of end of event relative to the sponsor-defined RFSTDTC.
-  :typed_as: Numeric
-  :compliance: Permissible
-  :classified_as: Timing
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzE3OGY4ZGJlLWMzYmEtNGRjMC04YTJhLTE4MDgxNjQ0YjRjNg==
+    :label: Numeric
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVEVVI=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEDUR
   :ordinal: 38
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: Duration of Adverse Event
   :name: AEDUR
   :format: ISO 8601
   :description: 'Collected duration and unit of an adverse event. Used only if collected
     on the CRF and not derived from start and end date/times. Example: P1DT2H (for
     1 day, 2 hours).'
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Timing
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVFTlJG
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRF
   :ordinal: 39
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: End Relative to Reference Period
   :name: AEENRF
   :format: "(STENRF)"
@@ -504,33 +733,50 @@
     period. The sponsor-defined reference period is a continuous period of time defined
     by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of
     the trial.
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Timing
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVFTlJUUFQ=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRTPT
   :ordinal: 40
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: End Relative to Reference Time Point
   :name: AEENRTPT
   :format: BEFORE, AFTER, COINCIDENT, ONGOING, U
   :description: Identifies the end of the event as being before or after the reference
     time point defined by variable AEENTPT.
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Timing
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVFTlRQVA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENTPT
   :ordinal: 41
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: 'true'
   :label: End Reference Time Point
   :name: AEENTPT
   :format: ''
   :description: 'Description of date/time in ISO 8601 character format of the reference
     point referred to by AEENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
-  :typed_as: Character
-  :compliance: Permissible
-  :classified_as: Timing
-  :sub_classified_as: ''
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
