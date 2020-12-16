@@ -227,8 +227,7 @@ function dtSDTMClassShowColumns() {
     { data: "label" },
     { data: "typed_as" },
     { data: "description" },
-    { data: "classified_as" },
-    { data: "sub_classified_as" }
+    { data: "classified_as" }
   ];
 };
 
@@ -259,7 +258,6 @@ function dtSDTMIGDomainShowColumns() {
     { data: "typed_as" },
     { data: "format" },
     { data: "classified_as" },
-    { data: "sub_classified_as" },
     { data: "description" },
     { data: "compliance" }
   ];
