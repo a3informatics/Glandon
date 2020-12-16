@@ -159,11 +159,11 @@ function dtSDTMIGDomainEditColumns() {
     { data: "ordinal" },
     dtInlineEditColumn('name'),
     dtInlineEditColumn('label'),
-    dtSelectEditColumn( 'typed_as' ),
+    dtSelectEditColumn( 'typed_as.label' ),
     dtInlineEditColumn( 'format' ),
-    dtSelectEditColumn( 'classified_as' ),
+    dtSelectEditColumn( 'classified_as.label' ),
     dtInlineEditColumn( 'description' ),
-    dtSelectEditColumn( 'compliance' ),
+    dtSelectEditColumn( 'compliance.label' ),
   ]
 
 }
@@ -255,11 +255,11 @@ function dtSDTMIGDomainShowColumns() {
     { data: "ordinal" },
     { data: "name" },
     { data: "label" },
-    { data: "typed_as" },
+    { data: "typed_as.label" },
     { data: "format" },
-    { data: "classified_as" },
+    { data: "classified_as.label" },
     { data: "description" },
-    { data: "compliance" }
+    { data: "compliance.label" }
   ];
 };
 
