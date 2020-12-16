@@ -1,5 +1,6 @@
 ---
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfU1RVRFlJRA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_STUDYID
   :ordinal: 1
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Study Identifier
@@ -7,8 +8,8 @@
   :description: Unique identifier for a study.
   :typed_as: Character
   :classified_as: Identifier
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfRE9NQUlO
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_DOMAIN
   :ordinal: 2
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Domain Abbreviation
@@ -16,8 +17,8 @@
   :description: Two-character abbreviation for the domain.
   :typed_as: Character
   :classified_as: Identifier
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfVVNVQkpJRA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_USUBJID
   :ordinal: 3
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Unique Subject Identifier
@@ -26,8 +27,8 @@
     for all applications or submissions involving the product.
   :typed_as: Character
   :classified_as: Identifier
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1TRVE=
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--SEQ
   :ordinal: 4
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Sequence Number
@@ -38,8 +39,8 @@
     be assigned to be in a consistent chronological order.
   :typed_as: Numeric
   :classified_as: Identifier
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1HUlBJRA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--GRPID
   :ordinal: 5
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Group ID
@@ -49,8 +50,8 @@
     records in the Trial Summary dataset (Section 3.4).
   :typed_as: Character
   :classified_as: Identifier
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1SRUZJRA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--REFID
   :ordinal: 6
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Reference ID
@@ -59,8 +60,8 @@
     or UUID for an ECG waveform or a medical image.
   :typed_as: Character
   :classified_as: Identifier
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1TUElE
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--SPID
   :ordinal: 7
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Sponsor ID
@@ -69,8 +70,8 @@
     on a Concomitant Medications page.'
   :typed_as: Character
   :classified_as: Identifier
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfVklTSVROVU0=
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_VISITNUM
   :ordinal: 8
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Visit Number
@@ -78,8 +79,8 @@
   :description: Clinical encounter number. Numeric version of VISIT, used for sorting.
   :typed_as: Numeric
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfVklTSVQ=
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_VISIT
   :ordinal: 9
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Visit Name
@@ -88,8 +89,8 @@
     in addition to VISITNUM and/or VISITDY.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfVklTSVREWQ==
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_VISITDY
   :ordinal: 10
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Planned Study Day of Visit
@@ -97,8 +98,8 @@
   :description: Planned study day of the visit based upon RFSTDTC in Demographics.
   :typed_as: Numeric
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfVEFFVE9SRA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_TAETORD
   :ordinal: 11
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Planned Order of Elements within Arm
@@ -106,8 +107,8 @@
   :description: Number that gives the order of the Element within the Arm.
   :typed_as: Numeric
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfRVBPQ0g=
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_EPOCH
   :ordinal: 12
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Epoch
@@ -116,8 +117,8 @@
     for the ARM to which the subject was assigned
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1EVEM=
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--DTC
   :ordinal: 13
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Date/Time of Collection
@@ -126,8 +127,8 @@
     character format.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1TVERUQw==
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STDTC
   :ordinal: 14
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Start Date/Time of Observation
@@ -136,8 +137,8 @@
     format.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1FTkRUQw==
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENDTC
   :ordinal: 15
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: End Date/Time of Observation
@@ -146,8 +147,8 @@
     format.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1EWQ==
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--DY
   :ordinal: 16
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Study Day of Visit/Collection/Exam
@@ -156,8 +157,8 @@
     relative to the sponsor-defined RFSTDTC in Demographics.
   :typed_as: Numeric
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1TVERZ
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STDY
   :ordinal: 17
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Study Day of Start of Observation
@@ -166,8 +167,8 @@
     relative to the sponsor-defined RFSTDTC in Demographics.
   :typed_as: Numeric
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1FTkRZ
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENDY
   :ordinal: 18
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Study Day of End of Observation
@@ -176,8 +177,8 @@
     to the sponsor-defined RFSTDTC in Demographics.
   :typed_as: Numeric
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1EVVI=
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--DUR
   :ordinal: 19
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Duration
@@ -186,8 +187,8 @@
     in ISO 8601 character format. Used only if collected on the CRF and not derived.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1UUFQ=
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--TPT
   :ordinal: 20
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Planned Time Point Name
@@ -198,8 +199,8 @@
     --TPTREF.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1UUFROVU0=
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--TPTNUM
   :ordinal: 21
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Planned Time Point Number
@@ -207,8 +208,8 @@
   :description: Numeric version of planned time point used in sorting.
   :typed_as: Numeric
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1FTFRN
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ELTM
   :ordinal: 22
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Planned Elapsed Time from Time Point Ref
@@ -219,8 +220,8 @@
     variable, but an interval, represented as ISO duration.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1UUFRSRUY=
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--TPTREF
   :ordinal: 23
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Time Point Reference
@@ -229,8 +230,8 @@
     and --TPT. Examples: PREVIOUS DOSE, PREVIOUS MEAL.'
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1SRlREVEM=
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--RFTDTC
   :ordinal: 24
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Date/Time of Reference Time Point
@@ -239,8 +240,8 @@
     ISO 8601 character format.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1TVFJG
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STRF
   :ordinal: 25
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Start Relative to Reference Period
@@ -251,8 +252,8 @@
     ending point represented by RFSTDTC and RFENDTC in Demographics.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1FTlJG
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENRF
   :ordinal: 26
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: End Relative to Reference Period
@@ -263,8 +264,8 @@
     ending point represented by RFSTDTC and RFENDTC in Demographics.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1FVkxJTlQ=
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--EVLINT
   :ordinal: 27
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Evaluation Interval
@@ -275,8 +276,8 @@
     questionnaire such as SF-36.'
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1TVFJUUFQ=
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STRTPT
   :ordinal: 28
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Start Relative to Reference Time Point
@@ -285,8 +286,8 @@
     sponsor-defined reference time point defined by variable --STTPT.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1TVFRQVA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STTPT
   :ordinal: 29
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Start Reference Time Point
@@ -295,8 +296,8 @@
     reference point referred to by --STRTPT. Examples: ''2003-12-15'' or ''VISIT 1''.'
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1FTlJUUFQ=
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENRTPT
   :ordinal: 30
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: End Relative to Reference Time Point
@@ -305,8 +306,8 @@
     sponsor-defined reference time point defined by variable --ENTPT.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9BTEwvVjEjQ0xfLS1FTlRQVA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENTPT
   :ordinal: 31
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: End Reference Time Point
@@ -315,8 +316,8 @@
     reference point referred to by --ENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1URVJN
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TERM
   :ordinal: 32
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Reported Term
@@ -325,8 +326,8 @@
     pre-specified name of the event.
   :typed_as: Character
   :classified_as: Topic
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1NT0RJRlk=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--MODIFY
   :ordinal: 33
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Modified Reported Term
@@ -335,8 +336,8 @@
     text is placed here.
   :typed_as: Character
   :classified_as: None
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1ERUNPRA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--DECOD
   :ordinal: 34
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Dictionary-Derived Term
@@ -347,8 +348,8 @@
     dictionaries.
   :typed_as: Character
   :classified_as: None
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1DQVQ=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--CAT
   :ordinal: 35
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Category
@@ -356,18 +357,18 @@
   :description: 'Used to define a category of topic-variable values. Examples: HEMATOLOGY,
     URINALYSIS, CHEMISTRY, HAMILTON DEPRESSION SCALE, SF36.'
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Grouping
-- :uri: ''
+  :classified_as: Grouping
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1TQ0FU
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCAT
   :ordinal: 36
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Subcategory
   :name: "--SCAT"
   :description: Used to define a further categorization of --CAT values.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Grouping
-- :uri: ''
+  :classified_as: Grouping
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1QUkVTUA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--PRESP
   :ordinal: 37
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Pre-specified
@@ -375,9 +376,9 @@
   :description: Used when a specific intervention is pre-specified on a CRF. Values
     should be 'Y' or null.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1PQ0NVUg==
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--OCCUR
   :ordinal: 38
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Occurrence
@@ -385,9 +386,9 @@
   :description: Used to record whether a pre-specified event occurred when information
     about the occurrence of a specific event is solicited.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1TVEFU
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--STAT
   :ordinal: 39
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Completion Status
@@ -395,9 +396,9 @@
   :description: Used to indicate when a question about the occurrence of a pre-specified
     event was not answered. Should be null or have a value of NOT DONE.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1SRUFTTkQ=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--REASND
   :ordinal: 40
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Reason Not Done
@@ -405,9 +406,9 @@
   :description: Reason not done. Used in conjunction with --STAT when value is NOT
     DONE.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1CT0RTWVM=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--BODSYS
   :ordinal: 41
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Body System or Organ Class
@@ -415,9 +416,9 @@
   :description: 'Body System or Organ Class that is involved for a finding from the
     standard hierarchy for dictionary-coded results. Example: MedDRA SOC.'
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1MT0M=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--LOC
   :ordinal: 42
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Location of Event
@@ -425,9 +426,9 @@
   :description: 'Anatomical location of an intervention, such as an injection site.
     Example: RIGHT ARM for an injection.'
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1TRVY=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SEV
   :ordinal: 43
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Severity/Intensity
@@ -435,18 +436,18 @@
   :description: 'Describes the severity or intensity of a particular finding. Examples:
     MILD, MODERATE, SEVERE.'
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1TRVI=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SER
   :ordinal: 44
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Serious Event
   :name: "--SER"
   :description: Is this is a serious event? Valid values are 'Y' and 'N'.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1BQ04=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--ACN
   :ordinal: 45
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Action Taken with Study Treatment
@@ -454,9 +455,9 @@
   :description: 'Describes changes made to the study treatment as a result of the
     event. Examples: DOSE INCREASED, DOSE NOT CHANGED.'
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1BQ05PVEg=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--ACNOTH
   :ordinal: 46
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Other Action Taken
@@ -464,9 +465,9 @@
   :description: Describes other actions taken as a result of the event that are unrelated
     to dose adjustments of study treatment.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1SRUw=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--REL
   :ordinal: 47
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Causality
@@ -475,9 +476,9 @@
     to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED,
     POSSIBLY RELATED, RELATED.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1SRUxOU1Q=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--RELNST
   :ordinal: 48
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Relationship to Non-Study Treatment
@@ -485,9 +486,9 @@
   :description: 'An opinion as to whether the event may have been due to a treatment
     other than study drug. Example: ''MORE LIKELY RELATED TO ASPIRIN USE.'''
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1QQVRU
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--PATT
   :ordinal: 49
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Pattern of Event
@@ -495,9 +496,9 @@
   :description: 'Used to indicate the pattern of the event over time. Examples: INTERMITTENT,
     CONTINUOUS, SINGLE EVENT.'
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1PVVQ=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--OUT
   :ordinal: 50
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Outcome of Event
@@ -505,9 +506,9 @@
   :description: 'Description of the outcome of an event. Examples: RECOVERED/RESOLVED,
     FATAL.'
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1TQ0FO
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCAN
   :ordinal: 51
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Involves Cancer
@@ -515,9 +516,9 @@
   :description: Was the event associated with the development of cancer? Valid values
     are 'Y' and 'N'.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1TQ09ORw==
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCONG
   :ordinal: 52
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Congenital Anomaly or Birth Defect
@@ -525,9 +526,9 @@
   :description: Was the event associated with congenital anomaly or birth defect?
     Valid values are 'Y' and 'N'.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1TRElTQUI=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SDISAB
   :ordinal: 53
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Persist or Signif Disability/Incapacity
@@ -535,18 +536,18 @@
   :description: Did the event result in persistent or significant disability/incapacity?
     Valid values are 'Y' and 'N'.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1TRFRI
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SDTH
   :ordinal: 54
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Results in Death
   :name: "--SDTH"
   :description: Did the event result in death? Valid values are 'Y' and 'N'.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1TSE9TUA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SHOSP
   :ordinal: 55
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Requires or Prolongs Hospitalization
@@ -554,27 +555,27 @@
   :description: Did the event require or prolong hospitalization? Valid values are
     'Y' and 'N'.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1TTElGRQ==
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SLIFE
   :ordinal: 56
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Is Life Threatening
   :name: "--SLIFE"
   :description: Was the event life threatening? Valid values are 'Y' and 'N'.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1TT0Q=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SOD
   :ordinal: 57
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Occurred with Overdose
   :name: "--SOD"
   :description: Did the event occur with an overdose? Valid values are 'Y' and 'N'.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1TTUlF
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SMIE
   :ordinal: 58
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Other Medically Important Serious Event
@@ -582,9 +583,9 @@
   :description: Do additional categories for seriousness apply? Valid values are 'Y'
     and 'N'.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1DT05UUlQ=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--CONTRT
   :ordinal: 59
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Concomitant or Additional Trtmnt Given
@@ -592,9 +593,9 @@
   :description: Was another treatment given because of the occurrence of the event?
     Valid values are 'Y' and 'N'.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
-- :uri: ''
+  :classified_as: Record
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1UT1g=
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TOX
   :ordinal: 60
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Toxicity
@@ -604,8 +605,8 @@
     and version is used in the Sponsor Comments column of the Define.xml document.'
   :typed_as: Character
   :classified_as: None
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9FVkVOVFMvVjEjQ0xfLS1UT1hHUg==
+  :uri: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TOXGR
   :ordinal: 61
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Toxicity Grade
@@ -614,5 +615,4 @@
     NCI CTCAE). Sponsor should specify which scale and version is used in the Sponsor
     Comments column of the Define.xml document.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Record
+  :classified_as: Record
