@@ -46,6 +46,7 @@ class IsoManagedV2Controller < ApplicationController
     respond_to do |format|
       format.html do
         @managed_item = item 
+        @managed_item_ref = "#{item.label} #{item.scoped_identifier} v#{item.semantic_version}"
         @close_path = request.referrer 
         @data_path = impact_iso_managed_v2_path(item)
       end
