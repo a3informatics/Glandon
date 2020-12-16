@@ -351,6 +351,7 @@ defaults: &defaults
       delete_non_standard_variable: update
       toggle_used: update
       editor_metadata: show
+      update_variable: update
   FormPolicy:
     policies: {}
     alias:
