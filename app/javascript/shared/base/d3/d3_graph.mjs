@@ -520,7 +520,7 @@ export default class D3Graph {
   _restoreGraph(restoreZoom = true, restoreSelection = true) {
 
     // Restore zoom transforms
-    if ( this.zoomable && restoreZoom )
+    if ( this.zoomable && restoreZoom && this.graph.lastTransform )
       this.graph.svg.call( this.graph.zoom.transform, this.graph.lastTransform );
 
     // Reselect node

@@ -43,8 +43,19 @@ class IsoManagedV2Controller < ApplicationController
   def impact 
     authorize IsoManaged, :show?
     item = find_item(params)
-    results = item.dependency_required_by
-    render json: impact_d3(item, results)
+    respond_to do |format|
+      format.html do
+        @managed_item = item 
+        @managed_item_ref = "#{item.label} #{item.scoped_identifier} v#{item.semantic_version}"
+        @close_path = request.referrer 
+        @data_path = impact_iso_managed_v2_path(item)
+      end
+      format.json do
+        results = item.dependency_required_by
+        render json: impact_d3(item, results)
+      end
+    end 
+  
   end
 
   def custom_properties

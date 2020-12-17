@@ -5,7 +5,7 @@
 <div class="row">
   <%= render layout: "shared/headers/header_minimal", :locals => { badge: "icon-impact",
     main_text: "Impact Analysis",
-    sub_text: "Showing Managed Items impacted by <b>#{@managed_item.scoped_identifier} v#{@managed_item.semantic_version}</b>.".html_safe } do %>
+    sub_text: "Showing Managed Items impacted by <i>#{ @managed_item_ref }</i>.".html_safe } do %>
 
       <div class="btns-wrap">
         <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
