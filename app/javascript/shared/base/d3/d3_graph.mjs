@@ -224,6 +224,14 @@ export default class D3Graph {
    */
   get allNodes() { }
 
+  /**
+   * Get wrapper visibiltiy state 
+   * @return {boolean} True if Graph wrapper is currently visible 
+   */
+  get graphVisible() {
+    return $( this.selector ).is( ':visible' ) && ( this._props.svg.width > 0 )
+  }
+
 
   /******* Private *******/
 
@@ -436,7 +444,8 @@ export default class D3Graph {
       this._props.container.height( window.innerHeight - 200 );
 
     // Resize graph svg
-    if ( this.graph && this.graph.svg )
+
+    if ( this.graphVisible && this.graph?.svg ) 
       this.graph.svg.attr( 'viewBox', `0 0 ${ this._props.svg.width } ${ this._props.svg.height }` )
                     .attr( 'height', this._props.svg.height )
 
@@ -628,6 +637,10 @@ export default class D3Graph {
 
   }
 
+  /**
+   * Get the wrapper element for Graph alerts 
+   * @return {JQuery Element} Graph alert element 
+   */
   get _alertDiv() {
     return $( this.selector ).find( '#graph-alerts' );
   }

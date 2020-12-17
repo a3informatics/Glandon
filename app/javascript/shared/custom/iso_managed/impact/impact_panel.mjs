@@ -2,7 +2,7 @@ import TabsLayout from 'shared/ui/tabs_layout'
 import ImpactGraph from './impact_graph.mjs'
 import ManagedItemsPanel from '../managed_items_panel'
 
-import { csvExportBtn } from 'shared/helpers/dt/utils'
+import { csvExportBtn, excelExportBtn } from 'shared/helpers/dt/utils'
 
 /**
  * Impact Panel
@@ -24,26 +24,66 @@ export default class ImpactPanel {
 
     TabsLayout.initialize()
 
+    // Set tab switch event handler
+    TabsLayout.onTabSwitch( selector, tab => this._onTabSwitch( tab ) )
+
   }
 
+  /**
+   * Initialize a new ImpactGraph  
+   * @return {ImpactGraph} Instance 
+   */
   _initImpactGraph() {
 
     return new ImpactGraph({
       selector: `${ this.selector } #impact-graph`,
       dataUrl: impactDataUrl,
-      onDataLoaded: () => 
-        this.impactTable._render( this.impactGraph.rawData.nodes, true )
+      onDataLoaded: () => this._onImpactDataLoaded()
     })
 
   }
 
+  /**
+   * Initialize a new ManagedItemsPanel - Impact Table 
+   * @return {ManagedItemsPanel} Instance 
+   */
   _initImpactTable() {
 
     return new ManagedItemsPanel({
       selector: this.selector,
       deferLoading: true,
-      buttons: [ csvExportBtn ]
+      buttons: [csvExportBtn(), excelExportBtn()]
     })
+
+  }
+
+  /**
+   * On tab-switch event in Tab Layout callback, ensures proper display
+   * @param {string} tab Name of the tab switched into 
+   */
+  _onTabSwitch(tab) {
+
+    switch (tab) {
+
+      case 'tab-table':
+        this.impactTable.table.columns.adjust()
+        break
+
+      case 'tab-graph':
+        this.impactGraph._onResize()
+        break
+
+    }
+
+  }
+
+  /**
+   * On Impact Graph data load callback, clone and render data in Impact Table 
+   */
+  _onImpactDataLoaded() {
+
+    const clonedData = JSON.parse( JSON.stringify( this.impactGraph.rawData.nodes ) )
+    this.impactTable._render( clonedData, true )
 
   }
 
