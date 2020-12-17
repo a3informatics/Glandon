@@ -93,7 +93,12 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
   # @param [Object] managed_ancestor the managed ancestor object
   # @return [Object] the object, either new or the cloned new object with updates
   def update_with_clone(params, managed_ancestor)
-    self.standard? ? self.errors.add(:base, "The variable cannot be updated as it is a standard variable.") : super
+    if self.standard? 
+      self.errors.add(:base, "The variable cannot be updated as it is a standard variable.")
+      self
+    else
+      super
+    end
   end
 
   private
