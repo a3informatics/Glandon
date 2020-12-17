@@ -1,8 +1,8 @@
 import ForceGraph from 'shared/base/d3/force_graph/force_graph'
 import ImpactNode from './impact_node'
 
-import { D3Tooltip } from 'shared/helpers/d3/renderers/tooltip'
-import { D3Actions } from 'shared/helpers/d3/renderers/actions'
+import D3Tooltip from 'shared/helpers/d3/renderers/tooltip'
+import D3Actions from 'shared/helpers/d3/renderers/actions'
 
 import { renderWithFilledIconsLabels as renderStyledNodes } from 'shared/helpers/d3/renderers/nodes'
 import { cropText } from 'shared/helpers/strings' 
@@ -49,8 +49,8 @@ export default class ImpactGraph extends ForceGraph {
   clearGraph() {
 
     super.clearGraph()
-    D3Tooltip.destroy()
-    D3Actions.destroy()
+    this.D3Tooltip.destroy()
+    this.D3Actions.destroy()
 
   }
 
@@ -65,8 +65,8 @@ export default class ImpactGraph extends ForceGraph {
   _init() {
 
     super._init()
-    D3Tooltip.init( this.d3 )
-    D3Actions.init( this.d3 )
+    this.D3Tooltip = new D3Tooltip( this.d3 )
+    this.D3Actions = new D3Actions( this.d3 )
 
   }
 
@@ -101,7 +101,7 @@ export default class ImpactGraph extends ForceGraph {
    */
   _selectNode(node, toggle = true) {
 
-    D3Actions.hide();
+    this.D3Actions.hide();
 
     super._selectNode( node, toggle )
 
@@ -208,8 +208,8 @@ export default class ImpactGraph extends ForceGraph {
 
     this._renderNodes()
 
-    D3Tooltip.new();
-    D3Actions.new( this.selector, this._actionButtons )
+    this.D3Tooltip.new();
+    this.D3Actions.new( this.selector, this._actionButtons )
 
   }
 
@@ -225,7 +225,7 @@ export default class ImpactGraph extends ForceGraph {
       nodeColor: this.Node.color,
       labelProperty: d => cropText( d.identifier, 10 ),
       onHover: d => this._renderTooltip( new this.Node(d) ),
-      onHoverOut: d => D3Tooltip.hide()
+      onHoverOut: d => this.D3Tooltip.hide()
     })
 
   }
@@ -244,10 +244,10 @@ export default class ImpactGraph extends ForceGraph {
       return;
 
     // Toggle edit button depending on node
-    D3Actions.actions.find( '#load-impact' )
-                     .toggleClass( 'disabled', node.impactLoaded )
+    this.D3Actions.actions.find( '#load-impact' )
+                          .toggleClass( 'disabled', node.impactLoaded )
 
-    D3Actions.show( node, { offsetY: -12 } )
+    this.D3Actions.show( node, { offsetY: -12 } )
 
   }
 
@@ -283,7 +283,7 @@ export default class ImpactGraph extends ForceGraph {
       ${ managedConceptRef(node.data) }
     </div>`
 
-    D3Tooltip.show( html )
+    this.D3Tooltip.show( html )
 
   }
 
