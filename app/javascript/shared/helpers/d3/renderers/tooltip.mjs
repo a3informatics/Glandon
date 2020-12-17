@@ -1,3 +1,9 @@
+
+/**
+ * D3 Tooltip module
+ * @description A helper module for rendering a tooltip in a D3 graph 
+ * @author Samuel Banas <sab@s-cubed.dk>
+ */
 export default class D3Tooltip { 
 
   /**

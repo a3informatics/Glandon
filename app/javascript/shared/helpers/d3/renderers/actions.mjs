@@ -1,3 +1,9 @@
+
+/**
+ * D3 Actions module
+ * @description A helper module for rendering action-buttons in a D3 graph 
+ * @author Samuel Banas <sab@s-cubed.dk>
+ */
 export default class D3Actions { 
 
   /**
