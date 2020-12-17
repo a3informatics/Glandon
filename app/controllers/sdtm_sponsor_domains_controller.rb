@@ -7,6 +7,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
   C_CLASS_NAME = "SdtmSponsorDomainsController"
 
   include ControllerHelpers
+  include DatatablesHelpers
 
   def index
     super
@@ -103,6 +104,19 @@ class SdtmSponsorDomainsController < ManagedItemsController
   def editor_metadata
     render json: {data: {compliance: SdtmIgDomain::Variable.compliance, typed_as: SdtmClass::Variable.datatypes, classified_as: SdtmClass::Variable.classification} }, status: 200
   end
+
+  def update_variable
+    sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
+    return true unless check_lock_for_item(sdtm_sponsor_domain)
+    non_standard_variable = SdtmSponsorDomain::Var.find_full(update_params[:non_standard_var_id])
+    non_standard_variable = non_standard_variable.update_with_clone(update_params, sdtm_sponsor_domain)
+    if non_standard_variable.errors.empty?
+      AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, sdtm_sponsor_domain.audit_message(:updated)) if @lock.first_update?
+      render :json => {data: non_standard_variable.to_h}, :status => 200
+    else
+      render :json => {:fieldErrors => format_editor_errors(non_standard_variable.errors)}, :status => 422
+    end
+  end
   
 private
   
@@ -112,6 +126,14 @@ private
 
   def non_standard_var_params
     params.require(:sdtm_sponsor_domain).permit(:name, :compliance, :typed_as, :classified_as)
+  end
+
+  def update_params
+    params.require(:sdtm_sponsor_domain).permit(:label, :prefix)
+  end
+
+  def update_var_params
+    params.require(:sdtm_sponsor_domain).permit(:non_standard_var_id, :name, :comment, :notes, :description, :compliance, :typed_as, :classified_as)
   end
 
   # Get the ig domain id from the params
