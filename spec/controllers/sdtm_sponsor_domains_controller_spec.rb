@@ -309,13 +309,13 @@ describe SdtmSponsorDomainsController do
     it "update variable" do
       request.env['HTTP_ACCEPT'] = "application/json"
       sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
-
       token = Token.obtain(sponsor_domain, @user)
-      sponsor_variable = sponsor_domain.add_non_standard_variable({name:"AENEWSPVAR"})
-      #sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_AENEWSPVAR"))
-      put :update_variable, params:{id: sponsor_domain.id, sdtm_sponsor_domain: {description: "ABC", non_standard_var_id: sponsor_variable.id}}
+      uri = Uri.new(uri: "http://www.assero.co.uk/eee#aaa")
+      sponsor_variable = SdtmSponsorDomain::Var.new(uri: uri, name: "AENEWAAA", description: "old description")
+      expect(SdtmSponsorDomain::Var).to receive(:find_full).and_return(sponsor_variable)
+      put :update_variable, params:{id: sponsor_domain.id, sdtm_sponsor_domain: {description: "new description", non_standard_var_id: sponsor_variable}}
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_variable_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "update_variable_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end
