@@ -159,11 +159,11 @@ function dtSDTMIGDomainEditColumns() {
     { data: "ordinal" },
     dtInlineEditColumn('name'),
     dtInlineEditColumn('label'),
-    dtSelectEditColumn( 'typed_as.label' ),
+    dtSelectEditColumn( 'typed_as' ),
     dtInlineEditColumn( 'format' ),
-    dtSelectEditColumn( 'classified_as.label' ),
+    dtSelectEditColumn( 'classified_as' ),
     dtInlineEditColumn( 'description' ),
-    dtSelectEditColumn( 'compliance.label' ),
+    dtSelectEditColumn( 'compliance' ),
   ]
 
 }
