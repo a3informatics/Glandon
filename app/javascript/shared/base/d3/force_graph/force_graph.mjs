@@ -130,7 +130,7 @@ export default class ForceGraph extends D3Graph {
     super._render();
 
     // Start force simulation
-    this._startSimulation( links, nodes );
+    this.graph.simulation = this._startSimulation( links, nodes );
 
     return this;
 
@@ -214,6 +214,25 @@ export default class ForceGraph extends D3Graph {
     super._reCenter( 0, 0 );
   }
 
+  /**
+   * Graph / window resized event, adjust container and graph svg
+   * Extend method for custom behavior with Force Centering 
+   */
+  _onResize() {
+
+    super._onResize()
+
+    if ( this.graph?.simulation )  {
+
+      const { width, height } = this._props.svg,
+            force =  this.d3.forceCenter( width / 2, height / 2 )
+
+      this.graph.simulation.force( 'center', force )
+                           .restart()
+
+    }
+    
+  }
 
   /** Graph utils **/
 
