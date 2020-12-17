@@ -1,11 +1,12 @@
-const D3Actions = { 
+export default class D3Actions { 
 
   /**
    * Init instance with d3 module
+   * @param {D3} d3 Reference to the d3 library
    */
-  init(d3) {
+  constructor(d3) {
     this.d3 = d3;
-  },
+  }
 
   /**
    * Create a new actions div in the page body
@@ -27,7 +28,7 @@ const D3Actions = { 
     actions.append( buttonWrapper );
     $( `${selector} #d3` ).append( actions );
 
-  },
+  }
 
   /**
    * Show (render) the actions and update its position
@@ -48,7 +49,7 @@ const D3Actions = { 
                 .css( 'border-color', node.color )
                 .show();
 
-  },
+  }
 
   /**
    * Hide the actions element
@@ -57,7 +58,7 @@ const D3Actions = { 
 
     this.actions.hide();
 
-  },
+  }
 
   /**
    * Remove the actions from the DOM
@@ -66,7 +67,7 @@ const D3Actions = { 
 
     this.actions.remove();
 
-  },
+  }
 
   /**
   * Get the actions element
@@ -76,7 +77,7 @@ const D3Actions = { 
 
     return $('.node-actions');
 
-  },
+  }
 
   /**
    * Get the actions coordinates relative to the D3 mouse event
@@ -94,8 +95,4 @@ const D3Actions = { 
 
   }
 
-}
-
-export {
-  D3Actions
 }
