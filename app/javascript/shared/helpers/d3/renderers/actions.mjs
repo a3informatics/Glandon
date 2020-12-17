@@ -32,10 +32,11 @@ const D3Actions = { 
   /**
    * Show (render) the actions and update its position
    * @param {string} html Tooltip HTML content to render
-   * @param {int} offsetX Tooltip X coordinate offset, optional
-   * @param {int} offsetY Tooltip Y coordinate offset, optional
+   * @param {object} params Additional show params, optional
+   * @param {int} params.offsetX Tooltip X coordinate offset, optional
+   * @param {int} params.offsetY Tooltip Y coordinate offset, optional
    */
-  show(node, offsetX = 0, offsetY = 0) {
+  show(node, { offsetX = 0, offsetY = 0 } = {}) {
 
     if ( !node )
       return;
