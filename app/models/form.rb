@@ -160,7 +160,8 @@ class Form < IsoManagedV2
 
       '<http://www.assero.co.uk/BusinessForm#hasGroup>/'\
       '<http://www.assero.co.uk/BusinessForm#hasSubGroup>*/'\
-      '<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept>'\
+      '<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept>/'\
+      '<http://www.assero.co.uk/BusinessOperational#reference>'
     ]
   end
 
