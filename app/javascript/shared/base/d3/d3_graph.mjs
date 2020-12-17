@@ -20,6 +20,7 @@ export default class D3Graph {
    * @param {boolean} params.zoomable Determines whether the graph can be zoomed and dragged, optional [default=true]
    * @param {boolean} params.selectable Determines whether the nodes can be selected by clicking, optional [default=true]
    * @param {function} params.onDataLoaded Data load completed callback, receives raw data as first argument, optional
+   * @param {object} args Additional arguments to be assigned to this instance, optional
    */
   constructor({
     selector,
@@ -29,12 +30,13 @@ export default class D3Graph {
     zoomable = true,
     selectable = true,
     onDataLoaded = () => {}
-  }) {
+  }, args = {}) {
 
     Object.assign( this, {
       dataUrl, selector, autoScale,
       zoomable, selectable, onDataLoaded,
-      Node: nodeModule
+      Node: nodeModule,
+      ...args
     });
 
     this._loadD3();
@@ -377,12 +379,13 @@ export default class D3Graph {
   /**
    * Process and render raw graph data from the server
    * @override for custom behavior
-   * @param {Object} rawData Compatible graph data fetched from the server
+   * @param {Object | undefined} rawData Compatible graph data fetched from the server
    */
   _onDataLoaded(rawData) {
 
     // Save reference to the raw data structure
-    this.rawData = rawData;
+    if ( rawData )
+      this.rawData = rawData;
 
     if ( this.onDataLoaded ) {
       this.onDataLoaded( rawData );

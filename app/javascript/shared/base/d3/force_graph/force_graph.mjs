@@ -21,7 +21,7 @@ export default class ForceGraph extends D3Graph {
   * @param {boolean} params.autoScale Determines whether the graph container should scale height to fit window height, optional [default=true]
   * @param {boolean} params.zoomable Determines whether the graph can be zoomed and dragged, optional [default=true]
   * @param {boolean} params.selectable Determines whether the nodes can be selected by clicking, optional [default=true]
-   * @param {function} params.onDataLoaded Data load completed callback, receives raw data as first argument, optional
+  * @param {function} params.onDataLoaded Data load completed callback, receives raw data as first argument, optional
   */
   constructor({
     selector,
@@ -43,6 +43,14 @@ export default class ForceGraph extends D3Graph {
       onDataLoaded
     });
 
+  }
+
+  /**
+   * Check if graph data empty
+   * @return {boolean} True if nodes and links data arrays are empty 
+   */
+  get dataEmpty() {
+    return this.rawData.nodes.length === 0 && this.rawData.links.length === 0; 
   }
 
 
@@ -69,6 +77,22 @@ export default class ForceGraph extends D3Graph {
 
 
   /******* Private *******/
+
+
+  /**
+   * Initialize graph data structure 
+   * @extends _init parent implementation
+   */
+  _init() {
+
+    super._init();
+
+    this.rawData = {
+      nodes: [],
+      links: []
+    }
+
+  }
 
 
   /** Graph **/
@@ -118,14 +142,14 @@ export default class ForceGraph extends D3Graph {
 
   /**
    * Process and render raw graph data from the server
-   * @param {Object} rawData Compatible graph data fetched from the server
+   * @param {Object | undefined} rawData Compatible graph data fetched from the server
    */
   _onDataLoaded(rawData) {
 
     super._onDataLoaded( rawData );
 
     this.render()
-        .reCenter();
+        ._restoreGraph();
 
   }
 
