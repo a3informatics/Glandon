@@ -70,8 +70,41 @@ export default class ImpactNode extends D3Node {
     return ImpactNode.color( this.d );
   }
 
+  /**
+   * Check if Node is a Root Node
+   * @return {boolean} True if Node is a Root 
+   */
+  get isRoot() {
+    return this.data._isRoot === true;
+  }
+
+  /**
+   * Check if Node has its Impact data already loaded
+   * Always true for Root node 
+   * @return {boolean} True if Node had its Impact loaded 
+   */
+  get impactLoaded() {
+    return this.data._impactLoaded === true || this.isRoot;
+  }
+
 
   /** Actions **/
+
+
+  /**
+   * Set the _impactLoaded flag to true, preventing further loading of impact data for this Node
+   */
+  setImpactLoaded() {
+    this.data._impactLoaded = true;
+  }
+
+  /**
+   * Set the _isRoot and _impactLoaded flags for true (only for impact source Node)
+   */
+  setRoot() {
+    this.data._isRoot = true;
+    this.setImpactLoaded();
+  }
 
 
   /** Support **/
@@ -123,7 +156,7 @@ export default class ImpactNode extends D3Node {
    * @return {string} Node color code from its data RDF type
    */
   static color(d) {
-    return iconTypes.typeIconMap( d.rdf_type ).color;
+    return iconTypes.typeIconMap( d.rdf_type, { owner: d.uri } ).color;
   }
 
 
