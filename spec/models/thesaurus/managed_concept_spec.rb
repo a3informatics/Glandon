@@ -2533,11 +2533,11 @@ describe "Thesaurus::ManagedConcept" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.sanofi.com/C102589/V1#C102589"))
       results = tc.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "add_item_custom_property_expected_1a.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "add_item_custom_property_expected_1a.yaml", equate_method: :hash_equal)
       new_tc = tc.create_next_version
       new_tc = Thesaurus::ManagedConcept.find_minimum(new_tc.uri)
       results = new_tc.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "add_item_custom_property_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "add_item_custom_property_expected_1b.yaml", equate_method: :hash_equal)
     end
 
   end
