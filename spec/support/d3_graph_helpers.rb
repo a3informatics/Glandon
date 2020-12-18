@@ -1,8 +1,10 @@
-module D3TreeHelpers
+module D3GraphHelpers
 
   # Specific to Form Editor
   def icon_type_map
     {
+      terminology: 59657,
+      codelist: 59730,
       form: 59676,
       tuc_ref: 59736,
       bc: 59659,
@@ -25,7 +27,9 @@ module D3TreeHelpers
       move_down: 'move-down',
       common: 'common-node',
       restore: 'restore-node',
-      remove: 'remove-node'
+      remove: 'remove-node',
+      load_impact: 'load-impact',
+      history: 'show-history'
     }
   end
 
@@ -78,6 +82,14 @@ module D3TreeHelpers
 
     types.each do |type|
       expect(actions).to have_selector( ".btn##{ action_btn_map[type] }", visible: false )
+    end
+  end
+
+  def check_actions_disabled(types)
+    actions = find('#d3 .node-actions')
+
+    types.each do |type|
+      expect(actions).to have_selector( ".btn.disabled##{ action_btn_map[type] }", visible: true )
     end
   end
 

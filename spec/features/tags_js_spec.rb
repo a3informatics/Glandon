@@ -6,7 +6,7 @@ describe "Tags", :type => :feature do
   include DataHelpers
   include UiHelpers
   include TagHelpers
-  include D3TreeHelpers
+  include D3GraphHelpers
   include WaitForAjaxHelper
   include UserAccountHelpers
   include NameValueHelpers

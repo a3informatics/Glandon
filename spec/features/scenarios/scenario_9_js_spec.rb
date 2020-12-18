@@ -9,7 +9,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
   include UserAccountHelpers
   include ScenarioHelpers
   include TagHelpers
-  include D3TreeHelpers
+  include D3GraphHelpers
   include NameValueHelpers
   include EditorHelpers
   include ItemsPickerHelpers
