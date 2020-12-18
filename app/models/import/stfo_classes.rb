@@ -114,6 +114,7 @@ module Import::STFOClasses
       else
         self.extends = ref_ct
         new_narrower = []
+        new_refers_to = []
         self.narrower.each do |child|
           new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
           if new_child.nil?
@@ -122,9 +123,11 @@ module Import::STFOClasses
           end
           next if new_child.nil?
           copy_properties_from_to(child, new_child)
-          new_narrower << new_child 
+          new_narrower << new_child
+          new_refers_to << new_child if NciThesaurusUtility.c_code?(new_child.identifier) 
         end
         self.narrower = new_narrower
+        self.refers_to = new_refers_to
       end
       self.update_identifier(self.identifier)
       self.add_ranking if self.ranked?
@@ -345,13 +348,16 @@ module Import::STFOClasses
     
     def to_hybrid_sponsor(ct, fixes)
       new_narrower = []
+      new_refers_to = []
       self.narrower.each do |child|
         new_child = sponsor_or_referenced(ct, child, fixes)
         next if new_child.nil?
         copy_properties_from_to(child, new_child)
         new_narrower << new_child 
+        new_refers_to << new_child if NciThesaurusUtility.c_code?(new_child.identifier) 
       end
       self.narrower = new_narrower
+      self.refers_to = new_refers_to
       self.update_identifier(self.identifier)
       self.add_ranking if self.ranked?
       self
