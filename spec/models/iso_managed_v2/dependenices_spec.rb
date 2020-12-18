@@ -5,6 +5,7 @@ describe IsoManagedV2::Dependencies do
 	include DataHelpers
   include PauseHelpers
   include SecureRandomHelpers
+  include IsoManagedHelpers
 
 	def sub_dir
     return "models/iso_managed_v2/im_custom_properties"
@@ -39,6 +40,10 @@ describe IsoManagedV2::Dependencies do
     
   end
   
+  class IMDLayer4 < IsoManagedV2
+    configure rdf_type: "http://www.assero.co.uk/Test#RegistrationAuthority"
+  end
+
   def create_data
     @item_1 = IMDLayer1.create(identifier: "ITEM1")
     @item_7 = IMDLayer1.create(identifier: "ITEM7")
@@ -62,16 +67,26 @@ describe IsoManagedV2::Dependencies do
     end
 
     it "error no paths defined" do
-      expect{IsoManagedV2.dependency_paths}.to raise_error(Errors::ApplicationLogicError, "Method not implemented for class.")
+      expect{IsoManagedV2.dependency_paths}.to raise_error(Errors::ApplicationLogicError, "Method not implemented for class IsoManagedV2.")
+    end
+
+    it "error no configuration for class" do
+      instance = IMDLayer4.new
+      result = instance.dependency_required_by
+      expect(result).to eq([])
     end
 
     it "get dependencies" do
       results = {}
       create_data
-      [@item_1, @item_2, @item_3, @item_4, @item_5, @item_6, @item_7].each do |x|
-        results[x.uri.to_s] = x.dependency_required_by.map{|x| x.to_h}
+      [@item_1, @item_2, @item_3, @item_4, @item_5, @item_6, @item_7].each_with_index do |x, index_1|
+        results = x.dependency_required_by
+        results.each_with_index do |x, index_2|
+          filename = "dependency_required_expected_#{index_1 + 1}#{index_2 + 1}.yaml"
+          fix_dates(x, sub_dir, filename, :creation_date, :last_change_date)
+          check_file_actual_expected(x.to_h, sub_dir, filename, equate_method: :hash_equal)
+        end
       end
-      check_file_actual_expected(results, sub_dir, "dependency_required_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

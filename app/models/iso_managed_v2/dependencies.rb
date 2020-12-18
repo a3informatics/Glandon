@@ -60,6 +60,7 @@ class IsoManagedV2
     def paths_for_klass
       paths = []
       klasses = dependency_configuration[self.class.to_s.to_sym]
+      return paths if klasses.nil?
       klasses.each { |x| paths += x.constantize.dependency_paths}
       paths  
     end
