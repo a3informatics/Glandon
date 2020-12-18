@@ -17,7 +17,7 @@ class SdtmIgDomain < Tabulation
   def get_children
     results = []
     query_string = %Q{
-      SELECT DISTINCT ?ordinal ?c ?type ?label ?name ?format ?description ?compliance ?compliance_label ?typed_as ?typed_as_label ?classification ?classification_label ?standard WHERE       
+      SELECT DISTINCT ?ordinal ?c ?type ?label ?name ?format ?description ?used ?compliance ?compliance_label ?typed_as ?typed_as_label ?classification ?classification_label ?standard WHERE       
       {         
         #{self.uri.to_ref} bd:includesColumn ?c .         
         ?c bd:ordinal ?ordinal .         
@@ -32,13 +32,14 @@ class SdtmIgDomain < Tabulation
         ?typed_as isoC:prefLabel ?typed_as_label .                 
         ?c bd:basedOnClassVariable/bd:classifiedAs|bd:basedOnIgVariable/bd:basedOnClassVariable/bd:classifiedAs ?classification .
         ?classification isoC:prefLabel ?classification_label .
-        BIND (EXISTS {?c bd:basedOnIgVariable|bd:basedOnClassVariable ?o} as ?standard)           
+        BIND (EXISTS {?c bd:basedOnIgVariable|bd:basedOnClassVariable ?o} as ?standard)
+        OPTIONAL {?c bd:used ?used}           
       } ORDER BY ?ordinal
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bd])
-    query_results.by_object_set([:ordinal, :c, :type, :label, :name, :format, :description, :compliance, :compliance_label, :typed_as, :typed_as_label, :classification, :classification_label, :standard]).each do |x|
+    query_results.by_object_set([:ordinal, :c, :type, :label, :name, :format, :description, :used, :compliance, :compliance_label, :typed_as, :typed_as_label, :classification, :classification_label, :standard]).each do |x|
       results << {id: x[:c].to_id ,uri: x[:c].to_s, ordinal: x[:ordinal].to_i, rdf_type: x[:type].to_s, standard: x[:standard], label: x[:label], name: x[:name],
-      format: x[:format], description: x[:description], compliance: {id: x[:compliance].to_id, label: x[:compliance_label]}, typed_as: {id: x[:typed_as].to_id, label:x[:typed_as_label]}, classified_as: {id:x[:classification].to_id, label: x[:classification_label]} }
+      format: x[:format], description: x[:description], used: x[:used], compliance: {id: x[:compliance].to_id, label: x[:compliance_label]}, typed_as: {id: x[:typed_as].to_id, label:x[:typed_as_label]}, classified_as: {id:x[:classification].to_id, label: x[:classification_label]} }
     end
     results
   end
