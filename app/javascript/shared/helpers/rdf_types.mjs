@@ -1,41 +1,6 @@
 const rdfTypesMap = {
-  // Managed Item Types
-  FORM: {
-    rdfType: 'http://www.assero.co.uk/BusinessForm#Form',
-    name: 'Form',
-    param: 'form',
-    url: '/forms'
-  },
-  USERDOMAIN: {
-    rdfType: 'http://www.assero.co.uk/BusinessDomain#UserDomain',
-    name: 'Custom Domain' 
-  },
-  IGDOMAIN: {
-    rdfType: 'http://www.assero.co.uk/BusinessDomain#IgDomain',
-    name: 'SDTM IG Domain'
-  },
-  CLASSDOMAIN: {
-    rdfType: 'http://www.assero.co.uk/BusinessDomain#ClassDomain',
-    name: 'SDTM Class Domain'
-  },
-  MODEL: {
-    rdfType: 'http://www.assero.co.uk/BusinessDomain#Model',
-    name: 'SDTM Model'
-  },
-  BC: {
-    rdfType: 'http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance',
-    name: 'Biomedical Concept',
-    param: 'biomedical_concept_instance',
-    url: '/biomedical_concept_instances'
-  },
-  BCT: {
-    rdfType: 'http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptTemplate',
-    name: 'Biomedical Concept Template',
-    param: 'biomedical_concept_template',
-    url: '/biomedical_concept_templates'
-  },
 
-  // Thesaurus Types
+  // Thesaurus and CL Types
   TH: {
     rdfType: 'http://www.assero.co.uk/Thesaurus#Thesaurus',
     name: 'Terminology',
@@ -67,38 +32,63 @@ const rdfTypesMap = {
     url: '/thesauri/unmanaged_concepts'
   },
 
-  SI: {
-    rdfType: 'http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier',
-    name: 'Scoped Identifier'
+  // Managed Item Types
+  BC: {
+    rdfType: 'http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance',
+    name: 'Biomedical Concept',
+    param: 'biomedical_concept_instance',
+    url: '/biomedical_concept_instances'
   },
-  RS: {
-    rdfType: 'http://www.assero.co.uk/ISO11179Registration#RegistrationState',
-    name: 'Registration State'
+  BCT: {
+    rdfType: 'http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptTemplate',
+    name: 'Biomedical Concept Template',
+    param: 'biomedical_concept_template',
+    url: '/biomedical_concept_templates'
+  },
+  FORM: {
+    rdfType: 'http://www.assero.co.uk/BusinessForm#Form',
+    name: 'Form',
+    param: 'form',
+    url: '/forms'
+  },
+  ADAM_IG: {
+    rdfType: 'http://www.assero.co.uk/Tabulation#ADaMImplementationGuide',
+    name: 'ADaM IG',
+    param: 'adam_ig',
+    url: '/adam_igs'
+  },
+  ADAM_DATASET: {
+    rdfType: 'http://www.assero.co.uk/Tabulation#ADaMDataset',
+    name: 'ADaM IG Dataset',
+    param: 'adam_ig_dataset',
+    url: '/adam_ig_datasets'
+  },
+  SDTM_MODEL: {
+    rdfType: 'http://www.assero.co.uk/Tabulation#Model',
+    name: 'SDTM Model',
+    param: 'sdtm_model',
+    url: '/sdtm_models'
+  },
+  SDTM_IG: {
+    rdfType: 'http://www.assero.co.uk/Tabulation#SDTMImplementationGuide',
+    name: 'SDTM IG',
+    param: 'sdtm_ig',
+    url: '/sdtm_igs'
+  },
+  SDTM_DOMAIN: {
+    rdfType: 'http://www.assero.co.uk/Tabulation#SdtmDomain',
+    name: 'SDTM IG Domain',
+    param: 'sdtm_ig_domain',
+    url: '/sdtm_ig_domains'
+  },
+  SDTM_CLASS: {
+    rdfType: 'http://www.assero.co.uk/Tabulation#SdtmClass',
+    name: 'SDTM Class',
+    param: 'sdtm_class',
+    url: '/sdtm_classes'
   },
 
-  // References
-  P_REF: {
-    rdfType: 'http://www.assero.co.uk/BusinessOperational#PReference',
-    name: 'Property Reference'
-  },
-  BC_REF: {
-    rdfType: 'http://www.assero.co.uk/BusinessOperational#BcReference',
-    name: 'Biomedical Concept Reference'
-  },
-  BCT_REF: {
-    rdfType: 'http://www.assero.co.uk/BusinessOperational#BctReference',
-    name: 'Biomedical Concept Template Reference'
-  },
-  T_REF: {
-    rdfType: 'http://www.assero.co.uk/BusinessOperational#TReference',
-    name: 'Tabulation Reference'
-  },
-  C_REF: {
-    rdfType: 'http://www.assero.co.uk/BusinessOperational#CReference',
-    name: 'Class Reference'
-  },
-
-  // Form Types
+  // Form Sub Types
   NORMAL_GROUP: {
     rdfType: 'http://www.assero.co.uk/BusinessForm#NormalGroup',
     name: 'Normal Group',
@@ -163,70 +153,8 @@ const rdfTypesMap = {
     name: 'Code List Item Reference',
     param: 'tuc_reference',
     url: '/operational_reference_v3/tuc_references'
-  },
-
-  // BC Types
-  BC_DATATYPE: {
-    rdfType: 'http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype',
-    name: 'Datatype'
-  },
-  BC_ITEM: {
-    rdfType: 'http://www.assero.co.uk/CDISCBiomedicalConcept#Item',
-    name: 'Item'
-  },
-  BC_PROP: {
-    rdfType: 'http://www.assero.co.uk/CDISCBiomedicalConcept#Property',
-    name: 'Property'
-  },
-  BC_PROP_VALUE: {
-    rdfType: 'http://www.assero.co.uk/CDISCBiomedicalConcept#PropertyValue',
-    name: 'Property Value'
-  },
-
-  // SDTM
-  USERVARIABLE: {
-    rdfType: 'http://www.assero.co.uk/BusinessDomain#UserVariable',
-    name: 'Custom Variable'
-  },
-  IGVARIABLE: {
-    rdfType: 'http://www.assero.co.uk/BusinessDomain#IgVariable',
-    name: 'SDTM IG Variable'
-  },
-  CLASSVARIABLE: {
-    rdfType: 'http://www.assero.co.uk/BusinessDomain#ClassVariable',
-    name: 'SDTM Class Variable'
-  },
-  MODELVARIABLE: {
-    rdfType: 'http://www.assero.co.uk/BusinessDomain#ModelVariable',
-    name: 'SDTM Model Variable'
-  },
-  SDTM_IG: {
-    rdfType: 'http://www.assero.co.uk/BusinessDomain#ImplementationGuide',
-    name: 'SDTM Implementation Guide'
-  },
-
-  SDTM_CLASSIFICATION: {
-    rdfType: 'http://www.assero.co.uk/BusinessDomain#VariableClassification',
-    name: 'SDTM Variable Classification'
-  },
-  SDTM_TYPE: {
-    rdfType: 'http://www.assero.co.uk/BusinessDomain#VariableType',
-    name: 'SDTM Variable Type'
-  },
-  SDTM_COMPLIANCE: {
-    rdfType: 'http://www.assero.co.uk/BusinessDomain#VariableCompliance',
-    name: 'SDTM Variable Compliance'
-  },
-
-  // Concept system
-  SYSTEM: {
-    rdfType: 'http://www.assero.co.uk/ISO11179Concepts#ConceptSystem',
-    name: 'Concept System'
-  },
-  TAG: {
-    rdfType: 'http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode',
-    name: 'Concept System Tag'
   }
+
 }
 
 /**
