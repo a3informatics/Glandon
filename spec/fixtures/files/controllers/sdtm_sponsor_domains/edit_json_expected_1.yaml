@@ -9,6 +9,7 @@
   :name: STUDYID
   :format: ''
   :description: Unique identifier for a study.
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -27,6 +28,7 @@
   :name: DOMAIN
   :format: ''
   :description: Two-character abbreviation for the domain.
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -46,6 +48,7 @@
   :format: ''
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -65,6 +68,7 @@
   :format: ''
   :description: Sequence Number given to ensure uniqueness of subject records within
     a domain. May be any valid number.
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -84,6 +88,7 @@
   :format: ''
   :description: Used to tie together a block of related records in a single domain
     for a subject.
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -103,6 +108,7 @@
   :format: ''
   :description: Internal or external identifier such as a serial number on an SAE
     reporting form
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -123,6 +129,7 @@
   :description: 'Sponsor-defined identifier. It may be pre-printed on the CRF as an
     explicit line identifier or defined in the sponsor''s operational database. Example:
     Line number on an Adverse Events page.'
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -141,6 +148,7 @@
   :name: AETERM
   :format: ''
   :description: Verbatim name of the event.
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -160,6 +168,7 @@
   :format: ''
   :description: If AETERM is modified to facilitate coding, then AEMODIFY will contain
     the modified text.
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -181,6 +190,7 @@
     to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
     name and version used to map the terms utilizing the define.xml external codelist
     attributes
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -200,6 +210,7 @@
   :format: ''
   :description: 'Used to define a category of related records. Example: BLEEDING,
     NEUROPSYCHIATRIC.'
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -218,6 +229,7 @@
   :name: AESCAT
   :format: ''
   :description: 'A further categorization of adverse event. Example: NEUROLOGIC.'
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -238,6 +250,7 @@
   :description: A value of 'Y' indicates that this adverse event was pre-specified
     on the CRF. Values are null for spontaneously reported events (i.e., those collected
     as free-text verbatim terms)
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -259,6 +272,7 @@
     from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary
     such as MedDRA, this should contain the SOC used for the sponsor's analyses and
     summary tables which may not necessarily be the primary SOC.
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
     :label: Expected
@@ -278,6 +292,7 @@
   :format: "(LOC)"
   :description: Describes anatomical location relevant for the event (e.g., LEFT ARM
     for skin rash).
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -297,6 +312,7 @@
   :format: "(AESEV)"
   :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
     SEVERE.'
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -315,6 +331,7 @@
   :name: AESER
   :format: "(NY)"
   :description: Is this a serious event?
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
     :label: Expected
@@ -337,6 +354,7 @@
     actions unrelated to dose adjustments of study treatment. Examples of AEACN values
     include ICH E2B values: DRUG WITHDRAWN, DOSE REDUCED, DOSE INCREASED, DOSE NOT
     CHANGED, UNKNOWN or NOT APPLICABLE'
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
     :label: Expected
@@ -357,6 +375,7 @@
   :description: 'Describes other actions taken as a result of the event that are unrelated
     to dose adjustments of study treatment. Usually reported as free text. Example:
     ''TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.'''
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -378,6 +397,7 @@
     to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED,
     POSSIBLY RELATED, RELATED. Controlled Terminology may be defined in the future.
     Check with regulatory authority for population of this variable
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
     :label: Expected
@@ -398,6 +418,7 @@
   :description: 'Records the investigator''s opinion as to whether the event may have
     been due to a treatment other than study drug. May be reported as free text. Example:
     ''MORE LIKELY RELATED TO ASPIRIN USE.''.'
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -417,6 +438,7 @@
   :format: ''
   :description: 'Used to indicate the pattern of the event over time. Examples: INTERMITTENT,
     CONTINUOUS, SINGLE EVENT.'
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -435,6 +457,7 @@
   :name: AEOUT
   :format: "(OUT)"
   :description: Description of the outcome of an event.
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -453,6 +476,7 @@
   :name: AESCAN
   :format: "(NY)"
   :description: Was the serious event associated with the development of cancer?
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -472,6 +496,7 @@
   :format: "(NY)"
   :description: Was the serious event associated with congenital anomaly or birth
     defect?
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -490,6 +515,7 @@
   :name: AESDISAB
   :format: "(NY)"
   :description: Did the serious event result in persistent or significant disability/incapacity?
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -508,6 +534,7 @@
   :name: AESDTH
   :format: "(NY)"
   :description: Did the serious event result in death?
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -526,6 +553,7 @@
   :name: AESHOSP
   :format: "(NY)"
   :description: Did the serious event require or prolong hospitalization?
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -544,6 +572,7 @@
   :name: AESLIFE
   :format: "(NY)"
   :description: Was the serious event life threatening?
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -562,6 +591,7 @@
   :name: AESOD
   :format: "(NY)"
   :description: Did the serious event occur with an overdose?
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -580,6 +610,7 @@
   :name: AESMIE
   :format: "(NY)"
   :description: Do additional categories for seriousness apply?
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -598,6 +629,7 @@
   :name: AECONTRT
   :format: "(NY)"
   :description: Was another treatment given because of the occurrence of the event?
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -620,6 +652,7 @@
     of the scale and version used in the metadata (see 6.2.1.1, Assumption 6c). If
     value is from a numeric scale, represent only the number (e.g., '2' and not 'Grade
     2').
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -638,6 +671,7 @@
   :name: AESTDTC
   :format: ISO 8601
   :description: ''
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
     :label: Expected
@@ -656,6 +690,7 @@
   :name: AEENDTC
   :format: ISO 8601
   :description: ''
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
     :label: Expected
@@ -675,6 +710,7 @@
   :format: ''
   :description: Study day of start of adverse event relative to the sponsor-defined
     RFSTDTC.
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -693,6 +729,7 @@
   :name: AEENDY
   :format: ''
   :description: Study day of end of event relative to the sponsor-defined RFSTDTC.
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -713,6 +750,7 @@
   :description: 'Collected duration and unit of an adverse event. Used only if collected
     on the CRF and not derived from start and end date/times. Example: P1DT2H (for
     1 day, 2 hours).'
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -734,6 +772,7 @@
     period. The sponsor-defined reference period is a continuous period of time defined
     by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of
     the trial.
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -753,6 +792,7 @@
   :format: BEFORE, AFTER, COINCIDENT, ONGOING, U
   :description: Identifies the end of the event as being before or after the reference
     time point defined by variable AEENTPT.
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -772,6 +812,7 @@
   :format: ''
   :description: 'Description of date/time in ISO 8601 character format of the reference
     point referred to by AEENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
+  :used: 'true'
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
