@@ -186,7 +186,7 @@ function renderWithFilledIconsLabels({
   rNodes.select( '.icon' )
         .style( 'fill', '#fff' )
         .attr( 'y', '5' )
-        .attr( 'x', '1' )
+        .attr( 'x', '0' )
 
   return rNodes; 
 
