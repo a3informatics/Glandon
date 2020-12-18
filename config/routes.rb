@@ -475,7 +475,7 @@ Rails.application.routes.draw do
       # get :export_ttl
     end
   end
-  resources :sdtm_sponsor_domains, :only => [:show, :index, :edit] do
+  resources :sdtm_sponsor_domains, :only => [:show, :index, :edit, :update] do
     collection do
       get :history
       post :create_from_ig

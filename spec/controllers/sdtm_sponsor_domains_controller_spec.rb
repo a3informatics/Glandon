@@ -297,6 +297,15 @@ describe SdtmSponsorDomainsController do
       ua_remove_user("lock@example.com")
     end
 
+    it "update" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(@instance, @user)
+      sponsor_domain = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      put :update, params:{id: @instance.id, sdtm_sponsor_domain: {label: "Label updated"}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
+    end
+
     it "update variable, error" do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@instance, @user)

@@ -105,6 +105,18 @@ class SdtmSponsorDomainsController < ManagedItemsController
     render json: {data: {compliance: SdtmIgDomain::Variable.compliance, typed_as: SdtmClass::Variable.datatypes, classified_as: SdtmClass::Variable.classification} }, status: 200
   end
 
+  def update
+    sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
+    return true unless check_lock_for_item(sdtm_sponsor_domain)
+    sdtm_sponsor_domain = sdtm_sponsor_domain.update(update_params)
+    if sdtm_sponsor_domain.errors.empty?
+      AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, sdtm_sponsor_domain.audit_message(:updated)) if @lock.first_update?
+      render :json => {data: sdtm_sponsor_domain.to_h}, :status => 200
+    else
+      render :json => {:fieldErrors => format_editor_errors(sdtm_sponsor_domain.errors)}, :status => 422
+    end
+  end
+
   def update_variable
     sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
     return true unless check_lock_for_item(sdtm_sponsor_domain)
@@ -129,7 +141,7 @@ private
   end
 
   def update_params
-    params.require(:sdtm_sponsor_domain).permit(:label, :prefix)
+    params.require(:sdtm_sponsor_domain).permit(:label)
   end
 
   def update_var_params
