@@ -3,12 +3,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_STUDYID
   :ordinal: 1
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Study Identifier
   :name: STUDYID
   :format: ''
   :description: Unique identifier for a study.
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -22,12 +22,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_DOMAIN
   :ordinal: 2
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Domain Abbreviation
   :name: DOMAIN
   :format: ''
   :description: Two-character abbreviation for the domain.
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -41,13 +41,13 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_USUBJID
   :ordinal: 3
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Unique Subject Identifier
   :name: USUBJID
   :format: ''
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -61,13 +61,13 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESEQ
   :ordinal: 4
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Sequence Number
   :name: AESEQ
   :format: ''
   :description: Sequence Number given to ensure uniqueness of subject records within
     a domain. May be any valid number.
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -81,13 +81,13 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEGRPID
   :ordinal: 5
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Group ID
   :name: AEGRPID
   :format: ''
   :description: Used to tie together a block of related records in a single domain
     for a subject.
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -101,13 +101,13 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEREFID
   :ordinal: 6
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Reference ID
   :name: AEREFID
   :format: ''
   :description: Internal or external identifier such as a serial number on an SAE
     reporting form
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -121,14 +121,14 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESPID
   :ordinal: 7
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Sponsor-Defined Identifier
   :name: AESPID
   :format: ''
   :description: 'Sponsor-defined identifier. It may be pre-printed on the CRF as an
     explicit line identifier or defined in the sponsor''s operational database. Example:
     Line number on an Adverse Events page.'
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -142,12 +142,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AETERM
   :ordinal: 8
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Reported Term for the Adverse Event
   :name: AETERM
   :format: ''
   :description: Verbatim name of the event.
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -161,13 +161,13 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEMODIFY
   :ordinal: 9
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Modified Reported Term
   :name: AEMODIFY
   :format: ''
   :description: If AETERM is modified to facilitate coding, then AEMODIFY will contain
     the modified text.
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -181,7 +181,7 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEDECOD
   :ordinal: 10
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Dictionary-Derived Term
   :name: AEDECOD
   :format: ''
@@ -189,7 +189,7 @@
     to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
     name and version used to map the terms utilizing the define.xml external codelist
     attributes
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -203,13 +203,13 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AECAT
   :ordinal: 11
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Category for Adverse Event
   :name: AECAT
   :format: ''
   :description: 'Used to define a category of related records. Example: BLEEDING,
     NEUROPSYCHIATRIC.'
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -223,12 +223,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESCAT
   :ordinal: 12
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Subcategory for Adverse Event
   :name: AESCAT
   :format: ''
   :description: 'A further categorization of adverse event. Example: NEUROLOGIC.'
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -242,14 +242,14 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEPRESP
   :ordinal: 13
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Pre-Specified Adverse Event
   :name: AEPRESP
   :format: "(NY)"
   :description: A value of 'Y' indicates that this adverse event was pre-specified
     on the CRF. Values are null for spontaneously reported events (i.e., those collected
     as free-text verbatim terms)
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -263,7 +263,7 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEBODSYS
   :ordinal: 14
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Body System or Organ Class
   :name: AEBODSYS
   :format: ''
@@ -271,7 +271,7 @@
     from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary
     such as MedDRA, this should contain the SOC used for the sponsor's analyses and
     summary tables which may not necessarily be the primary SOC.
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
     :label: Expected
@@ -285,13 +285,13 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AELOC
   :ordinal: 15
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Location of Event
   :name: AELOC
   :format: "(LOC)"
   :description: Describes anatomical location relevant for the event (e.g., LEFT ARM
     for skin rash).
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -305,13 +305,13 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESEV
   :ordinal: 16
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Severity/Intensity
   :name: AESEV
   :format: "(AESEV)"
   :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
     SEVERE.'
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -325,12 +325,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESER
   :ordinal: 17
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Serious Event
   :name: AESER
   :format: "(NY)"
   :description: Is this a serious event?
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
     :label: Expected
@@ -344,7 +344,7 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEACN
   :ordinal: 18
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Action Taken with Study Treatment
   :name: AEACN
   :format: "(ACN)"
@@ -353,7 +353,7 @@
     actions unrelated to dose adjustments of study treatment. Examples of AEACN values
     include ICH E2B values: DRUG WITHDRAWN, DOSE REDUCED, DOSE INCREASED, DOSE NOT
     CHANGED, UNKNOWN or NOT APPLICABLE'
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
     :label: Expected
@@ -367,14 +367,14 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEACNOTH
   :ordinal: 19
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Other Action Taken
   :name: AEACNOTH
   :format: ''
   :description: 'Describes other actions taken as a result of the event that are unrelated
     to dose adjustments of study treatment. Usually reported as free text. Example:
     ''TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.'''
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -388,7 +388,7 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEREL
   :ordinal: 20
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Causality
   :name: AEREL
   :format: ''
@@ -396,7 +396,7 @@
     to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED,
     POSSIBLY RELATED, RELATED. Controlled Terminology may be defined in the future.
     Check with regulatory authority for population of this variable
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
     :label: Expected
@@ -410,14 +410,14 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AERELNST
   :ordinal: 21
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Relationship to Non-Study Treatment
   :name: AERELNST
   :format: ''
   :description: 'Records the investigator''s opinion as to whether the event may have
     been due to a treatment other than study drug. May be reported as free text. Example:
     ''MORE LIKELY RELATED TO ASPIRIN USE.''.'
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -431,13 +431,13 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEPATT
   :ordinal: 22
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Pattern of Adverse Event
   :name: AEPATT
   :format: ''
   :description: 'Used to indicate the pattern of the event over time. Examples: INTERMITTENT,
     CONTINUOUS, SINGLE EVENT.'
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -451,12 +451,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEOUT
   :ordinal: 23
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Outcome of Adverse Event
   :name: AEOUT
   :format: "(OUT)"
   :description: Description of the outcome of an event.
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -470,12 +470,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESCAN
   :ordinal: 24
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Involves Cancer
   :name: AESCAN
   :format: "(NY)"
   :description: Was the serious event associated with the development of cancer?
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -489,13 +489,13 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESCONG
   :ordinal: 25
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Congenital Anomaly or Birth Defect
   :name: AESCONG
   :format: "(NY)"
   :description: Was the serious event associated with congenital anomaly or birth
     defect?
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -509,12 +509,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESDISAB
   :ordinal: 26
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Persist or Signif Disability/Incapacity
   :name: AESDISAB
   :format: "(NY)"
   :description: Did the serious event result in persistent or significant disability/incapacity?
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -528,12 +528,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESDTH
   :ordinal: 27
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Results in Death
   :name: AESDTH
   :format: "(NY)"
   :description: Did the serious event result in death?
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -547,12 +547,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESHOSP
   :ordinal: 28
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Requires or Prolongs Hospitalization
   :name: AESHOSP
   :format: "(NY)"
   :description: Did the serious event require or prolong hospitalization?
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -566,12 +566,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESLIFE
   :ordinal: 29
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Is Life Threatening
   :name: AESLIFE
   :format: "(NY)"
   :description: Was the serious event life threatening?
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -585,12 +585,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESOD
   :ordinal: 30
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Occurred with Overdose
   :name: AESOD
   :format: "(NY)"
   :description: Did the serious event occur with an overdose?
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -604,12 +604,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESMIE
   :ordinal: 31
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Other Medically Important Serious Event
   :name: AESMIE
   :format: "(NY)"
   :description: Do additional categories for seriousness apply?
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -623,12 +623,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AECONTRT
   :ordinal: 32
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Concomitant or Additional Trtmnt Given
   :name: AECONTRT
   :format: "(NY)"
   :description: Was another treatment given because of the occurrence of the event?
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -642,7 +642,7 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AETOXGR
   :ordinal: 33
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Standard Toxicity Grade
   :name: AETOXGR
   :format: ''
@@ -651,7 +651,7 @@
     of the scale and version used in the metadata (see 6.2.1.1, Assumption 6c). If
     value is from a numeric scale, represent only the number (e.g., '2' and not 'Grade
     2').
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -665,12 +665,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESTDTC
   :ordinal: 34
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Start Date/Time of Adverse Event
   :name: AESTDTC
   :format: ISO 8601
   :description: ''
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
     :label: Expected
@@ -684,12 +684,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEENDTC
   :ordinal: 35
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: End Date/Time of Adverse Event
   :name: AEENDTC
   :format: ISO 8601
   :description: ''
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzA0NmY2YzI0LTllYWYtNGY2MC04MzkwLWYzNjMyOGM4MmVjNA==
     :label: Expected
@@ -703,13 +703,13 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AESTDY
   :ordinal: 36
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Study Day of Start of Adverse Event
   :name: AESTDY
   :format: ''
   :description: Study day of start of adverse event relative to the sponsor-defined
     RFSTDTC.
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -723,12 +723,12 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEENDY
   :ordinal: 37
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Study Day of End of Adverse Event
   :name: AEENDY
   :format: ''
   :description: Study day of end of event relative to the sponsor-defined RFSTDTC.
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -742,14 +742,14 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEDUR
   :ordinal: 38
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Duration of Adverse Event
   :name: AEDUR
   :format: ISO 8601
   :description: 'Collected duration and unit of an adverse event. Used only if collected
     on the CRF and not derived from start and end date/times. Example: P1DT2H (for
     1 day, 2 hours).'
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -763,7 +763,7 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEENRF
   :ordinal: 39
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: End Relative to Reference Period
   :name: AEENRF
   :format: "(STENRF)"
@@ -771,7 +771,7 @@
     period. The sponsor-defined reference period is a continuous period of time defined
     by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of
     the trial.
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -785,13 +785,13 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEENRTPT
   :ordinal: 40
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: End Relative to Reference Time Point
   :name: AEENRTPT
   :format: BEFORE, AFTER, COINCIDENT, ONGOING, U
   :description: Identifies the end of the event as being before or after the reference
     time point defined by variable AEENTPT.
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -805,13 +805,13 @@
   :uri: http://www.s-cubed.dk/AAA/V1#SPD_AEENTPT
   :ordinal: 41
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: End Reference Time Point
   :name: AEENTPT
   :format: ''
   :description: 'Description of date/time in ISO 8601 character format of the reference
     point referred to by AEENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
-  :used: 'true'
+  :used: true
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
