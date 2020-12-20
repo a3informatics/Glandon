@@ -36,6 +36,7 @@ function dtBCEditFields() {
  */
 function dtSDTMSDEditFields() {
   return [
+    { name: 'used', type: 'truefalse' },
     { name: 'name', type: 'textarea' },
     { name: 'label', type: 'textarea' },
     _selectField({ name: 'typed_as' }),     

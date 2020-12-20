@@ -2,9 +2,10 @@
 
 <%= javascript_tag "let sdtmSDEditorUrls = {
                           data: '#{ edit_sdtm_sponsor_domain_path(item) }',
-                          update: '#{ thesauri_unmanaged_concept_path(id: '_id_') }',
+                          update: '#{ update_variable_sdtm_sponsor_domain_path(id: '_id_') }',
                           metadata: '#{ editor_metadata_sdtm_sponsor_domains_path }',
-                          new: '#{ add_child_thesauri_managed_concept_path(item) }'
+                          new: '#{ add_non_standard_variable_sdtm_sponsor_domain_path(item) }',
+                          remove: '#{ delete_non_standard_variable_sdtm_sponsor_domain_path(item) }'
                         } " %>
 
  <div class="col-md-12 card wide">
@@ -30,10 +31,11 @@
           <thead>
             <tr>
               <th class="fit">Ordinal</th>
+              <th class="fit">Use</th>
               <th>Name</th>
               <th>Label</th>
               <th>Datatype</th>
-              <th>CT or Format</th>
+              <th class="no-break">CT or Format</th>
               <th>Role</th>
               <th>Notes</th>
               <th>Core</th>

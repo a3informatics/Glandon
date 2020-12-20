@@ -157,8 +157,9 @@ function dtSDTMIGDomainEditColumns() {
 
   return [
     { data: "ordinal" },
-    dtInlineEditColumn('name'),
-    dtInlineEditColumn('label'),
+    dtTrueFalseEditColumn( 'used' ),
+    dtInlineEditColumn( 'name' ),
+    dtInlineEditColumn( 'label' ),
     dtSelectEditColumn( 'typed_as' ),
     dtInlineEditColumn( 'format' ),
     dtSelectEditColumn( 'classified_as' ),
