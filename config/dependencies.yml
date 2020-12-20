@@ -3,6 +3,7 @@ defaults: &defaults
     - "Thesaurus::ManagedConcept"
     - "BiomedicalConceptInstance"
     - "Form"
+    - "Thesaurus"
   "BiomedicalConceptInstance":
     - "Form"
   "Form": []
