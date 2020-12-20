@@ -1,8 +1,7 @@
-import { iconsInline } from 'shared/ui/icons'
 import { termReferences } from 'shared/ui/collections'
 
 import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn,
-         dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn, dtSelectEditColumn } 
+         dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn, dtSelectEditColumn, dtRowRemoveColumn } 
          from 'shared/helpers/dt/dt_columns'
 
 
@@ -96,16 +95,8 @@ function dtCLEditColumns() {
       className: 'editable external edit-tags'
     }),
     dtIndicatorsColumn(),
-
     // Remove / unlink button
-    {
-      className: 'fit',
-      render: (data, type, r, m) => type === 'display' ?
-          iconsInline.removeIcon({
-            ttip: true,
-            ttipText: 'Remove / unlink item'
-          }) : ''
-    }
+    dtRowRemoveColumn( 'Remove/unlink item' )
   ];
 };
 
@@ -165,6 +156,7 @@ function dtSDTMIGDomainEditColumns() {
     dtSelectEditColumn( 'classified_as' ),
     dtInlineEditColumn( 'description' ),
     dtSelectEditColumn( 'compliance' ),
+    dtRowRemoveColumn( 'Remove variable' )
   ]
 
 }

@@ -1,5 +1,5 @@
 import { historyBtn, showBtn } from 'shared/ui/buttons'
-import { icons, renderIcon } from 'shared/ui/icons'
+import { icons, renderIcon, iconsInline } from 'shared/ui/icons'
 import { renderIndicators } from 'shared/ui/indicators'
 import { renderTagsInline } from 'shared/ui/tags'
 
@@ -192,6 +192,24 @@ function dtSelectEditColumn(name, {
   }
 }
 
+/**
+ * Renders a clickable Remove icon in a cell 
+ * @param {string} text Text on the icon's tooltip, optional
+ * @return {object} DataTables row remove column definition
+ */
+function dtRowRemoveColumn(text = 'Remove') {
+
+  return {
+    className: 'fit',
+    render: (data, type, r, m) => type === 'display' ?
+        iconsInline.removeIcon({
+          ttip: true,
+          ttipText: text
+        }) : ''
+  }
+  
+}
+
 export {
   dtButtonColumn,
   dtIndicatorsColumn,
@@ -205,5 +223,6 @@ export {
   dtTrueFalseEditColumn,
   dtInlineEditColumn,
   dtExternalEditColumn,
-  dtSelectEditColumn
+  dtSelectEditColumn,
+  dtRowRemoveColumn
 }
