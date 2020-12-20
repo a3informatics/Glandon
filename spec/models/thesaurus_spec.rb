@@ -1241,7 +1241,7 @@ describe Thesaurus do
 
     it "dependency paths" do
       paths = Thesaurus.dependency_paths
-      check_file_actual_expected(paths, sub_dir, "dependency_paths_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(paths, sub_dir, "dependency_paths_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end
