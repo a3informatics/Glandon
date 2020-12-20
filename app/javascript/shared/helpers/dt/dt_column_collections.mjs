@@ -155,8 +155,7 @@ function dtSDTMIGDomainEditColumns() {
     dtInlineEditColumn( 'format' ),
     dtSelectEditColumn( 'classified_as' ),
     dtInlineEditColumn( 'description' ),
-    dtSelectEditColumn( 'compliance' ),
-    dtRowRemoveColumn( 'Remove variable' )
+    dtSelectEditColumn( 'compliance' )
   ]
 
 }

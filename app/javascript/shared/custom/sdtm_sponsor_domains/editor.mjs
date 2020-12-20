@@ -1,11 +1,14 @@
 import EditablePanel from 'shared/base/editable_panel'
 
-// import { $confirm } from 'shared/helpers/confirmable'
+import { $confirm } from 'shared/helpers/confirmable'
+import { alerts } from 'shared/ui/alerts'
 
 import { dtSDTMIGDomainEditColumns } from 'shared/helpers/dt/dt_column_collections'
 import { dtSDTMSDEditFields } from 'shared/helpers/dt/dt_field_collections'
+import { dtRowRemoveColumn } from 'shared/helpers/dt/dt_columns'
 
 import { getEditorSelectOptions } from 'shared/helpers/dt/dt_metadata'
+import { dtFieldsInit } from 'shared/helpers/dt/dt_fields'
 
 /**
  * SDTM Sponsor Domain Editor 
@@ -28,6 +31,8 @@ export default class SDTMSDEditor extends EditablePanel {
     onEdited = () => {}
   }) {
 
+    dtFieldsInit( ['truefalse'] );
+    
     super({
       selector,
       dataUrl: urls.data,
@@ -62,10 +67,19 @@ export default class SDTMSDEditor extends EditablePanel {
 
   /**
    * Remove or unlink item from the Code List
-   * @param {DataTable Row} childRow Reference to the DT Row instance to be removed
+   * @param {DataTable Row} dtRow Reference to the DT Row instance to be removed
    * @requires $confirm user confirmation
    */
-  removeChild(childRow) {
+  removeChild(dtRow) {
+
+    if ( this._removeDisabled( dtRow.data() ) ) {
+
+      alerts.error( 'Variable is Standard and cannot be removed.' )
+      return; 
+
+    }
+
+
 
     // $confirm({
     //   subtitle: `This action will remove the Code List Item reference from this Code List.
@@ -92,6 +106,13 @@ export default class SDTMSDEditor extends EditablePanel {
 
     super._setTableListeners();
 
+    const $tableBody = $( `${ this.selector } tbody` );
+
+    // Remove variable button click
+    $tableBody.on( 'click', '.remove', e =>
+      this.removeChild( this._getRowFrom$( e.target ) )
+    );
+
   }
 
   /**
@@ -102,10 +123,10 @@ export default class SDTMSDEditor extends EditablePanel {
 
     super._setListeners();
 
-    // // Add New Child button click
-    // $( '#new-item-button' ).on( 'click', () => 
-    //   this.newChild() 
-    // );
+    // Add New Variable button click
+    $( '#new-variable-button' ).on( 'click', () => 
+      this.newChild() 
+    );
 
   }
 
@@ -207,10 +228,18 @@ export default class SDTMSDEditor extends EditablePanel {
    */
   _editable(modifier) {
 
-    const { referenced } = this.table.row( modifier.row ).data();
+    const { standard } = this.table.row( modifier.row ).data();
+    return super._editable( modifier ) || !standard;
 
-    return super._editable( modifier ) || !referenced;
+  }
 
+  /**
+   * Check if variable remove is disabled - only for 'standard' variables
+   * @param {Object} data Variable data object to check removable 
+   * @returns {boolean} True if variable is not-removable
+   */
+  _removeDisabled(data) {
+    return data.standard === true
   }
 
 
@@ -221,6 +250,17 @@ export default class SDTMSDEditor extends EditablePanel {
   get _tableOpts() {
 
     let options = super._tableOpts;
+
+    options.columns = [ 
+      ...this._defaultColumns, 
+      ...this.extraColumns, 
+
+      // Row Remove column
+      dtRowRemoveColumn({ 
+        text: 'Remove variable', 
+        isDisabledFn: this._removeDisabled 
+      }) 
+    ]
 
     return options;
 

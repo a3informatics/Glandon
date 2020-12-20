@@ -195,16 +195,21 @@ function dtSelectEditColumn(name, {
 /**
  * Renders a clickable Remove icon in a cell 
  * @param {string} text Text on the icon's tooltip, optional
+ * @param {function} isDisabledFn Function that will determine whether remove button is disabled, optional
  * @return {object} DataTables row remove column definition
  */
-function dtRowRemoveColumn(text = 'Remove') {
+function dtRowRemoveColumn({ 
+  text = 'Remove', 
+  isDisabledFn = () => {} 
+} = {}) {
 
   return {
     className: 'fit',
     render: (data, type, r, m) => type === 'display' ?
         iconsInline.removeIcon({
           ttip: true,
-          ttipText: text
+          ttipText: text,
+          disabled: isDisabledFn( r )
         }) : ''
   }
   
