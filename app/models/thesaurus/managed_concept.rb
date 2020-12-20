@@ -512,6 +512,17 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     return results
   end
 
+  # Create Next Version. Creates the next version of the managed object if necessary
+  #
+  # @return [Object] the resulting object. Fail is there are errors.
+  def create_next_version
+    object = super
+    return self if self == object
+    object.add_custom_property_context(self.full_contexts(self.narrower))
+    object.add_missing_custom_properties(self.full_contexts(self.narrower), Thesaurus::UnmanagedConcept)
+    object
+  end
+
   # Create Extension. Create an extension based on this managed concept.
   #
   # @return [Thesaurus::ManagedConcept] the new subset
