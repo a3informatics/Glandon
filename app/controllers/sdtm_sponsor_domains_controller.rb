@@ -125,7 +125,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
     non_standard_variable = non_standard_variable.update_with_clone(update_var_params, sdtm_sponsor_domain)
     if non_standard_variable.errors.empty?
       AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, sdtm_sponsor_domain.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: non_standard_variable.to_h}, :status => 200
+      render :json => {data: sdtm_sponsor_domain.get_children.find {|var| var[:id] == non_standard_variable.id}}, :status => 200
     else
       render :json => {:fieldErrors => format_editor_errors(non_standard_variable.errors)}, :status => 422
     end

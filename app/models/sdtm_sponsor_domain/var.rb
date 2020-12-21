@@ -73,13 +73,13 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
   def update_with_clone(params, managed_ancestor)
     if self.standard?
       if params.has_key? :used
-        super(params.slice(:used), managed_ancestor)
+        super(params.slice(:used), nil)
       else 
         self.errors.add(:base, "The variable cannot be updated as it is a standard variable.")
         self
       end
     else
-      super
+      super(params, managed_ancestor)
     end
   end
 
