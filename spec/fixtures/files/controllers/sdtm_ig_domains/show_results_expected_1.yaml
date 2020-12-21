@@ -3,12 +3,12 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_STUDYID
   :ordinal: 1
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Study Identifier
   :name: STUDYID
   :format: ''
   :description: Unique identifier for a study.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -22,12 +22,12 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_DOMAIN
   :ordinal: 2
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Domain Abbreviation
   :name: DOMAIN
   :format: ''
   :description: Two-character abbreviation for the domain.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -41,13 +41,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_USUBJID
   :ordinal: 3
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Unique Subject Identifier
   :name: USUBJID
   :format: ''
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -61,13 +61,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSEQ
   :ordinal: 4
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Sequence Number
   :name: CMSEQ
   :format: ''
   :description: Sequence Number given to ensure uniqueness of subject records within
     a domain. May be any valid number.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -81,13 +81,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMGRPID
   :ordinal: 5
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Group ID
   :name: CMGRPID
   :format: ''
   :description: Used to tie together a block of related records in a single domain
     for a subject.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -101,7 +101,7 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSPID
   :ordinal: 6
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Sponsor-Defined Identifier
   :name: CMSPID
   :format: ''
@@ -109,7 +109,7 @@
     on the CRF as an explicit line identifier or record identifier defined in the
     sponsor''s operational database. Example: line number on a concomitant medication
     page.'
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -123,13 +123,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMTRT
   :ordinal: 7
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Reported Name of Drug, Med, or Therapy
   :name: CMTRT
   :format: ''
   :description: Verbatim medication name that is either pre-printed or collected on
     a CRF.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
     :label: Required
@@ -143,13 +143,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMMODIFY
   :ordinal: 8
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Modified Reported Name
   :name: CMMODIFY
   :format: ''
   :description: If CMTRT is modified to facilitate coding, then CMMODIFY will contain
     the modified text.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -163,7 +163,7 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDECOD
   :ordinal: 9
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Standardized Medication Name
   :name: CMDECOD
   :format: ''
@@ -172,7 +172,7 @@
     to provide the dictionary name and version used to map the terms utilizing the
     define.xml external codelist attributes. If an intervention term does not have
     a decode value in the dictionary then CMDECOD will be left blank.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -186,13 +186,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMCAT
   :ordinal: 10
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Category for Medication
   :name: CMCAT
   :format: ''
   :description: 'Used to define a category of medications/treatments. Examples: PRIOR,
     CONCOMITANT, ANTI-CANCER MEDICATION, or GENERAL CONMED.'
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -206,13 +206,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSCAT
   :ordinal: 11
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Subcategory for Medication
   :name: CMSCAT
   :format: ''
   :description: 'A further categorization of medications/ treatment. Examples: CHEMOTHERAPY,
     HORMONAL THERAPY, ALTERNATIVE THERAPY.'
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -226,13 +226,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMPRESP
   :ordinal: 12
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: CM Pre-Specified
   :name: CMPRESP
   :format: "(NY)"
   :description: Used to indicate whether (Y/null) information about the use of a specific
     medication was solicited on the CRF.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -246,14 +246,14 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMOCCUR
   :ordinal: 13
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: CM Occurrence
   :name: CMOCCUR
   :format: "(NY)"
   :description: When the use of specific medications is solicited, CMOCCUR is used
     to indicate whether or not (Y/N) use of the medication occurred. Values are null
     for medications not specifically solicited.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -267,13 +267,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTAT
   :ordinal: 14
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Completion Status
   :name: CMSTAT
   :format: "(ND)"
   :description: Used to indicate that a question about a pre-specified medication
     was not answered. Should be null or have a value of NOT DONE.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -287,13 +287,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMREASND
   :ordinal: 15
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Reason Medication Not Collected
   :name: CMREASND
   :format: ''
   :description: Describes the reason concomitant medication was not collected. Used
     in conjunction with CMSTAT when value is NOT DONE.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -307,13 +307,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMINDC
   :ordinal: 16
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Indication
   :name: CMINDC
   :format: ''
   :description: 'Denotes why a medication was taken or administered. Examples: NAUSEA,
     HYPERTENSION.'
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -327,14 +327,14 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMCLAS
   :ordinal: 17
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Medication Class
   :name: CMCLAS
   :format: ''
   :description: Drug class. May be obtained from coding. When coding to a single class,
     populate with class value. If using a dictionary and coding to multiple classes,
     then follow assumption 4.1.2.8.3 or omit CMCLAS.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -348,14 +348,14 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMCLASCD
   :ordinal: 18
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Medication Class Code
   :name: CMCLASCD
   :format: ''
   :description: Class code corresponding to CMCLAS. Drug class. May be obtained from
     coding. When coding to a single class, populate with class code. If using a dictionary
     and coding to multiple classes, then follow assumption 4.1.2.8.3 or omit CMCLASCD.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -369,12 +369,12 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSE
   :ordinal: 19
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Dose per Administration
   :name: CMDOSE
   :format: ''
   :description: Amount of CMTRT taken.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -388,13 +388,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSTXT
   :ordinal: 20
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Dose Description
   :name: CMDOSTXT
   :format: ''
   :description: 'Dosing amounts or a range of dosing information collected in text
     form. Units may be stored in CMDOSU. Example: 200-400, 15-20.'
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -408,12 +408,12 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSU
   :ordinal: 21
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Dose Units
   :name: CMDOSU
   :format: "(UNIT)"
   :description: 'Units for CMDOSE, CMDOSTXT, and CMDOSTOT. Examples: ng, mg, or mg/kg.'
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -427,12 +427,12 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSFRM
   :ordinal: 22
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Dose Form
   :name: CMDOSFRM
   :format: "(FRM)"
   :description: 'Dose form for CMTRT. Examples: TABLET, LOTION.'
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -446,13 +446,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSFRQ
   :ordinal: 23
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Dosing Frequency per Interval
   :name: CMDOSFRQ
   :format: "(FREQ)"
   :description: 'Usually expressed as the number of repeated administrations of CMDOSE
     within a specific time period. Examples: BID (twice daily), Q12H (every 12 hours).'
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -466,14 +466,14 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSTOT
   :ordinal: 24
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Total Daily Dose
   :name: CMDOSTOT
   :format: ''
   :description: Total daily dose of CMTRT using the units in CMDOSU. Total dose over
     a period other than day could be recorded in a separate Supplemental Qualifier
     variable. CMDOSTOT should be used in addition to CMDOSE, and not in place of it.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -487,13 +487,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSRGM
   :ordinal: 25
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Intended Dose Regimen
   :name: CMDOSRGM
   :format: ''
   :description: 'Text description of the (intended) schedule or regimen for the Intervention.
     Examples: TWO WEEKS ON, TWO WEEKS OFF.'
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -507,12 +507,12 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMROUTE
   :ordinal: 26
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Route of Administration
   :name: CMROUTE
   :format: "(ROUTE)"
   :description: 'Route of administration for CMTRT. Examples: ORAL, INTRAVENOUS.'
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -526,12 +526,12 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTDTC
   :ordinal: 27
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Start Date/Time of Medication
   :name: CMSTDTC
   :format: ISO 8601
   :description: ''
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -545,12 +545,12 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMENDTC
   :ordinal: 28
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: End Date/Time of Medication
   :name: CMENDTC
   :format: ISO 8601
   :description: ''
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -564,12 +564,12 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTDY
   :ordinal: 29
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Study Day of Start of Medication
   :name: CMSTDY
   :format: ''
   :description: Study day of start of medication relative to the sponsor-defined RFSTDTC.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -583,12 +583,12 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMENDY
   :ordinal: 30
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Study Day of End of Medication
   :name: CMENDY
   :format: ''
   :description: Study day of end of medication relative to the sponsor-defined RFSTDTC.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -602,13 +602,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDUR
   :ordinal: 31
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Duration of Medication
   :name: CMDUR
   :format: ISO 8601
   :description: Collected duration for a treatment episode. Used only if collected
     on the CRF and not derived from start and end date/times.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -622,7 +622,7 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTRF
   :ordinal: 32
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Start Relative to Reference Period
   :name: CMSTRF
   :format: "(STENRF)"
@@ -631,7 +631,7 @@
     of time defined by a discrete starting point and a discrete ending point (represented
     by RFSTDTC and RFENDTC in Demographics). If information such as 'PRIOR', 'ONGOING',
     or 'CONTINUING' was collected, this information may be translated into CMSTRF.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -645,7 +645,7 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMENRF
   :ordinal: 33
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: End Relative to Reference Period
   :name: CMENRF
   :format: "(STENRF)"
@@ -654,7 +654,7 @@
     of time defined by a discrete starting point and a discrete ending point (represented
     by RFSTDTC and RFENDTC in Demographics). If information such as 'PRIOR', 'ONGOING',
     or 'CONTINUING' was collected, this information may be translated into CMENRF.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -668,13 +668,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTRTPT
   :ordinal: 34
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Start Relative to Reference Time Point
   :name: CMSTRTPT
   :format: BEFORE, COINCIDENT, AFTER, U
   :description: Identifies the start of the medication as being before or after the
     reference time point defined by variable CMSTTPT.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -688,13 +688,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTTPT
   :ordinal: 35
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: Start Reference Time Point
   :name: CMSTTPT
   :format: ''
   :description: 'Description or date/time in ISO 8601 character format of the reference
     point referred to by CMSTRTPT. Examples: ''2003-12-15'' or ''VISIT 1''.'
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -708,13 +708,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMENRTPT
   :ordinal: 36
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: End Relative to Reference Time Point
   :name: CMENRTPT
   :format: BEFORE, COINCIDENT, AFTER, U
   :description: Identifies the end of the medication as being before or after the
     reference time point defined by variable CMENTPT.
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
@@ -728,13 +728,13 @@
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMENTPT
   :ordinal: 37
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
-  :standard: 'true'
+  :standard: true
   :label: End Reference Time Point
   :name: CMENTPT
   :format: ''
   :description: 'Description or date/time in ISO 8601 character format of the reference
     point referred to by CMENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
-  :used: ''
+  :used: false
   :compliance:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
     :label: Permissible
