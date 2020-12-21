@@ -65,6 +65,24 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
     end
   end
 
+  # Update with clone. Update the object. Clone if there are multiple parents.
+  #
+  # @param [Hash] params the params
+  # @param [Object] managed_ancestor the managed ancestor object
+  # @return [Object] the object, either new or the cloned new object with updates
+  def update_with_clone(params, managed_ancestor)
+    if self.standard?
+      if params.has_key? :used
+        super(params.slice(:used), managed_ancestor)
+      else 
+        self.errors.add(:base, "The variable cannot be updated as it is a standard variable.")
+        self
+      end
+    else
+      super
+    end
+  end
+
   # Delete. Delete the object. Clone if there are multiple parents.
   #
   # @param [Object] parent_object the parent object
@@ -90,20 +108,6 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
   # @result [Boolean] return true if this variable is standard or false if it is a non standard variable
   def standard?
     Sparql::Query.new.query("ASK {#{self.uri.to_ref} bd:basedOnIgVariable|bd:basedOnClassVariable ?o}", "", [:bd]).ask? 
-  end
-
-  # Update with clone. Update the object. Clone if there are multiple parents.
-  #
-  # @param [Hash] params the params
-  # @param [Object] managed_ancestor the managed ancestor object
-  # @return [Object] the object, either new or the cloned new object with updates
-  def update_with_clone(params, managed_ancestor)
-    if self.standard? 
-      self.errors.add(:base, "The variable cannot be updated as it is a standard variable.")
-      self
-    else
-      super
-    end
   end
 
   private

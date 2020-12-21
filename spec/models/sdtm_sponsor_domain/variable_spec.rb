@@ -206,16 +206,25 @@ describe SdtmSponsorDomain::Var do
       sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
       sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       params = {description: "description updated"}
-      expect(sponsor_variable.update_with_clone(params, sponsor_domain)).to eq(["The variable cannot be updated as it is a standard variable."])
+      result = sponsor_variable.update_with_clone(params, sponsor_domain)
+      expect(result.errors.count).to eq(1)
+      expect(result.errors.full_messages.to_sentence).to eq("The variable cannot be updated as it is a standard variable.")
     end
 
     it "update, non standard variable" do
       sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
-      params = {name:"AENEWVAR"}
-      non_standard = sponsor_domain.add_non_standard_variable(params)
+      non_standard = sponsor_domain.add_non_standard_variable
       params2 = {description:"description updated"}
       result = non_standard.update_with_clone(params2, sponsor_domain)
       check_file_actual_expected(result.to_h, sub_dir, "update_var_1a.yaml", equate_method: :hash_equal)
+    end
+
+    it "update used, variable standard" do
+      sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
+      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      params = {description: "description updated", used: false}
+      result = sponsor_variable.update_with_clone(params, sponsor_domain)
+      check_file_actual_expected(result.to_h, sub_dir, "update_var_2.yaml", equate_method: :hash_equal)
     end
 
   end
