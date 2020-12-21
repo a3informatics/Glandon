@@ -47,8 +47,8 @@
 :has_previous_version: http://www.s-cubed.dk/AAA/V1#SPD
 :origin: ''
 :change_description: ''
-:creation_date: '2020-12-15T09:56:26+01:00'
-:last_change_date: '2020-12-15T09:56:26+01:00'
+:creation_date: '2020-12-21T15:57:13+01:00'
+:last_change_date: '2020-12-21T15:57:13+01:00'
 :explanatory_comment: ''
 :rule: ''
 :ordinal: 1
@@ -1499,26 +1499,49 @@
   :typed_as: 
   :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENTPT
   :classified_as: 
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FBQS9WMiNTUERfQUVWQVJZ
-  :uri: http://www.s-cubed.dk/AAA/V2#SPD_AEVARY
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FBQS9WMiNTUERfQUVYWFg0Mw==
+  :uri: http://www.s-cubed.dk/AAA/V2#SPD_AEXXX43
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
   :label: ''
   :rule: ''
   :ordinal: 42
-  :name: AEVARY
+  :name: AEXXX43
   :description: ''
   :format: ''
   :ct_and_format: ''
-  :compliance: 
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :uri: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Permissible
+    :description: 'A variable that should be used in a domain as appropriate when
+      collected or derived. Except where restricted by specific domain assumptions,
+      any SDTM Timing and Identifier variables, and any Qualifier variables from the
+      same general observation class are permissible for use in a domain based on
+      that general observation class. The Sponsor can decide whether a Permissible
+      variable should be included as a column when all values for that variable '
+    :narrower: []
   :ct_reference: []
   :based_on_class_variable: 
   :is_a: 
   :comment: ''
   :used: true
   :notes: ''
-  :typed_as: 
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :uri: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: Character
+    :description: Character datatype
+    :narrower: []
   :based_on_ig_variable: 
-  :classified_as: 
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
+    :uri: http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: None
+    :description: No role assigned
+    :narrower: []
 :prefix: AE
 :structure: One record per adverse event per subject
 :has_biomedical_concept: []
