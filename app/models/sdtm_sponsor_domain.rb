@@ -77,17 +77,16 @@ class SdtmSponsorDomain < SdtmIgDomain
 
   # Add non standard variable
   #
-  # @param [Hash] params the parameters to add the new variable
-  # @params [params] the template IG domain
   # @return [SdtmSponsorDomain] the new sponsor domain object
-  def add_non_standard_variable(params)
+  def add_non_standard_variable
     non_standard_variable = SdtmSponsorDomain::Var.new
-    non_standard_variable.set_name(params[:name], self)
-    non_standard_variable.ordinal = next_ordinal
+    ordinal = next_ordinal
+    non_standard_variable.set_name("#{self.prefix}XXX#{ordinal}", self)
+    non_standard_variable.ordinal = ordinal
     non_standard_variable.uri = non_standard_variable.create_uri(self.uri)
-    non_standard_variable.typed_as = params[:typed_as] #Character, Numeric
-    non_standard_variable.classified_as = params[:classified_as]
-    non_standard_variable.compliance = params[:compliance] #Permissible, required, expected
+    non_standard_variable.typed_as = Uri.new(uri:"http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080") #Character node #Character, Numeric
+    non_standard_variable.classified_as = Uri.new(uri:"http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe") #None node
+    non_standard_variable.compliance = Uri.new(uri:"http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d") #Permissible node #Permissible, required, expected
     non_standard_variable.save
     self.add_link(:includes_column, non_standard_variable.uri)
     non_standard_variable

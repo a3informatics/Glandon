@@ -86,6 +86,7 @@ describe SdtmSponsorDomainsController do
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
     end
@@ -112,7 +113,7 @@ describe SdtmSponsorDomainsController do
     end
 
     it "add non standard variable" do
-      sdtm_sponsor_domain = SdtmSponsorDomain.find(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
       post :add_non_standard_variable, params:{id: sdtm_sponsor_domain.id, sdtm_sponsor_domain: {name: "AENEWVAR"}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "add_non_standard_variable_expected_1.yaml", equate_method: :hash_equal)
@@ -325,6 +326,55 @@ describe SdtmSponsorDomainsController do
       put :update_variable, params:{id: sponsor_domain.id, sdtm_sponsor_domain: {description: "new description", non_standard_var_id: sponsor_variable}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "delete variable action" do
+
+    login_curator
+
+    before :all do
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    before :each do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      @instance = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "delete variable" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      token = Token.obtain(sponsor_domain, @user)
+      uri = Uri.new(uri: "http://www.assero.co.uk/eee#aaa")
+      sponsor_variable = SdtmSponsorDomain::Var.new(uri: uri, name: "AENEWAAA")
+      expect(SdtmSponsorDomain::Var).to receive(:find_full).and_return(sponsor_variable)
+      delete :delete_non_standard_variable, params:{id: sponsor_domain.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "delete_variable_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+    it "delete variable, error" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(@instance, @user)
+      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable.id}}
+      actual = check_error_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "delete_variable_expected_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end

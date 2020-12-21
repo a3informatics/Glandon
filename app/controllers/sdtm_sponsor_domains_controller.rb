@@ -72,10 +72,10 @@ class SdtmSponsorDomainsController < ManagedItemsController
 
   def add_non_standard_variable
     sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
-    non_standard_variable = sdtm_sponsor_domain.add_non_standard_variable(non_standard_var_params)
+    non_standard_variable = sdtm_sponsor_domain.add_non_standard_variable
     if non_standard_variable.errors.empty?
       AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "Non standard variable #{non_standard_variable.name} added to SDTM Sponsor Domain.")
-      render :json => {data: non_standard_variable.to_h}, :status => 200
+      render :json => {data: sdtm_sponsor_domain.get_children.find {|var| var[:id] == non_standard_variable.id} }, :status => 200
     else
       render :json => {errors: non_standard_variable.errors.full_messages}, :status => 422
     end
@@ -88,9 +88,10 @@ class SdtmSponsorDomainsController < ManagedItemsController
     result = non_standard_variable.delete(sdtm_sponsor_domain, sdtm_sponsor_domain)
     return true if lock_item_errors
     AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain updated, variable #{non_standard_variable.label} deleted.") if @lock.token.refresh == 1
-    render json: {data: ""}, status: 200
+    render json: {data: sdtm_sponsor_domain.get_children}, status: 200
   end
 
+  # @todo Not currently used
   def toggle_used
     sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
     non_standard_variable = SdtmSponsorDomain::Var.find_full(the_params[:non_standard_var_id])
@@ -136,9 +137,9 @@ private
     params.require(:sdtm_sponsor_domain).permit(:identifier, :scope_id, :count, :offset, :sdtm_ig_domain_id, :sdtm_class_id, :non_standard_var_id, :label, :prefix)
   end
 
-  def non_standard_var_params
-    params.require(:sdtm_sponsor_domain).permit(:name, :compliance, :typed_as, :classified_as)
-  end
+  # def non_standard_var_params
+  #   params.require(:sdtm_sponsor_domain).permit(:name, :compliance, :typed_as, :classified_as)
+  # end
 
   def update_params
     params.require(:sdtm_sponsor_domain).permit(:label)

@@ -71,13 +71,18 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
   # @param [Object] managed_ancestor the managed ancestor object
   # @return [Object] the parent object, either new or the cloned new object with updates
   def delete(parent, managed_ancestor)
-    if multiple_managed_ancestors?
-      parent = delete_with_clone(parent, managed_ancestor)
-    else
-      self.delete_with_links
+    if self.standard?
+      self.errors.add(:base, "The variable cannot be deleted as it is a standard variable.")
+      self
+    else 
+      if multiple_managed_ancestors?
+        parent = delete_with_clone(parent, managed_ancestor)
+      else
+        self.delete_with_links
+      end
+      parent.reset_ordinals
+      1
     end
-    parent.reset_ordinals
-    1
   end
 
   # Standard? Is this an standard variable

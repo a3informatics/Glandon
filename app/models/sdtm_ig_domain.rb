@@ -26,12 +26,12 @@ class SdtmIgDomain < Tabulation
         ?c bd:name ?name .
         ?c bd:description ?description .         
         ?c bd:ctAndFormat ?format .
-        ?c bd:compliance ?compliance .
-        ?compliance isoC:prefLabel ?compliance_label .
-        ?c bd:basedOnClassVariable/bd:typedAs|bd:basedOnIgVariable/bd:basedOnClassVariable/bd:typedAs ?typed_as .
-        ?typed_as isoC:prefLabel ?typed_as_label .                 
-        ?c bd:basedOnClassVariable/bd:classifiedAs|bd:basedOnIgVariable/bd:basedOnClassVariable/bd:classifiedAs ?classification .
-        ?classification isoC:prefLabel ?classification_label .
+        OPTIONAL {?c bd:compliance ?compliance .
+        ?compliance isoC:prefLabel ?compliance_label .}
+        OPTIONAL {?c bd:basedOnClassVariable/bd:typedAs|bd:basedOnIgVariable/bd:basedOnClassVariable/bd:typedAs|bd:typedAs ?typed_as .
+        ?typed_as isoC:prefLabel ?typed_as_label .}                 
+        OPTIONAL {?c bd:basedOnClassVariable/bd:classifiedAs|bd:basedOnIgVariable/bd:basedOnClassVariable/bd:classifiedAs|bd:classifiedAs ?classification .
+        ?classification isoC:prefLabel ?classification_label .}
         BIND (EXISTS {?c bd:basedOnIgVariable|bd:basedOnClassVariable ?o} as ?standard)
         OPTIONAL {?c bd:used ?used}           
       } ORDER BY ?ordinal
