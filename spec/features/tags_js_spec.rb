@@ -197,22 +197,22 @@ describe "Tags", :type => :feature do
       find_node('Tag1').double_click
       # No items tagged
       ui_in_modal do
-        ui_check_table_info('tagged-items-table', 0, 0, 0, )
+        ui_check_table_info('managed-items', 0, 0, 0, )
         click_on 'Close'
       end
 
       find_node('Tag1_1').double_click
       # Items tagged
       ui_in_modal do
-        ui_check_table_row('tagged-items-table', 1, ["TEST", '1', 'Test Thesaurus'] )
+        ui_check_table_row('managed-items', 1, ["TEST", '1', 'Test Thesaurus'] )
         click_on 'Close'
       end
 
       find_node('Tag2').double_click
       # Items tagged
       ui_in_modal do
-        ui_check_table_info('tagged-items-table', 1, 3, 3, )
-        ui_check_table_row('tagged-items-table', 2, ["NP000011P", '1', 'Not Set'] )
+        ui_check_table_info('managed-items', 1, 3, 3, )
+        ui_check_table_row('managed-items', 2, ["NP000011P", '1', 'Not Set'] )
         click_on 'Close'
       end
 
@@ -245,13 +245,13 @@ describe "Tags", :type => :feature do
       find_node('SDTM').double_click
 
       ui_in_modal do
-        ui_check_table_info('tagged-items-table', 1, 10, 71)
+        ui_check_table_info('managed-items', 1, 10, 71)
         expect(page).to have_xpath('//tr[contains(.,"Controlled Terminology")]', count: 3)
 
-        ui_table_search('tagged-items-table', 'C25681')
-        ui_check_table_cell('tagged-items-table', 1, 1, 'C25681')
-        ui_check_table_cell('tagged-items-table', 1, 2, '1')
-        ui_check_table_cell('tagged-items-table', 1, 4, '2007-03-06 Release')
+        ui_table_search('managed-items', 'C25681')
+        ui_check_table_cell('managed-items', 1, 1, 'C25681')
+        ui_check_table_cell('managed-items', 1, 2, '1')
+        ui_check_table_cell('managed-items', 1, 4, '2007-03-06 Release')
 
         click_on 'Close'
       end
