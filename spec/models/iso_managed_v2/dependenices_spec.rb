@@ -12,7 +12,7 @@ describe IsoManagedV2::Dependencies do
   end
 
   class IMDLayer1 < IsoManagedV2
-    configure rdf_type: "http://www.assero.co.uk/Test#RegistrationAuthority"
+    configure rdf_type: "http://www.assero.co.uk/Test#RegistrationAuthority3"
 
     def self.dependency_paths
       []
@@ -21,8 +21,8 @@ describe IsoManagedV2::Dependencies do
   end
 
   class IMDLayer2 < IsoManagedV2
-    configure rdf_type: "http://www.assero.co.uk/Test#RegistrationAuthority"
-    object_property :ra_namespace, cardinality: :many, model_class: "IMDLayer1"
+    configure rdf_type: "http://www.assero.co.uk/Test#RegistrationAuthority3"
+    object_property :ra_namespace3, cardinality: :many, model_class: "IMDLayer1"
 
     def self.dependency_paths
       ["<http://www.assero.co.uk/Test#raNamespace>"]
@@ -31,8 +31,8 @@ describe IsoManagedV2::Dependencies do
   end
 
   class IMDLayer3 < IsoManagedV2
-    configure rdf_type: "http://www.assero.co.uk/Test#RegistrationAuthority2"
-    object_property :ra_namespace2, cardinality: :many, model_class: "IMDLayer2"
+    configure rdf_type: "http://www.assero.co.uk/Test#RegistrationAuthority4"
+    object_property :ra_namespace4, cardinality: :many, model_class: "IMDLayer2"
 
     def self.dependency_paths
       ["<http://www.assero.co.uk/Test#raNamespace2>"]
@@ -41,7 +41,7 @@ describe IsoManagedV2::Dependencies do
   end
   
   class IMDLayer4 < IsoManagedV2
-    configure rdf_type: "http://www.assero.co.uk/Test#RegistrationAuthority"
+    configure rdf_type: "http://www.assero.co.uk/Test#RegistrationAuthority3"
   end
 
   def create_data

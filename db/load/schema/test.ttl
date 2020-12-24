@@ -294,3 +294,33 @@
   rdfs:range xsd:string ;
   skos:definition "A label"^^xsd:string ;
 .
+# RA Copy # & 4
+#
+#
+:RegistrationAuthority3
+  rdf:type owl:Class ;
+  rdfs:label "Registration authority"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "The organisation responsible for the registry who shall determine which metadata items should become IdentifiedItems, RegisteredItems, Designatable_Items and/or ClassifiableItems."^^xsd:string ;
+.
+:raNamespace3
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :RegistrationAuthority3 ;
+  rdfs:label "Scope Relationship"^^xsd:string ;
+  rdfs:range :Namespace ;
+  skos:definition "The namespace used by the authrity to uniquely identifier items within the authorities scope."^^xsd:string ;
+.
+:RegistrationAuthority4
+  rdf:type owl:Class ;
+  rdfs:label "Registration authority"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "The organisation responsible for the registry who shall determine which metadata items should become IdentifiedItems, RegisteredItems, Designatable_Items and/or ClassifiableItems."^^xsd:string ;
+.
+:raNamespace4
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :RegistrationAuthority4 ;
+  rdfs:label "Scope Relationship"^^xsd:string ;
+  rdfs:range :Namespace ;
+  skos:definition "The namespace used by the authrity to uniquely identifier items within the authorities scope."^^xsd:string ;
+.
+
