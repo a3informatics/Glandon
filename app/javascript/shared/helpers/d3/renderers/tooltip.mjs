@@ -1,11 +1,18 @@
-const D3Tooltip = { 
+
+/**
+ * D3 Tooltip module
+ * @description A helper module for rendering a tooltip in a D3 graph 
+ * @author Samuel Banas <sab@s-cubed.dk>
+ */
+export default class D3Tooltip { 
 
   /**
    * Init instance with d3 module
+   * @param {D3} d3 Reference to the d3 library
    */
-  init(d3) {
+  constructor(d3) {
     this.d3 = d3;
-  },
+  }
 
   /**
    * Create a new tooltip div in the page body
@@ -15,7 +22,7 @@ const D3Tooltip = { 
     let tooltip = $( '<div>' ).addClass( 'graph-tooltip shadow-small' );
     $( 'body' ).append( tooltip );
 
-  },
+  }
 
   /**
    * Show (render) the tooltip and update its position
@@ -30,7 +37,7 @@ const D3Tooltip = { 
                 .css( 'top', `${ coords.y }px` )
                 .show();
 
-  },
+  }
 
   /**
    * Hide the tooltip element
@@ -39,7 +46,7 @@ const D3Tooltip = { 
 
     this.tooltip.hide();
 
-  },
+  }
 
   /**
    * Remove the tooltip from the DOM
@@ -48,7 +55,7 @@ const D3Tooltip = { 
 
     this.tooltip.remove();
 
-  },
+  }
 
   /**
   * Get the tooltip element
@@ -58,7 +65,7 @@ const D3Tooltip = { 
 
     return $('.graph-tooltip');
 
-  },
+  }
 
   /**
    * Get the tooltip coordinates relative to the D3 mouse event
@@ -76,8 +83,4 @@ const D3Tooltip = { 
 
   }
 
-}
-
-export {
-  D3Tooltip
 }

@@ -146,6 +146,25 @@ class Form < IsoManagedV2
     form
   end
 
+  # Dependency Paths. Returns the paths for any dependencies this class may have.
+  #
+  # @return [Array] array of strings suitable for inclusion in a sparql query
+  def self.dependency_paths
+    [
+      '<http://www.assero.co.uk/BusinessForm#hasGroup>/'\
+      '<http://www.assero.co.uk/BusinessForm#hasSubGroup>*/'\
+      '<http://www.assero.co.uk/BusinessForm#hasItem>/'\
+      '<http://www.assero.co.uk/BusinessForm#hasCodedValue>/'\
+      '<http://www.assero.co.uk/BusinessOperational#reference>/'\
+      '^<http://www.assero.co.uk/BusinessOperational#narrower>',
+
+      '<http://www.assero.co.uk/BusinessForm#hasGroup>/'\
+      '<http://www.assero.co.uk/BusinessForm#hasSubGroup>*/'\
+      '<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept>/'\
+      '<http://www.assero.co.uk/BusinessOperational#reference>'
+    ]
+  end
+
 private
   
   # To CRF.

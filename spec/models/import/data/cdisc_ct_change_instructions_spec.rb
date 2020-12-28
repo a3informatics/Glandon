@@ -114,5 +114,10 @@ describe Import::ChangeInstruction do
     # No changes to be processed
     puts colourize("Version: 67. No change instructions necessary for 2020-11-06 release.", "green")
   end
-  
+
+  it "2020-12-18" do
+    release_date = "2020-12-18"
+    execute_import(release_date, {sdtm: true, send: true}, set_write_file)
+  end  
+
 end

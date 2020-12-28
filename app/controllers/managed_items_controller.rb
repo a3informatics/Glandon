@@ -41,6 +41,16 @@ class ManagedItemsController < ApplicationController
 
 private
 
+  # Path for given action
+  def path_for(action, object)
+    case action
+      when :impact 
+        return impact_iso_managed_v2_path(object)
+      else
+        return ""
+    end
+  end
+
   # Lock for editing. Used for edit operations! :)
   def edit_lock(item)
     @edit = ManagedItemsController::Edit.new(item, current_user, flash)

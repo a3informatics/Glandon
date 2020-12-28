@@ -2501,7 +2501,7 @@ describe "Thesaurus::ManagedConcept" do
       IsoHelpers.clear_cache
     end
 
-    before :each do
+    before :all do
       data_files = []
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
@@ -2515,10 +2515,10 @@ describe "Thesaurus::ManagedConcept" do
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
       nv_destroy
       nv_create(parent: "123", child: "456")
-      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     end
 
     it "delete draft code list" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.sanofi.com/C100130/V3#C100130"))
       before_count = triple_store.triple_count
       new_tc = tc.create_next_version
@@ -2527,6 +2527,45 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "delete_draft_code_list_custom_property_expected_1.yaml", equate_method: :hash_equal)
       result = new_tc.delete_or_unlink
       expect(triple_store.triple_count).to eq(before_count)
+    end
+
+    it "create next version" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.sanofi.com/C102589/V1#C102589"))
+      results = tc.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "add_item_custom_property_expected_1a.yaml", equate_method: :hash_equal)
+      new_tc = tc.create_next_version
+      new_tc = Thesaurus::ManagedConcept.find_minimum(new_tc.uri)
+      results = new_tc.find_custom_property_values
+      check_file_actual_expected(results, sub_dir, "add_item_custom_property_expected_1b.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "dependency paths" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+      load_cdisc_term_versions(1..2)
+    end
+
+    it "dependency paths" do
+      paths = Form.dependency_paths
+      check_file_actual_expected(paths, sub_dir, "dependency_paths_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "dependencies" do
+      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66781/V2#C66781"))
+      results = item.dependency_required_by
+      expect(results.count).to eq(1)
+      expect(results.first.scoped_identifier).to eq("CT")
+      expect(results.first.version).to eq(2)
     end
 
   end

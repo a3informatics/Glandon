@@ -1,4 +1,4 @@
-# Requires D3TreeHelpers, UiHelpers and WaitForAjaxHelper to be included
+# Requires D3GraphHelpers, UiHelpers and WaitForAjaxHelper to be included
 module TagHelpers
 
   # Data

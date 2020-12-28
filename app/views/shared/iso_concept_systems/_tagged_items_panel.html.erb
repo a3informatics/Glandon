@@ -21,20 +21,7 @@
           Showing Managed Items tagged with the <span class="font-regular" id="tag-name"></span> Tag.
         </center>
 
-        <div class="table-cardstyle all-columns">
-          <table id="tagged-items-table" class="table">
-            <thead>
-                <tr>
-                    <th class="fit">Identifier</th>
-                    <th class="fit">Version</th>
-                    <th>Label</th>
-                    <th>Version Label</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
+        <%= render partial: "shared/iso_managed/managed_items_panel" %>
 
       </div>
 

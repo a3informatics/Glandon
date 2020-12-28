@@ -48,6 +48,7 @@ module Glandon
     config.imports = config_for(:imports).deep_symbolize_keys
     config.namespaces = config_for(:namespaces).deep_symbolize_keys
     config.datatypes = config_for(:datatypes).deep_symbolize_keys
+    config.dependencies = config_for(:dependencies).deep_symbolize_keys
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
     # Installation specific verisons

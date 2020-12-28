@@ -2,6 +2,7 @@ import { historyBtn, showBtn } from 'shared/ui/buttons'
 import { icons, renderIcon, iconsInline } from 'shared/ui/icons'
 import { renderIndicators } from 'shared/ui/indicators'
 import { renderTagsInline } from 'shared/ui/tags'
+import { getRdfNameByType } from 'shared/helpers/rdf_types'
 
 /**
  * Returns column definition for the history column
@@ -224,6 +225,7 @@ export {
   dtVersionColumn,
   dtContextMenuColumn,
   dtTrueFalseColumn,
+  dtItemTypeColumn,
   // Editable columns
   dtTrueFalseEditColumn,
   dtInlineEditColumn,

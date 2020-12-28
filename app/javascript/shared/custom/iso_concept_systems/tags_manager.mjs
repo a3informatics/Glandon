@@ -3,14 +3,14 @@ import TagNode from 'shared/custom/iso_concept_systems/d3/tag_node'
 
 import InformationDialog from 'shared/ui/dialogs/information_dialog'
 
-import { D3Tooltip } from 'shared/helpers/d3/renderers/tooltip'
-import { D3Actions } from 'shared/helpers/d3/renderers/actions'
+import D3Tooltip from 'shared/helpers/d3/renderers/tooltip'
+import D3Actions from 'shared/helpers/d3/renderers/actions'
 
 import { iconBtn } from 'shared/ui/buttons'
 import { cropText } from 'shared/helpers/strings'
 import { alerts } from 'shared/ui/alerts'
 
-import { renderLabels } from 'shared/helpers/d3/renderers/nodes'
+import { renderWithBadgesLabels } from 'shared/helpers/d3/renderers/nodes'
 
 /**
  * Tags Manager
@@ -57,10 +57,10 @@ export default class TagsManager extends TreeGraph {
   clearGraph() {
 
     super.clearGraph();
-    D3Tooltip.destroy();
+    this.D3Tooltip.destroy();
 
     if ( this.editable )
-      D3Actions.destroy();
+      this.D3Actions.destroy();
 
   }
 
@@ -115,10 +115,10 @@ export default class TagsManager extends TreeGraph {
   _init() {
 
     super._init();
-    D3Tooltip.init( this.d3 );
+    this.D3Tooltip = new D3Tooltip( this.d3 );
 
     if ( this.editable )
-      D3Actions.init( this.d3 );
+      this.D3Actions = new D3Actions( this.d3 );
 
   }
 
@@ -185,7 +185,7 @@ export default class TagsManager extends TreeGraph {
 
     if ( this.editable ) {
 
-      D3Actions.hide();
+      this.D3Actions.hide();
 
       if ( this.selected )
         this._renderActions( this.selected );
@@ -276,10 +276,10 @@ export default class TagsManager extends TreeGraph {
 
     this._renderNodes();
 
-    D3Tooltip.new();
+    this.D3Tooltip.new();
 
     if ( this.editable )
-      D3Actions.new( this.selector, this._actionButtons );
+      this.D3Actions.new( this.selector, this._actionButtons );
 
   }
 
@@ -289,7 +289,7 @@ export default class TagsManager extends TreeGraph {
   _renderNodes() {
 
     // Custom render nodes with labels and colored circles
-    this.graph.nodes = renderLabels({
+    this.graph.nodes = renderWithBadgesLabels({
       nodes: this.graph.nodes,
       nodeColor: this.Node.color,
 
@@ -298,7 +298,7 @@ export default class TagsManager extends TreeGraph {
 
       // Tooltip render & hide on hover actions
       onHover: d => this._renderTooltip( new this.Node(d) ),
-      onHoverOut: d => D3Tooltip.hide(),
+      onHoverOut: d => this.D3Tooltip.hide(),
 
       // Custom node circle radius
       props: {
@@ -322,14 +322,14 @@ export default class TagsManager extends TreeGraph {
       return;
 
     // Toggle edit button depending on node
-    D3Actions.actions.find( '#edit-node' )
-                     .toggle( node.editAllowed );
+    this.D3Actions.actions.find( '#edit-node' )
+                          .toggle( node.editAllowed );
 
     // Toggle remove button depending on node type
-    D3Actions.actions.find( '#remove-node' )
-                     .toggle( node.removeAllowed );
+    this.D3Actions.actions.find( '#remove-node' )
+                          .toggle( node.removeAllowed );
 
-    D3Actions.show( node );
+    this.D3Actions.show( node );
 
   }
 
@@ -362,7 +362,7 @@ export default class TagsManager extends TreeGraph {
                   ${ node.data.description }
                 </div>`;
 
-    D3Tooltip.show( html );
+    this.D3Tooltip.show( html );
 
   }
 

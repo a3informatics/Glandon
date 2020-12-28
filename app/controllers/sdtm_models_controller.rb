@@ -67,7 +67,7 @@ private
       when :edit
         return ""
       else
-        return ""
+        return super(action, object)
     end
   end
 

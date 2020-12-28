@@ -516,7 +516,7 @@ describe "Import::SponsorTermFormatOne" do
     end
 
     it "counts and ranks" do
-      {"2-6" => {uri: @uri_2_6, count: 197248}, "3-0" => {uri: @uri_3_0, count: 291375}, "3-1" => {uri: @uri_3_1, count: 299939}}.each do |version, data|
+      {"2-6" => {uri: @uri_2_6, count: 213225}, "3-0" => {uri: @uri_3_0, count: 314763}, "3-1" => {uri: @uri_3_1, count: 323309}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end

@@ -70,6 +70,32 @@ function dtChildrenColumns(opts = {}) {
 };
 
 
+/*** Iso Managed ***/
+
+
+/**
+ * Column definitions for a Managed Items panel
+ * @param {object} opts Additional column options
+ * @param {boolean} withIcons Set to true to inlcude type icon column as the first one
+ * @return {Array} DataTables Managed Items panel column definitions collection
+ */
+function dtManagedItemsColumns(opts = {}, withIcons = false) {
+  
+  const columns = [
+    { data: 'identifier', ...opts },
+    { ...opts, render: (dt, t, r) => r.version || r.semantic_version },
+    { data: 'label', ...opts },
+    { data: 'version_label', ...opts } 
+  ];
+
+  if ( withIcons )
+    columns.splice( 0, 0, dtItemTypeColumn() );
+  
+  return columns; 
+
+};
+
+
 /*** Edit ***/
 
 
@@ -276,6 +302,7 @@ export {
   dtSimpleHistoryColumns,
   dtCLIndexColumns,
   dtChildrenColumns,
+  dtManagedItemsColumns,
   dtCLEditColumns,
   dtBCShowColumns,
   dtBCEditColumns,

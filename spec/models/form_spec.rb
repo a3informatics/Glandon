@@ -1156,4 +1156,36 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
   end
 
+  describe "Depednency Tests" do
+    
+    before :each do
+      data_files = [
+        "forms/FN000150.ttl", 
+        "forms/F001_bc_only_group_form.ttl", 
+        "biomedical_concept_instances.ttl", 
+        "biomedical_concept_templates.ttl" 
+      ]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "dependency paths" do
+      paths = Form.dependency_paths
+      check_file_actual_expected(paths, sub_dir, "dependency_paths_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "dependencies" do
+      item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      results = item.dependency_required_by
+      expect(results).to eq([])
+    end
+
+    it "dependencies" do
+      item = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      results = item.dependency_required_by
+      check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "dependencies_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end

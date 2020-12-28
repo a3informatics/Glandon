@@ -1,87 +1,153 @@
 require 'rails_helper'
 
-describe "Impact Analysis", :type => :feature do
+describe "Impact Analysis", type: :feature  do
 
-  include PauseHelpers
   include DataHelpers
   include UiHelpers
   include UserAccountHelpers
+  include PauseHelpers
   include WaitForAjaxHelper
   include NameValueHelpers
+  include D3GraphHelpers
+  include DownloadHelpers
 
-  def wait_for_ajax_long
-    wait_for_ajax(20)
-  end
-
-  before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-    load_files(schema_files, data_files)
-    load_cdisc_term_versions(1..62)
-    load_data_file_into_triple_store("mdr_identification.ttl")
-    load_data_file_into_triple_store("thesaurus_sponsor5_impact.ttl")
-    NameValue.destroy_all
-    NameValue.create(name: "thesaurus_parent_identifier", value: "10")
-    NameValue.create(name: "thesaurus_child_identifier", value: "999")
-    ua_create
-  end
+  def sub_dir
+    return 'features/impact_analysis'
+  end 
 
   after :all do
+    Token.destroy_all
+    clear_downloads
     ua_destroy
   end
 
-  describe "Curator user (sponsor code list level)", :type => :feature do
+  after :each do
+    ua_logoff
+  end
+
+  describe "Impact Analysis, Code List, Curator user", type: :feature, js: true do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      ua_create
+      nv_destroy
+      nv_create(parent: '10', child: '999')
+      prep_data
+    end
 
     before :each do
       ua_curator_login
     end
 
-    after :each do
-      ua_logoff
+    def prep_data 
+      @thesaurus = Thesaurus.create({ identifier: 'TEST', label: 'Test Thesaurus' })
+      # @thesaurus = edit_item(@thesaurus)
+
+      @codelist = Thesaurus::ManagedConcept.find_minimum(Uri.new( uri: 'http://www.cdisc.org/C20587/V1#C20587' ))
+      @subset = @codelist.create_subset 
+      @extension = @codelist.create_extension
+      @subset2 = @thesaurus.add_subset(@extension.id)
     end
 
-    it "impact analysis", js:true do
-      find(:xpath, "//tr[contains(.,'SPONSORTHTEST2')]/td/a").click
-      wait_for_ajax_long
-      context_menu_element('history', 4, 'SPONSORTHTEST2', :edit)
-      wait_for_ajax_long
-      page.find('.card-with-tabs .expandable-content-btn').click
-      sleep 0.2
-      ui_dashboard_single_slider '2018-03-30'
-      click_button 'Submit selected version'
-      wait_for_ajax 50
-      click_link 'Return'
-      wait_for_ajax 20
-      context_menu_element('history', 4, 'SPONSORTHTEST2', :impact_analysis)
-      sleep 1
-      ui_dashboard_single_slider '2013-06-28'
-      click_button 'Select'
-      wait_for_ajax 20
-      expect(page).to have_content 'You must choose a CDISC release newer than 2018-03-30 Release to view Impact Analysis.'
-      context_menu_element('history', 4, 'SPONSORTHTEST2', :impact_analysis)
-      sleep 1
-      ui_dashboard_single_slider '2019-12-20'
-      click_button 'Select'
-      wait_for_ajax 20
-      expect(page).to have_content 'Impact Analysis SPONSORTHTEST2 v0.1.0'
-      expect(page).to have_content 'Impact Analysis SPONSORTHTEST2 v0.1.0'
-      expect(page).to have_content 'CDISC CT update from: 2018-03-30 Release - to: 2019-12-20 Release.'
-      find(:xpath, "//*[@id='changes-cdisc-table']/tbody/tr/td[2]/div[1]").click
-      wait_for_ajax 20
-      expect(page).to have_content 'Items affected by the CDISC Code List change'
-      expect(page).to have_content '(SPONSORTHTEST2)'
-      expect(page).to have_content 'ACN_01 (NP000123P)'
-      expect(page).to have_content 'ACN_03 (NP000124C)'
-      expect(page).to have_content 'ACN (C66767)'
-      find(:xpath, "//*[@id='tab-changes']/div").click
-      expect(page).to have_content 'Differences summary'
-      expect(page).to have_content 'Changes summary'
-      ui_check_table_info("changes",1,2,2)
-      find(:xpath, "//*[@id='tab-graph']/div").click
-      expect(page).to have_content "The graph's scope is limited to items included in this Terminology."
+    it "allows to show Impact of a Code List, graph view" do
+      click_navbar_code_lists
+      wait_for_ajax 20 
+      
+      impact_analysis @codelist.scoped_identifier, '1.0.0', 'CDISC' 
+      expect(page).to have_content 'Showing Managed Items impacted by Age Group C20587 v1.0.0.'
+      
+      check_node_count 4 
+
+      # Node Selection, Node Actions 
+      find_node('C20587').click
+      check_node 'C20587', :codelist, true
+      check_actions [:history]
+      check_actions_disabled [:load_impact]
+
+      # Deselect
+      find_node('C20587').click 
+      check_node 'C20587', :codelist, false
+
+      # Search
+      fill_in 'd3-search', with: 'NP'
+      ui_press_key :return 
+
+      check_node_count 1, 'g.node.selected.search-match'
+      check_node 'NP000010P', :codelist, true
+
+      find('#d3-clear-search').click
+      check_node_count 0, 'g.node.search-match'
+      find_node('NP000010P').click # Deselect
+
+      # Node Hover 
+      sleep 1.5 # Sleep until graph animation finishes
+      find_node('C20587E').hover
+      expect(page).to have_css('.graph-tooltip', text: "Code List\nAge Group C20587E v0.1.0", visible: true)
+
+      # View History 
+      find_node('NP000010P').click
+      
+      w = window_opened_by { click_action :history }
+      within_window w do
+        expect(page).to have_content 'Version History of \'NP000010P\''
+      end
+      w.close
+
+      # Load Impact for Items in Graph  
+      click_action :load_impact
+      wait_for_ajax 10 
+      check_alert 'Item has no Impact'
+
+      find_node('C20587E').click
+      click_action :load_impact
+      wait_for_ajax 10 
+
+      check_actions_disabled [:load_impact] # Check Load Impact Button disabled after pressed 
+      check_node_count 5
+      check_node 'NP000011P', :codelist
+
+      find_node('NP000011P').click
+      click_action :load_impact
+      wait_for_ajax 10 
+
+      check_node_count 6
+#      Not Working 
+#      check_node 'TEST', :thesaurus
+    end
+
+    it "allows to show and download Impact of a Code List, table view" do
+      click_navbar_code_lists
+      wait_for_ajax 20 
+      impact_analysis @codelist.scoped_identifier, '1.0.0', 'CDISC' 
+  
+      # Check table data and info
+      find('.tab-option', text: 'Table View').click 
+      ui_check_table_info('managed-items', 1, 4, 4)
+      ui_check_table_cell('managed-items', 1, 2, 'C20587')
+      ui_check_table_cell('managed-items', 1, 3, '1.0.0')
+      ui_check_table_cell('managed-items', 1, 4, 'Age Group')
+      ui_check_table_cell('managed-items', 1, 5, '2007-03-06 Release')
+
+      expect(page).to have_button 'CSV'
+      expect(page).to have_button 'Excel'
+
+      # Download CSV  
+      click_button "CSV"
+      file = download_content 
+      expect(file).to eq read_text_file_2(sub_dir, "impact_csv_expected.csv")
     end
 
   end
 
-
+  def impact_analysis(identifier, version, owner = "")
+    ui_table_search('index', "#{ identifier }" )
+    find(:xpath, "//tr[contains(.,'#{ owner.empty? ? identifier : owner }')]/td/a").click
+    wait_for_ajax 10
+    context_menu_element_v2('history', version, :impact_analysis )
+    wait_for_ajax 10 
+    expect(page).to have_content('Impact Analysis')
+  end 
 
 end

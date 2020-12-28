@@ -553,6 +553,18 @@ class ThesauriController < ApplicationController
   # 	return results
   # end
 
+  def impact
+    authorize Thesaurus, :show?
+    @thesaurus =  Thesaurus.find_minimum(protect_from_bad_id(params))
+    @target_th = Thesaurus.find_minimum(impact_params[:target_th])
+    @ref_th = @thesaurus.get_referenced_thesaurus
+    if Date.parse(@target_th.version_label) <= Date.parse(@ref_th.version_label)
+      flash[:error] = "You must choose a CDISC release newer than #{@ref_th.version_label} to view Impact Analysis."
+      redirect_to request.referer
+    end
+    @close_path = request.referer
+  end
+
   def get_reference
     authorize Thesaurus, :edit?
     ct = Thesaurus.find_minimum(params[:id])
@@ -636,7 +648,7 @@ private
       when :edit_tags
         return object.supporting_edit? ? edit_tags_iso_concept_path(object) : ""
       when :impact
-        return object.get_referenced_thesaurus.nil? ? "" : impact_iso_managed_v2_path(object, iso_managed: {new_th_id: "thId"})
+        return object.get_referenced_thesaurus.nil? ? "" : impact_thesauri_path(object, thesauri: {target_th: "thId"})
       when :clone
         return clone_thesauri_path(object)
       when :compare
@@ -654,6 +666,10 @@ private
 
   def upgrade_params
     params.require(:thesauri).permit(:ref_old, :ref_new)
+  end
+
+  def impact_params
+    params.require(:thesauri).permit(:target_th)
   end
 
 end
