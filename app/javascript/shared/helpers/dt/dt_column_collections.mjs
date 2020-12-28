@@ -1,8 +1,9 @@
+import { iconsInLine } from 'shared/ui/icons'
 import { termReferences } from 'shared/ui/collections'
 
 import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn,
-         dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn, dtSelectEditColumn, dtRowRemoveColumn } 
-         from 'shared/helpers/dt/dt_columns'
+         dtItemTypeColumn, dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn, dtSelectEditColumn, dtRowRemoveColumn } 
+  from 'shared/helpers/dt/dt_columns'
 
 
 /*** Index ***/

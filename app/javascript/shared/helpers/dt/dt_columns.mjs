@@ -1,5 +1,5 @@
 import { historyBtn, showBtn } from 'shared/ui/buttons'
-import { icons, renderIcon, iconsInline } from 'shared/ui/icons'
+import { icons, iconTypes, renderIcon, iconsInline } from 'shared/ui/icons'
 import { renderIndicators } from 'shared/ui/indicators'
 import { renderTagsInline } from 'shared/ui/tags'
 import { getRdfNameByType } from 'shared/helpers/rdf_types'
@@ -168,6 +168,27 @@ function dtExternalEditColumn(name, opts = {}) {
     data: name,
     editField: (opts.editField || name),
     ...opts
+  }
+}
+
+/**
+ * Returns column definition for an Item type column 
+ * @param {object} opts Additional column options
+ * @return {object} DataTables Item type column definition
+ */
+function dtItemTypeColumn(opts = {}) {
+  return {
+    data: 'rdf_type',
+    ...opts,
+    render: (data, type, r, m) => { 
+        
+      const itemType = getRdfNameByType( data );
+
+      return type === 'display' ? 
+        iconTypes.renderIcon(data, { owner: r.uri, ttip: true }) : 
+        itemType
+
+    }
   }
 }
 
