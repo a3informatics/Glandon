@@ -9,6 +9,7 @@ describe "CDISC Term", :type => :feature do
   include WaitForAjaxHelper
   include DownloadHelpers
   include CdiscCtHelpers
+  include PauseHelpers
 
   def sub_dir
     return "features/cdisc_term"
@@ -343,6 +344,7 @@ describe "CDISC Term", :type => :feature do
       clear_downloads
       click_browse_every_version
       wait_for_ajax(30)
+      ui_table_search("history", "2018-12-21 Release")
       context_menu_element("history", 5, "2018-12-21 Release", :show)
       wait_for_ajax(5)
       find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
