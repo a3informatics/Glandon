@@ -25,6 +25,7 @@
 .table-cardstyle td{
   vertical-align: middle !important;
   font-family: $font-light;
+  transition: background-color .5s;
 }
 
 .table-cardstyle td, .table-cardstyle th{
@@ -37,6 +38,10 @@
 
 .table-cardstyle tr.selected{
   color: $secondary-color-medium !important;
+}
+
+.table-cardstyle tr.row-highlight td {
+  background-color: $row-highlight-green-background !important;
 }
 
 .table-cardstyle .row-sponsor td:first-of-type,
