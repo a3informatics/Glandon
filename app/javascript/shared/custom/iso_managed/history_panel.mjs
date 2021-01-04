@@ -26,15 +26,20 @@ export default class HistoryPanel extends TablePanel {
    * @param {boolean} params.cache Specify if the panel data should be cached. Optional.
    */
   constructor({
-    selector = "#history-panel #history",
+    selector = '#history-panel #history',
     url,
     param,
     count = 100,
     deferLoading = false,
     cache = true
   }) {
-    super({ selector, url, param, count, deferLoading, cache });
+
+    super({ 
+      selector, url, param, count, deferLoading, cache 
+    })
+
     this._initItemSelector()
+
   }
 
   /** Private **/
@@ -42,56 +47,75 @@ export default class HistoryPanel extends TablePanel {
   /**
    * Sets event listeners, handlers
    */
-  _setListeners() {
+  _setTableListeners() {
+
+    super._setTableListeners()
 
     // Update RS
     this._clickListener({
       target: ".registration-state",
-      handler: (e) => rsHelper.updateRS(this._getRowDataFrom$(e.target))
-    });
+      handler: e => 
+        rsHelper.updateRS( this._getRowDataFrom$( e.target ) )
+    })
 
     // Delete
     this._clickListener({
       target: ".context-menu a:contains('Delete')",
-      handler: (e) => $confirm({
-        dangerous: true,
-        callback: () => $delete({
-          url: this._getRowDataFrom$(e.target).delete_path,
-          done: () => location.reload()
+      handler: e => {
+        
+        $confirm({
+          dangerous: true,
+          callback: () => $delete({
+            url: this._getRowDataFrom$( e.target ).delete_path,
+            done: () => location.reload()
+          })
         })
-      })
-    });
 
-    // Impact Analysis
-    this._clickListener({
-      target: ".context-menu a:contains('Impact Analysis')",
-      handler: (e) => {
-        let url = this._getRowDataFrom$(e.target).impact_path;
-        new CdiscVersionSelect((date, id) => location.href = url.replace('thId', id), 'impact').open();
       }
-    });
+    })
+
+    // Impact Analysis (CDISC Thesaurus Picker)
+    if ( this.param === 'thesauri' )
+      this._clickListener({
+        target: ".context-menu a:contains('Impact Analysis')",
+        handler: e => {
+
+          const url = this._getRowDataFrom$( e.target ).impact_path
+          new CdiscVersionSelect( (date, id) => location.href = url.replace( 'thId', id ), 'impact' ).open()
+
+        }
+      })
 
     // Clone
     this._clickListener({
       target: ".context-menu a:contains('Clone')",
-      handler: (e) => {
-        let url = this._getRowDataFrom$(e.target).clone_path;
-        $("#newTerminologyModal form#new_thesaurus").attr("action", url);
+      handler: e => {
+
+        let url = this._getRowDataFrom$( e.target ).clone_path
+        $( "#newTerminologyModal form#new_thesaurus" ).attr( "action", url )
+
       }
-    });
+
+    })
 
     // Compare
     this._clickListener({
       target: ".context-menu a:contains('Compare')",
       handler: (e) => {
-        let url = this._getRowDataFrom$(e.target).compare_path;
-        this.itemSelector.setCallback((s) => location.href = `${url}?${$.param( { thesauri: { thesaurus_id: s.thesauri[0].id } } )}`) // TODO: Fix
+
+        let url = this._getRowDataFrom$( e.target ).compare_path;
+        this.itemSelector.setCallback( s => 
+          location.href = `${ url }?${ $.param( { thesauri: { thesaurus_id: s.thesauri[0].id } } ) }`) // TODO: Fix
         this.itemSelector.show();
+
       }
-    });
+    })
+
   }
 
+
   /** Context Menu **/
+
 
   /**
    * Builds and renders the context menu of an item
@@ -99,17 +123,25 @@ export default class HistoryPanel extends TablePanel {
    * @returns {string} formatted Context Menu HTML
    */
   _buildContextMenu(data, id) {
-    const menuId = `con-menu-${id}`,
-          menuStyle = { side: "left" },
+
+    const menuId = `con-menu-${ id }`,
+          menuStyle = { side: 'left' },
           menuItems = [];
 
     // Required menu items common for all iso_managed types
-    this._addMenuItems(menuItems, this._commonMenuItems(data));
+    this._addMenuItems( 
+      menuItems, 
+      this._commonMenuItems(data) 
+    );
 
     // Additional items (add new here)
-    this._addMenuItems(menuItems, this._extraMenuItems(data));
+    this._addMenuItems( 
+      menuItems, 
+      this._extraMenuItems(data) 
+    );
 
     return renderMenu({ menuId, menuItems, menuStyle });
+
   }
 
   /**
@@ -118,13 +150,46 @@ export default class HistoryPanel extends TablePanel {
    * @returns {Array} Collection of common menu items
    */
   _commonMenuItems(data) {
+
     return [
-      { url: data.show_path, icon: "icon-view", text: "Show", types: ["all"], required: true },
-      { url: data.search_path, icon: "icon-search", text: "Search", types: ["all"], required: true  },
-      { url: data.edit_path, icon: "icon-edit", text: "Edit", types: ["all"], required: true  },
-      { url: data.status_path, icon: "icon-document", text: "Document control", types: ["all"], required: true  },
-      { url: "#", icon: "icon-trash", text: "Delete", disabled: (data.delete_path === ""), types: ["all"], required: true }
+      { 
+        url: data.show_path, 
+        icon: "icon-view", 
+        text: "Show", 
+        types: ["all"], 
+        required: true 
+      },
+      { 
+        url: data.search_path, 
+        icon: "icon-search", 
+        text: "Search", 
+        types: ["all"], 
+        required: true  
+      },
+      { 
+        url: data.edit_path, 
+        icon: "icon-edit", 
+        text: "Edit", 
+        types: ["all"], 
+        required: true  
+      },
+      { 
+        url: data.status_path, 
+        icon: "icon-document", 
+        text: "Document control", 
+        types: ["all"], 
+        required: true  
+      },
+      { 
+        url: "#", 
+        icon: "icon-trash", 
+        text: "Delete", 
+        disabled: (data.delete_path === ""), 
+        types: ["all"], 
+        required: true 
+      }
     ];
+
   }
 
   /**
@@ -134,17 +199,84 @@ export default class HistoryPanel extends TablePanel {
    * @returns {Array} Collection of extra menu items
    */
   _extraMenuItems(data) {
+
     return [
-      { url: data.impact_path, target: "#", icon: "icon-impact", text: "Impact Analysis", endOffset: 1, types: ["thesauri"] },
-      { url: data.list_cn_path, icon: "icon-note", text: "List Change notes", endOffset: 1, types: ["managed_concept"] },
-      { url: data.current_path, icon: "icon-current", text: "Make current", disabled: (data.indicators.current), endOffset: 2, types: ["all"] },
-      { url: data.clone_path, target: "#newTerminologyModal", icon: "icon-copy", text: "Clone", endOffset: 2, types: ["thesauri"], dataToggle: "modal" },
-      { url: data.compare_path, target: "#", icon: "icon-compare", text: "Compare", dataToggle: "modal", endOffset: 2, types: ["thesauri", "cdisc_term"] },
-      { url: data.crf_path, icon: "icon-form-view", text: "CRF", endOffset: 1, types: ["form"] },
-      { url: data.acrf_path, icon: "icon-form-view", text: "aCRF", endOffset: 1, types: ["form"] }
+      this._impactMenuItem( data ),
+      { 
+        url: data.list_cn_path, 
+        icon: "icon-note", 
+        text: "List Change notes", 
+        endOffset: 1, 
+        types: ["managed_concept"] 
+      },
+      { 
+        url: data.current_path, 
+        icon: "icon-current", 
+        text: "Make current", 
+        disabled: (data.indicators.current), 
+        endOffset: 2, 
+        types: ["all"] 
+      },
+      { 
+        url: data.clone_path, 
+        target: "#newTerminologyModal", 
+        icon: "icon-copy", 
+        text: "Clone", 
+        endOffset: 2, 
+        types: ["thesauri"], 
+        dataToggle: "modal" 
+      },
+      { 
+        url: data.compare_path, 
+        target: "#", 
+        icon: "icon-compare", 
+        text: "Compare", 
+        dataToggle: "modal", 
+        endOffset: 2, 
+        types: ["thesauri", "cdisc_term"] 
+      },
+      { 
+        url: data.crf_path, 
+        icon: "icon-form-view", 
+        text: "CRF", 
+        endOffset: 1, 
+        types: ["form"] 
+      },
+      { 
+        url: data.acrf_path, 
+        icon: "icon-form-view", 
+        text: "aCRF", 
+        endOffset: 1, 
+        types: ["form"] 
+      }
     ]
+
   }
 
+  /**
+   * Impact menu item specification (dependent on managed item type)
+   * @param {Object} data Item data
+   * @returns {Object} Menu Item definition for Impact Analysis with a special case for Thesaurus
+   */
+  _impactMenuItem(data) { 
+
+    const impactMenuItem = {
+      url: data.impact_path, 
+      icon: "icon-impact", 
+      text: "Impact Analysis", 
+      endOffset: 1, 
+      types: [ 'all' ] 
+    }
+
+    if ( this.param === 'thesauri' ) 
+      Object.assign( impactMenuItem, {
+        target: '#',
+        types: [ 'thesauri' ],
+      })
+    
+    return impactMenuItem
+
+  }
 
   /**
    * Adds valid items to the existing menuItems array
@@ -152,11 +284,18 @@ export default class HistoryPanel extends TablePanel {
    * @param {Array} newItems Collection of new menu items definitions
    */
   _addMenuItems(menuItems, newItems = []) {
-    for (const item of newItems) {
-      const offset = item.endOffset != null ? menuItems.length - item.endOffset : menuItems.length;
-      if(this._isItemValid(item))
-        menuItems.splice(offset, 0, item);
+
+    for ( const item of newItems ) {
+
+      const offset = item.endOffset != null ? 
+                      menuItems.length - item.endOffset : 
+                      menuItems.length
+
+      if ( this._isItemValid(item) )
+        menuItems.splice( offset, 0, item );
+
     }
+
   }
 
   /**
@@ -165,9 +304,13 @@ export default class HistoryPanel extends TablePanel {
    * @return {boolean} Determines if item should be displayed in the context menu
    */
   _isItemValid(item) {
-    if (item.required)
+
+    if ( item.required )
       return true;
-    return (item.url) && (item.types.includes(this.param) || item.types.includes("all"));
+
+    return ( item.url ) && 
+           ( item.types.includes(this.param) || item.types.includes('all') )
+
   }
 
   /** Initializers and defaults **/
@@ -177,20 +320,22 @@ export default class HistoryPanel extends TablePanel {
    * @return {Array} Array of DataTable column definitions
    */
   get _defaultColumns() {
+
     return [
       dtVersionColumn(),
-      dtDateTimeColumn('last_change_date'),
-      { data: "has_identifier.has_scope.short_name" },
-      { data: "has_identifier.identifier" },
-      { data: "label" },
-      { data: "has_identifier.version_label" },
+      dtDateTimeColumn( 'last_change_date' ),
+      { data: 'has_identifier.has_scope.short_name' },
+      { data: 'has_identifier.identifier' },
+      { data: 'label' },
+      { data: 'has_identifier.version_label' },
       {
-        data: "has_state.registration_status",
-        render: (data, type, r, m) => type === "display" ? rsHelper.renderRS(r) : data
+        data: 'has_state.registration_status',
+        render: (data, type, r, m) => type === 'display' ? rsHelper.renderRS(r) : data
       },
       dtIndicatorsColumn(),
-      dtContextMenuColumn(this._buildContextMenu.bind(this))
+      dtContextMenuColumn( this._buildContextMenu.bind(this) )
     ]
+
   }
 
   /**
@@ -198,26 +343,28 @@ export default class HistoryPanel extends TablePanel {
    * @return {Object} DataTable options object
    */
   get _tableOpts() {
+
     const options = super._tableOpts;
 
-    options.columns = [...this._defaultColumns];
     options.language.emptyTable = "No versions found.";
 
     return options;
+
   }
 
   /**
    * Initialize a new ItemsSelector
    */
   _initItemSelector() {
-    let requiredIn = ["thesauri", "cdisc_term"];
 
-    if(requiredIn.includes(this.param))
+    const requiredIn = [ 'thesauri', 'cdisc_term' ];
+
+    if ( requiredIn.includes( this.param ) )
       this.itemSelector = new ItemsSelector({
         id: "1",
         types: { thesauri: true },
-        description: "Select one Terminology version with which to compare. " +
-                     "It is recommended to select only from other versions of the item you are comparing."
+        description: `Select one Terminology version with which to compare. 
+                      It is recommended to select only from other versions of the item you are comparing.`
       });
   }
 

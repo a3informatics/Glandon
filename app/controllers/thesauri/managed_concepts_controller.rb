@@ -502,7 +502,7 @@ private
       when :list_change_notes
         return object.supporting_edit? ? list_change_notes_iso_managed_v2_path(:id => object.id) : ""
       else
-        return ""
+        return super(action, object)
     end
   end
 

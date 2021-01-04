@@ -1,0 +1,23 @@
+defaults: &defaults
+  "Thesaurus::ManagedConcept": 
+    - "Thesaurus::ManagedConcept"
+    - "BiomedicalConceptInstance"
+    - "Form"
+    - "Thesaurus"
+  "BiomedicalConceptInstance":
+    - "Form"
+  "Form": []
+
+development:
+  <<: *defaults
+
+production: 
+  <<: *defaults
+  
+test: 
+  <<: *defaults
+  "IMDLayer1":
+    - "IMDLayer2"
+  "IMDLayer2":
+    - "IMDLayer3"
+  "IMDLayer3": []

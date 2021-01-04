@@ -1228,4 +1228,22 @@ describe Thesaurus do
 
   end
 
+  describe "dependency paths" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = []
+      load_files(schema_files, data_files)
+    end
+
+    it "dependency paths" do
+      paths = Thesaurus.dependency_paths
+      check_file_actual_expected(paths, sub_dir, "dependency_paths_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end

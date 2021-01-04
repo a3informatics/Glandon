@@ -40,16 +40,22 @@ class IsoManagedV2Controller < ApplicationController
     render json: {data: comments}
   end
 
-  def impact
+  def impact 
     authorize IsoManaged, :show?
-    @managed_item = find_item(params)
-    @new_cdisc_th = Thesaurus.find_minimum(the_params[:new_th_id])
-    @ref_cdisc_th = Thesaurus.find_minimum(protect_from_bad_id(params)).get_referenced_thesaurus
-    if Date.parse(@new_cdisc_th.version_label) <= Date.parse(@ref_cdisc_th.version_label)
-      flash[:error] = "You must choose a CDISC release newer than #{@ref_cdisc_th.version_label} to view Impact Analysis."
-      redirect_to request.referer
-    end
-    @close_path = request.referer
+    item = find_item(params)
+    respond_to do |format|
+      format.html do
+        @managed_item = item 
+        @managed_item_ref = "#{item.label} #{item.scoped_identifier} v#{item.semantic_version}"
+        @close_path = request.referrer 
+        @data_path = impact_iso_managed_v2_path(item)
+      end
+      format.json do
+        results = item.dependency_required_by
+        render json: impact_d3(item, results)
+      end
+    end 
+  
   end
 
   def custom_properties
@@ -59,7 +65,7 @@ class IsoManagedV2Controller < ApplicationController
     render json: {data: owned ? item.find_custom_property_values : {}, definitions: owned ? item.find_custom_property_definitions_to_h : {}}
   end
 
-  def make_current
+  def make_current 
     authorize IsoManaged, :status?
     managed_item = find_item(params)
     managed_item.make_current
@@ -150,8 +156,17 @@ private
   def the_params
     # Strong parameter using iso_managed not V2 version.
     params.require(:iso_managed).permit(:identifier, :scope_id, :current_id, :tag_id, :registration_status, :previous_state, 
-      :administrative_note, :unresolved_issue, :sv_type, :offset, :count, :new_th_id, 
+      :administrative_note, :unresolved_issue, :sv_type, :offset, :count, 
       :change_description, :explanatory_comment, :origin, :referer)
   end
 
+  def impact_d3(item, nodes)
+    result = {nodes: [], links: []}
+    nodes.each {|x| result[:links] << { source: item.id, target: x.id } } 
+    nodes.insert(0, item) 
+    result[:nodes] = nodes.map {|x| { uri: x.uri.to_s, id: x.uri.to_id, identifier: x.scoped_identifier, semantic_version: x.semantic_version, 
+        version_label: x.version_label, label: x.label, rdf_type: x.rdf_type.to_s, history_path: TypePathManagement.history_url_v2(x, true),
+        impact_path: impact_iso_managed_v2_path(x)}}
+    result
+  end
 end

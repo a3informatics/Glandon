@@ -1,53 +1,15 @@
-import * as d3 from 'd3-selection'
-
-import colors from 'shared/ui/colors'
-import { defaultProps } from 'shared/helpers/d3/renderers/nodes'
+import D3Node from 'shared/base/d3/d3_node'
 
 /**
  * D3 Tree Graph Node
  * @description Extensible D3-based Node module
  * @author Samuel Banas <sab@s-cubed.dk>
  */
-export default class TreeNode {
-
-  /**
-   * Create a Node instance
-   * @param {Object} d D3 Node object
-   * @param {boolean} withElement Specifies if the instance should be initialized with Node's HTML element, optional [default=true]
-   */
-  constructor(d, withElement = true) {
-
-    this.d = d;
-
-    if ( withElement )
-      this.findElement();
-
-  }
-
-  /**
-   * Find the DOM element belonging to this Node Instance and set it to 'el' property
-   */
-  findElement() {
-
-    this.el = d3.default.selectAll( '.node' )
-                        .filter( nd => {
-
-                          // Check parent ids if available as some Nodes have duplicate IDs (TUCRefs)
-                          if ( nd.parent && this.d.parent )
-                            return nd.parent.data.id === this.d.parent.data.id &&
-                                   nd.data.id === this.d.data.id;
-
-                          return nd.data.id === this.d.data.id;
-
-                        })
-                        .node();
-
-  }
-
+export default class TreeNode extends D3Node {
 
   /** Getters **/
 
-
+  
   /**
    * Get data
    * @return {Object} Node Data Object
@@ -57,43 +19,11 @@ export default class TreeNode {
   }
 
   /**
-   * Get node element
-   * @return {(JQuery Element | null)} Node Data Object or null if element not set
-   */
-  get $() {
-    return this.el ? $(this.el) : null;
-  }
-
-  /**
    * Get node label
    * @return {string} Node label value
    */
   get label() {
     return this.data.label;
-  }
-
-  /**
-   * Get node element bounding client rectangle
-   * @return {Object} Node Element bounding rectangle object
-   */
-  get coordinates() {
-    return this.$.get(0).getBoundingClientRect();
-  }
-
-  /**
-   * Check if Node is valid
-   * @return {boolean} Value representing whether Node data is valid
-   */
-  get exists() {
-    return this.d && this.data;
-  }
-
-  /**
-   * Check if Node is selected
-   * @return {boolean} Value representing whether Node is selected
-   */
-  get selected() {
-    return this.data.selected === true;
   }
 
   /**
@@ -181,19 +111,6 @@ export default class TreeNode {
 
   }
 
-  /**
-   * Get Node width
-   * @return {(int | null)} Node's BBox width or null if Node element not defined
-   */
-  get width() {
-
-    if ( this.el )
-      return this.el.getBBox().width;
-
-    return null;
-
-  }
-
 
   /** Actions **/
 
@@ -229,38 +146,6 @@ export default class TreeNode {
     // Offset descendants' depths relative to this instance
     this.d.descendants().slice(1)
                         .forEach( d => d.depth += this.d.depth );
-
-  }
-
-  /**
-   * Select node (add respective styles and data)
-   */
-   select() {
-
-    // Update node data object
-    this.data.selected = true;
-
-    // Update node CSS class and styles, trigger selectChagned event
-    this.$.addClass( 'selected' )
-          .trigger( 'selectChanged', [true] );
-
-    this.toggleSelectStyles( true );
-
-  }
-
-  /**
-   * Deselect node (clear respective styles and data)
-   */
-  deselect() {
-
-    // Update node data object
-    this.data.selected = false;
-
-    // Update node CSS class and styles, trigger selectChanged event
-    this.$.removeClass( 'selected' )
-          .trigger( 'selectChanged', [false] );
-
-    this.toggleSelectStyles( false );
 
   }
 
@@ -305,16 +190,18 @@ export default class TreeNode {
 
 
   /**
-   * Toggle node selected styles depending on target selected state
-   * @param {boolean} selected Target selected state
-   * @override for custom implementation
+   * Node comparator function to determine whether node matches 
+   * @param {TreeNode} node Node to compare with this instance
+   * @return {boolean} True if nodes are the same
    */
-  toggleSelectStyles(selected) {
+  _nodeMatches(node) {
 
-    if ( selected )
-      this.$.find('circle').css( 'fill', colors.accent2 );
-    else
-      this.$.find('circle').css( 'fill', defaultProps.color );
+    // Check parent ids if available as some Nodes have duplicate IDs (TUCRefs)
+    if ( node.parent && this.d.parent )
+      return node.parent.data.id === this.d.parent.data.id &&
+             node.data.id === this.d.data.id;
+
+    return node.data.id === this.data.id;
 
   }
 

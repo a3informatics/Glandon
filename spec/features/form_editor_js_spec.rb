@@ -7,7 +7,7 @@ describe "Forms", :type => :feature do
   include UiHelpers
   include WaitForAjaxHelper
   include ItemsPickerHelpers
-  include D3TreeHelpers
+  include D3GraphHelpers
 
   def sub_dir
     return "features/forms"

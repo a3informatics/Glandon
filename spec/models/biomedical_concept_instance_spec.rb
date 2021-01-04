@@ -291,7 +291,7 @@ describe BiomedicalConceptInstance do
       item = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       sparql = Sparql::Update.new
       item.to_sparql(sparql, true)
-    write_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
+    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
       check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
     end
 
@@ -309,6 +309,29 @@ describe BiomedicalConceptInstance do
 
     it "returns delete path" do
       check_file_actual_expected(BiomedicalConceptInstance.delete_paths, sub_dir, "delete_paths_expected.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "Dependency Tests" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    end
+
+    it "dependency paths" do
+      paths = BiomedicalConceptInstance.dependency_paths
+      check_file_actual_expected(paths, sub_dir, "dependency_paths_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "dependencies" do
+      expect(Form).to receive(:dependency_paths).and_return([])
+      item = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      results = item.dependency_required_by
+      expect(results).to eq([])
     end
 
   end

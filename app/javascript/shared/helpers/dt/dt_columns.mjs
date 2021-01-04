@@ -1,7 +1,8 @@
 import { historyBtn, showBtn } from 'shared/ui/buttons'
-import { icons, renderIcon } from 'shared/ui/icons'
+import { icons, iconTypes, renderIcon } from 'shared/ui/icons'
 import { renderIndicators } from 'shared/ui/indicators'
 import { renderTagsInline } from 'shared/ui/tags'
+import { getRdfNameByType } from 'shared/helpers/rdf_types'
 
 /**
  * Returns column definition for the history column
@@ -23,7 +24,7 @@ function dtButtonColumn(name) {
       }
     }
   }
-};
+}
 
 /**
  * Returns column definition for the last change date column
@@ -37,7 +38,7 @@ function dtDateTimeColumn(name) {
       return type === "display" ? dateTimeHTML(date) : date.getTime()
     }
   }
-};
+}
 
 /**
  * Returns column definition for item version / semantic version column
@@ -47,7 +48,7 @@ function dtVersionColumn() {
   return {
     render: (data, type, r, m) => type === "display" ? r.has_identifier.semantic_version : r.has_identifier.version
   }
-};
+}
 
 /**
  * Returns column definition for the tags column
@@ -61,7 +62,7 @@ function dtTagsColumn(opts = {}) {
     ...opts,
     render: (data, type, r, m) => type === 'display' ? renderTagsInline(data) : data
   }
-};
+}
 
 /**
  * Returns column definition for the indicators column
@@ -74,7 +75,7 @@ function dtIndicatorsColumn(filter) {
     // width: "90px",
     render: (data, type, r, m) => renderIndicators(data, type, filter)
   }
-};
+}
 
 /**
  * Returns column definition for an extensible / not-extensible CL icon column
@@ -96,7 +97,7 @@ function dtCLExtensibleColumn() {
 
     }
   }
-};
+}
 
 /**
  * Returns column definition for the context menu column
@@ -108,7 +109,7 @@ function dtContextMenuColumn(renderer) {
     className: "text-right",
     render: (data, type, r, m) => type === "display" ? renderer(r, m.row) : ""
   }
-};
+}
 
 /**
  * Returns column definition for a true/false icon column
@@ -122,7 +123,7 @@ function dtTrueFalseColumn(name, opts = {}) {
     ...opts,
     render: (data, type, r, m) => type === "display" ? icons.checkMarkIcon(data) : data
   }
-};
+}
 
 /**
  * Returns column definition for a true/false editable column
@@ -138,7 +139,7 @@ function dtTrueFalseEditColumn(name, opts = {}) {
     render: dtTrueFalseColumn().render,
     ...opts
   }
-};
+}
 
 /**
  * Returns column definition for a generic inline editable column
@@ -153,7 +154,7 @@ function dtInlineEditColumn(name, opts = {}) {
     editField: (opts.editField || name),
     ...opts
   }
-};
+}
 
 /**
  * Returns column definition for an externally editable column
@@ -168,7 +169,28 @@ function dtExternalEditColumn(name, opts = {}) {
     editField: (opts.editField || name),
     ...opts
   }
-};
+}
+
+/**
+ * Returns column definition for an Item type column 
+ * @param {object} opts Additional column options
+ * @return {object} DataTables Item type column definition
+ */
+function dtItemTypeColumn(opts = {}) {
+  return {
+    data: 'rdf_type',
+    ...opts,
+    render: (data, type, r, m) => { 
+        
+      const itemType = getRdfNameByType( data );
+
+      return type === 'display' ? 
+        iconTypes.renderIcon(data, { owner: r.uri, ttip: true }) : 
+        itemType
+
+    }
+  }
+}
 
 export {
   dtButtonColumn,
@@ -179,6 +201,7 @@ export {
   dtVersionColumn,
   dtContextMenuColumn,
   dtTrueFalseColumn,
+  dtItemTypeColumn,
   // Editable columns
   dtTrueFalseEditColumn,
   dtInlineEditColumn,

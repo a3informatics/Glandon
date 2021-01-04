@@ -1,0 +1,163 @@
+import D3Node from 'shared/base/d3/d3_node'
+
+import colors from 'shared/ui/colors'
+import { iconTypes } from 'shared/ui/icons'
+import { getRdfNameByType, rdfTypesMap, getRdfObject } from 'shared/helpers/rdf_types'
+
+/**
+ * D3 Impact Graph Node
+ * @description Extensible D3-based Node module
+ * @author Samuel Banas <sab@s-cubed.dk>
+ */
+export default class ImpactNode extends D3Node {
+
+  /** Getters **/
+
+  /**
+   * Check if Node is an RDF type
+   * @param {string} rdfShortcut Key value for RDF Type in the rdfTypesMap
+   * @return {boolean} Value representing Node being the argument rdf type
+   */
+  is(rdfShortcut) {
+    return this.rdf === rdfTypesMap[ rdfShortcut ].rdfType;
+  }
+
+  /**
+   * Get node label
+   * @return {string} Node label value
+   */
+  get label() {
+    return this.data.label;
+  }
+
+  /**
+   * Get value that the Node is found by
+   * @return {string} Node search value (identifier)
+   */
+  get searchLabel() {
+    return this.data.identifier;
+  }
+
+  /**
+   * Get Node's RDF Type
+   * @return {string} Value representing Node's RDF type data flag equal to false
+   */
+  get rdf() {
+    return this.data.rdf_type;
+  }
+
+  /**
+   * Get Node's name
+   * @return {string} Value representing Node's name corresponding to its RDF type
+   */
+  get rdfName() {
+    return getRdfNameByType( this.rdf );
+  }
+
+  /**
+   * Get Node icon
+   * @return {string} Node icon from its data RDF type (char code / character)
+   */
+  get icon() {
+    return ImpactNode.icon( this.d );
+  }
+
+  /**
+   * Get Node color
+   * @return {string} Node color code from its data RDF type
+   */
+  get color() {
+    return ImpactNode.color( this.d );
+  }
+
+  /**
+   * Check if Node is a Root Node
+   * @return {boolean} True if Node is a Root 
+   */
+  get isRoot() {
+    return this.data._isRoot === true;
+  }
+
+  /**
+   * Check if Node has its Impact data already loaded
+   * Always true for Root node 
+   * @return {boolean} True if Node had its Impact loaded 
+   */
+  get impactLoaded() {
+    return this.data._impactLoaded === true || this.isRoot;
+  }
+
+
+  /** Actions **/
+
+
+  /**
+   * Set the _impactLoaded flag to true, preventing further loading of impact data for this Node
+   */
+  setImpactLoaded() {
+    this.data._impactLoaded = true;
+  }
+
+  /**
+   * Set the _isRoot and _impactLoaded flags for true (only for impact source Node)
+   */
+  setRoot() {
+    this.data._isRoot = true;
+    this.setImpactLoaded();
+  }
+
+
+  /** Support **/
+
+
+  /**
+   * Toggle node selected styles depending on target selected state
+   * @param {boolean} selected Target selected state
+   * @override parent implementation
+   */
+  toggleSelectStyles(selected) {
+
+    if ( selected ) {
+
+      this.$.find( '.label' ).css( 'fill', '#fff' );
+      this.$.find( '.label-border' ).css( 'fill', this.color )
+                                    .css( 'stroke', this.color );
+
+    }
+
+    else {
+
+      this.$.find( '.label' ).css( 'fill', colors.greyMedium );
+      this.$.find( '.label-border' ).css( 'fill', '#fff')
+                                    .css( 'stroke', colors.greyLight );
+
+    }
+
+  }
+
+
+  /** Static **/
+
+
+  /**
+   * Get icon from D3 Node data
+   * @static
+   * @param {Object} d D3 Node data
+   * @return {string} Node icon from its data RDF type (char code / character)
+   */
+  static icon(d) {
+    return iconTypes.typeIconMap( d.rdf_type ).char;
+  }
+
+  /**
+   * Get color from D3 Node data
+   * @static
+   * @param {Object} d D3 Node data
+   * @return {string} Node color code from its data RDF type
+   */
+  static color(d) {
+    return iconTypes.typeIconMap( d.rdf_type, { owner: d.uri } ).color;
+  }
+
+
+}

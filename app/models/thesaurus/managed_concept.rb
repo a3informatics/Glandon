@@ -727,6 +727,17 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     "Code list"
   end
 
+  # Dependency Paths. Returns the paths for any dependencies this class may have.
+  #
+  # @return [Array] array of strings suitable for inclusion in a sparql query
+  def self.dependency_paths
+    [
+      '<http://www.assero.co.uk/Thesaurus#extends>',
+      '<http://www.assero.co.uk/Thesaurus#subsets>',
+      '<http://www.assero.co.uk/Thesaurus#pairedWith>'
+    ]
+  end
+
 private
 
   # Delete with a final check on ownership

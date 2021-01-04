@@ -5,15 +5,14 @@ import InformationDialog from 'shared/ui/dialogs/information_dialog'
 
 import { $get } from 'shared/helpers/ajax'
 
-import { D3Tooltip } from 'shared/helpers/d3/renderers/tooltip'
-import { D3Actions } from 'shared/helpers/d3/renderers/actions'
+import D3Tooltip from 'shared/helpers/d3/renderers/tooltip'
+import D3Actions from 'shared/helpers/d3/renderers/actions'
 
-import colors from 'shared/ui/colors'
 import { iconBtn } from 'shared/ui/buttons'
 import { cropText } from 'shared/helpers/strings'
 import { alerts } from 'shared/ui/alerts'
 
-import { renderIconsLabels } from 'shared/helpers/d3/renderers/nodes'
+import { renderWithIconsLabels } from 'shared/helpers/d3/renderers/nodes'
 
 /**
  * Form Editor
@@ -62,8 +61,8 @@ export default class FormEditor extends TreeGraph {
   clearGraph() {
 
     super.clearGraph();
-    D3Tooltip.destroy();
-    D3Actions.destroy();
+    this.D3Tooltip.destroy();
+    this.D3Actions.destroy();
 
   }
 
@@ -148,8 +147,8 @@ export default class FormEditor extends TreeGraph {
   _init() {
 
     super._init();
-    D3Tooltip.init( this.d3 );
-    D3Actions.init( this.d3 );
+    this.D3Tooltip = new D3Tooltip( this.d3 );
+    this.D3Actions = new D3Actions( this.d3 );
 
   }
 
@@ -204,6 +203,7 @@ export default class FormEditor extends TreeGraph {
    * @param {Object} rawData Graph data fetched from the server
    */
   _preprocessData(rawData) {
+
     let data = this.d3.hierarchy( rawData, d => [
         ...d.has_group||[],
         ...d.has_common||[],
@@ -258,7 +258,7 @@ export default class FormEditor extends TreeGraph {
    */
   _selectNode(node, toggle = true) {
 
-    D3Actions.hide();
+    this.D3Actions.hide();
 
     super._selectNode( node, toggle );
 
@@ -431,9 +431,9 @@ export default class FormEditor extends TreeGraph {
 
     this._renderNodes();
 
-    D3Tooltip.new();
+    this.D3Tooltip.new();
 
-    D3Actions.new( this.selector, this._actionButtons );
+    this.D3Actions.new( this.selector, this._actionButtons );
 
   }
 
@@ -443,12 +443,12 @@ export default class FormEditor extends TreeGraph {
   _renderNodes() {
 
     // Add Icons and Labels to rendered Nodes
-    this.graph.nodes = renderIconsLabels({
+    this.graph.nodes = renderWithIconsLabels({
       nodes: this.graph.nodes,
       nodeIcon: this.Node.icon,
       nodeColor: this.Node.color,
       onHover: d => this._renderTooltip( new this.Node(d) ),
-      onHoverOut: d => D3Tooltip.hide(),
+      onHoverOut: d => this.D3Tooltip.hide(),
       labelProperty: d => {
 
         if ( d.data.local_label )
@@ -478,26 +478,26 @@ export default class FormEditor extends TreeGraph {
       return;
 
     // Toggle edit button depending on node
-    D3Actions.actions.find( '#edit-node' )
-                     .toggle( node.editAllowed );
+    this.D3Actions.actions.find( '#edit-node' )
+                          .toggle( node.editAllowed );
 
     // Toggle add-child button depending on node type
-    D3Actions.actions.find( '#add-child' )
-                     .toggle( node.addChildAllowed );
+    this.D3Actions.actions.find( '#add-child' )
+                          .toggle( node.addChildAllowed );
 
     // Toggle Common button depending on node type
-    D3Actions.actions.find( '#common-node' )
-                     .toggle( node.commonAllowed );
+    this.D3Actions.actions.find( '#common-node' )
+                          .toggle( node.commonAllowed );
 
     // Toggle Remove button depending on node type
-    D3Actions.actions.find( '#remove-node' )
-                     .toggle( node.removeAllowed );
+    this.D3Actions.actions.find( '#remove-node' )
+                          .toggle( node.removeAllowed );
 
     // Toggle Restore button depending on node type
-    D3Actions.actions.find( '#restore-node' )
-                     .toggle( node.restoreAllowed );
+    this.D3Actions.actions.find( '#restore-node' )
+                          .toggle( node.restoreAllowed );
 
-    D3Actions.show( node );
+    this.D3Actions.show( node );
 
   }
 
@@ -536,7 +536,7 @@ export default class FormEditor extends TreeGraph {
                    ${ node.label }
                 </div>`;
 
-    D3Tooltip.show( html );
+    this.D3Tooltip.show( html );
 
   }
 
