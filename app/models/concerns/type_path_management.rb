@@ -30,7 +30,8 @@ module TypePathManagement
       SdtmIg.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_igs_path, strong: "sdtm_ig" },
       SdtmIgDomain.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_ig_domains_path, strong: "sdtm_ig_domain" },
       SdtmClass.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_classes_path, strong: "sdtm_class" },
-      AdamIg::rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_adam_igs_path, strong: "adam_ig" },
+      AdamIg.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_adam_igs_path, strong: "adam_ig" },
+      AdamIgDataset.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_adam_ig_datasets_path, strong: "adam_ig_dataset" }
     }
 
   # Method returns class for a given rdf type

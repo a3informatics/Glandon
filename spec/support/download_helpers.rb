@@ -14,6 +14,7 @@ module DownloadHelpers
   end
 
   def download_content
+    clear_downloads
     wait_for_download
     File.read(download)
   end

@@ -275,6 +275,7 @@ Rails.application.routes.draw do
       get :compare_data
       get :compare_csv
       get :upgrade
+      get :impact
     end
   end
 

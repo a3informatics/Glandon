@@ -1,11 +1,18 @@
-const D3Actions = { 
+
+/**
+ * D3 Actions module
+ * @description A helper module for rendering action-buttons in a D3 graph 
+ * @author Samuel Banas <sab@s-cubed.dk>
+ */
+export default class D3Actions { 
 
   /**
    * Init instance with d3 module
+   * @param {D3} d3 Reference to the d3 library
    */
-  init(d3) {
+  constructor(d3) {
     this.d3 = d3;
-  },
+  }
 
   /**
    * Create a new actions div in the page body
@@ -27,25 +34,28 @@ const D3Actions = { 
     actions.append( buttonWrapper );
     $( `${selector} #d3` ).append( actions );
 
-  },
+  }
 
   /**
    * Show (render) the actions and update its position
    * @param {string} html Tooltip HTML content to render
+   * @param {object} params Additional show params, optional
+   * @param {int} params.offsetX Tooltip X coordinate offset, optional
+   * @param {int} params.offsetY Tooltip Y coordinate offset, optional
    */
-  show(node) {
+  show(node, { offsetX = 0, offsetY = 0 } = {}) {
 
     if ( !node )
       return;
 
     let coords = this._coords(node);
 
-    this.actions.css( 'left', `${ coords.x }px`  )
-                .css( 'top', `${ coords.y }px` )
+    this.actions.css( 'left', `${ coords.x + offsetX }px`  )
+                .css( 'top', `${ coords.y + offsetY }px` )
                 .css( 'border-color', node.color )
                 .show();
 
-  },
+  }
 
   /**
    * Hide the actions element
@@ -54,7 +64,7 @@ const D3Actions = { 
 
     this.actions.hide();
 
-  },
+  }
 
   /**
    * Remove the actions from the DOM
@@ -63,7 +73,7 @@ const D3Actions = { 
 
     this.actions.remove();
 
-  },
+  }
 
   /**
   * Get the actions element
@@ -73,7 +83,7 @@ const D3Actions = { 
 
     return $('.node-actions');
 
-  },
+  }
 
   /**
    * Get the actions coordinates relative to the D3 mouse event
@@ -91,8 +101,4 @@ const D3Actions = { 
 
   }
 
-}
-
-export {
-  D3Actions
 }

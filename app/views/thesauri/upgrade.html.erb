@@ -1,8 +1,8 @@
 <% content_for :page_title do %> Upgrade Code Lists <% end %>
 
 <% third_level_breadcrumb(:thesauri, @thesaurus, @close_path) %>
-<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'iso_managed/impact', 'shared/d3/d3_impact_graph' %>
-<%= javascript_include_tag  'd3', 'thesauri/upgrade', 'shared/impact/impact_graph', 'shared/thesauri/upgrade_panel', 'shared/tabs_layout' %>
+<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'thesauri/impact', 'shared/d3/d3_impact_graph' %>
+<%= javascript_include_tag  'd3', 'thesauri/upgrade', 'shared/thesauri/impact/impact_graph', 'shared/thesauri/upgrade_panel', 'shared/tabs_layout' %>
 <%= javascript_tag "var upgradeDataUrl = '#{upgrade_data_thesauri_managed_concept_path(id: "clId", impact: {sponsor_th_id: @thesaurus.id})}',
                         cdiscChangesUrl = '#{changes_impact_thesauri_path(@base_cdisc_th, thesauri: {thesaurus_id: @ref_cdisc_th.id, sponsor_th_id: @thesaurus.id})}',
                         upgradeBaseUrl = '#{upgrade_thesauri_managed_concept_path(id: "clId", upgrade: {sponsor_th_id: @thesaurus.id})}';" %>
@@ -25,7 +25,7 @@
       Changed CDISC Terms
     </div>
     <div class="card-content">
-      <%= render partial: 'shared/impact/changes_cdisc_panel' %>
+      <%= render partial: 'shared/thesauri/impact/changes_cdisc_panel' %>
     </div>
   </div>
 
@@ -55,7 +55,7 @@
         </div>
 
         <div class="tab-wrap closed scroll-styled" data-tab="tab-changes">
-          <%= render partial: "shared/impact/changes_differences_panel" %>
+          <%= render partial: "shared/thesauri/impact/changes_differences_panel" %>
         </div>
 
       </div>

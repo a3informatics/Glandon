@@ -22,6 +22,7 @@ class IsoManagedV2 < IsoConceptV2
   validates_with Validator::Klass, property: :has_state, presence: true
 
   include IsoManagedV2::Versions
+  include IsoManagedV2::Dependencies
   include IsoManagedV2::PreviousVersion
   include IsoManagedV2::ImCustomProperties
   include IsoManagedV2::UriManagement

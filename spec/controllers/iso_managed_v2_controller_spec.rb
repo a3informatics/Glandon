@@ -181,6 +181,18 @@ describe IsoManagedV2Controller do
       get :export_change_notes_csv, params:{id: "aaa"}, format: 'text/csv'
     end
 
+    it "impact" do
+      im = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      expect(IsoManagedV2).to receive(:find_minimum).and_return(im)
+      expect(im).to receive(:dependency_required_by).and_return([])
+      request.env['HTTP_ACCEPT'] = "application/json"
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      get :impact, params: { id: uri.to_id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(actual, sub_dir, "impact_expected_1.yaml", equate_method: :hash_equal)
+    end
   end
 
   describe "Exports" do
