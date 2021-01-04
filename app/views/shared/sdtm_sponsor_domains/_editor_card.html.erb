@@ -2,10 +2,10 @@
 
 <%= javascript_tag "let sdtmSDEditorUrls = {
                           data: '#{ edit_sdtm_sponsor_domain_path(item) }',
-                          update: '#{ update_variable_sdtm_sponsor_domain_path(id: '_id_') }',
                           metadata: '#{ editor_metadata_sdtm_sponsor_domains_path }',
-                          new: '#{ add_non_standard_variable_sdtm_sponsor_domain_path(item) }',
-                          remove: '#{ delete_non_standard_variable_sdtm_sponsor_domain_path(item) }'
+                          updateVar: '#{ update_variable_sdtm_sponsor_domain_path(id: '_id_') }',
+                          newVar: '#{ add_non_standard_variable_sdtm_sponsor_domain_path(item) }',
+                          removeVar: '#{ delete_non_standard_variable_sdtm_sponsor_domain_path(item) }'
                         } " %>
 
  <div class="col-md-12 card wide">

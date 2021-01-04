@@ -2,6 +2,8 @@ import EditablePanel from 'shared/base/editable_panel'
 
 import { $confirm } from 'shared/helpers/confirmable'
 import { alerts } from 'shared/ui/alerts'
+import { $post, $delete } from 'shared/helpers/ajax'
+import { jumpToRow, highlightRow } from 'shared/helpers/dt/utils'
 
 import { dtSDTMIGDomainEditColumns } from 'shared/helpers/dt/dt_column_collections'
 import { dtSDTMSDEditFields } from 'shared/helpers/dt/dt_field_collections'
@@ -19,7 +21,7 @@ import { dtFieldsInit } from 'shared/helpers/dt/dt_fields'
 export default class SDTMSDEditor extends EditablePanel {
 
   /**
-  * Create a SDTMSD Editor instance 
+   * Create a SDTMSD Editor instance 
    * @param {Object} params Instance parameters
    * @param {object} params.urls Must contain urls for 'data', 'update', 'newChild' and 'addChildren'
    * @param {string} params.selector JQuery selector of the target table
@@ -36,61 +38,68 @@ export default class SDTMSDEditor extends EditablePanel {
     super({
       selector,
       dataUrl: urls.data,
-      updateUrl: urls.update,
+      updateUrl: urls.updateVar,
       param: "sdtm_sponsor_domain",
       columns: dtSDTMIGDomainEditColumns(),
       fields: dtSDTMSDEditFields(),
       order: [[0, 'asc']],
-      requiresMetadata: true
+      requiresMetadata: true,
+      autoHeight: true
     }, {
       urls, onEdited
     })
 
   }
 
-
   /**
-   * Create a new child in Code List
+   * Create a blank new variable in the SDTM
    */
-  newChild() {
+  newVariable() {
 
-    // this._executeRequest({
-    //   url: this.urls.newChild,
-    //   type: 'POST',
-    //   data: {
-    //     identifier: 'SERVERIDENTIFIER'
-    //   },
-    //   callback: () => this.refresh()
-    // });
+    this._loading( true )
+    
+    $post({
+      url: this.urls.newVar,
+      done: d => {
+        
+        this._render( [d] )
+
+        // Jump to and highlight the new variable row
+        jumpToRow( this.table, d )
+        highlightRow( this.table, this._getRowFromData( 'id', d.id ) )
+
+      },
+      always: () => this._loading( false )
+    })
 
   }
 
   /**
-   * Remove or unlink item from the Code List
-   * @param {DataTable Row} dtRow Reference to the DT Row instance to be removed
+   * Remove a variable from the SDTM (if removal allowed)
+   * @param {DataTable Row} dtRow Reference to the DT Row variable to be removed
    * @requires $confirm user confirmation
    */
-  removeChild(dtRow) {
+  removeVariable(dtRow) {
 
-    if ( this._removeDisabled( dtRow.data() ) ) {
+    if ( this._removeNotAllowed( dtRow.data() ) ) {
 
       alerts.error( 'Variable is Standard and cannot be removed.' )
       return; 
 
     }
 
-
-
-    // $confirm({
-    //   subtitle: `This action will remove the Code List Item reference from this Code List.
-    //              If it is its only parent, the item will be removed from the system.`,
-    //   dangerous: true,
-    //   callback: () => this._executeRequest({
-    //                     url: childRow.data().delete_path,
-    //                     type: 'DELETE',
-    //                     callback: () => this.removeItems( childRow )
-    //                   })
-    // });
+    $confirm({
+      dangerous: true,
+      callback: () => $delete({
+                        url: this.urls.removeVar,
+                        data: {
+                          [ this.param ]: {
+                            non_standard_var_id: dtRow.data().id
+                          }
+                        },
+                        always: () => this.refresh()
+                      })
+    });
 
   }
 
@@ -110,7 +119,7 @@ export default class SDTMSDEditor extends EditablePanel {
 
     // Remove variable button click
     $tableBody.on( 'click', '.remove', e =>
-      this.removeChild( this._getRowFrom$( e.target ) )
+      this.removeVariable( this._getRowFrom$( e.target ) )
     );
 
   }
@@ -125,7 +134,7 @@ export default class SDTMSDEditor extends EditablePanel {
 
     // Add New Variable button click
     $( '#new-variable-button' ).on( 'click', () => 
-      this.newChild() 
+      this.newVariable() 
     );
 
   }
@@ -193,34 +202,6 @@ export default class SDTMSDEditor extends EditablePanel {
 
 
   /**
-   * Perform a JSON server request based on given parameters
-   * @param {string} url Url of the request
-   * @param {string} type Type of the request
-   * @param {objet} data Request data object (without strong parameter), optional
-   * @param {function} callback Function to execute on request success
-   */
-  _executeRequest({ url, type, data = {}, callback }) {
-
-    this._loading( true );
-
-    $ajax({
-      url, type, 
-      contentType: 'application/json',
-      data: JSON.stringify({ 
-        managed_concept: data 
-      }),
-      done: d => {
-
-        callback( d );
-        this.onEdited();
-
-      },
-      always: () => this._loading( false )
-    });
-
-  }
-
-  /**
    * Check if item editable - item must a custom property or not be referenced
    * @extends _editable parent implementation
    * @param {object} modifier Contains the reference to the cell being edited
@@ -234,11 +215,11 @@ export default class SDTMSDEditor extends EditablePanel {
   }
 
   /**
-   * Check if variable remove is disabled - only for 'standard' variables
+   * Check if variable remove is disallowed - only for 'standard' variables
    * @param {Object} data Variable data object to check removable 
    * @returns {boolean} True if variable is not-removable
    */
-  _removeDisabled(data) {
+  _removeNotAllowed(data) {
     return data.standard === true
   }
 
@@ -258,7 +239,7 @@ export default class SDTMSDEditor extends EditablePanel {
       // Row Remove column
       dtRowRemoveColumn({ 
         text: 'Remove variable', 
-        isDisabledFn: this._removeDisabled 
+        isDisabledFn: this._removeNotAllowed 
       }) 
     ]
 
