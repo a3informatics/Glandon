@@ -4,8 +4,8 @@
   :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomProperty
   :applies_to: http://www.example.com/A#object1
   :context:
-  - http://www.example.com/A#object1
-  :value: DDD
+  - http://www.example.com/A#context1
+  :value: Default String
   :custom_property_defined_by:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNDVkQx
     :uri: http://www.assero.co.uk/Test#CVD1
@@ -20,7 +20,7 @@
   :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomProperty
   :applies_to: http://www.example.com/A#object1
   :context:
-  - http://www.example.com/A#object1
+  - http://www.example.com/A#context1
   :value: 'false'
   :custom_property_defined_by:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNDVkQy
