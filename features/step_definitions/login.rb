@@ -33,7 +33,7 @@ if ENVIRONMENT == 'VAL'
     visit "/users/sign_in"
     if string == "Community Reader"
     fill_in "Email", :with => C_COMM_READER
-    fill_in "Password", :with => 'Changeme10?'
+    fill_in "Password", :with => 'Changeme11?'
     end 
     if string == "Curator"
     fill_in "Email", :with => C_CURATOR

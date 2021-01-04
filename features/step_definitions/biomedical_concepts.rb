@@ -52,7 +52,7 @@ When('I enter\/select the values that defines the BC') do |table|
           ip_check_tabs [:unmanaged_concept], 'bc-term-ref'
           ip_pick_unmanaged_items :unmanaged_concept, [
           { parent: "#{hash['Codelist']}", owner: 'CDISC', version: hash['Version'], identifier: "#{hash['Terminology']}" }], 'bc-term-ref', false
-          ip_submit 'bc-term-ref'
+          ip_submit 'bc-term-ref'      
           end
         end
       i = i + 1

@@ -1,6 +1,7 @@
 
 Given('Terminology version {string} is set to current') do |string|
       click_navbar_cdisc_terminology
+        wait_for_ajax(10)
         ui_table_search("history", string)
         find(".icon-context-menu").click
         context_menu_element('history', 4, string, :make_current)
@@ -49,6 +50,7 @@ end
 
 
 Then('I see {int} search results') do |int|
+  find('#main_area').scroll_to find('#searchTable')
   if int == 0 
  ui_check_table_info("searchTable", 0, 0, 0)
   end

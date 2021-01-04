@@ -33,8 +33,13 @@ When('I enter {string} in the search area click {string} to display the {string}
 end
 
 When('I enter {string} in the search area') do |string|
-         ui_child_search(string)
+         ui_table_search('children', string)
 end
+
+When('I enter {string} in the search area of the editor') do |string|
+         ui_table_search('editor', string)
+end
+
 
 When('I enter {string} in the overall search field') do |string|
          fill_in 'Overall Search', with:string

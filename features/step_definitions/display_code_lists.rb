@@ -285,6 +285,7 @@ Then('the following types of attributes for the code list is displayed:') do |ta
     end
   end
 
+ 
   def check_cell_content(table, row, col, data, icon = false)
     cell = find(:xpath, "//table[@id='#{ table }']//tbody/tr[#{ row }]/td[ #{ col }]", visible: false)
 
@@ -316,15 +317,10 @@ Then('the following types of attributes for the code list is displayed:') do |ta
       else
          check_cell_content('children', 1, 9, true) # DC stage
       end
-      if hash['EDUse'] == 'false'
-         check_cell_content('children', 1, 10, false)  # ED use
-      else
-        check_cell_content('children', 1, 10, true)  # ED use
-      end
       if hash['SDTMStage'] == 'false'
-         check_cell_content('children', 1, 11, false) # SDTM stage
+         check_cell_content('children', 1, 10, false) # SDTM stage
       else
-         check_cell_content('children', 1, 11, true) # SDTM stage
+         check_cell_content('children', 1, 10, true) # SDTM stage
       end
     end
     wait_for_ajax(20)
