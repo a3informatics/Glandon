@@ -94,10 +94,11 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
     return self unless allowed_to_update?(params)
     @parent_for_validation = parent_object
     if multiple_parents?
-      object = self.clone
+      object = self.clone(parent_object.uri)
       object.uri = object.create_uri(parent_object.uri)
-      transaction_begin
+      tx = transaction_begin
       object.update(params)
+      object.create_custom_properties(parent_object.uri, tx)
       parent_object.replace_link(:narrower, self.uri, object.uri)
       parent_object.replace_link(:refers_to, self.uri, object.uri)
       transaction_execute

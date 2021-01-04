@@ -1,0 +1,33 @@
+---
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1BWIzg2NjQ3MDRlLWIwNzgtNDk0Ni1hYzQyLWQ0ZDc0ZTgzYWUyOQ==
+  :uri: http://www.assero.co.uk/CPV#8664704e-b078-4946-ac42-d4d74e83ae29
+  :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomProperty
+  :applies_to: http://www.acme-pharma.com/A0000X/V1#A0000X_A000011
+  :context:
+  - http://www.acme-pharma.com/A0000X/V1#A0000X
+  :value: Default String
+  :custom_property_defined_by:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNDVkQx
+    :uri: http://www.assero.co.uk/Test#CVD1
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomPropertyDefinition
+    :datatype: string
+    :default: Default String
+    :label: Some String
+    :description: A description XXX
+    :custom_property_of: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1BWIzk5YTc5NzlhLTEyZDktNGU4MC04NTJiLTZjMmI0N2QzNjMzMg==
+  :uri: http://www.assero.co.uk/CPV#99a7979a-12d9-4e80-852b-6c2b47d36332
+  :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomProperty
+  :applies_to: http://www.acme-pharma.com/A0000X/V1#A0000X_A000011
+  :context:
+  - http://www.acme-pharma.com/A0000X/V1#A0000X
+  :value: 'false'
+  :custom_property_defined_by:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNDVkQy
+    :uri: http://www.assero.co.uk/Test#CVD2
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomPropertyDefinition
+    :datatype: boolean
+    :default: 'false'
+    :label: A Toggle
+    :description: A description YYY
+    :custom_property_of: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
