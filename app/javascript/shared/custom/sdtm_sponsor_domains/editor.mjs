@@ -21,7 +21,7 @@ import { dtFieldsInit } from 'shared/helpers/dt/dt_fields'
 export default class SDTMSDEditor extends EditablePanel {
 
   /**
-   * Create a SDTMSD Editor instance 
+   * Create a SDTM SD Editor instance 
    * @param {Object} params Instance parameters
    * @param {object} params.urls Must contain urls for 'data', 'update', 'newChild' and 'addChildren'
    * @param {string} params.selector JQuery selector of the target table
@@ -68,6 +68,9 @@ export default class SDTMSDEditor extends EditablePanel {
         jumpToRow( this.table, d )
         highlightRow( this.table, this._getRowFromData( 'id', d.id ) )
 
+        // On Edited callback (token extend)
+        this.onEdited()
+
       },
       always: () => this._loading( false )
     })
@@ -97,6 +100,7 @@ export default class SDTMSDEditor extends EditablePanel {
                             non_standard_var_id: dtRow.data().id
                           }
                         },
+                        done: () => this.onEdited(),
                         always: () => this.refresh()
                       })
     });
@@ -137,6 +141,18 @@ export default class SDTMSDEditor extends EditablePanel {
       this.newVariable() 
     );
 
+    // Refresh button click
+    $( '#refresh-button' ).on( 'click', () => 
+      this.refresh() 
+    );
+
+    // Help dialog button click
+    $( '#editor-help' ).on( 'click', () =>
+      new InformationDialog({
+        div: $( `#information-dialog-sdtm-edit` )
+      }).show()
+    );
+
   }
 
   /**
@@ -145,41 +161,36 @@ export default class SDTMSDEditor extends EditablePanel {
    */
   _preformatUpdateData(d) {
 
-    console.log(d);
-    // let fData = super._preformatUpdateData( d );
+    const updateData = Object.keys( d.data ).map( id =>
+      Object.assign( {}, { 
+          ...d.data[ id ], 
+          non_standard_var_id: id 
+      } )
+    )
 
-    // // If data present, the edited field is *not* a custom property 
-    // if ( d.data ) 
-    //   d.edit = { 
-    //     ...fData[0],
-    //     with_custom_props: this.handler.hasData 
-    //   }
+    d.sdtm_sponsor_domain = { 
+      ...updateData[0]
+    }
 
-    // // Provide the parent (code list) id to the server 
-    // Object.assign( d.edit, { 
-    //   parent_id: this.id
-    // });
-
-    // delete d.data;
-    // return fData;
+    delete d.data;
 
   }
 
-  // /**
-  //  * Formats the updated data returned from the server before being added to Editor
-  //  * @override for custom behavior
-  //  * @param {object} _oldData Data object sent to the server
-  //  * @param {object} newData Data returned from the server
-  //  */
-  // _postformatUpdatedData(_oldData, newData) {
+  /**
+   * Formats the updated data returned from the server before being added to Editor
+   * @override for custom behavior
+   * @param {object} _oldData Data object sent to the server
+   * @param {object} newData Data returned from the server
+   */
+  _postformatUpdatedData(_oldData, newData) {
 
-  //   // Merge and update edited row data
-  //   const editedRow = this.table.row( this.editor.modifier().row ),
-  //         mergedData = Object.assign( {}, editedRow.data(), newData[0] );
+    // Merge and update edited row data
+    const editedRow = this.table.row( this.editor.modifier().row ),
+          mergedData = Object.assign( {}, editedRow.data(), newData );
 
-  //   editedRow.data( mergedData );
+     editedRow.data( mergedData );
 
-  // }
+  }
 
   /**
    * Loads additional metadata - options for Editor select fields
@@ -209,8 +220,10 @@ export default class SDTMSDEditor extends EditablePanel {
    */
   _editable(modifier) {
 
-    const { standard } = this.table.row( modifier.row ).data();
-    return super._editable( modifier ) || !standard;
+    const { standard } = this.table.row( modifier.row ).data(),
+          fieldName = this.table.column( modifier.column ).dataSrc()
+
+    return standard === false || fieldName === 'used';
 
   }
 
