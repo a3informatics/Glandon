@@ -30,4 +30,8 @@ module IsoManagedHelpers
     Thesaurus::ManagedConcept.find_minimum(item.uri)
   end
 
+  def self.make_item_standard(item)
+    item.update_status({registration_status: "Standard", previous_state: "Incomplete"})
+  end
+
 end

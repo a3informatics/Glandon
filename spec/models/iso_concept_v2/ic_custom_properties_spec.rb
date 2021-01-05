@@ -204,7 +204,7 @@ describe IsoConceptV2::IcCustomProperties do
 
   end
 
-  describe "create custom properties" do
+  describe "create default custom properties" do
 
     before :each do
       data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
@@ -217,15 +217,15 @@ describe IsoConceptV2::IcCustomProperties do
 
     it "simple case" do
       object = IsoConceptV2.create(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
-      results = object.create_custom_properties
+      results = object.create_default_custom_properties
       results = object.load_custom_properties
-      check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_1a.yaml")
+      check_file_actual_expected(results.to_h, sub_dir, "create_default_custom_properties_expected_1a.yaml")
       create_definition_1
       create_definition_2
       results = IsoConceptV2.find_custom_property_definitions
-      results = object.create_custom_properties
+      results = object.create_default_custom_properties
       results = object.load_custom_properties
-      check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_1b.yaml")
+      check_file_actual_expected(results.to_h, sub_dir, "create_default_custom_properties_expected_1b.yaml")
     end
 
     it "with context case" do
@@ -233,9 +233,9 @@ describe IsoConceptV2::IcCustomProperties do
       object = IsoConceptV2.create(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
       create_definition_1
       create_definition_2
-      results = object.create_custom_properties(context)
+      results = object.create_default_custom_properties(context)
       results = object.load_custom_properties(context)
-      check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_2.yaml")
+      check_file_actual_expected(results.to_h, sub_dir, "create_default_custom_properties_expected_2.yaml")
     end
 
     it "with context and transaction case" do
@@ -244,10 +244,96 @@ describe IsoConceptV2::IcCustomProperties do
       object = IsoConceptV2.create(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
       create_definition_1
       create_definition_2
-      results = object.create_custom_properties(context, tx)
-      check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_3a.yaml")
+      results = object.create_default_custom_properties(context, tx)
+      check_file_actual_expected(results.to_h, sub_dir, "create_default_custom_properties_expected_3a.yaml")
       results = object.load_custom_properties(context)
-      check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_3b.yaml")
+      check_file_actual_expected(results.to_h, sub_dir, "create_default_custom_properties_expected_3b.yaml")
+    end
+
+  end
+
+  describe "create custom properties" do
+
+    before :each do
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
+      load_files(schema_files, data_files)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    after :each do
+    end
+
+    it "simple case, defaults" do
+      object = IsoConceptV2.create(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
+      results = object.create_custom_properties
+      results = object.load_custom_properties
+      check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_1a.yaml")
+      create_definition_1
+      create_definition_2
+      results = IsoConceptV2.find_custom_property_definitions
+      results = object.create_default_custom_properties
+      result = object.clone
+      result.uri = Uri.new(uri: "http://www.example.com/A#object2")
+      results = result.create_custom_properties
+      check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_1b.yaml")
+    end
+
+    it "simple case" do
+      object = IsoConceptV2.create(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
+      create_definition_1
+      create_definition_2
+      object.create_default_custom_properties
+      results = object.load_custom_properties
+      results.items.first.update(value: "DDD")
+      results = object.load_custom_properties   
+      result = object.clone
+      result.uri = Uri.new(uri: "http://www.example.com/A#object2")
+      results = result.create_custom_properties
+      check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_2.yaml")
+    end
+
+    it "with context case, defaults" do
+      context = Uri.new(uri: "http://www.example.com/A#context1")
+      object = IsoConceptV2.create(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
+      create_definition_1
+      create_definition_2
+      object.create_default_custom_properties(context)
+      object.load_custom_properties(context)
+      result = object.clone(context)
+      result.uri = Uri.new(uri: "http://www.example.com/A#object2")
+      results = result.create_custom_properties(context)
+      check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_3.yaml")
+    end
+
+    it "with context case" do
+      context = Uri.new(uri: "http://www.example.com/A#context1")
+      object = IsoConceptV2.create(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
+      create_definition_1
+      create_definition_2
+      object.create_default_custom_properties(context)
+      results = object.load_custom_properties(context)
+      results.items.first.update(value: "DDD")
+      results = object.load_custom_properties   
+      result = object.clone(context)
+      result.uri = Uri.new(uri: "http://www.example.com/A#object2")
+      results = result.create_custom_properties(context)
+      check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_4.yaml", write_file: true)
+    end
+
+    it "with context and transaction case" do
+      tx = Sparql::Transaction.new
+      context = Uri.new(uri: "http://www.example.com/A#context1")
+      object = IsoConceptV2.create(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
+      create_definition_1
+      create_definition_2
+      object.create_default_custom_properties(context)
+      results = object.load_custom_properties(context)
+      results.items.first.update(value: "TX TX TX")
+      results = object.load_custom_properties   
+      result = object.clone(context)
+      result.uri = Uri.new(uri: "http://www.example.com/A#object2")
+      results = result.create_custom_properties(context, tx)
+      check_file_actual_expected(results.to_h, sub_dir, "create_custom_properties_expected_5.yaml", write_file: true)
     end
 
   end

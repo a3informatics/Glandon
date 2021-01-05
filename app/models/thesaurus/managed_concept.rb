@@ -822,7 +822,9 @@ private
     parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}"
     parts << "{ #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} (th:isOrdered*/th:members*/th:memberNext*) ?s . ?s ?p ?o }"
-    parts << "{ #{self.uri.to_ref} th:narrower ?s . ?s ?p ?o . FILTER NOT EXISTS { ?e th:narrower ?s . }}"
+    parts << "{{ SELECT ?s (count(?e) as ?count) WHERE { #{self.uri.to_ref} th:narrower ?s . ?e th:narrower ?s} GROUP BY ?s }
+      FILTER (?count = 1)
+      ?s ?p ?o }"
     parts << "{{ SELECT ?s (count(?o) as ?count) WHERE { ?s isoC:appliesTo ?c . ?s isoC:context #{self.uri.to_ref} . ?s isoC:context ?o } GROUP BY ?s }
       FILTER (?count = 1)
       { ?s isoC:context #{self.uri.to_ref} } UNION { ?s isoC:context ?c }
