@@ -311,7 +311,7 @@ describe SdtmSponsorDomainsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@instance, @user)
       sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
-      put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {description: "ABC", non_standard_var_id: sponsor_variable.id}}
+      put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", non_standard_var_id: sponsor_variable.id}}
       actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_1.yaml", equate_method: :hash_equal)
     end
