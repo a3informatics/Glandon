@@ -1,0 +1,15 @@
+<%= render layout: "shared/information_dialog", :locals => {id: "information-dialog-sdtm-edit", title: title, wide: true} do %>
+  
+  Click on <button class="btn btn-xs white">Refresh</button> to reload the data in the table. <br/>
+  To create a <span class="font-regular">new</span> Sponsor Variable in this SDTM Sponsor Domain, click on <button class="btn btn-xs green">New Variable</button>. <br/>
+  To remove a Sponsor Variable from the SDTM Sponsor Domain, click on <span class="icon-trash text-accent-2"></span>. <br/>
+  (<i>Only Sponsor Variables can be edited or removed. Standard Variables may have their 'Used' property changed.</i>)
+  <hr>
+
+  When hovering mouse over a cell and the <span class="icon-edit text-prim-light"></span> icon appears, that means the field is <span class="font-regular">inline editable</span>.
+  <br/><br/>
+
+  <%= render "shared/help_dialogs/shared/text_edit_help" %>
+  Press Enter or click away from the field to submit your choice in a Select with options field.
+
+<% end %>
