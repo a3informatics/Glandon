@@ -325,6 +325,20 @@ describe SdtmSponsorDomainsController do
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_2.yaml", equate_method: :hash_equal)
     end
 
+    it "update non-standard variable, bug" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(@instance, @user)
+      
+      sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      post :add_non_standard_variable, params: {id: sdtm_sponsor_domain.id}
+    
+      # Update non standard var 
+      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_AEXXX42"))
+      put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", non_standard_var_id: sponsor_variable.id}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_variable_expected_3.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "delete variable action" do
