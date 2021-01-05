@@ -332,7 +332,7 @@ describe SdtmSponsorDomainsController do
       sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
       post :add_non_standard_variable, params: {id: sdtm_sponsor_domain.id}
     
-      # Update non standard var 
+      # Update non standard var field other than 'name' 
       sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_AEXXX42"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
