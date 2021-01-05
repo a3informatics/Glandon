@@ -48,7 +48,7 @@ function dtTrueFalseField() {
      */
     create(conf) {
       conf._enabled = true;
-
+      
       // Render the true / false icons
       conf._input = $(
         `<div>` +
@@ -99,6 +99,8 @@ function dtTrueFalseField() {
 
         if ( conf._enabled )
           $(iconSelected, conf._input).get(0).focus();
+        
+        $(icon, conf._input).toggleClass( 'disabled', !conf._enabled );
 
       });
 
@@ -129,7 +131,24 @@ function dtTrueFalseField() {
         $(iconTrue, conf._input).addClass('selected text-link')
       else
         $(iconFalse, conf._input).addClass('selected text-accent-2')
+    },
+
+    /**
+     * Disable field
+     * @param {Object} conf DT field configuration object
+     */
+    disable(conf) {
+      conf._enabled = false
+    },
+
+    /**
+     * Enable field
+     * @param {Object} conf DT field configuration object
+     */
+    enable(conf) {
+      conf._enabled = true
     }
+
   }
 };
 
