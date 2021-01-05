@@ -37,6 +37,7 @@ end
 
 When('I edit the following properties for {string}:') do |string, table|
   ui_table_search('editor',string)
+pause
      table.hashes.each do |hash|
       ui_editor_select_by_location(1, 3)
       ui_editor_fill_inline 'preferred_term', "#{hash['PreferredTerm']}\n"

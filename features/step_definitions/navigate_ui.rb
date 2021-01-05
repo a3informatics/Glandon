@@ -90,8 +90,8 @@ When('I click {string} in context menu for {string}') do |string, string2|
  end
 
  When('I click Edit in context menu for the latest version of the {string} code list') do |string|
-  ui_table_search("history", "Incomplete")
-  context_menu_element("history", 5, string, :edit)
+  #ui_table_search("history", "Incomplete")
+  context_menu_element("history", 5, string, :edit, 1)
     wait_for_ajax(20)
 end
 
@@ -164,7 +164,7 @@ end
 
 When('I click {string} button') do |string|
 	click_on string
-  wait_for_ajax(20)
+  wait_for_ajax(30)
 end
 
 When('I click "Submit and proceed/Proceed"') do

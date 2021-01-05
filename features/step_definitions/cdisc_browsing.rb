@@ -202,7 +202,7 @@ Then('a PDF report for C-code: {string} is generated and contains the {int} entr
 
    new_window = window_opened_by { click_link 'PDF Report' }
    within_window new_window do
-      sleep 10
+      sleep 20
       page.execute_script "window.close();"
      end
      filename = "#{Rails.root}/cucumber-report/downloads/CDISC_CL_#{string}.pdf"
@@ -220,7 +220,7 @@ Then('a PDF report is generated and contains the {int} entries in the Submission
 
   new_window = window_opened_by { page.find("#report").find(:xpath, '..').click }
   within_window new_window do
-    sleep 10
+    sleep 20
     page.execute_script "window.close();"
   end
    filename = "#{Rails.root}/cucumber-report/downloads/CDISC_submission.pdf"

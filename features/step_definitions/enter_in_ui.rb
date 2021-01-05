@@ -34,58 +34,60 @@ end
 
 When('I enter {string} in the search area') do |string|
          ui_table_search('children', string)
+             wait_for_ajax(20)
 end
 
 When('I enter {string} in the search area of the editor') do |string|
          ui_table_search('editor', string)
+             wait_for_ajax(20)
 end
 
 
 When('I enter {string} in the overall search field') do |string|
          fill_in 'Overall Search', with:string
          find('#overall_search').send_keys(:return)
-         wait_for_ajax(20)
+         wait_for_ajax(40)
 end
 
 When('I enter {string} in the Code List search field') do |string|
          fill_in 'searchTable_csearch_parent_identifier', with:string
          find('#searchTable_csearch_parent_identifier').send_keys(:return)
-         wait_for_ajax(20)
+         wait_for_ajax(40)
 end
 When('I enter {string} in the Code List Name search field') do |string|
          fill_in 'searchTable_csearch_parent_label', with:string
          find('#searchTable_csearch_parent_label').send_keys(:return)
-         wait_for_ajax(20)
+         wait_for_ajax(40)
 end
 When('I enter {string} in the Item search field') do |string|
          fill_in 'searchTable_csearch_identifier', with:string
          find('#searchTable_csearch_identifier').send_keys(:return)
-         wait_for_ajax(20)
+         wait_for_ajax(40)
 end
 When('I enter {string} in the Submission Value search field') do |string|
          fill_in 'searchTable_csearch_notation', with:string
          find('#searchTable_csearch_notation').send_keys(:return)
-         wait_for_ajax(20)
+         wait_for_ajax(40)
 end
 When('I enter {string} in the Preferred Term search field') do |string|
          fill_in 'searchTable_csearch_preferred_term', with:string
          find('#searchTable_csearch_preferred_term').send_keys(:return)
-         wait_for_ajax(20)
+         wait_for_ajax(40)
 end
 When('I enter {string} in the Synonym search field') do |string|
          fill_in 'searchTable_csearch_synonym', with:string
          find('#searchTable_csearch_synonym').send_keys(:return)
-         wait_for_ajax(20)
+         wait_for_ajax(40)
 end
 When('I enter {string} in the Definition search field') do |string|
          fill_in 'searchTable_csearch_definition', with:string
          find('#searchTable_csearch_definition').send_keys(:return)
-         wait_for_ajax(20)
+         wait_for_ajax(40)
 end
 When('I enter {string} in the Tags search field') do |string|
          fill_in 'searchTable_csearch_tags', with:string
          find('#searchTable_csearch_tags').send_keys(:return)
-         wait_for_ajax(20)
+         wait_for_ajax(40)
 end
 
 

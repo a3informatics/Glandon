@@ -21,6 +21,7 @@ end
 
 When ('I enter {string} in the Code List') do |string|
    ui_term_column_search(:code_list, string)
+   wait_for_ajax(20)
 end
 
 When ('I enter {string} in the Definition') do |string|
