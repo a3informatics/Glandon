@@ -125,9 +125,14 @@ class SdtmSponsorDomainsController < ManagedItemsController
     non_standard_variable = non_standard_variable.update_with_clone(update_var_params, sdtm_sponsor_domain)
     if non_standard_variable.errors.empty?
       AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, sdtm_sponsor_domain.audit_message(:updated)) if @lock.first_update?
-      render :json => {data: sdtm_sponsor_domain.get_children.find {|var| var[:id] == non_standard_variable.id}}, :status => 200
+      result = sdtm_sponsor_domain.get_children.find {|var| var[:id] == non_standard_variable.id}
+      render :json => {data: [result]}, :status => 200
     else
-      render :json => {:fieldErrors => format_editor_errors(non_standard_variable.errors)}, :status => 422
+      if non_standard_variable.errors.has_key? :base
+        render :json => {:errors => non_standard_variable.errors.full_messages}, :status => 422 
+      else 
+        render :json => {:fieldErrors => format_editor_errors(non_standard_variable.errors)}, :status => 422
+      end
     end
   end
   
@@ -146,7 +151,7 @@ private
   end
 
   def update_var_params
-    params.require(:sdtm_sponsor_domain).permit(:non_standard_var_id, :name, :comment, :notes, :description, :compliance, :typed_as, :classified_as, :used)
+    params.require(:sdtm_sponsor_domain).permit(:non_standard_var_id, :used, :name, :label, :typed_as, :format, :classified_as, :notes, :compliance)
   end
 
   # Get the ig domain id from the params
