@@ -20,6 +20,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
   def show
     @sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(protect_from_bad_id(params))
     @show_path = show_data_sdtm_sponsor_domain_path(@sdtm_sponsor_domain)
+    @edit_tags_path = path_for(:edit_tags, @sdtm_sponsor_domain)
     @close_path = history_sdtm_sponsor_domains_path(:sdtm_sponsor_domain => {identifier: @sdtm_sponsor_domain.has_identifier.identifier, scope_id: @sdtm_sponsor_domain.scope})
   end
 
@@ -35,6 +36,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
       format.html do
         return true unless edit_lock(@sdtm_sponsor_domain)
         @sdtm_sponsor_domain = @edit.item
+        @edit_tags_path = path_for(:edit_tags, @sdtm_sponsor_domain)
         @close_path = history_sdtm_sponsor_domains_path({ sdtm_sponsor_domain:
             { identifier: @sdtm_sponsor_domain.scoped_identifier, scope_id: @sdtm_sponsor_domain.scope } })
       end
@@ -173,6 +175,8 @@ private
         return sdtm_sponsor_domain_path(object)
       when :edit
         return edit_sdtm_sponsor_domain_path(object)
+      when :edit_tags
+        return object.supporting_edit? ? edit_tags_iso_concept_path(id: object.id) : ""
       else
         return ""
     end
