@@ -19,15 +19,6 @@
     To see SDTM Sponsor Domain's respective History page, click on it.
   <% end %>
 
-  <% content_for :actions do %>
-
-    <% if policy(SdtmIgDomain).new? %>
-      <a href="#" class="btn medium green" id="new_form">
-        <span class="icon-plus text-tiny"></span>&nbsp; New SDTM Sponsor Domain
-      </a>
-    <% end %>
-  <% end %>
-
   <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "SDTM Sponsor Domains", url: sdtm_sponsor_domains_path } %>
 
 </div>
