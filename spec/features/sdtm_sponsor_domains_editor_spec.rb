@@ -22,11 +22,15 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      Token.restore_timeout
+      Token.delete_all
       ua_create
     end
 
     after :all do
       ua_destroy
+      Token.restore_timeout
+      Token.delete_all
     end
 
     before :each do
@@ -154,7 +158,64 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
       ui_editor_check_value 2, 6, "XY"
     end
 
-    it "allows to view editor help dialog" 
+    it "allows to view editor help dialog" do
+      edit_sdtm_sd 'SDTM Sponsor Domain', '0.1.0'
+      
+      find('#editor-help').click
+
+      ui_in_modal do
+        expect(page).to have_content 'How to use SDTM Sponsor Domain Editor'
+        click_on 'Dismiss'
+      end
+    end
+
+    it "token timers, warnings, extension and expiration" do
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
+      edit_sdtm_sd 'SDTM Sponsor Domain', '0.1.0'
+
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+
+      expect( find('#imh_header')[:class] ).to include 'warning'
+
+      find( '#timeout' ).click
+      wait_for_ajax 10
+
+      expect( find('#imh_header')[:class] ).not_to include 'warning'
+
+      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
+
+      expect( find('#imh_header')[:class] ).to include 'danger'
+
+      sleep 28
+
+      expect( find('#timeout')[:class] ).to include 'disabled'
+      expect( find('#imh_header')[:class] ).not_to include 'danger'
+
+      Token.restore_timeout
+    end
+
+    it "token timer, expires edit lock, prevents changes" do
+      Token.set_timeout(2)
+      edit_sdtm_sd 'SDTM Sponsor Domain', '0.1.0'
+
+      sleep 3
+
+      # Prevents changes
+      click_on 'New Variable'
+      wait_for_ajax 10 
+      expect(page).to have_content 'The edit lock has timed out.'
+      
+      Token.restore_timeout
+    end
+
+    it "releases edit lock on page leave" do
+      edit_sdtm_sd 'SDTM Sponsor Domain', '0.1.0'
+
+      expect(Token.all.count).to eq(1)
+      click_link 'Return'
+      wait_for_ajax 10
+      expect(Token.all.count).to eq(0)
+    end
 
   end
 
