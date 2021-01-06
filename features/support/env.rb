@@ -76,31 +76,35 @@ Before do
     log('loading terminology and users')
     load_files(schema_files, [])
     
-    load_data_file_into_triple_store("mdr_identification.ttl")
+    #load_data_file_into_triple_store("mdr_identification.ttl")
     load_test_file_into_triple_store("forms/FN000150.ttl")
     load_data_file_into_triple_store("biomedical_concept_templates.ttl")
     #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     #full_path = Rails.root.join("db/load/")
     #load_file_into_triple_store(full_path)
-    load_data_file_into_triple_store("complex_datatypes.ttl")
-    #load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+
+    load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
-    # load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
-    # load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
 
-    #load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
-    # load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+    #load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
     # load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
-    #load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+    load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
 
     load_cdisc_term_versions(1..LST_VERSION)
     load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v47.ttl")
-     load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v52.ttl")
-      load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v53.ttl")
-       load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v65.ttl")
-        load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v66.ttl")
+    load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v52.ttl")
+    load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v53.ttl")
+    load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v65.ttl")
+    load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v66.ttl")
+
+    load_data_file_into_triple_store("complex_datatypes.ttl")
+    load_data_file_into_triple_store("canonical_references.ttl")
+    
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object

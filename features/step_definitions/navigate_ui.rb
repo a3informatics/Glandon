@@ -91,13 +91,13 @@ When('I click {string} in context menu for {string}') do |string, string2|
 
  When('I click Edit in context menu for the latest version of the {string} code list') do |string|
   #ui_table_search("history", "Incomplete")
-  context_menu_element("history", 5, string, :edit, 1)
+  context_menu_element_v2('history', 1, :edit)
+  
     wait_for_ajax(20)
 end
 
 When('I click Show in context menu for the latest version of the {string} code list') do |string|
-  ui_table_search("history", "Incomplete")
-  context_menu_element("history", 5, string, :show)
+  context_menu_element_v2('history', 1, :show)
     wait_for_ajax(20)
 end
 
@@ -163,8 +163,12 @@ When /[hH]ome/ do
 end
 
 When('I click {string} button') do |string|
+  if string == 'New item'
+    find('#new-item-button').click
+  else
 	click_on string
   wait_for_ajax(30)
+end
 end
 
 When('I click "Submit and proceed/Proceed"') do
@@ -194,7 +198,7 @@ When('I access the created {string}, c-code:{string} by right-clicking and open 
 
   find("#created_div a", text: string).click(:command, :shift)
   wait_for_ajax(20)
-pause
+
   page.switch_to_window { title == tit }
   wait_for_ajax(20)
 
