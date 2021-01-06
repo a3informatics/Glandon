@@ -12,7 +12,9 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
 
   validates_with Validator::Field, attribute: :name, method: :valid_sdtm_variable_name?
   validate :correct_prefix?
-  validate :duplicate_name_in_domain?
+  #validate :duplicate_name_in_domain?
+  validate :unique_name_in_domain?
+
 
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #
@@ -34,7 +36,7 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
   end
 
   def set_name(var_name, domain)
-    @parent_for_validation= domain
+    #@parent_for_validation= domain
     self.name = var_name
   end
 
@@ -51,9 +53,17 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
   # duplicate_name_in_domain ? Check if the variable name is unique in the given domain
   #
   # @return [Boolean] true if valid, false otherwise
-  def duplicate_name_in_domain?
+  #   def duplicate_name_in_domain?
+  #     return true if @parent_for_validation.nil? # Don't validate if we don't know about a domain
+  #     @parent_for_validation.duplicate_name_in_domain?(self)
+  #   end
+
+  # unique_name_in_domain ? Check if the variable name is unique in the given domain
+  #
+  # @return [Boolean] true if valid, false otherwise
+  def unique_name_in_domain?
     return true if @parent_for_validation.nil? # Don't validate if we don't know about a domain
-    @parent_for_validation.duplicate_name_in_domain?(self)
+    @parent_for_validation.unique_name_in_domain?(self)
   end
 
   # Toggle with clone. Toggles Used attribute, clone if there are multiple parents
