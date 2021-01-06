@@ -122,7 +122,8 @@ class SdtmSponsorDomainsController < ManagedItemsController
     sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
     return true unless check_lock_for_item(sdtm_sponsor_domain)
     non_standard_variable = SdtmSponsorDomain::Var.find_full(update_var_params[:non_standard_var_id])
-    non_standard_variable = non_standard_variable.update_with_clone(update_var_params, sdtm_sponsor_domain)
+    amended_params = ids_to_uris(update_var_params, [:typed_as, :classified_as, :compliance])
+    non_standard_variable = non_standard_variable.update_with_clone(amended_params, sdtm_sponsor_domain)
     if non_standard_variable.errors.empty?
       AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, sdtm_sponsor_domain.audit_message(:updated)) if @lock.first_update?
       result = sdtm_sponsor_domain.get_children.find {|var| var[:id] == non_standard_variable.id}

@@ -63,6 +63,15 @@ class ApplicationController < ActionController::Base
     params[:id]
   end
 
+  def ids_to_uris(params, keys)
+    new_params = params.dup
+    keys.each do |key|
+      next unless new_params.key?(key)
+      new_params[key] = Uri.new(id: new_params[key])
+    end
+    new_params
+  end
+
   # Convert triples to a string
   # @todo Move to a better location?
   def to_turtle(triples)
