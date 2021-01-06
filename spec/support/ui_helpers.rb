@@ -523,6 +523,10 @@ module UiHelpers
     ui_navbar_click('main_nav_c')
   end
 
+  def click_navbar_sdtm_sponsor_domain
+    ui_navbar_click('main_nav_ssd')
+  end
+
 	#ADaM
 	def click_navbar_adam_ig
     ui_navbar_click('main_nav_aig')
