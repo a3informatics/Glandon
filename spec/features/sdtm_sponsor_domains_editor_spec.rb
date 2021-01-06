@@ -9,7 +9,7 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
   include WaitForAjaxHelper
   include EditorHelpers
 
-  describe "Edit SDTM Sponsor Domain", :type => :feature, js:true do
+  describe "Edit SDTM Sponsor Domain, Incomplete", :type => :feature, js:true do
 
     before :all do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
@@ -220,7 +220,7 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
   end
 
   def edit_sdtm_sd(identifier, version)
-    click_navbar_sdtm_sponsor_domain
+    click_navbar_sdtm_sponsor_domains
     wait_for_ajax 10
     find(:xpath, "//tr[contains(.,'#{ identifier }')]/td/a").click
     wait_for_ajax 10

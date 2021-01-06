@@ -37,7 +37,7 @@ describe "SDTM Sponsor Domains", :type => :feature do
     end
 
     it "allows access to index page (REQ-MDR-MIT-015)" do
-      click_navbar_sdtm_sponsor_domain
+      click_navbar_sdtm_sponsor_domains
       wait_for_ajax 10
       expect(page).to have_content 'Index: SDTM Sponsor Domains'
       ui_check_table_info("index", 1, 1, 1)
@@ -46,7 +46,7 @@ describe "SDTM Sponsor Domains", :type => :feature do
     end
 
     it "allows the history page to be viewed" do
-      click_navbar_sdtm_sponsor_domain
+      click_navbar_sdtm_sponsor_domains
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'SDTM Sponsor Domain')]/td/a", :text => 'History').click
       wait_for_ajax 10
@@ -56,7 +56,7 @@ describe "SDTM Sponsor Domains", :type => :feature do
     end
 
     it "history allows the show page to be viewed (REQ-MDR-BC-010)" do
-      click_navbar_sdtm_sponsor_domain
+      click_navbar_sdtm_sponsor_domains
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'SDTM Sponsor Domain')]/td/a", :text => 'History').click
       wait_for_ajax 10
