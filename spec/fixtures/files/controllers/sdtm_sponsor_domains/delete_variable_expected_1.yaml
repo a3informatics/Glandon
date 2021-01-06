@@ -7,6 +7,7 @@
   :standard: true
   :label: Study Identifier
   :name: STUDYID
+  :ct_and_format: ''
   :format: ''
   :description: Unique identifier for a study.
   :used: true
@@ -26,6 +27,7 @@
   :standard: true
   :label: Domain Abbreviation
   :name: DOMAIN
+  :ct_and_format: ''
   :format: ''
   :description: Two-character abbreviation for the domain.
   :used: true
@@ -45,6 +47,7 @@
   :standard: true
   :label: Unique Subject Identifier
   :name: USUBJID
+  :ct_and_format: ''
   :format: ''
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
@@ -65,6 +68,7 @@
   :standard: true
   :label: Sequence Number
   :name: AESEQ
+  :ct_and_format: ''
   :format: ''
   :description: Sequence Number given to ensure uniqueness of subject records within
     a domain. May be any valid number.
@@ -85,6 +89,7 @@
   :standard: true
   :label: Group ID
   :name: AEGRPID
+  :ct_and_format: ''
   :format: ''
   :description: Used to tie together a block of related records in a single domain
     for a subject.
@@ -105,6 +110,7 @@
   :standard: true
   :label: Reference ID
   :name: AEREFID
+  :ct_and_format: ''
   :format: ''
   :description: Internal or external identifier such as a serial number on an SAE
     reporting form
@@ -125,6 +131,7 @@
   :standard: true
   :label: Sponsor-Defined Identifier
   :name: AESPID
+  :ct_and_format: ''
   :format: ''
   :description: 'Sponsor-defined identifier. It may be pre-printed on the CRF as an
     explicit line identifier or defined in the sponsor''s operational database. Example:
@@ -146,6 +153,7 @@
   :standard: true
   :label: Reported Term for the Adverse Event
   :name: AETERM
+  :ct_and_format: ''
   :format: ''
   :description: Verbatim name of the event.
   :used: true
@@ -165,6 +173,7 @@
   :standard: true
   :label: Modified Reported Term
   :name: AEMODIFY
+  :ct_and_format: ''
   :format: ''
   :description: If AETERM is modified to facilitate coding, then AEMODIFY will contain
     the modified text.
@@ -185,6 +194,7 @@
   :standard: true
   :label: Dictionary-Derived Term
   :name: AEDECOD
+  :ct_and_format: ''
   :format: ''
   :description: Dictionary-derived text description of AETERM or AEMODIFY. Equivalent
     to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
@@ -207,6 +217,7 @@
   :standard: true
   :label: Category for Adverse Event
   :name: AECAT
+  :ct_and_format: ''
   :format: ''
   :description: 'Used to define a category of related records. Example: BLEEDING,
     NEUROPSYCHIATRIC.'
@@ -227,6 +238,7 @@
   :standard: true
   :label: Subcategory for Adverse Event
   :name: AESCAT
+  :ct_and_format: ''
   :format: ''
   :description: 'A further categorization of adverse event. Example: NEUROLOGIC.'
   :used: true
@@ -246,7 +258,8 @@
   :standard: true
   :label: Pre-Specified Adverse Event
   :name: AEPRESP
-  :format: "(NY)"
+  :ct_and_format: "(NY)"
+  :format: ''
   :description: A value of 'Y' indicates that this adverse event was pre-specified
     on the CRF. Values are null for spontaneously reported events (i.e., those collected
     as free-text verbatim terms)
@@ -267,6 +280,7 @@
   :standard: true
   :label: Body System or Organ Class
   :name: AEBODSYS
+  :ct_and_format: ''
   :format: ''
   :description: Dictionary derived. Body system or organ class used by the sponsor
     from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary
@@ -289,7 +303,8 @@
   :standard: true
   :label: Location of Event
   :name: AELOC
-  :format: "(LOC)"
+  :ct_and_format: "(LOC)"
+  :format: ''
   :description: Describes anatomical location relevant for the event (e.g., LEFT ARM
     for skin rash).
   :used: true
@@ -309,7 +324,8 @@
   :standard: true
   :label: Severity/Intensity
   :name: AESEV
-  :format: "(AESEV)"
+  :ct_and_format: "(AESEV)"
+  :format: ''
   :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
     SEVERE.'
   :used: true
@@ -329,7 +345,8 @@
   :standard: true
   :label: Serious Event
   :name: AESER
-  :format: "(NY)"
+  :ct_and_format: "(NY)"
+  :format: ''
   :description: Is this a serious event?
   :used: true
   :compliance:
@@ -348,7 +365,8 @@
   :standard: true
   :label: Action Taken with Study Treatment
   :name: AEACN
-  :format: "(ACN)"
+  :ct_and_format: "(ACN)"
+  :format: ''
   :description: 'Describes changes to the study treatment as a result of the event.
     AEACN is specifically for the relationship to study treatment. AEACNOTH is for
     actions unrelated to dose adjustments of study treatment. Examples of AEACN values
@@ -371,6 +389,7 @@
   :standard: true
   :label: Other Action Taken
   :name: AEACNOTH
+  :ct_and_format: ''
   :format: ''
   :description: 'Describes other actions taken as a result of the event that are unrelated
     to dose adjustments of study treatment. Usually reported as free text. Example:
@@ -392,6 +411,7 @@
   :standard: true
   :label: Causality
   :name: AEREL
+  :ct_and_format: ''
   :format: ''
   :description: Records the investigator's opinion as to the causality of the event
     to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED,
@@ -414,6 +434,7 @@
   :standard: true
   :label: Relationship to Non-Study Treatment
   :name: AERELNST
+  :ct_and_format: ''
   :format: ''
   :description: 'Records the investigator''s opinion as to whether the event may have
     been due to a treatment other than study drug. May be reported as free text. Example:
@@ -435,6 +456,7 @@
   :standard: true
   :label: Pattern of Adverse Event
   :name: AEPATT
+  :ct_and_format: ''
   :format: ''
   :description: 'Used to indicate the pattern of the event over time. Examples: INTERMITTENT,
     CONTINUOUS, SINGLE EVENT.'
@@ -455,7 +477,8 @@
   :standard: true
   :label: Outcome of Adverse Event
   :name: AEOUT
-  :format: "(OUT)"
+  :ct_and_format: "(OUT)"
+  :format: ''
   :description: Description of the outcome of an event.
   :used: true
   :compliance:
@@ -474,7 +497,8 @@
   :standard: true
   :label: Involves Cancer
   :name: AESCAN
-  :format: "(NY)"
+  :ct_and_format: "(NY)"
+  :format: ''
   :description: Was the serious event associated with the development of cancer?
   :used: true
   :compliance:
@@ -493,7 +517,8 @@
   :standard: true
   :label: Congenital Anomaly or Birth Defect
   :name: AESCONG
-  :format: "(NY)"
+  :ct_and_format: "(NY)"
+  :format: ''
   :description: Was the serious event associated with congenital anomaly or birth
     defect?
   :used: true
@@ -513,7 +538,8 @@
   :standard: true
   :label: Persist or Signif Disability/Incapacity
   :name: AESDISAB
-  :format: "(NY)"
+  :ct_and_format: "(NY)"
+  :format: ''
   :description: Did the serious event result in persistent or significant disability/incapacity?
   :used: true
   :compliance:
@@ -532,7 +558,8 @@
   :standard: true
   :label: Results in Death
   :name: AESDTH
-  :format: "(NY)"
+  :ct_and_format: "(NY)"
+  :format: ''
   :description: Did the serious event result in death?
   :used: true
   :compliance:
@@ -551,7 +578,8 @@
   :standard: true
   :label: Requires or Prolongs Hospitalization
   :name: AESHOSP
-  :format: "(NY)"
+  :ct_and_format: "(NY)"
+  :format: ''
   :description: Did the serious event require or prolong hospitalization?
   :used: true
   :compliance:
@@ -570,7 +598,8 @@
   :standard: true
   :label: Is Life Threatening
   :name: AESLIFE
-  :format: "(NY)"
+  :ct_and_format: "(NY)"
+  :format: ''
   :description: Was the serious event life threatening?
   :used: true
   :compliance:
@@ -589,7 +618,8 @@
   :standard: true
   :label: Occurred with Overdose
   :name: AESOD
-  :format: "(NY)"
+  :ct_and_format: "(NY)"
+  :format: ''
   :description: Did the serious event occur with an overdose?
   :used: true
   :compliance:
@@ -608,7 +638,8 @@
   :standard: true
   :label: Other Medically Important Serious Event
   :name: AESMIE
-  :format: "(NY)"
+  :ct_and_format: "(NY)"
+  :format: ''
   :description: Do additional categories for seriousness apply?
   :used: true
   :compliance:
@@ -627,7 +658,8 @@
   :standard: true
   :label: Concomitant or Additional Trtmnt Given
   :name: AECONTRT
-  :format: "(NY)"
+  :ct_and_format: "(NY)"
+  :format: ''
   :description: Was another treatment given because of the occurrence of the event?
   :used: true
   :compliance:
@@ -646,6 +678,7 @@
   :standard: true
   :label: Standard Toxicity Grade
   :name: AETOXGR
+  :ct_and_format: ''
   :format: ''
   :description: Toxicity grade according to a standard toxicity scale such as Common
     Terminology Criteria for Adverse Events v3.0 (CTCAE). Sponsor should specify name
@@ -669,6 +702,7 @@
   :standard: true
   :label: Start Date/Time of Adverse Event
   :name: AESTDTC
+  :ct_and_format: ISO 8601
   :format: ISO 8601
   :description: ''
   :used: true
@@ -688,6 +722,7 @@
   :standard: true
   :label: End Date/Time of Adverse Event
   :name: AEENDTC
+  :ct_and_format: ISO 8601
   :format: ISO 8601
   :description: ''
   :used: true
@@ -707,6 +742,7 @@
   :standard: true
   :label: Study Day of Start of Adverse Event
   :name: AESTDY
+  :ct_and_format: ''
   :format: ''
   :description: Study day of start of adverse event relative to the sponsor-defined
     RFSTDTC.
@@ -727,6 +763,7 @@
   :standard: true
   :label: Study Day of End of Adverse Event
   :name: AEENDY
+  :ct_and_format: ''
   :format: ''
   :description: Study day of end of event relative to the sponsor-defined RFSTDTC.
   :used: true
@@ -746,6 +783,7 @@
   :standard: true
   :label: Duration of Adverse Event
   :name: AEDUR
+  :ct_and_format: ISO 8601
   :format: ISO 8601
   :description: 'Collected duration and unit of an adverse event. Used only if collected
     on the CRF and not derived from start and end date/times. Example: P1DT2H (for
@@ -767,7 +805,8 @@
   :standard: true
   :label: End Relative to Reference Period
   :name: AEENRF
-  :format: "(STENRF)"
+  :ct_and_format: "(STENRF)"
+  :format: ''
   :description: Describes the end of the event relative to the sponsor-defined reference
     period. The sponsor-defined reference period is a continuous period of time defined
     by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of
@@ -789,6 +828,7 @@
   :standard: true
   :label: End Relative to Reference Time Point
   :name: AEENRTPT
+  :ct_and_format: BEFORE, AFTER, COINCIDENT, ONGOING, U
   :format: BEFORE, AFTER, COINCIDENT, ONGOING, U
   :description: Identifies the end of the event as being before or after the reference
     time point defined by variable AEENTPT.
@@ -809,6 +849,7 @@
   :standard: true
   :label: End Reference Time Point
   :name: AEENTPT
+  :ct_and_format: ''
   :format: ''
   :description: 'Description of date/time in ISO 8601 character format of the reference
     point referred to by AEENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
