@@ -51,15 +51,26 @@ class SdtmIgDomain < Tabulation
     SdtmIg.owner
   end
 
-  # unique_in_domain? Check if the variable name is unique in the domain
+  # duplicate_name_in_domain? Check if the variable name is unique in the domain
   #
   # @params [String] name the variable domain name
   # @return [Boolean] true if valid, false otherwise
-  def duplicate_name_in_domain?(variable)
+  # def duplicate_name_in_domain?(variable)
+  #   var_names = get_variable_names
+  #   return false unless var_names.include? variable.name
+  #   variable.errors.add(:name, "duplicate detected '#{variable.name}'")
+  #   true
+  # end
+
+  # unique_name_in_domain? Check if the variable name is unique in the domain
+  #
+  # @params [String] name the variable domain name
+  # @return [Boolean] true if valid, false otherwise
+  def unique_name_in_domain?(variable)
     var_names = get_variable_names
-    return false unless var_names.include? variable.name
+    return true if var_names.count(variable.name) == 1
     variable.errors.add(:name, "duplicate detected '#{variable.name}'")
-    true
+    false
   end
 
   private
