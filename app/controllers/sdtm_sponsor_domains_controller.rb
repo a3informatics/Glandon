@@ -151,7 +151,7 @@ private
   end
 
   def update_var_params
-    params.require(:sdtm_sponsor_domain).permit(:non_standard_var_id, :used, :name, :label, :typed_as, :format, :classified_as, :notes, :compliance)
+    params.require(:sdtm_sponsor_domain).permit(:non_standard_var_id, :used, :name, :label, :typed_as, :format, :classified_as, :description, :compliance)
   end
 
   # Get the ig domain id from the params
