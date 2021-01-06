@@ -12,7 +12,7 @@
 
       <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
         <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
-          icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty?, new_tab: true } %>
+          icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty? } %>
       <% end %>
 
     </div>
