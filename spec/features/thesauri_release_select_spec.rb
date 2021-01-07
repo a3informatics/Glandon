@@ -8,6 +8,7 @@ describe "Thesauri Release Select", :type => :feature do
   include PauseHelpers
   include WaitForAjaxHelper
   include TimeHelpers
+  include TokenHelpers
 
   describe "The Curator User can", :type => :feature, js:true do
 
@@ -218,38 +219,47 @@ describe "Thesauri Release Select", :type => :feature do
     end
 
     it "edit lock, extend", :type => :feature do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
+      # Redo with the generic TokenHelpers modules when the page + JS gets updated to new JS syntax
+      cache_warning_time = @user_c.read_setting 'edit_lock_warning'
+      @user_c.write_setting 'edit_lock_warning', 20
+      Token.set_timeout 25
       navigate_to_release_sel
-      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+
+      sleep 11 
       page.find("#imh_header")[:class].include?("warning")
       page.find("#timeout").click
-      wait_for_ajax(120)
+      wait_for_ajax 10 
       expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
-      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
+      
+      sleep 16
       page.find("#imh_header")[:class].include?("danger")
-      sleep 28
+      sleep 5
       page.find("#timeout")[:class].include?("disabled")
       page.find("#imh_header")[:class].include?("danger")
+
       Token.restore_timeout
+      @user_c.write_setting('edit_lock_warning', cache_warning_time)
     end
 
     it "expires edit lock, prevents additional changes", :type => :feature do
-      Token.set_timeout(10)
-      navigate_to_release_sel
-      sleep 12
-      find(:xpath, '//*[@id="table-cdisc-cls"]/tbody/tr[contains(.,"C99078")]').click
-      wait_for_ajax 10
-      expect(page).to have_content("The changes were not saved as the edit lock has timed out")
-      Token.restore_timeout
+
+      go_to_edit = proc { navigate_to_release_sel }
+      do_an_edit = proc do 
+        sleep 9
+        find(:xpath, '//*[@id="table-cdisc-cls"]/tbody/tr[contains(.,"C99078")]').click
+        wait_for_ajax 10
+      end 
+
+      token_expired_check(go_to_edit, do_an_edit)
+      
     end
 
     it "clears token when leaving page", :type => :feature do
-      navigate_to_release_sel
-      tokens = Token.where(item_uri: "http://www.s-cubed.dk/TST/V1#TH")
-      token = tokens[0]
-      click_link 'Return'
-      tokens = Token.where(item_uri: "http://www.s-cubed.dk/TST/V1#TH")
-      expect(tokens).to match_array([])
+
+      token_clear_check do 
+        navigate_to_release_sel
+      end
+
     end
 
   end

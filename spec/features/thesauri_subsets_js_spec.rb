@@ -9,6 +9,7 @@ describe "Thesauri Subsets", :type => :feature do
   include WaitForAjaxHelper
   include NameValueHelpers
   include ItemsPickerHelpers
+  include TokenHelpers
 
   def sub_dir
     return "features/thesaurus/subset"
@@ -257,68 +258,50 @@ describe "Thesauri Subsets", :type => :feature do
     end
 
     it "edit timeout warnings and extend" do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
 
-      show_item '2010-03-05 Release', 'C85495'
-      context_menu_element_header(:subsets)
+      token_ui_check(@user_ca) do
+        show_item '2010-03-05 Release', 'C85495'
+        context_menu_element_header(:subsets)
+        ui_in_modal do
+          context_menu_element_v2('subsets-index-table', 'NP000010P', :edit)
+        end
+        wait_for_ajax 10
+      end   
 
-      ui_in_modal do
-        context_menu_element_v2('subsets-index-table', 'NP000010P', :edit)
-      end
-      wait_for_ajax 10
-
-      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
-
-      expect( find('#imh_header')[:class] ).to include 'warning'
-
-      find( '#timeout' ).click
-      wait_for_ajax 10
-
-      expect( find('#imh_header')[:class] ).not_to include 'warning'
-
-      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
-
-      expect( find('#imh_header')[:class] ).to include 'danger'
-
-      sleep 28
-
-      expect( find('#timeout')[:class] ).to include 'disabled'
-      expect( find('#imh_header')[:class] ).not_to include 'danger'
-
-      Token.restore_timeout
     end
 
     it "prevents add, remove and move item in subset, when token expires" do
-      Token.set_timeout 3
 
-      show_item '2010-03-05 Release', 'C85495'
-      context_menu_element_header(:subsets)
+      go_to_edit = proc do
+        show_item '2010-03-05 Release', 'C85495'
+        context_menu_element_header(:subsets)
+  
+        ui_in_modal do
+          context_menu_element_v2('subsets-index-table', 'NP000010P', :edit)
+        end
+        wait_for_ajax 10
+      end 
 
-      ui_in_modal do
-        context_menu_element_v2('subsets-index-table', 'NP000010P', :edit)
-      end
-      wait_for_ajax 10
+      do_an_edit = proc do 
+        add_or_remove_items ['C17998']
+      end 
 
-      sleep 5
+      token_expired_check(go_to_edit, do_an_edit)
 
-      add_or_remove_items ['C17998']
-
-      expect(page).to have_content "The edit lock has timed out."
     end
 
     it "clears token when leaving page" do
-      show_item '2010-03-05 Release', 'C85495'
-      context_menu_element_header(:subsets)
 
-      ui_in_modal do
-        context_menu_element_v2('subsets-index-table', 'NP000010P', :edit)
+      token_clear_check do 
+        show_item '2010-03-05 Release', 'C85495'
+        context_menu_element_header(:subsets)
+  
+        ui_in_modal do
+          context_menu_element_v2('subsets-index-table', 'NP000010P', :edit)
+        end
+        wait_for_ajax 10
       end
-      wait_for_ajax 10
 
-      expect(Token.all.count).to eq(1)
-      click_on 'Return'
-      wait_for_ajax 10
-      expect(Token.all.count).to eq(0)
     end
 
     it "can refresh page while editing in a locked state, creates new version" do
@@ -452,21 +435,23 @@ describe "Thesauri Subsets", :type => :feature do
     end
 
     it "prevents add, remove and move item in subset, when token expires" do
-      Token.set_timeout 3
 
-      show_item '2010-03-05 Release', 'C85494'
-      context_menu_element_header(:subsets)
+      go_to_edit = proc do
+        show_item '2010-03-05 Release', 'C85494'
+        context_menu_element_header(:subsets)
 
-      ui_in_modal do
-        context_menu_element_v2('subsets-index-table', 'PKUNIT', :edit)
-      end
-      wait_for_ajax 10
+        ui_in_modal do
+          context_menu_element_v2('subsets-index-table', 'PKUNIT', :edit)
+        end
+        wait_for_ajax 10
+      end 
 
-      sleep 5
+      do_an_edit = proc do 
+        add_or_remove_items ['C85811']
+      end 
 
-      add_or_remove_items ['C85811']
-
-      expect(page).to have_content "The edit lock has timed out."
+      token_expired_check(go_to_edit, do_an_edit)
+  
     end
 
   end
