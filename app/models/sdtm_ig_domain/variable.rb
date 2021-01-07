@@ -12,6 +12,8 @@ class SdtmIgDomain::Variable < Tabulation::Column
   object_property :based_on_class_variable, cardinality: :one, model_class: "SdtmClass::Variable"
   object_property :is_a, cardinality: :one, model_class: "CanonicalReference", delete_exclude: true
   
+  validates_with Validator::Field, attribute: :format, method: :valid_label?
+
   def key_property_value
     self.name
   end
