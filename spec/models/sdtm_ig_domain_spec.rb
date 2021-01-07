@@ -33,18 +33,19 @@ describe SdtmIgDomain do
     check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)
   end
 
-  # it "duplicate name in domain, true" do
-  #   ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
-  #   ig_var = SdtmIgDomain::Variable.find_full(Uri.new(uri:"http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEV"))
-  #   expect(ig_domain.duplicate_name_in_domain?(ig_var)).to eq(true)
-  # end
+  it "unique name in domain, true" do
+    ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+    ig_var = SdtmIgDomain::Variable.new
+    ig_var.name = "AESEVXX"
+    expect(ig_domain.unique_name_in_domain?(ig_var)).to eq(true)
+  end
 
-  # it "duplicate name in domain, false" do
-  #   ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
-  #   ig_var = SdtmIgDomain::Variable.find_full(Uri.new(uri:"http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEV"))
-  #   ig_var.name = "AAA"
-  #   expect(ig_domain.duplicate_name_in_domain?(ig_var)).to eq(false)
-  # end
+  it "unique name in domain, false" do
+    ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+    ig_var = SdtmIgDomain::Variable.new
+    ig_var.name = "AESEV"
+    expect(ig_domain.unique_name_in_domain?(ig_var)).to eq(false)
+  end
 
  #  it "creates a new domain" do
  #  	item = SdtmIgDomain.new
