@@ -345,6 +345,10 @@ describe SdtmSponsorDomainsController do
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {format: "123", non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_5.yaml", equate_method: :hash_equal)
+
+      put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {name: "AEXXX123", non_standard_var_id: sponsor_variable.id}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_variable_expected_6.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end
