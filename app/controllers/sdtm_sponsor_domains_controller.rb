@@ -74,8 +74,8 @@ class SdtmSponsorDomainsController < ManagedItemsController
 
   def add_non_standard_variable
     sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
-    non_standard_variable = sdtm_sponsor_domain.add_non_standard_variable
     return true unless check_lock_for_item(sdtm_sponsor_domain)
+    non_standard_variable = sdtm_sponsor_domain.add_non_standard_variable
     if non_standard_variable.errors.empty?
       AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "Non standard variable #{non_standard_variable.name} added to SDTM Sponsor Domain.")
       render :json => {data: sdtm_sponsor_domain.get_children.find {|var| var[:id] == non_standard_variable.id} }, :status => 200

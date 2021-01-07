@@ -113,18 +113,20 @@ describe SdtmSponsorDomainsController do
     end
 
     it "add non standard variable" do
+      @request.env['HTTP_REFERER'] = '/path'
       sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      token = Token.obtain(sdtm_sponsor_domain, @user)
       post :add_non_standard_variable, params:{id: sdtm_sponsor_domain.id, sdtm_sponsor_domain: {name: "AENEWVAR"}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "add_non_standard_variable_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    # it "add non standard variable, error" do
-    #   sdtm_sponsor_domain = SdtmSponsorDomain.find(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
-    #   post :add_non_standard_variable, params:{id: sdtm_sponsor_domain.id}
-    #   actual = check_error_json_response(response)
-    #   expect(actual[:errors]).to eq(["http://www.s-cubed.dk/AAA/V1#SPD_AECAT already exists in the database", "Name duplicate detected 'AECAT'"])
-    # end
+    it "add non standard variable, not locked" do
+      @request.env['HTTP_REFERER'] = '/path'
+      sdtm_sponsor_domain = SdtmSponsorDomain.find(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      post :add_non_standard_variable, params:{id: sdtm_sponsor_domain.id}
+      expect(response).to redirect_to("/path")
+    end
 
   end
 
