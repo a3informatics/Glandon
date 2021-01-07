@@ -8,6 +8,7 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
   include UiHelpers
   include WaitForAjaxHelper
   include EditorHelpers
+  include TokenHelpers
 
   describe "Edit SDTM Sponsor Domain, Incomplete", :type => :feature, js:true do
 
@@ -170,51 +171,31 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
     end
 
     it "token timers, warnings, extension and expiration" do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
-      edit_sdtm_sd 'SDTM Sponsor Domain', '0.1.0'
 
-      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      token_ui_check(@user_c) do
+        edit_sdtm_sd 'SDTM Sponsor Domain', '0.1.0'
+      end 
 
-      expect( find('#imh_header')[:class] ).to include 'warning'
-
-      find( '#timeout' ).click
-      wait_for_ajax 10
-
-      expect( find('#imh_header')[:class] ).not_to include 'warning'
-
-      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
-
-      expect( find('#imh_header')[:class] ).to include 'danger'
-
-      sleep 28
-
-      expect( find('#timeout')[:class] ).to include 'disabled'
-      expect( find('#imh_header')[:class] ).not_to include 'danger'
-
-      Token.restore_timeout
     end
 
     it "token timer, expires edit lock, prevents changes" do
-      Token.set_timeout(2)
-      edit_sdtm_sd 'SDTM Sponsor Domain', '0.1.0'
 
-      sleep 3
+      go_to_edit = proc { edit_sdtm_sd 'SDTM Sponsor Domain', '0.1.0' }
+      do_an_edit = proc do 
+        click_on 'New Variable'
+        wait_for_ajax 10 
+      end 
 
-      # Prevents changes
-      click_on 'New Variable'
-      wait_for_ajax 10 
-      expect(page).to have_content 'The edit lock has timed out.'
-      
-      Token.restore_timeout
+      token_expired_check(go_to_edit, do_an_edit)
+ 
     end
 
     it "releases edit lock on page leave" do
-      edit_sdtm_sd 'SDTM Sponsor Domain', '0.1.0'
 
-      expect(Token.all.count).to eq(1)
-      click_link 'Return'
-      wait_for_ajax 10
-      expect(Token.all.count).to eq(0)
+      token_clear_check do 
+        edit_sdtm_sd 'SDTM Sponsor Domain', '0.1.0'
+      end
+
     end
 
   end
