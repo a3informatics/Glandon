@@ -1,7 +1,8 @@
 class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
 
   configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable",
-            uri_property: :name
+            base_uri: "http://#{EnvironmentVariable.read("url_authority")}/SDV",
+            uri_unique: true
 
   data_property :comment
   data_property :used
@@ -70,7 +71,7 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
     @parent_for_validation = managed_ancestor
     if self.standard?
       if params.has_key? :used
-        super(params.slice(:used), nil)
+        super(params.slice(:used), managed_ancestor)
       else 
         self.errors.add(:base, "The variable cannot be updated as it is a standard variable.")
         self

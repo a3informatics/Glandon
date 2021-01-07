@@ -21,6 +21,10 @@ describe SdtmSponsorDomain do
     load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
   end
 
+  before :each do
+    allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+  end
+
   it "validates a valid object" do
     result = SdtmSponsorDomain.new
     result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
@@ -73,26 +77,5 @@ describe SdtmSponsorDomain do
     result = sponsor_domain.add_non_standard_variable
     check_file_actual_expected(result.to_h, sub_dir, "add_non_standard_variable_expected_1.yaml", equate_method: :hash_equal)
   end
-
-  # it "does add a non standard variable, error" do
-  #   params = {identifier:"XXX", label:"Sponsor Adverse Events", prefix:"AE"}
-  #   ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
-  #   sponsor_domain = SdtmSponsorDomain.create_from_ig(params, ig_domain)
-  #   sp_domain = SdtmSponsorDomain.find_full(sponsor_domain.id)
-  #   result = sponsor_domain.add_non_standard_variable
-  #   expect(result.errors.count).to eq(1)
-  #   expect(result.errors.full_messages.to_sentence).to eq("http://www.s-cubed.dk/AE_Domain/V1#SPD_AEXXX42 already exists in the database")
-  # end
-
-  # it "does add a non standard variable, error" do
-  #   params = {identifier:"XXX", label:"Sponsor Adverse Events", prefix:"AE"}
-  #   ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
-  #   sponsor_domain = SdtmSponsorDomain.create_from_ig(params, ig_domain)
-  #   sp_domain = SdtmSponsorDomain.find_full(sponsor_domain.id)
-  #   #params2 = {name:"XXNEWVAR"}
-  #   result = sponsor_domain.add_non_standard_variable
-  #   expect(result.errors.count).to eq(1)
-  #   expect(result.errors.full_messages.to_sentence).to eq("Name prefix does not match 'AE'")
-  # end
 
 end

@@ -81,7 +81,7 @@ class SdtmSponsorDomain < SdtmIgDomain
   def add_non_standard_variable
     non_standard_variable = SdtmSponsorDomain::Var.new
     ordinal = next_ordinal
-    non_standard_variable.name = "#{self.prefix}XXX#{ordinal}"
+    non_standard_variable.name = "#{self.prefix}XXX#{ordinal.to_s.rjust(3,'0')}"
     non_standard_variable.ordinal = ordinal
     non_standard_variable.uri = non_standard_variable.create_uri(self.uri)
     non_standard_variable.typed_as = Uri.new(uri:"http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080") #Character node #Character, Numeric

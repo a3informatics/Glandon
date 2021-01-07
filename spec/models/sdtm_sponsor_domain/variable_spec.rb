@@ -57,6 +57,10 @@ describe SdtmSponsorDomain::Var do
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
+    before :each do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
     it "delete single parent" do
       uri_check_set_1 =
       [
@@ -64,7 +68,7 @@ describe SdtmSponsorDomain::Var do
         { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_RS"), present: true},
         { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_SI"), present: true},
         { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"), present: true},
-        { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_AEXXX42"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"), present: true},
         { uri: Uri.new(uri: "http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c"), present: true}
       ]
       uri_check_set_2 =
@@ -73,7 +77,7 @@ describe SdtmSponsorDomain::Var do
         { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_RS"), present: true},
         { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_SI"), present: true},
         { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"), present: true},
-        { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_AENEWVAR"), present: false},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"), present: false},
         { uri: Uri.new(uri: "http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c"), present: true}
       ]
       parent = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
@@ -92,8 +96,8 @@ describe SdtmSponsorDomain::Var do
         { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_RS"), present: true},
         { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_SI"), present: true},
         { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"), present: true},
-        { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_AEXXX42"), present: true},
-        { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_AEXXX43"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SDV#4646b47a-4ae4-4f21-b5e2-565815c8cded"), present: true},
         { uri: Uri.new(uri: "http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c"), present: true}
       ]
       uri_check_set_2 =
@@ -102,14 +106,14 @@ describe SdtmSponsorDomain::Var do
         { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_RS"), present: true},
         { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_SI"), present: true},
         { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"), present: true},
-        { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_AEXXX42"), present: true},
-        { uri: Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD_AEXXX43"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SDV#4646b47a-4ae4-4f21-b5e2-565815c8cded"), present: true},
         { uri: Uri.new(uri: "http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c"), present: true}
       ]
       parent = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
       make_standard(parent)
-      parent.add_non_standard_variable
-      parent.add_non_standard_variable
+      new_1 = parent.add_non_standard_variable
+      new_2 = parent.add_non_standard_variable
       parent = SdtmSponsorDomain.find_full(parent.uri)
       #check_dates(parent, sub_dir, "delete_var_1a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(parent.to_h, sub_dir, "delete_var_1a.yaml", equate_method: :hash_equal)
@@ -117,7 +121,7 @@ describe SdtmSponsorDomain::Var do
       new_parent = parent.create_next_version
       new_parent = SdtmSponsorDomain.find_full(new_parent.uri)
       expect(new_parent.includes_column.count).to eq(43)
-      non_standard_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_AEXXX42"))
+      non_standard_variable = SdtmSponsorDomain::Var.find_full(new_1.uri)
       expect(non_standard_variable.delete(new_parent, new_parent)).to eq(1)
       parent = SdtmSponsorDomain.find_full(parent.id)
       expect(parent.includes_column.count).to eq(43)
@@ -198,6 +202,10 @@ describe SdtmSponsorDomain::Var do
     before :all do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
+    end
+
+    before :each do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     end
 
     it "update error, variable standard" do
