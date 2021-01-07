@@ -8,6 +8,7 @@ describe "Forms", :type => :feature do
   include WaitForAjaxHelper
   include ItemsPickerHelpers
   include D3GraphHelpers
+  include TokenHelpers
 
   def sub_dir
     return "features/forms"
@@ -885,80 +886,64 @@ describe "Forms", :type => :feature do
     end
 
     it "token timers, warnings, extension and expiration" do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
-      edit_form('FN000120')
 
-      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      token_ui_check(@user_c) do
+        edit_form('FN000150')
+      end 
 
-      expect( find('#imh_header')[:class] ).to include 'warning'
-
-      find( '#timeout' ).click
-      wait_for_ajax 10
-
-      expect( find('#imh_header')[:class] ).not_to include 'warning'
-
-      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
-
-      expect( find('#imh_header')[:class] ).to include 'danger'
-
-      sleep 28
-
-      expect( find('#timeout')[:class] ).to include 'disabled'
-      expect( find('#imh_header')[:class] ).not_to include 'danger'
-
-      Token.restore_timeout
     end
 
     it "token timer, expires edit lock, prevents changes" do
-      Token.set_timeout(10)
-      edit_form('FN000120')
 
-      sleep 12
+      go_to_edit = proc { edit_form('FN000120') }
+      do_an_edit = proc do 
 
-      # Prevents to Add a child
-      find_node('Disability Assessment').click
-      click_action :add_child
-      find(:xpath, '//div[@id="d3"]//a[@id="normal_group"]').click
-      wait_for_ajax 10
-
-      check_alert 'The edit lock has timed out.'
-
-      # Prevents Updating a Node
-      ui_press_key :right
-      click_action :edit
-
-      ui_in_modal do
-        fill_in 'label', with: 'Expired lock'
-        click_on 'Save changes'
+        # Prevents to Add a child
+        find_node('Disability Assessment').click
+        click_action :add_child
+        find(:xpath, '//div[@id="d3"]//a[@id="normal_group"]').click
         wait_for_ajax 10
-        expect(page).to have_content 'The edit lock has timed out.'
 
-        click_on 'Close'
-      end
+        check_alert 'The edit lock has timed out.'
 
-      # Prevents Moving a Node
-      click_action :move_up
-      wait_for_ajax 10
-      check_alert 'The edit lock has timed out.'
+        # Prevents Updating a Node
+        ui_press_key :right
+        click_action :edit
 
-      # Prevents Removing a Node
-      ui_press_key :right
-      ui_press_key :right
-      click_action :remove
-      ui_confirmation_dialog true
-      wait_for_ajax 10
-      check_alert 'The edit lock has timed out.'
+        ui_in_modal do
+          fill_in 'label', with: 'Expired lock'
+          click_on 'Save changes'
+          wait_for_ajax 10
+          expect(page).to have_content 'The edit lock has timed out.'
 
-      Token.restore_timeout
+          click_on 'Close'
+        end
+
+        # Prevents Moving a Node
+        click_action :move_up
+        wait_for_ajax 10
+        check_alert 'The edit lock has timed out.'
+
+        # Prevents Removing a Node
+        ui_press_key :right
+        ui_press_key :right
+        click_action :remove
+        ui_confirmation_dialog true
+        wait_for_ajax 10
+        check_alert 'The edit lock has timed out.'
+
+      end 
+
+      token_expired_check(go_to_edit, do_an_edit)
+
     end
 
     it "releases edit lock on page leave" do
-      edit_form('FN000150')
 
-      expect(Token.all.count).to eq(1)
-      click_link 'Return'
-      wait_for_ajax 10
-      expect(Token.all.count).to eq(0)
+      token_clear_check do 
+        edit_form('FN000150')
+      end
+      
     end
 
     it "allows to show help dialog" do

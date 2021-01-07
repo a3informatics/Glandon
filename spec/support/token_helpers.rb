@@ -1,6 +1,7 @@
 module TokenHelpers
 
   def token_ui_check(user)
+    Token.delete_all
     cache_warning_time = user.read_setting 'edit_lock_warning'
     user.write_setting 'edit_lock_warning', 6
     Token.set_timeout 8
@@ -26,17 +27,19 @@ module TokenHelpers
     expect( find('#imh_header')[:class] ).not_to include 'danger'
 
     Token.restore_timeout
+    Token.delete_all
     user.write_setting('edit_lock_warning', cache_warning_time)
   end
 
   def token_expired_check(go_to_edit, do_an_edit)
+    Token.delete_all
     Token.set_timeout 2
 
     go_to_edit.call
     sleep 2
 
     do_an_edit.call
-    expect(page).to have_content 'The edit lock has timed out.'
+    expect(page).to have_content 'edit lock has timed out.'
     
     Token.restore_timeout
   end

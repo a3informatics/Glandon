@@ -13,6 +13,7 @@ describe "Thesaurus", :type => :feature do
   include TagHelpers
   include EditorHelpers
   include ItemsPickerHelpers
+  include TokenHelpers
   
   def sub_dir
     return "features"
@@ -173,71 +174,13 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Index: Terminology'
     end
 
-    it "token timer, warnings, extension and expiration (REQ-MDR-EL-020, REQ-MDR-EL-030)", js: true do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
-      click_navbar_terminology
-      wait_for_ajax 10
-      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
-      wait_for_ajax 10
-      expect(page).to have_content 'Version History of \'CDISC EXT\''
-      context_menu_element("history", 1, '1.0.0', :edit)
-      wait_for_ajax 10
-      expect(page).to have_content 'CDISC Extensions'
-      expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
-      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
-      page.find("#imh_header")[:class].include?("warning")
-      click_link "timeout"
-      wait_for_ajax 10
-      expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
-      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
-      page.find("#imh_header")[:class].include?("warning")
-      sleep (@user_c.edit_lock_warning.to_i / 2) + 5
-      page.find("#imh_header")[:class].include?("danger")
-      sleep (@user_c.edit_lock_warning.to_i / 2)
-      expect(page).to have_content("00:00")
-      page.find("#timeout")[:class].include?("disabled")
-      click_on 'Return'
-    end
-
-    it "edit clears token on Return (REQ-MDR-EL-030)", js: true do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
-      click_navbar_terminology
-      wait_for_ajax 10
-      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
-      wait_for_ajax 10
-      expect(page).to have_content 'Version History of \'CDISC EXT\''
-      context_menu_element("history", 1, '1.1.0', :edit)
-      wait_for_ajax 10
-      expect(page).to have_content 'CDISC Extensions'
-      expect(Token.all.count).to eq(1)
-      click_on 'Return'
-      wait_for_ajax 10
-      expect(Token.all.count).to eq(0)
-    end
-
-    it "edit clears token on back button (REQ-MDR-EL-030)", js: true do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
-      click_navbar_terminology
-      wait_for_ajax 10
-      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
-      wait_for_ajax 10
-      expect(page).to have_content 'Version History of \'CDISC EXT\''
-      context_menu_element("history", 1, '1.1.0', :edit)
-      wait_for_ajax 10
-      expect(page).to have_content 'CDISC Extensions'
-      expect(Token.all.count).to eq(1)
-      ui_click_back_button
-      wait_for_ajax 10
-      expect(Token.all.count).to eq(0)
-    end
-
     it "history allows the edit page to be viewed (REQ-MDR-ST-015)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a").click
       wait_for_ajax_long
       expect(page).to have_content 'Version History of \'CDISC EXT\''
-      context_menu_element('history', 1, '1.1.0', :edit)
+      context_menu_element('history', 1, '1.0.0', :edit)
       wait_for_ajax_long
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
@@ -466,41 +409,31 @@ describe "Thesaurus", :type => :feature do
     end
 
     it "token timer, warnings, extension and expiration (REQ-MDR-EL-020, REQ-MDR-EL-030)", js: true do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
-      go_to_cl_edit "NP000010P"
 
-      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
-      page.find("#imh_header")[:class].include?("warning")
-      page.find("#timeout").click
-      wait_for_ajax 10
-      expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
-      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
-      page.find("#imh_header")[:class].include?("danger")
-      sleep 28
-      page.find("#timeout")[:class].include?("disabled")
-      page.find("#imh_header")[:class].include?("danger")
-      Token.restore_timeout
+      token_ui_check(@user_c) do
+        go_to_cl_edit "NP000010P"
+      end 
+
     end
 
     it "token timer, expires edit lock, prevents changes", js:true do
-      Token.set_timeout(10)
-      go_to_cl_edit "NP000010P"
 
-      sleep 12
+      go_to_edit = proc { go_to_cl_edit "NP000010P" }
+      do_an_edit = proc do 
+        ui_editor_select_by_location 1, 2
+        ui_editor_fill_inline "notation", "Testing Edit Lock\n"
+      end 
 
-      ui_editor_select_by_location 1, 2
-      ui_editor_fill_inline "notation", "Testing Edit Lock\n"
-      expect(page).to have_content("The edit lock has timed out")
-      Token.restore_timeout
+      token_expired_check(go_to_edit, do_an_edit)
+      
     end
 
     it "token timer, clears token when leaving page", js:true do
-      go_to_cl_edit "NP000010P"
 
-      expect(Token.all.count).to eq(1)
-      click_link 'Return'
-      wait_for_ajax 10
-      expect(Token.all.count).to eq(0)
+      token_clear_check do 
+        go_to_cl_edit "NP000010P"
+      end
+
     end
 
     it "allows a code list to be edited, manual-identifier"
@@ -691,51 +624,60 @@ describe "Thesaurus", :type => :feature do
     end
 
     it "edit lock, extend", js:true do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
+      # Redo with the generic TokenHelpers modules when the page + JS gets updated to new JS syntax
+      cache_warning_time = @user_c.read_setting 'edit_lock_warning'
+      @user_c.write_setting 'edit_lock_warning', 20
+      Token.set_timeout 25
+
       click_navbar_terminology
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'State Test Terminology')]/td/a").click
       wait_for_ajax 10
-      expect(page).to have_content 'Version History of \'STATE\''
-      context_menu_element('history', 4, 'STATE', :document_control)
-      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      context_menu_element_v2('history', 'STATE', :document_control)
+
+      sleep 11 
       page.find("#imh_header")[:class].include?("warning")
       page.find("#timeout").click
       wait_for_ajax 10
       expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
-      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
+
+      sleep 16
       page.find("#imh_header")[:class].include?("danger")
-      sleep 28
+      sleep 5
       page.find("#timeout")[:class].include?("disabled")
       page.find("#imh_header")[:class].include?("danger")
+
       Token.restore_timeout
+      @user_c.write_setting('edit_lock_warning', cache_warning_time)
     end
 
     it "expires edit lock, prevents changes", js:true do
-      Token.set_timeout(10)
-      click_navbar_terminology
-      wait_for_ajax 10
-      find(:xpath, "//tr[contains(.,'State Test Terminology')]/td/a").click
-      wait_for_ajax 10
-      expect(page).to have_content 'Version History of \'STATE\''
-      context_menu_element('history', 4, 'STATE', :document_control)
-      sleep 12
-      click_on "Submit Status Change"
-      expect(page).to have_content("The edit lock has timed out")
-      Token.restore_timeout
+
+      go_to_edit = proc do 
+        click_navbar_terminology
+        wait_for_ajax 10
+        find(:xpath, "//tr[contains(.,'State Test Terminology')]/td/a").click
+        wait_for_ajax 10
+        context_menu_element_v2('history', 'STATE', :document_control)
+      end
+      do_an_edit = proc do 
+        click_on "Submit Status Change"
+      end 
+
+      token_expired_check(go_to_edit, do_an_edit)
+
     end
 
     it "clears token when leaving page", js:true do
-      click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      find(:xpath, "//tr[contains(.,'State Test Terminology')]/td/a").click
-      wait_for_ajax_long
-      expect(page).to have_content 'Version History of \'STATE\''
-      context_menu_element('history', 4, 'STATE', :document_control)
-      expect(Token.all.count).to eq(1)
-      click_link 'Return'
-      wait_for_ajax 10
-      expect(Token.all.count).to eq(0)
+
+      token_clear_check do 
+        click_navbar_terminology
+        wait_for_ajax 10
+        find(:xpath, "//tr[contains(.,'State Test Terminology')]/td/a").click
+        wait_for_ajax 10
+        context_menu_element_v2('history', 'STATE', :document_control)
+      end
+   
     end
 
   end
