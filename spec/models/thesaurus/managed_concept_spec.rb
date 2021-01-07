@@ -11,6 +11,7 @@ describe "Thesaurus::ManagedConcept" do
   include TimeHelpers
   include NameValueHelpers
   include TripleStoreHelpers
+  include ManagedConceptHelpers
 
   def sub_dir
     return "models/thesaurus/managed_concept"
@@ -2538,6 +2539,37 @@ describe "Thesaurus::ManagedConcept" do
       new_tc = Thesaurus::ManagedConcept.find_minimum(new_tc.uri)
       results = new_tc.find_custom_property_values
       check_file_actual_expected(results, sub_dir, "add_item_custom_property_expected_1b.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "delete checks" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+      nv_destroy
+      nv_create(parent: "123", child: "456")
+    end
+
+    it "delete draft code list" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      tc = ManagedConceptHelpers.create({label: "Parent", identifier: "P1", definition: "P Def", notation: "P", preferred_term: "PT P"}, true)
+      child_1 = ManagedConceptHelpers.add_child(tc, {label: "Child 1", identifier: "C1", definition: "C1 Def", notation: "C1", preferred_term: "PT C1"})
+      child_2 = ManagedConceptHelpers.add_child(tc, {label: "Child 2", identifier: "C2", definition: "C2 Def", notation: "C2", preferred_term: "PT C2"})
+      child_3 = ManagedConceptHelpers.add_child(tc, {label: "Child 3", identifier: "C3", definition: "C3 Def", notation: "C3", preferred_term: "PT C3"})
+      before_count = triple_store.triple_count
+      new_tc = tc.create_next_version
+      new_child_3 = child_3.update_with_clone({definition: "C3 Def Updated"}, new_tc)
+      result = new_tc.delete_or_unlink
+      triple_store.subject_present?(new_tc.uri, true)
+      triple_store.subject_present?(new_child_3.uri, true)
+      expect(triple_store.triple_count).to eq(before_count)
     end
 
   end

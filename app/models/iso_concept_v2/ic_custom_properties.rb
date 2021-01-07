@@ -96,12 +96,30 @@ class IsoConceptV2
       self.class.custom_properties?
     end
 
-    # Create Custom Properties. Create the custom property values for this object, if any
+    # Create Custom Properties. Create the custom property values for this object, if any. Use values in object.
     #
     # @param [object] context the context, defaults to self
     # @param [Sparql::Transaction] tx the transaction, defaults to nil
     # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
     def create_custom_properties(context=self, tx=nil)
+      context_uri = context.is_a?(Uri) ? context : context.uri
+      definitions = self.class.find_custom_property_definitions
+      return if definitions.empty?
+      definitions.each do |definition|
+        cp = self.custom_properties.items.find{|x| x.uri == definition.uri}
+        value = cp.nil? ? definition.default : cp.value
+        CustomPropertyValue.create(parent_uri: CustomPropertyValue.base_uri, transaction: tx, 
+          value: value, custom_property_defined_by: definition.uri, applies_to: self.uri, context: [context_uri])
+      end
+      self.custom_properties
+    end
+
+    # Create Default Custom Properties. Create the custom property values for this object, if any. Use default values
+    #
+    # @param [object] context the context, defaults to self
+    # @param [Sparql::Transaction] tx the transaction, defaults to nil
+    # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
+    def create_default_custom_properties(context=self, tx=nil)
       context_uri = context.is_a?(Uri) ? context : context.uri
       definitions = self.class.find_custom_property_definitions
       return if definitions.empty?

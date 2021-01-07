@@ -1229,4 +1229,65 @@ describe "Thesaurus::UnmanagedConcept" do
 
   end
 
+  describe "update tests, custom properties" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    after :each do
+    end
+
+    def add_cp_1
+      cpd = CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
+       description: "A description XXX", default: "Default String",
+       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+       uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
+      cpd
+    end
+
+    def add_cp_2
+      cpd = CustomPropertyDefinition.create(datatype: "boolean", label: "A Toggle", 
+       description: "A description YYY", default: "false",
+       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+       uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD2"))
+      cpd
+    end
+
+    it "update multiple parent" do
+      add_cp_1
+      add_cp_2
+      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      tc_v2 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow V2",
+          identifier: "A0000X",
+          definition: "A definition V2",
+          notation: "LHR V2"
+        })
+      tc_v2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
+      tc_v2.narrower = parent.narrower
+      tc_v2.set_initial(tc_v2.identifier)
+      tc_v2.save
+      new_tc = old_tc.update_with_clone({label: "New Airport", definition: "A new definition"}, tc_v2)
+      tc_v2 = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A0000X/V1#A0000X"))
+      expect(new_tc.uri).to_not eq(old_tc.uri)
+      expect(old_tc.label).to eq("Terminal 5")
+      expect(old_tc.definition).to eq("The 5th LHR Terminal")
+      expect(old_tc.notation).to eq("T5")
+      expect(new_tc.label).to eq("New Airport")
+      expect(new_tc.definition).to eq("A new definition")
+      expect(new_tc.notation).to eq("T5")
+      results = new_tc.load_custom_properties(tc_v2)
+      check_file_actual_expected(results.to_h, sub_dir, "update_with_clone_custom_properties_expected_1.yaml")
+    end
+
+  end
+
 end
