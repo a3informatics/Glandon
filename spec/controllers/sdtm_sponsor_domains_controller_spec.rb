@@ -78,7 +78,7 @@ describe SdtmSponsorDomainsController do
 
     login_curator
 
-    before :all do
+    before :each do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -89,9 +89,10 @@ describe SdtmSponsorDomainsController do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     end
 
-    it "creates from IG" do
+   it "creates from IG" do
       sdtm_ig_domain = SdtmIgDomain.find(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
       post :create_from_ig, params:{sdtm_sponsor_domain: {identifier: "NEW1", label: "Something", prefix: sdtm_ig_domain.prefix, sdtm_ig_domain_id: sdtm_ig_domain.id}}
       actual = check_good_json_response(response)
@@ -100,6 +101,7 @@ describe SdtmSponsorDomainsController do
 
     it "creates from IG, error" do
       sdtm_ig_domain = SdtmIgDomain.find(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+      post :create_from_ig, params:{sdtm_sponsor_domain: {identifier: "HEIGHT", label: "something", prefix: sdtm_ig_domain.prefix, sdtm_ig_domain_id: sdtm_ig_domain.id}}
       post :create_from_ig, params:{sdtm_sponsor_domain: {identifier: "HEIGHT", label: "something", prefix: sdtm_ig_domain.prefix, sdtm_ig_domain_id: sdtm_ig_domain.id}}
       actual = check_error_json_response(response)
       expect(actual[:errors]).to eq(["http://www.s-cubed.dk/AE_Domain/V1#SPD already exists in the database"])
@@ -294,6 +296,7 @@ describe SdtmSponsorDomainsController do
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
       @instance = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     end
 
     after :all do
@@ -335,7 +338,7 @@ describe SdtmSponsorDomainsController do
       post :add_non_standard_variable, params: {id: sdtm_sponsor_domain.id}
     
       # Update non standard var field other than 'name' 
-      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_AEXXX42"))
+      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_3.yaml", equate_method: :hash_equal)
@@ -358,7 +361,7 @@ describe SdtmSponsorDomainsController do
       token = Token.obtain(@instance, @user)
       sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
       post :add_non_standard_variable, params: {id: sdtm_sponsor_domain.id}
-      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_AEXXX42"))
+      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {classified_as: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzgxOGE5NzU3LTFlZTUtNGJkMy1hMTc5LWU2NjJlMjZiNWI0Nw==", non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_7.yaml", equate_method: :hash_equal) 

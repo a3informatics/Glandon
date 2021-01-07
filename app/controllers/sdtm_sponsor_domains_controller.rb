@@ -31,7 +31,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
 
   def edit
     authorize SdtmSponsorDomain
-    @sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(protect_from_bad_id(params))
+    @sdtm_sponsor_domain = SdtmSponsorDomain.find_with_properties(protect_from_bad_id(params))
     respond_to do |format|
       format.html do
         return true unless edit_lock(@sdtm_sponsor_domain)

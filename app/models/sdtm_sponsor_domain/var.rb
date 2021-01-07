@@ -40,7 +40,7 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
   # @return [Boolean] true if valid, false otherwise
   def correct_prefix?
     return true if @parent_for_validation.nil? # Don't validate if we don't know about a domain
-    return true if SdtmVariableName.new(self.name, @parent_for_validation.prefix, true).prefix_match?
+    return true if SdtmVariableName.new(self.name, @parent_for_validation.prefix, is_prefixed?).prefix_match?
     self.errors.add(:name, "prefix does not match '#{@parent_for_validation.prefix}'")
     false
   end
@@ -121,6 +121,13 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
     # Toggle used
     def toggle_used
       self.used == true ? {used: false} : {used: true}
+    end
+
+    # Variable is prefixed?
+    def is_prefixed?
+      query_results = Sparql::Query.new.query("SELECT ?o WHERE {#{self.uri.to_ref} bd:basedOnIgVariable/bd:basedOnClassVariable/bd:prefixed ?o}", "", [:bd])
+      return true if query_results.empty?
+      query_results.by_object(:o).first.to_bool
     end
 
 end
