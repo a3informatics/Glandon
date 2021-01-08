@@ -52,7 +52,7 @@ class SdtmSponsorDomain < SdtmIgDomain
   # @return [SdtmSponsorDomain] the new sponsor domain object
   def self.create_from_class(params, sdtm_class)
     object = SdtmSponsorDomain.new
-    object.label = sdtm_class.label
+    object.label = params[:label]
     object.prefix = params[:prefix]
     object.ordinal = 1
     object.set_initial(params[:identifier])
