@@ -439,7 +439,9 @@ export default class ItemsPicker extends ModalView {
       unmanaged_concept: rdfTypesMap.TH_CLI,
       biomedical_concept_instance: rdfTypesMap.BC,
       biomedical_concept_template: rdfTypesMap.BCT,
-      form: rdfTypesMap.FORM
+      form: rdfTypesMap.FORM,
+      sdtm_ig_domain: rdfTypesMap.SDTM_DOMAIN,
+      sdtm_class: rdfTypesMap.SDTM_CLASS
     }
 
   }

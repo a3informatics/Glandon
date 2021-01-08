@@ -9,6 +9,10 @@
     history_bct_url = history_biomedical_concept_templates_path(biomedical_concept_template: {identifier: "miHistoryId", scope_id: "miScopeId"})
     index_form_url = forms_path
     history_form_url = history_forms_path(form: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_sdtm_ig_domain_url = sdtm_ig_domains_path
+    history_sdtm_ig_domain_url = history_sdtm_ig_domains_path(sdtm_ig_domain: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_sdtm_class_url = sdtm_classes_path
+    history_class_url = history_sdtm_classes_path(sdtm_class: {identifier: "miHistoryId", scope_id: "miScopeId"})
 %>
 
 <%# Legacy url variables *** DEPRECATED *** %>
@@ -41,5 +45,13 @@
                           form: {
                             index: '#{index_form_url}',
                             history:  '#{history_form_url}'
+                          },
+                          sdtm_ig_domain: {
+                            index: '#{index_sdtm_ig_domain_url}',
+                            history:  '#{history_sdtm_ig_domain_url}'
+                          },
+                          sdtm_class: {
+                            index: '#{index_sdtm_class_url}',
+                            history:  '#{history_class_url}'
                           }
                         }"%>
