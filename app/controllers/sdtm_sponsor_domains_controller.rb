@@ -204,6 +204,8 @@ private
         return edit_sdtm_sponsor_domain_path(object)
       when :edit_tags
         return object.supporting_edit? ? edit_tags_iso_concept_path(id: object.id) : ""
+      when :destroy 
+        return sdtm_sponsor_domain_path(object)
       else
         return ""
     end
