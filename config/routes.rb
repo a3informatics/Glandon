@@ -479,8 +479,9 @@ Rails.application.routes.draw do
   resources :sdtm_sponsor_domains, :only => [:show, :index, :edit, :update] do
     collection do
       get :history
-      post :create_from_ig
-      post :create_from_class
+      post :create_from
+#      post :create_from_ig
+#      post :create_from_class
       get :editor_metadata
     end
     member do

@@ -48,23 +48,36 @@ class SdtmSponsorDomainsController < ManagedItemsController
     end
   end
 
-  def create_from_ig
-    sdtm_ig_domain = SdtmIgDomain.find_full(protect_from_bad_id(sdtm_ig_domain_id))
-    sdtm_sponsor_domain = SdtmSponsorDomain.create_from_ig(the_params, sdtm_ig_domain)
+  # def create_from_ig
+  #   sdtm_ig_domain = SdtmIgDomain.find_full(protect_from_bad_id(sdtm_ig_domain_id))
+  #   sdtm_sponsor_domain = SdtmSponsorDomain.create_from_ig(the_params, sdtm_ig_domain)
+  #   if sdtm_sponsor_domain.errors.empty?
+  #     AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain created from #{sdtm_ig_domain.scoped_identifier}.")
+  #     path = history_sdtm_sponsor_domains_path({sdtm_sponsor_domain: {identifier: sdtm_sponsor_domain.scoped_identifier, scope_id: sdtm_sponsor_domain.scope.id}})
+  #     render :json => {data: {history_path: path, id: sdtm_sponsor_domain.id}}, :status => 200
+  #   else
+  #     render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
+  #   end
+  # end
+
+  # def create_from_class
+  #   sdtm_class = SdtmClass.find_full(protect_from_bad_id(sdtm_class_id))
+  #   sdtm_sponsor_domain = SdtmSponsorDomain.create_from_class(the_params, sdtm_class)
+  #   if sdtm_sponsor_domain.errors.empty?
+  #     AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain created from #{sdtm_class.scoped_identifier}.")
+  #     path = history_sdtm_sponsor_domains_path({sdtm_sponsor_domain: {identifier: sdtm_sponsor_domain.scoped_identifier, scope_id: sdtm_sponsor_domain.scope.id}})
+  #     render :json => {data: {history_path: path, id: sdtm_sponsor_domain.id}}, :status => 200
+  #   else
+  #     render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
+  #   end
+  # end
+
+  def create_from
+    uri = Uri.new(id: protect_from_bad_id(create_from_id))
+    source = IsoManagedV2.klass_for(uri).find_full(uri)
+    sdtm_sponsor_domain = source.class == SdtmIgDomain ? SdtmSponsorDomain.create_from_ig(the_params, sdtm_ig_domain) : SdtmSponsorDomain.create_from_class(the_params, sdtm_class)
     if sdtm_sponsor_domain.errors.empty?
       AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain created from #{sdtm_ig_domain.scoped_identifier}.")
-      path = history_sdtm_sponsor_domains_path({sdtm_sponsor_domain: {identifier: sdtm_sponsor_domain.scoped_identifier, scope_id: sdtm_sponsor_domain.scope.id}})
-      render :json => {data: {history_path: path, id: sdtm_sponsor_domain.id}}, :status => 200
-    else
-      render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
-    end
-  end
-
-  def create_from_class
-    sdtm_class = SdtmClass.find_full(protect_from_bad_id(sdtm_class_id))
-    sdtm_sponsor_domain = SdtmSponsorDomain.create_from_class(the_params, sdtm_class)
-    if sdtm_sponsor_domain.errors.empty?
-      AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain created from #{sdtm_class.scoped_identifier}.")
       path = history_sdtm_sponsor_domains_path({sdtm_sponsor_domain: {identifier: sdtm_sponsor_domain.scoped_identifier, scope_id: sdtm_sponsor_domain.scope.id}})
       render :json => {data: {history_path: path, id: sdtm_sponsor_domain.id}}, :status => 200
     else
@@ -158,15 +171,20 @@ private
     params.require(:sdtm_sponsor_domain).permit(:non_standard_var_id, :used, :name, :label, :typed_as, :format, :classified_as, :description, :compliance)
   end
 
-  # Get the ig domain id from the params
-  def sdtm_ig_domain_id
-    {id: the_params[:sdtm_ig_domain_id]}
+  # Get the based on id from the params
+  def create_from_id
+    {id: the_params[:based_on_id]}
   end
 
-  # Get the class id from the params
-  def sdtm_class_id
-    {id: the_params[:sdtm_class_id]}
-  end
+  # # Get the ig domain id from the params
+  # def sdtm_ig_domain_id
+  #   {id: the_params[:sdtm_ig_domain_id]}
+  # end
+
+  # # Get the class id from the params
+  # def sdtm_class_id
+  #   {id: the_params[:sdtm_class_id]}
+  # end
 
   # Path for given action
   def path_for(action, object)
