@@ -65,10 +65,15 @@ export default class CreateSDTMSDView extends CreateItemView {
 
     super._setListeners();
 
-    // On 'Base on' selector click event
-    this.form.find('#new-item-base-on').on('click', () => 
+    // On Base selector click event
+    this.form.find('#new-item-base').on('click', () => 
       this.itemPicker.show() 
-    );
+    )
+
+    // On Prefix input, cast to uppercase 
+    this.form.find('#new-item-prefix').on('input', e => 
+      e.target.value = e.target.value.toUpperCase() 
+    )
 
   }
 
@@ -89,13 +94,13 @@ export default class CreateSDTMSDView extends CreateItemView {
   }
 
   /**
-   * Adds Base on selection into the Modal
+   * Adds Base selection into the Modal
    * @param {Object} template selected template data object
    */
-  _onSelectBaseOn(item) {
+  _onSelectBase(item) {
 
-    this.form.find('#new-item-base-on').val( managedConceptRef(item) )
-                                       .attr('data-id', item.id);
+    this.form.find('#new-item-base').val( managedConceptRef(item) )
+                                    .attr('data-id', item.id);
 
   }
 
@@ -108,7 +113,8 @@ export default class CreateSDTMSDView extends CreateItemView {
     let formData = super._formData;
 
     return Object.assign( formData, {
-      base_on_id: this.form.find('#new-item-base-on').attr('data-id'),
+      prefix: this.form.find('#new-item-prefix').val(),
+      based_on_id: this.form.find('#new-item-base').attr('data-id')
     } );
 
   }
@@ -123,7 +129,7 @@ export default class CreateSDTMSDView extends CreateItemView {
     return new ItemsPicker({
       id: 'new-sdtm-sd',
       types: ['sdtm_ig_domain', 'sdtm_class'],
-      onSubmit: selection => this._onSelectBaseOn( selection.asObjectsArray()[0] )
+      onSubmit: selection => this._onSelectBase( selection.asObjectsArray()[0] )
     })
 
   }
@@ -137,9 +143,13 @@ export default class CreateSDTMSDView extends CreateItemView {
     let validationRules = super._validationRules;
 
     return Object.assign( validationRules, {
-      'base-on': {
-        'value': 'not-empty',
+      base: {
+        value: 'not-empty',
         'data-id': 'not-empty'
+      },
+      prefix: {
+        value: 'not-empty',
+        'max-length': 2
       }
     } );
 
