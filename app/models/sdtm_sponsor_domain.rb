@@ -24,16 +24,19 @@ class SdtmSponsorDomain < SdtmIgDomain
     object.label = params[:label]
     object.prefix = params[:prefix]
     object.ordinal = 1
-    object.set_initial("#{params[:prefix]} Domain")
+    object.set_initial(params[:identifier])
     object.structure = ig_domain.structure
     object.based_on_class = ig_domain.based_on_class.uri
     ig_domain.includes_column.sort_by {|x| x.ordinal}.each do |domain_variable|
-      sponsor_variable = SdtmSponsorDomain::Var.create({parent_uri: object.uri, label: domain_variable.label, name: domain_variable.name, ordinal: domain_variable.ordinal})
+      sponsor_variable = SdtmSponsorDomain::Var.new(label: domain_variable.label, name: domain_variable.name, ordinal: domain_variable.ordinal)
+      sponsor_variable.uri = sponsor_variable.create_uri(object.uri)
       sponsor_variable.description = domain_variable.description
       sponsor_variable.format = domain_variable.format
       sponsor_variable.ct_and_format = domain_variable.ct_and_format
       sponsor_variable.used = true
+      sponsor_variable.typed_as = domain_variable.based_on_class_variable.typed_as.uri
       sponsor_variable.compliance = domain_variable.compliance.uri
+      sponsor_variable.classified_as = domain_variable.based_on_class_variable.classified_as.uri
       sponsor_variable.ct_reference = domain_variable.ct_reference
       sponsor_variable.based_on_ig_variable = domain_variable.uri
       object.includes_column << sponsor_variable
@@ -52,16 +55,16 @@ class SdtmSponsorDomain < SdtmIgDomain
     object.label = sdtm_class.label
     object.prefix = params[:prefix]
     object.ordinal = 1
-    object.set_initial("#{params[:prefix]} Domain")
-    #object.structure = ig_domain.structure
+    object.set_initial(params[:identifier])
+    object.structure = ""
     #object.based_on_class = ig_domain.based_on_class.uri
     sdtm_class.includes_column.sort_by {|x| x.ordinal}.each do |class_variable|
-      #sponsor_variable_name = sponsor_variable_name(params[:prefix], class_variable.name)
       sponsor_variable_name = SdtmVariableName.new(class_variable.name, params[:prefix]).prefixed? ? class_variable.name.gsub('--', params[:prefix]) : params[:prefix]+class_variable.name
-      sponsor_variable = SdtmSponsorDomain::Var.create({parent_uri: object.uri, label: class_variable.label, name: sponsor_variable_name, ordinal: class_variable.ordinal})
+      sponsor_variable = SdtmSponsorDomain::Var.new(label: class_variable.label, name: sponsor_variable_name, ordinal: class_variable.ordinal)
+      sponsor_variable.uri = sponsor_variable.create_uri(object.uri)
       sponsor_variable.description = class_variable.description
-      #sponsor_variable.format = domain_variable.format
-      #sponsor_variable.ct_and_format = domain_variable.ct_and_format
+      sponsor_variable.format = ""
+      sponsor_variable.ct_and_format = ""
       sponsor_variable.used = true
       sponsor_variable.compliance = Uri.new(uri:"http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d") #Permissible node
       sponsor_variable.typed_as = class_variable.typed_as.uri 
