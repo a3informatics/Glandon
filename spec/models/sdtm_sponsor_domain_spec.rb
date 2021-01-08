@@ -62,6 +62,14 @@ describe SdtmSponsorDomain do
     check_file_actual_expected(sponsor_domain.to_h, sub_dir, "create_from_ig_expected_1.yaml", equate_method: :hash_equal)
   end
 
+  it "does create a Sponsor Domain based on a specified IG domain" do
+    params = {label:"Sponsor XX Events", prefix:"XX", identifier: "SDTM XX"}
+    ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+    sponsor_domain = SdtmSponsorDomain.create_from_ig(params, ig_domain)
+    check_dates(sponsor_domain, sub_dir, "create_from_ig_expected_1.yaml", :last_change_date)
+    check_file_actual_expected(sponsor_domain.to_h, sub_dir, "create_from_ig_expected_2.yaml", equate_method: :hash_equal)
+  end
+
   it "does create a Sponsor Domain based on a specified Class" do
     params = {label:"Sponsor Adverse Events", prefix:"AE", identifier: "SDTM AE"}
     sdtm_class = SdtmClass.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL"))
@@ -76,6 +84,16 @@ describe SdtmSponsorDomain do
     sponsor_domain = SdtmSponsorDomain.create_from_ig(params, ig_domain)
     result = sponsor_domain.add_non_standard_variable
     check_file_actual_expected(result.to_h, sub_dir, "add_non_standard_variable_expected_1.yaml", equate_method: :hash_equal)
+  end
+
+  it "delete a domain" do
+    before_count = triple_store.triple_count
+    params = {label:"Sponsor Adverse Events", prefix:"AE", identifier: "SDTM AE"}
+    sdtm_class = SdtmClass.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL"))
+    sponsor_domain = SdtmSponsorDomain.create_from_class(params, sdtm_class)
+    result = sponsor_domain.delete
+    expect(result).to eq(1)
+    expect(triple_store.triple_count).to eq(before_count)
   end
 
 end

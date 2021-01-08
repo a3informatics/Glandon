@@ -1,0 +1,1066 @@
+---
+:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NEVE1fWFgvVjEjU1BE
+:uri: http://www.s-cubed.dk/SDTM_XX/V1#SPD
+:rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomain
+:label: Sponsor XX Events
+:has_state:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NEVE1fWFgvVjEjU1BEX1JT
+  :uri: http://www.s-cubed.dk/SDTM_XX/V1#SPD_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+      :uri: http://www.assero.co.uk/NS#SCUBED
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: S-cubed
+      :name: S-cubed Aps
+      :authority: www.s-cubed.dk
+:has_identifier:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NEVE1fWFgvVjEjU1BEX1NJ
+  :uri: http://www.s-cubed.dk/SDTM_XX/V1#SPD_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: SDTM XX
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+    :uri: http://www.assero.co.uk/NS#SCUBED
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: S-cubed
+    :name: S-cubed Aps
+    :authority: www.s-cubed.dk
+:has_previous_version: 
+:origin: ''
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2020-12-11T08:02:01+01:00'
+:explanatory_comment: ''
+:rule: ''
+:ordinal: 1
+:includes_column:
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzE3NjBjYmIxLWEzNzAtNDFmNi1hM2IzLTQ5M2MxZDljMjIzOA==
+  :uri: http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Study Identifier
+  :rule: ''
+  :ordinal: 1
+  :name: STUDYID
+  :description: Unique identifier for a study.
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_STUDYID
+  :classified_as: http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzQ2NDZiNDdhLTRhZTQtNGYyMS1iNWUyLTU2NTgxNWM4Y2RlZA==
+  :uri: http://www.assero.co.uk/SDV#4646b47a-4ae4-4f21-b5e2-565815c8cded
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Domain Abbreviation
+  :rule: ''
+  :ordinal: 2
+  :name: DOMAIN
+  :description: Two-character abbreviation for the domain.
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_DOMAIN
+  :classified_as: http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzkyYmY4Yjc0LWVjNzgtNDM0OC05YTFiLTE1NGE2Y2NiOWI5Zg==
+  :uri: http://www.assero.co.uk/SDV#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Unique Subject Identifier
+  :rule: ''
+  :ordinal: 3
+  :name: USUBJID
+  :description: Identifier used to uniquely identify a subject across all studies
+    for all applications or submissions involving the product.
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_USUBJID
+  :classified_as: http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2I3NjU5N2Y3LTk3MmYtNDBmNC1iZWQ3LWUxMzQ3MjVjZjI5Ng==
+  :uri: http://www.assero.co.uk/SDV#b76597f7-972f-40f4-bed7-e134725cf296
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Sequence Number
+  :rule: ''
+  :ordinal: 4
+  :name: XXSEQ
+  :description: Sequence Number given to ensure uniqueness of subject records within
+    a domain. May be any valid number.
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEQ
+  :classified_as: http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzM2ZDAxYTA0LTk3ZmEtNGFlOS04ZjQwLTlmMjY2YTZjZGMwNg==
+  :uri: http://www.assero.co.uk/SDV#36d01a04-97fa-4ae9-8f40-9f266a6cdc06
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Group ID
+  :rule: ''
+  :ordinal: 5
+  :name: XXGRPID
+  :description: Used to tie together a block of related records in a single domain
+    for a subject.
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEGRPID
+  :classified_as: http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzBjZGE2ZjI0LWU1NGQtNDcyNC1hZjc5LTkxNmQ0MWQ5YmQ3Zg==
+  :uri: http://www.assero.co.uk/SDV#0cda6f24-e54d-4724-af79-916d41d9bd7f
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Reference ID
+  :rule: ''
+  :ordinal: 6
+  :name: XXREFID
+  :description: Internal or external identifier such as a serial number on an SAE
+    reporting form
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEREFID
+  :classified_as: http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzc5NDhlNjE0LWZkYmEtNDg0YS05ZGZjLWM5OGNlMzY4ZDRlNw==
+  :uri: http://www.assero.co.uk/SDV#7948e614-fdba-484a-9dfc-c98ce368d4e7
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Sponsor-Defined Identifier
+  :rule: ''
+  :ordinal: 7
+  :name: XXSPID
+  :description: 'Sponsor-defined identifier. It may be pre-printed on the CRF as an
+    explicit line identifier or defined in the sponsor''s operational database. Example:
+    Line number on an Adverse Events page.'
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESPID
+  :classified_as: http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2M5ZjdmN2RlLWQyMjctNGUxNS1iMTcxLTA2YzQzMDZiNzdmNA==
+  :uri: http://www.assero.co.uk/SDV#c9f7f7de-d227-4e15-b171-06c4306b77f4
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Reported Term for the Adverse Event
+  :rule: ''
+  :ordinal: 8
+  :name: XXTERM
+  :description: Verbatim name of the event.
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AETERM
+  :classified_as: http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2Y5ZmU3MTI4LTRiNjMtNDgyZC05YTExLTYyMjUwZTI0ZmUwYw==
+  :uri: http://www.assero.co.uk/SDV#f9fe7128-4b63-482d-9a11-62250e24fe0c
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Modified Reported Term
+  :rule: ''
+  :ordinal: 9
+  :name: XXMODIFY
+  :description: If AETERM is modified to facilitate coding, then AEMODIFY will contain
+    the modified text.
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEMODIFY
+  :classified_as: http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2YwMzI4N2Q2LTIzZWEtNDNiYi1iM2NmLWY5NzI3NjFjYWFiZA==
+  :uri: http://www.assero.co.uk/SDV#f03287d6-23ea-43bb-b3cf-f972761caabd
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Dictionary-Derived Term
+  :rule: ''
+  :ordinal: 10
+  :name: XXDECOD
+  :description: Dictionary-derived text description of AETERM or AEMODIFY. Equivalent
+    to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
+    name and version used to map the terms utilizing the define.xml external codelist
+    attributes
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEDECOD
+  :classified_as: http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzRiOTgxMzY0LWRhZjQtNGM5OS04NGYwLWY3NTE0YmQwOTJlNw==
+  :uri: http://www.assero.co.uk/SDV#4b981364-daf4-4c99-84f0-f7514bd092e7
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Category for Adverse Event
+  :rule: ''
+  :ordinal: 11
+  :name: XXCAT
+  :description: 'Used to define a category of related records. Example: BLEEDING,
+    NEUROPSYCHIATRIC.'
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECAT
+  :classified_as: http://www.assero.co.uk/CSN#9fb29f8b-505a-4c4f-b550-175fbfec932d
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzhjZDYyZDNjLWJjZTItNGQxYi1iYzdlLWNjNjU0NDU1MWFiYg==
+  :uri: http://www.assero.co.uk/SDV#8cd62d3c-bce2-4d1b-bc7e-cc6544551abb
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Subcategory for Adverse Event
+  :rule: ''
+  :ordinal: 12
+  :name: XXSCAT
+  :description: 'A further categorization of adverse event. Example: NEUROLOGIC.'
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAT
+  :classified_as: http://www.assero.co.uk/CSN#9fb29f8b-505a-4c4f-b550-175fbfec932d
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzgzMGZhNzJjLWE1OWUtNDc1Yi05YjJjLWViNGI1YWNlMjY0Zg==
+  :uri: http://www.assero.co.uk/SDV#830fa72c-a59e-475b-9b2c-eb4b5ace264f
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Pre-Specified Adverse Event
+  :rule: ''
+  :ordinal: 13
+  :name: XXPRESP
+  :description: A value of 'Y' indicates that this adverse event was pre-specified
+    on the CRF. Values are null for spontaneously reported events (i.e., those collected
+    as free-text verbatim terms)
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVQUkVTUF9UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzI0MmMzZDk0LWY0N2MtNDQ3Ny05ZjUxLWFmYTRjMThmYTk0OQ==
+  :uri: http://www.assero.co.uk/SDV#242c3d94-f47c-4477-9f51-afa4c18fa949
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Body System or Organ Class
+  :rule: ''
+  :ordinal: 14
+  :name: XXBODSYS
+  :description: Dictionary derived. Body system or organ class used by the sponsor
+    from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary
+    such as MedDRA, this should contain the SOC used for the sponsor's analyses and
+    summary tables which may not necessarily be the primary SOC.
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEBODSYS
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzE1OWE3ZDdmLTFlZjUtNDBmNy04MDhiLWQ1ZDY2YWM3YTA2ZQ==
+  :uri: http://www.assero.co.uk/SDV#159a7d7f-1ef5-40f7-808b-d5d66ac7a06e
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Location of Event
+  :rule: ''
+  :ordinal: 15
+  :name: XXLOC
+  :description: Describes anatomical location relevant for the event (e.g., LEFT ARM
+    for skin rash).
+  :format: ''
+  :ct_and_format: "(LOC)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVMT0NfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AELOC_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: LOC
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C74456/V8#C74456
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AELOC
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzUzZGQ4N2MzLTFjMjktNDI0MC1iYTk4LTcyMzQxODk2YjM0OA==
+  :uri: http://www.assero.co.uk/SDV#53dd87c3-1c29-4240-ba98-72341896b348
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Severity/Intensity
+  :rule: ''
+  :ordinal: 16
+  :name: XXSEV
+  :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
+    SEVERE.'
+  :format: ''
+  :ct_and_format: "(AESEV)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRVZfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEV_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: AESEV
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66769/V4#C66769
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEV
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzk1MTJkMWQ0LTdmNmMtNGIzYy1hMzMwLWZmMzA4MWY4ZGUyNA==
+  :uri: http://www.assero.co.uk/SDV#9512d1d4-7f6c-4b3c-a330-ff3081f8de24
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Serious Event
+  :rule: ''
+  :ordinal: 17
+  :name: XXSER
+  :description: Is this a serious event?
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRVJfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESER_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESER
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzE2ODE1ZTg3LTAxNDEtNGRlMy1iNTc1LWYwNmE3MjliZGY0MA==
+  :uri: http://www.assero.co.uk/SDV#16815e87-0141-4de3-b575-f06a729bdf40
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Action Taken with Study Treatment
+  :rule: ''
+  :ordinal: 18
+  :name: XXACN
+  :description: 'Describes changes to the study treatment as a result of the event.
+    AEACN is specifically for the relationship to study treatment. AEACNOTH is for
+    actions unrelated to dose adjustments of study treatment. Examples of AEACN values
+    include ICH E2B values: DRUG WITHDRAWN, DOSE REDUCED, DOSE INCREASED, DOSE NOT
+    CHANGED, UNKNOWN or NOT APPLICABLE'
+  :format: ''
+  :ct_and_format: "(ACN)"
+  :compliance: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVBQ05fVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACN_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: ACN
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66767/V4#C66767
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACN
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2Y3OTA2OWJhLTg1YTAtNGM3NS1hMmIxLTk4N2I5MGZhZGQ5ZA==
+  :uri: http://www.assero.co.uk/SDV#f79069ba-85a0-4c75-a2b1-987b90fadd9d
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Other Action Taken
+  :rule: ''
+  :ordinal: 19
+  :name: XXACNOTH
+  :description: 'Describes other actions taken as a result of the event that are unrelated
+    to dose adjustments of study treatment. Usually reported as free text. Example:
+    ''TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.'''
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACNOTH
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2I0MGNlODE3LWY1NDktNDBkMC1hYjQ3LTg4ZDRmYWVkYTUyMA==
+  :uri: http://www.assero.co.uk/SDV#b40ce817-f549-40d0-ab47-88d4faeda520
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Causality
+  :rule: ''
+  :ordinal: 20
+  :name: XXREL
+  :description: Records the investigator's opinion as to the causality of the event
+    to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED,
+    POSSIBLY RELATED, RELATED. Controlled Terminology may be defined in the future.
+    Check with regulatory authority for population of this variable
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEREL
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzQ2ZTBkOWM1LWM2YzItNDMzMS05NzE2LWQ4MmUzZWRmYTgzNw==
+  :uri: http://www.assero.co.uk/SDV#46e0d9c5-c6c2-4331-9716-d82e3edfa837
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Relationship to Non-Study Treatment
+  :rule: ''
+  :ordinal: 21
+  :name: XXRELNST
+  :description: 'Records the investigator''s opinion as to whether the event may have
+    been due to a treatment other than study drug. May be reported as free text. Example:
+    ''MORE LIKELY RELATED TO ASPIRIN USE.''.'
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AERELNST
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzc1NTY4ODMwLWNjNWMtNGZkMy1iOTQ0LTdkODliNWE3MmMyYw==
+  :uri: http://www.assero.co.uk/SDV#75568830-cc5c-4fd3-b944-7d89b5a72c2c
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Pattern of Adverse Event
+  :rule: ''
+  :ordinal: 22
+  :name: XXPATT
+  :description: 'Used to indicate the pattern of the event over time. Examples: INTERMITTENT,
+    CONTINUOUS, SINGLE EVENT.'
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPATT
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2NmZmQyZTRiLTYwODktNGNkNy05MjE0LWIyNDBkZTk1NzA0Ng==
+  :uri: http://www.assero.co.uk/SDV#cffd2e4b-6089-4cd7-9214-b240de957046
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Outcome of Adverse Event
+  :rule: ''
+  :ordinal: 23
+  :name: XXOUT
+  :description: Description of the outcome of an event.
+  :format: ''
+  :ct_and_format: "(OUT)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVPVVRfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEOUT_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: OUT
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66768/V4#C66768
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEOUT
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzQ5ZGYzNjJhLWU2MWEtNDE5MS04NTM3LTIxNDhiYWYxMjAwOA==
+  :uri: http://www.assero.co.uk/SDV#49df362a-e61a-4191-8537-2148baf12008
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Involves Cancer
+  :rule: ''
+  :ordinal: 24
+  :name: XXSCAN
+  :description: Was the serious event associated with the development of cancer?
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTQ0FOX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAN_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAN
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzBkNTRiZDY4LWI0M2UtNDk5YS05ZGZjLTU1MDQwZGNhMTczMg==
+  :uri: http://www.assero.co.uk/SDV#0d54bd68-b43e-499a-9dfc-55040dca1732
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Congenital Anomaly or Birth Defect
+  :rule: ''
+  :ordinal: 25
+  :name: XXSCONG
+  :description: Was the serious event associated with congenital anomaly or birth
+    defect?
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTQ09OR19UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCONG_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCONG
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzA0MzU5N2EzLWM1NzItNDFmYi05NzE1LWYxZjRiZTczM2E2ZQ==
+  :uri: http://www.assero.co.uk/SDV#043597a3-c572-41fb-9715-f1f4be733a6e
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Persist or Signif Disability/Incapacity
+  :rule: ''
+  :ordinal: 26
+  :name: XXSDISAB
+  :description: Did the serious event result in persistent or significant disability/incapacity?
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRElTQUJfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDISAB_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDISAB
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzcwYjQ2YzdjLTFiOTAtNDdiNS1iMGQyLTZhOWUyZWZjZGNmZg==
+  :uri: http://www.assero.co.uk/SDV#70b46c7c-1b90-47b5-b0d2-6a9e2efcdcff
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Results in Death
+  :rule: ''
+  :ordinal: 27
+  :name: XXSDTH
+  :description: Did the serious event result in death?
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRFRIX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDTH_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDTH
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzlkYTUxMWUzLWIwZWQtNDRmNi04Y2U3LTUxNDE1NzRhZmNiOA==
+  :uri: http://www.assero.co.uk/SDV#9da511e3-b0ed-44f6-8ce7-5141574afcb8
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Requires or Prolongs Hospitalization
+  :rule: ''
+  :ordinal: 28
+  :name: XXSHOSP
+  :description: Did the serious event require or prolong hospitalization?
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTSE9TUF9UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESHOSP_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESHOSP
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzJmY2MzYTBhLTBiNGQtNDdkNi1hYTFiLWE4MzcyZmIxY2M1Mg==
+  :uri: http://www.assero.co.uk/SDV#2fcc3a0a-0b4d-47d6-aa1b-a8372fb1cc52
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Is Life Threatening
+  :rule: ''
+  :ordinal: 29
+  :name: XXSLIFE
+  :description: Was the serious event life threatening?
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTTElGRV9UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESLIFE_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESLIFE
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2Q0YTJkYWQ2LTEwZmUtNDg0My1iZGQ2LWQ4NmQxMTViN2JjMw==
+  :uri: http://www.assero.co.uk/SDV#d4a2dad6-10fe-4843-bdd6-d86d115b7bc3
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Occurred with Overdose
+  :rule: ''
+  :ordinal: 30
+  :name: XXSOD
+  :description: Did the serious event occur with an overdose?
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTT0RfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESOD_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESOD
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2Q4YmM2NjAxLWYzZTctNGE2MC05ZjA0LTk0ZmNiZTVjMGQ4OA==
+  :uri: http://www.assero.co.uk/SDV#d8bc6601-f3e7-4a60-9f04-94fcbe5c0d88
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Other Medically Important Serious Event
+  :rule: ''
+  :ordinal: 31
+  :name: XXSMIE
+  :description: Do additional categories for seriousness apply?
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTTUlFX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESMIE_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESMIE
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2EyM2RmY2RhLTQzZjMtNGJiZS1iYTAwLTFjOTM5MDliNWVmMA==
+  :uri: http://www.assero.co.uk/SDV#a23dfcda-43f3-4bbe-ba00-1c93909b5ef0
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Concomitant or Additional Trtmnt Given
+  :rule: ''
+  :ordinal: 32
+  :name: XXCONTRT
+  :description: Was another treatment given because of the occurrence of the event?
+  :format: ''
+  :ct_and_format: "(NY)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVDT05UUlRfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECONTRT_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECONTRT
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzM0YjUxYzdmLWYxMjEtNDUzYi1hNjcwLTIwMzc2ZjY4MjZhNA==
+  :uri: http://www.assero.co.uk/SDV#34b51c7f-f121-453b-a670-20376f6826a4
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Standard Toxicity Grade
+  :rule: ''
+  :ordinal: 33
+  :name: XXTOXGR
+  :description: Toxicity grade according to a standard toxicity scale such as Common
+    Terminology Criteria for Adverse Events v3.0 (CTCAE). Sponsor should specify name
+    of the scale and version used in the metadata (see 6.2.1.1, Assumption 6c). If
+    value is from a numeric scale, represent only the number (e.g., '2' and not 'Grade
+    2').
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AETOXGR
+  :classified_as: http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2VlZjNjYWQwLTY3ZDAtNDIyMS05NGFmLTRhMTM2ODIwMTZjYw==
+  :uri: http://www.assero.co.uk/SDV#eef3cad0-67d0-4221-94af-4a13682016cc
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Start Date/Time of Adverse Event
+  :rule: ''
+  :ordinal: 34
+  :name: XXSTDTC
+  :description: ''
+  :format: ISO 8601
+  :ct_and_format: ISO 8601
+  :compliance: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESTDTC
+  :classified_as: http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzczZWUzNmViLTBhZmYtNDZlMC04ODdhLTI4ZDBjNDhhYzUyZA==
+  :uri: http://www.assero.co.uk/SDV#73ee36eb-0aff-46e0-887a-28d0c48ac52d
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: End Date/Time of Adverse Event
+  :rule: ''
+  :ordinal: 35
+  :name: XXENDTC
+  :description: ''
+  :format: ISO 8601
+  :ct_and_format: ISO 8601
+  :compliance: http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENDTC
+  :classified_as: http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2EyMjNkMzc0LTZkNGYtNDEyYS1hN2FiLTA5ODZhMjk1YTYxYw==
+  :uri: http://www.assero.co.uk/SDV#a223d374-6d4f-412a-a7ab-0986a295a61c
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Study Day of Start of Adverse Event
+  :rule: ''
+  :ordinal: 36
+  :name: XXSTDY
+  :description: Study day of start of adverse event relative to the sponsor-defined
+    RFSTDTC.
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESTDY
+  :classified_as: http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzQxZWM0NzUzLTk1YjItNGE5ZS1hZTgwLTUyZDUwZDJmMzg5OA==
+  :uri: http://www.assero.co.uk/SDV#41ec4753-95b2-4a9e-ae80-52d50d2f3898
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Study Day of End of Adverse Event
+  :rule: ''
+  :ordinal: 37
+  :name: XXENDY
+  :description: Study day of end of event relative to the sponsor-defined RFSTDTC.
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENDY
+  :classified_as: http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2UwY2YzZmNmLWM4YzktNDE3Zi05YTE4LTZiZjk5ZGQ2NzI4NA==
+  :uri: http://www.assero.co.uk/SDV#e0cf3fcf-c8c9-417f-9a18-6bf99dd67284
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: Duration of Adverse Event
+  :rule: ''
+  :ordinal: 38
+  :name: XXDUR
+  :description: 'Collected duration and unit of an adverse event. Used only if collected
+    on the CRF and not derived from start and end date/times. Example: P1DT2H (for
+    1 day, 2 hours).'
+  :format: ISO 8601
+  :ct_and_format: ISO 8601
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEDUR
+  :classified_as: http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2UwMjcxOTk0LWNlNDYtNDVhMC1hZTI5LWNhM2EwYThiYWU4Nw==
+  :uri: http://www.assero.co.uk/SDV#e0271994-ce46-45a0-ae29-ca3a0a8bae87
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: End Relative to Reference Period
+  :rule: ''
+  :ordinal: 39
+  :name: XXENRF
+  :description: Describes the end of the event relative to the sponsor-defined reference
+    period. The sponsor-defined reference period is a continuous period of time defined
+    by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of
+    the trial.
+  :format: ''
+  :ct_and_format: "(STENRF)"
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVFTlJGX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRF_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: STENRF
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66728/V4#C66728
+    :context: http://www.cdisc.org/CT/V13#TH
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRF
+  :classified_as: http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWI2VmZmNmM2Y2LWE1NGQtNDg1OC1hMjc2LTRiNDBjNWRiYTZiYw==
+  :uri: http://www.assero.co.uk/SDV#effcf3f6-a54d-4858-a276-4b40c5dba6bc
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: End Relative to Reference Time Point
+  :rule: ''
+  :ordinal: 40
+  :name: XXENRTPT
+  :description: Identifies the end of the event as being before or after the reference
+    time point defined by variable AEENTPT.
+  :format: BEFORE, AFTER, COINCIDENT, ONGOING, U
+  :ct_and_format: BEFORE, AFTER, COINCIDENT, ONGOING, U
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRTPT
+  :classified_as: http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU0RWIzMwMmJiNjc4LWY3MmUtNDAxNy05NzMyLWE2OTMxM2ZjNjljNQ==
+  :uri: http://www.assero.co.uk/SDV#302bb678-f72e-4017-9732-a69313fc69c5
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+  :label: End Reference Time Point
+  :rule: ''
+  :ordinal: 41
+  :name: XXENTPT
+  :description: 'Description of date/time in ISO 8601 character format of the reference
+    point referred to by AEENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
+  :format: ''
+  :ct_and_format: ''
+  :compliance: http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d
+  :ct_reference: []
+  :based_on_class_variable: 
+  :is_a: 
+  :comment: ''
+  :used: true
+  :notes: ''
+  :typed_as: http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080
+  :based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENTPT
+  :classified_as: http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243
+:prefix: XX
+:structure: One record per adverse event per subject
+:has_biomedical_concept: []
+:based_on_class: http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL

@@ -59,7 +59,7 @@
   :label: Study Identifier
   :rule: ''
   :ordinal: 1
-  :name: AESTUDYID
+  :name: STUDYID
   :description: Unique identifier for a study.
   :format: ''
   :ct_and_format: ''
@@ -79,7 +79,7 @@
   :label: Domain Abbreviation
   :rule: ''
   :ordinal: 2
-  :name: AEDOMAIN
+  :name: DOMAIN
   :description: Two-character abbreviation for the domain.
   :format: ''
   :ct_and_format: ''
@@ -99,7 +99,7 @@
   :label: Unique Subject Identifier
   :rule: ''
   :ordinal: 3
-  :name: AEUSUBJID
+  :name: USUBJID
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
   :format: ''
@@ -207,7 +207,7 @@
   :label: Visit Number
   :rule: ''
   :ordinal: 8
-  :name: AEVISITNUM
+  :name: VISITNUM
   :description: Clinical encounter number. Numeric version of VISIT, used for sorting.
   :format: ''
   :ct_and_format: ''
@@ -227,7 +227,7 @@
   :label: Visit Name
   :rule: ''
   :ordinal: 9
-  :name: AEVISIT
+  :name: VISIT
   :description: 1. Protocol-defined description of clinical encounter. 2. May be used
     in addition to VISITNUM and/or VISITDY.
   :format: ''
@@ -248,7 +248,7 @@
   :label: Planned Study Day of Visit
   :rule: ''
   :ordinal: 10
-  :name: AEVISITDY
+  :name: VISITDY
   :description: Planned study day of the visit based upon RFSTDTC in Demographics.
   :format: ''
   :ct_and_format: ''
@@ -268,7 +268,7 @@
   :label: Planned Order of Elements within Arm
   :rule: ''
   :ordinal: 11
-  :name: AETAETORD
+  :name: TAETORD
   :description: Number that gives the order of the Element within the Arm.
   :format: ''
   :ct_and_format: ''
@@ -288,7 +288,7 @@
   :label: Epoch
   :rule: ''
   :ordinal: 12
-  :name: AEEPOCH
+  :name: EPOCH
   :description: Epoch associated with the Element in the planned sequence of Elements
     for the ARM to which the subject was assigned
   :format: ''

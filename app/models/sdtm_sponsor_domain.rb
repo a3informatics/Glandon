@@ -28,7 +28,8 @@ class SdtmSponsorDomain < SdtmIgDomain
     object.structure = ig_domain.structure
     object.based_on_class = ig_domain.based_on_class.uri
     ig_domain.includes_column.sort_by {|x| x.ordinal}.each do |domain_variable|
-      sponsor_variable = SdtmSponsorDomain::Var.new(label: domain_variable.label, name: domain_variable.name, ordinal: domain_variable.ordinal)
+      sponsor_variable_name = SdtmVariableName.new(domain_variable.name, ig_domain.prefix, domain_variable.based_on_class_variable.prefixed).with_prefix(object.prefix)
+      sponsor_variable = SdtmSponsorDomain::Var.new(label: domain_variable.label, name: sponsor_variable_name, ordinal: domain_variable.ordinal)
       sponsor_variable.uri = sponsor_variable.create_uri(object.uri)
       sponsor_variable.description = domain_variable.description
       sponsor_variable.format = domain_variable.format
@@ -59,7 +60,7 @@ class SdtmSponsorDomain < SdtmIgDomain
     object.structure = ""
     object.based_on_class = sdtm_class.uri
     sdtm_class.includes_column.sort_by {|x| x.ordinal}.each do |class_variable|
-      sponsor_variable_name = SdtmVariableName.new(class_variable.name, params[:prefix]).prefixed? ? class_variable.name.gsub('--', params[:prefix]) : params[:prefix]+class_variable.name
+      sponsor_variable_name = SdtmVariableName.new(class_variable.name, "", class_variable.prefixed).with_prefix(object.prefix)
       sponsor_variable = SdtmSponsorDomain::Var.new(label: class_variable.label, name: sponsor_variable_name, ordinal: class_variable.ordinal)
       sponsor_variable.uri = sponsor_variable.create_uri(object.uri)
       sponsor_variable.description = class_variable.description
