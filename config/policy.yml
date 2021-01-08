@@ -345,8 +345,7 @@ defaults: &defaults
   SdtmSponsorDomainPolicy:
     policies: {}
     alias:
-      create_from_ig: create
-      create_from_class: create
+      create_from: create
       add_non_standard_variable: update
       delete_non_standard_variable: update
       toggle_used: update

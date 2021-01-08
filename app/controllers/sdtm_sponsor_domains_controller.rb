@@ -75,9 +75,9 @@ class SdtmSponsorDomainsController < ManagedItemsController
   def create_from
     uri = Uri.new(id: protect_from_bad_id(create_from_id))
     source = IsoManagedV2.klass_for(uri).find_full(uri)
-    sdtm_sponsor_domain = source.class == SdtmIgDomain ? SdtmSponsorDomain.create_from_ig(the_params, sdtm_ig_domain) : SdtmSponsorDomain.create_from_class(the_params, sdtm_class)
+    sdtm_sponsor_domain = source.class == SdtmIgDomain ? SdtmSponsorDomain.create_from_ig(the_params, source) : SdtmSponsorDomain.create_from_class(the_params, source)
     if sdtm_sponsor_domain.errors.empty?
-      AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain created from #{sdtm_ig_domain.scoped_identifier}.")
+      AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain created from #{source.scoped_identifier}.")
       path = history_sdtm_sponsor_domains_path({sdtm_sponsor_domain: {identifier: sdtm_sponsor_domain.scoped_identifier, scope_id: sdtm_sponsor_domain.scope.id}})
       render :json => {data: {history_path: path, id: sdtm_sponsor_domain.id}}, :status => 200
     else
@@ -156,7 +156,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
 private
   
   def the_params
-    params.require(:sdtm_sponsor_domain).permit(:identifier, :scope_id, :count, :offset, :sdtm_ig_domain_id, :sdtm_class_id, :non_standard_var_id, :label, :prefix)
+    params.require(:sdtm_sponsor_domain).permit(:identifier, :scope_id, :count, :offset, :based_on_id, :non_standard_var_id, :label, :prefix)
   end
 
   # def non_standard_var_params

@@ -94,22 +94,22 @@ describe SdtmSponsorDomainsController do
 
    it "creates from IG" do
       sdtm_ig_domain = SdtmIgDomain.find(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
-      post :create_from_ig, params:{sdtm_sponsor_domain: {identifier: "NEW1", label: "Something", prefix: sdtm_ig_domain.prefix, sdtm_ig_domain_id: sdtm_ig_domain.id}}
+      post :create_from, params:{sdtm_sponsor_domain: {identifier: "NEW1", label: "Something", prefix: sdtm_ig_domain.prefix, based_on_id: sdtm_ig_domain.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "create_from_ig_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "creates from IG, error" do
       sdtm_ig_domain = SdtmIgDomain.find(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
-      post :create_from_ig, params:{sdtm_sponsor_domain: {identifier: "HEIGHT", label: "something", prefix: sdtm_ig_domain.prefix, sdtm_ig_domain_id: sdtm_ig_domain.id}}
-      post :create_from_ig, params:{sdtm_sponsor_domain: {identifier: "HEIGHT", label: "something", prefix: sdtm_ig_domain.prefix, sdtm_ig_domain_id: sdtm_ig_domain.id}}
+      post :create_from, params:{sdtm_sponsor_domain: {identifier: "HEIGHT", label: "something", prefix: sdtm_ig_domain.prefix, based_on_id: sdtm_ig_domain.id}}
+      post :create_from, params:{sdtm_sponsor_domain: {identifier: "HEIGHT", label: "something", prefix: sdtm_ig_domain.prefix, based_on_id: sdtm_ig_domain.id}}
       actual = check_error_json_response(response)
       expect(actual[:errors]).to eq(["http://www.s-cubed.dk/AE_Domain/V1#SPD already exists in the database"])
     end
 
     it "creates from class" do
       sdtm_class = SdtmClass.find(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL"))
-      post :create_from_class, params:{sdtm_sponsor_domain: {prefix: "DS", sdtm_class_id: sdtm_class.id}}
+      post :create_from, params:{sdtm_sponsor_domain: {identifier: "HEIGHT", label: "something", prefix: "DS", based_on_id: sdtm_class.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "create_from_class_expected_1.yaml", equate_method: :hash_equal)
     end
