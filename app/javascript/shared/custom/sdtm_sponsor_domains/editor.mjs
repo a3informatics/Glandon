@@ -184,12 +184,13 @@ export default class SDTMSDEditor extends EditablePanel {
    */
   _postformatUpdatedData(_oldData, newData) {
 
+
     // Merge and update edited row data
     const editedRow = this.table.row( this.editor.modifier().row ),
-          mergedData = Object.assign( {}, editedRow.data(), newData );
+          mergedData = Object.assign( {}, editedRow.data(), newData[0] );
 
-     editedRow.data( mergedData );
-
+    editedRow.data( mergedData );
+    
   }
 
   /**

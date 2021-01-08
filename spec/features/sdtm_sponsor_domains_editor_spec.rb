@@ -70,23 +70,23 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
       click_on 'New Variable'
       wait_for_ajax 10 
       ui_check_table_cell 'editor', 2, 1, '42'
-      ui_check_table_cell 'editor', 2, 3, 'AEXXX42'
+      ui_check_table_cell 'editor', 2, 3, 'AEXXX042'
 
       click_on 'New Variable'
       wait_for_ajax 10 
       ui_check_table_cell 'editor', 3, 1, '43'
-      ui_check_table_cell 'editor', 3, 3, 'AEXXX43'
+      ui_check_table_cell 'editor', 3, 3, 'AEXXX043'
       ui_check_table_info 'editor', 41, 43, 43 # Went to last page 
 
       # Remove
-      remove_variable 'AEXXX42'
+      remove_variable 'AEXXX042'
       ui_check_table_info 'editor', 1, 10, 42
-      ui_table_search 'editor', 'AEXXX42'
+      ui_table_search 'editor', 'AEXXX042'
       expect(page).to have_content 'No matching records found'
 
-      remove_variable 'AEXXX43'
+      remove_variable 'AEXXX043'
       ui_check_table_info 'editor', 1, 10, 41
-      ui_table_search 'editor', 'AEXXX43'
+      ui_table_search 'editor', 'AEXXX043'
       expect(page).to have_content 'No matching records found'
     end
 
@@ -152,10 +152,9 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
       # Text validation 
       ui_editor_select_by_location 2, 6
       ui_editor_fill_inline 'format', "Special Chars æå\n"
-      wait_for_ajax 10 
       ui_editor_check_error 'format', 'contains invalid characters'
       ui_editor_fill_inline 'format', "XY\n"
-      wait_for_ajax 10 
+      sleep 1 # needs to chill for some reason fails otherwise
       ui_editor_check_value 2, 6, "XY"
     end
 
