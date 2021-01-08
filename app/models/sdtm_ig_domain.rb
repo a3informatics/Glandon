@@ -56,7 +56,7 @@ class SdtmIgDomain < Tabulation
   #
   # @params [String] name the variable name
   # @return [Boolean] true if valid, false otherwise
-  def unique_name_in_domain?(name)
+  def unique_name_in_domain?(variable, name)
     var_names = get_variable_names
     return true if var_names.count(name) == 0
     variable.errors.add(:name, "duplicate detected '#{name}'")

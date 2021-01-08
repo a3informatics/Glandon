@@ -15,7 +15,6 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
   validate :correct_prefix?
   validate :unique_name_in_domain?, on: :create
 
-
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #
   # @return [String] the path as an expanded set of predicates
@@ -50,7 +49,7 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
   # @return [Boolean] true if valid, false otherwise
   def unique_name_in_domain?
     return true if @parent_for_validation.nil? # Don't validate if we don't know about a domain
-    @parent_for_validation.unique_name_in_domain?(self.name)
+    @parent_for_validation.unique_name_in_domain?(self, self.name)
   end
 
   # Toggle with clone. Toggles Used attribute, clone if there are multiple parents
@@ -115,7 +114,7 @@ class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
     def name_change_valid?(params)
       return true unless params.key?(:name)
       return true if params[:name] == self.name
-      @parent_for_validation.unique_name_in_domain?(params[:name])
+      @parent_for_validation.unique_name_in_domain?(self, params[:name])
     end
 
     # Toggle used

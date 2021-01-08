@@ -36,15 +36,13 @@ describe SdtmIgDomain do
   it "unique name in domain, true" do
     ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
     ig_var = SdtmIgDomain::Variable.new
-    ig_var.name = "AESEVXX"
-    expect(ig_domain.unique_name_in_domain?(ig_var)).to eq(true)
+    expect(ig_domain.unique_name_in_domain?(ig_var, 'AESEVXX')).to eq(true)
   end
 
   it "unique name in domain, false" do
     ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
     ig_var = SdtmIgDomain::Variable.new
-    ig_var.name = "AESEV"
-    expect(ig_domain.unique_name_in_domain?(ig_var)).to eq(false)
+    expect(ig_domain.unique_name_in_domain?(ig_var, 'AESEV')).to eq(false)
   end
 
  #  it "creates a new domain" do
