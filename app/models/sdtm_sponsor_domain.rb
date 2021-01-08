@@ -57,7 +57,7 @@ class SdtmSponsorDomain < SdtmIgDomain
     object.ordinal = 1
     object.set_initial(params[:identifier])
     object.structure = ""
-    #object.based_on_class = ig_domain.based_on_class.uri
+    object.based_on_class = sdtm_class.uri
     sdtm_class.includes_column.sort_by {|x| x.ordinal}.each do |class_variable|
       sponsor_variable_name = SdtmVariableName.new(class_variable.name, params[:prefix]).prefixed? ? class_variable.name.gsub('--', params[:prefix]) : params[:prefix]+class_variable.name
       sponsor_variable = SdtmSponsorDomain::Var.new(label: class_variable.label, name: sponsor_variable_name, ordinal: class_variable.ordinal)
@@ -69,8 +69,8 @@ class SdtmSponsorDomain < SdtmIgDomain
       sponsor_variable.compliance = Uri.new(uri:"http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d") #Permissible node
       sponsor_variable.typed_as = class_variable.typed_as.uri 
       sponsor_variable.classified_as = class_variable.classified_as.uri
-      #sponsor_variable.ct_reference = domain_variable.ct_reference
-      #sponsor_variable.based_on_ig_variable = domain_variable.uri
+      sponsor_variable.ct_reference = []
+      sponsor_variable.based_on_ig_variable = nil
       sponsor_variable.based_on_class_variable = class_variable.uri
       object.includes_column << sponsor_variable
     end
