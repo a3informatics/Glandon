@@ -46,6 +46,16 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
     this._togglePanels('index');
   }
 
+  /**
+   * Adjust all table columns in this instance 
+   */
+  adjustAllColumns() {
+
+    super.adjustAllColumns();
+    this.childrenPanel.table.columns.adjust();
+
+  }
+
 
   /** Private **/
 

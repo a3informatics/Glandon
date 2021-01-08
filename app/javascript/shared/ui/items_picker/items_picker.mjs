@@ -181,6 +181,17 @@ export default class ItemsPicker extends ModalView {
 
   }
 
+  /**
+   * Get currently active selector instance 
+   * @return {ManagedItemSelector | UnmanagedItemSelector} active selector instance 
+   */
+  get activeSelector() {
+
+    const activeTabId = $(this.selector).find('.tab-option.active').prop('id')
+    return this.selectors[ this._tabSelectorToType( activeTabId ) ] 
+
+  }
+
 
   /** Private **/
 
@@ -263,6 +274,13 @@ export default class ItemsPicker extends ModalView {
 
     this.isOpen = false;
 
+  }
+
+  /**
+   * Called on show animation completed, adjust currently displayed table columns 
+   */
+  _onShowComplete() {
+    this.activeSelector.adjustAllColumns();
   }
 
   /**

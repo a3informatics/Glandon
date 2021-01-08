@@ -62,6 +62,16 @@ export default class ManagedItemSelector extends Cacheable {
     this.dataLoaded = true;
   }
 
+  /**
+   * Adjust all table columns in this instance 
+   */
+  adjustAllColumns() {
+
+    this.indexPanel.table.columns.adjust();
+    this.historyPanel.table.columns.adjust();
+    
+  }
+
 
   /** Private **/
 
