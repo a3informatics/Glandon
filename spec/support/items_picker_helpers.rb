@@ -26,6 +26,14 @@ module ItemsPickerHelpers
     form: {
       pl: "Forms",
       s: "Form"
+    },
+    sdtm_ig_domain: {
+      pl: "SDTM IG Domains",
+      s: "SDTM IG Domain"
+    },
+    sdtm_class: {
+      pl: "SDTM Classes",
+      s: "SDTM Class"
     }
   }
 

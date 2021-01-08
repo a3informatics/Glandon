@@ -724,7 +724,27 @@ module UiHelpers
 
 		wait_for_ajax 10
 		expect(page).to have_content "Version History of '#{identifier}'" if success
-	end
+  end
+  
+  def ui_create_sdtm_sd(prefix, identifier, label, based_on, success = true)
+    click_navbar_sdtm_sponsor_domains
+    wait_for_ajax 10
+    
+    click_on 'New SDTM Sponsor Domain'
+    ui_in_modal do
+      fill_in 'prefix', with: prefix
+      fill_in 'identifier', with: identifier
+      fill_in 'label', with: label
+
+      find('#new-item-base').click
+      ip_pick_managed_items(based_on[:type], [ { identifier: based_on[:identifier], version: based_on[:version] } ], 'new-sdtm-sd')
+
+      click_on 'Submit'
+    end
+
+		wait_for_ajax 10
+		expect(page).to have_content "Version History of '#{identifier}'" if success
+  end
 
   # Return
   def ui_hit_return(id)
