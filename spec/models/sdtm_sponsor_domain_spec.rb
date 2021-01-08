@@ -55,7 +55,7 @@ describe SdtmSponsorDomain do
   end
 
   it "does create a Sponsor Domain based on a specified IG domain" do
-    params = {label:"Sponsor Adverse Events", prefix:"AE"}
+    params = {label:"Sponsor Adverse Events", prefix:"AE", identifier: "SDTM AE"}
     ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
     sponsor_domain = SdtmSponsorDomain.create_from_ig(params, ig_domain)
     check_dates(sponsor_domain, sub_dir, "create_from_ig_expected_1.yaml", :last_change_date)
@@ -63,7 +63,7 @@ describe SdtmSponsorDomain do
   end
 
   it "does create a Sponsor Domain based on a specified Class" do
-    params = {label:"Sponsor Adverse Events", prefix:"AE"}
+    params = {label:"Sponsor Adverse Events", prefix:"AE", identifier: "SDTM AE"}
     sdtm_class = SdtmClass.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL"))
     sponsor_domain = SdtmSponsorDomain.create_from_class(params, sdtm_class)
     check_dates(sponsor_domain, sub_dir, "create_from_class_expected_1.yaml", :last_change_date)
