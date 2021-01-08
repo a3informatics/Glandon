@@ -153,6 +153,15 @@ class SdtmSponsorDomainsController < ManagedItemsController
     end
   end
   
+  def destroy
+    sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(protect_from_bad_id(params))
+    return true unless get_lock_for_item(sdtm_sponsor_domain)
+    sdtm_sponsor_domain.delete
+    AuditTrail.delete_item_event(current_user, sdtm_sponsor_domain, sdtm_sponsor_domain.audit_message(:deleted))
+    @lock.release
+    render json: { data: "" }, status: 200
+  end
+
 private
   
   def the_params
