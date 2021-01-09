@@ -340,6 +340,7 @@ class Excel::Engine
   def set_property_with_tag(params)
     check_params(__method__.to_s, params, [:row, :col, :object, :mapping, :property, :can_be_empty, :additional])
     value = check_value(params[:row], params[:col], params[:can_be_empty])
+byebug if value == "Variable Qualifier"
     return if value.blank? && params[:can_be_empty]
     value = check_mapped(params[:row], params[:col], params[:mapping][:map])
     return if value.blank?

@@ -1,0 +1,328 @@
+@prefix : <http://www.cdisc.org/SDTM_MODEL/V1#> .
+@prefix bd: <http://www.assero.co.uk/Tabulation#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.cdisc.org/SDTM_MODEL/V1>
+	rdf:type owl:Ontology ;
+.
+:M
+	rdf:type bd:Model ;
+	isoC:label "SDTM Model"^^xsd:string ;
+	isoT:hasState :M_RS ;
+	isoT:hasIdentifier :M_SI ;
+	isoT:origin "Created from files: 'import_input_3.xlsx'"^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2016-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bo:hasManaged :M_R1 ;
+.
+:M_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+:M_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM MODEL"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+:M_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL>
+	rdf:type bd:SdtmClass ;
+	isoC:label "DM"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2016-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_SUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RFSTDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RFENDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_SITEID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_INVID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_INVNAM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_BRTHDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_AGE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_AGEU> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_SEX> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RACE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_ETHNIC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_ARMCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_ARM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_COUNTRY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_DMDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_DMDY> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM MODEL DM"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_STUDYID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Study Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:name "STUDYID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Unique identifier for a study."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_DOMAIN>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Domain Abbreviation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:name "DOMAIN"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_USUBJID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Unique Subject Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:name "USUBJID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_SUBJID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Subject Identifier for the Study"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:name "SUBJID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Subject identifier, which must be unique within the study. Often the ID of the subject as recorded on a CRF."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RFSTDTC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Subject Reference Start Date/Time"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "RFSTDTC"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Reference Start Date/time for the subject in ISO 8601 character format. Usually equivalent to date/time when subject was first exposed to study treatment. Required for all randomized subjects; will be null for all subjects who did not meet the milestone the date requires, such as screen failures or unassigned subjects."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RFENDTC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Subject Reference End Date/Time"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:name "RFENDTC"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Reference End Date/time for the subject in ISO 8601 character format. Usually equivalent to the date/time when subject was determined to have ended the trial, and often equivalent to date/time of last exposure to study treatment. Required for all randomized subjects; null for screen failures or unassigned subjects."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_SITEID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Study Site Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:name "SITEID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Unique identifier for a site within a study."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_INVID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Investigator Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:name "INVID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "An identifier to describe the Investigator for the study. May be used in addition to SITEID. Not needed if SITEID is equivalent to INVID."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_INVNAM>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Investigator Name"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:name "INVNAM"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Name of the investigator for a site."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_BRTHDTC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Date/Time of Birth"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:name "BRTHDTC"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Date/time of birth of the subject."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_AGE>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Age"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "11"^^xsd:positiveInteger ;
+	bd:name "AGE"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Age expressed in AGEU. May be derived from RFSTDTC and BRTHDTC, but BRTHDTC may not be available in all cases (due to subject privacy concerns)."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_AGEU>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Age Units"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "12"^^xsd:positiveInteger ;
+	bd:name "AGEU"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Units associated with AGE."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_SEX>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Sex"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "13"^^xsd:positiveInteger ;
+	bd:name "SEX"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Sex of the subject."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_RACE>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Race"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "14"^^xsd:positiveInteger ;
+	bd:name "RACE"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Race of the subject. Sponsors should refer to 'Collection of Race and Ethnicity Data in Clinical Trials' (FDA, September 2005) for guidance regarding the collection of race (http://www.fda.gov/cder/guidance/5656fnl.htm) See Assumption below regarding RACE."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_ETHNIC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Ethnicity"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "15"^^xsd:positiveInteger ;
+	bd:name "ETHNIC"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "The ethnicity of the subject. Sponsors should refer to 'Collection of Race and Ethnicity Data in Clinical Trials' (FDA, September 2005) for guidance regarding the collection of ethnicity (http://www.fda.gov/cder/guidance/5656fnl.htm)."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_ARMCD>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Planned Arm Code"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "16"^^xsd:positiveInteger ;
+	bd:name "ARMCD"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "1.ARMCD is limited to 20 characters and does not have special character restrictions. The maximum length of ARMCD is longer than for other 'short' variables to accommodate the kind of values that are likely to be needed for crossover trials. For example, if ARMCD values for a seven-period crossover were constructed using two-character abbreviations for each treatment and separating hyphens, the length of ARMCD values would be 20. 2. If the timing of Visits for a trial does not depend on which ARM a subject is in, then ARMCD should be null."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_ARM>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Description of Planned Arm"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "17"^^xsd:positiveInteger ;
+	bd:name "ARM"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Name given to an Arm or treatment group."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#818a9757-1ee5-4bd3-a179-e662e26b5b47> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_COUNTRY>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Country"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "18"^^xsd:positiveInteger ;
+	bd:name "COUNTRY"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Country of the investigational site in which the subject participated in the trial."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_DMDTC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Date/Time of Collection"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "19"^^xsd:positiveInteger ;
+	bd:name "DMDTC"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Date/time of demographic data collection."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DM/V1#CL_DMDY>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Study Day of Collection"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "20"^^xsd:positiveInteger ;
+	bd:name "DMDY"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Study day of collection measured as integer days."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
