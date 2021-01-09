@@ -10,7 +10,7 @@ describe SdtmSponsorDomain do
     return "models/sdtm_sponsor_domain"
   end
 
-  before :all do
+  before :each do
     data_files = ["SDTM_Sponsor_Domain.ttl"]
     load_files(schema_files, data_files)
     load_data_file_into_triple_store("mdr_identification.ttl")
@@ -19,9 +19,6 @@ describe SdtmSponsorDomain do
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
     load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
     load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
-  end
-
-  before :each do
     allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
   end
 
@@ -88,7 +85,7 @@ describe SdtmSponsorDomain do
 
   it "delete a domain" do
     before_count = triple_store.triple_count
-    params = {label:"Sponsor Adverse Events", prefix:"AE", identifier: "SDTM AE"}
+    params = {label:"Sponsor Adverse Events", prefix:"AE", identifier: "SDTM AE XXX"}
     sdtm_class = SdtmClass.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL"))
     sponsor_domain = SdtmSponsorDomain.create_from_class(params, sdtm_class)
     result = sponsor_domain.delete
