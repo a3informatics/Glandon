@@ -2346,6 +2346,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Units associated with AGE."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#bf2ac4b3-6323-44e4-8796-447e81f2fd83> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_DM/V2#CL_SEX>
 	rdf:type bd:SdtmClassVariable ;
@@ -3209,6 +3210,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V2#CL_RDOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -3219,6 +3221,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain of the parent record(s)"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V2#CL_RELID>
 	rdf:type bd:SdtmClassVariable ;
@@ -3229,6 +3232,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique value within USUBJID that identifies the relationship. All records for the same USUBJID that have the same RELID are considered \"related/associated.\" RELID can be any value the sponsor chooses, and is only meaningful within the RELREC dataset to identify the related/associated Domain records."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL>
 	rdf:type bd:SdtmClass ;
@@ -3283,6 +3287,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Study Identifier of the Parent record(s)."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -3293,6 +3298,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique Subject Identifier of the Parent record(s)."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_IDVAR>
 	rdf:type bd:SdtmClassVariable ;
@@ -3303,6 +3309,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifying variable in the dataset that identifies the related record(s). Examples: --SEQ, --GRPID."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_IDVARVAL>
 	rdf:type bd:SdtmClassVariable ;
@@ -3313,6 +3320,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Value of identifying variable of the parent record(s)."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V2#CL_QNAM>
 	rdf:type bd:SdtmClassVariable ;
@@ -3323,4 +3331,5 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "The short name of the Qualifier variable, which is used as a column name in a domain view with data from the parent domain. The value in QNAM cannot be longer than 8 characters, nor can it start with a number (e.g., \"1TEST\"). QNAM cannot contain characters other than letters, numbers, or underscores. This will often be the column name in the sponsor's operational dataset."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
