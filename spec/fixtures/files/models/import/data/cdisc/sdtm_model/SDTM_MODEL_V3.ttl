@@ -2364,6 +2364,7 @@
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Amount of an active ingredient expressed quantitatively per dosage unit, per unit of volume, or per unit of weight, according to the pharmaceutical dose form. Example: 50 mg/TABLET, 300 mg/L"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#bf2ac4b3-6323-44e4-8796-447e81f2fd83> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--PSTRGU>
 	rdf:type bd:SdtmClassVariable ;
@@ -2374,6 +2375,7 @@
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Unit for --PSTRG. Example: mg/TABLET, mg/mL"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#bf2ac4b3-6323-44e4-8796-447e81f2fd83> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V3#CL_--TRTV>
 	rdf:type bd:SdtmClassVariable ;
@@ -2469,6 +2471,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Value of identifying variable described in IDVAR. If ‑‑SEQ is the variable being used to describe this record, then the value of --SEQ would be entered here."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V3#CL>
 	rdf:type bd:SdtmClass ;
@@ -2523,6 +2526,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Since QVAL can represent a mixture of collected (on a CRF), derived, or assigned items, QORIG is used to indicate the origin of this data. Examples include CRF, ASSIGNED, or DERIVED. See Section 4: 4.1.1.8, Origin Metadata."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V3#CL>
 	rdf:type bd:SdtmClass ;
@@ -3510,6 +3514,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -3520,6 +3525,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product. Either USUBJID or POOLID must be populated."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_POOLID>
 	rdf:type bd:SdtmClassVariable ;
@@ -3530,6 +3536,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to identify a pool of subjects. If POOLID is entered, POOLDEF records must exist for each subject in the pool and USUBJID must be null. Either USUBJID or POOLID must be populated."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_RSUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -3540,6 +3547,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to identify a related subject or pool of subjects. RSUBJID will be populated with either the USUBJID of the related subject or the POOLID of the related pool."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL_SREL>
 	rdf:type bd:SdtmClassVariable ;
@@ -3550,4 +3558,5 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Describes the relationship of the subject identified in USUBJID or the pool identified in POOLID to the subject or pool identified in RSUBJID."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
