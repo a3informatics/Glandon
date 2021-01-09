@@ -2473,6 +2473,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_RDOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -2483,6 +2484,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain of the parent record(s)"^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -2493,6 +2495,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_IDVAR>
 	rdf:type bd:SdtmClassVariable ;
@@ -2503,6 +2506,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Name of the identifying variable in the general-observation-class dataset that identifies the related record(s). Examples include --SEQ and --GRPID."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_IDVARVAL>
 	rdf:type bd:SdtmClassVariable ;
@@ -2513,6 +2517,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Value of identifying variable described in IDVAR. If ‑‑SEQ is the variable being used to describe this record, then the value of --SEQ would be entered here."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_RELTYPE>
 	rdf:type bd:SdtmClassVariable ;
@@ -2523,6 +2528,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifies the hierarchical level of the records in the relationship. Values should be either ONE or MANY. Used only when identifying a relationship between datasets (as described in Section 8.3)."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELREC/V1#CL_RELID>
 	rdf:type bd:SdtmClassVariable ;
@@ -2533,6 +2539,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique value within USUBJID that identifies the relationship. All records for the same USUBJID that have the same RELID are considered \"related/associated.\" RELID can be any value the sponsor chooses, and is only meaningful within the RELREC dataset to identify the related/associated Domain records."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -2586,6 +2593,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Study Identifier of the Parent record(s)."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_RDOMAIN>
 	rdf:type bd:SdtmClassVariable ;
@@ -2596,6 +2604,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Two-character abbreviation for the domain of the parent record(s)."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -2606,6 +2615,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique Subject Identifier of the Parent record(s)."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_IDVAR>
 	rdf:type bd:SdtmClassVariable ;
@@ -2616,6 +2626,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifying variable in the dataset that identifies the related record(s). Examples: --SEQ, --GRPID."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_IDVARVAL>
 	rdf:type bd:SdtmClassVariable ;
@@ -2626,6 +2637,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Value of identifying variable of the parent record(s)."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QNAM>
 	rdf:type bd:SdtmClassVariable ;
@@ -2636,6 +2648,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "The short name of the Qualifier variable, which is used as a column name in a domain view with data from the parent domain. The value in QNAM cannot be longer than 8 characters, nor can it start with a number (e.g., \"1TEST\"). QNAM cannot contain characters other than letters, numbers, or underscores. This will often be the column name in the sponsor's operational dataset."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QLABEL>
 	rdf:type bd:SdtmClassVariable ;
@@ -2646,6 +2659,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "This is the long name or label associated with QNAM. The value in QLABEL cannot be longer than 40 characters. This will often be the column label in the sponsor's original dataset."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QVAL>
 	rdf:type bd:SdtmClassVariable ;
@@ -2656,6 +2670,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Result of, response to, or value associated with QNAM. A value for this column is required; no records can be in SUPP-- with a null value for QVAL."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QORIG>
 	rdf:type bd:SdtmClassVariable ;
@@ -2666,6 +2681,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Since QVAL can represent a mixture of collected (on a CRF), derived, or assigned items, QORIG is used to indicate the origin of this data. Examples include CRF, ASSIGNED, or DERIVED. See Section 4: 4.1.1.8, Origin Metadata."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QEVAL>
 	rdf:type bd:SdtmClassVariable ;
@@ -2676,6 +2692,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Used only for results that are subjective (e.g., assigned by a person or a group). Should be null for records that contain objectively collected or derived data. Some examples include ADJUDICATION COMMITTEE, STATISTICIAN, DATABASE ADMINISTRATOR, CLINICAL COORDINATOR, etc."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_CO/V1#CL>
 	rdf:type bd:SdtmClass ;
@@ -4644,6 +4661,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Unique identifier for a study."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELSUB/V1#CL_USUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -4654,6 +4672,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product. Either USUBJID or POOLID must be populated."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELSUB/V1#CL_POOLID>
 	rdf:type bd:SdtmClassVariable ;
@@ -4664,6 +4683,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to identify a pool of subjects. If POOLID is entered, POOLDEF records must exist for each subject in the pool and USUBJID must be null. Either USUBJID or POOLID must be populated."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELSUB/V1#CL_RSUBJID>
 	rdf:type bd:SdtmClassVariable ;
@@ -4674,6 +4694,7 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Identifier used to identify a related subject or pool of subjects. RSUBJID will be populated with either the USUBJID of the related subject or the POOLID of the related pool."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELSUB/V1#CL_SREL>
 	rdf:type bd:SdtmClassVariable ;
@@ -4684,4 +4705,5 @@
 	bd:prefixed "false"^^xsd:boolean ;
 	bd:description "Describes the relationship of the subject identified in USUBJID or the pool identified in POOLID to the subject or pool identified in RSUBJID."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
 .
