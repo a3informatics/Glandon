@@ -424,19 +424,20 @@ describe Excel::Engine do
     expect(child.instance_variable_get("@tagged")).to eq([])
     child = ChildClass.new
     result = object.set_property_with_tag({row: 3, col: 1, object: child, property: :tagged, mapping: {map: {Z: "tag_1"}}, can_be_empty: false, additional: {path: ["X", "Y"]}})
-    expect(parent.errors.count).to eq(1)
-    expect(parent.errors.full_messages.to_sentence).to eq("Error mapping 'Yes' using map {:Z=>\"tag_1\"} detected in row 3 column 1.")
+    expect(parent.errors.count).to eq(2)
+    expect(parent.errors.full_messages.to_sentence).to eq("Error mapping 'Yes' using map {:Z=>\"tag_1\"} detected in row 3 column 1. and Blank tag value detected in row 3 column 1.")
     expect(child.instance_variable_get("@tagged")).to eq([])
     parent.errors.clear
     child = ChildClass.new
     result = object.set_property_with_tag({row: 4, col: 1, object: child, property: :tagged, mapping: {map: {Y: "tag_1"}}, can_be_empty: false, additional: {path: ["X", "Y"]}})
     expect(parent.errors.count).to eq(2)
-    expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 4 column 1. and Error mapping '' using map {:Y=>\"tag_1\"} detected in row 4 column 1.")
+    expect(parent.errors.full_messages.to_sentence).to eq("Error mapping '' using map {:Y=>\"tag_1\"} detected in row 4 column 1. and Blank tag value detected in row 4 column 1.")
     expect(child.instance_variable_get("@tagged")).to eq([])
     parent.errors.clear
     child = ChildClass.new
     result = object.set_property_with_tag({row: 4, col: 1, object: child, property: :tagged, mapping: {map: {Y: "tag_2"}}, can_be_empty: true, additional: {path: ["X", "Y"]}})
-    expect(parent.errors.count).to eq(0)
+    expect(parent.errors.count).to eq(1)
+    expect(parent.errors.full_messages.to_sentence).to eq("Error mapping '' using map {:Y=>\"tag_2\"} detected in row 4 column 1.")
     expect(child.instance_variable_get("@tagged")).to eq([])
   end
 
@@ -698,7 +699,7 @@ describe Excel::Engine do
     object.set_property_with_tag({row: 4, col: 1, object: child, can_be_empty: false, mapping: {map: {Y: "tag_1"}}, property: :tagged, additional: {path: ["X", "Y"]}})
     expect(parent.errors.any?).to eq(true)
     expect(parent.errors.count).to eq(2)
-    expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 4 column 1. and Error mapping '' using map {:Y=>\"tag_1\"} detected in row 4 column 1.")
+    expect(parent.errors.full_messages.to_sentence).to eq("Error mapping '' using map {:Y=>\"tag_1\"} detected in row 4 column 1. and Blank tag value detected in row 4 column 1.")
   end
 
   it "property with reference" do

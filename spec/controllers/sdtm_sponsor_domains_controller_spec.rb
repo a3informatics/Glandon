@@ -104,7 +104,7 @@ describe SdtmSponsorDomainsController do
       post :create_from, params:{sdtm_sponsor_domain: {identifier: "HEIGHT", label: "something", prefix: sdtm_ig_domain.prefix, based_on_id: sdtm_ig_domain.id}}
       post :create_from, params:{sdtm_sponsor_domain: {identifier: "HEIGHT", label: "something", prefix: sdtm_ig_domain.prefix, based_on_id: sdtm_ig_domain.id}}
       actual = check_error_json_response(response)
-      expect(actual[:errors]).to eq(["http://www.s-cubed.dk/AE_Domain/V1#SPD already exists in the database"])
+      expect(actual[:errors]).to eq(["http://www.s-cubed.dk/HEIGHT/V1#SPD already exists in the database"])
     end
 
     it "creates from class" do
