@@ -99,7 +99,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
 
   def delete_non_standard_variable
     sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
-    non_standard_variable = SdtmSponsorDomain::Var.find_full(the_params[:non_standard_var_id])
+    non_standard_variable = SdtmSponsorDomain::Variable.find_full(the_params[:non_standard_var_id])
     return true unless check_lock_for_item(sdtm_sponsor_domain)
     result = non_standard_variable.delete(sdtm_sponsor_domain, sdtm_sponsor_domain)
     return true if lock_item_errors
@@ -110,7 +110,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
   # @todo Not currently used
   def toggle_used
     sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
-    non_standard_variable = SdtmSponsorDomain::Var.find_full(the_params[:non_standard_var_id])
+    non_standard_variable = SdtmSponsorDomain::Variable.find_full(the_params[:non_standard_var_id])
     return true unless check_lock_for_item(sdtm_sponsor_domain)
     result = non_standard_variable.toggle_with_clone(sdtm_sponsor_domain)
     return true if lock_item_errors
@@ -137,7 +137,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
   def update_variable
     sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
     return true unless check_lock_for_item(sdtm_sponsor_domain)
-    non_standard_variable = SdtmSponsorDomain::Var.find_full(update_var_params[:non_standard_var_id])
+    non_standard_variable = SdtmSponsorDomain::Variable.find_full(update_var_params[:non_standard_var_id])
     amended_params = ids_to_uris(update_var_params, [:typed_as, :classified_as, :compliance])
     non_standard_variable = non_standard_variable.update_with_clone(amended_params, sdtm_sponsor_domain)
     if non_standard_variable.errors.empty?
