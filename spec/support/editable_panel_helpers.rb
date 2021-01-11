@@ -4,7 +4,21 @@ module EditorHelpers
 
   def ui_editor_fill_inline(field, text)
     sleep 0.5
-    fill_in "DTE_Field_#{field}", with: "#{text}"
+    fill_in "DTE_Field_#{field}", with: text
+    wait_for_ajax 20
+  end
+
+  def ui_editor_select_option(field, option_text)
+    sleep 0.5
+    select option_text, from: "DTE_Field_#{field}"
+    ui_press_key :return 
+    wait_for_ajax 20
+  end
+
+  def ui_editor_change_bool
+    sleep 0.5
+    ui_press_key :arrow_right 
+    ui_press_key :return 
     wait_for_ajax 20
   end
 

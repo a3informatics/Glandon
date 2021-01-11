@@ -9,8 +9,9 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
   include WaitForAjaxHelper
   include EditorHelpers
   include TokenHelpers
+  include ItemsPickerHelpers
 
-  describe "Edit SDTM Sponsor Domain, Incomplete", :type => :feature, js:true do
+  describe "Edit SDTM Sponsor Domain, Draft State", :type => :feature, js:true do
 
     before :all do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
@@ -108,9 +109,7 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
       # Check 'used' editing allowed 
       ui_check_table_cell_icon 'editor', 1, 2, 'sel-filled'
       ui_editor_select_by_location 1, 2
-      ui_press_key :arrow_right 
-      ui_press_key :return 
-      wait_for_ajax 10 
+      ui_editor_change_bool
       ui_check_table_cell_icon 'editor', 1, 2, 'times-circle'
     end
 
@@ -124,9 +123,7 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
 
       # Boolean
       ui_editor_select_by_location 2, 2
-      ui_press_key :arrow_right 
-      ui_press_key :return 
-      wait_for_ajax 10 
+      ui_editor_change_bool
       ui_check_table_cell_icon 'editor', 2, 2, 'times-circle'
 
       # Text
@@ -137,16 +134,12 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
       # Select
       ui_editor_check_value 2, 5, 'Character'
       ui_editor_select_by_location 2, 5
-      select 'Numeric', from: 'DTE_Field_typed_as'
-      ui_press_key :return 
-      wait_for_ajax 10 
+      ui_editor_select_option 'typed_as', 'Numeric'
       ui_editor_check_value 2, 5, 'Numeric'
 
       ui_editor_check_value 2, 7, 'None'
       ui_editor_select_by_location 2, 7
-      select 'Synonym', from: 'DTE_Field_classified_as'
-      ui_press_key :return 
-      wait_for_ajax 10 
+      ui_editor_select_option 'classified_as', 'Synonym'
       ui_editor_check_value 2, 7, 'Synonym'
 
       # Text validation 
@@ -195,6 +188,106 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
         edit_sdtm_sd 'SDTM Sponsor Domain', '0.1.0'
       end
 
+    end
+
+  end
+
+
+  describe "Edit SDTM Sponsor Domain, Standard", :type => :feature, js:true do
+
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      Token.restore_timeout
+      Token.delete_all
+      ua_create
+    end
+
+    after :all do
+      ua_destroy
+      Token.restore_timeout
+      Token.delete_all
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    it "allows to add, edit and remove variables in SDTM Editor" do
+      prep_std_sdtm
+      edit_sdtm_sd 'SDTM STD', '0.1.0'
+
+      ui_check_table_info 'editor', 1, 10, 25
+
+      # Boolean on Standard Var
+      ui_editor_select_by_location 1, 2
+      ui_editor_change_bool
+      ui_check_table_cell_icon 'editor', 1, 2, 'times-circle'
+
+      ui_table_search 'editor', 'AAXXX025'
+
+      # Text on Sponsor Var
+      ui_editor_select_by_location 1, 3
+      ui_editor_fill_inline 'name', "AAXXX111\n"
+      ui_editor_check_value 1, 3, "AAXXX111"
+
+      # Select on Sponsor Var 
+      ui_editor_select_by_location 1, 7
+      ui_editor_select_option 'classified_as', 'Variable Qualifier'
+      ui_editor_check_value 1, 7, 'Variable'
+
+      ui_table_search 'editor', ''
+
+      # Add Sponsor Var
+      click_on 'New Variable'
+      wait_for_ajax 10  
+
+      ui_check_table_info 'editor', 21, 26, 26
+
+      # Remove Sponsor Vars
+      remove_variable 'AAXXX026'
+      ui_check_table_info 'editor', 1, 10, 25
+      remove_variable 'AAXXX111'
+      ui_check_table_info 'editor', 1, 10, 24
+
+      # Check 
+      click_on 'Return'
+      ui_check_table_info 'history', 1, 2, 2
+      context_menu_element_v2 'history', '0.1.0', :show 
+      ui_check_table_info 'show', 1, 10, 25
+    end
+
+    def prep_std_sdtm 
+      # Create
+      ui_create_sdtm_sd('AA', 'SDTM STD', 'Standard SDTM Test', based_on = { type: :sdtm_ig_domain, identifier: 'SDTM IG MH', version: '2008-11-12' })
+      context_menu_element_v2('history', '0.1.0', :edit)
+      wait_for_ajax 10 
+
+      # Add new var
+      click_on 'New Variable'
+      wait_for_ajax 10  
+
+      click_on 'Return'
+      wait_for_ajax 10 
+
+      # Make Std
+      context_menu_element_v2('history', '0.1.0', :document_control)
+      click_on 'Submit Status Change'
+      click_on 'Submit Status Change'
+      click_on 'Submit Status Change'
+      click_on 'Submit Status Change'
+      click_on 'Return'
     end
 
   end
