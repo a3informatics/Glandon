@@ -37,7 +37,7 @@ function toggleSidebar(){
   else
     openSidebar();
 
-  setTimeout(function(){$(window).trigger('resize');}, 500);  
+  setTimeout(function(){$(window).trigger('resize');}, 500);
 }
 
 function getArrow(){
@@ -69,4 +69,19 @@ function handleContentWidth(){
 
   $('#main_area').toggleClass('ma-sb-col');
   $('#main_area').toggleClass('ma-sb-exp');
+}
+
+function swapMenuTypes(item) {
+  $(item).addClass("active");
+  $(item).siblings().removeClass("active");
+  switch ($(item).attr("id")) {
+    case "button-mdr":
+      $("#menu-type-mdr").show();
+      $("#menu-type-swb").hide();
+      break;
+    case "button-swb":
+      $("#menu-type-swb").show();
+      $("#menu-type-mdr").hide();
+      break;
+  }
 }

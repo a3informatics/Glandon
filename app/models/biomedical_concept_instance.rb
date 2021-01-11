@@ -1,4 +1,4 @@
-# Biomedical Concept Instance. 
+# Biomedical Concept Instance.
 #
 # @author Dave Iberson-Hurst
 # @since 3.1.0
@@ -25,8 +25,8 @@ class BiomedicalConceptInstance < BiomedicalConcept
   # @return [BiomedicalConceptInstance] the created object. May contain errors if unsuccesful.
   def self.create_from_template(params, template)
   	new_params = template.to_h
-  	new_params[:label] = params[:label] 
-  	new_params[:identifier] = params[:identifier] 
+  	new_params[:label] = params[:label]
+  	new_params[:identifier] = params[:identifier]
   	object = self.from_h(new_params)
     object.based_on = template.uri
     object.set_initial(params[:identifier])
@@ -120,10 +120,10 @@ private
   # Map the property to the correct child.
   def property_to_child(property)
     map = {
-      collect: :item, 
-      enabled: :item, 
-      question_text: :property, 
-      prompt_text: :property, 
+      collect: :item,
+      enabled: :item,
+      question_text: :property,
+      prompt_text: :property,
       format: :property,
       has_coded_value: :property
     }

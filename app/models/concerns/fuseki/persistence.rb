@@ -3,11 +3,11 @@
 # @author Dave Iberson-Hurst
 # @since 2.22.0
 module Fuseki
-  
+
   module Persistence
-  
+
     extend ActiveSupport::Concern
-    
+
     # -------------
     # Class Methods
     # -------------
@@ -33,7 +33,7 @@ module Fuseki
         parts = [0]
         uri = as_uri(uri_or_id)
         properties = resources
-        parts[0] = "  { #{uri.to_ref} ?p ?o .  BIND (#{uri.to_ref} as ?s) . BIND ('#{self.name}' as ?e) }" 
+        parts[0] = "  { #{uri.to_ref} ?p ?o .  BIND (#{uri.to_ref} as ?s) . BIND ('#{self.name}' as ?e) }"
         properties.each do |name, value|
           next if properties[name][:type] != :object
           klass = properties[name][:model_class]
@@ -113,11 +113,11 @@ module Fuseki
         results.first
       end
 
-      # Create. Create an object setting attributes. 
+      # Create. Create an object setting attributes.
       #
-      # @param [Hash] params the parameters hash containing attribute values. Keys are determined by the object 
+      # @param [Hash] params the parameters hash containing attribute values. Keys are determined by the object
       #   being created. Some key names are reserved:
-      # @option params [Uri] :parent_uri the parent uri object. Optional. 
+      # @option params [Uri] :parent_uri the parent uri object. Optional.
       #   If not specified base_uri method will be used
       # @option params [Transaction] :transaction the trnasction object. Optional.
       #   If not specified then no transaction will be used.
@@ -129,7 +129,7 @@ module Fuseki
         # New object
         object = new(params) # Base initialize method handles the transaction
         # Set the URI if no explicit URI set in params. NOTE: This is set after object creation, important!
-        object.uri = object.create_uri(parent_uri) unless params.key?(:uri) 
+        object.uri = object.create_uri(parent_uri) unless params.key?(:uri)
         # Create if valid
         object.create_or_update(:create) if object.valid?(:create)
         object
@@ -187,7 +187,7 @@ module Fuseki
         Fuseki::Base.class_variable_set(:@@subjects, Hash.new {|h, k| h[k] = {}}) if !Fuseki::Base.class_variable_defined?(:@@subjects) || Fuseki::Base.class_variable_get(:@@subjects).nil?
         uri_as_s = uri.to_s
         cache = Fuseki::Base.class_variable_get(:@@subjects)
-        return cache[uri_as_s] if cache.key?(uri_as_s) 
+        return cache[uri_as_s] if cache.key?(uri_as_s)
         results = Sparql::Query.new.query(query_string, uri.namespace, [])
         cache[uri_as_s] = results if !results.empty?
         results
@@ -303,7 +303,7 @@ module Fuseki
     def persisted?
       !(@new_record || @destroyed)
     end
-      
+
     # New Record? Is the record a new record.
     #
     # @return [Boolean] true if new, otherwise false
@@ -398,7 +398,7 @@ module Fuseki
       @transaction.register(self)
       @transaction
     end
-    
+
     # Transaction Execute. Execute the transaction
     #
     # @param [Boolean] execute run the transaction if true. Defaults to true.
@@ -407,7 +407,7 @@ module Fuseki
       @transaction.execute if execute
       @transaction
     end
-    
+
     # Transaction Clear. Clear the transaction
     #
     # @return [Object] nil
@@ -421,7 +421,7 @@ module Fuseki
     # Update. Update the object with the specified properties if valud
     #
     # @param [Hash] params a hash of properties to be updated
-    # @return [Object] returns the object. Not saved if errors are returned.      
+    # @return [Object] returns the object. Not saved if errors are returned.
     def update(params={})
       @properties.assign(params) if !params.empty?
       selective_update if valid?(:update)
@@ -430,7 +430,7 @@ module Fuseki
 
     # Save. Will save the object
     #
-    # @return [Object] returns the object. Not saved if errors are returned.      
+    # @return [Object] returns the object. Not saved if errors are returned.
     def save
       return self if !valid?(persisted? ? :update : :create)
       persisted? ? selective_update : create_or_update(:create)
@@ -500,7 +500,7 @@ module Fuseki
     # Add Link. Add a object to a collection
     #
     # @param [Symbol] name the name of the property holding the collection
-    # @param [Uri] uri the uri of the object to be linked. 
+    # @param [Uri] uri the uri of the object to be linked.
     # @return [Void] no return
     def add_link(name, uri)
       predicate = self.properties.property(name).predicate
@@ -518,7 +518,7 @@ module Fuseki
       update_query = %Q{ DELETE WHERE { #{self.uri.to_ref} #{predicate.to_ref} #{uri.to_ref} . }}
       partial_update(update_query, [])
     end
-  
+
     # Replace Link. Replace an object in the collection. Does not delete any object.
     #
     # @param [Symbol] name the name of the property holding the collection
@@ -527,22 +527,22 @@ module Fuseki
     # @return [Void] no return
     def replace_link(name, old_uri, new_uri)
       predicate = self.properties.property(name).predicate
-      update_query = %Q{ 
-        DELETE 
+      update_query = %Q{
+        DELETE
           { #{self.uri.to_ref} #{predicate.to_ref} #{old_uri.to_ref} . }
         INSERT
           { #{self.uri.to_ref} #{predicate.to_ref} #{new_uri.to_ref} . }
-        WHERE 
+        WHERE
           { #{self.uri.to_ref} #{predicate.to_ref} #{old_uri.to_ref} . }
       }
       partial_update(update_query, [])
     end
-  
+
     # Delete With Links. Delete the object and any links to the object
     #
     # @return [Integer] Number of records deleted
     def delete_with_links
-      update_query = %Q{ 
+      update_query = %Q{
         DELETE {
           #{self.uri.to_ref} ?p1 ?o .
           ?s ?p2 #{self.uri.to_ref} .
@@ -562,7 +562,7 @@ module Fuseki
           "  ?s ?p #{instance_variable_get(:@uri).to_ref} ." +
           "}"
       results = Sparql::Query.new.query(query_string, "", [])
-      results.empty? 
+      results.empty?
     end
 
     def used?
@@ -600,10 +600,10 @@ module Fuseki
       self.properties.saved
       self
     end
-    
+
     def to_sparql(sparql, recurse=false)
       serialize(sparql, recurse, false)
-    end      
+    end
 
     def to_ttl
       sparql = Sparql::Update.new
@@ -619,7 +619,7 @@ module Fuseki
         property.to_triples(sparql, @uri)
         serialize_object(sparql, property, ignore_persistence) if recurse
       end
-    end      
+    end
 
     # To Selective Sparql. The SPARQL for a selective update
     #
@@ -633,20 +633,20 @@ module Fuseki
         results << property.predicate
       end
       results
-    end      
+    end
 
     # Generate URI. Generate URIs for the object and properties
     #
     # @param [URI] parent the parent object's uri.
     # @return [Void] no return
     def generate_uri(parent)
-      self.uri = create_uri(parent) # Dynamic method 
+      self.uri = create_uri(parent) # Dynamic method
       properties.each do |property|
         value = property.get
         next if object_empty?(property)
         object_create_uri(property)
       end
-    end   
+    end
 
     # Clone. Clones an object copying each property.
     #
@@ -659,7 +659,7 @@ module Fuseki
         object_property.set_raw(property.get.dup)
       end
       object
-    end   
+    end
 
     # -----------------
     # Test Only Methods
@@ -737,7 +737,7 @@ module Fuseki
 
     # Object Empty
     def object_empty?(property)
-      return false if !property.object? 
+      return false if !property.object?
       value = property.get
       return true if value.nil?
       return true if property.array? && value.empty?

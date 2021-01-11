@@ -12,11 +12,13 @@ export default class TableInitializer {
    * @static
    * @param {string} selector Data table selector [default = '#main']
    * @param {array} order Data table order [default = [0, 'asc']]
+   * @param {Object} tableOpts Extra DataTable options, optional
    * @return {DataTable} initialized DataTable instance
    */
   static initTable({
     selector = '#main',
-    order = [0, 'asc']
+    order = [0, 'asc'],
+    tableOpts = {}
   } = {} ) {
 
     const table = $( selector ).DataTable({
@@ -24,11 +26,10 @@ export default class TableInitializer {
       pageLength: pageLength,     // Global variable
       lengthMenu: pageSettings,   // Global variable
       autoWidth: false,
-      order: order,
       language: {
         emptyTable: 'No data available'
       }
-    });
+    })
 
     // Generic table error handler
     setOnErrorHandler( table );

@@ -1,0 +1,157 @@
+---
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTEvVjEjQVNT
+:uri: http://www.acme-pharma.com/ITEM1/V1#ASS
+:rdf_type: http://www.assero.co.uk/BiomedicalConcept#Assessment
+:label: Item 1
+:tagged: []
+:has_state:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTEvVjEjQVNTX1JT
+  :uri: http://www.acme-pharma.com/ITEM1/V1#ASS_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTEvVjEjQVNTX1NJ
+  :uri: http://www.acme-pharma.com/ITEM1/V1#ASS_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: ITEM1
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+    :uri: http://www.assero.co.uk/NS#ACME
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ACME
+    :name: ACME Pharma
+    :authority: www.acme-pharma.com
+:origin: ''
+:change_description: ''
+:creation_date: '2020-04-14T14:40:27+02:00'
+:last_change_date: '2020-04-14T14:40:27+02:00'
+:explanatory_comment: ''
+:has_managed:
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTIvVjEjQVNT
+  :uri: http://www.acme-pharma.com/ITEM2/V1#ASS
+  :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Assessment
+  :label: Item 2
+  :tagged: []
+  :has_state:
+    :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTIvVjEjQVNTX1JT
+    :uri: http://www.acme-pharma.com/ITEM2/V1#ASS_RS
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Incomplete
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Incomplete
+    :multiple_edit: false
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS123456789
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '123456789'
+      :international_code_designator: DUNS
+      :owner: true
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+        :uri: http://www.assero.co.uk/NS#ACME
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ACME
+        :name: ACME Pharma
+        :authority: www.acme-pharma.com
+  :has_identifier:
+    :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTIvVjEjQVNTX1NJ
+    :uri: http://www.acme-pharma.com/ITEM2/V1#ASS_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: ITEM2
+    :version_label: ''
+    :version: 1
+    :semantic_version: 0.1.0
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2020-04-14T14:40:27+02:00'
+  :last_change_date: '2020-04-14T14:40:27+02:00'
+  :explanatory_comment: ''
+  :has_managed: []
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTMvVjEjQVNT
+  :uri: http://www.acme-pharma.com/ITEM3/V1#ASS
+  :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Assessment
+  :label: Item 3
+  :tagged: []
+  :has_state:
+    :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTMvVjEjQVNTX1JT
+    :uri: http://www.acme-pharma.com/ITEM3/V1#ASS_RS
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Incomplete
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Incomplete
+    :multiple_edit: false
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS123456789
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '123456789'
+      :international_code_designator: DUNS
+      :owner: true
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+        :uri: http://www.assero.co.uk/NS#ACME
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ACME
+        :name: ACME Pharma
+        :authority: www.acme-pharma.com
+  :has_identifier:
+    :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTMvVjEjQVNTX1NJ
+    :uri: http://www.acme-pharma.com/ITEM3/V1#ASS_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: ITEM3
+    :version_label: ''
+    :version: 1
+    :semantic_version: 0.1.0
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2020-04-14T14:40:27+02:00'
+  :last_change_date: '2020-04-14T14:40:27+02:00'
+  :explanatory_comment: ''
+  :has_managed: []

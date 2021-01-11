@@ -1,0 +1,35 @@
+<% content_for :page_title do %> <%= "Build: #{@study.has_identifier.identifier} (#{@study.semantic_version}) "%> <% end %>
+
+<%= stylesheet_link_tag 'shared/layouts/tabs_layout' %>
+<%= javascript_pack_tag 'studies/build' %>
+<%= javascript_tag "let studyEmpty = #{@study_empty};" %>
+
+<% third_level_breadcrumb(:studies, @study, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/studies/study_header", :locals => {:item => @study, :badge => "icon-study"} do %>
+
+    <div class="actions-wrap">
+
+      <%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+    </div>
+
+  <% end %>
+</div>
+
+<div class="row">
+	<div class="col-md-12 card wide">
+    <div class="card-header">
+      Study Build
+    </div>
+    <div class="card-content">
+      <%= render partial: "shared/studies/study_build_panel" %>
+  	</div>
+	</div>
+</div>
+
+<%= render partial: "shared/items_picker/items_picker", :locals => { id: 'protocol-template', description: 'Pick a Protocol Template for this Study.' } %>
+<%= render partial: "shared/items_picker/items_picker", :locals => { id: 'timeline', description: 'Pick one or more Items to attach to the Time Point.' } %>
+<%= render partial: "shared/studies/new_timepoint_modal" %>

@@ -128,6 +128,7 @@ Rails.application.routes.draw do
       # get :admin
     end
   end
+  resources :triple_store, only: [:show]
   resources :iso_concept_systems, only: [:index, :show, :destroy] do
     member do
       post :add
@@ -355,8 +356,63 @@ Rails.application.routes.draw do
       post :create_from_template
     end
   end
-
-  #Forms
+  resources :studies, only: [:show, :create, :update] do
+    member do
+      get :build
+      get :design
+      get :soa
+      get :visits
+    end
+    collection do
+      get :index
+      get :history
+    end
+  end
+  resources :protocols, only: [:show, :update] do
+    member do
+      post :from_template
+      get :objectives
+      get :endpoints
+    end
+    collection do
+      get :index
+      get :history
+    end
+  end
+  resources :protocol_templates, only: [:show] do
+    collection do
+      get :index
+      get :history
+    end
+  end
+  resources :arms, only: [] do
+    member do
+      get :timepoints
+      post :add_timepoint
+      post :add_managed
+      post :remove_managed
+      post :update_timepoints
+    end
+  end
+  resources :timepoints, only: [] do
+    member do
+      post :change_unit
+      post :add_managed
+      post :remove_managed
+    end
+  end
+  resources :visits, only: [] do
+    member do
+      post :add_timepoints
+      post :remove_timepoints
+    end
+  end
+  resources :assessments, only: [:show] do
+    collection do
+      get :index
+      get :history
+    end
+  end
   resources :forms do
     member do
       get :show_data

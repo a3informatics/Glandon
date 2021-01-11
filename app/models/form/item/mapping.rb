@@ -6,8 +6,8 @@
 class Form::Item::Mapping < Form::Item
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#Mapping",
-            uri_suffix: "MA",  
-            uri_unique: true 
+            uri_suffix: "MA",
+            uri_unique: true
 
   data_property :mapping
 
@@ -31,7 +31,7 @@ class Form::Item::Mapping < Form::Item
   end
 
 private
-  
+
   def mapping_row(mapping)
     "<tr><td>#{mapping}</td><td colspan=\"2\"></td></tr>"
   end

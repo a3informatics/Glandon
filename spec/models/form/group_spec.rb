@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Form::Group do
-  
+
   include DataHelpers
   include OdmHelpers
 
@@ -9,7 +9,7 @@ describe Form::Group do
     return "models/form/group"
   end
 
-  describe "Validations" do 
+  describe "Validations" do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
@@ -60,7 +60,7 @@ describe Form::Group do
   end
 
   describe "Destroy" do
-    
+
     before :each do
       data_files = ["forms/form_test_2.ttl", "forms/form_test.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -125,7 +125,7 @@ describe Form::Group do
   end
 
   describe "Destroy BC Group" do
-    
+
     before :all do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -180,7 +180,7 @@ describe Form::Group do
   end
 
   describe "Move up/down" do
-    
+
     before :each do
       data_files = ["forms/FN000120.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -232,4 +232,3 @@ describe Form::Group do
   end
   
 end
-  

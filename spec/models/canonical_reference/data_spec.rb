@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe CanonicalReference do
-	
+
 	include DataHelpers
   include PublicFileHelpers
 
@@ -58,7 +58,7 @@ describe CanonicalReference do
   #     sparql.default_namespace(item.first.uri.namespace)
   #     refs.each do |ref|
   #       item = CanonicalReference.where(bridg: ref[:bridg])
-  #       sparql.add({uri: item.first.uri}, {prefix: :fr, fragment: "sdtm"}, {literal: ref[:sdtm], primitive_type: XSDDatatype.new("string")}) 
+  #       sparql.add({uri: item.first.uri}, {prefix: :fr, fragment: "sdtm"}, {literal: ref[:sdtm], primitive_type: XSDDatatype.new("string")})
   #     end
   #     full_path = sparql.to_file
   #   #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "canonical_references_migration_1.ttl")

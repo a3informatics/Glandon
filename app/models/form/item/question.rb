@@ -6,13 +6,13 @@
 class Form::Item::Question < Form::Item
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#Question",
-            uri_suffix: "Q",  
-            uri_unique: true 
+            uri_suffix: "Q",
+            uri_unique: true
 
-  data_property :datatype 
-  data_property :format 
+  data_property :datatype
+  data_property :format
   data_property :mapping
-  data_property :question_text 
+  data_property :question_text
 
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference", children: true
 
@@ -78,7 +78,7 @@ class Form::Item::Question < Form::Item
   # @params [Hash] params the parameters
   # @option params [String] :type the param name of the new node
   # @option params [Array] :id_set array of unmanaged concepts ids
-  # @return [Array] the created objects. May contain errors if unsuccesful. 
+  # @return [Array] the created objects. May contain errors if unsuccesful.
   def add_child(params)
     if params[:type].to_sym == :tuc_reference
       results = []
@@ -95,7 +95,7 @@ class Form::Item::Question < Form::Item
       results
     else
       self.errors.add(:base, "Attempting to add an invalid child type")
-    end 
+    end
   end
 
   def delete_reference(reference, managed_ancestor)
@@ -128,11 +128,11 @@ class Form::Item::Question < Form::Item
       string_uris[:where] += "#{s.to_ref} bo:ordinal ?x#{index} . "
     end
     query_string = %Q{
-      DELETE 
+      DELETE
         { #{string_uris[:delete]} }
       INSERT
         { #{string_uris[:insert]} }
-      WHERE 
+      WHERE
         { #{string_uris[:where]} }
     }
 puts "Q: #{query_string}"
@@ -165,12 +165,12 @@ puts "Q: #{query_string}"
       query_string = %Q{
         SELECT ?s WHERE {
           {
-            #{self.uri.to_ref} bf:hasCommon ?s . 
+            #{self.uri.to_ref} bf:hasCommon ?s .
             BIND ("A" as ?type)
-          } 
-          UNION 
+          }
+          UNION
           {
-            #{self.uri.to_ref} bf:hasCodedValue ?s .  
+            #{self.uri.to_ref} bf:hasCodedValue ?s .
             BIND ("B" as ?type)
           }
           ?s bo:ordinal ?ordinal .

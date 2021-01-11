@@ -78,7 +78,7 @@ describe Form do
           ?sg <http://www.assero.co.uk/BusinessForm#repeating> ?r .
           ?sg <http://www.assero.co.uk/BusinessForm#optional> ?o .
           ?sg <http://www.assero.co.uk/BusinessForm#ordinal> ?ordinal .
-          OPTIONAL 
+          OPTIONAL
           {
             ?sg <http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> ?has_bc .
           }
@@ -139,7 +139,7 @@ describe Form do
           ?i <http://www.assero.co.uk/BusinessForm#note> ?n .
           ?i <http://www.assero.co.uk/BusinessForm#optional> ?o .
           ?i <http://www.assero.co.uk/BusinessForm#ordinal> ?ordinal .
-          OPTIONAL 
+          OPTIONAL
           {
             ?i <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> .
             ?i <http://www.assero.co.uk/BusinessForm#format> ?format .
@@ -148,35 +148,35 @@ describe Form do
             ?i <http://www.assero.co.uk/BusinessForm#datatype> ?datatype
             BIND ("Question" as ?type)
           }
-          OPTIONAL 
+          OPTIONAL
           {
             ?i <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Mapping> .
             ?i <http://www.assero.co.uk/BusinessForm#mapping> ?mapping .
             BIND ("Mapping" as ?type)
           }
-          OPTIONAL 
+          OPTIONAL
           {
             ?i <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Placeholder> .
             ?i <http://www.assero.co.uk/BusinessForm#free_text> ?free_text .
             BIND ("Placeholder" as ?type)
           }
-          OPTIONAL 
+          OPTIONAL
           {
             ?i <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#BcProperty> .
             BIND ("BcProperty" as ?type)
           }
-          OPTIONAL 
+          OPTIONAL
           {
             ?i <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#CommonItem> .
             ?i <http://www.assero.co.uk/BusinessForm#hasCommonItem> ?common_item .
             BIND ("CommonItem" as ?type)
           }
-          OPTIONAL 
+          OPTIONAL
           {
             ?i <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#TextLabel> .
             ?i <http://www.assero.co.uk/BusinessForm#label_text> ?label_text .
             BIND ("TextLabel" as ?type)
-          }  
+          }
         }
       }
       query_results = Sparql::Query.new.query(query_string, "", [])
@@ -514,10 +514,10 @@ describe Form do
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
-      load_data_file_into_triple_store("association.ttl")      
+      load_data_file_into_triple_store("association.ttl")
     end
 
     after :all do
@@ -536,14 +536,14 @@ describe Form do
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
       question.mapping = "VSORRESU"
-      question.datatype = "datetype" 
+      question.datatype = "datetype"
       question.question_text = "Question text 1"
       question.save
       normal_group.add_child({type:"question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.second.uri)
       question.mapping = "VSORRES"
-      question.datatype = "datetype" 
+      question.datatype = "datetype"
       question.question_text = "Question text 2"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)

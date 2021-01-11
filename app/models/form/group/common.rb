@@ -3,7 +3,7 @@ class Form::Group::Common < Form::Group
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#CommonGroup",
             uri_suffix: "CG",
             uri_unique: true
-            
+
   object_property_class :has_item, model_class: Form::Item::Common
 
   # # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
@@ -20,7 +20,7 @@ class Form::Group::Common < Form::Group
   #   self.has_item
   # end
 
-  # Children Ordered. Returns the set of children nodes ordered by ordinal. 
+  # Children Ordered. Returns the set of children nodes ordered by ordinal.
   #
   # @return [Form::Group::Normal] array of objects
   def children_ordered
@@ -31,7 +31,7 @@ class Form::Group::Common < Form::Group
   #
   # @result [Boolean] return true if this instance is a top level group or false if  it is a subGroup
   def common_group?
-    Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bf:hasCommon ?o}", "", [:bf]).ask? 
+    Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bf:hasCommon ?o}", "", [:bf]).ask?
   end
 
   # Get Item
@@ -77,7 +77,7 @@ class Form::Group::Common < Form::Group
       object = child.clone
       object.has_common_item = keep_links.map{|x| Uri.new(uri:x) }
       object.transaction_set(tx)
-      object.generate_uri(self.uri) 
+      object.generate_uri(self.uri)
       object.to_sparql(sparql, true)
       uri_updated(managed_ancestor, child.uri, object.uri)
       items << object
@@ -91,10 +91,10 @@ class Form::Group::Common < Form::Group
   # end
 
   def get_normal_group
-    query_string = %Q{         
-      SELECT ?normal_group WHERE 
+    query_string = %Q{
+      SELECT ?normal_group WHERE
       { #{self.uri.to_ref} ^bf:hasCommon ?normal_group. }
-    }     
+    }
     query_results = Sparql::Query.new.query(query_string, "", [:bf])
     query_results.by_object(:normal_group).first
   end

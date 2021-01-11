@@ -2,13 +2,13 @@ module FusekiBaseHelpers
 
   def property_metadata(property)
     result = {}
-    property.each do |key, value| 
+    property.each do |key, value|
       if value.is_a?(Array)
         result[key] = []
         value.each {|x| result[key] << x.to_s}
       elsif value.nil?
         result[key] = nil
-      elsif value.respond_to? :to_h 
+      elsif value.respond_to? :to_h
         result[key] = value.to_h
       else
         result[key] = value
@@ -24,35 +24,35 @@ module FusekiBaseHelpers
   end
 
   class TestScopedIdentifier < Fuseki::Base
-    
+
     configure rdf_type: "http://www.assero.co.uk/Test#ScopedIdentifier"
-    
+
     data_property :identifier
     object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority"
-    
+
     validates_with Validator::Uniqueness, attribute: :identifier
     validates_with Validator::Klass, property: :by_authority
     validates_with Validator::Field, attribute: :identifier, method: :valid_identifier?
-    
+
   end
 
   class TestRegistrationAuthorities < Fuseki::Base
 
     configure rdf_type: "http://www.assero.co.uk/Test#RegistrationAuthority",
-              base_uri: "http://www.assero.co.uk/RA" 
+              base_uri: "http://www.assero.co.uk/RA"
 
-    data_property :organization_identifier, default: "<Not Set>" 
+    data_property :organization_identifier, default: "<Not Set>"
     data_property :international_code_designator, default: "XXX"
     data_property :owner, default: false
     object_property :ra_namespace, cardinality: :one, model_class: "IsoNamespace", delete_exclude: true
     object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority", read_exclude: true
 
-  end 
+  end
 
   class TestAdministeredItem < Fuseki::Base
 
     configure rdf_type: "http://www.assero.co.uk/Test#AdministeredItem",
-              base_uri: "http://www.assero.co.uk/RA" 
+              base_uri: "http://www.assero.co.uk/RA"
 
     object_property :has_state, cardinality: :one, model_class: "IsoRegistrationStateV2"
     object_property :has_identifier, cardinality: :many, model_class: "IsoScopedIdentifierV2"
@@ -63,7 +63,7 @@ module FusekiBaseHelpers
   class ValidateOneAdministeredItem < Fuseki::Base
 
     configure rdf_type: "http://www.assero.co.uk/Test#AdministeredItem",
-              base_uri: "http://www.assero.co.uk/RA" 
+              base_uri: "http://www.assero.co.uk/RA"
 
     object_property :has_state, cardinality: :one, model_class: "IsoRegistrationStateV2"
     object_property :has_identifier, cardinality: :many, model_class: "IsoScopedIdentifierV2"
@@ -81,7 +81,7 @@ module FusekiBaseHelpers
               key_property: :identifier
 
     object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
-  
+
     include Thesaurus::Synonyms
 
   end

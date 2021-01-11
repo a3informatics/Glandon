@@ -68,12 +68,6 @@
   rdfs:subClassOf :Item ;
   skos:definition "A passive mapping item."^^xsd:string
 .
-:TextLabel
-  rdf:type owl:Class ;
-  rdfs:label "Text label"^^xsd:string ;
-  rdfs:subClassOf :Item ;
-  skos:definition "A passive text label item."^^xsd:string
-.
 :BcProperty
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept based Item"^^xsd:string ;
@@ -111,7 +105,7 @@
 :hasCommon
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :Group ;
+  rdfs:domain :NormalGroup ;
   rdfs:label "Has common group relationship"^^xsd:string ;
   rdfs:range :CommonGroup ;
   skos:definition "Has a common group relationship"^^xsd:string
@@ -156,6 +150,16 @@
   rdfs:range bo:TcReference ;
   skos:definition "Reference to a Thesaurus Concept"^^xsd:string
 .
+:hasCodedValue
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Coded Value Relationship"^^xsd:string ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf  ( :Question :BcProperty)
+    ] ;
+  rdfs:range bo:TMcReference ;
+  skos:definition "Reference to a coded value."^^xsd:string
+.
 :completion
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
@@ -192,7 +196,7 @@
   rdfs:range xsd:boolean ;
   skos:definition "Item optional flag."^^xsd:string
 .
-:free_text
+:freeText
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Placeholder ;
@@ -200,7 +204,7 @@
   rdfs:range xsd:string ;
   skos:definition "Placeholder free text."^^xsd:string
 .
-:label_text
+:labelText
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :TextLabel ;
@@ -214,7 +218,7 @@
   rdfs:domain :Node ;
   rdfs:label "Node ordinal"^^xsd:string ;
   rdfs:range xsd:integer ;
-  skos:definition "The rodinal within the set."^^xsd:string
+  skos:definition "The ordinal within the set."^^xsd:string
 .
 :datatype
   rdf:type owl:DatatypeProperty ;
@@ -242,20 +246,12 @@
   rdfs:range xsd:string ;
   skos:definition "The annotation/mapping."^^xsd:string
 .
-:question_text
+:questionText
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Question ;
   rdfs:label "Question text"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "The question text."^^xsd:string
-.
-:is_common
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :CommonItem ;
-  rdfs:label "Is common"^^xsd:string ;
-  rdfs:range xsd:boolean ;
-  skos:definition "The item is marked as being a common item."^^xsd:string
 .
 

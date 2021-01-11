@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 describe BiomedicalConcept::ComplexDatatype do
-  
+
   include DataHelpers
   include SparqlHelpers
   include IsoConceptsHelpers
-  include IsoManagedHelpers    
+  include IsoManagedHelpers
 
   def sub_dir
     return "models/biomedical_concept/complex_datatype"
@@ -25,7 +25,7 @@ describe BiomedicalConcept::ComplexDatatype do
       expect(result.valid?).to eq(true)
     end
 
-  end 
+  end
 
   describe "Ancestors" do
 
@@ -90,4 +90,3 @@ describe BiomedicalConcept::ComplexDatatype do
   end
 
 end
-  

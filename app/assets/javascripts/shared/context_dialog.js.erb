@@ -1,0 +1,160 @@
+/*
+* Context Dialog
+*
+* Displays content in a context dialog attached to an element
+*
+*/
+
+/**
+* Context Dialog Constructor
+*
+*/
+function ContextDialog(id) {
+  this.width = 350;
+  this.id = "#context-dialog-" + id;
+  this.processing = false;
+}
+
+
+/**
+ ****** General ******
+**/
+
+
+/**
+ * Call to render the Context Dialog
+ *
+ * @param params [Object] context dialog parameters (element, id, title, subtitle content)
+ * @return [void]
+ */
+ContextDialog.prototype.show = function(params) {
+  if (this.processing)
+    return;
+
+  this.clear();
+  this.params = this.defaultParams(params);
+  $("#main_area").append(this.generateDialog());
+  this.updatePosition();
+
+  $(this.id).removeClass("closed")
+
+  return this;
+}
+
+/**
+ * Call to clear any Context Dialogs on page
+ *
+ * @return [void]
+ */
+ContextDialog.prototype.updatePosition = function() {
+  var props = this.buildProperties();
+  $(this.id).removeClass("left");
+  $(this.id).css("left", props.left);
+  $(this.id).css("top", props.top);
+  $(this.id).addClass(props.class);
+}
+
+/**
+ * Call to clear any Context Dialogs on page
+ *
+ * @return [void]
+ */
+ContextDialog.prototype.clear = function() {
+  $(".context-dialog, .context-dialog *").off();
+  $(".context-dialog, .context-dialog *").remove();
+}
+
+/**
+ * Set event handlers
+ *
+ * @return [void]
+ */
+ContextDialog.prototype.setListeners = function() {
+  $(window).off("resize").on("resize", this.updatePosition.bind(this));
+  $(this.id).find("#cd-close").off("click").on("click", this.clear.bind(this));
+
+  return this;
+}
+
+
+/**
+ ****** HTML ******
+**/
+
+
+/**
+ * Generates dialog HTML
+ *
+ * @return [String] formatted HTML with content
+ */
+ContextDialog.prototype.generateDialog = function() {
+  var html = "";
+
+  html += "<div id='"+ this.id.replace('#', '') +"' class='context-dialog closed shadow-small'>";
+  html +=   "<div class='cd-title'>"+ this.params.title +
+              "<span class='icon-times clickable' id='cd-close'></span>" +
+            "</div>";
+  html+=    (this.params.subtitle != null ?
+            "<div class='cd-subtitle'>" + this.params.subtitle + "</div>" : "");
+  html+=    "<hr/>"
+  html +=   "<div class='cd-content'>" + this.params.content + "</div>";
+  html += "</div>";
+
+  return html;
+}
+
+
+/**
+ ****** Support ******
+**/
+
+
+/**
+ * Enable / disable loading style on dialog
+ *
+ * @param enable [Boolean] true / false ~ show / hide loading
+ * @return [void]
+ */
+ContextDialog.prototype.loading = function(enable) {
+  this.processing = enable;
+  $(this.id).toggleClass("loading", enable);
+}
+
+/**
+ * Call to clear any Context Dialogs on page
+ *
+ * @return [void]
+ */
+ContextDialog.prototype.buildProperties = function() {
+  var mainAreaOffset = $("#main_area")[0].getBoundingClientRect();
+  var sourceOffset = this.params.element[0].getBoundingClientRect();
+
+  if (sourceOffset.left + sourceOffset.width + this.width >= $(document).width())
+    return {
+      top: sourceOffset.top + sourceOffset.height  - mainAreaOffset.top + $("#main_area").scrollTop(),
+      left: sourceOffset.left - this.width  - mainAreaOffset.left,
+      class: "left"
+    }
+  else
+    return {
+      top: sourceOffset.top + sourceOffset.height  - mainAreaOffset.top + $("#main_area").scrollTop(),
+      left: sourceOffset.left + sourceOffset.width  - mainAreaOffset.left,
+      class: ""
+    }
+}
+
+
+/**
+ * Sets default values to parameters
+ *
+ * @param params [Object] user parameters
+ * @return [Object] params with defaults set as missing params
+ */
+ContextDialog.prototype.defaultParams = function(params) {
+  return _.defaults(params, {
+    id: "0",
+    title: "Information",
+    subtitle: "",
+    content: ""
+  });
+}
