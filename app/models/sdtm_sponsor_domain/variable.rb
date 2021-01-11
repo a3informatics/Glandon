@@ -1,4 +1,4 @@
-class SdtmSponsorDomain::Var < SdtmIgDomain::Variable
+class SdtmSponsorDomain::Variable < SdtmIgDomain::Variable
 
   configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable",
             base_uri: "http://#{EnvironmentVariable.read("url_authority")}/SDV",
