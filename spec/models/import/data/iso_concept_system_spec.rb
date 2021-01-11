@@ -186,4 +186,39 @@ describe IsoConceptSystem do
 
   end
 
+  describe "Migration Four" do
+
+    before :all do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "migration 4, add CRUD tags" do
+      cs = IsoConceptSystem.root
+      crud = add_top_node({label: "CRUD", description: "Data access operations."}, cs)
+      create = add_node({label: "CREATE", description: "A create operation."}, crud)
+      read = add_node({label: "READ", description: "A read operation."}, crud)
+      update = add_node({label: "UPDATE", description: "An update operation."}, crud)
+      delete = add_node({label: "DELETE", description: "A delete operation."}, crud)
+      
+      sparql = Sparql::Update.new
+      sparql.default_namespace(cs.uri.namespace)
+      crud.to_sparql(sparql, true)
+      sparql.add({uri: cs.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:isoC), :fragment => "isTopConcept"}, {uri: crud.uri})
+      file = sparql.to_file
+    copy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_migration_4.ttl")
+    end
+
+  end
+
+
 end

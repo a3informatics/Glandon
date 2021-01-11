@@ -1,0 +1,43 @@
+@prefix : <http://www.assero.co.uk/CSN#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/CSN>
+	rdf:type owl:Ontology ;
+.
+:a9334048-8f9e-412a-9509-e671cc7973a8
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "CRUD"^^xsd:string ;
+	isoC:description "Data access operations."^^xsd:string ;
+	isoC:narrower :d39e1295-4e8b-40aa-9d50-bffbae9fa07c ;
+	isoC:narrower :30b0bb5b-75c9-4e21-806a-28775ba6b910 ;
+	isoC:narrower :c543cff2-2dd4-4bfa-9683-1ad9b6f82f31 ;
+	isoC:narrower :b7822084-ddf5-48d1-a321-7a4d796d53a1 ;
+.
+:d39e1295-4e8b-40aa-9d50-bffbae9fa07c
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "CREATE"^^xsd:string ;
+	isoC:description "A create operation."^^xsd:string ;
+.
+:30b0bb5b-75c9-4e21-806a-28775ba6b910
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "READ"^^xsd:string ;
+	isoC:description "A read operation."^^xsd:string ;
+.
+:c543cff2-2dd4-4bfa-9683-1ad9b6f82f31
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "UPDATE"^^xsd:string ;
+	isoC:description "An update operation."^^xsd:string ;
+.
+:b7822084-ddf5-48d1-a321-7a4d796d53a1
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "DELETE"^^xsd:string ;
+	isoC:description "A delete operation."^^xsd:string ;
+.
+:359a3f39-0920-44cb-b13c-e8bdf5fbd4b8
+	isoC:isTopConcept :a9334048-8f9e-412a-9509-e671cc7973a8 ;
+.
