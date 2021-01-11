@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'sdtm_sponsor_domain/variable'
 
 describe "SDTM Sponsor Domains", :type => :feature do
 
