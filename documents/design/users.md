@@ -1,33 +1,43 @@
-# User Management
+# User and Role Management
 
-## Overview
+## General
 
-User management and access control is provided by a combination of three Rails Gems:
+User management and access control is provided by a combination of a Rails Gem and bespoke controls
 
-| **Name** | **Purpose** |
-| --- | --- |
-| **Devise** | See [https://github.com/plataformatec/devise](https://github.com/plataformatec/devise), for user management (including passwords) |
-| **Rolify** | See [https://github.com/RolifyCommunity/rolify](https://github.com/RolifyCommunity/rolify), for roles |
-| **Pundit** | See [https://github.com/elabs/pundit](https://github.com/elabs/pundit), for role/user authorization to system functions |
+The **Devise** gem is used for user management and login, See [https://github.com/plataformatec/devise](https://github.com/plataformatec/devise), 
+while rols and authroization to system functionality is controlled by application software. The use of Pundit and Roify has been discontinued since R4.0.0.
 
-A small wrapper is placed around these to implement user login, logout, password management, roles and authorisation to system functions. Devise handles the bulk of the work with an associated class User to provide some basic user management (create, delete and amend roles). 
+A small wrapper is placed around these to implement user login, logout, password management, roles and authorisation to system functions. Devise handles the bulk of the work with an associated class User to provide some basic user management (create, delete and amend users). 
 
-## User Roles
+## Model
 
-Roles are handled by the Rolify gem
+![](diagrams/users_and_roles.png)
 
-Roles are seeded within the database and there is no ability to change or amend other than to assign roles to users. Access to system functions is handled by Pundit using policy files.
+## Nodes
+
+| **Node** | **Description** |
+| :--- | :--- |
+| **UserAccess** | Links the permitted namespaces (scopes) and roles a user has permissions (access) for. Links to the RDBMS user definition managed by Devise |
+| **Role** | The definition of a role  |
+| **RolePermission** | Specifies the permission, a combination of a class and the type access (CRUD operation) |
+
+## Relationships
+
+| **Relationship** | **Description** | **Cardinality** |
+| :--- | :--- | :--- |
+| **canAccessScope** | Links a user with a scope | 1:M |
+| **hasRole** | Links a user with a role | 1:M |
+| **forRole** | Links a permission to a role | 1:M |
+| **forClass** | Links a permission to a RDF class | 1:1 |
+| **withAccess** | Links a permission to an access type | 1:1 |
+
+## Roles 
+
+Roles allow for access to one or more system application classes for either a Create, Read, Update or Delete operation (CRUD) or a combination thereof. 
 
 ## Controller Action Authentication and Authorisation
 
-All controller actions should be authenticated (valid user) and authorised (user can perform function given their role)
-
-The authentication of users is provided by the Devise gem.
-
-The authorisation is provided by the Pundit gem. Access to a given system function is controlled by a policy for each controller. A set of methods for the policy class are generated based on the settings within the policy.yml configuration file. There is the ability to 
-
-1. set for an action the access for each role
-1. set for an action the name of another method that determines access
+All controller actions should be authenticated (valid user) and authorised (user can perform function given their role). The authentication of users is provided by the Devise gem.
 
 ## Notes
 
