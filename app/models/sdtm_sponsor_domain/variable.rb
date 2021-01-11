@@ -26,7 +26,7 @@ class SdtmSponsorDomain::Variable < SdtmIgDomain::Variable
 
   # Clone. Clone the Sponsor Domain Variable Instance
   #
-  # @return [SdtmSponsorDomain::Var] a clone of the object
+  # @return [SdtmSponsorDomain::Variable] a clone of the object
   def clone
     self.typed_as_links
     self.based_on_ig_variable_links

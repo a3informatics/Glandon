@@ -56,7 +56,7 @@ describe SdtmSponsorDomain do
       sponsor_domain.based_on_class = domain.based_on_class
       sponsor_columns = []
       domain.includes_column.sort_by {|x| x.ordinal}.each do |dv|
-        sponsor_columns << SdtmSponsorDomain::Var.create(parent_uri:sponsor_domain.uri, label: dv.label, ordinal: dv.ordinal, description: dv.description, name: dv.name, based_on_ig_variable: dv.uri, used: true,
+        sponsor_columns << SdtmSponsorDomain::Variable.create(parent_uri:sponsor_domain.uri, label: dv.label, ordinal: dv.ordinal, description: dv.description, name: dv.name, based_on_ig_variable: dv.uri, used: true,
         format: dv.format, ct_and_format: dv.ct_and_format, compliance: dv.compliance.uri, ct_reference: dv.ct_reference)
       end
       sponsor_domain.includes_column = sponsor_columns

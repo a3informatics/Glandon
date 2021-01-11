@@ -145,10 +145,10 @@ describe SdtmSponsorDomain::Variable do
 
   #   it "toggle single parent" do
   #     parent = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
-  #     sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+  #     sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
   #     expect(sponsor_variable.used).to eq(true)
   #     sponsor_variable.toggle_with_clone(parent)
-  #     sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+  #     sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
   #     expect(sponsor_variable.used).to eq(false)
   #   end
 
@@ -159,12 +159,12 @@ describe SdtmSponsorDomain::Variable do
   #     check_file_actual_expected(parent.to_h, sub_dir, "toggle_var_1a.yaml", equate_method: :hash_equal)
   #     new_parent = parent.create_next_version
   #     new_parent = SdtmSponsorDomain.find_full(new_parent.uri)
-  #     sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+  #     sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
   #     expect(sponsor_variable.used).to eq(true)
   #     sponsor_variable.toggle_with_clone(new_parent)
-  #     sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+  #     sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
   #     expect(sponsor_variable.used).to eq(true)
-  #     new_sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V2#SPD_STUDYID"))
+  #     new_sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V2#SPD_STUDYID"))
   #     expect(new_sponsor_variable.used).to eq(false)
   #     parent = SdtmSponsorDomain.find_full(parent.id)
   #     #check_dates(parent, sub_dir, "toggle_var_1a.yaml", :creation_date, :last_change_date)
