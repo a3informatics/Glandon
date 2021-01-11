@@ -1,0 +1,109 @@
+@prefix : <http://www.a3informatics.com/rdf-schema/users-and-roles#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.a3informatics.com/rdf-schema/users-and-roles>
+  rdf:type owl:Ontology ;
+  owl:versionInfo "v4.0.0"^^xsd:string ;
+  rdfs:label "Users and Roles Schema"^^xsd:string ;
+.
+:UserAccess
+  rdf:type owl:Class ;
+  rdfs:label "User Access"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "Links the permitted namespaces (scopes) and roles a user has permissions (access rights) for"^^xsd:string ;
+.
+:Role
+  rdf:type owl:Class ;
+  rdfs:label "Role"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "The definition of a role."^^xsd:string ;
+.
+:RolePermission
+  rdf:type owl:Class ;
+  rdfs:label "Role Permission"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "Specifies the permission, a combination of a class and the type access (CRUD operation)."^^xsd:string ;
+.
+:canAccessScope
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Can access ccope relationship."^^xsd:string ;
+  rdfs:domain :UserAcess ;
+  rdfs:range isoI:Namesapce ;
+  skos:definition "Relationship to links a user with a scope."^^xsd:string ;
+.
+:hasRole
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Has role relationship."^^xsd:string ;
+  rdfs:domain :UserAcess ;
+  rdfs:range :Role ;
+  skos:definition "Relationship to links a user with a role."^^xsd:string ;
+.
+:forRole
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "For role relationship."^^xsd:string ;
+  rdfs:domain :RolePermission ;
+  rdfs:range :Role ;
+  skos:definition "Relationship to links a permission to a role."^^xsd:string ;
+.
+:forClass
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "For class relationship."^^xsd:string ;
+  rdfs:domain :RolePermission ;
+  rdfs:range owl:Thing ;
+  skos:definition "Relationship to link a permission to a RDF class."^^xsd:string ;
+.
+:withAccess
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "With access relationship."^^xsd:string ;
+  rdfs:domain :RolePermission ;
+  rdfs:range isoC:conceptSystemNode ;
+  skos:definition "Relationship to links a permission to an access type."^^xsd:string ;
+.
+:canCombineWith
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Can combine relationship."^^xsd:string ;
+  rdfs:domain :Role ;
+  rdfs:range :Role ;
+  skos:definition "Relationship to define which roles can be combined."^^xsd:string ;
+.
+:userId
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "User Id"^^xsd:string ;
+  rdfs:domain :UserAccess ;
+  rdfs:range xsd:integer ;
+  skos:definition "The id (primary key) of the user in the RDBMS."^^xsd:string ;
+.
+:name
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Name"^^xsd:string ;
+  rdfs:domain :Role ;
+  rdfs:range xsd:string ;
+  skos:definition "The role name."^^xsd:string ;
+.
+:description
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Description."^^xsd:string ;
+  rdfs:domain :Role ;
+  rdfs:range xsd:string ;
+  skos:definition "Role description."^^xsd:string ;
+.
+:displayText
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Display Text"^^xsd:string ;
+  rdfs:domain :Role ;
+  rdfs:range xsd:string ;
+  skos:definition "The display text for the role."^^xsd:string ;
+.
+:enabled
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Enabled"^^xsd:string ;
+  rdfs:domain :Role ;
+  rdfs:range xsd:boolean ;
+  skos:definition "Flag to indicate role is enabled."^^xsd:string ;
+.

@@ -30,6 +30,7 @@ A small wrapper is placed around these to implement user login, logout, password
 | **forRole** | Links a permission to a role | 1:M |
 | **forClass** | Links a permission to a RDF class | 1:1 |
 | **withAccess** | Links a permission to an access type | 1:1 |
+| **canCombineWith** | Links roles that can be combined | 1:M |
 
 ## Roles 
 
