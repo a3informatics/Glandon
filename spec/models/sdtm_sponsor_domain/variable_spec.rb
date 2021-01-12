@@ -1,7 +1,6 @@
 require 'rails_helper'
-require 'sdtm_sponsor_domain/variable'
 
-describe SdtmSponsorDomain::Variable do
+describe SdtmSponsorDomain::VariableSSD do
 
   include DataHelpers
   include SparqlHelpers
@@ -26,21 +25,21 @@ describe SdtmSponsorDomain::Variable do
     end
 
     it "validates a valid object" do
-      result = SdtmSponsorDomain::Variable.new
+      result = SdtmSponsorDomain::VariableSSD.new
       result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
       result.name = "A1234567"
       expect(result.valid?).to eq(true)
     end
 
     it "does not validate an invalid object" do
-      item = SdtmSponsorDomain::Variable.new
+      item = SdtmSponsorDomain::VariableSSD.new
       result = item.valid?
       expect(item.errors.full_messages.to_sentence).to eq("Uri can't be blank and Name contains invalid characters, is empty or is too long")
       expect(result).to eq(false)
     end
 
     it "does not validate an invalid object" do
-      item = SdtmSponsorDomain::Variable.new
+      item = SdtmSponsorDomain::VariableSSD.new
       item.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00002")
       item.name = "VSXXXXXXX"
       result = item.valid?
@@ -121,7 +120,7 @@ describe SdtmSponsorDomain::Variable do
       new_parent = parent.create_next_version
       new_parent = SdtmSponsorDomain.find_full(new_parent.uri)
       expect(new_parent.includes_column.count).to eq(43)
-      non_standard_variable = SdtmSponsorDomain::Variable.find_full(new_1.uri)
+      non_standard_variable = SdtmSponsorDomain::VariableSSD.find_full(new_1.uri)
       expect(non_standard_variable.delete(new_parent, new_parent)).to eq(1)
       parent = SdtmSponsorDomain.find_full(parent.id)
       expect(parent.includes_column.count).to eq(43)
@@ -145,10 +144,10 @@ describe SdtmSponsorDomain::Variable do
 
   #   it "toggle single parent" do
   #     parent = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
-  #     sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+  #     sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
   #     expect(sponsor_variable.used).to eq(true)
   #     sponsor_variable.toggle_with_clone(parent)
-  #     sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+  #     sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
   #     expect(sponsor_variable.used).to eq(false)
   #   end
 
@@ -159,12 +158,12 @@ describe SdtmSponsorDomain::Variable do
   #     check_file_actual_expected(parent.to_h, sub_dir, "toggle_var_1a.yaml", equate_method: :hash_equal)
   #     new_parent = parent.create_next_version
   #     new_parent = SdtmSponsorDomain.find_full(new_parent.uri)
-  #     sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+  #     sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
   #     expect(sponsor_variable.used).to eq(true)
   #     sponsor_variable.toggle_with_clone(new_parent)
-  #     sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+  #     sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
   #     expect(sponsor_variable.used).to eq(true)
-  #     new_sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V2#SPD_STUDYID"))
+  #     new_sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V2#SPD_STUDYID"))
   #     expect(new_sponsor_variable.used).to eq(false)
   #     parent = SdtmSponsorDomain.find_full(parent.id)
   #     #check_dates(parent, sub_dir, "toggle_var_1a.yaml", :creation_date, :last_change_date)
@@ -184,7 +183,7 @@ describe SdtmSponsorDomain::Variable do
     end
 
     it "standard true" do
-      sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       expect(sponsor_variable.standard?).to eq(true)
     end
 
@@ -209,7 +208,7 @@ describe SdtmSponsorDomain::Variable do
 
     it "update error, variable standard" do
       sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
-      sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       params = {description: "description updated"}
       result = sponsor_variable.update_with_clone(params, sponsor_domain)
       expect(result.errors.count).to eq(1)
@@ -226,7 +225,7 @@ describe SdtmSponsorDomain::Variable do
 
     it "update used, variable standard" do
       sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
-      sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       params = {description: "description updated", used: false}
       result = sponsor_variable.update_with_clone(params, sponsor_domain)
       check_file_actual_expected(result.to_h, sub_dir, "update_var_2.yaml", equate_method: :hash_equal)

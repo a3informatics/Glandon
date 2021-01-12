@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'sdtm_sponsor_domain/variable'
 
 describe SdtmSponsorDomainsController do
 
@@ -235,7 +234,7 @@ describe SdtmSponsorDomainsController do
       @request.env['HTTP_REFERER'] = '/path'
       sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
       token = Token.obtain(sdtm_sponsor_domain, @user)
-      sponsor_variable = SdtmSponsorDomain::Variable.find(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       put :toggle_used, params:{id: sdtm_sponsor_domain.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "toggle_expected_1.yaml", equate_method: :hash_equal)
@@ -244,7 +243,7 @@ describe SdtmSponsorDomainsController do
     it "toggle, locked by another user" do
       @request.env['HTTP_REFERER'] = '/path'
       sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
-      sponsor_variable = SdtmSponsorDomain::Variable.find(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       token = Token.obtain(sdtm_sponsor_domain, @lock_user)
       put :toggle_used, params:{id: sdtm_sponsor_domain.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable.id}}
       expect(flash[:error]).to be_present
@@ -307,7 +306,7 @@ describe SdtmSponsorDomainsController do
     it "update" do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@instance, @user)
-      sponsor_domain = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      sponsor_domain = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       put :update, params:{id: @instance.id, sdtm_sponsor_domain: {label: "Label updated"}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
@@ -316,7 +315,7 @@ describe SdtmSponsorDomainsController do
     it "update variable, error" do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@instance, @user)
-      sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", non_standard_var_id: sponsor_variable.id}}
       actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_1.yaml", equate_method: :hash_equal)
@@ -325,7 +324,7 @@ describe SdtmSponsorDomainsController do
     it "update variable" do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@instance, @user)
-      sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {used: false, non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_2.yaml", equate_method: :hash_equal)
@@ -339,7 +338,7 @@ describe SdtmSponsorDomainsController do
       post :add_non_standard_variable, params: {id: sdtm_sponsor_domain.id}
     
       # Update non standard var field other than 'name' 
-      sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_3.yaml", equate_method: :hash_equal)
@@ -362,7 +361,7 @@ describe SdtmSponsorDomainsController do
       token = Token.obtain(@instance, @user)
       sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
       post :add_non_standard_variable, params: {id: sdtm_sponsor_domain.id}
-      sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {classified_as: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzgxOGE5NzU3LTFlZTUtNGJkMy1hMTc5LWU2NjJlMjZiNWI0Nw==", non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_7.yaml", equate_method: :hash_equal) 
@@ -401,7 +400,7 @@ describe SdtmSponsorDomainsController do
       sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
       token = Token.obtain(sponsor_domain, @user)
       uri = Uri.new(uri: "http://www.assero.co.uk/eee#aaa")
-      sponsor_variable = SdtmSponsorDomain::Variable.new(uri: uri, name: "AENEWAAA")
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.new(uri: uri, name: "AENEWAAA")
       expect(SdtmSponsorDomain::Variable).to receive(:find_full).and_return(sponsor_variable)
       delete :delete_non_standard_variable, params:{id: sponsor_domain.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable}}
       actual = check_good_json_response(response)
@@ -411,7 +410,7 @@ describe SdtmSponsorDomainsController do
     it "delete variable, error" do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@instance, @user)
-      sponsor_variable = SdtmSponsorDomain::Variable.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable.id}}
       actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "delete_variable_expected_2.yaml", equate_method: :hash_equal)

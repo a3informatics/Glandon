@@ -29,7 +29,7 @@ class SdtmSponsorDomain < SdtmIgDomain
     object.based_on_class = ig_domain.based_on_class.uri
     ig_domain.includes_column.sort_by {|x| x.ordinal}.each do |domain_variable|
       sponsor_variable_name = SdtmVariableName.new(domain_variable.name, ig_domain.prefix, domain_variable.based_on_class_variable.prefixed).with_prefix(object.prefix)
-      sponsor_variable = SdtmSponsorDomain::Variable.new(label: domain_variable.label, name: sponsor_variable_name, ordinal: domain_variable.ordinal)
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.new(label: domain_variable.label, name: sponsor_variable_name, ordinal: domain_variable.ordinal)
       sponsor_variable.uri = sponsor_variable.create_uri(object.uri)
       sponsor_variable.description = domain_variable.description
       sponsor_variable.format = domain_variable.format
@@ -61,7 +61,7 @@ class SdtmSponsorDomain < SdtmIgDomain
     object.based_on_class = sdtm_class.uri
     sdtm_class.includes_column.sort_by {|x| x.ordinal}.each do |class_variable|
       sponsor_variable_name = SdtmVariableName.new(class_variable.name, "", class_variable.prefixed).with_prefix(object.prefix)
-      sponsor_variable = SdtmSponsorDomain::Variable.new(label: class_variable.label, name: sponsor_variable_name, ordinal: class_variable.ordinal)
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.new(label: class_variable.label, name: sponsor_variable_name, ordinal: class_variable.ordinal)
       sponsor_variable.uri = sponsor_variable.create_uri(object.uri)
       sponsor_variable.description = class_variable.description
       sponsor_variable.format = ""
@@ -83,7 +83,7 @@ class SdtmSponsorDomain < SdtmIgDomain
   #
   # @return [SdtmSponsorDomain] the new sponsor domain object
   def add_non_standard_variable
-    non_standard_variable = SdtmSponsorDomain::Variable.new
+    non_standard_variable = SdtmSponsorDomain::VariableSSD.new
     ordinal = next_ordinal
     non_standard_variable.name = "#{self.prefix}XXX#{ordinal.to_s.rjust(3,'0')}"
     non_standard_variable.ordinal = ordinal

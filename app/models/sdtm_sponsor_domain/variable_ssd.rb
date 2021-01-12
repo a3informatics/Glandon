@@ -1,4 +1,4 @@
-class SdtmSponsorDomain::Variable < SdtmIgDomain::Variable
+class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
 
   configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable",
             base_uri: "http://#{EnvironmentVariable.read("url_authority")}/SDV",
@@ -26,7 +26,7 @@ class SdtmSponsorDomain::Variable < SdtmIgDomain::Variable
 
   # Clone. Clone the Sponsor Domain Variable Instance
   #
-  # @return [SdtmSponsorDomain::Variable] a clone of the object
+  # @return [SdtmSponsorDomain::VariableSSD] a clone of the object
   def clone
     self.typed_as_links
     self.based_on_ig_variable_links
