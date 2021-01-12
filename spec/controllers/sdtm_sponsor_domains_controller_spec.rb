@@ -401,7 +401,7 @@ describe SdtmSponsorDomainsController do
       token = Token.obtain(sponsor_domain, @user)
       uri = Uri.new(uri: "http://www.assero.co.uk/eee#aaa")
       sponsor_variable = SdtmSponsorDomain::VariableSSD.new(uri: uri, name: "AENEWAAA")
-      expect(SdtmSponsorDomain::Variable).to receive(:find_full).and_return(sponsor_variable)
+      expect(SdtmSponsorDomain::VariableSSD).to receive(:find_full).and_return(sponsor_variable)
       delete :delete_non_standard_variable, params:{id: sponsor_domain.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "delete_variable_expected_1.yaml", equate_method: :hash_equal)
