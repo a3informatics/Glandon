@@ -28,6 +28,10 @@
   width: 10px;
 }
 
+.scroll-styled.scroll-horizontal::-webkit-scrollbar {
+  height: 8px;
+}
+
 .page-scroll-styled::-webkit-scrollbar-track {
   background-color: $grey-bright;
 }

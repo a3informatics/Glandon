@@ -1,7 +1,7 @@
 <%= javascript_include_tag 'jquery-ui.min.js'%>
 <%= javascript_include_tag "shared/context_dialog", "shared/studies/study_matrix",
                             "shared/studies/study_timeline", "shared/studies/timepoint", "shared/studies/visit", "shared/items_selector/items_selector_modal" %>
-<%= stylesheet_link_tag "shared/studies/study_timeline", "shared/context_dialog", "jquery-ui.min.css" %>
+<%= stylesheet_link_tag "shared/studies/study_timeline", "shared/dialogs/context_dialog", "jquery-ui.min.css" %>
 
 <%= javascript_tag "var matrixUrl = '#{design_study_path(@study)}',
                         armTpsUrl = '#{timepoints_arm_path("armId")}',
