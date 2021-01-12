@@ -64,6 +64,14 @@
               <span class="icon-sdtm bg-prim-light"></span>
               <span>SDTM Classes</span>
             </div>
+            <div class="tab-option with-icon" id="tab-protocol">
+              <span class="icon-protocol bg-prim-light"></span>
+              <span>Protocols</span>
+            </div>
+            <div class="tab-option with-icon" id="tab-protocol-template">
+              <span class="icon-protocol-template bg-prim-light"></span>
+              <span>Protocol Templates</span>
+            </div>
           </div>
 
           <div class="tab-wrap closed" data-tab="tab-thesauri" id="selector-thesauri">
@@ -90,6 +98,12 @@
             <%= render partial: "shared/items_picker/managed_item_selector" %>
           </div>
           <div class="tab-wrap closed" data-tab="tab-sdtm-class" id="selector-sdtm-class">
+            <%= render partial: "shared/items_picker/managed_item_selector" %>
+          </div>
+          <div class="tab-wrap closed" data-tab="tab-protocol" id="selector-protocol">
+            <%= render partial: "shared/items_picker/managed_item_selector" %>
+          </div>
+          <div class="tab-wrap closed" data-tab="tab-protocol-template" id="selector-protocol-template">
             <%= render partial: "shared/items_picker/managed_item_selector" %>
           </div>
 

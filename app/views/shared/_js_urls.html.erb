@@ -14,6 +14,12 @@
     history_sdtm_ig_domain_url = history_sdtm_ig_domains_path(sdtm_ig_domain: {identifier: "miHistoryId", scope_id: "miScopeId"})
     index_sdtm_class_url = sdtm_classes_path
     history_class_url = history_sdtm_classes_path(sdtm_class: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    
+    index_protocol_url = protocols_path
+    history_protocol_url = history_protocols_path(protocols: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_protocol_templates = protocol_templates_path
+    history_protocol_templates = history_protocol_templates_path(protocol_template: {identifier: "miHistoryId", scope_id: "miScopeId"})
+
 %>
 
 <%# Legacy url variables *** DEPRECATED *** %>
@@ -54,5 +60,13 @@
                           sdtm_class: {
                             index: '#{index_sdtm_class_url}',
                             history:  '#{history_class_url}'
+                          },
+                          protocol: {
+                            index: '#{index_protocol_url}',
+                            history: '#{history_protocol_url}'
+                          },
+                          protocol_template: {
+                            index: '#{index_protocol_templates}',
+                            history: '#{history_protocol_templates}'
                           }
                         } "%>

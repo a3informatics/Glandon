@@ -248,6 +248,13 @@ export default class HistoryPanel extends TablePanel {
         text: "aCRF", 
         endOffset: 1, 
         types: ["form"] 
+      },
+      { 
+        url: data.build_path, 
+        icon: "icon-build", 
+        text: "Build", 
+        endOffset: 1, 
+        types: ["study"] 
       }
     ]
 
