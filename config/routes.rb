@@ -487,7 +487,7 @@ Rails.application.routes.draw do
     member do
       get :show_data
       post :add_non_standard_variable
-      put :toggle_used
+      #put :toggle_used
       delete :delete_non_standard_variable
       put :update_variable
     end

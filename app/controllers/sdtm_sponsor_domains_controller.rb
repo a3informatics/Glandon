@@ -108,15 +108,15 @@ class SdtmSponsorDomainsController < ManagedItemsController
   end
 
   # @todo Not currently used
-  def toggle_used
-    sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
-    non_standard_variable = SdtmSponsorDomain::VariableSSD.find_full(the_params[:non_standard_var_id])
-    return true unless check_lock_for_item(sdtm_sponsor_domain)
-    result = non_standard_variable.toggle_with_clone(sdtm_sponsor_domain)
-    return true if lock_item_errors
-    AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain updated, variable #{non_standard_variable.label} updated.") if @lock.token.refresh == 1
-    render json: {data: ""}, status: 200
-  end
+  # def toggle_used
+  #   sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
+  #   non_standard_variable = SdtmSponsorDomain::VariableSSD.find_full(the_params[:non_standard_var_id])
+  #   return true unless check_lock_for_item(sdtm_sponsor_domain)
+  #   result = non_standard_variable.toggle_with_clone(sdtm_sponsor_domain)
+  #   return true if lock_item_errors
+  #   AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain updated, variable #{non_standard_variable.label} updated.") if @lock.token.refresh == 1
+  #   render json: {data: ""}, status: 200
+  # end
 
   def editor_metadata
     render json: {data: {compliance: SdtmIgDomain::Variable.compliance, typed_as: SdtmClass::Variable.datatypes, classified_as: SdtmClass::Variable.classification} }, status: 200

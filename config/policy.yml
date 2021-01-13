@@ -348,7 +348,7 @@ defaults: &defaults
       create_from: create
       add_non_standard_variable: update
       delete_non_standard_variable: update
-      toggle_used: update
+      #toggle_used: update
       editor_metadata: show
       update_variable: update
   FormPolicy:

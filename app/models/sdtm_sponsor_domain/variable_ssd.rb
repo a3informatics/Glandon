@@ -53,13 +53,13 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
   end
 
   # Toggle with clone. Toggles Used attribute, clone if there are multiple parents
-  def toggle_with_clone(managed_ancestor)
-    if multiple_managed_ancestors?
-      update_with_clone(toggle_used, managed_ancestor)
-    else
-      self.update(toggle_used)
-    end
-  end
+  # def toggle_with_clone(managed_ancestor)
+  #   if multiple_managed_ancestors?
+  #     update_with_clone(toggle_used, managed_ancestor)
+  #   else
+  #     self.update(toggle_used)
+  #   end
+  # end
 
   # Update with clone. Update the object. Clone if there are multiple parents.
   #
@@ -118,9 +118,9 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
     end
 
     # Toggle used
-    def toggle_used
-      self.used == true ? {used: false} : {used: true}
-    end
+    # def toggle_used
+    #   self.used == true ? {used: false} : {used: true}
+    # end
 
     # Variable is prefixed?
     def is_prefixed?
