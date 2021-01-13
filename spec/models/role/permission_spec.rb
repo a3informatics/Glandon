@@ -8,7 +8,7 @@ describe Role::Permission do
   include IsoConceptSystemNodeFactory
 
   def sub_dir
-    return "models/role"
+    return "models/role/permission"
   end
 
   before :each do
@@ -30,7 +30,7 @@ describe Role::Permission do
     result = object.valid?
     expect(result).to eq(false)
     expect(object.errors.full_messages.count).to eq(1)
-    expect(object.errors.full_messages.to_sentence).to eq("For class is invalid")
+    expect(object.errors.full_messages.to_sentence).to eq("For class empty object")
   end
 
   it "valid III" do
@@ -39,7 +39,7 @@ describe Role::Permission do
     result = object.valid?
     expect(result).to eq(false)
     expect(object.errors.full_messages.count).to eq(1)
-    expect(object.errors.full_messages.to_sentence).to eq("With access is invalid")
+    expect(object.errors.full_messages.to_sentence).to eq("With access empty object")
   end
 
   it "valid IV" do

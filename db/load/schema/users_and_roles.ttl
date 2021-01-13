@@ -108,3 +108,10 @@
   rdfs:range xsd:boolean ;
   skos:definition "Flag to indicate role is enabled."^^xsd:string ;
 .
+:systemAdmin
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "System Admin"^^xsd:string ;
+  rdfs:domain :Role ;
+  rdfs:range xsd:boolean ;
+  skos:definition "Flag to indicate role is the system admin role."^^xsd:string ;
+.

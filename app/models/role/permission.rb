@@ -11,7 +11,7 @@ class Role::Permission < Fuseki::Base
   object_property :for_class, cardinality: :one, model_class: "IsoConceptV2"
   object_property :with_access, cardinality: :one, model_class: "IsoConceptSystem::Node"
 
-  validates_with Validator::Field, attribute: :for_class, method: :valid_object_or_uri?
-  validates_with Validator::Field, attribute: :with_access, method: :valid_object_or_uri?
+  validates_with Validator::Klass, property: :for_class, level: :uri
+  validates_with Validator::Klass, property: :with_access, level: :uri
 
 end
