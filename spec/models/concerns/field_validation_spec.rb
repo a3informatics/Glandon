@@ -1048,6 +1048,18 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("Test is invalid")
   end
 
+  it "checks a valid uri or object" do
+    object = IsoConceptV2.new
+    value = IsoConceptV2.new
+    uri = Uri.new(uri: "http://www.example.com/AAA")
+    expect(FieldValidation.valid_object_or_uri?(:test, value, object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+    expect(FieldValidation.valid_object_or_uri?(:test, uri, object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+    expect(FieldValidation.valid_object_or_uri?(:test, "https://www.assero.co.uk", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is invalid")
+  end
+
   it "checks a valid semantic version" do
     object = IsoConceptV2.new
     expect(FieldValidation.valid_semantic_version?(:test, "1.1.1", object)).to eq(true)

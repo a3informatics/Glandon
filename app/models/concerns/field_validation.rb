@@ -484,6 +484,18 @@ module FieldValidation
   	add_error(symbol, "is invalid", object)
   end
 
+  # Valid Object or URI. Check the parameter is a URI or an object with a URI
+  #
+  # @param symbol [String] The item being checked
+  # @param value [Object] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_object_or_uri?(symbol, value, object)
+    return true if value.is_a?(Uri)
+    return true if value.is_a?(Fuseki::Base)
+    add_error(symbol, "is invalid", object) 
+  end
+
   # Valid URI. Checks a URI
   #
   # @param symbol [String] The item being checked
