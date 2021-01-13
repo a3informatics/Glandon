@@ -5,6 +5,8 @@ describe SdtmSponsorDomain::VariableSSD do
   include DataHelpers
   include SparqlHelpers
   include IsoManagedHelpers
+  include SdtmSponsorDomainFactory
+  include SdtmSponsorDomainVariableFactory
 
   def sub_dir
     return "models/sdtm_sponsor_domain/variable"
@@ -32,19 +34,17 @@ describe SdtmSponsorDomain::VariableSSD do
     end
 
     it "does not validate an invalid object" do
-      item = SdtmSponsorDomain::VariableSSD.new
-      result = item.valid?
-      expect(item.errors.full_messages.to_sentence).to eq("Uri can't be blank and Name contains invalid characters, is empty or is too long")
-      expect(result).to eq(false)
+      result = SdtmSponsorDomain::VariableSSD.new
+      expect(result.valid?).to eq(false)
+      expect(result.errors.full_messages.to_sentence).to eq("Uri can't be blank and Name contains invalid characters, is empty or is too long")
     end
 
     it "does not validate an invalid object" do
-      item = SdtmSponsorDomain::VariableSSD.new
-      item.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00002")
-      item.name = "VSXXXXXXX"
-      result = item.valid?
-      expect(item.errors.full_messages.to_sentence).to eq("Name contains invalid characters, is empty or is too long")
-      expect(result).to eq(false)
+      result = SdtmSponsorDomain::VariableSSD.new
+      result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00002")
+      result.name = "VSXXXXXXX"
+      expect(result.valid?).to eq(false)
+      expect(result.errors.full_messages.to_sentence).to eq("Name contains invalid characters, is empty or is too long")
     end
 
   end
@@ -175,19 +175,19 @@ describe SdtmSponsorDomain::VariableSSD do
 
   # end
 
-  describe "Standard? Tests" do
+  describe "Standard Variable Tests" do
 
     before :all do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
     end
 
-    it "standard true" do
+    it "standard variable, true" do
       sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       expect(sponsor_variable.standard?).to eq(true)
     end
 
-    it "standard false" do
+    it "standard variable, false" do
       sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
       non_standard = sponsor_domain.add_non_standard_variable
       expect(non_standard.standard?).to eq(false)
@@ -200,13 +200,22 @@ describe SdtmSponsorDomain::VariableSSD do
     before :all do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
     before :each do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     end
 
-    it "update error, variable standard" do
+    it "update, standard variable, used" do
+      sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      params = {description: "description updated", used: false}
+      result = sponsor_variable.update_with_clone(params, sponsor_domain)
+      check_file_actual_expected(result.to_h, sub_dir, "update_var_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "update error, standard variable" do
       sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
       sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       params = {description: "description updated"}
@@ -223,12 +232,38 @@ describe SdtmSponsorDomain::VariableSSD do
       check_file_actual_expected(result.to_h, sub_dir, "update_var_1a.yaml", equate_method: :hash_equal)
     end
 
-    it "update used, variable standard" do
-      sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
-      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
-      params = {description: "description updated", used: false}
-      result = sponsor_variable.update_with_clone(params, sponsor_domain)
-      check_file_actual_expected(result.to_h, sub_dir, "update_var_2.yaml", equate_method: :hash_equal)
+  end
+
+  describe "Update Tests (Using factories)" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    before :each do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "update error, non standard variable, name change invalid" do
+      sponsor_domain = create_sdtm_sponsor_domain("YYY", "SDTM Sponsor Domain", "AB")
+      ns_var_1 = create_and_add_non_standard_variable(sponsor_domain)
+      ns_var_2 = create_and_add_non_standard_variable(sponsor_domain)
+      sponsor_domain = SdtmSponsorDomain.find_full(sponsor_domain.uri)
+      result = ns_var_2.update_with_clone({name:"ABXXX001"}, sponsor_domain)
+      expect(result.errors.count).to eq(1)
+      expect(result.errors.full_messages.to_sentence).to eq("Name duplicate detected 'ABXXX001'")
+      check_file_actual_expected(result.to_h, sub_dir, "update_var_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "update, non standard variable, name change valid" do
+      sponsor_domain = create_sdtm_sponsor_domain("ZZZ", "SDTM Sponsor Domain", "AB")
+      ns_var_1 = create_and_add_non_standard_variable(sponsor_domain)
+      ns_var_2 = create_and_add_non_standard_variable(sponsor_domain)
+      sponsor_domain = SdtmSponsorDomain.find_full(sponsor_domain.uri)
+      result = ns_var_2.update_with_clone({name:"ABNEW"}, sponsor_domain)
+      expect(result.errors.count).to eq(0)
+      check_file_actual_expected(result.to_h, sub_dir, "update_var_4.yaml", equate_method: :hash_equal)
     end
 
   end
