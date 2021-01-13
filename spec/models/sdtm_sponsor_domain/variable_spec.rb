@@ -268,4 +268,44 @@ describe SdtmSponsorDomain::VariableSSD do
 
   end
 
+  describe "Correct prefix" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    before :each do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "correct prefix, true, parent for validation nil" do
+      sponsor_domain = create_sdtm_sponsor_domain("YYY", "SDTM Sponsor Domain", "AB")
+      ns_var_1 = create_and_add_non_standard_variable(sponsor_domain)
+      sponsor_domain = SdtmSponsorDomain.find_full(sponsor_domain.uri)
+      ns_var_1.instance_variable_set(:@parent_for_validation, nil)
+      expect(ns_var_1.correct_prefix?).to eq(true)
+    end
+
+    it "correct prefix, true" do
+      sponsor_domain = create_sdtm_sponsor_domain("YYY", "SDTM Sponsor Domain", "AB")
+      ns_var_1 = create_and_add_non_standard_variable(sponsor_domain)
+      sponsor_domain = SdtmSponsorDomain.find_full(sponsor_domain.uri)
+      ns_var_1.instance_variable_set(:@parent_for_validation, sponsor_domain)
+      expect(ns_var_1.correct_prefix?).to eq(true)
+    end
+
+    it "correct prefix, false" do
+      sponsor_domain = create_sdtm_sponsor_domain("YYY", "SDTM Sponsor Domain", "AB")
+      ns_var_1 = create_and_add_non_standard_variable(sponsor_domain)
+      ns_var_1.update_with_clone({name:"NEWNAME"}, sponsor_domain)
+      sponsor_domain = SdtmSponsorDomain.find_full(sponsor_domain.uri)
+      ns_var_1.instance_variable_set(:@parent_for_validation, sponsor_domain)
+      expect(ns_var_1.correct_prefix?).to eq(false)
+      expect(ns_var_1.errors.full_messages.to_sentence).to eq("Name prefix does not match 'AB' and Name prefix does not match 'AB'")
+    end
+
+
+  end
+
 end
