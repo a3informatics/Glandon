@@ -301,10 +301,9 @@ describe SdtmSponsorDomain::VariableSSD do
       ns_var_1.update_with_clone({name:"NEWNAME"}, sponsor_domain)
       sponsor_domain = SdtmSponsorDomain.find_full(sponsor_domain.uri)
       ns_var_1.instance_variable_set(:@parent_for_validation, sponsor_domain)
+      expect(ns_var_1.errors.full_messages.to_sentence).to eq("Name prefix does not match 'AB'")
       expect(ns_var_1.correct_prefix?).to eq(false)
-      expect(ns_var_1.errors.full_messages.to_sentence).to eq("Name prefix does not match 'AB' and Name prefix does not match 'AB'")
     end
-
 
   end
 
