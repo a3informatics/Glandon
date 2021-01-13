@@ -9,6 +9,18 @@ module SdtmSponsorDomainVariableFactory
     create_sponsor_variable(sponsor_domain, true)
   end
 
+  def create_and_add_non_standard_variable(sponsor_domain)
+    variable = create_sponsor_variable(sponsor_domain)
+    sponsor_domain.add_link(:includes_column, variable.uri)
+    variable
+  end
+
+  def create_and_add_standard_variable(sponsor_domain)
+    variable = create_sponsor_variable(sponsor_domain, true)
+    sponsor_domain.add_link(:includes_column, variable.uri)
+    variable
+  end
+
   private
 
     def create_sponsor_variable(sponsor_domain, standard = false)
