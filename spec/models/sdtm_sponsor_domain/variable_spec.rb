@@ -61,6 +61,16 @@ describe SdtmSponsorDomain::VariableSSD do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     end
 
+    it "delete error, standard variable" do
+      sponsor_domain = create_sdtm_sponsor_domain("YYY", "SDTM Sponsor Domain", "AB")
+      ns_var_1 = create_and_add_standard_variable(sponsor_domain)
+      sponsor_domain = SdtmSponsorDomain.find_full(sponsor_domain.uri)
+      result = ns_var_1.delete(sponsor_domain, sponsor_domain)
+      expect(result.errors.count).to eq(1)
+      expect(result.errors.full_messages.to_sentence).to eq("The variable cannot be deleted as it is a standard variable.")
+      expect(result).to eq(ns_var_1)
+    end
+
     it "delete single parent" do
       uri_check_set_1 =
       [
