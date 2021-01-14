@@ -64,19 +64,6 @@ module ApplicationHelper
 		return false
 	end
 
-	# Get Current Item
-  #
-  # @param items [Array] array of items one of which is the current item
-  # @return [Object] the current item or nil if none
-	def get_current_item(items)
-	  current_set = items.select{|item| item.current?}
-	  if current_set.length == 1
-	  	return current_set[0]
-	  else
-	  	return nil
-	  end
-	end
-
 	# Difference Glyphicon
   #
   # @param data [Hash] the data
@@ -108,167 +95,77 @@ module ApplicationHelper
     span_class += data ? "sel-filled text-link" : "times-circle text-accent-2"
     return raw("<td class=\"text-#{alignment}\"><span class=\"text-normal #{span_class}\"/></td>")
   end
-
-	# Return the datatable settings for column ordering
+  
+  # Defines the MDR Menu categories and titles
   #
-  # @return [String] contains settings for the column ordering
-  def column_order(column, order)
-    return "[[#{column}, 'asc']]" if order == :asc
-    return "[[#{column}, 'desc']]" if order == :desc
-    return "[[#{column}, 'asc']]"
+  # @return [Hash] MDR menu categories map  
+  def mdr_categories
+    {
+      dashboard: "Dashboard",
+      sysadmin: "System Admin",
+      impexp: "Import/Export",
+      util: "Utilities",
+      term: "Terminology",
+      biocon: "Biomedical Concepts",
+      forms: "Forms",
+      sdtm: "SDTM",
+      adam: "ADaM",
+    }
   end
 
-	# Close button that performs a browser back function
+  # Defines the SWB Menu categories and titles
   #
-  # @param [Text] the text for the button. Defaults to "Close"
-  # @return [Null]
-  def back_close_button(text="Close")
-  	return raw("<a class=\"btn \" href=\"javascript:history.back()\">#{text}</a>")
+  # @return [Hash] SWB menu categories map  
+  def swb_categories
+    {
+      studies: "Studies"
+    }
   end
 
-  # # Top Level Breadcrumb
-  # #
-  # # @param text [String] the breadcrumb link text
-  # # @return [Null]
-  # def top_level_breadcrumb(text)
-  # 	breadcrumb ([{link: "#", text: "#{text}"}])
-  # end
-
-  # # Second Level Breadcrumb
-  # #
-  # # @param parent_text [String] the parent-level breadcrumb link text
-  # # @param parent_link [String] the parent-level link
-  # # @param text [String] the second-level breadcrumb link text
-  # # @return [Null]
-  # def second_level_breadcrumb(parent_text, parent_link, text)
-  # 	breadcrumb ([{link: parent_link, text: "#{parent_text}"}, {link: "#", text: "#{text}"}])
-  # end
-
-  # # Third Level Breadcrumb
-  # #
-  # # @param managed_item [Object] the managed item
-  # # @param parent_text [String] the parent-level breadcrumb link text
-  # # @param parent_link [String] the parent-level link
-  # # @param second_level_text [String] the second-level breadcrumb link text
-  # # @param second_level_link [String] the second-level link
-  # # @param third_level_action [String] the third-level prefix for the link text
-  # # @return [Null]
-  # def third_level_breadcrumb(parent_text, parent_link, second_level_text, second_level_link, third_level_text)
-  #   breadcrumb ([{link: parent_link, text: "#{parent_text}"},
-  #     {link: second_level_link, text: "#{second_level_text}"},
-  #     {link: "#", text: "#{third_level_text}"}])
-  # end
-
-  # # Third Level Managed-Item Breadcrumb
-  # #
-  # # @param managed_item [Object] the managed item
-  # # @param parent_text [String] the parent-level breadcrumb link text
-  # # @param parent_link [String] the parent-level link
-  # # @param second_level_link [String] the second-level link
-  # # @param third_level_action [String] the third-level prefix for the link text
-  # # @return [Null]
-  # def third_level_managed_item_breadcrumb(managed_item, parent_text, parent_link, second_level_link, third_level_action)
-  #   identifier = managed_item.respond_to?(:scoped_identifier) ? managed_item.scoped_identifier : managed_item.identifier
-  # 	breadcrumb ([{link: parent_link, text: "#{parent_text}"},
-  # 		{link: second_level_link, text: "#{identifier}"},
-  # 		{link: "#", text: "#{third_level_action} V#{managed_item.semantic_version}"}])
-  # end
-
-  # # Fourth Level Breadcrumb
-  # #
-  # # @param managed_item [Object] the managed item
-  # # @param parent_text [String] the parent-level breadcrumb link text
-  # # @param parent_link [String] the parent-level link
-  # # @param second_level_text [String] the second-level breadcrumb link text
-  # # @param second_level_link [String] the second-level link
-  # # @param third_level_action [String] the third-level prefix for the link text
-  # # @param third_level_link [String] the third-level link
-  # # @param fourth_level_text [String] the third-level link
-  # # @return [Null]
-  # def fourth_level_breadcrumb(parent_text, parent_link, second_level_text, second_level_link, third_level_text, third_level_link, fourth_level_text)
-  #   breadcrumb ([{link: parent_link, text: "#{parent_text}"},
-  #     {link: second_level_link, text: "#{second_level_text}"},
-  #     {link: third_level_link, text: "#{third_level_text}"},
-  #     {link: "#", text: "#{fourth_level_text}"}])
-  # end
-
-  # # Fourth Level Managed-Item Breadcrumb
-  # #
-  # # @param managed_item [Object] the managed item
-  # # @param parent_text [String] the parent-level breadcrumb link text
-  # # @param parent_link [String] the parent-level link
-  # # @param second_level_link [String] the second-level link
-  # # @param third_level_action [String] the third-level prefix for the link text
-  # # @param third_level_link [String] the third-level link
-  # # @param fourth_level_text [String] the third-level link
-  # # @return [Null]
-  # def fourth_level_managed_item_breadcrumb(managed_item, parent_text, parent_link, second_level_link, third_level_action, third_level_link, fourth_level_text)
-  #   breadcrumb ([{link: parent_link, text: "#{parent_text}"},
-  #     {link: second_level_link, text: "#{managed_item.identifier}"},
-  #     {link: third_level_link, text: "#{third_level_action} V#{managed_item.semantic_version}"},
-  #     {link: "#", text: "#{fourth_level_text}"},
-  #     ])
-  # end
-
-  # # Breadcrumb. Formats the HTML for the breadcrumb. Places into a session variable.
-  # #
-
-  # # @param items [Array] array of hash items holding the text and link for each level of the breadcrumb
-  # # @return [Null]
-  # def breadcrumb(items)
-  # byebug
-  # 	result = "<ol class=\"breadcrumb\">"
-  # 	index = 1
-  # 	items.each do |item|
-  # 		result += item.equal?(items.last) ? "<li id=\"breadcrumb_#{index}\" class=\"active\">#{item[:text]}</li>" : "<li id=\"breadcrumb_#{index}\"><a href=\"#{item[:link]}\">#{item[:text]}</a></li>"
-  # 		index += 1
-  # 	end
-  # 	result += "</ol>"
-  # 	session[:breadcrumbs] = raw(result)
-  # end
-
-	# Converts a controller reference to a string representing the menu parent under which it belongs
+  # Converts current controller reference to a string representing the menu parent under which it belongs
+  #
+  # @return [String] Parent menu category title of the currently active controller 
 	def controller_to_menu
 
-		@category_dashboard = "Dashboard"
-		@category_sysadmin = "System Admin"
-		@category_impexp = "Import/Export"
-		@category_util = "Utilities"
-		@category_term = "Terminology"
-		@category_biocon = "Biomedical Concepts"
-		@category_forms = "Forms"
-		@category_sdtm = "SDTM"
-		@category_adam = "ADaM"
-
-		@controller_map = {
-			dashboard: @category_dashboard,
-			iso_namespaces: @category_sysadmin, iso_registration_authorities: @category_sysadmin,	iso_managed: @category_sysadmin, tokens: @category_sysadmin, audit_trail: @category_sysadmin,
-			uploads: @category_impexp, imports: @category_impexp, exports: @category_impexp, backgrounds: @category_impexp,
-			ad_hoc_reports: @category_util, iso_concept_systems: @category_util, markdown_engines: @category_util,
-			thesauri: @category_term, cdisc_terms: @category_term, managed_concepts: @category_term,
-			biomedical_concept_templates: @category_biocon, biomedical_concept_instances: @category_biocon,
-			forms: @category_forms,
-			sdtm_models: @category_sdtm, sdtm_igs: @category_sdtm, sdtm_ig_domains: @category_sdtm, sdtm_sponsor_domains: @category_sdtm, sdtm_classes: @category_sdtm,
-			adam_igs: @category_adam, adam_ig_datasets: @category_adam
+		controller_map = {
+			dashboard: mdr_categories[:dashboard],
+			iso_namespaces: mdr_categories[:sysadmin], iso_registration_authorities: mdr_categories[:sysadmin],	iso_managed: mdr_categories[:sysadmin], tokens: mdr_categories[:sysadmin], audit_trail: mdr_categories[:sysadmin],
+			uploads: mdr_categories[:impexp], imports: mdr_categories[:impexp], exports: mdr_categories[:impexp], backgrounds: mdr_categories[:impexp],
+			ad_hoc_reports: mdr_categories[:util], iso_concept_systems: mdr_categories[:util], markdown_engines: mdr_categories[:util],
+			thesauri: mdr_categories[:term], cdisc_terms: mdr_categories[:term], managed_concepts: mdr_categories[:term],
+			biomedical_concept_templates: mdr_categories[:biocon], biomedical_concept_instances: mdr_categories[:biocon],
+			forms: mdr_categories[:forms],
+			sdtm_models: mdr_categories[:sdtm], sdtm_igs: mdr_categories[:sdtm], sdtm_ig_domains: mdr_categories[:sdtm], sdtm_sponsor_domains: mdr_categories[:sdtm], sdtm_classes: mdr_categories[:sdtm],
+      adam_igs: mdr_categories[:adam], adam_ig_datasets: mdr_categories[:adam],
+      
+      studies: swb_categories[:studies]
 		}
 
-		@controller_map[controller_name.to_sym]
-	end
-
-  # Converts a controller reference to a string representing the menu parent under which it belongs, Study Workbench
-  def controller_to_menu_swb
-    @category_studies = "Studies"
-
-    @controller_map_swb = {
-      studies: @category_studies,
-    }
-
-    @controller_map_swb[controller_name.to_sym]
+		controller_map[controller_name.to_sym]
   end
 
-  # True if the current controller belong to the SWB menu
+  # Check whether menu category is currently selected (active) 
+  #
+  # @param [Symbol] category to check 
+  # @return [Boolean] true if category is active
+  def category_active(category)
+    return false if controller_to_menu.nil?
+    return controller_to_menu == mdr_categories[category] || controller_to_menu == swb_categories[category]
+  end
+
+  # Get menu category title
+  #
+  # @param [Symbol] category to get the title for 
+  # @return [String] category title 
+  def category_title(category) 
+    mdr_categories[category] || swb_categories[category]
+  end
+
+  # Check if current Menu item is a part of the SWB menu map 
+  #
+  # @return [Boolean] True if current controller belongs to SWB menu map  
   def is_swb_menu?
-    !controller_to_menu_swb.nil?
+    swb_categories.has_value? controller_to_menu
   end
 
   def get_iso_managed_icon(item)
@@ -304,7 +201,7 @@ module ApplicationHelper
       # when "bct"
       #   user_role_panel_list[key] = {name: value, url: "biomedical_concept_templates", safe_param: "biomedical_concept_template"} if policy(BiomedicalConceptTemplate).index?
       # when "bcs"
-      #   user_role_panel_list[key] = {name: value, url: "biomedical_concepts", safe_param: "biomedical_concept"} if policy(BiomedicalConcept).index?
+      #   user_role_panel_list[key] = {name: value, url: "biomedical_concepts", safe_param: "biomedical_concept"} if policy(BiomedicalConceptInstance).index?
       # when "forms"
       #   user_role_panel_list[key] = {name: value, url: "forms", safe_param: ""} if policy(Form).index?
       # when "domains"
