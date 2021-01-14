@@ -47,6 +47,12 @@ describe SdtmSponsorDomain::VariableSSD do
       expect(result.errors.full_messages.to_sentence).to eq("Name contains invalid characters, is empty or is too long")
     end
 
+    it "validates a valid object(using factory)" do
+      params = {name: "A1234567", uri: Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")}
+      result = create_sdtm_sponsor_domain_non_standard_variable(params)
+      expect(result.valid?).to eq(true)
+    end
+
   end
 
   describe "Delete Tests" do
@@ -316,5 +322,21 @@ describe SdtmSponsorDomain::VariableSSD do
     end
 
   end
+
+  describe "Clone Tests" do
+
+    before :each do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "clone" do
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      result = sponsor_variable.clone
+      check_file_actual_expected(result.to_h, sub_dir, "clone_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end 
 
 end
