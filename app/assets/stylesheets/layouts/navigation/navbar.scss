@@ -1,0 +1,128 @@
+@import "shared/vars.scss";
+
+.navbar {
+  font-family: $font-light;
+  background-color: $primary-color-dark;
+  border-bottom: 4px solid;
+  border-image-source: linear-gradient(270deg, rgb(83,134,156), rgb(150,185,71));
+  border-image-slice: 1;
+
+  // App name 
+  .navbar-brand.app-name {
+    color: $grey-light;
+    font-size: $font-small;
+    padding-right: 10px;
+    margin: 0;
+  }
+
+  // Navbar links
+  a .text-light:hover {
+    color: #fff;
+  }
+
+  // Navbar & Sidebar Toggle buttons 
+  .navbar-toggle {
+    background: transparent;
+    border: 0px;
+
+    &:hover, &:active, &:focus {
+      background: transparent;
+    }
+
+    &#sidebar-toggle-vertical {
+      padding: 2px 10px;
+      font-size: 20px;
+      transition: transform .3s;
+    }
+  }
+
+}
+
+// User info & badges 
+.navbar {
+    
+  .user-badge-wrap {
+    height: 50px !important;
+    display: flex;
+    align-items: center;
+  
+    .user-badge{
+      margin: 0px 10px 0px 10px;
+    }
+  }
+  
+  .user-icon {
+    font-family: $font-bold;
+    font-size: 12pt;
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 27px;
+    display: block;
+  }
+  
+  #user-name {
+    font-family: $font-primary;
+  }
+  
+  // A vertical line acting as a divider of icons in the navbar
+  .vertical-divider {
+    width: 1px;
+    height: 50%;
+    background-color: $grey-light;
+    margin-right: 20px;
+    margin-left: 10px;
+    display: block;
+  }
+  
+}
+
+// Expanded Navbar Menu styling 
+#navbar-actions { 
+  border: none;
+
+  &.collapse.in, &.collapsing {
+
+    .ttip-text {
+      visibility: visible;
+      top: initial;
+      margin: 0;
+      border-radius: 0;
+      background-color: initial;
+      text-align: initial;
+      padding: 0;
+      position: initial;
+      color: $grey-light;
+      -webkit-box-shadow: initial;
+      -moz-box-shadow: initial;
+      box-shadow: initial;
+    }
+
+    .user-badge-wrap {
+      display: none;
+    }
+
+  }
+
+}
+
+// Narrow screens only
+@media (max-width:400px) {
+
+  .navbar {
+
+    .navbar-brand.app-name {
+      font-size: $font-tiny;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .navbar-toggle {
+      padding-right: 0; 
+      padding-left: 0;
+    }
+
+  }
+
+}

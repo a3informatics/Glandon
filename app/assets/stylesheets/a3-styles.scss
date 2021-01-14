@@ -2,8 +2,6 @@
 @import "shared/buttons";
 @import "shared/cards";
 
-@import "shared/layouts/navbar";
-@import "shared/layouts/sidebar";
 @import "shared/layouts/card_layout";
 @import "shared/layouts/context_menu";
 @import "shared/layouts/modal";
@@ -405,6 +403,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:foc
 }
 
 // ARROW ROTATION
+
+.arrow-rotate{
+  transform: rotate(180deg);
+}
 
 .cir-ar-right{
   transform: rotate(90deg);
