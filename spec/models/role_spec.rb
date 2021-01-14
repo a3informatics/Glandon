@@ -27,6 +27,81 @@ describe Role do
     @data.each {|x| @roles << create_role(x)}
   end
 
+  it "valid? I" do
+    object = Role.new
+    result = object.valid?
+    expect(result).to eq(false)
+    expect(object.errors.full_messages.count).to eq(3)
+    expect(object.errors.full_messages.to_sentence).to eq("Uri can't be blank, Name is empty, and Display text is empty")
+  end
+
+  it "valid? II" do
+    object = Role.new
+    object.uri = Uri.new(uri: "http://www.example.com/A")
+    result = object.valid?
+    expect(result).to eq(false)
+    expect(object.errors.full_messages.count).to eq(2)
+    expect(object.errors.full_messages.to_sentence).to eq("Name is empty and Display text is empty")
+  end
+
+  it "valid? III" do
+    object = Role.new
+    object.uri = Uri.new(uri: "http://www.example.com/A")
+    object.name = "AAA"
+    result = object.valid?
+    expect(result).to eq(false)
+    expect(object.errors.full_messages.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Display text is empty")
+  end
+
+  it "valid? IV" do
+    object = Role.new
+    object.uri = Uri.new(uri: "http://www.example.com/A")
+    object.name = "AAA"
+    object.display_text = "Well"
+    result = object.valid?
+    expect(result).to eq(true)
+    expect(object.errors.full_messages.count).to eq(0)
+  end
+
+  it "valid? V" do
+    object = Role.new
+    object.uri = Uri.new(uri: "http://www.example.com/A")
+    object.name = "AAA"
+    object.display_text = "Well"
+    object.description = "§§§"
+    result = object.valid?
+    expect(result).to eq(false)
+    expect(object.errors.full_messages.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Description contains invalid characters")
+  end
+
+  it "valid? VI" do
+    object = Role.new
+    object.uri = Uri.new(uri: "http://www.example.com/A")
+    object.name = "AAA"
+    object.display_text = "Well"
+    object.description = "eee"
+    object.enabled = 1
+    result = object.valid?
+    expect(result).to eq(false)
+    expect(object.errors.full_messages.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Enabled is not included in the list")
+  end
+
+  it "valid? VI" do
+    object = Role.new
+    object.uri = Uri.new(uri: "http://www.example.com/A")
+    object.name = "AAA"
+    object.display_text = "Well"
+    object.description = "eee"
+    object.system_admin = 1
+    result = object.valid?
+    expect(result).to eq(false)
+    expect(object.errors.full_messages.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("System admin is not included in the list")
+  end
+
   it "all" do
     results = Role.all
     check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "all_expected_1.yaml")    

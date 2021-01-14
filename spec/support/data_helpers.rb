@@ -1,8 +1,10 @@
 require Rails.root.join('spec/support/triple_store_helpers.rb')
+require Rails.root.join('spec/support/factory_helpers.rb')
 
 module DataHelpers
 
   include TripleStoreHelpers
+  include FactoryHelpers
 
   @@ts = TripleStoreHelpers::TripleStore.new
 
