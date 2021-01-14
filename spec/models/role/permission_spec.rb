@@ -52,4 +52,14 @@ describe Role::Permission do
     expect(object.errors.full_messages.to_sentence).to eq("Uri can't be blank")
   end
 
+  it "valid V" do
+    role_1 = Uri.new(uri: "http://www.example.com/1")
+    role_2 = Uri.new(uri: "http://www.example.com/2")
+    klass = IsoConceptV2.rdf_type
+    access = create_iso_concept_system_node(label: "XXX")
+    object = Role::Permission.new(for_class: klass, with_access: access, for_role: [role_1, role_2], uri: Uri.new(uri: "http://www.example.com/A"))
+    result = object.valid?
+    expect(result).to eq(true)
+  end
+
 end

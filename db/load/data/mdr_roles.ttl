@@ -1,0 +1,69 @@
+@prefix : <http://www.a3informatics.com/rdf-schema/users-and-roles#> .
+@prefix usr: <http://www.a3informatics.com/rdf-schema/users-and-roles#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.a3informatics.com/rdf-schema/users-and-roles>
+	rdf:type owl:Ontology ;
+.
+<http://www.assero.co.uk/ROLE#d7b3da54-5cb8-4e98-a912-1ff6765ae18d>
+	rdf:type :Role ;
+	:name "sys_admin"^^xsd:string ;
+	:displayText "System Admin"^^xsd:string ;
+	:description "System administration rights. This role has no access to MDR content."^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:systemAdmin "true"^^xsd:boolean ;
+	:combinedWith <http://www.assero.co.uk/ROLE#d7b3da54-5cb8-4e98-a912-1ff6765ae18d> ;
+.
+<http://www.assero.co.uk/ROLE#0fa5ab81-0b0f-48a5-b05c-36bab2eed788>
+	rdf:type :Role ;
+	:name "community_reader"^^xsd:string ;
+	:displayText "Community Reader"^^xsd:string ;
+	:description "Specific role for use with the community version. Can be used as a simple reader role."^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:systemAdmin "false"^^xsd:boolean ;
+.
+<http://www.assero.co.uk/ROLE#9932e234-fa8a-49f5-9958-203c988c04b6>
+	rdf:type :Role ;
+	:name "term_reader"^^xsd:string ;
+	:displayText "Terminology Reader"^^xsd:string ;
+	:description "The lowest level of access. A Terminology Reader access permits the user to have read-only access to the MDR's terminology content."^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:systemAdmin "false"^^xsd:boolean ;
+.
+<http://www.assero.co.uk/ROLE#85d44f2c-5d2a-43f8-a062-093674f6357a>
+	rdf:type :Role ;
+	:name "term_curator"^^xsd:string ;
+	:displayText "Terminology Curator"^^xsd:string ;
+	:description "Terminology Curator access permits the user to have read and write access to the MDR's terminology content."^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:systemAdmin "false"^^xsd:boolean ;
+.
+<http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5>
+	rdf:type :Role ;
+	:name "reader"^^xsd:string ;
+	:displayText "Reader"^^xsd:string ;
+	:description "Reader access permits the user to have read-only access to all of the MDR's content."^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:systemAdmin "false"^^xsd:boolean ;
+.
+<http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3>
+	rdf:type :Role ;
+	:name "curator"^^xsd:string ;
+	:displayText "Curator"^^xsd:string ;
+	:description "Curator access permits the user to have view access to the MDR's content while also being able to edit the content."^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:systemAdmin "false"^^xsd:boolean ;
+.
+<http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936>
+	rdf:type :Role ;
+	:name "content_admin"^^xsd:string ;
+	:displayText "Content Admin"^^xsd:string ;
+	:description "The highest level of access. Content administration access permits the user to have view access to the MDR's content, allows for the editing of the content and permits new content to be imported."^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:systemAdmin "true"^^xsd:boolean ;
+	:combinedWith <http://www.assero.co.uk/ROLE#d7b3da54-5cb8-4e98-a912-1ff6765ae18d> ;
+.
