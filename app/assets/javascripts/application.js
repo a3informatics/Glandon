@@ -16,7 +16,6 @@
 //= require datatables.min
 //= require jquery.validate
 //= require jquery.validate.additional-methods
-//= require sidebar_handler
 //= require spinner_helpers
 //= require jquery-dateformat.min
 //= require underscore-min
