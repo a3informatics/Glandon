@@ -164,6 +164,20 @@ module FieldValidation
     return false
   end
 
+  # Valid Variable Name
+  #
+  # @param symbol [String] The item being checked
+  # @param value [String] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_variable_name?(symbol, value, object)
+    return false if value_empty?(symbol, value, object)
+    result = value.match /^[a-z_][a-zA-Z_0-9]*$/
+    return true if result != nil
+    object.errors.add(symbol, "contains invalid characters")
+    return false
+  end
+
   # Valid Free Text
   #
   # @param symbol [String] The item being checked

@@ -345,6 +345,24 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
   end
 
+  it "checks a valid variable name, a_bA1" do
+    object = IsoConceptV2.new
+    expect(FieldValidation.valid_variable_name?(:test, "a_bA1", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks an invalid variable name, nil" do
+    object = IsoConceptV2.new
+    expect(FieldValidation.valid_variable_name?(:test, nil, object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+  end
+
+  it "checks an invalid variable name, #123" do
+    object = IsoConceptV2.new
+    expect(FieldValidation.valid_variable_name?(:test, "#123", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
+  end
+
   it "checks a valid long name, ALongName" do
     object = IsoConceptV2.new
     expect(FieldValidation.valid_long_name?(:test, "ALongName", object)).to eq(true)

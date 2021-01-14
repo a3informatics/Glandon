@@ -11,7 +11,7 @@ class Role < Fuseki::Base
   data_property :system_admin, default: false
   object_property :combined_with, cardinality: :many, model_class: "Role"
 
-  validates_with Validator::Field, attribute: :name, method: :valid_short_name?
+  validates_with Validator::Field, attribute: :name, method: :valid_variable_name?
   validates_with Validator::Field, attribute: :display_text, method: :valid_short_name?
   validates_with Validator::Field, attribute: :description, method: :valid_label?
   validates :enabled, inclusion: { in: [ true, false ] }
