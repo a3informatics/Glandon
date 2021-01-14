@@ -1,0 +1,41 @@
+<% is_active = category_active(category) %>
+
+<%# Menu Category with expandable content %>
+<% if (local_assigns.fetch :expandable, true) %>
+
+  <div id="main_nav_<%= id %>" class="category-container <%= "collapsed" if !is_active %>">
+
+    <div class="menu-category <%= "selected" if is_active %>">
+
+      <span class="icon <%= icon %>"></span>
+      <span class="title"> 
+        <%= category_title(category) %> 
+      </span>
+
+      <span class="icon-arrow-u arrow text-light"></span>
+
+    </div>
+
+    <ul class="nav">
+      <%= yield %>
+    </ul>
+    
+  </div>
+
+<%# Menu Category as a link, no expandable content %>
+<% else %>
+
+<a id="main_nav_<%= id %>" class="category-container collapsed" href="<%= link_url %>">
+
+    <div class="menu-category <%= "selected" if is_active %>">
+
+      <span class="icon <%= icon %>"></span>
+      <span class="title"> 
+        <%= category_title(category) %> 
+      </span>
+
+    </div>
+    
+</a>
+
+<% end %>
