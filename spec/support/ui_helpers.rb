@@ -520,7 +520,7 @@ module UiHelpers
   end
 
   def click_navbar_sdtm_class
-    ui_navbar_click('main_nav_c')
+    ui_navbar_click('main_nav_sc')
   end
 
   def click_navbar_sdtm_sponsor_domains
