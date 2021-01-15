@@ -1,6 +1,7 @@
 @import "shared/globals";
 
 body, html, .container{
+  padding: 0;
   height: 100%;
 }
 
@@ -8,6 +9,7 @@ body {
   background: $grey-bright;
   width: 100%;
   position: relative;
+  overflow-y: auto;
 }
 
 .container{
@@ -20,7 +22,8 @@ body {
 
 .m-card {
   min-width: 60%;
-  min-height: 60%;
+  min-height: 600px;
+  height: 60%;
   display: flex;
   max-width: 1000px;
 }
@@ -109,16 +112,17 @@ form{
 // MOBILE VIEW
 @media (max-width:768px){
   
+  body, html{
+    min-height: 100%;
+    height: auto;
+  }
+  
   .m-card{
     flex-direction: column-reverse;
   }
   .m-card .half{
     width: 100%;
-  }
-
-  body, html{
-    min-height: 100%;
-    height: auto;
+    padding: 36px 46px;
   }
 
   .half:last-of-type{
@@ -133,6 +137,10 @@ form{
 
   #a3-devise-logo{
     width: 150px;
+  }
+
+  .text-xxlarge {
+    font-size: 16pt;
   }
 
 }
