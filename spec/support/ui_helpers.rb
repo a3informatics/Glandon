@@ -378,7 +378,7 @@ module UiHelpers
 
   # Navigation
   # ==========
-	def id_to_section_map
+	def id_to_section_mdr
 		{
 			main_nav_in: "main_nav_sysadmin", main_nav_ira: "main_nav_sysadmin", main_nav_im: "main_nav_sysadmin", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin",
 			main_nav_u: "main_nav_impexp", main_nav_i: "main_nav_impexp", main_nav_e: "main_nav_impexp", main_nav_bj: "main_nav_impexp",
@@ -387,21 +387,23 @@ module UiHelpers
 			main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
 			main_nav_f: "main_nav_forms",
 			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm", main_nav_c: "main_nav_sdtm", main_nav_ssd: "main_nav_sdtm",
-			main_nav_aig: "main_nav_adam", main_nav_aigd: "main_nav_adam"
+      main_nav_aig: "main_nav_adam", main_nav_aigd: "main_nav_adam"
 		}
-	end
-
-	def ui_check_item_locked(id)
-		section = id_to_section_map[id.to_sym]
-		ui_expand_section(section) if !ui_section_expanded?(section)
-		item = page.find('#'+id)
-		expect(item[:class]).to include('locked')
-		expect(item[:href]).to eq('')
-	end
+  end
+  
+  def id_to_section_swb
+		{
+      main_nav_studies: "main_nav_study"
+		}
+  end
+  
+  def id_to_section_map(id)
+    return id_to_section_mdr[id.to_sym] if id_to_section_mdr.has_key? id.to_sym 
+    return id_to_section_swb[id.to_sym] if id_to_section_swb.has_key? id.to_sym 
+  end 
 
   def ui_section_expanded?(section)
     x = page.execute_script("$('##{section}').hasClass('collapsed')")
-    #x = page.find("##{section}")[:class].include?("collapsed")
   end
 
   def ui_expand_section(section)
@@ -412,11 +414,43 @@ module UiHelpers
     page.execute_script("$('##{section}').addClass('collapsed')")
   end
 
+  def ui_navbar_toggle
+    find( '#sidebar-toggle-horizontal' ).click
+    sleep 0.5 # Animation
+  end
+
+  def toggle_menu_type(id)
+    find('.menu-type-button', text: 'MDR').click if id_to_section_mdr.has_key? id.to_sym 
+    find('.menu-type-button', text: 'SWB').click if id_to_section_swb.has_key? id.to_sym 
+  end 
+
+  def ui_navbar_collapsed?
+    page.evaluate_script("$('#sidebar').hasClass('collapsed-horizontal')")
+  end
+
   def ui_navbar_click(id)
-    section = id_to_section_map[id.to_sym]
+    section = id_to_section_map(id)
+    # Expand sidebar if collapsed
+    ui_navbar_toggle if ui_navbar_collapsed?
+    # Toggle menu type if section in other menu 
+    toggle_menu_type(id)
+    # Expand menu section if collapsed
     ui_expand_section(section) if !ui_section_expanded?(section)
     click_link "#{id}"
   end
+
+	def ui_check_item_locked(id)
+    section = id_to_section_map(id)
+    # Expand sidebar if collapsed
+    ui_navbar_toggle if ui_navbar_collapsed?
+    # Toggle menu type if section in other menu 
+    toggle_menu_type(id)
+    # Expand menu section if collapsed
+    ui_expand_section(section) if !ui_section_expanded?(section)
+		item = page.find('#'+id)
+		expect(item[:class]).to include('locked')
+		expect(item[:href]).to eq('')
+	end
 
   #System Admin
   def click_navbar_at
@@ -534,6 +568,11 @@ module UiHelpers
 
   def click_navbar_adam_ig_dataset
     ui_navbar_click('main_nav_aigd')
+  end
+
+  #Studies 
+  def click_navbar_studies
+    ui_navbar_click('main_nav_studies')
   end
 
   #Community Version
