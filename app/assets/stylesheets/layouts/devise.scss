@@ -119,7 +119,9 @@ form{
   
   .m-card{
     flex-direction: column-reverse;
+    min-height: auto;
   }
+  
   .m-card .half{
     width: 100%;
     padding: 36px 46px;
