@@ -128,6 +128,7 @@ module UiHelpers
 
   def ui_table_search(table_id, text)
     input = find(:xpath, "//*[@id=\"#{table_id}_filter\"]/label/input")
+    input.click
     input.set(text)
   end
 
