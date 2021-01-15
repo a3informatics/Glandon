@@ -144,7 +144,7 @@ describe SdtmSponsorDomain::VariableSSD do
       new_parent = SdtmSponsorDomain.find_full(new_parent.uri)
       expect(new_parent.includes_column.count).to eq(42)
       check_dates(new_parent, sub_dir, "delete_var_1b.yaml", :creation_date, :last_change_date)
-      check_file_actual_expected(new_parent.to_h, sub_dir, "delete_var_1b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(new_parent.to_h[:includes_column].sort_by{|x| x[:ordinal]}, sub_dir, "delete_var_1b.yaml", equate_method: :hash_equal)
       expect(triple_store.check_uris(uri_check_set_2)).to be(true)
     end
 
