@@ -55,6 +55,7 @@ export default class IPPanel extends SelectablePanel {
     options.scrollY = 400;
     options.scrollCollapse = true;
     options.autoWidth = true;
+    options.scrollX = true;
 
     return options;
   }
