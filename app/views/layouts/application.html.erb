@@ -26,10 +26,12 @@
     <%= javascript_include_tag 'locked_items' if Rails.env != "test" %>
 
     <%# Preload fonts %>
-    <%= preload_link_tag(asset_path("Roboto-Light.ttf"), ) %>
-    <%= preload_link_tag(asset_path("Roboto-Medium.ttf")) %>
-    <%= preload_link_tag(asset_path("Roboto-Regular.ttf")) %>
-    <%= preload_link_tag(asset_path("icon-fonts/icomoon.ttf")) %>
+    <% if Rails.env != "test" %>
+      <%= preload_link_tag(asset_path("Roboto-Light.ttf"), ) %>
+      <%= preload_link_tag(asset_path("Roboto-Medium.ttf")) %>
+      <%= preload_link_tag(asset_path("Roboto-Regular.ttf")) %>
+      <%= preload_link_tag(asset_path("icon-fonts/icomoon.ttf")) %>
+    <% end %>
 
     <%= csrf_meta_tags %>
 
