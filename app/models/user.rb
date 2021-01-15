@@ -1,8 +1,12 @@
+# User. User class
+#
+# @author Dave Iberson-Hurst
+# @since 0.0.1
 class User < ApplicationRecord
 
   # Include the user settings
   include UserSettings
-  include Role
+  include RoleManagement
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -11,8 +15,9 @@ class User < ApplicationRecord
     :timeoutable,
     :password_expirable, :password_archivable , :secure_validatable
 
-  after_create :set_extra, :expire_password!
-  after_save :user_update
+  after_create :on_create, :expire_password!
+  after_save :on_update
+  before_destroy :on_destroy
 
   validates :name, length: { minimum: 1 }, on: :update
 
@@ -27,34 +32,46 @@ class User < ApplicationRecord
     is_active? ? super : :locked
   end
 
-  # Locks user updating is_active column to false
+  # Lock. Locks user updating is_active column to false
+  #
+  # @return [Void] no return
   def lock
-    update_attributes(is_active: false) unless !is_active
+    update_attributes(is_active: false) if is_active?
   end
 
-  # Unlocks user updating is_active column to false
+  # Unlock. Unlocks user updating is_active column to false
+  #
+  # @return [Void] no return
   def unlock
-    update_attributes(is_active: true) unless is_active
+    update_attributes(is_active: true) unless is_active?
   end
 
-  def is_active
-    return true if self.is_active?
-    return false
-  end
-
-  # Set any extra items we need when a user is created
-  def set_extra
+  # On Create. Set any extra items we need when a user is created
+  #
+  # @return [Void] no return
+  def on_create
   	# Set the reader default role.
     self.is_active = true
     self.add_role(:reader)
     self.name = "Anonymous" if self.name.blank? # Set default name if not provided
     self.save
+    save_roles_and_scopes
   end
 
-  # Do any processing after user is changed
-  def user_update
+  # On Destroy. Actions when record is destroyed
+  #
+  # @return [Void] no return
+  def on_destroy
+    # Delete the User::Access associate node
+    ua = self.my_access
+    ua.delete
+  end
+
+  # User Update. Do any processing after user is changed
+  #
+  # @return [Void] no return
+  def on_update
     # Audit if password changed
-    #if encrypted_password_changed?
     AuditTrail.user_event(self, "User changed password.") if saved_change_to_encrypted_password?
   end
 
@@ -94,15 +111,14 @@ class User < ApplicationRecord
     return result
   end
 
-  # Validates removal of sys admin role allowed before executing it
+  # Removing Last Admin? Validates removal of sys admin role allowed before executing it
   #
   # @return [Boolean] returns true if removing last admin
   def removing_last_admin?(params)
-    return false if !self.has_role?(:sys_admin)
+    return false unless params[:role_ids].include?(Role.where_only(name: "sys_admin").id)
+    return false unless self.has_role?(:sys_admin)
     return false if User.all.select{ |u| u.role_list.include?("System Admin")}.size > 1
-    return false if params[:role_ids].include?(Role.to_id(:sys_admin))
     return true
-    #if params[:role_ids]
   end
 
 end

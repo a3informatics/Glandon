@@ -9,6 +9,9 @@ describe "User" do
   include UserAccountHelpers
 
 	before :all do
+    data_files = []
+    load_files(schema_files, data_files)
+    load_data_file_into_triple_store("mdr_roles.ttl")
     AuditTrail.delete_all
   end
 
@@ -22,16 +25,22 @@ describe "User" do
   after :each do
   end
 
+  it "returns allocated roles, single" do
+    user = ua_add_user(email: C_EMAIL)
+    expect(user.allocated_role_names).to match_array([:reader])
+    ua_remove_user(C_EMAIL)
+  end
+
   it "returns allocated roles" do
     user = ua_add_user(email: C_EMAIL)
     user.add_role :sys_admin
-    expect(user.allocated_roles).to match_array([:reader, :sys_admin])
+    expect(user.allocated_role_names).to match_array([:reader, :sys_admin])
     user.remove_role :reader
-    expect(user.allocated_roles).to match_array([:sys_admin])
+    expect(user.allocated_role_names).to match_array([:sys_admin])
     user.add_role :community_reader
-    expect(user.allocated_roles).to match_array([:sys_admin, :community_reader])
+    expect(user.allocated_role_names).to match_array([:sys_admin, :community_reader])
     user.add_role :curator
-    expect(user.allocated_roles).to match_array([:sys_admin, :community_reader, :curator])
+    expect(user.allocated_role_names).to match_array([:sys_admin, :community_reader, :curator])
     ua_remove_user(C_EMAIL)
   end
 
@@ -82,22 +91,22 @@ describe "User" do
   it "logs an audit event when a user password is changed" do
     user = User.new
     expect(user).to receive(:saved_change_to_encrypted_password?) {true}
-    user.user_update
+    user.on_update
     expect(AuditTrail.count).to eq(1)
   end
 
   it "does not log an audit event when a user password is not changed" do
     user = User.new
     expect(user).to receive(:saved_change_to_encrypted_password?) {false}
-    user.user_update
+    user.on_update
     expect(AuditTrail.count).to eq(0)
   end
 
   it "detects if removing the last administrator role in the system, one admin" do
     user = ua_add_user(email: C_EMAIL, role: :sys_admin)
     expect(user.role_list_stripped).to eq("Reader, System Admin")
-    expect(user.removing_last_admin?({:role_ids => [Role.to_id(:sys_admin)]})).to eq(false)
-    expect(user.removing_last_admin?({:role_ids => [Role.to_id(:reader)]})).to eq(true)
+    expect(user.removing_last_admin?({:role_ids => [Role.where_only(name: "sys_admin").id]})).to eq(true)
+    expect(user.removing_last_admin?({:role_ids => [Role.where_only(name: "reader").id]})).to eq(false)
   end
 
   it "detects if removing the last administrator role in the system, two admins" do
@@ -106,8 +115,8 @@ describe "User" do
     user3 = ua_add_user(email: "reader@example.com")
     expect(user.role_list_stripped).to eq("Reader, System Admin")
     expect(user2.role_list_stripped).to eq("Reader, System Admin")
-    expect(user.removing_last_admin?({:role_ids => [Role.to_id(:sys_admin)]})).to eq(false)
-    expect(user.removing_last_admin?({:role_ids => [Role.to_id(:reader)]})).to eq(false)
+    expect(user.removing_last_admin?({:role_ids => [Role.where_only(name: "sys_admin").id]})).to eq(false)
+    expect(user.removing_last_admin?({:role_ids => [Role.where_only(name: "reader").id]})).to eq(false)
   end
 
   it "does not prohibit removing last user role, if not sys administrator" do
@@ -115,7 +124,7 @@ describe "User" do
     user2 = ua_add_user(email: "user@example.com")
     expect(user.role_list_stripped).to eq("Reader, System Admin")
     expect(user2.role_list_stripped).to eq("Reader")
-    expect(user2.removing_last_admin?({:role_ids => [Role.to_id(:curator)]})).to eq(false)
+    expect(user2.removing_last_admin?({:role_ids => [Role.where_only(name: "curator").id]})).to eq(false)
   end
 
   it "assigns user a default name if none is provided" do
