@@ -15,52 +15,89 @@
   font-family: $font-light;
   color: $grey-dark;
   
-  transition: all .3s ease-in;
+  transition-duration: .3s;
+  transition-timing-function: ease-in;
 
   .arrow {
     transition: transform .3s ease-out;
     cursor: pointer;
     color: $grey-light;
   }
-}
 
-// Collapsing / expanding sidebar   
-#sidebar.collapsing {
-
-  .category-container {
-    .title, ul.nav a {
-      white-space: nowrap;
-    }
-  }
-
-  #sidebar-controls {
+  // Prevent line breaks while changing state
+  &.collapsing {
     white-space: nowrap;
   }
 
 }
 
-// Horizontally collapsed sidebar  
-#sidebar.collapsed-horizontal {
-  min-width: 60px;
-  max-width: 60px;
-  overflow: hidden;
+// Desktop view only 
+@media (min-width:768px) {
 
-  // Hide Menu Items 
-  .category-container {
-    .title, .arrow, ul.nav {
-      display: none;
-      visibility: hidden;
+  #sidebar {
+    transition-property: max-width, min-width;
+  }
+
+  // Horizontally collapsed sidebar  
+  #sidebar.collapsed-horizontal {
+    min-width: 60px;
+    max-width: 60px;
+    overflow: hidden;
+
+    // Hide Menu Items 
+    .category-container {
+      .title, .arrow, ul.nav {
+        display: none;
+        visibility: hidden;
+      }
     }
+
+    // Hide Menu Type toggle
+    #menu-type-wrap {
+      display: none;
+    }
+
+    // Sidebar toggle horizontal arrow 
+    #sidebar-toggle-horizontal {
+      transform: rotate(180deg);
+    }
+
   }
 
-  // Hide Menu Type toggle
-  #menu-type-wrap {
-    display: none;
-  }
+}
 
-  // Sidebar toggle horizontal arrow 
-  #sidebar-toggle-horizontal {
-    transform: rotate(180deg);
+// Mobile view only 
+@media (max-width:767px) {
+
+  #sidebar {
+    min-width: 100%;
+    max-width: 100%;
+    position: absolute;
+    z-index: 1000;
+    transition-property: max-height, min-height;
+
+    // Vertically collapsed 
+    &.collapsed-vertical {
+      max-height: 0px;
+      min-height: 0px;
+    }
+
+    ul.nav {
+      display: block !important;
+    }
+
+    .arrow {
+      display: none !important;
+    }
+
+    #sidebar-controls {
+      justify-content: center;
+
+      #menu-type-wrap{
+        margin: 0;
+      }
+    }
+
   }
 
 }
@@ -209,41 +246,6 @@
       right: 20px;
       opacity: .5;
     }
-  }
-
-}
-
-// Sidebar on narrow screens 
-@media (max-width:768px) {
-
-  #sidebar {
-    min-width: 100%;
-    max-width: 100%;
-    position: absolute;
-    z-index: 1000;
-
-    // Vertically collapsed 
-    &.collapsed-vertical {
-      max-height: 0px;
-      min-height: 0px;
-    }
-
-    ul.nav {
-      display: block !important;
-    }
-
-    .arrow {
-      display: none !important;
-    }
-
-    #sidebar-controls {
-      justify-content: center;
-
-      #menu-type-wrap{
-        margin: 0;
-      }
-    }
-
   }
 
 }

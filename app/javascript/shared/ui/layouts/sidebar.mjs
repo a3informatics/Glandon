@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 /*** Collection of helper functions for Sidebar UI manipulation ***/
 
 const sb = '#sidebar',
@@ -11,23 +13,34 @@ const sb = '#sidebar',
 function initialize() {
 
   // Toggle menu type handler 
-  $(sb).find( '.menu-type-button' ).on( 'click', e => 
+  $( sb ).find( '.menu-type-button' ).on( 'click', e => 
     toggleMenuType( $(e.target) ) 
   )
 
   // Horizontal collapse & expand handler 
-  $(sb).find( '#sidebar-toggle-horizontal' ).on( 'click', () => 
+  $( sb ).find( '#sidebar-toggle-horizontal' ).on( 'click', e => 
     toggleSidebar()
   )
 
   // Vertical collapse & expand handler 
-  $( '#sidebar-toggle-vertical' ).on( 'click', () => 
+  $( '#sidebar-toggle-vertical' ).on( 'click', e => 
     toggleSidebar()
   )
 
-  // Menu category collapse / expand 
-  $(sb).find( '.menu-category' ).on( 'click', e => {
+  // Menu category collapse / expand handler
+  $( sb ).find( '.menu-category' ).on( 'click', e => 
     toggleCategory( $(e.target) )
+  )
+
+  // Sidebar transition finished handler
+  $( sb ).on( 'transitionend', () => {
+  
+    // Trigger global window resize event  
+    $( window ).trigger( 'resize' )
+
+    // Remove collapsing css class  
+    $( sb ).removeClass( col )
+
   })
 
 }
@@ -43,29 +56,24 @@ function toggleSidebar(newState) {
    newState = newState === 'close'
 
   // Toggle Sidebar collapsed state horizontally
-  if ( isHorizontal() )
-    $(sb).toggleClass( `${col} ${colH}`, newState )
+  if ( isHorizontal() ) {
+
+    $( sb ).toggleClass( `${ col } ${ colH }`, newState )
+
+    // Cookie to save Sidebar horizontal state across the application
+    Cookies.set( 'sidebar', isOpen() ) 
+
+  }
 
   // Toggle Sidebar collapsed state vertically
   else {
 
-    $(sb).toggleClass( `${col} ${colV}`, newState )
+    $( sb ).toggleClass( `${ col } ${ colV }`, newState )
 
     // Arrow rotation for vertical collapse state change
     $( '#sidebar-toggle-vertical' ).toggleClass( 'arrow-rotate', newState )
 
   }
-
-  // On Sidebar transition end handler
-  $(sb).one('transitionend', () => {
-    
-    // Trigger global window resize event  
-    $( window ).trigger( 'resize' )
-
-    // Remove collapsing css class  
-    $( sb ).removeClass( col )
-
-  })
 
 }
 
@@ -107,7 +115,7 @@ function toggleMenuType($menuTypeBtn) {
  * @return {boolean} True if document width is > 768
  */
 function isHorizontal() {
-  return $( document ).width() > 768
+  return $( document ).width() > 767
 }
 
 /**
@@ -115,7 +123,12 @@ function isHorizontal() {
  * @return {boolean} True if sidebar is open
  */
 function isOpen() {
-  return !$(sb).hasClass( colH ) && !$(sb).hasClass( colV )
+
+  if ( isHorizontal() )
+    return !$(sb).hasClass( colH )
+  else 
+    return !$(sb).hasClass( colV )
+
 }
 
 export {

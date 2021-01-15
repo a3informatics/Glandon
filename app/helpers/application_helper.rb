@@ -122,6 +122,13 @@ module ApplicationHelper
     }
   end
 
+  # Get the sidebar cookie value to determine the saved collapsed state 
+  #
+  # @return [Boolean] True if sidebar state in cookie set to collapsed
+  def sidebar_collapsed? 
+    return cookies[:sidebar] == "false"
+  end
+
   # Converts current controller reference to a string representing the menu parent under which it belongs
   #
   # @return [String] Parent menu category title of the currently active controller 
