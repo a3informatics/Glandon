@@ -12,7 +12,7 @@
   border-bottom: 1px solid $grey-bright;
 }
 
-.tab-option{
+.tab-option {
   display: inline-flex;
   align-items: center;
   background: $row-highlight-background;
@@ -39,9 +39,11 @@
   border-top-right-radius: 10px;
 }
 
-.tab-option:hover {
+.tab-option:hover, .tab-option:focus {
   background: $grey-white;
   color: $primary-color-light;
+  text-decoration: none;
+  outline: none;
 }
 
 .tab-option.active{
