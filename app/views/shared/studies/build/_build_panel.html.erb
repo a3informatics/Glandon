@@ -1,0 +1,27 @@
+<div class="tabs-layout" id="study-build-tabs">
+
+  <div class="tabs-sel-wrap">
+    <div class="tabs-sel scroll-styled">
+
+      <% @study_build_tabs.each do |type, tab| %>
+
+        <% 
+          url = build_study_path(@study, { tab: type })
+          active = type == @active_tab
+          id = "tab-#{ type }"
+        %>
+        
+        <a href='<%= url %>' class='tab-option study-build-tab <%= 'active' if active %>' id='<%= id %>'>
+          <span><%= tab[:title] %></span>
+        </a>
+
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="tab-wrap">
+    <%= render partial: "shared/studies/build/#{ @study_build_tabs[@active_tab][:partial] }" %>
+  </div>
+
+</div>
