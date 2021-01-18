@@ -64,7 +64,7 @@ class User < ApplicationRecord
   def on_destroy
     # Delete the User::Access associate node
     ua = self.my_access
-    ua.delete
+    ua.delete unless ua.nil?
   end
 
   # User Update. Do any processing after user is changed

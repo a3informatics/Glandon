@@ -16,25 +16,27 @@ class User
 
     module ClassMethods
       
-      if Rails.env.test? || Rails.env.development?
-
-        # Restore roles and scopes
-        def restore_roles_and_scopes
-          return if User::Access.all.count.empty?
-          Users.all.each do |user|
-            ua = User::Access.new
-            us.user_id = user.id
-            access = read_setting(:roles_and_scopes).split("|")
-            access.each do |item|
-              if item.start_with?('s:')
-                ua.can_access_scope_push(Uri.new(uri: item[2..-1]))
-              elsif item.start_with?('r:')
-                ua.has_role_push(Uri.new(uri: item[2..-1]))
-              end
-            end
+      # Restore Roles and Scopes. Restore the role and scopes from the backup.
+      #
+      # @return [Boolean] always returns true
+      def restore_roles_and_scopes
+        return unless User::Access.all.empty?
+        User.all.each do |user|
+          ua = User::Access.new
+          ua.uri = ua.create_uri(ua.class.base_uri)
+          ua.user_id = user.id
+          roles = user.read_setting(:roles).value.split("|")
+          roles.each do |item|
+            ua.has_role_push(Uri.new(uri: item))
           end
+          # Scopes not tested yet
+          #scopes = read_setting(:scopes).split("|")
+          #scopes.each do |item|
+          #  ua.can_access_scope_push(Uri.new(uri: item))
+          #end
+          ua.save
         end
-
+        true
       end
 
     end
@@ -43,16 +45,16 @@ class User
     # Instance Methods
     # ----------------
 
-    if Rails.env.test? || Rails.env.development?
-
-      # Save roles and scopes
-      def save_roles_and_scopes
-        ua = my_access
-        Errors.application_error(self.class.name, "save_roles_and_scopes", "User access node not found when adding a user role.") if ua.nil?
-        settings = ua.can_access_scope.map{|x| "s:#{x}"} + ua.has_role.map{|x| "r:#{x}"}
-        write_setting(:roles_and_scopes, settings.join("|"))
-      end
-
+    # Save Roles and Scopes. Save the role and scopes as a backup.
+    #
+    # @return [Boolean] always returns true
+    def save_roles_and_scopes
+      ua = my_access
+      Errors.application_error(self.class.name, "save_roles_and_scopes", "User access node not found when saving roles and scopes.") if ua.nil?
+      write_setting(:roles, ua.has_role.map{|x| "#{x}"}.join("|"))
+      # Scopes not tested yet
+      #write_setting(:scopes, ua.can_access_scope.map{|x| "#{x}"}.join("|"))
+      true
     end
 
     # My Access. Return the User::Access object for this user.
