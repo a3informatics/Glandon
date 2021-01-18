@@ -1,13 +1,15 @@
-<% content_for :page_title do %> <%= "Build: #{@study.has_identifier.identifier} (#{@study.semantic_version}) "%> <% end %>
+<% content_for :page_title do %> <%= "Build - #{ @study_build_tabs[@active_tab][:title] }: #{@study.has_identifier.identifier} (#{@study.semantic_version}) "%> <% end %>
 
 <%= stylesheet_link_tag 'shared/layouts/tabs_layout' %>
 <%= javascript_pack_tag 'studies/build' %>
-<%= javascript_tag "let studyEmpty = #{@study_empty};" %>
+
+<%= javascript_tag "let tokenTimerId = '#{@edit.token.id}',
+                        tokenTimerWarning = '#{current_user.edit_lock_warning}';"%>
 
 <% third_level_breadcrumb(:studies, @study, @close_path) %>
 
 <div class="row">
-  <%= render layout: "shared/studies/study_header", :locals => {:item => @study, :badge => "icon-study"} do %>
+  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @study, badge: "icon-study" } do %>
 
     <div class="actions-wrap">
 
@@ -21,14 +23,14 @@
 
 <div class="row">
 	<div class="col-md-12 card wide">
+
     <div class="card-header">
       Study Build
     </div>
+
     <div class="card-content">
-      <%= render partial: "shared/studies/study_build_panel" %>
+      <%= render partial: "shared/studies/build/build_panel" %>
   	</div>
+
 	</div>
 </div>
-
-<%= render partial: "shared/items_picker/items_picker", :locals => { id: 'protocol-template', description: 'Pick a Protocol Template for this Study.' } %>
-<%= render partial: "shared/items_picker/items_picker", :locals => { id: 'timeline', description: 'Pick one or more Items to attach to the Time Point.' } %>

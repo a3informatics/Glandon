@@ -1,10 +1,18 @@
-import TabsLayout from 'shared/ui/tabs_layout'
-import StudyBuilder from 'shared/custom/studies/study_builder'
+import TokenTimer from 'shared/custom/tokens/token_timer'
 
 $(document).ready( () => {
 
-  TabsLayout.initialize();
 
-  let sb = new StudyBuilder();
+  const tt = new TokenTimer({
+    tokenId: tokenTimerId,
+    warningTime: tokenTimerWarning
+  });
+
+  $('.study-build-tab').on( 'mousedown', e => {
+    
+    tt.handleUnload = false; 
+    setTimeout( () => tt.handleUnload = true, 1000 );
+
+  })
 
 });
