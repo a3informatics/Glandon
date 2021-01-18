@@ -53,9 +53,25 @@ class StudiesController < ManagedItemsController
 
   def build
     authorize Form, :edit?
-    @study = Study.find_with_properties(protect_from_bad_id(params))
-    @study_empty = @study.protocol.design.empty?
-    @close_path = history_studies_path({study: {identifier: @study.scoped_identifier, scope_id: @study.scope}})
+    @study = Study.find_minimum(protect_from_bad_id(params))
+    respond_to do |format|
+      format.html do
+        return true unless edit_lock(@study)
+        @study = Study.find_with_properties(@study.id)
+        @study_build_tabs = study_build_tabs
+        # Get tab type from params, default to :content
+        @active_tab = params.fetch( :tab, :content ).to_sym
+        # 404 if invalid tab type passed in params 
+        page_not_found if !study_build_tab_valid? @active_tab
+        #@study_empty = @study.protocol.design.empty?
+        @close_path = history_studies_path({ study:{ identifier: @study.scoped_identifier, scope_id: @study.scope }})
+      end
+      format.json do
+        return true unless check_lock_for_item(@study)
+        render :json => { data: [] }, :status => 200
+      end
+    end
+
   end
 
   def design
@@ -107,5 +123,24 @@ private
   def close_path_for
     studies_path
   end
+
+  def study_build_tabs
+    {
+      content: { title: 'Content', partial: 'content_tab' },
+      design: { title: 'Design and Interventions', partial: 'design_tab' },
+      objectives: { title: 'Objectives', partial: 'objectives_tab' },
+      endpoints: { title: 'Endpoints', partial: 'endpoints_tab' },
+      timeline: { title: 'Timeline', partial: 'timeline_tab' },
+      soa: { title: 'SoA', partial: 'soa_tab' },
+      detail: { title: 'Detail', partial: 'detail_tab' },
+      acrf: { title: 'aCRF', partial: 'acrf_tab' },
+      domains: { title: 'Domains', partial: 'domains_tab' },
+      export: { title: 'Export', partial: 'export_tab' }
+    }
+  end
+
+  def study_build_tab_valid?(tab)
+    study_build_tabs.keys.include? tab
+  end 
 
 end
