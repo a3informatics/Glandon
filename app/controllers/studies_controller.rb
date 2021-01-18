@@ -59,10 +59,8 @@ class StudiesController < ManagedItemsController
         return true unless edit_lock(@study)
         @study = Study.find_with_properties(@study.id)
         @study_build_tabs = study_build_tabs
-        # Get tab type from params, default to :content
-        @active_tab = params.fetch( :tab, :content ).to_sym
-        # 404 if invalid tab type passed in params 
-        page_not_found if !study_build_tab_valid? @active_tab
+        @active_tab = params.fetch( :tab, :content ).to_sym # Tab type from params, default to :content
+        page_not_found if !study_build_tab_valid? @active_tab # 404 if invalid tab type passed in params 
         #@study_empty = @study.protocol.design.empty?
         @close_path = history_studies_path({ study:{ identifier: @study.scoped_identifier, scope_id: @study.scope }})
       end

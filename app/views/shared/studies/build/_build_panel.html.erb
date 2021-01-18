@@ -1,13 +1,13 @@
 <div class="tabs-layout" id="study-build-tabs">
 
-  <div class="tabs-sel-wrap">
-    <div class="tabs-sel scroll-styled">
+  <div class="tabs-scroll-wrap no-break scroll-styled scroll-horizontal">
+    <div class="tabs-sel">
 
       <% @study_build_tabs.each do |type, tab| %>
 
         <% 
-          url = build_study_path(@study, { tab: type })
           active = type == @active_tab
+          url = active ? '#' : build_study_path(@study, { tab: type })
           id = "tab-#{ type }"
         %>
         
