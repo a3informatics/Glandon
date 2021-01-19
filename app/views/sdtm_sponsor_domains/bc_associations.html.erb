@@ -1,0 +1,36 @@
+<% content_for :page_title do %> <%= "BC Associations: #{@sdtm_sponsor_domain.has_identifier.identifier} (#{@sdtm_sponsor_domain.semantic_version}) "%> <% end %>
+
+<%#= javascript_pack_tag 'sdtm_sponsor_domains/bc_associations' %>
+
+<% third_level_breadcrumb(:sdtm_sponsor_domains, @sdtm_sponsor_domain, @close_path) %>
+
+<%= javascript_tag "let tokenTimerId = '#{@edit.token.id}',
+                        tokenTimerWarning = '#{current_user.edit_lock_warning}';"%>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @sdtm_sponsor_domain, badge: "icon-sdtm" } do %>
+
+    <div class="actions-wrap">
+
+			<%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+    </div>
+
+  <% end %>
+</div>
+
+<div class="row">
+
+  <div class="col-md-12 card wide">
+
+    <div class="card-header">
+      Biomedical Concept Associations 
+    </div>
+
+    <div class="card-content">
+    </div>
+    
+  </div>
+
+</div>

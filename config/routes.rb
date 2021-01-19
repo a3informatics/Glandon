@@ -490,6 +490,7 @@ Rails.application.routes.draw do
       #put :toggle_used
       delete :delete_non_standard_variable
       put :update_variable
+      get :bc_associations
     end
   end
 
