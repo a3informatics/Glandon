@@ -76,18 +76,24 @@ class IsoManagedV2
     # @param 
     # @return
     def associated
-      result = []
+      results = []
       query_string = %Q{
-        SELECT DISTINCT ?object ?object_label WHERE {
-          #{self.uri.to_ref} bo:associatedWith ?object .
+        SELECT DISTINCT ?s ?i ?l ?sv ?vl ?owner ?rdf_type WHERE {
+          #{self.uri.to_ref} bo:associatedWith ?s .
+          ?s isoT:hasIdentifier/isoI:identifier ?i .
+          ?s isoC:label ?l .
+          ?s isoT:hasIdentifier/isoI:semanticVersion ?sv .
+          ?s isoT:hasIdentifier/isoI:versionLabel ?vl .
+          ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?owner .
+          ?s rdf:type ?rdf_type
         }
       }
-      query_results = Sparql::Query.new.query(query_string, "", [:bo])
-      triples = query_results.by_object_set([:object, :object_label])
-      triples.each do |associated|
-        result << {id: associated[:object].to_id, label: associated[:object_label]}
+      query_results = Sparql::Query.new.query(query_string, "", [:bo, :isoT, :isoC, :isoI])
+      triples = query_results.by_object_set([:s, :i, :l, :sv, :vl, :owner, :rdf_type])
+      triples.each do |x|
+        results << {uri: x[:s].to_s, id: x[:s].to_id, identifier: x[:i], label: x[:l], semantic_version: x[:sv], version_label: x[:vl], owner: x[:owner], rdf_type: x[:rdf_type].to_s}
       end
-      result
+      results
     end
 
   private
