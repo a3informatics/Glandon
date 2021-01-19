@@ -170,4 +170,37 @@ describe IsoManagedV2::Associations do
 
   end
 
+  describe "Associated tests" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    end
+
+    before :each do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "associated, single BC" do
+      domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
+      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      assoc = domain.associate([bc_1.id], "SDTM BC Association")
+      assoc = Association.find(assoc.uri)
+      check_file_actual_expected(assoc.associated, sub_dir, "associated_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "associate, multiple BCs" do
+      domain = create_sdtm_sponsor_domain("BBB", "SDTM Sponsor Domain", "BB")
+      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      bc_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      bc_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
+      assoc = domain.associate([bc_1.id, bc_2.id, bc_3.id], "SDTM BC Association")
+      assoc = Association.find(assoc.uri)
+      check_file_actual_expected(assoc.associated, sub_dir, "associated_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+  end
+
 end
