@@ -37,6 +37,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
         return true unless edit_lock(@sdtm_sponsor_domain)
         @sdtm_sponsor_domain = @edit.item
         @edit_tags_path = path_for(:edit_tags, @sdtm_sponsor_domain)
+        @bc_associations_path = bc_associations_sdtm_sponsor_domain_path(@sdtm_sponsor_domain)
         @close_path = history_sdtm_sponsor_domains_path({ sdtm_sponsor_domain:
             { identifier: @sdtm_sponsor_domain.scoped_identifier, scope_id: @sdtm_sponsor_domain.scope } })
       end
@@ -161,6 +162,24 @@ class SdtmSponsorDomainsController < ManagedItemsController
     @lock.release
     render json: { data: "" }, status: 200
   end
+
+  def bc_associations
+    @sdtm_sponsor_domain = SdtmSponsorDomain.find_with_properties(protect_from_bad_id(params))
+    respond_to do |format|
+      format.html do
+        return true unless edit_lock(@sdtm_sponsor_domain)
+        @sdtm_sponsor_domain = @edit.item
+        @close_path = history_sdtm_sponsor_domains_path({ sdtm_sponsor_domain:
+            { identifier: @sdtm_sponsor_domain.scoped_identifier, scope_id: @sdtm_sponsor_domain.scope } })
+      end
+      format.json do
+        # @sdtm_sponsor_domain = SdtmSponsorDomain.find_full(@sdtm_sponsor_domain.id)
+        # return true unless check_lock_for_item(@sdtm_sponsor_domain)
+        # render :json => { data: @sdtm_sponsor_domain.get_children }, :status => 200
+      end
+    end
+  end
+
 
 private
   
