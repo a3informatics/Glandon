@@ -125,7 +125,7 @@ private
   def study_build_tabs
     {
       content: { title: 'Content', partial: 'content_tab' },
-      design: { title: 'Design and Interventions', partial: 'design_tab' },
+      design: { title: 'Design', partial: 'design_tab' },
       objectives: { title: 'Objectives', partial: 'objectives_tab' },
       endpoints: { title: 'Endpoints', partial: 'endpoints_tab' },
       timeline: { title: 'Timeline', partial: 'timeline_tab' },
