@@ -9,6 +9,7 @@ class IsoManagedV2
     # Associate. 
     #
     # @param [Array] ids set the ids to add as associated
+    # @param [String] semantic define the association type
     # @return [Association] new association or existing one with associated links
     def associate(ids, semantic)
       association = self.association? ? Association.find(self.association)  : new_association(the_subject: self.uri, semantic: semantic)
@@ -17,6 +18,10 @@ class IsoManagedV2
       association
     end
 
+    # Diassociate. 
+    #
+    # @param [Array] ids set the ids to add as associated
+    # @return [Object] 
     def diassociate(ids)
       if self.association? 
         association = Association.find(self.association)
@@ -31,10 +36,18 @@ class IsoManagedV2
       end
     end
 
+    # Diassociate All. 
+    #
+    # @return [Void]
     def diassociate_all
-      association = self.association? ? Association.find(self.association) : self.errors.add(:base, "Failed to find association")
-      association.delete
-      1
+      if self.association?
+        association = Association.find(self.association)
+        association.delete
+        1
+      else
+        self.errors.add(:base, "Failed to find association")
+        self
+      end
     end
 
     # Association?
@@ -87,19 +100,6 @@ class IsoManagedV2
       association = Association.new({the_subject: self, semantic: params[:semantic]})
       association.uri = association.create_uri(Association.base_uri)
       association
-    end
-
-    # Remove Links. 
-    #
-    # @param 
-    # @return
-    def remove_links(ids)
-      # transaction_begin
-      # uris = ids.map{|x| Uri.new(id: x[:id])}
-      # uris.each do |uri| 
-      #   self.remove_link(:associated_with, uri)
-      # end
-      # transaction_execute
     end
 
   end
