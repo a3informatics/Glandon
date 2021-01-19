@@ -1309,14 +1309,19 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     it "copy custom properties across" do
-      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/C100130/V1#C100130"))
+      # Setup data
+      parent = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C100130/V1#C100130"))
       child = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/C100130/V1#C100130_SC71384"))
+      # Create new version
       new_parent = parent.create_next_version
-      check_file_actual_expected(child.load_custom_properties(parent).name_value_pairs, sub_dir, "update_with_clone_glan_1474_expected_1.yaml", write_file: true)
-      check_file_actual_expected(child.load_custom_properties(new_parent).name_value_pairs, sub_dir, "update_with_clone_glan_1474_expected_2.yaml", write_file: true)
-byebug
-      child.update_with_clone({"preferred_term"=>"Biological Relativexxxx"}, new_parent)
-      check_file_actual_expected(child.load_custom_properties(new_parent).name_value_pairs, sub_dir, "update_with_clone_glan_1474_expected_3.yaml", write_file: true)
+      # Check custom properties ok and in right state from the creation of the new version
+      check_file_actual_expected(child.load_custom_properties(parent).name_value_pairs, sub_dir, "update_with_clone_glan_1474_expected_1.yaml")
+      check_file_actual_expected(child.load_custom_properties(new_parent).name_value_pairs, sub_dir, "update_with_clone_glan_1474_expected_2.yaml")
+      # Clean initial setup
+      child = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/C100130/V1#C100130_SC71384"))
+      # Update with clone
+      new_child = child.update_with_clone({preferred_term: "Biological Relativexxxx"}, new_parent)
+      check_file_actual_expected(new_child.load_custom_properties(new_parent).name_value_pairs, sub_dir, "update_with_clone_glan_1474_expected_3.yaml")
     end
 
   end
