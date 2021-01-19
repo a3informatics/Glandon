@@ -1,6 +1,6 @@
 <% content_for :page_title do %> <%= "BC Associations: #{@sdtm_sponsor_domain.has_identifier.identifier} (#{@sdtm_sponsor_domain.semantic_version}) "%> <% end %>
 
-<%#= javascript_pack_tag 'sdtm_sponsor_domains/bc_associations' %>
+<%= javascript_pack_tag 'sdtm_sponsor_domains/bc_associations' %>
 
 <% third_level_breadcrumb(:sdtm_sponsor_domains, @sdtm_sponsor_domain, @close_path) %>
 
@@ -29,8 +29,39 @@
     </div>
 
     <div class="card-content">
+
+      <div id="managed-collection">
+
+        <div class="btns-wrap">
+
+          <button class="btn medium green ttip" id="add-items">
+            <span class="icon-plus text-tiny"></span> Add
+          </button>
+          <button class="btn medium red ttip" id="remove-selected">
+            <span class="icon-trash text-tiny"></span> Remove selected
+          </button>
+          <button class="btn medium red ttip" id="remove-all">
+            <span class="icon-trash text-tiny"></span> Remove all
+          </button>
+
+        </div>
+
+        <%= stylesheet_link_tag 'shared/table_select_simple' %>
+
+        <div class="loading-with-btns">
+          <%= render partial: 'shared/iso_managed/managed_items_panel', locals: { 
+              type_column: true, owner_column: true, table_classes: 'table-row-clickable no-mark' } %>
+        </div>
+
+      </div>
+
+
+
     </div>
-    
+
   </div>
 
 </div>
+
+<%= render partial: "shared/items_picker/items_picker", :locals => { id: "add-items",
+    description: "Select one or more items to add to the collection." } %>
