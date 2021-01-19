@@ -10,6 +10,12 @@ describe UsersController do
 
     login_sys_admin
 
+    before :all do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_roles.ttl")
+    end
+
     it "index users" do
       user1 = ua_add_user email: "fred@example.com"
       user2 = ua_add_user email: "sid@example.com"
