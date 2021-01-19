@@ -198,7 +198,7 @@ describe IsoManagedV2::Associations do
       bc_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
       assoc = domain.associate([bc_1.id, bc_2.id, bc_3.id], "SDTM BC Association")
       assoc = Association.find(assoc.uri)
-      check_file_actual_expected(assoc.associated, sub_dir, "associated_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(assoc.associated, sub_dir, "associated_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end
