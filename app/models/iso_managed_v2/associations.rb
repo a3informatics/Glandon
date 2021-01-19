@@ -10,9 +10,10 @@ class IsoManagedV2
     #
     # @param [Array] ids set the ids to add as associated
     # @return [Association] new association or existing one with associated links
-    def associate(ids)
-      association = self.association? ? self.association : create_association({parent_uri: self.uri, the_subject: self.uri, semantic: "BC SDTM Assoc"})
-      association.add_links(ids)
+    def associate(ids, semantic)
+      association = self.association? ? Association.find(self.association)  : new_association(the_subject: self.uri, semantic: semantic)
+      association.associated_with = ids.map{|x| Uri.new(id: x)}
+      association.save
       association
     end
 
@@ -22,7 +23,7 @@ class IsoManagedV2
     end
 
     def diassociate_all
-      self.association.delete_with_links
+      self.association.delete
     end
 
     # Association?
@@ -32,9 +33,18 @@ class IsoManagedV2
       Sparql::Query.new.query("ASK {#{self.uri.to_ref} (^bo:theSubject) ?o}", "", [:bo]).ask? 
     end
 
+    # Association
+    #
+    # @result [Uri] return the uri of an association
     def association
-      query_results = Sparql::Query.new.query("SELECT ?assoc WHERE {?assoc bo:theSubject #{self.uri.to_ref}}", "", [:bo])
-      query_results.by_object_set([:association])
+      results = Sparql::Query.new.query("SELECT ?assoc WHERE {?assoc bo:theSubject #{self.uri.to_ref}}", "", [:bo])
+      Errors.application_error(self.class.name, __method__.to_s, "No associations were found.") if results.empty?
+      objects = []
+      results.by_object(:assoc).each do |object|
+        objects << object
+      end
+      Errors.application_error(self.class.name, __method__.to_s, "Multiple associations found.") if objects.count > 1
+      objects.first
     end
 
     # Associated. 
@@ -56,36 +66,16 @@ class IsoManagedV2
       result
     end
 
-    # Add Links. 
-    #
-    # @param 
-    # @return 
-    def add_links(ids)
-      transaction_begin
-      self.associated_with = ids.map{|x| Uri.new(id: x)}
-      self.save
-      transaction_execute
-    end
-
   private
 
-    # Create
+    # New association
     #
-    # @param params [Hash] parameters for the class
-    # @param parent [Object] the parent object, used for building the URI of the reference
+    # @param semantic [String] the string to define the association type
     # @return [Association] the new object. May contain errros if unsuccesful
-    def self.create(params, parent)
-      params[:parent_uri] = parent.uri
-      super(params)
-    end
-
-    # Create
-    #
-    # @param params [Hash] parameters for the class
-    # @param parent [Object] the parent object, used for building the URI of the reference
-    # @return [Association] the new object. May contain errros if unsuccesful
-    def create_association(params)
-      association = Association.create({the_subject: self, semantic: params[:semantic], parent_uri: params[:parent_uri]})
+    def new_association(semantic)
+      association = Association.new({the_subject: self, semantic: semantic})
+      association.uri = association.create_uri(Association.base_uri)
+      association
     end
 
     # Remove Links. 

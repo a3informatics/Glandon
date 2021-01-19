@@ -5,13 +5,13 @@
 :label: ''
 :semantic: SDTM BC Association
 :the_subject:
-  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FBQS9WMSNTUEQ=
-  :uri: http://www.s-cubed.dk/AAA/V1#SPD
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JCQi9WMSNTUEQ=
+  :uri: http://www.s-cubed.dk/BBB/V1#SPD
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomain
   :label: SDTM Sponsor Domain
   :has_state:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FBQS9WMSNTUERfUlM=
-    :uri: http://www.s-cubed.dk/AAA/V1#SPD_RS
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JCQi9WMSNTUERfUlM=
+    :uri: http://www.s-cubed.dk/BBB/V1#SPD_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Incomplete
     :administrative_note: ''
@@ -36,10 +36,10 @@
         :name: S-cubed Aps
         :authority: www.s-cubed.dk
   :has_identifier:
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0FBQS9WMSNTUERfU0k=
-    :uri: http://www.s-cubed.dk/AAA/V1#SPD_SI
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JCQi9WMSNTUERfU0k=
+    :uri: http://www.s-cubed.dk/BBB/V1#SPD_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: AAA
+    :identifier: BBB
     :version_label: ''
     :version: 1
     :semantic_version: 0.1.0
@@ -59,8 +59,9 @@
   :rule: ''
   :ordinal: 1
   :includes_column: []
-  :prefix: AA
+  :prefix: BB
   :structure: ''
   :based_on_class: 
 :associated_with:
 - http://www.s-cubed.dk/HEIGHT/V1#BCI
+- http://www.s-cubed.dk/WEIGHT/V1#BCI
