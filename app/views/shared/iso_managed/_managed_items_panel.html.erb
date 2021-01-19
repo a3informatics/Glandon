@@ -6,8 +6,11 @@
   <table id="managed-items" class="table <%= local_assigns.fetch :table_classes, '' %>">
     <thead>
       <tr>
-        <% if local_assigns.fetch :with_icons?, false %>
+        <% if local_assigns.fetch :type_column, false %>
           <th class="fit">Type</th>
+        <% end %>
+        <% if local_assigns.fetch :owner_column, false %>
+          <th class="fit">Owner</th>
         <% end %>
         <th class="fit">Identifier</th>
         <th class="fit">Version</th>

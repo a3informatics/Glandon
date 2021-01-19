@@ -31,6 +31,16 @@ function fitColumn(name, tableId) {
 }
 
 /**
+ * Check if table element contains a specific column header
+ * @param {string} selector Unique selector of the table (or its  wrapper)
+ * @param {string} colName Column header name to check for 
+ * @return {boolean} True if table contains header with given name 
+ */
+function hasColumn(selector, colName) {
+  return $( selector ).find( `th:contains("${ colName }")` ).length > 0; 
+}
+
+/**
  * Jump to the page containing the given row 
  * @param {DataTable} table Target table instance
  * @param {object} rowData Target row data object
@@ -158,6 +168,7 @@ export {
   setOnErrorHandler,
   expandColumn,
   fitColumn,
+  hasColumn,
   jumpToRow,
   highlightRow,
   csvExportBtn,

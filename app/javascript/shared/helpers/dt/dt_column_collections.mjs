@@ -77,21 +77,25 @@ function dtChildrenColumns(opts = {}) {
 /**
  * Column definitions for a Managed Items panel
  * @param {object} opts Additional column options
- * @param {boolean} withIcons Set to true to inlcude type icon column as the first one
+ * @param {boolean} typeColumn Set to true to inlcude type icon column 
+ * @param {boolean} ownerColumn Set to true to inlcude owner column
  * @return {Array} DataTables Managed Items panel column definitions collection
  */
-function dtManagedItemsColumns(opts = {}, withIcons = false) {
+function dtManagedItemsColumns(opts = {}, typeColumn = false, ownerColumn = false) {
   
   const columns = [
     { data: 'identifier', ...opts },
     { ...opts, render: (dt, t, r) => r.version || r.semantic_version },
     { data: 'label', ...opts },
-    { data: 'version_label', ...opts } 
+    { data: 'version_label', ...opts }
   ];
 
-  if ( withIcons )
+  if ( ownerColumn )
+    columns.splice( 0, 0, { data: 'owner', ...opts });
+
+  if ( typeColumn )
     columns.splice( 0, 0, dtItemTypeColumn() );
-  
+
   return columns; 
 
 };
