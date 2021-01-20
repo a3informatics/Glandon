@@ -172,10 +172,13 @@ class SdtmSponsorDomainsController < ManagedItemsController
   def add_bcs
     sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
     return true unless check_lock_for_item(sdtm_sponsor_domain)
+    set_before_bcs = sdtm_sponsor_domain.associated
     association = sdtm_sponsor_domain.associate(bc_params[:bc_id_set], "SDTM BC Association")
     if association.errors.empty?
       AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "BC added to SDTM Sponsor Domain.")
-      render :json => {data: sdtm_sponsor_domain.associated }, :status => 200
+      set_after_bcs = sdtm_sponsor_domain.associated
+      result = set_after_bcs - set_before_bcs
+      render :json => {data: result}, :status => 200
     else
       render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
     end
@@ -187,7 +190,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
     association = sdtm_sponsor_domain.diassociate(bc_params[:bc_id_set])
     if association.errors.empty?
       AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "BC removed from SDTM Sponsor Domain.")
-      render :json => {data: "" }, :status => 200
+      render :json => {data: []}, :status => 200
     else
       render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
     end
@@ -199,7 +202,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
     association = sdtm_sponsor_domain.diassociate_all
     if association.errors.empty?
       AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "All BCs removed from SDTM Sponsor Domain.")
-      render :json => {data: "" }, :status => 200
+      render :json => {data: []}, :status => 200
     else
       render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
     end
@@ -212,10 +215,6 @@ private
     params.require(:sdtm_sponsor_domain).permit(:identifier, :scope_id, :count, :offset, :based_on_id, :non_standard_var_id, :label, :prefix)
   end
 
-  # def non_standard_var_params
-  #   params.require(:sdtm_sponsor_domain).permit(:name, :compliance, :typed_as, :classified_as)
-  # end
-
   def update_params
     params.require(:sdtm_sponsor_domain).permit(:label)
   end
@@ -224,13 +223,13 @@ private
     params.require(:sdtm_sponsor_domain).permit(:non_standard_var_id, :used, :name, :label, :typed_as, :format, :classified_as, :description, :compliance)
   end
 
+  def bc_params
+    params.require(:sdtm_sponsor_domain).permit(:bc_id_set => [])
+  end
+
   # Get the based on id from the params
   def create_from_id
     {id: the_params[:based_on_id]}
-  end
-
-  def bc_params
-    params.require(:sdtm_sponsor_domain).permit(:bc_id_set => [])
   end
 
   # Path for given action

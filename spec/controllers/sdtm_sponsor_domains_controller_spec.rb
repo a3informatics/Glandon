@@ -452,7 +452,7 @@ describe SdtmSponsorDomainsController do
 
   end
 
-    describe "bc associations actions" do
+  describe "bc associations actions" do
 
     login_curator
 
@@ -497,6 +497,42 @@ describe SdtmSponsorDomainsController do
       get :bc_associations, params:{id: instance.id}
       actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "bc_associations_json_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "add bcs actions" do
+
+    login_curator
+
+    before :all do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+      Token.delete_all
+    end
+
+    it "bc associations, json request" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      token = Token.obtain(domain, @user)
+      post :add_bcs, params:{id: domain.id, sdtm_sponsor_domain: {bc_id_set: [bc_1.id]}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "add_bcs_json_expected_1a.yaml", equate_method: :hash_equal, write_file: true)
+      bc_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      bc_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
+      post :add_bcs, params:{id: domain.id, sdtm_sponsor_domain: {bc_id_set: [bc_2.id, bc_3.id]}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "add_bcs_json_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end

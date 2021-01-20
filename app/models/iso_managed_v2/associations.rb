@@ -13,7 +13,7 @@ class IsoManagedV2
     # @return [Association] new association or existing one with associated links
     def associate(ids, semantic)
       association = self.association? ? Association.find(self.association)  : new_association(the_subject: self.uri, semantic: semantic)
-      association.associated_with = ids.map{|x| Uri.new(id: x)}
+      association.associated_with += ids.map{|x| Uri.new(id: x)}
       association.save
       association
     end
