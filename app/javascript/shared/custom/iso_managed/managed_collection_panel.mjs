@@ -151,15 +151,14 @@ export default class ManagedCollectionPanel {
    */
   _removeSelected() {
 
-    const selectedRows = this.sp.selected,
-          selectedIds = selectedRows.data().toArray().map( d => d.id )
+    const selectedIds = this.sp.selectedData.toArray().map( d => d.id )
 
     this._execRequest({
       url: this.urls.remove, 
       type: 'PUT',
       data: { [ this.idsParam ]: selectedIds },
       success: () => 
-        this.sp.table.rows( selectedRows ).remove().draw()
+        this.sp.selected.remove().draw()
     })
 
   }
