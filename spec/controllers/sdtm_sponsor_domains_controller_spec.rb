@@ -452,4 +452,53 @@ describe SdtmSponsorDomainsController do
 
   end
 
+    describe "bc associations actions" do
+
+    login_curator
+
+    before :all do
+      data_files = ["SDTM_Sponsor_Domain.ttl", "association.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+      Token.delete_all
+    end
+
+    it "bc associations, html request" do
+      instance = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      get :bc_associations, params:{id: instance.id}
+      expect(assigns(:sdtm_sponsor_domain).uri).to eq(instance.uri)
+      expect(assigns(:close_path)).to eq("/sdtm_sponsor_domains/history?sdtm_sponsor_domain%5Bidentifier%5D=AAA&sdtm_sponsor_domain%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
+      expect(response).to render_template("bc_associations")
+    end
+
+    it "bc associations, json request" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      instance = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      token = Token.obtain(instance, @user)
+      get :bc_associations, params:{id: instance.id}
+      actual = check_good_json_response(response)
+      expect(assigns[:lock].token.id).to eq(Token.all.last.id)  # Will change each test run
+      actual[:token_id] = 9999                                  # So, fix for file compare
+      check_file_actual_expected(actual, sub_dir, "bc_associations_json_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "bc associations, json, locked by another user" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      instance = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      token = Token.obtain(instance, @lock_user)
+      get :bc_associations, params:{id: instance.id}
+      actual = check_error_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "bc_associations_json_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end
