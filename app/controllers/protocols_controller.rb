@@ -8,7 +8,10 @@ class ProtocolsController < ManagedItemsController
 
   C_CLASS_NAME = self.name
 
+  # Missing Controller tests, TODO: FIX 
+
   def index
+    # Authorization needs to use Form as there is no Protocols policy, TODO: FIX
     authorize Form
     super
   end
@@ -20,6 +23,7 @@ class ProtocolsController < ManagedItemsController
         super
       end
       format.json do
+        # Overriding super because the authorization needs to use Form as there is no Protocols policy, TODO: FIX
         results = []
         history_results = Protocol.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
         current = Protocol.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
@@ -65,7 +69,7 @@ class ProtocolsController < ManagedItemsController
 private
 
   def the_params
-    params.require(:protocols).permit(:identifier, :scope_id, :count, :offset, :template_id)
+    params.require(:protocol).permit(:identifier, :scope_id, :count, :offset, :template_id)
   end
 
   # Path for given action
