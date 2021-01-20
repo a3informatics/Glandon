@@ -3,8 +3,9 @@ require 'rails_helper'
 describe IsoManagedV2::Associations do
 
   include DataHelpers
-  include PublicFileHelpers
+  include IsoManagedHelpers
   include SdtmSponsorDomainFactory
+  include BiomedicalConceptInstanceFactory
 
   def sub_dir
     return "models/iso_managed_v2/associations"
@@ -15,34 +16,31 @@ describe IsoManagedV2::Associations do
     before :all do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     before :each do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     end
 
-    it "associate, single BC" do
+    it "associate, new association, single BC" do
       domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
-      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
       result = domain.associate([bc_1.id], "SDTM BC Association")
       check_file_actual_expected(result.to_h, sub_dir, "associate_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "associate, multiple BCs" do
+    it "associate, existing association, multiple BCs" do
       domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
-      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      bc_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      bc_1 = create_biomedical_concept_instance("BMI", "BMI")
+      bc_2 = create_biomedical_concept_instance("WEIGHT", "Weight")
       result = domain.associate([bc_1.id, bc_2.id], "SDTM BC Association")
       check_file_actual_expected(result.to_h, sub_dir, "associate_expected_2.yaml", equate_method: :hash_equal)
     end
 
-
-    it "associate, mutliple BCs II" do
+    it "associate, new association, multiple BCs II" do
       domain = create_sdtm_sponsor_domain("BBB", "SDTM Sponsor Domain", "BB")
-      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      bc_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
+      bc_2 = create_biomedical_concept_instance("WEIGHT", "Weight")
       result = domain.associate([bc_1.id, bc_2.id], "SDTM BC Association")
       check_file_actual_expected(result.to_h, sub_dir, "associate_expected_3.yaml", equate_method: :hash_equal)
     end
@@ -54,8 +52,6 @@ describe IsoManagedV2::Associations do
     before :all do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     before :each do
@@ -64,14 +60,14 @@ describe IsoManagedV2::Associations do
 
     it "diassociate, single BC, error" do
       domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
-      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
       result = domain.diassociate([bc_1.id])
       expect(result.errors.full_messages.to_sentence).to eq("Failed to find association")
     end
 
     it "diassociate, single BC" do
       domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
-      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
       result = domain.associate([bc_1.id], "SDTM BC Association")
       check_file_actual_expected(result.to_h, sub_dir, "diassociate_expected_1a.yaml", equate_method: :hash_equal)
       result = domain.diassociate([bc_1.id])
@@ -79,9 +75,9 @@ describe IsoManagedV2::Associations do
     end
 
     it "diassociate, multiple BC" do
-      domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
-      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      bc_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      domain = create_sdtm_sponsor_domain("BBB", "SDTM Sponsor Domain", "BB")
+      bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
+      bc_2 = create_biomedical_concept_instance("WEIGHT", "Weight")
       result = domain.associate([bc_1.id, bc_2.id], "SDTM BC Association")
       check_file_actual_expected(result.to_h, sub_dir, "diassociate_expected_2a.yaml", equate_method: :hash_equal)
       result = domain.diassociate([bc_1.id])
@@ -89,9 +85,9 @@ describe IsoManagedV2::Associations do
     end
 
     it "diassociate, multiple BC" do
-      domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
-      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      bc_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      domain = create_sdtm_sponsor_domain("CCC", "SDTM Sponsor Domain", "CC")
+      bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
+      bc_2 = create_biomedical_concept_instance("WEIGHT", "Weight")
       result = domain.associate([bc_1.id, bc_2.id], "SDTM BC Association")
       check_file_actual_expected(result.to_h, sub_dir, "diassociate_expected_3a.yaml", equate_method: :hash_equal)
       result = domain.diassociate([bc_1.id, bc_2.id])
@@ -105,8 +101,6 @@ describe IsoManagedV2::Associations do
     before :all do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     before :each do
@@ -115,14 +109,14 @@ describe IsoManagedV2::Associations do
 
     it "diassociate all, single BC, error" do
       domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
-      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
       result = domain.diassociate_all
       expect(result.errors.full_messages.to_sentence).to eq("Failed to find association")
     end
 
     it "diassociate all, single BC" do
       domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
-      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
       assoc = domain.associate([bc_1.id], "SDTM BC Association")
       check_file_actual_expected(assoc.to_h, sub_dir, "diassociate_all_expected_1a.yaml", equate_method: :hash_equal)
       result = domain.diassociate_all
@@ -131,8 +125,8 @@ describe IsoManagedV2::Associations do
 
     it "diassociate all, multiple BC" do
       domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
-      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      bc_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
+      bc_2 = create_biomedical_concept_instance("WEIGHT", "Weight")
       assoc = domain.associate([bc_1.id, bc_2.id], "SDTM BC Association")
       check_file_actual_expected(assoc.to_h, sub_dir, "diassociate_all_expected_2a.yaml", equate_method: :hash_equal)
       assoc = Association.find(assoc.uri)
@@ -147,8 +141,6 @@ describe IsoManagedV2::Associations do
     before :all do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     before :each do
@@ -162,8 +154,8 @@ describe IsoManagedV2::Associations do
 
     it "association?, true" do
       domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
-      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      bc_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
+      bc_2 = create_biomedical_concept_instance("WEIGHT", "Weight")
       result = domain.associate([bc_1.id, bc_2.id], "SDTM BC Association")
       expect(domain.association?).to eq(true)
     end
@@ -175,8 +167,6 @@ describe IsoManagedV2::Associations do
     before :each do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     before :each do
@@ -185,16 +175,16 @@ describe IsoManagedV2::Associations do
 
     it "associated, single BC" do
       domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
-      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
       domain.associate([bc_1.id], "SDTM BC Association")
       check_file_actual_expected(domain.associated, sub_dir, "associated_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "associate, multiple BCs" do
       domain = create_sdtm_sponsor_domain("BBB", "SDTM Sponsor Domain2", "BB")
-      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      bc_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
-      bc_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
+      bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
+      bc_2 = create_biomedical_concept_instance("WEIGHT", "Weight")
+      bc_3 = create_biomedical_concept_instance("BMI", "BMI")
       domain.associate([bc_1.id, bc_2.id, bc_3.id], "SDTM BC Association")
       check_file_actual_expected(domain.associated, sub_dir, "associated_expected_2.yaml", equate_method: :hash_equal)
     end
