@@ -487,10 +487,12 @@ Rails.application.routes.draw do
     member do
       get :show_data
       post :add_non_standard_variable
-      #put :toggle_used
       delete :delete_non_standard_variable
       put :update_variable
       get :bc_associations
+      post :add_bcs
+      put :remove_bcs
+      put :remove_all_bcs
     end
   end
 

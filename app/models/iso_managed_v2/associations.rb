@@ -52,7 +52,7 @@ class IsoManagedV2
 
     # Association?
     #
-    # @result [Boolean] return true if exists an assocation
+    # @result [Boolean] return true if exists an association for the subject
     def association?
       Sparql::Query.new.query("ASK {#{self.uri.to_ref} (^bo:theSubject) ?o}", "", [:bo]).ask? 
     end
@@ -71,7 +71,7 @@ class IsoManagedV2
       objects.first
     end
 
-    # Associated. 
+    # Associated. List the objects associated with the subject.
     #
     # @param 
     # @return
@@ -79,7 +79,8 @@ class IsoManagedV2
       results = []
       query_string = %Q{
         SELECT DISTINCT ?s ?i ?l ?sv ?vl ?owner ?rdf_type WHERE {
-          #{self.uri.to_ref} bo:associatedWith ?s .
+          #{self.uri.to_ref} ^bo:theSubject ?assoc .
+          ?assoc bo:associatedWith ?s .
           ?s isoT:hasIdentifier/isoI:identifier ?i .
           ?s isoC:label ?l .
           ?s isoT:hasIdentifier/isoI:semanticVersion ?sv .

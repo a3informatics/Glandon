@@ -108,17 +108,6 @@ class SdtmSponsorDomainsController < ManagedItemsController
     render json: {data: sdtm_sponsor_domain.get_children}, status: 200
   end
 
-  # @todo Not currently used
-  # def toggle_used
-  #   sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
-  #   non_standard_variable = SdtmSponsorDomain::VariableSSD.find_full(the_params[:non_standard_var_id])
-  #   return true unless check_lock_for_item(sdtm_sponsor_domain)
-  #   result = non_standard_variable.toggle_with_clone(sdtm_sponsor_domain)
-  #   return true if lock_item_errors
-  #   AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain updated, variable #{non_standard_variable.label} updated.") if @lock.token.refresh == 1
-  #   render json: {data: ""}, status: 200
-  # end
-
   def editor_metadata
     render json: {data: {compliance: SdtmIgDomain::Variable.compliance, typed_as: SdtmClass::Variable.datatypes, classified_as: SdtmClass::Variable.classification} }, status: 200
   end
@@ -173,10 +162,46 @@ class SdtmSponsorDomainsController < ManagedItemsController
             { identifier: @sdtm_sponsor_domain.scoped_identifier, scope_id: @sdtm_sponsor_domain.scope } })
       end
       format.json do
-        # @sdtm_sponsor_domain = SdtmSponsorDomain.find_full(@sdtm_sponsor_domain.id)
-        # return true unless check_lock_for_item(@sdtm_sponsor_domain)
-        # render :json => { data: @sdtm_sponsor_domain.get_children }, :status => 200
+        @sdtm_sponsor_domain = SdtmSponsorDomain.find_full(@sdtm_sponsor_domain.id)
+        return true unless check_lock_for_item(@sdtm_sponsor_domain)
+        render :json => { data: @sdtm_sponsor_domain.associated }, :status => 200
       end
+    end
+  end
+
+  def add_bcs
+    sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
+    return true unless check_lock_for_item(sdtm_sponsor_domain)
+    association = sdtm_sponsor_domain.associate(bc_params[:bc_id_set], "SDTM BC Association")
+    if association.errors.empty?
+      AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "BC added to SDTM Sponsor Domain.")
+      render :json => {data: sdtm_sponsor_domain.associated }, :status => 200
+    else
+      render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
+    end
+  end
+
+  def remove_bcs
+    sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
+    return true unless check_lock_for_item(sdtm_sponsor_domain)
+    association = sdtm_sponsor_domain.diassociate(bc_params[:bc_id_set])
+    if association.errors.empty?
+      AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "BC removed from SDTM Sponsor Domain.")
+      render :json => {data: "" }, :status => 200
+    else
+      render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
+    end
+  end
+
+  def remove_all_bcs
+    sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
+    return true unless check_lock_for_item(sdtm_sponsor_domain)
+    association = sdtm_sponsor_domain.diassociate_all
+    if association.errors.empty?
+      AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "All BCs removed from SDTM Sponsor Domain.")
+      render :json => {data: "" }, :status => 200
+    else
+      render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
     end
   end
 
@@ -204,15 +229,9 @@ private
     {id: the_params[:based_on_id]}
   end
 
-  # # Get the ig domain id from the params
-  # def sdtm_ig_domain_id
-  #   {id: the_params[:sdtm_ig_domain_id]}
-  # end
-
-  # # Get the class id from the params
-  # def sdtm_class_id
-  #   {id: the_params[:sdtm_class_id]}
-  # end
+  def bc_params
+    params.require(:sdtm_sponsor_domain).permit(:bc_id_set => [])
+  end
 
   # Path for given action
   def path_for(action, object)
