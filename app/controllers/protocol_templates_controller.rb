@@ -8,7 +8,10 @@ class ProtocolTemplatesController < ManagedItemsController
 
   before_action :authenticate_user!
 
+  # Missing Controller tests, TODO: FIX 
+
   def index
+    # Authorization needs to use Form as there is no ProtocolTemplate policy, TODO: FIX
     authorize Form
     super
   end
@@ -20,6 +23,7 @@ class ProtocolTemplatesController < ManagedItemsController
         super
       end
       format.json do
+        # Overriding super because the authorization needs to use Form as there is no ProtocolTemplate policy, TODO: FIX
         results = []
         history_results = ProtocolTemplate.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
         current = ProtocolTemplate.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
