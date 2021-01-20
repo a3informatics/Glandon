@@ -18,9 +18,9 @@ class IsoManagedV2
       association
     end
 
-    # Diassociate. 
+    # Diassociate. Diassociate the passed associated items.
     #
-    # @param [Array] ids set the ids to add as associated
+    # @param [Array] ids set the ids to diassociate
     # @return [Object] 
     def diassociate(ids)
       if self.association? 
@@ -36,14 +36,13 @@ class IsoManagedV2
       end
     end
 
-    # Diassociate All. 
+    # Diassociate All. Delete the association and its links.
     #
     # @return [Void]
     def diassociate_all
       if self.association?
         association = Association.find(self.association)
         association.delete
-        1
       else
         self.errors.add(:base, "Failed to find association")
         self

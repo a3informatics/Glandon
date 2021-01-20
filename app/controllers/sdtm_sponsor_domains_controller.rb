@@ -185,29 +185,25 @@ class SdtmSponsorDomainsController < ManagedItemsController
   end
 
   def remove_bcs
-    sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
+    sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(protect_from_bad_id(params))
     return true unless check_lock_for_item(sdtm_sponsor_domain)
-    association = sdtm_sponsor_domain.diassociate(bc_params[:bc_id_set])
-    if association.errors.empty?
+    result = sdtm_sponsor_domain.diassociate(bc_params[:bc_id_set])
+    if result.errors.empty?
       AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "BC removed from SDTM Sponsor Domain.")
       render :json => {data: []}, :status => 200
     else
-      render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
+      render :json => {errors: result.errors.full_messages}, :status => 422
     end
   end
 
   def remove_all_bcs
-    sdtm_sponsor_domain = SdtmSponsorDomain.find_full(protect_from_bad_id(params))
+    sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(protect_from_bad_id(params))
     return true unless check_lock_for_item(sdtm_sponsor_domain)
-    association = sdtm_sponsor_domain.diassociate_all
-    if association.errors.empty?
-      AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "All BCs removed from SDTM Sponsor Domain.")
-      render :json => {data: []}, :status => 200
-    else
-      render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
-    end
+    sdtm_sponsor_domain.diassociate_all
+    AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain updated, all BCs associated were deleted.")
+    @lock.release 
+    render :json => {data: []}, :status => 200
   end
-
 
 private
   
