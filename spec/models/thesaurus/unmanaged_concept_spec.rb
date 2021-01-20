@@ -1321,7 +1321,7 @@ describe "Thesaurus::UnmanagedConcept" do
       child = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/C100130/V1#C100130_SC71384"))
       # Update with clone
       new_child = child.update_with_clone({preferred_term: "Biological Relativexxxx"}, new_parent)
-      check_file_actual_expected(new_child.load_custom_properties(new_parent).name_value_pairs, sub_dir, "update_with_clone_glan_1474_expected_3.yaml")
+      check_file_actual_expected(new_child.load_custom_properties(new_parent).name_value_pairs, sub_dir, "update_with_clone_glan_1474_expected_3.yaml", write_file: true)
     end
 
   end
