@@ -28,11 +28,12 @@ export default class ManagedCollectionPanel {
     selector = "#managed-collection",
     urls,
     param,
-    allowedTypes = []
+    allowedTypes = [],
+    onEdited = () => {}
   }) {
 
     Object.assign( this, {
-      selector, urls, param, allowedTypes 
+      selector, urls, param, allowedTypes, onEdited 
     })
 
     this.sp = this._initSelectablePanel()
@@ -65,7 +66,7 @@ export default class ManagedCollectionPanel {
       return
 
     $confirm({
-      subtitle: `${ selectedCount } item(s) will be removed from this collection.`,
+      subtitle: `${ selectedCount } item(s) will be removed from the collection.`,
       dangerous: true,
       callback: () => this._removeSelected()
     })
@@ -84,7 +85,7 @@ export default class ManagedCollectionPanel {
       return 
 
     $confirm({
-      subtitle: `All items will be removed from this collection.`,
+      subtitle: `All items will be removed from the collection.`,
       dangerous: true,
       callback: () => this._removeAll()
     })
@@ -96,7 +97,7 @@ export default class ManagedCollectionPanel {
 
     this.sp._render( testData )
     this.sp._onDataLoaded( this.sp.table )
-    this.sp._loading( false );
+    this._loading( false );
 
   }
   
@@ -141,7 +142,9 @@ export default class ManagedCollectionPanel {
   }
 
   _removeAll() {
-    
+
+    // Make request and update UI  
+
   }
 
   /**
@@ -165,7 +168,12 @@ export default class ManagedCollectionPanel {
       data: {
         [ this.param ]: data 
       },
-      done: data => success( data ),
+      done: data => {
+
+        success( data )
+        this.onEdited()
+      
+      },
       always: () => this._loading( false )
     })
 
@@ -178,8 +186,33 @@ export default class ManagedCollectionPanel {
   _loading(enable) {
 
     this.sp._loading( enable )
-    $( this.selector ).find( 'button, a' )
+
+    // Disable buttons while loading 
+    $( this.selector ).find( '#collection-actions btn' )
                       .toggleClass( 'disabled', enable )
+
+    // Set buttons to correct states when loading finishes 
+    if ( !enable )
+      this._updateBtnsUI()
+
+  }
+
+  /**
+   * Updates the enabled/disabled states of the action buttons in the panel
+   */
+  _updateBtnsUI() {
+
+    const selectedCount = this.sp.selected.count(),
+          rowCount = this.sp.table.rows().count(),
+          $panel = $( this.selector )
+
+    // Disable 'Remove selected' button when no rows selected
+    $panel.find( '#remove-selected' )
+          .toggleClass( 'disabled', selectedCount < 1 )
+    
+    // Disable 'Remove all' button when no rows
+    $panel.find( '#remove-all' )
+          .toggleClass( 'disabled', rowCount < 1 )
 
   }
 
@@ -200,7 +233,9 @@ export default class ManagedCollectionPanel {
         paginated: false,
         deferLoading: true,
       },
-      multiple: true
+      multiple: true,
+      onSelect: () => this._updateBtnsUI(),
+      onDeselect: () => this._updateBtnsUI()
     })
 
   }

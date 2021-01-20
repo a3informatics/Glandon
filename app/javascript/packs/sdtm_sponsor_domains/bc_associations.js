@@ -11,7 +11,8 @@ $(document).ready( () => {
   let mcp = new ManagedCollectionPanel({
     urls: { data: 'aaa', add: 'bbb', remove: 'ccc', removeAll: 'ddd' },
     param: 'sdtm_sponsor_domain',
-    allowedTypes: ['biomedical_concept_instance']
+    allowedTypes: ['biomedical_concept_instance'],
+    onEdited: () => tt.extend()
   })
 
 });
