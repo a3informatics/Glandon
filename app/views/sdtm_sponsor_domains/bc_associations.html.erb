@@ -7,6 +7,13 @@
 <%= javascript_tag "let tokenTimerId = '#{@edit.token.id}',
                         tokenTimerWarning = '#{current_user.edit_lock_warning}';"%>
 
+<%= javascript_tag "let bcAssociationsUrls = {
+                          data: '#{bc_associations_sdtm_sponsor_domain_path(@sdtm_sponsor_domain)}',
+                          add: '#{add_bcs_sdtm_sponsor_domain_path(@sdtm_sponsor_domain)}',
+                          remove: '#{remove_bcs_sdtm_sponsor_domain_path(@sdtm_sponsor_domain)}',
+                          removeAll: '#{remove_all_bcs_sdtm_sponsor_domain_path(@sdtm_sponsor_domain)}'
+                        } " %>
+
 <div class="row">
   <%= render layout: "shared/headers/header_managed_item", :locals => { item: @sdtm_sponsor_domain, badge: "icon-sdtm" } do %>
 
@@ -29,39 +36,9 @@
     </div>
 
     <div class="card-content">
-
-      <div id="managed-collection">
-
-        <div class="btns-wrap" id="collection-actions">
-
-          <button class="btn medium green ttip" id="add-items">
-            <span class="icon-plus text-tiny"></span> Add items
-          </button>
-          <button class="btn medium red ttip" id="remove-selected">
-            <span class="icon-trash text-tiny"></span> Remove selected
-          </button>
-          <button class="btn medium red ttip" id="remove-all">
-            <span class="icon-trash text-tiny"></span> Remove all
-          </button>
-
-        </div>
-
-        <%= stylesheet_link_tag 'shared/table_select_simple' %>
-
-        <div class="loading-with-btns">
-          <%= render partial: 'shared/iso_managed/managed_items_panel', locals: { 
-              type_column: true, owner_column: true, table_classes: 'table-row-clickable no-mark' } %>
-        </div>
-
-      </div>
-
-
-
+      <%= render partial: "shared/iso_managed/collection/managed_collection_panel", locals: { default_urls: false } %>
     </div>
 
   </div>
 
 </div>
-
-<%= render partial: "shared/items_picker/items_picker", :locals => { id: "add-items",
-    description: "Select one or more items to add to the collection." } %>
