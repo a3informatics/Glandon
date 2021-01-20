@@ -11,13 +11,10 @@ class StudiesController < ManagedItemsController
   C_CLASS_NAME = self.name
 
   def index
+    # Authorization needs to use Form as there is no Study policy, TODO: FIX
     authorize Form
     super
   end
-
-  # def update
-
-  # end
 
   def create
     authorize Form, :create?
@@ -41,6 +38,7 @@ class StudiesController < ManagedItemsController
         super
       end
       format.json do
+        # Overriding super because the authorization needs to use Form as there is no Protocols policy, TODO: FIX
         results = []
         history_results = Study.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
         current = Study.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))

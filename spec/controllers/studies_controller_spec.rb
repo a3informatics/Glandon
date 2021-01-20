@@ -10,80 +10,41 @@ describe StudiesController do
     return "controllers/studies"
   end
 
-  describe "Authorized User" do
-
+  describe "Simple actions" do
+  	
     login_curator
 
     before :all do
-      @lock_user = ua_add_user(email: "lock@example.com")
-      Token.delete_all
-      NameValue.destroy_all
-      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
-      NameValue.create(name: "thesaurus_child_identifier", value: "456")
-    end
-
-    before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_subsets_3.ttl"]
+      data_files = ["study_history.ttl"]
       load_files(schema_files, data_files)
-      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
     end
 
-    after :all do
-      ua_remove_user("lock@example.com")
-    end
-
-    it "index data" do
-      expected = [{id: "a1", label: "aaa", identifier: "something", scope_id:"asd"}, {id: "a2", label: "bbb", identifier: "somethingelse", scope_id:"fgh"}]
-      expect(Study).to receive(:unique).and_return(expected)
-      get :index_data
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:history_url]
-      check_file_actual_expected(actual, sub_dir, "index_data_expected.yaml", equate_method: :hash_equal)
-    end
-
-    it 'creates study' do
-      p = Protocol.create(identifier: "XXX", title: "sss", short_title: "yyy", acronym: "WW")
-      count = Study.all.count
-      expect(count).to eq(0)
-      expect(Protocol).to receive(:latest).and_return(p)
-      post :create, study: { :identifier => "NEW TH", :label => "New Thesaurus", :protocol_identifier => "XXX" }
-      expect(Study.all.count).to eq(count + 1)
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:history_url]
-      check_file_actual_expected(actual, sub_dir, "history_url_expected.yaml", equate_method: :hash_equal)
-    end
-
-    it 'creates study, fails bad identifier' do
-      p = Protocol.create(identifier: "XXX", title: "sss", short_title: "yyy", acronym: "WW")
-      count = Study.all.count
-      expect(count).to eq(0)
-      expect(Protocol).to receive(:latest).and_return(p)
-      post :create, study: { :identifier => "NEW_TH!@£$%^&*", :label => "New Thesaurus", :protocol_identifier => "XXX" }
-      count = Study.all.count
-      expect(count).to eq(0)
-      expect(Study.all.count).to eq(count)
-    end
-    
-  end
-
-  describe "Authorized User" do
-
-    login_curator
-
-    before :all do
-      load_files(schema_files, [])
-      load_test_file_into_triple_store("transcelerate.nq.gz")
-    end
-
-    it "show" do
-      pr = Protocol.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/LY246708/V1#PR"))
-      study = Study.create(identifier: "MY STUDY", label: "My Study", description: "Some def", implements: pr.uri)
-      get :design, id: study.id
+    it "index, JSON" do  
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :index
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "design_expected.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual[:data], sub_dir, "index_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "history, JSON" do
+      study = Study.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/STUDY_ONE/V1#ST"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Study).to receive(:history_pagination).with({identifier: study.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "0", count: "20"}).and_return([study])
+      get :history, params:{study: {identifier: study.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjVFJBTlNDRUxFUkFURQ==", count: 20, offset: 0}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "history, HTML" do
+      params = {}
+      expect(Study).to receive(:latest).and_return(Study.new)
+      get :history, params:{study: {identifier: "STUDYONE", scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjVFJBTlNDRUxFUkFURQ=="}}
+      expect(assigns(:identifier)).to eq("STUDYONE")
+      expect(assigns(:scope_id)).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjVFJBTlNDRUxFUkFURQ==")
+      expect(response).to render_template("history")
     end
 
   end
