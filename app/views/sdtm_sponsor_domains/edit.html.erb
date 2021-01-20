@@ -19,8 +19,6 @@
 
         <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
             icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty?, new_tab: true } %>
-        <%= render partial: "shared/context_menu/menu_item", :locals => { url: @bc_associations_path, id: "bc-associations-button",
-            icon: "icon-pair", text: "BC Associations" } %>
 
       <% end %>
 

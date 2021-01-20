@@ -30,14 +30,12 @@ class SdtmSponsorDomainsController < ManagedItemsController
   end
 
   def edit
-    authorize SdtmSponsorDomain
     @sdtm_sponsor_domain = SdtmSponsorDomain.find_with_properties(protect_from_bad_id(params))
     respond_to do |format|
       format.html do
         return true unless edit_lock(@sdtm_sponsor_domain)
         @sdtm_sponsor_domain = @edit.item
         @edit_tags_path = path_for(:edit_tags, @sdtm_sponsor_domain)
-        @bc_associations_path = bc_associations_sdtm_sponsor_domain_path(@sdtm_sponsor_domain)
         @close_path = history_sdtm_sponsor_domains_path({ sdtm_sponsor_domain:
             { identifier: @sdtm_sponsor_domain.scoped_identifier, scope_id: @sdtm_sponsor_domain.scope } })
       end
@@ -239,6 +237,8 @@ private
         return object.supporting_edit? ? edit_tags_iso_concept_path(id: object.id) : ""
       when :destroy 
         return sdtm_sponsor_domain_path(object)
+      when :bc_associations 
+        return bc_associations_sdtm_sponsor_domain_path(object)
       else
         return ""
     end
