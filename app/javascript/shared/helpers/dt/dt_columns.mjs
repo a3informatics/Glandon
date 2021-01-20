@@ -185,7 +185,7 @@ function dtItemTypeColumn(opts = {}) {
       const itemType = getRdfNameByType( data );
 
       return type === 'display' ? 
-        iconTypes.renderIcon(data, { owner: r.uri, ttip: true }) : 
+        iconTypes.renderIcon(data, { owner: (r.owner || r.uri), ttip: true }) : 
         itemType
 
     }
