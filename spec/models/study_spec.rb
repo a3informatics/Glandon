@@ -126,4 +126,29 @@ describe "Study" do
 
   end
 
+  
+  describe "method tests" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
+    end
+
+    it "create datatypes" do
+      results = []
+      s_1 = Study.new(label: "Study One", description: "A study into the effects of coding.")
+      s_2 = Study.new(label: "Study Two", description: "A study into the effects of not coding.")
+      s_3 = Study.new(label: "Study Three", description: "A study into the effects of coding late into the night.")
+      s_1.set_initial("STUDY ONE")
+      s_2.set_initial("STUDY TWO")
+      s_3.set_initial("STUDY THREE")
+      sparql = Sparql::Update.new
+      sparql.default_namespace(s_1.uri.namespace)
+      [s_1, s_2, s_3].each{|x| x.to_sparql(sparql, true)}
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "study_history.ttl")
+    end
+
+  end
+
 end
