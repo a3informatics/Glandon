@@ -9,8 +9,9 @@ $(document).ready( () => {
   });
 
   let mcp = new ManagedCollectionPanel({
-    urls: { data: 'aaa', add: 'bbb', remove: 'ccc', removeAll: 'ddd' },
+    urls: bcAssociationsUrls,
     param: 'sdtm_sponsor_domain',
+    idsParam: 'bc_id_set',
     allowedTypes: ['biomedical_concept_instance'],
     onEdited: () => tt.extend()
   })

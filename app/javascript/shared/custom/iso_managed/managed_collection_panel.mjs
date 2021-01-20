@@ -7,11 +7,9 @@ import { hasColumn, selectAllBtn, deselectAllBtn } from 'shared/helpers/dt/utils
 import { $confirm } from 'shared/helpers/confirmable'
 import { $ajax } from 'shared/helpers/ajax'
 
-import testData from './testdata'
-
 /**
  * Managed Collection Panel
- * @description Editable collection of version-based collection of Managed Items (adding, removing)
+ * @description Editable version-based collection of Managed Items (adding, removing)
  * @author Samuel Banas <sab@s-cubed.dk>
  */
 export default class ManagedCollectionPanel {
@@ -22,27 +20,34 @@ export default class ManagedCollectionPanel {
    * @param {string} params.selector Unique selector of the Managed Collection element
    * @param {Object} params.urls Urls object containing the data, add, remove and removeAll action urls
    * @param {string} params.param Strict parameter name required for the controller params
+   * @param {string} params.idsParam Parameter name for adding a set of IDs into a collection [default='ids']
    * @param {Array} params.allowedTypes Array of strings - param names of allowed item types that can be added to the Collection @see ItemsPicker module
+   * @param {function} params.onEdited Function to execute after any data update 
    */
   constructor({
     selector = "#managed-collection",
     urls,
     param,
+    idsParam = 'ids',
     allowedTypes = [],
     onEdited = () => {}
   }) {
 
     Object.assign( this, {
-      selector, urls, param, allowedTypes, onEdited 
+      selector, urls, param, allowedTypes, 
+      idsParam, onEdited 
     })
 
     this.sp = this._initSelectablePanel()
     this.picker = this._initPicker()
 
     this._setListeners()
-    this._loadData()
 
   }
+
+
+  /*** Public Actions ***/
+
 
   /**
    * Show the picker for adding items to the collection
@@ -91,15 +96,6 @@ export default class ManagedCollectionPanel {
     })
 
   }
-
-
-  _loadData() {
-
-    this.sp._render( testData )
-    this.sp._onDataLoaded( this.sp.table )
-    this._loading( false );
-
-  }
   
 
   /** Private **/
@@ -127,57 +123,63 @@ export default class ManagedCollectionPanel {
 
   }
 
+
+  /*** Actions ***/
+
+
+  /**
+   * Build and execute server request to add given item ids to collection
+   * @param {Array} ids Array of Managed Items' ids to add
+   */
   _add(ids) {
 
-    // Make request and update UI
+    if ( !ids || ids.length < 1 )
+      return; 
 
-  }
-
-  _removeSelected() {
-
-    const selectedRows = this.sp.selected
-
-    // Make request and update UI  
-
-  }
-
-  _removeAll() {
-
-    // Make request and update UI  
+    this._execRequest({
+      url: this.urls.add, 
+      type: 'POST',
+      data: { [ this.idsParam ]: ids },
+      success: newData => this.sp._render( newData )
+    })
 
   }
 
   /**
-   * Execute server request (helper)
-   * @param {string} url Request URL
-   * @param {string} type Request type
-   * @param {any} data Data to pass in request
-   * @param {function} success Success callback, returned data passed are passed as first arg
+   * Build and execute server request to remove given item ids from collection
+   * @param {Array} ids Array of Managed Items' ids to remove 
    */
-  _execRequest({
-    url,
-    type,
-    data,
-    success = () => {}
-  }) {
+  _removeSelected() {
 
-    this._loading( true )
-    
-    $ajax({
-      url, type,
-      data: {
-        [ this.param ]: data 
-      },
-      done: data => {
+    const selectedRows = this.sp.selected,
+          selectedIds = selectedRows.data().toArray().map( d => d.id )
 
-        success( data )
-        this.onEdited()
-      
-      },
-      always: () => this._loading( false )
+    this._execRequest({
+      url: this.urls.remove, 
+      type: 'PUT',
+      data: { [ this.idsParam ]: selectedIds },
+      success: () => 
+        this.sp.table.rows( selectedRows ).remove().draw()
     })
 
   }
+
+  /**
+   * Build and execute server request to remove all items from collection
+   */
+  _removeAll() {
+
+    this._execRequest({
+      url: this.urls.removeAll, 
+      type: 'PUT',
+      success: () => this.sp.clear()
+    })
+
+  }
+
+
+  /*** UI ***/
+
 
   /**
    * Change panel's loading state
@@ -216,6 +218,40 @@ export default class ManagedCollectionPanel {
 
   }
 
+  
+  /*** Support ***/
+
+
+  /**
+   * Execute server request (helper)
+   * @param {string} url Request URL
+   * @param {string} type Request type
+   * @param {any} data Data to pass in request
+   * @param {function} success Success callback, returned data passed are passed as first arg
+   */
+  _execRequest({
+    url,
+    type,
+    data,
+    success = () => {}
+  }) {
+
+    this._loading( true )
+    
+    $ajax({
+      url, type,
+      data: { [ this.param ]: data },
+      done: data => {
+
+        success( data )
+        this.onEdited()
+      
+      },
+      always: () => this._loading( false )
+    })
+
+  }
+
   /**
    * Initialize a new instance of SelectablePanel containing the collection items 
    * @return {SelectablePanel} New SP instance
@@ -231,7 +267,7 @@ export default class ManagedCollectionPanel {
         buttons: [ selectAllBtn(), deselectAllBtn() ],
         order: [[1, "asc"]],
         paginated: false,
-        deferLoading: true,
+        loadCallback: () => this._updateBtnsUI()
       },
       multiple: true,
       onSelect: () => this._updateBtnsUI(),
@@ -250,7 +286,7 @@ export default class ManagedCollectionPanel {
       id: 'add-items',
       types: this.allowedTypes,
       multiple: true, 
-      onSubmit: selection => this._add( selection.asIdsArray() )
+      onSubmit: selection => this._add( selection.asIDsArray() )
     })
 
   }
