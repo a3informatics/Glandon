@@ -167,7 +167,7 @@ form {
   }
 
   #a3-devise-logo {
-    width: 150px;
+    width: 120px;
   }
 
   .container {
@@ -185,11 +185,15 @@ form {
 
       .half {
         width: 100%;
-        padding: 30px 40px 60px 40px;
 
         &:last-of-type {
-          align-items: flex-start;
+          padding: 40px 0;
           border-radius: $card-border-radius $card-border-radius 0 0;
+        }
+
+        &:first-of-type {
+          align-items: flex-start;
+          padding: 30px 40px 60px 40px;
         }
       }
     }
