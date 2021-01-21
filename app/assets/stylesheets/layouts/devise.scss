@@ -21,7 +21,6 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
-  flex-direction: column;
 
   .m-card {
     min-width: 768px;
@@ -109,7 +108,6 @@ form {
   background: $primary-color-light;
   color: $grey-white;
   padding: 8px 60px;
-  // white-space: break-spaces;
 
   &:hover {
     background: $primary-color-medium;
@@ -190,8 +188,7 @@ form {
         padding: 30px 40px 60px 40px;
 
         &:last-of-type {
-          justify-content: center;
-          background: $primary-color-dark;
+          align-items: flex-start;
           border-radius: $card-border-radius $card-border-radius 0 0;
         }
       }
