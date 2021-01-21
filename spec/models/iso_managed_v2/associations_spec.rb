@@ -74,19 +74,22 @@ describe IsoManagedV2::Associations do
       bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
       association = domain.associate([bc_1.id], "SDTM BC Association")
       association = Association.find(association.id)
-      check_file_actual_expected(association.to_h, sub_dir, "diassociate_expected_1a.yaml", equate_method: :hash_equal, write_file: true)
-      result = domain.diassociate([bc_1.id])
-      check_file_actual_expected(result.to_h, sub_dir, "diassociate_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(association.to_h, sub_dir, "diassociate_expected_1a.yaml", equate_method: :hash_equal)
+      association = domain.diassociate([bc_1.id])
+      association = Association.find(association.id)
+      check_file_actual_expected(association.to_h, sub_dir, "diassociate_expected_1b.yaml", equate_method: :hash_equal)
     end
 
     it "diassociate, multiple BC" do
       domain = create_sdtm_sponsor_domain("BBB", "SDTM Sponsor Domain", "BB")
       bc_1 = create_biomedical_concept_instance("HEIGHT", "Height")
       bc_2 = create_biomedical_concept_instance("WEIGHT", "Weight")
-      result = domain.associate([bc_1.id, bc_2.id], "SDTM BC Association")
-      check_file_actual_expected(result.to_h, sub_dir, "diassociate_expected_2a.yaml", equate_method: :hash_equal)
-      result = domain.diassociate([bc_1.id])
-      check_file_actual_expected(result.to_h, sub_dir, "diassociate_expected_2b.yaml", equate_method: :hash_equal)
+      association = domain.associate([bc_1.id, bc_2.id], "SDTM BC Association")
+      association = Association.find(association.id)
+      check_file_actual_expected(association.to_h, sub_dir, "diassociate_expected_2a.yaml", equate_method: :hash_equal)
+      association = domain.diassociate([bc_1.id])
+      association = Association.find(association.id)
+      check_file_actual_expected(association.to_h, sub_dir, "diassociate_expected_2b.yaml", equate_method: :hash_equal)
     end
 
     it "diassociate, multiple BC" do
