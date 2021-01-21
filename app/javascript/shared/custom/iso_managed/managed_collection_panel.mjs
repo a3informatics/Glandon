@@ -22,6 +22,7 @@ export default class ManagedCollectionPanel {
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {string} params.idsParam Parameter name for adding a set of IDs into a collection [default='ids']
    * @param {Array} params.allowedTypes Array of strings - param names of allowed item types that can be added to the Collection @see ItemsPicker module
+   * @param {Array} params.order Custom table ordering setting, optional  
    * @param {function} params.onEdited Function to execute after any data update 
    */
   constructor({
@@ -30,12 +31,13 @@ export default class ManagedCollectionPanel {
     param,
     idsParam = 'ids',
     allowedTypes = [],
+    order = [[1, 'asc']], 
     onEdited = () => {}
   }) {
 
     Object.assign( this, {
       selector, urls, param, allowedTypes, 
-      idsParam, onEdited 
+      idsParam, order, onEdited 
     })
 
     this.sp = this._initSelectablePanel()
@@ -265,7 +267,7 @@ export default class ManagedCollectionPanel {
         extraColumns: this._panelColumns,
         paginated: false,
         autoHeight: true,
-        order: [[1, "asc"]],
+        order: this.order,
         buttons: [ selectAllBtn(), deselectAllBtn() ],
         loadCallback: () => this._updateBtnsUI()
       },

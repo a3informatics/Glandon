@@ -52,7 +52,10 @@ export default class ImpactPanel {
     return new ManagedItemsPanel({
       selector: this.selector,
       deferLoading: true,
-      buttons: [csvExportBtn(), excelExportBtn()]
+      buttons: [csvExportBtn(), excelExportBtn()],
+      tableOptions: {
+        order: [[2, 'asc']]
+      }
     })
 
   }
