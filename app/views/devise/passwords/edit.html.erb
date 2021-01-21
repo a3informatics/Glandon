@@ -2,12 +2,12 @@
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
-  <div class="text-xxlarge font-regular text-light">
-    Change your password
-  </div>
-  <div class="p-justified font-light text-light text-normal">
+
+  <h2>Change your password</h2>
+
+  <p class="p-justified">
     <%= password_message %>
-	</div>
+	</p>
   <%= f.hidden_field :reset_password_token %>
   <div class="form-wrap">
     <div class="form-group">

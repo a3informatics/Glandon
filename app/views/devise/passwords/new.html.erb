@@ -2,17 +2,21 @@
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   	<%= devise_error_messages! %>
-    <div class="text-xxlarge font-regular text-light">
-  		Reset your password
-  	</div>
-    <div class="p-justified font-light text-light text-normal">
+
+    <h2>Reset your password</h2>
+
+    <p class="p-justified">
   		Type in the email address you registered with to receive the instructions for resetting your password.
-  	</div>
+  	</p>
     <div class="form-wrap">
     	<div class="form-group">
       	<%= f.email_field :email, class: "", autofocus: true, placeholder: "Email" %>
     	</div>
     </div>
 
-	   <%= f.submit "Submit", class: "btn big submit-btn" %>
+		<%= f.submit "Submit", class: "btn big submit-btn" %>
+		<br/>
+		<%= link_to new_user_session_path, :class => "form-link text-small" do %>
+			Return to the Log in page
+		<% end%>
 <% end %>

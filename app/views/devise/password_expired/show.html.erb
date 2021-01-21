@@ -3,16 +3,14 @@
 <%= form_for(resource, as: resource_name, url: [resource_name, :password_expired], html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="text-xxlarge font-regular text-light">
-    Renew your password
-  </div>
-  <div class="p-justified font-light text-light text-normal">
+  <h2>Renew your password</h2>
+
+  <p class="p-justified text-normal">
       Logging in as: <span class="font-regular"><%= current_user.email %></span>
-  </div>
-  <br/>
-  <div class="p-justified font-light text-light text-normal">
-      <%= password_message %>
-  </div>
+  </p>
+  <p class="p-justified">
+    <%= password_message %>
+  </p>
 
   <div class="form-wrap">
     <div class="form-group">

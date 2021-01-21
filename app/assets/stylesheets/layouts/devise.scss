@@ -12,137 +12,155 @@ body {
   overflow-y: auto;
 }
 
-.container{
+// Central container and half-cards 
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   flex-direction: column;
+
+  .m-card {
+    min-width: 60%;
+    min-height: 600px;
+    height: 60%;
+    display: flex;
+    max-width: 1000px;
+
+    .half {
+      width: 50%;
+      min-height: 100%;
+      margin: 0;
+      padding: 60px;
+      display: inline-flex;
+
+      &:first-of-type {
+        justify-content: left;
+        border-radius: $card-border-radius 0 0 $card-border-radius;
+        overflow-y: auto;
+      }
+
+      &:last-of-type {
+        justify-content: center;
+        background: $primary-color-dark;
+        border-radius: 0 $card-border-radius $card-border-radius 0;
+      }
+    }
+  }
+
 }
 
-.m-card {
-  min-width: 60%;
-  min-height: 600px;
-  height: 60%;
-  display: flex;
-  max-width: 1000px;
+// Texts 
+p {
+  font-family: $font-light;
+  color: $grey-medium;
 }
 
-.m-card .half{
-  width: 50%;
-  min-height: 100%;
-  margin: 0;
-  padding: 60px;
-  display: inline-flex;
-  align-items: center;
+h1, h2 {
+  font-family: $font-primary;
+  color: $grey-medium;
 }
 
-.half:first-of-type{
-  justify-content: left;
-  border-radius: $card-border-radius 0 0 $card-border-radius;
-}
-
-.half:last-of-type{
-  justify-content: center;
-  background: $primary-color-dark;
-  border-radius: 0 $card-border-radius $card-border-radius 0;
-}
-
-// FORM STUFF
-
-form{
+// Forms 
+form {
   width: 100%;
 }
 
-.form-wrap{
-  margin: 60px 0;
-}
+.form-wrap {
+  margin: 30px 0;
 
-.form-wrap input, .checkbox{
-  font-size: $font-normal;
-  font-family: $font-light;
-  color: $grey-medium;
-  border: 0px;
-  outline: none;
-  background: transparent;
-}
+  input, .checkbox {
+    font-family: $font-light;
+    color: $grey-medium;
+    border: 0px;
+    outline: none;
+    background: transparent;
+  }
 
-.form-wrap input[type="email"], .form-wrap input[type="password"]{
-  min-width: 80%;
-  padding: 10px 5px;
-  border-bottom: 2px solid $secondary-color-light;
-}
+  input[type="email"], input[type="password"] {
+    min-width: 80%;
+    padding: 8px 5px;
+    border-bottom: 2px solid $secondary-color-light;
+  }
 
-.form-wrap .checkbox input[type="checkbox"] {
+  input[type="checkbox"] {
     margin-left: 0;
+  }
+
+  .checkbox {
+    display: flex;
+    align-items: center;
+  }
+
 }
 
-.btn.submit-btn{
+.btn.submit-btn {
   background: $primary-color-light;
   color: $grey-white;
   padding: 8px 60px !important;
+
+  &:hover {
+    background: $primary-color-medium;
+  }
+
+  &:focus {
+    outline: none !important;
+  }
+  
 }
 
-.btn.submit-btn:hover{
-  background: $primary-color-medium;
-}
-
-.btn.submit-btn:focus{
-  outline: none !important;
-}
-
-.form-link{
+.form-link {
   display: inline-block;
-  margin: 12px 12px 0 0;
-  color: $grey-light;
+  margin-top: 12px;
+  color: $grey-medium;
   text-decoration: underline;
   font-family: $font-light;
-}
 
-.form-link:hover{
-  color: $grey-medium;
-  cursor: pointer;
-}
+  &:hover {
+    color: $grey-light;
+    cursor: pointer;
+  }
 
-.form-link:focus, .form-link:active{
-  color: $grey-medium;
-  outline: none;
+  &:focus, :active {
+    color: $grey-light;
+    outline: none;
+  }
 }
 
 // MOBILE VIEW
-@media (max-width:768px){
+@media (max-width:768px) {
   
-  body, html{
+  body, html {
     min-height: 100%;
     height: auto;
   }
-  
-  .m-card{
-    flex-direction: column-reverse;
-    min-height: auto;
-  }
-  
-  .m-card .half{
-    width: 100%;
-    padding: 36px 46px;
+
+  .container {
+
+    .m-card {
+      flex-direction: column-reverse;
+      min-height: auto;
+
+      .half {
+        width: 100%;
+        padding: 36px 46px;
+
+        &:last-of-type {
+          justify-content: center;
+          background: $primary-color-dark;
+          border-radius: $card-border-radius $card-border-radius 0 0;
+        }
+      }
+    }
+
   }
 
-  .half:last-of-type{
-    justify-content: center;
-    background: $primary-color-dark;
-    border-radius: $card-border-radius $card-border-radius 0 0;
-  }
-
-  .form-wrap{
+  .form-wrap {
     margin: 30px 0;
   }
 
-  #a3-devise-logo{
+  #a3-devise-logo {
     width: 150px;
-  }
-
-  .text-xxlarge {
-    font-size: 16pt;
   }
 
 }
@@ -151,12 +169,11 @@ form{
   top: 20px;
 }
 
-/* CHROMEFIX */
+/* Chrome fix styling of autofill inputs */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
-  font-size: $font-normal;
   -webkit-text-fill-color: $grey-medium;
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
