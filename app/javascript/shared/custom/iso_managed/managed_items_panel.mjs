@@ -53,8 +53,9 @@ export default class ManagedItemsPanel extends TablePanel {
    */
   get _defaultColumns() {
 
-    const withType = hasColumn( this.selector, 'Type' )
-    return dtManagedItemsColumns( {}, withType )
+    const withType = hasColumn( this.selector, 'Type' ),
+          withOwner = hasColumn( this.selector, 'Owner' )
+    return dtManagedItemsColumns( {}, withType, withOwner )
 
   }
 
