@@ -5,7 +5,7 @@
 
   <h2>Renew your password</h2>
 
-  <p class="p-justified text-normal">
+  <p class="text-normal">
       Logging in as: <span class="font-regular"><%= current_user.email %></span>
   </p>
   <p class="p-justified">
@@ -23,7 +23,9 @@
       <%= f.password_field :password_confirmation, placeholder: 'Confirm new password' %>
     </div>
   </div>
-  <p><%= f.submit 'Change password', class: "btn big submit-btn" %> </p>
+
+  <%= f.submit 'Change', class: "btn submit-btn" %>
+  <br/>
   <%= link_to destroy_user_session_path, :method => :delete, :class => "form-link text-small" do %>
     Return to the Log in page
   <% end%>

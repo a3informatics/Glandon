@@ -3,39 +3,48 @@
 body, html, .container{
   padding: 0;
   height: 100%;
+  background: $grey-bright;
 }
 
 body {
-  background: $grey-bright;
   width: 100%;
   position: relative;
   overflow-y: auto;
 }
 
+#alerts {
+  top: 20px;
+}
+
 // Central container and half-cards 
 .container {
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
   flex-direction: column;
 
   .m-card {
-    min-width: 60%;
+    min-width: 768px;
     min-height: 600px;
-    height: 60%;
+
+    max-width: 1400px;
+    max-height: 800px;
+
+    width: 60%;
+    height: 80%;
+    
     display: flex;
-    max-width: 1000px;
+    margin: auto;
 
     .half {
       width: 50%;
-      min-height: 100%;
       margin: 0;
-      padding: 60px;
+      padding: 30px 60px;
       display: inline-flex;
 
       &:first-of-type {
         justify-content: left;
+        align-items: center;
         border-radius: $card-border-radius 0 0 $card-border-radius;
         overflow-y: auto;
       }
@@ -78,7 +87,8 @@ form {
   }
 
   input[type="email"], input[type="password"] {
-    min-width: 80%;
+    width: 80%;
+    max-width: 350px;
     padding: 8px 5px;
     border-bottom: 2px solid $secondary-color-light;
   }
@@ -94,10 +104,12 @@ form {
 
 }
 
+// Buttons and links 
 .btn.submit-btn {
   background: $primary-color-light;
   color: $grey-white;
-  padding: 8px 60px !important;
+  padding: 8px 60px;
+  // white-space: break-spaces;
 
   &:hover {
     background: $primary-color-medium;
@@ -127,23 +139,55 @@ form {
   }
 }
 
-// MOBILE VIEW
-@media (max-width:768px) {
-  
-  body, html {
-    min-height: 100%;
-    height: auto;
+// Responsivness 
+@media (max-width: 1600px) {
+ 
+  .container .m-card {
+    width: 70%;
+  }
+
+}
+
+@media (max-width: 1300px) {
+ 
+  .container .m-card {
+    width: 80%;
+  }
+
+}
+
+
+// Vertical View
+@media (max-width: 768px) {
+
+  h1, h2 {
+    font-size: $font-large;
+  }
+
+  .form-wrap {
+    margin: 20px 0;
+  }
+
+  #a3-devise-logo {
+    width: 150px;
   }
 
   .container {
+    height: 100%;
+    padding: 20px 0;
 
     .m-card {
+      width: 90%;
+      min-width: initial;
+
+      height: initial;
+      min-height: initial;
+
       flex-direction: column-reverse;
-      min-height: auto;
 
       .half {
         width: 100%;
-        padding: 36px 46px;
+        padding: 30px 40px 60px 40px;
 
         &:last-of-type {
           justify-content: center;
@@ -155,18 +199,6 @@ form {
 
   }
 
-  .form-wrap {
-    margin: 30px 0;
-  }
-
-  #a3-devise-logo {
-    width: 150px;
-  }
-
-}
-
-#alerts{
-  top: 20px;
 }
 
 /* Chrome fix styling of autofill inputs */
