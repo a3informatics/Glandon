@@ -263,9 +263,10 @@ export default class ManagedCollectionPanel {
         url: this.urls.data,
         param: this.param,
         extraColumns: this._panelColumns,
-        buttons: [ selectAllBtn(), deselectAllBtn() ],
-        order: [[1, "asc"]],
         paginated: false,
+        autoHeight: true,
+        order: [[1, "asc"]],
+        buttons: [ selectAllBtn(), deselectAllBtn() ],
         loadCallback: () => this._updateBtnsUI()
       },
       multiple: true,

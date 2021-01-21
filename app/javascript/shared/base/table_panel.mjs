@@ -369,7 +369,8 @@ export default class TablePanel {
     return {
       autoWidth: true,
       scrollCollapse: true,
-      scrollY: yHeight
+      scrollY: yHeight,
+      scrollX: true
     }
 
   }
