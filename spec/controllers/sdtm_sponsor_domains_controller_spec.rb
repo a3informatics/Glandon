@@ -52,7 +52,7 @@ describe SdtmSponsorDomainsController do
       check_file_actual_expected(actual, sub_dir, "show_results_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "shows the history, page" do
+    it "history, JSON" do
       sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(SdtmSponsorDomain).to receive(:history_pagination).with({identifier: sdtm_sponsor_domain.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "0", count: "20"}).and_return([sdtm_sponsor_domain])
@@ -63,7 +63,7 @@ describe SdtmSponsorDomainsController do
       check_file_actual_expected(actual, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "shows the history, initial view" do
+    it "history, HTML" do
       params = {}
       expect(SdtmSponsorDomain).to receive(:latest).and_return(SdtmSponsorDomain.new)
       get :history, params:{sdtm_sponsor_domain: {identifier: "AAA", scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE"}}
