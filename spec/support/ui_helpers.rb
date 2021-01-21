@@ -595,7 +595,8 @@ module UiHelpers
 			unpair: "Unpair",
 			show_paired: "Show Paired",
       crf: "CRF",
-      acrf: "aCRF"
+      acrf: "aCRF",
+      bca: "BC Associations"
     }
 	end
 
