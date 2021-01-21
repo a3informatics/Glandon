@@ -98,7 +98,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
       object.uri = object.create_uri(parent_object.uri)
       tx = transaction_begin
       object.update(params)
-      object.create_custom_properties(parent_object.uri, tx)
+      self.create_custom_properties(object, parent_object, tx)
       parent_object.replace_link(:narrower, self.uri, object.uri)
       parent_object.replace_link(:refers_to, self.uri, object.uri)
       transaction_execute

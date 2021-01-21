@@ -96,25 +96,28 @@ class IsoConceptV2
       self.class.custom_properties?
     end
 
-    # Create Custom Properties. Create the custom property values for this object, if any. Use values in object.
+    # Create Custom Properties. Create the custom property values based on this object for a new object. Use values in object or defaults.
     #
+    # @param [Object] new_object the new object to which properties are to be added
     # @param [object] context the context, defaults to self
     # @param [Sparql::Transaction] tx the transaction, defaults to nil
     # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
-    def create_custom_properties(context=self, tx=nil)
+    def create_custom_properties(new_object, context=self, tx=nil)
       context_uri = context.is_a?(Uri) ? context : context.uri
       definitions = self.class.find_custom_property_definitions
       return if definitions.empty?
+      properties = self.load_custom_properties(context)
+      new_object.custom_properties.clear
       definitions.each do |definition|
-        cp = self.custom_properties.items.find{|x| x.uri == definition.uri}
+        cp = properties.items.find{|x| x.custom_property_defined_by.uri == definition.uri}
         value = cp.nil? ? definition.default : cp.value
-        CustomPropertyValue.create(parent_uri: CustomPropertyValue.base_uri, transaction: tx, 
-          value: value, custom_property_defined_by: definition.uri, applies_to: self.uri, context: [context_uri])
+        new_object.custom_properties << CustomPropertyValue.create(parent_uri: CustomPropertyValue.base_uri, transaction: tx, 
+          value: value, custom_property_defined_by: definition.uri, applies_to: new_object.uri, context: [context_uri])
       end
-      self.custom_properties
+      new_object.custom_properties
     end
 
-    # Create Default Custom Properties. Create the custom property values for this object, if any. Use default values
+    # Create Default Custom Properties. Create the custom property values for this object using default values
     #
     # @param [object] context the context, defaults to self
     # @param [Sparql::Transaction] tx the transaction, defaults to nil
@@ -131,27 +134,20 @@ class IsoConceptV2
       self.custom_properties
     end
 
-    # Clone Custom Properties. Clone the custom property values for this object and add to specified object
-    #
-    # @param [Object] new_object the new object to which properties are to be added
-    # @param [Object] context the context, defaults to self
-    # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
-    def clone_custom_properties(new_object, context=self)
-      context_uri = context.is_a?(Uri) ? context : context.uri
-      properties = load_custom_properties(context)
-      properties.each do |property|
-        if property_multiple_contexts_include?(property, context_uri)
-          object = property.clone
-          object.context = [context_uri]
-          object.applies_to = new_object
-          new_object.custom_properties << object
-        else
-          property.applies_to = new_object
-          new_object.custom_properties << property          
-        end
-      end
-      new_object.custom_properties
-    end
+    # # Clone Custom Properties. Clone the custom property values for this object and add to specified object
+    # #
+    # # @param [Object] new_object the new object to which properties are to be added
+    # # @param [Object] context the context, defaults to self
+    # # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
+    # def clone_custom_properties(new_object, context=self, tx=nil)
+    #   context_uri = context.is_a?(Uri) ? context : context.uri
+    #   properties = load_custom_properties(context)
+    #   properties.each do |property|
+    #     new_object.custom_properties << CustomPropertyValue.create(parent_uri: CustomPropertyValue.base_uri, transaction: tx, 
+    #       value: property.value, custom_property_defined_by: property.custom_property_defined_by.uri, applies_to: new_object.uri, context: [context_uri])
+    #   end
+    #   new_object.custom_properties
+    # end
 
     # Load Custom Properties. Load the custom property values for this object, if any
     #
