@@ -84,8 +84,8 @@ function dtChildrenColumns(opts = {}) {
 function dtManagedItemsColumns(opts = {}, typeColumn = false, ownerColumn = false) {
   
   const columns = [
-    { data: 'identifier', ...opts },
     { ...opts, render: (dt, t, r) => r.version || r.semantic_version },
+    { data: 'identifier', ...opts },
     { data: 'label', ...opts },
     { data: 'version_label', ...opts }
   ];
