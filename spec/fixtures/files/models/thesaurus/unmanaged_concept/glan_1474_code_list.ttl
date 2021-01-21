@@ -1,0 +1,97 @@
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.acme-pharma.com/C100130/V1#C100130>
+  rdf:type th:ManagedConcept ;
+  isoC:label "Relationship to Subject"^^xsd:string ;
+  isoT:hasState <http://www.acme-pharma.com/C100130/V1#C100130_RS> ;
+  isoT:hasIdentifier <http://www.acme-pharma.com/C100130/V1#C100130_SI> ;
+  isoT:origin ""^^xsd:string ;
+  isoT:changeDescription ""^^xsd:string ;
+  isoT:creationDate "2019-08-08T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:lastChangeDate "2019-08-08T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:explanatoryComment ""^^xsd:string ;
+  th:identifier "C100130"^^xsd:string ;
+  th:notation "RELSUB"^^xsd:string ;
+  th:definition "The relationship of a person to a study subject."^^xsd:string ;
+  th:extensible "true"^^xsd:boolean ;
+  th:narrower <http://www.cdisc.org/C100130/V30#C100130_C100805> ;
+  th:narrower <http://www.cdisc.org/C100130/V30#C100130_C100806> ;
+  th:narrower <http://www.cdisc.org/C100130/V30#C100130_C100807> ;
+  th:narrower <http://www.acme-pharma.com/C100130/V1#C100130_SC71384> ;
+  th:extends <http://www.cdisc.org/C100130/V30#C100130> ;
+  th:refersTo <http://www.cdisc.org/C100130/V30#C100130_C100805> ;
+  th:refersTo <http://www.cdisc.org/C100130/V30#C100130_C100806> ;
+  th:refersTo <http://www.cdisc.org/C100130/V30#C100130_C100807> ;
+  th:preferredTerm <http://www.assero.co.uk/PT#6e6ad5062ca08dd71d0d7a8f26b220ef454dee7f> ;
+.
+<http://www.acme-pharma.com/C100130/V1#C100130_RS>
+  rdf:type isoR:RegistrationState ;
+  isoR:registrationStatus "Standard"^^xsd:string ;
+  isoR:administrativeNote ""^^xsd:string ;
+  isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:unresolvedIssue ""^^xsd:string ;
+  isoR:administrativeStatus ""^^xsd:string ;
+  isoR:previousState "Standard"^^xsd:string ;
+  isoR:multipleEdit "false"^^xsd:boolean ;
+  isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C100130/V1#C100130_SI>
+  rdf:type isoI:ScopedIdentifier ;
+  isoI:identifier "C100130"^^xsd:string ;
+  isoI:versionLabel "CT 2.6 2015-03-27"^^xsd:string ;
+  isoI:version "1"^^xsd:positiveInteger ;
+  isoI:semanticVersion "1.0.0"^^xsd:string ;
+  isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+<http://www.acme-pharma.com/C100130/V1#C100130_SC71384>
+  rdf:type th:UnmanagedConcept ;
+  isoC:label "Biological Relative"^^xsd:string ;
+  th:identifier "SC71384"^^xsd:string ;
+  th:notation "BIOLOGICALLY RELATED"^^xsd:string ;
+  th:definition "An individual that shares genetic makeup with another individual."^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:preferredTerm <http://www.assero.co.uk/PT#1f1f7942a68566b138f5769269b69b3defe30a11> ;
+.
+<http://www.assero.co.uk/PT#6e6ad5062ca08dd71d0d7a8f26b220ef454dee7f>
+  rdf:type th:PreferredTerm ;
+  isoC:label "Relationship to Subject"^^xsd:string ;
+.
+<http://www.assero.co.uk/CPV#226ef62b-2318-48fc-8286-15c78e2e49f6>
+  rdf:type isoC:CustomProperty ;
+  isoC:appliesTo <http://www.acme-pharma.com/C100130/V1#C100130_SC71384> ;
+  isoC:context <http://www.acme-pharma.com/C100130/V1#C100130> ;
+  isoC:value "Biological Relative"^^xsd:string ;
+  isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
+.
+<http://www.assero.co.uk/CPV#d6a9497e-c5fc-4e05-9d12-3cd66e3e2c9d>
+  rdf:type isoC:CustomProperty ;
+  isoC:appliesTo <http://www.acme-pharma.com/C100130/V1#C100130_SC71384> ;
+  isoC:context <http://www.acme-pharma.com/C100130/V1#C100130> ;
+  isoC:value "true"^^xsd:string ;
+  isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
+.
+<http://www.assero.co.uk/CPV#463179a8-a182-4244-aa66-6bc25057775c>
+  rdf:type isoC:CustomProperty ;
+  isoC:appliesTo <http://www.acme-pharma.com/C100130/V1#C100130_SC71384> ;
+  isoC:context <http://www.acme-pharma.com/C100130/V1#C100130> ;
+  isoC:value "true"^^xsd:string ;
+  isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
+.
+<http://www.assero.co.uk/CPV#83f46fc4-bb86-47fb-a9a3-e4fe8771ef8a>
+  rdf:type isoC:CustomProperty ;
+  isoC:appliesTo <http://www.acme-pharma.com/C100130/V1#C100130_SC71384> ;
+  isoC:context <http://www.acme-pharma.com/C100130/V1#C100130> ;
+  isoC:value "false"^^xsd:string ;
+  isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
+.
