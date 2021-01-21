@@ -96,6 +96,17 @@ class SdtmSponsorDomain < SdtmIgDomain
     non_standard_variable
   end
 
+  # Dependency Paths. Returns the paths for any dependencies this class may have.
+  #
+  # @return [Array] array of strings suitable for inclusion in a sparql query
+  def self.dependency_paths
+    [
+      '^<http://www.assero.co.uk/BusinessOperational#theSubject>/'\
+      '<http://www.assero.co.uk/BusinessOperational#associatedWith>',
+      '<http://www.assero.co.uk/Tabulation#basedOnClass>'
+    ]
+  end
+
   private
 
     # Next Ordinal. Get the next ordinal for a domain variable
