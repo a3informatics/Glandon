@@ -43,7 +43,6 @@ describe "Impact Analysis", type: :feature  do
 
     def prep_data 
       @thesaurus = Thesaurus.create({ identifier: 'TEST', label: 'Test Thesaurus' })
-      # @thesaurus = edit_item(@thesaurus)
 
       @codelist = Thesaurus::ManagedConcept.find_minimum(Uri.new( uri: 'http://www.cdisc.org/C20587/V1#C20587' ))
       @subset = @codelist.create_subset 
@@ -113,8 +112,7 @@ describe "Impact Analysis", type: :feature  do
       wait_for_ajax 10 
 
       check_node_count 6
-#      Not Working 
-#      check_node 'TEST', :thesaurus
+      check_node 'TEST', :terminology
     end
 
     it "allows to show and download Impact of a Code List, table view" do
@@ -125,8 +123,8 @@ describe "Impact Analysis", type: :feature  do
       # Check table data and info
       find('.tab-option', text: 'Table View').click 
       ui_check_table_info('managed-items', 1, 4, 4)
-      ui_check_table_cell('managed-items', 1, 2, 'C20587')
-      ui_check_table_cell('managed-items', 1, 3, '1.0.0')
+      ui_check_table_cell('managed-items', 1, 2, '1.0.0')
+      ui_check_table_cell('managed-items', 1, 3, 'C20587')
       ui_check_table_cell('managed-items', 1, 4, 'Age Group')
       ui_check_table_cell('managed-items', 1, 5, '2007-03-06 Release')
 

@@ -204,7 +204,7 @@ describe "Tags", :type => :feature do
       find_node('Tag1_1').double_click
       # Items tagged
       ui_in_modal do
-        ui_check_table_row('managed-items', 1, ["TEST", '1', 'Test Thesaurus'] )
+        ui_check_table_row('managed-items', 1, ["1", 'TEST', 'Test Thesaurus'] )
         click_on 'Close'
       end
 
@@ -214,8 +214,8 @@ describe "Tags", :type => :feature do
         ui_check_table_info('managed-items', 1, 3, 3, )
         #ui_check_table_row('managed-items', 2, ["NP000011P", '1', 'Not Set'] )
         ui_table_search('managed-items', 'NP000011P')
-        ui_check_table_cell('managed-items', 1, 1, 'NP000011P')
-        ui_check_table_cell('managed-items', 1, 2, '1')
+        ui_check_table_cell('managed-items', 1, 1, '1')
+        ui_check_table_cell('managed-items', 1, 2, 'NP000011P')
         ui_check_table_cell('managed-items', 1, 4, '')
         click_on 'Close'
       end
@@ -253,8 +253,8 @@ describe "Tags", :type => :feature do
         #expect(page).to have_xpath('//tr[contains(.,"Controlled Terminology")]', count: 3)
 
         ui_table_search('managed-items', 'C25681')
-        ui_check_table_cell('managed-items', 1, 1, 'C25681')
-        ui_check_table_cell('managed-items', 1, 2, '1')
+        ui_check_table_cell('managed-items', 1, 1, '1')
+        ui_check_table_cell('managed-items', 1, 2, 'C25681')
         ui_check_table_cell('managed-items', 1, 4, '2007-03-06 Release')
 
         click_on 'Close'
