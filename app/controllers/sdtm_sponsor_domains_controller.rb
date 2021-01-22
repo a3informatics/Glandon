@@ -240,7 +240,7 @@ private
       when :bc_associations 
         return bc_associations_sdtm_sponsor_domain_path(object)
       else
-        return ""
+        return super
     end
   end
 
