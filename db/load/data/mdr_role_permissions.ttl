@@ -1,0 +1,488 @@
+@prefix : <http://www.a3informatics.com/rdf-schema/users-and-roles#> .
+@prefix usr: <http://www.a3informatics.com/rdf-schema/users-and-roles#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix bc: <http://www.assero.co.uk/BiomedicalConcept#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix bd: <http://www.assero.co.uk/Tabulation#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.a3informatics.com/rdf-schema/users-and-roles>
+	rdf:type owl:Ontology ;
+.
+<http://www.assero.co.uk/RP#10f23217-d56b-442e-a532-5a20f5c9a09b>
+	rdf:type :RolePermission ;
+	:forClass th:ManagedConcept ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#0fa5ab81-0b0f-48a5-b05c-36bab2eed788> ;
+	:forRole <http://www.assero.co.uk/ROLE#9932e234-fa8a-49f5-9958-203c988c04b6> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#85d44f2c-5d2a-43f8-a062-093674f6357a> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#aeb739d6-41b4-4f87-a6c0-d221123d1e18>
+	rdf:type :RolePermission ;
+	:forClass th:ManagedConcept ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#85d44f2c-5d2a-43f8-a062-093674f6357a> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#5eeae588-fbe2-4900-bc3f-ebf66c77dcc5>
+	rdf:type :RolePermission ;
+	:forClass th:ManagedConcept ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#85d44f2c-5d2a-43f8-a062-093674f6357a> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#6f181fa8-2bb9-4475-87a4-ea12b3a02fad>
+	rdf:type :RolePermission ;
+	:forClass th:ManagedConcept ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#85d44f2c-5d2a-43f8-a062-093674f6357a> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#6500ddd5-e851-4a9f-8ab4-478912b16772>
+	rdf:type :RolePermission ;
+	:forClass bc:BiomedicalConceptTemplate ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#a7419706-46ce-46e6-acc6-b69e3c4c7c6f>
+	rdf:type :RolePermission ;
+	:forClass bc:BiomedicalConceptTemplate ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#1427c210-b29e-4977-8e9e-d8a6fcee93a8>
+	rdf:type :RolePermission ;
+	:forClass bc:BiomedicalConceptTemplate ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#316aad39-0f52-47cd-a6bf-f27f134450f0>
+	rdf:type :RolePermission ;
+	:forClass bc:BiomedicalConceptTemplate ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#2e675132-2d03-4d4b-ba3b-53c4119eb3a0>
+	rdf:type :RolePermission ;
+	:forClass bc:BiomedicalConceptInstance ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#61f94026-f8b6-4f4a-b576-e83c76e3bb86>
+	rdf:type :RolePermission ;
+	:forClass bc:BiomedicalConceptInstance ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#f4eb0237-0ae6-4972-8a67-daf2807e7fb8>
+	rdf:type :RolePermission ;
+	:forClass bc:BiomedicalConceptInstance ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#0c296401-7efe-4844-84ca-25c4d0a1442a>
+	rdf:type :RolePermission ;
+	:forClass bc:BiomedicalConceptInstance ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#b147fec7-e91e-4560-a4f1-f706c1a1aa5e>
+	rdf:type :RolePermission ;
+	:forClass bf:Form ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#fecdec47-8dfd-4c7d-a92c-9bcdae7897c0>
+	rdf:type :RolePermission ;
+	:forClass bf:Form ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#37210d56-9650-42d9-b1d6-4c071a45fa3f>
+	rdf:type :RolePermission ;
+	:forClass bf:Form ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#62c3f2b5-846b-484c-b7b3-c12f26749b5b>
+	rdf:type :RolePermission ;
+	:forClass bf:Form ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#5954d5bd-fc78-46a6-acd0-3953520b3a58>
+	rdf:type :RolePermission ;
+	:forClass bd:Model ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#dab92aa6-d936-496d-957f-2b566ee8ee4f>
+	rdf:type :RolePermission ;
+	:forClass bd:Model ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#ed9a5d25-9269-4f3e-bdff-6d5184284cce>
+	rdf:type :RolePermission ;
+	:forClass bd:Model ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#23aa74e6-544b-450e-a7a0-d489a0473b63>
+	rdf:type :RolePermission ;
+	:forClass bd:Model ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#725071f0-5dce-4355-bdff-dc44cf2b1432>
+	rdf:type :RolePermission ;
+	:forClass bd:SDTMImplementationGuide ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#f48f1f52-accd-41df-ad2a-adcd0fe871c7>
+	rdf:type :RolePermission ;
+	:forClass bd:SDTMImplementationGuide ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#1fdcee16-89ad-474c-802d-f1fae6b780b6>
+	rdf:type :RolePermission ;
+	:forClass bd:SDTMImplementationGuide ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#cc15f6ac-7be6-4898-b514-64624ea1c1cc>
+	rdf:type :RolePermission ;
+	:forClass bd:SDTMImplementationGuide ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#b6529abe-9a28-4870-bfca-009a92218f4d>
+	rdf:type :RolePermission ;
+	:forClass bd:SdtmDomain ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#4333df7a-de71-4670-9344-4d023686fbb8>
+	rdf:type :RolePermission ;
+	:forClass bd:SdtmDomain ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#4dc95ddf-bc7f-4b62-b8b6-6d96ee5bd186>
+	rdf:type :RolePermission ;
+	:forClass bd:SdtmDomain ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#9b55fb2c-1b64-4139-829a-594756ed0ea9>
+	rdf:type :RolePermission ;
+	:forClass bd:SdtmDomain ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#f9f89c72-dcec-4333-a314-7225eaaf8e9f>
+	rdf:type :RolePermission ;
+	:forClass bd:SdtmClass ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#d3f77b06-26a1-4a5f-a09f-ceb446741825>
+	rdf:type :RolePermission ;
+	:forClass bd:SdtmClass ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#9cefc28c-a389-4536-97be-c9c5f000f40d>
+	rdf:type :RolePermission ;
+	:forClass bd:SdtmClass ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#a7eb15d7-eebb-43a8-88bf-c4ff21e422d3>
+	rdf:type :RolePermission ;
+	:forClass bd:SdtmClass ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#030314d0-f1dc-427b-b798-eb7cffec0634>
+	rdf:type :RolePermission ;
+	:forClass bd:ADaMImplementationGuide ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#50b8bcba-d13a-4db2-bff7-6875bf6ba518>
+	rdf:type :RolePermission ;
+	:forClass bd:ADaMImplementationGuide ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#9546e697-0468-4717-b87a-da78382b711a>
+	rdf:type :RolePermission ;
+	:forClass bd:ADaMImplementationGuide ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#3102a9cc-f59b-4f40-b3c0-bd69927ea9d3>
+	rdf:type :RolePermission ;
+	:forClass bd:ADaMImplementationGuide ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#1d52ef51-d421-4873-85cc-0001f3b4f7b6>
+	rdf:type :RolePermission ;
+	:forClass bd:ADaMDataset ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#b288943d-fb59-4aa5-afd1-e4da9776db76>
+	rdf:type :RolePermission ;
+	:forClass bd:ADaMDataset ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#8e031f17-9e7b-4a3c-89b7-c8edc9dc8281>
+	rdf:type :RolePermission ;
+	:forClass bd:ADaMDataset ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#feaef9fa-1053-4f17-b258-b10524dc869d>
+	rdf:type :RolePermission ;
+	:forClass bd:ADaMDataset ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#93ea41fb-c9f2-4951-9836-67daaa96a3e3>
+	rdf:type :RolePermission ;
+	:forClass bd:SdtmSponsorDomain ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#7b79405d-ad7d-450c-bcc8-c7215b64c32a>
+	rdf:type :RolePermission ;
+	:forClass bd:SdtmSponsorDomain ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#48f34b79-4574-41aa-9990-7a6538463971>
+	rdf:type :RolePermission ;
+	:forClass bd:SdtmSponsorDomain ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#6bd97bf5-659e-486a-ad3e-43adf2ff81bf>
+	rdf:type :RolePermission ;
+	:forClass bd:SdtmSponsorDomain ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#da2425b2-857b-4bd2-a64a-a9c6f7f0a3ab>
+	rdf:type :RolePermission ;
+	:forClass isoC:Concept ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#f5e53174-d09a-4098-90ba-9288846dd739>
+	rdf:type :RolePermission ;
+	:forClass isoC:Concept ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#36b5514d-cb23-4344-a060-4d487411f02f>
+	rdf:type :RolePermission ;
+	:forClass isoC:Concept ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#00965612-555f-4f58-9228-155b2fe6013d>
+	rdf:type :RolePermission ;
+	:forClass isoC:Concept ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#27d2cca9-b331-4b84-b662-6a652681a885>
+	rdf:type :RolePermission ;
+	:forClass isoI:Namespace ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#507eb1e2-bcb9-47d9-8a15-7dfa7839dd68>
+	rdf:type :RolePermission ;
+	:forClass isoI:Namespace ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#853b8a66-a4b7-4836-8652-c5e2af9a08ee>
+	rdf:type :RolePermission ;
+	:forClass isoI:Namespace ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#5a3c5647-dbd6-4c6e-8952-9c2b2f051bfc>
+	rdf:type :RolePermission ;
+	:forClass isoI:Namespace ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#d01e277f-a2a0-410f-a8ab-1f2fb8db724e>
+	rdf:type :RolePermission ;
+	:forClass isoI:ScopedIdentifier ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#d5581a39-c0ec-46bc-90de-434f4ed7f83a>
+	rdf:type :RolePermission ;
+	:forClass isoI:ScopedIdentifier ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#c496d008-e372-4ac2-998f-306e77ece1fb>
+	rdf:type :RolePermission ;
+	:forClass isoI:ScopedIdentifier ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#6eabacf3-d6db-4197-9425-2cd0fd4569ab>
+	rdf:type :RolePermission ;
+	:forClass isoI:ScopedIdentifier ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#1409387e-0643-4cf6-ab6b-20fb0035433d>
+	rdf:type :RolePermission ;
+	:forClass isoR:RegistrationAuthority ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#56eba1ce-259e-4c73-b1ea-7b7aadf13403>
+	rdf:type :RolePermission ;
+	:forClass isoR:RegistrationAuthority ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#f4828da0-850c-4dee-b381-631bd2f158ce>
+	rdf:type :RolePermission ;
+	:forClass isoR:RegistrationAuthority ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#02ccccad-af0d-48aa-bef7-721c0f6c9572>
+	rdf:type :RolePermission ;
+	:forClass isoR:RegistrationAuthority ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#d473b417-ddef-459a-ada4-885fa21a9251>
+	rdf:type :RolePermission ;
+	:forClass isoR:RegistrationState ;
+	:withAccess <http://www.assero.co.uk/CSN#d39e1295-4e8b-40aa-9d50-bffbae9fa07c> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#6ddfc8c5-8a11-48da-ae74-756b521ec4ad>
+	rdf:type :RolePermission ;
+	:forClass isoR:RegistrationState ;
+	:withAccess <http://www.assero.co.uk/CSN#30b0bb5b-75c9-4e21-806a-28775ba6b910> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#ea5a036d-9c7e-4846-82a5-51fbf1c09ec5> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#0220bdcb-c5d4-4fd3-8b8c-27966ed5c7ee>
+	rdf:type :RolePermission ;
+	:forClass isoR:RegistrationState ;
+	:withAccess <http://www.assero.co.uk/CSN#c543cff2-2dd4-4bfa-9683-1ad9b6f82f31> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.
+<http://www.assero.co.uk/RP#7c142426-3303-4e6e-b511-4760b5c43cab>
+	rdf:type :RolePermission ;
+	:forClass isoR:RegistrationState ;
+	:withAccess <http://www.assero.co.uk/CSN#b7822084-ddf5-48d1-a321-7a4d796d53a1> ;
+	:forRole <http://www.assero.co.uk/ROLE#cc357bd5-22e5-44a4-b562-ba52a05b6fe3> ;
+	:forRole <http://www.assero.co.uk/ROLE#5cf0b6de-ae66-4901-b6d8-1feaa7325936> ;
+.

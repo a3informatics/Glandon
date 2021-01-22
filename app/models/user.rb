@@ -4,7 +4,6 @@
 # @since 0.0.1
 class User < ApplicationRecord
 
-  # Include the user settings
   include UserSettings
   include RoleManagement
 
@@ -18,16 +17,63 @@ class User < ApplicationRecord
   after_create :on_create, :expire_password!
   after_save :on_update
   before_destroy :on_destroy
+  after_initialize :on_new
 
   validates :name, length: { minimum: 1 }, on: :update
 
-  # This method is called by Devise to check for "active" state of the User
+  class NotAuthorizedError < StandardError
+  end
+
+  # On New. 
+  #
+  # @return [Void] no return
+  def on_new
+    @authorization_checked = false
+  end
+
+  # Authorization Checked? Has the user authorized been checked?  
+  #
+  # @param [Object] model the model for which access is being checked
+  # @param [Symbol] access_type the type of access required (CRUD)
+  # @param [???] scope not yet implemented
+  # @raise [User::NotAuthorizedError] raise of authorization fails
+  # @return [Boolean] returns true if checked, false otehrwise
+  def authorization_checked?
+    @authorization_checked
+  end
+
+  # Authorizd? Is the user authorized?
+  #
+  # @param [Object] model the model for which access is being checked
+  # @param [Symbol] access_type the type of access required (CRUD)
+  # @param [???] scope not yet implemented
+  # @raise [User::NotAuthorizedError] raise of authorization fails
+  # @return [Boolean] always returns true if succesful otherwise raises exception.
+  def authorized?(model, access_type, scope=nil)
+    @authorization_checked = true
+    query_string = %Q{
+      ?ua rdf:type usr:UserAccess . 
+      ?ua usr:userId '#{self.id}'^^xsd:integer . 
+      ?ua usr:hasRole ?r .
+      ?r ^usr:forRole ?rp .
+      ?rp usr:forClass #{model.rdf_type.to_ref} .
+      ?rp usr:withAccess/isoC:prefLabel '#{access_type.to_s.upcase}'^^xsd:string
+    }
+    return true if Sparql::Query.new.query("ASK { #{query_string} }", "", [:isoC, :usr]).ask? 
+    raise NotAuthorizedError.new("You are not authorized for the action.")
+  end
+
+  # Active For Authentication. This method is called by Devise to check for "active" state of the User
+  #
+  # @return [Boolean] true if user active, false otherwise
   def active_for_authentication?
     super && self.is_active?
   end
 
-  # If the method 'active_for_authentication?' returns false, 
-  # method 'inactive_message' is invoked, user will receive notification for being inactive.
+  # Inactive Message. If the method 'active_for_authentication?' returns false, 
+  #   method 'inactive_message' is invoked, user will receive notification for being inactive.
+  #
+  # @return [Symbol]
   def inactive_message
     is_active? ? super : :locked
   end
