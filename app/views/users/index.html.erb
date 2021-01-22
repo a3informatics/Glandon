@@ -23,7 +23,7 @@
 
 	      <div class="font-light half-block">
 	      	List of all Users in the system; allows to edit user roles, lock, unlock, and delete accounts. <br>
-					<i>Note: For traceability reasons, User who has logged in at least once cannot be deleted, only locked.</i>
+					<i>Note: For traceability reasons, users who have logged in at least once cannot be deleted, only locked.</i>
 	      </div>
 
 	      <div class="actions-wrap half-block">
@@ -69,13 +69,13 @@
 
 										<% if user.is_active? %>
 											<%= link_to lock_user_path(user), method: :put, :class => "btn icon-only white ttip lock-user" do %>
-												<span class="icon-lock"></span>
-												<span class="ttip-text ttip-top ttip-left shadow-small text-medium text-small">Lock User</span>
+												<span class="icon-lock-open"></span>
+												<span class="ttip-text ttip-top ttip-left shadow-small text-medium text-small">Unlocked (click to lock)</span>
 											<% end %>
 										<% else %>
-											<%= link_to unlock_user_path(user), method: :put, :class => "btn icon-only white ttip unlock-user" do %>
-												<span class="icon-lock-open"></span>
-												<span class="ttip-text ttip-top ttip-left shadow-small text-medium text-small">Unlock User</span>
+											<%= link_to unlock_user_path(user), method: :put, :class => "btn icon-only light ttip unlock-user" do %>
+												<span class="icon-lock"></span>
+												<span class="ttip-text ttip-top ttip-left shadow-small text-medium text-small">Locked (click to unlock)</span>
 											<% end %>
 										<% end %>
 
