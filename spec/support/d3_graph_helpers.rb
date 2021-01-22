@@ -6,6 +6,7 @@ module D3GraphHelpers
       terminology: 59657,
       codelist: 59730,
       form: 59676,
+      sdtm: 59665, 
       tuc_ref: 59736,
       bc: 59659,
       bc_property: 59659,

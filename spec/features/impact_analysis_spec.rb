@@ -139,6 +139,51 @@ describe "Impact Analysis", type: :feature  do
 
   end
 
+
+  describe "Impact Analysis, BC, Curator user", type: :feature, js: true do
+
+    before :all do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_test_file_into_triple_store("forms/VSTADIABETES.ttl")
+      ua_create
+      prep_data
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    def prep_data 
+      @bc = BiomedicalConceptInstance.find(Uri.new(uri: 'http://www.s-cubed.dk/HEIGHT/V1#BCI'))
+      @sdtm_sd = SdtmSponsorDomain.find(Uri.new(uri: 'http://www.s-cubed.dk/AAA/V1#SPD').to_id)
+      @sdtm_sd.associate([@bc.id], "SDTM BC Association")
+    end
+
+    it "allows to show Impact of a BC, graph view" do
+      click_navbar_bc
+      wait_for_ajax 20 
+
+      impact_analysis 'HEIGHT', '0.1.0' 
+      expect(page).to have_content 'Showing Managed Items impacted by Height HEIGHT v0.1.0.'
+
+      check_node_count 3
+      check_node "HEIGHT", :bc
+      check_node "AAA", :sdtm
+      check_node "VSTADIABET", :form
+    end
+
+  end
+
   def impact_analysis(identifier, version, owner = "")
     ui_table_search('index', "#{ identifier }" )
     find(:xpath, "//tr[contains(.,'#{ owner.empty? ? identifier : owner }')]/td/a").click
