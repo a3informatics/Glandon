@@ -4,45 +4,87 @@
 # @since 0.0.1
 class ApplicationController < ActionController::Base
 
-  include Pundit
-
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  # Pundit after action, verify authorized (checks if authorization was checked)
-  before_action :before_action_steps
+  before_action :before_action_callback
+  after_action :after_action_callback, unless: :devise_controller?
+  rescue_from Exceptions::DestroyError, :with => :crud_error_handler
+  rescue_from Exceptions::CreateError, :with => :crud_error_handler
+  rescue_from Exceptions::UpdateError, :with => :crud_error_handler
+  rescue_from User::NotAuthorizedError, :with => :not_authorized_handler
 
-  # Pundit after action, verify authorized (checks if authorization was checked)
-  after_action :verify_authorized, unless: :devise_controller?
+  @@action_access = {new: :create, index: :read, history: :read, show: :read, view: :read, edit: :update, delete: :delete}
+  @@authorization_klass = nil
+  @@model_klass = nil
 
-  # Pundit exception for not authorized
-  rescue_from Pundit::NotAuthorizedError, :with => :not_authorized_method
-
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize model_klass
+  [:create, :read, :update, :delete].each do |access|
+    define_singleton_method "#{access}_access" do |*args|
+      args.each {|a| @@action_access[a] = access}
+    end
   end
 
-  # Rescue frm not authorized method
-  def not_authorized_method
+  def self.associated_klasses(params)
+    @@authorization_klass = params[:authorization] if params.key?(:authorization)
+    @@model_klass = params[:model] if params.key?(:model)
+    @@authorization_klass = params[:all] if params.key?(:all)
+    @@model_klass = params[:all] if params.key?(:all)
+  end
+
+  def authenticate_and_authorize
+    authenticate_user!
+    current_user.authorized?(authorization_klass, @@action_access[action_name.to_sym])
+  end
+
+  # Not Authorized Handler
+  #
+  # @return [Boolean] always returns true
+  def not_authorized_handler
     flash[:error] = 'You do not have the access rights to that operation.'
     redirect_to root_path
     true
   end
 
-  # CRUD exceptions
-  rescue_from Exceptions::DestroyError, :with => :crud_error
-  rescue_from Exceptions::CreateError, :with => :crud_error
-  rescue_from Exceptions::UpdateError, :with => :crud_error
-
   # Report a CRUD error
-  def crud_error(exception)
-    # TODO: This is wierd but not going to worry about it for the mo. Something odd in the
-    # exception def?
+  def crud_error_handler(exception)
+    # @todo Something odd in the exception def?
     flash[:error] = 'A database operation failed. ' + exception.message[:message].to_s
     redirect_to root_path
     true
+  end
+
+  # Before Action. Anything that needs to be done before the action executes
+  #
+  # @return [Void] no return
+  def before_action_callback
+    # Clear the breadcrumbs session variable before any controller action.
+    session[:breadcrumbs] = ""
+  end
+
+  # After Action. Anything that needs to be done after the action executes
+  #
+  # @return [Void] no return
+  def after_action_callback
+    Errors.application_error(self.class.name, "after_action_callback", "The action did not check the authorization.") unless current_user.authorization_checked?
+  end
+
+  # Model Klass. The model klass for the controller
+  #
+  # @raise [Errors::ApplicationLogicError] raised if method called.
+  # @return [Class] the class
+  def model_klass
+    return @@model_klass unless @@model_klass.nil?
+    Errors.application_error(self.class.name, "model_klass", "Model classs not set.")
+  end
+
+  # Authorization Klass. The model klass for the controller uses for authorization
+  #
+  # @raise [Errors::ApplicationLogicError] raised if method called.
+  # @return [Class] the class
+  def authorization_klass
+    return @@authorization_klass unless @@authorization_klass.nil?
+    Errors.application_error(self.class.name, "model_klass", "Authorization class not set.")
   end
 
   # Path For. Default path for a controller action pair. Individual controllers should overload.
@@ -51,7 +93,7 @@ class ApplicationController < ActionController::Base
   # @param [Object] the object
   # @raise [Errors::ApplicationLogicError] raised if method called.
   def path_for(action, object)
-    Errors.application_error(self.class.name, __method__.to_s, "Generic path_for method called. Controllers should overload.")
+    Errors.application_error(self.class.name, "path_for", "Generic path_for method called. Controllers should overload.")
   end
 
   # Protect From Bad Id. Check params[:id] to protect us from anything nasty, should be a uri.
@@ -96,11 +138,6 @@ class ApplicationController < ActionController::Base
       end
     end
     return result
-  end
-
-  # Clear the breadcrumbs session variable before any controller action.
-  def before_action_steps
-    session[:breadcrumbs] = ""
   end
 
   # Get Token. Get the token for a Managed Item.
