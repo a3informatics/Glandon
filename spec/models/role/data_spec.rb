@@ -274,6 +274,16 @@ describe Role do
             reader: {create: false, read: true, update: false, delete: false},
             curator: {create: true, read: true, update: true, delete: true},
             content_admin: {create: true, read: true, update: true, delete: true}
+          },
+        User::Access.rdf_type.to_s =>
+          {
+            sys_admin: {create: true, read: true, update: true, delete: true},
+            community_reader: {create: false, read: false, update: false, delete: false},
+            term_reader:  {create: false, read: false, update: false, delete: false},
+            term_curator: {create: false, read: false, update: false, delete: false},
+            reader: {create: false, read: false, update: false, delete: false},
+            curator: {create: false, read: false, update: false, delete: false},
+            content_admin: {create: false, read: false, update: false, delete: false}
           }
       }
       access_nodes[:create] = IsoConceptSystem.path(["CRUD", "CREATE"])
@@ -303,7 +313,7 @@ describe Role do
         object.to_sparql(sparql)
       end
       file = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_role_permissions.ttl")
+    copy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_role_permissions.ttl")
     end
 
   end

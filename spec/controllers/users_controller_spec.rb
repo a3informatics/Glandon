@@ -13,7 +13,14 @@ describe UsersController do
     before :all do
       data_files = []
       load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_4.ttl")
       load_data_file_into_triple_store("mdr_roles.ttl")
+      load_data_file_into_triple_store("mdr_role_permissions.ttl")
     end
 
     it "index users" do

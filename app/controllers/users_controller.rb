@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_and_authorize
   before_action :set_user, only: [:show, :edit, :update, :update_name]
 
-  C_CLASS_NAME = "UsersController"
+  read_access :stats_by_domain
+  update_access :lock, :unlock, :update_name
+  associated_klasses authorization: User::Access, model: User
 
   def new
-    authorize User
   end
 
   def create
-    authorize User
     new_user = User.create(user_params)
     if new_user.errors.blank?
       AuditTrail.create_event(current_user, "User #{user_params[:email]} created.")
@@ -23,21 +23,17 @@ class UsersController < ApplicationController
   end
 
   def index
-    authorize User
     @current_user = current_user
     @users = User.all
   end
 
   def show
-    authorize User
   end
 
   def edit
-    authorize User
   end
 
   def update_name
-    authorize User
     if @user.update(user_params)
       flash[:success] = "User display name sucessfully updated."
     else
@@ -47,7 +43,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    authorize User
     current_roles = @user.role_list
     if @user.removing_last_admin?(user_params)
       flash[:error] = "You cannot remove the last system administrator."
@@ -64,7 +59,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    authorize User
     # Note, no check on deleting the last admin user as cannot delete yourself and
     # you need to be admin to delete.
     user = User.find(params[:id])
@@ -82,7 +76,6 @@ class UsersController < ApplicationController
   end
 
   def lock
-    authorize User, :edit?
     user = User.find(params[:id])
     user.lock
     flash[:success] = "User was successfully deactivated."
@@ -90,7 +83,6 @@ class UsersController < ApplicationController
   end
 
   def unlock
-    authorize User, :edit?
     user = User.find(params[:id])
     user.unlock
     flash[:success] = "User was successfully activated."
@@ -98,7 +90,6 @@ class UsersController < ApplicationController
   end
 
   def stats_by_domain
-    authorize User, :show?
     render json: {data: User.all.users_by_domain}
   end
 
@@ -110,6 +101,10 @@ private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, {role_ids: []})
+  end
+
+  def model_klass
+    User
   end
 
 end
