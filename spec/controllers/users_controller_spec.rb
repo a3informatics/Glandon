@@ -144,29 +144,30 @@ describe UsersController do
     end
 
     it "prevents removing last sys admin user role" do
-      Role.create(name: :curator)
+      role_cr = Role.where(name: "curator").first
       current_user = User.find_by(:email => "base@example.com")
-      put :update, params:{id: current_user.id, :user => {role_ids: ["#{Role.to_id(:curator)}"]}}
+      put :update, params:{id: current_user.id, :user => {role_ids: [role_cr.id]}}
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You cannot remove the last system administrator.*/)
     end
 
     it "allows removing sys admin user role if another sys admin exists" do
-      Role.create(name: :curator)
+      role_cr = Role.where(name: "curator").first
       admin_user = ua_add_user(email: "admin@example.com", role: :sys_admin)
       expect(admin_user.role_list_stripped).to eq("Reader, System Admin")
-      put :update, params:{id: admin_user.id, :user => {role_ids: ["#{Role.to_id(:curator)}"]}}
+      put :update, params:{id: admin_user.id, :user => {role_ids: [role_cr.id]}}
       admin_user = User.find_by(:email => "admin@example.com")
       expect(admin_user.role_list_stripped).to eq("Curator")
       expect(response).to redirect_to("/users")
     end
 
     it "allows removing any role that's not sys admin" do
+      role_r = Role.where(name: "reader").first
       admin_user = User.find_by(:email => "base@example.com")
       curator_user = ua_add_user(email: "curator@example.com", role: :curator)
       expect(admin_user.role_list_stripped).to eq("System Admin")
       expect(curator_user.role_list_stripped).to eq("Curator, Reader")
-      put :update, params:{id: curator_user.id, :user => {role_ids: ["#{Role.to_id(:reader)}"]}}
+      put :update, params:{id: curator_user.id, :user => {role_ids: [role_r.id]}}
       curator_user = User.find_by(:email => "curator@example.com")
       expect(curator_user.role_list_stripped).to eq("Reader")
       expect(response).to redirect_to("/users")

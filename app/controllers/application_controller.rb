@@ -15,7 +15,13 @@ class ApplicationController < ActionController::Base
   rescue_from Exceptions::UpdateError, :with => :crud_error_handler
   rescue_from User::NotAuthorizedError, :with => :not_authorized_handler
 
-  @@action_access = {new: :create, index: :read, history: :read, show: :read, view: :read, edit: :update, delete: :delete}
+  @@action_access = 
+  {
+    new: :create, create: :create, 
+    index: :read, history: :read, show: :read, view: :read, 
+    edit: :update, update: :update,
+    destroy: :delete
+  }
   @@authorization_klass = nil
   @@model_klass = nil
 
@@ -114,7 +120,7 @@ class ApplicationController < ActionController::Base
     new_params = params.dup
     keys.each do |key|
       next unless new_params.key?(key)
-      new_params[key] = Uri.new(id: new_params[key])
+      new_params[key] = new_params[key].is_a?(Array) ? new_params[key].map{|x| Uri.new(id: x)} : Uri.new(id: new_params[key])
     end
     new_params
   end

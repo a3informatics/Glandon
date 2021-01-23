@@ -43,12 +43,14 @@ class UsersController < ApplicationController
   end
 
   def update
+    ua = @user.my_access
     current_roles = @user.role_list
     if @user.removing_last_admin?(user_params)
       flash[:error] = "You cannot remove the last system administrator."
       redirect_to users_path
     else
-      if @user.update(user_params)
+      ua.has_role = ids_to_uris(user_params, [:role_ids])[:role_ids]
+      if ua.save
         AuditTrail.update_event(current_user, "User #{@user.email} roles updated from #{current_roles} to #{@user.role_list}")
         redirect_to users_path, success: "User roles for #{@user.email} successfully updated."
       else
@@ -101,10 +103,6 @@ private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, {role_ids: []})
-  end
-
-  def model_klass
-    User
   end
 
 end

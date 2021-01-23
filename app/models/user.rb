@@ -161,7 +161,7 @@ class User < ApplicationRecord
   #
   # @return [Boolean] returns true if removing last admin
   def removing_last_admin?(params)
-    return false unless params[:role_ids].include?(Role.where_only(name: "sys_admin").id)
+    return false if params[:role_ids].include?(Role.where_only(name: "sys_admin").id)
     return false unless self.has_role?(:sys_admin)
     return false if User.all.select{ |u| u.role_list.include?("System Admin")}.size > 1
     return true

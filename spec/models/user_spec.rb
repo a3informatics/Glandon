@@ -107,8 +107,8 @@ describe "User" do
     it "detects if removing the last administrator role in the system, one admin" do
       user = ua_add_user(email: C_EMAIL, role: :sys_admin)
       expect(user.role_list_stripped).to eq("Reader, System Admin")
-      expect(user.removing_last_admin?({:role_ids => [Role.where_only(name: "sys_admin").id]})).to eq(true)
-      expect(user.removing_last_admin?({:role_ids => [Role.where_only(name: "reader").id]})).to eq(false)
+      expect(user.removing_last_admin?({:role_ids => [Role.where_only(name: "sys_admin").id]})).to eq(false)
+      expect(user.removing_last_admin?({:role_ids => [Role.where_only(name: "reader").id]})).to eq(true)
     end
 
     it "detects if removing the last administrator role in the system, two admins" do
