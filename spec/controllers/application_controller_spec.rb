@@ -12,6 +12,13 @@ describe ApplicationController, type: :controller do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_4.ttl")
+      load_data_file_into_triple_store("mdr_roles.ttl")
+      load_data_file_into_triple_store("mdr_role_permissions.ttl")
       load_cdisc_term_versions(1..2)
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -111,6 +118,7 @@ describe ApplicationController, type: :controller do
       uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       uri_2 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       base = {id: "xxx", fix_id: uri_1.to_id, leave: "YYY"}
+
       params = base.dup
       expected = base.dup
       expected[:fix_id] = uri_1
@@ -118,6 +126,7 @@ describe ApplicationController, type: :controller do
       expect(actual).to eq(expected)
       expect(params).to eq(base)
       base = {id: "xxx", fix_id: uri_1.to_id, and_id: uri_2.to_id, leave: "YYY"}
+
       params = base.dup
       expected = base.dup
       expected[:fix_id] = uri_1
@@ -125,9 +134,17 @@ describe ApplicationController, type: :controller do
       actual = controller.ids_to_uris(params, [:fix_id, :and_id])
       expect(actual).to eq(expected)
       expect(params).to eq(base)
+
       params = base.dup
       expected = base.dup
       expected[:fix_id] = uri_1
+      actual = controller.ids_to_uris(params, [:fix_id])
+      expect(actual).to eq(expected)
+      expect(params).to eq(base)
+
+      base = {fix_id: [uri_1.to_id, uri_2.to_id]}
+      params = base.dup
+      expected = {fix_id: [uri_1, uri_2]}
       actual = controller.ids_to_uris(params, [:fix_id])
       expect(actual).to eq(expected)
       expect(params).to eq(base)
