@@ -23,6 +23,7 @@ module ApplicationHelper
     sdtm_models: {link: "/sdtm_models/history", text: "CDISC SDTM Model", icon: "icon-sdtm"},
     sdtm_igs: {link: "/sdtm_igs/history", text: "CDISC SDTM IGs", icon: "icon-sdtm"},
     sdtm_ig_domains: {link: "/sdtm_ig_domains", text: "SDTM IG Domains", icon: "icon-sdtm"},
+    sdtm_sponsor_domains: {link: "/sdtm_sponsor_domains", text: "SDTM Sponsor Domains", icon: "icon-sdtm"},
     sdtm_classes: {link: "/sdtm_classes", text: "Classes", icon: "icon-sdtm"},
     adam_igs: {link: "/adam_igs/history", text: "CDISC ADaM IGs", icon: "icon-sdtm"},
     adam_ig_datasets: {link: "/adam_ig_datasets/history", text: "CDISC ADaM IG Datasets", icon: "icon-sdtm"},
@@ -245,7 +246,7 @@ module ApplicationHelper
 			thesauri: @category_term, cdisc_terms: @category_term, managed_concepts: @category_term,
 			biomedical_concept_templates: @category_biocon, biomedical_concept_instances: @category_biocon,
 			forms: @category_forms,
-			sdtm_models: @category_sdtm, sdtm_igs: @category_sdtm, sdtm_ig_domains: @category_sdtm, sdtm_classes: @category_sdtm,
+			sdtm_models: @category_sdtm, sdtm_igs: @category_sdtm, sdtm_ig_domains: @category_sdtm, sdtm_sponsor_domains: @category_sdtm, sdtm_classes: @category_sdtm,
 			adam_igs: @category_adam, adam_ig_datasets: @category_adam
 		}
 

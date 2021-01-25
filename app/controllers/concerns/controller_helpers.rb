@@ -38,7 +38,7 @@ private
     latest_item = latest.nil? ? false : latest == object.uri
     indicators = {current: object.current?, extended: false, extends: false, version_count: 0, subset: false, subsetted: false}
     result = {edit_path: "", tags_path: "", status_path: "", current_path: "", delete_path: "", show_path: "", search_path: "",
-      list_cn_path: "", impact_path: "", clone_path: "", indicators: indicators}
+      list_cn_path: "", impact_path: "", clone_path: "", indicators: indicators }
 
     result[:show_path] = path_for(:show, object)
     result[:search_path] = path_for(:search, object)
@@ -49,7 +49,7 @@ private
 
     if edit && object.edit? && latest_item
       result[:edit_path] = path_for(:edit, object)
-      # result[:tags_path] = path_for(:edit_tags, object)
+      result[:bca_path] = path_for(:bc_associations, object)
     end
     if !current_user.is_only_community?
       result[:compare_path] = path_for(:compare, object)

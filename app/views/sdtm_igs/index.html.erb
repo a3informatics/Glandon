@@ -19,15 +19,6 @@
     To see SDTM IG's respective History page, click on it.
   <% end %>
 
-  <% content_for :actions do %>
-
-    <% if policy(SdtmIg).new? %>
-      <a href="#" class="btn medium green" id="new_sdtm_model">
-        <span class="icon-plus text-tiny"></span>&nbsp; New SDTM IG
-      </a>
-    <% end %>
-  <% end %>
-
   <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "SDTM IGs", url: sdtm_igs_path } %>
 
 </div>

@@ -1,5 +1,5 @@
 import { historyBtn, showBtn } from 'shared/ui/buttons'
-import { icons, iconTypes, renderIcon } from 'shared/ui/icons'
+import { icons, iconTypes, renderIcon, iconsInline } from 'shared/ui/icons'
 import { renderIndicators } from 'shared/ui/indicators'
 import { renderTagsInline } from 'shared/ui/tags'
 import { getRdfNameByType } from 'shared/helpers/rdf_types'
@@ -185,11 +185,56 @@ function dtItemTypeColumn(opts = {}) {
       const itemType = getRdfNameByType( data );
 
       return type === 'display' ? 
-        iconTypes.renderIcon(data, { owner: r.uri, ttip: true }) : 
+        iconTypes.renderIcon(data, { owner: (r.owner || r.uri), ttip: true }) : 
         itemType
 
     }
   }
+}
+
+/**
+ * Returns column definition for a select editable column
+ * Requires the data attribute to be an object which contains 'label' and 'id' props
+ * @param {string} name data property name
+ * @param {string} valueProp Name of the data value property (what is edited) [default='id']
+ * @param {string} labelProp Name of the data label property (what is displayed) [default='label']
+ * @param {object} opts additional column opts
+ * @return {object} DataTables inline editable column definition
+ */
+function dtSelectEditColumn(name, { 
+  valueProp = 'id', 
+  labelProp = 'label',
+  opts = {} 
+} = {}) {
+  return { 
+    className: "editable inline",
+    data: `${ name }.${ valueProp }`,
+    render: (data, type, row) => row[name][labelProp],
+    editField: (opts.editField || name),
+  }
+}
+
+/**
+ * Renders a clickable Remove icon in a cell 
+ * @param {string} text Text on the icon's tooltip, optional
+ * @param {function} isDisabledFn Function that will determine whether remove button is disabled, optional
+ * @return {object} DataTables row remove column definition
+ */
+function dtRowRemoveColumn({ 
+  text = 'Remove', 
+  isDisabledFn = () => {} 
+} = {}) {
+
+  return {
+    className: 'fit',
+    render: (data, type, r, m) => type === 'display' ?
+        iconsInline.removeIcon({
+          ttip: true,
+          ttipText: text,
+          disabled: isDisabledFn( r )
+        }) : ''
+  }
+  
 }
 
 export {
@@ -205,5 +250,7 @@ export {
   // Editable columns
   dtTrueFalseEditColumn,
   dtInlineEditColumn,
-  dtExternalEditColumn
+  dtExternalEditColumn,
+  dtSelectEditColumn,
+  dtRowRemoveColumn
 }

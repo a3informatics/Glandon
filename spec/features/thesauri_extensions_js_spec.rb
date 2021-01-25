@@ -11,6 +11,7 @@ describe "Thesauri Extensions", :type => :feature do
   include ItemsPickerHelpers
   include EditorHelpers
   include TagHelpers
+  include TokenHelpers
 
   describe "The Content Admin User can", type: :feature, js: true do
 
@@ -371,42 +372,36 @@ describe "Thesauri Extensions", :type => :feature do
       w.close
     end
 
-    it "edit timeout warnings and extend" do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
+    it "token timers, warnings, extension and expiration" do
 
-      edit_extension 'C66770E'
+      token_ui_check(@user_c) do
+        edit_extension 'C66770E'
+      end 
 
-      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
-
-      expect( find('#imh_header')[:class] ).to include 'warning'
-
-      find( '#timeout' ).click
-      wait_for_ajax 10
-
-      expect( find('#imh_header')[:class] ).not_to include 'warning'
-
-      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
-
-      expect( find('#imh_header')[:class] ).to include 'danger'
-
-      sleep 28
-
-      expect( find('#timeout')[:class] ).to include 'disabled'
-      expect( find('#imh_header')[:class] ).not_to include 'danger'
-
-      Token.restore_timeout
     end
 
-    it "prevents edits when edit lock expires" do
-      Token.set_timeout(3)
+    it "token timer, expires edit lock, prevents changes" do
 
-      edit_extension 'C66770E'
-      sleep 5
-      find('#new-item-button').click
-      wait_for_ajax 10
-      expect(page).to have_content 'The edit lock has timed out'
-      remove_from_extension('NC00001001C')
-      expect(page).to have_content 'The edit lock has timed out'
+      go_to_edit = proc { edit_extension 'C66770E' }
+      do_an_edit = proc do 
+
+        find('#new-item-button').click
+        wait_for_ajax 10
+        expect(page).to have_content 'The edit lock has timed out'
+        remove_from_extension('NC00001001C')
+
+      end 
+
+      token_expired_check(go_to_edit, do_an_edit)
+      
+    end
+
+    it "releases edit lock on page leave" do
+
+      token_clear_check do 
+        edit_extension 'C66770E'
+      end
+
     end
 
     it "can refresh page while editing in a locked state, creates new version" do

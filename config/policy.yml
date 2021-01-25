@@ -342,6 +342,18 @@ defaults: &defaults
       edit_data: edit
       edit_another: edit
       update_property: update
+  SdtmSponsorDomainPolicy:
+    policies: {}
+    alias:
+      create_from: create
+      add_non_standard_variable: update
+      delete_non_standard_variable: update
+      editor_metadata: show
+      update_variable: update
+      bc_associations: update
+      add_bcs: update
+      remove_bcs: update
+      remove_all_bcs: update
   FormPolicy:
     policies: {}
     alias:

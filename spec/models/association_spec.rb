@@ -12,8 +12,8 @@ describe "Association" do
   describe "Basic tests" do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
     after :all do

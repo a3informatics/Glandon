@@ -476,6 +476,25 @@ Rails.application.routes.draw do
       # get :export_ttl
     end
   end
+  resources :sdtm_sponsor_domains, :only => [:show, :index, :edit, :update, :destroy] do
+    collection do
+      get :history
+      post :create_from
+#      post :create_from_ig
+#      post :create_from_class
+      get :editor_metadata
+    end
+    member do
+      get :show_data
+      post :add_non_standard_variable
+      delete :delete_non_standard_variable
+      put :update_variable
+      get :bc_associations
+      post :add_bcs
+      put :remove_bcs
+      put :remove_all_bcs
+    end
+  end
 
   #ADAM
   resources :adam_igs, :only => [:show, :index] do

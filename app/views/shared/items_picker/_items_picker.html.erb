@@ -56,6 +56,14 @@
               <span class="icon-forms bg-accent-aqua"></span>
               <span>Forms</span>
             </div>
+            <div class="tab-option with-icon" id="tab-sdtm-ig-domain">
+              <span class="icon-sdtm bg-prim-light"></span>
+              <span>SDTM IG Domains</span>
+            </div>
+            <div class="tab-option with-icon" id="tab-sdtm-class">
+              <span class="icon-sdtm bg-prim-light"></span>
+              <span>SDTM Classes</span>
+            </div>
           </div>
 
           <div class="tab-wrap closed" data-tab="tab-thesauri" id="selector-thesauri">
@@ -78,7 +86,12 @@
           <div class="tab-wrap closed" data-tab="tab-form" id="selector-form">
             <%= render partial: "shared/items_picker/managed_item_selector" %>
           </div>
-
+          <div class="tab-wrap closed" data-tab="tab-sdtm-ig-domain" id="selector-sdtm-ig-domain">
+            <%= render partial: "shared/items_picker/managed_item_selector" %>
+          </div>
+          <div class="tab-wrap closed" data-tab="tab-sdtm-class" id="selector-sdtm-class">
+            <%= render partial: "shared/items_picker/managed_item_selector" %>
+          </div>
 
         </div>
 

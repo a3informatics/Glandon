@@ -339,9 +339,10 @@ class Excel::Engine
   # @return [Void] no return
   def set_property_with_tag(params)
     check_params(__method__.to_s, params, [:row, :col, :object, :mapping, :property, :can_be_empty, :additional])
-    value = check_value(params[:row], params[:col], params[:can_be_empty])
-    return if value.blank? && params[:can_be_empty]
+    value = check_value(params[:row], params[:col], true)
     value = check_mapped(params[:row], params[:col], params[:mapping][:map])
+    return if value.blank? && params[:can_be_empty]
+    @errors.add(:base, "Blank tag value detected in row #{params[:row]} column #{params[:col]}.") if value.blank? 
     return if value.blank?
     tag = find_tag(params[:additional][:path], value)
     return if tag.blank?

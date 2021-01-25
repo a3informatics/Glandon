@@ -19,15 +19,6 @@
     To see SDTM Model's respective History page, click on it.
   <% end %>
 
-  <% content_for :actions do %>
-
-    <% if policy(SdtmModel).new? %>
-      <a href="#" class="btn medium green" id="new_sdtm_model">
-        <span class="icon-plus text-tiny"></span>&nbsp; New SDTM Model
-      </a>
-    <% end %>
-  <% end %>
-
   <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "SDTM Models", url: sdtm_models_path } %>
 
 </div>

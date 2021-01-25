@@ -107,6 +107,32 @@ describe ApplicationController, type: :controller do
       expect{controller.protect_from_bad_id({id: "xxx"})}.to raise_error(Errors::ApplicationLogicError, "Possible threat from bad id detected xxx.")
     end
 
+    it "ids to uris" do
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      uri_2 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      base = {id: "xxx", fix_id: uri_1.to_id, leave: "YYY"}
+      params = base.dup
+      expected = base.dup
+      expected[:fix_id] = uri_1
+      actual = controller.ids_to_uris(params, [:fix_id])
+      expect(actual).to eq(expected)
+      expect(params).to eq(base)
+      base = {id: "xxx", fix_id: uri_1.to_id, and_id: uri_2.to_id, leave: "YYY"}
+      params = base.dup
+      expected = base.dup
+      expected[:fix_id] = uri_1
+      expected[:and_id] = uri_2
+      actual = controller.ids_to_uris(params, [:fix_id, :and_id])
+      expect(actual).to eq(expected)
+      expect(params).to eq(base)
+      params = base.dup
+      expected = base.dup
+      expected[:fix_id] = uri_1
+      actual = controller.ids_to_uris(params, [:fix_id])
+      expect(actual).to eq(expected)
+      expect(params).to eq(base)
+    end
+
     it "path for" do
       expect{controller.path_for(:action, Fuseki::Base.new)}.to raise_error(Errors::ApplicationLogicError, "Generic path_for method called. Controllers should overload.")
     end

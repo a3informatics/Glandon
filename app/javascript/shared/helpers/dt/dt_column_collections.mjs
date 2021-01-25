@@ -1,8 +1,8 @@
-import { iconsInline } from 'shared/ui/icons'
+import { iconsInLine } from 'shared/ui/icons'
 import { termReferences } from 'shared/ui/collections'
 
 import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn,
-         dtItemTypeColumn, dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn } 
+         dtItemTypeColumn, dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn, dtSelectEditColumn, dtRowRemoveColumn } 
   from 'shared/helpers/dt/dt_columns'
 
 
@@ -77,21 +77,25 @@ function dtChildrenColumns(opts = {}) {
 /**
  * Column definitions for a Managed Items panel
  * @param {object} opts Additional column options
- * @param {boolean} withIcons Set to true to inlcude type icon column as the first one
+ * @param {boolean} typeColumn Set to true to inlcude type icon column 
+ * @param {boolean} ownerColumn Set to true to inlcude owner column
  * @return {Array} DataTables Managed Items panel column definitions collection
  */
-function dtManagedItemsColumns(opts = {}, withIcons = false) {
+function dtManagedItemsColumns(opts = {}, typeColumn = false, ownerColumn = false) {
   
   const columns = [
-    { data: 'identifier', ...opts },
     { ...opts, render: (dt, t, r) => r.version || r.semantic_version },
+    { data: 'identifier', ...opts },
     { data: 'label', ...opts },
-    { data: 'version_label', ...opts } 
+    { data: 'version_label', ...opts }
   ];
 
-  if ( withIcons )
+  if ( ownerColumn )
+    columns.splice( 0, 0, { data: 'owner', ...opts });
+
+  if ( typeColumn )
     columns.splice( 0, 0, dtItemTypeColumn() );
-  
+
   return columns; 
 
 };
@@ -122,16 +126,8 @@ function dtCLEditColumns() {
       className: 'editable external edit-tags'
     }),
     dtIndicatorsColumn(),
-
     // Remove / unlink button
-    {
-      className: 'fit',
-      render: (data, type, r, m) => type === 'display' ?
-          iconsInline.removeIcon({
-            ttip: true,
-            ttipText: 'Remove / unlink item'
-          }) : ''
-    }
+    dtRowRemoveColumn( 'Remove/unlink item' )
   ];
 };
 
@@ -174,6 +170,26 @@ function dtBCEditColumns() {
     }
   ];
 };
+
+/**
+ * Column definitions for SDTM IG Domain edit
+ * @return {Array} DataTables SDTM IG Domain edit column definitions collection
+ */
+function dtSDTMIGDomainEditColumns() {
+
+  return [
+    { data: "ordinal" },
+    dtTrueFalseEditColumn( 'used' ),
+    dtInlineEditColumn( 'name' ),
+    dtInlineEditColumn( 'label' ),
+    dtSelectEditColumn( 'typed_as' ),
+    dtInlineEditColumn( 'format' ),
+    dtSelectEditColumn( 'classified_as' ),
+    dtInlineEditColumn( 'description' ),
+    dtSelectEditColumn( 'compliance' )
+  ]
+
+}
 
 
 /*** Show ***/
@@ -234,8 +250,7 @@ function dtSDTMClassShowColumns() {
     { data: "label" },
     { data: "typed_as" },
     { data: "description" },
-    { data: "classified_as" },
-    { data: "sub_classified_as" }
+    { data: "classified_as" }
   ];
 };
 
@@ -263,12 +278,11 @@ function dtSDTMIGDomainShowColumns() {
     { data: "ordinal" },
     { data: "name" },
     { data: "label" },
-    { data: "typed_as" },
+    { data: "typed_as.label" },
     { data: "format" },
-    { data: "classified_as" },
-    { data: "sub_classified_as" },
+    { data: "classified_as.label" },
     { data: "description" },
-    { data: "compliance" }
+    { data: "compliance.label" }
   ];
 };
 
@@ -299,6 +313,7 @@ export {
   dtBCEditColumns,
   dtFormShowColumns,
   dtSDTMClassShowColumns,
+  dtSDTMIGDomainEditColumns,
   dtSDTMShowColumns,
   dtSDTMIGDomainShowColumns,
   dtADaMIGDatasetShowColumns

@@ -12,13 +12,23 @@ describe "Token Locks", :type => :feature do
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl",
       "thesaurus_new_airports.ttl", "thesaurus_subsets_1.ttl", "thesaurus_subsets_2.ttl",
-      "thesaurus_extension.ttl"]
+      "thesaurus_extension.ttl", "SDTM_Sponsor_Domain.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..65)
     load_local_file_into_triple_store("features/thesaurus/subset", "subsets_input_4.ttl")
     load_data_file_into_triple_store("mdr_identification.ttl")
     load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     load_test_file_into_triple_store("forms/CRF TEST 1.ttl")
+
+    # SDTM Files 
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_data_file_into_triple_store("complex_datatypes.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
 
     Token.delete_all
 
@@ -148,27 +158,32 @@ describe "Token Locks", :type => :feature do
 
     end
 
-    it "locks a domain (REQ-MDR-EL-010)"#, js:true do
+    it "locks a SDTM Sponsor Domain (REQ-MDR-EL-010)", js:true do
 
-    #   in_browser(:one) do
-    #     ua_generic_login 'token_user_1@example.com'
-    #     click_navbar_sponsor_domain
-    #     find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'History').click
-    #     expect(page).to have_content 'History: DS Domain'
-    #     find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'Edit').click
-    #     expect(page).to have_content 'Edit:'
-    #   end
+      in_browser(:one) do
+        ua_generic_login 'token_user_1@example.com'
+        click_navbar_sdtm_sponsor_domains
+        wait_for_ajax 20
+        ui_table_search('index', 'SDTM Sponsor Domain')
+        find(:xpath, "//tr[contains(.,'SDTM Sponsor Domain')]/td/a").click
+        wait_for_ajax 10
+        context_menu_element_v2('history', '0.1.0', :edit)
+        wait_for_ajax 10
+        expect(page).to have_content 'SDTM Sponsor Domain Editor'
+      end
 
-    #   in_browser(:two) do
-    #     ua_generic_login 'token_user_2@example.com'
-    #     click_navbar_sponsor_domain
-    #     find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'History').click
-    #     expect(page).to have_content 'History: DS Domain'
-    #     find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'Edit').click
-    #     expect(page).to have_content 'The item is locked for editing by another user.'
-    #   end
+      in_browser(:two) do
+        ua_generic_login 'token_user_2@example.com'
+        click_navbar_sdtm_sponsor_domains
+        wait_for_ajax 20
+        ui_table_search('index', 'SDTM Sponsor Domain')
+        find(:xpath, "//tr[contains(.,'SDTM Sponsor Domain')]/td/a").click
+        wait_for_ajax 10
+        context_menu_element_v2('history', '0.1.0', :edit)
+        expect(page).to have_content 'The item is locked for editing by user: token_user_1@example.com.'
+      end
 
-    # end
+    end
 
     it "locks a subset", js:true do
 

@@ -1,0 +1,60 @@
+ <%= stylesheet_link_tag "shared/tables_editable" %>
+
+<%= javascript_tag "let sdtmSDEditorUrls = {
+                          data: '#{ edit_sdtm_sponsor_domain_path(item) }',
+                          metadata: '#{ editor_metadata_sdtm_sponsor_domains_path }',
+                          updateVar: '#{ update_variable_sdtm_sponsor_domain_path(item) }',
+                          newVar: '#{ add_non_standard_variable_sdtm_sponsor_domain_path(item) }',
+                          removeVar: '#{ delete_non_standard_variable_sdtm_sponsor_domain_path(item) }'
+                        } " %>
+
+ <div class="col-md-12 card wide">
+    
+    <div class="card-header">
+      SDTM Sponsor Domain Editor
+    </div>
+
+    <div class="card-content" id="editor-panel">
+    
+      <div class="btns-wrap">
+
+        <a href="#" class="btn medium white ttip" id="refresh-button">
+          <span class="ttip-text shadow-small text-medium">Reload data in table</span>
+          <span class="icon-history"></span> Refresh
+        </a>
+        <a href="#" class="btn medium green ttip" id="new-variable-button">
+          <span class="ttip-text shadow-small text-medium">Create a blank new Variable</span>
+          <span class="icon-plus text-tiny"></span> New Variable
+        </a>
+        <span id="editor-help" class="icon-help text-small text-light clickable ttip" style="margin-left: 5px;">
+          <span class="ttip-text shadow-small font-light text-medium"> SDTM SD Editor Help </span>
+        </span>
+
+      </div>
+
+      <div class="table-cardstyle loading-with-btns">
+        
+        <table id="editor" class="table">
+          <thead>
+            <tr>
+              <th class="fit">Ordinal</th>
+              <th class="fit">Used</th>
+              <th>Name</th>
+              <th>Label</th>
+              <th>Datatype</th>
+              <th class="no-break">CT or Format</th>
+              <th>Role</th>
+              <th>Notes</th>
+              <th>Core</th>
+              <th class="fit"></th>
+            </tr>
+          </thead>
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<%= render partial: "shared/help_dialogs/sdtm_editor_help", :locals => { title: "How to use SDTM Sponsor Domain Editor" } %>

@@ -132,6 +132,7 @@ module UiHelpers
 
   def ui_table_search(table_id, text)
     input = find(:xpath, "//*[@id=\"#{table_id}_filter\"]/label/input")
+    input.click
     input.set(text)
   end
 
@@ -399,7 +400,7 @@ module UiHelpers
 			main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_cl: "main_nav_term",
 			main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
 			main_nav_f: "main_nav_forms",
-			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm", main_nav_c: "main_nav_sdtm",
+			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm", main_nav_c: "main_nav_sdtm", main_nav_ssd: "main_nav_sdtm",
 			main_nav_aig: "main_nav_adam", main_nav_aigd: "main_nav_adam"
 		}
 	end
@@ -536,6 +537,10 @@ module UiHelpers
     ui_navbar_click('main_nav_c')
   end
 
+  def click_navbar_sdtm_sponsor_domains
+    ui_navbar_click('main_nav_ssd')
+  end
+
 	#ADaM
 	def click_navbar_adam_ig
     ui_navbar_click('main_nav_aig')
@@ -603,7 +608,8 @@ module UiHelpers
 			unpair: "Unpair",
 			show_paired: "Show Paired",
       crf: "CRF",
-      acrf: "aCRF"
+      acrf: "aCRF",
+      bca: "BC Associations"
     }
 	end
 
@@ -743,7 +749,27 @@ module UiHelpers
 
 		wait_for_ajax 10
 		expect(page).to have_content "Version History of '#{identifier}'" if success
-	end
+  end
+  
+  def ui_create_sdtm_sd(prefix, identifier, label, based_on, success = true)
+    click_navbar_sdtm_sponsor_domains
+    wait_for_ajax 10
+    
+    click_on 'New SDTM Sponsor Domain'
+    ui_in_modal do
+      fill_in 'prefix', with: prefix
+      fill_in 'identifier', with: identifier
+      fill_in 'label', with: label
+
+      find('#new-item-base').click
+      ip_pick_managed_items(based_on[:type], [ { identifier: based_on[:identifier], version: based_on[:version] } ], 'new-sdtm-sd')
+
+      click_on 'Submit'
+    end
+
+		wait_for_ajax 10
+		expect(page).to have_content "Version History of '#{identifier}'" if success
+  end
 
   # Return
   def ui_hit_return(id)

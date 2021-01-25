@@ -42,8 +42,8 @@ class IsoConceptSystem < Fuseki::Base
     parts << "SELECT DISTINCT ?s ?p ?o WHERE {"
     parts << "  ?r rdf:type #{rdf_type.to_ref} . ?r isoC:prefLabel \"#{C_ROOT_LABEL}\" .\n ?r isoC:isTopConcept ?c0 ."
     path[0..-2].each_with_index {|x, index| parts << "  ?c#{index} rdf:type #{IsoConceptSystem::Node.rdf_type.to_ref} .\n ?c#{index} isoC:prefLabel \"#{x}\" .\n ?c#{index} isoC:narrower ?c#{index+1} ."}
-    parts << "  ?c#{path.length} rdf:type #{IsoConceptSystem::Node.rdf_type.to_ref} .\n ?c#{path.length} isoC:prefLabel \"#{path.last}\" ."
-    parts << "  BIND (?c#{path.length} as ?s) .\n ?s ?p ?o"
+    parts << "  ?c#{path.length-1} rdf:type #{IsoConceptSystem::Node.rdf_type.to_ref} .\n ?c#{path.length-1} isoC:prefLabel \"#{path.last}\" ."
+    parts << "  BIND (?c#{path.length-1} as ?s) .\n ?s ?p ?o"
     parts << "}"
     query_string = parts.join("\n")
     query_results = Sparql::Query.new.query(query_string, "", [:isoC])

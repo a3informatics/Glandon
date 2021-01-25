@@ -24,7 +24,9 @@ describe SdtmIgDomainsController do
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
     end
 
     it "index, JSON" do  
@@ -69,27 +71,6 @@ describe SdtmIgDomainsController do
       expect(assigns(:scope_id)).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
       expect(response).to render_template("history")
     end
-
-    # it "presents a domain" do
-    #   params = 
-    #   { 
-    #     :id => "IG-CDISC_SDTMIGRS", 
-    #     sdtm_ig_domain: 
-    #     {
-    #       :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3" 
-    #     }
-    #   }
-    #   get :show, params:params
-    #   expect(response).to render_template("show")
-    # end
-
-    # it "allows for a SDTM Model to be exported as JSON" do
-    #   get :export_json, params:{ :id => "IG-CDISC_SDTMIGRS", sdtm_ig_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3" }}
-    # end
-
-    # it "allows for a SDTM Model to be exported as TTL" do
-    #   get :export_ttl, params:{ :id => "IG-CDISC_SDTMIGRS", sdtm_ig_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3" }}
-    # end
 
   end
 

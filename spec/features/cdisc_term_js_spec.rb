@@ -9,6 +9,7 @@ describe "CDISC Term", :type => :feature do
   include WaitForAjaxHelper
   include DownloadHelpers
   include CdiscCtHelpers
+  include PauseHelpers
 
   def sub_dir
     return "features/cdisc_term"

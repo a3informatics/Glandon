@@ -1,7 +1,7 @@
 import TablePanel from 'shared/base/table_panel'
 
 import { dtManagedItemsColumns } from 'shared/helpers/dt/dt_column_collections'
-import { isCDISC } from 'shared/helpers/utils'
+import { hasColumn } from 'shared/helpers/dt/utils'
 
 /**
  * Managed Items Panel
@@ -12,9 +12,9 @@ import { isCDISC } from 'shared/helpers/utils'
 export default class ManagedItemsPanel extends TablePanel {
 
   /**
-   * Create an Index Panel
+   * Create a Managed Items Panel instance
    * @param {Object} params Instance parameters
-   * @param {string} params.selector JQuery selector of the target table (Optional)
+   * @param {string} params.selector Unique selector of the parent element
    * @param {string} params.url Url of source data
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {int} params.count Count of items fetched in one request [default = 5000]
@@ -24,7 +24,7 @@ export default class ManagedItemsPanel extends TablePanel {
    * @param {array} params.buttons Buttons to add to the table, optional
    */
   constructor({
-    selector = "#managed-items",
+    selector,
     url,
     param,
     count = 5000,
@@ -47,17 +47,16 @@ export default class ManagedItemsPanel extends TablePanel {
   /** Private **/
 
 
-  get _withIcons() {
-    return $( this.selector ).find( 'th:contains("Type")' ).length > 0; 
-  }
-
-
   /**
    * Get default column definitions for IsoManaged items
    * @return {Array} Array of DataTable column definitions
    */
   get _defaultColumns() {
-    return dtManagedItemsColumns( {}, this._withIcons )
+
+    const withType = hasColumn( this.selector, 'Type' ),
+          withOwner = hasColumn( this.selector, 'Owner' )
+    return dtManagedItemsColumns( {}, withType, withOwner )
+
   }
 
 }

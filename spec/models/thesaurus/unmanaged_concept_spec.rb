@@ -1290,4 +1290,40 @@ describe "Thesaurus::UnmanagedConcept" do
 
   end
 
+  describe "update tests, custom properties, GLAN-1474" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_local_file_into_triple_store(sub_dir, "glan_1474_custom_properties.ttl")
+      load_local_file_into_triple_store(sub_dir, "glan_1474_code_list.ttl")
+      load_cdisc_term_versions(1..30)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    after :each do
+    end
+
+    it "copy custom properties across" do
+      # Setup data
+      parent = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C100130/V1#C100130"))
+      child = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/C100130/V1#C100130_SC71384"))
+      # Create new version
+      new_parent = parent.create_next_version
+      # Check custom properties ok and in right state from the creation of the new version
+      check_file_actual_expected(child.load_custom_properties(parent).name_value_pairs, sub_dir, "update_with_clone_glan_1474_expected_1.yaml")
+      check_file_actual_expected(child.load_custom_properties(new_parent).name_value_pairs, sub_dir, "update_with_clone_glan_1474_expected_2.yaml")
+      # Clean initial setup
+      child = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/C100130/V1#C100130_SC71384"))
+      # Update with clone
+      new_child = child.update_with_clone({preferred_term: "Biological Relativexxxx"}, new_parent)
+      check_file_actual_expected(new_child.load_custom_properties(new_parent).name_value_pairs, sub_dir, "update_with_clone_glan_1474_expected_3.yaml")
+    end
+
+  end
+
 end

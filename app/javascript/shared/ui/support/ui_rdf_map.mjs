@@ -71,6 +71,7 @@ const rdfMap = {
   [ getRdfType('SDTM_IG') ]: _sdtm,
   [ getRdfType('SDTM_DOMAIN') ]: _sdtm,
   [ getRdfType('SDTM_CLASS') ]: _sdtm,
+  [ getRdfType('SDTM_SD') ]: _sdtm,
 
   // Form Sub Types
 

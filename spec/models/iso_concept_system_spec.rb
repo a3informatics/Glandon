@@ -78,7 +78,7 @@ describe IsoConceptSystem do
 
   end
 
-  describe "Path" do
+  describe "Path I" do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl"]
@@ -97,6 +97,24 @@ describe IsoConceptSystem do
     it "Find ADaM" do
       result = IsoConceptSystem.path(["CDISC", "ADaM"])
       check_file_actual_expected(result.to_h, sub_dir, "path_expected_2.yaml", equate_method: :iso_concept_system_equal)
+    end
+
+  end
+
+  describe "Path II" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_local_file_into_triple_store(sub_dir, "path_input_1.nq.gz")
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "Find Variable, multiple path" do
+      result = IsoConceptSystem.path(["CDISC", "SDTM-STD", "Variable", "Classification", "Qualifier", "Variable"])
+      check_file_actual_expected(result.to_h, sub_dir, "path_expected_3.yaml", equate_method: :iso_concept_system_equal)
     end
 
   end

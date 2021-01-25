@@ -28,6 +28,7 @@ export default class EditablePanel extends TablePanel {
    * @param {Object} params.tableOptions Custom DT options object, will be merged with this instance's _tableOpts, optional
    * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
    * @param {boolean} params.autoHeight Specifies whether the height of the table should match the window size, and add a horizontal scroll, optional
+   * @param {boolean} params.requiresMetadata Specifies whether the Editor requires additional metadata load, optional
    * @param {Object} args Optional additional arguments for extending classes
    */
   constructor({
@@ -44,14 +45,17 @@ export default class EditablePanel extends TablePanel {
     cache = true,
     tableOptions = {},
     loadCallback = () => {},
-    autoHeight = false
+    autoHeight = false,
+    requiresMetadata = false
   }, args = {}) {
 
     super({
-      selector, param, count, deferLoading, cache, tableOptions, loadCallback,
-      order, autoHeight, url: dataUrl, extraColumns: columns
+      url: dataUrl, 
+      extraColumns: columns,
+      selector, param, count, cache, tableOptions, loadCallback,
+      order, autoHeight, deferLoading
     }, {
-      updateUrl, fields, idSrc, 
+      updateUrl, fields, idSrc, requiresMetadata,
       ...args
     });
 
@@ -261,6 +265,12 @@ export default class EditablePanel extends TablePanel {
   _postformatUpdatedData(oldData, newData) { }
 
   /**
+   * Called after Editor initialized, use to load additional metadata (e.g. fetch options for Editor select field)
+   * @override for custom behavior
+   */
+  _loadMetadata() { }
+
+  /**
    * Override this to check for any condiditions that should not allow editing of the specific row
    * Return true for enabling editing, false for disabling
    * @param {object} modifier Contains the reference to the cell being edited
@@ -336,7 +346,12 @@ export default class EditablePanel extends TablePanel {
    * Initialize a new DataTable Editor
    */
   _initEditor() {
+
     this.editor = new $.fn.dataTable.Editor( this._editorOpts );
+
+    if ( this.requiresMetadata )
+      this._loadMetadata();
+
   }
 
   /**

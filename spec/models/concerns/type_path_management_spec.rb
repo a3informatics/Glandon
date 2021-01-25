@@ -13,6 +13,10 @@ describe TypePathManagement do
       expect(TypePathManagement.history_path(SdtmIgDomain.rdf_type.to_s)).to eq(Rails.application.routes.url_helpers.history_sdtm_ig_domains_path)
     end
 
+    it "returns a valid path, SDTM Sponsor Domain" do
+      expect(TypePathManagement.history_path(SdtmSponsorDomain.rdf_type.to_s)).to eq(Rails.application.routes.url_helpers.history_sdtm_sponsor_domains_path)
+    end
+
     it "returns a empty path for an invalid type" do
       expect(TypePathManagement.history_path("XXX")).to eq("")
     end

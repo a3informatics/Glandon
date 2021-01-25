@@ -87,6 +87,12 @@ const rdfTypesMap = {
     param: 'sdtm_class',
     url: '/sdtm_classes'
   },
+  SDTM_SD: {
+    rdfType: 'http://www.assero.co.uk/Tabulation#SdtmSponsorDomain',
+    name: 'SDTM Sponsor Domain',
+    param: 'sdtm_sponsor_domain',
+    url: '/sdtm_sponsor_domains'
+  },
 
   // Form Sub Types
   NORMAL_GROUP: {

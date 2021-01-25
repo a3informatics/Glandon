@@ -204,7 +204,7 @@ describe "Tags", :type => :feature do
       find_node('Tag1_1').double_click
       # Items tagged
       ui_in_modal do
-        ui_check_table_row('managed-items', 1, ["TEST", '1', 'Test Thesaurus'] )
+        ui_check_table_row('managed-items', 1, ["1", 'TEST', 'Test Thesaurus'] )
         click_on 'Close'
       end
 
@@ -214,8 +214,8 @@ describe "Tags", :type => :feature do
         ui_check_table_info('managed-items', 1, 3, 3, )
         #ui_check_table_row('managed-items', 2, ["NP000011P", '1', 'Not Set'] )
         ui_table_search('managed-items', 'NP000011P')
-        ui_check_table_cell('managed-items', 1, 1, 'NP000011P')
-        ui_check_table_cell('managed-items', 1, 2, '1')
+        ui_check_table_cell('managed-items', 1, 1, '1')
+        ui_check_table_cell('managed-items', 1, 2, 'NP000011P')
         ui_check_table_cell('managed-items', 1, 4, '')
         click_on 'Close'
       end
@@ -253,8 +253,8 @@ describe "Tags", :type => :feature do
         #expect(page).to have_xpath('//tr[contains(.,"Controlled Terminology")]', count: 3)
 
         ui_table_search('managed-items', 'C25681')
-        ui_check_table_cell('managed-items', 1, 1, 'C25681')
-        ui_check_table_cell('managed-items', 1, 2, '1')
+        ui_check_table_cell('managed-items', 1, 1, '1')
+        ui_check_table_cell('managed-items', 1, 2, 'C25681')
         ui_check_table_cell('managed-items', 1, 4, '2007-03-06 Release')
 
         click_on 'Close'
@@ -273,10 +273,18 @@ describe "Tags", :type => :feature do
   describe "Edit Concept Tags, Curator User", type: :feature, js: true do
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..3)
+      # Files 
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
       nv_destroy
       nv_create({ parent: '10', child: '999' })
       ua_curator_login
@@ -367,7 +375,7 @@ describe "Tags", :type => :feature do
 
     end
 
-    it "view and attach tags on a  Form" do
+    it "view and attach tags on a Form" do
 
       view_attach_detach_tags do
         click_navbar_forms
@@ -377,6 +385,21 @@ describe "Tags", :type => :feature do
         wait_for_ajax 20
         context_menu_element_v2('history', 'TESTF', :show)
         edit_tags 'Test Form'
+
+      end
+
+    end
+
+    it "view and attach tags on a SDTM Sponsor Domain" do
+
+      view_attach_detach_tags do
+        click_navbar_sdtm_sponsor_domains
+        wait_for_ajax 20
+
+        find(:xpath, '//tr[contains(.,"SDTM Sponsor Domain")]/td/a').click
+        wait_for_ajax 20
+        context_menu_element_v2('history', '0.1.0', :show)
+        edit_tags 'SDTM Sponsor Domain'
 
       end
 

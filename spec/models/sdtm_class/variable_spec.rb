@@ -16,6 +16,7 @@ describe SdtmClass::Variable do
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
     load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
   end
 
@@ -41,6 +42,16 @@ describe SdtmClass::Variable do
   it "allows an object to be found" do
     item = SdtmClass::Variable.find(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCAT"))
     check_file_actual_expected(item.to_h, sub_dir, "find_input.yaml", equate_method: :hash_equal)
+  end
+
+  it "return datatypes" do
+    datatypes = SdtmClass::Variable.datatypes
+    check_file_actual_expected(datatypes, sub_dir, "datatypes_expected_1.yaml", equate_method: :hash_equal)
+  end
+
+  it "return classification" do
+    classification = SdtmClass::Variable.classification
+    check_file_actual_expected(classification, sub_dir, "classification_expected_1.yaml", equate_method: :hash_equal)
   end
 
 end

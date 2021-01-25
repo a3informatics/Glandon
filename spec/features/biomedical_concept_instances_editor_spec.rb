@@ -426,11 +426,14 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
     end
 
     it "token timers, warnings, extension and expiration" do
+      # Special Token handling in BC Editor so a custom Token test required (instead of shared test from TokenHelpers)
+
       Token.delete_all
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 5)
+      cache_warning_time = @user_c.read_setting 'edit_lock_warning'
+      @user_c.write_setting 'edit_lock_warning', 10
+      Token.set_timeout 14
 
       go_to_edit 'HEIGHT'
-      sleep 5
 
       # Add another BC
       find('#add-bc-edit-button').click
@@ -442,7 +445,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       expect(find('.biomedical-concept', text: 'WEIGHT')[:class].include? 'warning').to eq(false)
       expect(find('.biomedical-concept', text: 'HEIGHT')[:class].include? 'warning').to eq(true)
 
-      sleep 5
+      sleep 2
 
       expect(find('.biomedical-concept', text: 'WEIGHT')[:class].include? 'warning').to eq(true)
 
@@ -461,22 +464,27 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       expect(find('.biomedical-concept', text: 'WEIGHT')[:class].include? 'warning').to eq(false)
 
       # Danger
-      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
+      sleep 10
 
       expect(find('.biomedical-concept', text: 'HEIGHT')[:class].include? 'danger').to eq(true)
       expect(find('.biomedical-concept', text: 'WEIGHT')[:class].include? 'danger').to eq(true)
 
-      sleep 28
+      sleep 5
 
       # Expired
       expect(page).to have_selector '.token-timeout.disabled', count: 2
       expect(page).to have_content '00:00', count: 2
 
       Token.restore_timeout
+      Token.delete_all
+      @user_c.write_setting('edit_lock_warning', cache_warning_time)
+
     end
 
     it "token timer, expires edit lock, prevents changes" do
-      Token.set_timeout(10)
+      # Special Token handling in BC Editor so a custom Token test required (instead of shared test from TokenHelpers)
+
+      Token.set_timeout 5
       go_to_edit "HEIGHT"
 
       # Add another BC
@@ -488,7 +496,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       # Load data
       click_bc 'WEIGHT', :edit
 
-      sleep 12
+      sleep 5
 
       ui_editor_select_by_location 2, 4
       ui_editor_fill_inline 'question_text', "Testing Edit Lock\n"
@@ -502,11 +510,13 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       expect(page).to have_content 'The edit lock has timed out'
 
       Token.restore_timeout
+
     end
 
     it "releases edit locks on page leave" do
+      # Special Token handling in BC Editor so a custom Token test required (instead of shared test from TokenHelpers)
+
       Token.delete_all
-      token_count = Token.all.count
       go_to_edit "HEIGHT"
 
       # Add BCs
@@ -520,14 +530,14 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         ip_pick_managed_items :bci, [ { identifier: 'BMI', version: '1' } ], 'add-bc-edit'
       end
 
-      expect(Token.all.count).to eq(token_count + 3)
+      expect(Token.all.count).to eq 3
 
       click_on 'Return'
       wait_for_ajax 20
 
-      expect(Token.all.count).to eq(token_count)
-    end
+      expect(Token.all.count).to eq 0
 
+    end
 
   end
 

@@ -35,6 +35,7 @@ describe "Dashboard", :type => :feature do
     expect(page).to_not have_link("main_nav_sig")
     expect(page).to_not have_link("main_nav_aig")
     expect(page).to_not have_link("main_nav_sd")
+    expect(page).to_not have_link("main_nav_ssd") 
   end
 
   it "displays the menu, content admin (REQ-MDR-UD-060)" do
@@ -55,6 +56,7 @@ describe "Dashboard", :type => :feature do
     expect(page).to have_link("main_nav_sig")
     expect(page).to have_link("main_nav_aig")
     expect(page).to have_link("main_nav_sd")
+    expect(page).to have_link("main_nav_ssd")    
   end
 
   it "displays the menu, curator (REQ-MDR-UD-060)" do
@@ -90,6 +92,7 @@ describe "Dashboard", :type => :feature do
     expect(page).to have_link("main_nav_sig")
     expect(page).to have_link("main_nav_aig")
     expect(page).to have_link("main_nav_sd")
+    expect(page).to have_link("main_nav_ssd")
     expect(page).to_not have_link("main_nav_bj")
     expect(page).to_not have_link("main_nav_u")
     expect(page).to_not have_link("main_nav_im")
@@ -133,6 +136,7 @@ describe "Dashboard", :type => :feature do
     expect(page).to_not have_link("main_nav_sig")
     expect(page).to_not have_link("main_nav_aig")
     expect(page).to_not have_link("main_nav_sd")
+    expect(page).to_not have_link("main_nav_ssd")
   end
 
 end

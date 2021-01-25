@@ -49,4 +49,16 @@ describe SdtmVariableName do
     expect(SdtmVariableName.new("AACC").with_prefix("ww")).to eq("AACC")
   end
 
+  it "checks if prefix matches I" do
+    expect(SdtmVariableName.new("VSNEWVAR", "VS").prefix_match?).to eq(true)
+  end
+
+  it "checks if prefix matches II" do
+    expect(SdtmVariableName.new("XXNEWVAR", "VS", true).prefix_match?).to eq(false)
+  end
+
+  it "checks if prefix matches III" do
+    expect(SdtmVariableName.new("VSNEWVAR", "VS", true).prefix_match?).to eq(true)
+  end
+
 end

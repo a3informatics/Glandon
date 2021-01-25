@@ -1,0 +1,35 @@
+<% content_for :page_title do %> Index: SDTM Sponsor Domains <% end %>
+
+<%= javascript_pack_tag 'sdtm_sponsor_domains/index' %>
+
+<% first_level_breadcrumb (:sdtm_sponsor_domains) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-sdtm",
+    main_text: "SDTM Sponsor Domains", sub_text: "Browse all SDTM Sponsor Domains in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+<div class="row">
+
+  <% content_for :description do %>
+    Below is the list of all <span class="text-link font-regular">sponsor</span> SDTM Domains.
+    Use the Search bar to find the SDTM Domain you are looking for.
+    To see SDTM Sponsor Domain's respective History page, click on it.
+  <% end %>
+
+  <% content_for :actions do %>
+
+    <% if policy(SdtmIgDomain).new? %>
+      <a href="#new-sdtm-sd-modal" class="btn medium green" id="new-sdtm-sd-button" data-toggle="modal">
+        <span class="icon-plus text-tiny"></span>&nbsp; New SDTM Sponsor Domain
+      </a>
+    <% end %>
+
+  <% end %>
+
+  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "SDTM Sponsor Domains", url: sdtm_sponsor_domains_path } %>
+  <%= render partial: "shared/sdtm_sponsor_domains/create_modal" %>
+
+</div>

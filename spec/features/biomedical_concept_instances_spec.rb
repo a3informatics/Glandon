@@ -254,8 +254,6 @@ describe "Biomedical Concept Instances", :type => :feature do
 
       expect(page).to have_content "Index: Biomedical Concepts"
       expect( BiomedicalConceptInstance.all.count ).to eq bc_count-1
-
-      # Delete Existing
     end
 
     it "allows to delete an existing BC" do
@@ -274,7 +272,6 @@ describe "Biomedical Concept Instances", :type => :feature do
 
       expect(page).to have_content "Index: Biomedical Concepts"
       expect( BiomedicalConceptInstance.all.count ).to eq bc_count-1
-
     end
 
   end

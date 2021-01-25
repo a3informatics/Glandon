@@ -62,7 +62,7 @@ describe Import::SdtmModel do
     filename = "cdisc_sdtm_model_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.txt")
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.txt")
     check_ttl(filename, "import_expected_1.txt")
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
@@ -81,6 +81,36 @@ describe Import::SdtmModel do
   #Xwrite_yaml_file(actual, sub_dir, "import_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "import_expected_2.yaml")
     expect(actual).to eq(expected)
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import variable qualifier bug fix"  do
+    full_path = test_file_path(sub_dir, "import_input_3.xlsx")
+    params = {version: "1", date: "2016-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", semantic_version: "1.1.1", job: @job}
+    result = @object.import(params)
+    filename = "cdisc_sdtm_model_#{@object.id}_errors.yml"
+    public_file_does_not_exist?("test", filename)
+    filename = "cdisc_sdtm_model_#{@object.id}_load.ttl"
+    expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3.ttl")
+    check_ttl(filename, "import_expected_3.ttl")
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import no role bug fix"  do
+    full_path = test_file_path(sub_dir, "import_input_4.xlsx")
+    params = {version: "1", date: "2016-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", semantic_version: "1.1.1", job: @job}
+    result = @object.import(params)
+    filename = "cdisc_sdtm_model_#{@object.id}_errors.yml"
+    public_file_does_not_exist?("test", filename)
+    filename = "cdisc_sdtm_model_#{@object.id}_load.ttl"
+    expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_4.ttl")
+    check_ttl(filename, "import_expected_4.ttl")
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end

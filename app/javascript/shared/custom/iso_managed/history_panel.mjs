@@ -248,6 +248,13 @@ export default class HistoryPanel extends TablePanel {
         text: "aCRF", 
         endOffset: 1, 
         types: ["form"] 
+      },
+      { 
+        url: data.bca_path, 
+        icon: "icon-pair", 
+        text: "BC Associations", 
+        endOffset: 1, 
+        types: ["sdtm_sponsor_domain"] 
       }
     ]
 

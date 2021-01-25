@@ -63,6 +63,20 @@ class ApplicationController < ActionController::Base
     params[:id]
   end
 
+  # Ids to URIs. Change specified ids to uris in a param array. Non destructive.
+  #
+  # @param [Hash] params the source hash. Not changed
+  # @param [Array] keys array of symbols denoting the keys to be processed
+  # @return [Hash] updated hash
+  def ids_to_uris(params, keys)
+    new_params = params.dup
+    keys.each do |key|
+      next unless new_params.key?(key)
+      new_params[key] = Uri.new(id: new_params[key])
+    end
+    new_params
+  end
+
   # Convert triples to a string
   # @todo Move to a better location?
   def to_turtle(triples)

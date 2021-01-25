@@ -6,6 +6,10 @@ defaults: &defaults
     - "Thesaurus"
   "BiomedicalConceptInstance":
     - "Form"
+    - "SdtmSponsorDomain"
+  "SdtmClass":
+    - "Form"
+    - "SdtmSponsorDomain"
   "Form": []
 
 development:

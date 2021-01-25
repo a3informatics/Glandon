@@ -1,5 +1,6 @@
 ---
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9TVFVEWUlE
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_STUDYID
   :ordinal: 1
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Study Identifier
@@ -7,8 +8,8 @@
   :description: Unique identifier for a study.
   :typed_as: Character
   :classified_as: Identifier
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9ET01BSU4=
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_DOMAIN
   :ordinal: 2
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Domain Abbreviation
@@ -16,8 +17,8 @@
   :description: Two-character abbreviation for the domain.
   :typed_as: Character
   :classified_as: Identifier
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9VU1VCSklE
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_USUBJID
   :ordinal: 3
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Unique Subject Identifier
@@ -26,8 +27,8 @@
     for all applications or submissions involving the product.
   :typed_as: Character
   :classified_as: Identifier
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9TRVNFUQ==
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_SESEQ
   :ordinal: 4
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Sequence Number
@@ -36,8 +37,8 @@
     a domain. Should be assigned to be consistent chronological order.
   :typed_as: Numeric
   :classified_as: Identifier
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9FVENE
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_ETCD
   :ordinal: 5
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Element Code
@@ -48,8 +49,8 @@
     a variable name.
   :typed_as: Character
   :classified_as: Topic
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9FTEVNRU5U
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_ELEMENT
   :ordinal: 6
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Description of Element
@@ -57,9 +58,9 @@
   :description: The name of the Element. If ETCD has a value of 'UNPLAN' then ELEMENT
     should be Null.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Synonym
-- :uri: ''
+  :classified_as: Synonym
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9TRVNURFRD
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_SESTDTC
   :ordinal: 7
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Start Date/Time of Element
@@ -67,8 +68,8 @@
   :description: Start date/time for an Element for each subject.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9TRUVORFRD
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_SEENDTC
   :ordinal: 8
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: End Date/Time of Element
@@ -76,8 +77,8 @@
   :description: End date/time for an Element for each subject.
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9UQUVUT1JE
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_TAETORD
   :ordinal: 9
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Planned Order of Elements within Arm
@@ -85,8 +86,8 @@
   :description: Number that gives the order of the Element within the Arm.
   :typed_as: Numeric
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9FUE9DSA==
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_EPOCH
   :ordinal: 10
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Epoch
@@ -95,8 +96,8 @@
     for the ARM to which the subject was assigned
   :typed_as: Character
   :classified_as: Timing
-  :sub_classified_as: ''
-- :uri: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9NT0RFTF9TRS9WMSNDTF9TRVVQREVT
+  :uri: http://www.cdisc.org/SDTM_MODEL_SE/V1#CL_SEUPDES
   :ordinal: 11
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
   :label: Description of Unplanned Element
@@ -104,5 +105,4 @@
   :description: Description of what happened to the subject during this unplanned
     Element. Used only if ETCD has the value of 'UNPLAN'.
   :typed_as: Character
-  :classified_as: Qualifier
-  :sub_classified_as: Synonym
+  :classified_as: Synonym

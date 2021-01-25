@@ -1,0 +1,33 @@
+<%= stylesheet_link_tag 'shared/table_select_simple' %>
+
+<% if local_assigns.fetch(:default_urls, true) %>
+  <%# TODO: Add default urls when implementing managed collections %>
+  <%#= javascript_tag "" %>
+<% end %>
+
+<div id="<%= local_assigns.fetch(:id, 'managed-collection') %>">
+
+  <div class="btns-wrap" id="collection-actions">
+
+    <button class="btn medium white ttip" id="add-items">
+      <span class="icon-plus text-tiny"></span> Add items
+    </button>
+    <button class="btn medium red ttip" id="remove-selected">
+      <span class="icon-trash text-tiny"></span> Remove selected
+    </button>
+    <button class="btn medium red ttip" id="remove-all">
+      <span class="icon-trash text-tiny"></span> Remove all
+    </button>
+
+  </div>
+
+  <div class="loading-with-btns">
+    <%= render partial: 'shared/iso_managed/managed_items_panel', locals: { 
+        type_column: local_assigns.fetch(:type_column, true), owner_column: local_assigns.fetch(:owner_column, true), 
+        table_classes: 'table-row-clickable no-mark' } %>
+  </div>
+
+</div>
+
+<%= render partial: "shared/items_picker/items_picker", :locals => { id: "add-items",
+    description: "Select one or more items to add to the collection." } %>

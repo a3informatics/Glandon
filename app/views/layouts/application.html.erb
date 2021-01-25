@@ -312,6 +312,8 @@
            					link_path: sdtm_igs_path, link_text: "CDISC SDTM IGs", current_link: controller_name.to_s} %>
                   <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmIgDomain, link_id: "main_nav_sd",
            					link_path: sdtm_ig_domains_path, link_text: "SDTM IG Domains", current_link: controller_name.to_s} %>
+                  <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmSponsorDomain, link_id: "main_nav_ssd",
+                    link_path: sdtm_sponsor_domains_path, link_text: "SDTM Sponsor Domains", current_link: controller_name.to_s} %>
                   <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmClass, link_id: "main_nav_c",
                     link_path: sdtm_classes_path, link_text: "SDTM Classes", current_link: controller_name.to_s} %>
                 </ul>

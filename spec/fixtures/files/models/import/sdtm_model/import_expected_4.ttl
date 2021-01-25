@@ -1,0 +1,209 @@
+@prefix : <http://www.cdisc.org/SDTM_MODEL/V1#> .
+@prefix bd: <http://www.assero.co.uk/Tabulation#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.cdisc.org/SDTM_MODEL/V1>
+	rdf:type owl:Ontology ;
+.
+:M
+	rdf:type bd:Model ;
+	isoC:label "SDTM Model"^^xsd:string ;
+	isoT:hasState :M_RS ;
+	isoT:hasIdentifier :M_SI ;
+	isoT:origin "Created from files: 'import_input_4.xlsx'"^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2016-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bo:hasManaged :M_R1 ;
+.
+:M_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+:M_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM MODEL"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+:M_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL>
+	rdf:type bd:SdtmClass ;
+	isoC:label "SUPPQUAL"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2016-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_RDOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_IDVAR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_IDVARVAL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QNAM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QLABEL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QVAL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QORIG> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QEVAL> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM MODEL SUPPQUAL"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_STUDYID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Study Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:name "STUDYID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Unique identifier for a study."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_RDOMAIN>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Related Domain Abbreviation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:name "RDOMAIN"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Two-character abbreviation for the domain of the parent record(s)."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_USUBJID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Unique Subject Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:name "USUBJID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_IDVAR>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Identifying Variable"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:name "IDVAR"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Name of the identifying variable in the general-observation-class dataset that identifies the related record(s). Examples include --SEQ and --GRPID."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_IDVARVAL>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Identifying Variable Value"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "IDVARVAL"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Value of identifying variable described in IDVAR. If --SEQ is the variable being used to describe this record, then the value of --SEQ would be entered here."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QNAM>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Qualifier Variable Name"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:name "QNAM"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "The short name of the Qualifier variable, which is used as a column name in a domain view with data from the parent domain. The value in QNAM cannot be longer than 8 characters, nor can it start with a number (e.g., '1TEST'). QNAM cannot contain characters other than letters, numbers, or underscores. This will often be the column name in the sponsor's operational dataset."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QLABEL>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Qualifier Variable Label"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:name "QLABEL"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "This is the long name or label associated with QNAM. The value in QLABEL cannot be longer than 40 characters. This will often be the column label in the sponsor's original dataset."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QVAL>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Data Value"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:name "QVAL"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Result of, response to, or value associated with QNAM. A value for this column is required; no records can be in SUPP-- with a null value for QVAL."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QORIG>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Origin"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:name "QORIG"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Since QVAL can represent a mixture of collected (on a CRF), derived, or assigned items, QORIG is used to indicate the origin of this data. Examples include CRF, ASSIGNED, or DERIVED. See Section 4.1.1.8."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V1#CL_QEVAL>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Evaluator"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:name "QEVAL"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Used only for results that are subjective (e.g., assigned by a person or a group). Should be null for records that contain objectively collected or derived data. Some examples include ADJUDICATION COMMITTEE, STATISTICIAN, DATABASE ADMINISTRATOR, CLINICAL COORDINATOR, etc."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.

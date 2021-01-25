@@ -11,30 +11,25 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 %w(
   concerns/spinner-component
-  shared/d3/d3_tree
   homes print spinner tags
  ).each do |filename|
   Rails.application.config.assets.precompile += ["#{filename}.css"]
 end
 
 %w(
-    biomedical_concepts/bc_template_new
     dashboard/dashboard_editor dashboard/dashboard_panel dashboard/dashboard dashboard/statistics_panel
     export/start_panel
-    forms/form_utility forms/form_viewer
     import/crfs/new import/terms/new import/show
-    iso_managed/impact iso_managed/iso_managed_comment_edit
+    iso_managed/iso_managed_comment_edit
     iso_managed/list_change_notes iso_managed/status
     markdown_engines/markdown_editor
-    sdtm_user_domains/editor
     thesauri/changes thesauri/release_select thesauri/search_multiple thesauri/search thesauri/upgrade
-    thesauri/managed_concepts/changes
+    thesauri/managed_concepts/changes thesauri/impact
     thesauri/unmanaged_concepts/changes thesauri/unmanaged_concepts/show
 
     shared/annotation/change_instruction_edit shared/annotation/change_instructions_html shared/annotation/change_instruction_modal shared/annotation/change_notes_modal
     shared/cdisc_term/cdisc_selector_modal shared/cdisc_term/index_panel
-    shared/d3/d3_impact_graph shared/d3/d3_editor shared/d3/d3_tree
-    shared/impact/changes_cdisc_panel shared/impact/impact_graph
+    shared/d3/d3_impact_graph
     shared/import/crf_files_panel shared/import/items_panel
     shared/iso_managed/children_panel shared/iso_managed/comments_panel shared/iso_managed/managed_children_overview
     shared/iso_managed/managed_children_select shared/iso_managed/managed_item_ico_list shared/iso_managed/managed_item_version_picker shared/iso_managed/managed_item_select_modal
@@ -42,6 +37,7 @@ end
     shared/thesauri/changes_panel shared/thesauri/differences_panel shared/thesauri/edit_properties shared/thesauri/links_panel shared/thesauri/new_panel
     shared/thesauri/search_panel shared/thesauri/upgrade_panel
     shared/thesauri/managed_concepts/rank/edit_ranks shared/thesauri/managed_concepts/rank/enable_rank
+    shared/thesauri/impact/changes_cdisc_panel shared/thesauri/impact/impact_graph
 
     shared/alphabetical_filter shared/confirmation_dialog shared/icons_tags_helpers shared/information_dialog
     shared/list_change_notes_panel shared/tabs_layout shared/timer

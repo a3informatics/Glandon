@@ -6,7 +6,7 @@ import { managedConceptRef } from 'shared/ui/strings'
 /**
  * Create Biomedical Concept Modal View
  * @description Allows to create a new Biomedical Concept from parameters with custom callback
- * @requires _new_biomedical_concept.html.erb partial
+ * @requires shared/biomedical_concept_instances/create_modal.html.erb partial
  * @extends CreateItemView base Create Item View class
  * @author Samuel Banas <sab@s-cubed.dk>
  */

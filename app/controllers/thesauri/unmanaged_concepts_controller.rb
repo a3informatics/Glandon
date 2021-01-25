@@ -44,18 +44,6 @@ class Thesauri::UnmanagedConceptsController < ManagedItemsController
     end
   end
 
-  # def update_properties
-  #   authorize Thesaurus, :edit?
-  #   tc = Thesaurus::UnmanagedConcept.find_children(protect_from_bad_id(params))
-  #   parent = Thesaurus::ManagedConcept.find_minimum(edit_params[:parent_id])
-  #   return true unless check_lock_for_item(parent)
-  #   tc = tc.update_with_clone(edit_params, parent)
-  #   return true if item_errors(tc)
-  #   return true if lock_item_errors 
-  #   AuditTrail.update_item_event(current_user, parent, "Code list updated.") if @lock.token.refresh == 1
-  #   render :json => {:data => [tc.simple_to_h]}, :status => 200
-  # end
-
   def destroy
     authorize Thesaurus
     tc = Thesaurus::UnmanagedConcept.find(protect_from_bad_id(params))

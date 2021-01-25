@@ -31,6 +31,63 @@ function fitColumn(name, tableId) {
 }
 
 /**
+ * Check if table element contains a specific column header
+ * @param {string} selector Unique selector of the table (or its  wrapper)
+ * @param {string} colName Column header name to check for 
+ * @return {boolean} True if table contains header with given name 
+ */
+function hasColumn(selector, colName) {
+  return $( selector ).find( `th:contains("${ colName }")` ).length > 0; 
+}
+
+/**
+ * Jump to the page containing the given row 
+ * @param {DataTable} table Target table instance
+ * @param {object} rowData Target row data object
+ * @return {TablePanel} This instance
+ */
+function jumpToRow(table, rowData) {
+
+  const pos = table.rows({ order:'applied' })
+                   .data()
+                   .indexOf( rowData )
+
+  if ( pos >= 0 ) {
+      const page = Math.floor( pos / table.page.info().length );
+      table.page( page ).draw( false );
+  }
+  
+}
+
+/**
+ * Highlight a single row in table and scroll it into view (row must exist on current page)
+ * @param {DataTable} table Target table instance
+ * @param {string | int | function} rowSelector DataTables compatible unique row selector 
+ * @param {boolean} blink Specify whether the highlight should be taken off after a timeout, [default=true]
+ * @param {boolean} blinkTimeoutMs Blink timeout duration in milliseconds, optional [default=1000] 
+ * @return {TablePanel} This instance
+ */
+function highlightRow(table, rowSelector, blink = true, blinkTimeoutMs = 1000) {
+
+  const row = table.row( rowSelector ).node();
+
+  $(row).addClass('row-highlight')
+
+  // Unhighlight after a timeout elapses if blink true 
+  blink && setTimeout( () => 
+    $(row).removeClass('row-highlight'), blinkTimeoutMs 
+  )
+
+  // Scroll row into view
+  row.scrollIntoView()
+
+}
+
+
+/*** Buttons ***/
+
+
+/**
  * DataTable Export CSV button definition
  * @param {Selector} columns DataTables columns selector (array of indexes / string / function ...)
  * @return {Object} Custom CSV Export button options
@@ -111,6 +168,9 @@ export {
   setOnErrorHandler,
   expandColumn,
   fitColumn,
+  hasColumn,
+  jumpToRow,
+  highlightRow,
   csvExportBtn,
   excelExportBtn,
   selectAllBtn,
