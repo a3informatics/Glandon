@@ -92,8 +92,8 @@ class Form
               ?sdtm_domain_var bd:isA ?ref .                                                     
               ?sdtm_domain_var bd:name ?sdtm_var_name .           
               ?sdtm_domain bd:includesColumn ?sdtm_domain_var .                                   
-              ?sdtm_domain ^bo:associatedWith ?assoc .                                  
-              ?bc_root ^bo:theSubject ?assoc .                                  
+              ?sdtm_domain ^bo:theSubject ?assoc .                                  
+              ?bc_root ^bo:associatedWith ?assoc .                                  
               ?bc_root (bc:hasItem/bc:hasComplexDatatype/bc:hasProperty) ?bc_property .         
             } ORDER BY ?gord ?pord                             
           }                          

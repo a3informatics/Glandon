@@ -30,7 +30,7 @@ describe Form::Annotations do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
-      load_data_file_into_triple_store("association.ttl")       
+           
     end
 
     it "create an instance, empty" do
@@ -48,8 +48,28 @@ describe Form::Annotations do
 
     it "create an instance, populated" do
       form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F"))
+      sdtm_ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_VS/V4#IGD"))
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      sdtm_ig_domain.associate([bci_1.id, bci_2.id], "BC SDTM Association")
       annotations = Form::Annotations.new(form)
       check_file_actual_expected(annotations.to_h, sub_dir, "new_expected_2.yaml")
+    end
+
+    it "create an instance, populated II" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form2", identifier: "YYY")
+      form.add_child({type:"normal_group"})
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      bci_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/YYY/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id]})
+      sdtm_ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_VS/V4#IGD"))
+      domain = SdtmSponsorDomain.create_from_ig({identifier: "AAA", prefix: "AA", label:"SDTM Sponsor Domain"},sdtm_ig_domain)
+      domain.associate([bci_1.id, bci_2.id], "SDTM BC Association")
+      form = Form.find_full(form.uri)
+      annotations = Form::Annotations.new(form)
+      check_file_actual_expected(annotations.to_h, sub_dir, "new_expected_3.yaml")
     end
 
     it "annotation for uri" do
