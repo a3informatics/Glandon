@@ -21,7 +21,6 @@ describe FormsController do
     before :all do
       data_files = ["forms/FN000150.ttl"]
       load_files(schema_files, data_files)
-      #load_cdisc_term_versions(1..59)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -446,7 +445,7 @@ describe FormsController do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
-      load_data_file_into_triple_store("association.ttl") 
+      load_data_file_into_triple_store("association_IG_domain.ttl") 
       load_data_file_into_triple_store("complex_datatypes.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all

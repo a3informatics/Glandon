@@ -25,27 +25,6 @@ describe Association do
       delete_all_public_test_files
     end
 
-  #   it "create data, HEIGHT and WEIGHT BCs" do
-  #     bc = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-  #     association = Association.create({semantic: "BC SDTM Association"}, bc)
-  #     sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_VS/V4#IGD"))
-  #     association.the_subject = bc
-  #     association.associated_with = [sdtm_ig_domain]
-  #     results = []
-  #     results << association
-  #     bc2 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
-  #     association2 = Association.create({semantic: "BC SDTM Association"}, bc2) 
-  #     sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_VS/V4#IGD"))
-  #     association2.the_subject = bc2
-  #     association2.associated_with = [sdtm_ig_domain]
-  #     results << association2
-  #     sparql = Sparql::Update.new
-  #     sparql.default_namespace(results.first.uri.namespace)
-  #     results.each{|x| x.to_sparql(sparql, true)}
-  #     full_path = sparql.to_file
-  # #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "association.ttl")
-  # 	end
-
     it "create data, IG Domain, HEIGHT and WEIGHT BCs" do
       sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_VS/V4#IGD"))
       bc = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
@@ -59,15 +38,15 @@ describe Association do
       sparql.default_namespace(results.first.uri.namespace)
       results.each{|x| x.to_sparql(sparql, true)}
       full_path = sparql.to_file
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "association.ttl")
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "association_IG_domain.ttl")
     end
 
     it "create data, Sponsor Domain, HEIGHT and WEIGHT BCs" do
-      sdtm_ig_domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
       bc = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       bc2 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
-      association = Association.create({semantic: "BC SDTM Association"}, sdtm_ig_domain)
-      association.the_subject = sdtm_ig_domain
+      association = Association.create({semantic: "BC SDTM Association"}, sdtm_sponsor_domain)
+      association.the_subject = sdtm_sponsor_domain
       association.associated_with = [bc, bc2]
       results = []
       results << association
