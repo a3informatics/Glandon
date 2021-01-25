@@ -6,36 +6,47 @@ class IsoManagedV2
   
   module Registration
 
+    def self.included(base)
+      base.extend(ClassMethods)
+    end
 
     module ClassMethods
 
-      def filter_owned(ids)
+      # Filter To Owned. Filter array of ids to those owned.
+      #
+      # @param [Array] ids array of ids
+      # @return [Array] array of URIs of the items owned
+      def filter_to_owned(ids)
+        return [] if ids.empty?
         query_string = %Q{
           SELECT ?s WHERE {
             VALUES ?s { #{ids.map{|x| Uri.new(id: x).to_ref}.join(" ")} }
-            ?s isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref}"
+            ?s isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref}
           }
         }
-        query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT])
-        query_results.by_object([:s])
+        query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoR])
+        query_results.by_object(:s)
       end
 
       def advance_to_released_state(ids)
-        ids = filter_owned(ids)
+        ids = filter_to_owned(ids)
+        return [] if ids.empty?
         query_string= %Q{
           DELETE
           {
             ?s isoT:hasState/registrationStatus ?rs .
-            ?s isoT:hasState/previousState ?ps .          }
+            ?s isoT:hasState/previousState ?ps .
+          }
           INSERT
           {
             ?s isoT:hasState/registrationStatus '#{IsoRegistrationStateV2.released_state}'^^xsd:string .
-            ?s isoT:hasState/previousState ?rs .          }
+            ?s isoT:hasState/previousState ?rs .
+          }
           WHERE
           {
             VALUES ?s { #{ids.map{|x| x.to_ref}.join(" ")} }
             ?s isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref}" .
-            NOT EXISTS {?s ^isoC:previousVersion} 
+            NOT EXISTS {?s ^isoC:previousVersion ?x} 
             ?s isoT:hasState/registrationStatus ?rs .
             ?s isoT:hasState/previousState ?ps .
           }
@@ -45,7 +56,7 @@ class IsoManagedV2
       end
 
       def rewind_to_draft_state(ids)
-        ids = filter_owned(ids)
+        ids = filter_to_owned(ids)
         query_string= %Q{
           DELETE
           {

@@ -34,4 +34,8 @@ module IsoManagedHelpers
     item.update_status({registration_status: "Standard", previous_state: "Incomplete"})
   end
 
+  def self.make_item_draft(item)
+    item.update_status({registration_status: "Incomplete", previous_state: "Incomplete"})
+  end
+
 end
