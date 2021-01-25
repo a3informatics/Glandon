@@ -70,7 +70,7 @@ class Form
           ?sdtm_domain bd:basedOnClass/bd:includesColumn ?topic_var .                          
           ?topic_var bd:classifiedAs/isoC:prefLabel "Topic"^^xsd:string .
           ?sdtm_domain bd:includesColumn ?sdtm_topic_var .                          
-          ?sdtm_topic_var bd:basedOnClassVariable ?topic_var .
+          ?sdtm_topic_var bd:basedOnClassVariable|bd:basedOnIgVariable/bd:basedOnClassVariable ?topic_var .
           ?sdtm_topic_var bd:name ?sdtm_topic_name . 
           ?topic_var bd:isA ?canonical_reference .                          
           ?bc_root bc:identifiedBy/bc:hasComplexDatatype/bc:hasProperty ?bc_identifier .           
