@@ -1,10 +1,16 @@
 module RemoteServerHelpers
 
   @server_address = 'https://mdr-v1.s-cubed-global.com/'
+  @server_address_p = 'https://mdr-sanofi.s-cubed-global.com/'
   @server_address_t = 'https://mdr-t1.s-cubed-global.com/'
 
   def self.switch_to_remote
     Capybara.app_host = @server_address
+    Capybara.run_server = false
+  end
+
+    def self.switch_to_remote_prod
+    Capybara.app_host = @server_address_p
     Capybara.run_server = false
   end
 

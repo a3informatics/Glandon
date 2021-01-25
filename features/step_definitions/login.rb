@@ -37,10 +37,23 @@ if ENVIRONMENT == 'VAL'
     end 
     if string == "Curator"
     fill_in "Email", :with => C_CURATOR
-    fill_in "Password", :with => 'Changeme5?'
+    fill_in "Password", :with => 'Changeme6?'
     end
     click_button "Log in"
     expect(page).to have_text string
+    expect(page).to have_text 'Signed in successfully'
+  end
+end
+
+if ENVIRONMENT == 'PROD'
+  Given('I am signed in successfully as {string}') do |string|
+    visit "/users/sign_in"
+    if string == "Curator"
+    fill_in "Email", :with => 'kl@s-cubed.dk'
+    fill_in "Password", :with => 'Changeme11?'
+    end
+    click_button "Log in"
+    expect(page).to have_text 'Content Admin, System Admin'
     expect(page).to have_text 'Signed in successfully'
   end
 end

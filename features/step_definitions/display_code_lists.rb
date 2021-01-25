@@ -338,6 +338,31 @@ end
 Then('I see the following attributes for {string} of 2019 Release 1:') do |string,table|
  ui_table_search('children',string)
      table.hashes.each do |hash|
+    if ENVIRONMENT == 'PROD'
+      check_cell_content('children', 1, 1, "#{hash['Identifier']}")
+      check_cell_content('children', 1, 2, "#{hash['SubmissionValue']}")
+      check_cell_content('children', 1, 3, "#{hash['PreferredTerm']}")
+      check_cell_content('children', 1, 4, "#{hash['Synonyms']}")
+      check_cell_content('children', 1, 5, "#{hash['Definition']}")
+      check_cell_content('children', 1, 6, "#{hash['Tags']}")
+      check_cell_content('children', 1, 7, "#{hash['CRFDisplayValue']}") # CRF Display Value
+      
+      if hash['ADaMStage'] == 'false'  # Adam stage
+         check_cell_content('children', 1, 8, false)  # Adam stage
+      else 
+         check_cell_content('children', 1, 8, true)
+      end
+      if hash['DCStage'] == 'false'
+         check_cell_content('children', 1, 9, false) # DC stage
+      else
+         check_cell_content('children', 1, 9, true) # DC stage
+      end
+      if hash['SDTMStage'] == 'false'
+         check_cell_content('children', 1, 11, false) # SDTM stage
+      else
+         check_cell_content('children', 1, 11, true) # SDTM stage
+      end
+    else
       check_cell_content('children', 1, 1, "#{hash['Identifier']}")
       check_cell_content('children', 1, 2, "#{hash['SubmissionValue']}")
       check_cell_content('children', 1, 3, "#{hash['PreferredTerm']}")
@@ -362,6 +387,8 @@ Then('I see the following attributes for {string} of 2019 Release 1:') do |strin
          check_cell_content('children', 1, 10, true) # SDTM stage
       end
     end
+  end
+
     wait_for_ajax(20)
     save_screen(TYPE)
   end
