@@ -28,30 +28,35 @@ class IsoManagedV2
         query_results.by_object(:s)
       end
 
+      # Advance to Release State. Move the items to the released state if last in version history
+      #
+      # @param [Array] ids array of ids
+      # @return [Array] array of URIs of the items updated.
       def advance_to_released_state(ids)
         ids = filter_to_owned(ids)
         return [] if ids.empty?
-        query_string= %Q{
+        sparql = %Q{
           DELETE
           {
-            ?s isoT:hasState/registrationStatus ?rs .
-            ?s isoT:hasState/previousState ?ps .
+            ?st isoR:registrationStatus ?rs .
+            ?st isoR:previousState ?ps .
           }
           INSERT
           {
-            ?s isoT:hasState/registrationStatus '#{IsoRegistrationStateV2.released_state}'^^xsd:string .
-            ?s isoT:hasState/previousState ?rs .
+            ?st isoR:registrationStatus '#{IsoRegistrationStateV2.released_state}'^^xsd:string .
+            ?st isoR:previousState ?rs .
           }
           WHERE
           {
             VALUES ?s { #{ids.map{|x| x.to_ref}.join(" ")} }
-            ?s isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref}" .
-            NOT EXISTS {?s ^isoC:previousVersion ?x} 
-            ?s isoT:hasState/registrationStatus ?rs .
-            ?s isoT:hasState/previousState ?ps .
+            ?s isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
+            NOT EXISTS {?s ^isoT:hasPreviousVersion ?x} 
+            ?s isoT:hasState ?st .
+            ?st isoR:registrationStatus ?rs .
+            ?st isoR:previousState ?ps .
           }
         }
-        partial_update(query_string, [:isoI, :isoT])
+        Sparql::Update.new.sparql_update(sparql, "", [:isoI, :isoT, :isoR])
         ids
       end
 
