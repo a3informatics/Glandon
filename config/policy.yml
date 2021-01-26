@@ -335,6 +335,9 @@ defaults: &defaults
         curator: false
         content_admin: true
     alias: {}
+  ManagedCollectionPolicy:
+    policies: {}
+    alias:
   BiomedicalConceptInstancePolicy:
     policies: {}
     alias:
