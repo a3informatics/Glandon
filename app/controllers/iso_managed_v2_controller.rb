@@ -18,12 +18,12 @@ class IsoManagedV2Controller < ApplicationController
 
   def status
     authorize IsoManaged, :status?
-    @managed_item = find_item(params)
+    @managed_item = IsoManagedV2.find(protect_from_bad_id(params))
     respond_to do |format|
       format.html do
         @managed_item = @edit.item
         @close_path = TypePathManagement.history_url_v2(@managed_item, true)
-        @item_klass = @managed_item.class.name
+        @item_klass = find_item(params)
       end
       format.json do
         return true unless check_lock_for_item(@managed_item)
