@@ -18,15 +18,17 @@ class IsoManagedV2Controller < ApplicationController
 
   def status
     authorize IsoManaged, :status?
-    @referer = request.referer
     @managed_item = find_item(params)
-    @token = get_token(@managed_item)
-    if !@token.nil?
-      @current_id = the_params[:current_id]
-      @next_versions = SemanticVersion.from_s(@managed_item.previous_release).next_versions
-      @close_path = TypePathManagement.history_url_v2(@managed_item, true)
-    else
-      redirect_to @referer
+    respond_to do |format|
+      format.html do
+        @managed_item = @edit.item
+        @close_path = TypePathManagement.history_url_v2(@managed_item, true)
+        @item_klass = @managed_item.class.name
+      end
+      format.json do
+        return true unless check_lock_for_item(@managed_item)
+        render :json => {@managed_item.status_summary}, :status => 200
+      end
     end
   end
 
