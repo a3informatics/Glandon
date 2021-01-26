@@ -280,14 +280,26 @@ describe IsoManagedV2Controller do
 
   describe "Unauthorized User" do
 
-    it "status" do
+    it "status, html" do
       get :status, params:{ id: "F-ACME_TEST", iso_managed: { current_id: "test" }}
       expect(response).to redirect_to("/users/sign_in")
     end
 
+    it "status, json" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :status, params:{ id: "F-ACME_TEST", iso_managed: { current_id: "test" }}
+      check_unauthorised_json_response(response)
+    end
+      
     it "make current" do
       get :make_current, params:{ id: "F-ACME_TEST", iso_managed: { current_id: "test" }}
       expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "next state, json" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :status, params:{ id: "F-ACME_TEST", iso_managed: { current_id: "test" }}
+      check_unauthorised_json_response(response)
     end
 
     it "update_semantic_version" do
