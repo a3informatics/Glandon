@@ -76,4 +76,11 @@ describe TokenSet do
     expect(token_set.locked?).to eq(false)
   end
 
+  it "set of ids" do
+    items = []
+    ["30", "31"].each { |x| items << create_iso_managed("ITEM #{x}", "Item #{x}") }
+    token_set = TokenSet.new(items, @user)
+    expect(token_set.ids).to eq([items[0].id, items[1].id])
+  end
+
 end

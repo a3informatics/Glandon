@@ -54,4 +54,11 @@ class TokenSet
     @items
   end
 
+  # Ids. 
+  #
+  # @return [Array] the ids for the items
+  def ids
+    @items.map { |x| x[:item].id}
+  end
+
 end
