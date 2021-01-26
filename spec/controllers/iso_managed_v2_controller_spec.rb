@@ -129,12 +129,15 @@ describe IsoManagedV2Controller do
     it 'next state, not permitted' do
       request.env['HTTP_ACCEPT'] = "application/json"
       mi = create_iso_managed_thesaurus("TEST5", "A test managed item")
-      expect_any_instance_of(IsoManagedV2).to receive(:update_status_permitted?).and_return(false)
+      expect_any_instance_of(IsoManagedV2).to receive(:update_status_permitted?) do |arg|
+        arg.errors.add(:base, "Some error")
+        false
+      end
       token = Token.obtain(mi, @user)
-      post :next_state, params:{ id: mi.id, iso_managed: { administrative_note: "X1", unresolved_issue: "§§§§§§X2" }}
+      post :next_state, params:{ id: mi.id, iso_managed: { administrative_note: "X1", unresolved_issue: "X2" }}
       actual = IsoManagedV2.find_minimum(mi.uri)
-      check_file_actual_expected(actual.to_h, sub_dir, "next_state_expected_3a.yaml", equate_method: :hash_equal)
-      check_file_actual_expected(check_error_json_response(response), sub_dir, "next_state_expected_3b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, "next_state_expected_4a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(check_error_json_response(response), sub_dir, "next_state_expected_4b.yaml", equate_method: :hash_equal)
     end
 
     it 'updates the semantic version' do
@@ -284,11 +287,6 @@ describe IsoManagedV2Controller do
 
     it "make current" do
       get :make_current, params:{ id: "F-ACME_TEST", iso_managed: { current_id: "test" }}
-      expect(response).to redirect_to("/users/sign_in")
-    end
-
-    it "update_status" do
-      post :update_status, params:{ id: "F-ACME_TEST"}
       expect(response).to redirect_to("/users/sign_in")
     end
 
