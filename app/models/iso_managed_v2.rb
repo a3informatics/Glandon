@@ -714,20 +714,6 @@ class IsoManagedV2 < IsoConceptV2
     partial_update(update_query(params), [:isoT])
   end
 
-  # Update Status. Update the status.
-  #
-  # @params [Hash] params the parameters
-  # @option params [String] Registration Status, the new state
-  # @return [Null] errors are in the error object, if any
-  def update_status(params)
-    params[:multiple_edit] = false
-    self.has_state.update(params)
-    return if merge_errors(self.has_state, "Registration Status")
-    sv = SemanticVersion.from_s(self.semantic_version)
-    self.has_identifier.update(semantic_version: sv.to_s) if self.has_state.released_state?
-    merge_errors(self.has_identifier, "Scoped Identifier")
-  end
-
   # Set URIs. Sets the URIs for the managed item and all children
   #
   # @param [IsoRegistrationAuthority] ra the registration authority under which the item is being registered
@@ -999,10 +985,6 @@ SELECT ?s ?l ?v ?i ?vl WHERE {
 
   def audit_message(operation, extra="")
     "#{self.audit_type} owner: #{self.owner_short_name}, identifier: #{self.scoped_identifier},#{extra.empty? ? "" : " (#{extra})"} was #{operation}."
-  end
-
-  def audit_message_status_update
-    "#{self.audit_type} owner: #{self.owner_short_name}, identifier: #{self.scoped_identifier}, state was updated from #{self.has_state.previous_state} to #{self.has_state.registration_status}."
   end
 
   def audit_type
