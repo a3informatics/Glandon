@@ -105,6 +105,20 @@ class IsoManagedV2
     # Instance Methods
     # ----------------
 
+    # Update Status Permitted? Are we permitted to update the status. Default method always true.
+    #
+    # @return [Boolean] always returns true
+    def update_status_permitted?
+      true
+    end
+
+    # Update Status Related Items. The related items that we could update. Default methid always return no items.
+    #
+    # @return [Array] array of items, default is empty
+    def update_status_related_items(flag, operation)
+      []
+    end
+
     # Status Summary. A status summary hash
     #
     # @return [hash] the status hash
