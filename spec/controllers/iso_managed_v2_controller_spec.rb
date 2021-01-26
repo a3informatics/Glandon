@@ -43,8 +43,8 @@ describe IsoManagedV2Controller do
       ua_remove_user("lock@example.com")
     end
 
-    it "status" do
-      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+    it "status, html" do
+      mi = create_iso_managed_thesaurus("TEST1A", "A test managed item")
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
       get :status, params:{id: mi.uri.to_id, iso_managed: { current_id: "test" }}
       expect(assigns(:managed_item).to_h).to eq(mi.to_h)
@@ -52,13 +52,28 @@ describe IsoManagedV2Controller do
       expect(response).to render_template("status")
     end
 
-    it "status, locked" do
-      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+    it "status, json" do
+      mi = create_iso_managed_thesaurus("TEST1B", "A test managed item")
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(mi, @user)
+      get :status, params:{id: mi.uri.to_id, iso_managed: { current_id: "test" }}
+      check_file_actual_expected(check_good_json_response(response), sub_dir, "status_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "status, html and locked" do
+      mi = create_iso_managed_thesaurus("TEST2A", "A test managed item")
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
       token = Token.obtain(mi, @lock_user)
       get :status, params:{id: mi.uri.to_id, iso_managed: { current_id: "test" }}
       expect(assigns(:managed_item).to_h).to eq(mi.to_h)
       expect(response).to redirect_to("/xxx")
+    end
+
+    it "status, json, lock missing" do
+      mi = create_iso_managed_thesaurus("TEST2B", "A test managed item")
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :status, params:{id: mi.uri.to_id, iso_managed: { current_id: "test" }}
+      check_file_actual_expected(check_error_json_response(response), sub_dir, "status_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "make current" do
@@ -80,42 +95,46 @@ describe IsoManagedV2Controller do
       expect(mi_2.current?).to eq(true)
     end
 
-    it 'updates the status' do
-      @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
-      audit_count = AuditTrail.count
-      uri_1 = Uri.new(uri: "http://www.cdisc.org/C49499/V1#C49499")
-      mi = IsoManagedV2.find_minimum(uri_1)
+    it 'next state' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mi = create_iso_managed_thesaurus("TEST3", "A test managed item")
+      expect(AuditTrail).to receive(:update_item_event).with(@user, instance_of(Thesaurus), "Terminology owner: ACME, identifier: TEST3, state was updated from Incomplete to Candidate.")
       token = Token.obtain(mi, @user)
-      post :update_status, params:{ id: mi.id, iso_managed: { registration_status: "Retired", previous_state: "Standard",
-        administrative_note: "X1", unresolved_issue: "X2" }}
-      actual = IsoManagedV2.find_minimum(uri_1)
-      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_1.yaml", equate_method: :hash_equal)
-      expect(response).to redirect_to("/registration_states")
-      expect(AuditTrail.count).to eq(audit_count + 1)
+      post :next_state, params:{ id: mi.id, iso_managed: { administrative_note: "X1", unresolved_issue: "X2" }}
+      actual = IsoManagedV2.find_minimum(mi.uri)
+      check_file_actual_expected(actual.to_h, sub_dir, "next_state_expected_1a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(check_good_json_response(response), sub_dir, "next_state_expected_1b.yaml", equate_method: :hash_equal)
     end
 
-    it 'updates the status, locked by another user' do
-      audit_count = AuditTrail.count
-      expect(TypePathManagement).to receive(:history_url_v2).and_return("/history")
-      uri_1 = Uri.new(uri: "http://www.cdisc.org/C49499/V1#C49499")
-      mi = IsoManagedV2.find_minimum(uri_1)
+    it 'next state, locked by another user' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mi = create_iso_managed_thesaurus("TEST4", "A test managed item")
       token = Token.obtain(mi, @lock_user)
-      post :update_status, params:{ id: mi.id, iso_managed: { registration_status: "Retired", previous_state: "Standard",
-        administrative_note: "X1", unresolved_issue: "X2" }}
-      expect(response).to redirect_to("/history")
-      expect(AuditTrail.count).to eq(audit_count)
+      post :next_state, params:{ id: mi.id, iso_managed: { administrative_note: "X1", unresolved_issue: "X2" }}
+      actual = IsoManagedV2.find_minimum(mi.uri)
+      check_file_actual_expected(actual.to_h, sub_dir, "next_state_expected_2a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(check_error_json_response(response), sub_dir, "next_state_expected_2b.yaml", equate_method: :hash_equal)
     end
 
-    it 'prevents updates with invalid data (the state)' do
-      @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
-      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
-      mi = IsoManagedV2.find_minimum(uri_1)
+    it 'next state, prevents updates with invalid data' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mi = create_iso_managed_thesaurus("TEST5", "A test managed item")
       token = Token.obtain(mi, @user)
-      post :update_status, params:{ id: mi.id, iso_managed: { registration_status: "X", previous_state: "Standard",
-        administrative_note: "X1", unresolved_issue: "X2" }}
-      actual = IsoManagedV2.find_minimum(uri_1)
-      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_2.yaml", equate_method: :hash_equal)
-      expect(response).to redirect_to("/registration_states")
+      post :next_state, params:{ id: mi.id, iso_managed: { administrative_note: "X1", unresolved_issue: "§§§§§§X2" }}
+      actual = IsoManagedV2.find_minimum(mi.uri)
+      check_file_actual_expected(actual.to_h, sub_dir, "next_state_expected_3a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(check_error_json_response(response), sub_dir, "next_state_expected_3b.yaml", equate_method: :hash_equal)
+    end
+
+    it 'next state, not permitted' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mi = create_iso_managed_thesaurus("TEST5", "A test managed item")
+      expect_any_instance_of(IsoManagedV2).to receive(:update_status_permitted?).and_return(false)
+      token = Token.obtain(mi, @user)
+      post :next_state, params:{ id: mi.id, iso_managed: { administrative_note: "X1", unresolved_issue: "§§§§§§X2" }}
+      actual = IsoManagedV2.find_minimum(mi.uri)
+      check_file_actual_expected(actual.to_h, sub_dir, "next_state_expected_3a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(check_error_json_response(response), sub_dir, "next_state_expected_3b.yaml", equate_method: :hash_equal)
     end
 
     it 'updates the semantic version' do

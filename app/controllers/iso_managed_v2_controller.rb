@@ -66,7 +66,6 @@ class IsoManagedV2Controller < ApplicationController
         render json: impact_d3(item, results)
       end
     end 
-  
   end
 
   def custom_properties
@@ -83,22 +82,20 @@ class IsoManagedV2Controller < ApplicationController
     redirect_to request.referer
   end
 
-  def update_status
+  def next_state
     authorize IsoManaged, :status?
-    referer = request.referer
-    @managed_item = IsoManagedV2.find_minimum(protect_from_bad_id(params))
-    token = Token.find_token(@managed_item, current_user)
+    item = find_item(params)
+    token = Token.find_token(item, current_user)
     if !token.nil?
-      @managed_item.update_status(the_params)
-      if !@managed_item.errors.empty?
-        flash[:error] = @managed_item.errors.full_messages.to_sentence
+      update_to_next_state(item, the_params)
+      if item.errors.empty?
+        AuditTrail.update_item_event(current_user, item, item.audit_message_status_update)
+        render :json => { :data => item.status_summary}, :status => 200
       else
-        AuditTrail.update_item_event(current_user, @managed_item, @managed_item.audit_message_status_update)
+        render :json => { :errors => item.errors.full_messages}, :status => 422
       end
-      redirect_to referer
     else
-      flash[:error] = "The edit lock has timed out."
-      redirect_to TypePathManagement.history_url_v2(@managed_item)
+      render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
     end
   end
 
@@ -171,6 +168,7 @@ private
       :change_description, :explanatory_comment, :origin, :referer)
   end
 
+  # Formatting impact for D3
   def impact_d3(item, nodes)
     result = {nodes: [], links: []}
     nodes.each {|x| result[:links] << { source: item.id, target: x.id } } 
@@ -180,4 +178,11 @@ private
         impact_path: impact_iso_managed_v2_path(x)}}
     result
   end
+
+  # Update to next state
+  def update_to_next_state(item, params)
+    return unless item.update_status_permitted?
+    item.next_state(params)
+  end
+
 end

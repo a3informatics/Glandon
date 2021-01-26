@@ -106,7 +106,7 @@ Rails.application.routes.draw do
       get :status
       get :impact
       get :make_current
-      post :update_status
+      post :next_state
       put :update_semantic_version
       get :list_change_notes
       get :list_change_notes_data
