@@ -28,12 +28,12 @@ class IsoManagedV2
       #   query_results.by_object(:s)
       # end
 
-      # Advance to Released State. Move the items to the released state if last in version history.
+      # Fats Forward State. Move the items to the released state if last in version history.
       #  Checks that items are owned and last in history.
       #
       # @param [Array] ids array of ids
       # @return [Boolean] always true
-      def advance_to_released_state(ids)
+      def fast_forward_state(ids)
         sparql = %Q{
           DELETE
           {
