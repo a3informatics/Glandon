@@ -7,6 +7,8 @@ describe IsoManagedV2Controller do
   include DownloadHelpers
   include UserAccountHelpers
   include ControllerHelpers
+  include IsoManagedFactory
+  include IsoManagedHelpers
 
   def sub_dir
     return "controllers/iso_managed_v2"
@@ -24,13 +26,17 @@ describe IsoManagedV2Controller do
     before :all do
       x = Thesaurus.new
       @lock_user = ua_add_user(email: "lock@example.com")
-      Token.delete_all
     end
 
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..10)
+      load_cdisc_term_versions(1..2)
+      Token.delete_all
+    end
+
+    after :each do
+      Token.delete_all
     end
 
     after :all do
@@ -38,23 +44,20 @@ describe IsoManagedV2Controller do
     end
 
     it "status" do
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
-      uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
-      managed_item = CdiscTerm.find_minimum(uri.to_id)
-      get :status, params:{id: uri.to_id, iso_managed: { current_id: "test" }}
-      expect(assigns(:managed_item).to_h).to eq(managed_item.to_h)
-      expect(assigns(:current_id)).to eq("test")
-      expect(assigns(:close_path)).to eq("/thesauri/history/?thesauri[identifier]=#{managed_item.scoped_identifier}&thesauri[scope_id]=#{managed_item.scope.id}")
+      get :status, params:{id: mi.uri.to_id, iso_managed: { current_id: "test" }}
+      expect(assigns(:managed_item).to_h).to eq(mi.to_h)
+      expect(assigns(:close_path)).to eq("/thesauri/history/?thesauri[identifier]=#{mi.scoped_identifier}&thesauri[scope_id]=#{mi.scope.id}")
       expect(response).to render_template("status")
     end
 
     it "status, locked" do
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
-      uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
-      managed_item = CdiscTerm.find_minimum(uri.to_id)
-      token = Token.obtain(managed_item, @lock_user)
-      get :status, params:{id: uri.to_id, iso_managed: { current_id: "test" }}
-      expect(assigns(:managed_item).to_h).to eq(managed_item.to_h)
+      token = Token.obtain(mi, @lock_user)
+      get :status, params:{id: mi.uri.to_id, iso_managed: { current_id: "test" }}
+      expect(assigns(:managed_item).to_h).to eq(mi.to_h)
       expect(response).to redirect_to("/xxx")
     end
 
@@ -117,10 +120,8 @@ describe IsoManagedV2Controller do
 
     it 'updates the semantic version' do
       request.env['HTTP_ACCEPT'] = "application/json"
-      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V10#TH")
-      mi = IsoManagedV2.find_minimum(uri_1)
-      mi.has_state.registration_status = "Qualified"
-      mi.has_state.save
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_qualified(mi)
       token = Token.obtain(mi, @user)
       put :update_semantic_version , params:{ id: mi.id, iso_managed: { sv_type: "major" }}
       expect(response.content_type).to eq("application/json")
@@ -129,10 +130,8 @@ describe IsoManagedV2Controller do
 
     it 'updates the semantic version, locked' do
       request.env['HTTP_ACCEPT'] = "application/json"
-      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V10#TH")
-      mi = IsoManagedV2.find_minimum(uri_1)
-      mi.has_state.registration_status = "Qualified"
-      mi.has_state.save
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_qualified(mi)
       token = Token.obtain(mi, @lock_user)
       put :update_semantic_version , params:{ id: mi.id, iso_managed: { sv_type: "major" }}
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
@@ -141,10 +140,9 @@ describe IsoManagedV2Controller do
 
     it 'updates the semantic version, error, has to be latest' do
       request.env['HTTP_ACCEPT'] = "application/json"
-      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
-      mi = IsoManagedV2.find_minimum(uri_1)
-      mi.has_state.registration_status = "Qualified"
-      mi.has_state.save
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_qualified(mi)
+      new_item = IsoManagedHelpers.next_version(mi)
       token = Token.obtain(mi, @user)
       put :update_semantic_version , params:{ id: mi.id, iso_managed: { sv_type: "major" }}
       expect(response.content_type).to eq("application/json")
@@ -154,8 +152,8 @@ describe IsoManagedV2Controller do
 
     it 'updates the semantic version, error, release cannot be updated in the current state' do
       request.env['HTTP_ACCEPT'] = "application/json"
-      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
-      mi = IsoManagedV2.find_minimum(uri_1)
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_standard(mi)
       token = Token.obtain(mi, @user)
       put :update_semantic_version , params:{ id: mi.id, iso_managed: { sv_type: "major" }}
       expect(response.content_type).to eq("application/json")
@@ -165,8 +163,8 @@ describe IsoManagedV2Controller do
 
     it 'lists change notes data' do
       request.env['HTTP_ACCEPT'] = "application/json"
-      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V10#TH")
-      mi = Thesaurus::ManagedConcept.find_minimum(uri_1)
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_standard(mi)
       get :list_change_notes_data, params:{ id: mi.id, iso_managed: { offset: "0", count: "200" }}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")

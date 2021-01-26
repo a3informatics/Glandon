@@ -38,4 +38,12 @@ module IsoManagedHelpers
     item.update_status({registration_status: "Incomplete", previous_state: "Incomplete"})
   end
 
+  def self.make_item_qualified(item)
+    item.update_status({registration_status: "Qualified", previous_state: "Incomplete"})
+  end
+
+  def self.next_version(item)
+    item.create_next_version
+  end
+  
 end

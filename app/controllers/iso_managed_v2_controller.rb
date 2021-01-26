@@ -18,16 +18,25 @@ class IsoManagedV2Controller < ApplicationController
 
   def status
     authorize IsoManaged, :status?
-    @managed_item = IsoManagedV2.find(protect_from_bad_id(params))
+    @managed_item = find_item(params)
     respond_to do |format|
       format.html do
-        @managed_item = @edit.item
-        @close_path = TypePathManagement.history_url_v2(@managed_item, true)
-        @item_klass = find_item(params)
+        token = get_token(@managed_item)
+        if !token.nil?
+          @close_path = TypePathManagement.history_url_v2(@managed_item, true)
+          @item_klass = @managed_item.class.name
+        else
+          flash[:error] = "The item is locked for editing."
+          redirect_to request.referer
+        end
       end
       format.json do
-        return true unless check_lock_for_item(@managed_item)
-        render :json => { data: @managed_item.status_summary }, :status => 200
+        token = Token.find_token(@managed_item, current_user)
+        if token.nil?
+          render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
+        else
+          render :json => { data: @managed_item.status_summary }, :status => 200
+        end
       end
     end
   end
