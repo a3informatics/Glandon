@@ -518,4 +518,14 @@ Rails.application.routes.draw do
     end
   end
 
+  # Managed Collections
+  resources :managed_collections, :only => [:show, :index] do
+    member do
+      get :show_data
+    end
+    collection do
+      get :history
+    end
+  end
+
 end
