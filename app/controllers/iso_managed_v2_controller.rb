@@ -27,7 +27,7 @@ class IsoManagedV2Controller < ApplicationController
       end
       format.json do
         return true unless check_lock_for_item(@managed_item)
-        render :json => {@managed_item.status_summary}, :status => 200
+        render :json => { data: @managed_item.status_summary }, :status => 200
       end
     end
   end
