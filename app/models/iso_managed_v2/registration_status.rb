@@ -83,13 +83,14 @@ class IsoManagedV2
             FILTER (NOT EXISTS {?s ^isoT:hasPreviousVersion ?x})
             {
               {
-                ?s isoT:hasPreviousVersion/isoT:hasState/isoR:registrationStatus '#{IsoRegistrationStateV2.released_state}'^^xsd:string .
+                BIND (EXISTS {?s isoT:hasPreviousVersion/isoT:hasState/isoR:registrationStatus '#{IsoRegistrationStateV2.released_state}'^^xsd:string} as ?f)
               } 
               UNION
               {
-                FILTER (NOT EXISTS {?s isoT:hasPreviousVersion ?x})
+                BIND (NOT EXISTS {?s isoT:hasPreviousVersion ?y} as ?f)
               }
             }
+            FILTER (?f = true) 
             ?s isoT:hasState ?st .
             ?st isoR:registrationStatus ?rs .
             ?st isoR:previousState ?ps .
