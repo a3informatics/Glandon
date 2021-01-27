@@ -28,7 +28,7 @@ class IsoManagedV2
       #   query_results.by_object(:s)
       # end
 
-      # Fats Forward State. Move the items to the released state if last in version history.
+      # Fast Forward State. Move the items to the released state if last in version history.
       #  Checks that items are owned and last in history.
       #
       # @param [Array] ids array of ids
@@ -49,7 +49,7 @@ class IsoManagedV2
           {
             VALUES ?s { #{ids.map{|x| Uri.new(id: x).to_ref}.join(" ")} }
             ?s isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
-            NOT EXISTS {?s ^isoT:hasPreviousVersion ?x} 
+            FILTER (NOT EXISTS {?s ^isoT:hasPreviousVersion ?x})
             ?s isoT:hasState ?st .
             ?st isoR:registrationStatus ?rs .
             ?st isoR:previousState ?ps .
@@ -59,44 +59,46 @@ class IsoManagedV2
         true
       end
 
-      # def rewind_to_draft_state(ids)
-      #   ids = filter_to_owned(ids)
-      #   query_string= %Q{
-      #     DELETE
-      #     {
-      #       ?s isoT:hasState/registrationStatus ?rs .
-      #       ?s isoT:hasState/previousState ?ps .          }
-      #     INSERT
-      #     {
-      #       ?s isoT:hasState/registrationStatus '#{IsoRegistrationStateV2.draft_state}'^^xsd:string .
-      #       ?s isoT:hasState/previousState '#{IsoRegistrationStateV2.released_state}'^^xsd:string .          
-      #     }
-      #     WHERE
-      #     {
-      #       VALUES ?s { #{ids.map{|x| x.to_ref}.join(" ")} }
-      #       ?s isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref}" .
-      #       NOT EXISTS {?s ^isoC:previousVersion ?x} 
-      #       {
-      #         {
-      #           ?s isoC:previousVersion/isoT:hasState/registrationStatus '#{IsoRegistrationStateV2.released_state}'^^xsd:string .
-      #         } UNION
-      #         {
-      #           NOT EXISTS {?s isoC:previousVersion ?y} 
-      #         }
-      #       }
-      #       ?s isoT:hasState/registrationStatus ?rs .
-      #       ?s isoT:hasState/previousState ?ps .
-      #     }
-      #   }
-      #   partial_update(query_string, [:isoI, :isoT])
-      #   ids
-      # end
-
-      # def latest_released
-      # end
-
-      # def latest_drafts
-      # end
+      # Rewind State. Move the items to the draft state if last in version history.
+      #  Checks that items are owned and last in history and no other versions since last release.
+      #
+      # @param [Array] ids array of ids
+      # @return [Boolean] always true
+      def rewind_state(ids)
+        sparql = %Q{
+          DELETE
+          {
+            ?st isoR:registrationStatus ?rs .
+            ?st isoR:previousState ?ps .          
+          }
+          INSERT
+          {
+            ?st isoR:registrationStatus '#{IsoRegistrationStateV2.draft_state}'^^xsd:string .
+            ?st isoR:previousState ?rs .          
+          }
+          WHERE
+          {
+            VALUES ?s { #{ids.map{|x| Uri.new(id: x).to_ref}.join(" ")} }
+            ?s isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
+            FILTER (NOT EXISTS {?s ^isoT:hasPreviousVersion ?x})
+            {
+              {
+                BIND (EXISTS {?s isoT:hasPreviousVersion/isoT:hasState/isoR:registrationStatus '#{IsoRegistrationStateV2.released_state}'^^xsd:string} as ?f)
+              } 
+              UNION
+              {
+                BIND (NOT EXISTS {?s isoT:hasPreviousVersion ?y} as ?f)
+              }
+            }
+            FILTER (?f = true) 
+            ?s isoT:hasState ?st .
+            ?st isoR:registrationStatus ?rs .
+            ?st isoR:previousState ?ps .
+          }
+        }
+        Sparql::Update.new.sparql_update(sparql, "", [:isoI, :isoT, :isoR])
+        true
+      end
 
     end
 
