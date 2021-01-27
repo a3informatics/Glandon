@@ -1,11 +1,19 @@
 <% content_for :page_title do %> <%= "Document Control: #{@managed_item.has_identifier.identifier} (#{@managed_item.semantic_version}) "%> <% end %>
 
+<%= stylesheet_link_tag 'iso_managed/status' %>
 <%= javascript_pack_tag 'iso_managed/status' %>
 
 <%= render partial: "shared/breadcrumb_by_type", :locals => { item: @managed_item, type: @item_klass, close_path: @close_path } %>
 
 <%= javascript_tag "let tokenTimerId = '#{@token.id}',
                         tokenTimerWarning = '#{current_user.edit_lock_warning}';"%>
+
+
+<%= javascript_tag "const statusUrls = {
+                      data: '#{ status_iso_managed_v2_path(@managed_item) }',
+                      updateVersion: '#{ set_semantic_version_iso_managed_v2_path(@managed_item) }',
+                      updateVersionLabel: '#{ set_version_label_iso_managed_v2_path(@managed_item) }'
+                    }; " %>
 
 <div class="row">
   <%= render layout: "shared/headers/header_by_type", :locals => { item: @managed_item, type: @item_klass, with_tags: true } do %>
@@ -18,4 +26,54 @@
     </div>
 
   <% end %>
+</div>
+
+<div class="row">
+
+  <div class="col-md-12 card wide">
+
+    <div class="card-header">
+      Document Control
+    </div>
+
+    <div class="card-content">
+      <div id="status-panel">
+
+        <div class="ci-card-title text-normal text-link">
+          Version Information
+        </div>
+
+        <table id="version-info" class="form-wrap">
+          <tr>
+            <td>
+              <span class="icon-version-circle text-link text-normal"></span>
+              Version
+            </td>
+            <td id="version"></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="icon-tag-circle text-link text-normal"></span>
+              Version label
+            </td>
+            <td id="version-label"></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="icon-current text-link text-normal"></span>
+              Current
+            </td>
+            <td id="current"></td>
+          </tr>
+        </table>
+
+        <div class="ci-card-title text-normal text-link">
+          Manage Status
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
 </div>
