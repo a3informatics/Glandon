@@ -50,7 +50,8 @@ if ENVIRONMENT == 'PROD'
     visit "/users/sign_in"
     if string == "Curator"
     fill_in "Email", :with => 'kl@s-cubed.dk'
-    fill_in "Password", :with => 'Changeme11?'
+    pause
+  
     end
     click_button "Log in"
     expect(page).to have_text 'Content Admin, System Admin'
