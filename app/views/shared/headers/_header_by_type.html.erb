@@ -17,9 +17,15 @@
     when "BiomedicalConceptInstance"
       header_path = "shared/headers/header_managed_item"
       locals = { item: item, badge: "icon-biocon", with_tags: with_tags }
-    when "SdtmSponsorDomain"
+    when "SdtmSponsorDomain", "SdtmClass", "SdtmIgDomain", "Sdtm_Ig", "Sdtm_Model"
       header_path = "shared/headers/header_managed_item"
       locals = { item: item, badge: "icon-sdtm", with_tags: with_tags }
+    when "AdamIgDataset", "AdamIg"
+      header_path = "shared/headers/header_managed_item"
+      locals = { item: item, badge: "icon-adam", with_tags: with_tags }
+    else 
+      header_path = "shared/headers/header_managed_item"
+      locals = { item: item, badge: "?", with_tags: with_tags }
   end %>
 
 <%= render layout: header_path, :locals => locals do %>
