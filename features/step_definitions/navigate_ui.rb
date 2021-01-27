@@ -283,7 +283,9 @@ Then('the list has {int} entries') do |int|
     ui_check_table_info('children', 1, 10, int)
   end
 	wait_for_ajax(20)
+  zoom_out
 	save_screen(TYPE)
+  zoom_in
 end
 
 

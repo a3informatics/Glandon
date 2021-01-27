@@ -46,9 +46,9 @@ Cucumber::Rails::Database.autorun_database_cleaner = false
 #DatabaseCleaner.strategy = :truncation
 #Cucumber::Rails::Database.javascript_strategy = :truncation
  
-#ENVIRONMENT = 'VAL'
+ENVIRONMENT = 'VAL'
 
-ENVIRONMENT = 'PROD'
+#ENVIRONMENT = 'PROD'
 
 #ENVIRONMENT = 'TEST'
 
@@ -192,13 +192,13 @@ def save_screen(e_or_a,screen_shot_enabled=TURN_ON_SCREEN_SHOT)
 
   if screen_shot_enabled
      Capybara.current_session.current_window.maximize
-     zoom_out
+     #zoom_out
      screenshot_file_name = "#{Time.now.strftime("#{e_or_a}_%d_%m_%Y__%H_%M_%S")}.png" 
      save_screenshot(screenshot_file_name, :full => true)
      screenshot_path = Capybara::save_path+screenshot_file_name
      attach(File.open(screenshot_path), "image/png")
      #attach(screenshot_path, "image/png")
-     zoom_in
+     #zoom_in
     end
 end
 

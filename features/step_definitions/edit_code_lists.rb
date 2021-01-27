@@ -40,6 +40,9 @@ When('I edit the following properties for {string}:') do |string, table|
      table.hashes.each do |hash|
       ui_editor_select_by_location(1, 3)
       ui_editor_fill_inline 'preferred_term', "#{hash['PreferredTerm']}\n"
+      ui_editor_select_by_location(1, 4)
+      ui_editor_fill_inline 'synonym', "#{hash['Synonyms']}\n"
+      ui_press_key :tab
 end
 end
 
