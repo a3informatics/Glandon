@@ -80,13 +80,14 @@ class IsoManagedV2
           {
             VALUES ?s { #{ids.map{|x| Uri.new(id: x).to_ref}.join(" ")} }
             ?s isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
+            FILTER (NOT EXISTS {?s ^isoT:hasPreviousVersion ?x})
             {
               {
                 ?s isoT:hasPreviousVersion/isoT:hasState/isoR:registrationStatus '#{IsoRegistrationStateV2.released_state}'^^xsd:string .
               } 
               UNION
               {
-                NOT EXISTS {?s ^isoT:hasPreviousVersion ?x} 
+                FILTER (NOT EXISTS {?s isoT:hasPreviousVersion ?x})
               }
             }
             ?s isoT:hasState ?st .
