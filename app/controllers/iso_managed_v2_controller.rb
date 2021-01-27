@@ -21,8 +21,8 @@ class IsoManagedV2Controller < ApplicationController
     @managed_item = find_item(params)
     respond_to do |format|
       format.html do
-        token = get_token(@managed_item)
-        if !token.nil?
+        @token = get_token(@managed_item)
+        if !@token.nil?
           @close_path = TypePathManagement.history_url_v2(@managed_item, true)
           @item_klass = @managed_item.class.name
         else
