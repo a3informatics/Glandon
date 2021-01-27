@@ -7,7 +7,7 @@ describe IsoManagedV2::RegistrationStatus do
   include IsoManagedFactory
 
   def sub_dir
-    return "models/iso_managed_v2/registration"
+    return "models/iso_managed_v2/registration_status"
   end
 
   describe "Status General" do
@@ -149,7 +149,7 @@ describe IsoManagedV2::RegistrationStatus do
       (1..5).each_with_index { |x, index| items << create_iso_managed("ITEM #{index+1}", "This is item #{index+1}") }
       [items[0], items[1]].each { |x| change_ownership(x, @cdisc_ra) }
       results = IsoManagedV2.fast_forward_state(items.map{ |x| x.uri.to_id })
-      items.each_with_index { |x, index| check_file_actual_expected(IsoManagedV2.find_minimum(x.uri).to_h, sub_dir, "advanced_to_release_state_expected_1-#{index+1}.yaml", equate_method: :hash_equal) }
+      items.each_with_index { |x, index| check_file_actual_expected(IsoManagedV2.find_minimum(x.uri).to_h, sub_dir, "fast_forward_state_expected_1-#{index+1}.yaml", equate_method: :hash_equal, write_file: true) }
       expect(results).to eq(true)
     end
 
@@ -161,7 +161,51 @@ describe IsoManagedV2::RegistrationStatus do
       next_version.has_previous_version = items.last
       next_version.save
       results = IsoManagedV2.fast_forward_state(items.map{ |x| x.uri.to_id })
-      items.each_with_index { |x, index| check_file_actual_expected(IsoManagedV2.find_minimum(x.uri).to_h, sub_dir, "advanced_to_release_state_expected_2-#{index+1}.yaml", equate_method: :hash_equal) }
+      items.each_with_index { |x, index| check_file_actual_expected(IsoManagedV2.find_minimum(x.uri).to_h, sub_dir, "fast_forward_state_expected_2-#{index+1}.yaml", equate_method: :hash_equal, write_file: true) }
+      expect(results).to eq(true)
+    end
+
+  end
+
+  describe "Rewind State" do
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      @cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
+    end
+
+    it "rewind state, simple case" do
+      items = []
+      (1..5).each_with_index { |x, index| items << create_iso_managed("ITEM #{index+1}", "This is item #{index+1}") }
+      [items[0], items[1]].each { |x| change_ownership(x, @cdisc_ra) }
+      [items[0], items[1], items[2], items[3], items[4]].each { |x| IsoManagedHelpers.make_item_standard(x) }
+      results = IsoManagedV2.rewind_state(items.map{ |x| x.uri.to_id })
+      items.each_with_index { |x, index| check_file_actual_expected(IsoManagedV2.find_minimum(x.uri).to_h, sub_dir, "rewind_state_expected_1-#{index+1}.yaml", equate_method: :hash_equal, write_file: true) }
+      expect(results).to eq(true)
+    end
+
+    it "rewind state, previous version" do
+      items = []
+      (1..5).each_with_index { |x, index| items << create_iso_managed("ITEM #{index+1}", "This is item #{index+1}") }
+      [items[0], items[1]].each { |x| change_ownership(x, @cdisc_ra) }
+      [items[0], items[1], items[2], items[3], items[4]].each { |x| IsoManagedHelpers.make_item_standard(x) }
+      items[5] = IsoManagedHelpers.next_version(items[2])
+      results = IsoManagedV2.rewind_state(items.map{ |x| x.uri.to_id })
+      items.each_with_index { |x, index| check_file_actual_expected(IsoManagedV2.find_minimum(x.uri).to_h, sub_dir, "rewind_state_expected_2-#{index+1}.yaml", equate_method: :hash_equal, write_file: true) }
+      expect(results).to eq(true)
+    end
+
+    it "rewind state, state" do
+      items = []
+      (1..5).each_with_index { |x, index| items << create_iso_managed("ITEM #{index+1}", "This is item #{index+1}") }
+      [items[0], items[1]].each { |x| change_ownership(x, @cdisc_ra) }
+      [items[0], items[1], items[2], items[3], items[4]].each { |x| IsoManagedHelpers.make_item_standard(x) }
+      items[5] = IsoManagedHelpers.next_version(items[2])
+      IsoManagedHelpers.make_item_qualified(items[5]) 
+      items[6] = IsoManagedHelpers.next_version(items[5])
+      results = IsoManagedV2.rewind_state([items[0].id, items[1].id, items[2].id, items[3].id, items[6].id])
+      items.each_with_index { |x, index| check_file_actual_expected(IsoManagedV2.find_minimum(x.uri).to_h, sub_dir, "rewind_state_expected_3-#{index+1}.yaml", equate_method: :hash_equal, write_file: true) }
       expect(results).to eq(true)
     end
 

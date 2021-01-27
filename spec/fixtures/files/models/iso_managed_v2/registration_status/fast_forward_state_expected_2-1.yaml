@@ -1,0 +1,52 @@
+---
+:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU1fMS9WMQ==
+:uri: http://www.s-cubed.dk/ITEM_1/V1
+:rdf_type: http://www.assero.co.uk/ISO11179Types#AdministeredItem
+:label: This is item 1
+:has_state:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU1fMS9WMSNSUw==
+  :uri: http://www.s-cubed.dk/ITEM_1/V1#RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS084433759
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '084433759'
+    :international_code_designator: DUNS
+    :owner: false
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+:has_identifier:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU1fMS9WMSNTSQ==
+  :uri: http://www.s-cubed.dk/ITEM_1/V1#SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: ITEM 1
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+    :uri: http://www.assero.co.uk/NS#CDISC
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: CDISC
+    :name: Clinical Data Interchange Standards Consortium
+    :authority: www.cdisc.org
+:has_previous_version: 
+:origin: ''
+:change_description: ''
+:creation_date: '2021-01-27T12:44:40+01:00'
+:last_change_date: '2021-01-27T12:44:40+01:00'
+:explanatory_comment: ''
