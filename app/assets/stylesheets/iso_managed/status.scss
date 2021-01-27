@@ -1,79 +1,40 @@
 @import "shared/vars.scss";
 
-.status-wrap .boxed-title, .status-wrap .status-paragraph{
-  margin-top: 10px;
-  margin-right: 20px;
-}
+#status-panel {
+  min-height: 300px;
+  position:relative;
 
-.status-wrap .status{
-  margin-top: 20px;
-  display: block;
-  width: 45%;
-  min-width: 300px;
-}
+  #version-info{
+    width: unset !important;
+    font-family: $font-light;
+    margin: 0 auto;
 
-.status-paragraph{
-  text-align: justify;
-  font-size: $font-small;
-  color: $grey-medium;
-  display: block;
-}
+    td {
+      padding: 4px 6px;
+    }
+    
+    .btn, .btn-label {
+      margin: 0px 2px;
+    }
 
-.status-wrap{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: -20px;
-}
+    // Fix positioning of the checkmark icon in Current field
+    #current [class^="icon"] {
+      margin-left: 4px;
+    }
 
-.status.form-group{
-  max-width: 500px;
-  font-family: $font-light;
-  display: block;
-}
-
-.status-wrap .status-arrow{
-  font-family: $font-light;
-  font-size: $font-xnormal;
-  color: $grey-light;
-  margin-right: 20px;
-  margin-top: 64px;
-}
-
-.content-editable{
-  position: relative;
-  margin: 3px 8px !important;
-  cursor: pointer !important;
-}
-
-.content-editable::after{
-  display: inline-block;
-  font-family: 'icomoon';
-  content: "\e931";
-  color: $grey-light;
-  margin: 0px 5px;
-  font-size: $font-small;
-  position: absolute;
-  right: -25px;
-  top: 10%;
-}
-
-#version-edit-after, #version-label-edit-after{
-  display: none;
-}
-
-#select-release{
-  height: 30px;
-}
-
-@media (max-width: 1410px){
-  .status-wrap .status{
-    width: 90%;
+    select {
+      text-transform: capitalize;
+    }
   }
 
-  .status-wrap .status-arrow{
-    margin: 20px 50px 0 50px;
-    transform: rotate(90deg);
+  // Loading
+  .spinner-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5)
   }
+
 }
