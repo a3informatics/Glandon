@@ -32,26 +32,32 @@ module IsoManagedHelpers
 
   def self.make_item_draft(item)
     item.has_state.update(registration_status: "Incomplete", previous_state: "Incomplete")
+    Thesaurus::ManagedConcept.find_minimum(item.uri)
   end
 
   def self.make_item_candidate(item)
     item.has_state.update(registration_status: "Candidate", previous_state: "Incomplete")
+    Thesaurus::ManagedConcept.find_minimum(item.uri)
   end
 
   def self.make_item_recorded(item)
     item.has_state.update(registration_status: "Recorded", previous_state: "Candidate")
+    Thesaurus::ManagedConcept.find_minimum(item.uri)
   end
 
   def self.make_item_qualified(item)
     item.has_state.update(registration_status: "Qualified", previous_state: "Recorded")
+    Thesaurus::ManagedConcept.find_minimum(item.uri)
   end
 
   def self.make_item_standard(item)
     item.has_state.update(registration_status: "Standard", previous_state: "Qualified")
+    Thesaurus::ManagedConcept.find_minimum(item.uri)
   end
 
   def self.make_item_superseded(item)
     item.has_state.update(registration_status: "Superseded", previous_state: "Standard")
+    Thesaurus::ManagedConcept.find_minimum(item.uri)
   end
 
   def self.next_version(item)

@@ -49,7 +49,7 @@ class IsoManagedV2
           {
             VALUES ?s { #{ids.map{|x| Uri.new(id: x).to_ref}.join(" ")} }
             ?s isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
-            NOT EXISTS {?s ^isoT:hasPreviousVersion ?x} 
+            FILTER (NOT EXISTS {?s ^isoT:hasPreviousVersion ?x})
             ?s isoT:hasState ?st .
             ?st isoR:registrationStatus ?rs .
             ?st isoR:previousState ?ps .
@@ -74,7 +74,7 @@ class IsoManagedV2
           INSERT
           {
             ?st isoR:registrationStatus '#{IsoRegistrationStateV2.draft_state}'^^xsd:string .
-            ?st isoR:previousState '#{IsoRegistrationStateV2.released_state}'^^xsd:string .          
+            ?st isoR:previousState ?rs .          
           }
           WHERE
           {
