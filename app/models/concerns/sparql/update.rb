@@ -145,7 +145,6 @@ module Sparql
     # @param prefixes [Array] an array of prefixes for building the namespaces
     # @return [Void] no return
     def sparql_update(sparql, default_namespace, prefixes)
-puts colourize("#{build_clauses(default_namespace, prefixes)}\n#{sparql}", "blue")
       execute_update(:update, "#{build_clauses(default_namespace, prefixes)}\n#{sparql}")
     end
 
