@@ -7,6 +7,8 @@ describe ManagedCollection do
   include PublicFileHelpers
   include IsoManagedHelpers
   include IsoManagedHelpers
+  include SdtmSponsorDomainFactory
+  include BiomedicalConceptInstanceFactory
 
   def sub_dir
     return "models/managed_collection"
@@ -90,6 +92,46 @@ describe ManagedCollection do
       parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
       check_file_actual_expected(parent.to_h, sub_dir, "add_item_expected_1b.yaml", equate_method: :hash_equal)
     end
+
+  end
+
+  describe "Managed Tests" do
+
+    before :all do
+      IsoHelpers.clear_cache
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "managed" do
+      item_1 = ManagedCollection.create(label: "Item 1", identifier: "ITEM1")
+      item_2 = ManagedCollection.create(label: "Item 2", identifier: "ITEM2")
+      item_3 = ManagedCollection.create(label: "Item 3", identifier: "ITEM3")
+      item_4 = ManagedCollection.create(label: "Item 4", identifier: "ITEM4")
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
+      parent.add_item([item_2.id, item_3.id])
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
+      check_file_actual_expected(parent.managed, sub_dir, "managed_expected_1a.yaml", equate_method: :hash_equal)
+      parent.add_item([item_4.id])
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
+      check_file_actual_expected(parent.managed, sub_dir, "managed_expected_1b.yaml", equate_method: :hash_equal)
+    end
+
+    it "managed" do
+      item_1 = ManagedCollection.create(label: "MC 2", identifier: "MC1")
+      domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
+      bc_1 = create_biomedical_concept_instance("BMI", "BMI")
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/MC1/V1#MC"))
+      parent.add_item([domain.id, bc_1.id])
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/MC1/V1#MC"))
+      check_file_actual_expected(parent.managed, sub_dir, "managed_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+    
 
   end
 
