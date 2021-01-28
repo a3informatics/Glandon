@@ -37,8 +37,15 @@ class ManagedCollection <  IsoManagedV2
     self
   end
 
-  # def remove_item(id_set)
-  # end
+  def remove_item(id_set)
+    transaction = transaction_begin
+    id_set.map{|x| Uri.new(id: x)}.each do |uri|
+      ref_uri = get_op_ref(uri)
+      self.delete_link(:has_managed, ref_uri)
+    end
+    transaction_execute
+    self
+  end
 
   # Managed. List the objects that belong to the Collection.
   # @param 
@@ -64,5 +71,18 @@ class ManagedCollection <  IsoManagedV2
     end
     results
   end
+
+  private
+
+    def get_op_ref(item_uri)
+      query_string = %Q{
+        SELECT DISTINCT ?op_ref WHERE {
+          #{self.uri.to_ref} bo:hasManaged ?op_ref .
+          ?op_ref bo:reference #{item_uri.to_ref} 
+        }
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:bo])
+      query_results.by_object(:op_ref).first
+    end
 
 end
