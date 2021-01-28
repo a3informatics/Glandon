@@ -30,12 +30,12 @@ class ManagedCollection <  IsoManagedV2
 
   # Add item. 
   #
-  # @param [Array] ids set the ids to add as items
+  # @param [Array] ids the ids to add as items
   # @return [ManagedCollection] managed collection with added items
-  def add_item(id_set)
+  def add_item(ids)
     ordinal = next_ordinal(:has_managed)
     transaction = transaction_begin
-    id_set.map{|x| Uri.new(id: x)}.each do |uri|
+    ids.map{|x| Uri.new(id: x)}.each do |uri|
       ref = OperationalReferenceV3.create({ordinal: ordinal, reference: uri, transaction: transaction}, self)
       self.add_link(:has_managed, ref.uri)
       ordinal += 1
@@ -46,18 +46,24 @@ class ManagedCollection <  IsoManagedV2
 
   # Remove item. 
   #
-  # @param [Array] ids set the ids to remove as items
+  # @param [Array] ids the ids to remove as items
   # @return [ManagedCollection] managed collection without removed items
-  def remove_item(id_set)
-    transaction = transaction_begin
-    id_set.map{|x| Uri.new(id: x)}.each do |uri|
-      ref_uri = get_op_ref(uri)
-      ref = OperationalReferenceV3.find(ref_uri)
-      ref.delete_with_links
-    end
-    transaction_execute
+  def remove_item(ids)
+    update_query = %Q{ 
+      DELETE {
+        ?x ?p ?o .
+        #{self.uri.to_ref} bo:hasManaged ?x .
+      }
+      WHERE
+      {
+        VALUES ?s { #{ids.map{|x| Uri.new(id: x).to_ref}.join(" ")} } .
+        ?s ^bo:reference ?x .
+        #{self.uri.to_ref} bo:hasManaged ?x .
+      }
+    }
+    #partial_update(update_query, [:bo])
+    Sparql::Update.new.sparql_update(update_query, "", [:bo])
     self.reset_ordinals
-    self
   end
 
   # Managed items. List the objects that belong to the Collection.
@@ -111,18 +117,6 @@ puts "Q: #{query_string}"
   end
 
   private
-
-    # Return URI of the OperationalReference that points to item_uri
-    def get_op_ref(item_uri)
-      query_string = %Q{
-        SELECT DISTINCT ?op_ref WHERE {
-          #{self.uri.to_ref} bo:hasManaged ?op_ref .
-          ?op_ref bo:reference #{item_uri.to_ref} 
-        }
-      }
-      query_results = Sparql::Query.new.query(query_string, "", [:bo])
-      query_results.by_object(:op_ref).first
-    end
 
     # Return URIs of the children objects ordered by ordinal
     def uris_by_ordinal

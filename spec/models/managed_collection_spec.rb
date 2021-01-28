@@ -121,6 +121,9 @@ describe ManagedCollection do
       parent.remove_item([item_2.id, item_4.id])
       parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
       check_file_actual_expected(parent.to_h, sub_dir, "remove_item_expected_1b.yaml", equate_method: :hash_equal)
+      item_2 = ManagedCollection.find_full(item_2.id)
+      item_3 = ManagedCollection.find_full(item_3.id)
+      item_4 = ManagedCollection.find_full(item_4.id)
     end
 
   end
