@@ -128,7 +128,16 @@ function $ajax({
     data,
     cache,
   })
-  .done( (result) => done( rawResult ? result : ( result.data || result ) ) )
+  .done( result => {
+
+    if ( rawResult )
+      done( result )
+    else 
+      result.data === undefined || result.data === null ? 
+        done( result ) : 
+        done( result.data )
+
+  })
   .fail( (x, s, e) => {
 
     if ( e !== 'abort' )
