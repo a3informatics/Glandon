@@ -107,8 +107,8 @@ Rails.application.routes.draw do
       get :impact
       get :make_current
       post :next_state
-      put :set_semantic_version
-      put :set_version_label
+      put :update_semantic_version
+      put :update_version_label
       get :list_change_notes
       get :list_change_notes_data
       get :custom_properties

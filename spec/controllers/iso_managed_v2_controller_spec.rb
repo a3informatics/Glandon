@@ -102,6 +102,7 @@ describe IsoManagedV2Controller do
       token = Token.obtain(mi, @user)
       post :next_state, params:{ id: mi.id, iso_managed: { administrative_note: "X1", unresolved_issue: "X2" }}
       actual = IsoManagedV2.find_minimum(mi.uri)
+      fix_dates(actual, sub_dir, "next_state_expected_1a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "next_state_expected_1a.yaml", equate_method: :hash_equal)
       check_file_actual_expected(check_good_json_response(response), sub_dir, "next_state_expected_1b.yaml", equate_method: :hash_equal)
     end
@@ -112,6 +113,7 @@ describe IsoManagedV2Controller do
       token = Token.obtain(mi, @lock_user)
       post :next_state, params:{ id: mi.id, iso_managed: { administrative_note: "X1", unresolved_issue: "X2" }}
       actual = IsoManagedV2.find_minimum(mi.uri)
+      fix_dates(actual, sub_dir, "next_state_expected_2a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "next_state_expected_2a.yaml", equate_method: :hash_equal)
       check_file_actual_expected(check_error_json_response(response), sub_dir, "next_state_expected_2b.yaml", equate_method: :hash_equal)
     end
@@ -122,6 +124,7 @@ describe IsoManagedV2Controller do
       token = Token.obtain(mi, @user)
       post :next_state, params:{ id: mi.id, iso_managed: { administrative_note: "X1", unresolved_issue: "§§§§§§X2" }}
       actual = IsoManagedV2.find_minimum(mi.uri)
+      fix_dates(actual, sub_dir, "next_state_expected_3a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "next_state_expected_3a.yaml", equate_method: :hash_equal)
       check_file_actual_expected(check_error_json_response(response), sub_dir, "next_state_expected_3b.yaml", equate_method: :hash_equal)
     end
@@ -136,6 +139,7 @@ describe IsoManagedV2Controller do
       token = Token.obtain(mi, @user)
       post :next_state, params:{ id: mi.id, iso_managed: { administrative_note: "X1", unresolved_issue: "X2" }}
       actual = IsoManagedV2.find_minimum(mi.uri)
+      fix_dates(actual, sub_dir, "next_state_expected_4a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "next_state_expected_4a.yaml", equate_method: :hash_equal)
       check_file_actual_expected(check_error_json_response(response), sub_dir, "next_state_expected_4b.yaml", equate_method: :hash_equal)
     end
@@ -181,6 +185,36 @@ describe IsoManagedV2Controller do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The release cannot be updated in the current state"])
+    end
+
+    it 'updates the version label' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_qualified(mi)
+      token = Token.obtain(mi, @user)
+      put :update_version_label , params:{ id: mi.id, iso_managed: { version_label: "XXXXX" }}
+      actual = check_good_json_response(response)
+      expect(actual).to eq({data: "XXXXX", errors: []})
+    end
+
+    it 'updates the version label, error' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_qualified(mi)
+      token = Token.obtain(mi, @user)
+      put :update_version_label , params:{ id: mi.id, iso_managed: { version_label: "XXXXX§§§" }}
+      actual = check_error_json_response(response)
+      expect(actual).to eq({:data=>"XXXXX§§§", :errors=>["Version label contains invalid characters"]})
+    end
+
+    it 'updates the version label, locked' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_qualified(mi)
+      token = Token.obtain(mi, @lock_user)
+      put :update_version_label , params:{ id: mi.id, iso_managed: { version_label: "DDDDDD" }}
+      actual = check_error_json_response(response)
+      expect(actual).to eq({errors: ["The edit lock has timed out."]})
     end
 
     it 'lists change notes data' do

@@ -151,7 +151,7 @@ class IsoManagedV2Controller < ApplicationController
     end
   end
 
-  def set_semantic_version
+  def update_semantic_version
     authorize IsoManaged, :status?
     @managed_item = find_item(params)
     token = Token.find_token(@managed_item, current_user)
@@ -164,14 +164,15 @@ class IsoManagedV2Controller < ApplicationController
     end
   end
 
-  def set_version_label
+  def update_version_label
     authorize IsoManaged, :status?
     @managed_item = find_item(params)
     token = Token.find_token(@managed_item, current_user)
     if !token.nil?
-      @managed_item.update(the_params)
-      status = @managed_item.errors.empty? ? 200 : 422
-      render :json => { :data => @managed_item.semantic_version, :errors => @managed_item.errors.full_messages}, :status => status
+      si = @managed_item.has_identifier
+      si.update(the_params)
+      status = si.errors.empty? ? 200 : 422
+      render :json => { :data => si.version_label, :errors => si.errors.full_messages}, :status => status
     else
       render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
     end
@@ -229,7 +230,7 @@ private
   def the_params
     # Strong parameter using iso_managed not V2 version.
     params.require(:iso_managed).permit(:identifier, :scope_id, :current_id, :tag_id, :registration_status, :previous_state, 
-      :administrative_note, :unresolved_issue, :sv_type, :offset, :count, 
+      :administrative_note, :unresolved_issue, :sv_type, :version_label, :offset, :count, 
       :change_description, :explanatory_comment, :origin, :referer)
   end
 
