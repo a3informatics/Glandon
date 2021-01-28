@@ -25,6 +25,10 @@ class ManagedCollection <  IsoManagedV2
     object
   end
 
+  # Add item. 
+  #
+  # @param [Array] ids set the ids to add as items
+  # @return [ManagedCollection] managed collection with added items
   def add_item(id_set)
     ordinal = next_ordinal(:has_managed)
     transaction = transaction_begin
@@ -37,6 +41,10 @@ class ManagedCollection <  IsoManagedV2
     self
   end
 
+  # Remove item. 
+  #
+  # @param [Array] ids set the ids to remove as items
+  # @return [ManagedCollection] managed collection without removed items
   def remove_item(id_set)
     transaction = transaction_begin
     id_set.map{|x| Uri.new(id: x)}.each do |uri|
@@ -47,10 +55,10 @@ class ManagedCollection <  IsoManagedV2
     self
   end
 
-  # Managed. List the objects that belong to the Collection.
+  # Managed items. List the objects that belong to the Collection.
   # @param 
   # @return
-  def managed
+  def managed_items
     results = []
     query_string = %Q{
       SELECT DISTINCT ?s ?i ?l ?sv ?vl ?owner ?rdf_type WHERE {

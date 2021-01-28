@@ -145,10 +145,10 @@ describe ManagedCollection do
       parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
       parent.add_item([item_2.id, item_3.id])
       parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
-      check_file_actual_expected(parent.managed, sub_dir, "managed_expected_1a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(parent.managed_items, sub_dir, "managed_expected_1a.yaml", equate_method: :hash_equal)
       parent.add_item([item_4.id])
       parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
-      check_file_actual_expected(parent.managed, sub_dir, "managed_expected_1b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(parent.managed_items, sub_dir, "managed_expected_1b.yaml", equate_method: :hash_equal)
     end
 
     it "managed" do
@@ -158,7 +158,7 @@ describe ManagedCollection do
       parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/MC1/V1#MC"))
       parent.add_item([domain.id, bc_1.id])
       parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/MC1/V1#MC"))
-      check_file_actual_expected(parent.managed, sub_dir, "managed_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(parent.managed_items, sub_dir, "managed_expected_2.yaml", equate_method: :hash_equal)
     end
 
     

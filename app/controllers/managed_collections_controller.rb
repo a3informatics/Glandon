@@ -24,7 +24,7 @@ class ManagedCollectionsController < ManagedItemsController
 
   def show_data
     @mc = ManagedCollection.find_minimum(protect_from_bad_id(params))
-    render json: {data: @mc.managed}, status: 200
+    render json: {data: @mc.managed_items}, status: 200
   end
 
   def create
@@ -51,7 +51,7 @@ class ManagedCollectionsController < ManagedItemsController
       format.json do
         @mc = ManagedCollection.find_full(@mc.id)
         return true unless check_lock_for_item(@mc)
-        render :json => { data: @mc.managed }, :status => 200
+        render :json => { data: @mc.managed_items }, :status => 200
       end
     end
   end
@@ -59,11 +59,11 @@ class ManagedCollectionsController < ManagedItemsController
   def add
     mc = ManagedCollection.find_full(protect_from_bad_id(params))
     return true unless check_lock_for_item(mc)
-    set_before = mc.managed
+    set_before = mc.managed_items
     item = mc.add(items_params[:id_set])
     if item.errors.empty?
       AuditTrail.create_item_event(current_user, mc, "Item(s) added to Managed Collection.")
-      set_after = mc.managed
+      set_after = mc.managed_items
       result = set_after - set_before
       render :json => {data: result}, :status => 200
     else
