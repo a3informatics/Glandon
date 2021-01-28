@@ -158,7 +158,7 @@ class IsoManagedV2Controller < ApplicationController
     if !token.nil?
       @managed_item.release(the_params[:sv_type].downcase.to_sym)
       status = @managed_item.errors.empty? ? 200 : 422
-      render :json => { :data => @managed_item.semantic_version, :errors => @managed_item.errors.full_messages}, :status => status
+      render :json => { :data => @managed_item.status_summary[:semantic_version], :errors => @managed_item.errors.full_messages}, :status => status
     else
       render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
     end
