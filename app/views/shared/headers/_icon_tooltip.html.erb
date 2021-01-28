@@ -1,1 +1,8 @@
- <span class="<%= icon %> ttip ttip-ico"><span class="ttip-text shadow-small text-medium text-small"><%= description %></span></span><span class="icotext"><%= title %></span>
+<span class="<%= icon %> ttip ttip-ico">
+  <span class="ttip-text shadow-small text-medium text-small">
+    <%= description %>
+  </span>
+</span>
+<span class="icotext <%= css_class if local_assigns.has_key? :css_class %>">
+  <%= title %>
+</span>
