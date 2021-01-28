@@ -79,7 +79,10 @@ class IsoManagedV2Controller < ApplicationController
     authorize IsoManaged, :status?
     managed_item = find_item(params)
     managed_item.make_current
-    redirect_to request.referer
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.json { render json: { data: {} } }
+    end
   end
 
   def next_state
