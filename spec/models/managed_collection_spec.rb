@@ -137,7 +137,7 @@ describe ManagedCollection do
       delete_all_public_test_files
     end
 
-    it "managed" do
+    it "managed items" do
       item_1 = ManagedCollection.create(label: "Item 1", identifier: "ITEM1")
       item_2 = ManagedCollection.create(label: "Item 2", identifier: "ITEM2")
       item_3 = ManagedCollection.create(label: "Item 3", identifier: "ITEM3")
@@ -151,7 +151,7 @@ describe ManagedCollection do
       check_file_actual_expected(parent.managed_items, sub_dir, "managed_expected_1b.yaml", equate_method: :hash_equal)
     end
 
-    it "managed" do
+    it "managed items" do
       item_1 = ManagedCollection.create(label: "MC 2", identifier: "MC1")
       domain = create_sdtm_sponsor_domain("AAA", "SDTM Sponsor Domain", "AA")
       bc_1 = create_biomedical_concept_instance("BMI", "BMI")
