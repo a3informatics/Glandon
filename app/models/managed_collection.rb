@@ -15,6 +15,9 @@ class ManagedCollection <  IsoManagedV2
     self.has_managed << ref
   end
 
+  # Clone. Clone the Collection 
+  #
+  # @return [ManagedCollection] a clone of the object
   def clone
     self.has_managed_links
     object = super
@@ -109,6 +112,7 @@ puts "Q: #{query_string}"
 
   private
 
+    # Return URI of the OperationalReference that points to item_uri
     def get_op_ref(item_uri)
       query_string = %Q{
         SELECT DISTINCT ?op_ref WHERE {
