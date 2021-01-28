@@ -2,6 +2,8 @@
 
 import { $get, $ajax } from 'shared/helpers/ajax'
 import { renderSpinnerIn$, removeSpinnerFrom$ } from 'shared/ui/spinners'
+import { alerts } from 'shared/ui/alerts'
+import { $confirm } from 'shared/helpers/confirmable'
 
 import Renderer from './status_panel_renderers'
 
@@ -26,7 +28,8 @@ export default class StatusPanel {
       selector, urls, param: 'iso_managed'
     })
 
-    this.loadData();
+    this.loadData()
+    this._setListeners()
     
   }
 
@@ -42,6 +45,48 @@ export default class StatusPanel {
       done: data => this.renderAll( data ),
       always: () => this._loading( false )
     })
+
+  }
+
+  /**
+   * Move Item to next state request, handle response
+   * @param {boolean} userConfirmed Overrides confirmation dialog when set to true. Only used when moving to Superseded
+   */
+  nextState(userConfirmed = false) {
+
+    if ( this.isInState('Superseded') )
+      return
+
+    // Require user confirmation to move to Superseded
+    if ( this.isInState('Standard') && userConfirmed === false ) {
+
+      $confirm({ 
+        callback: () => this.nextState( true ) 
+      })
+      return 
+
+    }
+
+    // Execute request 
+    else {
+
+      const note = this.$panel.find( '#adm-note' ).val(),
+            issue = this.$panel.find( '#unr-issue' ).val()
+
+      this._update({
+        url: this.urls.nextState,
+        type: 'POST',
+        data: {
+          administrative_note: note,
+          unresolved_issue: issue
+        },
+        onSuccess: data => {   
+          this.renderAll( data )
+          alerts.success( `Moved to ${ data.state.label }`)
+        } 
+      })
+
+    }
 
   }
 
@@ -80,7 +125,7 @@ export default class StatusPanel {
   }
 
   /**
-   * Make Item current request, hadnle response
+   * Make Item current request, handle response
    */
   makeCurrent() {
 
@@ -101,7 +146,6 @@ export default class StatusPanel {
    */
   renderAll(data) {
 
-    // console.log(data);
     data ? this.data = data : data = this.data
 
     Renderer.versionField({
@@ -119,8 +163,19 @@ export default class StatusPanel {
       submit: () => this.makeCurrent()
     })
 
+    Renderer.statusInfo( data )
+
     Renderer.headerFields( data )
 
+  }
+
+  /**
+   * Check if item is in given state
+   * @return {string} State to check for
+   * @return {boolean} True if Item is Superseded
+   */
+  isInState(state) {
+    return state.toLowerCase() === this.data.state.label.toLowerCase()
   }
 
   /**
@@ -134,6 +189,15 @@ export default class StatusPanel {
 
   /*** Private ***/
 
+  /**
+   * Set panel event listeners & handlers
+   */
+  _setListeners() {
+
+    this.$panel.find( '#next-status' ) 
+               .click( () => this.nextState() )
+
+  }
 
   /**
    * Make Update request to the server, handle UI

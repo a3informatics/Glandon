@@ -31,7 +31,7 @@ function versionField({
   // Render Edit view of Version field
   if ( editMode ) {
 
-    let $sel = select({ options: version.next_versions })
+    let $sel = select({ options: version.next_versions, current: version.label })
 
     let $buttons = editingBtns({
       onSubmit: () => submit( $sel.val() ),
@@ -129,6 +129,59 @@ function currentField({
 
 }
 
+
+/*** Status Information Renderers ***/
+
+
+/**
+ * Render data in Status information 
+ * @param {Object} data Status Panel data object
+ */
+function statusInfo(data) {
+
+  const { state, next_state: nextState } = data,
+        $status = getPanel().find( '#status' ),
+        $nextStatus = getPanel().find( '#status-next' )
+
+  // Clear textareas
+  getPanel().find('textarea').val('')
+
+  // Render current state
+  renderStatusData({ data: state, div: $status })
+
+  // Render next state if item not Superseded
+  if ( state.label !== nextState.label )
+    renderStatusData({ data: nextState, div: $nextStatus })
+
+  // Clear & disable elements if item Superseded
+  else {
+
+    getPanel().find( '#status-actions .btn')
+              .addClass( 'disabled' )
+    getPanel().find( '#status-arrow' )
+              .add( $nextStatus )
+              .remove()
+    
+  }
+
+}
+
+/**
+ * Render data in a single Status block 
+ * @param {Object} data Specific Status data 
+ * @param {Element} div Target Status block div  
+ */
+function renderStatusData({data, div}) {
+
+  div.find( '.status' ).text( data.label )
+  div.find( '.description' ).text( data.definition )
+
+}
+
+
+/*** Header ***/
+
+
 /**
  * Render data into the Managed Item header (when changed)
  * @param {Object} data Status Panel data object
@@ -190,19 +243,22 @@ function input({
 
 }
 
-function select({ options = [] }) {
+function select({ options = [], current }) {
 
   const $opts = Object.entries( options )
-                      .map( ([value, text]) => option({ text, value }))
+                      .map( ([value, text]) => 
+                        option({ text, value, selected: text.includes( current ) })
+                      )
 
   return $('<select>').html( $opts )
 
 }
 
-function option({ text, value }) {
+function option({ text, value, selected }) {
   
   return $('<option>').val( value )
                       .text( `${ value }: ${ text }`) 
+                      .prop( 'selected', selected )
 
 }
 
@@ -210,5 +266,6 @@ export default {
   versionLabelField,
   versionField,
   currentField,
+  statusInfo,
   headerFields
 }

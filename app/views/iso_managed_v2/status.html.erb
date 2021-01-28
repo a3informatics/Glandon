@@ -12,7 +12,8 @@
                       data: '#{ status_iso_managed_v2_path(@managed_item) }',
                       updateVersion: '#{ update_semantic_version_iso_managed_v2_path(@managed_item) }',
                       updateVersionLabel: '#{ update_version_label_iso_managed_v2_path(@managed_item) }',
-                      makeCurrent: '#{ make_current_iso_managed_v2_path(@managed_item) }'
+                      makeCurrent: '#{ make_current_iso_managed_v2_path(@managed_item) }',
+                      nextState: '#{ next_state_iso_managed_v2_path(@managed_item) }'
                     }; " %>
 
 <div class="row">
@@ -45,30 +46,69 @@
 
         <table id="version-info" class="form-wrap">
           <tr>
-            <td>
-              <span class="icon-version-circle text-link text-normal"></span>
-              Version
-            </td>
+            <td><span class="icon-version-circle text-link text-normal"></span> Version </td>
             <td id="version"></td>
           </tr>
           <tr>
-            <td>
-              <span class="icon-tag-circle text-link text-normal"></span>
-              Version label
-            </td>
+            <td><span class="icon-tag-circle text-link text-normal"></span> Version label </td>
             <td id="version-label"></td>
           </tr>
           <tr>
-            <td>
-              <span class="icon-current text-link text-normal"></span>
-              Current
-            </td>
+            <td> <span class="icon-current text-link text-normal"></span> Current </td>
             <td id="current"></td>
           </tr>
         </table>
 
         <div class="ci-card-title text-normal text-link">
           Manage Status
+        </div>
+
+        <div id="status-info" class="form-wrap">
+
+          <div class="status-block-wrap">
+
+            <div id="status" class="status-block">
+              <i>Item Status</i>
+              <div class="status current"></div>
+              <div class="description"></div>
+            </div>
+
+            <div id="status-arrow" class="icon-arrow-r"></div>
+
+            <div id="status-next" class="status-block">
+              <i>Next Status</i> 
+              <div class="status next"></div>
+              <div class="description"></div>
+            </div>
+          
+          </div>
+
+          <div class="notes-wrap">
+          
+            <textarea id="adm-note" placeholder="Administrative note"></textarea>
+            <textarea id="unr-issue" placeholder="Unresolved issue"></textarea>
+
+          </div>
+    
+          <div class="btns-wrap" id="status-actions">
+
+            <button id="draft-status" class="btn white medium">
+              <span class="icon-fast-backward"></span>
+              Rewind to Draft
+            </button>
+
+            <button id="next-status" class="btn white medium">
+              <span class="icon-step-forward"></span>
+              Move to Next
+            </button>
+
+            <button id="release-status" class="btn white medium">
+              <span class="icon-fast-forward"></span>
+              Forward to Release
+            </button>
+
+          </div>
+
         </div>
 
       </div>
