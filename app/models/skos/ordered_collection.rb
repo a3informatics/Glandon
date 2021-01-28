@@ -64,6 +64,7 @@ module SKOS::OrderedCollection
       add_link_clause = "#{prev_sm.uri.to_ref} th:memberNext #{sm.next_member.uri.to_ref} ." unless sm.next_member.nil?
     end
     delete_link_clauses << "#{mc.uri.to_ref} th:narrower #{sm.item.to_ref}"
+    delete_link_clauses << "#{mc.uri.to_ref} th:refersTo #{sm.item.to_ref}"
     query_string = %Q{
     DELETE DATA
     {
@@ -248,6 +249,7 @@ module SKOS::OrderedCollection
       subset_members << member
       member.to_sparql(sparql)
       sparql.add({uri: mc.uri}, {prefix: :th, fragment: "narrower"}, {uri: member.item})
+      sparql.add({uri: mc.uri}, {prefix: :th, fragment: "refersTo"}, {uri: member.item})
     end
     last_sm = self.last
     subset_members[0..-2].each_with_index do |sm, index|
@@ -279,8 +281,13 @@ module SKOS::OrderedCollection
         { 
           #{self.uri.to_ref} (^th:isOrdered) ?s .
           ?s th:narrower ?o .
-          OPTIONAL {?s th:refersTo ?o}
           BIND ( th:narrower as ?p )
+        } 
+        UNION
+        { 
+          #{self.uri.to_ref} (^th:isOrdered) ?s .
+          ?s th:refersTo ?o
+          BIND ( th:refersTo as ?p )
         } 
       }
     }
