@@ -75,7 +75,8 @@ function versionLabelField({
 
     let $editInput = input({ 
       value: versionLabel, 
-      placeholder: 'Version label'
+      placeholder: 'Version label',
+      submit: () => submit( $editInput.val() )
     })
 
     let $buttons = editingBtns({
@@ -112,8 +113,6 @@ function currentField({
   let { current, state } = data,
       $content = $( icons.checkMarkIcon( current ) )
 
-  // state.label = 'Standard'
-
   if ( current !== true ) {
 
     if ( state.label !== 'Standard' )
@@ -127,6 +126,19 @@ function currentField({
   }
 
   getCurrent().html( $content )
+
+}
+
+/**
+ * Render data into the Managed Item header (when changed)
+ * @param {Object} data Status Panel data object
+ */
+function headerFields(data) {
+
+  const $header = $('#imh_header')
+  $header.find( '.state' ).text( data.state.label )
+  $header.find( '.semantic-version' ).text( data.semantic_version.label )
+  $header.find( '.version-label' ).text( data.version_label )
 
 }
 
@@ -167,12 +179,14 @@ function label({
 function input({
   value, 
   placeholder, 
-  type = 'text'
+  type = 'text',
+  submit = () => {}
 }) {
 
   return $('<input>').prop( 'placeholder', placeholder )
                      .prop( 'type', type )
                      .val( value )
+                     .keypress( ({ which }) => which === 13 ? submit() : true )
 
 }
 
@@ -195,5 +209,6 @@ function option({ text, value }) {
 export default {
   versionLabelField,
   versionField,
-  currentField
+  currentField,
+  headerFields
 }

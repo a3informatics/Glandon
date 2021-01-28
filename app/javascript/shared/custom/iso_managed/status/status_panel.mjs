@@ -1,6 +1,6 @@
 // import ManagedItemsPanel from '../managed_items_panel'
 
-import { $get, $put } from 'shared/helpers/ajax'
+import { $get, $ajax } from 'shared/helpers/ajax'
 import { renderSpinnerIn$, removeSpinnerFrom$ } from 'shared/ui/spinners'
 
 import Renderer from './status_panel_renderers'
@@ -45,20 +45,51 @@ export default class StatusPanel {
 
   }
 
+  /**
+   * Update Version Label request, handle response
+   * @param {string} newLabel New value to set the Version Label to 
+   */
   updateVersionLabel(newLabel) {
 
     this._update({
       url: this.urls.updateVersionLabel,
       data: { version_label: newLabel },
       onSuccess: versionLabel => {
-
         this.data.version_label = versionLabel
+        this.renderAll()
+      }
+    })
 
-        Renderer.versionLabelField({
-          data: this.data, 
-          submit: versionLabel => this.updateVersionLabel( versionLabel )
-        })
+  }
 
+  /**
+   * Update Version request, handle response
+   * @param {string} newVersionType New type to set the Version to (major/minor/patch) 
+   */
+  updateVersion(newVersionType) {
+
+    this._update({
+      url: this.urls.updateVersion,
+      data: { sv_type: newVersionType },
+      onSuccess: version => {
+        this.data.semantic_version = version
+        this.renderAll()
+      }
+    })
+
+  }
+
+  /**
+   * Make Item current request, hadnle response
+   */
+  makeCurrent() {
+
+    this._update({
+      url: this.urls.makeCurrent,
+      type: 'POST',
+      onSuccess: () => {
+        this.data.current = true 
+        this.renderAll() 
       }
     })
 
@@ -66,17 +97,16 @@ export default class StatusPanel {
 
   /**
    * Render Status Panel based on given data 
-   * @param {Object} data Status data to render
+   * @param {Object} data Status data to render, optional (will use cached data)
    */
   renderAll(data) {
 
     // console.log(data);
-
-    this.data = data; 
+    data ? this.data = data : data = this.data
 
     Renderer.versionField({
       data, 
-      submit: version => console.log({version})
+      submit: versionType => this.updateVersion( versionType )
     })
 
     Renderer.versionLabelField({
@@ -86,8 +116,10 @@ export default class StatusPanel {
 
     Renderer.currentField({
       data,
-      submit: () => console.log('currentUpdate')
+      submit: () => this.makeCurrent()
     })
+
+    Renderer.headerFields( data )
 
   }
 
@@ -104,20 +136,25 @@ export default class StatusPanel {
 
 
   /**
-   * Make Update request (PUT) to the server, handle UI
+   * Make Update request to the server, handle UI
    * @param {string} url Request URL
    * @param {object} data Request data (without strong param)
    * @param {function} onSuccess Invoked on request sucess, response passed as first arg
+   * @param {string} type Request type [default=PUT]
    */
-  _update({ url, data, onSuccess }) {
+  _update({ url, data, onSuccess, type = 'PUT' }) {
+
+    // Prevent updates while processing
+    if ( this._processing )
+      return
 
     this._loading( true )
 
-    $put({
-      url, 
+    $ajax({
+      url, type,
       data: { [this.param ]: data },
       done: response => onSuccess( response ),
-      always: this._loading( false )
+      always: () => this._loading( false )
     })
 
   }
@@ -126,7 +163,13 @@ export default class StatusPanel {
   /*** Support ***/
 
 
+  /**
+   * Toggle Loading state of panel
+   * @param {boolean} enable Target loading state
+   */
   _loading(enable) {
+
+    this._processing = enable
 
     if ( enable )
       renderSpinnerIn$( this.selector, 'small' )

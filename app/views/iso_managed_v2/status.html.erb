@@ -11,7 +11,8 @@
 <%= javascript_tag "const statusUrls = {
                       data: '#{ status_iso_managed_v2_path(@managed_item) }',
                       updateVersion: '#{ update_semantic_version_iso_managed_v2_path(@managed_item) }',
-                      updateVersionLabel: '#{ update_version_label_iso_managed_v2_path(@managed_item) }'
+                      updateVersionLabel: '#{ update_version_label_iso_managed_v2_path(@managed_item) }',
+                      makeCurrent: '#{ make_current_iso_managed_v2_path(@managed_item) }'
                     }; " %>
 
 <div class="row">
