@@ -133,7 +133,7 @@ class IsoManagedV2Controller < ApplicationController
     item = find_item(params)
     token = Token.find_token(item, current_user)
     if !token.nil?
-      items = item.update_status_related_items(the_aprams[:with_dependecies], the_params[:action])
+      items = item.update_status_related_items(the_params[:action])
       IsoManagedV2.fast_forward_permitted(ids)
       IsoManagedV2.rewind_permitted(ids)
       render :json => { :data => item.map { |x| x.xxx }}, :status => 200

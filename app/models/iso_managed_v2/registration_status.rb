@@ -189,7 +189,7 @@ class IsoManagedV2
     # Update Status Related Items. The related items that we could update. Default methid always return no items.
     #
     # @return [Array] array of items, default is empty
-    def update_status_related_items(flag, operation)
+    def update_status_related_items(operation)
       []
     end
 
