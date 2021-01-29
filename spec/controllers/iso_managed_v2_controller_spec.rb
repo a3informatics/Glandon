@@ -217,6 +217,66 @@ describe IsoManagedV2Controller do
       expect(actual).to eq({errors: ["The edit lock has timed out."]})
     end
 
+    it 'state change' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_qualified(mi)
+      token = Token.obtain(mi, @user)
+      put :state_change, params:{ id: mi.id, iso_managed: { action: "fast_forward" }}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "state_change_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it 'state change, locked' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_qualified(mi)
+      token = Token.obtain(mi, @lock_user)
+      put :state_change, params:{ id: mi.id, iso_managed: { action: "fast_forward" }}
+      actual = check_error_json_response(response)
+      expect(actual).to eq({errors: ["The edit lock has timed out."]})
+    end
+
+    it 'state change, invalid action' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_qualified(mi)
+      token = Token.obtain(mi, @user)
+      put :state_change_impacted_items , params:{ id: mi.id, iso_managed: { action: "DDDDDD" }}
+      actual = check_error_json_response(response)
+      expect(actual).to eq({errors: ["Invalid action detected."]})
+    end
+
+    it 'assess the impacted items' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_qualified(mi)
+      token = Token.obtain(mi, @user)
+      put :state_change_impacted_items, params:{ id: mi.id, iso_managed: { action: "fast_forward" }}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "state_change_impacted_items_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it 'assess the impacted items, locked' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_qualified(mi)
+      token = Token.obtain(mi, @lock_user)
+      put :state_change_impacted_items, params:{ id: mi.id, iso_managed: { action: "fast_forward" }}
+      actual = check_error_json_response(response)
+      expect(actual).to eq({errors: ["The edit lock has timed out."]})
+    end
+
+    it 'assess the impacted items, invalid action' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mi = create_iso_managed_thesaurus("TEST", "A test managed item")
+      IsoManagedHelpers.make_item_qualified(mi)
+      token = Token.obtain(mi, @user)
+      put :state_change_impacted_items , params:{ id: mi.id, iso_managed: { action: "DDDDDD" }}
+      actual = check_error_json_response(response)
+      expect(actual).to eq({errors: ["Invalid action detected."]})
+    end
+
     it 'lists change notes data' do
       request.env['HTTP_ACCEPT'] = "application/json"
       mi = create_iso_managed_thesaurus("TEST", "A test managed item")
