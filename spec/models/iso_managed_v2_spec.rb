@@ -1404,7 +1404,7 @@ describe "IsoManagedV2" do
 
     it "previous version" do
       object_1 = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
-      object_1.update_status(registration_status: "Standard")
+      IsoManagedHelpers.make_item_standard(object_1)
       object_2 = object_1.create_next_version
       expect(object_2.previous_version.uri).to eq(object_1.uri)
       expect(object_2.has_previous_version?).to eq(true)
@@ -1413,7 +1413,7 @@ describe "IsoManagedV2" do
 
     it "next version" do
       object_1 = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
-      object_1.update_status(registration_status: "Standard")
+      IsoManagedHelpers.make_item_standard(object_1)
       object_2 = object_1.create_next_version
       expect(object_1.next_version.uri).to eq(object_2.uri)
       expect(object_1.has_next_version?).to eq(true)
@@ -1422,11 +1422,11 @@ describe "IsoManagedV2" do
 
     it "first and last versions" do
       object_1 = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
-      object_1.update_status(registration_status: "Standard")
+      IsoManagedHelpers.make_item_standard(object_1)
       object_2 = object_1.create_next_version
-      object_2.update_status(registration_status: "Standard")
+      IsoManagedHelpers.make_item_standard(object_2)
       object_3 = object_2.create_next_version
-      object_3.update_status(registration_status: "Standard")
+      IsoManagedHelpers.make_item_standard(object_3)
       object_4 = object_3.create_next_version
       expect(object_1.latest_version.uri).to eq(object_4.uri)
       expect(object_2.latest_version.uri).to eq(object_4.uri)
