@@ -70,7 +70,8 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [Boolean] Returns true of latest
   def latest?
-    return self.version == IsoScopedIdentifierV2.latest_integer_version(self.scoped_identifier, self.has_identifier.has_scope)
+    #return self.version == IsoScopedIdentifierV2.latest_integer_version(self.scoped_identifier, self.has_identifier.has_scope)
+    Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^isoC:hasPreviousVersion ?o}", "", [:isoC]).ask? 
   end
 
   # Later Version? Is this a later version than the other item

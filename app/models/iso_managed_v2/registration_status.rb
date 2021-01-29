@@ -28,6 +28,79 @@ class IsoManagedV2
       #   query_results.by_object(:s)
       # end
 
+      # Fast Forward Permitted
+      #
+      # @param [Array] ids array of ids
+      # @return [Array] array of hash containg the results
+      def fast_forward_permitted(ids)
+        results = []
+        sparql = %Q{
+          SELECT ?s ?p ?o WHERE
+          {
+            VALUES ?s { #{ids.map{|x| Uri.new(id: x).to_ref}.join(" ")} }
+            {
+              ?s ?p ?o .
+              FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179"))
+            }
+            UNION
+            {
+              ?e isoT:hasIdentifier ?s .
+              ?s ?p ?o .
+            }
+            UNION
+            {
+              ?e isoT:hasState ?s .
+              ?s ?p ?o
+            }
+          }
+        }
+        query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT, :bo, :th])
+        by_subject = query_results.by_subject
+        query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
+          item = self.class.children_klass.referenced_klass.from_results_recurse(uri, by_subject)
+          result = basic_info(item)
+          result[:state_update_allowed] = fast_forward?(item.uri)
+          results << result
+        end
+        results
+      end
+
+      # Rewind Permitted
+      #
+      # @param [Array] ids array of ids
+      # @return [Array] array of hash containg the results
+      def rewind_permitted(ids)
+        results = []
+        sparql = %Q{
+          SELECT ?s ?p ?o WHERE
+          {
+            {
+              ?s ?p ?o .
+              FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179"))
+            }
+            UNION
+            {
+              ?e isoT:hasIdentifier ?s .
+              ?s ?p ?o .
+            }
+            UNION
+            {
+              ?e isoT:hasState ?s .
+              ?s ?p ?o
+            }
+          }
+        }
+        query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT, :bo, :th])
+        by_subject = query_results.by_subject
+        query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
+          item = self.class.children_klass.referenced_klass.from_results_recurse(uri, by_subject)
+          result = basic_info(item)
+          result[:state_update_allowed] = rewind?(item.uri)
+          results << result
+        end
+        results
+      end
+
       # Fast Forward State. Move the items to the released state if last in version history.
       #  Checks that items are owned and last in history.
       #
@@ -196,6 +269,47 @@ class IsoManagedV2
     def can_be_current?
       return false if self.has_state.nil?
       return self.has_state.can_be_current?
+    end
+
+  private
+
+    def basic_info(item)
+      {
+        id: item.id,
+        identifier: item.scoped_identifier,
+        label: item.label,
+        semantic_version: item.semantic_version,
+        version_label: item.version_label,
+        owner: item.owner_short_name,
+        registration_status: item.registration_status,
+        rdf_type: item.rdf_type,
+      }
+    end
+
+    def fast_forward?(uri)
+      ask_query = %Q{    
+        #{uri.to_ref} isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
+        FILTER (NOT EXISTS {#{uri.to_ref} ^isoT:hasPreviousVersion ?x})
+      }
+      Sparql::Query.new.query(ask_query, "", prefixes).ask?
+    end
+
+    def rewind?(uri)
+      ask_query = %Q{    
+        #{uri.to_ref} isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
+        FILTER (NOT EXISTS {#{uri.to_ref} ^isoT:hasPreviousVersion ?x})
+        {
+          {
+            BIND (EXISTS {#{uri.to_ref} isoT:hasPreviousVersion/isoT:hasState/isoR:registrationStatus '#{IsoRegistrationStateV2.released_state}'^^xsd:string} as ?f)
+          } 
+          UNION
+          {
+            BIND (NOT EXISTS {#{uri.to_ref} isoT:hasPreviousVersion ?y} as ?f)
+          }
+        }
+        FILTER (?f = true) 
+      }
+      Sparql::Query.new.query(ask_query, "", prefixes).ask?
     end
 
   end
