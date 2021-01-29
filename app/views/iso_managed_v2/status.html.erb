@@ -14,8 +14,8 @@
                       updateVersionLabel: '#{ update_version_label_iso_managed_v2_path(@managed_item) }',
                       makeCurrent: '#{ make_current_iso_managed_v2_path(@managed_item) }',
                       nextState: '#{ next_state_iso_managed_v2_path(@managed_item) }',
-                      forwardState: '#{ fast_forward_state_iso_managed_v2_path(@managed_item) }',
-                      rewindState: '#{ rewind_state_iso_managed_v2_path(@managed_item) }'
+                      changeState: '#{ state_change_iso_managed_v2_path(@managed_item) }',
+                      changeStateImpact: '#{ state_change_impacted_items_iso_managed_v2_path(@managed_item) }'
                     }; " %>
 
 <div class="row">
@@ -49,15 +49,15 @@
         <%# Version Information Conent %>
         <table id="version-info" class="form-wrap">
           <tr>
-            <td><span class="icon-version-circle text-link text-normal"></span> Version </td>
+            <td class="no-break"><span class="icon-version-circle text-link text-normal"></span> Version </td>
             <td id="version"></td>
           </tr>
           <tr>
-            <td><span class="icon-tag-circle text-link text-normal"></span> Version label </td>
+            <td class="no-break"><span class="icon-tag-circle text-link text-normal"></span> Version label </td>
             <td id="version-label"></td>
           </tr>
           <tr>
-            <td> <span class="icon-current text-link text-normal"></span> Current </td>
+            <td class="no-break"> <span class="icon-current text-link text-normal"></span> Current </td>
             <td id="current"></td>
           </tr>
         </table>
@@ -98,7 +98,7 @@
 
             <button id="next-status" class="btn light medium">
               <span class="icon-step-forward text-tiny"></span>
-              Move to Next
+              Forward to Next
             </button>
 
             <button id="forward-status" class="btn white medium">
@@ -129,3 +129,5 @@
   </div>
 
 </div>
+
+<%= render partial: "shared/iso_managed/status/status_impact_modal" %>

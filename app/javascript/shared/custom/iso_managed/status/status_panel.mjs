@@ -1,4 +1,4 @@
-// import ManagedItemsPanel from '../managed_items_panel'
+import StatusImpactModal from 'shared/custom/iso_managed/status/status_impact_modal'
 
 import { $get, $ajax } from 'shared/helpers/ajax'
 import { renderSpinnerIn$, removeSpinnerFrom$ } from 'shared/ui/spinners'
@@ -18,7 +18,7 @@ export default class StatusPanel {
    * Create a Status Panel instance
    * @param {string} selector Unique selector string of the status-panel
    * @param {Object} urls Urls for Status related requests 
-   * { data, updateVersion, updateVersionLabel, makeCurrent, nextState, forwardState, rewindState }
+   * { data, updateVersion, updateVersionLabel, makeCurrent, nextState, changeState, changeStateImpact }
    */
   constructor({
     selector = '#status-panel',
@@ -26,7 +26,11 @@ export default class StatusPanel {
   } = {}) {
 
     Object.assign( this, { 
-      selector, urls, param: 'iso_managed'
+      selector, urls, 
+      param: 'iso_managed',
+      impactModal: new StatusImpactModal({
+        dataUrl: urls.changeStateImpact
+      })
     })
 
     this._loadData()
@@ -61,8 +65,10 @@ export default class StatusPanel {
       return
     else if ( this.isInState('Standard') ) 
       alerts.warning( 'Item is already in Released state' )
+    else if ( this._withDependencies )
+      this._openChangeStateImpactDialog( 'forward' )
     else 
-      this._forwardState()
+      this._changeState( 'forward' )
 
   }
 
@@ -75,8 +81,10 @@ export default class StatusPanel {
       return
     else if ( this.isInState('Incomplete') ) 
       alerts.warning( 'Item is already in Draft state' )
-    else 
-      this._rewindState()
+    else if ( this._withDependencies )
+      this._openChangeStateImpactDialog( 'rewind' )
+    else
+      this._changeState( 'rewind' )
 
   }
 
@@ -179,7 +187,7 @@ export default class StatusPanel {
       onSuccess: data => {
 
         this._renderAll( data )
-        alerts.success( `Moved to ${ data.state.label }`)
+        alerts.success( `Moved Status to ${ data.state.label }`)
 
       } 
     })
@@ -187,20 +195,21 @@ export default class StatusPanel {
   }
 
   /**
-   * Request to forward item to Released state, handle response
+   * Request to change item state, handle response
+   * @param {string} action State change action - 'forward' / 'rewind'
    */
-  _forwardState() {
+  _changeState(action) {
 
     this._update({
-      url: this.urls.forwardState,
+      url: this.urls.changeState,
       data: {
-        ...this._detailsData,
-        with_dependencies: this._withDependencies
+        action,
+        ...this._detailsData
       },
       onSuccess: data => {   
 
         this._renderAll( data )
-        alerts.success( `Forwarded to ${ data.state.label }` )
+        alerts.success( `Changed Status to ${ data.state.label }` )
 
       } 
     })
@@ -208,20 +217,23 @@ export default class StatusPanel {
   }
 
   /**
-   * Request to rewind item to Draft state, handle response
+   * Request to Change state with dependencies, handle response
+   * @param {string} action Change state action 'forward' / 'rewind'
+   * @param {integer} depCount Amount of dependencies (for building success alert)
    */
-  _rewindState() {
+  _changeStateWithDeps(action, depCount) {
 
     this._update({
-      url: this.urls.rewindState,
+      url: this.urls.changeState,
       data: {
-        ...this._detailsData,
-        with_dependencies: this._withDependencies
+        action,
+        with_dependencies: true,
+        ...this._detailsData
       },
       onSuccess: data => {   
-        
+
         this._renderAll( data )
-        alerts.success( `Rewinded to ${ data.state.label }`)
+        alerts.success( `Changed Status of ${ depCount + 1 } items to ${ data.state.label }.` )
 
       } 
     })
@@ -281,6 +293,19 @@ export default class StatusPanel {
         this._renderAll() 
 
       }
+    })
+
+  }
+
+  /**
+   * Show Status Impact modal and run changeStateWithDeps after user confirmation
+   * @param {string} action Change state action 'forward' / 'rewind'
+   */
+  _openChangeStateImpactDialog(action) {
+
+    this.impactModal.show({
+      action,
+      onConfirm: depCount => this._changeStateWithDeps( action, depCount )
     })
 
   }
