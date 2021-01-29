@@ -109,6 +109,7 @@ Rails.application.routes.draw do
       post :next_state
       post :fast_forward_state
       post :rewind_state
+      get :state_change_impacted_items
       put :update_semantic_version
       put :update_version_label
       get :list_change_notes
