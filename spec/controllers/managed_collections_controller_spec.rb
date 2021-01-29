@@ -58,33 +58,36 @@ describe ManagedCollectionsController do
 
   end
 
-  # describe "data actions" do
+  describe "data actions" do
 
-  #   login_curator
+    login_curator
 
-  #   before :all do
-  #     @lock_user = ua_add_user(email: "lock@example.com")
-  #     Token.delete_all
-  #   end
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
 
-  #   before :all do
-  #     load_files(schema_files, [])
-  #     load_data_file_into_triple_store("mdr_identification.ttl")
-  #   end
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
 
-  #   after :all do
-  #     ua_remove_user("lock@example.com")
-  #   end
+    it "show data" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mc = ManagedCollection.create(label: "Item 1", identifier: "ITEM1")
+      item_2 = ManagedCollection.create(label: "Item 2", identifier: "ITEM2")
+      item_3 = ManagedCollection.create(label: "Item 3", identifier: "ITEM3")
+      item_4 = ManagedCollection.create(label: "Item 4", identifier: "ITEM4")
+      mc = ManagedCollection.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
+      mc.add_item([item_2.id, item_3.id, item_4.id])
+      mc = ManagedCollection.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
+      get :show_data, params:{id: mc.id}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "show_data_expected_1.yaml", equate_method: :hash_equal)
+    end
 
-  #   it "show data" do
-  #     request.env['HTTP_ACCEPT'] = "application/json"
-  #     mc = ManagedCollection.find_minimum(Uri.new(uri: ""))
-  #     get :show_data, params:{id: mc.id}
-  #     actual = check_good_json_response(response)
-  #     check_file_actual_expected(actual, sub_dir, "show_data_expected_1.yaml", equate_method: :hash_equal)
-  #   end
-
-  # end
+  end
 
   # describe "create actions" do
 
