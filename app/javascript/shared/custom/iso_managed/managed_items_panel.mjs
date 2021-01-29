@@ -22,6 +22,8 @@ export default class ManagedItemsPanel extends TablePanel {
    * @param {boolean} params.paginated Paginated request option, optional [default = false]
    * @param {object} params.tableOptions DataTable custom options, optional 
    * @param {array} params.buttons Buttons to add to the table, optional
+   * @param {array} params.addedColumns Collection of DT column definitions added to the end of the columns array, optional
+   * @param {boolean} params.autoHeight Specifies whether the height of the table should match the window size, and add a horizontal scroll, optional
    */
   constructor({
     selector,
@@ -31,15 +33,19 @@ export default class ManagedItemsPanel extends TablePanel {
     deferLoading = false,
     paginated = false,
     tableOptions = {},
-    buttons = []
+    buttons = [],
+    addedColumns = [],
+    autoHeight
   }) {
 
     super({ 
       selector: `${ selector } #managed-items`,
       order: [[1, "asc"]],
-      url, param, count, 
+      url, param, count, autoHeight,
       deferLoading, paginated, tableOptions, buttons 
-    })
+    }, 
+      { addedColumns }
+    )
 
   }
   
@@ -55,7 +61,11 @@ export default class ManagedItemsPanel extends TablePanel {
 
     const withType = hasColumn( this.selector, 'Type' ),
           withOwner = hasColumn( this.selector, 'Owner' )
-    return dtManagedItemsColumns( {}, withType, withOwner )
+
+    return [ 
+      ...dtManagedItemsColumns( {}, withType, withOwner ), 
+      ...this.addedColumns 
+    ]
 
   }
 
