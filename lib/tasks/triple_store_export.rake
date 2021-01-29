@@ -1,6 +1,7 @@
 namespace :triple_store do
   desc "Triple Store Export"
 
+  # Export as TTL, fixing the issues
   def item_to_ttl(item)
     uri = item.has_identifier.has_scope.uri
     item.has_identifier.has_scope = uri
