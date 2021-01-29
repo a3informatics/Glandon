@@ -188,9 +188,9 @@ class IsoManagedV2
 
     # Update Status Related Items. The related items that we could update. Default methid always return no items.
     #
-    # @return [Array] array of items, default is empty
+    # @return [Array] array of items, default is just self
     def update_status_related_items(operation)
-      []
+      [self]
     end
 
     # Status Summary. A status summary hash
