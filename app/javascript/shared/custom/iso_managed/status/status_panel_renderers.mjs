@@ -15,7 +15,7 @@ const getPanel = () => $('#status-panel'),
  * Build and render the Version field 
  * @param {Object} data Status Panel data object
  * @param {boolean} editMode Specifies whether edit view should be rendered [default=false]
- * @param {function} submit Value submit callback, new value passed as argument
+ * @param {function} submit Value submit callback, new value and option text passed as arguments
  */
 function versionField({
   data,
@@ -27,14 +27,14 @@ function versionField({
       $content 
 
   editMode = editMode && version.editable
-    
+  
   // Render Edit view of Version field
   if ( editMode ) {
 
     let $sel = select({ options: version.next_versions, current: version.label })
 
     let $buttons = editingBtns({
-      onSubmit: () => submit( $sel.val() ),
+      onSubmit: () => submit( $sel.val(), $sel.find('option:selected').text() ),
       onDismiss: () => versionField({ data, submit, editMode: false }) 
     })
 

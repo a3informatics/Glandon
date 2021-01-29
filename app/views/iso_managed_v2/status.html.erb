@@ -13,7 +13,9 @@
                       updateVersion: '#{ update_semantic_version_iso_managed_v2_path(@managed_item) }',
                       updateVersionLabel: '#{ update_version_label_iso_managed_v2_path(@managed_item) }',
                       makeCurrent: '#{ make_current_iso_managed_v2_path(@managed_item) }',
-                      nextState: '#{ next_state_iso_managed_v2_path(@managed_item) }'
+                      nextState: '#{ next_state_iso_managed_v2_path(@managed_item) }',
+                      forwardState: '#{ fast_forward_state_iso_managed_v2_path(@managed_item) }',
+                      rewindState: '#{ rewind_state_iso_managed_v2_path(@managed_item) }'
                     }; " %>
 
 <div class="row">
@@ -84,10 +86,12 @@
             </div>
           
           </div>
+
+          <hr>
   
           <div class="btns-wrap" id="status-actions">
 
-            <button id="draft-status" class="btn white medium">
+            <button id="rewind-status" class="btn white medium">
               <span class="icon-fast-backward text-tiny"></span>
               Rewind to Draft
             </button>
@@ -97,20 +101,20 @@
               Move to Next
             </button>
 
-            <button id="release-status" class="btn white medium">
+            <button id="forward-status" class="btn white medium">
               <span class="icon-fast-forward text-tiny"></span>
               Forward to Release
             </button>
 
           </div>
 
-          <div class="details-wrap">
+          <div id="details-wrap">
 
-            <div>
+            <label for="with-dependencies" class="text-small">    
               <input type="checkbox" class="styled" id="with-dependencies"/>
               <span class="checkbox-styled"></span>
-              <label for="with-dependencies" class="text-small"> With dependencies </label>
-            </div>
+              <span> With dependencies </span>
+            </label>
 
             <textarea id="adm-note" placeholder="Administrative note"></textarea>
             <textarea id="unr-issue" placeholder="Unresolved issue"></textarea>
