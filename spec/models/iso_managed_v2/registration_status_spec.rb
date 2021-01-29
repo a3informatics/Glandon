@@ -147,6 +147,15 @@ describe IsoManagedV2::RegistrationStatus do
       @cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
     end
 
+    it "fast forward permitted, simple case" do
+      items = []
+      results = []
+      (1..5).each_with_index { |x, index| items << create_iso_managed("ITEM #{index+1}", "This is item #{index+1}") }
+      [items[0], items[1]].each { |x| x = change_ownership(x, @cdisc_ra) }
+      results = IsoManagedV2.fast_forward_permitted(items.map{ |x| x.uri.to_id })
+      check_file_actual_expected(results, sub_dir, "fast_forward_permitted_expected_1.yaml", equate_method: :hash_equal)
+    end
+
     it "fast forward state, simple case" do
       items = []
       results = []
@@ -182,6 +191,15 @@ describe IsoManagedV2::RegistrationStatus do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
       @cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
+    end
+
+    it "fast forward permitted, simple case" do
+      items = []
+      results = []
+      (1..5).each_with_index { |x, index| items << create_iso_managed("ITEM #{index+1}", "This is item #{index+1}") }
+      [items[0], items[1]].each { |x| x = change_ownership(x, @cdisc_ra) }
+      results = IsoManagedV2.rewind_permitted(items.map{ |x| x.uri.to_id })
+      check_file_actual_expected(results, sub_dir, "rewind_permitted_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "rewind state, simple case" do
