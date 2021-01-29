@@ -239,7 +239,7 @@ class IsoManagedV2
     #
     # @return [Array] array of items, default is just self
     def update_status_related_items(operation)
-      [self]
+      []
     end
 
     # Status Summary. A status summary hash
