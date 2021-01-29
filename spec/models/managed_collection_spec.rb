@@ -62,6 +62,7 @@ describe ManagedCollection do
       parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
       parent.has_managed << item_2
       parent.has_managed << item_3
+      fix_dates(parent, sub_dir, "create_expected_1.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(parent.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
     end
 
@@ -87,9 +88,11 @@ describe ManagedCollection do
       parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
       parent.add_item([item_2.id, item_3.id])
       parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
+      fix_dates(parent, sub_dir, "add_item_expected_1a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(parent.to_h, sub_dir, "add_item_expected_1a.yaml", equate_method: :hash_equal)
       parent.add_item([item_4.id])
       parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
+      fix_dates(parent, sub_dir, "add_item_expected_1b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(parent.to_h, sub_dir, "add_item_expected_1b.yaml", equate_method: :hash_equal)
     end
 
