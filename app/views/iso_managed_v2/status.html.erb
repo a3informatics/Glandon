@@ -44,6 +44,7 @@
           Version Information
         </div>
 
+        <%# Version Information Conent %>
         <table id="version-info" class="form-wrap">
           <tr>
             <td><span class="icon-version-circle text-link text-normal"></span> Version </td>
@@ -63,6 +64,7 @@
           Manage Status
         </div>
 
+        <%# Status Information Conent %>
         <div id="status-info" class="form-wrap">
 
           <div class="status-block-wrap">
@@ -82,30 +84,36 @@
             </div>
           
           </div>
-
-          <div class="notes-wrap">
-          
-            <textarea id="adm-note" placeholder="Administrative note"></textarea>
-            <textarea id="unr-issue" placeholder="Unresolved issue"></textarea>
-
-          </div>
-    
+  
           <div class="btns-wrap" id="status-actions">
 
             <button id="draft-status" class="btn white medium">
-              <span class="icon-fast-backward"></span>
+              <span class="icon-fast-backward text-tiny"></span>
               Rewind to Draft
             </button>
 
-            <button id="next-status" class="btn white medium">
-              <span class="icon-step-forward"></span>
+            <button id="next-status" class="btn light medium">
+              <span class="icon-step-forward text-tiny"></span>
               Move to Next
             </button>
 
             <button id="release-status" class="btn white medium">
-              <span class="icon-fast-forward"></span>
+              <span class="icon-fast-forward text-tiny"></span>
               Forward to Release
             </button>
+
+          </div>
+
+          <div class="details-wrap">
+
+            <div>
+              <input type="checkbox" class="styled" id="with-dependencies"/>
+              <span class="checkbox-styled"></span>
+              <label for="with-dependencies" class="text-small"> With dependencies </label>
+            </div>
+
+            <textarea id="adm-note" placeholder="Administrative note"></textarea>
+            <textarea id="unr-issue" placeholder="Unresolved issue"></textarea>
 
           </div>
 
