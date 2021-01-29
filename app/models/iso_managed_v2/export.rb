@@ -21,12 +21,16 @@ class IsoManagedV2
     # Instance Methods
     # ----------------
 
+    # To TTL. Destructive metthod to output item as TTL
+    #
+    # @return [Path] the path to the resulting file
     def to_ttl!
-      uri = item.has_identifier.has_scope.uri
-      item.has_identifier.has_scope = uri
-      uri = item.has_state.by_authority.uri
-      item.has_state.by_authority = uri
-      item.to_ttl
+      uri = self.has_identifier.has_scope.uri
+      # @todo replace with export paths
+      self.has_identifier.has_scope = uri
+      uri = self.has_state.by_authority.uri
+      self.has_state.by_authority = uri
+      self.to_ttl
     end
 
   end
