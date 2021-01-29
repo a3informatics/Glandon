@@ -3,6 +3,7 @@
 # @author Dave Iberson-Hurst
 # @since 3.8.0
 namespace :triple_store do
+
   desc "Triple Store Export"
 
   # Force load to get the schema read
