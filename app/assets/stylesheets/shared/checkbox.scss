@@ -58,7 +58,7 @@ input[type=checkbox].styled:disabled + .checkbox-styled {
 }
 
 // Label alignment 
-.checkbox-styled + label {
+.checkbox-styled + span {
   vertical-align: middle;
   margin: 0;
 }

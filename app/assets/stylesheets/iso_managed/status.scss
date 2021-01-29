@@ -78,7 +78,8 @@
       }
     }
 
-    .details-wrap {
+    #details-wrap {
+      margin-top: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -92,10 +93,6 @@
         margin: 10px 0;
       }
 
-    }
-
-    #status-actions {
-      margin: 14px 0;
     }
 
   }
@@ -132,7 +129,7 @@
       transform: rotate(90deg);
     }
 
-    .details-wrap textarea {
+    #details-wrap textarea {
       width: 100%;
     }
     
