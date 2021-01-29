@@ -108,7 +108,7 @@ class IsoManagedV2Controller < ApplicationController
     token = Token.find_token(item, current_user)
     if !token.nil?
       if item.update_status_permitted?
-        items = item.update_status_related_items(the_aprams[:with_dependecies], :fast_forward)
+        items = item.update_status_related_items(the_params[:with_dependecies], :fast_forward)
         lock_set = TokenSet.new(items)
         IsoManagedV2.fast_forward_state(lock_set.ids)
         token_set.each { |x| AuditTrail.update_item_event(current_user, x, x.audit_message_status_update) }
@@ -128,7 +128,7 @@ class IsoManagedV2Controller < ApplicationController
     token = Token.find_token(item, current_user)
     if !token.nil?
       if item.update_status_permitted?
-        items = item.update_status_related_items(the_aprams[:with_dependecies], :fast_forward)
+        items = item.update_status_related_items(the_params[:with_dependecies], :fast_forward)
         lock_set = TokenSet.new(items)
         IsoManagedV2.rewind_state(lock_set.ids)
         token_set.each { |x| AuditTrail.update_item_event(current_user, x, x.audit_message_status_update) }
