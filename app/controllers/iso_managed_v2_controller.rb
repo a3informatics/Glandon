@@ -104,14 +104,15 @@ class IsoManagedV2Controller < ApplicationController
 
   def state_change
     authorize IsoManaged, :status?
+    return false unless valid_action?(the_params[:action].to_sym)
     item = find_item(params)
     token = Token.find_token(item, current_user)
     if !token.nil?
       if item.update_status_permitted?
-        items = item.update_status_related_items(the_params[:with_dependecies], the_params[:action])
-        lock_set = TokenSet.new(items)
+        items = item.update_status_related_items(the_params[:action])
+        lock_set = TokenSet.new(items, current_user)
         ffor(lock_set.ids, the_params[:action])
-        token_set.each { |x| AuditTrail.update_item_event(current_user, x, x.audit_message_status_update) }
+        lock_set.each { |x| AuditTrail.update_item_event(current_user, x[:item], x[:item].audit_message_status_update) }
         lock_set.release
         render :json => { :data => item.status_summary}, :status => 200
       else
@@ -122,27 +123,17 @@ class IsoManagedV2Controller < ApplicationController
     end
   end
 
-  def ffor(ids, action)
-    return IsoManagedV2.fast_forward_state(lock_set.ids) if action == :fast_forward
-    return IsoManagedV2.rewind_state(lock_set.ids) if action == :rewind
-  end
-
   def state_change_impacted_items
     authorize IsoManaged, :status?
+    return false unless valid_action?(the_params[:action].to_sym)
     item = find_item(params)
     token = Token.find_token(item, current_user)
     if !token.nil?
-      items = item.update_status_related_items(the_params[:action])
-      ffor_impacted_items(items.map{|x| x.id}, the_params[:action])
-      render :json => { :data => item.map { |x| x.xxx }}, :status => 200
+      items = item.update_status_related_items(the_params[:action].to_sym)      
+      render :json => { :data => ffor_impacted_items(items.map{|x| x.id}, the_params[:action].to_sym)}, :status => 200
     else
       render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
     end
-  end
-
-  def ffor_impacted_items(ids, action)
-    return IsoManagedV2.fast_forward_permitted(ids) if action == :fast_forward
-    return IsoManagedV2.rewind_permitted(ids) if action == :rewind
   end
 
   def update_semantic_version
@@ -243,6 +234,24 @@ private
   def update_to_next_state(item, params)
     return unless item.update_status_permitted?
     item.next_state(params)
+  end
+
+  def valid_action?(action)
+    return true if [:fast_forward, :rewind].include? action
+    render :json => {:errors => ["Invalid action detected."] }, :status => 422
+    false
+  end
+
+  # Fast Forward or Rewind
+  def ffor(ids, action)
+    return IsoManagedV2.fast_forward_state(lock_set.ids) if action == :fast_forward
+    return IsoManagedV2.rewind_state(lock_set.ids) if action == :rewind
+  end
+
+  # Fast Forward or Rewind to find impacted items
+  def ffor_impacted_items(ids, action)
+    return IsoManagedV2.fast_forward_permitted(ids) if action == :fast_forward
+    return IsoManagedV2.rewind_permitted(ids) if action == :rewind
   end
 
 end
