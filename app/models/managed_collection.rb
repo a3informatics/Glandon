@@ -61,7 +61,6 @@ class ManagedCollection <  IsoManagedV2
         #{self.uri.to_ref} bo:hasManaged ?x .
       }
     }
-    #partial_update(update_query, [:bo])
     Sparql::Update.new.sparql_update(update_query, "", [:bo])
     self.reset_ordinals
   end
