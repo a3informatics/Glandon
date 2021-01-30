@@ -141,7 +141,8 @@ function statusInfo(data) {
 
   const { state, next_state: nextState } = data,
         $status = getPanel().find( '#status' ),
-        $nextStatus = getPanel().find( '#status-next' )
+        $nextStatus = getPanel().find( '#status-next' ),
+        $details = getPanel().find( '#details-wrap' )
 
   // Clear textareas
   getPanel().find('textarea').val('')
@@ -158,8 +159,10 @@ function statusInfo(data) {
 
     getPanel().find( '#status-actions .btn')
               .addClass( 'disabled' )
+              .unbind()
     getPanel().find( '#status-arrow' )
               .add( $nextStatus )
+              .add( $details )
               .remove()
     
   }

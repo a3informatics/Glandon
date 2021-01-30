@@ -31,7 +31,12 @@ export default class StatusImpactModal extends ModalView {
       addedColumns: [
         { data: 'registration_status' },
         dtTrueFalseColumn( 'state_update_allowed', { orderable: false } )
-      ]
+      ],
+      tableOptions: {
+        language: {
+          emptyTable: 'No dependencies found'
+        }
+      }
     })
 
   }
@@ -50,18 +55,18 @@ export default class StatusImpactModal extends ModalView {
 
     // this._loading( true )
 
-    // $get({
-    //   url: this.dataUrl,
-    //   data: {
-    //     [ this.param ]: {
-    //       action: this.action
-    //     }
-    //   },
-    //   done: data => this.mngItemsPanel._render( data, true ),
-    //   always: () => this._loading( false )
-    // })
+    $get({
+      url: this.dataUrl,
+      data: {
+        [ this.param ]: {
+          action: this.action
+        }
+      },
+      done: data => this.mngItemsPanel._render( data, true ),
+      always: () => this._loading( false )
+    })
     
-    this.mip._render( this.data, true )
+    // this.mip._render( this.data, true )
 
     this.modal.find( '#modal-submit' )
               .toggleClass( 'disabled', !this.bulkUpdateAllowed )
@@ -130,33 +135,6 @@ export default class StatusImpactModal extends ModalView {
     this.modal.find( '.btn' )
               .toggleClass( 'disabled', enable )
 
-  }
-
-  get data() {
-    return [
-      {
-        id: '12345',
-        identifier: 'C123456',
-        label: 'Label',
-        semantic_version: '1.2.3',
-        version_label: 'V Label',
-        owner: 'S-cubed',
-        registration_status: 'Standard',
-        rdf_type: 'http://www.assero.co.uk/Thesaurus#ManagedConcept',
-        state_update_allowed: true
-      },
-      {
-        id: '12346',
-        identifier: 'BMI',
-        label: 'BC Label',
-        semantic_version: '1.0.0',
-        version_label: 'V Label BC',
-        owner: 'S-cubed',
-        registration_status: 'Incomplete',
-        rdf_type: 'http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance',
-        state_update_allowed: false
-      }
-    ]
   }
 
 }

@@ -118,7 +118,7 @@ a.bg-label {
 
 // Element tyles: removable, highlightable, editable
 
-.removable, .highlightable, .editable {
+.removable, .highlightable, .editable:not(td) {
   transition: box-shadow .2s;
 
   &:hover {
@@ -135,7 +135,7 @@ a.bg-label {
   }
 }
 
-.removable, .editable {
+.removable, .editable:not(td) {
 
   &:hover::after {
     position: absolute;
@@ -166,7 +166,7 @@ a.bg-label {
   }
 }
 
-.editable {
+.editable:not(td) {
   &:hover {
     box-shadow: inset 0 0 0 2px $primary-color-bright;
   }

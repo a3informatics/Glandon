@@ -66,9 +66,9 @@ export default class StatusPanel {
     else if ( this.isInState('Standard') ) 
       alerts.warning( 'Item is already in Released state' )
     else if ( this._withDependencies )
-      this._openChangeStateImpactDialog( 'forward' )
+      this._openChangeStateImpactDialog( 'fast_forward' )
     else 
-      this._changeState( 'forward' )
+      this._changeState( 'fast_forward' )
 
   }
 
@@ -187,7 +187,7 @@ export default class StatusPanel {
       onSuccess: data => {
 
         this._renderAll( data )
-        alerts.success( `Moved Status to ${ data.state.label }`)
+        alerts.success( `Changed Status to ${ data.state.label }`)
 
       } 
     })
@@ -218,7 +218,7 @@ export default class StatusPanel {
 
   /**
    * Request to Change state with dependencies, handle response
-   * @param {string} action Change state action 'forward' / 'rewind'
+   * @param {string} action Change state action 'fast_forward' / 'rewind'
    * @param {integer} depCount Amount of dependencies (for building success alert)
    */
   _changeStateWithDeps(action, depCount) {
@@ -299,7 +299,7 @@ export default class StatusPanel {
 
   /**
    * Show Status Impact modal and run changeStateWithDeps after user confirmation
-   * @param {string} action Change state action 'forward' / 'rewind'
+   * @param {string} action Change state action 'fast_forward' / 'rewind'
    */
   _openChangeStateImpactDialog(action) {
 
