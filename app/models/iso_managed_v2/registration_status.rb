@@ -39,6 +39,12 @@ class IsoManagedV2
           {
             VALUES ?e { #{ids.map{|x| Uri.new(id: x).to_ref}.join(" ")} }
             {
+              ?e rdf:type ?o . 
+              BIND (#{Fuseki::Base::C_RDF_TYPE.to_ref} as ?p)
+              BIND (?e as ?s)
+            }
+            UNION
+            {
               ?e ?p ?o .
               FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179"))
               BIND (?e as ?s)
@@ -76,6 +82,12 @@ class IsoManagedV2
           SELECT ?s ?p ?o ?e WHERE
           {
             VALUES ?e { #{ids.map{|x| Uri.new(id: x).to_ref}.join(" ")} }
+            {
+              ?e rdf:type ?o . 
+              BIND (#{Fuseki::Base::C_RDF_TYPE.to_ref} as ?p)
+              BIND (?e as ?s)
+            }
+            UNION
             {
               ?e ?p ?o .
               FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179"))
