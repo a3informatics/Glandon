@@ -3,7 +3,7 @@
     when "Thesaurus::ManagedConcept"
       header_path = "shared/headers/header_codelist"
       item.synonyms_and_preferred_terms
-      locals = { item: item, badge: "CL", with_tags: with_tags }
+      locals = { item: item, badge: "CL", with_tags: with_tags, context: nil }
     when "Thesaurus::UnmanagedConcept"
       header_path = "shared/headers/header_unmanaged_item"
       item.synonyms_and_preferred_terms
