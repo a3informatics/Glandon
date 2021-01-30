@@ -130,7 +130,7 @@ class IsoManagedV2Controller < ApplicationController
     token = Token.find_token(item, current_user)
     if !token.nil?
       items = item.update_status_dependent_items(the_params[:action].to_sym)      
-      render :json => { :data => ffor_impacted_items(item, items.map{|x| x.id}, the_params[:action].to_sym)}, :status => 200
+      render :json => { :data => ffor_impacted_items(item, items.map{|x| x.to_id}, the_params[:action].to_sym)}, :status => 200
     else
       render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
     end
