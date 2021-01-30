@@ -109,7 +109,7 @@ class IsoManagedV2Controller < ApplicationController
     token = Token.find_token(item, current_user)
     if !token.nil?
       if item.update_status_permitted?
-        items = item.update_status_related_items(the_params[:action])
+        items = item.update_status_dependent_items(the_params[:action])
         lock_set = TokenSet.new(items, current_user)
         ffor(item, lock_set.ids, the_params[:action])
         lock_set.each { |x| AuditTrail.update_item_event(current_user, x[:item], x[:item].audit_message_status_update) }
@@ -129,7 +129,7 @@ class IsoManagedV2Controller < ApplicationController
     item = find_item(params)
     token = Token.find_token(item, current_user)
     if !token.nil?
-      items = item.update_status_related_items(the_params[:action].to_sym)      
+      items = item.update_status_dependent_items(the_params[:action].to_sym)      
       render :json => { :data => ffor_impacted_items(item, items.map{|x| x.id}, the_params[:action].to_sym)}, :status => 200
     else
       render :json => {:errors => ["The edit lock has timed out."] }, :status => 422

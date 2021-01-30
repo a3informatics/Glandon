@@ -48,7 +48,7 @@ describe IsoManagedV2::RegistrationStatus do
 
     it "update status related items, default" do
       item = create_iso_managed("ITEM 3", "This is item 1")
-      expect(item.update_status_related_items(false, :update)).to eq([])
+      expect(item.update_status_dependent_items(false, :update)).to eq([])
     end
 
     it "next state, basic" do

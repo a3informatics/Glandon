@@ -235,10 +235,10 @@ class IsoManagedV2
       true
     end
 
-    # Update Status Related Items. The related items that we could update. Default methid always return no items.
+    # Update Status Dependent Items. The depedent items that we could update. Default method always return no items.
     #
     # @return [Array] array of items, default is just self
-    def update_status_related_items(operation)
+    def update_status_dependent_items(operation)
       []
     end
 
