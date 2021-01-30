@@ -48,7 +48,7 @@ describe IsoManagedV2::RegistrationStatus do
 
     it "update status related items, default" do
       item = create_iso_managed("ITEM 3", "This is item 1")
-      expect(item.update_status_dependent_items(false, :update)).to eq([])
+      expect(item.update_status_dependent_items(:update)).to eq([])
     end
 
     it "next state, basic" do
@@ -139,6 +139,19 @@ describe IsoManagedV2::RegistrationStatus do
 
   # end
 
+  def check_mi_array(items, filename, write_file=false)
+    results = []
+    items.each_with_index do |x, index| 
+      results << IsoManagedV2.find_minimum(x.uri).to_h 
+      expected = read_yaml_file(sub_dir, filename)
+      [:last_change_date, :creation_date].each do |a|
+        expect(results[index][a].to_time_with_default).to be_within(5.seconds).of Time.now
+        results[index][a] = expected[index][a]
+      end
+    end
+    check_file_actual_expected(results, sub_dir, filename, equate_method: :hash_equal, write_file: write_file)
+  end
+
   describe "Fast Forward State" do
 
     before :each do
@@ -164,8 +177,7 @@ describe IsoManagedV2::RegistrationStatus do
       result = IsoManagedV2.fast_forward_state(items.map{ |x| x.uri.to_id })
       expect(result).to eq(true)
       expect(items.map { |x| IsoManagedV2.find_minimum(x.uri).registration_status }).to eq(["Incomplete", "Incomplete", "Standard", "Standard", "Standard"])
-      items.each_with_index { |x, index| results << IsoManagedV2.find_minimum(x.uri).to_h }
-      check_file_actual_expected(results, sub_dir, "fast_forward_state_expected_1.yaml", equate_method: :hash_equal)
+      check_mi_array(items, "fast_forward_state_expected_1.yaml")
     end
 
     it "fast forward state, previous version" do
@@ -180,7 +192,7 @@ describe IsoManagedV2::RegistrationStatus do
       expect(result).to eq(true)
       expect(items.map { |x| IsoManagedV2.find_minimum(x.uri).registration_status }).to eq(["Incomplete", "Incomplete", "Standard", "Standard", "Incomplete"])
       items.each_with_index { |x, index| results << IsoManagedV2.find_minimum(x.uri).to_h }
-      check_file_actual_expected(results, sub_dir, "fast_forward_state_expected_2.yaml", equate_method: :hash_equal)
+      check_mi_array(items, "fast_forward_state_expected_2.yaml")
     end
 
   end
@@ -199,7 +211,7 @@ describe IsoManagedV2::RegistrationStatus do
       (1..5).each_with_index { |x, index| items << create_iso_managed("ITEM #{index+1}", "This is item #{index+1}") }
       [items[0], items[1]].each { |x| x = change_ownership(x, @cdisc_ra) }
       results = IsoManagedV2.rewind_permitted(items.map{ |x| x.uri.to_id })
-      check_file_actual_expected(results, sub_dir, "rewind_permitted_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "rewind_permitted_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "rewind state, simple case" do
@@ -211,8 +223,7 @@ describe IsoManagedV2::RegistrationStatus do
       result = IsoManagedV2.rewind_state(items.map{ |x| x.uri.to_id })
       expect(result).to eq(true)
       expect(items.map { |x| IsoManagedV2.find_minimum(x.uri).registration_status }).to eq(["Standard", "Standard", "Incomplete", "Incomplete", "Incomplete"])
-      items.each_with_index { |x, index| results << IsoManagedV2.find_minimum(x.uri).to_h }
-      check_file_actual_expected(results, sub_dir, "rewind_state_expected_1.yaml", equate_method: :hash_equal)
+      check_mi_array(items, "rewind_state_expected_1.yaml")
     end
 
     it "rewind state, previous at standard, should rewind" do
@@ -225,8 +236,7 @@ describe IsoManagedV2::RegistrationStatus do
       items[5] = IsoManagedHelpers.make_item_qualified(items[5]) 
       result = IsoManagedV2.rewind_state([items[0].id, items[1].id, items[3].id, items[4].id, items[5].id])
       expect(items.map { |x| IsoManagedV2.find_minimum(x.uri).registration_status }).to eq(["Standard", "Standard", "Standard", "Incomplete", "Incomplete", "Incomplete"])
-      items.each_with_index { |x, index| results << IsoManagedV2.find_minimum(x.uri).to_h }
-      check_file_actual_expected(results, sub_dir, "rewind_state_expected_2.yaml", equate_method: :hash_equal)
+      check_mi_array(items, "rewind_state_expected_2.yaml")
     end
 
     it "rewind state, previous not at standard, no rewind" do
@@ -240,8 +250,7 @@ describe IsoManagedV2::RegistrationStatus do
       items[6] = IsoManagedHelpers.next_version(items[5])
       result = IsoManagedV2.rewind_state([items[0].id, items[1].id, items[3].id, items[4].id, items[6].id])
       expect(items.map { |x| IsoManagedV2.find_minimum(x.uri).registration_status }).to eq(["Standard", "Standard", "Standard", "Incomplete", "Incomplete", "Qualified", "Qualified"])
-      items.each_with_index { |x, index| results << IsoManagedV2.find_minimum(x.uri).to_h }
-      check_file_actual_expected(results, sub_dir, "rewind_state_expected_3.yaml", equate_method: :hash_equal)
+      check_mi_array(items, "rewind_state_expected_3.yaml")
     end
 
   end
