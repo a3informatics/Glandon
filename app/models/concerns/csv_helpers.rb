@@ -6,7 +6,7 @@ module CSVHelpers
   # @param [Array] data array of array of rows
   # @return [Array] the csv structure
   def self.format(headers, data)
-    csv_data = CSV.generate do |csv|
+    csv_data = CSV.generate(force_quotes: true) do |csv|
       csv << headers
       data.each {|d| csv << d}
     end

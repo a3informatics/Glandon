@@ -11,7 +11,8 @@ describe "Imports", :type => :feature do
   include AuditTrailHelpers
   include ScenarioHelpers
   include PublicFileHelpers
-
+  include NameValueHelpers
+  
   def sub_dir
     return "features/import"
   end
@@ -71,6 +72,16 @@ describe "Imports", :type => :feature do
     page.has_xpath?("//table[@id='main']/tbody/tr[#{row}]/td[5]//span[@class=\"icon-#{complete ? "ok" : "times"}\"]")
     page.has_xpath?("//table[@id='main']/tbody/tr[#{row}]/td[6]//span[@class=\"icon-#{successful ? "ok" : "times"}\"]")
     page.has_xpath?("//table[@id='main']/tbody/tr[#{row}]/td[7]//span[@class=\"icon-#{auto_load ? "ok" : "times"}\"]")
+  end
+
+  def check_cell_content(table, row, col, data)
+    cell = find(:xpath, "//table[@id='#{ table }']//tbody/tr[#{ row }]/td[#{ col }]", visible: false)
+
+    if data.is_a? String
+      expect(cell).to have_content data
+    else
+      expect(cell).to have_selector(data ? ".icon-sel-filled" : ".icon-times-circle")
+    end
   end
 
   # def get_excel_code_lists
@@ -225,7 +236,21 @@ describe "Imports", :type => :feature do
       return "features/import/sponsor_term_format_two"
     end
 
-    before :all do
+    def add_cp_1
+      CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
+      description: "A description XXX", default: "Default String",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CPD1"))
+    end
+
+    def add_cp_2
+      CustomPropertyDefinition.create(datatype: "boolean", label: "Logical", 
+      description: "Boolean Description", default: "false",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CPD2"))
+    end
+
+    before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       Token.destroy_all
@@ -234,23 +259,25 @@ describe "Imports", :type => :feature do
       delete_all_public_test_files
       copy_file_to_public_files(sub_dir, "import_input_1.xlsx", "test")
       ua_create
-    end
-
-    after :all do
-      ua_destroy
-      Import.delete_all
-      delete_all_public_test_files
-    end
-
-    before :each do
       ua_content_admin_login
+      nv_destroy
+      nv_create({ parent: "10", child: "999" })
     end
 
     after :each do
+      ua_destroy
+      Import.delete_all
+      delete_all_public_test_files
       ua_logoff
     end
 
-    it "Import a CDISC Terminology (Excel), auto-load, success", js: true do
+    before :each do
+    end
+
+    after :each do
+    end
+
+    it "Import a CDISC Terminology (Excel), auto-load, success, no custom properties", js: true do
       click_navbar_import
       expect_page 'Import Centre'
       click_on 'Import Terminology from Excel'
@@ -265,6 +292,43 @@ describe "Imports", :type => :feature do
       click_on "Show imported item(s)"
       wait_for_ajax 20
       expect_page "Index: Code Lists"
+      find(:xpath, "//tr[contains(.,'MFES01TN')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'NP000010P\''
+      context_menu_element('history', 4, 'NP000010P', :show)
+      wait_for_ajax 10
+      check_cell_content('children', 1, 1, 'NC00001014C') 
+      expect(page).not_to have_button('Show Custom Properties')
+    end
+
+    it "Import a CDISC Terminology (Excel), auto-load, success, custom properties", js: true do
+      add_cp_1
+      add_cp_2
+      click_navbar_import
+      expect_page 'Import Centre'
+      click_on 'Import Terminology from Excel'
+      expect_page 'Import Sponsor Code List using Excel'
+      import_check_file_count 1
+      import_select_files ["import_input_1"]
+      find(".material-switch").click
+      click_on "Start Import"
+      wait_for_ajax 10
+      expect_page "Owner: ACME"
+      expect_page "No errors were detected with the import."
+      click_on "Show imported item(s)"
+      wait_for_ajax 20
+      expect_page "Index: Code Lists"
+      find(:xpath, "//tr[contains(.,'MFES01TN')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'NP000010P\''
+      context_menu_element('history', 4, 'NP000010P', :show)
+      wait_for_ajax 10
+      expect_page "Show Custom Properties"  
+      check_cell_content('children', 1, 1, 'NC00001014C') 
+      click_on 'Show Custom Properties'
+      wait_for_ajax 10 
+      check_cell_content('children', 1, 7, 'Default String') 
+      check_cell_content('children', 1, 8, false)    
     end
 
   end

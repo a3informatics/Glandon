@@ -40,11 +40,12 @@ Three levels of information are modelled
 | **isOrdered** | Links a thesaurus concept with the ordered list | 1:1 |
 | **isRanked** | Links a thesaurus concept with the ranking list | 1:1 |
 | **narrower** | Links a thesaurus concept with the child concepts | 1:M |
-| **refersTo** | Used to indicate that the item is referenced from another collection of concepts | 1:M |
+| **refersTo** | Used to indicate that the item is referenced from another collection of concepts. Can only edit the child if parent does not have a refersTo relationship | 1:M |
 
 ## Examples
 
-![](diagrams/thesaurus_examples.png)
+![](diagrams/thesaurus_examples_1.png)
+![](diagrams/thesaurus_examples_2.png)
 
 ## Standard Code Lists
 
@@ -107,3 +108,4 @@ Terms can be equated when:
 1. Multiple level code lists.
 1. Improve SKOS generic functionality.
 1. Manual identifiers.
+1. Multi level terminology
