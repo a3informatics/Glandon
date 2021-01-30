@@ -1,7 +1,11 @@
 <%
   case type
     when "Thesaurus::ManagedConcept"
-      header_path = "shared/headers/header_codelist"
+      if local_assigns.fetch(:true_header, false)
+        header_path = "shared/headers/header_codelist"
+      else 
+        header_path = "shared/headers/header_managed_item"
+      end
       item.synonyms_and_preferred_terms
       locals = { item: item, badge: "CL", with_tags: with_tags, context: nil }
     when "Thesaurus::UnmanagedConcept"
