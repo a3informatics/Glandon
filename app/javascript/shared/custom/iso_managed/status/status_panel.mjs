@@ -16,9 +16,8 @@ export default class StatusPanel {
 
   /**
    * Create a Status Panel instance
-   * @param {string} selector Unique selector string of the status-panel
+   * @param {string} selector Status panel selector string 
    * @param {Object} urls Urls for Status related requests 
-   * { data, updateVersion, updateVersionLabel, makeCurrent, nextState, changeState, changeStateImpact }
    */
   constructor({
     selector = '#status-panel',
@@ -66,7 +65,7 @@ export default class StatusPanel {
     else if ( this.isInState('Standard') ) 
       alerts.warning( 'Item is already in Released state' )
     else if ( this._withDependencies )
-      this._openChangeStateImpactDialog( 'fast_forward' )
+      this._showStatusImpact( 'fast_forward' )
     else 
       this._changeState( 'fast_forward' )
 
@@ -82,7 +81,7 @@ export default class StatusPanel {
     else if ( this.isInState('Incomplete') ) 
       alerts.warning( 'Item is already in Draft state' )
     else if ( this._withDependencies )
-      this._openChangeStateImpactDialog( 'rewind' )
+      this._showStatusImpact( 'rewind' )
     else
       this._changeState( 'rewind' )
 
@@ -301,7 +300,7 @@ export default class StatusPanel {
    * Show Status Impact modal and run changeStateWithDeps after user confirmation
    * @param {string} action Change state action 'fast_forward' / 'rewind'
    */
-  _openChangeStateImpactDialog(action) {
+  _showStatusImpact(action) {
 
     this.impactModal.show({
       action,
