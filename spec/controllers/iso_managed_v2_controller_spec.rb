@@ -133,7 +133,7 @@ describe IsoManagedV2Controller do
     it 'next state, not permitted' do
       request.env['HTTP_ACCEPT'] = "application/json"
       mi = create_iso_managed_thesaurus("TEST5", "A test managed item")
-      expect_any_instance_of(IsoManagedV2).to receive(:update_status_permitted?) do |arg|
+      expect_any_instance_of(Thesaurus).to receive(:update_status_permitted?) do |arg|
         arg.errors.add(:base, "Some error")
         false
       end
@@ -292,7 +292,7 @@ describe IsoManagedV2Controller do
       token = Token.obtain(master, @user)
       put :state_change_impacted_items, params:{ id: master.id, iso_managed: { action: "fast_forward" }}
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "state_change_impacted_items_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "state_change_impacted_items_expected_3.yaml", equate_method: :hash_equal)
       expect(token.timed_out?).to be(false)
     end
 
