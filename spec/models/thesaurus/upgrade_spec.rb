@@ -15,12 +15,7 @@ describe "Thesaurus::Upgrade" do
   end
 
   def make_standard(item)
-    params = {}
-    params[:registration_status] = "Standard"
-    params[:previous_state] = "Incomplete"
-    item.update_status(params)
-    #puts colourize("Make standard: #{item.errors.count}", "blue")
-    #puts colourize("Make standard: #{item.errors.full_messages.to_sentence}", "blue") if item.errors.count > 0
+    IsoManagedHelpers.make_item_standard(item)
   end
 
   describe "upgrade" do
