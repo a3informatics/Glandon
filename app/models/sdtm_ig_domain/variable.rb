@@ -20,7 +20,11 @@ class SdtmIgDomain::Variable < Tabulation::Column
 
   def replace_if_no_change(previous)
     return self if previous.nil?
-    self.diff?(previous, {ignore: [:ct_reference, :based_on_class_variable, :is_a]}) ? self : previous
+    self.compliance = self.compliance.uri unless self.compliance.nil?
+    self.based_on_class_variable = self.based_on_class_variable.uri unless self.based_on_class_variable.nil?
+    previous.compliance = previous.compliance.uri unless previous.compliance.nil?
+    previous.based_on_class_variable = previous.based_on_class_variable.uri unless previous.based_on_class_variable.nil?
+    self.diff?(previous, {ignore: [:ct_reference, :is_a]}) ? self : previous
   end
 
   # Compliance. Get the compliance for the class
