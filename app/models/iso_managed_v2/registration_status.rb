@@ -249,8 +249,10 @@ class IsoManagedV2
 
     # Update Status Dependent Items. The depedent items that we could update. Default method always return no items.
     #
+    # @param params [Hash] the options to create a message with.
+    # @option params [String] :with_dependencies boolean flag to use dependencies
     # @return [Array] array of items, default is just self
-    def update_status_dependent_items(operation)
+    def update_status_dependent_items(params)
       []
     end
 

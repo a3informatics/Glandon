@@ -15,7 +15,20 @@
     :administrative_status: ''
     :previous_state: Incomplete
     :multiple_edit: false
-    :by_authority: http://www.assero.co.uk/RA#DUNS123456789
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS123456789
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '123456789'
+      :international_code_designator: DUNS
+      :owner: true
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQkJC
+        :uri: http://www.assero.co.uk/NS#BBB
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: BBB
+        :name: BBB Pharma
+        :authority: www.bbb.com
   :has_identifier:
     :id: aHR0cDovL3d3dy5iYmIuY29tL05QMDAwMDExUC9WMSNOUDAwMDAxMVBfU0k=
     :uri: http://www.bbb.com/NP000011P/V1#NP000011P_SI
@@ -24,12 +37,18 @@
     :version_label: ''
     :version: 1
     :semantic_version: 0.1.0
-    :has_scope: http://www.assero.co.uk/NS#BBB
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQkJC
+      :uri: http://www.assero.co.uk/NS#BBB
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: BBB
+      :name: BBB Pharma
+      :authority: www.bbb.com
   :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2021-02-01T14:31:22+01:00'
-  :last_change_date: '2021-02-01T14:31:22+01:00'
+  :creation_date: '2021-02-01T15:06:31+01:00'
+  :last_change_date: '2021-02-01T15:06:31+01:00'
   :explanatory_comment: ''
   :identifier: ''
   :notation: ''
@@ -60,7 +79,20 @@
     :administrative_status: ''
     :previous_state: Incomplete
     :multiple_edit: false
-    :by_authority: http://www.assero.co.uk/RA#DUNS123456789
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS123456789
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '123456789'
+      :international_code_designator: DUNS
+      :owner: true
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQkJC
+        :uri: http://www.assero.co.uk/NS#BBB
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: BBB
+        :name: BBB Pharma
+        :authority: www.bbb.com
   :has_identifier:
     :id: aHR0cDovL3d3dy5iYmIuY29tL05QMDAwMDEyUC9WMSNOUDAwMDAxMlBfU0k=
     :uri: http://www.bbb.com/NP000012P/V1#NP000012P_SI
@@ -69,12 +101,18 @@
     :version_label: ''
     :version: 1
     :semantic_version: 0.1.0
-    :has_scope: http://www.assero.co.uk/NS#BBB
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQkJC
+      :uri: http://www.assero.co.uk/NS#BBB
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: BBB
+      :name: BBB Pharma
+      :authority: www.bbb.com
   :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2021-02-01T14:31:22+01:00'
-  :last_change_date: '2021-02-01T14:31:22+01:00'
+  :creation_date: '2021-02-01T15:06:31+01:00'
+  :last_change_date: '2021-02-01T15:06:31+01:00'
   :explanatory_comment: ''
   :identifier: ''
   :notation: ''

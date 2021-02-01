@@ -15,9 +15,12 @@ class Thesaurus
 
     # Update Status Dependent Items. The depedent items that we could update. Default method always return no items.
     #
+    # @param params [Hash] the options to create a message with.
+    # @option params [String] :with_dependencies boolean flag to use dependencies
     # @return [Array] array of items, default is just self
-    def update_status_dependent_items(operation)
+    def update_status_dependent_items(params)
       results = []
+      return results unless params.key?(:with_dependencies) && params[:with_dependencies].to_bool
       query_string = %Q{
         SELECT ?s ?p ?o ?e WHERE
         {

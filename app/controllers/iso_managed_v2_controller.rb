@@ -109,7 +109,7 @@ class IsoManagedV2Controller < ApplicationController
     token = Token.find_token(item, current_user)
     if !token.nil?
       if item.update_status_permitted?
-        items = item.update_status_dependent_items(the_params[:action])
+        items = item.update_status_dependent_items(the_params)
         lock_set = TokenSet.new(items, current_user)
         ffor(item, lock_set.ids, the_params[:action])
         lock_set.each { |x| AuditTrail.update_item_event(current_user, x[:item], x[:item].audit_message_status_update) }
@@ -217,7 +217,7 @@ private
     # Strong parameter using iso_managed not V2 version.
     params.require(:iso_managed).permit(:identifier, :scope_id, :current_id, :tag_id, :registration_status, :previous_state, 
       :administrative_note, :unresolved_issue, :sv_type, :version_label, :offset, :count, 
-      :change_description, :explanatory_comment, :origin, :referer, :with_dependecies, :action)
+      :change_description, :explanatory_comment, :origin, :referer, :with_dependencies, :action)
   end
 
   # Formatting impact for D3
