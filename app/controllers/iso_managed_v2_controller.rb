@@ -114,7 +114,8 @@ class IsoManagedV2Controller < ApplicationController
         ffor(item, lock_set.ids, the_params[:action])
         lock_set.each { |x| AuditTrail.update_item_event(current_user, x[:item], x[:item].audit_message_status_update) }
         lock_set.release
-        render :json => { :data => item.status_summary}, :status => 200
+
+        render :json => { :data => IsoManagedV2.find_minimum(item.uri).status_summary}, :status => 200
       else
         render :json => { :errors => item.errors.full_messages}, :status => 422
       end
@@ -244,8 +245,8 @@ private
 
   # Fast Forward or Rewind
   def ffor(item, ids, action)
-    return IsoManagedV2.fast_forward_state([item.id] + lock_set.ids) if action == :fast_forward
-    return IsoManagedV2.rewind_state([item.id] + lock_set.ids) if action == :rewind
+    return IsoManagedV2.fast_forward_state([item.id] + ids) if action.to_sym == :fast_forward
+    return IsoManagedV2.rewind_state([item.id] + ids) if action.to_sym == :rewind
   end
 
   # Fast Forward or Rewind to find impacted items

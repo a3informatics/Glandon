@@ -1,18 +1,18 @@
 ---
 :data:
   :state:
-    :label: Qualified
-    :definition: 'The Registration Authority has confirmed that: a) the mandatory
-      metadata attributes are complete and b) the mandatory metadata attributes conform
-      to applicable quality requirements.'
-  :next_state:
     :label: Standard
     :definition: 'The Registration Authority confirms that the Administered Item is:
       a) of sufficient quality and b) of broad interest for use in the community that
       uses this metadata register.'
+  :next_state:
+    :label: Superseded
+    :definition: 'The Registration Authority determined that the Administered Item
+      is: a) no longer recommended for use by the community that uses this metadata
+      register, and b) a successor Administered Item is now preferred for use.'
   :semantic_version:
     :label: 0.1.0
-    :editable: true
+    :editable: false
     :next_versions:
       :major: 1.0.0
       :minor: 0.1.0

@@ -1,18 +1,16 @@
 ---
 :data:
   :state:
-    :label: Qualified
-    :definition: 'The Registration Authority has confirmed that: a) the mandatory
-      metadata attributes are complete and b) the mandatory metadata attributes conform
-      to applicable quality requirements.'
+    :label: Incomplete
+    :definition: Submitter wishes to make the community that uses this metadata register
+      aware of the existence of an Administered Item in their local domain.
   :next_state:
-    :label: Standard
-    :definition: 'The Registration Authority confirms that the Administered Item is:
-      a) of sufficient quality and b) of broad interest for use in the community that
-      uses this metadata register.'
+    :label: Candidate
+    :definition: The Administered Item has been proposed for progression through the
+      registration levels.
   :semantic_version:
     :label: 0.1.0
-    :editable: true
+    :editable: false
     :next_versions:
       :major: 1.0.0
       :minor: 0.1.0
