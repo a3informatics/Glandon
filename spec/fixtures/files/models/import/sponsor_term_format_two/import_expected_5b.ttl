@@ -1,0 +1,855 @@
+@prefix : <http://www.s-cubed.dk/P2/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/P2/V1>
+	rdf:type owl:Ontology ;
+.
+:P2
+	rdf:type th:ManagedConcept ;
+	isoC:label "The Modified Falls Efficacy Scale US English V1.0 Questionnaire Test Name"^^xsd:string ;
+	isoT:hasState :P2_RS ;
+	isoT:hasIdentifier :P2_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-01-28T07:42:27+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "P2"^^xsd:string ;
+	th:notation "MFES01TN"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 test name."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower :P2_C2 ;
+	th:narrower :P2_C3 ;
+	th:narrower :P2_C4 ;
+	th:narrower :P2_C5 ;
+	th:narrower :P2_C6 ;
+	th:narrower :P2_C7 ;
+	th:narrower :P2_C8 ;
+	th:narrower :P2_C9 ;
+	th:narrower :P2_C10 ;
+	th:narrower :P2_C11 ;
+	th:narrower :P2_C12 ;
+	th:narrower :P2_C13 ;
+	th:narrower :P2_C14 ;
+	th:narrower :P2_C15 ;
+	th:narrower :P2_C16 ;
+	th:narrower :P2_C17 ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e156b404592ad11ee3dd3084c141fc2b36a5710a> ;
+.
+:P2_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:P2_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "P2"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:P2_C2
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "The Modified Falls Efficacy Scale US English V1.0"^^xsd:string ;
+	th:identifier "C2"^^xsd:string ;
+	th:notation "MFES01-Get Dressed and Undressed"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Get dressed and undressed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#32b6ba10be1fa0ccd8f33dc65a0da3d8e7b5034b> ;
+.
+:P2_C3
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Prepare a simple meal"^^xsd:string ;
+	th:identifier "C3"^^xsd:string ;
+	th:notation "MFES01-Prepare a Simple Meal"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Prepare a simple meal."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#46690359119d273dd8c2f1486e1252a591662af8> ;
+.
+:P2_C4
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Take a bath or a shower"^^xsd:string ;
+	th:identifier "C4"^^xsd:string ;
+	th:notation "MFES01-Take a Bath or a Shower"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Take a bath or a shower."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#04a977ccee166a877eaa1ba1889f15299970940c> ;
+.
+:P2_C5
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Get in/out of a chair"^^xsd:string ;
+	th:identifier "C5"^^xsd:string ;
+	th:notation "MFES01-Get In/Out of a Chair"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Get in/out of a chair."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ae4cdfe3cbb679c856f13d49232f069d77d22251> ;
+.
+:P2_C6
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Get in/out of bed"^^xsd:string ;
+	th:identifier "C6"^^xsd:string ;
+	th:notation "MFES01-Get In/Out of Bed"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Get in/out of bed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6dd872676b309e1833de4b1d6379a1458ff424d5> ;
+.
+:P2_C7
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Answer the door or telephone"^^xsd:string ;
+	th:identifier "C7"^^xsd:string ;
+	th:notation "MFES01-Answer the Door or Telephone"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Answer the door or telephone."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0bda2f38607ec748b5fcaadee2a9dd876800c71c> ;
+.
+:P2_C8
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Walk around the inside of your house"^^xsd:string ;
+	th:identifier "C8"^^xsd:string ;
+	th:notation "MFES01-Walk Around Inside Your House"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Walk around the inside of your house."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0bd5ec8b1f049613223226942d6f232f6aba3bf6> ;
+.
+:P2_C9
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Reach into cabinets or closet"^^xsd:string ;
+	th:identifier "C9"^^xsd:string ;
+	th:notation "MFES01-Reach Into Cabinets or Closet"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Reach into cabinets or closet."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6088c60430fefcb1c7f7305b6deba7d9f1804aab> ;
+.
+:P2_C10
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Light housekeeping"^^xsd:string ;
+	th:identifier "C10"^^xsd:string ;
+	th:notation "MFES01-Light Housekeeping"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Light housekeeping."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#f2e93b412063aca8cf0a79384d792ccc49a28aa0> ;
+.
+:P2_C11
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Simple shopping"^^xsd:string ;
+	th:identifier "C11"^^xsd:string ;
+	th:notation "MFES01-Simple Shopping"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Simple shopping."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#dca3844c2c020ea3b918967adc040681b39be36e> ;
+.
+:P2_C12
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Using public transport"^^xsd:string ;
+	th:identifier "C12"^^xsd:string ;
+	th:notation "MFES01-Using Public Transport"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Using public transport."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d4dca2d1ed399b352299c1985f8a09e19440919c> ;
+.
+:P2_C13
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Crossing roads"^^xsd:string ;
+	th:identifier "C13"^^xsd:string ;
+	th:notation "MFES01-Crossing Roads"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Crossing roads."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#64a9bb0b5ae567a8d5c6326b4b2a3a8d1ba8dde8> ;
+.
+:P2_C14
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Light gardening or hanging out the washing"^^xsd:string ;
+	th:identifier "C14"^^xsd:string ;
+	th:notation "MFES01-Gardening or Hanging Out Washing"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Light gardening or hanging out the washing."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#8dfbb508153112e9ce70b265956ea64176aac489> ;
+.
+:P2_C15
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Using front or rear steps at home"^^xsd:string ;
+	th:identifier "C15"^^xsd:string ;
+	th:notation "MFES01-Using Front or Rear Steps at Home"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Using front or rear steps at home."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#7c9379282bf93b08f5034373db7d412127227e67> ;
+.
+:P2_C16
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Score/Item Rated"^^xsd:string ;
+	th:identifier "C16"^^xsd:string ;
+	th:notation "MFES01-Score/Item Rated"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Score/Item Rated."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#5e6c65447ca4ea0abe21a0f7207266b6adedb5ba> ;
+.
+:P2_C17
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Average"^^xsd:string ;
+	th:identifier "C17"^^xsd:string ;
+	th:notation "MFES01-Average"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Average."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#432ad76ba4d7bd61f8b3126d4b0d1ba9f46bb988> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3>
+	rdf:type th:ManagedConcept ;
+	isoC:label "The Modified Falls Efficacy Scale US English V1.0 Questionnaire Test Code"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/P3/V1#P3_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/P3/V1#P3_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-01-28T07:42:27+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "P3"^^xsd:string ;
+	th:notation "MFES01TC"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 test code."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C18> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C19> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C20> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C21> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C22> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C23> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C24> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C25> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C26> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C27> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C28> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C29> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C30> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C31> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C32> ;
+	th:narrower <http://www.s-cubed.dk/P3/V1#P3_C33> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#8c953fc8887cc7f86dfbb692f4f1c18bec47db8b> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "P3"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C18>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Get Dressed and Undressed"^^xsd:string ;
+	th:identifier "C18"^^xsd:string ;
+	th:notation "MFES0101"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Get dressed and undressed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#8258719452e36e877b8a89416ff8dfec482efb05> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C19>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Prepare a Simple Meal"^^xsd:string ;
+	th:identifier "C19"^^xsd:string ;
+	th:notation "MFES0102"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Prepare a simple meal."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#acfd7a7e2e39d30eaa9604af593c6638d354c493> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C20>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Take a Bath or a Shower"^^xsd:string ;
+	th:identifier "C20"^^xsd:string ;
+	th:notation "MFES0103"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Take a bath or a shower."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#48b342e8353ce2ede5f660a26726dfaca0c1165a> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C21>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Get In/Out of a Chair"^^xsd:string ;
+	th:identifier "C21"^^xsd:string ;
+	th:notation "MFES0104"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Get in/out of a chair."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#b07f5471be5acb540757c9fee272bffb040f5f57> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C22>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Get In/Out of Bed"^^xsd:string ;
+	th:identifier "C22"^^xsd:string ;
+	th:notation "MFES0105"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Get in/out of bed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#9a48dde80e3638c4d5f6c3a9dafbc54b39a25545> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C23>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Answer the Door or Telephone"^^xsd:string ;
+	th:identifier "C23"^^xsd:string ;
+	th:notation "MFES0106"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Answer the door or telephone."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#2f3a335dbf215f71b11ba95aecf8c5779944b4ad> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C24>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Walk Around Inside Your House"^^xsd:string ;
+	th:identifier "C24"^^xsd:string ;
+	th:notation "MFES0107"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Walk around the inside of your house."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#bc533fdd441ab809f55618d36d6b3732ef33fb26> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C25>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Reach Into Cabinets or Closet"^^xsd:string ;
+	th:identifier "C25"^^xsd:string ;
+	th:notation "MFES0108"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Reach into cabinets or closet."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#3c959aeb3117cc1d2362e09201f31f0e5ebcd966> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C26>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Light Housekeeping"^^xsd:string ;
+	th:identifier "C26"^^xsd:string ;
+	th:notation "MFES0109"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Light housekeeping."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#89ba0efe46c4d2f63148109a9f1752d09c4e56a9> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C27>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Simple Shopping"^^xsd:string ;
+	th:identifier "C27"^^xsd:string ;
+	th:notation "MFES0110"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Simple shopping."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#36f0907995bc5d2d8eb13d98fc4f86f1fe3fd94d> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C28>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Using Public Transport"^^xsd:string ;
+	th:identifier "C28"^^xsd:string ;
+	th:notation "MFES0111"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Using public transport."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c854efbce4fd5a8cb02655029377f2cea96c3301> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C29>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Crossing Roads"^^xsd:string ;
+	th:identifier "C29"^^xsd:string ;
+	th:notation "MFES0112"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Crossing roads."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#9095826495eae55d05f9ba42d986556343647443> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C30>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Gardening or Hanging Out Washing"^^xsd:string ;
+	th:identifier "C30"^^xsd:string ;
+	th:notation "MFES0113"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Light gardening or hanging out the washing."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#66528db5e863c8d3555f9fa76a39335b0f4a1d3f> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C31>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Using Front or Rear Steps at Home"^^xsd:string ;
+	th:identifier "C31"^^xsd:string ;
+	th:notation "MFES0114"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Using front or rear steps at home."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6259c84bbf08119b38dc7755d1f533f03c75d757> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C32>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Score/Item Rated"^^xsd:string ;
+	th:identifier "C32"^^xsd:string ;
+	th:notation "MFES0115"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Score/Item Rated."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#5e6c65447ca4ea0abe21a0f7207266b6adedb5ba> ;
+.
+<http://www.s-cubed.dk/P3/V1#P3_C33>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "MFES01-Average"^^xsd:string ;
+	th:identifier "C33"^^xsd:string ;
+	th:notation "MFES0116"^^xsd:string ;
+	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Average."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#432ad76ba4d7bd61f8b3126d4b0d1ba9f46bb988> ;
+.
+<http://www.assero.co.uk/CPV#cfff9679-7fa8-46e7-ab3f-2248c192ae6c>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C2 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#e760fbdd-aeb5-44b5-bf50-c92783cccf8e>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C2 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#99b83f21-bac6-4914-bd6c-afe82f9c1bcf>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C3 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#68028575-b38a-4728-9094-95c64316825e>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C3 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#2af610ce-e0f1-4f2b-a58e-cc31d0a54b52>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C4 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#42048ef8-8267-4ec6-85fd-4520e5998877>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C4 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#c9604282-3f12-458b-9a7a-78b6d453676c>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C5 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#e30d9907-ff88-4b93-ad64-efe1ff4168d6>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C5 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#b4e38e53-f9c5-4f30-8023-e3b404ac0acf>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C6 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#b39fca0f-d205-4f85-b6b2-60ad372834c6>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C6 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#07d2fbe8-b52c-4b29-a667-2e1f79d685cb>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C7 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#c47922aa-411e-4ef6-a244-c81679eaad51>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C7 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#1a3525fc-ad32-415e-aac2-030f421d2b62>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C8 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#75793883-8395-4bb8-af10-a57fda97470b>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C8 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#8941b727-a2ee-42e3-9a87-d41daab203ca>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C9 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#9aa194ac-e266-45c7-90a4-bf03a7e2248f>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C9 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#09c2225d-9b0f-415c-925f-fb4e6f686be6>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C10 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#34d075f7-1ec9-476c-a81f-24db6837b94f>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C10 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#a334237e-a017-48ed-af99-41331534d077>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C11 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#bc3f52c3-8bbd-4a72-b48b-4b6511753485>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C11 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#ed335563-b52d-4244-bc43-5b1f40792a9d>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C12 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#c584c023-3b1e-4160-9f47-e0e8292027cf>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C12 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#7ed4d40f-148f-48d0-a786-36f0df7c3e55>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C13 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#4577fa6e-45fc-47d6-86b0-20748252bd90>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C13 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#f4733703-af19-4f45-b02b-19c5a2c28d86>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C14 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#035f3bc5-b3ad-4473-a420-5a160f5aec93>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C14 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#9666a6e2-1996-49a2-b0f7-81d6751e5269>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C15 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#a7ce8887-2d4d-4e52-a77d-d372cd91be0e>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C15 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#31aa1453-17a8-40f2-8e08-dfc777443ced>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C16 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#ae89df45-c962-49d0-a2d5-fe8aabb83735>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C16 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#38005950-572c-41de-8dc1-4475dc024f78>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C17 ;
+	isoC:context :P2 ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#c2e2729b-155c-4f30-9f08-f5f4f7d83a5b>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo :P2_C17 ;
+	isoC:context :P2 ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#0c68ed8d-ec5d-4712-93ee-bcd9e8a75785>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C18> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#376f4ae8-cb4a-4f89-8bf7-fe697e29ee2a>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C18> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#eb8070f3-00bb-4eb0-b472-8ca53cf390c1>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C19> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#445ee5e8-e243-4c06-a18e-b62d4b242926>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C19> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#2825f77b-ed69-4257-a4ea-41ac45fed1f8>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C20> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#5749a4f0-d673-4d70-aa16-c405a2aa33aa>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C20> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#6cf526c3-05c1-43b8-9025-bfe6aa655aff>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C21> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#350741c9-d406-4a8e-975b-6402e5bfd849>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C21> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#1bc19edb-0b64-4436-93af-0d099f6978cf>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C22> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#2e1acc62-93ce-4268-94e4-26f7a8fec81f>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C22> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#09638875-89df-4dc5-82b5-f5ceaaf72145>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C23> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#c5cc69ee-8026-4f26-a29f-31c8f495c930>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C23> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#3a8fdac6-35a6-459f-a19c-c5ded4237cdb>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C24> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#a20de846-458b-4c4d-b287-62d0457d019e>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C24> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#a7f888af-c0ff-4aa7-b2d2-25ef0259d074>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C25> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#627973c4-ac85-48b8-a340-7181947f6821>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C25> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#eb48a126-cc7c-4133-ab2a-1bbe7c18ac6d>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C26> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#64b314ff-8a15-4c8a-8980-1c908dd91b4f>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C26> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#b498de43-f920-4b96-af35-887038de2399>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C27> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#e6aff4eb-fc90-4d5b-b371-bc85b05fd230>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C27> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#fdff7cec-cc55-4662-939b-07b9a21521ae>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C28> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#4aefb944-3d4d-4bc5-b71d-e6ba6bd2ee72>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C28> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#b48f2f1a-f2d5-49ed-b003-bfbeb4190df1>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C29> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#c640345d-2e58-4a29-a984-3386b47cfbd4>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C29> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#e1965f00-3913-4cd8-9522-cccf08d1f4ec>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C30> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#051832ef-f1d4-4840-9d83-109197ccb9c7>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C30> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#bfe8c83c-1276-47d3-8a28-0d6be216c75b>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C31> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#b62ba909-c134-4a13-9451-fb01450f58e4>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C31> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#00cd2943-e38f-4e3a-b04b-7c29276f938d>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C32> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#dc737cef-c738-49f1-93a5-478ab3fa3981>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C32> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.
+<http://www.assero.co.uk/CPV#98d8f0a9-1809-4b59-bfe9-41f36b682ce5>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C33> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "Default String"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD1> ;
+.
+<http://www.assero.co.uk/CPV#32fab934-c1b6-4bfc-9f4c-8f7ed9419f00>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/P3/V1#P3_C33> ;
+	isoC:context <http://www.s-cubed.dk/P3/V1#P3> ;
+	isoC:value "false"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/Test#CPD2> ;
+.

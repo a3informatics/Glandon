@@ -85,16 +85,24 @@ private
     latest = ::SdtmIg.latest({scope: parent.scope, identifier: parent.scoped_identifier})
     parent.has_previous_version = latest.nil? ? nil : latest.uri
 
+    # Add class
+    results[:managed_children].each_with_index do |domain, index| 
+      find_base_class(domain)
+      domain.children.each do |variable|
+        find_base_class_variable(domain.based_on_class, domain, variable)
+      end
+    end
+
     # Check for differences. If no change then use previous version.
     filtered = []
-    results[:managed_children].each_with_index do |child, index| 
-      previous_info = SdtmIgDomain.latest({scope: child.scope, identifier: child.scoped_identifier})
+    results[:managed_children].each_with_index do |domain, index| 
+      previous_info = SdtmIgDomain.latest({scope: domain.scope, identifier: domain.scoped_identifier})
       previous = previous_info.nil? ? nil : SdtmIgDomain.find_full(previous_info.id) 
-      actual = child.replace_if_no_change(previous)
-      parent.add_no_save(actual, index + 1) # Parent needs ref to child whatever new or previous
-      next if actual.uri != child.uri # No changes if actual = previous, so skip next
-      filtered << child 
-      child.has_previous_version = previous.nil? ? nil : previous.uri
+      actual = domain.replace_if_no_change(previous)
+      parent.add_no_save(actual, index + 1) # Parent needs ref to domain whatever new or previous
+      next if actual.uri != domain.uri # No changes if actual = previous, so skip next
+      filtered << domain 
+      domain.has_previous_version = previous.nil? ? nil : previous.uri
     end
 
     # Add terminology
@@ -102,7 +110,6 @@ private
 puts colourize("Domain: #{domain.prefix}, Class: #{get_temporary(domain,"referenced_class")}", "green")
       found = find_base_class(domain)
       domain.children.each do |variable|
-        found = find_base_class_variable(domain.based_on_class, domain, variable)
         next if variable.ct_and_format.empty?
         notations = extract_notations(variable.ct_and_format) 
         notations.each do |notation|
