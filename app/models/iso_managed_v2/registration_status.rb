@@ -28,16 +28,16 @@ class IsoManagedV2
       #   query_results.by_object(:s)
       # end
 
-      # Fast Forward Permitted
+      # Find Minimum Set
       #
-      # @param [Array] ids array of ids
-      # @return [Array] array of hash containg the results
-      def fast_forward_permitted(ids)
+      # @param [Array] uris array of uris
+      # @return [Array] array of objects containg the items
+      def find_minimum_set(uris)
         results = []
         query_string = %Q{
           SELECT ?s ?p ?o ?e WHERE
           {
-            VALUES ?e { #{ids.map{|x| Uri.new(id: x).to_ref}.join(" ")} }
+            VALUES ?e { #{uris.map{|x| x.to_ref}.join(" ")} }
             {
               ?e rdf:type ?o . 
               BIND (#{Fuseki::Base::C_RDF_TYPE.to_ref} as ?p)
@@ -65,53 +65,13 @@ class IsoManagedV2
         by_subject = query_results.by_subject
         query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
           item = IsoManagedV2.from_results_recurse(uri, by_subject)
-          result = basic_info(item)
-          result[:state_update_allowed] = fast_forward?(item.uri)
-          results << result
-        end
-        results
-      end
-
-      # Rewind Permitted
-      #
-      # @param [Array] ids array of ids
-      # @return [Array] array of hash containg the results
-      def rewind_permitted(ids)
-        results = []
-        query_string = %Q{
-          SELECT ?s ?p ?o ?e WHERE
-          {
-            VALUES ?e { #{ids.map{|x| Uri.new(id: x).to_ref}.join(" ")} }
-            {
-              ?e rdf:type ?o . 
-              BIND (#{Fuseki::Base::C_RDF_TYPE.to_ref} as ?p)
-              BIND (?e as ?s)
-            }
-            UNION
-            {
-              ?e ?p ?o .
-              FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179"))
-              BIND (?e as ?s)
-            }
-            UNION
-            {
-              ?e isoT:hasIdentifier ?s .
-              ?s ?p ?o .
-            }
-            UNION
-            {
-              ?e isoT:hasState ?s .
-              ?s ?p ?o
-            }
-          }
-        }
-        query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT, :bo, :th])
-        by_subject = query_results.by_subject
-        query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
-          item = IsoManagedV2.from_results_recurse(uri, by_subject)
-          result = basic_info(item)
-          result[:state_update_allowed] = rewind?(item.uri)
-          results << result
+          ns_uri = item.has_identifier.has_scope
+          item.has_identifier.has_scope = IsoNamespace.find(ns_uri)
+          ra_uri = item.has_state.by_authority
+          item.has_state.by_authority = IsoRegistrationAuthority.find(ra_uri)
+          ns_uri = item.has_state.by_authority.ra_namespace
+          item.has_state.by_authority.ra_namespace = IsoNamespace.find(ns_uri)
+          results << item
         end
         results
       end
@@ -119,9 +79,9 @@ class IsoManagedV2
       # Fast Forward State. Move the items to the released state if last in version history.
       #  Checks that items are owned and last in history.
       #
-      # @param [Array] ids array of ids
+      # @param [Array] uris array of uris
       # @return [Boolean] always true
-      def fast_forward_state(ids)
+      def fast_forward_state(uris)
         sparql = %Q{
           DELETE
           {
@@ -135,7 +95,7 @@ class IsoManagedV2
           }
           WHERE
           {
-            VALUES ?s { #{ids.map{|x| Uri.new(id: x).to_ref}.join(" ")} }
+            VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
             ?s isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
             FILTER (NOT EXISTS {?s ^isoT:hasPreviousVersion ?x})
             ?s isoT:hasState ?st .
@@ -151,9 +111,9 @@ class IsoManagedV2
       #  Checks that items are owned and last in history and no other versions since last release.
       #  Removes any current item settings.
       #
-      # @param [Array] ids array of ids
+      # @param [Array] uris array of uris
       # @return [Boolean] always true
-      def rewind_state(ids)
+      def rewind_state(uris)
         sparql = %Q{
           DELETE
           {
@@ -171,7 +131,7 @@ class IsoManagedV2
           }
           WHERE
           {
-            VALUES ?s { #{ids.map{|x| Uri.new(id: x).to_ref}.join(" ")} }
+            VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
             ?s isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
             FILTER (NOT EXISTS {?s ^isoT:hasPreviousVersion ?x})
             {
@@ -195,57 +155,66 @@ class IsoManagedV2
         true
       end
 
-    private
-
-      def basic_info(item)
-        {
-          id: item.id,
-          identifier: item.scoped_identifier,
-          label: item.label,
-          semantic_version: item.semantic_version,
-          version_label: item.version_label,
-          owner: "To Be Set",
-          #owner: item.owner_short_name,
-          registration_status: item.registration_status,
-          rdf_type: item.rdf_type.to_s,
-        }
-      end
-
-      def fast_forward?(uri)
-        ask_query = %Q{    
-          ASK {
-            #{uri.to_ref} isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
-            FILTER (NOT EXISTS {#{uri.to_ref} ^isoT:hasPreviousVersion ?x})
-          }
-        }
-        Sparql::Query.new.query(ask_query, "", [:isoT, :isoR]).ask?
-      end
-
-      def rewind?(uri)
-        ask_query = %Q{    
-          ASK {
-            #{uri.to_ref} isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
-            FILTER (NOT EXISTS {#{uri.to_ref} ^isoT:hasPreviousVersion ?x})
-            {
-              {
-                BIND (EXISTS {#{uri.to_ref} isoT:hasPreviousVersion/isoT:hasState/isoR:registrationStatus '#{IsoRegistrationStateV2.released_state}'^^xsd:string} as ?f)
-              } 
-              UNION
-              {
-                BIND (NOT EXISTS {#{uri.to_ref} isoT:hasPreviousVersion ?y} as ?f)
-              }
-            }
-            FILTER (?f = true) 
-          }
-        }
-        Sparql::Query.new.query(ask_query, "", [:isoT, :isoR]).ask?
-      end
-
     end
 
     # ----------------
     # Instance Methods
     # ----------------
+
+    # Registration Status Summary
+    #
+    # @param action [String] the action
+    # @return [Hash] the registration summary hash
+    def registration_status_summary(action)
+      {
+        id: self.id,
+        identifier: self.scoped_identifier,
+        label: self.label,
+        semantic_version: self.semantic_version,
+        version_label: self.version_label,
+        owner: "To Be Set",
+        #owner: self.owner_short_name,
+        registration_status: self.registration_status,
+        rdf_type: self.rdf_type.to_s,
+        state_update_allowed: action.to_sym == :fast_forward ? fast_forward? : rewind?
+      }
+    end
+
+    # Fast Forward? Is Fast Forward permitted?
+    #
+    # @return [Boolean] true if permitted, false otherwise
+    def fast_forward?
+      ask_query = %Q{    
+        ASK {
+          #{self.uri.to_ref} isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
+          FILTER (NOT EXISTS {#{self.uri.to_ref} ^isoT:hasPreviousVersion ?x})
+        }
+      }
+      Sparql::Query.new.query(ask_query, "", [:isoT, :isoR]).ask?
+    end
+
+    # Rewind? Is Rewind permitted?
+    #
+    # @return [Boolean] true if permitted, false otherwise
+    def rewind?
+      ask_query = %Q{    
+        ASK {
+          #{self.uri.to_ref} isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
+          FILTER (NOT EXISTS {#{self.uri.to_ref} ^isoT:hasPreviousVersion ?x})
+          {
+            {
+              BIND (EXISTS {#{self.uri.to_ref} isoT:hasPreviousVersion/isoT:hasState/isoR:registrationStatus '#{IsoRegistrationStateV2.released_state}'^^xsd:string} as ?f)
+            } 
+            UNION
+            {
+              BIND (NOT EXISTS {#{self.uri.to_ref} isoT:hasPreviousVersion ?y} as ?f)
+            }
+          }
+          FILTER (?f = true) 
+        }
+      }
+      Sparql::Query.new.query(ask_query, "", [:isoT, :isoR]).ask?
+    end
 
     # Update Status Permitted? Are we permitted to update the status. Default method always true.
     #

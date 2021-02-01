@@ -109,9 +109,11 @@ class IsoManagedV2Controller < ApplicationController
     token = Token.find_token(item, current_user)
     if !token.nil?
       if item.update_status_permitted?
-        items = item.update_status_dependent_items(the_params)
+        uris = item.update_status_dependent_items(the_params)
+        items = ffor_get_items(uris, the_params[:action])
+        return false unless state_change_allowed?(item, items, the_params[:action])
         lock_set = TokenSet.new(items, current_user)
-        ffor(item, lock_set.ids, the_params[:action])
+        ffor([item.uri] + lock_set.uris, the_params[:action])
         lock_set.each { |x| AuditTrail.update_item_event(current_user, x[:item], x[:item].audit_message_status_update) }
         lock_set.release
         render :json => { :data => IsoManagedV2.find_minimum(item.uri).status_summary}, :status => 200
@@ -129,8 +131,10 @@ class IsoManagedV2Controller < ApplicationController
     item = find_item(params)
     token = Token.find_token(item, current_user)
     if !token.nil?
-      items = item.update_status_dependent_items(with_dependencies: true)      
-      render :json => { :data => ffor_impacted_items(item, items.map{|x| x.id}, the_params[:action].to_sym)}, :status => 200
+      uris = item.update_status_dependent_items(with_dependencies: true)
+      items = ffor_get_items(uris, the_params[:action].to_sym)
+      set = [item] + items
+      render :json => { :data => set.map{|x| x.registration_status_summary(the_params[:action].to_sym)} }, :status => 200
     else
       render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
     end
@@ -236,22 +240,33 @@ private
     item.next_state(params)
   end
 
+  # Check valid action
   def valid_action?(action)
     return true if [:fast_forward, :rewind].include? action
     render :json => {:errors => ["Invalid action detected."] }, :status => 422
     false
   end
 
-  # Fast Forward or Rewind
-  def ffor(item, ids, action)
-    return IsoManagedV2.fast_forward_state([item.id] + ids) if action.to_sym == :fast_forward
-    return IsoManagedV2.rewind_state([item.id] + ids) if action.to_sym == :rewind
+  # State changge allowed
+  def state_change_allowed?(item, items, action)
+    set = [item] + items
+    allowed = set.map{|x| action.to_sym == :fast_forward ? x.fast_forward? : x.rewind? }
+    return true if allowed.all?{ |x| x }
+    render :json => {:errors => ["The state change is not permitted."] }, :status => 422
+    false
   end
 
-  # Fast Forward or Rewind to find impacted items
-  def ffor_impacted_items(item, ids, action)
-    return IsoManagedV2.fast_forward_permitted([item.id] + ids) if action == :fast_forward
-    return IsoManagedV2.rewind_permitted([item.id] + ids) if action == :rewind
+  # Fast Forward or Rewind
+  def ffor(uris, action)
+    return IsoManagedV2.fast_forward_state(uris) if action.to_sym == :fast_forward
+    return IsoManagedV2.rewind_state(uris) if action.to_sym == :rewind
+    return []
+  end
+
+  # Fast Forward or Rewind to get the items for the operation
+  def ffor_get_items(uris, action)
+    return IsoManagedV2.find_minimum_set(uris) if action.to_sym == :fast_forward || action.to_sym == :rewind
+    return []
   end
 
 end

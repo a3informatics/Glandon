@@ -89,6 +89,12 @@ describe IsoManagedV2::RegistrationStatus do
       expect(item.audit_message_status_update).to eq("Unknown audit type owner: S-cubed, identifier: ITEM 8, state was updated from Incomplete to Candidate.")
     end
 
+    it "provides the registration status summary hash" do
+      item = create_iso_managed("ITEM 10", "This is item 10")
+      result = item.registration_status_summary(:fast_forward)
+      check_file_actual_expected(result, sub_dir, "registration_status_summary_expected_1.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   # describe "Filter to Owned" do
@@ -166,13 +172,12 @@ describe IsoManagedV2::RegistrationStatus do
       @cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
     end
 
-    it "fast forward permitted, simple case" do
+    it "fast forward set, simple case" do
       items = []
       results = []
       (1..5).each_with_index { |x, index| items << create_iso_managed("ITEM #{index+1}", "This is item #{index+1}") }
-      [items[0], items[1]].each { |x| x = change_ownership(x, @cdisc_ra) }
-      results = IsoManagedV2.fast_forward_permitted(items.map{ |x| x.uri.to_id })
-      check_file_actual_expected(results, sub_dir, "fast_forward_permitted_expected_1.yaml", equate_method: :hash_equal)
+      results = IsoManagedV2.find_minimum_set(items.map{ |x| x.uri })
+      check_file_actual_expected(results.map{ |x| x.uri.to_s}, sub_dir, "fast_forward_permitted_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "fast forward state, simple case" do
@@ -180,7 +185,7 @@ describe IsoManagedV2::RegistrationStatus do
       results = []
       (1..5).each_with_index { |x, index| items << create_iso_managed("ITEM #{index+1}", "This is item #{index+1}") }
       [items[0], items[1]].each { |x| x = change_ownership(x, @cdisc_ra) }
-      result = IsoManagedV2.fast_forward_state(items.map{ |x| x.uri.to_id })
+      result = IsoManagedV2.fast_forward_state(items.map{ |x| x.uri })
       expect(result).to eq(true)
       expect(items.map { |x| IsoManagedV2.find_minimum(x.uri).registration_status }).to eq(["Incomplete", "Incomplete", "Standard", "Standard", "Standard"])
       check_mi_array(items, "fast_forward_state_expected_1.yaml")
@@ -194,11 +199,24 @@ describe IsoManagedV2::RegistrationStatus do
       next_version = create_iso_managed("ITEM 6", "This is item 6")
       next_version.has_previous_version = items.last
       next_version.save
-      result = IsoManagedV2.fast_forward_state(items.map{ |x| x.uri.to_id })
+      result = IsoManagedV2.fast_forward_state(items.map{ |x| x.uri })
       expect(result).to eq(true)
       expect(items.map { |x| IsoManagedV2.find_minimum(x.uri).registration_status }).to eq(["Incomplete", "Incomplete", "Standard", "Standard", "Incomplete"])
       items.each_with_index { |x, index| results << IsoManagedV2.find_minimum(x.uri).to_h }
       check_mi_array(items, "fast_forward_state_expected_2.yaml")
+    end
+
+    it "checks fast forward allowed" do
+      item = create_iso_managed("ITEM 1", "This is item 1")
+      expect(item.fast_forward?).to eq(true)
+      change_ownership(item, @cdisc_ra)
+      expect(item.fast_forward?).to eq(false)
+      previous_version = create_iso_managed("ITEM 2", "This is item 2")
+      next_version = create_iso_managed("ITEM 3", "This is item 3")
+      next_version.has_previous_version = previous_version
+      next_version.save
+      expect(previous_version.fast_forward?).to eq(false)
+      expect(next_version.fast_forward?).to eq(true)
     end
 
   end
@@ -211,13 +229,12 @@ describe IsoManagedV2::RegistrationStatus do
       @cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
     end
 
-    it "fast forward permitted, simple case" do
+    it "rewind set, simple case" do
       items = []
       results = []
       (1..5).each_with_index { |x, index| items << create_iso_managed("ITEM #{index+1}", "This is item #{index+1}") }
-      [items[0], items[1]].each { |x| x = change_ownership(x, @cdisc_ra) }
-      results = IsoManagedV2.rewind_permitted(items.map{ |x| x.uri.to_id })
-      check_file_actual_expected(results, sub_dir, "rewind_permitted_expected_1.yaml", equate_method: :hash_equal)
+      results = IsoManagedV2.find_minimum_set(items.map{ |x| x.uri })
+      check_file_actual_expected(results.map{ |x| x.uri.to_s}, sub_dir, "rewind_permitted_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "rewind state, simple case" do
@@ -226,7 +243,7 @@ describe IsoManagedV2::RegistrationStatus do
       (1..5).each_with_index { |x, index| items << create_iso_managed("ITEM #{index+1}", "This is item #{index+1}") }
       [items[0], items[1]].each_with_index { |x, index| items[index] = change_ownership(x, @cdisc_ra) }
       [items[0], items[1], items[2], items[3], items[4]].each_with_index { |x, index| items[index] = IsoManagedHelpers.make_item_standard(x) }
-      result = IsoManagedV2.rewind_state(items.map{ |x| x.uri.to_id })
+      result = IsoManagedV2.rewind_state(items.map{ |x| x.uri })
       expect(result).to eq(true)
       expect(items.map { |x| IsoManagedV2.find_minimum(x.uri).registration_status }).to eq(["Standard", "Standard", "Incomplete", "Incomplete", "Incomplete"])
       check_mi_array(items, "rewind_state_expected_1.yaml")
@@ -240,7 +257,7 @@ describe IsoManagedV2::RegistrationStatus do
       [items[0], items[1], items[2], items[3], items[4]].each_with_index { |x, index| items[index] = IsoManagedHelpers.make_item_standard(x) }
       items[5] = IsoManagedHelpers.next_version(items[2])
       items[5] = IsoManagedHelpers.make_item_qualified(items[5]) 
-      result = IsoManagedV2.rewind_state([items[0].id, items[1].id, items[3].id, items[4].id, items[5].id])
+      result = IsoManagedV2.rewind_state([items[0].uri, items[1].uri, items[3].uri, items[4].uri, items[5].uri])
       expect(items.map { |x| IsoManagedV2.find_minimum(x.uri).registration_status }).to eq(["Standard", "Standard", "Standard", "Incomplete", "Incomplete", "Incomplete"])
       check_mi_array(items, "rewind_state_expected_2.yaml")
     end
@@ -254,7 +271,7 @@ describe IsoManagedV2::RegistrationStatus do
       items[5] = IsoManagedHelpers.next_version(items[2])
       items[5] = IsoManagedHelpers.make_item_qualified(items[5]) 
       items[6] = IsoManagedHelpers.next_version(items[5])
-      result = IsoManagedV2.rewind_state([items[0].id, items[1].id, items[3].id, items[4].id, items[6].id])
+      result = IsoManagedV2.rewind_state([items[0].uri, items[1].uri, items[3].uri, items[4].uri, items[6].uri])
       expect(items.map { |x| IsoManagedV2.find_minimum(x.uri).registration_status }).to eq(["Standard", "Standard", "Standard", "Incomplete", "Incomplete", "Qualified", "Qualified"])
       check_mi_array(items, "rewind_state_expected_3.yaml")
     end
@@ -274,11 +291,26 @@ describe IsoManagedV2::RegistrationStatus do
       items[5] = IsoManagedHelpers.next_version(items[2])
       items[5] = IsoManagedHelpers.make_item_qualified(items[5]) 
       expect(items.map { |x| x.current? }).to eq([true, true, true, true, true, false])
-      result = IsoManagedV2.rewind_state([items[0].id, items[1].id, items[3].id, items[4].id, items[5].id])
+      result = IsoManagedV2.rewind_state([items[0].uri, items[1].uri, items[3].uri, items[4].uri, items[5].uri])
       items.each_with_index { |x, index| items[index] = IsoManagedV2.find_minimum(x.uri)}
       expect(items.map { |x| x.registration_status }).to eq(["Standard", "Standard", "Standard", "Incomplete", "Incomplete", "Incomplete"])
       expect(items.map { |x| x.current? }).to eq([true, true, true, false, false, false])
       check_mi_array(items, "rewind_state_expected_4.yaml")
+    end
+
+    it "checks rewind allowed" do
+      item = create_iso_managed("ITEM 1", "This is item 1")
+      IsoManagedHelpers.make_item_standard(item)
+      expect(item.rewind?).to eq(true)
+      change_ownership(item, @cdisc_ra)
+      expect(item.rewind?).to eq(false)
+      previous_version = create_iso_managed("ITEM 2", "This is item 2")
+      IsoManagedHelpers.make_item_standard(previous_version)
+      next_version = create_iso_managed("ITEM 3", "This is item 3")
+      next_version.has_previous_version = previous_version
+      next_version.save
+      expect(previous_version.rewind?).to eq(false)
+      expect(next_version.rewind?).to eq(true)
     end
 
   end

@@ -61,4 +61,11 @@ class TokenSet
     @items.map { |x| x[:item].id}
   end
 
+  # URIs. 
+  #
+  # @return [Array] the URIs for the items
+  def uris
+    @items.map { |x| x[:item].uri}
+  end
+
 end
