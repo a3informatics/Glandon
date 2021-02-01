@@ -155,7 +155,7 @@ describe ManagedCollectionsController do
       Token.delete_all
     end
 
-    it "add bcs, json request" do
+    it "add, json request" do
       request.env['HTTP_ACCEPT'] = "application/json"
       mc = create_managed_collection("ITEM1", "Item 1")
       item_2 = create_managed_collection("ITEM2", "Item 2")
@@ -167,11 +167,13 @@ describe ManagedCollectionsController do
       check_file_actual_expected(actual, sub_dir, "add_expected_1a.yaml", equate_method: :hash_equal)
       item_5 = create_managed_collection("ITEM5", "Item 5")
       item_6 = create_managed_collection("ITEM6", "Item 6")
-      mc = ManagedCollection.find_minimum(mc.id)
+      mc = ManagedCollection.find_full(mc.id)
+      expect(mc.has_managed.count).to eq(3)
       post :add, params:{id: mc.id, managed_collection: {id_set: [item_5.id, item_6.id]}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "add_expected_1b.yaml", equate_method: :hash_equal)
-      
+      mc = ManagedCollection.find_full(mc.id)
+      expect(mc.has_managed.count).to eq(5)
     end
 
   end
