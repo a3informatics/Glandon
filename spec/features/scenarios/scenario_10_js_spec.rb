@@ -49,6 +49,7 @@ describe "Scenario 10 - aCRF", :type => :feature do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")      
     end
 
@@ -74,36 +75,9 @@ describe "Scenario 10 - aCRF", :type => :feature do
       context_menu_element_v2('history', '0.1.0', :bca)
       wait_for_ajax 10
       add_bc_associations( [
-        { identifier: 'BC Test', version: '1' },
+        { identifier: 'HEIGHT', version: '1' },
       ])
       wait_for_ajax 10
-    end
-
-    def create_bc
-      click_navbar_bc
-      wait_for_ajax 20
-      find('#new-bc-button').click
-      ui_in_modal do
-        fill_in 'identifier', with: 'BC Test'
-        fill_in 'label', with: 'BC Label'
-        find('#new-item-template').click
-        ip_pick_managed_items(:bct, [ { identifier: 'BASIC OBS PQR', version: '1' } ], 'new-bc')
-
-        click_on 'Submit'
-      end
-      wait_for_ajax 10
-      expect(page).to have_content 'BC Test'
-    end
-
-    def go_to_edit_bc(identifier)
-      click_navbar_bc
-      wait_for_ajax 20
-      ui_table_search('index', identifier)
-      find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
-      wait_for_ajax 10
-      context_menu_element_v2 'history', identifier, :edit
-      wait_for_ajax 10
-      expect(page).to have_content 'Biomedical Concept Editor'
     end
 
     def create_form
@@ -134,22 +108,6 @@ describe "Scenario 10 - aCRF", :type => :feature do
     end
 
     it "allows to show aCRF", scenario: true, js: true do
-      create_bc
-
-      go_to_edit_bc("BC Test")
-
-      ui_editor_select_by_location 7, 8, true
-
-      # Add Terminology References
-      ui_in_modal do
-        ip_check_tabs [:unmanaged_concept], 'bc-term-ref'
-        ip_pick_unmanaged_items :unmanaged_concept, [
-          { parent: 'C100130', version: '2019-12-20', identifier: 'C96587' },
-          { parent: 'C100130', version: '2019-12-20', identifier: 'C96586' }
-        ], 'bc-term-ref', false
-        ip_check_selected_info '2', 'bc-term-ref'
-        ip_submit 'bc-term-ref'
-      end
 
       create_form
 
@@ -177,7 +135,7 @@ describe "Scenario 10 - aCRF", :type => :feature do
       find(:xpath, '//div[@id="d3"]//a[@id="bc_group"]').click
 
       ip_pick_managed_items( :bci, [
-        { identifier: 'BC Test', version: '1' }
+        { identifier: 'HEIGHT', version: '1' }
       ], 'node-add-child' )
 
       check_alert 'Added successfully.'
@@ -191,11 +149,13 @@ describe "Scenario 10 - aCRF", :type => :feature do
       context_menu_element_v2 'history', 1, :acrf
       wait_for_ajax 30
       expect(page).to have_content 'aCRF View'
-pause
+
+      expect(page).to have_content 'AA=Standard SDTM Test'
+      expect(page).to have_content 'AADTC where AATESTCD=HEIGHT'
+      expect(page).to have_content 'AAORRES where AATESTCD=HEIGHT'
+      expect(page).to have_content 'AAORRESU where AATESTCD=HEIGHT'
 
     end
-
-    
 
   end
 
