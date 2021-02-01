@@ -489,7 +489,7 @@ describe "Thesaurus", :type => :feature do
 
     def unsuccesful_th_state_update(previous_state, new_state)
       th_state_update
-      expect(page).to have_content 'Child items are not in the appropriate state.'
+      expect(page).to have_content 'Child items are not in the appropriate state'
       dc_check_status(previous_state, new_state)
       click_on 'Return'
       wait_for_ajax 10
@@ -500,7 +500,6 @@ describe "Thesaurus", :type => :feature do
     def succesful_th_state_update(previous_state, new_state)
       th_state_update
       dc_check_status(new_state)
-      ui_check_no_flash_message_present
       click_on 'Return'
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'STATE\''
@@ -510,6 +509,7 @@ describe "Thesaurus", :type => :feature do
     def succesful_cl_state_update(identifier, previous_state, new_state)
       click_navbar_code_lists
       wait_for_ajax 10
+      ui_table_search('index', identifier)
       find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
       wait_for_ajax 10 
       context_menu_element_v2('history', "#{identifier}", :document_control)
@@ -518,7 +518,6 @@ describe "Thesaurus", :type => :feature do
       click_on "Forward to Next"
       wait_for_ajax 10
       dc_check_status(new_state)
-      ui_check_no_flash_message_present
       click_on 'Return'
       wait_for_ajax 10
       ui_check_table_cell("history", 1, 7, "#{new_state}")
