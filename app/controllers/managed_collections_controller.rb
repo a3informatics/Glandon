@@ -60,7 +60,7 @@ class ManagedCollectionsController < ManagedItemsController
     mc = ManagedCollection.find_full(protect_from_bad_id(params))
     return true unless check_lock_for_item(mc)
     set_before = mc.managed_items
-    item = mc.add(items_params[:id_set])
+    item = mc.add_item(items_params[:id_set])
     if item.errors.empty?
       AuditTrail.create_item_event(current_user, mc, "Item(s) added to Managed Collection.")
       set_after = mc.managed_items
@@ -74,7 +74,7 @@ class ManagedCollectionsController < ManagedItemsController
   def remove
     mc = ManagedCollection.find_full(protect_from_bad_id(params))
     return true unless check_lock_for_item(mc)
-    result = mc.remove(items_params[:id_set])
+    result = mc.remove_item(items_params[:id_set])
     if result.errors.empty?
       AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "Item(s) removed from Managed Collection.")
       render :json => {data: []}, :status => 200
