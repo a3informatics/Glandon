@@ -141,12 +141,18 @@ describe IsoManagedV2::RegistrationStatus do
 
   def check_mi_array(items, filename, write_file=false)
     results = []
-    items.each_with_index do |x, index| 
-      results << IsoManagedV2.find_minimum(x.uri).to_h 
-      expected = read_yaml_file(sub_dir, filename)
-      [:last_change_date, :creation_date].each do |a|
-        expect(results[index][a].to_time_with_default).to be_within(5.seconds).of Time.now
-        results[index][a] = expected[index][a]
+    unless write_file
+      items.each_with_index do |x, index| 
+        results << IsoManagedV2.find_minimum(x.uri).to_h 
+        expected = read_yaml_file(sub_dir, filename)
+        [:last_change_date, :creation_date].each do |a|
+          expect(results[index][a].to_time_with_default).to be_within(5.seconds).of Time.now
+          results[index][a] = expected[index][a]
+        end
+      end
+    else
+      items.each_with_index do |x, index| 
+        results << IsoManagedV2.find_minimum(x.uri).to_h 
       end
     end
     check_file_actual_expected(results, sub_dir, filename, equate_method: :hash_equal, write_file: write_file)
@@ -251,6 +257,28 @@ describe IsoManagedV2::RegistrationStatus do
       result = IsoManagedV2.rewind_state([items[0].id, items[1].id, items[3].id, items[4].id, items[6].id])
       expect(items.map { |x| IsoManagedV2.find_minimum(x.uri).registration_status }).to eq(["Standard", "Standard", "Standard", "Incomplete", "Incomplete", "Qualified", "Qualified"])
       check_mi_array(items, "rewind_state_expected_3.yaml")
+    end
+
+    it "rewind state, previous at standard, should rewind, remove current" do
+      items = []
+      results = []
+      (1..5).each_with_index do |x, index| 
+        items << create_iso_managed("ITEM #{index+1}", "This is item #{index+1}") 
+        items[index] = make_current(items[index])
+      end
+      [items[0], items[1]].each_with_index do |x, index| 
+        items[index] = change_ownership(x, @cdisc_ra)
+      end
+      expect(items.map { |x| x.current? }).to eq([true, true, true, true, true])
+      [items[0], items[1], items[2], items[3], items[4]].each_with_index { |x, index| items[index] = IsoManagedHelpers.make_item_standard(x) }
+      items[5] = IsoManagedHelpers.next_version(items[2])
+      items[5] = IsoManagedHelpers.make_item_qualified(items[5]) 
+      expect(items.map { |x| x.current? }).to eq([true, true, true, true, true, false])
+      result = IsoManagedV2.rewind_state([items[0].id, items[1].id, items[3].id, items[4].id, items[5].id])
+      items.each_with_index { |x, index| items[index] = IsoManagedV2.find_minimum(x.uri)}
+      expect(items.map { |x| x.registration_status }).to eq(["Standard", "Standard", "Standard", "Incomplete", "Incomplete", "Incomplete"])
+      expect(items.map { |x| x.current? }).to eq([true, true, true, false, false, false])
+      check_mi_array(items, "rewind_state_expected_4.yaml")
     end
 
   end

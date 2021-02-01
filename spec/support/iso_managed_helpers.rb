@@ -24,6 +24,16 @@ module IsoManagedHelpers
     end
   end
 
+  def make_current(item)
+    item.has_state.update(effective_date: Time.now, until_date: IsoRegistrationStateV2::C_UNTIL_DATETIME.to_time_with_default)
+    IsoManagedV2.find_minimum(item.uri)
+  end
+
+  def remove_current(item)
+    item.has_state.update(effective_date: String::C_DEFAULT_DATETIME.to_time_with_default, until_date: String::C_DEFAULT_DATETIME.to_time_with_default)
+    IsoManagedV2.find_minimum(item.uri)
+  end
+
   def change_ownership(item, new_ra)
     item.has_identifier.replace_link(:has_scope, item.has_identifier.has_scope.uri, new_ra.ra_namespace.uri)
     item.has_state.replace_link(:by_authority, item.has_state.by_authority.uri, new_ra.uri)

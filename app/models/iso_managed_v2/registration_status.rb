@@ -149,6 +149,7 @@ class IsoManagedV2
 
       # Rewind State. Move the items to the draft state if last in version history.
       #  Checks that items are owned and last in history and no other versions since last release.
+      #  Removes any current item settings.
       #
       # @param [Array] ids array of ids
       # @return [Boolean] always true
@@ -158,11 +159,15 @@ class IsoManagedV2
           {
             ?st isoR:registrationStatus ?rs .
             ?st isoR:previousState ?ps .          
+            ?st isoR:effectiveDate ?ed .
+            ?st isoR:untilDate ?ud .
           }
           INSERT
           {
             ?st isoR:registrationStatus '#{IsoRegistrationStateV2.draft_state}'^^xsd:string .
             ?st isoR:previousState ?rs .          
+            ?st isoR:effectiveDate \"#{String::C_DEFAULT_DATETIME}\"^^xsd:dateTime .
+            ?st isoR:untilDate \"#{String::C_DEFAULT_DATETIME}\"^^xsd:dateTime .
           }
           WHERE
           {
@@ -182,7 +187,9 @@ class IsoManagedV2
             ?s isoT:hasState ?st .
             ?st isoR:registrationStatus ?rs .
             ?st isoR:previousState ?ps .
-          }
+            ?st isoR:effectiveDate ?ed .
+            ?st isoR:untilDate ?ud .
+         }
         }
         Sparql::Update.new.sparql_update(sparql, "", [:isoI, :isoT, :isoR])
         true
