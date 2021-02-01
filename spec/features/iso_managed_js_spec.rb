@@ -18,6 +18,7 @@ describe "ISO Managed JS", :type => :feature do
     data_files = []
     load_files(schema_files, data_files)
     load_data_file_into_triple_store("mdr_identification.ttl")
+    Token.delete_all
     nv_destroy
     nv_create({parent: '10', child: '999'})
     ua_create
@@ -47,7 +48,7 @@ describe "ISO Managed JS", :type => :feature do
       dc_check_version '0.1.0'
       dc_check_version_label 'None'
       dc_check_current :not_standard
-      dc_check_statuses('Incomplete', 'Candidate')
+      dc_check_status('Incomplete', 'Candidate')
     end
 
     it "allows to update version information" do
@@ -106,7 +107,7 @@ describe "ISO Managed JS", :type => :feature do
         ui_confirmation_dialog true if state.eql?('Superseded')
         wait_for_ajax 10 
         expect(page).to have_content("Changed Status to #{ state }")
-        dc_check_statuses(state, states[i+1])
+        dc_check_status(state, states[i+1])
       end 
 
       # Check Superseded disables UI
@@ -128,14 +129,98 @@ describe "ISO Managed JS", :type => :feature do
       fill_in 'Administrative note', with: 'Test Admin Note'
       
       dc_forward_to 'Candidate'
-      dc_check_statuses('Candidate', 'Recorded')
+      dc_check_status('Candidate', 'Recorded')
     end
     
-    it "allows to fast forward item state to Release and rewind to Draft"
+    it "allows to fast forward item state to Release and rewind to Draft" do
+      new_cl_and_dc
 
-    it "allows to fast forward and rewind item with dependencies"
+      # Fast Forward from Draft
+      click_on 'Forward to Release'
+      wait_for_ajax 10 
+      dc_check_status('Standard')
 
-    it "allows to rewind item back to Draft state"
+      # Rewind from Release
+      click_on 'Rewind to Draft'
+      wait_for_ajax 10 
+      dc_check_status('Incomplete')
+
+      # Fast Forward from Recorded 
+      dc_forward_to('Recorded')
+      click_on 'Forward to Release'
+      wait_for_ajax 10 
+      dc_check_status('Standard')
+
+      # Rewind
+      click_on 'Rewind to Draft'
+      wait_for_ajax 10 
+      dc_check_status('Incomplete')
+
+      # Rewind from Qualified 
+      dc_forward_to('Qualified')
+      click_on 'Rewind to Draft'
+      wait_for_ajax 10 
+      dc_check_status('Incomplete')
+    end
+
+    it "allows to fast forward and rewind item with dependencies" do
+      # Data
+      codelist = Thesaurus::ManagedConcept.create
+      subset = codelist.create_subset 
+      subset2 = codelist.create_subset 
+
+      click_navbar_code_lists
+      wait_for_ajax 10 
+      ui_table_search('index', codelist.has_identifier.identifier)
+      find(:xpath, "//tr[contains(.,'#{ codelist.has_identifier.identifier }')]/td/a").click
+      wait_for_ajax 10
+      context_menu_element_v2('history', 'Incomplete', :document_control)
+      wait_for_ajax 10
+
+      # Checkbox 
+      find_field( 'with-dependencies' ).find(:xpath, '..').click
+      expect( find('#next-status')[:class] ).to include('disabled')
+      
+      # Fast Forward
+      click_on 'Forward to Release'
+
+      ui_in_modal do
+        ui_check_table_info('managed-items', 1, 3, 3)
+        ui_check_table_cell('managed-items', 2, 3, '0.1.0')
+        ui_check_table_cell('managed-items', 2, 7, 'Incomplete')
+        expect( find('#managed-items') ).to have_selector('.icon-sel-filled', count: 3)
+        click_on 'Confirm and proceed'
+      end
+      wait_for_ajax 10 
+      expect(page).to have_content 'Changed Status of 3 items to Standard'
+    
+      # Rewind
+      click_on 'Rewind to Draft'
+      ui_in_modal do
+        ui_check_table_info('managed-items', 1, 3, 3)
+        ui_check_table_cell('managed-items', 2, 3, '0.1.0')
+        ui_check_table_cell('managed-items', 2, 7, 'Standard')
+        expect( find('#managed-items') ).to have_selector('.icon-sel-filled', count: 3)
+        click_on 'Confirm and proceed'
+      end
+      wait_for_ajax 10 
+      expect(page).to have_content 'Changed Status of 3 items to Incomplete'
+      
+      # Move Subset 2 to Superseded 
+      subset2.next_state({})
+
+      click_on 'Forward to Release'
+
+      # Prevents bulk Fast Forward if not all dependencies qualify
+      ui_in_modal do
+        expect( find('#managed-items') ).to have_selector('.icon-sel-filled', count: 2)
+        ui_check_table_cell('managed-items', 3, 7, 'Superseded')
+        ui_check_table_cell_icon('managed-items', 3, 8, 'times-circle')
+        expect( find('#modal-submit')[:class] ).to include('disabled')
+        click_on 'Close'
+      end
+
+    end
 
     it "token timers, warnings, extension and expiration" do
 
@@ -185,7 +270,7 @@ describe "ISO Managed JS", :type => :feature do
       expect( find('#imh_header .version-label') ).to have_content(version_label) unless version_label.eql?('None')
     end
 
-    def dc_check_statuses(current_status, next_status = nil)
+    def dc_check_status(current_status, next_status = nil)
       expect( find('#status .status') ).to have_content(current_status) 
       expect( find('#imh_header .state') ).to have_content(current_status)
       expect( find('#status-next .status') ).to have_content(next_status) unless next_status.nil? 
