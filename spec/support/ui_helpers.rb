@@ -856,16 +856,6 @@ module UiHelpers
     expect(ui_get_current_key).to eq(to_key)
   end
 
-  # Status Page
-  def ui_manage_status_page(old_state, new_state, owner, identifier, version)
-    expect(page).to have_content 'Manage Status'
-    expect(page).to have_content "#{old_state}"
-    expect(page).to have_content "#{new_state}"
-    expect(page).to have_content "Owner: #{owner}"
-    expect(page).to have_content "Identifier: #{identifier}"
-    expect(page).to have_content version
-  end
-
 	# Keys
 	def ui_press_key(key, with_key = nil)
 		if with_key.nil?
