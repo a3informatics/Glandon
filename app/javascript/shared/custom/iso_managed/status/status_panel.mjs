@@ -232,7 +232,7 @@ export default class StatusPanel {
       onSuccess: data => {   
 
         this._renderAll( data )
-        alerts.success( `Changed Status of ${ depCount + 1 } items to ${ data.state.label }.` )
+        alerts.success( `Changed Status of ${ depCount } items to ${ data.state.label }.` )
 
       } 
     })

@@ -80,7 +80,7 @@ export default class StatusImpactModal extends ModalView {
     if ( !this.allClear || this.panel.isProcessing )
       return 
 
-    this.onConfirm() 
+    this.onConfirm( this.panel.table.rows().count() ) 
     this.hide()
 
   }
@@ -173,7 +173,10 @@ export default class StatusImpactModal extends ModalView {
       addedColumns: [
         { data: 'registration_status' },
         dtTrueFalseColumn( 'state_update_allowed', { orderable: false } )
-      ]
+      ],
+      tableOptions: {
+        order: [[3, 'asc']]
+      }
     })
 
   }
