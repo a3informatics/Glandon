@@ -9,6 +9,7 @@ describe "ISO Managed JS", :type => :feature do
   include NameValueHelpers
   include WaitForAjaxHelper
   include TokenHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "features/iso_managed"
@@ -258,47 +259,6 @@ describe "ISO Managed JS", :type => :feature do
       ui_new_code_list
       context_menu_element_v2('history', 'Incomplete', :document_control)
       wait_for_ajax 10
-    end
-
-    def dc_check_version(version)
-      expect( find('#version') ).to have_content(version)
-      expect( find('.semantic-version') ).to have_content(version) 
-    end
-
-    def dc_check_version_label(version_label)
-      expect( find('#version-label') ).to have_content(version_label) 
-      expect( find('#imh_header .version-label') ).to have_content(version_label) unless version_label.eql?('None')
-    end
-
-    def dc_check_status(current_status, next_status = nil)
-      expect( find('#status .status') ).to have_content(current_status) 
-      expect( find('#imh_header .state') ).to have_content(current_status)
-      expect( find('#status-next .status') ).to have_content(next_status) unless next_status.nil? 
-    end
-
-    def dc_check_current(type)
-      current = find('#current')
-
-      case type 
-      when :is_current 
-        expect( current ).to have_selector('.icon-sel-filled')
-      when :not_standard
-        expect( current ).to have_content('Item status is not Standard')
-      when :can_be_current  
-        expect( current ).to have_button('Make Current')
-      end 
-    end
-
-    def get_current_state
-      find('#status .status').text
-    end 
-
-    def dc_forward_to(state)
-      while not get_current_state.eql?(state) do 
-        click_on 'Forward to Next'
-        wait_for_ajax 10 
-        expect(page).to have_content('Changed Status to')
-      end
     end
 
   end
