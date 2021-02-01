@@ -40,6 +40,14 @@ describe "ISO Managed JS", :type => :feature do
     ua_logoff
   end
 
+  def go_to_dc(identifier, version)
+    ui_table_search('index', identifier)
+    find(:xpath, "//tr[contains(.,'#{ identifier }')]/td/a").click
+    wait_for_ajax 10
+    context_menu_element_v2('history', version, :document_control)
+    wait_for_ajax 10
+  end 
+
   describe "Document Control, Code List, Curator User", type: :feature, js: true do
 
     it "allows to view the Document Control page, initial state" do
@@ -194,12 +202,14 @@ describe "ISO Managed JS", :type => :feature do
       subset = codelist.create_subset 
       subset2 = codelist.create_subset 
 
+      click_navbar_code_lists
+      wait_for_ajax 10 
       go_to_dc(codelist.has_identifier.identifier, 'Incomplete')
 
       # Checkbox 
       dc_click_with_dependencies
       expect( find('#next-status')[:class] ).to include('disabled')
-      
+
       # Fast Forward
       click_on 'Forward to Release'
 
@@ -226,6 +236,10 @@ describe "ISO Managed JS", :type => :feature do
       expect(page).to have_content 'Changed Status of 3 items to Incomplete'
       
       # Move Subset 2 to Superseded 
+      subset2.next_state({})
+      subset2.next_state({})
+      subset2.next_state({})
+      subset2.next_state({})
       subset2.next_state({})
 
       click_on 'Forward to Release'
@@ -294,16 +308,6 @@ describe "ISO Managed JS", :type => :feature do
       context_menu_element_v2('history', 'Incomplete', :document_control)
       wait_for_ajax 10
     end
-
-    def go_to_dc(identifier, version)
-      click_navbar_code_lists
-      wait_for_ajax 10 
-      ui_table_search('index', identifier)
-      find(:xpath, "//tr[contains(.,'#{ identifier }')]/td/a").click
-      wait_for_ajax 10
-      context_menu_element_v2('history', version, :document_control)
-      wait_for_ajax 10
-    end 
 
   end
 
