@@ -183,7 +183,7 @@ describe "Thesauri Compare", :type => :feature do
       expect(page).to have_content "Changes between CT v15.0.0 and CT v20.0.0"
       click_link "CSV Report"
       file = download_content
-      # write_text_file_2(file, sub_dir, "compare_report_expected.csv")
+    #Xwrite_text_file_2(file, sub_dir, "compare_report_expected.csv")
       expected = read_text_file_2(sub_dir, "compare_report_expected.csv")
       expect(file).to eq(expected)
     end

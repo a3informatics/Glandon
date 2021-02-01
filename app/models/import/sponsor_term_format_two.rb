@@ -86,8 +86,14 @@ class Import::SponsorTermFormatTwo < Import
   def save_load_file(objects)
     sparql = Sparql::Update.new()
     sparql.default_namespace(objects[:managed_children].first.uri.namespace)
-    objects[:managed_children].each do |c|
-      c.to_sparql(sparql, true)
+    objects[:managed_children].each do |child|
+      child.to_sparql(sparql, true)
+    end
+    objects[:managed_children].each do |child|
+      process_custom_properties(child, child, sparql)  
+      child.children.each do |item|
+        process_custom_properties(item, child, sparql)  
+      end
     end
     filename = sparql.to_file
     response = CRUD.file(filename) if self.auto_load
@@ -147,6 +153,7 @@ private
     @parent_set.each do |key, parent|
       parent_child_tweaks(parent)
       parent.set_initial(parent.identifier)
+      custom_properties(parent)
       filtered << parent
     end
     {parent: self, managed_children: filtered, tags: []}
@@ -158,6 +165,13 @@ private
     parent.narrower.each do |c|
       c.identifier = child_identifier(c.identifier, final_pass) 
       c.label = c.preferred_term.label
+    end
+  end
+
+  # Add custom properties for children
+  def custom_properties(parent)
+    parent.narrower.each do |c|
+      c.create_default_custom_properties(parent) if c.custom_properties?
     end
   end
 
