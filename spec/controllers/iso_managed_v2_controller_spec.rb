@@ -108,7 +108,7 @@ describe IsoManagedV2Controller do
       check_file_actual_expected(check_good_json_response(response), sub_dir, "next_state_expected_1b.yaml", equate_method: :hash_equal)
     end
 
-    it 'next state, locked by another user' do
+      it 'next state, locked by another user' do
       request.env['HTTP_ACCEPT'] = "application/json"
       mi = create_iso_managed_thesaurus("TEST4", "A test managed item")
       token = Token.obtain(mi, @lock_user)
@@ -226,6 +226,20 @@ describe IsoManagedV2Controller do
       put :state_change, params:{ id: mi.id, iso_managed: { action: "fast_forward" }}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "state_change_expected_1.yaml", equate_method: :hash_equal)
+      expect(token.timed_out?).to be(false)
+    end
+
+    it 'state change, fast forward' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      master = create_managed_concept("Master")
+      subset = create_managed_concept("Subset")
+      extension = create_managed_concept("Extension")
+      subset.add_link(:subsets, master.uri)
+      extension.add_link(:extends, master.uri)
+      token = Token.obtain(master, @user)
+      put :state_change, params:{ id: master.id, iso_managed: { action: "fast_forward" }}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "state_change_expected_3.yaml", equate_method: :hash_equal)
       expect(token.timed_out?).to be(false)
     end
 

@@ -32,7 +32,7 @@ describe Thesaurus::McRegistrationStatus do
       subset.add_link(:subsets, master.uri)
       extension.add_link(:extends, master.uri)
       results = master.update_status_dependent_items(:fast_forward)
-      check_file_actual_expected(results.map{|x| x.to_s}, sub_dir, "update_status_dependent_items_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "update_status_dependent_items_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "finds dependent items, none" do
