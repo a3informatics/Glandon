@@ -66,4 +66,52 @@ module IsoManagedHelpers
     new_item 
   end
 
+  # Document Control UI Helpers
+
+  def dc_check_version(version)
+    expect( find('#version') ).to have_content(version)
+    expect( find('.semantic-version') ).to have_content(version) 
+  end
+
+  def dc_check_version_label(version_label)
+    expect( find('#version-label') ).to have_content(version_label) 
+    expect( find('#imh_header .version-label') ).to have_content(version_label) unless version_label.eql?('None')
+  end
+
+  def dc_check_status(current_status, next_status = nil)
+    expect( find('#status .status') ).to have_content(current_status) 
+    expect( find('#imh_header .state') ).to have_content(current_status)
+    expect( find('#status-next .status') ).to have_content(next_status) unless next_status.nil? 
+  end
+
+  def dc_check_current(type)
+    current = find('#current')
+
+    case type 
+    when :is_current 
+      expect( current ).to have_selector('.icon-sel-filled')
+    when :not_standard
+      expect( current ).to have_content('Item status is not Standard')
+    when :can_be_current  
+      expect( current ).to have_button('Make Current')
+    end 
+  end
+
+  def dc_get_current_state
+    find('#status .status').text
+  end 
+
+  def dc_forward_to(state)
+    while not dc_get_current_state.eql?(state) do 
+      click_on 'Forward to Next'
+      wait_for_ajax 10 
+      expect(page).to have_content('Changed Status to')
+    end
+  end 
+
+  def dc_click_with_dependencies
+    find_field( 'with-dependencies' ).find(:xpath, '..').click
+  end 
+
+
 end
