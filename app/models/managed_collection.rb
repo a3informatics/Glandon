@@ -63,6 +63,7 @@ class ManagedCollection <  IsoManagedV2
     }
     Sparql::Update.new.sparql_update(update_query, "", [:bo])
     self.reset_ordinals
+    self
   end
 
   # Managed items. List the objects that belong to the Collection.

@@ -76,7 +76,7 @@ class ManagedCollectionsController < ManagedItemsController
     return true unless check_lock_for_item(mc)
     result = mc.remove_item(items_params[:id_set])
     if result.errors.empty?
-      AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "Item(s) removed from Managed Collection.")
+      AuditTrail.create_item_event(current_user, mc, "Item(s) removed from Managed Collection.")
       render :json => {data: []}, :status => 200
     else
       render :json => {errors: result.errors.full_messages}, :status => 422
