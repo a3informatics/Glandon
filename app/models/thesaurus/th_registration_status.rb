@@ -13,11 +13,13 @@ class Thesaurus
     module ClassMethods
     end
 
-    # Update Status Permitted? Are we permitted to update the status. Default method always true.
+    # Update Status Permitted? Are we permitted to update the status. Sets an error if not.
     #
-    # @return [Boolean] always returns true
+    # @return [Boolean] returns true if permitted, false otherwise
     def update_status_permitted?
-      (managed_children_states & IsoRegistrationStateV2.previous_states(self.registration_status)).empty?
+      return true if (managed_children_states & IsoRegistrationStateV2.previous_states(self.registration_status)).empty?
+      self.errors.add(:base, 'Child items are not in the appropriate state')
+      false
     end
 
     # Managed Children States.

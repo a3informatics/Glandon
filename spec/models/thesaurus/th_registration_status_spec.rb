@@ -48,6 +48,13 @@ describe Thesaurus::McRegistrationStatus do
       expect(thesaurus.update_status_permitted?).to eq(false)
     end
 
+    it "update status not permitted, error message" do
+      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/STATE/V1#TH"))
+      expect(thesaurus.update_status_permitted?).to eq(false)
+      expect(thesaurus.errors.count).to eq(1)
+      expect(thesaurus.errors.full_messages).to eq(['Child items are not in the appropriate state'])
+    end
+
   end
 
 end
