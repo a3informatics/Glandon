@@ -338,6 +338,8 @@ defaults: &defaults
   ManagedCollectionPolicy:
     policies: {}
     alias:
+        add: update
+        remove: update
   BiomedicalConceptInstancePolicy:
     policies: {}
     alias:
