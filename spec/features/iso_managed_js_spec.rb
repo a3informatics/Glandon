@@ -123,7 +123,7 @@ describe "ISO Managed JS", :type => :feature do
       fill_in 'Administrative note', with: 'Test Admin Note ææ'
       fill_in 'Unresolved issue', with: 'Issue'
 
-      # Validation
+      # Forward to next
       click_on 'Forward to Next'
       wait_for_ajax 10
       expect(page).to have_content('Administrative note contains invalid characters')
@@ -131,6 +131,30 @@ describe "ISO Managed JS", :type => :feature do
       
       dc_forward_to 'Candidate'
       dc_check_status('Candidate', 'Recorded')
+
+      # Fast Forward 
+      fill_in 'Administrative note', with: 'Test Admin Note ææ'
+      fill_in 'Unresolved issue', with: 'Issue'
+
+      click_on 'Forward to Release'
+      wait_for_ajax 10
+      expect(page).to have_content('Administrative note contains invalid characters')
+      fill_in 'Administrative note', with: 'Test Admin Note'
+
+      click_on 'Forward to Release'
+      dc_check_status('Standard')
+
+      # Rewind Back
+      fill_in 'Administrative note', with: 'Test Admin Note ææ'
+      fill_in 'Unresolved issue', with: 'Issue'
+
+      click_on 'Rewind to Draft'
+      wait_for_ajax 10
+      expect(page).to have_content('Administrative note contains invalid characters')
+      fill_in 'Administrative note', with: 'Test Admin Note'
+
+      click_on 'Rewind to Draft'
+      dc_check_status('Incomplete')
     end
     
     it "allows to fast forward item state to Release and rewind to Draft" do
@@ -170,16 +194,10 @@ describe "ISO Managed JS", :type => :feature do
       subset = codelist.create_subset 
       subset2 = codelist.create_subset 
 
-      click_navbar_code_lists
-      wait_for_ajax 10 
-      ui_table_search('index', codelist.has_identifier.identifier)
-      find(:xpath, "//tr[contains(.,'#{ codelist.has_identifier.identifier }')]/td/a").click
-      wait_for_ajax 10
-      context_menu_element_v2('history', 'Incomplete', :document_control)
-      wait_for_ajax 10
+      go_to_dc(codelist.has_identifier.identifier, 'Incomplete')
 
       # Checkbox 
-      find_field( 'with-dependencies' ).find(:xpath, '..').click
+      dc_click_with_dependencies
       expect( find('#next-status')[:class] ).to include('disabled')
       
       # Fast Forward
@@ -223,6 +241,22 @@ describe "ISO Managed JS", :type => :feature do
 
     end
 
+    it "removes the Current flag when rewinding to draft" do
+      new_cl_and_dc
+      
+      click_on 'Forward to Release'
+      wait_for_ajax 10 
+      click_on 'Make Current'
+      wait_for_ajax 10 
+
+      dc_check_current :is_current 
+
+      click_on 'Rewind to Draft'
+      wait_for_ajax 10
+
+      dc_check_current :not_standard 
+    end
+
     it "token timers, warnings, extension and expiration" do
 
       token_ui_check(@user_c) do
@@ -260,6 +294,16 @@ describe "ISO Managed JS", :type => :feature do
       context_menu_element_v2('history', 'Incomplete', :document_control)
       wait_for_ajax 10
     end
+
+    def go_to_dc(identifier, version)
+      click_navbar_code_lists
+      wait_for_ajax 10 
+      ui_table_search('index', identifier)
+      find(:xpath, "//tr[contains(.,'#{ identifier }')]/td/a").click
+      wait_for_ajax 10
+      context_menu_element_v2('history', version, :document_control)
+      wait_for_ajax 10
+    end 
 
   end
 

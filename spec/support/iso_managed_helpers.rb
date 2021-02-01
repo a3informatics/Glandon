@@ -67,7 +67,7 @@ module IsoManagedHelpers
   end
 
   # Document Control UI Helpers
-  
+
   def dc_check_version(version)
     expect( find('#version') ).to have_content(version)
     expect( find('.semantic-version') ).to have_content(version) 
@@ -97,16 +97,20 @@ module IsoManagedHelpers
     end 
   end
 
-  def get_current_state
+  def dc_get_current_state
     find('#status .status').text
   end 
 
   def dc_forward_to(state)
-    while not get_current_state.eql?(state) do 
+    while not dc_get_current_state.eql?(state) do 
       click_on 'Forward to Next'
       wait_for_ajax 10 
       expect(page).to have_content('Changed Status to')
     end
+  end 
+
+  def dc_click_with_dependencies
+    find_field( 'with-dependencies' ).find(:xpath, '..').click
   end 
 
 
