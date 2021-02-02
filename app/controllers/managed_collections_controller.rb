@@ -83,6 +83,15 @@ class ManagedCollectionsController < ManagedItemsController
     end
   end
 
+  def destroy
+    mc = ManagedCollection.find_minimum(protect_from_bad_id(params))
+    return true unless get_lock_for_item(mc)
+    mc.delete
+    AuditTrail.delete_item_event(current_user, mc, mc.audit_message(:deleted))
+    @lock.release
+    render json: {data: []}, status: 200
+  end
+
 private
 
   # Strong parameters, general

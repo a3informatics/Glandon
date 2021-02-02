@@ -232,46 +232,44 @@ describe ManagedCollectionsController do
   end
 
 
-  # describe "delete actions" do
+  describe "destroy actions" do
 
-  #   login_curator
+    login_curator
 
-  #   before :all do
-  #     @lock_user = ua_add_user(email: "lock@example.com")
-  #     Token.delete_all
-  #   end
+    before :all do
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
 
-  #   before :each do
-  #     load_files(schema_files, [])
-  #     load_data_file_into_triple_store("mdr_identification.ttl")
-  #   end
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
 
-  #   after :all do
-  #     ua_remove_user("lock@example.com")
-  #   end
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
 
-  #   it 'delete' do
-  #     @request.env['HTTP_REFERER'] = '/path'
-  #     bci = BiomedicalConceptInstance.create({:identifier => "NEW BC", :label => "New BC" })
-  #     audit_count = AuditTrail.count
-  #     delete :destroy, params:{id: bci.id}
-  #     expect(AuditTrail.count).to eq(audit_count+1)
-  #     check_file_actual_expected(last_audit_event, sub_dir, "destroy_expected_1.yaml", equate_method: :hash_equal)
-  #     #expect(response).to redirect_to("/path")
-  #     check_good_json_response(response)
-  #   end
+    it 'destroy' do
+      @request.env['HTTP_REFERER'] = '/path'
+      mc = create_managed_collection("ITEM1", "Item 1")
+      audit_count = AuditTrail.count
+      delete :destroy, params:{id: mc.id}
+      expect(AuditTrail.count).to eq(audit_count+1)
+      check_file_actual_expected(last_audit_event, sub_dir, "destroy_expected_1.yaml", equate_method: :hash_equal)
+      check_good_json_response(response)
+    end
 
-  #   it 'delete, locked by another user' do
-  #     @request.env['HTTP_REFERER'] = '/path'
-  #     bci = BiomedicalConceptInstance.create({:identifier => "NEW BC", :label => "New BC" })
-  #     token = Token.obtain(bci, @lock_user)
-  #     audit_count = AuditTrail.count
-  #     delete :destroy, params:{id: bci.id}
-  #     expect(flash[:error]).to be_present
-  #     expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
-  #     #expect(response).to redirect_to("/path")
-  #   end
+    it 'destroy, locked by another user' do
+      @request.env['HTTP_REFERER'] = '/path'
+      mc = create_managed_collection("ITEM1", "Item 1")
+      token = Token.obtain(mc, @lock_user)
+      audit_count = AuditTrail.count
+      delete :destroy, params:{id: mc.id}
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
+    end
 
-  # end
+  end
 
 end
