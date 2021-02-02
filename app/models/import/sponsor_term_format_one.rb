@@ -186,9 +186,13 @@ private
       std_sym = child.synonyms_to_a
       property = child.custom_properties.property("Synonym Sponsor")
       extra_sym = property.value.split(";").map(&:strip).sort
-      next if std_sym == extra_sym
-      puts colourize("Synonyms mismatch: Ref: #{ref.identifier}, #{child.identifier}. Synonyms: '#{std_sym}' v '#{extra_sym}'", "red")
-      property.value = (extra_sym - std_sym).join("; ")
+      if std_sym == extra_sym
+        property.value = ""
+        #puts colourize("Synonyms cleared: Ref: #{ref.identifier}, #{child.identifier}.", "red")
+      else
+        puts colourize("Synonyms mismatch: Ref: #{ref.identifier}, #{child.identifier}. Synonyms: '#{std_sym}' v '#{extra_sym}'", "red")
+        #property.value = (extra_sym - std_sym).join("; ")
+      end
     end
   end
 
