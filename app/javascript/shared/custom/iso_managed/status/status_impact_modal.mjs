@@ -59,15 +59,15 @@ export default class StatusImpactModal extends ModalView {
       data: {
         [ this.param ]: { action: this.action }
       },
-      done: data => {
-        
-        this.panel._render( data, true )
+      done: data => this.panel._render( data, true ),
+      always: () => {
+
+        this._loading( false )
         // Disable Confirm button if not cleared to proceed 
         this.modal.find( '#modal-submit' )
                   .toggleClass( 'disabled', !this.allClear )
-
-      },
-      always: () => this._loading( false )
+                  
+      }
     })
 
   }
