@@ -218,40 +218,27 @@ describe ManagedCollectionsController do
   end
 
 
-  # describe "create actions" do
+  describe "create actions" do
 
-  #   login_curator
+    login_curator
 
-  #   before :all do
-  #     load_files(schema_files, [])
-  #     load_data_file_into_triple_store("mdr_identification.ttl")
-  #   end
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
 
-  #   it 'creates collection' do
-  #     audit_count = AuditTrail.count
-  #     count = ManagedCollection.all.count
-  #     expect(count).to eq(0)
-  #     post :create, params:{managed_collection: { :identifier => "NEW MC", :label => "New Collection" }}
-  #     expect(assigns(:mc).errors.count).to eq(0)
-  #     expect(ManagedCollection.all.count).to eq(count + 1)
-  #     expect(flash[:success]).to be_present
-  #     expect(AuditTrail.count).to eq(audit_count + 1)
-  #     expect(response).to redirect_to("/thesauri")
-  #   end
+    it 'creates collection' do
+      audit_count = AuditTrail.count
+      count = ManagedCollection.all.count
+      expect(count).to eq(0)
+      post :create, params:{managed_collection: { :identifier => "NEW MC", :label => "New Collection" }}
+      expect(ManagedCollection.all.count).to eq(count + 1)
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
+    end
 
-  #   it 'creates thesaurus, fails bad identifier' do
-  #     count = Thesaurus.all.count
-  #     expect(count).to eq(4)
-  #     post :create, params:{thesauri: { :identifier => "NEW_TH!@£$%^&*", :label => "New Thesaurus" }}
-  #     count = Thesaurus.all.count
-  #     expect(count).to eq(4)
-  #     expect(assigns(:thesaurus).errors.count).to eq(1)
-  #     expect(Thesaurus.all.count).to eq(count)
-  #     expect(flash[:error]).to be_present
-  #     expect(response).to redirect_to("/thesauri")
-  #   end
-
-  # end
+  end
 
 
   # describe "delete actions" do
