@@ -114,6 +114,8 @@ private
         return managed_collection_path(object)
       when :edit_tags
         return object.supporting_edit? ? edit_tags_iso_concept_path(id: object.id) : ""
+      when :impact
+        return ""
       else
         return super
     end

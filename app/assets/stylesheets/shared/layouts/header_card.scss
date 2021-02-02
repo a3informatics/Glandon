@@ -6,6 +6,10 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
+  [class^="icon-"] {
+    line-height: inherit;
+  }
 }
 
 .h-inner-wrap{

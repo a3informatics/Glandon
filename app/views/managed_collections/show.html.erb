@@ -5,7 +5,7 @@
 <% third_level_breadcrumb(:managed_collections, @mc, @close_path) %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @mc, :badge => "icon-biocon"} do %>
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @mc, :badge => "icon-collection"} do %>
     <div class="actions-wrap">
       <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
 
