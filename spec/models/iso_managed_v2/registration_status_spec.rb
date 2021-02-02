@@ -155,6 +155,12 @@ describe IsoManagedV2::RegistrationStatus do
           expect(results[index][a].to_time_with_default).to be_within(5.seconds).of Time.now
           results[index][a] = expected[index][a]
         end
+        [:effective_date].each do |a|
+          now = Time.now.to_i
+          just_now = Time.now.to_i - 5
+          next unless (just_now..now).include?(results[index][:has_state][a].to_time_with_default.to_i)
+          results[index][:has_state][a] = expected[index][:has_state][a]
+        end
       end
     else
       items.each_with_index do |x, index| 
