@@ -225,7 +225,9 @@ describe "ISO Managed JS", :type => :feature do
       expect(page).to have_content 'Changed Status of 3 items to Incomplete'
       
       # Move Subset 2 to Superseded 
-      [1..5].each { subset2.next_state({}) }
+      for i in 1..5
+        subset2.next_state({})
+      end
 
       click_on 'Forward to Release'
 
