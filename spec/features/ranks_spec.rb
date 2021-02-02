@@ -8,6 +8,7 @@ describe "Rank", :type => :feature do
   include NameValueHelpers
   include UiHelpers
   include ItemsPickerHelpers
+  include IsoManagedHelpers
 
   before :all do
     load_files(schema_files, [])
@@ -229,10 +230,8 @@ describe "Rank", :type => :feature do
       click_on "Return"
       wait_for_ajax 10
       context_menu_element("history", 5, "1.1.0", :document_control)
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
+      wait_for_ajax 10
+      dc_forward_to('Standard')
       click_on "Return"
       wait_for_ajax 10
       context_menu_element("history", 5, "1.1.0", :edit)

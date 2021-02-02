@@ -1009,6 +1009,7 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
 
       context_menu_element_v2('history', identifier, :document_control)
+      wait_for_ajax 10
       dc_forward_to('Recorded')
       click_on 'Return'
       wait_for_ajax 10
