@@ -24,7 +24,7 @@ export default class ManagedItemsPanel extends TablePanel {
    * @param {array} params.buttons Buttons to add to the table, optional
    */
   constructor({
-    selector,
+    selector = '',
     url,
     param,
     count = 5000,
@@ -35,10 +35,11 @@ export default class ManagedItemsPanel extends TablePanel {
   }) {
 
     super({ 
+      url: (url || managedItemsDataUrl),
       selector: `${ selector } #managed-items`,
       order: [[1, "asc"]],
-      url, param, count, 
-      deferLoading, paginated, tableOptions, buttons 
+      param, count, deferLoading, paginated, 
+      tableOptions, buttons 
     })
 
   }
