@@ -9,6 +9,7 @@ describe "Forms", :type => :feature do
   include ItemsPickerHelpers
   include D3GraphHelpers
   include TokenHelpers
+  include IsoManagedHelpers 
 
   def sub_dir
     return "features/forms"
@@ -1008,11 +1009,10 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
 
       context_menu_element_v2('history', identifier, :document_control)
-      click_on 'Submit Status Change'
-      click_on 'Submit Status Change'
+      dc_forward_to('Recorded')
       click_on 'Return'
-
       wait_for_ajax 10
+      
       # Enable multiple edits
       find('.registration-state').click
       wait_for_ajax 10
