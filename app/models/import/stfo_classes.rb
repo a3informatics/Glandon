@@ -431,7 +431,7 @@ module Import::STFOClasses
 
     def exact_match(ct, identifier)
       results = ct.find_by_identifiers([self.identifier, identifier])
-      return Thesaurus::UnmanagedConcept.find(results[identifier]) if results.key?(identifier)
+      return Thesaurus::UnmanagedConcept.find_children(results[identifier]) if results.key?(identifier)
       add_log ("**** Failed to find exact match '#{identifier}', identifier '#{self.identifier}'.")
       nil
     end

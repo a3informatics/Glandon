@@ -809,12 +809,12 @@ describe "Import::SponsorTermFormatOne" do
       #public_file_does_not_exist?("test", filename)
       actual = read_public_yaml_file("test", filename)
     copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_100.yaml")
-      check_file_actual_expected(actual, sub_dir, "import_errors_expected_33.yaml")
+      check_file_actual_expected(actual, sub_dir, "import_errors_expected_100.yaml")
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
     copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_100.ttl")
-      check_ttl_fix_v2(filename, "import_expected_33.ttl", {last_change_date: true})
+      check_ttl_fix_v2(filename, "import_expected_100.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
     end

@@ -48,4 +48,13 @@ describe "Thesaurus::Synonyms" do
     expect(results.map{|x| x.uri}).to match_array([])
   end
 
+  it "to array and string" do
+    object = FusekiBaseHelpers::TestUnmanagedConcept.new
+    object.synonym << Thesaurus::Synonym.where_only_or_create("Y")
+    object.synonym << Thesaurus::Synonym.where_only_or_create("X")
+    object.synonym << Thesaurus::Synonym.where_only_or_create("A")
+    expect(object.synonyms_to_s).to eq("A; X; Y")
+    expect(object.synonyms_to_a).to match_array(["A", "X", "Y"])
+  end
+
 end

@@ -176,8 +176,20 @@ private
 
   # Check for a change in an item
   def check_and_add(ref, index, existing_ref)
+    check_synonyms(ref)
     check_duplicates(ref)
     existing_ref ? @parent.add(ref, index + 1) : check_against_previous(ref, index)
+  end
+
+  def check_synonyms(ref)
+    ref.narrower.each do |child|
+      std_sym = child.synonyms_to_a
+      property = child.custom_properties.property("Synonym Sponsor")
+      extra_sym = property.value.split(";").map(&:strip).sort
+      next if std_sym == extra_sym
+      puts colourize("Synonyms mismatch: Ref: #{ref.identifier}, #{child.identifier}. Synonyms: '#{std_sym}' v '#{extra_sym}'", "red")
+      property.value = (extra_sym - std_sym).join("; ")
+    end
   end
 
   def check_duplicates(ref)
