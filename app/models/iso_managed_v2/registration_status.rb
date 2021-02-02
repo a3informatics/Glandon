@@ -186,8 +186,10 @@ class IsoManagedV2
     def fast_forward?
       ask_query = %Q{    
         ASK {
+          VALUES ?state { #{IsoRegistrationStateV2.previous_states(IsoRegistrationStateV2.released_state).map{|x| "\"#{x.to_s}\""}.join(" ")} }
           #{self.uri.to_ref} isoT:hasState/isoR:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref} .
-          FILTER (NOT EXISTS {#{self.uri.to_ref} ^isoT:hasPreviousVersion ?x})
+          FILTER (EXISTS { #{self.uri.to_ref} isoT:hasState/isoR:registrationStatus ?state })
+          FILTER (NOT EXISTS { #{self.uri.to_ref} ^isoT:hasPreviousVersion ?x })
         }
       }
       Sparql::Query.new.query(ask_query, "", [:isoT, :isoR]).ask?

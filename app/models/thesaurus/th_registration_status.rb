@@ -17,7 +17,7 @@ class Thesaurus
     #
     # @return [Boolean] returns true if permitted, false otherwise
     def update_status_permitted?
-      return true if (managed_children_states & IsoRegistrationStateV2.previous_states(self.registration_status)).empty?
+      return true if (managed_children_states & IsoRegistrationStateV2.previous_states_including(self.registration_status)).empty?
       self.errors.add(:base, 'Child items are not in the appropriate state')
       false
     end

@@ -223,6 +223,9 @@ describe IsoManagedV2::RegistrationStatus do
       next_version.save
       expect(previous_version.fast_forward?).to eq(false)
       expect(next_version.fast_forward?).to eq(true)
+      item = create_iso_managed("ITEM 4", "This is item 4")
+      IsoManagedHelpers.make_item_superseded(item)
+      expect(item.fast_forward?).to eq(false)
     end
 
   end
