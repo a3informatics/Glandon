@@ -10,6 +10,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
   include DownloadHelpers
   include EditorHelpers
   include ItemsPickerHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "features/biomedical_concepts"
@@ -575,8 +576,8 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       wait_for_ajax 20
 
       context_menu_element_v2('history', 'HEIGHT', :document_control)
-      click_on 'Submit Status Change'
-      click_on 'Submit Status Change'
+      wait_for_ajax 10
+      dc_forward_to 'Recorded'
 
       click_on 'Return'
       wait_for_ajax 20
