@@ -89,55 +89,46 @@ describe ManagedCollectionsController do
 
   end
 
-  # describe "edit actions" do
+  describe "edit actions" do
 
-  #   before :all do
-  #     load_files(schema_files, [])
-  #     load_data_file_into_triple_store("mdr_identification.ttl")
-  #     @lock_user = ua_add_user(email: "lock@example.com")
-  #     Token.delete_all
-  #   end
+    login_curator
 
-  #   after :all do
-  #     ua_remove_user("lock@example.com")
-  #     Token.delete_all
-  #   end
+    before :all do
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
 
-  #   it "edit, html request" do
-  #     mc = create_managed_collection("ITEM1", "Item 1")
-  #     #item_2 = create_managed_collection("ITEM2", "Item 2")
-  #     #item_3 = create_managed_collection("ITEM3", "Item 3")
-  #     #item_4 = create_managed_collection("ITEM4", "Item 4")
-  #     #mc.add_item([item_2.id, item_3.id, item_4.id])
-  #     #mc = ManagedCollection.find_minimum(mc.id)
-  #     get :edit, params:{id: mc.id}
-  #     expect(assigns(:mc).uri).to eq(mc.uri)
-  #     expect(assigns(:close_path)).to eq("/managed_collections/history?managed_collection%5Bidentifier%5D=ITEM1&managed_collection%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
-  #     expect(assigns(:edit_tags_path)).to eq("/iso_concept/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU0xL1YxI01D/edit_tags")
-  #     expect(response).to render_template("edit")
-  #   end
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
 
-  #   # it "edit, html request, not locked, standard and creates new draft" do
-  #   #   mc = set_mc_data
-  #   #   mc.has_state.registration_status = "Standard"
-  #   #   mc.has_state.save
-  #   #   get :edit, params:{id: mc.id}
-  #   #   expect(assigns[:mc].uri).to eq(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V2#MC"))
-  #   #   expect(assigns[:edit].lock.token.id).to eq(Token.all.last.id)
-  #   # end
+    after :all do
+      ua_remove_user("lock@example.com")
+      Token.delete_all
+    end
 
-  #   # it "edit, json request" do
-  #   #   request.env['HTTP_ACCEPT'] = "application/json"
-  #   #   mc = set_mc_data
-  #   #   token = Token.obtain(mc, @user)
-  #   #   get :edit, params:{id: mc.id}
-  #   #   actual = check_good_json_response(response)
-  #   #   expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
-  #   #   actual[:token_id] = 9999                            # So, fix for file compare
-  #   #   check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal, write_file: true)
-  #   # end
+    it "edit, html request" do
+      mc = create_managed_collection("ITEM1", "Item 1")
+      get :edit, params:{id: mc.id}
+      expect(assigns(:mc).uri).to eq(mc.uri)
+      expect(assigns(:close_path)).to eq("/managed_collections/history?managed_collection%5Bidentifier%5D=ITEM1&managed_collection%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
+      expect(assigns(:edit_tags_path)).to eq("/iso_concept/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU0xL1YxI01D/edit_tags")
+      expect(response).to render_template("edit")
+    end
 
-  # end
+    it "edit, json request" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mc = create_managed_collection("ITEM1", "Item 1")
+      token = Token.obtain(mc, @user)
+      get :edit, params:{id: mc.id}
+      actual = check_good_json_response(response)
+      expect(assigns[:lock].token.id).to eq(Token.all.last.id)  # Will change each test run
+      actual[:token_id] = 9999                            # So, fix for file compare
+      check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
 
   describe "add actions" do
 

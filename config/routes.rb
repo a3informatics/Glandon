@@ -519,7 +519,7 @@ Rails.application.routes.draw do
   end
 
   # Managed Collections
-  resources :managed_collections, :only => [:show, :index, :edit] do
+  resources :managed_collections do
     member do
       get :show_data
       post :add
@@ -527,7 +527,6 @@ Rails.application.routes.draw do
     end
     collection do
       get :history
-      post :create
     end
   end
 
