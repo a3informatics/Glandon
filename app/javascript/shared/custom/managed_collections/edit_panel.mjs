@@ -8,14 +8,14 @@ import { $confirm } from 'shared/helpers/confirmable'
 import { $ajax } from 'shared/helpers/ajax'
 
 /**
- * Managed Collection Panel
+ * Edit Managed Collection Panel
  * @description Editable version-based collection of Managed Items (adding, removing)
  * @author Samuel Banas <sab@s-cubed.dk>
  */
-export default class ManagedCollectionPanel {
+export default class EditMCPanel {
 
   /**
-   * Create a Managed Collection Panel instance
+   * Create an Edit Managed Collection Panel instance
    * @param {Object} params Instance parameters
    * @param {string} params.selector Unique selector of the Managed Collection element
    * @param {Object} params.urls Urls object containing the data, add, remove and removeAll action urls
