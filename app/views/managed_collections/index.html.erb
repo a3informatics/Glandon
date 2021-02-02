@@ -22,7 +22,7 @@
   <% content_for :actions do %>
 
     <% if policy(ManagedCollection).new? %>
-      <a href="#new-bc-modal" class="btn medium green" id="new-bc-button" data-toggle="modal">
+      <a href="#new-mc-modal" class="btn medium green" id="new-mc-button" data-toggle="modal">
         <span class="icon-plus text-tiny"></span>&nbsp; New Managed Collection
       </a>
     <% end %>
@@ -32,4 +32,4 @@
 
 </div>
 
-<%#= render partial: "shared/managed_collections/create_modal" %>
+<%= render partial: "shared/managed_collections/create_modal" %>
