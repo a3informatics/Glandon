@@ -110,8 +110,8 @@ private
         return managed_collection_path(object)
       when :edit
         return edit_managed_collection_path(id: object.id)
-      #when :destroy
-        #return managed_collection_path(object)
+      when :destroy
+        return managed_collection_path(object)
       when :edit_tags
         return object.supporting_edit? ? edit_tags_iso_concept_path(id: object.id) : ""
       else
