@@ -264,6 +264,20 @@ describe IsoManagedV2Controller do
       expect(IsoManagedV2.find_minimum(subset.uri).registration_status).to eq("Incomplete")
     end
 
+    it 'state change, fast forward, multiple, not allowed' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      master = create_managed_concept("Master")
+      subset = create_managed_concept("Subset")
+      subset.add_link(:subsets, master.uri)
+      IsoManagedHelpers.make_item_superseded(subset)
+      token = Token.obtain(master, @user)
+      put :state_change, params:{ id: master.id, iso_managed: { action: "fast_forward", with_dependencies: "true" }}
+      actual = check_error_json_response(response)
+      expect(actual).to eq({errors: ["The state change is not permitted."]})
+      expect(IsoManagedV2.find_minimum(master.uri).registration_status).to eq("Incomplete")
+      expect(IsoManagedV2.find_minimum(subset.uri).registration_status).to eq("Superseded")
+    end
+
     it 'state change, fast forward, multiple, no dependencies' do
       request.env['HTTP_ACCEPT'] = "application/json"
       master = create_managed_concept("Master")
