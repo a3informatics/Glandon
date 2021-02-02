@@ -5,7 +5,7 @@
 <% first_level_breadcrumb (:managed_collections) %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-biocon",
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-collection",
     main_text: "Managed Collections", sub_text: "Browse all Managed Collections in the system." } do %>
       <div class="btns-wrap"></div>
   <% end %>
@@ -32,4 +32,4 @@
 
 </div>
 
-<%= render partial: "shared/managed_collections/create_modal" %>
+<%#= render partial: "shared/managed_collections/create_modal" %>
