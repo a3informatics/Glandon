@@ -67,30 +67,19 @@ describe "ISO Managed JS", :type => :feature do
       wait_for_ajax 10
       
       # Semantic version
-      find('#version .bg-label').click 
-      select 'major'
-      click_on('sp-submit')
-      wait_for_ajax 10 
-      dc_check_version '1.0.0'
+      dc_update_version('1.0.0')
 
       # Dismiss Edit 
       find('#version .bg-label').click 
       click_on('sp-dismiss')
       dc_check_version '1.0.0'
 
-      # Version label 
-      find('#version-label .bg-label').click
-     
-      # Validation 
-      fill_in 'Version label', with: 'Test version æ'
-      click_on('sp-submit')
-      wait_for_ajax 10 
+      # Version label (with validation)
+      dc_update_version_label('Test version æ', success: false)
       expect(page).to have_content('contains invalid characters')
+      click_on 'sp-dismiss'
 
-      fill_in 'Version label', with: 'Test version'
-      click_on('sp-submit')
-      wait_for_ajax 10 
-      dc_check_version_label 'Test version'
+      dc_update_version_label('Test version')
     end
 
     it "allows to make item current" do
@@ -236,11 +225,7 @@ describe "ISO Managed JS", :type => :feature do
       expect(page).to have_content 'Changed Status of 3 items to Incomplete'
       
       # Move Subset 2 to Superseded 
-      subset2.next_state({})
-      subset2.next_state({})
-      subset2.next_state({})
-      subset2.next_state({})
-      subset2.next_state({})
+      [1..5].each { subset2.next_state({}) }
 
       click_on 'Forward to Release'
 

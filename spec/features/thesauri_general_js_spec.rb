@@ -596,11 +596,7 @@ describe "Thesaurus", :type => :feature do
 
       wait_for_ajax 10 
 
-      find('#version .bg-label').click 
-      select 'major'
-      click_on('sp-submit')
-      wait_for_ajax 10 
-      dc_check_version '1.0.0'
+      dc_update_version('1.0.0')
 
       click_on 'Return'
       wait_for_ajax 10

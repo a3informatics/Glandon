@@ -123,5 +123,21 @@ module IsoManagedHelpers
     find_field( 'with-dependencies' ).find(:xpath, '..').click
   end 
 
+  def dc_update_version(version, success: true)
+    find('#version .bg-label').click 
+    select version
+    click_on('sp-submit')
+    wait_for_ajax 10 
+    dc_check_version(version) if success
+  end
+
+  def dc_update_version_label(label, success: true)
+    find('#version-label .bg-label').click
+    fill_in 'Version label', with: label
+    click_on('sp-submit')
+    wait_for_ajax 10 
+    dc_check_version_label(label) if success
+  end
+
 
 end
