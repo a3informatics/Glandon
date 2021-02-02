@@ -10,6 +10,7 @@ describe IsoManagedV2Controller do
   include IsoManagedFactory
   include IsoManagedHelpers
   include ThesaurusManagedConceptFactory
+  include NameValueHelpers
   
   def sub_dir
     return "controllers/iso_managed_v2"
@@ -34,6 +35,8 @@ describe IsoManagedV2Controller do
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..2)
       Token.delete_all
+      nv_destroy
+      nv_create(parent: '10', child: '999')
     end
 
     after :each do

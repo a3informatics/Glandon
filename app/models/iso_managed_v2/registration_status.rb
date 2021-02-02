@@ -172,8 +172,8 @@ class IsoManagedV2
         label: self.label,
         semantic_version: self.semantic_version,
         version_label: self.version_label,
-        owner: "To Be Set",
-        #owner: self.owner_short_name,
+        #owner: "To Be Set",
+        owner: self.owner_short_name,
         registration_status: self.registration_status,
         rdf_type: self.rdf_type.to_s,
         state_update_allowed: action.to_sym == :fast_forward ? fast_forward? : rewind?
