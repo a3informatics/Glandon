@@ -9,6 +9,9 @@ describe "ISO Managed Collections", :type => :feature do
   include WaitForAjaxHelper
   include ItemsPickerHelpers
   include TokenHelpers
+  include ManagedCollectionFactory
+  include BiomedicalConceptInstanceFactory
+  include SdtmSponsorDomainFactory 
 
   after :all do
     ua_destroy
@@ -22,20 +25,59 @@ describe "ISO Managed Collections", :type => :feature do
     ua_logoff
   end
 
-  describe "Managed Collection, curator", :type => :feature, js:true do
+  describe "Basic Operations, Curator User", :type => :feature, js:true do
 
     before :all do
-      data_files = []
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
       ua_create
+      prep_data
     end
 
-    # Tests for generic Managed Collections features here
-    # it "" 
+    def prep_data
+      item_1 = create_managed_collection("MC1", "Item 1")
+      item_2 = create_managed_collection("MC2", "Item 2")
+      item_3 = create_managed_collection("MC3", "Item 3")
+      item_1.add_item([create_sdtm_sponsor_domain('TSTSD', 'Test 1', 'AA').id, create_biomedical_concept_instance('TSTBC', 'Test2').id])
+    end
+    
+    it "allows access to index page" do
+      click_navbar_mcs
+      wait_for_ajax 10
+      expect(page).to have_content 'Index: Managed Collections'
+      ui_check_table_info("index", 1, 3, 3)
+      pause
+      ui_check_table_cell("index", 1, 2, "AAA")
+      ui_check_table_cell("index", 1, 3, "SDTM Sponsor Domain")
+    end
+
+    it "allows the history page to be viewed" do
+      # click_navbar_sdtm_sponsor_domains
+      # wait_for_ajax 10
+      # find(:xpath, "//tr[contains(.,'SDTM Sponsor Domain')]/td/a", :text => 'History').click
+      # wait_for_ajax 10
+      # expect(page).to have_content 'Version History of \'AAA\''
+      # ui_check_table_cell("history", 1, 1, "0.1.0")
+      # ui_check_table_cell("history", 1, 5, "SDTM Sponsor Domain")
+    end
+
+    it "history allows the show page to be viewed" do
+      # click_navbar_sdtm_sponsor_domains
+      # wait_for_ajax 10
+      # find(:xpath, "//tr[contains(.,'SDTM Sponsor Domain')]/td/a", :text => 'History').click
+      # wait_for_ajax 10
+      # expect(page).to have_content 'Version History of \'AAA\''
+      # context_menu_element_v2('history', "SDTM Sponsor Domain", :show)
+      # wait_for_ajax 10
+      # expect(page).to have_content 'Show: SDTM Sponsor Domain'
+      # ui_check_table_info("show", 1, 10, 41)
+      # ui_check_table_row("show", 1, [ "1", "STUDYID", "Study Identifier", "Character", "", "Identifier", "Unique identifier for a study.", "Required"])
+    end
+
 
   end
 
-  describe "Managed Collections - SDTM - BC Associations, curator", :type => :feature, js:true do
+  describe "Managed Collections - SDTM - BC Associations, Curator User", :type => :feature, js:true do
 
     before :all do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
