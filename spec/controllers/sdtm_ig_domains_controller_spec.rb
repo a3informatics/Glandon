@@ -75,8 +75,9 @@ describe SdtmIgDomainsController do
 
     before :all do
       load_files(schema_files, [])
+      load_cdisc_term_versions(1..13)
       load_data_file_into_triple_store("mdr_identification.ttl")
-       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
@@ -106,7 +107,7 @@ describe SdtmIgDomainsController do
 
     it "show data II" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V4#IGD"))
+      sdtm_ig_domain = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
       get :show_data, params:{id: sdtm_ig_domain.id}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "show_data_expected_2.yaml", equate_method: :hash_equal)

@@ -255,6 +255,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
+    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01QUkVTUF9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMPRESP_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -262,7 +263,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
     :context: http://www.cdisc.org/CT/V13#TH
   :description: Used to indicate whether (Y/null) information about the use of a specific
     medication was solicited on the CRF.
@@ -286,6 +293,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
+    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01PQ0NVUl9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMOCCUR_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -293,7 +301,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66742/V4#C66742
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
     :context: http://www.cdisc.org/CT/V13#TH
   :description: When the use of specific medications is solicited, CMOCCUR is used
     to indicate whether or not (Y/N) use of the medication occurred. Values are null
@@ -318,6 +332,7 @@
   :ct_and_format: "(ND)"
   :format: ''
   :ct_reference:
+    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TVEFUX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTAT_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -325,7 +340,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66789/V13#C66789
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=
+      :uri: http://www.cdisc.org/C66789/V13#C66789
+      :identifier: C66789
+      :label: Not Done
+      :notation: ND
+      :semantic_version: 3.0.0
     :context: http://www.cdisc.org/CT/V13#TH
   :description: Used to indicate that a question about a pre-specified medication
     was not answered. Should be null or have a value of NOT DONE.
@@ -482,6 +503,7 @@
   :ct_and_format: "(UNIT)"
   :format: ''
   :ct_reference:
+    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YxMSNDNzE2MjA=?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NVX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSU_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -489,7 +511,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C71620/V11#C71620
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YxMSNDNzE2MjA=
+      :uri: http://www.cdisc.org/C71620/V11#C71620
+      :identifier: C71620
+      :label: Unit
+      :notation: UNIT
+      :semantic_version: 3.0.0
     :context: http://www.cdisc.org/CT/V13#TH
   :description: 'Units for CMDOSE, CMDOSTXT, and CMDOSTOT. Examples: ng, mg, or mg/kg.'
   :used: false
@@ -512,6 +540,7 @@
   :ct_and_format: "(FRM)"
   :format: ''
   :ct_reference:
+    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1YxMyNDNjY3MjY=?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NGUk1fVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSFRM_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -519,7 +548,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66726/V13#C66726
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1YxMyNDNjY3MjY=
+      :uri: http://www.cdisc.org/C66726/V13#C66726
+      :identifier: C66726
+      :label: Pharmaceutical Dosage Form
+      :notation: FRM
+      :semantic_version: 4.0.0
     :context: http://www.cdisc.org/CT/V13#TH
   :description: 'Dose form for CMTRT. Examples: TABLET, LOTION.'
   :used: false
@@ -542,6 +577,7 @@
   :ct_and_format: "(FREQ)"
   :format: ''
   :ct_reference:
+    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1Y2I0M3MTExMw==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NGUlFfVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSFRQ_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -549,7 +585,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C71113/V6#C71113
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1Y2I0M3MTExMw==
+      :uri: http://www.cdisc.org/C71113/V6#C71113
+      :identifier: C71113
+      :label: Frequency
+      :notation: FREQ
+      :semantic_version: 1.0.0
     :context: http://www.cdisc.org/CT/V13#TH
   :description: 'Usually expressed as the number of repeated administrations of CMDOSE
     within a specific time period. Examples: BID (twice daily), Q12H (every 12 hours).'
@@ -618,6 +660,7 @@
   :ct_and_format: "(ROUTE)"
   :format: ''
   :ct_reference:
+    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI5L1Y0I0M2NjcyOQ==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ST1VURV9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMROUTE_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -625,7 +668,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66729/V4#C66729
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI5L1Y0I0M2NjcyOQ==
+      :uri: http://www.cdisc.org/C66729/V4#C66729
+      :identifier: C66729
+      :label: Route of Administration
+      :notation: ROUTE
+      :semantic_version: 2.0.0
     :context: http://www.cdisc.org/CT/V13#TH
   :description: 'Route of administration for CMTRT. Examples: ORAL, INTRAVENOUS.'
   :used: false
@@ -754,6 +803,7 @@
   :ct_and_format: "(STENRF)"
   :format: ''
   :ct_reference:
+    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TVFJGX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTRF_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -761,7 +811,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66728/V4#C66728
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==
+      :uri: http://www.cdisc.org/C66728/V4#C66728
+      :identifier: C66728
+      :label: Relation to Reference Period
+      :notation: STENRF
+      :semantic_version: 2.0.0
     :context: http://www.cdisc.org/CT/V13#TH
   :description: Describes the start of the medication relative to sponsor-defined
     reference period. The sponsor-defined reference period is a continuous period
@@ -788,6 +844,7 @@
   :ct_and_format: "(STENRF)"
   :format: ''
   :ct_reference:
+    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01FTlJGX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMENRF_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -795,7 +852,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66728/V4#C66728
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==
+      :uri: http://www.cdisc.org/C66728/V4#C66728
+      :identifier: C66728
+      :label: Relation to Reference Period
+      :notation: STENRF
+      :semantic_version: 2.0.0
     :context: http://www.cdisc.org/CT/V13#TH
   :description: Describes the end of the medication relative to the sponsor-defined
     reference period. The sponsor-defined reference period is a continuous period
