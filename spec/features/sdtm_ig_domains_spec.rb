@@ -20,9 +20,14 @@ describe "SDTM IG Domains", :type => :feature do
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V2.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V5.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V2.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V4.ttl")
       ua_create
     end
 
@@ -71,6 +76,9 @@ describe "SDTM IG Domains", :type => :feature do
       wait_for_ajax 10
       expect(page).to have_content 'Show: SDTM IG Domain'
       ui_check_table_info("show", 1, 10, 51)
+      ui_check_table_cell("show", 2, 2, "DOMAIN")
+      ui_check_table_cell("show", 2, 6, "(DOMAIN)")
+      ui_check_table_cell("show", 2, 7, "http://www.cdisc.org/C66734/V28#C66734")
       ui_check_table_cell("show", 5, 2, "AEGRPID")
       ui_check_table_cell("show", 5, 3, "Group ID")
     end

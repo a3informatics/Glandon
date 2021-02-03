@@ -281,7 +281,11 @@ function dtSDTMIGDomainShowColumns() {
     { data: "typed_as.label" },
     { data: "format" },
     { data: "ct_and_format" },
-    { data: "ct_reference"},
+    {
+      data: "ct_reference",
+      width: "30%",
+      render: (data, type, r, m) => termReferences(data, type)
+    },
     { data: "classified_as.label" },
     { data: "description" },
     { data: "compliance.label" }

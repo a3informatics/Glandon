@@ -422,7 +422,16 @@
   :name: AEPRESP
   :ct_and_format: "(NY)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66742/V56#C66742
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVQUkVTUF9UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AEPRESP_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V56#C66742
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: A value of "Y" indicates that this adverse event was pre-specified
     on the CRF. Values are null for spontaneously reported events (i.e., those collected
     as free-text verbatim terms).
@@ -537,7 +546,16 @@
   :name: AELOC
   :ct_and_format: "(LOC)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C74456/V57#C74456
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVMT0NfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AELOC_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: LOC
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C74456/V57#C74456
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Describes anatomical location relevant for the event (e.g., "ARM"
     for skin rash).
   :used: false
@@ -559,7 +577,16 @@
   :name: AESEV
   :ct_and_format: "(AESEV)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66769/V17#C66769
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVTRVZfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AESEV_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: AESEV
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66769/V17#C66769
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: 'The severity or intensity of the event. Examples: "MILD", "MODERATE",
     "SEVERE".'
   :used: false
@@ -581,7 +608,16 @@
   :name: AESER
   :ct_and_format: "(NY)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66742/V56#C66742
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVTRVJfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AESER_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V56#C66742
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Is this a serious event? Valid values are "Y" and "N".
   :used: false
   :compliance:
@@ -602,7 +638,16 @@
   :name: AEACN
   :ct_and_format: "(ACN)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66767/V56#C66767
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVBQ05fVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AEACN_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: ACN
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66767/V56#C66767
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: 'Describes changes to the study treatment as a result of the event.
     AEACN is specifically for the relationship to study treatment. AEACNOTH is for
     actions unrelated to dose adjustments of study treatment. Examples of AEACN values
@@ -719,7 +764,16 @@
   :name: AEOUT
   :ct_and_format: "(OUT)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66768/V56#C66768
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVPVVRfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AEOUT_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: OUT
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66768/V56#C66768
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Description of the outcome of an event.
   :used: false
   :compliance:
@@ -740,7 +794,16 @@
   :name: AESCAN
   :ct_and_format: "(NY)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66742/V56#C66742
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVTQ0FOX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AESCAN_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V56#C66742
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Was the serious event associated with the development of cancer? Valid
     values are "Y" and "N". This is a legacy seriousness criterion. It is not included
     in ICH E2A.
@@ -763,7 +826,16 @@
   :name: AESCONG
   :ct_and_format: "(NY)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66742/V56#C66742
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVTQ09OR19UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AESCONG_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V56#C66742
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Was the serious event associated with congenital anomaly or birth
     defect? Valid values are "Y" and "N".
   :used: false
@@ -785,7 +857,16 @@
   :name: AESDISAB
   :ct_and_format: "(NY)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66742/V56#C66742
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVTRElTQUJfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AESDISAB_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V56#C66742
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Did the serious event result in persistent or significant disability/incapacity?
     Valid values are "Y" and "N".
   :used: false
@@ -807,7 +888,16 @@
   :name: AESDTH
   :ct_and_format: "(NY)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66742/V56#C66742
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVTRFRIX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AESDTH_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V56#C66742
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Did the serious event result in death? Valid values are "Y" and "N".
   :used: false
   :compliance:
@@ -828,7 +918,16 @@
   :name: AESHOSP
   :ct_and_format: "(NY)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66742/V56#C66742
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVTSE9TUF9UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AESHOSP_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V56#C66742
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Did the serious event require or prolong hospitalization? Valid values
     are "Y" and "N".
   :used: false
@@ -850,7 +949,16 @@
   :name: AESLIFE
   :ct_and_format: "(NY)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66742/V56#C66742
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVTTElGRV9UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AESLIFE_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V56#C66742
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Was the serious event life threatening? Valid values are "Y" and "N".
   :used: false
   :compliance:
@@ -871,7 +979,16 @@
   :name: AESOD
   :ct_and_format: "(NY)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66742/V56#C66742
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVTT0RfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AESOD_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V56#C66742
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Did the serious event occur with an overdose? Valid values are "Y"
     and "N". This is a legacy seriousness criterion. It is not included in ICH E2A.
   :used: false
@@ -893,7 +1010,16 @@
   :name: AESMIE
   :ct_and_format: "(NY)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66742/V56#C66742
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVTTUlFX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AESMIE_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V56#C66742
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Do additional categories for seriousness apply? Valid values are "Y"
     and "N".
   :used: false
@@ -915,7 +1041,16 @@
   :name: AECONTRT
   :ct_and_format: "(NY)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66742/V56#C66742
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVDT05UUlRfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AECONTRT_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66742/V56#C66742
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Was another treatment given because of the occurrence of the event?
     Valid values are "Y" and "N".
   :used: false
@@ -982,7 +1117,16 @@
   :name: EPOCH
   :ct_and_format: "(EPOCH)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C99079/V52#C99079
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfRVBPQ0hfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_EPOCH_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: EPOCH
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C99079/V52#C99079
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: 'Epoch associated with the start date/time of the adverse event. Examples:
     "SCREENING", "TREATMENT", "FOLLOW-UP".'
   :used: false
@@ -1114,7 +1258,16 @@
   :name: AEENRF
   :ct_and_format: "(STENRF)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66728/V56#C66728
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVFTlJGX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AEENRF_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: STENRF
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66728/V56#C66728
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Describes the end of the event relative to the sponsor-defined reference
     period. The sponsor-defined reference period is a continuous period of time defined
     by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of
@@ -1139,7 +1292,16 @@
   :name: AEENRTPT
   :ct_and_format: "(STENRF)"
   :format: ''
-  :ct_reference: http://www.cdisc.org/C66728/V56#C66728
+  :ct_reference:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WNCNJR0RfQUVFTlJUUFRfVE1DMQ==
+    :uri: http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AEENRTPT_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: STENRF
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference: http://www.cdisc.org/C66728/V56#C66728
+    :context: http://www.cdisc.org/CT/V57#TH
   :description: Identifies the end of the event as being before or after the reference
     time point defined by variable AEENTPT. Not all values of the codelist are allowable
     for this variable. See Section 4.4.7, Use of Relative Timing Variables.
