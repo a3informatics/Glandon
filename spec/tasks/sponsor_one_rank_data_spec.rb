@@ -35,9 +35,9 @@ describe 'sponsor one rank data migration' do
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
-      load_cdisc_term_versions(1..62)
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+      (1..62).each {|x| load_local_file_into_triple_store(sub_dir, "CT_V#{x}.ttl")} 
+      load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
+      load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
       @ct_26 = Thesaurus.find_minimum(Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH"))
       @ct_30 = Thesaurus.find_minimum(Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH"))
     end
