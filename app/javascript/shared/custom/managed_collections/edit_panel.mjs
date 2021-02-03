@@ -28,15 +28,18 @@ export default class EditMCPanel {
   constructor({
     selector = "#managed-collection",
     urls,
-    param,
-    idsParam = 'ids',
+    param = 'managed_collection',
+    idsParam = 'id_set',
     allowedTypes = [],
     order = [[1, 'asc']], 
     onEdited = () => {}
   }) {
+    
+    Object.freeze( managedCollectionsUrls )
 
     Object.assign( this, {
-      selector, urls, param, allowedTypes, 
+      urls: urls || managedCollectionsUrls,
+      selector, param, allowedTypes, 
       idsParam, order, onEdited 
     })
 
