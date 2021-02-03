@@ -288,7 +288,6 @@
       :label: No Yes Response
       :notation: NY
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: A value of 'Y' indicates that this adverse event was pre-specified
     on the CRF. Values are null for spontaneously reported events (i.e., those collected
     as free-text verbatim terms)
@@ -351,7 +350,6 @@
       :label: Anatomical Location
       :notation: LOC
       :semantic_version: 1.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Describes anatomical location relevant for the event (e.g., LEFT ARM
     for skin rash).
   :used: false
@@ -389,7 +387,6 @@
       :label: Severity/Intensity Scale for Adverse Events
       :notation: AESEV
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
     SEVERE.'
   :used: false
@@ -427,7 +424,6 @@
       :label: No Yes Response
       :notation: NY
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Is this a serious event?
   :used: false
   :compliance:
@@ -464,7 +460,6 @@
       :label: Action Taken with Study Treatment
       :notation: ACN
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: 'Describes changes to the study treatment as a result of the event.
     AEACN is specifically for the relationship to study treatment. AEACNOTH is for
     actions unrelated to dose adjustments of study treatment. Examples of AEACN values
@@ -597,7 +592,6 @@
       :label: Outcome of Event
       :notation: OUT
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Description of the outcome of an event.
   :used: false
   :compliance:
@@ -634,7 +628,6 @@
       :label: No Yes Response
       :notation: NY
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Was the serious event associated with the development of cancer?
   :used: false
   :compliance:
@@ -671,7 +664,6 @@
       :label: No Yes Response
       :notation: NY
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Was the serious event associated with congenital anomaly or birth
     defect?
   :used: false
@@ -709,7 +701,6 @@
       :label: No Yes Response
       :notation: NY
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Did the serious event result in persistent or significant disability/incapacity?
   :used: false
   :compliance:
@@ -746,7 +737,6 @@
       :label: No Yes Response
       :notation: NY
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Did the serious event result in death?
   :used: false
   :compliance:
@@ -783,7 +773,6 @@
       :label: No Yes Response
       :notation: NY
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Did the serious event require or prolong hospitalization?
   :used: false
   :compliance:
@@ -820,7 +809,6 @@
       :label: No Yes Response
       :notation: NY
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Was the serious event life threatening?
   :used: false
   :compliance:
@@ -857,7 +845,6 @@
       :label: No Yes Response
       :notation: NY
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Did the serious event occur with an overdose?
   :used: false
   :compliance:
@@ -894,7 +881,6 @@
       :label: No Yes Response
       :notation: NY
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Do additional categories for seriousness apply?
   :used: false
   :compliance:
@@ -931,7 +917,6 @@
       :label: No Yes Response
       :notation: NY
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Was another treatment given because of the occurrence of the event?
   :used: false
   :compliance:
@@ -1101,7 +1086,6 @@
       :label: Relation to Reference Period
       :notation: STENRF
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Describes the end of the event relative to the sponsor-defined reference
     period. The sponsor-defined reference period is a continuous period of time defined
     by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of

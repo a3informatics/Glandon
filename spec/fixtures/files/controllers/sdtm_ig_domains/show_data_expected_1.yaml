@@ -270,7 +270,6 @@
       :label: No Yes Response
       :notation: NY
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Used to indicate whether (Y/null) information about the use of a specific
     medication was solicited on the CRF.
   :used: false
@@ -308,7 +307,6 @@
       :label: No Yes Response
       :notation: NY
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: When the use of specific medications is solicited, CMOCCUR is used
     to indicate whether or not (Y/N) use of the medication occurred. Values are null
     for medications not specifically solicited.
@@ -347,7 +345,6 @@
       :label: Not Done
       :notation: ND
       :semantic_version: 3.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Used to indicate that a question about a pre-specified medication
     was not answered. Should be null or have a value of NOT DONE.
   :used: false
@@ -518,7 +515,6 @@
       :label: Unit
       :notation: UNIT
       :semantic_version: 3.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: 'Units for CMDOSE, CMDOSTXT, and CMDOSTOT. Examples: ng, mg, or mg/kg.'
   :used: false
   :compliance:
@@ -555,7 +551,6 @@
       :label: Pharmaceutical Dosage Form
       :notation: FRM
       :semantic_version: 4.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: 'Dose form for CMTRT. Examples: TABLET, LOTION.'
   :used: false
   :compliance:
@@ -592,7 +587,6 @@
       :label: Frequency
       :notation: FREQ
       :semantic_version: 1.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: 'Usually expressed as the number of repeated administrations of CMDOSE
     within a specific time period. Examples: BID (twice daily), Q12H (every 12 hours).'
   :used: false
@@ -675,7 +669,6 @@
       :label: Route of Administration
       :notation: ROUTE
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: 'Route of administration for CMTRT. Examples: ORAL, INTRAVENOUS.'
   :used: false
   :compliance:
@@ -818,7 +811,6 @@
       :label: Relation to Reference Period
       :notation: STENRF
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Describes the start of the medication relative to sponsor-defined
     reference period. The sponsor-defined reference period is a continuous period
     of time defined by a discrete starting point and a discrete ending point (represented
@@ -859,7 +851,6 @@
       :label: Relation to Reference Period
       :notation: STENRF
       :semantic_version: 2.0.0
-    :context: http://www.cdisc.org/CT/V13#TH
   :description: Describes the end of the medication relative to the sponsor-defined
     reference period. The sponsor-defined reference period is a continuous period
     of time defined by a discrete starting point and a discrete ending point (represented
