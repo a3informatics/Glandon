@@ -118,7 +118,7 @@ class AdHocReport < ApplicationRecord
     if dt_result.blank?
       dt_result = { columns: [["No Results Error"]], data: [["No Results Error"]] }
     end
-    csv_data = CSV.generate do |csv|
+    csv_data = CSV.generate(force_quotes: true) do |csv|
       headers = []
       dt_result[:columns].each { |x| headers << x.first }
       csv << headers

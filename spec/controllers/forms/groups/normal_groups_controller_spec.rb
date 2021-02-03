@@ -8,6 +8,7 @@ describe Forms::Groups::NormalGroupsController do
   include IsoHelpers
   include ControllerHelpers
   include SecureRandomHelpers
+  include IsoManagedHelpers
   
   describe "Update" do
   	
@@ -18,10 +19,7 @@ describe Forms::Groups::NormalGroupsController do
     end
 
     def make_standard(item)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      item.update_status(params)
+      IsoManagedHelpers.make_item_standard(item)
     end
 
     after :all do

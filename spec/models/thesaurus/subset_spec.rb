@@ -431,6 +431,103 @@ describe "Thesaurus Subset General" do
 
   end
 
+  describe "subset checks" do
+
+    def simple_thesaurus_1
+      @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      @th_1 = Thesaurus.new
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow",
+          identifier: "A00001",
+          definition: "A definition",
+          notation: "LHR"
+        })
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      sparql = Sparql::Update.new
+      @th_1.set_initial("NEW_TH")
+      @tc_1.set_initial(@tc_1.identifier)
+      sparql.default_namespace(@th_1.uri.namespace)
+      @th_1.to_sparql(sparql, true)
+      @tc_1.to_sparql(sparql, true)
+      full_path = sparql.upload
+      @tc_1a = Thesaurus::UnmanagedConcept.create({label: "Terminal 5", identifier: "A00011", definition: "A definition", notation: "T5"}, @tc_1)
+      @tc_1b = Thesaurus::UnmanagedConcept.create({label: "Terminal 1", identifier: "A00012", definition: "A definition", notation: "T1"}, @tc_1)
+      @tc_1.narrower << @tc_1a
+      @tc_1.narrower << @tc_1b
+      @tc_1.save
+    end
+
+    def add_subset
+      subset = Thesaurus::Subset.new
+      subset.uri = subset.create_uri(Thesaurus::Subset.base_uri)
+      subset.save
+      mc = @th_1.add_child({})
+      mc = Thesaurus::ManagedConcept.find(mc.id)
+      mc.add_link(:is_ordered, subset.uri)
+      mc.save
+      subset
+    end
+
+    before :all do
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "check narrower and refers to match on add" do
+      simple_thesaurus_1
+      subset = add_subset
+      tc = subset.find_mc
+      result = subset.add([@tc_1a.uri.to_id], @tc_1)
+      expect(tc.narrower_links.count).to eq(1)
+      expect(tc.narrower_links.map{|x| x.to_s}).to match_array(tc.refers_to_links.map{|x| x.to_s})
+      result = subset.add([@tc_1b.uri.to_id], @tc_1)
+      expect(tc.narrower_links.count).to eq(2)
+      expect(tc.narrower_links.map{|x| x.to_s}).to match_array(tc.refers_to_links.map{|x| x.to_s})
+    end
+
+    it "check narrower and refers to match on remove" do
+      simple_thesaurus_1
+      subset = add_subset
+      tc = subset.find_mc
+      result = subset.add([@tc_1a.uri.to_id], @tc_1)
+      result = subset.add([@tc_1b.uri.to_id], @tc_1)
+      expect(tc.narrower_links.count).to eq(2)
+      expect(tc.narrower_links.map{|x| x.to_s}).to match_array(tc.refers_to_links.map{|x| x.to_s})
+      items = subset.ordered_list
+      items.each do |item|
+        subset.remove(item.uri.to_id)
+        expect(tc.narrower_links.map{|x| x.to_s}).to match_array(tc.refers_to_links.map{|x| x.to_s})
+      end
+    end
+
+    it "check narrower and refers to match on remove all" do
+      simple_thesaurus_1
+      subset = add_subset
+      tc = subset.find_mc
+      result = subset.add([@tc_1a.uri.to_id], @tc_1)
+      result = subset.add([@tc_1b.uri.to_id], @tc_1)
+      expect(tc.narrower_links.count).to eq(2)
+      expect(tc.narrower_links.map{|x| x.to_s}).to match_array(tc.refers_to_links.map{|x| x.to_s})
+      uris = subset.remove_all
+      expect(tc.narrower_links.count).to eq(0)
+      expect(tc.narrower_links.map{|x| x.to_s}).to match_array(tc.refers_to_links.map{|x| x.to_s})
+    end
+
+  end
+
+
   describe "thesaurus subset custom property" do
 
     def simple_thesaurus_1

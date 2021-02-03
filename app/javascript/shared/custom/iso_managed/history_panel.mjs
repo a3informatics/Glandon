@@ -2,7 +2,7 @@ import TablePanel from 'shared/base/table_panel'
 
 import rsHelper from 'shared/custom/iso_registration_state/rs_history'
 import { render as renderMenu } from 'shared/ui/context_menu'
-import { $delete } from 'shared/helpers/ajax'
+import { $delete, $post } from 'shared/helpers/ajax'
 import { $confirm } from 'shared/helpers/confirmable'
 import { dtDateTimeColumn, dtIndicatorsColumn, dtContextMenuColumn, dtVersionColumn } from 'shared/helpers/dt/dt_columns'
 
@@ -42,8 +42,22 @@ export default class HistoryPanel extends TablePanel {
 
   }
 
+  /**
+   * Refresh (reload) table data
+   * @param {string} url optional, specify data source url
+   */
+  refresh(url) {
+
+    // Hide any visible context menu 
+    $('.context-menu:visible').hide() 
+    super.refresh(url)
+
+  }
+
+
   /** Private **/
 
+  
   /**
    * Sets event listeners, handlers
    */
@@ -67,7 +81,7 @@ export default class HistoryPanel extends TablePanel {
           dangerous: true,
           callback: () => $delete({
             url: this._getRowDataFrom$( e.target ).delete_path,
-            done: () => location.reload()
+            done: () => this.refresh()
           })
         })
 
@@ -107,6 +121,19 @@ export default class HistoryPanel extends TablePanel {
         this.itemSelector.setCallback( s => 
           location.href = `${ url }?${ $.param( { thesauri: { thesaurus_id: s.thesauri[0].id } } ) }`) // TODO: Fix
         this.itemSelector.show();
+
+      }
+    })
+
+    // Make current
+    this._clickListener({
+      target: ".context-menu a:contains('Make current')",
+      handler: (e) => {
+
+        $post({ 
+          url: this._getRowDataFrom$( e.target ).current_path,
+          done: () => this.refresh() 
+        })
 
       }
     })
@@ -211,6 +238,7 @@ export default class HistoryPanel extends TablePanel {
       },
       { 
         url: data.current_path, 
+        target: "#",
         icon: "icon-current", 
         text: "Make current", 
         disabled: (data.indicators.current), 

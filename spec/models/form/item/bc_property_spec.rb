@@ -109,7 +109,7 @@ describe Form::Item::BcProperty do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
-      load_data_file_into_triple_store("association.ttl")    
+      load_data_file_into_triple_store("association_IG_domain.ttl")    
     end
 
     it "to aCRF I" do
@@ -133,10 +133,7 @@ describe Form::Item::BcProperty do
   describe "Make common tests" do
 
     def make_standard(item)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      item.update_status(params)
+      IsoManagedHelpers.make_item_standard(item)
     end
 
     before :all do
@@ -223,10 +220,7 @@ describe Form::Item::BcProperty do
   describe "Update with clone Tests" do
 
     def make_standard(item)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      item.update_status(params)
+      IsoManagedHelpers.make_item_standard(item)
     end
 
     before :each do

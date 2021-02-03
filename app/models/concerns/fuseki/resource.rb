@@ -112,6 +112,10 @@ module Fuseki
     # 
     # @return [Class] name of the class declared as handling the RDF type
     def rdf_type_to_klass(rdf_type)
+      klass = Fuseki::Base.instance_variable_get(:@type_map)[rdf_type]
+      return klass unless klass.nil?
+      # Very naughty but quick fix.
+      [::Thesaurus, ::Thesaurus::ManagedConcept, ::Form, ::BiomedicalConceptInstance, ::SdtmSponsorDomain].each {|x| x.new}
       Fuseki::Base.instance_variable_get(:@type_map)[rdf_type]
     end
 

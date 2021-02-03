@@ -772,54 +772,6 @@ describe Thesaurus do
 
   end
 
-  describe "states" do
-
-    before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_sponsor_5_state.ttl"]
-      load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..2)
-    end
-
-    it "rejects state change" do
-      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/STATE/V1#TH"))
-      thesaurus.update_status(registration_status: "Standard")
-      expect(thesaurus.errors.count).to eq(1)
-      expect(thesaurus.errors.full_messages.to_sentence).to eq("Child items are not in the appropriate state.")
-      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/STATE/V1#TH"))
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
-      tc.update_status(registration_status: "Candidate")
-      thesaurus.update_status(registration_status: "Candidate")
-      expect(thesaurus.errors.count).to eq(0)
-    end
-
-    it "states" do
-      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
-      actual = thesaurus.managed_children_states
-      check_file_actual_expected(actual, sub_dir, "states_expected_1.yaml", equate_method: :hash_equal)
-    end
-
-    it "move to next state" do
-      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/STATE/V1#TH"))
-      expect(thesaurus.move_to_next_state?).to eq(false)
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
-      tc.update_status(registration_status: "Candidate")
-      expect(thesaurus.move_to_next_state?).to eq(true)
-      tc.update_status(registration_status: "Recorded")
-      expect(thesaurus.move_to_next_state?).to eq(true)
-      thesaurus.update_status(registration_status: "Recorded")
-      expect(thesaurus.move_to_next_state?).to eq(false)
-      tc.update_status(registration_status: "Qualified")
-      expect(thesaurus.move_to_next_state?).to eq(true)
-      thesaurus.update_status(registration_status: "Qualified")
-      expect(thesaurus.move_to_next_state?).to eq(false)
-      tc.update_status(registration_status: "Standard")
-      expect(thesaurus.move_to_next_state?).to eq(true)
-      thesaurus.update_status(registration_status: "Standard")
-      expect(thesaurus.move_to_next_state?).to eq(false)
-    end
-
-  end
-
   describe "Further Delete" do
 
     before :each do

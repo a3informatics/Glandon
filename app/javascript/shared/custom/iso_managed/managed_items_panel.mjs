@@ -5,7 +5,7 @@ import { hasColumn } from 'shared/helpers/dt/utils'
 
 /**
  * Managed Items Panel
- * @description Lists a collection of version-based Managed Items of various rdf types 
+ * @description Lists a collection of version-based Managed Items of various rdf types
  * @extends TablePanel class from shared/base/table_panel
  * @author Samuel Banas <sab@s-cubed.dk>
  */
@@ -20,8 +20,10 @@ export default class ManagedItemsPanel extends TablePanel {
    * @param {int} params.count Count of items fetched in one request [default = 5000]
    * @param {boolean} params.deferLoading Set to true if data load should be deferred. Load data has to be called manually in this case. Optional
    * @param {boolean} params.paginated Paginated request option, optional [default = false]
-   * @param {object} params.tableOptions DataTable custom options, optional 
+   * @param {object} params.tableOptions DataTable custom options, optional
    * @param {array} params.buttons Buttons to add to the table, optional
+   * @param {array} params.addedColumns Collection of DT column definitions added to the end of the columns array, optional
+   * @param {boolean} params.autoHeight Specifies whether the height of the table should match the window size, and add a horizontal scroll, optional
    */
   constructor({
     selector = '',
@@ -31,19 +33,23 @@ export default class ManagedItemsPanel extends TablePanel {
     deferLoading = false,
     paginated = false,
     tableOptions = {},
-    buttons = []
+    buttons = [],
+    addedColumns = [],
+    autoHeight
   }) {
 
-    super({ 
+    super({
       url: (url || managedItemsDataUrl),
       selector: `${ selector } #managed-items`,
       order: [[1, "asc"]],
-      param, count, deferLoading, paginated, 
-      tableOptions, buttons 
-    })
+      param, count, autoHeight, deferLoading, paginated,
+      tableOptions, buttons
+    },
+      { addedColumns }
+    )
 
   }
-  
+
 
   /** Private **/
 
@@ -56,7 +62,11 @@ export default class ManagedItemsPanel extends TablePanel {
 
     const withType = hasColumn( this.selector, 'Type' ),
           withOwner = hasColumn( this.selector, 'Owner' )
-    return dtManagedItemsColumns( {}, withType, withOwner )
+
+    return [
+      ...dtManagedItemsColumns( {}, withType, withOwner ),
+      ...this.addedColumns
+    ]
 
   }
 

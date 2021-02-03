@@ -105,9 +105,12 @@ Rails.application.routes.draw do
     member do
       get :status
       get :impact
-      get :make_current
-      post :update_status
+      post :make_current
+      post :next_state
+      post :state_change
+      get :state_change_impacted_items
       put :update_semantic_version
+      put :update_version_label
       get :list_change_notes
       get :list_change_notes_data
       get :custom_properties

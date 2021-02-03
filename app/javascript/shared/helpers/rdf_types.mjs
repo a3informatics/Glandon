@@ -159,17 +159,32 @@ const rdfTypesMap = {
     name: 'Code List Item Reference',
     param: 'tuc_reference',
     url: '/operational_reference_v3/tuc_references'
+  },
+
+  UNKNOWN: {
+    rdfType: 'unknown',
+    name: 'Unknown',
+    param: ''
   }
 
 }
 
 /**
+ * Gets the RDF object from shortcut
+ * @param {string} shortcut Shortcut key to item in the map
+ * @return {object} RDF object definition | rdf UNKNOWN type if shortcut not found
+ */
+function getRdf(shortcut) {
+  return rdfTypesMap[shortcut] || rdfTypesMap.UNKNOWN
+}
+
+/**
  * Gets the RDF type string of an item const name in argument
  * @param {string} shortcut Shortcut key to item in the map
- * @return {string} Item type as string name
+ * @return {string | null} Item type as string name
  */
 function getRdfName(shortcut) {
-  return rdfTypesMap[shortcut].name;
+  return getRdf( shortcut ).name
 }
 
 /**
@@ -178,7 +193,7 @@ function getRdfName(shortcut) {
  * @return {string} Item type as rdf type (url)
  */
 function getRdfType(shortcut) {
-  return rdfTypesMap[shortcut].rdfType;
+  return getRdf( shortcut ).rdfType;
 }
 
 /**
@@ -188,7 +203,7 @@ function getRdfType(shortcut) {
  * @return {boolean} match result
  */
 function rdfTypesMatch(shortcut, value) {
-  return rdfTypesMap[shortcut].rdfType === value;
+  return getRdf( shortcut ).rdfType === value;
 }
 
 /**
@@ -203,7 +218,7 @@ function getRdfNameByType(rdfType) {
 /**
  * Gets the RDF definition object from the map by rdfType
  * @param {string} rdfType Full RdfType string to search by
- * @return {string} Item RDF object definition from the map
+ * @return {object} Item RDF object definition from the map, UNKNOWN rdf type definition if not found 
  */
 function getRdfObject(rdfType) {
 
@@ -213,7 +228,7 @@ function getRdfObject(rdfType) {
   if ( filtered.length )
     return filtered[0];
 
-  throw new Error(`Rdf type '${ rdfType }' not found.`)
+  else return rdfTypesMap.UNKNOWN
 
 }
 

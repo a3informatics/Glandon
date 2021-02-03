@@ -970,87 +970,6 @@ describe "IsoManagedV2" do
 
   end
 
-  describe "Status" do
-
-    before :all  do
-      IsoHelpers.clear_cache
-    end
-
-    before :each do
-      IsoHelpers.clear_cache
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
-      load_files(schema_files, data_files)
-    end
-
-    def update_children
-      uri = Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001")
-      params = {}
-      item = IsoManagedV2.find_minimum(uri)
-      params[:registration_status] = "Qualified"
-      params[:previous_state] = "Recorded"
-      item.update_status(params)
-      uri = Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002")
-      params = {}
-      item = IsoManagedV2.find_minimum(uri)
-      params[:registration_status] = "Qualified"
-      params[:previous_state] = "Recorded"
-      item.update_status(params)
-    end
-
-    it "allows the item status to be updated, not standard" do
-      update_children
-      uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
-      item = IsoManagedV2.find_minimum(uri)
-      params = {}
-      params[:registration_status] = "Qualified"
-      params[:previous_state] = "Recorded"
-      params[:administrative_note] = "New note"
-      params[:unresolved_issue] = "Unresolved issues"
-      params[:multiple_edit] = true
-      item.update_status(params)
-      expect(item.errors.full_messages.to_sentence).to eq("")
-      expect(item.errors.count).to eq(0)
-      actual = IsoManagedV2.find_minimum(uri)
-      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_1.yaml", equate_method: :hash_equal)
-    end
-
-    it "allows the item status to be updated, error" do
-      update_children
-      uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
-      item = IsoManagedV2.find_minimum(uri)
-      params = {}
-      params[:registration_status] = "SomethingNew"
-      params[:previous_state] = "SomethingOld"
-      params[:administrative_note] = "New note"
-      params[:unresolved_issue] = "Unresolved issues"
-      item.update_status(params)
-      expect(item.errors.full_messages.to_sentence).to eq("Registration Status: Registration status is invalid and Registration Status: Previous state is invalid")
-      expect(item.errors.count).to eq(2)
-      actual = IsoManagedV2.find_minimum(uri)
-      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_2.yaml", equate_method: :hash_equal)
-    end
-
-    it "allows the item status to be updated, standard" do
-      uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
-      item = IsoManagedV2.find_minimum(uri)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Qualified"
-      params[:administrative_note] = "New note"
-      params[:unresolved_issue] = "Unresolved issues"
-      item.update_status(params)
-      actual = IsoManagedV2.find_minimum(uri)
-      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_3.yaml", equate_method: :hash_equal)
-    end
-
-    it "generates the audit message for Status update" do
-      tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      tc.update_status({previous_state: "Incomplete", registration_status: "Candidate"})
-      expect(tc.audit_message_status_update).to eq("Code list owner: ACME, identifier: A00001, state was updated from Incomplete to Candidate.")
-    end
-
-  end
-
   describe "Release" do
 
     before :all  do
@@ -1217,6 +1136,7 @@ describe "IsoManagedV2" do
       item = Thesaurus.find_minimum(uri)
       expect(item.semantic_version).to eq("2.0.0")
       item.release(:minor)
+      expect(item.semantic_version).to eq("1.1.0")
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
       actual = Thesaurus.find_minimum(uri)
@@ -1240,6 +1160,7 @@ describe "IsoManagedV2" do
       item2 = Thesaurus.find_minimum(uris[1])
       set_semantic_version_and_state(item2, "0.2.0", "Qualified")
       item2.release(:minor)
+      expect(item2.semantic_version).to eq("0.2.0")
       actual = Thesaurus.find_minimum(item2.uri)
       expect(actual.semantic_version).to eq("0.2.0")
     end
@@ -1253,6 +1174,7 @@ describe "IsoManagedV2" do
       item = Thesaurus.find_minimum(uri)
       expect(item.semantic_version).to eq("2.0.0")
       item.release(:patch)
+      expect(item.semantic_version).to eq("1.0.1")
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
       actual = Thesaurus.find_minimum(uri)
@@ -1485,7 +1407,7 @@ describe "IsoManagedV2" do
 
     it "previous version" do
       object_1 = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
-      object_1.update_status(registration_status: "Standard")
+      IsoManagedHelpers.make_item_standard(object_1)
       object_2 = object_1.create_next_version
       expect(object_2.previous_version.uri).to eq(object_1.uri)
       expect(object_2.has_previous_version?).to eq(true)
@@ -1494,7 +1416,7 @@ describe "IsoManagedV2" do
 
     it "next version" do
       object_1 = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
-      object_1.update_status(registration_status: "Standard")
+      IsoManagedHelpers.make_item_standard(object_1)
       object_2 = object_1.create_next_version
       expect(object_1.next_version.uri).to eq(object_2.uri)
       expect(object_1.has_next_version?).to eq(true)
@@ -1503,11 +1425,11 @@ describe "IsoManagedV2" do
 
     it "first and last versions" do
       object_1 = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
-      object_1.update_status(registration_status: "Standard")
+      IsoManagedHelpers.make_item_standard(object_1)
       object_2 = object_1.create_next_version
-      object_2.update_status(registration_status: "Standard")
+      IsoManagedHelpers.make_item_standard(object_2)
       object_3 = object_2.create_next_version
-      object_3.update_status(registration_status: "Standard")
+      IsoManagedHelpers.make_item_standard(object_3)
       object_4 = object_3.create_next_version
       expect(object_1.latest_version.uri).to eq(object_4.uri)
       expect(object_2.latest_version.uri).to eq(object_4.uri)

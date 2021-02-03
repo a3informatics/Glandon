@@ -207,7 +207,7 @@ describe ThesauriController do
     it "edits thesaurus, copy, already locked" do
       @request.env['HTTP_REFERER'] = 'http://test.host/thesauri'
       ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
-      ct.update_status(registration_status: "Standard")
+      IsoManagedHelpers.make_item_standard(ct)
       new_ct = ct.create_next_version
       token = Token.obtain(new_ct, @lock_user)
       get :edit, params:{id: ct.id}

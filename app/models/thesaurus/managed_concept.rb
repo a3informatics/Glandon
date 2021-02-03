@@ -38,6 +38,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   include Thesaurus::Ranked
   include Thesaurus::Paired
   include Thesaurus::McCustomProperties
+  include Thesaurus::McRegistrationStatus
 
   # Replace If No Change. Replace the current with the previous if no differences.
   #
