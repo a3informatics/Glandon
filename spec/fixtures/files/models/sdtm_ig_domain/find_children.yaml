@@ -279,8 +279,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66742/V4#C66742
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
   :description: A value of 'Y' indicates that this adverse event was pre-specified
     on the CRF. Values are null for spontaneously reported events (i.e., those collected
     as free-text verbatim terms)
@@ -335,8 +340,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C74456/V8#C74456
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU2L1Y4I0M3NDQ1Ng==
+      :uri: http://www.cdisc.org/C74456/V8#C74456
+      :identifier: C74456
+      :label: Anatomical Location
+      :notation: LOC
+      :semantic_version: 1.0.0
   :description: Describes anatomical location relevant for the event (e.g., LEFT ARM
     for skin rash).
   :used: false
@@ -366,8 +376,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66769/V4#C66769
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY5L1Y0I0M2Njc2OQ==
+      :uri: http://www.cdisc.org/C66769/V4#C66769
+      :identifier: C66769
+      :label: Severity/Intensity Scale for Adverse Events
+      :notation: AESEV
+      :semantic_version: 2.0.0
   :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
     SEVERE.'
   :used: false
@@ -397,8 +412,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66742/V4#C66742
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
   :description: Is this a serious event?
   :used: false
   :compliance:
@@ -427,8 +447,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66767/V4#C66767
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2Nw==
+      :uri: http://www.cdisc.org/C66767/V4#C66767
+      :identifier: C66767
+      :label: Action Taken with Study Treatment
+      :notation: ACN
+      :semantic_version: 2.0.0
   :description: 'Describes changes to the study treatment as a result of the event.
     AEACN is specifically for the relationship to study treatment. AEACNOTH is for
     actions unrelated to dose adjustments of study treatment. Examples of AEACN values
@@ -553,8 +578,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66768/V4#C66768
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1Y0I0M2Njc2OA==
+      :uri: http://www.cdisc.org/C66768/V4#C66768
+      :identifier: C66768
+      :label: Outcome of Event
+      :notation: OUT
+      :semantic_version: 2.0.0
   :description: Description of the outcome of an event.
   :used: false
   :compliance:
@@ -583,8 +613,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66742/V4#C66742
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
   :description: Was the serious event associated with the development of cancer?
   :used: false
   :compliance:
@@ -613,8 +648,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66742/V4#C66742
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
   :description: Was the serious event associated with congenital anomaly or birth
     defect?
   :used: false
@@ -644,8 +684,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66742/V4#C66742
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
   :description: Did the serious event result in persistent or significant disability/incapacity?
   :used: false
   :compliance:
@@ -674,8 +719,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66742/V4#C66742
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
   :description: Did the serious event result in death?
   :used: false
   :compliance:
@@ -704,8 +754,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66742/V4#C66742
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
   :description: Did the serious event require or prolong hospitalization?
   :used: false
   :compliance:
@@ -734,8 +789,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66742/V4#C66742
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
   :description: Was the serious event life threatening?
   :used: false
   :compliance:
@@ -764,8 +824,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66742/V4#C66742
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
   :description: Did the serious event occur with an overdose?
   :used: false
   :compliance:
@@ -794,8 +859,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66742/V4#C66742
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
   :description: Do additional categories for seriousness apply?
   :used: false
   :compliance:
@@ -824,8 +894,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66742/V4#C66742
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
   :description: Was another treatment given because of the occurrence of the event?
   :used: false
   :compliance:
@@ -987,8 +1062,13 @@
     :enabled: true
     :optional: false
     :ordinal: 1
-    :reference: http://www.cdisc.org/C66728/V4#C66728
-    :context: http://www.cdisc.org/CT/V13#TH
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==
+      :uri: http://www.cdisc.org/C66728/V4#C66728
+      :identifier: C66728
+      :label: Relation to Reference Period
+      :notation: STENRF
+      :semantic_version: 2.0.0
   :description: Describes the end of the event relative to the sponsor-defined reference
     period. The sponsor-defined reference period is a continuous period of time defined
     by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of

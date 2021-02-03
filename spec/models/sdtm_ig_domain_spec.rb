@@ -12,6 +12,7 @@ describe SdtmIgDomain do
   before :all do
     data_files = []
     load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..13)
     load_data_file_into_triple_store("mdr_identification.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
@@ -53,7 +54,7 @@ describe SdtmIgDomain do
 
   it "allows an IG Domain to get children (variables)" do
     actual = []
-    item = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V4#IGD"))
+    item = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_MH/V1#IGD"))
     children = item.get_children
     children.each {|x| actual << x.to_h}
     check_file_actual_expected(actual, sub_dir, "find_children_3.yaml", equate_method: :hash_equal)
