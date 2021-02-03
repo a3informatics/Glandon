@@ -259,6 +259,12 @@ Then('I see Preferred Term is {string}') do |string|
   save_screen(TYPE)
 end
 
+Then('I see Sponsor Synonym is {string}') do |string|
+  ui_editor_check_value 1, ?????, string
+  wait_for_ajax(20)
+  save_screen(TYPE)
+end
+
 Then('I see Synonyms is empty') do
   ui_editor_check_value 1, 4, ""
   wait_for_ajax(20)
