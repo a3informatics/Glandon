@@ -340,6 +340,7 @@ defaults: &defaults
     alias:
         add: update
         remove: update
+        remove_all: update
   BiomedicalConceptInstancePolicy:
     policies: {}
     alias:
