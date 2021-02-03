@@ -31,7 +31,7 @@ function versionField({
   // Render Edit view of Version field
   if ( editMode ) {
 
-    let $sel = select({ options: version.next_versions, current: version.label })
+    let $sel = select({ id: 'version-select', options: version.next_versions, current: version.label })
 
     let $buttons = editingBtns({
       onSubmit: () => submit( $sel.val(), $sel.find('option:selected').text() ),
@@ -246,14 +246,15 @@ function input({
 
 }
 
-function select({ options = [], current }) {
+function select({ id, options = [], current }) {
 
   const $opts = Object.entries( options )
                       .map( ([value, text]) => 
                         option({ text, value, selected: text.includes( current ) })
                       )
 
-  return $('<select>').html( $opts )
+  return $('<select>').prop( 'id', id )
+                      .html( $opts )
 
 }
 
