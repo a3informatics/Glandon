@@ -1136,6 +1136,7 @@ describe "IsoManagedV2" do
       item = Thesaurus.find_minimum(uri)
       expect(item.semantic_version).to eq("2.0.0")
       item.release(:minor)
+      expect(item.semantic_version).to eq("1.1.0")
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
       actual = Thesaurus.find_minimum(uri)
@@ -1159,6 +1160,7 @@ describe "IsoManagedV2" do
       item2 = Thesaurus.find_minimum(uris[1])
       set_semantic_version_and_state(item2, "0.2.0", "Qualified")
       item2.release(:minor)
+      expect(item2.semantic_version).to eq("0.2.0")
       actual = Thesaurus.find_minimum(item2.uri)
       expect(actual.semantic_version).to eq("0.2.0")
     end
@@ -1172,6 +1174,7 @@ describe "IsoManagedV2" do
       item = Thesaurus.find_minimum(uri)
       expect(item.semantic_version).to eq("2.0.0")
       item.release(:patch)
+      expect(item.semantic_version).to eq("1.0.1")
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
       actual = Thesaurus.find_minimum(uri)

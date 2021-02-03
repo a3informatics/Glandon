@@ -266,9 +266,9 @@ class IsoManagedV2 < IsoConceptV2
       if uris[:uris].length <= 1
         si = self.has_identifier
         si.update(semantic_version: sv.to_s)
-        si.save
       else
         update_previous_releases(uris: uris[:uris], semantic_version: sv.to_s)
+        self.has_identifier = IsoScopedIdentifierV2.find_children(self.has_identifier.uri) 
       end
     end
     true
