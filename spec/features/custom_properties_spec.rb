@@ -352,7 +352,7 @@ describe "Custom Properties", type: :feature  do
       ui_in_modal do 
         click_on 'Do not select'
       end 
-      wait_for_ajax 10
+      wait_for_ajax 30
 
       # Check default values picked up from other sponsor Code Lists
       show_custom_props
@@ -376,7 +376,7 @@ describe "Custom Properties", type: :feature  do
       ui_in_modal do 
         click_on 'Do not select'
       end 
-      wait_for_ajax 10
+      wait_for_ajax 30
 
       # Check default values picked up from other sponsor Code Lists
       show_custom_props
