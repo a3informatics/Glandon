@@ -5,6 +5,10 @@ $(document).ready( () => {
 
   let mip = new ManagedItemsPanel({
     param: 'managed_collection',
+    autoHeight: true,
+    tableOptions: {
+      order: [[3, 'asc']]
+    },
     buttons: [ 
       csvExportBtn(), 
       excelExportBtn() 
