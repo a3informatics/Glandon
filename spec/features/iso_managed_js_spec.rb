@@ -114,7 +114,7 @@ describe "ISO Managed JS", :type => :feature do
       expect( find('#next-status')[:class] ).to include ('disabled')
     end
 
-    it "allows to add notes when updating item state" do
+    it "allows to add notes when updating item state, WILL CURRENTLY FAIL: Notes not used on server" do
       new_cl_and_dc
       
       fill_in 'Administrative note', with: 'Test Admin Note ææ'
