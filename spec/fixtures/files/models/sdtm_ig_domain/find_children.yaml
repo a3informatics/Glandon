@@ -8,6 +8,7 @@
   :name: STUDYID
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: Unique identifier for a study.
   :used: false
   :compliance:
@@ -28,6 +29,7 @@
   :name: DOMAIN
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: Two-character abbreviation for the domain.
   :used: false
   :compliance:
@@ -48,6 +50,7 @@
   :name: USUBJID
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
   :used: false
@@ -69,6 +72,7 @@
   :name: AESEQ
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: Sequence Number given to ensure uniqueness of subject records within
     a domain. May be any valid number.
   :used: false
@@ -90,6 +94,7 @@
   :name: AEGRPID
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: Used to tie together a block of related records in a single domain
     for a subject.
   :used: false
@@ -111,6 +116,7 @@
   :name: AEREFID
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: Internal or external identifier such as a serial number on an SAE
     reporting form
   :used: false
@@ -132,6 +138,7 @@
   :name: AESPID
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: 'Sponsor-defined identifier. It may be pre-printed on the CRF as an
     explicit line identifier or defined in the sponsor''s operational database. Example:
     Line number on an Adverse Events page.'
@@ -154,6 +161,7 @@
   :name: AETERM
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: Verbatim name of the event.
   :used: false
   :compliance:
@@ -174,6 +182,7 @@
   :name: AEMODIFY
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: If AETERM is modified to facilitate coding, then AEMODIFY will contain
     the modified text.
   :used: false
@@ -195,6 +204,7 @@
   :name: AEDECOD
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: Dictionary-derived text description of AETERM or AEMODIFY. Equivalent
     to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
     name and version used to map the terms utilizing the define.xml external codelist
@@ -218,6 +228,7 @@
   :name: AECAT
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: 'Used to define a category of related records. Example: BLEEDING,
     NEUROPSYCHIATRIC.'
   :used: false
@@ -239,6 +250,7 @@
   :name: AESCAT
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: 'A further categorization of adverse event. Example: NEUROLOGIC.'
   :used: false
   :compliance:
@@ -259,6 +271,7 @@
   :name: AEPRESP
   :ct_and_format: "(NY)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66742/V4#C66742
   :description: A value of 'Y' indicates that this adverse event was pre-specified
     on the CRF. Values are null for spontaneously reported events (i.e., those collected
     as free-text verbatim terms)
@@ -281,6 +294,7 @@
   :name: AEBODSYS
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: Dictionary derived. Body system or organ class used by the sponsor
     from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary
     such as MedDRA, this should contain the SOC used for the sponsor's analyses and
@@ -304,6 +318,7 @@
   :name: AELOC
   :ct_and_format: "(LOC)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C74456/V8#C74456
   :description: Describes anatomical location relevant for the event (e.g., LEFT ARM
     for skin rash).
   :used: false
@@ -325,6 +340,7 @@
   :name: AESEV
   :ct_and_format: "(AESEV)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66769/V4#C66769
   :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
     SEVERE.'
   :used: false
@@ -346,6 +362,7 @@
   :name: AESER
   :ct_and_format: "(NY)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66742/V4#C66742
   :description: Is this a serious event?
   :used: false
   :compliance:
@@ -366,6 +383,7 @@
   :name: AEACN
   :ct_and_format: "(ACN)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66767/V4#C66767
   :description: 'Describes changes to the study treatment as a result of the event.
     AEACN is specifically for the relationship to study treatment. AEACNOTH is for
     actions unrelated to dose adjustments of study treatment. Examples of AEACN values
@@ -390,6 +408,7 @@
   :name: AEACNOTH
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: 'Describes other actions taken as a result of the event that are unrelated
     to dose adjustments of study treatment. Usually reported as free text. Example:
     ''TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.'''
@@ -412,6 +431,7 @@
   :name: AEREL
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: Records the investigator's opinion as to the causality of the event
     to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED,
     POSSIBLY RELATED, RELATED. Controlled Terminology may be defined in the future.
@@ -435,6 +455,7 @@
   :name: AERELNST
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: 'Records the investigator''s opinion as to whether the event may have
     been due to a treatment other than study drug. May be reported as free text. Example:
     ''MORE LIKELY RELATED TO ASPIRIN USE.''.'
@@ -457,6 +478,7 @@
   :name: AEPATT
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: 'Used to indicate the pattern of the event over time. Examples: INTERMITTENT,
     CONTINUOUS, SINGLE EVENT.'
   :used: false
@@ -478,6 +500,7 @@
   :name: AEOUT
   :ct_and_format: "(OUT)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66768/V4#C66768
   :description: Description of the outcome of an event.
   :used: false
   :compliance:
@@ -498,6 +521,7 @@
   :name: AESCAN
   :ct_and_format: "(NY)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66742/V4#C66742
   :description: Was the serious event associated with the development of cancer?
   :used: false
   :compliance:
@@ -518,6 +542,7 @@
   :name: AESCONG
   :ct_and_format: "(NY)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66742/V4#C66742
   :description: Was the serious event associated with congenital anomaly or birth
     defect?
   :used: false
@@ -539,6 +564,7 @@
   :name: AESDISAB
   :ct_and_format: "(NY)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66742/V4#C66742
   :description: Did the serious event result in persistent or significant disability/incapacity?
   :used: false
   :compliance:
@@ -559,6 +585,7 @@
   :name: AESDTH
   :ct_and_format: "(NY)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66742/V4#C66742
   :description: Did the serious event result in death?
   :used: false
   :compliance:
@@ -579,6 +606,7 @@
   :name: AESHOSP
   :ct_and_format: "(NY)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66742/V4#C66742
   :description: Did the serious event require or prolong hospitalization?
   :used: false
   :compliance:
@@ -599,6 +627,7 @@
   :name: AESLIFE
   :ct_and_format: "(NY)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66742/V4#C66742
   :description: Was the serious event life threatening?
   :used: false
   :compliance:
@@ -619,6 +648,7 @@
   :name: AESOD
   :ct_and_format: "(NY)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66742/V4#C66742
   :description: Did the serious event occur with an overdose?
   :used: false
   :compliance:
@@ -639,6 +669,7 @@
   :name: AESMIE
   :ct_and_format: "(NY)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66742/V4#C66742
   :description: Do additional categories for seriousness apply?
   :used: false
   :compliance:
@@ -659,6 +690,7 @@
   :name: AECONTRT
   :ct_and_format: "(NY)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66742/V4#C66742
   :description: Was another treatment given because of the occurrence of the event?
   :used: false
   :compliance:
@@ -679,6 +711,7 @@
   :name: AETOXGR
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: Toxicity grade according to a standard toxicity scale such as Common
     Terminology Criteria for Adverse Events v3.0 (CTCAE). Sponsor should specify name
     of the scale and version used in the metadata (see 6.2.1.1, Assumption 6c). If
@@ -703,6 +736,7 @@
   :name: AESTDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
+  :ct_reference: ''
   :description: ''
   :used: false
   :compliance:
@@ -723,6 +757,7 @@
   :name: AEENDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
+  :ct_reference: ''
   :description: ''
   :used: false
   :compliance:
@@ -743,6 +778,7 @@
   :name: AESTDY
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: Study day of start of adverse event relative to the sponsor-defined
     RFSTDTC.
   :used: false
@@ -764,6 +800,7 @@
   :name: AEENDY
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: Study day of end of event relative to the sponsor-defined RFSTDTC.
   :used: false
   :compliance:
@@ -784,6 +821,7 @@
   :name: AEDUR
   :ct_and_format: ISO 8601
   :format: ISO 8601
+  :ct_reference: ''
   :description: 'Collected duration and unit of an adverse event. Used only if collected
     on the CRF and not derived from start and end date/times. Example: P1DT2H (for
     1 day, 2 hours).'
@@ -806,6 +844,7 @@
   :name: AEENRF
   :ct_and_format: "(STENRF)"
   :format: ''
+  :ct_reference: http://www.cdisc.org/C66728/V4#C66728
   :description: Describes the end of the event relative to the sponsor-defined reference
     period. The sponsor-defined reference period is a continuous period of time defined
     by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of
@@ -829,6 +868,7 @@
   :name: AEENRTPT
   :ct_and_format: BEFORE, AFTER, COINCIDENT, ONGOING, U
   :format: BEFORE, AFTER, COINCIDENT, ONGOING, U
+  :ct_reference: ''
   :description: Identifies the end of the event as being before or after the reference
     time point defined by variable AEENTPT.
   :used: false
@@ -850,6 +890,7 @@
   :name: AEENTPT
   :ct_and_format: ''
   :format: ''
+  :ct_reference: ''
   :description: 'Description of date/time in ISO 8601 character format of the reference
     point referred to by AEENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
   :used: false
