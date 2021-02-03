@@ -54,7 +54,8 @@ describe ManagedCollectionsController do
       expect(ManagedCollection).to receive(:history_pagination).with({identifier: collection.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([collection])
       get :history, params:{managed_collection: {identifier: collection.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 20}}
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual[:data], sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
+      fix_dates_hash(actual[:data].first, sub_dir, "history_expected_1.yaml", :last_change_date, :creation_date)
+      check_file_actual_expected(actual[:data].first, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end
