@@ -9,7 +9,7 @@
   :name: STUDYID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Unique identifier for a study.
   :used: false
   :compliance:
@@ -30,7 +30,7 @@
   :name: DOMAIN
   :ct_and_format: AE
   :format: AE
-  :ct_reference: {}
+  :ct_reference: 
   :description: Two-character abbreviation for the domain.
   :used: false
   :compliance:
@@ -51,7 +51,7 @@
   :name: USUBJID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
   :used: false
@@ -73,7 +73,7 @@
   :name: AESEQ
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Sequence number given to ensure uniqueness of subject records within
     a domain. May be any valid number.
   :used: false
@@ -95,7 +95,7 @@
   :name: AEGRPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Used to tie together a block of related records in a single domain
     for a subject.
   :used: false
@@ -117,7 +117,7 @@
   :name: AEREFID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Internal or external identifier such as a serial number on an SAE
     reporting form.
   :used: false
@@ -139,7 +139,7 @@
   :name: AESPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Sponsor-defined identifier. It may be preprinted on the CRF as an
     explicit line identifier or defined in the sponsor''s operational database. Example:
     Line number on an Adverse Events page.'
@@ -162,7 +162,7 @@
   :name: AETERM
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Verbatim name of the event.
   :used: false
   :compliance:
@@ -183,7 +183,7 @@
   :name: AEMODIFY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: If AETERM is modified to facilitate coding, then AEMODIFY will contain
     the modified text.
   :used: false
@@ -205,7 +205,7 @@
   :name: AELLT
   :ct_and_format: MedDRA
   :format: MedDRA
-  :ct_reference: {}
+  :ct_reference: 
   :description: Dictionary-derived text description of the Lowest Level Term.
   :used: false
   :compliance:
@@ -226,7 +226,7 @@
   :name: AELLTCD
   :ct_and_format: MedDRA
   :format: MedDRA
-  :ct_reference: {}
+  :ct_reference: 
   :description: Dictionary-derived code for the Lowest Level Term.
   :used: false
   :compliance:
@@ -247,7 +247,7 @@
   :name: AEDECOD
   :ct_and_format: MedDRA
   :format: MedDRA
-  :ct_reference: {}
+  :ct_reference: 
   :description: Dictionary-derived text description of AETERM or AEMODIFY. Equivalent
     to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
     name and version used to map the terms utilizing the external codelist element
@@ -271,7 +271,7 @@
   :name: AEPTCD
   :ct_and_format: MedDRA
   :format: MedDRA
-  :ct_reference: {}
+  :ct_reference: 
   :description: Dictionary-derived code for the Preferred Term.
   :used: false
   :compliance:
@@ -292,7 +292,7 @@
   :name: AEHLT
   :ct_and_format: MedDRA
   :format: MedDRA
-  :ct_reference: {}
+  :ct_reference: 
   :description: Dictionary-derived text description of the High Level Term for the
     primary System Organ Class.
   :used: false
@@ -314,7 +314,7 @@
   :name: AEHLTCD
   :ct_and_format: MedDRA
   :format: MedDRA
-  :ct_reference: {}
+  :ct_reference: 
   :description: Dictionary-derived code for the High Level Term for the primary System
     Organ Class.
   :used: false
@@ -336,7 +336,7 @@
   :name: AEHLGT
   :ct_and_format: MedDRA
   :format: MedDRA
-  :ct_reference: {}
+  :ct_reference: 
   :description: Dictionary-derived text description of the High Level Group Term for
     the primary System Organ Class.
   :used: false
@@ -358,7 +358,7 @@
   :name: AEHLGTCD
   :ct_and_format: MedDRA
   :format: MedDRA
-  :ct_reference: {}
+  :ct_reference: 
   :description: Dictionary-derived code for the High Level Group Term for the primary
     System Organ Class.
   :used: false
@@ -380,7 +380,7 @@
   :name: AECAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Used to define a category of related records. Example: "BLEEDING",
     "NEUROPSYCHIATRIC".'
   :used: false
@@ -402,7 +402,7 @@
   :name: AESCAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'A further categorization of adverse event. Example: "NEUROLOGIC".'
   :used: false
   :compliance:
@@ -455,7 +455,7 @@
   :name: AEBODSYS
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Dictionary derived. Body system or organ class used by the sponsor
     from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary
     such as MedDRA, this should contain the SOC used for the sponsor's analyses and
@@ -479,7 +479,7 @@
   :name: AEBDSYCD
   :ct_and_format: MedDRA
   :format: MedDRA
-  :ct_reference: {}
+  :ct_reference: 
   :description: Dictionary derived. Code for the body system or organ class used by
     the sponsor. When using a multi-axial dictionary such as MedDRA, this should contain
     the SOC used for the sponsor's analyses and summary tables, which may not necessarily
@@ -503,7 +503,7 @@
   :name: AESOC
   :ct_and_format: MedDRA
   :format: MedDRA
-  :ct_reference: {}
+  :ct_reference: 
   :description: Dictionary-derived text description of the primary System Organ Class.
     Will be the same as AEBODSYS if the primary SOC was used for analysis.
   :used: false
@@ -525,7 +525,7 @@
   :name: AESOCCD
   :ct_and_format: MedDRA
   :format: MedDRA
-  :ct_reference: {}
+  :ct_reference: 
   :description: Dictionary-derived code for the primary System Organ Class. Will be
     the same as AEBDSYCD if the primary SOC was used for analysis.
   :used: false
@@ -673,7 +673,7 @@
   :name: AEACNOTH
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Describes other actions taken as a result of the event that are unrelated
     to dose adjustments of study treatment. Usually reported as free text. Example:
     "TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED".'
@@ -696,7 +696,7 @@
   :name: AEREL
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Records the investigator's opinion as to the causality of the event
     to the treatment. ICH E2A and E2B examples include "NOT RELATED", "UNLIKELY RELATED",
     "POSSIBLY RELATED", "RELATED". Controlled Terminology may be defined in the future.
@@ -720,7 +720,7 @@
   :name: AERELNST
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Records the investigator''s opinion as to whether the event may have
     been due to a treatment other than study drug. May be reported as free text. Example:
     "MORE LIKELY RELATED TO ASPIRIN USE".'
@@ -743,7 +743,7 @@
   :name: AEPATT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Used to indicate the pattern of the event over time. Examples: "INTERMITTENT",
     "CONTINUOUS", "SINGLE EVENT".'
   :used: false
@@ -1073,7 +1073,7 @@
   :name: AETOXGR
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Toxicity grade according to a standard toxicity scale such as Common
     Terminology Criteria for Adverse Events v3.0 (CTCAE). Sponsor should specify name
     of the scale and version used in the metadata (see Assumption 6d). If value is
@@ -1097,7 +1097,7 @@
   :name: TAETORD
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Number that gives the planned order of the Element within the Arm.
   :used: false
   :compliance:
@@ -1149,7 +1149,7 @@
   :name: AESTDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: {}
+  :ct_reference: 
   :description: Start date/time of the adverse event represented in ISO 8601 character
     format.
   :used: false
@@ -1171,7 +1171,7 @@
   :name: AEENDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: {}
+  :ct_reference: 
   :description: End date/time of the adverse event represented in ISO 8601 character
     format.
   :used: false
@@ -1193,7 +1193,7 @@
   :name: AESTDY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Study day of start of adverse event relative to the sponsor-defined
     RFSTDTC.
   :used: false
@@ -1215,7 +1215,7 @@
   :name: AEENDY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Study day of end of event relative to the sponsor-defined RFSTDTC.
   :used: false
   :compliance:
@@ -1236,7 +1236,7 @@
   :name: AEDUR
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Collected duration and unit of an adverse event. Used only if collected
     on the CRF and not derived from start and end date/times. Example: "P1DT2H" (for
     1 day, 2 hours).'
@@ -1325,7 +1325,7 @@
   :name: AEENTPT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Description of date/time in ISO 8601 character format of the reference
     point referred to by AEENRTPT. Examples: "2003-12-25" or "VISIT 2".'
   :used: false

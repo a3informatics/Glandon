@@ -9,7 +9,7 @@
   :name: STUDYID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Unique identifier for a study.
   :used: false
   :compliance:
@@ -30,7 +30,7 @@
   :name: DOMAIN
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Two-character abbreviation for the domain.
   :used: false
   :compliance:
@@ -51,7 +51,7 @@
   :name: USUBJID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
   :used: false
@@ -73,7 +73,7 @@
   :name: CMSEQ
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Sequence Number given to ensure uniqueness of subject records within
     a domain. May be any valid number.
   :used: false
@@ -95,7 +95,7 @@
   :name: CMGRPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Used to tie together a block of related records in a single domain
     for a subject.
   :used: false
@@ -117,7 +117,7 @@
   :name: CMSPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Sponsor-defined reference number. Examples: a number pre-printed
     on the CRF as an explicit line identifier or record identifier defined in the
     sponsor''s operational database. Example: line number on a concomitant medication
@@ -141,7 +141,7 @@
   :name: CMTRT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Verbatim medication name that is either pre-printed or collected on
     a CRF.
   :used: false
@@ -163,7 +163,7 @@
   :name: CMMODIFY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: If CMTRT is modified to facilitate coding, then CMMODIFY will contain
     the modified text.
   :used: false
@@ -185,7 +185,7 @@
   :name: CMDECOD
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Standardized or dictionary-derived text description of CMTRT or CMMODIFY.
     Equivalent to the generic medication name in WHO Drug. The sponsor is expected
     to provide the dictionary name and version used to map the terms utilizing the
@@ -210,7 +210,7 @@
   :name: CMCAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Used to define a category of medications/treatments. Examples: PRIOR,
     CONCOMITANT, ANTI-CANCER MEDICATION, or GENERAL CONMED.'
   :used: false
@@ -232,7 +232,7 @@
   :name: CMSCAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'A further categorization of medications/ treatment. Examples: CHEMOTHERAPY,
     HORMONAL THERAPY, ALTERNATIVE THERAPY.'
   :used: false
@@ -348,7 +348,7 @@
   :name: CMREASND
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Describes the reason concomitant medication was not collected. Used
     in conjunction with CMSTAT when value is NOT DONE.
   :used: false
@@ -370,7 +370,7 @@
   :name: CMINDC
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Denotes why a medication was taken or administered. Examples: NAUSEA,
     HYPERTENSION.'
   :used: false
@@ -392,7 +392,7 @@
   :name: CMCLAS
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Drug class. May be obtained from coding. When coding to a single class,
     populate with class value. If using a dictionary and coding to multiple classes,
     then follow assumption 4.1.2.8.3 or omit CMCLAS.
@@ -415,7 +415,7 @@
   :name: CMCLASCD
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Class code corresponding to CMCLAS. Drug class. May be obtained from
     coding. When coding to a single class, populate with class code. If using a dictionary
     and coding to multiple classes, then follow assumption 4.1.2.8.3 or omit CMCLASCD.
@@ -438,7 +438,7 @@
   :name: CMDOSE
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Amount of CMTRT taken.
   :used: false
   :compliance:
@@ -459,7 +459,7 @@
   :name: CMDOSTXT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Dosing amounts or a range of dosing information collected in text
     form. Units may be stored in CMDOSU. Example: 200-400, 15-20.'
   :used: false
@@ -572,7 +572,7 @@
   :name: CMDOSTOT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Total daily dose of CMTRT using the units in CMDOSU. Total dose over
     a period other than day could be recorded in a separate Supplemental Qualifier
     variable. CMDOSTOT should be used in addition to CMDOSE, and not in place of it.
@@ -595,7 +595,7 @@
   :name: CMDOSRGM
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Text description of the (intended) schedule or regimen for the Intervention.
     Examples: TWO WEEKS ON, TWO WEEKS OFF.'
   :used: false
@@ -647,7 +647,7 @@
   :name: CMSTDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: {}
+  :ct_reference: 
   :description: ''
   :used: false
   :compliance:
@@ -668,7 +668,7 @@
   :name: CMENDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: {}
+  :ct_reference: 
   :description: ''
   :used: false
   :compliance:
@@ -689,7 +689,7 @@
   :name: CMSTDY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Study day of start of medication relative to the sponsor-defined RFSTDTC.
   :used: false
   :compliance:
@@ -710,7 +710,7 @@
   :name: CMENDY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: Study day of end of medication relative to the sponsor-defined RFSTDTC.
   :used: false
   :compliance:
@@ -731,7 +731,7 @@
   :name: CMDUR
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: {}
+  :ct_reference: 
   :description: Collected duration for a treatment episode. Used only if collected
     on the CRF and not derived from start and end date/times.
   :used: false
@@ -821,7 +821,7 @@
   :name: CMSTRTPT
   :ct_and_format: BEFORE, COINCIDENT, AFTER, U
   :format: BEFORE, COINCIDENT, AFTER, U
-  :ct_reference: {}
+  :ct_reference: 
   :description: Identifies the start of the medication as being before or after the
     reference time point defined by variable CMSTTPT.
   :used: false
@@ -843,7 +843,7 @@
   :name: CMSTTPT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Description or date/time in ISO 8601 character format of the reference
     point referred to by CMSTRTPT. Examples: ''2003-12-15'' or ''VISIT 1''.'
   :used: false
@@ -865,7 +865,7 @@
   :name: CMENRTPT
   :ct_and_format: BEFORE, COINCIDENT, AFTER, U
   :format: BEFORE, COINCIDENT, AFTER, U
-  :ct_reference: {}
+  :ct_reference: 
   :description: Identifies the end of the medication as being before or after the
     reference time point defined by variable CMENTPT.
   :used: false
@@ -887,7 +887,7 @@
   :name: CMENTPT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: {}
+  :ct_reference: 
   :description: 'Description or date/time in ISO 8601 character format of the reference
     point referred to by CMENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
   :used: false
