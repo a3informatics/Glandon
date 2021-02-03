@@ -40,7 +40,7 @@ class SdtmIgDomain < Tabulation
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bd, :bo])
     query_results.by_object_set([:ordinal, :c, :type, :label, :name, :ct_and_format, :format, :ct_reference, :description, :used, :compliance, :compliance_label, :typed_as, :typed_as_label, :classification, :classification_label, :standard]).each do |x|
-      x[:ct_reference].blank? ? ref = "" : ref = OperationalReferenceV3::TmcReference.find(x[:ct_reference]).to_h
+      x[:ct_reference].blank? ? ref = {} : ref = OperationalReferenceV3::TmcReference.find(x[:ct_reference]).to_h
       results << {id: x[:c].to_id ,uri: x[:c].to_s, ordinal: x[:ordinal].to_i, rdf_type: x[:type].to_s, standard: x[:standard].to_bool, label: x[:label], name: x[:name],
       ct_and_format: x[:ct_and_format], format: x[:format], ct_reference: ref, description: x[:description], used: x[:used].to_bool, compliance: {id: x[:compliance].to_id, label: x[:compliance_label]}, typed_as: {id: x[:typed_as].to_id, label:x[:typed_as_label]}, classified_as: {id:x[:classification].to_id, label: x[:classification_label]} }
     end
