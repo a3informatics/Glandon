@@ -51,6 +51,14 @@ describe SdtmIgDomain do
     check_file_actual_expected(actual, sub_dir, "find_children_2.yaml", equate_method: :hash_equal)
   end
 
+  it "allows an IG Domain to get children (variables)" do
+    actual = []
+    item = SdtmIgDomain.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V4#IGD"))
+    children = item.get_children
+    children.each {|x| actual << x.to_h}
+    check_file_actual_expected(actual, sub_dir, "find_children_3.yaml", equate_method: :hash_equal)
+  end
+
   it "unique name in domain, true" do
     ig_domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
     ig_var = SdtmIgDomain::Variable.new

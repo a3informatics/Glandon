@@ -23,9 +23,8 @@ class SdtmIgDomainsController < ManagedItemsController
   end
 
   def show_data
-    sdtm_ig_domain = SdtmIgDomain.find_minimum(protect_from_bad_id(params))
-    items = sdtm_ig_domain.get_children
-    render json: {data: items}, status: 200
+    @sdtm_ig_domain = SdtmIgDomain.find_minimum(protect_from_bad_id(params))
+    render json: {data: @sdtm_ig_domain.get_children}, status: 200
   end
   
   # def export_ttl
