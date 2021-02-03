@@ -527,6 +527,7 @@ Rails.application.routes.draw do
       get :show_data
       post :add
       put :remove
+      put :remove_all
     end
     collection do
       get :history

@@ -83,6 +83,10 @@ class ManagedCollectionsController < ManagedItemsController
     end
   end
 
+  def remove_all
+
+  end
+
   def destroy
     mc = ManagedCollection.find_minimum(protect_from_bad_id(params))
     return true unless get_lock_for_item(mc)
