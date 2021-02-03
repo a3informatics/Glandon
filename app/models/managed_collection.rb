@@ -66,6 +66,24 @@ class ManagedCollection <  IsoManagedV2
     self
   end
 
+  # Remove all items. 
+  #
+  # @return 
+  def remove_all
+    update_query = %Q{ 
+      DELETE {
+        ?x ?p ?o .
+        #{self.uri.to_ref} bo:hasManaged ?x .
+      }
+      WHERE
+      {
+        #{self.uri.to_ref} bo:hasManaged ?x .
+      }
+    }
+    Sparql::Update.new.sparql_update(update_query, "", [:bo])
+    self
+  end
+
   # Managed items. List the objects that belong to the Collection.
   # @param 
   # @return

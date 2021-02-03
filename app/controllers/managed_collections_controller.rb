@@ -84,7 +84,12 @@ class ManagedCollectionsController < ManagedItemsController
   end
 
   def remove_all
-
+    mc = ManagedCollection.find_minimum(protect_from_bad_id(params))
+    return true unless check_lock_for_item(mc)
+    mc.remove_all
+    AuditTrail.update_item_event(current_user, mc, "Items removed from Managed Collection.")
+    @lock.release 
+    render :json => {data: []}, :status => 200
   end
 
   def destroy

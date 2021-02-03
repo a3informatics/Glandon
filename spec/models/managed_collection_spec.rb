@@ -136,6 +136,41 @@ describe ManagedCollection do
 
   end
 
+  describe "Remove all items Test" do
+
+    before :all do
+      IsoHelpers.clear_cache
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "remove all items" do
+      item_1 = ManagedCollection.create(label: "Item 1", identifier: "ITEM1")
+      item_2 = ManagedCollection.create(label: "Item 2", identifier: "ITEM2")
+      item_3 = ManagedCollection.create(label: "Item 3", identifier: "ITEM3")
+      item_4 = ManagedCollection.create(label: "Item 4", identifier: "ITEM4")
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
+      parent.add_item([item_2.id, item_3.id, item_4.id])
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
+      expect(parent.has_managed.count).to eq(3)
+      fix_dates(parent, sub_dir, "remove_all_expected_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(parent.to_h, sub_dir, "remove_all_expected_1a.yaml", equate_method: :hash_equal)
+      parent.remove_all
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
+      expect(parent.has_managed.count).to eq(0)
+      fix_dates(parent, sub_dir, "remove_all_expected_1b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(parent.to_h, sub_dir, "remove_all_expected_1b.yaml", equate_method: :hash_equal)
+      item_2 = ManagedCollection.find_full(item_2.id)
+      item_3 = ManagedCollection.find_full(item_3.id)
+      item_4 = ManagedCollection.find_full(item_4.id)
+    end
+
+  end
+
   describe "Managed Tests" do
 
     before :all do
