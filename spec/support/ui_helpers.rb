@@ -537,6 +537,10 @@ module UiHelpers
     ui_navbar_click('main_nav_aigd')
   end
 
+  def click_navbar_mcs
+    find('#main_nav_mc').click
+  end
+
   #Community Version
   def click_browse_every_version
     click_link 'btn-browse-cdisc'
