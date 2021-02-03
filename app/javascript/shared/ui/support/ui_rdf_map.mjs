@@ -1,3 +1,4 @@
+import { color } from 'd3'
 import { getRdfType } from 'shared/helpers/rdf_types'
 import colors from 'shared/ui/colors'
 
@@ -50,6 +51,11 @@ const rdfMap = {
 
   // Managed Item Types
 
+  [ getRdfType('MC') ]: {
+    icon: 'icon-collection',
+    char: '\ue973',
+    color: colors.oliveGreen
+  },
   [ getRdfType('FORM') ]: {
     icon: 'icon-forms',
     char: '\ue91c',
