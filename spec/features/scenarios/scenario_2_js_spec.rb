@@ -10,6 +10,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
   include UserAccountHelpers
   include AuditTrailHelpers
   include ScenarioHelpers
+  include IsoManagedHelpers 
 
   def sub_dir
     return "features/scenarios"
@@ -50,137 +51,94 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       wait_for_ajax(10)
       context_menu_element_v2('history', '0.1.0', :document_control)
       wait_for_ajax(10)
-      expect(page).to have_content 'Manage Status'
-      expect(page).to have_content("Current Status:")
-      expect(page).to have_content("Incomplete")
 
-      fill_in '[iso_managed]administrative_note', with: 'First step in the lifecyle.'
-      fill_in '[iso_managed]unresolved_issue', with: 'None that we know of.'
-      click_button "state_submit"
-      wait_for_ajax(20)
-      expect(page).to have_content("Candidate")
+      dc_check_status('Incomplete')
+      fill_in 'Administrative note', with: 'First step in the lifecyle.'
+      fill_in 'Unresolved issue', with: 'None that we know of.'
+      dc_forward_to('Candidate')
 
-      find(:xpath, "//*[@id='version-label-edit']").click
-      fill_in 'iso_scoped_identifier[version_label]', with: '1st Draft.'
-      find(:xpath, "//*[@id='version-label-submit']").click
+      dc_update_version_label('1st Draft')
 
-      fill_in '[iso_managed]administrative_note', with: 'Next step in the lifecyle.'
-      fill_in '[iso_managed]unresolved_issue', with: 'Still none that we know of.'
-      click_button "state_submit"
-      wait_for_ajax(20)
-      expect(page).to have_content("Recorded")
+      fill_in 'Administrative note', with: 'Next step in the lifecyle.'
+      fill_in 'Unresolved issue', with: 'Still none that we know of.'
+      dc_forward_to('Qualified')
 
-      click_button "state_submit"
-      wait_for_ajax(20)
-      expect(page).to have_content("Qualified")
-      click_link 'Return'
-      wait_for_ajax(120)
+      click_on 'Return'
+      wait_for_ajax(10)
 
       find('.registration-state').click
-      wait_for_ajax(120)
-      expect( find(:xpath, "//td[contains(.,'Qualified')]") ).to have_selector ('.icon-lock-open')
+      wait_for_ajax(10)
+      expect( find(:xpath, "//td[contains(.,'Qualified')]") ).to have_selector('.icon-lock-open')
       ui_check_table_info("history", 1, 1, 1)
 
       context_menu_element_v2('history', '0.1.0', :edit)
-      wait_for_ajax(120)
-      click_link 'Return'
+      wait_for_ajax(10)
+      click_on 'Return'
+      wait_for_ajax(10)
 
-      wait_for_ajax(20)
       ui_check_table_info("history", 1, 1, 1)
       find('.registration-state').click
-      wait_for_ajax(20)
-      expect( find(:xpath, "//td[contains(.,'Qualified')]") ).to have_selector ('.icon-lock')
+      wait_for_ajax(10)
+      expect( find(:xpath, "//td[contains(.,'Qualified')]") ).to have_selector('.icon-lock')
 
       context_menu_element_v2('history', '0.1.0', :edit)
-      wait_for_ajax(120)
-      click_link 'Return'
-      wait_for_ajax(20)
+      wait_for_ajax(10)
+      click_on 'Return'
+      wait_for_ajax(10)
       ui_check_table_info("history", 1, 2, 2)
 
       context_menu_element_v2('history', 1, :document_control)
-      wait_for_ajax(120)
-      expect(page).to have_content 'Version Control'
-      find('#version-edit').click
-      select 'Major: 1.0.0', from: 'select-release'
-      click_on 'Update Version'
-      wait_for_ajax(120)
-      expect( find('#imh_header') ).to have_content('Qualified')
-      expect( find('#imh_header') ).to have_content('1.0.0')
-
-      click_link 'Return'
-      wait_for_ajax(120)
+      wait_for_ajax(10)
+      dc_update_version('1.0.0')
+      click_on 'Return'
+      wait_for_ajax(10)
 
       context_menu_element_v2('history', '1.0.0', :edit)
-      wait_for_ajax(120)
-      click_link 'Return'
-      wait_for_ajax(120)
+      wait_for_ajax(10)
+      click_on 'Return'
+      wait_for_ajax(10)
       ui_check_table_info("history", 1, 3, 3)
 
       context_menu_element_v2('history', 1, :document_control)
-      wait_for_ajax(120)
-      expect(page).to have_content 'Version Control'
-      find('#version-edit').click
-      select 'Minor: 0.2.0', from: 'select-release'
-      click_on 'Update Version'
-      wait_for_ajax(120)
-      expect( find('#imh_header') ).to have_content('0.2.0')
-      click_link 'Return'
-      wait_for_ajax(120)
+      wait_for_ajax(10)
+      dc_update_version('0.2.0')
+      click_on 'Return'
+      wait_for_ajax(10)
       ui_check_table_info("history", 1, 3, 3)
 
       context_menu_element_v2('history', 1, :document_control)
-      wait_for_ajax(120)
-      click_button "state_submit"
-      wait_for_ajax(20)
-      expect(page).to have_content("Standard")
-      expect( find('#imh_header') ).to have_content('Standard')
-      click_link 'Return'
-      wait_for_ajax(120)
+      wait_for_ajax(10)
+      dc_forward_to('Standard')
+      click_on 'Return'
+      wait_for_ajax(10)
 
       context_menu_element_v2('history', 'Standard', :edit)
-      wait_for_ajax(120)
-      click_link 'Return'
-      wait_for_ajax(20)
+      wait_for_ajax(10)
+      click_on 'Return'
+      wait_for_ajax(10)
       ui_check_table_info("history", 1, 4, 4)
 
       context_menu_element_v2('history', '0.3.0', :document_control)
-      wait_for_ajax(120)
-      click_button "state_submit"
-      expect(page).to have_content("Candidate")
+      wait_for_ajax(10)
+      dc_forward_to('Candidate')
 
-      find('#version-label-edit').click
-      fill_in 'iso_scoped_identifier[version_label]', with: 'Standard'
-      find('#version-label-submit').click
-
-      click_button "state_submit"
-      wait_for_ajax(20)
-      expect(page).to have_content("Recorded")
-
-      click_button "state_submit"
-      wait_for_ajax(20)
-      expect( find('#imh_header') ).to have_content('Qualified')
-      click_link 'Return'
-      wait_for_ajax(120)
+      dc_update_version_label('Standard')
+      dc_forward_to('Qualified')
+      click_on 'Return'
+      wait_for_ajax(10)
 
       context_menu_element_v2('history', '0.3.0', :document_control)
-      wait_for_ajax(120)
-      expect(page).to have_content 'Version Control'
-      find('#version-edit').click
-      select 'Major: 1.0.0', from: 'select-release'
-      click_on 'Update Version'
-      wait_for_ajax(120)
-      expect( find('#imh_header') ).to have_content('1.0.0')
+      wait_for_ajax(10)
+      dc_update_version('1.0.0')
 
-      click_link 'Return'
-      wait_for_ajax(120)
+      click_on 'Return'
+      wait_for_ajax(10)
 
       context_menu_element_v2('history', 1, :document_control)
-      wait_for_ajax(120)
-      click_button "state_submit"
-      wait_for_ajax(20)
-      expect( find('#imh_header') ).to have_content('Standard')
-      click_link 'Return'
-      wait_for_ajax(120)
+      wait_for_ajax(10)
+      dc_forward_to('Standard')
+      click_on 'Return'
+      wait_for_ajax(10)
     end
 
     it "allows an item to move through the lifecyle 2 (REQ-GENERIC-MI-020, REQ-GENERIC-MI-060)", scenario: true, js: true do
