@@ -280,6 +280,8 @@ function dtSDTMIGDomainShowColumns() {
     { data: "label" },
     { data: "typed_as.label" },
     { data: "format" },
+    { data: "ct_and_format" },
+    {data: "ct_reference"},
     { data: "classified_as.label" },
     { data: "description" },
     { data: "compliance.label" }
