@@ -519,7 +519,7 @@ describe "Import::SponsorTermFormatOne" do
     end
 
     it "counts and ranks" do
-      {"2-6" => {uri: @uri_2_6, count: 213225}, "3-0" => {uri: @uri_3_0, count: 314763}, "3-1" => {uri: @uri_3_1, count: 323309}}.each do |version, data|
+      {"2-6" => {uri: @uri_2_6, count: 215199}, "3-0" => {uri: @uri_3_0, count: 316708}, "3-1" => {uri: @uri_3_1, count: 325418}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
@@ -611,6 +611,33 @@ describe "Import::SponsorTermFormatOne" do
         results << cl_id if cl_result
       end
       results
+    end
+
+    def subsets_and_refers_to
+      # Could use this in the query below but used the more verbose filter to make it obvious and test
+      # FILTER (EXISTS {?cl th:narrower ?x} && NOT EXISTS {?cl th:refersTo ?x})
+      query = %Q{
+        SELECT ?clid ?cln ?cliid ?clin WHERE  
+        {
+          ?s th:isTopConceptReference/bo:reference ?cl .
+          ?cl th:identifier ?clid .  
+          ?cl th:subsets ?y .
+          BIND (EXISTS {?cl th:narrower ?x} as ?n)
+          BIND (EXISTS {?cl th:refersTo ?x} as ?rt)
+          FILTER (!?n || !?rt)           
+          ?cl th:narrower ?cli .
+          ?cl th:notation ?cln .
+          ?cli th:identifier ?cliid .  
+          ?cli th:notation ?clin .
+        } ORDER BY ?cln ?clin ?custname
+      }
+      query_results = Sparql::Query.new.query(query, "", [:isoI, :isoT, :isoC, :th, :bo])
+      query_results.by_object_set([:clid, :cln, :cliid, :clin])
+    end
+
+    it "custom property analysis" do
+      results = subsets_and_refers_to
+      expect(results.empty?).to be(true)
     end
 
     it "custom property analysis" do

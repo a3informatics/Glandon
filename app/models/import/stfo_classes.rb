@@ -607,7 +607,7 @@ module Import::STFOClasses
 
     # Add log
     def add_log(msg)
-      puts colourize("#{msg}", "blue")
+      #puts colourize("#{msg}", "blue")
       ConsoleLogger.info(self.class.name, "add_log", msg)
     end
 

@@ -38,7 +38,7 @@ class Import::SponsorTermFormatOne < Import
     merge_reader_data(readers)
     
     # Temp code
-    puts colourize("Errors on read: #{self.errors.full_messages}", "red") if self.errors.any?
+    add_error("Errors on read: #{self.errors.full_messages}") if self.errors.any?
 
     # Correct code
     results = add_parent(params)
@@ -186,13 +186,7 @@ private
       std_sym = child.synonyms_to_a
       property = child.custom_properties.property("Synonym Sponsor")
       extra_sym = property.value.split(";").map(&:strip).sort
-      if std_sym == extra_sym
-        property.value = ""
-        #puts colourize("Synonyms cleared: Ref: #{ref.identifier}, #{child.identifier}.", "red")
-      else
-        puts colourize("Synonyms mismatch: Ref: #{ref.identifier}, #{child.identifier}. Synonyms: '#{std_sym}' v '#{extra_sym}'", "red")
-        #property.value = (extra_sym - std_sym).join("; ")
-      end
+      add_warning("Synonyms mismatch: Ref: #{ref.identifier}, #{child.identifier}. Synonyms: '#{std_sym}' v '#{extra_sym}'") unless std_sym == extra_sym
     end
   end
 
@@ -258,8 +252,14 @@ private
 
   # Add error
   def add_log(msg)
-    puts colourize("#{msg}", "blue")
+    #puts colourize("#{msg}", "blue")
     ConsoleLogger.info(self.class.name, "add_log", msg)
+  end
+
+  # Add error
+  def add_warning(msg)
+    puts colourize("#{msg}", "yellow")
+    ConsoleLogger.info(self.class.name, "add_warning", msg)
   end
 
   # Check subset item sets match.
@@ -316,7 +316,6 @@ private
     def override?(cl, cli)
       return nil if @config.nil?
       entry = @config.dig(:override, cl.to_sym, cli.to_sym)
-    puts colourize("Checking override #{cl}, #{cli}, entry=#{entry}", "brown")
       return false if entry.nil?
       true
     end
@@ -324,7 +323,6 @@ private
     def qualify(cl, cli)
       return nil if @config.nil?
       uri = @config.dig(:qualify, cl.to_sym, cli.to_sym)
-    puts colourize("Checking qualify #{cl}, #{cli}, uri=#{uri}", "blue")
       return nil if uri.nil?
       Uri.new(uri: uri)
     end
