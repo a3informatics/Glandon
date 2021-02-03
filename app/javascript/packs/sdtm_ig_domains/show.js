@@ -7,7 +7,7 @@ $(document).ready( () => {
   let tp = new TablePanel({
     selector: "#show-panel table#show",
     url: sdtmIGDomainShowDataUrl,
-    param: "adam_ig_dataset",
+    param: "sdtm_ig_domain",
     extraColumns: dtSDTMIGDomainShowColumns(),
     count: 1000,
     order: [[0, "asc"]],
