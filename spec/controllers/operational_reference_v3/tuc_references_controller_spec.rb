@@ -10,10 +10,7 @@ describe OperationalReferenceV3::TucReferencesController do
   include IsoManagedHelpers
 
   def make_standard(item)
-    params = {}
-    params[:registration_status] = "Standard"
-    params[:previous_state] = "Incomplete"
-    item.update_status(params)
+    IsoManagedHelpers.make_item_standard(item)
   end
   
   describe "Update" do

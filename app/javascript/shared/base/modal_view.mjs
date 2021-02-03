@@ -47,6 +47,7 @@ export default class ModalView {
 
   /** Private **/
 
+  
   /**
    * Sets event listeners, handlers
    * Override and extend to add custom listeners

@@ -18,15 +18,26 @@ class IsoManagedV2Controller < ApplicationController
 
   def status
     authorize IsoManaged, :status?
-    @referer = request.referer
     @managed_item = find_item(params)
-    @token = get_token(@managed_item)
-    if !@token.nil?
-      @current_id = the_params[:current_id]
-      @next_versions = SemanticVersion.from_s(@managed_item.previous_release).next_versions
-      @close_path = TypePathManagement.history_url_v2(@managed_item, true)
-    else
-      redirect_to @referer
+    respond_to do |format|
+      format.html do
+        @token = get_token(@managed_item)
+        if !@token.nil?
+          @close_path = TypePathManagement.history_url_v2(@managed_item, true)
+          @item_klass = @managed_item.class.name
+        else
+          flash[:error] = "The item is locked for editing."
+          redirect_to request.referer
+        end
+      end
+      format.json do
+        token = Token.find_token(@managed_item, current_user)
+        if token.nil?
+          render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
+        else
+          render :json => { data: @managed_item.status_summary }, :status => 200
+        end
+      end
     end
   end
 
@@ -55,7 +66,6 @@ class IsoManagedV2Controller < ApplicationController
         render json: impact_d3(item, results)
       end
     end 
-  
   end
 
   def custom_properties
@@ -69,25 +79,64 @@ class IsoManagedV2Controller < ApplicationController
     authorize IsoManaged, :status?
     managed_item = find_item(params)
     managed_item.make_current
-    redirect_to request.referer
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.json { render json: { data: {} } }
+    end
   end
 
-  def update_status
+  def next_state
     authorize IsoManaged, :status?
-    referer = request.referer
-    @managed_item = IsoManagedV2.find_minimum(protect_from_bad_id(params))
-    token = Token.find_token(@managed_item, current_user)
+    item = find_item(params)
+    token = Token.find_token(item, current_user)
     if !token.nil?
-      @managed_item.update_status(the_params)
-      if !@managed_item.errors.empty?
-        flash[:error] = @managed_item.errors.full_messages.to_sentence
+      update_to_next_state(item, the_params)
+      if item.errors.empty?
+        AuditTrail.update_item_event(current_user, item, item.audit_message_status_update)
+        render :json => { :data => item.status_summary}, :status => 200
       else
-        AuditTrail.update_item_event(current_user, @managed_item, @managed_item.audit_message_status_update)
+        render :json => { :errors => item.errors.full_messages}, :status => 422
       end
-      redirect_to referer
     else
-      flash[:error] = "The edit lock has timed out."
-      redirect_to TypePathManagement.history_url_v2(@managed_item)
+      render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
+    end
+  end
+
+  def state_change
+    authorize IsoManaged, :status?
+    return false unless valid_action?(the_params[:action].to_sym)
+    item = find_item(params)
+    token = Token.find_token(item, current_user)
+    if !token.nil?
+      if item.update_status_permitted?
+        uris = item.update_status_dependent_items(the_params)
+        items = ffor_get_items(uris, the_params[:action])
+        return false unless state_change_allowed?(item, items, the_params[:action])
+        lock_set = TokenSet.new(items, current_user)
+        ffor([item.uri] + lock_set.uris, the_params[:action])
+        lock_set.each { |x| AuditTrail.update_item_event(current_user, x[:item], x[:item].audit_message_status_update) }
+        lock_set.release
+        render :json => { :data => IsoManagedV2.find_minimum(item.uri).status_summary}, :status => 200
+      else
+        render :json => { :errors => item.errors.full_messages}, :status => 422
+      end
+    else
+      render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
+    end
+  end
+
+  def state_change_impacted_items
+    authorize IsoManaged, :status?
+    return false unless valid_action?(the_params[:action].to_sym)
+    item = find_item(params)
+    token = Token.find_token(item, current_user)
+    if !token.nil?
+      uris = item.update_status_dependent_items(with_dependencies: true)
+      items = ffor_get_items(uris, the_params[:action].to_sym)
+      set = [item] + items
+      render :json => { :data => set.map{|x| x.registration_status_summary(the_params[:action].to_sym)} }, :status => 200
+    else
+      render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
     end
   end
 
@@ -98,7 +147,21 @@ class IsoManagedV2Controller < ApplicationController
     if !token.nil?
       @managed_item.release(the_params[:sv_type].downcase.to_sym)
       status = @managed_item.errors.empty? ? 200 : 422
-      render :json => { :data => @managed_item.semantic_version, :errors => @managed_item.errors.full_messages}, :status => status
+      render :json => { :data => @managed_item.status_summary[:semantic_version], :errors => @managed_item.errors.full_messages}, :status => status
+    else
+      render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
+    end
+  end
+
+  def update_version_label
+    authorize IsoManaged, :status?
+    @managed_item = find_item(params)
+    token = Token.find_token(@managed_item, current_user)
+    if !token.nil?
+      si = @managed_item.has_identifier
+      si.update(the_params)
+      status = si.errors.empty? ? 200 : 422
+      render :json => { :data => si.version_label, :errors => si.errors.full_messages}, :status => status
     else
       render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
     end
@@ -156,10 +219,11 @@ private
   def the_params
     # Strong parameter using iso_managed not V2 version.
     params.require(:iso_managed).permit(:identifier, :scope_id, :current_id, :tag_id, :registration_status, :previous_state, 
-      :administrative_note, :unresolved_issue, :sv_type, :offset, :count, 
-      :change_description, :explanatory_comment, :origin, :referer)
+      :administrative_note, :unresolved_issue, :sv_type, :version_label, :offset, :count, 
+      :change_description, :explanatory_comment, :origin, :referer, :with_dependencies, :action)
   end
 
+  # Formatting impact for D3
   def impact_d3(item, nodes)
     result = {nodes: [], links: []}
     nodes.each {|x| result[:links] << { source: item.id, target: x.id } } 
@@ -169,4 +233,40 @@ private
         impact_path: impact_iso_managed_v2_path(x)}}
     result
   end
+
+  # Update to next state
+  def update_to_next_state(item, params)
+    return unless item.update_status_permitted?
+    item.next_state(params)
+  end
+
+  # Check valid action
+  def valid_action?(action)
+    return true if [:fast_forward, :rewind].include? action
+    render :json => {:errors => ["Invalid action detected."] }, :status => 422
+    false
+  end
+
+  # State changge allowed
+  def state_change_allowed?(item, items, action)
+    set = [item] + items
+    allowed = set.map{|x| action.to_sym == :fast_forward ? x.fast_forward? : x.rewind? }
+    return true if allowed.all?{ |x| x }
+    render :json => {:errors => ["The state change is not permitted."] }, :status => 422
+    false
+  end
+
+  # Fast Forward or Rewind
+  def ffor(uris, action)
+    return IsoManagedV2.fast_forward_state(uris) if action.to_sym == :fast_forward
+    return IsoManagedV2.rewind_state(uris) if action.to_sym == :rewind
+    return []
+  end
+
+  # Fast Forward or Rewind to get the items for the operation
+  def ffor_get_items(uris, action)
+    return IsoManagedV2.find_minimum_set(uris) if action.to_sym == :fast_forward || action.to_sym == :rewind
+    return []
+  end
+
 end

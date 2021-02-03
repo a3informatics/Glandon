@@ -12,6 +12,7 @@ describe "Thesauri Extensions", :type => :feature do
   include EditorHelpers
   include TagHelpers
   include TokenHelpers
+  include IsoManagedHelpers
 
   describe "The Content Admin User can", type: :feature, js: true do
 
@@ -411,9 +412,8 @@ describe "Thesauri Extensions", :type => :feature do
       wait_for_ajax 10
 
       context_menu_element_v2("history", "C96785E", :document_control)
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
+      wait_for_ajax 10
+      dc_forward_to('Recorded')
       click_on "Return"
       wait_for_ajax 10
 

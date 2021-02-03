@@ -71,6 +71,38 @@ describe "IsoRegistrationStateV2" do
     expect(object.valid?).to eq(false)
   end
 
+  it "does not validate an invalid object, Unresolved Issue" do
+    object = IsoRegistrationStateV2.new
+    object.by_authority = IsoRegistrationAuthority.find_by_short_name("AAA")
+    object.registration_status = "Incomplete"
+    object.administrative_note = "Note"
+    object.effective_date = Time.now
+    object.until_date = Time.now
+    object.unresolved_issue = "Unresolved issue§§§§§§"
+    object.administrative_status = "Administrative status"
+    object.previous_state   = "Standard"
+    object.uri = "na"
+    expect(object.valid?).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages).to eq(["Unresolved issue contains invalid characters"])
+  end
+
+  it "does not validate an invalid object, Administrative Note" do
+    object = IsoRegistrationStateV2.new
+    object.by_authority = IsoRegistrationAuthority.find_by_short_name("AAA")
+    object.registration_status = "Incomplete"
+    object.administrative_note = "Note§§§§§§"
+    object.effective_date = Time.now
+    object.until_date = Time.now
+    object.unresolved_issue = "Unresolved issue"
+    object.administrative_status = "Administrative status"
+    object.previous_state   = "Standard"
+    object.uri = "na"
+    expect(object.valid?).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages).to eq(["Administrative note contains invalid characters"])
+  end
+
   it "does not validate an invalid object, RA URI" do
     object = IsoRegistrationStateV2.new
     object.by_authority = nil
@@ -82,6 +114,8 @@ describe "IsoRegistrationStateV2" do
     object.previous_state   = "Standard"
     object.uri = "na"
     expect(object.valid?).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages).to eq(["By authority empty object"])
   end
 
   it "does not validate an invalid object, previous state" do
@@ -628,13 +662,19 @@ describe "IsoRegistrationStateV2" do
     check_file_actual_expected(actual, sub_dir, "states_expected_1.yaml", equate_method: :match_array)
   end
 
-  it "returns the previous states" do
-    actual = IsoRegistrationStateV2.previous_states("Incomplete")
-    check_file_actual_expected(actual, sub_dir, "previous_states_expected_1.yaml", equate_method: :match_array)
-    actual = IsoRegistrationStateV2.previous_states("Standard")
-    check_file_actual_expected(actual, sub_dir, "previous_states_expected_2.yaml", equate_method: :match_array)
+  it "returns the previous states including" do
+    actual = IsoRegistrationStateV2.previous_states_including("Incomplete")
+    check_file_actual_expected(actual, sub_dir, "previous_states_including_expected_1.yaml", equate_method: :match_array, write_file: true)
+    actual = IsoRegistrationStateV2.previous_states_including("Standard")
+    check_file_actual_expected(actual, sub_dir, "previous_states_including_expected_2.yaml", equate_method: :match_array, write_file: true)
   end
       
+  it "returns the previous states" do
+    actual = IsoRegistrationStateV2.previous_states("Incomplete")
+    check_file_actual_expected(actual, sub_dir, "previous_states_expected_1.yaml", equate_method: :match_array, write_file: true)
+    actual = IsoRegistrationStateV2.previous_states("Standard")
+    check_file_actual_expected(actual, sub_dir, "previous_states_expected_2.yaml", equate_method: :match_array, write_file: true)
+  end
       
 end
   

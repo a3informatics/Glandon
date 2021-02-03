@@ -19,6 +19,7 @@ input[type=checkbox].styled + .checkbox-styled {
   height: 16px;
   border-radius: 3px;
   border: 1px solid $grey-light;
+  vertical-align: middle;
 }
 
 // Blue (base color)
@@ -54,4 +55,10 @@ input[type=checkbox].styled:focus + .checkbox-styled {
 // Disabled
 input[type=checkbox].styled:disabled + .checkbox-styled {
   opacity: .6;
+}
+
+// Label alignment 
+.checkbox-styled + span {
+  vertical-align: middle;
+  margin: 0;
 }

@@ -10,6 +10,7 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
   include EditorHelpers
   include TokenHelpers
   include ItemsPickerHelpers
+  include IsoManagedHelpers
 
   describe "Edit SDTM Sponsor Domain, Draft State", :type => :feature, js:true do
 
@@ -283,10 +284,8 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
 
       # Make Std
       context_menu_element_v2('history', '0.1.0', :document_control)
-      click_on 'Submit Status Change'
-      click_on 'Submit Status Change'
-      click_on 'Submit Status Change'
-      click_on 'Submit Status Change'
+      wait_for_ajax 10
+      dc_forward_to('Standard')
       click_on 'Return'
     end
 

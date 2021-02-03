@@ -1,0 +1,19 @@
+---
+:data:
+  :state:
+    :label: Candidate
+    :definition: The Administered Item has been proposed for progression through the
+      registration levels.
+  :next_state:
+    :label: Recorded
+    :definition: 'The Registration Authority has confirmed that: a) all mandatory
+      metadata attributes have been completed.'
+  :semantic_version:
+    :label: 0.1.0
+    :editable: true
+    :next_versions:
+      :major: 1.0.0
+      :minor: 0.1.0
+      :patch: 0.0.1
+  :current: false
+  :version_label: ''

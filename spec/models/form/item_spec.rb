@@ -10,6 +10,10 @@ describe Form::Item do
     return "models/form/item"
   end
 
+  def make_standard(item)
+    IsoManagedHelpers.make_item_standard(item)
+  end
+
   describe "Validations" do
 
     before :all do
@@ -105,8 +109,7 @@ describe Form::Item do
     it "Deletes Common item" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/form_test/V1#F"))
-      params = {registration_status: "Standard", previous_state: "Incomplete"}
-      form.update_status(params)
+      make_standard(form)
       form = Form.find_full(form.uri)
       fix_dates(form, sub_dir, "delete_item_expected_6a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "delete_item_expected_6a.yaml", equate_method: :hash_equal)
@@ -257,13 +260,6 @@ describe Form::Item do
 
   describe "Move up/down TUC References" do
     
-    def make_standard(item)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      item.update_status(params)
-    end
-
     before :each do
       load_files(schema_files, [])
       load_cdisc_term_versions(1..1)
