@@ -83,6 +83,12 @@ module IsoManagedHelpers
     expect( find('.semantic-version') ).to have_content(version) 
   end
 
+  def dc_check_version_options(options)
+    find("#version .bg-label").click
+    ui_select_check_options("version-select", options)
+    click_on('sp-dismiss')
+  end
+
   def dc_check_version_label(version_label)
     expect( find('#version-label') ).to have_content(version_label) 
     expect( find('#imh_header .version-label') ).to have_content(version_label) unless version_label.eql?('None')
@@ -114,6 +120,7 @@ module IsoManagedHelpers
   def dc_forward_to(state)
     while not dc_get_current_state.eql?(state) do 
       click_on 'Forward to Next'
+      ui_confirmation_dialog true if state.eql?('Superseded')
       wait_for_ajax 10 
       expect(page).to have_content('Changed Status to')
     end
@@ -125,7 +132,7 @@ module IsoManagedHelpers
 
   def dc_update_version(version, success: true)
     find('#version .bg-label').click 
-    select version
+    select version, from: 'version-select'
     click_on('sp-submit')
     wait_for_ajax 10 
     dc_check_version(version) if success
