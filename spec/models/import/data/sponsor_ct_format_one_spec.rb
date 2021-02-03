@@ -64,6 +64,7 @@ describe "Import::SponsorTermFormatOne" do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
       load_cdisc_term_versions(1..66)
       Import.destroy_all
       delete_all_public_test_files
@@ -229,13 +230,13 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
         #expect(public_file_does_not_exist?("test", filename)).to eq(true)
         actual = read_public_yaml_file("test", filename)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_2-6.yaml")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_2-6.yaml")
         check_file_actual_expected(actual, sub_dir, "import_errors_expected_2-6.yaml", equate_method: :hash_equal)
         #copy_file_from_public_files("test", filename, sub_dir)
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
         check_ttl_fix_v2(filename, "CT_V2-6.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -283,13 +284,13 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
         #expect(public_file_does_not_exist?("test", filename)).to eq(true)
         actual = read_public_yaml_file("test", filename)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-0.yaml")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-0.yaml")
         check_file_actual_expected(actual, sub_dir, "import_errors_expected_3-0.yaml", equate_method: :hash_equal)
         #copy_file_from_public_files("test", filename, sub_dir)
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
         check_ttl_fix_v2(filename, "CT_V3-0.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -339,13 +340,13 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
         #expect(public_file_does_not_exist?("test", filename)).to eq(true)
         actual = read_public_yaml_file("test", filename)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-1.yaml")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-1.yaml")
         check_file_actual_expected(actual, sub_dir, "import_errors_expected_3-1.yaml", equate_method: :hash_equal)
         #copy_file_from_public_files("test", filename, sub_dir)
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-1.ttl")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-1.ttl")
         check_ttl_fix_v2(filename, "CT_V3-1.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -386,6 +387,7 @@ describe "Import::SponsorTermFormatOne" do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
       load_cdisc_term_versions(1..66)
       load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
       load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
@@ -465,6 +467,7 @@ describe "Import::SponsorTermFormatOne" do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
       load_cdisc_term_versions(1..62)
       load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
       load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
@@ -516,7 +519,7 @@ describe "Import::SponsorTermFormatOne" do
     end
 
     it "counts and ranks" do
-      {"2-6" => {uri: @uri_2_6, count: 213225}, "3-0" => {uri: @uri_3_0, count: 314763}, "3-1" => {uri: @uri_3_1, count: 323309}}.each do |version, data|
+      {"2-6" => {uri: @uri_2_6, count: 215199}, "3-0" => {uri: @uri_3_0, count: 316708}, "3-1" => {uri: @uri_3_1, count: 325418}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
@@ -608,6 +611,33 @@ describe "Import::SponsorTermFormatOne" do
         results << cl_id if cl_result
       end
       results
+    end
+
+    def subsets_and_refers_to
+      # Could use this in the query below but used the more verbose filter to make it obvious and test
+      # FILTER (EXISTS {?cl th:narrower ?x} && NOT EXISTS {?cl th:refersTo ?x})
+      query = %Q{
+        SELECT ?clid ?cln ?cliid ?clin WHERE  
+        {
+          ?s th:isTopConceptReference/bo:reference ?cl .
+          ?cl th:identifier ?clid .  
+          ?cl th:subsets ?y .
+          BIND (EXISTS {?cl th:narrower ?x} as ?n)
+          BIND (EXISTS {?cl th:refersTo ?x} as ?rt)
+          FILTER (!?n || !?rt)           
+          ?cl th:narrower ?cli .
+          ?cl th:notation ?cln .
+          ?cli th:identifier ?cliid .  
+          ?cli th:notation ?clin .
+        } ORDER BY ?cln ?clin ?custname
+      }
+      query_results = Sparql::Query.new.query(query, "", [:isoI, :isoT, :isoC, :th, :bo])
+      query_results.by_object_set([:clid, :cln, :cliid, :clin])
+    end
+
+    it "custom property analysis" do
+      results = subsets_and_refers_to
+      expect(results.empty?).to be(true)
     end
 
     it "custom property analysis" do

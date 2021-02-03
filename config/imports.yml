@@ -2647,6 +2647,14 @@ defaults: &defaults
                 can_be_empty: true
                 additional:
                   token: ";"
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping: 
+                  map: {}
+                additional:
+                  definition: Synonym Sponsor
           -
             label: "CODE_DEFINITION"
             actions:
@@ -2890,6 +2898,14 @@ defaults: &defaults
                 can_be_empty: true
                 additional:
                   token: ";"
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping: 
+                  map: {}
+                additional:
+                  definition: Synonym Sponsor
           -
             label: "CODE_DEFINITION"
             actions:

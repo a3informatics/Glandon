@@ -189,6 +189,7 @@ module Import::STFOClasses
 
     def to_subset_of_extension(extensions)
       new_narrower = []
+      new_refers_to = []
       ext = extensions[self.identifier]
       #self.identifier = Thesaurus::ManagedConcept.new_identifier
       self.identifier = new_identifier(self.label, self.notation)
@@ -202,9 +203,11 @@ module Import::STFOClasses
         else
           new_child.custom_properties.merge(child.custom_properties)
           new_narrower << new_child
+          new_refers_to << new_child
         end
       end
       self.narrower = new_narrower
+      self.refers_to = new_refers_to
       self.subsets = ext
       self.add_ordering
       self
@@ -235,6 +238,7 @@ module Import::STFOClasses
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
       ref_ct = reference(ct) # do early before identifier updated.
       new_narrower = []
+      new_refers_to = []
       old_narrower = self.narrower.dup
       self.narrower = []
       self.identifier = new_identifier(self.label, self.notation) unless keep_identifier
@@ -246,9 +250,11 @@ module Import::STFOClasses
         else
           copy_properties_from_to(child, new_child)
           new_narrower << new_child
+          new_refers_to << new_child
         end
       end
       self.narrower = new_narrower
+      self.refers_to = new_refers_to
       self.subsets = ref_ct
       self.add_ordering
       self.add_ranking if self.ranked?
@@ -262,6 +268,7 @@ module Import::STFOClasses
       ref_ct = sponsor_ct.find{|x| x.identifier == self.identifier}
       return nil if ref_ct.nil?
       new_narrower = []
+      new_refers_to = []
       #self.identifier = Thesaurus::ManagedConcept.new_identifier
       self.identifier = new_identifier(self.label, self.notation)
       old_narrower = self.narrower.dup
@@ -274,9 +281,11 @@ module Import::STFOClasses
         else
           copy_properties_from_to(child, new_child)
           new_narrower << new_child
+          new_refers_to << new_child
         end
       end
       self.narrower = new_narrower
+      self.refers_to = new_refers_to
       self.subsets = ref_ct
       self.add_ordering
       self.add_ranking if self.ranked?
@@ -293,6 +302,7 @@ module Import::STFOClasses
       tcs = Thesaurus::ManagedConcept.where(notation: self.notation)
       tc = tcs.empty? ? nil : tcs.first
       new_narrower = []
+      new_refers_to = []
       self.identifier = tc.nil? ? Thesaurus::ManagedConcept.new_identifier : tc.identifier
       old_narrower = self.narrower.dup
       self.narrower = []
@@ -304,9 +314,11 @@ module Import::STFOClasses
         else
           copy_properties_from_to(child, new_child)
           new_narrower << new_child
+          new_refers_to << new_child
         end
       end
       self.narrower = new_narrower
+      self.refers_to = new_refers_to
       self.subsets = ref_ct
       self.add_ordering
       self.add_ranking if self.ranked?
@@ -431,7 +443,7 @@ module Import::STFOClasses
 
     def exact_match(ct, identifier)
       results = ct.find_by_identifiers([self.identifier, identifier])
-      return Thesaurus::UnmanagedConcept.find(results[identifier]) if results.key?(identifier)
+      return Thesaurus::UnmanagedConcept.find_children(results[identifier]) if results.key?(identifier)
       add_log ("**** Failed to find exact match '#{identifier}', identifier '#{self.identifier}'.")
       nil
     end
@@ -595,7 +607,7 @@ module Import::STFOClasses
 
     # Add log
     def add_log(msg)
-      puts colourize("#{msg}", "blue")
+      #puts colourize("#{msg}", "blue")
       ConsoleLogger.info(self.class.name, "add_log", msg)
     end
 
