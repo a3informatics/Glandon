@@ -10,7 +10,8 @@ describe "Thesauri Subsets", :type => :feature do
   include NameValueHelpers
   include ItemsPickerHelpers
   include TokenHelpers
-
+  include IsoManagedHelpers 
+  
   def sub_dir
     return "features/thesaurus/subset"
   end
@@ -322,9 +323,8 @@ describe "Thesauri Subsets", :type => :feature do
       ui_check_table_info("history", 1, 1, 1)
 
       context_menu_element_v2("history", "0.1.0", :document_control)
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
+      wait_for_ajax 10
+      dc_forward_to('Recorded')
       click_link "Return"
       wait_for_ajax 10
 

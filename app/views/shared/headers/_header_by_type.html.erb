@@ -1,25 +1,35 @@
 <%
   case type
     when "Thesaurus::ManagedConcept"
-      header_path = "shared/headers/header_codelist"
-      @item.synonyms_and_preferred_terms
-      locals = { item: @item, badge: "CL", with_tags: with_tags }
+      if local_assigns.fetch(:true_header, false)
+        header_path = "shared/headers/header_codelist"
+      else 
+        header_path = "shared/headers/header_managed_item"
+      end
+      item.synonyms_and_preferred_terms
+      locals = { item: item, badge: "CL", with_tags: with_tags, context: nil }
     when "Thesaurus::UnmanagedConcept"
       header_path = "shared/headers/header_unmanaged_item"
-      @item.synonyms_and_preferred_terms
-      locals = { item: @item, badge: "CI", with_tags: with_tags }
+      item.synonyms_and_preferred_terms
+      locals = { item: item, badge: "CI", with_tags: with_tags }
     when "Thesaurus"
       header_path = "shared/headers/header_managed_item"
-      locals = { item: @item, badge: "icon-terminology", with_tags: with_tags }
+      locals = { item: item, badge: "icon-terminology", with_tags: with_tags }
     when "Form"
       header_path = "shared/headers/header_managed_item"
-      locals = { item: @item, badge: "icon-forms", with_tags: with_tags }
+      locals = { item: item, badge: "icon-forms", with_tags: with_tags }
     when "BiomedicalConceptInstance"
       header_path = "shared/headers/header_managed_item"
-      locals = { item: @item, badge: "icon-biocon", with_tags: with_tags }
-    when "SdtmSponsorDomain"
+      locals = { item: item, badge: "icon-biocon", with_tags: with_tags }
+    when "SdtmSponsorDomain", "SdtmClass", "SdtmIgDomain", "Sdtm_Ig", "Sdtm_Model"
       header_path = "shared/headers/header_managed_item"
-      locals = { item: @item, badge: "icon-sdtm", with_tags: with_tags }
+      locals = { item: item, badge: "icon-sdtm", with_tags: with_tags }
+    when "AdamIgDataset", "AdamIg"
+      header_path = "shared/headers/header_managed_item"
+      locals = { item: item, badge: "icon-adam", with_tags: with_tags }
+    else 
+      header_path = "shared/headers/header_managed_item"
+      locals = { item: item, badge: "?", with_tags: with_tags }
   end %>
 
 <%= render layout: header_path, :locals => locals do %>

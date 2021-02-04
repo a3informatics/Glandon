@@ -11,6 +11,10 @@ describe Form::Item::Question do
     return "models/form/item/question"
   end
 
+  def make_standard(item)
+    IsoManagedHelpers.make_item_standard(item)
+  end
+    
   describe "Validations" do
     
     before :all do
@@ -180,13 +184,6 @@ describe Form::Item::Question do
 
   describe "Add child" do
 
-    def make_standard(item)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      item.update_status(params)
-    end
-    
     before :each do
       data_files = ["forms/form_test_2.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -259,13 +256,6 @@ describe Form::Item::Question do
 
   describe "Delete TUc Reference" do
 
-    def make_standard(item)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      item.update_status(params)
-    end
-    
     before :each do
       data_files = ["forms/FN000150.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)

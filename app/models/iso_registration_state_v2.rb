@@ -214,10 +214,22 @@ class IsoRegistrationStateV2 < Fuseki::Base
     Rails.configuration.iso_registration_state.keys
   end
   
-  def self.previous_states(state)
+  # Previous States Including. Previous states including the one quoted. In order
+  #
+  # @return [Array] Array of state values
+  def self.previous_states_including(state)
     the_states = states
     index = the_states.index{|x| x == state.to_sym}
     the_states[0..index]
+  end
+
+  # Previous States. Previous states not including the one quoted. In order
+  #
+  # @return [Array] Array of state values
+  def self.previous_states(state)
+    the_states = states
+    index = the_states.index{|x| x == state.to_sym}
+    the_states[0..index-1]
   end
 
 private
