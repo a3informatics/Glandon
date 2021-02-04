@@ -199,7 +199,6 @@ class SdtmSponsorDomainsController < ManagedItemsController
     return true unless check_lock_for_item(sdtm_sponsor_domain)
     sdtm_sponsor_domain.diassociate_all
     AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain updated, all BCs associated were deleted.")
-    @lock.release 
     render :json => {data: []}, :status => 200
   end
 
