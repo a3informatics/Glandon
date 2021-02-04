@@ -16,6 +16,13 @@
       <%= render partial: "shared/buttons/timeout" %>
       <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
 
+      <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
+
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+            icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty?, new_tab: true } %>
+
+      <% end %>
+
     </div>
 
   <% end %>
