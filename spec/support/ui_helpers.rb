@@ -144,8 +144,8 @@ module UiHelpers
   end
 
 	def ui_check_table_cell_icon(table_id, row, col, icon)
-		td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
-		expect(td.find("div .icon-#{icon}", visible: :all)).to_not eq(nil)
+    td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+    expect(td.find(".icon-#{icon}", visible: :all)).to_not eq(nil)
 	end
 
   def ui_check_table_cell_delete(table_id, row, col)
