@@ -25,8 +25,8 @@ class SdtmSponsorDomainsController < ManagedItemsController
   end
 
   def show_data
-    sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(protect_from_bad_id(params))
-    render json: {data: sdtm_sponsor_domain.get_children}, status: 200
+    @sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(protect_from_bad_id(params))
+    render json: {data: variables_with_paths(@sdtm_sponsor_domain)}, status: 200
   end
 
   def edit
@@ -242,6 +242,21 @@ private
       else
         return super
     end
+  end
+
+  # Get variables with paths
+  def variables_with_paths(sdtm_sponsor_domain)
+    add_tc_paths_to_items(sdtm_sponsor_domain.get_children)
+  end
+
+  # Add paths to terminology references
+  def add_tc_paths_to_items(items)
+    items = items.each do |x|
+      unless x[:ct_reference].nil?
+        x[:ct_reference].reverse_merge!({show_path: thesauri_managed_concept_path({id: x[:ct_reference][:reference][:id], managed_concept: {context_id: ""}}) })
+      end
+    end
+    items
   end
 
   def model_klass
