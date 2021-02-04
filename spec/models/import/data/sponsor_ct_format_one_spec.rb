@@ -230,13 +230,13 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
         #expect(public_file_does_not_exist?("test", filename)).to eq(true)
         actual = read_public_yaml_file("test", filename)
-      copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_2-6.yaml")
+      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_2-6.yaml")
         check_file_actual_expected(actual, sub_dir, "import_errors_expected_2-6.yaml", equate_method: :hash_equal)
         #copy_file_from_public_files("test", filename, sub_dir)
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
+      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
         check_ttl_fix_v2(filename, "CT_V2-6.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -284,13 +284,13 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
         #expect(public_file_does_not_exist?("test", filename)).to eq(true)
         actual = read_public_yaml_file("test", filename)
-      copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-0.yaml")
+      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-0.yaml")
         check_file_actual_expected(actual, sub_dir, "import_errors_expected_3-0.yaml", equate_method: :hash_equal)
         #copy_file_from_public_files("test", filename, sub_dir)
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
+      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
         check_ttl_fix_v2(filename, "CT_V3-0.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -340,13 +340,13 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
         #expect(public_file_does_not_exist?("test", filename)).to eq(true)
         actual = read_public_yaml_file("test", filename)
-      copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-1.yaml")
+      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-1.yaml")
         check_file_actual_expected(actual, sub_dir, "import_errors_expected_3-1.yaml", equate_method: :hash_equal)
         #copy_file_from_public_files("test", filename, sub_dir)
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-1.ttl")
+      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-1.ttl")
         check_ttl_fix_v2(filename, "CT_V3-1.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -519,7 +519,7 @@ describe "Import::SponsorTermFormatOne" do
     end
 
     it "counts and ranks" do
-      {"2-6" => {uri: @uri_2_6, count: 215199}, "3-0" => {uri: @uri_3_0, count: 316708}, "3-1" => {uri: @uri_3_1, count: 325418}}.each do |version, data|
+      {"2-6" => {uri: @uri_2_6, count: 215199}, "3-0" => {uri: @uri_3_0, count: 316639}, "3-1" => {uri: @uri_3_1, count: 325418}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
