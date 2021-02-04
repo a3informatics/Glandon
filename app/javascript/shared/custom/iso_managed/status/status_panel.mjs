@@ -32,6 +32,9 @@ export default class StatusPanel {
       })
     })
 
+    // Prevent urls from being changed
+    Object.freeze( this.urls )
+
     this._loadData()
     this._setListeners()
     

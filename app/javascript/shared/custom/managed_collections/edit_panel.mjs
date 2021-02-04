@@ -35,13 +35,14 @@ export default class EditMCPanel {
     onEdited = () => {}
   }) {
     
-    Object.freeze( managedCollectionsUrls )
-
     Object.assign( this, {
       urls: urls || managedCollectionsUrls,
       selector, param, allowedTypes, 
       idsParam, order, onEdited 
     })
+
+    // Prevent urls from being changed
+    Object.freeze( this.urls ) 
 
     this.sp = this._initSelectablePanel()
     this.picker = this._initPicker()

@@ -9,7 +9,12 @@ $(document).ready( () => {
   });
 
   let emcp = new EditMCPanel({
-    allowedTypes: ['biomedical_concept_instance'],
+    allowedTypes: [
+      'managed_concept', 
+      'biomedical_concept_instance',
+      'form',
+      'sdtm_sponsor_domain'
+    ],
     order: [[3, 'asc']],
     onEdited: () => tt.extend()
   })
