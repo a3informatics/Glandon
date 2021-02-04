@@ -26,6 +26,7 @@ describe "SDTM Sponsor Domains", :type => :feature do
     before :all do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..8)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -66,7 +67,12 @@ describe "SDTM Sponsor Domains", :type => :feature do
       wait_for_ajax 10
       expect(page).to have_content 'Show: SDTM Sponsor Domain'
       ui_check_table_info("show", 1, 10, 41)
-      ui_check_table_row("show", 1, [ "1", "STUDYID", "Study Identifier", "Character", "", "Identifier", "Unique identifier for a study.", "Required"])
+      ui_check_table_row("show", 1, [ "1", "STUDYID", "Study Identifier", "Character", "", "", "", "Identifier", "Unique identifier for a study.", "Required"])
+      ui_table_search("show", "AELOC")
+      ui_check_table_cell("show", 1, 2, "AELOC")
+      ui_check_table_cell("show", 1, 3, "Location of Event")
+      ui_check_table_cell("show", 1, 6, "(LOC)")
+      ui_check_table_cell("show", 1, 7, "LOC C74456 v1.0.0")
     end
 
   end
@@ -76,6 +82,7 @@ describe "SDTM Sponsor Domains", :type => :feature do
     before :all do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..13)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
