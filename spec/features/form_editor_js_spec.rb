@@ -972,6 +972,45 @@ describe "Forms", :type => :feature do
       w.close
     end
 
+    it "allows to update the initial Question format (bug fix test)" do
+      ui_create_form('BUGTSTFORM', 'Test Form')
+
+      context_menu_element_v2('history', '0.1.0', :edit)
+      wait_for_ajax 10 
+
+      # Add Group
+      find_node('Test Form').click
+      click_action :add_child
+      find(:xpath, '//div[@id="d3"]//a[@id="normal_group"]').click
+      wait_for_ajax 10
+
+      # Add Question
+      click_action :add_child
+      find(:xpath, '//div[@id="d3"]//a[@id="question"]').click
+      wait_for_ajax 10
+
+      # Edit format 
+      click_action :edit
+      ui_in_modal do
+        within( find('#generic-editor') ) do
+          fill_in 'question_text', with: 'Question text'
+          fill_in 'format', with: '200'
+          click_on 'Save changes'
+        end
+      end
+      wait_for_ajax 10
+
+      # Check Edit saved 
+      click_action :edit
+      ui_in_modal do
+        within( find('#generic-editor') ) do
+          expect( find_field( 'question_text' ).value ).to eq 'Question text'
+          expect( find_field( 'format' ).value ).to eq '200'
+          click_on 'Close'
+        end
+      end
+    end
+
   end
 
   describe "Forms Editor, Locked State", :type => :feature, js:true do
