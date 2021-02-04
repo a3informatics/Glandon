@@ -64,15 +64,29 @@ class IsoConceptV2
 
     # Clear. Clear the set
     #
-    # @return [CustomPropertySet] the new empty object
+    # @return [Array] the set of values
     def clear
       @items = []
     end
 
+    # Property. Get the named property
+    #
+    # @param name [String] the name of the property. Will match the definition label
+    # @return [CustomPropertyValue] the property
+    def property(name)
+      @items.find { |item| item.custom_property_defined_by.label == name }
+    end
+
+    # Merge
+    #
+    # @return [Array] the resulting set of values
     def merge(other)
       @items += other.items
     end
 
+    # Items
+    #
+    # @return [Array] the set of values
     def items
       @items
     end

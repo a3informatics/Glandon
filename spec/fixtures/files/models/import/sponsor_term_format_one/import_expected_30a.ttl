@@ -407,868 +407,1085 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Epoch"^^xsd:string ;
 .
-<http://www.assero.co.uk/CPV#1289663e-8b15-440e-9d8a-99ca9a1ea86d>
+<http://www.assero.co.uk/CPV#fb656f5b-8390-49eb-bdad-7d3b83382618>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C99079/V52#C99079_C101526> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#0608d3e7-4d65-4b5d-b3ec-8e1edd4e46ce>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V52#C99079_C101526> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Treatment"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#d882bf02-bdef-4fc6-9748-d52f0ab037dd>
+<http://www.assero.co.uk/CPV#676e3538-1c5e-4e29-8d16-2c77a733f2e1>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V52#C99079_C101526> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#7ab7c94d-9354-4f15-a614-550232165f83>
+<http://www.assero.co.uk/CPV#0db2aa8e-6c25-4412-93b1-32022b1e5b2d>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V52#C99079_C101526> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#198620f3-48b5-4f73-9e06-0bba7e77f47c>
+<http://www.assero.co.uk/CPV#22110e12-9a4a-4bb0-b9d9-ec6d1ffccacc>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V52#C99079_C101526> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#69590790-c04b-4c7f-bd37-15de1a9d3b87>
+<http://www.assero.co.uk/CPV#01daa0e3-bd62-4204-9999-924545be7ab3>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C99079/V31#C99079_C102255> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#57aea841-eec3-4b30-bae9-78a2280ce04f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V31#C99079_C102255> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Blinded Treatment"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#a05f7295-5ebf-4195-895b-f1708e2e1fc0>
+<http://www.assero.co.uk/CPV#a0507826-15bf-4ffb-9262-eaeab38f7630>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V31#C99079_C102255> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#06b4544a-06ee-4f23-a7f2-b172c0e6e08b>
+<http://www.assero.co.uk/CPV#66a345a8-5adc-43bc-bf9a-81c3b0bd86b5>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V31#C99079_C102255> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#3f077004-dc9e-43e7-81e0-8be41997c557>
+<http://www.assero.co.uk/CPV#5332b5ad-ba11-4396-b9d9-cee42a8ce67f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V31#C99079_C102255> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#27adda9a-74ed-438a-a9d8-ec0cecddd715>
+<http://www.assero.co.uk/CPV#1cc5a7da-50f7-4b2b-b674-b1f4ca82243e>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C99079/V31#C99079_C102256> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#24cb47b8-6f00-4b26-85ac-40c1cfa240c0>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V31#C99079_C102256> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Open Label Treatment"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#cc402e0b-692a-4b47-9280-a42748031581>
+<http://www.assero.co.uk/CPV#59ae962b-2cf4-4ca6-a5fd-6c03bc7886ce>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V31#C99079_C102256> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#ba4a93f4-3e99-4332-b5e2-0111790fadc6>
+<http://www.assero.co.uk/CPV#047fa3d7-1898-407c-83d2-4de037ef8715>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V31#C99079_C102256> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#263516dd-f97e-4876-99da-59d5bdb5107e>
+<http://www.assero.co.uk/CPV#77dbc30a-185c-4e2d-bdb9-40aacdbc2f73>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V31#C99079_C102256> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#cf91a962-17bd-44cc-bec9-3a78b9ddf935>
+<http://www.assero.co.uk/CPV#4963887f-efc9-4939-90c9-c1d6c8d6b6b9>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C99079/V45#C99079_C123452> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value "Continuation Phase"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#44308957-1157-4a4b-97ba-480262500a7f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V45#C99079_C123452> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Continuation Treatment"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#1526d998-410a-4264-860e-825a8c5b53c5>
+<http://www.assero.co.uk/CPV#9bfc6f9c-5903-4bfe-9744-833eebd1a538>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V45#C99079_C123452> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#a1bb8684-9aca-4560-b27e-690e3c68b97a>
+<http://www.assero.co.uk/CPV#f9924166-922b-4fd9-b01c-620ddedf4364>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V45#C99079_C123452> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#a4e952d4-f9c0-48b6-8ff0-478758353c5f>
+<http://www.assero.co.uk/CPV#475004d9-5b65-44f8-9487-086473c1a080>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V45#C99079_C123452> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#6e597560-7a14-4e48-b690-f2bf53f6b930>
+<http://www.assero.co.uk/CPV#34258ec7-02fc-4db7-a255-5da15fdd4e14>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C99079/V45#C99079_C123453> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value "Induction Phase; Intensive Phase"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#fc57afad-1f60-4722-a2c7-000ccb8921bd>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V45#C99079_C123453> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Induction Treatment"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#0a4ec985-576f-4dfa-bf74-65b2417d94e3>
+<http://www.assero.co.uk/CPV#ed4f2b7e-a633-4cc3-8a8d-53a0d266f988>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V45#C99079_C123453> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#6513b51b-a826-4228-8f91-cd58615995ff>
+<http://www.assero.co.uk/CPV#1278f925-aceb-415e-ab0f-50219bb6e8c0>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V45#C99079_C123453> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#0adf3634-660f-4f48-9119-7e1411e20316>
+<http://www.assero.co.uk/CPV#73cf4903-abed-4ced-a41e-21db74292c4b>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V45#C99079_C123453> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#71a5dae8-c682-4bc4-91b4-e5262c90e668>
+<http://www.assero.co.uk/CPV#430fbb2b-c69f-4889-99c5-310ae8e5aa21>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C99079/V47#C99079_C125938> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#cf92e6a2-c50c-409d-a3e0-27b2612f1d11>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V47#C99079_C125938> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Baseline"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#1e2718b4-227d-4164-9c97-20ea68da919d>
+<http://www.assero.co.uk/CPV#4bb371af-f654-4306-8434-6b122b2fe895>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V47#C99079_C125938> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#4363bc3d-4551-4d74-a181-2b068962e167>
+<http://www.assero.co.uk/CPV#6e8aceaa-a58c-46b9-a587-02d966d92785>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V47#C99079_C125938> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#878294e6-c29f-4091-9d3a-9a4a06ff9ea6>
+<http://www.assero.co.uk/CPV#66495503-da78-4f23-a290-181d2bc29fab>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V47#C99079_C125938> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#032d58f5-9975-4fd5-8a03-43f094afdeba>
+<http://www.assero.co.uk/CPV#06b2d8b6-a2bb-4280-bf83-9f0d05faa37b>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C99079/V38#C99079_C16032> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#56b00931-645c-4de6-8fd3-bd5023b692a6>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V38#C99079_C16032> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Long-Term Follow-Up"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#4b814dec-18f2-45a5-ad51-24d6320c3169>
+<http://www.assero.co.uk/CPV#4434b579-5074-447d-b3f2-f00c68ca2920>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V38#C99079_C16032> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#4dc29769-c62a-46ba-a695-d9ed4f1f6198>
+<http://www.assero.co.uk/CPV#2c518a47-9b03-4f3e-ba60-f0104e0d7a46>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V38#C99079_C16032> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#2984575b-f832-483b-9f6c-3833f965fdba>
+<http://www.assero.co.uk/CPV#a2ab2b1e-cec2-447c-afdc-6492bea7e2d5>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V38#C99079_C16032> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#614046ec-b077-4aba-b864-dffab27762a6>
+<http://www.assero.co.uk/CPV#667fe58b-38e3-4c90-900e-8136db76c636>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C42872> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#3d986030-b520-47fa-8e21-d1ef3816de37>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C42872> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Washout"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#5726ce50-e3a8-4a14-809d-a4f15b761f1b>
+<http://www.assero.co.uk/CPV#9ad48d5d-196c-4649-8cb6-a77cc3c4b50f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C42872> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#94f7ce96-f009-4e78-8b2a-23afab5e6ac2>
+<http://www.assero.co.uk/CPV#50dfe700-16e2-4da0-ae95-ee9c902682fb>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C42872> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#9bbaebda-1e82-41c9-be28-09f90a13c746>
+<http://www.assero.co.uk/CPV#fc8f9ce1-896e-4124-8798-cbcc065a3c1a>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C42872> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#cf5a2cdc-d8f4-4edd-bf0d-19f3a65febbb>
+<http://www.assero.co.uk/CPV#958a5f0d-7c86-4d62-b0eb-ee41b3731a77>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C48262> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#30a74e9e-db12-47cf-bb24-a57edc502e14>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C48262> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Screening"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#4630fe35-557f-428f-89d4-6e1f4912eb10>
+<http://www.assero.co.uk/CPV#199ecf89-9adb-4750-aca3-6cb5a485434e>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C48262> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#b12343c1-ba92-4aef-a4bb-f3e75a23a31c>
+<http://www.assero.co.uk/CPV#2eea8fd9-75eb-49c3-98e5-be05367669d0>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C48262> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#4d37a6be-5c09-437a-bb83-17a738908ce5>
+<http://www.assero.co.uk/CPV#6f4a1b55-1248-4487-8c23-ee6ba8f039df>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C48262> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#c8e1f48b-3727-4e72-be8a-b581f6e2f904>
+<http://www.assero.co.uk/CPV#8412f387-e98b-424f-8d8e-235068fa2fda>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C98779> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#a987c043-5a23-4444-88b2-d10ec6cb7718>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C98779> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Run-In"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#9485fba7-9339-4c84-b9f5-a279ea39d45c>
+<http://www.assero.co.uk/CPV#0d98d495-a974-4a21-b77c-b0fe68301d5f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C98779> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#7d7ca22c-fb01-40ae-844a-75a4b00d1d4d>
+<http://www.assero.co.uk/CPV#3aa20a9a-7ce3-462b-af64-e31e38a7d316>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C98779> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#c4216694-56f0-4acd-9b4f-62f58d0fbf6f>
+<http://www.assero.co.uk/CPV#daa31e17-8adf-4c9e-b9e1-364317abbdda>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C98779> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#83adf8c1-05cc-40e5-9991-a0ed740a1bb5>
+<http://www.assero.co.uk/CPV#cc5de88f-7efa-4467-a6f2-2eefde7a689a>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C99158> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#90b74b0d-097e-468a-a032-403d164c1735>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C99158> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Follow-Up"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#449f5058-978f-4558-81c0-4bf3b87f8014>
+<http://www.assero.co.uk/CPV#13ff7e16-5537-4d57-8fe9-e793fdeba82f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C99158> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#56b262f6-a191-4bcd-bf1e-e6115024b593>
+<http://www.assero.co.uk/CPV#1e304606-49c3-4ed0-b546-afbfbfc9c61a>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C99158> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#9bf66c1d-4ad1-44f6-bf8f-464e58fdb495>
+<http://www.assero.co.uk/CPV#418eb423-4748-4de7-9a41-52b2378b9037>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C99079/V28#C99079_C99158> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#b19063e0-5ab0-414d-9e66-20610f7f597d>
+<http://www.assero.co.uk/CPV#d4db8bca-7d43-4b4e-9ce8-7cc31c7ae5ed>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000153> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#c080b76f-f4b5-488e-bf51-ba83d1e775e4>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000153> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Double Blind"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#5a76dc27-3f61-4401-b05e-d3600abdf075>
+<http://www.assero.co.uk/CPV#844d99f4-0244-42b7-9cec-d79e84ce585f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000153> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#4dd7cf48-ea81-4a8b-b27f-b31c832ba0e6>
+<http://www.assero.co.uk/CPV#90a2010f-d6cc-4b96-915f-1077fe5b7079>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000153> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#e633378a-b339-4659-b8e9-4908d9dfa440>
+<http://www.assero.co.uk/CPV#b1d25614-7b9e-45cb-b4eb-0b0940d491ea>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000153> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#04ea9a85-d4e7-4715-a483-cd8ddef80045>
+<http://www.assero.co.uk/CPV#5f7a8ac6-d738-44fa-a11d-9aaa9cfa5f11>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000156> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#c1e81699-6013-47b2-b19d-46e84d88fea0>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000156> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Extension Follow-Up"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#fd9dbe8a-04a3-4de4-b9b9-6db9c5ad50b2>
+<http://www.assero.co.uk/CPV#5cc3f745-f285-4dac-83cd-ece58e2c783f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000156> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#90c20b53-ebbd-4332-9974-153431957790>
+<http://www.assero.co.uk/CPV#fc316d37-b558-4764-95dd-7f7f5351f1f8>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000156> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#2d22b922-fc4f-4604-b4db-0a727ea6ce5a>
+<http://www.assero.co.uk/CPV#d07e7c8f-feb1-4a67-9185-3b2137d26cd3>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000156> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#96be02ae-89f5-416a-9253-8d4e84159049>
+<http://www.assero.co.uk/CPV#a56887a4-ba08-49bc-94da-a8e0124490df>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000161> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#0d736cb8-13a4-4c4b-9ba9-975ab805aaca>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000161> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Single Blind"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#f2b51cfb-b72c-4a03-8c5a-00a26b96cd9e>
+<http://www.assero.co.uk/CPV#23a353f6-baa8-4a8e-93ba-0bc1321fb165>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000161> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#9db57799-a1fc-4f97-b32c-0f616930019b>
+<http://www.assero.co.uk/CPV#3c2e3f55-8ded-4802-8141-910c8bd8ccac>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000161> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#c4afc26b-1e21-409f-b461-82864d5447bc>
+<http://www.assero.co.uk/CPV#70ce9e91-9338-4e45-ac2d-ea292de1308d>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S000161> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#411d040a-6afe-4d98-88f3-d2ce6a91d5d8>
+<http://www.assero.co.uk/CPV#a65d9029-a241-4cf7-91e6-d12a9af26937>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001160> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#fcd5b219-080a-431c-be07-676a619202ab>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001160> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Extension"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#b5472816-9f61-4374-863b-995740812573>
+<http://www.assero.co.uk/CPV#ade5b309-ae22-4992-8ed5-7caf8cd6878f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001160> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#b23e6e31-7bd5-4a81-9f03-d149cd74488b>
+<http://www.assero.co.uk/CPV#89c9b9df-1211-4ac6-b439-0bd274d5bce0>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001160> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#47e54a02-2f13-4d78-8265-b5d363ab2935>
+<http://www.assero.co.uk/CPV#8e5913dc-db10-4dbe-b6a6-3cb05268307d>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001160> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#4b408251-4c48-4fd6-8fbd-7e230b191b3e>
+<http://www.assero.co.uk/CPV#f6dfcfa0-3456-4988-9fa7-d3a6f1edc792>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001288> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#88e20c94-c0f2-4ee5-b4ce-cdd5474cb13d>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001288> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Booster Phase"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#27e76d83-8140-45b0-9afa-95d0c1fc5226>
+<http://www.assero.co.uk/CPV#29079eb3-666f-4914-acc9-35d3249f8dcc>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001288> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#9338a758-e011-45c8-8e5f-2e7bd37595cb>
+<http://www.assero.co.uk/CPV#94edaa59-f230-470c-8a8a-ac7f4a90e05f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001288> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#968ab0ac-5f83-4d77-b432-6be86f5c1ca1>
+<http://www.assero.co.uk/CPV#ba6bea48-5cd5-4d11-ac35-07deeb1080b8>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001288> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#10ea2b7d-1947-409a-9ec6-7fb3937f6478>
+<http://www.assero.co.uk/CPV#60a6535f-c126-428b-a8f8-51d9a8c89184>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001289> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#9f0d7f82-8b4f-4bd0-84da-a1c95c9b443f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001289> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Completion"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#606a4604-12d6-4e0b-97d5-6325a3c7f308>
+<http://www.assero.co.uk/CPV#72fc4c40-0687-439a-8882-4aeb697c96dc>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001289> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#b4d982e9-f716-4835-bd13-d6d2e8e6d088>
+<http://www.assero.co.uk/CPV#4d892b92-f6fd-4abd-bffa-2b9b3d9b6191>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001289> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#04bd1f5c-8749-4afc-b25e-c4ac887983b3>
+<http://www.assero.co.uk/CPV#2ae30778-10f2-4eb0-90fe-a9c0874e5419>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001289> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#34e8a8b8-2fbf-45f5-b7a9-074d998860ca>
+<http://www.assero.co.uk/CPV#2c1ca95e-9c3f-4fd8-9cf3-cae3db8ae73b>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001290> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#6b29ebea-9568-4293-9cc6-c56822c3f470>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001290> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Dose-Finding Follow-Up"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#ccb2fa80-6fe6-4334-af73-50f7a51df897>
+<http://www.assero.co.uk/CPV#46fd5d9a-7acd-41ab-8e8f-9f15d4820924>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001290> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#bb9089f5-8f39-4d32-a0fc-960203381ea6>
+<http://www.assero.co.uk/CPV#ae47ea17-9d52-4412-8619-8dd882e48ca0>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001290> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#d2c369a8-c597-42ea-b354-609b4f6330b3>
+<http://www.assero.co.uk/CPV#525a4575-69ef-40c6-b691-34ae831d7721>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001290> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#2eadb685-be1e-4024-b101-cf3cfa05fff4>
+<http://www.assero.co.uk/CPV#ea3ef224-19ab-433c-93d2-194d2f8541bc>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001291> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#fc7af6e2-8fc0-447c-be7e-6cf11c8078a4>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001291> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "First Follow-Up"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#3cff10d9-d379-4786-87bf-bfb8e764d3d1>
+<http://www.assero.co.uk/CPV#70fc2e71-27bf-4c56-9266-5a0eec1c236b>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001291> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#d9987aa5-c8d5-48d2-ba4e-c2629d63bc09>
+<http://www.assero.co.uk/CPV#181f9ae5-3715-4f98-b2ee-7cedeb655e9d>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001291> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#272a19b7-1af5-42fd-8b26-4e48241f765e>
+<http://www.assero.co.uk/CPV#765dbb68-9a86-4631-948c-549002be3921>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001291> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#5a56c121-4148-45e1-9b7a-98ee7221fb3a>
+<http://www.assero.co.uk/CPV#038f3596-3b7b-4ba8-8d55-0f888c6c5d1f>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001292> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#8df48d5c-31ce-4205-a586-e50c1d7f308a>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001292> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "First Run-In"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#ca547509-1272-441d-b3e3-13007485b5d4>
+<http://www.assero.co.uk/CPV#60709135-192c-4021-8f3e-c184f85b9697>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001292> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#7c519af2-758f-4c11-ab65-3f084e93eedf>
+<http://www.assero.co.uk/CPV#2a798b01-0369-4003-80fb-df8ea7150098>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001292> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#dd69dfbc-4768-41ca-8f36-321ae93fea7c>
+<http://www.assero.co.uk/CPV#23437d03-e506-4697-88c8-6eeb148d4af4>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001292> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#3976f6be-4f66-4695-948b-9b60f1937fa0>
+<http://www.assero.co.uk/CPV#6d210d19-a078-4a5d-aa34-5b2fb8a1e005>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001293> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#a48c66ed-56eb-4732-8432-faa52477575c>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001293> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "First Screening"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#56fea090-ba54-4e08-bed0-9a2d62efc6e3>
+<http://www.assero.co.uk/CPV#5cd35844-579f-4586-a7b0-74620abe95b7>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001293> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#9dab2d34-f461-4d17-91a3-a02b8dcf6158>
+<http://www.assero.co.uk/CPV#6e1276c1-9e6c-4ebc-bf37-7c0241e955cf>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001293> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#2e081fa8-c6c7-44b0-a834-deb99e772f4c>
+<http://www.assero.co.uk/CPV#a649f48e-1afc-4ae3-a3b1-8953f7fb0dd1>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001293> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#e1ef9ee0-ac14-4a0c-8c0e-f60468f6f452>
+<http://www.assero.co.uk/CPV#3bed5c5f-0016-4908-acea-c9f58072e2dd>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001296> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#ee03d3c2-f26a-47ac-b578-140e70a6b7f4>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001296> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "First Treatment"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#292b87d5-22e8-4535-97ef-cdac89882787>
+<http://www.assero.co.uk/CPV#f2282f02-63c6-4401-b3a0-4177312efed0>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001296> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#976ad0bf-03de-4cbc-993d-f7eeafdb31c7>
+<http://www.assero.co.uk/CPV#a554739a-a885-45af-b4b4-6350338a677f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001296> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#1ce7aa5d-ca31-49ac-94f3-6435b58c4a1e>
+<http://www.assero.co.uk/CPV#2b0c1507-56d5-4730-83c3-6e4d2b87390e>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001296> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#ad683e39-f831-4502-9694-5d7b2e72a60f>
+<http://www.assero.co.uk/CPV#1eb704ac-b13e-4ad5-bd66-2648931851ef>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001297> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#727b5afb-e4e8-4f94-9d68-10b8fa08b1da>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001297> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "First Wash-Out"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#7e1f97ad-676c-4712-ab47-7ec7772d9fc6>
+<http://www.assero.co.uk/CPV#0f66bc4e-a59d-44b9-b969-5eda4676ba4c>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001297> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#2c38a3a6-eaf3-40fd-a9a5-0269ed976f21>
+<http://www.assero.co.uk/CPV#33a36691-e45e-4045-b8b4-6c3aabdcd47a>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001297> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#18cbb5b4-5b3b-4c91-8630-634546e6d7b7>
+<http://www.assero.co.uk/CPV#b4c1cfbe-9a93-4720-9c25-29affffdacdc>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001297> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#ebaf98aa-db57-43f4-bf0a-0872c78957a4>
+<http://www.assero.co.uk/CPV#85581572-888f-4ef1-986b-30e974a42176>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001298> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#e610114b-1b08-4d04-9559-22892553d3c0>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001298> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Immunogenicity Follow-Up"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#cce0fb96-e13b-4b3e-b136-aa27a5a838a7>
+<http://www.assero.co.uk/CPV#4c61a727-867e-484f-9d7c-b539a6a760d1>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001298> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#1a9e0f34-ceac-4503-b6aa-397d547323f2>
+<http://www.assero.co.uk/CPV#2e499ee1-0583-4481-9c2f-df132d437dc7>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001298> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#07b488f7-8ddc-46c1-b03e-44b7d64390b7>
+<http://www.assero.co.uk/CPV#2b0da871-d68d-4ad5-9d86-a454d78b92ce>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001298> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#20c578bb-96e3-491c-aea2-65a9e1225749>
+<http://www.assero.co.uk/CPV#990a7c32-393e-4903-95db-790d76a26388>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001300> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#355353cd-05a4-488c-9818-b3ea50082f93>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001300> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Primary Series"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#08e585b3-3ba3-43f8-97ea-e48a2f6de966>
+<http://www.assero.co.uk/CPV#f2c537f5-f2d7-4ac5-a1d7-02c2ae7e655a>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001300> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#64829221-239f-43b1-b911-d4c1871eb4c7>
+<http://www.assero.co.uk/CPV#b42eaa66-b4ad-4501-baba-c0a68ffa9a79>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001300> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#70cb2b87-601b-4434-bea6-ad8c8e2d0a33>
+<http://www.assero.co.uk/CPV#35bff63c-4e0d-47d0-ad45-59508bc36fb0>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001300> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#83fd69a9-a6ca-4907-bd01-9defe390cab0>
+<http://www.assero.co.uk/CPV#89366fed-95a5-45b8-81e6-73dac500ebc7>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001301> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#afe867ce-025d-4ddd-860d-ec19fb51a58d>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001301> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Safety Follow-Up"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#53ecd1e9-7395-4aee-8a2a-1fe4dea271b4>
+<http://www.assero.co.uk/CPV#6fa21d34-46ed-41f9-be55-f00b995bab94>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001301> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#7b4c6197-2c61-4694-84a0-a8df999978e0>
+<http://www.assero.co.uk/CPV#8f6c66c6-d101-43ff-bb96-6795432f3941>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001301> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#cb84c0a8-4562-48bc-82be-d6cb25fed6d6>
+<http://www.assero.co.uk/CPV#6e6e86b5-51fe-4ca5-8a92-17f2cbfda607>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001301> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#20d9759e-03a9-4861-8170-efbfd6ba01dc>
+<http://www.assero.co.uk/CPV#6c5b38d8-c03a-4682-ac64-863f4c8f740c>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001304> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#cc87c251-a8bd-49f8-88ef-b74429b20024>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001304> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Second Follow-Up"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#a51b1383-bfed-4ecf-abc3-049dc87610e0>
+<http://www.assero.co.uk/CPV#6e84f97c-c1a5-4f77-99a9-cce7a862d275>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001304> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#ab9ef558-a295-4202-ae69-21d9b4422f9c>
+<http://www.assero.co.uk/CPV#94b846fa-6d6e-4f41-b698-974f309a1882>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001304> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#fc07851f-4e61-4287-a401-7eed37f30a05>
+<http://www.assero.co.uk/CPV#03a53acb-b3e9-4299-8fca-14be052650b3>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001304> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#02cf558b-8d51-4829-b720-b8e003a82a6b>
+<http://www.assero.co.uk/CPV#ed29e09f-3b88-4318-bfbd-30f865dc2a56>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001305> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#6cdaa34b-d6e5-4cde-8cf5-e6b6a420e9bd>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001305> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Second Run-In"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#9690d1ab-b37d-4c24-9850-d5d80b8e29f3>
+<http://www.assero.co.uk/CPV#40b13815-4cb7-4ff8-a9bf-20caeba24441>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001305> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#353ce3b8-762d-4b5d-92d4-622b67fad288>
+<http://www.assero.co.uk/CPV#bc3f4e22-15d1-4fd6-9325-06b5c0f1a2be>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001305> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#088a8ad8-dcab-4c8b-b3f0-da8b3cb886b1>
+<http://www.assero.co.uk/CPV#af21d2d4-4503-4a0f-818b-335c6536c128>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001305> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#4905b679-50ad-4a6c-8b53-0a5f1821ad4d>
+<http://www.assero.co.uk/CPV#1efbddf6-d1e9-4d0f-b530-2b456eadea7e>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001306> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#20087ca2-3c8d-48f7-a024-8e6dcdca75e4>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001306> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Second Screening"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#88b07b78-8472-4ff6-827e-c5fd65d65b77>
+<http://www.assero.co.uk/CPV#3c591568-72cb-441e-a91e-bb8918afb841>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001306> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#3bbbfde7-3aa0-44a7-ad14-f5afe16415b2>
+<http://www.assero.co.uk/CPV#6baab5e6-d082-48ba-a356-fe96271b9517>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001306> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#d839ff1f-c893-434a-a5fc-cbccb3e159d2>
+<http://www.assero.co.uk/CPV#b9839d2d-e9a3-4d90-8daa-09cff921800e>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001306> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#5452a981-3c83-4c7e-b034-f1c4e56703e6>
+<http://www.assero.co.uk/CPV#59f7bbec-b1f8-4e9a-b9dc-f42a22213047>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001309> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#71fcc897-99cc-4f26-a85b-e3fb5becc5bd>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001309> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Second Treatment"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#f53f34d9-bb2b-4b18-9b8d-f8defa1fc846>
+<http://www.assero.co.uk/CPV#7d93c618-314e-4d36-ac78-ea8746402ef4>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001309> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#1734e08d-99e5-4691-98b6-7de8401a49fb>
+<http://www.assero.co.uk/CPV#0a22f4a2-151d-4464-b5b0-e009583056a6>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001309> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#a973bdc9-b621-441b-921f-49fe9f94726c>
+<http://www.assero.co.uk/CPV#76a856e8-6d30-4c4c-a375-0968b5f1cdcc>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001309> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#67b8d71f-1ab1-4a83-9ed6-fa175f52347b>
+<http://www.assero.co.uk/CPV#086ce746-9f6a-4189-a85d-33ee48585700>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001310> ;
+	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#68607a90-5ae8-418e-afdf-419a04984d85>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001310> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "Second Wash-Out"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#41866837-3316-4300-98cd-ce124ce3ff2d>
+<http://www.assero.co.uk/CPV#1ab22ae2-bc9e-4882-b8b2-73eaf45d5128>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001310> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#352148b7-9f1e-4c35-b4f8-afcc774b0321>
+<http://www.assero.co.uk/CPV#9fdfd39c-65fd-4183-bc2a-d885c7e4417f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001310> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#7c1243b8-21a9-447e-b1cb-bee299764064>
+<http://www.assero.co.uk/CPV#65fd2503-f1ac-400b-88ea-f584cc7317e4>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/C99079/V1#C99079_S001310> ;
 	isoC:context <http://www.s-cubed.dk/C99079/V1#C99079> ;

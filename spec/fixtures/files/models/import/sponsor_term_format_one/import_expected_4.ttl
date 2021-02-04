@@ -124,8 +124,43 @@
 	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C124713> ;
 	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C124714> ;
 	th:subsets <http://www.cdisc.org/C118971/V62#C118971> ;
+	th:refersTo <http://www.cdisc.org/C118971/V47#C118971_C125755> ;
+	th:refersTo <http://www.cdisc.org/C118971/V43#C118971_C121005> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C119107> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C124705> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C124706> ;
+	th:refersTo <http://www.cdisc.org/C118971/V43#C118971_C121006> ;
+	th:refersTo <http://www.cdisc.org/C118971/V50#C118971_C130304> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C124715> ;
+	th:refersTo <http://www.cdisc.org/C118971/V43#C118971_C121007> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C124711> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C117997> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C124707> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C124710> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C102118> ;
+	th:refersTo <http://www.cdisc.org/C118971/V48#C118971_C100767> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C102119> ;
+	th:refersTo <http://www.cdisc.org/C118971/V50#C118971_C130307> ;
+	th:refersTo <http://www.cdisc.org/C118971/V50#C118971_C130306> ;
+	th:refersTo <http://www.cdisc.org/C118971/V53#C118971_C138332> ;
+	th:refersTo <http://www.cdisc.org/C118971/V55#C118971_C130308> ;
+	th:refersTo <http://www.cdisc.org/C118971/V50#C118971_C130310> ;
+	th:refersTo <http://www.cdisc.org/C118971/V53#C118971_C138333> ;
+	th:refersTo <http://www.cdisc.org/C118971/V43#C118971_C121008> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C119105> ;
+	th:refersTo <http://www.cdisc.org/C118971/V43#C118971_C121009> ;
+	th:refersTo <http://www.cdisc.org/C118971/V51#C118971_C132531> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C124712> ;
+	th:refersTo <http://www.cdisc.org/C118971/V52#C118971_C135734> ;
+	th:refersTo <http://www.cdisc.org/C118971/V55#C118971_C130309> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C124708> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C119104> ;
+	th:refersTo <http://www.cdisc.org/C118971/V50#C118971_C130305> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C124709> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C124713> ;
+	th:refersTo <http://www.cdisc.org/C118971/V46#C118971_C124714> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#67de85417e7d6d9660f1e62d6173e5d9489d5603> ;
-	th:isOrdered <http://www.assero.co.uk/TS#dc3c2750-25f1-473d-a89c-55124134224e> ;
+	th:isOrdered <http://www.assero.co.uk/TS#11213219-7197-42a3-be48-c1f2d3992649> ;
 .
 <http://www.s-cubed.dk/C118971/V1#C118971_RS>
 	rdf:type isoR:RegistrationState ;
@@ -151,216 +186,216 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Category of Clinical Classification"^^xsd:string ;
 .
-<http://www.assero.co.uk/TS#dc3c2750-25f1-473d-a89c-55124134224e>
+<http://www.assero.co.uk/TS#11213219-7197-42a3-be48-c1f2d3992649>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#041d92b4-2534-45ab-8034-391d5a27a650> ;
+	th:members <http://www.assero.co.uk/TSM#a18ee874-6139-47f7-a8d1-24fb186a16b4> ;
 .
-<http://www.assero.co.uk/TSM#041d92b4-2534-45ab-8034-391d5a27a650>
+<http://www.assero.co.uk/TSM#a18ee874-6139-47f7-a8d1-24fb186a16b4>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V47#C118971_C125755> ;
-	th:memberNext <http://www.assero.co.uk/TSM#d6b87b47-1871-4629-974b-687c5827466e> ;
+	th:memberNext <http://www.assero.co.uk/TSM#f5d7aa91-58a8-4d07-9d75-3c7b53bc21dc> ;
 .
-<http://www.assero.co.uk/TSM#d6b87b47-1871-4629-974b-687c5827466e>
+<http://www.assero.co.uk/TSM#f5d7aa91-58a8-4d07-9d75-3c7b53bc21dc>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V43#C118971_C121005> ;
-	th:memberNext <http://www.assero.co.uk/TSM#0dbf25dd-97d9-462c-98fb-581fe0446ef6> ;
+	th:memberNext <http://www.assero.co.uk/TSM#a5802050-bb98-4d71-8d8d-10c2575adac0> ;
 .
-<http://www.assero.co.uk/TSM#0dbf25dd-97d9-462c-98fb-581fe0446ef6>
+<http://www.assero.co.uk/TSM#a5802050-bb98-4d71-8d8d-10c2575adac0>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C119107> ;
-	th:memberNext <http://www.assero.co.uk/TSM#fefdcdc3-2d9a-4983-93b1-7b2aa41400d8> ;
+	th:memberNext <http://www.assero.co.uk/TSM#2415b14a-ad4f-409c-810f-137c25178d70> ;
 .
-<http://www.assero.co.uk/TSM#fefdcdc3-2d9a-4983-93b1-7b2aa41400d8>
+<http://www.assero.co.uk/TSM#2415b14a-ad4f-409c-810f-137c25178d70>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C124705> ;
-	th:memberNext <http://www.assero.co.uk/TSM#29c48f65-801e-4fe1-82c9-839fc52b3ae2> ;
+	th:memberNext <http://www.assero.co.uk/TSM#233f24ec-de9d-41ae-8dd0-e526a154e0e1> ;
 .
-<http://www.assero.co.uk/TSM#29c48f65-801e-4fe1-82c9-839fc52b3ae2>
+<http://www.assero.co.uk/TSM#233f24ec-de9d-41ae-8dd0-e526a154e0e1>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C124706> ;
-	th:memberNext <http://www.assero.co.uk/TSM#29d2e312-3068-45f5-ab76-d044ea5612bf> ;
+	th:memberNext <http://www.assero.co.uk/TSM#df46b45a-8e83-4219-ab49-2de8a7285403> ;
 .
-<http://www.assero.co.uk/TSM#29d2e312-3068-45f5-ab76-d044ea5612bf>
+<http://www.assero.co.uk/TSM#df46b45a-8e83-4219-ab49-2de8a7285403>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V43#C118971_C121006> ;
-	th:memberNext <http://www.assero.co.uk/TSM#b64700c6-94b0-4fbb-ac0c-6e058a683251> ;
+	th:memberNext <http://www.assero.co.uk/TSM#85ee6bda-dd59-4a7f-96e2-34ca55b1000e> ;
 .
-<http://www.assero.co.uk/TSM#b64700c6-94b0-4fbb-ac0c-6e058a683251>
+<http://www.assero.co.uk/TSM#85ee6bda-dd59-4a7f-96e2-34ca55b1000e>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V50#C118971_C130304> ;
-	th:memberNext <http://www.assero.co.uk/TSM#b4e95498-d190-4c80-9866-ef0e777d44de> ;
+	th:memberNext <http://www.assero.co.uk/TSM#234f41c2-61e8-422a-b52c-93c809ab65a5> ;
 .
-<http://www.assero.co.uk/TSM#b4e95498-d190-4c80-9866-ef0e777d44de>
+<http://www.assero.co.uk/TSM#234f41c2-61e8-422a-b52c-93c809ab65a5>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C124715> ;
-	th:memberNext <http://www.assero.co.uk/TSM#505001b8-38ad-46b6-8587-c3b650e7866d> ;
+	th:memberNext <http://www.assero.co.uk/TSM#06a00bf0-1cbb-4a69-b7fe-782ec16cf6e1> ;
 .
-<http://www.assero.co.uk/TSM#505001b8-38ad-46b6-8587-c3b650e7866d>
+<http://www.assero.co.uk/TSM#06a00bf0-1cbb-4a69-b7fe-782ec16cf6e1>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V43#C118971_C121007> ;
-	th:memberNext <http://www.assero.co.uk/TSM#caac0f84-5a12-4307-9c74-fd64a356b2c1> ;
+	th:memberNext <http://www.assero.co.uk/TSM#3087f55a-2036-4a7c-b0e8-d1f6d46a1fe1> ;
 .
-<http://www.assero.co.uk/TSM#caac0f84-5a12-4307-9c74-fd64a356b2c1>
+<http://www.assero.co.uk/TSM#3087f55a-2036-4a7c-b0e8-d1f6d46a1fe1>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C124711> ;
-	th:memberNext <http://www.assero.co.uk/TSM#86acb3dc-6f90-4f37-8d15-75dce598c4ec> ;
+	th:memberNext <http://www.assero.co.uk/TSM#6f2ac76f-e73f-4416-9179-db5dc34b9ccf> ;
 .
-<http://www.assero.co.uk/TSM#86acb3dc-6f90-4f37-8d15-75dce598c4ec>
+<http://www.assero.co.uk/TSM#6f2ac76f-e73f-4416-9179-db5dc34b9ccf>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C117997> ;
-	th:memberNext <http://www.assero.co.uk/TSM#532a2e58-cd7b-4942-99b2-b355b5b48a24> ;
+	th:memberNext <http://www.assero.co.uk/TSM#69dd716d-a1a5-49fe-825f-d8d5168300ef> ;
 .
-<http://www.assero.co.uk/TSM#532a2e58-cd7b-4942-99b2-b355b5b48a24>
+<http://www.assero.co.uk/TSM#69dd716d-a1a5-49fe-825f-d8d5168300ef>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C124707> ;
-	th:memberNext <http://www.assero.co.uk/TSM#a33c60bd-6a5d-4ab0-a3f5-c30a69fc3b6a> ;
+	th:memberNext <http://www.assero.co.uk/TSM#179128cb-f12a-403b-9474-05a7f88547dc> ;
 .
-<http://www.assero.co.uk/TSM#a33c60bd-6a5d-4ab0-a3f5-c30a69fc3b6a>
+<http://www.assero.co.uk/TSM#179128cb-f12a-403b-9474-05a7f88547dc>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C124710> ;
-	th:memberNext <http://www.assero.co.uk/TSM#5bd9a086-85ba-471d-8424-95f63eb5ad8b> ;
+	th:memberNext <http://www.assero.co.uk/TSM#1cb4d06e-74c5-4ade-8b8d-b06c4841cd47> ;
 .
-<http://www.assero.co.uk/TSM#5bd9a086-85ba-471d-8424-95f63eb5ad8b>
+<http://www.assero.co.uk/TSM#1cb4d06e-74c5-4ade-8b8d-b06c4841cd47>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C102118> ;
-	th:memberNext <http://www.assero.co.uk/TSM#b049cbb6-5dbc-4a89-bf55-bd348dffe71c> ;
+	th:memberNext <http://www.assero.co.uk/TSM#438cb686-2c7c-4bb1-8772-bd9d58c71359> ;
 .
-<http://www.assero.co.uk/TSM#b049cbb6-5dbc-4a89-bf55-bd348dffe71c>
+<http://www.assero.co.uk/TSM#438cb686-2c7c-4bb1-8772-bd9d58c71359>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V48#C118971_C100767> ;
-	th:memberNext <http://www.assero.co.uk/TSM#296257a2-9248-4f64-93af-ff3b7f303524> ;
+	th:memberNext <http://www.assero.co.uk/TSM#78dbb998-91eb-4ac1-b688-de9c2fe0830f> ;
 .
-<http://www.assero.co.uk/TSM#296257a2-9248-4f64-93af-ff3b7f303524>
+<http://www.assero.co.uk/TSM#78dbb998-91eb-4ac1-b688-de9c2fe0830f>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C102119> ;
-	th:memberNext <http://www.assero.co.uk/TSM#5b914b6e-819a-499c-8a30-527502cfe1e7> ;
+	th:memberNext <http://www.assero.co.uk/TSM#31a356dc-c63e-4f26-ab3c-6fbdb8501b68> ;
 .
-<http://www.assero.co.uk/TSM#5b914b6e-819a-499c-8a30-527502cfe1e7>
+<http://www.assero.co.uk/TSM#31a356dc-c63e-4f26-ab3c-6fbdb8501b68>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V50#C118971_C130307> ;
-	th:memberNext <http://www.assero.co.uk/TSM#06662a81-8c60-42af-ad40-1a8ff59e039b> ;
+	th:memberNext <http://www.assero.co.uk/TSM#fdcc5ad5-17c2-40ee-8a73-76a935842656> ;
 .
-<http://www.assero.co.uk/TSM#06662a81-8c60-42af-ad40-1a8ff59e039b>
+<http://www.assero.co.uk/TSM#fdcc5ad5-17c2-40ee-8a73-76a935842656>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V50#C118971_C130306> ;
-	th:memberNext <http://www.assero.co.uk/TSM#f8d00e06-f7ac-4764-ae40-a33609476c6e> ;
+	th:memberNext <http://www.assero.co.uk/TSM#08a0f721-a557-4dfc-adc2-6ce602739c11> ;
 .
-<http://www.assero.co.uk/TSM#f8d00e06-f7ac-4764-ae40-a33609476c6e>
+<http://www.assero.co.uk/TSM#08a0f721-a557-4dfc-adc2-6ce602739c11>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V53#C118971_C138332> ;
-	th:memberNext <http://www.assero.co.uk/TSM#84da790f-4d75-4f82-97e5-c14488b934de> ;
+	th:memberNext <http://www.assero.co.uk/TSM#b4ac5c1b-d97d-451f-be71-075c468145a8> ;
 .
-<http://www.assero.co.uk/TSM#84da790f-4d75-4f82-97e5-c14488b934de>
+<http://www.assero.co.uk/TSM#b4ac5c1b-d97d-451f-be71-075c468145a8>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V55#C118971_C130308> ;
-	th:memberNext <http://www.assero.co.uk/TSM#cc6de6c6-30cd-4741-88d5-183028b77802> ;
+	th:memberNext <http://www.assero.co.uk/TSM#d446aec5-8d92-4109-b1e1-c24a8c235d40> ;
 .
-<http://www.assero.co.uk/TSM#cc6de6c6-30cd-4741-88d5-183028b77802>
+<http://www.assero.co.uk/TSM#d446aec5-8d92-4109-b1e1-c24a8c235d40>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V50#C118971_C130310> ;
-	th:memberNext <http://www.assero.co.uk/TSM#c68d7565-cab8-4003-bcaa-225a45ff98ab> ;
+	th:memberNext <http://www.assero.co.uk/TSM#268fec50-f71f-4b53-b320-2b7ce5c5441f> ;
 .
-<http://www.assero.co.uk/TSM#c68d7565-cab8-4003-bcaa-225a45ff98ab>
+<http://www.assero.co.uk/TSM#268fec50-f71f-4b53-b320-2b7ce5c5441f>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V53#C118971_C138333> ;
-	th:memberNext <http://www.assero.co.uk/TSM#8aadef83-5253-463c-94a2-bf7a0796442e> ;
+	th:memberNext <http://www.assero.co.uk/TSM#14c6e5be-095c-4aa9-99f3-356451f1092f> ;
 .
-<http://www.assero.co.uk/TSM#8aadef83-5253-463c-94a2-bf7a0796442e>
+<http://www.assero.co.uk/TSM#14c6e5be-095c-4aa9-99f3-356451f1092f>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V43#C118971_C121008> ;
-	th:memberNext <http://www.assero.co.uk/TSM#3e607e8a-6dda-483c-99de-8a2af9d087e5> ;
+	th:memberNext <http://www.assero.co.uk/TSM#0c7a6559-917d-42a6-8d39-2cc4a16406db> ;
 .
-<http://www.assero.co.uk/TSM#3e607e8a-6dda-483c-99de-8a2af9d087e5>
+<http://www.assero.co.uk/TSM#0c7a6559-917d-42a6-8d39-2cc4a16406db>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C119105> ;
-	th:memberNext <http://www.assero.co.uk/TSM#8e24423a-8735-4ca7-bff1-e983bb5f4113> ;
+	th:memberNext <http://www.assero.co.uk/TSM#8da64298-438f-4402-b791-9244538300bf> ;
 .
-<http://www.assero.co.uk/TSM#8e24423a-8735-4ca7-bff1-e983bb5f4113>
+<http://www.assero.co.uk/TSM#8da64298-438f-4402-b791-9244538300bf>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V43#C118971_C121009> ;
-	th:memberNext <http://www.assero.co.uk/TSM#0a1dda12-58fa-4c0b-823a-86484274f9d1> ;
+	th:memberNext <http://www.assero.co.uk/TSM#c10665a8-3500-4acc-81c3-6eed4816773d> ;
 .
-<http://www.assero.co.uk/TSM#0a1dda12-58fa-4c0b-823a-86484274f9d1>
+<http://www.assero.co.uk/TSM#c10665a8-3500-4acc-81c3-6eed4816773d>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V51#C118971_C132531> ;
-	th:memberNext <http://www.assero.co.uk/TSM#156b03d8-a4e2-4707-be40-fbd4db4bd836> ;
+	th:memberNext <http://www.assero.co.uk/TSM#9042a9e2-5228-4717-8ddf-45c02c5b1aab> ;
 .
-<http://www.assero.co.uk/TSM#156b03d8-a4e2-4707-be40-fbd4db4bd836>
+<http://www.assero.co.uk/TSM#9042a9e2-5228-4717-8ddf-45c02c5b1aab>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C124712> ;
-	th:memberNext <http://www.assero.co.uk/TSM#77977216-34ba-4dbd-82fa-03954963ebaf> ;
+	th:memberNext <http://www.assero.co.uk/TSM#457083c9-59c3-4eaf-89d4-92606d2be721> ;
 .
-<http://www.assero.co.uk/TSM#77977216-34ba-4dbd-82fa-03954963ebaf>
+<http://www.assero.co.uk/TSM#457083c9-59c3-4eaf-89d4-92606d2be721>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V52#C118971_C135734> ;
-	th:memberNext <http://www.assero.co.uk/TSM#3ca9de3b-7f72-45b9-847c-82929d90eef1> ;
+	th:memberNext <http://www.assero.co.uk/TSM#2c32b677-ee75-49f8-873f-e8b1c446528c> ;
 .
-<http://www.assero.co.uk/TSM#3ca9de3b-7f72-45b9-847c-82929d90eef1>
+<http://www.assero.co.uk/TSM#2c32b677-ee75-49f8-873f-e8b1c446528c>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V55#C118971_C130309> ;
-	th:memberNext <http://www.assero.co.uk/TSM#56cdb4be-c5d6-4965-9df0-f076a8bd15c6> ;
+	th:memberNext <http://www.assero.co.uk/TSM#51cc0123-a029-4771-90d9-0fd26a99b658> ;
 .
-<http://www.assero.co.uk/TSM#56cdb4be-c5d6-4965-9df0-f076a8bd15c6>
+<http://www.assero.co.uk/TSM#51cc0123-a029-4771-90d9-0fd26a99b658>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C124708> ;
-	th:memberNext <http://www.assero.co.uk/TSM#9bbaf5b9-a5ca-4493-b621-f0ebd30e3f65> ;
+	th:memberNext <http://www.assero.co.uk/TSM#f4f0ab71-6628-442b-ae8d-cf331606d80c> ;
 .
-<http://www.assero.co.uk/TSM#9bbaf5b9-a5ca-4493-b621-f0ebd30e3f65>
+<http://www.assero.co.uk/TSM#f4f0ab71-6628-442b-ae8d-cf331606d80c>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C119104> ;
-	th:memberNext <http://www.assero.co.uk/TSM#47541a7a-9c4a-484b-a3ac-ea8ffcdea449> ;
+	th:memberNext <http://www.assero.co.uk/TSM#75ac5622-3092-42e8-899c-9cfa288c06f8> ;
 .
-<http://www.assero.co.uk/TSM#47541a7a-9c4a-484b-a3ac-ea8ffcdea449>
+<http://www.assero.co.uk/TSM#75ac5622-3092-42e8-899c-9cfa288c06f8>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V50#C118971_C130305> ;
-	th:memberNext <http://www.assero.co.uk/TSM#ccf8270b-fd3d-49cf-bf78-6130698bffbd> ;
+	th:memberNext <http://www.assero.co.uk/TSM#b975a15a-b48f-482a-9006-20daef068689> ;
 .
-<http://www.assero.co.uk/TSM#ccf8270b-fd3d-49cf-bf78-6130698bffbd>
+<http://www.assero.co.uk/TSM#b975a15a-b48f-482a-9006-20daef068689>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C124709> ;
-	th:memberNext <http://www.assero.co.uk/TSM#890edd95-8fd3-448a-9c60-f9c10ae897cb> ;
+	th:memberNext <http://www.assero.co.uk/TSM#b0efb66e-0a38-4120-9b52-76a4d538eeb8> ;
 .
-<http://www.assero.co.uk/TSM#890edd95-8fd3-448a-9c60-f9c10ae897cb>
+<http://www.assero.co.uk/TSM#b0efb66e-0a38-4120-9b52-76a4d538eeb8>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C124713> ;
-	th:memberNext <http://www.assero.co.uk/TSM#86cbc8fe-ae07-4790-87c1-cda1e7d60731> ;
+	th:memberNext <http://www.assero.co.uk/TSM#8191878b-ce78-4abd-bd22-858c5dd0fbca> ;
 .
-<http://www.assero.co.uk/TSM#86cbc8fe-ae07-4790-87c1-cda1e7d60731>
+<http://www.assero.co.uk/TSM#8191878b-ce78-4abd-bd22-858c5dd0fbca>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C118971/V46#C118971_C124714> ;
@@ -421,1036 +456,1295 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Subcategory of External Data Type"^^xsd:string ;
 .
-<http://www.assero.co.uk/CPV#0f9a58a0-422f-434f-a2ff-f4611e15b319>
+<http://www.assero.co.uk/CPV#ee4eb51d-8e07-44df-b77a-76715bf46909>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V47#C118971_C125755> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "AJCC1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#96583b01-a34d-4613-9def-009677a13cc2>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V47#C118971_C125755> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "AJCC Cancer Staging Manual 7th Edition"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#a121a2e6-a251-4ae2-b068-f289da69709f>
+<http://www.assero.co.uk/CPV#1f3e614c-f98e-40c6-b541-8c658d81f471>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V47#C118971_C125755> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#08989d5d-d720-467f-ade6-79e3c7a54917>
+<http://www.assero.co.uk/CPV#3e666b42-b140-4991-81c8-aced0943e022>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V47#C118971_C125755> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#3c12b85b-d119-43a0-8a2d-d6c16ed49675>
+<http://www.assero.co.uk/CPV#50811a8d-ec67-4bb1-b952-edbf82c02604>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V47#C118971_C125755> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#d5fdbd0a-aa7e-49bb-b6f7-058fceb71d3c>
+<http://www.assero.co.uk/CPV#22f3539a-9e9a-4244-bfe5-292f7ce31b48>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121005> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "APCH1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#410a4a9d-70a3-4106-b374-6abb29c133a1>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121005> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Acute Physiology and Chronic Health Evaluation II Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#041b8e5b-8bb5-4053-9312-14c4df506869>
+<http://www.assero.co.uk/CPV#64ef3e52-2cbb-4c18-a23c-5e6f4b14f72f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121005> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#6ee48f74-4978-479d-b27c-eaa550be63e0>
+<http://www.assero.co.uk/CPV#333012af-72e0-478d-b298-de274b473bb6>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121005> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#2afe89a9-9973-49b3-8e59-c5d53423a52c>
+<http://www.assero.co.uk/CPV#5b5d36f5-f75c-4f08-be79-5cc9f9966731>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121005> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#31aeb052-d08a-467a-a455-73ca5d56237e>
+<http://www.assero.co.uk/CPV#5ad36d7b-09a9-4079-b15a-266a9b88b1a3>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119107> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "STCG01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#1f92d447-9e34-46cf-8692-47870253562f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119107> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Stent Thrombosis Coronary ARC Grade Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#7751b60a-9c28-4541-b6fc-5a8d18188dd7>
+<http://www.assero.co.uk/CPV#bb881d59-9420-4933-b212-0de9331eb9d2>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119107> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#790d9e62-66b0-4199-8789-f107b20cd36c>
+<http://www.assero.co.uk/CPV#f569ed43-96cb-4982-bb88-185df551093c>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119107> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#1b1a91bd-ff48-4879-9a45-6a132a248fb7>
+<http://www.assero.co.uk/CPV#479ec298-0ea3-468c-b8e1-ce48264077d4>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119107> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#68d3cdeb-08e1-4c8c-a0b1-54f38a8dc358>
+<http://www.assero.co.uk/CPV#8accbc1c-d40b-44ca-8274-e0227a1a24b5>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124705> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "ASCVD1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#02726849-e18c-4684-a931-79f351dd5cc2>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124705> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Atherosclerotic Cardiovascular Disease 10-Year Risk Estimator Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#bc6422cc-593d-4e33-9399-8d0889e9b813>
+<http://www.assero.co.uk/CPV#f0d146a9-8bac-4646-82c1-44bb9747b3e6>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124705> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#f6fcdbe4-2216-450a-b4dc-f1524a9206cc>
+<http://www.assero.co.uk/CPV#57c56bfc-887c-4748-bd33-ebfd9006952d>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124705> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#eb04dba8-902d-4544-ba3d-cdb67f18223a>
+<http://www.assero.co.uk/CPV#d9f8ed33-c950-4c4e-8e3a-2abc7ccd7b29>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124705> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#1aa1f180-0387-4864-bb8c-ae58df737019>
+<http://www.assero.co.uk/CPV#bb2310c6-62f5-4a12-8de0-baa20e4fd12f>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124706> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "ASSG01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#7a3b4653-4b4f-463b-aa03-3c8f232a45ce>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124706> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "ASSIGN Cardiovascular Disease 10-Year Risk Score Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#80cef384-d51a-4c8b-88a7-99258808d616>
+<http://www.assero.co.uk/CPV#82830381-a740-4284-a885-208284ce2f79>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124706> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#3f2f0895-723c-47bc-942c-b3aa030087eb>
+<http://www.assero.co.uk/CPV#a2fd2de5-e8a6-486e-8229-de4e8307e6c4>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124706> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#67f74b8e-ca86-4df3-9405-e4411c314c2d>
+<http://www.assero.co.uk/CPV#30810527-4394-47f1-a14a-f6c1eda66359>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124706> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#82491d72-8523-4c5d-ae8c-b79af34db10c>
+<http://www.assero.co.uk/CPV#2805b600-1e9b-4b5c-9c32-5ce9072f6617>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121006> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "BODE01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#e2330e19-8b3d-4389-895b-27a7e5422fff>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121006> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Bode Index"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#0a583763-b049-45a3-ad19-a9ea9ee3b6e6>
+<http://www.assero.co.uk/CPV#a1c18833-faad-4bbb-9a56-d940ebbb560d>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121006> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#c6191a01-e93f-426b-8edf-5d6dbddb02a3>
+<http://www.assero.co.uk/CPV#a29ebf45-b0a8-4e59-83f4-87369848789c>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121006> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#adf23582-a8c7-4d88-be9f-e95bd86162a9>
+<http://www.assero.co.uk/CPV#d0aa0880-9729-426c-aae8-49be319b1af6>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121006> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#6237e2f0-15c5-4d7b-8b9d-d346dbb375bd>
+<http://www.assero.co.uk/CPV#7edfa439-5647-4dd7-8e25-bde5e793c874>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130304> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "BUERS1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#8992e1b7-4c28-46ce-a092-5da761371d57>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130304> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Brooke Upper Extremity Rating Scale Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#8ae505c9-15ba-4950-9a23-87174a07d56f>
+<http://www.assero.co.uk/CPV#dd76a181-80f2-48de-8c25-cd803ca38b3d>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130304> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#d28c8d7f-c68e-47ac-9861-2d74d7becb34>
+<http://www.assero.co.uk/CPV#9dc92dfa-b908-45ca-bb46-f65d7766abac>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130304> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#39946bea-562c-4f3e-a132-625abe6f0088>
+<http://www.assero.co.uk/CPV#c957576a-1846-4ffc-8df9-82585c94345f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130304> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#687dcdb6-c53d-4b1e-81dd-502fcff5534e>
+<http://www.assero.co.uk/CPV#3bd95084-998c-4b47-aacb-192ba105c673>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124715> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "CHIVC1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#5ade300e-2a45-4ee0-8a6d-51712fe3e3ca>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124715> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Center for Disease Control and Prevention Classification System for HIV-Infected Adults and Adolescents Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#0176e370-f70f-4611-8dfb-7c002aa71cbc>
+<http://www.assero.co.uk/CPV#f9677d97-8490-4203-a907-98c4ef7178f1>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124715> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#be15fa01-db94-4d6a-a8b3-ea94bcdb671b>
+<http://www.assero.co.uk/CPV#a614b6b2-f5a5-4e8c-8983-edc6059bf801>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124715> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#a29927e3-a960-4c7e-af82-e8ac71e937bc>
+<http://www.assero.co.uk/CPV#612bcea6-b250-4a70-9b0d-0027ccebdfb2>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124715> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#39200a6c-e3f8-43d5-a094-c250547526dd>
+<http://www.assero.co.uk/CPV#af94e70f-0939-4382-9a10-562d3677d6fd>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121007> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "CPS01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#8d3563db-c36d-4ccb-9607-b75cd69c3b2a>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121007> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Child-Pugh Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#f1665e95-20f8-44a0-8bea-49fdb6e7c6aa>
+<http://www.assero.co.uk/CPV#e16018f5-7ebe-4c4e-ba6b-31b71ba67651>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121007> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#529ed205-fbf9-43e9-98b4-66a87a765422>
+<http://www.assero.co.uk/CPV#5601f984-c6f4-454f-a6ac-87e0fc90a2d7>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121007> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#3f9700ef-f2fa-4005-bf9c-570ea880ef60>
+<http://www.assero.co.uk/CPV#adf5150c-d2a4-4425-a132-4631f211865e>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121007> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#6d21c48f-7da9-42a6-946a-3e8c8bd1374b>
+<http://www.assero.co.uk/CPV#1acfd82d-72c6-46df-a96e-890a7905a1aa>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124711> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "CRSR01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#bdd74371-9d76-4718-a9ce-8f0e0496bab4>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124711> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "JFK Coma Recovery Scale-Revised Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#d809a442-781f-4e99-87a9-1b599279774f>
+<http://www.assero.co.uk/CPV#b3a873f5-1cde-447e-95e8-cb329092a83e>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124711> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#b75e25b8-8fac-4bf4-a421-9b44f4fc82b6>
+<http://www.assero.co.uk/CPV#d717d4cb-5b68-41fd-b9f0-f9362fc81c36>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124711> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#6b90c3af-568f-4cf8-9adc-2a7671814e4b>
+<http://www.assero.co.uk/CPV#e0200740-eae4-43ed-83ed-1a5570b30fd9>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124711> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#3cb4ef40-26c1-4c39-8d49-b7cb0b38b3b0>
+<http://www.assero.co.uk/CPV#8d641ce5-79b8-4c61-b026-f9aad7c6cf54>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C117997> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "ESRSA1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#325b622c-9df2-4ba1-b27d-f233d9fe5b29>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C117997> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Extrapyramidal Symptom Rating Scale-Abbreviated Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#be4147da-4f46-4168-8d74-d287d6268dcd>
+<http://www.assero.co.uk/CPV#7b7d704a-d530-4ac8-b813-311096474695>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C117997> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#948d031a-939b-471c-9bfb-300e772b8948>
+<http://www.assero.co.uk/CPV#a3e45864-1e8f-4d88-9376-9e807a7a4e5f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C117997> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#b4e32ee5-9363-4d84-abce-17423e209ed5>
+<http://www.assero.co.uk/CPV#c7ccd919-cd3b-4196-9c5e-8761b5ba34d8>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C117997> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#15934204-a37d-4a40-b6a4-d5aad572b77e>
+<http://www.assero.co.uk/CPV#60bf65b2-78f3-49cf-8bbf-5f56ab06a6f3>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124707> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "FCVD1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#d7be6131-5222-4f65-8420-2ae6d5151a39>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124707> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Framingham Heart Study Cardiovascular Disease 10-Year Risk Score Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#c9679431-57d5-4f4b-84df-117947a5731d>
+<http://www.assero.co.uk/CPV#14ca6848-8346-4cf3-8275-9a1c99e99411>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124707> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#54871787-0944-42a7-aabf-fb786f5dcba2>
+<http://www.assero.co.uk/CPV#ad94c859-c67f-4819-a6ae-0acfe2dea128>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124707> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#573dcaf0-d81d-4ef5-81c5-9ec7d519e898>
+<http://www.assero.co.uk/CPV#3cb79a69-0405-4652-9da4-a1c5df76f395>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124707> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#37bb8a67-cfba-4e74-8302-4f9f96d2e7b2>
+<http://www.assero.co.uk/CPV#a6d2a84a-95cf-4b3b-88c7-1482c9219a4c>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124710> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "GCS01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#95426424-8e1f-438a-98d8-54f7a8432f24>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124710> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Glasgow Coma Scale-NINDS Version Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#f4aa8f7a-8889-492d-ac22-48336874da8e>
+<http://www.assero.co.uk/CPV#37301a02-9dcb-4b24-a65b-64d6fd08ebff>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124710> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#c53d7bc5-0cad-471e-a4ac-e6a4ff1411b8>
+<http://www.assero.co.uk/CPV#620dd332-bfcd-488c-845d-7ec60fd4bfb7>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124710> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#64defd3d-d120-4499-8886-bf97a12bbf6e>
+<http://www.assero.co.uk/CPV#d3074370-0ccf-4042-aada-cc7083c7d931>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124710> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#9df5c230-98f1-418a-94ee-a7c40508b809>
+<http://www.assero.co.uk/CPV#5e8e59c7-4275-4b15-b49a-52ffcc43c349>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C102118> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "HAMA1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#a267b0df-a43a-46ba-bf6c-1909d05b0d7a>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C102118> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Hamilton Anxiety Rating Scale Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#cd124a50-dfd2-47c2-a170-2e4e5e6e35cf>
+<http://www.assero.co.uk/CPV#a8e177e9-bc8f-46c9-89cd-4a0b988bb14b>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C102118> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#72605d1c-14ac-40fb-96ce-7682b0e09a5f>
+<http://www.assero.co.uk/CPV#31420532-78a1-4bb6-8a1b-07bb2d7e08be>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C102118> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#2f44f5b1-b70a-40d4-a505-678aab393bd0>
+<http://www.assero.co.uk/CPV#c911637c-05cc-4248-80ac-68a21fda401b>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C102118> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#7be89e30-da27-47ee-8633-7f66ad1980c9>
+<http://www.assero.co.uk/CPV#24bfea5c-85ae-4ae6-a92a-defc10e4fd96>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V48#C118971_C100767> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "HAMD1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#20b6330a-2a2e-4660-9833-73933cb73122>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V48#C118971_C100767> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Hamilton Depression Rating Scale 17 Item Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#ed4ab247-5c57-40c1-8806-88485045f416>
+<http://www.assero.co.uk/CPV#66ea93fc-1416-40da-bdca-3f0f6517861b>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V48#C118971_C100767> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#bddbd378-1a25-47da-aa2e-d1424660cceb>
+<http://www.assero.co.uk/CPV#4f054c02-19d2-4f82-a796-da543846dff9>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V48#C118971_C100767> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#85cfa11b-e038-48c1-b2eb-026ad44ceece>
+<http://www.assero.co.uk/CPV#a73a8c8a-d5aa-437b-88d5-31c7903e6357>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V48#C118971_C100767> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#ee81d5e2-4dce-4b18-9887-3a97762ce7cd>
+<http://www.assero.co.uk/CPV#bf044621-912b-4138-87c0-45600eb5c081>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C102119> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "HAMD2"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#61e57e2b-43c0-4cd8-94fc-0f13aac17bca>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C102119> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Hamilton Depression Rating Scale 21-Item Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#c51c6e6e-f15b-42e3-a479-6ce222bb7451>
+<http://www.assero.co.uk/CPV#0d7a29e1-fe7b-4cf6-a965-090cca1cb15d>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C102119> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#6530d52a-3d8a-4334-b5d0-21f87e9a6974>
+<http://www.assero.co.uk/CPV#3fc5d8c6-1398-4aa3-a166-0370461e8912>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C102119> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#181ffcef-b345-4591-ae65-38c00c826fb8>
+<http://www.assero.co.uk/CPV#1713c510-3511-4084-818d-de1b06d9eb13>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C102119> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#1689c379-cb71-4eb8-a57b-f6c9ce8212b4>
+<http://www.assero.co.uk/CPV#c4378964-aabc-4dd8-a08b-326a934dd505>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130307> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "HAMD3"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#81d886b8-e1eb-4b9f-b7e3-91c3fdbb7ce8>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130307> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Hamilton Depression Rating Scale-24 Item Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#3c68017b-31fa-4a92-a1bf-bf5c07defe8b>
+<http://www.assero.co.uk/CPV#fd975da2-a393-41cc-bfb0-8c596f60496a>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130307> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#12076a41-1dfe-4ec6-9984-8809a3dcfcec>
+<http://www.assero.co.uk/CPV#13c190ab-a104-4a0f-a0f8-85c68c759574>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130307> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#2dc5d460-6ac6-46a0-87ca-c7448586e57b>
+<http://www.assero.co.uk/CPV#171cf95d-9889-487a-be32-743ec69223eb>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130307> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#4b08e8d9-634c-4e1c-b2e8-261e138165e3>
+<http://www.assero.co.uk/CPV#cb6cf4d7-6a83-49d8-ae79-64720bf309f3>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130306> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "HAMD4"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#d6ab417f-a1f5-4700-8170-fde42a800eaa>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130306> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Hamilton Depression Rating Scale 6 Clinician Version Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#a4264070-75f5-40f3-b7ae-451b9cddfddf>
+<http://www.assero.co.uk/CPV#e5eedb03-bae6-4951-95ff-c96bb7c8870f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130306> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#01b9995c-b3af-4a92-a9f2-2c6f52e63309>
+<http://www.assero.co.uk/CPV#85341b94-dff8-430b-a6bf-dc1ec74cedf9>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130306> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#8e09d200-11a4-4854-96cd-140ba26c4617>
+<http://www.assero.co.uk/CPV#f04389b9-4646-45c8-9bc7-8e62ab7ff069>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130306> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#bd21f796-9a87-4a9f-9d4a-bf12f7cce658>
+<http://www.assero.co.uk/CPV#fb8c71ce-82b5-4d7c-ae9a-7b0936f37009>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V53#C118971_C138332> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "HSB01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#fb52e347-fdfb-4587-a119-2ac52c2301d5>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V53#C118971_C138332> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "HAS-BLED Bleeding Risk Score Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#e40c9ad1-f4c8-45a3-9347-70764ed5c475>
+<http://www.assero.co.uk/CPV#63c94af0-6bd9-44a4-8438-0b059b5b6555>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V53#C118971_C138332> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#f362c87f-5e66-47b6-9372-20ac0e14acc6>
+<http://www.assero.co.uk/CPV#581b071d-3a26-43ec-91e0-53a12fb76326>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V53#C118971_C138332> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#95f23cc2-a385-4155-bc0d-172f6bbeb47f>
+<http://www.assero.co.uk/CPV#22e072d0-a790-4aa9-b57b-6b1cb69b887a>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V53#C118971_C138332> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#cd4f5109-b3a8-4bfc-b668-460a8a0b2fe6>
+<http://www.assero.co.uk/CPV#65e81f40-6e59-4796-b754-08336343f481>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V55#C118971_C130308> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "IDSC1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#297504ae-d72d-4cb6-b2a9-d636e3872d58>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V55#C118971_C130308> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Inventory of Depressive Symptomatology Clinician-Rated Version Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#ff9887ee-6d88-47cf-abd9-ae84b3511752>
+<http://www.assero.co.uk/CPV#0f307946-3579-47ff-9dd4-3c3ef46b3f80>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V55#C118971_C130308> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#6e62470f-7cfb-4464-9b6b-b593f301b9ab>
+<http://www.assero.co.uk/CPV#d307911f-ac23-496f-8076-39185a47e12b>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V55#C118971_C130308> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#09817c60-2fad-4872-9ee1-fa7454b13e1c>
+<http://www.assero.co.uk/CPV#84f3a6ac-0f32-4482-90a1-7704c334bb0c>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V55#C118971_C130308> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#21a0a3f4-084f-4e57-99e1-8ad277d9f24a>
+<http://www.assero.co.uk/CPV#e0d42ff3-9b9b-4b92-8161-927efa4a1828>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130310> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "KDPI01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#559018bb-38b5-48b2-8837-5609ab620d3a>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130310> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Kidney Donor Profile Index Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#b8a700c0-4431-4f51-8808-631be23faa17>
+<http://www.assero.co.uk/CPV#f3ba9e3d-131a-4a23-8beb-28115c432cb3>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130310> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#13c63b58-09a2-4496-af39-703c5bce203c>
+<http://www.assero.co.uk/CPV#755975b5-4b36-4e6b-a44a-97e1dc59c323>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130310> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#18035ac1-ae73-43fc-8e4d-b508291d8a7f>
+<http://www.assero.co.uk/CPV#b8a32b91-cf57-480a-a34e-4c2d9c7a42e7>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130310> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#79ffdf82-1edd-43e9-adf4-3da03c1dc4e8>
+<http://www.assero.co.uk/CPV#8fc232dd-4269-4278-afe8-4bf888ba9fe0>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V53#C118971_C138333> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "LPPSS1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#ab1a42ca-2d62-4397-8717-c983a30e3007>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V53#C118971_C138333> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "The Lansky Play-Performance Status Scale Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#d0d611cd-e572-402d-bb7f-c1ae227a74df>
+<http://www.assero.co.uk/CPV#674d6e36-ce13-4e4c-80be-33a80aa089be>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V53#C118971_C138333> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#4298345a-7a28-4a8f-ab57-2e5882c784ee>
+<http://www.assero.co.uk/CPV#a32b7949-13bc-43b6-86f1-4db38fec8bb6>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V53#C118971_C138333> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#b54b2536-aa17-4760-8334-d56a94118309>
+<http://www.assero.co.uk/CPV#39f70ac8-78dc-4b66-a3e6-59ac938b5d02>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V53#C118971_C138333> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#958ab64c-b1fc-4ffc-bcfa-412fa9ccc1b7>
+<http://www.assero.co.uk/CPV#4dada053-874b-484d-8bf4-b60ac86cca9f>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121008> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "MELD01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#d062522c-c49e-49dc-8043-893d86af70c7>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121008> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Model for End Stage Liver Disease Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#66a0108a-4c80-4d30-b668-6d416b30e636>
+<http://www.assero.co.uk/CPV#52611f18-b2af-4f4d-9aba-3b773e00fe7b>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121008> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#0f0f8661-e70a-4ec0-b675-647531adca87>
+<http://www.assero.co.uk/CPV#e93bb87b-3d3c-428a-a215-d353e2e9d5e7>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121008> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#bd7d3201-32e3-45f2-88df-84d3c72be4e8>
+<http://www.assero.co.uk/CPV#77424b26-9335-4cb9-9b17-816d5e49f5f5>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121008> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#73354caa-0cbf-40fe-bcbc-4c597e65a1f1>
+<http://www.assero.co.uk/CPV#1bac711f-ea70-4c35-8926-3e81494eb8b5>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119105> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "CADG01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#da00da08-0158-443e-932e-23e5c9474b63>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119105> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Coronary Artery Dissection NHLBI Grade Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#80f2dac6-af08-4706-b41c-34009d539d5f>
+<http://www.assero.co.uk/CPV#5928e18e-87d7-4f10-8e70-2d08fc2a64a0>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119105> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#e2491bf1-3214-4ed6-98aa-a2d5d723dd7a>
+<http://www.assero.co.uk/CPV#e3fa43df-1dfe-4415-8218-6a8bac094fab>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119105> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#2ca11a15-529d-47bb-8c1f-77867b642b37>
+<http://www.assero.co.uk/CPV#c564e7ed-3092-4390-be90-1b431debd984>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119105> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#5a3589be-b33f-4264-9539-9a9d8cc6cf92>
+<http://www.assero.co.uk/CPV#e2371d6d-6895-47fd-8b4d-3f14c0371a38>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121009> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "NSA01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#8f24ce9b-fa93-411b-aa8d-360cc0756d25>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121009> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Negative Symptom Assessment-16 Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#da735b47-bc7e-4ebd-b907-67880e28e861>
+<http://www.assero.co.uk/CPV#6f543bc4-50e2-44ae-85d3-1ba20e11e7e9>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121009> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#067e0fd9-a191-4344-ade2-84abe696e881>
+<http://www.assero.co.uk/CPV#1a722745-73ad-4755-9668-042cdaaf30fb>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121009> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#7b1efa6f-fe4d-4305-b252-304b83521d3c>
+<http://www.assero.co.uk/CPV#94e0b1ce-e148-48f4-bd0b-d74ed1aca124>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V43#C118971_C121009> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#50ce0ca3-a8f4-4796-8b72-c700e76896ac>
+<http://www.assero.co.uk/CPV#0f2be42a-a57f-48c0-99cf-60362cecbd34>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V51#C118971_C132531> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "NSAA1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#c0b1ebde-5bbb-4318-aa37-afbd00d9f00c>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V51#C118971_C132531> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "North Star Ambulatory Assessment Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#03bd546e-8cd3-479b-95b3-2bb9fdefc52c>
+<http://www.assero.co.uk/CPV#a166045f-d6bf-451b-8e4c-1641144839e4>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V51#C118971_C132531> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#725d8d29-fda3-4509-8dc1-882cbfb5fe0c>
+<http://www.assero.co.uk/CPV#5e447756-49d3-4bee-bf41-5a956c790841>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V51#C118971_C132531> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#333459a2-4c3a-4855-bdc3-8ca7ba27df92>
+<http://www.assero.co.uk/CPV#d4a53ea4-5523-4da4-9155-c234f85e72f9>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V51#C118971_C132531> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#9269972a-f82e-4a51-b1e8-586c658abf2b>
+<http://www.assero.co.uk/CPV#a9ac2290-2962-43a6-99cd-2333ae508aeb>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124712> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "PANSS1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#61d567f6-3a23-4c0b-9bb3-433c55354dec>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124712> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Positive and Negative Syndrome Scale Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#c65c3abd-d900-4780-87b3-94639427fc42>
+<http://www.assero.co.uk/CPV#324d58f3-f334-4cff-8c2c-3068e2c2e97a>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124712> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#8402b3e4-aaa8-4acd-94eb-61f4ef792d1d>
+<http://www.assero.co.uk/CPV#4c16c258-bac8-4893-8d6c-c5914e711375>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124712> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#9b552c51-80a9-4578-a582-db0677d2f843>
+<http://www.assero.co.uk/CPV#cccbfb16-32a4-4ff8-a7b8-a6746800b81f>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124712> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#3be13449-7fb3-42ef-9afd-51e0868a7a81>
+<http://www.assero.co.uk/CPV#b36b44b1-c6a7-47b9-98a8-45840166639f>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V52#C118971_C135734> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "PASI01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#aff1bf02-1722-4a2f-bc4b-0f0a0bc7d1ea>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V52#C118971_C135734> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Psoriasis Area and Severity Index Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#179c305b-0aa7-4b9e-8462-37e28025404c>
+<http://www.assero.co.uk/CPV#65affbf0-173a-41ff-b658-93340b080c33>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V52#C118971_C135734> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#589efbc2-43ee-4039-826e-5c83e5c7e5e1>
+<http://www.assero.co.uk/CPV#68f48f28-d819-43ca-8448-c4a237a340ca>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V52#C118971_C135734> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#ef0c8c5e-8200-4a05-8f04-02a8df1fffb9>
+<http://www.assero.co.uk/CPV#7857b37e-26dd-4110-8220-13b1538764d2>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V52#C118971_C135734> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#c2343e1a-1127-458f-a0ee-c57de083457b>
+<http://www.assero.co.uk/CPV#673b1ea3-8123-431e-927f-137dc591aa7f>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V55#C118971_C130309> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "QIDSC1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#9014c2ed-3d7f-4c2f-9137-34b9e933951b>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V55#C118971_C130309> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Quick Inventory of Depressive Symptomatology Clinician-Rated Version Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#248054c2-424a-4abd-a268-70f02679cb68>
+<http://www.assero.co.uk/CPV#cda9db58-e376-4219-a63d-925229948f24>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V55#C118971_C130309> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#945920fc-db0f-4f1f-80b9-928da465d4a2>
+<http://www.assero.co.uk/CPV#0c76d3cb-f2c0-4662-b1d0-a265cfc910fa>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V55#C118971_C130309> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#60ba0fe9-c022-415b-a089-2bb09b8f9067>
+<http://www.assero.co.uk/CPV#04c76285-0657-4d9a-8ec8-8f3fd2cfe204>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V55#C118971_C130309> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#a0963943-2549-449c-99c7-279487d9e44f>
+<http://www.assero.co.uk/CPV#df04bc20-9562-41e6-abe4-226d3998f1d9>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124708> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "RCVD01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#245bec36-23bd-4939-b967-146106b4ee62>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124708> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Reynolds Cardiovascular Disease 10-Year Risk Score Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#3bc3649d-4f9d-4dc0-b224-99c2eb14b24b>
+<http://www.assero.co.uk/CPV#d2998d1b-5fd8-41d8-a243-501684995c5b>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124708> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#7ea03b2d-850b-4bd1-b676-dbe3f592bdc1>
+<http://www.assero.co.uk/CPV#3f2b98fe-1745-49c0-af3f-1eb91ee63e38>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124708> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#f28fb78f-0a93-47b5-bb88-b5b0b20ca5d4>
+<http://www.assero.co.uk/CPV#3d80a4de-43b5-4ee1-898c-b44942c9d45b>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124708> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#0a0e213f-4be2-4554-a007-31db9094b842>
+<http://www.assero.co.uk/CPV#4167c153-21a7-4035-a49d-282320c11042>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119104> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "TIMG01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#f180efcf-94d5-4d8f-9c3c-7309b1b57d9c>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119104> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Coronary Thrombus TIMI Grade Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#699238eb-ad38-40f4-8a57-722ac587a32d>
+<http://www.assero.co.uk/CPV#730b0761-f8da-404f-a926-02590d70acd2>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119104> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#76fe8e23-02d7-4486-bab6-1766b6cd44b1>
+<http://www.assero.co.uk/CPV#d9a47f87-bfbf-452e-a33a-b235895749b5>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119104> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#4079aae6-74fa-4624-995e-8c18979c01cc>
+<http://www.assero.co.uk/CPV#0c641c38-f308-4b0c-ad8d-85e8fd4fa44b>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C119104> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#fb11e51e-4664-41fc-93f7-3c90016d58ab>
+<http://www.assero.co.uk/CPV#73b58fb6-5fb7-47ae-9da0-a6e7750f579b>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130305> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "VLERS1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#207a5f82-afb9-46d0-bf4a-437cbbe34146>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130305> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "Vignos Lower Extremity Rating Scale Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#3dcbc5c0-63a4-4839-a58a-2ac35a04e335>
+<http://www.assero.co.uk/CPV#44d38184-0af4-43d8-a8e4-cf203d40da1e>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130305> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#05d0b9a7-b542-452b-bc66-701a44a134f1>
+<http://www.assero.co.uk/CPV#76f31116-f9b9-4871-8bb7-ec1171f9573c>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130305> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#efb62295-ef4a-4c61-8b8a-34895e33590d>
+<http://www.assero.co.uk/CPV#50257a2a-d668-465f-b718-bc29963e50d1>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V50#C118971_C130305> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#44d72cf1-bc4f-4552-ae77-905156e8a3b9>
+<http://www.assero.co.uk/CPV#4a1467b9-c406-4d2b-90d1-f49b488abae8>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124709> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "WHEG01"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#9dee6d7c-710c-4383-a977-420de0b69f06>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124709> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "West Haven Hepatic Encephalopathy Grade Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#e855907b-9537-4ea9-ad8e-66735165383e>
+<http://www.assero.co.uk/CPV#e8729299-40c9-490f-96f6-8cfc62bc1569>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124709> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#f8d1f83c-ec54-4e1f-accf-45dad17ea2f9>
+<http://www.assero.co.uk/CPV#6314af8a-fc79-48ec-be51-d88f1ebb6e6d>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124709> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#8134ee70-f945-403e-a4bd-1a28a36e84cd>
+<http://www.assero.co.uk/CPV#496006f4-3c96-4642-9cb8-1b01ec2d2339>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124709> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#e797396b-35f6-4e65-b312-f0a8d97b90d9>
+<http://www.assero.co.uk/CPV#c611bdb6-db31-43a3-9e02-b079cfdd8e1d>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124713> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "WHIVS1"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#e835a381-a1c5-41c7-8243-e46d91ff64e8>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124713> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "World Health Organization Clinical Staging of HIV/AIDS for Adults and Adolescents Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#68988437-744c-491a-8825-097f0670b613>
+<http://www.assero.co.uk/CPV#dcd282e3-f6e2-4764-a21a-897ed8905711>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124713> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#f91a56b5-9bfb-45a4-942f-8237a8d0c7bd>
+<http://www.assero.co.uk/CPV#f7b3ca18-a8ee-4645-a3f0-5d4304cf3bc9>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124713> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#55c7a92e-cbc0-4e5d-b5b3-0568ed54c686>
+<http://www.assero.co.uk/CPV#9888e7ea-c96c-42b8-845c-a34c21b1c564>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124713> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#fa25db25-0c93-4d50-abb1-99b20da10006>
+<http://www.assero.co.uk/CPV#a13baa86-2292-4a9a-a093-e8b0e1bb6fd5>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124714> ;
+	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
+	isoC:value "WHIVS2"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#da6604cd-e784-45ab-8704-235da869be99>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124714> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "World Health Organization Clinical Staging of HIV/AIDS for Children Clinical Classification"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#2f3cd84b-05f7-4d64-b8f7-069cd72c5ed9>
+<http://www.assero.co.uk/CPV#80441c11-f4cf-466a-841a-212a15c69df2>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124714> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#c347bf9f-e4f9-4730-9c22-0cf5c2ea9dfb>
+<http://www.assero.co.uk/CPV#f98075a5-3394-4d06-91fc-90c4e526bafa>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124714> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#b48157a0-d669-4530-a610-c10240b2a3a5>
+<http://www.assero.co.uk/CPV#55d46116-1deb-4ae4-a3a7-2a2d0a56bc37>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C118971/V46#C118971_C124714> ;
 	isoC:context <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#06395498-1276-454c-b652-ba588571b459>
+<http://www.assero.co.uk/CPV#2889b039-67c2-45a5-ae3a-451abc3d1a5d>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.cdisc.org/C111114/V36#C111114_C449> ;
+	isoC:context <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
+	isoC:value "Deoxyribonucleic Acid; Double-stranded DNA; dsDNA"^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#a5b17f3b-a9f1-43f0-a63f-e4a5c613db03>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C111114/V36#C111114_C449> ;
 	isoC:context <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
 	isoC:value "Deoxyribonucleic Acid"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#84406e34-6335-4c94-b09f-b9f6a820b63f>
+<http://www.assero.co.uk/CPV#c0e03d1c-a104-441d-ae54-ffc0e0278493>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C111114/V36#C111114_C449> ;
 	isoC:context <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#bedb976c-9010-4b21-a5a5-05b01c693e3f>
+<http://www.assero.co.uk/CPV#e71fc879-e395-4607-bc4a-f874db4a0b1b>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C111114/V36#C111114_C449> ;
 	isoC:context <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#083da405-ebf1-4bb4-a482-f457e513c01c>
+<http://www.assero.co.uk/CPV#b9531f5e-7e2b-468e-886a-394108014fbc>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.cdisc.org/C111114/V36#C111114_C449> ;
 	isoC:context <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#820d8de1-86dc-47c6-bf65-a22178407b54> ;
 .
-<http://www.assero.co.uk/CPV#c1f51feb-6913-4292-a7bf-b38d7deb5ac5>
+<http://www.assero.co.uk/CPV#232b0623-1b45-43de-92aa-53b84fc1ce53>
+	rdf:type isoC:CustomProperty ;
+	isoC:appliesTo <http://www.s-cubed.dk/SN000631/V1#SN000631_S003970> ;
+	isoC:context <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
+	isoC:value ""^^xsd:string ;
+	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#70740ba8-a13f-4267-b9b0-b60c2a4713a5> ;
+.
+<http://www.assero.co.uk/CPV#f8d7f5d4-23a1-4281-ab0d-3e53e36002e0>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/SN000631/V1#SN000631_S003970> ;
 	isoC:context <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
 	isoC:value "Immunophenotyping"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#ad82dece-004e-4c78-a83d-c6478e2692fc> ;
 .
-<http://www.assero.co.uk/CPV#13ecd573-c61b-44b4-b071-234aabec5965>
+<http://www.assero.co.uk/CPV#516239a9-049e-4d09-8163-2509f0cb8f03>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/SN000631/V1#SN000631_S003970> ;
 	isoC:context <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
 	isoC:value "true"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#6df348da-ea72-462b-85d4-bb0b7df7d671> ;
 .
-<http://www.assero.co.uk/CPV#9504bd00-d18b-49f4-bb4a-648652d0a71a>
+<http://www.assero.co.uk/CPV#9234a995-250e-499f-9a48-4e8714b7b518>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/SN000631/V1#SN000631_S003970> ;
 	isoC:context <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
 	isoC:value "false"^^xsd:string ;
 	isoC:customPropertyDefinedBy <http://www.assero.co.uk/CPD#9650c753-5e24-4ddb-b34e-e500d45c8e27> ;
 .
-<http://www.assero.co.uk/CPV#988c9f61-6660-4e2d-80ac-51a3b7aa52e6>
+<http://www.assero.co.uk/CPV#c9f9ec14-9438-4f54-a001-31446b79dc9e>
 	rdf:type isoC:CustomProperty ;
 	isoC:appliesTo <http://www.s-cubed.dk/SN000631/V1#SN000631_S003970> ;
 	isoC:context <http://www.s-cubed.dk/SN000631/V1#SN000631> ;

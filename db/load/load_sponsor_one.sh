@@ -127,4 +127,5 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/a
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/adam_ig/ADAM_IG_V3.ttl" $FileEndPoint
 # Load custom property definitions
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/sponsor_one/custom_property/custom_properties.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/sponsor_one/custom_property/custom_properties_migration_one.ttl" $FileEndPoint
 set +x

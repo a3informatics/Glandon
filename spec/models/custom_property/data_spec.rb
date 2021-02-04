@@ -54,6 +54,19 @@ describe CustomPropertyDefinition do
     ]
   end
 
+  def migration_one
+    uri = Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept")
+    [
+      {
+        datatype: "string", 
+        label: "Synonym Sponsor", 
+        description: "Additional synonyms created by the sponsor", 
+        default: "",
+        custom_property_of: uri
+      }
+    ]
+  end
+
   it "create custom property" do
     results = []
     definitions.each do |definition|
@@ -67,5 +80,19 @@ describe CustomPropertyDefinition do
     full_path = sparql.to_file
   #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "custom_properties.ttl")
 	end
+
+  it "create custom property, migration one" do
+    results = []
+    migration_one.each do |definition|
+      item = CustomPropertyDefinition.new(definition)
+      item.uri = item.create_uri(item.class.base_uri)
+      results << item
+    end
+    sparql = Sparql::Update.new
+    sparql.default_namespace(results.first.uri.namespace)
+    results.each{|x| x.to_sparql(sparql, true)}
+    full_path = sparql.to_file
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "custom_properties_migration_one.ttl")
+  end
 
 end

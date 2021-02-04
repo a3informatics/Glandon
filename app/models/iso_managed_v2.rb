@@ -28,6 +28,7 @@ class IsoManagedV2 < IsoConceptV2
   include IsoManagedV2::ImCustomProperties
   include IsoManagedV2::UriManagement
   include IsoManagedV2::Associations
+  include IsoManagedV2::Export
   include IsoManagedV2::RegistrationStatus
   
   # Initialize

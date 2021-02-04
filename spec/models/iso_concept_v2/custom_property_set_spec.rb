@@ -6,7 +6,7 @@ describe IsoConceptV2::CustomPropertySet do
   include SecureRandomHelpers
 
   def sub_dir
-    return "models/custom_property_set"
+    return "models/iso_concept_v2/custom_property_set"
   end
 
   before :each do
@@ -152,6 +152,36 @@ describe IsoConceptV2::CustomPropertySet do
     custom_set_2 << create_value("First", 1, @definition_1)
     custom_set_2 << create_value("Second", 2, @definition_2)
     expect(custom_set_1.diff?(custom_set_2)).to eq(true)
+  end
+
+  it "merge" do
+    create_definition_1
+    create_definition_2
+    custom_set_1 = IsoConceptV2::CustomPropertySet.new
+    custom_set_1 << create_value("First", 1, @definition_1)
+    custom_set_2 = IsoConceptV2::CustomPropertySet.new
+    custom_set_2 << create_value("Second", 2, @definition_2)
+    custom_set_1.merge(custom_set_2)
+    expect(custom_set_1.name_value_pairs).to eq([{:name=>"Name", :value=>"First"}, {:name=>"Other", :value=>"Second"}])
+  end
+
+  it "items" do
+    create_definition_1
+    create_definition_2
+    custom_set_1 = IsoConceptV2::CustomPropertySet.new
+    custom_set_1 << create_value("First", 1, @definition_1)
+    custom_set_1 << create_value("Second", 2, @definition_2)
+    check_file_actual_expected(custom_set_1.items.map{|x| x.to_h}, sub_dir, "items_expected_1.yaml")
+  end
+
+  it "property" do
+    create_definition_1
+    create_definition_2
+    custom_set_1 = IsoConceptV2::CustomPropertySet.new
+    custom_set_1 << create_value("First", 1, @definition_1)
+    custom_set_1 << create_value("Second", 2, @definition_2)
+    property = custom_set_1.property("Name")
+    check_file_actual_expected(property.to_h, sub_dir, "property_expected_1.yaml", write_file: true)
   end
 
 end
