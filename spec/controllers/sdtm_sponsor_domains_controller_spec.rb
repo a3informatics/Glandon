@@ -115,6 +115,7 @@ describe SdtmSponsorDomainsController do
     before :each do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..8)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -173,6 +174,7 @@ describe SdtmSponsorDomainsController do
     before :all do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..8)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
@@ -239,53 +241,6 @@ describe SdtmSponsorDomainsController do
 
   end
 
-  # describe "toggle actions" do
-
-  #   before :all do
-  #     @lock_user = ua_add_user(email: "lock@example.com")
-  #     Token.delete_all
-  #   end
-
-  #   login_curator
-
-  #   before :each do
-  #     data_files = ["SDTM_Sponsor_Domain.ttl"]
-  #     load_files(schema_files, data_files)
-  #     load_data_file_into_triple_store("mdr_identification.ttl")
-  #     load_data_file_into_triple_store("complex_datatypes.ttl")
-  #     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-  #     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
-  #     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
-  #     load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
-  #     load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
-  #   end
-
-  #   after :all do
-  #     ua_remove_user("lock@example.com")
-  #   end
-
-  #   it "toggle" do
-  #     @request.env['HTTP_REFERER'] = '/path'
-  #     sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
-  #     token = Token.obtain(sdtm_sponsor_domain, @user)
-  #     sponsor_variable = SdtmSponsorDomain::VariableSSD.find(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
-  #     put :toggle_used, params:{id: sdtm_sponsor_domain.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable.id}}
-  #     actual = check_good_json_response(response)
-  #     check_file_actual_expected(actual, sub_dir, "toggle_expected_1.yaml", equate_method: :hash_equal)
-  #   end
-
-  #   it "toggle, locked by another user" do
-  #     @request.env['HTTP_REFERER'] = '/path'
-  #     sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
-  #     sponsor_variable = SdtmSponsorDomain::VariableSSD.find(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
-  #     token = Token.obtain(sdtm_sponsor_domain, @lock_user)
-  #     put :toggle_used, params:{id: sdtm_sponsor_domain.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable.id}}
-  #     expect(flash[:error]).to be_present
-  #     expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
-  #   end
-
-  # end
-
   describe "editor metadata" do
 
     login_curator
@@ -322,6 +277,7 @@ describe SdtmSponsorDomainsController do
     before :each do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..8)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -415,6 +371,7 @@ describe SdtmSponsorDomainsController do
     before :each do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..8)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
