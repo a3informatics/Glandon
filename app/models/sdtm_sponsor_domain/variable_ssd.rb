@@ -73,7 +73,7 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
   def update_with_clone(params, managed_ancestor)
     @parent_for_validation = managed_ancestor
     if self.standard?
-      if valid_keys(params)
+      if valid_keys?(params)
         super(params.slice(:used, :notes, :comment, :method), managed_ancestor)
       else 
         self.errors.add(:base, "The variable cannot be updated as it is a standard variable.")
@@ -115,8 +115,8 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
   private
 
     # Check if params contain valid standard keys
-    def valid_keys(params)
-      standard_keys = %i[used notes comment method]
+    def valid_keys?(params)
+      standard_keys = %w[used notes comment method]
       (params.keys & standard_keys).any?
     end
     
