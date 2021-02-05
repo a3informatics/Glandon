@@ -208,7 +208,7 @@ describe SdtmSponsorDomain::VariableSSD do
     it "update, non standard variable" do
       sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
       non_standard = sponsor_domain.add_non_standard_variable
-      params2 = {description:"description updated"}
+      params2 = {description:"description updated", notes: "Notes updated", comment: "Comment updated", method: "Method updated"}
       result = non_standard.update_with_clone(params2, sponsor_domain)
       check_file_actual_expected(result.to_h, sub_dir, "update_var_1a.yaml", equate_method: :hash_equal)
     end
