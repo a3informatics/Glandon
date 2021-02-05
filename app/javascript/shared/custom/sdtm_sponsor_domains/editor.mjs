@@ -5,7 +5,7 @@ import { alerts } from 'shared/ui/alerts'
 import { $post, $delete } from 'shared/helpers/ajax'
 import { jumpToRow, highlightRow } from 'shared/helpers/dt/utils'
 
-import { dtSDTMIGDomainEditColumns } from 'shared/helpers/dt/dt_column_collections'
+import { dtSDTMSDDomainEditColumns } from 'shared/helpers/dt/dt_column_collections'
 import { dtSDTMSDEditFields } from 'shared/helpers/dt/dt_field_collections'
 import { dtRowRemoveColumn } from 'shared/helpers/dt/dt_columns'
 
@@ -40,7 +40,7 @@ export default class SDTMSDEditor extends EditablePanel {
       dataUrl: urls.data,
       updateUrl: urls.updateVar,
       param: "sdtm_sponsor_domain",
-      columns: dtSDTMIGDomainEditColumns(),
+      columns: dtSDTMSDDomainEditColumns(),
       fields: dtSDTMSDEditFields(),
       order: [[0, 'asc']],
       requiresMetadata: true,
