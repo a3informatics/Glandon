@@ -217,7 +217,7 @@ describe "Custom Properties", type: :feature  do
     ### Code List Extension
 
     it "allows to display Custom Properties, CL Extension Editor" do
-      go_to_codelist 'C99073', 'Sanofi', '3.0.0', :edit
+      go_to_codelist 'C99073', 'Sanofi', '2.0.0', :edit
 
       show_custom_props
       # Check CP Columns

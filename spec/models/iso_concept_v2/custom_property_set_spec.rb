@@ -87,6 +87,18 @@ describe IsoConceptV2::CustomPropertySet do
     expect(custom_set.name_value_pairs).to eq(expected)
   end
 
+  it "name_values_pairs III" do
+    create_definition_1
+    create_definition_2
+    create_definition_3
+    expected = [{:name=>"Name", :value=>"A string"}, {:name=>"Other", :value=>"Other string"}, {:name=>"Switch", :value=>false}]
+    custom_set = IsoConceptV2::CustomPropertySet.new
+    custom_set << create_value("Other string", 1, @definition_2)
+    custom_set << create_value("A string", 1, @definition_1)
+    custom_set << create_value("false", 2, @definition_3)
+    expect(custom_set.name_value_pairs).to eq(expected)
+  end
+
   it "return_values" do
     create_definition_1
     create_definition_2
@@ -181,7 +193,7 @@ describe IsoConceptV2::CustomPropertySet do
     custom_set_1 << create_value("First", 1, @definition_1)
     custom_set_1 << create_value("Second", 2, @definition_2)
     property = custom_set_1.property("Name")
-    check_file_actual_expected(property.to_h, sub_dir, "property_expected_1.yaml", write_file: true)
+    check_file_actual_expected(property.to_h, sub_dir, "property_expected_1.yaml")
   end
 
 end
