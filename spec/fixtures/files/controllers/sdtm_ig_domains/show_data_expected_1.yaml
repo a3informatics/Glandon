@@ -9,7 +9,7 @@
   :name: STUDYID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Unique identifier for a study.
   :used: false
   :compliance:
@@ -30,7 +30,7 @@
   :name: DOMAIN
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Two-character abbreviation for the domain.
   :used: false
   :compliance:
@@ -51,7 +51,7 @@
   :name: USUBJID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
   :used: false
@@ -73,7 +73,7 @@
   :name: CMSEQ
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Sequence Number given to ensure uniqueness of subject records within
     a domain. May be any valid number.
   :used: false
@@ -95,7 +95,7 @@
   :name: CMGRPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Used to tie together a block of related records in a single domain
     for a subject.
   :used: false
@@ -117,7 +117,7 @@
   :name: CMSPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Sponsor-defined reference number. Examples: a number pre-printed
     on the CRF as an explicit line identifier or record identifier defined in the
     sponsor''s operational database. Example: line number on a concomitant medication
@@ -141,7 +141,7 @@
   :name: CMTRT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Verbatim medication name that is either pre-printed or collected on
     a CRF.
   :used: false
@@ -163,7 +163,7 @@
   :name: CMMODIFY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: If CMTRT is modified to facilitate coding, then CMMODIFY will contain
     the modified text.
   :used: false
@@ -185,7 +185,7 @@
   :name: CMDECOD
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Standardized or dictionary-derived text description of CMTRT or CMMODIFY.
     Equivalent to the generic medication name in WHO Drug. The sponsor is expected
     to provide the dictionary name and version used to map the terms utilizing the
@@ -210,7 +210,7 @@
   :name: CMCAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Used to define a category of medications/treatments. Examples: PRIOR,
     CONCOMITANT, ANTI-CANCER MEDICATION, or GENERAL CONMED.'
   :used: false
@@ -232,7 +232,7 @@
   :name: CMSCAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'A further categorization of medications/ treatment. Examples: CHEMOTHERAPY,
     HORMONAL THERAPY, ALTERNATIVE THERAPY.'
   :used: false
@@ -255,7 +255,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01QUkVTUF9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMPRESP_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -292,7 +292,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01PQ0NVUl9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMOCCUR_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -330,7 +330,7 @@
   :ct_and_format: "(ND)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TVEFUX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTAT_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -366,7 +366,7 @@
   :name: CMREASND
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Describes the reason concomitant medication was not collected. Used
     in conjunction with CMSTAT when value is NOT DONE.
   :used: false
@@ -388,7 +388,7 @@
   :name: CMINDC
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Denotes why a medication was taken or administered. Examples: NAUSEA,
     HYPERTENSION.'
   :used: false
@@ -410,7 +410,7 @@
   :name: CMCLAS
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Drug class. May be obtained from coding. When coding to a single class,
     populate with class value. If using a dictionary and coding to multiple classes,
     then follow assumption 4.1.2.8.3 or omit CMCLAS.
@@ -433,7 +433,7 @@
   :name: CMCLASCD
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Class code corresponding to CMCLAS. Drug class. May be obtained from
     coding. When coding to a single class, populate with class code. If using a dictionary
     and coding to multiple classes, then follow assumption 4.1.2.8.3 or omit CMCLASCD.
@@ -456,7 +456,7 @@
   :name: CMDOSE
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Amount of CMTRT taken.
   :used: false
   :compliance:
@@ -477,7 +477,7 @@
   :name: CMDOSTXT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Dosing amounts or a range of dosing information collected in text
     form. Units may be stored in CMDOSU. Example: 200-400, 15-20.'
   :used: false
@@ -500,7 +500,7 @@
   :ct_and_format: "(UNIT)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YxMSNDNzE2MjA=?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YxMSNDNzE2MjA=?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NVX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSU_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -536,7 +536,7 @@
   :ct_and_format: "(FRM)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1YxMyNDNjY3MjY=?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1YxMyNDNjY3MjY=?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NGUk1fVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSFRM_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -572,7 +572,7 @@
   :ct_and_format: "(FREQ)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1Y2I0M3MTExMw==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1Y2I0M3MTExMw==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NGUlFfVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSFRQ_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -608,7 +608,7 @@
   :name: CMDOSTOT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Total daily dose of CMTRT using the units in CMDOSU. Total dose over
     a period other than day could be recorded in a separate Supplemental Qualifier
     variable. CMDOSTOT should be used in addition to CMDOSE, and not in place of it.
@@ -631,7 +631,7 @@
   :name: CMDOSRGM
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Text description of the (intended) schedule or regimen for the Intervention.
     Examples: TWO WEEKS ON, TWO WEEKS OFF.'
   :used: false
@@ -654,7 +654,7 @@
   :ct_and_format: "(ROUTE)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI5L1Y0I0M2NjcyOQ==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI5L1Y0I0M2NjcyOQ==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ST1VURV9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMROUTE_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -689,7 +689,7 @@
   :name: CMSTDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: ''
   :used: false
   :compliance:
@@ -710,7 +710,7 @@
   :name: CMENDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: ''
   :used: false
   :compliance:
@@ -731,7 +731,7 @@
   :name: CMSTDY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Study day of start of medication relative to the sponsor-defined RFSTDTC.
   :used: false
   :compliance:
@@ -752,7 +752,7 @@
   :name: CMENDY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Study day of end of medication relative to the sponsor-defined RFSTDTC.
   :used: false
   :compliance:
@@ -773,7 +773,7 @@
   :name: CMDUR
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: Collected duration for a treatment episode. Used only if collected
     on the CRF and not derived from start and end date/times.
   :used: false
@@ -796,7 +796,7 @@
   :ct_and_format: "(STENRF)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TVFJGX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTRF_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -836,7 +836,7 @@
   :ct_and_format: "(STENRF)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01FTlJGX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMENRF_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -875,7 +875,7 @@
   :name: CMSTRTPT
   :ct_and_format: BEFORE, COINCIDENT, AFTER, U
   :format: BEFORE, COINCIDENT, AFTER, U
-  :ct_reference: 
+  :ct_reference: []
   :description: Identifies the start of the medication as being before or after the
     reference time point defined by variable CMSTTPT.
   :used: false
@@ -897,7 +897,7 @@
   :name: CMSTTPT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Description or date/time in ISO 8601 character format of the reference
     point referred to by CMSTRTPT. Examples: ''2003-12-15'' or ''VISIT 1''.'
   :used: false
@@ -919,7 +919,7 @@
   :name: CMENRTPT
   :ct_and_format: BEFORE, COINCIDENT, AFTER, U
   :format: BEFORE, COINCIDENT, AFTER, U
-  :ct_reference: 
+  :ct_reference: []
   :description: Identifies the end of the medication as being before or after the
     reference time point defined by variable CMENTPT.
   :used: false
@@ -941,7 +941,7 @@
   :name: CMENTPT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Description or date/time in ISO 8601 character format of the reference
     point referred to by CMENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
   :used: false

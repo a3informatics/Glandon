@@ -65,8 +65,10 @@ private
   # Add paths to terminology references
   def add_tc_paths_to_items(items)
     items = items.each do |x|
-      unless x[:ct_reference].nil?
-        x[:ct_reference].reverse_merge!({show_path: thesauri_managed_concept_path({id: x[:ct_reference][:reference][:id], managed_concept: {context_id: ""}}) })
+      unless x[:ct_reference].empty?
+        x[:ct_reference].each do |ct_reference|
+          ct_reference.reverse_merge!({show_path: thesauri_managed_concept_path({id: ct_reference[:reference][:id], managed_concept: {context_id: ""}}) })
+        end
       end
     end
     items
