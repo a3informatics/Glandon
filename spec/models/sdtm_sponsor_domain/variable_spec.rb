@@ -249,6 +249,46 @@ describe SdtmSponsorDomain::VariableSSD do
 
   end
 
+  describe "Update Tests, CT Reference" do
+
+    before :each do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_cdisc_term_versions(1..4)
+    end
+
+    before :each do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "update, ct ref" do
+      cl_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66767/V4#C66767"))
+      cl_2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66768/V4#C66768"))
+      cl_3 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
+      sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
+
+      non_standard = sponsor_domain.add_non_standard_variable
+
+      params = {description:"description updated", ct_reference: [cl_1.id]}
+      non_standard = non_standard.update_with_clone(params, sponsor_domain)
+      expect(non_standard.errors.count).to eq(0)
+      check_file_actual_expected(non_standard.to_h, sub_dir, "update_ct_ref_expected_1a.yaml", equate_method: :hash_equal)
+
+      params2 = {description:"description updated 2", ct_reference: [cl_2.id]}
+      non_standard = non_standard.update_with_clone(params2, sponsor_domain)
+      expect(non_standard.errors.count).to eq(0)
+      check_file_actual_expected(non_standard.to_h, sub_dir, "update_ct_ref_expected_1b.yaml", equate_method: :hash_equal)
+
+      params3 = {description:"description updated 3", ct_reference: [cl_3.id]}
+      non_standard = non_standard.update_with_clone(params3, sponsor_domain)
+      expect(non_standard.errors.count).to eq(0)
+      check_file_actual_expected(non_standard.to_h, sub_dir, "update_ct_ref_expected_1c.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+
   describe "Correct prefix" do
 
     before :all do

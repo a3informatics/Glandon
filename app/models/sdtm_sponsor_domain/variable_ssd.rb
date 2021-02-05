@@ -81,6 +81,7 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
       end
     else
       return self unless name_change_valid?(params)
+      update_ct_reference(params)
       super(params, managed_ancestor)
     end
   end
@@ -113,6 +114,22 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
   end
 
   private
+
+    def update_ct_reference(params)
+      if params.key?(:ct_reference)
+        params[:ct_reference].each do |x|
+          self.ct_reference = [ add_reference(x, self) ]
+        end
+        params.delete(:ct_reference)
+      end
+    end
+
+    def add_reference(id, parent)
+      ref = OperationalReferenceV3::TmcReference.new(reference: Fuseki::Base.as_uri(id), optional: true, ordinal: 1)
+      ref.uri = ref.create_uri(parent.uri)
+      ref.save
+      ref
+    end
 
     # Check if params contain valid standard keys
     def valid_keys?(params)
