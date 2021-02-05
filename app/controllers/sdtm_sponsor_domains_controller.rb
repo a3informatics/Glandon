@@ -25,8 +25,8 @@ class SdtmSponsorDomainsController < ManagedItemsController
   end
 
   def show_data
-    sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(protect_from_bad_id(params))
-    render json: {data: sdtm_sponsor_domain.get_children}, status: 200
+    @sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(protect_from_bad_id(params))
+    render json: {data: variables_with_paths(@sdtm_sponsor_domain)}, status: 200
   end
 
   def edit
@@ -46,30 +46,6 @@ class SdtmSponsorDomainsController < ManagedItemsController
       end
     end
   end
-
-  # def create_from_ig
-  #   sdtm_ig_domain = SdtmIgDomain.find_full(protect_from_bad_id(sdtm_ig_domain_id))
-  #   sdtm_sponsor_domain = SdtmSponsorDomain.create_from_ig(the_params, sdtm_ig_domain)
-  #   if sdtm_sponsor_domain.errors.empty?
-  #     AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain created from #{sdtm_ig_domain.scoped_identifier}.")
-  #     path = history_sdtm_sponsor_domains_path({sdtm_sponsor_domain: {identifier: sdtm_sponsor_domain.scoped_identifier, scope_id: sdtm_sponsor_domain.scope.id}})
-  #     render :json => {data: {history_path: path, id: sdtm_sponsor_domain.id}}, :status => 200
-  #   else
-  #     render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
-  #   end
-  # end
-
-  # def create_from_class
-  #   sdtm_class = SdtmClass.find_full(protect_from_bad_id(sdtm_class_id))
-  #   sdtm_sponsor_domain = SdtmSponsorDomain.create_from_class(the_params, sdtm_class)
-  #   if sdtm_sponsor_domain.errors.empty?
-  #     AuditTrail.create_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain created from #{sdtm_class.scoped_identifier}.")
-  #     path = history_sdtm_sponsor_domains_path({sdtm_sponsor_domain: {identifier: sdtm_sponsor_domain.scoped_identifier, scope_id: sdtm_sponsor_domain.scope.id}})
-  #     render :json => {data: {history_path: path, id: sdtm_sponsor_domain.id}}, :status => 200
-  #   else
-  #     render :json => {errors: sdtm_sponsor_domain.errors.full_messages}, :status => 422
-  #   end
-  # end
 
   def create_from
     uri = Uri.new(id: protect_from_bad_id(create_from_id))
@@ -242,6 +218,21 @@ private
       else
         return super
     end
+  end
+
+  # Get variables with paths
+  def variables_with_paths(sdtm_sponsor_domain)
+    add_tc_paths_to_items(sdtm_sponsor_domain.get_children)
+  end
+
+  # Add paths to terminology references
+  def add_tc_paths_to_items(items)
+    items = items.each do |x|
+      unless x[:ct_reference].nil?
+        x[:ct_reference].reverse_merge!({show_path: thesauri_managed_concept_path({id: x[:ct_reference][:reference][:id], managed_concept: {context_id: ""}}) })
+      end
+    end
+    items
   end
 
   def model_klass
