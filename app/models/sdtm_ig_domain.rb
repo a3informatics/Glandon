@@ -68,13 +68,13 @@ class SdtmIgDomain < Tabulation
 
     def set_ct_reference(ct_ref)
       if ct_ref.blank?
-        ref = nil
+        ref = []
       else
         ref = OperationalReferenceV3::TmcReference.find(ct_ref).to_h
         ref = ref.except(:context)
         parent = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: ref[:reference]))
         ref[:reference] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, label: parent.label, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
-        ref
+        [ref]
       end
     end
 
