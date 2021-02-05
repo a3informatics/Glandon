@@ -116,7 +116,7 @@ function dtContextMenuColumn(renderer) {
  * @param {string} name data property name
  * @return {object} DataTables true/false icon column definition
  */
-function dtTrueFalseColumn(name, opts = {}) {
+function dtBooleanColumn(name, opts = {}) {
   return {
     className: "text-center",
     data: name,
@@ -131,12 +131,12 @@ function dtTrueFalseColumn(name, opts = {}) {
  * @param {object} opts additional column opts
  * @return {object} DataTables true/false editable column definition
  */
-function dtTrueFalseEditColumn(name, opts = {}) {
+function dtBooleanEditColumn(name, opts = {}) {
   return {
     className: "editable inline text-center",
     data: name,
     editField: (opts.editField || name),
-    render: dtTrueFalseColumn().render,
+    render: dtBooleanColumn().render,
     ...opts
   }
 }
@@ -245,10 +245,10 @@ export {
   dtDateTimeColumn,
   dtVersionColumn,
   dtContextMenuColumn,
-  dtTrueFalseColumn,
+  dtBooleanColumn,
   dtItemTypeColumn,
   // Editable columns
-  dtTrueFalseEditColumn,
+  dtBooleanEditColumn,
   dtInlineEditColumn,
   dtExternalEditColumn,
   dtSelectEditColumn,

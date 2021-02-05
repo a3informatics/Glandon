@@ -1,8 +1,7 @@
-import { iconsInLine } from 'shared/ui/icons'
 import { termReferences } from 'shared/ui/collections'
 
-import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn,
-         dtItemTypeColumn, dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn, dtSelectEditColumn, dtRowRemoveColumn } 
+import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtBooleanColumn,
+         dtItemTypeColumn, dtVersionColumn, dtBooleanEditColumn, dtExternalEditColumn, dtSelectEditColumn, dtRowRemoveColumn } 
   from 'shared/helpers/dt/dt_columns'
 
 
@@ -119,8 +118,8 @@ function dtManagedItemsColumns(opts = {}, typeColumn = false, ownerColumn = fals
 function dtBCShowColumns() {
 
   return [
-    dtTrueFalseColumn("enabled"),
-    dtTrueFalseColumn("collect"),
+    dtBooleanColumn("enabled"),
+    dtBooleanColumn("collect"),
     { data: "has_complex_datatype.has_property.alias" },
     { data: "has_complex_datatype.has_property.question_text" },
     { data: "has_complex_datatype.has_property.prompt_text" },
@@ -300,8 +299,8 @@ function dtCLEditColumns() {
 function dtBCEditColumns() {
 
   return [
-    dtTrueFalseEditColumn('enabled'),
-    dtTrueFalseEditColumn('collect'),
+    dtBooleanEditColumn('enabled'),
+    dtBooleanEditColumn('collect'),
 
     {
       data: 'has_complex_datatype.has_property.alias',
@@ -343,7 +342,7 @@ function dtSDTMSDDomainEditColumns() {
 
   return [
     { data: "ordinal" },
-    dtTrueFalseEditColumn( 'used' ),
+    dtBooleanEditColumn( 'used' ),
     dtInlineEditColumn( 'name' ),
     dtInlineEditColumn( 'label' ),
     dtSelectEditColumn( 'typed_as' ),
