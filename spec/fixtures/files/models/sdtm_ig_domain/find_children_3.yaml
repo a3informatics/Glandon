@@ -8,7 +8,7 @@
   :name: STUDYID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Unique identifier for a study.
   :used: false
   :compliance:
@@ -29,7 +29,7 @@
   :name: DOMAIN
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Two-character abbreviation for the domain.
   :used: false
   :compliance:
@@ -50,7 +50,7 @@
   :name: USUBJID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
   :used: false
@@ -72,7 +72,7 @@
   :name: MHSEQ
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Sequence Number given to ensure uniqueness of subject records within
     a domain. May be any valid number.
   :used: false
@@ -94,7 +94,7 @@
   :name: MHGRPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Used to tie together a block of related records in a single domain
     for a subject.
   :used: false
@@ -116,7 +116,7 @@
   :name: MHREFID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Internal or external medical history identifier.
   :used: false
   :compliance:
@@ -137,7 +137,7 @@
   :name: MHSPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Sponsor-defined reference number. Perhaps pre-printed on the CRF
     as an explicit line identifier or defined in the sponsor''s operational database.
     Example: Line number on a Medical History page.'
@@ -160,7 +160,7 @@
   :name: MHTERM
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Verbatim or preprinted CRF term for the medical condition or event.
   :used: false
   :compliance:
@@ -181,7 +181,7 @@
   :name: MHMODIFY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: If MHTERM is modified to facilitate coding, then MHMODIFY will contain
     the modified text.
   :used: false
@@ -203,7 +203,7 @@
   :name: MHDECOD
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Dictionary-derived text description of MHTERM or MHMODIFY. Equivalent
     to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
     name and version used to map the terms utilizing the define.xml external codelist
@@ -227,7 +227,7 @@
   :name: MHCAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Used to define a category of related records. Examples: CARDIAC or
     GENERAL'
   :used: false
@@ -249,7 +249,7 @@
   :name: MHSCAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: A further categorization of the condition or event.
   :used: false
   :compliance:
@@ -271,7 +271,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhQUkVTUF9UTUMx
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhQUkVTUF9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHPRESP_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
     :label: NY
@@ -308,7 +308,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhPQ0NVUl9UTUMx
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhPQ0NVUl9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHOCCUR_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
     :label: NY
@@ -345,7 +345,7 @@
   :ct_and_format: "(ND)"
   :format: ''
   :ct_reference:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTVEFUX1RNQzE=
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTVEFUX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHSTAT_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
     :label: ND
@@ -379,7 +379,7 @@
   :name: MHREASND
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Describes the reason data for a pre-specified condition was not collected.
     Used in conjunction with MHSTAT when value is NOT DONE.
   :used: false
@@ -401,7 +401,7 @@
   :name: MHBODSYS
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Dictionary-derived. Body system or organ class that is involved in
     an event or measurement from a standard hierarchy (e.g., MedDRA). When using a
     multi-axial dictionary such as MedDRA, this should contain the SOC used for the
@@ -426,7 +426,7 @@
   :name: MHDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: ''
   :used: false
   :compliance:
@@ -447,7 +447,7 @@
   :name: MHSTDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: ''
   :used: false
   :compliance:
@@ -468,7 +468,7 @@
   :name: MHENDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: ''
   :used: false
   :compliance:
@@ -489,7 +489,7 @@
   :name: MHDY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 1. Study day of medical history collection, measured as integer days.
     2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC
     variable in Demographics. This formula should be consistent across the submission.
@@ -513,7 +513,7 @@
   :ct_and_format: "(STENRF)"
   :format: ''
   :ct_reference:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhFTlJGX1RNQzE=
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhFTlJGX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHENRF_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
     :label: STENRF
@@ -550,7 +550,7 @@
   :name: MHENRTPT
   :ct_and_format: BEFORE, AFTER, COINCIDENT, ONGOING, U
   :format: BEFORE, AFTER, COINCIDENT, ONGOING, U
-  :ct_reference: 
+  :ct_reference: []
   :description: Identifies the end of the event as being before or after the reference
     time point defined by variable MHENTPT.
   :used: false
@@ -572,7 +572,7 @@
   :name: MHENTPT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Description or date/time in ISO 8601 character format of the reference
     point referred to by MHENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
   :used: false
