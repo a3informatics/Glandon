@@ -36,12 +36,9 @@ export default function DTBooleanField() {
       })
 
       // Submit value on double click
-      $( icon, conf._input ).on( 'dblclick', e => {
-
-        if ( conf._enabled )
-          this.submit()
-
-      })
+      $( icon, conf._input ).on( 'dblclick', e => 
+        conf._enabled && this.submit() 
+      )
 
       // Change value on left / right key press, submit on enter press
       $( icon, conf._input ).on( 'keydown', e => {
@@ -53,7 +50,7 @@ export default function DTBooleanField() {
           // Focus on sibling on Arrow key
           case 37:
           case 39:
-            $(e.currentTarget).siblings().get(0).focus()
+            $( e.currentTarget ).siblings().get(0).focus()
             break;
           // Submit on Enter 
           case 13:
@@ -63,17 +60,8 @@ export default function DTBooleanField() {
 
       })
 
-      // Gain focus when editor opens
-      $( this ).on( 'open', () => {
-
-        if ( conf._enabled )
-          $( iconSelected, conf._input ).get(0).focus()
-        
-        $( icon, conf._input ).toggleClass( 'disabled', !conf._enabled )
-
-      })
-
       return conf._input
+
     },
 
     /**
@@ -101,6 +89,12 @@ export default function DTBooleanField() {
       else
         $( iconFalse, conf._input ).addClass( 'selected text-accent-2' )
 
+      // Focus on selected icon (if field enabled)
+      setTimeout( () => 
+        conf._enabled && $( iconSelected, conf._input ).get(0).focus(), 
+        10 
+      )
+      
     },
 
     /**
@@ -108,7 +102,10 @@ export default function DTBooleanField() {
      * @param {Object} conf DT field configuration object
      */
     disable(conf) {
+
       conf._enabled = false
+      $( icon, conf._input ).addClass( 'disabled' )
+
     },
 
     /**
@@ -116,7 +113,10 @@ export default function DTBooleanField() {
      * @param {Object} conf DT field configuration object
      */
     enable(conf) {
+
       conf._enabled = true
+      $( icon, conf._input ).removeClass( 'disabled' )
+
     }
 
   }
