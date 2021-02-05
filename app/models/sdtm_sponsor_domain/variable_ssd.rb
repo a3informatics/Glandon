@@ -116,8 +116,8 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
 
     # Check if params contain valid standard keys
     def valid_keys?(params)
-      standard_keys = %w[used notes comment method]
-      (params.keys & standard_keys).any?
+      standard_keys = %i[used notes comment method]
+      (params.to_h.symbolize_keys.keys & standard_keys).any?
     end
     
     # Check for an invalid name change
@@ -126,11 +126,6 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
       return true if params[:name] == self.name
       @parent_for_validation.unique_name_in_domain?(self, params[:name])
     end
-
-    # Toggle used
-    # def toggle_used
-    #   self.used == true ? {used: false} : {used: true}
-    # end
 
     # Variable is prefixed?
     def is_prefixed?
