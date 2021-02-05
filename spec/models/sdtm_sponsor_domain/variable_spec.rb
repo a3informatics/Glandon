@@ -193,7 +193,7 @@ describe SdtmSponsorDomain::VariableSSD do
       sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       params = {description: "description updated", label: "label updated", notes: "Notes updated", comment: "Comment updated", method: "Method updated"}
       result = sponsor_variable.update_with_clone(params, sponsor_domain)
-      check_file_actual_expected(result.to_h, sub_dir, "update_var_5.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(result.to_h, sub_dir, "update_var_5.yaml", equate_method: :hash_equal)
     end
 
     it "update error, standard variable" do
