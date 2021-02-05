@@ -34,7 +34,7 @@ export default class BCEditor extends EditablePanel {
   }) {
 
     // Initialize custom DataTable Editor fields
-    dtFieldsInit( ['truefalse', 'picker'] );
+    dtFieldsInit( ['boolean', 'picker'] );
 
     // Initialize super with custom options
     super({ selector, dataUrl: urls.data, updateUrl: urls.update, param: 'biomedical_concept_instance',

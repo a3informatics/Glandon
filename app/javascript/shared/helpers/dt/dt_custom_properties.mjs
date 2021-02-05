@@ -112,7 +112,7 @@ function fieldByDataType(datatype) {
       break;
 
     case 'boolean':
-      return (name, props) => dtField( 'truefalse', name, props );
+      return (name, props) => dtField( 'boolean', name, props );
       break;
 
   }

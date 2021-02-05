@@ -19,8 +19,8 @@ function dtCLEditFields() {
  */
 function dtBCEditFields() {
   return [
-    { name: 'enabled', type: 'truefalse' },
-    { name: 'collect', type: 'truefalse' },
+    { name: 'enabled', type: 'boolean' },
+    { name: 'collect', type: 'boolean' },
     { name: 'question_text', data: 'has_complex_datatype.has_property.question_text', type: 'textarea' },
     { name: 'prompt_text', data: 'has_complex_datatype.has_property.prompt_text',  type: 'textarea' },
     { name: 'format', data: 'has_complex_datatype.has_property.format',  type: 'textarea' },
@@ -36,11 +36,12 @@ function dtBCEditFields() {
  */
 function dtSDTMSDEditFields() {
   return [
-    { name: 'used', type: 'truefalse' },
+    { name: 'used', type: 'boolean' },
     { name: 'name', type: 'textarea' },
     { name: 'label', type: 'textarea' },
     _selectField({ name: 'typed_as' }),     
     { name: 'format', type: 'textarea' },
+    { name: 'ct_reference', type: 'picker', pickerName: 'refPicker', compare: compareRefItems },
     _selectField({ name: 'classified_as' }),     
     { name: 'description', type: 'textarea' },
     _selectField({ name: 'compliance' }),  
