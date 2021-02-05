@@ -1,5 +1,7 @@
 import EditablePanel from 'shared/base/editable_panel'
 
+import ItemsPicker from 'shared/ui/items_picker/items_picker'
+
 import { $confirm } from 'shared/helpers/confirmable'
 import { alerts } from 'shared/ui/alerts'
 import { $post, $delete } from 'shared/helpers/ajax'
@@ -33,7 +35,7 @@ export default class SDTMSDEditor extends EditablePanel {
     onEdited = () => {}
   }) {
 
-    dtFieldsInit( ['truefalse'] );
+    dtFieldsInit( ['boolean', 'picker'] );
     
     super({
       selector,
@@ -153,6 +155,8 @@ export default class SDTMSDEditor extends EditablePanel {
       }).show()
     );
 
+setTimeout( () => console.log(this.rowDataToArray), 1500 )
+
   }
 
   /**
@@ -235,6 +239,28 @@ export default class SDTMSDEditor extends EditablePanel {
    */
   _removeNotAllowed(data) {
     return data.standard === true
+  }
+
+    /**
+   * Initializes Items Pickers to use in an Editable Panel
+   * @override super's _initPickers
+   */
+  _initPickers() {
+
+    super._initPickers()
+
+    // Initializes Terminology Reference Picker
+    this.editor.pickers["refPicker"] = new ItemsPicker({
+      id: 'term-ref',
+      types: ['managed_concept'],
+      emptyEnabled: true,
+      onShow: () => this.keysDisable(),
+      onHide: () => {
+        this.editor.close();
+        this.keysEnable();
+      }
+    })
+
   }
 
 

@@ -226,20 +226,7 @@ function dtSDTMIGDomainShowColumns() {
 function dtSDTMSDDomainShowColumns() {
 
   return [
-    { data: "ordinal" },
-    { data: "name" },
-    { data: "label" },
-    { data: "typed_as.label" },
-    { data: "format" },
-    { data: "ct_and_format" },
-    {
-      data: "ct_reference",
-      width: 150,
-      render: (data, type, r, m) => termReferences(data, type)
-    },
-    { data: "classified_as.label" },
-    { data: "description" },
-    { data: "compliance.label" }
+    ...dtSDTMIGDomainShowColumns(),
     // Notes
     // Comment 
     // Method
@@ -361,6 +348,15 @@ function dtSDTMSDDomainEditColumns() {
     dtInlineEditColumn( 'label' ),
     dtSelectEditColumn( 'typed_as' ),
     dtInlineEditColumn( 'format' ),
+
+    // Items Picker column
+    {
+      className: 'editable inline pickable termPicker',
+      data: 'ct_reference',
+      width: 200,
+      render: (data, type, r, m) => termReferences(data, type, true)
+    },
+
     dtSelectEditColumn( 'classified_as' ),
     dtInlineEditColumn( 'description' ),
     dtSelectEditColumn( 'compliance' )
