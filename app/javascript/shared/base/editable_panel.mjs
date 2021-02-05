@@ -151,6 +151,20 @@ export default class EditablePanel extends TablePanel {
     return this.table.settings()[0].aoColumns[column].editField;
   }
 
+  /**
+   * Enable the Editor Key & Click interaction
+   */
+  keysEnable() {
+    this.table.keys?.enable();
+  }
+
+  /**
+   * Disable the Editor Key & Click interaction
+   */
+  keysDisable() {
+    this.table.keys?.disable();
+  }
+
 
   /** Private **/
 

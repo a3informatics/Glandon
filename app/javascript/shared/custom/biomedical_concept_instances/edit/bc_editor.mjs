@@ -59,20 +59,6 @@ export default class BCEditor extends EditablePanel {
 
   }
 
-  /**
-   * Enable the Editor Key & Click interaction
-   */
-  kEnable() {
-    this.table.keys.enable();
-  }
-
-  /**
-   * Disable the Editor Key & Click interaction
-   */
-  kDisable() {
-    this.table.keys.disable();
-  }
-
 
   /** Private **/
 
@@ -177,10 +163,10 @@ export default class BCEditor extends EditablePanel {
       submitText: 'Submit selection',
       multiple: true,
       emptyEnabled: true,
-      onShow: () => this.kDisable(),
+      onShow: () => this.keysDisable(),
       onHide: () => {
         this.editor.close();
-        this.kEnable();
+        this.keysEnable();
       }
     });
 
