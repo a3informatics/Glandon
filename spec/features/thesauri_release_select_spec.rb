@@ -9,6 +9,7 @@ describe "Thesauri Release Select", :type => :feature do
   include WaitForAjaxHelper
   include TimeHelpers
   include TokenHelpers
+  include IsoManagedHelpers
 
   describe "The Curator User can", :type => :feature, js:true do
 
@@ -370,9 +371,8 @@ describe "Thesauri Release Select", :type => :feature do
       find(:xpath, "//tr[contains(.,'TST0')]/td/a").click
       wait_for_ajax 10
       context_menu_element("history", 8, "0.1.0", :document_control)
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
+      wait_for_ajax 10 
+      dc_forward_to('Recorded')
       click_link "Return"
       wait_for_ajax 10
       ui_check_table_info("history", 1, 1, 1)

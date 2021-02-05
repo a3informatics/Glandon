@@ -30,6 +30,7 @@ describe "Custom Properties", type: :feature  do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
       load_cdisc_term_versions(1..45)
       ua_create
@@ -62,9 +63,10 @@ describe "Custom Properties", type: :feature  do
       check_cell_content('children', 1, 2, 'SISTER, BIOLOGICAL MATERNAL HALF')
       check_cell_content('children', 1, 6, 'SDTM')
       check_cell_content('children', 1, 7, 'Biological Maternal Half Sister') # CRF Display Value
-      check_cell_content('children', 1, 8, false)  # Adam stage
-      check_cell_content('children', 1, 9, true) # DC stage
-      check_cell_content('children', 1, 10, true) # SDTM stage
+      check_cell_content('children', 1, 8, '') # Synonym
+      check_cell_content('children', 1, 9, false)  # Adam stage
+      check_cell_content('children', 1, 10, true) # DC stage
+      check_cell_content('children', 1, 11, true) # SDTM stage
 
       # Hide CPs
       hide_custom_props
@@ -90,6 +92,7 @@ describe "Custom Properties", type: :feature  do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
@@ -129,10 +132,10 @@ describe "Custom Properties", type: :feature  do
 
       # Check default values are set 
       check_cell_content('editor', 1, 7, '') 
-      check_cell_content('editor', 1, 8, false)
       check_cell_content('editor', 1, 9, false)
       check_cell_content('editor', 1, 10, false)
       check_cell_content('editor', 1, 11, false)
+      check_cell_content('editor', 1, 12, false)
 
       # Inline editing of CPs, text
       ui_editor_select_by_location(1, 7)
@@ -149,11 +152,11 @@ describe "Custom Properties", type: :feature  do
       ui_press_key :escape
 
       # Inline editing of CPs, booleans
-      ui_editor_select_by_location(1, 8)
+      ui_editor_select_by_location(1, 9)
       ui_press_key :arrow_right
       ui_press_key :return
       wait_for_ajax 10
-      check_cell_content('editor', 1, 8, true)
+      check_cell_content('editor', 1, 9, true)
 
       ui_press_key :tab
       ui_press_key :return
@@ -176,10 +179,10 @@ describe "Custom Properties", type: :feature  do
       # Check default values copied from source 
       show_custom_props
       check_cell_content('editor', 1, 7, 'Biological Uncle') 
-      check_cell_content('editor', 1, 8, false)
-      check_cell_content('editor', 1, 9, true)
-      check_cell_content('editor', 1, 10, false) # ed_use is a missing value in source CL - check it set to default (false)
-      check_cell_content('editor', 1, 11, true)
+      check_cell_content('editor', 1, 9, false)
+      check_cell_content('editor', 1, 10, true)
+      check_cell_content('editor', 1, 11, false) # ed_use is a missing value in source CL - check it set to default (false)
+      check_cell_content('editor', 1, 12, true)
 
       # Edit Referenced CPs, text
       ui_editor_select_by_location(1, 7)
@@ -192,17 +195,17 @@ describe "Custom Properties", type: :feature  do
       check_cell_content('editor', 1, 7, 'Another CRF value')
 
       # Edit Referenced CPs, boolean
-      ui_editor_select_by_location(2, 9)
+      ui_editor_select_by_location(2, 10)
       ui_press_key :arrow_right
       ui_press_key :return
       wait_for_ajax 10 
       check_cell_content('editor', 2, 9, false)
 
-      ui_editor_select_by_location(2, 10)
+      ui_editor_select_by_location(2, 11)
       ui_press_key :arrow_left
       ui_press_key :return
       wait_for_ajax 10 
-      check_cell_content('editor', 2, 10, true)
+      check_cell_content('editor', 2, 11, true)
 
       # Check referenced items standard fields cannot be edited 
       ui_editor_select_by_location(2, 2)
@@ -214,7 +217,7 @@ describe "Custom Properties", type: :feature  do
     ### Code List Extension
 
     it "allows to display Custom Properties, CL Extension Editor" do
-      go_to_codelist 'C99073', 'Sanofi', '3.0.0', :edit
+      go_to_codelist 'C99073', 'Sanofi', '2.0.0', :edit
 
       show_custom_props
       # Check CP Columns
@@ -239,11 +242,11 @@ describe "Custom Properties", type: :feature  do
       check_cell_content 'editor', 3, 7, 'Screening CRF'
 
       # Inline CP editing, boolean
-      ui_editor_select_by_location 3, 10
+      ui_editor_select_by_location 3, 11
       ui_press_key :arrow_right
       ui_press_key :return
       wait_for_ajax 10
-      check_cell_content 'editor', 3, 10, true
+      check_cell_content 'editor', 3, 11, true
     end
 
     ### Code List Subset
@@ -266,10 +269,10 @@ describe "Custom Properties", type: :feature  do
       check_table_headers('source-table', cl_sponsor_cps_columns)
 
       check_cell_content('source-table', 1, 7, 'Male') 
-      check_cell_content('source-table', 1, 8, false)
-      check_cell_content('source-table', 1, 9, true)
-      check_cell_content('source-table', 1, 10, false)
+      check_cell_content('source-table', 1, 9, false)
+      check_cell_content('source-table', 1, 10, true)
       check_cell_content('source-table', 1, 11, false)
+      check_cell_content('source-table', 1, 12, false)
 
       hide_custom_props
       check_table_headers('source-table', cl_standard_columns)
@@ -285,10 +288,10 @@ describe "Custom Properties", type: :feature  do
 
       # Check CP values copied from Source Code List 
       check_cell_content('subset-table', 1, 8, 'Male') 
-      check_cell_content('subset-table', 1, 9, false)
-      check_cell_content('subset-table', 1, 10, true)
-      check_cell_content('subset-table', 1, 11, false)
+      check_cell_content('subset-table', 1, 10, false)
+      check_cell_content('subset-table', 1, 11, true)
       check_cell_content('subset-table', 1, 12, false)
+      check_cell_content('subset-table', 1, 13, false)
 
       hide_custom_props
       check_table_headers('subset-table', cl_standard_columns)
@@ -319,11 +322,11 @@ describe "Custom Properties", type: :feature  do
       check_cell_content 'subset-table', 1, 8, 'Male CRF'
 
       # Inline CP editing, boolean
-      ui_editor_select_by_location 1, 12, false, 'subset-table'
+      ui_editor_select_by_location 1, 13, false, 'subset-table'
       ui_press_key :arrow_left
       ui_press_key :return
       wait_for_ajax 10
-      check_cell_content 'subset-table', 1, 12, true
+      check_cell_content 'subset-table', 1, 13, true
     end
 
     ### Bugs 
@@ -335,10 +338,10 @@ describe "Custom Properties", type: :feature  do
       ui_check_table_info 'editor', 1, 10, 69 
       # Check CPs copied from prev version 
       check_cell_content('editor', 1, 7, 'Biological Maternal Half Sister') 
-      check_cell_content('editor', 1, 8, false)
-      check_cell_content('editor', 1, 9, true)
-      check_cell_content('editor', 1, 10, false)
-      check_cell_content('editor', 1, 11, true)
+      check_cell_content('editor', 1, 9, false)
+      check_cell_content('editor', 1, 10, true)
+      check_cell_content('editor', 1, 11, false)
+      check_cell_content('editor', 1, 12, true)
     end
 
     it "Extending a CDISC Code List, CP default values bug, should be a model/controller test not feature" do 
@@ -349,15 +352,15 @@ describe "Custom Properties", type: :feature  do
       ui_in_modal do 
         click_on 'Do not select'
       end 
-      wait_for_ajax 10
+      wait_for_ajax 30
 
       # Check default values picked up from other sponsor Code Lists
       show_custom_props
       check_cell_content('editor', 2, 7, '') 
-      check_cell_content('editor', 2, 8, false)
       check_cell_content('editor', 2, 9, false)
-      check_cell_content('editor', 2, 10, false) 
-      check_cell_content('editor', 2, 11, false)
+      check_cell_content('editor', 2, 10, false)
+      check_cell_content('editor', 2, 11, false) 
+      check_cell_content('editor', 2, 12, false)
 
       # Delete Extension 
       click_link 'Sanofi, C99079E'
@@ -373,15 +376,15 @@ describe "Custom Properties", type: :feature  do
       ui_in_modal do 
         click_on 'Do not select'
       end 
-      wait_for_ajax 10
+      wait_for_ajax 30
 
       # Check default values picked up from other sponsor Code Lists
       show_custom_props
       check_cell_content('editor', 2, 7, '') 
-      check_cell_content('editor', 2, 8, false)
       check_cell_content('editor', 2, 9, false)
-      check_cell_content('editor', 2, 10, false) 
-      check_cell_content('editor', 2, 11, false)
+      check_cell_content('editor', 2, 10, false)
+      check_cell_content('editor', 2, 11, false) 
+      check_cell_content('editor', 2, 12, false)
     end 
 
     it "Attempting to extend a specific Sanofi CL freezes server, FIXED" do

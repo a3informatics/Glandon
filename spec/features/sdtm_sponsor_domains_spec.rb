@@ -165,7 +165,7 @@ describe "SDTM Sponsor Domains", :type => :feature do
       ui_confirmation_dialog true
       wait_for_ajax 10
 
-      expect(page).to have_content "Index: SDTM Sponsor Domains"
+      expect(page).to have_content "No versions found"
       expect( SdtmSponsorDomain.all.count ).to eq sdtm_count - 1
     end
 

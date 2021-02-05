@@ -196,7 +196,7 @@ describe "Import::SponsorTermFormatTwo" do
       result = @object.import(params)
       filename = "sponsor_term_format_two_#{@object.id}_load.ttl"
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_5a.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_5a.ttl")
       check_ttl_fix_v2(filename, "import_expected_5a.ttl", {last_change_date: true})
       delete_data_file(sub_dir, filename)
       setup
@@ -205,14 +205,14 @@ describe "Import::SponsorTermFormatTwo" do
       result = @object.import(params)
       filename = "sponsor_term_format_two_#{@object.id}_load.ttl"
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_5b.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_5b.ttl")
       check_ttl_fix_v2(filename, "import_expected_5b.ttl", {last_change_date: true})
       delete_data_file(sub_dir, filename)
       setup
       result = @object.import(params)
       filename = "sponsor_term_format_two_#{@object.id}_load.ttl"
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_5c.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_5c.ttl")
       check_ttl_fix_v2(filename, "import_expected_5c.ttl", {last_change_date: true})
       delete_data_file(sub_dir, filename)
     end

@@ -121,12 +121,13 @@ const iconTypes = { 
   renderIcon(type, params) {
 
     let size = params.size || "text-xnormal",
-        iconParams = this.typeIconMap( type, params )
+        iconParams = this.typeIconMap( type, params ),
+        name = getRdfNameByType(type)
      
     return `<span 
               class="${ iconParams.icon } ${ size } ${ params.ttip ? 'ttip' : '' }" 
               style="color: ${ iconParams.color }">
-                ${ params.ttip ? `<span class="ttip-text ttip-table shadow-small text-medium text-small">${ getRdfNameByType(type) }</span>` : '' }
+                ${ params.ttip ? `<span class="ttip-text ttip-table shadow-small text-medium text-small">${ name }</span>` : '' }
             </span>`
 
   },

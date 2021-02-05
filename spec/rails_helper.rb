@@ -75,6 +75,33 @@ RSpec.configure do |config|
   config.include(Capybara::DSL)
   config.include PauseHelpers, type: :feature
 
+  config.before(:suite) do
+    $test_times = [] # Global variable declaration. Naughty, but nice :)
+  end
+
+  config.before(:all) do
+    @test_start = Time.now()
+  end
+
+  config.after(:all) do |example|
+    elapsed_time = (Time.now() - @test_start)
+    $test_times << {klass: "#{described_class}".ljust(40), time: elapsed_time.round(2)}
+  end
+  
+  config.after(:suite) do
+    puts ""
+    puts "#{"-"*53}"
+    puts "#{"Item".ljust(40)} : Time"
+    puts "#{"-"*53}"
+    $test_times.each do |x| 
+      colour = x[:time] > 5.0 ? "brown" : "green" 
+      colour = x[:time] > 60.0 ? "red" : colour 
+      puts colourize("#{x[:klass]} : #{x[:time]}", colour)
+    end
+    puts "#{"-"*53}"
+    puts ""
+  end
+
   # Block for checking javascript errors.
   #config.after(:each, type: :feature, js: true) do
   #   errors = page.driver.browser.manage.logs.get(:browser)

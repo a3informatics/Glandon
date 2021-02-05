@@ -2361,10 +2361,7 @@ describe "Thesaurus::ManagedConcept" do
       tc_2 = Thesaurus::UnmanagedConcept.create({label: "Terminal 2A", identifier: "A00024", definition: "A definition", notation: "T2A"}, tc)
       tc_3 = Thesaurus::UnmanagedConcept.create({label: "Cow Shed", identifier: "A00025", definition: "A definition", notation: "T2B"}, tc)
       tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id, tc_3.uri.to_id]))
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      tc.update_status(params)
+      IsoManagedHelpers.make_item_standard(tc)
       new_tc = tc.create_next_version
       cpv_uri = CustomPropertyValue.where_unique(tc_1, new_tc, :some_string)
       cpv = CustomPropertyValue.find(cpv_uri)

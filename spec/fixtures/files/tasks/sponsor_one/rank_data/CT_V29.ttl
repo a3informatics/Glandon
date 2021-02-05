@@ -1,0 +1,1441 @@
+@prefix : <http://www.cdisc.org/CT/V29#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.cdisc.org/CT/V29>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#af95873c-6eee-44a2-9b85-f8360a6fea78> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344> ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin "Created from files: 'SDTM Terminology 2011-12-09.xlsx', 'ADaM Terminology 2011-07-22.xlsx', 'CDASH Terminology 2011-12-09.xlsx', 'SEND Terminology 2012-01-02.xlsx'"^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2012-01-02T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2012-01-02T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConceptReference :TH_TMC2 ;
+	th:isTopConceptReference :TH_TMC3 ;
+	th:isTopConceptReference :TH_TMC4 ;
+	th:isTopConceptReference :TH_TMC5 ;
+	th:isTopConceptReference :TH_TMC6 ;
+	th:isTopConceptReference :TH_TMC7 ;
+	th:isTopConceptReference :TH_TMC8 ;
+	th:isTopConceptReference :TH_TMC9 ;
+	th:isTopConceptReference :TH_TMC10 ;
+	th:isTopConceptReference :TH_TMC11 ;
+	th:isTopConceptReference :TH_TMC12 ;
+	th:isTopConceptReference :TH_TMC13 ;
+	th:isTopConceptReference :TH_TMC14 ;
+	th:isTopConceptReference :TH_TMC15 ;
+	th:isTopConceptReference :TH_TMC16 ;
+	th:isTopConceptReference :TH_TMC17 ;
+	th:isTopConceptReference :TH_TMC18 ;
+	th:isTopConceptReference :TH_TMC19 ;
+	th:isTopConceptReference :TH_TMC20 ;
+	th:isTopConceptReference :TH_TMC21 ;
+	th:isTopConceptReference :TH_TMC22 ;
+	th:isTopConceptReference :TH_TMC23 ;
+	th:isTopConceptReference :TH_TMC24 ;
+	th:isTopConceptReference :TH_TMC25 ;
+	th:isTopConceptReference :TH_TMC26 ;
+	th:isTopConceptReference :TH_TMC27 ;
+	th:isTopConceptReference :TH_TMC28 ;
+	th:isTopConceptReference :TH_TMC29 ;
+	th:isTopConceptReference :TH_TMC30 ;
+	th:isTopConceptReference :TH_TMC31 ;
+	th:isTopConceptReference :TH_TMC32 ;
+	th:isTopConceptReference :TH_TMC33 ;
+	th:isTopConceptReference :TH_TMC34 ;
+	th:isTopConceptReference :TH_TMC35 ;
+	th:isTopConceptReference :TH_TMC36 ;
+	th:isTopConceptReference :TH_TMC37 ;
+	th:isTopConceptReference :TH_TMC38 ;
+	th:isTopConceptReference :TH_TMC39 ;
+	th:isTopConceptReference :TH_TMC40 ;
+	th:isTopConceptReference :TH_TMC41 ;
+	th:isTopConceptReference :TH_TMC42 ;
+	th:isTopConceptReference :TH_TMC43 ;
+	th:isTopConceptReference :TH_TMC44 ;
+	th:isTopConceptReference :TH_TMC45 ;
+	th:isTopConceptReference :TH_TMC46 ;
+	th:isTopConceptReference :TH_TMC47 ;
+	th:isTopConceptReference :TH_TMC48 ;
+	th:isTopConceptReference :TH_TMC49 ;
+	th:isTopConceptReference :TH_TMC50 ;
+	th:isTopConceptReference :TH_TMC51 ;
+	th:isTopConceptReference :TH_TMC52 ;
+	th:isTopConceptReference :TH_TMC53 ;
+	th:isTopConceptReference :TH_TMC54 ;
+	th:isTopConceptReference :TH_TMC55 ;
+	th:isTopConceptReference :TH_TMC56 ;
+	th:isTopConceptReference :TH_TMC57 ;
+	th:isTopConceptReference :TH_TMC58 ;
+	th:isTopConceptReference :TH_TMC59 ;
+	th:isTopConceptReference :TH_TMC60 ;
+	th:isTopConceptReference :TH_TMC61 ;
+	th:isTopConceptReference :TH_TMC62 ;
+	th:isTopConceptReference :TH_TMC63 ;
+	th:isTopConceptReference :TH_TMC64 ;
+	th:isTopConceptReference :TH_TMC65 ;
+	th:isTopConceptReference :TH_TMC66 ;
+	th:isTopConceptReference :TH_TMC67 ;
+	th:isTopConceptReference :TH_TMC68 ;
+	th:isTopConceptReference :TH_TMC69 ;
+	th:isTopConceptReference :TH_TMC70 ;
+	th:isTopConceptReference :TH_TMC71 ;
+	th:isTopConceptReference :TH_TMC72 ;
+	th:isTopConceptReference :TH_TMC73 ;
+	th:isTopConceptReference :TH_TMC74 ;
+	th:isTopConceptReference :TH_TMC75 ;
+	th:isTopConceptReference :TH_TMC76 ;
+	th:isTopConceptReference :TH_TMC77 ;
+	th:isTopConceptReference :TH_TMC78 ;
+	th:isTopConceptReference :TH_TMC79 ;
+	th:isTopConceptReference :TH_TMC80 ;
+	th:isTopConceptReference :TH_TMC81 ;
+	th:isTopConceptReference :TH_TMC82 ;
+	th:isTopConceptReference :TH_TMC83 ;
+	th:isTopConceptReference :TH_TMC84 ;
+	th:isTopConceptReference :TH_TMC85 ;
+	th:isTopConceptReference :TH_TMC86 ;
+	th:isTopConceptReference :TH_TMC87 ;
+	th:isTopConceptReference :TH_TMC88 ;
+	th:isTopConceptReference :TH_TMC89 ;
+	th:isTopConceptReference :TH_TMC90 ;
+	th:isTopConceptReference :TH_TMC91 ;
+	th:isTopConceptReference :TH_TMC92 ;
+	th:isTopConceptReference :TH_TMC93 ;
+	th:isTopConceptReference :TH_TMC94 ;
+	th:isTopConceptReference :TH_TMC95 ;
+	th:isTopConceptReference :TH_TMC96 ;
+	th:isTopConceptReference :TH_TMC97 ;
+	th:isTopConceptReference :TH_TMC98 ;
+	th:isTopConceptReference :TH_TMC99 ;
+	th:isTopConceptReference :TH_TMC100 ;
+	th:isTopConceptReference :TH_TMC101 ;
+	th:isTopConceptReference :TH_TMC102 ;
+	th:isTopConceptReference :TH_TMC103 ;
+	th:isTopConceptReference :TH_TMC104 ;
+	th:isTopConceptReference :TH_TMC105 ;
+	th:isTopConceptReference :TH_TMC106 ;
+	th:isTopConceptReference :TH_TMC107 ;
+	th:isTopConceptReference :TH_TMC108 ;
+	th:isTopConceptReference :TH_TMC109 ;
+	th:isTopConceptReference :TH_TMC110 ;
+	th:isTopConceptReference :TH_TMC111 ;
+	th:isTopConceptReference :TH_TMC112 ;
+	th:isTopConceptReference :TH_TMC113 ;
+	th:isTopConceptReference :TH_TMC114 ;
+	th:isTopConceptReference :TH_TMC115 ;
+	th:isTopConceptReference :TH_TMC116 ;
+	th:isTopConceptReference :TH_TMC117 ;
+	th:isTopConceptReference :TH_TMC118 ;
+	th:isTopConceptReference :TH_TMC119 ;
+	th:isTopConceptReference :TH_TMC120 ;
+	th:isTopConceptReference :TH_TMC121 ;
+	th:isTopConceptReference :TH_TMC122 ;
+	th:isTopConceptReference :TH_TMC123 ;
+	th:isTopConceptReference :TH_TMC124 ;
+	th:isTopConceptReference :TH_TMC125 ;
+	th:isTopConceptReference :TH_TMC126 ;
+	th:isTopConceptReference :TH_TMC127 ;
+	th:isTopConceptReference :TH_TMC128 ;
+	th:isTopConceptReference :TH_TMC129 ;
+	th:isTopConceptReference :TH_TMC130 ;
+	th:isTopConceptReference :TH_TMC131 ;
+	th:isTopConceptReference :TH_TMC132 ;
+	th:isTopConceptReference :TH_TMC133 ;
+	th:isTopConceptReference :TH_TMC134 ;
+	th:isTopConceptReference :TH_TMC135 ;
+	th:isTopConceptReference :TH_TMC136 ;
+	th:isTopConceptReference :TH_TMC137 ;
+	th:isTopConceptReference :TH_TMC138 ;
+	th:isTopConceptReference :TH_TMC139 ;
+	th:isTopConcept <http://www.cdisc.org/C66767/V28#C66767> ;
+	th:isTopConcept <http://www.cdisc.org/C66768/V28#C66768> ;
+	th:isTopConcept <http://www.cdisc.org/C66780/V17#C66780> ;
+	th:isTopConcept <http://www.cdisc.org/C66781/V28#C66781> ;
+	th:isTopConcept <http://www.cdisc.org/C66797/V27#C66797> ;
+	th:isTopConcept <http://www.cdisc.org/C66783/V27#C66783> ;
+	th:isTopConcept <http://www.cdisc.org/C66784/V28#C66784> ;
+	th:isTopConcept <http://www.cdisc.org/C87162/V27#C87162> ;
+	th:isTopConcept <http://www.cdisc.org/C66785/V28#C66785> ;
+	th:isTopConcept <http://www.cdisc.org/C66786/V28#C66786> ;
+	th:isTopConcept <http://www.cdisc.org/C66787/V16#C66787> ;
+	th:isTopConcept <http://www.cdisc.org/C66788/V28#C66788> ;
+	th:isTopConcept <http://www.cdisc.org/C66789/V13#C66789> ;
+	th:isTopConcept <http://www.cdisc.org/C66790/V19#C66790> ;
+	th:isTopConcept <http://www.cdisc.org/C66726/V28#C66726> ;
+	th:isTopConcept <http://www.cdisc.org/C66727/V17#C66727> ;
+	th:isTopConcept <http://www.cdisc.org/C66728/V27#C66728> ;
+	th:isTopConcept <http://www.cdisc.org/C66729/V27#C66729> ;
+	th:isTopConcept <http://www.cdisc.org/C66769/V17#C66769> ;
+	th:isTopConcept <http://www.cdisc.org/C66731/V16#C66731> ;
+	th:isTopConcept <http://www.cdisc.org/C66732/V16#C66732> ;
+	th:isTopConcept <http://www.cdisc.org/C66733/V4#C66733> ;
+	th:isTopConcept <http://www.cdisc.org/C66734/V28#C66734> ;
+	th:isTopConcept <http://www.cdisc.org/C66735/V4#C66735> ;
+	th:isTopConcept <http://www.cdisc.org/C66736/V16#C66736> ;
+	th:isTopConcept <http://www.cdisc.org/C66737/V16#C66737> ;
+	th:isTopConcept <http://www.cdisc.org/C66738/V28#C66738> ;
+	th:isTopConcept <http://www.cdisc.org/C67152/V28#C67152> ;
+	th:isTopConcept <http://www.cdisc.org/C66739/V28#C66739> ;
+	th:isTopConcept <http://www.cdisc.org/C66770/V28#C66770> ;
+	th:isTopConcept <http://www.cdisc.org/C66741/V28#C66741> ;
+	th:isTopConcept <http://www.cdisc.org/C67153/V28#C67153> ;
+	th:isTopConcept <http://www.cdisc.org/C66742/V4#C66742> ;
+	th:isTopConcept <http://www.cdisc.org/C65047/V28#C65047> ;
+	th:isTopConcept <http://www.cdisc.org/C67154/V28#C67154> ;
+	th:isTopConcept <http://www.cdisc.org/C71113/V28#C71113> ;
+	th:isTopConcept <http://www.cdisc.org/C71148/V26#C71148> ;
+	th:isTopConcept <http://www.cdisc.org/C71150/V26#C71150> ;
+	th:isTopConcept <http://www.cdisc.org/C71153/V26#C71153> ;
+	th:isTopConcept <http://www.cdisc.org/C71152/V26#C71152> ;
+	th:isTopConcept <http://www.cdisc.org/C71151/V26#C71151> ;
+	th:isTopConcept <http://www.cdisc.org/C71620/V28#C71620> ;
+	th:isTopConcept <http://www.cdisc.org/C74456/V28#C74456> ;
+	th:isTopConcept <http://www.cdisc.org/C74558/V8#C74558> ;
+	th:isTopConcept <http://www.cdisc.org/C76351/V21#C76351> ;
+	th:isTopConcept <http://www.cdisc.org/C74561/V8#C74561> ;
+	th:isTopConcept <http://www.cdisc.org/C74559/V10#C74559> ;
+	th:isTopConcept <http://www.cdisc.org/C76348/V27#C76348> ;
+	th:isTopConcept <http://www.cdisc.org/C74457/V10#C74457> ;
+	th:isTopConcept <http://www.cdisc.org/C78731/V14#C78731> ;
+	th:isTopConcept <http://www.cdisc.org/C78732/V14#C78732> ;
+	th:isTopConcept <http://www.cdisc.org/C78733/V28#C78733> ;
+	th:isTopConcept <http://www.cdisc.org/C78734/V28#C78734> ;
+	th:isTopConcept <http://www.cdisc.org/C78735/V19#C78735> ;
+	th:isTopConcept <http://www.cdisc.org/C78736/V14#C78736> ;
+	th:isTopConcept <http://www.cdisc.org/C78737/V28#C78737> ;
+	th:isTopConcept <http://www.cdisc.org/C78738/V14#C78738> ;
+	th:isTopConcept <http://www.cdisc.org/C85495/V27#C85495> ;
+	th:isTopConcept <http://www.cdisc.org/C85492/V27#C85492> ;
+	th:isTopConcept <http://www.cdisc.org/C85494/V28#C85494> ;
+	th:isTopConcept <http://www.cdisc.org/C85491/V27#C85491> ;
+	th:isTopConcept <http://www.cdisc.org/C85493/V26#C85493> ;
+	th:isTopConcept <http://www.cdisc.org/C85839/V26#C85839> ;
+	th:isTopConcept <http://www.cdisc.org/C90013/V26#C90013> ;
+	th:isTopConcept <http://www.cdisc.org/C95120/V26#C95120> ;
+	th:isTopConcept <http://www.cdisc.org/C95121/V26#C95121> ;
+	th:isTopConcept <http://www.cdisc.org/C96780/V26#C96780> ;
+	th:isTopConcept <http://www.cdisc.org/C96782/V26#C96782> ;
+	th:isTopConcept <http://www.cdisc.org/C96781/V26#C96781> ;
+	th:isTopConcept <http://www.cdisc.org/C96785/V26#C96785> ;
+	th:isTopConcept <http://www.cdisc.org/C96784/V26#C96784> ;
+	th:isTopConcept <http://www.cdisc.org/C96783/V26#C96783> ;
+	th:isTopConcept <http://www.cdisc.org/C96777/V26#C96777> ;
+	th:isTopConcept <http://www.cdisc.org/C96779/V26#C96779> ;
+	th:isTopConcept <http://www.cdisc.org/C96778/V26#C96778> ;
+	th:isTopConcept <http://www.cdisc.org/C99073/V28#C99073> ;
+	th:isTopConcept <http://www.cdisc.org/C99074/V28#C99074> ;
+	th:isTopConcept <http://www.cdisc.org/C99075/V28#C99075> ;
+	th:isTopConcept <http://www.cdisc.org/C88025/V28#C88025> ;
+	th:isTopConcept <http://www.cdisc.org/C99079/V28#C99079> ;
+	th:isTopConcept <http://www.cdisc.org/C99076/V28#C99076> ;
+	th:isTopConcept <http://www.cdisc.org/C99078/V28#C99078> ;
+	th:isTopConcept <http://www.cdisc.org/C99077/V28#C99077> ;
+	th:isTopConcept <http://www.cdisc.org/C81223/V19#C81223> ;
+	th:isTopConcept <http://www.cdisc.org/C81224/V22#C81224> ;
+	th:isTopConcept <http://www.cdisc.org/C81225/V19#C81225> ;
+	th:isTopConcept <http://www.cdisc.org/C81226/V19#C81226> ;
+	th:isTopConcept <http://www.cdisc.org/C78417/V28#C78417> ;
+	th:isTopConcept <http://www.cdisc.org/C78418/V28#C78418> ;
+	th:isTopConcept <http://www.cdisc.org/C78419/V28#C78419> ;
+	th:isTopConcept <http://www.cdisc.org/C78420/V28#C78420> ;
+	th:isTopConcept <http://www.cdisc.org/C78421/V19#C78421> ;
+	th:isTopConcept <http://www.cdisc.org/C78422/V27#C78422> ;
+	th:isTopConcept <http://www.cdisc.org/C78423/V19#C78423> ;
+	th:isTopConcept <http://www.cdisc.org/C78745/V25#C78745> ;
+	th:isTopConcept <http://www.cdisc.org/C78425/V19#C78425> ;
+	th:isTopConcept <http://www.cdisc.org/C78426/V19#C78426> ;
+	th:isTopConcept <http://www.cdisc.org/C78427/V25#C78427> ;
+	th:isTopConcept <http://www.cdisc.org/C78428/V19#C78428> ;
+	th:isTopConcept <http://www.cdisc.org/C78429/V19#C78429> ;
+	th:isTopConcept <http://www.cdisc.org/C78430/V25#C78430> ;
+	th:isTopConcept <http://www.cdisc.org/C78431/V25#C78431> ;
+	th:isTopConcept <http://www.cdisc.org/C83004/V19#C83004> ;
+	th:isTopConcept <http://www.cdisc.org/C88026/V26#C88026> ;
+	th:isTopConcept <http://www.cdisc.org/C89960/V26#C89960> ;
+	th:isTopConcept <http://www.cdisc.org/C89959/V26#C89959> ;
+	th:isTopConcept <http://www.cdisc.org/C89962/V26#C89962> ;
+	th:isTopConcept <http://www.cdisc.org/C89961/V26#C89961> ;
+	th:isTopConcept <http://www.cdisc.org/C89963/V26#C89963> ;
+	th:isTopConcept <http://www.cdisc.org/C90018/V26#C90018> ;
+	th:isTopConcept <http://www.cdisc.org/C89966/V26#C89966> ;
+	th:isTopConcept <http://www.cdisc.org/C89965/V26#C89965> ;
+	th:isTopConcept <http://www.cdisc.org/C89970/V26#C89970> ;
+	th:isTopConcept <http://www.cdisc.org/C89969/V26#C89969> ;
+	th:isTopConcept <http://www.cdisc.org/C89972/V26#C89972> ;
+	th:isTopConcept <http://www.cdisc.org/C89971/V26#C89971> ;
+	th:isTopConcept <http://www.cdisc.org/C89975/V26#C89975> ;
+	th:isTopConcept <http://www.cdisc.org/C89974/V26#C89974> ;
+	th:isTopConcept <http://www.cdisc.org/C89973/V26#C89973> ;
+	th:isTopConcept <http://www.cdisc.org/C90017/V26#C90017> ;
+	th:isTopConcept <http://www.cdisc.org/C90004/V26#C90004> ;
+	th:isTopConcept <http://www.cdisc.org/C89977/V26#C89977> ;
+	th:isTopConcept <http://www.cdisc.org/C89976/V26#C89976> ;
+	th:isTopConcept <http://www.cdisc.org/C90012/V26#C90012> ;
+	th:isTopConcept <http://www.cdisc.org/C89982/V26#C89982> ;
+	th:isTopConcept <http://www.cdisc.org/C89981/V26#C89981> ;
+	th:isTopConcept <http://www.cdisc.org/C89980/V26#C89980> ;
+	th:isTopConcept <http://www.cdisc.org/C90009/V28#C90009> ;
+	th:isTopConcept <http://www.cdisc.org/C90007/V28#C90007> ;
+	th:isTopConcept <http://www.cdisc.org/C90000/V26#C90000> ;
+	th:isTopConcept <http://www.cdisc.org/C77808/V26#C77808> ;
+	th:isTopConcept <http://www.cdisc.org/C77529/V28#C77529> ;
+	th:isTopConcept <http://www.cdisc.org/C89968/V26#C89968> ;
+	th:isTopConcept <http://www.cdisc.org/C77530/V28#C77530> ;
+	th:isTopConcept <http://www.cdisc.org/C90002/V28#C90002> ;
+	th:isTopConcept <http://www.cdisc.org/C89967/V26#C89967> ;
+	th:isTopConcept <http://www.cdisc.org/C90003/V27#C90003> ;
+	th:isTopConcept <http://www.cdisc.org/C90006/V26#C90006> ;
+	th:isTopConcept <http://www.cdisc.org/C90005/V26#C90005> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "CT"^^xsd:string ;
+	isoI:versionLabel "2012-01-02 Release"^^xsd:string ;
+	isoI:version "29"^^xsd:positiveInteger ;
+	isoI:semanticVersion "29.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+:TH_TMC1
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66767/V28#C66767> ;
+.
+:TH_TMC2
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66768/V28#C66768> ;
+.
+:TH_TMC3
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66780/V17#C66780> ;
+.
+:TH_TMC4
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66781/V28#C66781> ;
+.
+:TH_TMC5
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "5"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66797/V27#C66797> ;
+.
+:TH_TMC6
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "6"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66783/V27#C66783> ;
+.
+:TH_TMC7
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "7"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66784/V28#C66784> ;
+.
+:TH_TMC8
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "8"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C87162/V27#C87162> ;
+.
+:TH_TMC9
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "9"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66785/V28#C66785> ;
+.
+:TH_TMC10
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "10"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66786/V28#C66786> ;
+.
+:TH_TMC11
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "11"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66787/V16#C66787> ;
+.
+:TH_TMC12
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "12"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66788/V28#C66788> ;
+.
+:TH_TMC13
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "13"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V13#C66789> ;
+.
+:TH_TMC14
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "14"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66790/V19#C66790> ;
+.
+:TH_TMC15
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "15"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66726/V28#C66726> ;
+.
+:TH_TMC16
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "16"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66727/V17#C66727> ;
+.
+:TH_TMC17
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "17"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66728/V27#C66728> ;
+.
+:TH_TMC18
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "18"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66729/V27#C66729> ;
+.
+:TH_TMC19
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "19"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66769/V17#C66769> ;
+.
+:TH_TMC20
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "20"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V16#C66731> ;
+.
+:TH_TMC21
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "21"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66732/V16#C66732> ;
+.
+:TH_TMC22
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "22"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66733/V4#C66733> ;
+.
+:TH_TMC23
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "23"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66734/V28#C66734> ;
+.
+:TH_TMC24
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "24"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66735/V4#C66735> ;
+.
+:TH_TMC25
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "25"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66736/V16#C66736> ;
+.
+:TH_TMC26
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "26"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66737/V16#C66737> ;
+.
+:TH_TMC27
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "27"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66738/V28#C66738> ;
+.
+:TH_TMC28
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "28"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C67152/V28#C67152> ;
+.
+:TH_TMC29
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "29"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66739/V28#C66739> ;
+.
+:TH_TMC30
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "30"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V28#C66770> ;
+.
+:TH_TMC31
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "31"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66741/V28#C66741> ;
+.
+:TH_TMC32
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "32"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C67153/V28#C67153> ;
+.
+:TH_TMC33
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "33"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+.
+:TH_TMC34
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "34"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C65047/V28#C65047> ;
+.
+:TH_TMC35
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "35"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C67154/V28#C67154> ;
+.
+:TH_TMC36
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "36"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71113/V28#C71113> ;
+.
+:TH_TMC37
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "37"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V26#C71148> ;
+.
+:TH_TMC38
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "38"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71150/V26#C71150> ;
+.
+:TH_TMC39
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "39"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71153/V26#C71153> ;
+.
+:TH_TMC40
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "40"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71152/V26#C71152> ;
+.
+:TH_TMC41
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "41"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71151/V26#C71151> ;
+.
+:TH_TMC42
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "42"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V28#C71620> ;
+.
+:TH_TMC43
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "43"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V28#C74456> ;
+.
+:TH_TMC44
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "44"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74558/V8#C74558> ;
+.
+:TH_TMC45
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "45"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C76351/V21#C76351> ;
+.
+:TH_TMC46
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "46"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74561/V8#C74561> ;
+.
+:TH_TMC47
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "47"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74559/V10#C74559> ;
+.
+:TH_TMC48
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "48"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C76348/V27#C76348> ;
+.
+:TH_TMC49
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "49"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457> ;
+.
+:TH_TMC50
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "50"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78731/V14#C78731> ;
+.
+:TH_TMC51
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "51"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78732/V14#C78732> ;
+.
+:TH_TMC52
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "52"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78733/V28#C78733> ;
+.
+:TH_TMC53
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "53"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78734/V28#C78734> ;
+.
+:TH_TMC54
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "54"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78735/V19#C78735> ;
+.
+:TH_TMC55
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "55"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78736/V14#C78736> ;
+.
+:TH_TMC56
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "56"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78737/V28#C78737> ;
+.
+:TH_TMC57
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "57"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78738/V14#C78738> ;
+.
+:TH_TMC58
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "58"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C85495/V27#C85495> ;
+.
+:TH_TMC59
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "59"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C85492/V27#C85492> ;
+.
+:TH_TMC60
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "60"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C85494/V28#C85494> ;
+.
+:TH_TMC61
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "61"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C85491/V27#C85491> ;
+.
+:TH_TMC62
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "62"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C85493/V26#C85493> ;
+.
+:TH_TMC63
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "63"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C85839/V26#C85839> ;
+.
+:TH_TMC64
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "64"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C90013/V26#C90013> ;
+.
+:TH_TMC65
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "65"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C95120/V26#C95120> ;
+.
+:TH_TMC66
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "66"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C95121/V26#C95121> ;
+.
+:TH_TMC67
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "67"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C96780/V26#C96780> ;
+.
+:TH_TMC68
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "68"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C96782/V26#C96782> ;
+.
+:TH_TMC69
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "69"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C96781/V26#C96781> ;
+.
+:TH_TMC70
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "70"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C96785/V26#C96785> ;
+.
+:TH_TMC71
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "71"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C96784/V26#C96784> ;
+.
+:TH_TMC72
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "72"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C96783/V26#C96783> ;
+.
+:TH_TMC73
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "73"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C96777/V26#C96777> ;
+.
+:TH_TMC74
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "74"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C96779/V26#C96779> ;
+.
+:TH_TMC75
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "75"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C96778/V26#C96778> ;
+.
+:TH_TMC76
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "76"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C99073/V28#C99073> ;
+.
+:TH_TMC77
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "77"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C99074/V28#C99074> ;
+.
+:TH_TMC78
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "78"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C99075/V28#C99075> ;
+.
+:TH_TMC79
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "79"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C88025/V28#C88025> ;
+.
+:TH_TMC80
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "80"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C99079/V28#C99079> ;
+.
+:TH_TMC81
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "81"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C99076/V28#C99076> ;
+.
+:TH_TMC82
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "82"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C99078/V28#C99078> ;
+.
+:TH_TMC83
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "83"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C99077/V28#C99077> ;
+.
+:TH_TMC84
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "84"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+.
+:TH_TMC85
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "85"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81224/V22#C81224> ;
+.
+:TH_TMC86
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "86"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81225/V19#C81225> ;
+.
+:TH_TMC87
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "87"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+.
+:TH_TMC88
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "88"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78417/V28#C78417> ;
+.
+:TH_TMC89
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "89"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78418/V28#C78418> ;
+.
+:TH_TMC90
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "90"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78419/V28#C78419> ;
+.
+:TH_TMC91
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "91"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78420/V28#C78420> ;
+.
+:TH_TMC92
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "92"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78421/V19#C78421> ;
+.
+:TH_TMC93
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "93"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78422/V27#C78422> ;
+.
+:TH_TMC94
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "94"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78423/V19#C78423> ;
+.
+:TH_TMC95
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "95"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78745/V25#C78745> ;
+.
+:TH_TMC96
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "96"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78425/V19#C78425> ;
+.
+:TH_TMC97
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "97"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78426/V19#C78426> ;
+.
+:TH_TMC98
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "98"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78427/V25#C78427> ;
+.
+:TH_TMC99
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "99"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78428/V19#C78428> ;
+.
+:TH_TMC100
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "100"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78429/V19#C78429> ;
+.
+:TH_TMC101
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "101"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78430/V25#C78430> ;
+.
+:TH_TMC102
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "102"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C78431/V25#C78431> ;
+.
+:TH_TMC103
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "103"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C83004/V19#C83004> ;
+.
+:TH_TMC104
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "104"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C88026/V26#C88026> ;
+.
+:TH_TMC105
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "105"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89960/V26#C89960> ;
+.
+:TH_TMC106
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "106"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89959/V26#C89959> ;
+.
+:TH_TMC107
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "107"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89962/V26#C89962> ;
+.
+:TH_TMC108
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "108"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89961/V26#C89961> ;
+.
+:TH_TMC109
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "109"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89963/V26#C89963> ;
+.
+:TH_TMC110
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "110"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C90018/V26#C90018> ;
+.
+:TH_TMC111
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "111"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89966/V26#C89966> ;
+.
+:TH_TMC112
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "112"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89965/V26#C89965> ;
+.
+:TH_TMC113
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "113"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89970/V26#C89970> ;
+.
+:TH_TMC114
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "114"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89969/V26#C89969> ;
+.
+:TH_TMC115
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "115"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89972/V26#C89972> ;
+.
+:TH_TMC116
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "116"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89971/V26#C89971> ;
+.
+:TH_TMC117
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "117"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89975/V26#C89975> ;
+.
+:TH_TMC118
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "118"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89974/V26#C89974> ;
+.
+:TH_TMC119
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "119"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89973/V26#C89973> ;
+.
+:TH_TMC120
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "120"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C90017/V26#C90017> ;
+.
+:TH_TMC121
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "121"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C90004/V26#C90004> ;
+.
+:TH_TMC122
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "122"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89977/V26#C89977> ;
+.
+:TH_TMC123
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "123"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89976/V26#C89976> ;
+.
+:TH_TMC124
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "124"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C90012/V26#C90012> ;
+.
+:TH_TMC125
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "125"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89982/V26#C89982> ;
+.
+:TH_TMC126
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "126"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89981/V26#C89981> ;
+.
+:TH_TMC127
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "127"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89980/V26#C89980> ;
+.
+:TH_TMC128
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "128"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C90009/V28#C90009> ;
+.
+:TH_TMC129
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "129"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C90007/V28#C90007> ;
+.
+:TH_TMC130
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "130"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C90000/V26#C90000> ;
+.
+:TH_TMC131
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "131"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C77808/V26#C77808> ;
+.
+:TH_TMC132
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "132"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C77529/V28#C77529> ;
+.
+:TH_TMC133
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "133"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89968/V26#C89968> ;
+.
+:TH_TMC134
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "134"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C77530/V28#C77530> ;
+.
+:TH_TMC135
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "135"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C90002/V28#C90002> ;
+.
+:TH_TMC136
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "136"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C89967/V26#C89967> ;
+.
+:TH_TMC137
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "137"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C90003/V27#C90003> ;
+.
+:TH_TMC138
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "138"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C90006/V26#C90006> ;
+.
+:TH_TMC139
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "139"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C90005/V26#C90005> ;
+.

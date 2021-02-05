@@ -15,15 +15,16 @@ class Thesaurus <  IsoManagedV2
   include Thesaurus::Search
   include Thesaurus::Where
   include Thesaurus::Difference
+  include Thesaurus::ThRegistrationStatus
 
-  # Update Status. Update the status.
-  #
-  # @params [Hash] params the parameters
-  # @option params [String] :registration_tatus, the new state
-  # @return [Void] errors are in the error object, if any
-  def update_status(params)
-    move_to_next_state? ? super : self.errors.add(:base, "Child items are not in the appropriate state.")
-  end
+  # # Update Status. Update the status.
+  # #
+  # # @params [Hash] params the parameters
+  # # @option params [String] :registration_tatus, the new state
+  # # @return [Void] errors are in the error object, if any
+  # def update_status(params)
+  #   move_to_next_state? ? super : self.errors.add(:base, "Child items are not in the appropriate state.")
+  # end
 
   # Add. Add an item to the thesaurus. Note there is no save!
   #
@@ -490,25 +491,6 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
         definition: x[:d], id: x[:s].to_id, semantic_version: x[:sv], tags: x[:gt], indicators: indicators, owner: x[:o], scoped_identifier: x[:sci], scope_id: x[:ns].to_id }
     end
     results
-  end
-
-
-  def move_to_next_state?
-    (managed_children_states & IsoRegistrationStateV2.previous_states(self.registration_status)).empty?
-  end
-
-  # Managed Children States.
-  #
-  # @return [Array] array of states for the children
-  def managed_children_states
-    query_string = %Q{
-      SELECT ?s WHERE
-      {
-        #{self.uri.to_ref} th:isTopConceptReference/bo:reference/isoT:hasState/isoR:registrationStatus ?s .
-      }
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoT, :isoR])
-    query_results.by_object_set([:s]).map{|x| x[:s].to_sym}
   end
 
   # Upgrade. Upgrade the thesaurus when referened version updated.

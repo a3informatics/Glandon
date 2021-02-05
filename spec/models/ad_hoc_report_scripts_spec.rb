@@ -109,7 +109,7 @@ RSpec.describe AdHocReport, type: :model do
       delete_all_public_files
     end
 
-    it "executes an extension count report I" do
+    it "executes an extension count report I", :ad_hoc_report => 'slow' do
       copy_report_to_public_files("extension_count_sparql.yaml", "test")
       job = Background.create
       report = AdHocReport.new
@@ -122,7 +122,7 @@ RSpec.describe AdHocReport, type: :model do
     end
 
 
-    it "executes an extension count report II" do
+    it "executes an extension count report II", :ad_hoc_report => 'slow' do
       copy_report_to_public_files("extension_count_sparql.yaml", "test")
       job = Background.create
       report = AdHocReport.new
@@ -216,7 +216,7 @@ RSpec.describe AdHocReport, type: :model do
       delete_all_public_files
     end
 
-    it "executes an sponsor CT export report, 2019" do
+    it "executes an sponsor CT export report, 2019", :ad_hoc_report => 'slow' do
       copy_report_to_public_files("sponsor_ct_export_sparql.yaml", "test")
       job = Background.create
       report = AdHocReport.new
@@ -232,7 +232,7 @@ RSpec.describe AdHocReport, type: :model do
       expect(ranks.count).to eq(44)
     end
   
-    it "executes an sponsor CT export report, 2020 R1" do
+    it "executes an sponsor CT export report, 2020 R1", :ad_hoc_report => 'slow' do
       copy_report_to_public_files("sponsor_ct_export_sparql.yaml", "test")
       job = Background.create
       report = AdHocReport.new
@@ -249,7 +249,7 @@ RSpec.describe AdHocReport, type: :model do
       expect(ranks.count).to eq(47)
     end
   
-    it "executes an sponsor CT export report, 2020 R2" do
+    it "executes an sponsor CT export report, 2020 R2", :ad_hoc_report => 'slow' do
       copy_report_to_public_files("sponsor_ct_export_sparql.yaml", "test")
       job = Background.create
       report = AdHocReport.new
@@ -279,7 +279,7 @@ RSpec.describe AdHocReport, type: :model do
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
+      #load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
       AdHocReport.delete_all
       delete_all_public_files
     end
@@ -288,7 +288,7 @@ RSpec.describe AdHocReport, type: :model do
       delete_all_public_files
     end
 
-    it "executes an sponsor CT export subsets report 2019" do
+    it "executes an sponsor CT export subsets report 2019", :ad_hoc_report => 'slow' do
       copy_report_to_public_files("sponsor_ct_export_subsets_sparql.yaml", "test")
       job = Background.create
       report = AdHocReport.new
@@ -304,7 +304,7 @@ RSpec.describe AdHocReport, type: :model do
       expect(ranks.count).to eq(3)
     end
   
-    it "executes an sponsor CT export subsets report, 2020" do
+    it "executes an sponsor CT export subsets report, 2020", :ad_hoc_report => 'slow' do
       copy_report_to_public_files("sponsor_ct_export_subsets_sparql.yaml", "test")
       job = Background.create
       report = AdHocReport.new

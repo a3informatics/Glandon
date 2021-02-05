@@ -1,119 +1,133 @@
-<% content_for :page_title do %> Document Control: <%= @managed_item.label %> <% end %>
+<% content_for :page_title do %> <%= "Document Control: #{@managed_item.has_identifier.identifier} (#{@managed_item.semantic_version}) "%> <% end %>
 
-<%= javascript_tag "var url_release = '#{update_semantic_version_iso_managed_v2_path(@managed_item)}' " %>
-<%= javascript_include_tag 'iso_managed/status' %>
-<%= javascript_include_tag 'shared/timer', 'unload_v2' %>
-<%= stylesheet_link_tag "iso_managed/status" %>
-<% has_state = @managed_item.has_state %>
-<% state = has_state.registration_status %>
-<% next_state = IsoRegistrationStateV2.next_state(state) %>
+<%= stylesheet_link_tag 'iso_managed/status' %>
+<%= javascript_pack_tag 'iso_managed/status' %>
+
+<%= render partial: "shared/breadcrumb_by_type", :locals => { item: @managed_item, type: @item_klass, close_path: @close_path } %>
+
+<%= javascript_tag "let tokenTimerId = '#{@token.id}',
+                        tokenTimerWarning = '#{current_user.edit_lock_warning}';"%>
+
+<%= javascript_tag "const statusUrls = {
+                      data: '#{ status_iso_managed_v2_path(@managed_item) }',
+                      updateVersion: '#{ update_semantic_version_iso_managed_v2_path(@managed_item) }',
+                      updateVersionLabel: '#{ update_version_label_iso_managed_v2_path(@managed_item) }',
+                      makeCurrent: '#{ make_current_iso_managed_v2_path(@managed_item) }',
+                      nextState: '#{ next_state_iso_managed_v2_path(@managed_item) }',
+                      changeState: '#{ state_change_iso_managed_v2_path(@managed_item) }',
+                      changeStateImpact: '#{ state_change_impacted_items_iso_managed_v2_path(@managed_item) }'
+                    }; " %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @managed_item, badge: get_iso_managed_icon(@managed_item),
-    header_title: "Item management" } do %>
+  <%= render layout: "shared/headers/header_by_type", :locals => { item: @managed_item, type: @item_klass, with_tags: true } do %>
+
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/timeout" %>
+
+			<%= render partial: "shared/buttons/timeout" %>
       <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
     </div>
+
   <% end %>
 </div>
+
 <div class="row">
-	<div class="col-md-8 card wide">
-		<div class="card-header">	Manage Status </div>
-		  <div class="card-content">
-				<div class="status-wrap">
-					<div class="status" >
-						<div class="text-normal font-light"> Current Status: </div>
-						<div class="boxed-title bg-accent-1 font-bold"><%= IsoRegistrationStateV2.state_label(state) %></div>
-						<div class="status-paragraph font-light"><%= IsoRegistrationStateV2.state_definition(state) %></div>
-					</div>
-					<% if @managed_item.has_state.can_be_changed? %>
-            <div class="icon-arrow-r status-arrow"></div>
-    					<div class="status">
-    						<div class="text-normal font-light"> New Status: </div>
-    						<div class="boxed-title bg-sec-light font-bold"><%= IsoRegistrationStateV2.state_label(next_state) %></div>
-    						<div class="status-paragraph font-light"><%= IsoRegistrationStateV2.state_definition(next_state) %></div>
-    					</div>
-  				  </div>
-				    <br>
-    			  <form action="<%= update_status_iso_managed_v2_path(@managed_item) %>" method="post">
-              <center>
-      					<div class="status form-group">
-      						<div class="text-small font-light">Administrative Note: </div>
-                  <textarea autofocus="autofocus" class="form-control" rows="4" name="[iso_managed]administrative_note" id="[iso_managed]administrative_note"><%= @managed_item.has_state.administrative_note %></textarea>
-      					</div>
-      					<div class="status form-group">
-      						<div class="text-small font-light">Unresolved Issue: </div>
-                  <textarea class="form-control" rows="4" name="[iso_managed]unresolved_issue" id="[iso_managed]unresolved_issue"><%= @managed_item.has_state.unresolved_issue %></textarea>
-      					</div>
-      					<input value="<%= state %>" type="hidden" name="[iso_managed]previous_state" id="[iso_managed]previous_state" />
-                <input value="<%= next_state %>" type="hidden" name="[iso_managed]registration_status" id="[iso_managed]registration_status" />
-                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-                <div class="keep-token-click">
-      					   <%= submit_tag "Submit Status Change", class: "btn medium", id: 'state_submit' %>
-                </div>
-    				  </center>
-    			  </form>
-    				<br>
-				  <% else %>
+
+  <div class="col-md-12 card wide">
+
+    <div class="card-header">
+      Document Control
+    </div>
+
+    <div class="card-content">
+      <div id="status-panel">
+
+        <div class="ci-card-title text-normal text-link">
+          Version Information
+        </div>
+
+        <%# Version Information Conent %>
+        <table id="version-info" class="form-wrap">
+          <tr>
+            <td class="no-break"><span class="icon-version-circle text-link text-normal"></span> Version </td>
+            <td id="version"></td>
+          </tr>
+          <tr>
+            <td class="no-break"><span class="icon-tag-circle text-link text-normal"></span> Version label </td>
+            <td id="version-label"></td>
+          </tr>
+          <tr>
+            <td class="no-break"> <span class="icon-current text-link text-normal"></span> Current </td>
+            <td id="current"></td>
+          </tr>
+        </table>
+
+        <div class="ci-card-title text-normal text-link">
+          Manage Status
+        </div>
+
+        <%# Status Information Conent %>
+        <div id="status-info" class="form-wrap">
+
+          <div class="status-block-wrap">
+
+            <div id="status" class="status-block">
+              <i>Item Status</i>
+              <div class="status current"></div>
+              <div class="description"></div>
             </div>
-            <br>
-            <div class="font-light text-centered"><i> The status of this item cannot be changed. </i></div>
-				  <% end %>
-		    </div>
-	    </div>
-      <div class="col-md-4 card narrow">
-		<div class="card-header">	Version Control	</div>
-	<div class="card-content">
-		<span class="text-small font-light"> Make item current: </span>
 
-		<% if @managed_item.has_state.released_state? %>
+            <div id="status-arrow" class="icon-arrow-r"></div>
 
-    	<% if @managed_item.current? %>
-				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: "#", id: "make_current",
-					icon: "icon-new", text: "Item is already current", disabled: true } %>
-			<% else %>
-				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: make_current_iso_managed_v2_path(@managed_item),
-          id: "make_current", icon: "icon-new", text: "Update to current" } %>
-			<% end %>
+            <div id="status-next" class="status-block">
+              <i>Next Status</i> 
+              <div class="status next"></div>
+              <div class="description"></div>
+            </div>
+          
+          </div>
 
-		<% else %>
-    	<%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: "", id: "make_current",
-				icon: "icon-new", text: "Item status is not '".concat(IsoRegistrationStateV2.released_state, "'"), disabled: true } %>
-    <% end %>
+          <hr>
+  
+          <div class="btns-wrap" id="status-actions">
 
-    <hr>
+            <button id="rewind-status" class="btn white medium">
+              <span class="icon-fast-backward text-tiny"></span>
+              Rewind to Draft
+            </button>
 
-    <% if @managed_item.latest? && has_state.update_release? %>
+            <button id="next-status" class="btn light medium">
+              <span class="icon-step-forward text-tiny"></span>
+              Forward to Next
+            </button>
 
-      <span class="text-small font-light">Version: </span> <span id= "version-edit" class= "content-editable font-light bg-label"><%=@managed_item.semantic_version %></span>
-        <span id= "version-edit-after" class="form-wrap">
-          <select id="select-release">
-            <option value="major" selected>Major: <%= @next_versions[:major] %> </option>
-            <option value="minor">Minor: <%= @next_versions[:minor] %> </option>
-            <option value="patch">Patch: <%= @next_versions[:patch] %> </option>
-          </select>
-        <button id= "version-edit-submit" class="btn btn-xs">Update Version</button>
-      </span>
+            <button id="forward-status" class="btn white medium">
+              <span class="icon-fast-forward text-tiny"></span>
+              Forward to Release
+            </button>
 
-    <% else %>
-      <span class="text-small font-light">Version: </span> <span id= "version-edit" class= "font-light bg-label"><%=@managed_item.semantic_version %></span>
-    <% end %>
+          </div>
 
-    <br/>
-		<span class="text-small font-light">Version Label: </span><span id= "version-label-edit" class= "content-editable font-light bg-label">
-      <%= @managed_item.version_label.empty? ? "None" : @managed_item.version_label %></span>
-      <span id= "version-label-edit-after">
-        <form action="<%= iso_scoped_identifiers_v2_path(@managed_item.has_identifier.id) %>" method="post">
-          <span class="form-wrap">
-            <input name="iso_scoped_identifier[version_label]" id="iso_scoped_identifier[version_label]" type="text" placeholder="Version label" value="<%= @managed_item.version_label %>" autofocus class="font-light"/>
-          </span>
-          <%= hidden_field_tag "_method", "put" %>
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  				<%= submit_tag "Update Version Label", class: "btn btn-xs", id: 'version-label-submit' %>
-			 </form>
-      </span>
-	</div>
+          <div id="details-wrap">
+
+            <label for="with-dependencies" class="text-small">    
+              <input type="checkbox" class="styled" id="with-dependencies"/>
+              <span class="checkbox-styled"></span>
+              <span> With dependencies </span>
+            </label>
+
+            <textarea id="adm-note" placeholder="Administrative note"></textarea>
+            <textarea id="unr-issue" placeholder="Unresolved issue"></textarea>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
 </div>
-<input type="hidden" id="edit_lock_token" value="<%= @token.id %>">
-<input type="hidden" id="warning_timeout" value="<%= current_user.edit_lock_warning %>">
+
+<%= render partial: "shared/iso_managed/status/status_impact_modal" %>
