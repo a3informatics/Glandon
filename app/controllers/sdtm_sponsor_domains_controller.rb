@@ -42,7 +42,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
       format.json do
         @sdtm_sponsor_domain = SdtmSponsorDomain.find_full(@sdtm_sponsor_domain.id)
         return true unless check_lock_for_item(@sdtm_sponsor_domain)
-        render :json => { data: @sdtm_sponsor_domain.get_children }, :status => 200
+        render :json => { data: variables_with_paths(@sdtm_sponsor_domain) }, :status => 200
       end
     end
   end
