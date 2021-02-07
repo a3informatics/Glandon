@@ -39,7 +39,7 @@ class IsoConceptV2
     #
     # @return [Array] array of name value pairs
     def name_value_pairs
-      @items.map { |item| { name: item.custom_property_defined_by.label, value: item.to_typed } }
+      @items.map { |item| { name: item.custom_property_defined_by.label, value: item.to_typed } }.sort_by { |x| x[:name] }
     end
 
     # Return Values. 

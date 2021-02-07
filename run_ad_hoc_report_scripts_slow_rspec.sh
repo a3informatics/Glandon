@@ -1,0 +1,1 @@
+rspec spec/models/ad_hoc_report_scripts_spec.rb --tag ad_hoc_report:slow

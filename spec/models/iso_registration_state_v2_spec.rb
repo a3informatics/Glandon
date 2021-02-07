@@ -664,16 +664,16 @@ describe "IsoRegistrationStateV2" do
 
   it "returns the previous states including" do
     actual = IsoRegistrationStateV2.previous_states_including("Incomplete")
-    check_file_actual_expected(actual, sub_dir, "previous_states_including_expected_1.yaml", equate_method: :match_array, write_file: true)
+    check_file_actual_expected(actual, sub_dir, "previous_states_including_expected_1.yaml", equate_method: :match_array)
     actual = IsoRegistrationStateV2.previous_states_including("Standard")
-    check_file_actual_expected(actual, sub_dir, "previous_states_including_expected_2.yaml", equate_method: :match_array, write_file: true)
+    check_file_actual_expected(actual, sub_dir, "previous_states_including_expected_2.yaml", equate_method: :match_array)
   end
       
   it "returns the previous states" do
     actual = IsoRegistrationStateV2.previous_states("Incomplete")
-    check_file_actual_expected(actual, sub_dir, "previous_states_expected_1.yaml", equate_method: :match_array, write_file: true)
+    check_file_actual_expected(actual, sub_dir, "previous_states_expected_1.yaml", equate_method: :match_array)
     actual = IsoRegistrationStateV2.previous_states("Standard")
-    check_file_actual_expected(actual, sub_dir, "previous_states_expected_2.yaml", equate_method: :match_array, write_file: true)
+    check_file_actual_expected(actual, sub_dir, "previous_states_expected_2.yaml", equate_method: :match_array)
   end
       
 end
