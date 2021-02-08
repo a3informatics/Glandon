@@ -52,7 +52,8 @@ describe SdtmSponsorDomain do
       actual = []
       item = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
       children = item.get_children
-      children.each {|x| actual << x.to_h}
+      children_sorted = children.each.sort_by {|x| x[:ordinal]} 
+      children_sorted.each {|x| actual << x.to_h}
       check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)
     end
 
